@@ -1,0 +1,16 @@
+-Lottery-
+
+1.Atlanta Venom:             9-77   --
+2.Denver Heights:           18-68   -9
+3.Vancouver Orcas:          18-68   -9
+4.Memphis Blues:            20-66   -11
+5.Los Angeles Hawks:        22-64   -13
+6.DCB:                      23-63   -14
+7.Manhattan Magic:          27-59   -18
+8.Phoenix Badgers:          28-58   -19
+9.Cincinnati Blue Stripes:  29-57   -20
+10.New York Icons:          29-57   -20
+11.St.Louis Kings:          31-55   -22
+12.Maine Wildcats:          42-44   -33
+13.Florida Panthers:        42-44   -33
+14.Carolina Knights:        42-44   -33
