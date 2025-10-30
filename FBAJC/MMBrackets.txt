@@ -1,0 +1,98 @@
+                                              --S75 March Madness--
+--Region 1--
+   -Round of 64-
+(1)Gonzaga vs (16)Arkansas State
+(8)Michigan vs (9)Pitt
+(5)West Virginia vs (12)Xavier
+(4)Illinois vs (13)Kentucky
+(3)Florida State vs (14)Dartmouth
+(6)Tennessee vs (11)UCLA
+(7)Kansas vs (10)Wisconsin
+(2)St.John's vs (15)Lehigh
+   -Round of 32-
+(1)Gonzaga vs (9)Pitt
+(4)Illinois vs (12)Xavier
+(3)Florida State vs (6)Tennessee
+(2)St.John's vs (10)Wisconsin
+   -Sweet 16-
+(1)Gonzaga vs (4)Illinois
+(2)St.John's vs (3)Florida State
+   -Elite 8-
+(1)Gonzaga vs (3)Florida State
+
+
+--Region 2--
+   -Round of 64-
+(1)Villanova vs (16)Stetson
+(8)Houston vs (9)UAB
+(5)Michigan State vs (12)UMBC
+(4)Texas A&M vs (13)Oregon
+(3)Nevada vs (14)Northern Kentucky
+(6)Indiana vs (11)Baylor
+(7)BYU vs (10)North Carolina
+(2)UConn vs (15)Winthrop
+   -Round of 32-
+(1)Villanova vs (8)Houston
+(4)Texas A&M vs (12)UMBC
+(3)Nevada vs (6)Indiana
+(2)UConn vs (7)BYU
+   -Sweet 16-
+(8)Houston vs (12)UMBC
+(2)UConn vs (3)Nevada
+   -Elite 8-
+(8)Houston vs (2)UConn
+
+
+--Region 3--
+   -Round of 64-
+(1)Missouri vs (16)Wofford
+(8)Nebraska vs (9)Liberty
+(5)UCF vs (12)Saint Louis
+(4)Duke vs (13)Alabama
+(3)Arizona vs (14)Northern Illinois
+(6)Creighton vs (11)Loyola-Chicago
+(7)Marquette vs (10)Texas
+(2)Auburn vs (15)Abeline Christian
+   -Round of 32-
+(1)Missouri vs (8)Nebraska
+(4)Duke vs (5)UCF
+(3)Arizona vs (6)Creighton
+(2)Auburn vs (10)Texas
+   -Sweet 16-
+(1)Missouri vs (4)Duke
+(10)Texas vs (3)Arizona
+   -Elite 8-
+(1)Missouri vs (3)Arizona
+
+
+--Region 4--
+   -Round of 64-
+(1)Ohio State vs (16)Quinnipiac
+(8)Wake Forest vs (9)South Florida
+(5)Wichita State vs (12)Middle Tennessee
+(4)San Diego State vs (13)Buffalo
+(3)Texas Tech vs (14)Cornell
+(6)Memphis vs (11)Oregon State
+(7)Purdue vs (10)Washington
+(2)Louisville vs (15)Sam Houston State
+   -Round of 32-
+(1)Ohio State vs (8)Wake Forest
+(4)San Diego State vs (5)Wichita State
+(3)Texas Tech vs (6)Memphis
+(2)Louisville vs (7)Purdue
+   -Sweet 16-
+(8)Wake Forest vs (4)San Diego State
+(2)Louisville vs (6)Memphis
+   -Elite 8-
+(8)Wake Forest vs (2)Louisville
+
+
+   --Final Four--
+(1)Gonzaga vs (2)Louisville
+(2)UConn vs (1)Missouri
+   --National Championship--
+(1)Gonzaga vs (1)Missouri
+   --Champions--
+Gonzaga
+
+
