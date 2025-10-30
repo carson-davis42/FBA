@@ -1,0 +1,79 @@
+-Premier League-
+
+*-1.Berlin:          25-5    --
+x-2.San Jose:        22-8    -3
+x-3.Tokyo:           22-8    -3
+x-4.Budapest:        20-10   -5
+x-5.Lisbon:          20-10   -5
+x-6.Ottawa:          19-11   -6
+x-7.Milan:           17-13   -8
+x-8.Austin:          16-14   -9
+-----
+n-9.Salzburg:        16-14   -9
+n-10.Buenos Aires:   15-15   -10
+n-11.Madrid:         14-16   -11
+n-12.Mexico City:    13-17   -12
+n-13.London:         11-19   -14
+n-14.Vienna:          7-23   -18
+d-15.Vancouver:       2-28   -23
+d-16.Rome:            1-29   -24
+
+-World League-
+
+*-1.Guadalajara:    28-2    --
+p-2.Recife:         26-4    -2
+x-3.Sao Paolo:      26-4    -2
+x-4.Miami:          22-8    -6
+x-5.Liverpool:      22-8    -6
+x-6.Amsterdam:      21-9    -7
+x-7.Hamburg:        18-12   -10
+x-8.Shanghai:       16-14   -12
+-----
+n-9.Zagreb:         13-17   -15
+n-10.Sydney:        10-20   -18
+n-11.Lyon:          10-20   -18
+n-12.Zurich:         9-21   -19
+n-13.Munich:         7-23   -21
+n-14.Istanbul:       6-24   -22
+d-15.Brussels:       4-26   -24
+d-16.Copenhagen:     2-28   -26
+
+-United League-
+
+*-1.Osaka:               29-1    --
+p-2.Dhaka:               28-2    -1
+x-3.Saint Petersburg:    27-3    -2
+x-4.Beijing:             21-9    -8
+x-5.Casablanca:          20-10   -9
+x-6.Johannesburg:        17-13   -12
+x-7.Paris:               16-14   -13
+x-8.Moscow:              16-14   -13
+-----
+n-9.Lagos:               16-14   -13
+n-10.Manchester:         14-16   -15
+n-11.Stockholm:          10-20   -19
+n-12.Omaha:               8-22   -21
+n-13.Rio De Janeiro:      7-23   -22
+n-14.Tampa:               5-25   -24
+d-15.Dublin:              5-25   -24
+d-16.Barcelona:           1-29   -28
+
+-International League-
+
+*-1.Dubai:         29-1    --
+p-2.Mumbai:        27-3    -2
+x-3.Rotterdam:     27-3    -2
+x-4.Belfast:       25-5    -4
+x-5.Florence:      21-9    -8
+x-6.Naples:        17-13   -12
+x-7.Edinburgh:     16-14   -13
+x-8.Glasgow:       15-15   -14
+-----
+n-9.Oslo:          13-17   -16
+n-10.Warsaw:       11-19   -18
+n-11.Auckland:     10-20   -19
+n-12.Cairo:         9-21   -20
+n-13.Luxembourg:    8-22   -21
+n-14.Frankfurt:     8-22   -21
+n-15.Kiev:          4-26   -25
+n-16.Athens:        0-30   -29

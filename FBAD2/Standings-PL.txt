@@ -1,0 +1,19 @@
+-Premier League-
+
+*-1.Berlin:          25-5    --
+x-2.San Jose:        22-8    -3
+x-3.Tokyo:           22-8    -3
+x-4.Budapest:        20-10   -5
+x-5.Lisbon:          20-10   -5
+x-6.Ottawa:          19-11   -6
+x-7.Milan:           17-13   -8
+x-8.Austin:          16-14   -9
+-----
+n-9.Salzburg:        16-14   -9
+n-10.Buenos Aires:   15-15   -10
+n-11.Madrid:         14-16   -11
+n-12.Mexico City:    13-17   -12
+n-13.London:         11-19   -14
+n-14.Vienna:          7-23   -18
+d-15.Vancouver:       2-28   -23
+d-16.Rome:            1-29   -24
