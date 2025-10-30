@@ -1,4 +1,7 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -25,13 +28,11 @@ public class Main {
     private static ArrayBlockingQueue<PlayoffSeries> seriesQueue;
 
     public static void main(String[] args) throws IOException {
-        int season = 75;
+        int season = 76;
         playedGame = false;
-        File file = new File("FBA/FBARosters");
         Scanner keyboard = new Scanner(System.in);
-        Scanner input = new Scanner(file);
-        readRosters(input);
-        readOrMakeSchedule(true, false); //true if reading a schedule, true to print
+        readRosters();
+        readOrMakeSchedule(false, false); //true if reading a schedule, true to print
         readOrResetRecords(true); //true is reading in records
         if (gamesPlayed > 19) {
             readRankings();
@@ -100,7 +101,7 @@ public class Main {
             }
         }
         //write the long string to the file
-        File file = new File("FBA/FBARosters");
+        File file = new File("FBA/FBARosters.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -134,27 +135,31 @@ public class Main {
      * read in the rosters and basic team info from the FBARosters file
      *
      * @param input pre: none
+     * @throws IOException 
      */
-    public static void readRosters(Scanner input) {
-        final int NUM_OF_TEAMS = input.nextInt();
-        input.nextLine();
+    public static void readRosters() throws IOException {
+        List<String> lines = Files.readAllLines(Paths.get("FBA","FBARosters.txt"), StandardCharsets.UTF_8);
+
+        int line_num = 0;
+        final int NUM_OF_TEAMS = Integer.parseInt(lines.get(line_num));
+        line_num++;
         teams = new TreeMap<>();
         teamNames = new TreeMap<>();
         //Go through each team
         for (int a = 0; a < NUM_OF_TEAMS; a++) {
-            String teamInfo = input.nextLine();
+            String teamInfo = lines.get(line_num);
+            line_num++;
             Object[] teamArray = teamInfo.split("/");
             String teamName = (String) teamArray[0];
             String teamAbr = (String) teamArray[1];
             String conf = (String) teamArray[2];
-            int numOfPlayers = input.nextInt();
-            if (input.hasNextLine()) {
-                input.nextLine();
-            }
+            int numOfPlayers = Integer.parseInt(lines.get(line_num));
+            line_num++;
             PriorityQueue<Player> players = new PriorityQueue<>();
             //Go through each player for each team
             for (int b = 0; b < numOfPlayers; b++) {
-                String playerInfo = input.nextLine();
+                String playerInfo = lines.get(line_num);
+                line_num++;
                 Object[] playerArray = playerInfo.split("/");
                 String name = (String) playerArray[0];
                 String pos = (String) playerArray[1];
