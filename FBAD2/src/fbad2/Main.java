@@ -1,4 +1,8 @@
+package fbad2;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -28,10 +32,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         int season = 75;
-        File file = new File("FBAD2Rosters");
         Scanner keyboard = new Scanner(System.in);
-        Scanner input = new Scanner(file);
-        readRosters(input);
+        readRosters();
         readOrMakeSchedule(true, false); //true if reading a schedule, true to print
         readOrResetRecords(true); //true is reading in records
         playoffs = false;
@@ -106,7 +108,7 @@ public class Main {
             }
         }
         //write the long string to the file
-        File file = new File("FBAD2Rosters");
+        File file = new File("FBAD2/FBAD2Rosters");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -138,7 +140,7 @@ public class Main {
             sb.append(t.getName()).append(": ").append(t.getWin()).
                     append("-").append(t.getLoss()).append("\n");
         }
-        File file = new File("records");
+        File file = new File("FBAD2/records");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -148,27 +150,31 @@ public class Main {
      * read in the rosters and basic team info from the FBAD2Rosters file
      *
      * @param input pre: none
+     * @throws IOException 
      */
-    public static void readRosters(Scanner input) {
-        final int NUM_OF_TEAMS = input.nextInt();
-        input.nextLine();
+    public static void readRosters() throws IOException {
+        List<String> lines = Files.readAllLines(Paths.get("FBAD2/FBAD2Rosters"), StandardCharsets.UTF_8);
+
+        int line_num = 0;
+        final int NUM_OF_TEAMS = Integer.parseInt(lines.get(line_num));
+        line_num++;
         teams = new TreeMap<>();
         teamNames = new TreeMap<>();
         //Go through each team
         for (int a = 0; a < NUM_OF_TEAMS; a++) {
-            String teamInfo = input.nextLine();
+            String teamInfo = lines.get(line_num);
+            line_num++;
             Object[] teamArray = teamInfo.split("/");
             String teamName = (String) teamArray[0];
             String teamAbr = (String) teamArray[1];
             String conf = (String) teamArray[2];
-            int numOfPlayers = input.nextInt();
-            if (input.hasNextLine()) {
-                input.nextLine();
-            }
+            int numOfPlayers = Integer.parseInt(lines.get(line_num));
+            line_num++;
             ArrayList<Player> players = new ArrayList<>();
             //Go through each player for each team
             for (int b = 0; b < numOfPlayers; b++) {
-                String playerInfo = input.nextLine();
+                String playerInfo = lines.get(line_num);
+                line_num++;
                 Object[] playerArray = playerInfo.split("/");
                 String name = (String) playerArray[0];
                 String pos = (String) playerArray[1];
@@ -287,7 +293,7 @@ public class Main {
     public static void readOrMakeSchedule(boolean read, boolean debug) throws IOException {
         if (read) {
             schedule = new Team[2][TOTAL_NUM_OF_GAMES];
-            Scanner input = new Scanner(new File("schedule.txt"));
+            Scanner input = new Scanner(new File("FBAD2/schedule.txt"));
             gamesPlayed = input.nextInt();
             input.nextLine();
             tiebreakersComplete = input.nextLine();
@@ -344,14 +350,14 @@ public class Main {
             sb.append(schedule[0][a].getAbreviation()).append("/")
                     .append(schedule[1][a].getAbreviation()).append("\n");
         }
-        File file = new File("schedule.txt");
+        File file = new File("FBAD2/schedule.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
     }
 
     public static void readRecords() throws IOException {
-        Scanner input = new Scanner(new File("records"));
+        Scanner input = new Scanner(new File("FBAD2/records"));
         input.nextLine();
         input.nextLine();
         if (tiebreakersComplete.equals("Y")) {
@@ -455,7 +461,7 @@ public class Main {
             else {
                 throw new IllegalArgumentException("try again(maybe set read to true)");
             }
-            File file = new File("Results.txt");
+            File file = new File("FBAD2/Results.txt");
             FileWriter fw = new FileWriter(file);
             StringBuilder sb = new StringBuilder();
             fw.write(sb.toString());
@@ -561,7 +567,7 @@ public class Main {
         StringBuilder sb = new StringBuilder("-Premier League-" + "\n" + "\n");
         StringBuilder bigSB = new StringBuilder();
         goodLookingStandHelp(PL, sb, bigSB);
-        File file = new File("Standings-PL.txt");
+        File file = new File("FBAD2/Standings-PL.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -570,7 +576,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-World League-" + "\n" + "\n");
         goodLookingStandHelp(WL, sb, bigSB);
-        file = new File("Standings-WL.txt");
+        file = new File("FBAD2/Standings-WL.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -579,7 +585,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-United League-" + "\n" + "\n");
         goodLookingStandHelp(UL, sb, bigSB);
-        file = new File("Standings-UL.txt");
+        file = new File("FBAD2/Standings-UL.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -588,12 +594,12 @@ public class Main {
         bigSB.append("\n");
         sb.append("-International League-" + "\n" + "\n");
         goodLookingStandHelp(IL, sb, bigSB);
-        file = new File("Standings-IL.txt");
+        file = new File("FBAD2/Standings-IL.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
         //Master Standings
-        file = new File("Standings.txt");
+        file = new File("FBAD2/Standings.txt");
         fw = new FileWriter(file);
         fw.write(bigSB.toString());
         fw.close();
@@ -1184,7 +1190,7 @@ public class Main {
                         .append(ps.getAwayWins()).append("\n");
             }
         }
-        File file = new File("Playoffs.txt");
+        File file = new File("FBAD2/Playoffs.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1192,7 +1198,7 @@ public class Main {
 
     public static void readPlayoffs() throws IOException {
         updateStandings();
-        Scanner input = new Scanner(new File("Playoffs.txt"));
+        Scanner input = new Scanner(new File("FBAD2/Playoffs.txt"));
         int seriesNumPL = -1;
         int seriesNumWL = -1;
         int seriesNumUL = -1;
@@ -1310,7 +1316,7 @@ public class Main {
                     .append(c.getWin()).append("-").append(c.getLoss()).append(")");
             sb.append("\n");
         }
-        File file = new File("Schedule-Remaining.txt");
+        File file = new File("FBAD2/Schedule-Remaining.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();

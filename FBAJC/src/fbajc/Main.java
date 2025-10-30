@@ -1,7 +1,11 @@
+package fbajc;
 import sun.security.provider.Sun;
 
 import java.io.*;
 import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -57,10 +61,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         season = 75;
         reading = true;
-        File file = new File("FBAJCRosters");
         Scanner keyboard = new Scanner(System.in);
-        Scanner input = new Scanner(file);
-        readRosters(input);
+        readRosters();
         readOrMakeSchedule(true, false); //true if reading a schedule, true to print
         if (gamesPlayed == 0) {
             clearBrackets();
@@ -138,7 +140,7 @@ public class Main {
         sb.append(lastChampionship.get(0).getName()).append("\n");
         sb.append(lastChampionship.get(1).getName()).append("\n");
         //write the long string to the file
-        File file = new File("FBAJCRosters");
+        File file = new File("FBAJC/FBAJCRosters");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -186,7 +188,7 @@ public class Main {
         sb.append(WLHelp(OhioValley));
         sb.append("\n" + "-NEC-" + "\n" + "\n");
         sb.append(WLHelp(Northeast));
-        File file = new File("records");
+        File file = new File("FBAJC/records");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -206,27 +208,31 @@ public class Main {
      * read in the rosters and basic team info from the FBAJCRosters file
      *
      * @param input pre: none
+     * @throws IOException 
      */
-    public static void readRosters(Scanner input) {
-        final int NUM_OF_TEAMS = input.nextInt();
-        input.nextLine();
+    public static void readRosters() throws IOException {
+        List<String> lines = Files.readAllLines(Paths.get("FBAJC/FBAJCRosters"), StandardCharsets.UTF_8);
+
+        int line_num = 0;
+        final int NUM_OF_TEAMS = Integer.parseInt(lines.get(line_num));
+        line_num++;
         teams = new TreeMap<>();
         teamNames = new TreeMap<>();
         //Go through each team
         for (int a = 0; a < NUM_OF_TEAMS; a++) {
-            String teamInfo = input.nextLine();
+            String teamInfo = lines.get(line_num);
+            line_num++;
             Object[] teamArray = teamInfo.split("/");
             String teamName = (String) teamArray[0];
             String teamAbr = (String) teamArray[1];
             String conf = (String) teamArray[2];
-            int numOfPlayers = input.nextInt();
-            if (input.hasNextLine()) {
-                input.nextLine();
-            }
+            int numOfPlayers = Integer.parseInt(lines.get(line_num));
+            line_num++;
             PriorityQueue<Player> players = new PriorityQueue<>();
             //Go through each player for each team
             for (int b = 0; b < numOfPlayers; b++) {
-                String playerInfo = input.nextLine();
+                String playerInfo = lines.get(line_num);
+                line_num++;
                 Object[] playerArray = playerInfo.split("/");
                 String name = (String) playerArray[0];
                 String pos = (String) playerArray[1];
@@ -243,8 +249,10 @@ public class Main {
             teamNames.put(teamName, t);
         }
         lastChampionship = new ArrayList<>();
-        lastChampionship.add(teamNames.get(input.nextLine()));
-        lastChampionship.add(teamNames.get(input.nextLine()));
+        lastChampionship.add(teamNames.get(lines.get(line_num)));
+        line_num++;
+        lastChampionship.add(teamNames.get(lines.get(line_num)));
+        line_num++;
         //add teams to their conference
         allConferences = new ArrayList<>();
         Big12 = new ArrayList<>();
@@ -981,7 +989,7 @@ public class Main {
                 total.add(next.remove(a));
             }
         }
-        File file = new File("PreTournys.txt");
+        File file = new File("FBAJC/PreTournys.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -991,7 +999,7 @@ public class Main {
         if (read) {
             readPreSeasonTournies();
             schedule = new Team[2][TOTAL_NUM_CONF_GAMES + CONF_CHALLENGE_TOTAL];
-            Scanner input = new Scanner(new File("schedule.txt"));
+            Scanner input = new Scanner(new File("FBAJC/schedule.txt"));
             gamesPlayed = input.nextInt();
             input.nextLine();
             int game = 0;
@@ -1020,7 +1028,7 @@ public class Main {
             else {
                 throw new IllegalArgumentException("try again(maybe set read to true)");
             }
-            File file = new File("Results.txt");
+            File file = new File("FBAJC/Results.txt");
             FileWriter fw = new FileWriter(file);
             StringBuilder sb = new StringBuilder();
             fw.write(sb.toString());
@@ -1052,14 +1060,14 @@ public class Main {
             sb.append(schedule[0][a].getAbreviation()).append("/")
                     .append(schedule[1][a].getAbreviation()).append("\n");
         }
-        File file = new File("schedule.txt");
+        File file = new File("FBAJC/schedule.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
     }
 
     public static void readRecords() throws IOException {
-        Scanner input = new Scanner(new File("records"));
+        Scanner input = new Scanner(new File("FBAJC/records"));
         input.nextLine();
         input.nextLine();
         readRecHelp(input); //B12
@@ -1189,7 +1197,7 @@ public class Main {
             else {
                 throw new IllegalArgumentException("try again(maybe set read to true)");
             }
-            File file = new File("Results.txt");
+            File file = new File("FBAJC/Results.txt");
             FileWriter fw = new FileWriter(file);
             StringBuilder sb = new StringBuilder();
             fw.write(sb.toString());
@@ -1514,7 +1522,7 @@ public class Main {
     public static void toFileResults(Team one, Team two, int onePoints, int twoPoints, boolean homeWin) throws
             IOException {
         StringBuilder sb = new StringBuilder();
-        Scanner input = new Scanner(new File("Results.txt"));
+        Scanner input = new Scanner(new File("FBAJC/Results.txt"));
         while (input.hasNextLine()) {
             String temp = input.nextLine();
             sb.append(temp).append("\n");
@@ -1527,7 +1535,7 @@ public class Main {
             sb.append(gamesPlayed).append(",").append(one.getName()).append(",").append(onePoints)
                     .append(",").append(two.getName()).append(",").append(twoPoints);
         }
-        File file = new File("Results.txt");
+        File file = new File("FBAJC/Results.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1597,7 +1605,7 @@ public class Main {
             index++;
         }
 
-        File file = new File("League-Points-Stats.txt");
+        File file = new File("FBAJC/League-Points-Stats.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1660,7 +1668,7 @@ public class Main {
 
     private static void readRankings() throws FileNotFoundException {
         rankings = new ArrayList<>();
-        File file = new File("Rankings.txt");
+        File file = new File("FBAJC/Rankings.txt");
         Scanner input = new Scanner(file);
         input.nextLine();
         input.nextLine();
@@ -1712,7 +1720,7 @@ public class Main {
     }
 
     private static void updateRankings(boolean toFile) throws IOException {
-        String gameResults = "Results.txt";
+        String gameResults = "FBAJC/Results.txt";
         FootballRanker fr = new FootballRanker(gameResults);
         TreeSet<AllPathsInfo> allpaths = fr.doWeightedAndWinPercentAdjusted(false);
         ArrayList<Team> oldRanks = new ArrayList<>(rankings);
@@ -1775,7 +1783,7 @@ public class Main {
             if (!simulateSeason && !simulatePreST && !simulateConfT) {
                 System.out.println("New Rankings!");
             }
-            File file = new File("Rankings.txt");
+            File file = new File("FBAJC/Rankings.txt");
             FileWriter fw = new FileWriter(file);
             fw.write(sb.toString());
             fw.close();
@@ -1787,7 +1795,7 @@ public class Main {
         StringBuilder sb = new StringBuilder("-Big 12-" + "\n" + "\n");
         StringBuilder bigSB = new StringBuilder();
         goodLookingStandHelp(Big12, sb, bigSB);
-        File file = new File("Standings-Big12.txt");
+        File file = new File("FBAJC/Standings-Big12.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1796,7 +1804,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-ACC-" + "\n" + "\n");
         goodLookingStandHelp(ACC, sb, bigSB);
-        file = new File("Standings-ACC.txt");
+        file = new File("FBAJC/Standings-ACC.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1805,7 +1813,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Big East-" + "\n" + "\n");
         goodLookingStandHelp(BigEast, sb, bigSB);
-        file = new File("Standings-BigEast.txt");
+        file = new File("FBAJC/Standings-BigEast.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1814,7 +1822,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-SEC-" + "\n" + "\n");
         goodLookingStandHelp(SEC, sb, bigSB);
-        file = new File("Standings-SEC.txt");
+        file = new File("FBAJC/Standings-SEC.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1823,7 +1831,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Big Ten-" + "\n" + "\n");
         goodLookingStandHelp(BigTen, sb, bigSB);
-        file = new File("Standings-BigTen.txt");
+        file = new File("FBAJC/Standings-BigTen.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1832,7 +1840,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-American-" + "\n" + "\n");
         goodLookingStandHelp(American, sb, bigSB);
-        file = new File("Standings-American.txt");
+        file = new File("FBAJC/Standings-American.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1841,7 +1849,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-PAC 12-" + "\n" + "\n");
         goodLookingStandHelp(PAC12, sb, bigSB);
-        file = new File("Standings-PAC12.txt");
+        file = new File("FBAJC/Standings-PAC12.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1850,7 +1858,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Atlantic 10-" + "\n" + "\n");
         goodLookingStandHelp(Atlantic10, sb, bigSB);
-        file = new File("Standings-Atlantic10.txt");
+        file = new File("FBAJC/Standings-Atlantic10.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1859,7 +1867,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Patriot-" + "\n" + "\n");
         goodLookingStandHelp(Patriot, sb, bigSB);
-        file = new File("Standings-Patriot.txt");
+        file = new File("FBAJC/Standings-Patriot.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1868,7 +1876,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Colonial-" + "\n" + "\n");
         goodLookingStandHelp(Colonial, sb, bigSB);
-        file = new File("Standings-Colonial.txt");
+        file = new File("FBAJC/Standings-Colonial.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1877,7 +1885,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Horizon-" + "\n" + "\n");
         goodLookingStandHelp(Horizon, sb, bigSB);
-        file = new File("Standings-Horizon.txt");
+        file = new File("FBAJC/Standings-Horizon.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1886,7 +1894,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Ivy League-" + "\n" + "\n");
         goodLookingStandHelp(Ivy, sb, bigSB);
-        file = new File("Standings-Ivy.txt");
+        file = new File("FBAJC/Standings-Ivy.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1895,7 +1903,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Southern-" + "\n" + "\n");
         goodLookingStandHelp(Southern, sb, bigSB);
-        file = new File("Standings-SoCon.txt");
+        file = new File("FBAJC/Standings-SoCon.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1904,7 +1912,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Sun Belt-" + "\n" + "\n");
         goodLookingStandHelp(SunBelt, sb, bigSB);
-        file = new File("Standings-SunBelt.txt");
+        file = new File("FBAJC/Standings-SunBelt.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1913,7 +1921,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Big Sky-" + "\n" + "\n");
         goodLookingStandHelp(BigSky, sb, bigSB);
-        file = new File("Standings-BigSky.txt");
+        file = new File("FBAJC/Standings-BigSky.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1922,7 +1930,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Mountain West-" + "\n" + "\n");
         goodLookingStandHelp(MountainWest, sb, bigSB);
-        file = new File("Standings-MountainWest.txt");
+        file = new File("FBAJC/Standings-MountainWest.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1931,7 +1939,7 @@ public class Main {
         bigSB.append("\n");
         sb.append("-Ohio Valley-" + "\n" + "\n");
         goodLookingStandHelp(OhioValley, sb, bigSB);
-        file = new File("Standings-OhioValley.txt");
+        file = new File("FBAJC/Standings-OhioValley.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -1940,12 +1948,12 @@ public class Main {
         bigSB.append("\n");
         sb.append("-NEC-" + "\n" + "\n");
         goodLookingStandHelp(Northeast, sb, bigSB);
-        file = new File("Standings-NEC.txt");
+        file = new File("FBAJC/Standings-NEC.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
         //Master Standings
-        file = new File("Standings.txt");
+        file = new File("FBAJC/Standings.txt");
         fw = new FileWriter(file);
         fw.write(bigSB.toString());
         fw.close();
@@ -2168,14 +2176,14 @@ public class Main {
                     .append(")");
             sb.append("\n");
         }
-        File file = new File("Schedule-Remaining.txt");
+        File file = new File("FBAJC/Schedule-Remaining.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
     }
 
     private static void readFirstPreTournys() throws IOException {
-        Scanner input = new Scanner(new File("PreTournys.txt"));
+        Scanner input = new Scanner(new File("FBAJC/PreTournys.txt"));
         preSeasonTournies = new PriorityQueue<>(27);
         preTourniesInOrder = new ArrayList<>();
         while (input.hasNextLine()) {
@@ -2217,7 +2225,7 @@ public class Main {
                 sb.append(pst.getChampion().getName()).append("\n");
             }
         }
-        File file = new File("PSTStorage.txt");
+        File file = new File("FBAJC/PSTStorage.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -2225,7 +2233,7 @@ public class Main {
     }
 
     private static void readPreSeasonTournies() throws IOException {
-        Scanner input = new Scanner(new File("PSTStorage.txt"));
+        Scanner input = new Scanner(new File("FBAJC/PSTStorage.txt"));
         preSeasonTournies = new PriorityQueue<>(27);
         preTourniesInOrder = new ArrayList<>();
         while (input.hasNextLine()) {
@@ -2290,7 +2298,7 @@ public class Main {
     }
 
     private static void readEarlyRanks() throws IOException {
-        Scanner input = new Scanner(new File("PreSeasonRanks.txt"));
+        Scanner input = new Scanner(new File("FBAJC/PreSeasonRanks.txt"));
         if (gamesPlayed < PRE_S_TOURN_TOTAL) {
             inRanks = new ArrayList<>();
             while (input.hasNextLine()) {
@@ -2327,7 +2335,7 @@ public class Main {
                     rank++;
                 }
             }
-            File file = new File("Rankings.txt");
+            File file = new File("FBAJC/Rankings.txt");
             FileWriter fw = new FileWriter(file);
             fw.write(sb.toString());
             fw.close();
@@ -2401,7 +2409,7 @@ public class Main {
             }
             sb.append("\n").append("\n").append("\n");
         }
-        File file = new File("PreSeasonBrackets.txt");
+        File file = new File("FBAJC/PreSeasonBrackets.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -2474,7 +2482,7 @@ public class Main {
                 sb.append(pst.getChampion().getName()).append("\n");
             }
         }
-        File file = new File("CTStorage.txt");
+        File file = new File("FBAJC/CTStorage.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -2482,7 +2490,7 @@ public class Main {
     }
 
     private static void readConfTournies() throws FileNotFoundException {
-        Scanner input = new Scanner(new File("CTStorage.txt"));
+        Scanner input = new Scanner(new File("FBAJC/CTStorage.txt"));
         postSeasonTournies = new PriorityQueue<>(11);
         postTourniesInOrder = new ArrayList<>();
         while (input.hasNextLine()) {
@@ -2585,7 +2593,7 @@ public class Main {
             }
             sb.append("\n").append("\n").append("\n");
         }
-        File file = new File("ConferenceBrackets.txt");
+        File file = new File("FBAJC/ConferenceBrackets.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -2634,7 +2642,7 @@ public class Main {
         else {
             sb.append(theBracket.getChampion().getName()).append("\n");
         }
-        File file = new File("MMStorage.txt");
+        File file = new File("FBAJC/MMStorage.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -2642,7 +2650,7 @@ public class Main {
     }
 
     private static void readMM() throws FileNotFoundException {
-        Scanner input = new Scanner(new File("MMStorage.txt"));
+        Scanner input = new Scanner(new File("FBAJC/MMStorage.txt"));
         theBracket = new MarchMadness();
         String line = input.nextLine();
         Object[] b = line.split("/");
@@ -2773,7 +2781,7 @@ public class Main {
             sb.append("TBD");
         }
         sb.append("\n").append("\n").append("\n");
-        File file = new File("MMBrackets.txt");
+        File file = new File("FBAJC/MMBrackets.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -2814,7 +2822,7 @@ public class Main {
             sb.append("TBD");
             sb.append("\n").append("\n").append("\n");
         }
-        File file = new File("PreSeasonBrackets.txt");
+        File file = new File("FBAJC/PreSeasonBrackets.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -2843,7 +2851,7 @@ public class Main {
             sb.append("TBD");
             sb.append("\n").append("\n").append("\n");
         }
-        file = new File("ConferenceBrackets.txt");
+        file = new File("FBAJC/ConferenceBrackets.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
@@ -2895,7 +2903,7 @@ public class Main {
         sb.append("   --Champions--").append("\n");
         sb.append("TBD");
         sb.append("\n").append("\n").append("\n");
-        file = new File("MMBrackets.txt");
+        file = new File("FBAJC/MMBrackets.txt");
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();

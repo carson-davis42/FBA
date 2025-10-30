@@ -1,16 +1,16 @@
 -Lottery-
 
-1.Atlanta Venom:             9-77   --
-2.Denver Heights:           18-68   -9
-3.Vancouver Orcas:          18-68   -9
-4.Memphis Blues:            20-66   -11
-5.Los Angeles Hawks:        22-64   -13
-6.DCB:                      23-63   -14
-7.Manhattan Magic:          27-59   -18
-8.Phoenix Badgers:          28-58   -19
-9.Cincinnati Blue Stripes:  29-57   -20
-10.New York Icons:          29-57   -20
-11.St.Louis Kings:          31-55   -22
-12.Maine Wildcats:          42-44   -33
-13.Florida Panthers:        42-44   -33
-14.Carolina Knights:        42-44   -33
+1.Denver Heights:            0-2    --
+2.Memphis Blues:             0-2    --
+3.New Orleans Seminoles:     0-2    --
+4.Seattle Shock:             0-2    --
+5.Atlanta Venom:             0-2    --
+6.DCB:                       0-2    --
+7.St.Louis Kings:            1-2    -0.5
+8.Vegas Volts:               0-1    -0.5
+9.Oakland All-Stars:         0-1    -0.5
+10.Maine Wildcats:           0-1    -0.5
+11.Chicago Spartans:         1-1    -1
+12.Manhattan Magic:          1-1    -1
+13.Cincinnati Blue Stripes:  2-1    -1.5
+14.Toronto Wolves:           1-0    -1.5

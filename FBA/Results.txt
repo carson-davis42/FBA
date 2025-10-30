@@ -1,0 +1,27 @@
+1,Boston Bucks,79,Maine Wildcats,58
+2,Florida Panthers,72,Toronto Wolves,76
+3,Detroit Motors,73,Vegas Volts,53
+4,Texas Outlaws,100,DCB,43
+5,New Orleans Seminoles,42,Cincinnati Blue Stripes,63
+6,Oakland All-Stars,73,Columbus Pirates,84
+7,Florida Panthers,88,Memphis Blues,51
+8,Boston Bucks,89,Denver Heights,68
+9,Phoenix Badgers,64,Manhattan Magic,89
+10,Seattle Shock,61,New York Icons,66
+11,Los Angeles Hawks,80,Memphis Blues,54
+12,Florida Panthers,81,Milwaukee Warriors,85
+13,Denver Heights,84,Carolina Knights,86
+14,New Orleans Seminoles,74,St.Louis Kings,87
+15,Cypress Green Guns,46,Milwaukee Warriors,86
+16,Montreal Chevaliers,78,DCB,55
+17,Vancouver Orcas,53,San Antonio Spirits,82
+18,Ohio Valley Sharks,68,Chicago Spartans,61
+19,Ohio Valley Sharks,77,Honolulu Rays,63
+20,Atlanta Venom,53,Vancouver Orcas,66
+21,Honolulu Rays,86,Seattle Shock,57
+22,Montreal Chevaliers,83,Atlanta Venom,67
+23,San Antonio Spirits,73,Chicago Spartans,77
+24,St.Louis Kings,63,Florida Panthers,79
+25,Cincinnati Blue Stripes,82,Detroit Motors,84
+26,St.Louis Kings,54,Carolina Knights,100
+27,Manhattan Magic,51,Cincinnati Blue Stripes,71
