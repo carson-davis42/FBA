@@ -1,18 +1,18 @@
 -Eastern-
 
-1.Montreal Chevaliers:       2-0  (2-0)    --
-2.Boston Bucks:              2-0  (1-0)    --
-3.Detroit Motors:            2-0  (1-0)    --
-4.Ohio Valley Sharks:        2-0  (1-0)    --
-5.Milwaukee Warriors:        2-0  (0-0)    --
-6.Carolina Knights:          2-0  (0-0)    --
-7.Columbus Pirates:          1-0  (0-0)    -0.5
-8.New York Icons:            1-0  (0-0)    -0.5
+1.Milwaukee Warriors:        3-0  (1-0)    --
+2.Montreal Chevaliers:       2-0  (2-0)    -0.5
+3.Boston Bucks:              2-0  (1-0)    -0.5
+4.Detroit Motors:            2-0  (1-0)    -0.5
+5.Columbus Pirates:          2-0  (1-0)    -0.5
+6.Ohio Valley Sharks:        2-0  (1-0)    -0.5
+7.Carolina Knights:          2-0  (0-0)    -0.5
+8.New York Icons:            1-0  (0-0)    -1
 -----
-9.Toronto Wolves:            1-0  (0-0)    -0.5
-10.Cincinnati Blue Stripes:  2-1  (1-1)    -0.5
-11.Manhattan Magic:          1-1  (0-1)    -1
-12.Chicago Spartans:         1-1  (0-1)    -1
-13.Maine Wildcats:           0-1  (0-1)    -1.5
-14.Atlanta Venom:            0-2  (0-1)    -2
-15.DCB:                      0-2  (0-1)    -2
+9.Cincinnati Blue Stripes:   2-1  (1-1)    -1
+10.Manhattan Magic:          1-1  (0-1)    -1.5
+11.Chicago Spartans:         1-1  (0-1)    -1.5
+12.Toronto Wolves:           1-2  (0-2)    -2
+13.Maine Wildcats:           0-2  (0-1)    -2.5
+14.DCB:                      0-2  (0-1)    -2.5
+15.Atlanta Venom:            0-2  (0-1)    -2.5

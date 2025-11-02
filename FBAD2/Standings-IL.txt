@@ -1,19 +1,19 @@
 -International League-
 
-*-1.Dubai:         29-1    --
-p-2.Mumbai:        27-3    -2
-x-3.Rotterdam:     27-3    -2
-x-4.Belfast:       25-5    -4
-x-5.Florence:      21-9    -8
-x-6.Naples:        17-13   -12
-x-7.Edinburgh:     16-14   -13
-x-8.Glasgow:       15-15   -14
+1.Kiev:        14-1    --
+2.Belfast:      9-5    -4.5
+3.Warsaw:       9-6    -5
+4.Barcelona:    9-6    -5
+5.Athens:       9-6    -5
+6.Auckland:     9-7    -5.5
+7.Naples:      10-8    -5.5
+8.Dublin:       8-7    -6
 -----
-n-9.Oslo:          13-17   -16
-n-10.Warsaw:       11-19   -18
-n-11.Auckland:     10-20   -19
-n-12.Cairo:         9-21   -20
-n-13.Luxembourg:    8-22   -21
-n-14.Frankfurt:     8-22   -21
-n-15.Kiev:          4-26   -25
-n-16.Athens:        0-30   -29
+9.Rotterdam:    8-8    -6.5
+10.Glasgow:     8-8    -6.5
+11.Florence:    6-9    -8
+12.Frankfurt:   6-9    -8
+13.Edinburgh:   5-10   -9
+14.Cairo:       4-10   -9.5
+15.Luxembourg:  4-10   -9.5
+16.Oslo:        4-12   -10.5

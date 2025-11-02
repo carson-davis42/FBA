@@ -5,6 +5,10 @@ public class Player {
     private String position;
     private int age;
     private int spacesForPrint;
+    private int rating;
+    private int points;
+    private double PPG;
+    private Team team;
 
     /**
      * constructor for a Player
@@ -12,10 +16,12 @@ public class Player {
      * @param p pre: none
      * @param a pre: none
      */
-    public Player(String n, String p, int a) {
+    public Player(String n, String p, int a, int r, int po) {
         name = n;
         position = p;
         age = a;
+        rating = r;
+        points = po;
     }
 
     /**
@@ -37,6 +43,49 @@ public class Player {
      */
     public int getAge() {
         return age;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints (int p) {points = p;}
+
+    public void addPoints(int p) {
+        points += p;
+    }
+
+    public void newPPG(double gamesPlayed) {
+        if (gamesPlayed == 0) {
+            PPG = 0;
+        }
+        else {
+            PPG = (double) points / gamesPlayed;
+        }
+    }
+
+    public double getPPG() {
+        return PPG;
+    }
+
+    /**
+     *
+     * @param t
+     */
+    public void setTeam (Team t) {
+        team = t;
+    }
+
+    /**
+     *
+     * @return team
+     */
+    public Team getTeam () {
+        return team;
     }
 
     public void setSpaces(int s) {
@@ -71,6 +120,7 @@ public class Player {
             sb.append(" ");
         }
         sb.append("  age:").append(age);
+        sb.append("  rating:").append(rating);
         return sb.toString();
     }
 }

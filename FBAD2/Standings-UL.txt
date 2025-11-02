@@ -1,19 +1,19 @@
 -United League-
 
-*-1.Osaka:               29-1    --
-p-2.Dhaka:               28-2    -1
-x-3.Saint Petersburg:    27-3    -2
-x-4.Beijing:             21-9    -8
-x-5.Casablanca:          20-10   -9
-x-6.Johannesburg:        17-13   -12
-x-7.Paris:               16-14   -13
-x-8.Moscow:              16-14   -13
+1.Casablanca:        13-5    --
+2.Moscow:            11-4    -0.5
+3.Copenhagen:        11-5    -1
+4.Saint Petersburg:  10-5    -1.5
+5.Manchester:         9-6    -2.5
+6.Dubai:              9-7    -3
+7.Brussels:           8-7    -3.5
+8.Paris:              8-7    -3.5
 -----
-n-9.Lagos:               16-14   -13
-n-10.Manchester:         14-16   -15
-n-11.Stockholm:          10-20   -19
-n-12.Omaha:               8-22   -21
-n-13.Rio De Janeiro:      7-23   -22
-n-14.Tampa:               5-25   -24
-d-15.Dublin:              5-25   -24
-d-16.Barcelona:           1-29   -28
+9.Lagos:              7-8    -4.5
+10.Omaha:             7-8    -4.5
+11.Johannesburg:      7-8    -4.5
+12.Rio De Janeiro:    7-9    -5
+13.Mumbai:            5-11   -7
+14.Beijing:           4-11   -7.5
+15.Tampa:             5-12   -7.5
+16.Stockholm:         3-11   -8

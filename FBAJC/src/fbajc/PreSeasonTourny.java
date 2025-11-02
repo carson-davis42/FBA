@@ -193,19 +193,7 @@ public class PreSeasonTourny implements Comparable<PreSeasonTourny> {
             int pointsScored = 0;
             if (oddsToMake >= madeScore) {
                 madeScore = Math.abs(madeScore - oddsToMake);
-                if (playerWithBall.getPosition().equals("PG") && madeScore >= 30) {
-                    pointsScored = 3;
-                }
-                else if (playerWithBall.getPosition().equals("SG") && madeScore >= 30) {
-                    pointsScored = 3;
-                }
-                else if (playerWithBall.getPosition().equals("SF") && madeScore >= 35) {
-                    pointsScored = 3;
-                }
-                else if (playerWithBall.getPosition().equals("PF") && madeScore >= 40) {
-                    pointsScored = 3;
-                }
-                else if (playerWithBall.getPosition().equals("C") && madeScore >= 50) {
+                if (madeScore >= 30) {
                     pointsScored = 3;
                 }
                 else {

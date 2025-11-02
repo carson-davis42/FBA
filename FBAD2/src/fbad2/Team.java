@@ -6,7 +6,7 @@ public class Team implements Comparable<Team> {
     private final String name;
     private final String abreviation;
     private Player[] players;
-    private ArrayList<Player> roster;
+    public ArrayList<Player> roster;
     private int win;
     private int loss;
     private double winPerc;
@@ -37,6 +37,9 @@ public class Team implements Comparable<Team> {
         }
         //assign one, two, three, four, and five
         putPlayersInPositions();
+        for (Player play: roster) {
+            play.setTeam(this);
+        }
     }
 
     /**

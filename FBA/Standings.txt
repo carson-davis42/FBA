@@ -1,54 +1,54 @@
 -Eastern-
 
-1.Montreal Chevaliers:       2-0  (2-0)    --
-2.Boston Bucks:              2-0  (1-0)    --
-3.Detroit Motors:            2-0  (1-0)    --
-4.Ohio Valley Sharks:        2-0  (1-0)    --
-5.Milwaukee Warriors:        2-0  (0-0)    --
-6.Carolina Knights:          2-0  (0-0)    --
-7.Columbus Pirates:          1-0  (0-0)    -0.5
-8.New York Icons:            1-0  (0-0)    -0.5
+1.Milwaukee Warriors:        3-0  (1-0)    --
+2.Montreal Chevaliers:       2-0  (2-0)    -0.5
+3.Boston Bucks:              2-0  (1-0)    -0.5
+4.Detroit Motors:            2-0  (1-0)    -0.5
+5.Columbus Pirates:          2-0  (1-0)    -0.5
+6.Ohio Valley Sharks:        2-0  (1-0)    -0.5
+7.Carolina Knights:          2-0  (0-0)    -0.5
+8.New York Icons:            1-0  (0-0)    -1
 -----
-9.Toronto Wolves:            1-0  (0-0)    -0.5
-10.Cincinnati Blue Stripes:  2-1  (1-1)    -0.5
-11.Manhattan Magic:          1-1  (0-1)    -1
-12.Chicago Spartans:         1-1  (0-1)    -1
-13.Maine Wildcats:           0-1  (0-1)    -1.5
-14.Atlanta Venom:            0-2  (0-1)    -2
-15.DCB:                      0-2  (0-1)    -2
+9.Cincinnati Blue Stripes:   2-1  (1-1)    -1
+10.Manhattan Magic:          1-1  (0-1)    -1.5
+11.Chicago Spartans:         1-1  (0-1)    -1.5
+12.Toronto Wolves:           1-2  (0-2)    -2
+13.Maine Wildcats:           0-2  (0-1)    -2.5
+14.DCB:                      0-2  (0-1)    -2.5
+15.Atlanta Venom:            0-2  (0-1)    -2.5
 
 -Western-
 
-1.Los Angeles Hawks:       1-0  (1-0)    --
-2.Texas Outlaws:           1-0  (0-0)    --
-3.San Antonio Spirits:     1-1  (1-0)    -0.5
-4.Honolulu Rays:           1-1  (1-0)    -0.5
-5.Vancouver Orcas:         1-1  (0-1)    -0.5
-6.Florida Panthers:        2-2  (2-0)    -0.5
-7.Phoenix Badgers:         0-1  (0-0)    -1
-8.Cypress Green Guns:      0-1  (0-0)    -1
+1.Texas Outlaws:           2-0  (1-0)    --
+2.Los Angeles Hawks:       1-1  (1-1)    -1
+3.San Antonio Spirits:     1-1  (1-0)    -1
+4.Phoenix Badgers:         1-1  (1-0)    -1
+5.Honolulu Rays:           1-1  (1-0)    -1
+6.Oakland All-Stars:       1-1  (0-0)    -1
+7.Florida Panthers:        2-2  (2-0)    -1
+8.Vegas Volts:             0-1  (0-0)    -1.5
 -----
-9.Vegas Volts:             0-1  (0-0)    -1
-10.Oakland All-Stars:      0-1  (0-0)    -1
-11.St.Louis Kings:         1-2  (1-1)    -1
-12.Denver Heights:         0-2  (0-0)    -1.5
-13.Memphis Blues:          0-2  (0-2)    -1.5
-14.New Orleans Seminoles:  0-2  (0-1)    -1.5
-15.Seattle Shock:          0-2  (0-1)    -1.5
+9.Cypress Green Guns:      0-1  (0-0)    -1.5
+10.St.Louis Kings:         1-2  (1-1)    -1.5
+11.Vancouver Orcas:        1-2  (0-2)    -1.5
+12.Seattle Shock:          0-2  (0-1)    -2
+13.New Orleans Seminoles:  0-2  (0-1)    -2
+14.Memphis Blues:          0-2  (0-2)    -2
+15.Denver Heights:         0-2  (0-0)    -2
 
 -Lottery-
 
-1.Denver Heights:            0-2    --
-2.Memphis Blues:             0-2    --
-3.New Orleans Seminoles:     0-2    --
-4.Seattle Shock:             0-2    --
-5.Atlanta Venom:             0-2    --
+1.Seattle Shock:             0-2    --
+2.New Orleans Seminoles:     0-2    --
+3.Memphis Blues:             0-2    --
+4.Denver Heights:            0-2    --
+5.Maine Wildcats:            0-2    --
 6.DCB:                       0-2    --
-7.St.Louis Kings:            1-2    -0.5
-8.Vegas Volts:               0-1    -0.5
-9.Oakland All-Stars:         0-1    -0.5
-10.Maine Wildcats:           0-1    -0.5
-11.Chicago Spartans:         1-1    -1
-12.Manhattan Magic:          1-1    -1
-13.Cincinnati Blue Stripes:  2-1    -1.5
-14.Toronto Wolves:           1-0    -1.5
+7.Atlanta Venom:             0-2    --
+8.Vancouver Orcas:           1-2    -0.5
+9.Toronto Wolves:            1-2    -0.5
+10.St.Louis Kings:           1-2    -0.5
+11.Cypress Green Guns:       0-1    -0.5
+12.Chicago Spartans:         1-1    -1
+13.Manhattan Magic:          1-1    -1
+14.Cincinnati Blue Stripes:  2-1    -1.5

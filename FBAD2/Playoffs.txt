@@ -1,48 +1,48 @@
 --League Quarter-Finals--
 -Premier League-
-2-Berlin vs Austin-4
-1-San Jose vs Milan-4
-4-Tokyo vs Ottawa-3
-4-Budapest vs Lisbon-2
+0-TBD vs TBD-0
+0-TBD vs TBD-0
+0-TBD vs TBD-0
+0-TBD vs TBD-0
 -World League-
-4-Guadalajara vs Shanghai-0
-4-Recife vs Hamburg-0
-2-Sao Paolo vs Amsterdam-4
-4-Miami vs Liverpool-2
+0-TBD vs TBD-0
+0-TBD vs TBD-0
+0-TBD vs TBD-0
+0-TBD vs TBD-0
 -United League-
-4-Osaka vs Moscow-2
-4-Dhaka vs Paris-1
-4-Saint Petersburg vs Johannesburg-3
-4-Beijing vs Casablanca-2
+0-TBD vs TBD-0
+0-TBD vs TBD-0
+0-TBD vs TBD-0
+0-TBD vs TBD-0
 -International League-
-4-Dubai vs Glasgow-0
-4-Mumbai vs Edinburgh-1
-4-Rotterdam vs Naples-0
-2-Belfast vs Florence-4
+0-TBD vs TBD-0
+0-TBD vs TBD-0
+0-TBD vs TBD-0
+0-TBD vs TBD-0
 
 --League Semi-Finals--
 -Premier League-
-4-Budapest vs Austin-1
-4-Tokyo vs Milan-2
+0-TBD vs TBD-0
+0-TBD vs TBD-0
 -World League-
-4-Guadalajara vs Miami-1
-4-Recife vs Amsterdam-1
+0-TBD vs TBD-0
+0-TBD vs TBD-0
 -United League-
-4-Osaka vs Beijing-2
-4-Dhaka vs Saint Petersburg-2
+0-TBD vs TBD-0
+0-TBD vs TBD-0
 -International League-
-4-Dubai vs Florence-0
-4-Mumbai vs Rotterdam-3
+0-TBD vs TBD-0
+0-TBD vs TBD-0
 
 --League Finals--
 -Premier League-
-4-Tokyo vs Budapest-1
+0-TBD vs TBD-0
 -World League-
-2-Guadalajara vs Recife-4
+0-TBD vs TBD-0
 -United League-
-4-Osaka vs Dhaka-2
+0-TBD vs TBD-0
 -International League-
-3-Dubai vs Mumbai-4
+0-TBD vs TBD-0
 
 
 Next Games:

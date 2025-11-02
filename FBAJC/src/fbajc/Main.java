@@ -1,14 +1,11 @@
 package fbajc;
-import sun.security.provider.Sun;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
 
 public class Main {
     //instance variables
@@ -1316,19 +1313,7 @@ public class Main {
                     int pointsScored = 0;
                     if (oddsToMake >= madeScore) {
                         madeScore = Math.abs(madeScore - oddsToMake);
-                        if (playerWithBall.getPosition().equals("PG") && madeScore >= 30) {
-                            pointsScored = 3;
-                        }
-                        else if (playerWithBall.getPosition().equals("SG") && madeScore >= 30) {
-                            pointsScored = 3;
-                        }
-                        else if (playerWithBall.getPosition().equals("SF") && madeScore >= 35) {
-                            pointsScored = 3;
-                        }
-                        else if (playerWithBall.getPosition().equals("PF") && madeScore >= 40) {
-                            pointsScored = 3;
-                        }
-                        else if (playerWithBall.getPosition().equals("C") && madeScore >= 50) {
+                        if (madeScore >= 30) {
                             pointsScored = 3;
                         }
                         else {
@@ -1539,6 +1524,7 @@ public class Main {
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
+        input.close();
     }
 
     private static void toFileBestScorers () throws IOException{
