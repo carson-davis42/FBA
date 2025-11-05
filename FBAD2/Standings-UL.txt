@@ -1,19 +1,19 @@
 -United League-
 
-1.Casablanca:        13-5    --
-2.Moscow:            11-4    -0.5
-3.Copenhagen:        11-5    -1
-4.Saint Petersburg:  10-5    -1.5
-5.Manchester:         9-6    -2.5
-6.Dubai:              9-7    -3
-7.Brussels:           8-7    -3.5
-8.Paris:              8-7    -3.5
+*-1.Casablanca:          24-6    --
+p-2.Saint Petersburg:    22-8    -2
+x-3.Moscow:              21-9    -3
+x-4.Paris:               18-12   -6
+x-5.Brussels:            18-12   -6
+x-6.Dubai:               17-13   -7
+x-7.Copenhagen:          17-13   -7
+x-8.Manchester:          14-16   -10
 -----
-9.Lagos:              7-8    -4.5
-10.Omaha:             7-8    -4.5
-11.Johannesburg:      7-8    -4.5
-12.Rio De Janeiro:    7-9    -5
-13.Mumbai:            5-11   -7
-14.Beijing:           4-11   -7.5
-15.Tampa:             5-12   -7.5
-16.Stockholm:         3-11   -8
+n-9.Johannesburg:        13-17   -11
+n-10.Lagos:              13-17   -11
+n-11.Mumbai:             12-18   -12
+n-12.Rio De Janeiro:     12-18   -12
+n-13.Beijing:            11-19   -13
+n-14.Omaha:              11-19   -13
+d-15.Stockholm:          10-20   -14
+d-16.Tampa:               7-23   -17

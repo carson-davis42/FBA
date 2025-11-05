@@ -1109,17 +1109,31 @@ public class Main {
             }
             int gp = curSer.getAwayWins() + curSer.getHomeWins();
             playoffs = true;
+            String confe;
+            if (PL.contains(one)) {
+                confe = "Premier League";
+            }
+            else if (WL.contains(one)) {
+                confe = "World League";
+            }
+            else if (UL.contains(one)) {
+                confe = "United League";
+            }
+            else {
+                confe = "International League";
+            }
+            System.out.println("--" + confe + "--");
             if (gp == 2 || gp == 3 || gp == 5) {
                 System.out.println(one.displayToString());
                 System.out.println(two.displayToString());
-                System.out.println();
+                System.out.println("--" + confe + "--");
                 System.out.println("(" + curSer.getAwayWins() + "-" + curSer.getHomeWins() + ")" + tRank + "." + two.getName()
                         + " vs " + oRank + "." + one.getName() + "(" + curSer.getHomeWins() + "-" + curSer.getAwayWins() + ")");
             }
             else {
                 System.out.println(two.displayToString());
                 System.out.println(one.displayToString());
-                System.out.println();
+                System.out.println("--" + confe + "--");
                 System.out.println("(" + curSer.getHomeWins() + "-" + curSer.getAwayWins() + ")" + oRank + "." + one.getName()
                         + " vs " + tRank + "." + two.getName() + "(" + curSer.getAwayWins() + "-" + curSer.getHomeWins() + ")");
             }
@@ -1139,19 +1153,39 @@ public class Main {
             //Runs through a game
             for (int i = 0; i < endGamePoss; i++) {
                 if (i == 30) {
-                    System.out.print("End of the 1st: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    if (gp == 2 || gp == 3 || gp == 5) {
+                        System.out.print("End of the 1st: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints);
+                    }
+                    else {
+                        System.out.print("End of the 1st: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    }
                     keyboard.nextLine();
                 }
                 else if (i == 60) {
-                    System.out.print("Halftime: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    if (gp == 2 || gp == 3 || gp == 5) {
+                        System.out.print("Halftime: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints);
+                    }
+                    else {
+                        System.out.print("Halftime: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    }
                     keyboard.nextLine();
                 }
                 else if (i == 90) {
-                    System.out.print("End of the 3rd: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    if (gp == 2 || gp == 3 || gp == 5) {
+                        System.out.print("End of the 3rd: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints);
+                    }
+                    else {
+                        System.out.print("End of the 3rd: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    }
                     keyboard.nextLine();
                 }
                 else if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3)) {
-                    System.out.print(endGamePoss-i + " Possessions left: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints + ", ");
+                    if (gp == 2 || gp == 3 || gp == 5) {
+                        System.out.print(endGamePoss-i + " Possessions left: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints + ", ");
+                    }
+                    else {
+                        System.out.print(endGamePoss-i + " Possessions left: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints + ", ");
+                    }
                     if (i%2 == 0) {
                         System.out.print(one.getAbreviation() + " Possession");
                     }
@@ -1161,11 +1195,21 @@ public class Main {
                     keyboard.nextLine();
                 }
                 else if (i == 120) {
-                    System.out.print("End of the Regulation: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    if (gp == 2 || gp == 3 || gp == 5) {
+                        System.out.print("End of Regulation: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints);
+                    }
+                    else {
+                        System.out.print("End of Regulation: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    }
                     keyboard.nextLine();
                 }
                 else if (i%10 == 0 && i > 120) {
-                    System.out.print("End of " + OTCount + "OT: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    if (gp == 2 || gp == 3 || gp == 5) {
+                        System.out.print("End of " + OTCount + "OT: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints);
+                    }
+                    else {
+                        System.out.print("End of " + OTCount + "OT: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    }
                     keyboard.nextLine();
                 }
                 if (i % 2 == 0) {

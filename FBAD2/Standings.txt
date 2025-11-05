@@ -1,79 +1,79 @@
 -Premier League-
 
-1.Austin:        14-2    --
-2.Berlin:        11-4    -2.5
-3.Madrid:        10-5    -3.5
-4.Lisbon:        10-6    -4
-5.Budapest:       9-6    -4.5
-6.Guadalajara:    8-6    -5
-7.London:        10-8    -5
-8.Milan:          8-8    -6
+*-1.Austin:          27-3    --
+x-2.Berlin:          22-8    -5
+x-3.Budapest:        20-10   -7
+x-4.London:          19-11   -8
+x-5.Lisbon:          16-14   -11
+x-6.Recife:          16-14   -11
+x-7.Milan:           16-14   -11
+x-8.Guadalajara:     16-14   -11
 -----
-9.Recife:         7-8    -6.5
-10.Mexico City:   7-9    -7
-11.Salzburg:      7-9    -7
-12.Buenos Aires:  6-9    -7.5
-13.Ottawa:        5-10   -8.5
-14.Tokyo:         5-10   -8.5
-15.San Jose:      4-10   -9
-16.Vienna:        2-13   -11.5
+n-9.Tokyo:           14-16   -13
+n-10.Madrid:         14-16   -13
+n-11.Salzburg:       14-16   -13
+n-12.Buenos Aires:   12-18   -15
+n-13.Ottawa:         11-19   -16
+n-14.Mexico City:    11-19   -16
+d-15.San Jose:        9-21   -18
+d-16.Vienna:          3-27   -24
 
 -World League-
 
-1.Rome:       13-3    --
-2.Vancouver:  13-4    -0.5
-3.Hamburg:    10-5    -2.5
-4.Sao Paolo:  10-5    -2.5
-5.Zurich:      9-5    -3
-6.Sydney:      9-6    -3.5
-7.Dhaka:       8-6    -4
-8.Miami:       8-7    -4.5
+*-1.Rome:         25-5    --
+p-2.Vancouver:    24-6    -1
+x-3.Sao Paolo:    23-7    -2
+x-4.Sydney:       20-10   -5
+x-5.Hamburg:      19-11   -6
+x-6.Zurich:       16-14   -9
+x-7.Dhaka:        16-14   -9
+x-8.Liverpool:    15-15   -10
 -----
-9.Liverpool:   7-8    -5.5
-10.Amsterdam:  7-8    -5.5
-11.Zagreb:     8-9    -5.5
-12.Osaka:      6-9    -6.5
-13.Lyon:       5-10   -7.5
-14.Shanghai:   4-11   -8.5
-15.Istanbul:   2-12   -10
-16.Munich:     2-13   -10.5
+n-9.Lyon:         14-16   -11
+n-10.Miami:       14-16   -11
+n-11.Amsterdam:   13-17   -12
+n-12.Zagreb:      11-19   -14
+n-13.Munich:       9-21   -16
+n-14.Osaka:        9-21   -16
+d-15.Shanghai:     8-22   -17
+d-16.Istanbul:     4-26   -21
 
 -United League-
 
-1.Casablanca:        13-5    --
-2.Moscow:            11-4    -0.5
-3.Copenhagen:        11-5    -1
-4.Saint Petersburg:  10-5    -1.5
-5.Manchester:         9-6    -2.5
-6.Dubai:              9-7    -3
-7.Brussels:           8-7    -3.5
-8.Paris:              8-7    -3.5
+*-1.Casablanca:          24-6    --
+p-2.Saint Petersburg:    22-8    -2
+x-3.Moscow:              21-9    -3
+x-4.Paris:               18-12   -6
+x-5.Brussels:            18-12   -6
+x-6.Dubai:               17-13   -7
+x-7.Copenhagen:          17-13   -7
+x-8.Manchester:          14-16   -10
 -----
-9.Lagos:              7-8    -4.5
-10.Omaha:             7-8    -4.5
-11.Johannesburg:      7-8    -4.5
-12.Rio De Janeiro:    7-9    -5
-13.Mumbai:            5-11   -7
-14.Beijing:           4-11   -7.5
-15.Tampa:             5-12   -7.5
-16.Stockholm:         3-11   -8
+n-9.Johannesburg:        13-17   -11
+n-10.Lagos:              13-17   -11
+n-11.Mumbai:             12-18   -12
+n-12.Rio De Janeiro:     12-18   -12
+n-13.Beijing:            11-19   -13
+n-14.Omaha:              11-19   -13
+d-15.Stockholm:          10-20   -14
+d-16.Tampa:               7-23   -17
 
 -International League-
 
-1.Kiev:        14-1    --
-2.Belfast:      9-5    -4.5
-3.Warsaw:       9-6    -5
-4.Barcelona:    9-6    -5
-5.Athens:       9-6    -5
-6.Auckland:     9-7    -5.5
-7.Naples:      10-8    -5.5
-8.Dublin:       8-7    -6
+*-1.Kiev:          25-5    --
+p-2.Rotterdam:     19-11   -6
+x-3.Warsaw:        19-11   -6
+x-4.Barcelona:     19-11   -6
+x-5.Belfast:       18-12   -7
+x-6.Dublin:        18-12   -7
+x-7.Auckland:      18-12   -7
+x-8.Naples:        16-14   -9
 -----
-9.Rotterdam:    8-8    -6.5
-10.Glasgow:     8-8    -6.5
-11.Florence:    6-9    -8
-12.Frankfurt:   6-9    -8
-13.Edinburgh:   5-10   -9
-14.Cairo:       4-10   -9.5
-15.Luxembourg:  4-10   -9.5
-16.Oslo:        4-12   -10.5
+n-9.Florence:      15-15   -10
+n-10.Glasgow:      14-16   -11
+n-11.Athens:       13-17   -12
+n-12.Frankfurt:    11-19   -14
+n-13.Cairo:        11-19   -14
+n-14.Edinburgh:    10-20   -15
+n-15.Luxembourg:    8-22   -17
+n-16.Oslo:          6-24   -19

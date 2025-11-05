@@ -1,0 +1,225 @@
+1,Detroit Motors,95,Carolina Knights,58
+2,Ohio Valley Sharks,78,New Orleans Seminoles,72
+3,Atlanta Venom,79,Toronto Wolves,77
+4,Vancouver Orcas,49,Milwaukee Warriors,88
+5,Montreal Chevaliers,80,Vancouver Orcas,78
+6,Cypress Green Guns,83,DCB,74
+7,Los Angeles Hawks,75,Cypress Green Guns,90
+8,Boston Bucks,81,Texas Outlaws,82
+9,Denver Heights,69,Los Angeles Hawks,66
+10,Oakland All-Stars,100,Florida Panthers,63
+11,Cincinnati Blue Stripes,63,San Antonio Spirits,72
+12,Columbus Pirates,84,Cincinnati Blue Stripes,71
+13,New York Icons,80,Chicago Spartans,97
+14,Vegas Volts,73,Atlanta Venom,57
+15,Seattle Shock,88,Texas Outlaws,77
+16,Memphis Blues,82,Ohio Valley Sharks,78
+17,Cypress Green Guns,80,Maine Wildcats,64
+18,Manhattan Magic,58,Cincinnati Blue Stripes,69
+19,Honolulu Rays,87,Manhattan Magic,71
+20,Phoenix Badgers,84,Seattle Shock,81
+21,Milwaukee Warriors,86,St.Louis Kings,65
+22,Montreal Chevaliers,74,Oakland All-Stars,87
+23,St.Louis Kings,41,Carolina Knights,86
+24,Honolulu Rays,75,Columbus Pirates,83
+25,Denver Heights,72,Cincinnati Blue Stripes,81
+26,San Antonio Spirits,76,Chicago Spartans,77
+27,Atlanta Venom,83,Maine Wildcats,61
+28,Detroit Motors,69,Chicago Spartans,84
+29,Vancouver Orcas,67,Memphis Blues,89
+30,Phoenix Badgers,66,Boston Bucks,90
+31,DCB,72,New Orleans Seminoles,81
+32,Toronto Wolves,78,Cypress Green Guns,104
+33,Memphis Blues,77,New York Icons,72
+34,Florida Panthers,83,Carolina Knights,85
+35,Carolina Knights,94,Vegas Volts,58
+36,Columbus Pirates,66,Maine Wildcats,70
+37,Phoenix Badgers,42,Montreal Chevaliers,106
+38,Milwaukee Warriors,77,Chicago Spartans,80
+39,New York Icons,92,DCB,56
+40,Oakland All-Stars,82,New York Icons,67
+41,Seattle Shock,70,Boston Bucks,80
+42,Vegas Volts,78,Detroit Motors,88
+43,Boston Bucks,68,Toronto Wolves,72
+44,New York Icons,64,Honolulu Rays,60
+45,Toronto Wolves,73,Manhattan Magic,64
+46,Los Angeles Hawks,68,Milwaukee Warriors,89
+47,Florida Panthers,67,Ohio Valley Sharks,75
+48,St.Louis Kings,46,Montreal Chevaliers,86
+49,New Orleans Seminoles,90,Manhattan Magic,69
+50,Texas Outlaws,86,Seattle Shock,69
+51,Atlanta Venom,62,Denver Heights,86
+52,Cypress Green Guns,75,San Antonio Spirits,92
+53,Chicago Spartans,65,Detroit Motors,85
+54,St.Louis Kings,73,Atlanta Venom,78
+55,Ohio Valley Sharks,69,Chicago Spartans,80
+56,Florida Panthers,56,Seattle Shock,68
+57,Vegas Volts,68,Florida Panthers,76
+58,DCB,72,Boston Bucks,81
+59,Maine Wildcats,78,Ohio Valley Sharks,87
+60,New Orleans Seminoles,69,Denver Heights,82
+61,San Antonio Spirits,96,Vancouver Orcas,65
+62,Maine Wildcats,83,Memphis Blues,54
+63,Manhattan Magic,86,Phoenix Badgers,63
+64,Denver Heights,54,Columbus Pirates,98
+65,Honolulu Rays,76,Toronto Wolves,67
+66,St.Louis Kings,71,Los Angeles Hawks,62
+67,Texas Outlaws,76,Cincinnati Blue Stripes,85
+68,Oakland All-Stars,101,Denver Heights,59
+69,Oakland All-Stars,78,New Orleans Seminoles,73
+70,Cincinnati Blue Stripes,49,Montreal Chevaliers,81
+71,Florida Panthers,92,Honolulu Rays,66
+72,Chicago Spartans,71,Phoenix Badgers,62
+73,Vegas Volts,85,DCB,73
+74,Memphis Blues,75,Seattle Shock,85
+75,Vancouver Orcas,77,St.Louis Kings,66
+76,San Antonio Spirits,84,Carolina Knights,80
+77,Detroit Motors,56,Carolina Knights,66
+78,Milwaukee Warriors,82,Texas Outlaws,68
+79,Los Angeles Hawks,65,Denver Heights,80
+80,Cincinnati Blue Stripes,64,Columbus Pirates,88
+81,DCB,67,Detroit Motors,68
+82,Los Angeles Hawks,84,Montreal Chevaliers,80
+83,Ohio Valley Sharks,94,New York Icons,71
+84,San Antonio Spirits,81,Montreal Chevaliers,71
+85,Atlanta Venom,77,Columbus Pirates,75
+86,St.Louis Kings,65,Texas Outlaws,98
+87,Honolulu Rays,69,Vegas Volts,71
+88,Vancouver Orcas,73,Maine Wildcats,63
+89,St.Louis Kings,68,Oakland All-Stars,92
+90,Cypress Green Guns,90,Atlanta Venom,56
+91,Milwaukee Warriors,103,Maine Wildcats,69
+92,Seattle Shock,73,Phoenix Badgers,84
+93,Boston Bucks,82,Cincinnati Blue Stripes,58
+94,Seattle Shock,79,Manhattan Magic,72
+95,Oakland All-Stars,79,Memphis Blues,74
+96,New Orleans Seminoles,77,Texas Outlaws,59
+97,Toronto Wolves,68,Memphis Blues,57
+98,New York Icons,85,Manhattan Magic,83
+99,Cypress Green Guns,79,Vegas Volts,60
+100,Florida Panthers,72,Texas Outlaws,69
+101,Columbus Pirates,70,Milwaukee Warriors,65
+102,Texas Outlaws,88,Carolina Knights,73
+103,Honolulu Rays,61,Milwaukee Warriors,77
+104,Honolulu Rays,68,DCB,52
+105,Boston Bucks,77,Toronto Wolves,80
+106,Los Angeles Hawks,72,Denver Heights,60
+107,Vancouver Orcas,59,New Orleans Seminoles,93
+108,Vegas Volts,81,Ohio Valley Sharks,53
+109,Detroit Motors,81,St.Louis Kings,67
+110,Phoenix Badgers,77,Detroit Motors,82
+111,Ohio Valley Sharks,46,San Antonio Spirits,107
+112,Vancouver Orcas,67,Carolina Knights,73
+113,Denver Heights,63,San Antonio Spirits,86
+114,Florida Panthers,80,Cincinnati Blue Stripes,89
+115,Oakland All-Stars,83,Toronto Wolves,65
+116,Phoenix Badgers,70,Columbus Pirates,94
+117,Cypress Green Guns,83,New Orleans Seminoles,76
+118,Vegas Volts,81,Los Angeles Hawks,75
+119,Manhattan Magic,74,Denver Heights,79
+120,Ohio Valley Sharks,60,DCB,74
+121,Boston Bucks,57,Cypress Green Guns,70
+122,Columbus Pirates,90,Montreal Chevaliers,80
+123,Maine Wildcats,60,Toronto Wolves,74
+124,Chicago Spartans,77,Cypress Green Guns,87
+125,Boston Bucks,82,New York Icons,77
+126,Atlanta Venom,82,Milwaukee Warriors,90
+127,Detroit Motors,79,Memphis Blues,71
+128,Florida Panthers,72,Oakland All-Stars,73
+129,Maine Wildcats,57,San Antonio Spirits,88
+130,Atlanta Venom,87,Honolulu Rays,86
+131,Chicago Spartans,81,Manhattan Magic,64
+132,New Orleans Seminoles,75,Memphis Blues,65
+133,Vancouver Orcas,63,Denver Heights,75
+134,Milwaukee Warriors,89,New York Icons,80
+135,Cypress Green Guns,71,Carolina Knights,76
+136,Los Angeles Hawks,77,Ohio Valley Sharks,68
+137,Toronto Wolves,83,Montreal Chevaliers,92
+138,Seattle Shock,84,Ohio Valley Sharks,78
+139,DCB,77,Carolina Knights,91
+140,Phoenix Badgers,98,DCB,70
+141,Manhattan Magic,85,Seattle Shock,69
+142,Texas Outlaws,75,Milwaukee Warriors,71
+143,Columbus Pirates,87,Los Angeles Hawks,71
+144,Memphis Blues,65,Oakland All-Stars,98
+145,Florida Panthers,58,Los Angeles Hawks,59
+146,Detroit Motors,79,Cypress Green Guns,92
+147,St.Louis Kings,42,Chicago Spartans,92
+148,Atlanta Venom,76,Vegas Volts,81
+149,Atlanta Venom,60,Maine Wildcats,54
+150,Vancouver Orcas,58,Chicago Spartans,80
+151,Florida Panthers,74,Honolulu Rays,78
+152,Manhattan Magic,64,Boston Bucks,79
+153,New York Icons,74,Montreal Chevaliers,72
+154,Los Angeles Hawks,78,Cincinnati Blue Stripes,75
+155,New Orleans Seminoles,78,Florida Panthers,71
+156,DCB,60,San Antonio Spirits,101
+157,Los Angeles Hawks,52,Phoenix Badgers,71
+158,Columbus Pirates,57,Seattle Shock,76
+159,Cincinnati Blue Stripes,87,Phoenix Badgers,71
+160,New Orleans Seminoles,63,Carolina Knights,69
+161,Maine Wildcats,69,Chicago Spartans,76
+162,St.Louis Kings,73,Detroit Motors,95
+163,Texas Outlaws,61,Detroit Motors,88
+164,Memphis Blues,77,DCB,71
+165,Toronto Wolves,68,Boston Bucks,80
+166,Vegas Volts,57,Montreal Chevaliers,58
+167,Texas Outlaws,72,Honolulu Rays,87
+168,Honolulu Rays,63,Vancouver Orcas,60
+169,Los Angeles Hawks,55,New York Icons,84
+170,Toronto Wolves,74,San Antonio Spirits,93
+171,Phoenix Badgers,84,Oakland All-Stars,81
+172,New Orleans Seminoles,83,Atlanta Venom,76
+173,Boston Bucks,75,Maine Wildcats,67
+174,Milwaukee Warriors,84,Memphis Blues,67
+175,Cincinnati Blue Stripes,56,Oakland All-Stars,87
+176,Denver Heights,92,Vancouver Orcas,73
+177,Milwaukee Warriors,86,Seattle Shock,82
+178,San Antonio Spirits,105,Seattle Shock,80
+179,DCB,80,Columbus Pirates,81
+180,Carolina Knights,75,Denver Heights,77
+181,Cincinnati Blue Stripes,84,St.Louis Kings,43
+182,Montreal Chevaliers,82,Honolulu Rays,77
+183,Vegas Volts,65,New York Icons,67
+184,Memphis Blues,61,Manhattan Magic,83
+185,Columbus Pirates,68,Ohio Valley Sharks,55
+186,Los Angeles Hawks,66,St.Louis Kings,78
+187,New York Icons,61,Manhattan Magic,60
+188,Ohio Valley Sharks,74,Cypress Green Guns,76
+189,Texas Outlaws,82,Atlanta Venom,49
+190,Phoenix Badgers,56,Oakland All-Stars,91
+191,Florida Panthers,71,Denver Heights,58
+192,Memphis Blues,88,Maine Wildcats,74
+193,Columbus Pirates,70,Montreal Chevaliers,76
+194,Detroit Motors,79,Maine Wildcats,68
+195,Cincinnati Blue Stripes,68,Vegas Volts,70
+196,Carolina Knights,77,Vancouver Orcas,60
+197,Carolina Knights,88,Toronto Wolves,83
+198,Chicago Spartans,81,Denver Heights,45
+199,San Antonio Spirits,95,Ohio Valley Sharks,48
+200,Honolulu Rays,82,New Orleans Seminoles,81
+201,Boston Bucks,75,San Antonio Spirits,82
+202,Oakland All-Stars,72,New Orleans Seminoles,73
+203,Toronto Wolves,90,Vancouver Orcas,60
+204,Seattle Shock,80,Columbus Pirates,72
+205,New York Icons,59,Montreal Chevaliers,100
+206,Columbus Pirates,74,Florida Panthers,70
+207,Denver Heights,75,Phoenix Badgers,81
+208,Vegas Volts,75,Texas Outlaws,90
+209,Chicago Spartans,78,Milwaukee Warriors,89
+210,Atlanta Venom,45,Montreal Chevaliers,85
+211,St.Louis Kings,56,New Orleans Seminoles,75
+212,Detroit Motors,96,Vancouver Orcas,63
+213,Boston Bucks,93,Chicago Spartans,75
+214,Chicago Spartans,66,Manhattan Magic,62
+215,Denver Heights,70,Cypress Green Guns,89
+216,DCB,69,Denver Heights,75
+217,Carolina Knights,59,Toronto Wolves,64
+218,Vegas Volts,65,Carolina Knights,71
+219,Ohio Valley Sharks,72,Milwaukee Warriors,87
+220,Seattle Shock,72,Honolulu Rays,85
+221,Atlanta Venom,70,DCB,62
+222,Cypress Green Guns,86,Manhattan Magic,54
+223,Florida Panthers,72,Milwaukee Warriors,70
+224,New Orleans Seminoles,78,Texas Outlaws,64
+225,Detroit Motors,71,Honolulu Rays,68

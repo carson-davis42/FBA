@@ -1,18 +1,18 @@
 -Western-
 
-1.Texas Outlaws:           2-0  (1-0)    --
-2.Los Angeles Hawks:       1-1  (1-1)    -1
-3.San Antonio Spirits:     1-1  (1-0)    -1
-4.Phoenix Badgers:         1-1  (1-0)    -1
-5.Honolulu Rays:           1-1  (1-0)    -1
-6.Oakland All-Stars:       1-1  (0-0)    -1
-7.Florida Panthers:        2-2  (2-0)    -1
-8.Vegas Volts:             0-1  (0-0)    -1.5
+1.San Antonio Spirits:    13-1  (4-0)    --
+2.Cypress Green Guns:     13-2  (4-1)    -0.5
+3.Oakland All-Stars:      12-2  (8-2)    -1
+4.New Orleans Seminoles:  10-6  (7-4)    -4
+5.Honolulu Rays:           8-8  (5-2)    -6
+6.Denver Heights:          9-9  (5-6)    -6
+7.Texas Outlaws:           7-8  (3-5)    -6.5
+8.Seattle Shock:           7-8  (3-5)    -6.5
 -----
-9.Cypress Green Guns:      0-1  (0-0)    -1.5
-10.St.Louis Kings:         1-2  (1-1)    -1.5
-11.Vancouver Orcas:        1-2  (0-2)    -1.5
-12.Seattle Shock:          0-2  (0-1)    -2
-13.New Orleans Seminoles:  0-2  (0-1)    -2
-14.Memphis Blues:          0-2  (0-2)    -2
-15.Denver Heights:         0-2  (0-0)    -2
+9.Vegas Volts:             7-8  (2-3)    -6.5
+10.Phoenix Badgers:        6-8  (5-1)    -7
+11.Memphis Blues:          5-9  (1-4)    -8
+12.Florida Panthers:       5-10 (4-6)    -8.5
+13.Los Angeles Hawks:      5-10 (2-7)    -8.5
+14.St.Louis Kings:         2-12 (2-4)    -11
+15.Vancouver Orcas:        2-13 (1-6)    -11.5

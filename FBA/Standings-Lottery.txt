@@ -1,16 +1,16 @@
 -Lottery-
 
-1.Seattle Shock:             0-2    --
-2.New Orleans Seminoles:     0-2    --
-3.Memphis Blues:             0-2    --
-4.Denver Heights:            0-2    --
-5.Maine Wildcats:            0-2    --
-6.DCB:                       0-2    --
-7.Atlanta Venom:             0-2    --
-8.Vancouver Orcas:           1-2    -0.5
-9.Toronto Wolves:            1-2    -0.5
-10.St.Louis Kings:           1-2    -0.5
-11.Cypress Green Guns:       0-1    -0.5
-12.Chicago Spartans:         1-1    -1
-13.Manhattan Magic:          1-1    -1
-14.Cincinnati Blue Stripes:  2-1    -1.5
+1.DCB:                       1-14   --
+2.Vancouver Orcas:           2-13   -1
+3.St.Louis Kings:            2-12   -1.5
+4.Maine Wildcats:            2-12   -1.5
+5.Manhattan Magic:           3-12   -2
+6.Ohio Valley Sharks:        4-11   -3
+7.Los Angeles Hawks:         5-10   -4
+8.Florida Panthers:          5-10   -4
+9.Memphis Blues:             5-9    -4.5
+10.Phoenix Badgers:          6-8    -5.5
+11.Cincinnati Blue Stripes:  6-8    -5.5
+12.Toronto Wolves:           7-8    -6
+13.Atlanta Venom:            7-8    -6
+14.Vegas Volts:              7-8    -6
