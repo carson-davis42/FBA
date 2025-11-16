@@ -1,16 +1,16 @@
 -Lottery-
 
-1.DCB:                       1-14   --
-2.Vancouver Orcas:           2-13   -1
-3.St.Louis Kings:            2-12   -1.5
-4.Maine Wildcats:            2-12   -1.5
-5.Manhattan Magic:           3-12   -2
-6.Ohio Valley Sharks:        4-11   -3
-7.Los Angeles Hawks:         5-10   -4
-8.Florida Panthers:          5-10   -4
-9.Memphis Blues:             5-9    -4.5
-10.Phoenix Badgers:          6-8    -5.5
-11.Cincinnati Blue Stripes:  6-8    -5.5
-12.Toronto Wolves:           7-8    -6
-13.Atlanta Venom:            7-8    -6
-14.Vegas Volts:              7-8    -6
+1.DCB:                       9-77   --
+2.Maine Wildcats:           14-72   -5
+3.St.Louis Kings:           16-70   -7
+4.Vancouver Orcas:          17-69   -8
+5.Memphis Blues:            24-62   -15
+6.Los Angeles Hawks:        26-60   -17
+7.Atlanta Venom:            27-59   -18
+8.Ohio Valley Sharks:       29-57   -20
+9.Phoenix Badgers:          32-54   -23
+10.Manhattan Magic:         32-54   -23
+11.New York Icons:          33-53   -24
+12.Florida Panthers:        34-52   -25
+13.Denver Heights:          36-50   -27
+14.Cincinnati Blue Stripes: 45-41   -36
