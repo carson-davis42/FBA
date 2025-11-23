@@ -1,0 +1,98 @@
+                                              --S76 World Cup Greece--
+--Region 1--
+   -Round of 64-
+(9)Austria vs (23)UAE
+(21)Switzerland vs (7)Hungary
+(46)Saudi Arabia vs (45)South Korea
+(52)Kenya vs (1)USA
+(33)Nigeria vs (34)Sweden
+(41)Cuba vs (56)Thailand
+(51)Chile vs (3)Italy
+(14)France vs (49)Finland
+   -Round of 32-
+(23)UAE vs (7)Hungary
+(1)USA vs (46)Saudi Arabia
+(34)Sweden vs (56)Thailand
+(14)France vs (3)Italy
+   -Sweet 16-
+(23)UAE vs (1)USA
+(3)Italy vs (34)Sweden
+   -Elite 8-
+(23)UAE vs (3)Italy
+
+
+--Region 2--
+   -Round of 64-
+(57)Algeria vs (64)Taiwan
+(38)Norway vs (26)Belgium
+(16)Australia vs (61)Nepal
+(42)Czechia vs (63)Slovenia
+(62)Peru vs (32)Ireland
+(12)Portugal vs (10)Mexico
+(29)Scotland vs (31)India
+(39)Turkey vs (18)Argentina
+   -Round of 32-
+(57)Algeria vs (38)Norway
+(63)Slovenia vs (16)Australia
+(32)Ireland vs (12)Portugal
+(39)Turkey vs (29)Scotland
+   -Sweet 16-
+(38)Norway vs (16)Australia
+(29)Scotland vs (12)Portugal
+   -Elite 8-
+(16)Australia vs (12)Portugal
+
+
+--Region 3--
+   -Round of 64-
+(22)Ukraine vs (15)Japan
+(50)Singapore vs (20)Northern Ireland
+(36)Croatia vs (19)Netherlands
+(40)Luxembourg vs (44)Qatar
+(4)Canada vs (48)Colombia
+(5)Germany vs (37)Egypt
+(60)Romania vs (28)South Africa
+(25)Poland vs (8)Russia
+   -Round of 32-
+(22)Ukraine vs (20)Northern Ireland
+(44)Qatar vs (19)Netherlands
+(4)Canada vs (5)Germany
+(8)Russia vs (28)South Africa
+   -Sweet 16-
+(20)Northern Ireland vs (19)Netherlands
+(8)Russia vs (4)Canada
+   -Elite 8-
+(20)Northern Ireland vs (4)Canada
+
+
+--Region 4--
+   -Round of 64-
+(47)Indonesia vs (54)Vietnam
+(35)Greece vs (2)Brazil
+(55)El Salvador vs (59)Philippines
+(17)Bangladesh vs (30)Denmark
+(43)Iceland vs (11)Morocco
+(24)China vs (6)England
+(58)Pakistan vs (13)Spain
+(53)Lithuania vs (27)New Zealand
+   -Round of 32-
+(47)Indonesia vs (2)Brazil
+(17)Bangladesh vs (55)El Salvador
+(11)Morocco vs (24)China
+(27)New Zealand vs (13)Spain
+   -Sweet 16-
+(2)Brazil vs (17)Bangladesh
+(13)Spain vs (11)Morocco
+   -Elite 8-
+(2)Brazil vs (13)Spain
+
+
+   --Final Four--
+(3)Italy vs (2)Brazil
+(16)Australia vs (20)Northern Ireland
+   --National Championship--
+(3)Italy vs (16)Australia
+   --Champions--
+Australia
+
+
