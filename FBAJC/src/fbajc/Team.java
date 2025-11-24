@@ -17,6 +17,7 @@ public class Team implements Comparable<Team> {
     private List<Team> conf;
     private int seed;
     private int conf_seed = 0;
+    private double team_rating;
 
     /**
      * create a team and all values
@@ -108,6 +109,13 @@ public class Team implements Comparable<Team> {
         for (Player play: roster) {
             play.setTeam(this);
         }
+
+        double ratings = 0.0;
+        for (Player play: roster)
+        {
+            ratings += play.cur_rating;
+        }
+        team_rating = ratings / 5.0;
     }
 
     /**
@@ -404,5 +412,17 @@ public class Team implements Comparable<Team> {
             return 1;
         }
         return name.compareTo(o.getName());
+    }
+
+    public double getTeamRating() {
+        return team_rating;
+    }
+
+    public void updateTeamRating() {
+        team_rating = 0.0;
+        for (Player p: roster) {
+            team_rating += p.cur_rating;
+        }
+        team_rating /= 5.0;
     }
 }

@@ -256,8 +256,8 @@ public class PreSeasonTourny implements Comparable<PreSeasonTourny> {
             a.setWin(a.getWin() + 1, sameConf);
             b.setLoss(b.getLoss() + 1, sameConf);
             Main.updateNames = false;
-            Main.updatePlayerRatings(a, true);
-            Main.updatePlayerRatings(b, false);
+            Main.updatePlayerRatings(a, true, b);
+            Main.updatePlayerRatings(b, false, a);
             if (currentGame == 11) {
                 if (!Main.simulatePreST) {
                     System.out.println(a.getName() + " is " + name + " champion!");
@@ -273,8 +273,8 @@ public class PreSeasonTourny implements Comparable<PreSeasonTourny> {
             b.setWin(b.getWin() + 1, sameConf);
             a.setLoss(a.getLoss() + 1, sameConf);
             Main.updateNames = false;
-            Main.updatePlayerRatings(b, true);
-            Main.updatePlayerRatings(a, false);
+            Main.updatePlayerRatings(b, true, a);
+            Main.updatePlayerRatings(a, false, b);
             if (currentGame == 11) {
                 if (!Main.simulatePreST) {
                     System.out.println(b.getName() + " is " + name + " champion!");

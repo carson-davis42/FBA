@@ -1,14 +1,14 @@
 -ACC-
 
-1.(4)Louisville:       31-5  (20-2)   --
-2.(12)Florida State:   29-7  (16-6)   -4
-3.(14)Duke:            25-9  (16-6)   -4
-4.(25)Wake Forest:     24-10 (15-7)   -5
-5.(53)Clemson:         21-12 (14-8)   -6
-6.(43)North Carolina:  20-12 (13-9)   -7
-7.(108)Virginia:        14-17 (9-13)   -11
-8.(54)Notre Dame:      15-16 (8-14)   -12
-9.(119)Syracuse:        12-18 (7-15)   -13
-10.(121)Miami:          11-19 (7-15)   -13
-11.(198)NC State:        6-24 (4-18)   -16
-12.(189)Virginia Tech:   7-23 (3-19)   -17
+1.(13)Florida State:   4-0  (0-0)    --
+2.(16)Syracuse:        4-0  (0-0)    --
+3.(17)Louisville:      4-0  (0-0)    --
+4.Wake Forest:         4-0  (0-0)    --
+5.Duke:                4-0  (0-0)    --
+6.(22)Notre Dame:      3-1  (0-0)    --
+7.Miami:               3-1  (0-0)    --
+8.Virginia Tech:       3-1  (0-0)    --
+9.North Carolina:      3-1  (0-0)    --
+10.(8)Clemson:         2-2  (0-0)    --
+11.NC State:           2-2  (0-0)    --
+12.Virginia:           2-2  (0-0)    --

@@ -54,9 +54,10 @@ public class Main {
     public static boolean simulateSeason;
     public static boolean simulateConfT;
     public static ArrayList<Team> lastChampionship;
+    public static double averageTeamRatings;
 
     public static void main(String[] args) throws IOException {
-        season = 75;
+        season = 76;
         reading = true;
         Scanner keyboard = new Scanner(System.in);
         readRosters();
@@ -116,7 +117,9 @@ public class Main {
         StringBuilder sb = new StringBuilder(teams.size() + "\n");
         //Go through each abr to find each team
         for (ArrayList<Team> conf: allConferences) {
-            for (Team t : conf) {
+            ArrayList<Team> sorted_conf = new ArrayList<>(conf);
+            sorted_conf.sort(Comparator.comparing(t -> t.getName().toLowerCase()));
+            for (Team t : sorted_conf) {
                 sb.append(t.getName()).append("/").append(t.getAbreviation().toUpperCase()).append("/")
                         .append(t.getConference()).append("\n");
                 int teamSize = t.getPlayers().length + t.getReserves().size();
@@ -1376,16 +1379,18 @@ public class Main {
                     one.setWin(one.getWin() + 1, sameConf);
                     two.setLoss(two.getLoss() + 1, sameConf);
                     updateNames = false;
-                    updatePlayerRatings(one, true);
-                    updatePlayerRatings(two, false);
+                    updatePlayerRatings(one, true, two);
+                    updatePlayerRatings(two, false, one);
+                    averageTeamRatingsUpdate();
                     homeWin = true;
                 }
                 else {
                     two.setWin(two.getWin() + 1, sameConf);
                     one.setLoss(one.getLoss() + 1, sameConf);
                     updateNames = false;
-                    updatePlayerRatings(two, true);
-                    updatePlayerRatings(one, false);
+                    updatePlayerRatings(two, true, one);
+                    updatePlayerRatings(one, false, two);
+                    averageTeamRatingsUpdate();
                     homeWin = false;
                 }
                 if (!simulateSeason) {
@@ -1611,7 +1616,7 @@ public class Main {
         }
     }
 
-    public static void updatePlayerRatings(Team t, boolean won) {
+    public static void updatePlayerRatings(Team t, boolean won, Team opp) {
         for (Player p: t.roster) {
             int rat = p.cur_rating;
             int mrp = p.most_recent_points;
@@ -1629,6 +1634,12 @@ public class Main {
             else if (rat >= 65) {
                 chance = chance * 5 / 6;
             }
+            
+            double k = 0.02;
+            double mult = 1.0 + k * (opp.getTeamRating() - averageTeamRatings);
+            mult = Math.max(0.80, Math.min(1.20, mult));
+            chance = (int)Math.round(chance * mult);
+
             if (!won) {
                 chance /= 2;
             }
@@ -1641,6 +1652,10 @@ public class Main {
             p.cur_rating += upgrade;
             if (p.cur_rating > 99) {
                 p.cur_rating = 99;
+            }
+            if (upgrade > 0) {
+                t.updateTeamRating();
+                averageTeamRatingsUpdate();
             }
             if (upgrade > 0 && (!Main.simulatePreST || !Main.simulateSeason || !Main.simulateConfT)) {
                 System.out.println(t.getAbreviation() + ": " + p.getName() + "(" + p.getPosition() + "): +" + upgrade + ", " + p.cur_rating);
@@ -2264,6 +2279,7 @@ public class Main {
             toFile();
             toFileWL();
             toFilePreSeasonTournies();
+            toFileBestScorers();
             if (temp.getCurrentGame() < 12) {
                 preSeasonTournies.offer(temp);
             }
@@ -2893,5 +2909,17 @@ public class Main {
         fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
+    }
+
+    public static void averageTeamRatingsUpdate() {
+        averageTeamRatings = 0.0;
+        double num_teams = 0.0;
+        for (ArrayList<Team> conf: allConferences) {
+            for (Team t: conf) {
+                num_teams++;
+                averageTeamRatings += t.getTeamRating();
+            }
+        }
+        averageTeamRatings /= num_teams;
     }
 }

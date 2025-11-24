@@ -1,14 +1,14 @@
 -Atlantic 10-
 
-1.(34)Pitt:            26-7  (20-2)   --
-2.(32)Nebraska:        25-8  (17-5)   -3
-3.(47)Loyola-Chicago:  23-10 (16-6)   -4
-4.(98)VCU:             16-14 (13-9)   -7
-5.(80)Buffalo:         20-14 (12-10)  -8
-6.(101)Vanderbilt:      16-15 (11-11)  -9
-7.(125)East Carolina:   14-17 (10-12)  -10
-8.(113)Dayton:          14-17 (9-13)   -11
-9.(151)South Carolina:  11-19 (7-15)   -13
-10.(169)St.Joseph's:     9-21 (6-16)   -14
-11.(192)Rutgers:         8-22 (6-16)   -14
-12.(197)Boston College:  8-22 (5-17)   -15
+1.VCU:               2-1  (0-0)    --
+2.Boston College:    2-1  (0-0)    --
+3.East Carolina:     2-1  (0-0)    --
+4.Nebraska:          2-1  (0-0)    --
+5.Dayton:            2-1  (0-0)    --
+6.(24)St.Joseph's:   1-2  (0-0)    --
+7.Loyola-Chicago:    1-2  (0-0)    --
+8.Buffalo:           1-2  (0-0)    --
+9.Pitt:              1-2  (0-0)    --
+10.Rutgers:          1-2  (0-0)    --
+11.South Carolina:   1-2  (0-0)    --
+12.Vanderbilt:       1-2  (0-0)    --

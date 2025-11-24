@@ -237,8 +237,8 @@ public class PostSeasonTourny implements Comparable<PostSeasonTourny>{
             one.setWin(one.getWin() + 1, false);
             two.setLoss(two.getLoss() + 1, false);
             Main.updateNames = false;
-            Main.updatePlayerRatings(one, true);
-            Main.updatePlayerRatings(two, false);
+            Main.updatePlayerRatings(one, true, two);
+            Main.updatePlayerRatings(two, false, one);
             if (currentGame == 10) {
                 if (!Main.simulateConfT) {
                     System.out.println(one.getName() + " is " + name + " champion!");
@@ -254,8 +254,8 @@ public class PostSeasonTourny implements Comparable<PostSeasonTourny>{
             two.setWin(two.getWin() + 1, false);
             one.setLoss(one.getLoss() + 1, false);
             Main.updateNames = false;
-            Main.updatePlayerRatings(two, true);
-            Main.updatePlayerRatings(one, false);
+            Main.updatePlayerRatings(two, true, one);
+            Main.updatePlayerRatings(one, false, two);
             if (currentGame == 10) {
                 if (!Main.simulateConfT) {
                     System.out.println(two.getName() + " is " + name + " champion!");
