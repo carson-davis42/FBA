@@ -1,14 +1,14 @@
 -Colonial-
 
-1.(25)UMBC:            3-0  (0-0)    --
-2.Rhode Island:        3-0  (0-0)    --
-3.Northeastern:        2-1  (0-0)    --
-4.Drake:               2-1  (0-0)    --
-5.Middle Tennessee:    1-2  (0-0)    --
-6.Delaware State:      1-2  (0-0)    --
-7.Winthrop:            1-2  (0-0)    --
-8.Boston U:            0-3  (0-0)    --
-9.Delaware:            0-3  (0-0)    --
-10.George Washington:  0-3  (0-0)    --
-11.Indiana State:      0-3  (0-0)    --
-12.Richmond:           0-3  (0-0)    --
+1.(23)UMBC:               27-6  (20-2)   --
+2.(91)Boston U:           19-12 (17-5)   -3
+3.(54)Northeastern:       22-11 (15-7)   -5
+4.(74)Winthrop:           19-13 (14-8)   -6
+5.(131)Indiana State:      15-16 (12-10)  -8
+6.(98)Rhode Island:       17-14 (11-11)  -9
+7.(125)Middle Tennessee:   14-17 (11-11)  -9
+8.(197)George Washington:   8-22 (8-14)   -12
+9.(173)Delaware State:     11-20 (7-15)   -13
+10.(199)Richmond:           7-23 (7-15)   -13
+11.(193)Drake:              8-22 (5-17)   -15
+12.(206)Delaware:           6-24 (5-17)   -15

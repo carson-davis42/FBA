@@ -1,320 +1,360 @@
-   --TBD--
+   --Big 12--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)BYU vs (9)Iowa State
+(5)Texas vs (12)Kansas State
+(6)West Virginia vs (11)Oklahoma State
+(7)Texas Tech vs (10)TCU
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Houston vs (8)BYU
+(4)Oklahoma vs (5)Texas
+(3)Kansas vs (11)Oklahoma State
+(2)Baylor vs (10)TCU
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(8)BYU vs (4)Oklahoma
+(10)TCU vs (3)Kansas
    -Championship-
-TBD vs TBD
+(8)BYU vs (3)Kansas
    -Champions-
-TBD
+BYU
 
 
-   --TBD--
+   --ACC--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)Miami vs (9)Syracuse
+(5)Florida State vs (12)Virginia Tech
+(6)Virginia vs (11)NC State
+(7)Clemson vs (10)Notre Dame
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)North Carolina vs (9)Syracuse
+(4)Duke vs (5)Florida State
+(3)Wake Forest vs (11)NC State
+(2)Louisville vs (7)Clemson
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(1)North Carolina vs (4)Duke
+(2)Louisville vs (3)Wake Forest
    -Championship-
-TBD vs TBD
+(1)North Carolina vs (2)Louisville
    -Champions-
-TBD
+North Carolina
 
 
-   --TBD--
+   --Big East--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)DePaul vs (9)Georgetown
+(5)Creighton vs (12)Davidson
+(6)Villanova vs (11)Butler
+(7)Providence vs (10)Seton Hall
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Marquette vs (8)DePaul
+(4)UConn vs (5)Creighton
+(3)Xavier vs (6)Villanova
+(2)St.John's vs (7)Providence
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(8)DePaul vs (4)UConn
+(7)Providence vs (6)Villanova
    -Championship-
-TBD vs TBD
+(4)UConn vs (6)Villanova
    -Champions-
-TBD
+Villanova
 
 
-   --TBD--
+   --SEC--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)Alabama vs (9)Arkansas
+(5)Missouri vs (12)Ole Miss
+(6)Tennessee vs (11)Georgia
+(7)Mississippi State vs (10)LSU
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Texas A&M vs (8)Alabama
+(4)Florida vs (5)Missouri
+(3)Kentucky vs (6)Tennessee
+(2)Auburn vs (10)LSU
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(8)Alabama vs (4)Florida
+(2)Auburn vs (6)Tennessee
    -Championship-
-TBD vs TBD
+(4)Florida vs (2)Auburn
    -Champions-
-TBD
+Auburn
 
 
-   --TBD--
+   --Big Ten--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)Northwestern vs (9)Penn State
+(5)Iowa vs (12)Maryland
+(6)Illinois vs (11)Minnesota
+(7)Ohio State vs (10)Wisconsin
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Indiana vs (8)Northwestern
+(4)Michigan vs (5)Iowa
+(3)Purdue vs (6)Illinois
+(2)Michigan State vs (7)Ohio State
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(1)Indiana vs (4)Michigan
+(2)Michigan State vs (3)Purdue
    -Championship-
-TBD vs TBD
+(4)Michigan vs (2)Michigan State
    -Champions-
-TBD
+Michigan
 
 
-   --TBD--
+   --American--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)Akron vs (9)Rice
+(5)FAU vs (12)Cincinnati
+(6)UCF vs (11)SMU
+(7)Georgia Tech vs (10)Toledo
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Wichita State vs (9)Rice
+(4)UAB vs (5)FAU
+(3)Memphis vs (11)SMU
+(2)Tulane vs (10)Toledo
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(1)Wichita State vs (4)UAB
+(2)Tulane vs (3)Memphis
    -Championship-
-TBD vs TBD
+(1)Wichita State vs (2)Tulane
    -Champions-
-TBD
+Tulane
 
 
-   --TBD--
+   --PAC 12--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)USC vs (9)Stanford
+(5)Washington vs (12)Utah
+(6)Oregon State vs (11)Colorado
+(7)Arizona State vs (10)Washington State
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Arizona vs (8)USC
+(4)UCLA vs (5)Washington
+(3)Gonzaga vs (6)Oregon State
+(2)Oregon vs (10)Washington State
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(1)Arizona vs (4)UCLA
+(2)Oregon vs (3)Gonzaga
    -Championship-
-TBD vs TBD
+(4)UCLA vs (2)Oregon
    -Champions-
-TBD
+UCLA
 
 
-   --TBD--
+   --Atlantic 10--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)South Carolina vs (9)St.Joseph's
+(5)Dayton vs (12)Buffalo
+(6)Nebraska vs (11)Rutgers
+(7)Boston College vs (10)Vanderbilt
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Loyola-Chicago vs (8)South Carolina
+(4)VCU vs (5)Dayton
+(3)East Carolina vs (6)Nebraska
+(2)Pitt vs (7)Boston College
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(1)Loyola-Chicago vs (4)VCU
+(2)Pitt vs (6)Nebraska
    -Championship-
-TBD vs TBD
+(1)Loyola-Chicago vs (2)Pitt
    -Champions-
-TBD
+Pitt
 
 
-   --TBD--
+   --Patriot--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)Vermont vs (9)Lehigh
+(5)Saint Mary's vs (12)Colgate
+(6)Liberty vs (11)Saint Peter's
+(7)Army vs (10)Howard
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Murray State vs (8)Vermont
+(4)Norfolk State vs (5)Saint Mary's
+(3)Belmont vs (6)Liberty
+(2)Navy vs (7)Army
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(1)Murray State vs (4)Norfolk State
+(2)Navy vs (3)Belmont
    -Championship-
-TBD vs TBD
+(4)Norfolk State vs (3)Belmont
    -Champions-
-TBD
+Norfolk State
 
 
-   --TBD--
+   --Colonial--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)George Washington vs (9)Delaware State
+(5)Indiana State vs (12)Delaware
+(6)Rhode Island vs (11)Drake
+(7)Middle Tennessee vs (10)Richmond
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)UMBC vs (9)Delaware State
+(4)Winthrop vs (5)Indiana State
+(3)Northeastern vs (6)Rhode Island
+(2)Boston U vs (7)Middle Tennessee
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(1)UMBC vs (4)Winthrop
+(2)Boston U vs (3)Northeastern
    -Championship-
-TBD vs TBD
+(1)UMBC vs (3)Northeastern
    -Champions-
-TBD
+Northeastern
 
 
-   --TBD--
+   --Horizon--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)Oakland vs (9)Santa Clara
+(5)Cleveland State vs (12)St.Bonaventure
+(6)Wofford vs (11)Wright State
+(7)Northern Kentucky vs (10)Iona
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)IUPUI vs (8)Oakland
+(4)North Dakota State vs (12)St.Bonaventure
+(3)UC Irvine vs (6)Wofford
+(2)South Dakota State vs (7)Northern Kentucky
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(1)IUPUI vs (4)North Dakota State
+(2)South Dakota State vs (6)Wofford
    -Championship-
-TBD vs TBD
+(1)IUPUI vs (2)South Dakota State
    -Champions-
-TBD
+IUPUI
 
 
-   --TBD--
+   --Ivy--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)Brown vs (9)Yale
+(5)MIT vs (12)Cornell
+(6)UCSB vs (11)Chicago
+(7)Penn vs (10)Columbia
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Dartmouth vs (9)Yale
+(4)Princeton vs (5)MIT
+(3)Cal vs (11)Chicago
+(2)Harvard vs (7)Penn
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(1)Dartmouth vs (5)MIT
+(2)Harvard vs (3)Cal
    -Championship-
-TBD vs TBD
+(1)Dartmouth vs (2)Harvard
    -Champions-
-TBD
+Dartmouth
 
 
-   --TBD--
+   --Southern--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)UTSA vs (9)Texas A&M CC
+(5)Southern vs (12)Texas State
+(6)North Texas vs (11)Sam Houston State
+(7)Stephen F Austin vs (10)Abeline Christian
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Texas Southern vs (8)UTSA
+(4)Samford vs (5)Southern
+(3)McNeese State vs (11)Sam Houston State
+(2)Oral Roberts vs (7)Stephen F Austin
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(1)Texas Southern vs (5)Southern
+(7)Stephen F Austin vs (3)McNeese State
    -Championship-
-TBD vs TBD
+(1)Texas Southern vs (7)Stephen F Austin
    -Champions-
-TBD
+Stephen F Austin
 
 
-   --TBD--
+   --Sun Belt--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)Arkansas State vs (9)Alabama State
+(5)Chattanooga vs (12)Furman
+(6)Grambling State vs (11)Jackson State
+(7)Western Kentucky vs (10)South Florida
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Arkansas Pine Bluff vs (8)Arkansas State
+(4)ETSU vs (5)Chattanooga
+(3)Georgia State vs (6)Grambling State
+(2)James Madison vs (7)Western Kentucky
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(8)Arkansas State vs (4)ETSU
+(2)James Madison vs (3)Georgia State
    -Championship-
-TBD vs TBD
+(8)Arkansas State vs (3)Georgia State
    -Champions-
-TBD
+Georgia State
 
 
-   --TBD--
+   --Big Sky--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)Evansville vs (9)Portland State
+(5)Longwood vs (12)Kennesaw State
+(6)Stetson vs (11)UC San Diego
+(7)Eastern Washington vs (10)Montana
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Montana State vs (9)Portland State
+(4)San Francisco vs (12)Kennesaw State
+(3)High Point vs (6)Stetson
+(2)Weber State vs (10)Montana
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(9)Portland State vs (12)Kennesaw State
+(10)Montana vs (3)High Point
    -Championship-
-TBD vs TBD
+(9)Portland State vs (10)Montana
    -Champions-
-TBD
+Montana
 
 
-   --TBD--
+   --Mountain West--
    -First Round-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(8)San Jose State vs (9)Air Force
+(5)Wyoming vs (12)Fresno State
+(6)UNLV vs (11)Boise State
+(7)Utah State vs (10)New Mexico
    -Quarter-Finals-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)San Diego State vs (8)San Jose State
+(4)New Mexico State vs (12)Fresno State
+(3)Colorado State vs (11)Boise State
+(2)Nevada vs (7)Utah State
    -Semi-Finals-
-TBD vs TBD
-TBD vs TBD
+(8)San Jose State vs (4)New Mexico State
+(2)Nevada vs (3)Colorado State
    -Championship-
-TBD vs TBD
+(8)San Jose State vs (2)Nevada
    -Champions-
-TBD
+Nevada
+
+
+   --Ohio Valley--
+   -First Round-
+(8)Arkansas Little Rock vs (9)Appalachian State
+(5)SIU Edwardsville vs (12)Omaha
+(6)Morehead State vs (11)Troy
+(7)Ohio vs (10)Kent State
+   -Quarter-Finals-
+(1)Southeastern Missouri State vs (8)Arkansas Little Rock
+(4)Saint Louis vs (5)SIU Edwardsville
+(3)Grand Canyon vs (6)Morehead State
+(2)Northern Illinois vs (7)Ohio
+   -Semi-Finals-
+(1)Southeastern Missouri State vs (5)SIU Edwardsville
+(2)Northern Illinois vs (3)Grand Canyon
+   -Championship-
+(1)Southeastern Missouri State vs (2)Northern Illinois
+   -Champions-
+Southeastern Missouri State
+
+
+   --NEC--
+   -First Round-
+(8)UMass vs (9)UNC Asheville
+(5)Long Island vs (12)Fairleigh Dickinson
+(6)UNC Wilmington vs (11)Bryant
+(7)Lipscomb vs (10)Robert Morris
+   -Quarter-Finals-
+(1)Marist vs (8)UMass
+(4)Quinnipiac vs (5)Long Island
+(3)George Mason vs (6)UNC Wilmington
+(2)Duquesne vs (7)Lipscomb
+   -Semi-Finals-
+(8)UMass vs (4)Quinnipiac
+(2)Duquesne vs (3)George Mason
+   -Championship-
+(8)UMass vs (3)George Mason
+   -Champions-
+George Mason
 
 

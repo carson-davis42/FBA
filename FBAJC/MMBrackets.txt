@@ -1,98 +1,98 @@
                                               --S76 March Madness--
 --Region 1--
    -Round of 64-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Indiana vs (16)Montana
+(8)Wake Forest vs (9)Texas Southern
+(5)Michigan State vs (12)Colorado State
+(4)UCLA vs (13)Northeastern
+(3)Oregon vs (14)Quinnipiac
+(6)Florida vs (11)Florida State
+(7)UConn vs (10)Oregon State
+(2)Houston vs (15)James Madison
    -Round of 32-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Indiana vs (8)Wake Forest
+(4)UCLA vs (12)Colorado State
+(3)Oregon vs (6)Florida
+(2)Houston vs (10)Oregon State
    -Sweet 16-
-TBD vs TBD
-TBD vs TBD
+(1)Indiana vs (12)Colorado State
+(2)Houston vs (6)Florida
    -Elite 8-
-TBD vs TBD
+(1)Indiana vs (6)Florida
 
 
 --Region 2--
    -Round of 64-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)North Carolina vs (16)Stephen F Austin
+(8)Villanova vs (9)Michigan
+(5)Xavier vs (12)Navy
+(4)Purdue vs (13)Oklahoma
+(3)Louisville vs (14)Marist
+(6)Washington vs (11)Dartmouth
+(7)Kansas vs (10)South Dakota State
+(2)Gonzaga vs (15)Georgia State
    -Round of 32-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)North Carolina vs (9)Michigan
+(4)Purdue vs (5)Xavier
+(3)Louisville vs (6)Washington
+(2)Gonzaga vs (7)Kansas
    -Sweet 16-
-TBD vs TBD
-TBD vs TBD
+(1)North Carolina vs (5)Xavier
+(2)Gonzaga vs (6)Washington
    -Elite 8-
-TBD vs TBD
+(1)North Carolina vs (2)Gonzaga
 
 
 --Region 3--
    -Round of 64-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Arizona vs (16)Norfolk State
+(8)Loyola-Chicago vs (9)IUPUI
+(5)Baylor vs (12)Duke
+(4)Texas A&M vs (13)Montana State
+(3)Kentucky vs (14)Long Island
+(6)Tulane vs (11)Illinois
+(7)St.John's vs (10)Murray State
+(2)Nevada vs (15)George Mason
    -Round of 32-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Arizona vs (8)Loyola-Chicago
+(4)Texas A&M vs (5)Baylor
+(3)Kentucky vs (11)Illinois
+(2)Nevada vs (10)Murray State
    -Sweet 16-
-TBD vs TBD
-TBD vs TBD
+(1)Arizona vs (5)Baylor
+(2)Nevada vs (3)Kentucky
    -Elite 8-
-TBD vs TBD
+(1)Arizona vs (2)Nevada
 
 
 --Region 4--
    -Round of 64-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Marquette vs (16)Harvard
+(8)Missouri vs (9)Memphis
+(5)San Diego State vs (12)Southeastern Missouri State
+(4)UMBC vs (13)BYU
+(3)Auburn vs (14)Duquesne
+(6)Creighton vs (11)Arkansas Pine Bluff
+(7)Tennessee vs (10)Pitt
+(2)Wichita State vs (15)Winthrop
    -Round of 32-
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
-TBD vs TBD
+(1)Marquette vs (9)Memphis
+(13)BYU vs (12)Southeastern Missouri State
+(3)Auburn vs (11)Arkansas Pine Bluff
+(2)Wichita State vs (7)Tennessee
    -Sweet 16-
-TBD vs TBD
-TBD vs TBD
+(9)Memphis vs (13)BYU
+(7)Tennessee vs (3)Auburn
    -Elite 8-
-TBD vs TBD
+(13)BYU vs (3)Auburn
 
 
    --Final Four--
-TBD vs TBD
-TBD vs TBD
+(1)Indiana vs (13)BYU
+(2)Gonzaga vs (2)Nevada
    --National Championship--
-TBD vs TBD
+(1)Indiana vs (2)Gonzaga
    --Champions--
-TBD
+Indiana
 
 

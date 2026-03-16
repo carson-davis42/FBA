@@ -1,14 +1,14 @@
 -NEC-
 
-1.Duquesne:              2-1  (0-0)    --
-2.Long Island:           2-1  (0-0)    --
-3.UNC Wilmington:        2-1  (0-0)    --
-4.George Mason:          2-1  (0-0)    --
-5.(23)Robert Morris:     1-2  (0-0)    --
-6.Bryant:                1-2  (0-0)    --
-7.Lipscomb:              1-2  (0-0)    --
-8.Quinnipiac:            1-2  (0-0)    --
-9.UMass:                 1-2  (0-0)    --
-10.UNC Asheville:        1-2  (0-0)    --
-11.Marist:               1-2  (0-0)    --
-12.Fairleigh Dickinson:  0-3  (0-0)    --
+1.(55)Duquesne:             21-11 (16-6)   --
+2.(62)Marist:               20-11 (16-6)   --
+3.(61)George Mason:         21-12 (16-6)   --
+4.(60)Quinnipiac:           21-11 (15-7)   -1
+5.(56)Long Island:          21-11 (15-7)   -1
+6.(97)UNC Wilmington:       19-12 (13-9)   -3
+7.(153)Lipscomb:             13-18 (9-13)   -7
+8.(126)UMass:                15-18 (8-14)   -8
+9.(159)UNC Asheville:        11-19 (8-14)   -8
+10.(174)Robert Morris:       10-20 (7-15)   -9
+11.(200)Bryant:               7-23 (6-16)   -10
+12.(208)Fairleigh Dickinson:  4-26 (3-19)   -13

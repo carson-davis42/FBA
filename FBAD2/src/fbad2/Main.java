@@ -31,7 +31,7 @@ public class Main {
     private static boolean gamePlayed;
 
     public static void main(String[] args) throws IOException {
-        int season = 76;
+        int season = 77;
         Scanner keyboard = new Scanner(System.in);
         readRosters();
         readOrMakeSchedule(true, false); //true if reading a schedule, true to print
@@ -668,7 +668,8 @@ public class Main {
                             defender = p;
                         }
                     }
-                    int oddsToMake = playerWithBall.getRating() - defender.getRating() + 50;
+                    int def_effect = playerWithBall.getRating() - (int) (0.45 * defender.getRating()) + 10;
+                    int oddsToMake = Math.max(35, Math.min(65, def_effect));
                     int madeScore = (int) (Math.random() * 100) + 1;
                     int pointsScored = 0;
                     if (oddsToMake >= madeScore) {
@@ -1242,7 +1243,8 @@ public class Main {
                         defender = p;
                     }
                 }
-                int oddsToMake = playerWithBall.getRating() - defender.getRating() + 50;
+                int def_effect = playerWithBall.getRating() - (int) (0.45 * defender.getRating()) + 10;
+                int oddsToMake = Math.max(35, Math.min(65, def_effect));
                 int madeScore = (int) (Math.random() * 100) + 1;
                 int pointsScored = 0;
                 if (oddsToMake >= madeScore) {

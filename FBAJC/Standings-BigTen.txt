@@ -1,14 +1,14 @@
 -Big Ten-
 
-1.(5)Indiana:       4-0  (0-0)    --
-2.Purdue:           3-1  (0-0)    --
-3.Ohio State:       3-1  (0-0)    --
-4.(2)Illinois:      2-1  (0-0)    --
-5.Michigan State:   2-1  (0-0)    --
-6.Iowa:             2-1  (0-0)    --
-7.Michigan:         2-1  (0-0)    --
-8.Wisconsin:        2-1  (0-0)    --
-9.Penn State:       2-1  (0-0)    --
-10.Maryland:        1-2  (0-0)    --
-11.Minnesota:       1-2  (0-0)    --
-12.Northwestern:    1-2  (0-0)    --
+1.(2)Indiana:          33-4  (19-3)   --
+2.(18)Purdue:          25-8  (17-5)   -2
+3.(25)Michigan State:  25-8  (17-5)   -2
+4.(37)Michigan:        23-11 (13-9)   -6
+5.(51)Iowa:            19-12 (12-10)  -7
+6.(40)Illinois:        20-13 (12-10)  -7
+7.(58)Ohio State:      18-13 (11-11)  -8
+8.(78)Northwestern:    16-15 (11-11)  -8
+9.(87)Penn State:      14-16 (8-14)   -11
+10.(165)Wisconsin:      10-20 (7-15)   -12
+11.(191)Minnesota:       7-23 (3-19)   -16
+12.(212)Maryland:        4-26 (2-20)   -17

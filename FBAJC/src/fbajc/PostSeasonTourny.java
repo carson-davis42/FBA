@@ -169,7 +169,7 @@ public class PostSeasonTourny implements Comparable<PostSeasonTourny>{
                 }
             }
             int def_effect = playerWithBall.cur_rating - (int) (0.45 * defender.cur_rating) + 10;
-            int oddsToMake = Math.max(35, Math.min(60, def_effect));
+            int oddsToMake = Math.max(35, Math.min(65, def_effect));
             int madeScore = (int) (Math.random() * 100);
             int pointsScored = 0;
             if (oddsToMake >= madeScore) {

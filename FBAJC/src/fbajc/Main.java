@@ -1245,6 +1245,11 @@ public class Main {
                 int twoPoints = 0;
                 int endGamePoss = 120;
                 boolean skip = false;
+                boolean ranked_matchup = false;
+                if (inRanks.contains(one) && inRanks.contains(two))
+                {
+                    ranked_matchup = true;
+                }
                 if (answer.equals("G") || simulateSeason) {
                     skip = true;
                 }
@@ -1270,7 +1275,10 @@ public class Main {
                         System.out.print("End of " + (OTCount - 1) + "OT: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
                         keyboard.nextLine();
                     }
-                    if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3) && !skip) {
+                    int num_show = 109;
+                    if (ranked_matchup)
+                        num_show = 89;
+                    if (i > num_show && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3) && !skip) {
                         System.out.print(endGamePoss-i + " Possessions left: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints + ", ");
                         if (i%2 == 0) {
                             System.out.print(one.getAbreviation() + " Possession");
@@ -1311,7 +1319,7 @@ public class Main {
                         }
                     }
                     int def_effect = playerWithBall.cur_rating - (int) (0.45 * defender.cur_rating) + 10;
-                    int oddsToMake = Math.max(35, Math.min(60, def_effect));
+                    int oddsToMake = Math.max(35, Math.min(65, def_effect));
                     int madeScore = (int) (Math.random() * 100);
                     int pointsScored = 0;
                     if (oddsToMake >= madeScore) {
@@ -1322,7 +1330,7 @@ public class Main {
                         else {
                             pointsScored = 2;
                         }
-                        if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3) && !skip) {
+                        if (i > num_show && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3) && !skip) {
                             Team t = one;
                             if (i % 2 == 1) {
                                 t = two;

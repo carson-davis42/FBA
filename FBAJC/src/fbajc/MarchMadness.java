@@ -303,7 +303,7 @@ public class MarchMadness {
             sb.append("6.").append(NIT_field.get(10).getName()).append(" vs 11.").append(NIT_field.get(21).getName()).append("\n");
             sb.append("7.").append(NIT_field.get(13).getName()).append(" vs 10.").append(NIT_field.get(18).getName()).append("\n");
             sb.append("2.").append(NIT_field.get(2).getName()).append(" vs 15.").append(NIT_field.get(29).getName());
-            File file = new File("NIT.txt");
+            File file = new File("FBAJC/NIT.txt");
             FileWriter fw = new FileWriter(file);
             fw.write(sb.toString());
             fw.close();
@@ -675,7 +675,7 @@ public class MarchMadness {
                 }
             }
             int def_effect = playerWithBall.cur_rating - (int) (0.45 * defender.cur_rating) + 10;
-            int oddsToMake = Math.max(35, Math.min(60, def_effect));
+            int oddsToMake = Math.max(35, Math.min(65, def_effect));
             int madeScore = (int) (Math.random() * 100);
             int pointsScored = 0;
             if (oddsToMake >= madeScore) {

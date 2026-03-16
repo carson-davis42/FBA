@@ -1,533 +1,448 @@
 Points Per Game: 
 
 -Overall-
-1. Amari Phillips(89)(MSU): 33.7
-2. Khalil Burton(84)(UCF): 32.8
-3. Dean Mays(90)(BYU): 31
-4. Brody Fox(88)(UCLA): 30
-5. Kendrick Ramos(87)(ASU): 30
-6. Kendrick James(80)(FAU): 29.8
-7. X(77)(USF): 28.8
-8. Daelin Strickland(85)(OU): 28.5
-9. Jace Ellis(80)(FSU): 28.2
-10. Adonis Wonder(95)(IU): 28.2
-11. Logan Cohen(89)(BAY): 28
-12. Kyree Fields(82)(STJOHNS): 28
-13. Arturo Howell(93)(XU): 27.8
-14. X(79)(ORU): 27.8
-15. Noah Brooks(85)(ILL): 27.7
-16. Donn Duarte(97)(ARIZ): 27.3
-17. X(75)(UB): 27
-18. Nico Carvajal(79)(IOWA): 27
-19. Ian Reid(85)(WF): 26.8
-20. Kordell Grant(81)(TCU): 26.5
-21. JJ Meadows(91)(UM): 26.3
-22. X(73)(VCU): 26.3
-23. X(76)(USU): 26.3
-24. Jace Foster(82)(FSU): 26
-25. X(72)(MTU): 26
-26. Lachlan Blake(81)(ND): 25.8
-27. Micah Thornton(82)(ALA): 25.8
-28. X(75)(QUIN): 25.7
-29. Ethan Leitner(89)(DUKE): 25.5
-30. Keneth Friedman(87)(UCON): 25.5
-31. X(76)(ALST): 25.5
-32. X(76)(PTST): 25.3
-33. Kai Miller(83)(UVA): 25.2
-34. X(74)(JSU): 25.2
-35. Kamari Rhodes(80)(ND): 25
-36. Lou House(87)(TAMU): 25
-37. Dillon Stevens(85)(WASH): 25
-38. X(67)(COLG): 25
-39. X(77)(SFA): 25
-40. Dennis Metcalf(96)(NEV): 25
-41. Fritz Mcintosh(90)(NEV): 25
-42. X(77)(NMSU): 25
-43. Alonso Bennett(88)(LOU): 24.8
-44. Claude Dailey(87)(CTN): 24.5
-45. Christian Cohen(84)(UK): 24.5
-46. X(77)(WASH): 24.3
-47. X(74)(UTAH): 24.3
-48. X(73)(BRN): 24.3
-49. X(73)(MIT): 24.3
-50. X(74)(AF): 24.3
-51. Carter Whitney(80)(TTU): 24.2
-52. Jakub Kowalski(77)(CLEM): 24.2
-53. X(77)(IUP): 24.2
-54. X(77)(FUR): 24.2
-55. Christian Flores(85)(ISU): 24
-56. Liam Mercado(94)(CTN): 24
-57. Darius Bruner(89)(TENN): 24
-58. X(78)(LSU): 24
-59. X(77)(WIS): 24
-60. X(77)(MD): 24
-61. Simeon Estrada(87)(UCLA): 24
-62. Kam Randle(84)(LUC): 24
-63. X(73)(UCSB): 24
-64. X(73)(APP): 24
-65. X(71)(UNCA): 24
-66. X(75)(MAR): 24
-67. X(70)(DRA): 23.7
-68. Sage Ellis(85)(WF): 23.5
-69. Haruki Nakamura(94)(STJOHNS): 23.5
-70. Tristan Bolden(82)(MEM): 23.5
-71. X(74)(NKU): 23.5
-72. Ki-Hoon Park(85)(GU): 23.3
-73. X(70)(UCSD): 23.3
-74. X(73)(SF): 23.3
-75. X(67)(OMA): 23.3
-76. Houston Sharp(82)(WVU): 23.2
-77. Benjamin Gould(82)(BYU): 23.2
-78. Arvidsson Olsen(88)(TENN): 23.2
-79. Torian Frazier(77)(ARK): 23.2
-80. X(77)(ACU): 23.2
-81. Luka Vasilijevic(83)(WASH): 23
-82. X(75)(PRIN): 23
-83. X(75)(WEB): 23
-84. X(76)(MAR): 23
-85. Kayden Kelley(91)(TAMU): 22.8
-86. X(74)(GRAM): 22.8
-87. X(73)(ETSU): 22.8
-88. Will Fox Jr(94)(GU): 22.7
-89. X(72)(CAL): 22.7
-90. X(69)(GCU): 22.7
-91. X(75)(STL): 22.7
-92. X(75)(DUQ): 22.7
-93. X(73)(RMU): 22.7
-94. Kiyan Lovelace(85)(SYR): 22.5
-95. Lance Durbin(81)(MIZZ): 22.5
-96. X(76)(TUL): 22.5
-97. X(76)(CLST): 22.5
-98. X(74)(UTSA): 22.5
-99. X(72)(ARST): 22.5
-100. Joseph Reid-Jones(89)(UM): 22.3
-101. Weston Noble(79)(NEB): 22.3
-102. Kory Jefferson(80)(LUC): 22.3
-103. X(75)(RUT): 22.3
-104. X(72)(DSU): 22.3
-105. X(71)(BRN): 22.3
-106. X(65)(CORN): 22.3
-107. X(72)(EWU): 22.3
-108. X(75)(EVA): 22.3
-109. Kobe Livingston(87)(UH): 22.2
-110. GG Baxter(80)(OSU): 22.2
-111. X(75)(OSU): 22.2
-112. Elijah Tate(79)(CLEM): 22.2
-113. Kerry Khan(94)(VIL): 22.2
-114. Ja'Kel Mitchell(83)(ARK): 22.2
-115. X(74)(IONA): 22.2
-116. X(76)(UB): 22
-117. X(76)(STAN): 22
-118. X(75)(GW): 22
-119. X(79)(SJSU): 22
-120. X(71)(OHIO): 22
-121. Emmanuel Green(90)(KU): 21.8
-122. Adam Campo(86)(KU): 21.8
-123. Jasper Monroe(92)(OU): 21.8
-124. Camden Giles(88)(TENN): 21.8
-125. Calvin Rhodes(86)(IU): 21.8
-126. Barrett Cline(92)(MEM): 21.8
-127. X(76)(OAK): 21.8
-128. X(75)(APB): 21.8
-129. X(74)(WSU): 21.7
-130. X(74)(URI): 21.7
-131. X(74)(NE): 21.7
-132. Karl Jenkins(87)(MQ): 21.5
-133. Andre Evans(88)(VIL): 21.5
-134. X(78)(UNT): 21.5
-135. X(69)(UNT): 21.5
-136. X(74)(JMU): 21.5
-137. X(73)(NE): 21.3
-138. X(71)(MIT): 21.3
-139. X(75)(MON): 21.3
-140. X(71)(WYO): 21.3
-141. Hugo Brisson(75)(UNLV): 21.3
-142. X(74)(MAR): 21.3
-143. Samuel Adeyemi(91)(UH): 21.2
-144. Fabio Bianchi(88)(TTU): 21.2
-145. Isaiah Freeman(87)(CTN): 21.2
-146. Robin Gay(83)(UK): 21.2
-147. X(79)(OSU): 21
-148. Micah Beck(83)(DUKE): 21
-149. Aleksandar Petrovic(83)(MISSST): 21
-150. X(77)(LSU): 21
-151. Jakobe Willis(77)(ORST): 21
-152. X(75)(COLO): 21
-153. X(72)(UTSA): 21
-154. X(77)(LIU): 21
-155. PJ Tate(91)(UT): 20.8
-156. Quintin Nguyen(91)(AUB): 20.8
-157. Malakai Hill(77)(ILL): 20.7
-158. Tobias Steiner(78)(USC): 20.7
-159. Dior Freeman(87)(NEB): 20.7
-160. Dmitri Kolesnikov(75)(PITT): 20.7
-161. X(73)(MTU): 20.7
-162. X(74)(DEL): 20.7
-163. X(70)(UCSD): 20.7
-164. X(74)(AF): 20.7
-165. X(70)(FRES): 20.7
-166. X(70)(ALR): 20.7
-167. Darnell Stone(83)(UT): 20.5
-168. Julius Boyd(90)(MQ): 20.5
-169. Anderson Ray(80)(UCON): 20.5
-170. KJ Hanson(85)(AUB): 20.5
-171. X(78)(MIZZ): 20.5
-172. Daquan Robinson(84)(FLO): 20.5
-173. Kellen Byrd(77)(MISS): 20.5
-174. Griffin Hale(82)(OHSU): 20.5
-175. X(74)(UAB): 20.5
-176. Warren Whitney(82)(ILL): 20.3
-177. X(75)(NW): 20.3
-178. Jackson Cole(81)(COLO): 20.3
-179. X(74)(DAY): 20.3
-180. X(76)(NAVY): 20.3
-181. X(79)(UMBC): 20.3
-182. X(77)(UMBC): 20.3
-183. Wyatt Wright(81)(CSU): 20.3
-184. X(72)(MIA): 20.2
-185. Caleb Ingram(84)(UK): 20.2
-186. Taj Carter(76)(OHSU): 20.2
-187. Bo Boone(84)(WICH): 20.2
-188. X(72)(CIN): 20.2
-189. X(77)(TOL): 20.2
-190. X(72)(ARST): 20.2
-191. X(76)(MIA): 20
-192. Zyaire McKnight(85)(MQ): 20
-193. X(74)(SH): 20
-194. X(74)(ECU): 20
-195. X(71)(HOW): 20
-196. X(79)(MURRST): 20
-197. X(78)(UMBC): 20
-198. X(73)(STB): 20
-199. X(72)(GRAM): 20
-200. X(76)(GAST): 20
-201. X(75)(NMSU): 20
-202. Milo Dean(89)(SDSU): 20
-203. X(79)(SEMO): 20
-204. X(74)(LIU): 20
+1. Khalil Burton(86)(UCF): 28.8
+2. Idris Bah(86)(ORU): 26.8
+3. Ethan Leitner(94)(DUKE): 26.5
+4. Haruki Nakamura(94)(STJOHNS): 25.6
+5. X(77)(USF): 25.3
+6. Amari Phillips(94)(MSU): 25.1
+7. Kendrick Ramos(93)(ASU): 24.9
+8. Bryson Lockridge(82)(NIU): 24.8
+9. Micah Thornton(84)(ALA): 24.7
+10. Kai Miller(84)(UVA): 24.3
+11. Fabio Bianchi(90)(TTU): 24.2
+12. Jackson Cole(86)(COLO): 23.9
+13. Dior Freeman(88)(NEB): 23.8
+14. Kayden Kelley(91)(TAMU): 23.8
+15. Kendrick James(81)(FAU): 23.7
+16. PJ Tate(92)(UT): 23.6
+17. Victor Hoxha(81)(NMU): 23.3
+18. Andre Evans(92)(VIL): 23.3
+19. X(77)(MORE): 23.1
+20. Youssef El-Sayed(87)(ISU): 23.1
+21. Nico Carvajal(80)(IOWA): 23
+22. Barrett Cline(92)(MEM): 23
+23. Lou House(89)(TAMU): 23
+24. X(79)(SHSU): 23
+25. X(83)(SJSU): 22.9
+26. Liam Mercado(94)(CTN): 22.9
+27. Ja'Kel Mitchell(84)(ARK): 22.9
+28. Adonis Wonder(99)(IU): 22.8
+29. Kerry Khan(96)(VIL): 22.8
+30. Jakub Kowalski(80)(CLEM): 22.7
+31. X(79)(PTST): 22.7
+32. Dean Mays(92)(BYU): 22.6
+33. Jayvon Gates(81)(USU): 22.6
+34. X(79)(ALST): 22.6
+35. Dennis Metcalf(97)(NEV): 22.6
+36. X(78)(FUR): 22.5
+37. Arturo Howell(93)(XU): 22.5
+38. Jace Merriweather(83)(MURRST): 22.4
+39. X(77)(IONA): 22.3
+40. Quintin Nguyen(92)(AUB): 22.2
+41. Ian Reid(87)(WF): 22.2
+42. Tariq Dunn(82)(MD): 22.1
+43. Kiyan Lovelace(86)(SYR): 22.1
+44. X(81)(OAK): 22
+45. Tristan Bolden(83)(MEM): 22
+46. X(82)(WIS): 22
+47. Donn Duarte(99)(ARIZ): 21.9
+48. X(74)(APP): 21.8
+49. Keneth Friedman(93)(UCON): 21.8
+50. Milo Dean(91)(SDSU): 21.8
+51. X(76)(OHIO): 21.7
+52. Lachlan Blake(84)(ND): 21.7
+53. Elliott Kane(90)(MIZZ): 21.7
+54. X(76)(PRIN): 21.6
+55. LaMarr Sutton(93)(GU): 21.6
+56. Andrej Vranic(82)(ECU): 21.6
+57. Dario Pellegrini(84)(WVU): 21.5
+58. X(82)(LIU): 21.5
+59. Alonso Bennett(90)(LOU): 21.5
+60. Nico Rinaldo(78)(SF): 21.5
+61. X(78)(ACU): 21.4
+62. Noah Brooks(89)(ILL): 21.4
+63. Claude Dailey(90)(CTN): 21.4
+64. Logan Cohen(89)(BAY): 21.3
+65. Jasper Monroe(93)(OU): 21.2
+66. X(77)(MAR): 21.2
+67. X(79)(GAST): 21.1
+68. Jesse Boyd(84)(UAB): 21.1
+69. Benjamin Gould(85)(BYU): 21.1
+70. Ellis Monroe(90)(PUR): 21
+71. Simeon Estrada(90)(UCLA): 20.9
+72. Kam Randle(86)(LUC): 20.9
+73. Aleksandar Petrovic(88)(MISSST): 20.9
+74. Kellan Spears(80)(UNCW): 20.9
+75. X(79)(WOF): 20.8
+76. X(78)(NKU): 20.8
+77. X(77)(YALE): 20.8
+78. X(80)(UNT): 20.8
+79. X(80)(TOL): 20.7
+80. Will Fox Jr(95)(GU): 20.7
+81. Zayvion Brooks(82)(SDST): 20.7
+82. Christian Flores(86)(ISU): 20.7
+83. Robin Gay(86)(UK): 20.7
+84. Pierce Williams(87)(PROV): 20.6
+85. X(77)(UTSA): 20.6
+86. X(79)(UNLV): 20.6
+87. Kordell Grant(83)(TCU): 20.6
+88. X(79)(NCS): 20.6
+89. Calvin Rhodes(90)(IU): 20.6
+90. Kamari Rhodes(81)(ND): 20.6
+91. Elijah Tate(84)(CLEM): 20.5
+92. Sage Ellis(86)(WF): 20.5
+93. X(77)(MON): 20.4
+94. Kendall Hatfield(95)(ARIZ): 20.4
+95. X(79)(INST): 20.4
+96. Kymari Rivers(94)(UNC): 20.4
+97. Jace Ellis(82)(FSU): 20.3
+98. Julius Boyd(93)(MQ): 20.3
+99. Easton Lowe(81)(PROV): 20.3
+100. Daquan Robinson(86)(FLO): 20.3
+101. X(76)(JSU): 20.3
+102. Lance Durbin(83)(MIZZ): 20.3
+103. Axel Bennington(82)(WIN): 20.3
+104. X(85)(TXSO): 20.2
+105. X(77)(LONG): 20.2
+106. JJ Meadows(93)(UM): 20.2
+107. Dillon Stevens(89)(WASH): 20.2
+108. X(77)(DAY): 20.1
+109. X(78)(MAR): 20.1
+110. Marcus Renfroe(80)(APB): 20.1
+111. X(82)(SEMO): 20.1
+112. Keandre Fulton(80)(USU): 20.1
+113. Kashton Lowe(80)(DART): 20.1
+114. X(78)(OHIO): 20.1
+115. X(80)(DART): 20.1
+116. Houston Sharp(83)(WVU): 20
+117. X(77)(CAL): 20
+118. X(78)(NAVY): 20
+119. X(77)(JMU): 20
 
 
 -Big 12-
-1. Dean Mays(90)(BYU): 31
-2. Daelin Strickland(85)(OU): 28.5
-3. Logan Cohen(89)(BAY): 28
-4. Kordell Grant(81)(TCU): 26.5
-5. Carter Whitney(80)(TTU): 24.2
-6. Christian Flores(85)(ISU): 24
-7. Houston Sharp(82)(WVU): 23.2
-8. Benjamin Gould(82)(BYU): 23.2
-9. Kobe Livingston(87)(UH): 22.2
-10. GG Baxter(80)(OSU): 22.2
-11. X(75)(OSU): 22.2
-12. Emmanuel Green(90)(KU): 21.8
-13. Adam Campo(86)(KU): 21.8
-14. Jasper Monroe(92)(OU): 21.8
-15. Samuel Adeyemi(91)(UH): 21.2
+1. Fabio Bianchi(90)(TTU): 24.2
+2. PJ Tate(92)(UT): 23.6
+3. Youssef El-Sayed(87)(ISU): 23.1
+4. Dean Mays(92)(BYU): 22.6
+5. Dario Pellegrini(84)(WVU): 21.5
+6. Logan Cohen(89)(BAY): 21.3
+7. Jasper Monroe(93)(OU): 21.2
+8. Benjamin Gould(85)(BYU): 21.1
+9. Christian Flores(86)(ISU): 20.7
+10. Kordell Grant(83)(TCU): 20.6
+11. Houston Sharp(83)(WVU): 20
+12. Daelin Strickland(88)(OU): 19.9
+13. X(82)(OSU): 19.6
+14. Samuel Adeyemi(92)(UH): 19.6
+15. Kobe Livingston(89)(UH): 19.5
 
 
 -ACC-
-1. Jace Ellis(80)(FSU): 28.2
-2. Ian Reid(85)(WF): 26.8
-3. Jace Foster(82)(FSU): 26
-4. Lachlan Blake(81)(ND): 25.8
-5. Ethan Leitner(89)(DUKE): 25.5
-6. Kai Miller(83)(UVA): 25.2
-7. Kamari Rhodes(80)(ND): 25
-8. Alonso Bennett(88)(LOU): 24.8
-9. Jakub Kowalski(77)(CLEM): 24.2
-10. Sage Ellis(85)(WF): 23.5
-11. Kiyan Lovelace(85)(SYR): 22.5
-12. Elijah Tate(79)(CLEM): 22.2
-13. Micah Beck(83)(DUKE): 21
-14. X(72)(MIA): 20.2
-15. X(76)(MIA): 20
+1. Ethan Leitner(94)(DUKE): 26.5
+2. Kai Miller(84)(UVA): 24.3
+3. Jakub Kowalski(80)(CLEM): 22.7
+4. Ian Reid(87)(WF): 22.2
+5. Kiyan Lovelace(86)(SYR): 22.1
+6. Lachlan Blake(84)(ND): 21.7
+7. Alonso Bennett(90)(LOU): 21.5
+8. X(79)(NCS): 20.6
+9. Kamari Rhodes(81)(ND): 20.6
+10. Elijah Tate(84)(CLEM): 20.5
+11. Sage Ellis(86)(WF): 20.5
+12. Kymari Rivers(94)(UNC): 20.4
+13. Jace Ellis(82)(FSU): 20.3
+14. Jace Foster(87)(FSU): 19.8
+15. Micah Beck(85)(DUKE): 19.1
 
 
 -Big East-
-1. Kyree Fields(82)(STJOHNS): 28
-2. Arturo Howell(93)(XU): 27.8
-3. X(75)(UB): 27
-4. Keneth Friedman(87)(UCON): 25.5
-5. Claude Dailey(87)(CTN): 24.5
-6. Liam Mercado(94)(CTN): 24
-7. Haruki Nakamura(94)(STJOHNS): 23.5
-8. Kerry Khan(94)(VIL): 22.2
-9. X(76)(UB): 22
-10. Karl Jenkins(87)(MQ): 21.5
-11. Andre Evans(88)(VIL): 21.5
-12. Isaiah Freeman(87)(CTN): 21.2
-13. Julius Boyd(90)(MQ): 20.5
-14. Anderson Ray(80)(UCON): 20.5
-15. Zyaire McKnight(85)(MQ): 20
+1. Haruki Nakamura(94)(STJOHNS): 25.6
+2. Andre Evans(92)(VIL): 23.3
+3. Liam Mercado(94)(CTN): 22.9
+4. Kerry Khan(96)(VIL): 22.8
+5. Arturo Howell(93)(XU): 22.5
+6. Keneth Friedman(93)(UCON): 21.8
+7. Claude Dailey(90)(CTN): 21.4
+8. Pierce Williams(87)(PROV): 20.6
+9. Julius Boyd(93)(MQ): 20.3
+10. Easton Lowe(81)(PROV): 20.3
+11. Zyaire McKnight(86)(MQ): 20
+12. Anderson Ray(85)(UCON): 19.8
+13. X(78)(UB): 19
+14. Karl Jenkins(88)(MQ): 18.9
+15. Isaiah Freeman(88)(CTN): 18.5
 
 
 -SEC-
-1. Micah Thornton(82)(ALA): 25.8
-2. Lou House(87)(TAMU): 25
-3. Christian Cohen(84)(UK): 24.5
-4. Darius Bruner(89)(TENN): 24
-5. X(78)(LSU): 24
-6. Arvidsson Olsen(88)(TENN): 23.2
-7. Torian Frazier(77)(ARK): 23.2
-8. Kayden Kelley(91)(TAMU): 22.8
-9. Lance Durbin(81)(MIZZ): 22.5
-10. Ja'Kel Mitchell(83)(ARK): 22.2
-11. Camden Giles(88)(TENN): 21.8
-12. Robin Gay(83)(UK): 21.2
-13. Aleksandar Petrovic(83)(MISSST): 21
-14. X(77)(LSU): 21
-15. Quintin Nguyen(91)(AUB): 20.8
+1. Micah Thornton(84)(ALA): 24.7
+2. Kayden Kelley(91)(TAMU): 23.8
+3. Lou House(89)(TAMU): 23
+4. Ja'Kel Mitchell(84)(ARK): 22.9
+5. Quintin Nguyen(92)(AUB): 22.2
+6. Elliott Kane(90)(MIZZ): 21.7
+7. Aleksandar Petrovic(88)(MISSST): 20.9
+8. Robin Gay(86)(UK): 20.7
+9. Daquan Robinson(86)(FLO): 20.3
+10. Lance Durbin(83)(MIZZ): 20.3
+11. Caleb Ingram(85)(UK): 19.7
+12. Christian Cohen(85)(UK): 19.5
+13. Peyton McBride(88)(AUB): 19.4
+14. Arvidsson Olsen(92)(TENN): 19.3
+15. Kolton Ware(82)(ALA): 19.2
 
 
 -Big Ten-
-1. Amari Phillips(89)(MSU): 33.7
-2. Adonis Wonder(95)(IU): 28.2
-3. Noah Brooks(85)(ILL): 27.7
-4. Nico Carvajal(79)(IOWA): 27
-5. JJ Meadows(91)(UM): 26.3
-6. X(77)(WIS): 24
-7. X(77)(MD): 24
-8. Joseph Reid-Jones(89)(UM): 22.3
-9. Calvin Rhodes(86)(IU): 21.8
-10. Malakai Hill(77)(ILL): 20.7
-11. Griffin Hale(82)(OHSU): 20.5
-12. Warren Whitney(82)(ILL): 20.3
-13. X(75)(NW): 20.3
-14. Taj Carter(76)(OHSU): 20.2
-15. Hugh Frazier(87)(IU): 19.8
+1. Amari Phillips(94)(MSU): 25.1
+2. Nico Carvajal(80)(IOWA): 23
+3. Adonis Wonder(99)(IU): 22.8
+4. Tariq Dunn(82)(MD): 22.1
+5. X(82)(WIS): 22
+6. Noah Brooks(89)(ILL): 21.4
+7. Ellis Monroe(90)(PUR): 21
+8. Calvin Rhodes(90)(IU): 20.6
+9. JJ Meadows(93)(UM): 20.2
+10. Joseph Reid-Jones(92)(UM): 19.9
+11. Griffin Hale(83)(OHSU): 19.8
+12. Zaccai Janson(88)(MSU): 19.2
+13. Warren Whitney(85)(ILL): 19
+14. Clay Washington(82)(PSU): 18.5
+15. Fletcher Reed(84)(UM): 18.2
 
 
 -American-
-1. Khalil Burton(84)(UCF): 32.8
-2. Kendrick James(80)(FAU): 29.8
-3. Tristan Bolden(82)(MEM): 23.5
-4. X(76)(TUL): 22.5
-5. Barrett Cline(92)(MEM): 21.8
-6. X(74)(UAB): 20.5
-7. Bo Boone(84)(WICH): 20.2
-8. X(72)(CIN): 20.2
-9. X(77)(TOL): 20.2
-10. X(70)(GT): 19.8
-11. Sam Jordan(85)(WICH): 19.5
-12. X(74)(AKR): 18.8
-13. X(70)(RICE): 18.8
-14. Torin Jones(86)(WICH): 17.8
-15. Carson Clark(82)(MEM): 17.8
+1. Khalil Burton(86)(UCF): 28.8
+2. Kendrick James(81)(FAU): 23.7
+3. Barrett Cline(92)(MEM): 23
+4. Tristan Bolden(83)(MEM): 22
+5. Jesse Boyd(84)(UAB): 21.1
+6. X(80)(TOL): 20.7
+7. Landon Proctor(83)(TUL): 19.5
+8. Torin Jones(87)(WICH): 19.4
+9. Luca Ferretti(81)(TUL): 19
+10. Carson Clark(85)(MEM): 18.9
+11. X(78)(FAU): 18.7
+12. Bo Boone(88)(WICH): 18.6
+13. X(75)(CIN): 18.5
+14. X(74)(CIN): 18.5
+15. X(77)(GT): 18.4
 
 
 -PAC 12-
-1. Brody Fox(88)(UCLA): 30
-2. Kendrick Ramos(87)(ASU): 30
-3. Donn Duarte(97)(ARIZ): 27.3
-4. Dillon Stevens(85)(WASH): 25
-5. X(77)(WASH): 24.3
-6. X(74)(UTAH): 24.3
-7. Simeon Estrada(87)(UCLA): 24
-8. Ki-Hoon Park(85)(GU): 23.3
-9. Luka Vasilijevic(83)(WASH): 23
-10. Will Fox Jr(94)(GU): 22.7
-11. X(76)(STAN): 22
-12. X(74)(WSU): 21.7
-13. Jakobe Willis(77)(ORST): 21
-14. X(75)(COLO): 21
-15. Tobias Steiner(78)(USC): 20.7
+1. Kendrick Ramos(93)(ASU): 24.9
+2. Jackson Cole(86)(COLO): 23.9
+3. Donn Duarte(99)(ARIZ): 21.9
+4. LaMarr Sutton(93)(GU): 21.6
+5. Simeon Estrada(90)(UCLA): 20.9
+6. Will Fox Jr(95)(GU): 20.7
+7. Kendall Hatfield(95)(ARIZ): 20.4
+8. Dillon Stevens(89)(WASH): 20.2
+9. Tobias Steiner(79)(USC): 20
+10. X(80)(STAN): 19.4
+11. Brody Fox(91)(UCLA): 19
+12. Isidro Herrera(81)(WSU): 19
+13. Luka Vasilijevic(84)(WASH): 18.9
+14. Thaddeus Mueller(87)(ORE): 18.7
+15. Marcelle Banks(84)(ORE): 18.6
 
 
 -Atlantic 10-
-1. X(73)(VCU): 26.3
-2. Kam Randle(84)(LUC): 24
-3. Weston Noble(79)(NEB): 22.3
-4. Kory Jefferson(80)(LUC): 22.3
-5. X(75)(RUT): 22.3
-6. Dior Freeman(87)(NEB): 20.7
-7. Dmitri Kolesnikov(75)(PITT): 20.7
-8. X(74)(DAY): 20.3
-9. X(74)(ECU): 20
-10. X(70)(BC): 19.7
-11. X(75)(VAN): 19.7
-12. X(72)(BC): 19
-13. X(72)(VAN): 19
-14. X(73)(ECU): 18.7
-15. X(76)(DAY): 18.3
+1. Dior Freeman(88)(NEB): 23.8
+2. Andrej Vranic(82)(ECU): 21.6
+3. Kam Randle(86)(LUC): 20.9
+4. X(77)(DAY): 20.1
+5. Tomas Ortega(78)(RUT): 19.9
+6. X(81)(DAY): 19.8
+7. Kory Jefferson(83)(LUC): 19.8
+8. Weston Noble(81)(NEB): 19.6
+9. Bryson Curtis(85)(PITT): 19.5
+10. X(75)(RUT): 19.4
+11. Eric Underwood(81)(VCU): 19.3
+12. X(80)(BUF): 19.1
+13. X(79)(SC): 19
+14. X(77)(BC): 19
+15. X(79)(VCU): 18.7
 
 
 -Patriot-
-1. X(67)(COLG): 25
-2. X(76)(NAVY): 20.3
-3. X(71)(HOW): 20
-4. X(79)(MURRST): 20
-5. X(72)(LIB): 19.2
-6. X(75)(STM): 18.5
-7. X(70)(VT): 18.3
-8. X(71)(LEH): 17.7
-9. X(75)(FOLK): 17
-10. X(71)(HOW): 16.7
-11. X(70)(LEH): 16.7
-12. X(70)(NAVY): 16.3
-13. X(66)(VT): 16
-14. X(65)(STP): 16
-15. X(72)(LIB): 15.8
+1. Jace Merriweather(83)(MURRST): 22.4
+2. X(78)(NAVY): 20
+3. X(74)(HOW): 19
+4. X(69)(COLG): 18.7
+5. X(78)(BEL): 18.6
+6. X(73)(LIB): 18.4
+7. X(76)(STM): 18
+8. X(72)(LEH): 17.6
+9. X(73)(LEH): 17.6
+10. X(75)(STM): 17.5
+11. X(74)(LIB): 17.3
+12. X(75)(ARMY): 17.1
+13. X(74)(VT): 16.7
+14. Brenson Locke(79)(MURRST): 16.4
+15. X(75)(BEL): 16.4
 
 
 -Colonial-
-1. X(72)(MTU): 26
-2. X(70)(DRA): 23.7
-3. X(72)(DSU): 22.3
-4. X(75)(GW): 22
-5. X(74)(URI): 21.7
-6. X(74)(NE): 21.7
-7. X(73)(NE): 21.3
-8. X(73)(MTU): 20.7
-9. X(74)(DEL): 20.7
-10. X(79)(UMBC): 20.3
-11. X(77)(UMBC): 20.3
-12. X(78)(UMBC): 20
-13. X(69)(RICH): 19.7
-14. X(71)(INST): 19.3
-15. X(74)(BU): 18.7
+1. X(79)(INST): 20.4
+2. Axel Bennington(82)(WIN): 20.3
+3. X(77)(URI): 19.9
+4. X(75)(DEL): 19.9
+5. X(78)(GW): 19.7
+6. X(72)(DRA): 19.5
+7. X(84)(UMBC): 19.2
+8. X(74)(MTU): 19.1
+9. X(78)(NE): 19.1
+10. X(79)(UMBC): 19
+11. X(76)(BU): 19
+12. X(76)(URI): 18.7
+13. X(76)(MTU): 18.7
+14. X(77)(DSU): 18.5
+15. X(75)(NE): 18.4
 
 
 -Horizon-
-1. X(77)(IUP): 24.2
-2. X(74)(NKU): 23.5
-3. X(76)(CLST): 22.5
-4. X(74)(IONA): 22.2
-5. X(76)(OAK): 21.8
-6. X(73)(STB): 20
-7. X(72)(UCI): 19.5
-8. X(75)(SAN): 19.2
-9. X(74)(WOF): 19
-10. X(72)(IUP): 18.2
-11. X(69)(IONA): 18.2
-12. X(70)(CLST): 17.8
-13. X(75)(NDSU): 17.8
-14. X(78)(SDST): 17.5
-15. X(72)(WOF): 17.5
+1. X(77)(IONA): 22.3
+2. X(81)(OAK): 22
+3. X(79)(WOF): 20.8
+4. X(78)(NKU): 20.8
+5. Zayvion Brooks(82)(SDST): 20.7
+6. X(80)(IUP): 19.9
+7. X(77)(SAN): 19.9
+8. X(78)(CLST): 19.6
+9. X(77)(WRIG): 19.6
+10. X(78)(WOF): 19
+11. X(76)(UCI): 17.9
+12. X(75)(WRIG): 17.8
+13. X(77)(NDSU): 17.6
+14. X(77)(UCI): 17.6
+15. X(80)(SAN): 17.3
 
 
 -Ivy League-
-1. X(73)(BRN): 24.3
-2. X(73)(MIT): 24.3
-3. X(73)(UCSB): 24
-4. X(75)(PRIN): 23
-5. X(72)(CAL): 22.7
-6. X(71)(BRN): 22.3
-7. X(65)(CORN): 22.3
-8. X(71)(MIT): 21.3
-9. X(77)(DART): 19.7
-10. X(72)(PENN): 19.3
-11. X(67)(PENN): 19
-12. X(72)(HAR): 18.7
-13. X(77)(YALE): 18.7
-14. X(72)(CAL): 18.3
-15. X(75)(DART): 18.3
+1. X(76)(PRIN): 21.6
+2. X(77)(YALE): 20.8
+3. Kashton Lowe(80)(DART): 20.1
+4. X(80)(DART): 20.1
+5. X(77)(CAL): 20
+6. X(77)(BRN): 19.8
+7. X(79)(HAR): 19.5
+8. X(75)(COL): 18.7
+9. X(76)(MIT): 18.6
+10. X(77)(DART): 18.4
+11. Sterling Dupree(83)(HAR): 18.3
+12. X(73)(COL): 18.2
+13. X(74)(MIT): 17.6
+14. X(75)(PENN): 17.6
+15. X(76)(CAL): 17.5
 
 
 -Southern-
-1. X(79)(ORU): 27.8
-2. X(77)(SFA): 25
-3. X(77)(ACU): 23.2
-4. X(74)(UTSA): 22.5
-5. X(78)(UNT): 21.5
-6. X(69)(UNT): 21.5
-7. X(72)(UTSA): 21
-8. X(74)(MCN): 19.5
-9. X(71)(TXSO): 18.8
-10. X(75)(SHSU): 18.8
-11. X(74)(AMCC): 18.2
-12. X(73)(TXSO): 17.5
-13. X(76)(TXSO): 17.2
-14. X(77)(ORU): 17
-15. X(69)(TXSO): 16.5
+1. Idris Bah(86)(ORU): 26.8
+2. X(79)(SHSU): 23
+3. X(78)(ACU): 21.4
+4. X(80)(UNT): 20.8
+5. X(77)(UTSA): 20.6
+6. X(85)(TXSO): 20.2
+7. X(77)(UTSA): 19.7
+8. X(79)(ORU): 19.5
+9. X(75)(AMCC): 19.5
+10. X(77)(SOU): 19.2
+11. X(76)(MCN): 18.6
+12. X(78)(SFA): 18.6
+13. X(76)(SOU): 18.4
+14. X(77)(UNT): 18
+15. X(78)(UNT): 17.5
 
 
 -Sun Belt-
-1. X(77)(USF): 28.8
-2. X(76)(ALST): 25.5
-3. X(74)(JSU): 25.2
-4. X(77)(FUR): 24.2
-5. X(74)(GRAM): 22.8
-6. X(73)(ETSU): 22.8
-7. X(72)(ARST): 22.5
-8. X(75)(APB): 21.8
-9. X(74)(JMU): 21.5
-10. X(72)(ARST): 20.2
-11. X(72)(GRAM): 20
-12. X(76)(GAST): 20
-13. X(77)(APB): 18.8
-14. X(74)(ETSU): 18
-15. X(71)(CHAT): 17.8
+1. X(77)(USF): 25.3
+2. X(79)(ALST): 22.6
+3. X(78)(FUR): 22.5
+4. X(79)(GAST): 21.1
+5. X(76)(JSU): 20.3
+6. Marcus Renfroe(80)(APB): 20.1
+7. X(77)(JMU): 20
+8. X(77)(GRAM): 19.6
+9. X(78)(CHAT): 19.4
+10. X(78)(ARST): 19.3
+11. X(77)(GRAM): 19.2
+12. X(80)(APB): 18.7
+13. X(76)(ETSU): 18.6
+14. X(77)(CHAT): 18.3
+15. X(75)(ETSU): 17.8
 
 
 -Big Sky-
-1. X(76)(PTST): 25.3
-2. X(70)(UCSD): 23.3
-3. X(73)(SF): 23.3
-4. X(75)(WEB): 23
-5. X(72)(EWU): 22.3
-6. X(75)(EVA): 22.3
-7. X(75)(MON): 21.3
-8. X(70)(UCSD): 20.7
-9. X(73)(LONG): 19.7
-10. X(76)(HPU): 19
-11. X(72)(STET): 19
-12. X(69)(MOST): 17.7
-13. X(74)(MOST): 17.3
-14. X(72)(SF): 17.3
-15. X(68)(KENN): 17.3
+1. X(79)(PTST): 22.7
+2. Nico Rinaldo(78)(SF): 21.5
+3. X(77)(MON): 20.4
+4. X(77)(LONG): 20.2
+5. X(77)(MON): 19.1
+6. X(77)(WEB): 19.1
+7. X(77)(STET): 18.9
+8. X(77)(EVA): 18.9
+9. X(74)(UCSD): 18.6
+10. X(82)(HPU): 18.3
+11. X(75)(EWU): 17.8
+12. X(73)(EWU): 17.8
+13. X(72)(UCSD): 17.4
+14. X(73)(SF): 17
+15. X(73)(WEB): 16.9
 
 
 -Mountain West-
-1. X(76)(USU): 26.3
-2. Dennis Metcalf(96)(NEV): 25
-3. Fritz Mcintosh(90)(NEV): 25
-4. X(77)(NMSU): 25
-5. X(74)(AF): 24.3
-6. X(79)(SJSU): 22
-7. X(71)(WYO): 21.3
-8. Hugo Brisson(75)(UNLV): 21.3
-9. X(74)(AF): 20.7
-10. X(70)(FRES): 20.7
-11. Wyatt Wright(81)(CSU): 20.3
-12. X(75)(NMSU): 20
-13. Milo Dean(89)(SDSU): 20
-14. Julian Scott(84)(SDSU): 19.7
-15. X(71)(BSU): 19.7
+1. Victor Hoxha(81)(NMU): 23.3
+2. X(83)(SJSU): 22.9
+3. Jayvon Gates(81)(USU): 22.6
+4. Dennis Metcalf(97)(NEV): 22.6
+5. Milo Dean(91)(SDSU): 21.8
+6. X(79)(UNLV): 20.6
+7. Keandre Fulton(80)(USU): 20.1
+8. Beau Riley(92)(NEV): 19.8
+9. X(79)(NMSU): 19.4
+10. Fritz Mcintosh(92)(NEV): 19.3
+11. Hugo Brisson(78)(UNLV): 19.2
+12. X(76)(BSU): 19.2
+13. Wyatt Wright(83)(CSU): 19.1
+14. Julian Scott(85)(SDSU): 18.9
+15. X(76)(BSU): 18.9
 
 
 -Ohio Valley-
-1. X(73)(APP): 24
-2. X(67)(OMA): 23.3
-3. X(69)(GCU): 22.7
-4. X(75)(STL): 22.7
-5. X(71)(OHIO): 22
-6. X(70)(ALR): 20.7
-7. X(79)(SEMO): 20
-8. X(73)(MORE): 19.7
-9. X(69)(TROY): 19.7
-10. X(78)(SEMO): 19.3
-11. X(70)(MORE): 19.3
-12. X(70)(GCU): 19
-13. X(79)(NIU): 19
-14. X(73)(NIU): 18.3
-15. X(70)(ALR): 18
+1. Bryson Lockridge(82)(NIU): 24.8
+2. X(77)(MORE): 23.1
+3. X(74)(APP): 21.8
+4. X(76)(OHIO): 21.7
+5. X(82)(SEMO): 20.1
+6. X(78)(OHIO): 20.1
+7. X(80)(STL): 19.6
+8. X(72)(OMA): 19.5
+9. X(72)(APP): 19.4
+10. X(75)(ALR): 18.7
+11. X(76)(ALR): 18.4
+12. X(77)(STL): 18.3
+13. X(82)(SEMO): 18.3
+14. X(75)(GCU): 18.1
+15. X(74)(ALR): 17.6
 
 
 -NEC-
-1. X(75)(QUIN): 25.7
-2. X(71)(UNCA): 24
-3. X(75)(MAR): 24
-4. X(76)(MAR): 23
-5. X(75)(DUQ): 22.7
-6. X(73)(RMU): 22.7
-7. X(74)(MAR): 21.3
-8. X(77)(LIU): 21
-9. X(74)(LIU): 20
-10. X(70)(LIP): 19
-11. X(72)(UNCW): 18.3
-12. X(68)(UMAS): 18
-13. X(74)(DUQ): 17.7
-14. X(75)(GMU): 17.7
-15. X(72)(BRY): 17.7
+1. X(82)(LIU): 21.5
+2. X(77)(MAR): 21.2
+3. Kellan Spears(80)(UNCW): 20.9
+4. X(78)(MAR): 20.1
+5. X(79)(GMU): 19.7
+6. X(77)(BRY): 19.5
+7. X(81)(QUIN): 19.2
+8. Dante Brovelli(81)(UMAS): 19.1
+9. X(74)(BRY): 18.9
+10. X(75)(RMU): 18.7
+11. Amir Chaudhry(80)(QUIN): 18.7
+12. X(75)(MAR): 18.3
+13. X(77)(DUQ): 17.8
+14. X(73)(UNCA): 17.7
+15. X(76)(DUQ): 17.5
 
 

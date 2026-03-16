@@ -1,269 +1,269 @@
 -Big 12-
 
-1.Houston:             4-0  (0-0)    --
-2.(7)Oklahoma State:   3-1  (0-0)    --
-3.Baylor:              3-1  (0-0)    --
-4.Texas Tech:          3-1  (0-0)    --
-5.Kansas:              3-1  (0-0)    --
-6.West Virginia:       3-1  (0-0)    --
-7.Oklahoma:            3-1  (0-0)    --
-8.BYU:                 3-1  (0-0)    --
-9.Kansas State:        3-1  (0-0)    --
-10.Texas:              3-1  (0-0)    --
-11.Iowa State:         2-2  (0-0)    --
-12.TCU:                2-2  (0-0)    --
+1.(6)Houston:          26-7  (18-4)   --
+2.(15)Baylor:          25-8  (17-5)   -1
+3.(26)Kansas:          21-13 (13-9)   -5
+4.(47)Oklahoma:        18-14 (13-9)   -5
+5.(75)Texas:           15-16 (11-11)  -7
+6.(49)BYU:             22-16 (10-12)  -8
+7.(73)West Virginia:   16-14 (10-12)  -8
+8.(64)Texas Tech:      15-15 (10-12)  -8
+9.(114)TCU:             14-18 (9-13)   -9
+10.(90)Iowa State:     13-17 (9-13)   -9
+11.(132)Oklahoma State: 12-19 (8-14)   -10
+12.(141)Kansas State:   10-20 (4-18)   -14
 
 -ACC-
 
-1.(13)Florida State:   4-0  (0-0)    --
-2.(16)Syracuse:        4-0  (0-0)    --
-3.(17)Louisville:      4-0  (0-0)    --
-4.Wake Forest:         4-0  (0-0)    --
-5.Duke:                4-0  (0-0)    --
-6.(22)Notre Dame:      3-1  (0-0)    --
-7.Miami:               3-1  (0-0)    --
-8.Virginia Tech:       3-1  (0-0)    --
-9.North Carolina:      3-1  (0-0)    --
-10.(8)Clemson:         2-2  (0-0)    --
-11.NC State:           2-2  (0-0)    --
-12.Virginia:           2-2  (0-0)    --
+1.(3)North Carolina:  32-4  (20-2)   --
+2.(11)Louisville:     28-6  (19-3)   -1
+3.(29)Wake Forest:    23-10 (14-8)   -6
+4.(48)Duke:           20-12 (12-10)  -8
+5.(46)Florida State:  19-13 (12-10)  -8
+6.(68)Virginia:       16-14 (12-10)  -8
+7.(77)Clemson:        15-16 (11-11)  -9
+8.(107)Miami:          13-17 (9-13)   -11
+9.(88)Syracuse:       15-16 (8-14)   -12
+10.(121)Notre Dame:    11-19 (7-15)   -13
+11.(172)NC State:       9-22 (5-17)   -15
+12.(182)Virginia Tech:  8-22 (3-19)   -17
 
 -Big East-
 
-1.(11)Marquette:   4-0  (0-0)    --
-2.(21)Creighton:   4-0  (0-0)    --
-3.Seton Hall:      4-0  (0-0)    --
-4.Butler:          4-0  (0-0)    --
-5.St.John's:       4-0  (0-0)    --
-6.Georgetown:      3-1  (0-0)    --
-7.UConn:           3-1  (0-0)    --
-8.DePaul:          3-1  (0-0)    --
-9.Davidson:        3-1  (0-0)    --
-10.Xavier:         3-1  (0-0)    --
-11.Villanova:      2-2  (0-0)    --
-12.Providence:     1-3  (0-0)    --
+1.(9)Marquette:    25-7  (17-5)   --
+2.(17)Xavier:      24-9  (16-6)   -1
+3.(32)St.John's:   23-8  (16-6)   -1
+4.(31)UConn:       23-10 (16-6)   -1
+5.(27)Creighton:   22-10 (14-8)   -3
+6.(34)Villanova:   21-13 (12-10)  -5
+7.(72)Providence:  17-15 (12-10)  -5
+8.(89)DePaul:      14-18 (7-15)   -10
+9.(146)Georgetown:  11-19 (7-15)   -10
+10.(117)Seton Hall: 12-18 (5-17)   -12
+11.(152)Butler:     10-20 (5-17)   -12
+12.(163)Davidson:    9-21 (5-17)   -12
 
 -SEC-
 
-1.(12)Kentucky:        4-0  (0-0)    --
-2.Auburn:              4-0  (0-0)    --
-3.Mississippi State:   4-0  (0-0)    --
-4.(3)Texas A&M:        3-1  (0-0)    --
-5.Missouri:            3-1  (0-0)    --
-6.Florida:             3-1  (0-0)    --
-7.Tennessee:           3-1  (0-0)    --
-8.(1)LSU:              2-2  (0-0)    --
-9.Arkansas:            2-2  (0-0)    --
-10.Alabama:            2-2  (0-0)    --
-11.Ole Miss:           2-2  (0-0)    --
-12.Georgia:            1-3  (0-0)    --
+1.(20)Texas A&M:          25-7  (20-2)   --
+2.(10)Auburn:             30-6  (17-5)   -3
+3.(7)Kentucky:            25-8  (16-6)   -4
+4.(16)Florida:            25-11 (15-7)   -5
+5.(22)Tennessee:          23-12 (14-8)   -6
+6.(30)Missouri:           21-11 (14-8)   -6
+7.(63)Mississippi State:  16-14 (9-13)   -11
+8.(76)Alabama:            16-16 (9-13)   -11
+9.(145)Arkansas:           11-19 (8-14)   -12
+10.(175)LSU:                8-23 (5-17)   -15
+11.(205)Georgia:            5-25 (3-19)   -17
+12.(204)Ole Miss:           5-25 (2-20)   -18
 
 -Big Ten-
 
-1.(5)Indiana:       4-0  (0-0)    --
-2.Purdue:           3-1  (0-0)    --
-3.Ohio State:       3-1  (0-0)    --
-4.(2)Illinois:      2-1  (0-0)    --
-5.Michigan State:   2-1  (0-0)    --
-6.Iowa:             2-1  (0-0)    --
-7.Michigan:         2-1  (0-0)    --
-8.Wisconsin:        2-1  (0-0)    --
-9.Penn State:       2-1  (0-0)    --
-10.Maryland:        1-2  (0-0)    --
-11.Minnesota:       1-2  (0-0)    --
-12.Northwestern:    1-2  (0-0)    --
+1.(2)Indiana:          33-4  (19-3)   --
+2.(18)Purdue:          25-8  (17-5)   -2
+3.(25)Michigan State:  25-8  (17-5)   -2
+4.(37)Michigan:        23-11 (13-9)   -6
+5.(51)Iowa:            19-12 (12-10)  -7
+6.(40)Illinois:        20-13 (12-10)  -7
+7.(58)Ohio State:      18-13 (11-11)  -8
+8.(78)Northwestern:    16-15 (11-11)  -8
+9.(87)Penn State:      14-16 (8-14)   -11
+10.(165)Wisconsin:      10-20 (7-15)   -12
+11.(191)Minnesota:       7-23 (3-19)   -16
+12.(212)Maryland:        4-26 (2-20)   -17
 
 -American-
 
-1.UCF:             4-0  (0-0)    --
-2.Wichita State:   3-1  (0-0)    --
-3.(10)Tulane:      2-2  (0-0)    --
-4.FAU:             2-2  (0-0)    --
-5.Georgia Tech:    2-2  (0-0)    --
-6.Akron:           2-2  (0-0)    --
-7.Memphis:         2-2  (0-0)    --
-8.Cincinnati:      1-3  (0-0)    --
-9.Toledo:          1-3  (0-0)    --
-10.Rice:           0-4  (0-0)    --
-11.SMU:            0-4  (0-0)    --
-12.UAB:            0-4  (0-0)    --
+1.(5)Wichita State:  30-4  (21-1)   --
+2.(21)Tulane:        25-8  (18-4)   -3
+3.(13)Memphis:       24-10 (16-6)   -5
+4.(81)UAB:           17-14 (15-7)   -6
+5.(66)FAU:           19-12 (14-8)   -7
+6.(100)UCF:           15-15 (10-12)  -11
+7.(151)Georgia Tech:  11-19 (8-14)   -13
+8.(155)Akron:         11-19 (8-14)   -13
+9.(176)Rice:          10-21 (8-14)   -13
+10.(147)Toledo:       12-19 (7-15)   -14
+11.(190)SMU:           8-23 (6-16)   -15
+12.(214)Cincinnati:    2-28 (1-21)   -20
 
 -PAC 12-
 
-1.(15)Washington:     3-0  (0-0)    --
-2.Oregon:             3-0  (0-0)    --
-3.UCLA:               3-0  (0-0)    --
-4.Gonzaga:            2-1  (0-0)    --
-5.Utah:               2-1  (0-0)    --
-6.Oregon State:       2-1  (0-0)    --
-7.USC:                2-1  (0-0)    --
-8.Arizona:            2-1  (0-0)    --
-9.Arizona State:      2-1  (0-0)    --
-10.(20)Colorado:      1-2  (0-0)    --
-11.Washington State:  1-2  (0-0)    --
-12.Stanford:          1-2  (0-0)    --
+1.(1)Arizona:            29-6  (19-3)   --
+2.(14)Oregon:            26-8  (16-6)   -3
+3.(12)UCLA:              26-8  (16-6)   -3
+4.(8)Gonzaga:            28-9  (16-6)   -3
+5.(19)Washington:        24-10 (14-8)   -5
+6.(35)Oregon State:      20-13 (12-10)  -7
+7.(86)Arizona State:     15-15 (12-10)  -7
+8.(118)USC:               14-17 (8-14)   -11
+9.(136)Stanford:          12-18 (7-15)   -12
+10.(149)Washington State: 11-20 (6-16)   -13
+11.(179)Colorado:          9-21 (4-18)   -15
+12.(196)Utah:              6-24 (2-20)   -17
 
 -Atlantic 10-
 
-1.VCU:               2-1  (0-0)    --
-2.Boston College:    2-1  (0-0)    --
-3.East Carolina:     2-1  (0-0)    --
-4.Nebraska:          2-1  (0-0)    --
-5.Dayton:            2-1  (0-0)    --
-6.(24)St.Joseph's:   1-2  (0-0)    --
-7.Loyola-Chicago:    1-2  (0-0)    --
-8.Buffalo:           1-2  (0-0)    --
-9.Pitt:              1-2  (0-0)    --
-10.Rutgers:          1-2  (0-0)    --
-11.South Carolina:   1-2  (0-0)    --
-12.Vanderbilt:       1-2  (0-0)    --
+1.(33)Loyola-Chicago:  25-9  (18-4)   --
+2.(42)Pitt:            23-10 (17-5)   -1
+3.(67)East Carolina:   17-13 (15-7)   -3
+4.(59)VCU:             18-13 (14-8)   -4
+5.(65)Dayton:          18-13 (13-9)   -5
+6.(57)Nebraska:        18-14 (12-10)  -6
+7.(101)Boston College:  16-15 (11-11)  -7
+8.(129)South Carolina:  14-17 (9-13)   -9
+9.(161)St.Joseph's:     10-20 (8-14)   -10
+10.(183)Vanderbilt:      9-21 (6-16)   -12
+11.(192)Rutgers:         7-23 (5-17)   -13
+12.(185)Buffalo:         7-23 (4-18)   -14
 
 -Patriot-
 
-1.Colgate:         1-2  (0-0)    --
-2.Navy:            1-2  (0-0)    --
-3.Vermont:         1-2  (0-0)    --
-4.Liberty:         1-3  (0-0)    --
-5.Saint Mary's:    1-3  (0-0)    --
-6.Army:            0-3  (0-0)    --
-7.Belmont:         0-4  (0-0)    --
-8.Norfolk State:   0-3  (0-0)    --
-9.Howard:          0-3  (0-0)    --
-10.Lehigh:         0-3  (0-0)    --
-11.Murray State:   0-3  (0-0)    --
-12.Saint Peter's:  0-3  (0-0)    --
+1.(39)Murray State:   27-6  (22-0)   --
+2.(50)Navy:           23-9  (18-4)   -4
+3.(130)Belmont:        18-14 (15-7)   -7
+4.(80)Norfolk State:  19-14 (13-9)   -9
+5.(148)Saint Mary's:   15-16 (12-10)  -10
+6.(162)Liberty:        14-17 (12-10)  -10
+7.(167)Army:           13-18 (10-12)  -12
+8.(138)Vermont:        14-17 (9-13)   -13
+9.(184)Lehigh:         10-20 (9-13)   -13
+10.(194)Howard:         8-22 (7-15)   -15
+11.(210)Saint Peter's:  5-25 (5-17)   -17
+12.(216)Colgate:        1-29 (0-22)   -22
 
 -Colonial-
 
-1.(25)UMBC:            3-0  (0-0)    --
-2.Rhode Island:        3-0  (0-0)    --
-3.Northeastern:        2-1  (0-0)    --
-4.Drake:               2-1  (0-0)    --
-5.Middle Tennessee:    1-2  (0-0)    --
-6.Delaware State:      1-2  (0-0)    --
-7.Winthrop:            1-2  (0-0)    --
-8.Boston U:            0-3  (0-0)    --
-9.Delaware:            0-3  (0-0)    --
-10.George Washington:  0-3  (0-0)    --
-11.Indiana State:      0-3  (0-0)    --
-12.Richmond:           0-3  (0-0)    --
+1.(23)UMBC:               27-6  (20-2)   --
+2.(91)Boston U:           19-12 (17-5)   -3
+3.(54)Northeastern:       22-11 (15-7)   -5
+4.(74)Winthrop:           19-13 (14-8)   -6
+5.(131)Indiana State:      15-16 (12-10)  -8
+6.(98)Rhode Island:       17-14 (11-11)  -9
+7.(125)Middle Tennessee:   14-17 (11-11)  -9
+8.(197)George Washington:   8-22 (8-14)   -12
+9.(173)Delaware State:     11-20 (7-15)   -13
+10.(199)Richmond:           7-23 (7-15)   -13
+11.(193)Drake:              8-22 (5-17)   -15
+12.(206)Delaware:           6-24 (5-17)   -15
 
 -Horizon-
 
-1.South Dakota State:   2-2  (0-0)    --
-2.Cleveland State:      2-2  (0-0)    --
-3.Wofford:              2-2  (0-0)    --
-4.Northern Kentucky:    2-2  (0-0)    --
-5.IUPUI:                2-2  (0-0)    --
-6.St.Bonaventure:       2-2  (0-0)    --
-7.Santa Clara:          1-3  (0-0)    --
-8.North Dakota State:   1-3  (0-0)    --
-9.UC Irvine:            1-3  (0-0)    --
-10.Iona:                0-4  (0-0)    --
-11.Oakland:             0-4  (0-0)    --
-12.Wright State:        0-4  (0-0)    --
+1.(38)IUPUI:               26-7  (20-2)   --
+2.(43)South Dakota State:  25-8  (19-3)   -1
+3.(94)North Dakota State:  17-14 (14-8)   -6
+4.(116)UC Irvine:           16-14 (14-8)   -6
+5.(104)Cleveland State:     15-15 (11-11)  -9
+6.(135)Wofford:             15-17 (11-11)  -9
+7.(143)Northern Kentucky:   13-18 (9-13)   -11
+8.(177)Oakland:             11-20 (9-13)   -11
+9.(158)Santa Clara:         11-19 (8-14)   -12
+10.(187)Iona:                8-22 (7-15)   -13
+11.(195)Wright State:        7-23 (6-16)   -14
+12.(201)St.Bonaventure:      7-24 (4-18)   -16
 
 -Ivy League-
 
-1.Princeton:   3-0  (0-0)    --
-2.UCSB:        2-1  (0-0)    --
-3.Penn:        2-1  (0-0)    --
-4.(18)Brown:   1-2  (0-0)    --
-5.Cal:         1-2  (0-0)    --
-6.Dartmouth:   1-2  (0-0)    --
-7.Columbia:    1-2  (0-0)    --
-8.Harvard:     1-2  (0-0)    --
-9.Cornell:     1-2  (0-0)    --
-10.Yale:       1-2  (0-0)    --
-11.Chicago:    0-3  (0-0)    --
-12.MIT:        0-3  (0-0)    --
+1.(44)Dartmouth:  25-8  (18-4)   --
+2.(71)Harvard:    20-13 (16-6)   -2
+3.(95)Cal:        18-13 (16-6)   -2
+4.(103)Princeton:  17-13 (13-9)   -5
+5.(106)MIT:        17-15 (13-9)   -5
+6.(134)UCSB:       14-16 (11-11)  -7
+7.(142)Penn:       14-17 (10-12)  -8
+8.(168)Brown:      11-19 (10-12)  -8
+9.(170)Yale:       11-20 (9-13)   -9
+10.(188)Columbia:   8-22 (7-15)   -11
+11.(202)Chicago:    7-24 (6-16)   -12
+12.(211)Cornell:    4-26 (3-19)   -15
 
 -Southern-
 
-1.Texas Southern:      3-1  (0-0)    --
-2.Texas A&M CC:        2-2  (0-0)    --
-3.Oral Roberts:        2-2  (0-0)    --
-4.UTSA:                2-2  (0-0)    --
-5.Abeline Christian:   1-3  (0-0)    --
-6.North Texas:         1-3  (0-0)    --
-7.Sam Houston State:   1-3  (0-0)    --
-8.Stephen F Austin:    1-3  (0-0)    --
-9.Southern:            1-3  (0-0)    --
-10.McNeese State:      1-3  (0-0)    --
-11.Texas State:        1-3  (0-0)    --
-12.Samford:            0-4  (0-0)    --
+1.(36)Texas Southern:     25-8  (18-4)   --
+2.(85)Oral Roberts:       18-12 (16-6)   -2
+3.(115)McNeese State:      17-14 (13-9)   -5
+4.(137)Samford:            15-15 (13-9)   -5
+5.(123)Southern:           17-15 (12-10)  -6
+6.(133)Stephen F Austin:   17-17 (12-10)  -6
+7.(140)North Texas:        14-16 (12-10)  -6
+8.(120)UTSA:               15-16 (9-13)   -9
+9.(144)Texas A&M CC:       13-17 (9-13)   -9
+10.(181)Abeline Christian: 10-20 (9-13)   -9
+11.(171)Sam Houston State: 11-20 (8-14)   -10
+12.(215)Texas State:        2-28 (1-21)   -17
 
 -Sun Belt-
 
-1.Western Kentucky:      2-2  (0-0)    --
-2.Jackson State:         2-2  (0-0)    --
-3.Arkansas State:        2-2  (0-0)    --
-4.James Madison:         2-2  (0-0)    --
-5.Grambling State:       2-2  (0-0)    --
-6.Georgia State:         2-2  (0-0)    --
-7.Arkansas Pine Bluff:   2-2  (0-0)    --
-8.(9)ETSU:               1-3  (0-0)    --
-9.(19)Chattanooga:       1-3  (0-0)    --
-10.Alabama State:        1-3  (0-0)    --
-11.Furman:               0-4  (0-0)    --
-12.South Florida:        0-4  (0-0)    --
+1.(41)Arkansas Pine Bluff:  24-8  (20-2)   --
+2.(69)Georgia State:        22-11 (16-6)   -4
+3.(70)James Madison:        21-11 (16-6)   -4
+4.(96)ETSU:                 18-13 (15-7)   -5
+5.(99)Chattanooga:          17-14 (14-8)   -6
+6.(156)Grambling State:      13-18 (9-13)   -11
+7.(164)Arkansas State:       13-20 (8-14)   -12
+8.(178)Western Kentucky:     11-20 (8-14)   -12
+9.(186)Alabama State:        10-20 (8-14)   -12
+10.(203)South Florida:        7-23 (7-15)   -13
+11.(189)Jackson State:        8-22 (6-16)   -14
+12.(207)Furman:               5-25 (5-17)   -15
 
 -Big Sky-
 
-1.Longwood:             2-1  (0-0)    --
-2.Montana State:        2-1  (0-0)    --
-3.Weber State:          2-1  (0-0)    --
-4.High Point:           2-1  (0-0)    --
-5.UC San Diego:         2-1  (0-0)    --
-6.Eastern Washington:   1-2  (0-0)    --
-7.Portland State:       1-2  (0-0)    --
-8.San Francisco:        1-2  (0-0)    --
-9.Stetson:              1-2  (0-0)    --
-10.Kennesaw State:      1-2  (0-0)    --
-11.Evansville:          1-2  (0-0)    --
-12.Montana:             1-2  (0-0)    --
+1.(53)Montana State:       20-11 (18-4)   --
+2.(105)Weber State:         17-13 (13-9)   -5
+3.(84)High Point:          17-14 (13-9)   -5
+4.(122)San Francisco:       15-15 (12-10)  -6
+5.(93)Longwood:            15-15 (12-10)  -6
+6.(124)Stetson:             15-16 (11-11)  -7
+7.(119)Eastern Washington:  14-16 (10-12)  -8
+8.(108)Evansville:          14-16 (10-12)  -8
+9.(112)Portland State:      16-17 (9-13)   -9
+10.(109)Montana:            16-18 (8-14)   -10
+11.(169)UC San Diego:       11-19 (8-14)   -10
+12.(166)Kennesaw State:     11-21 (8-14)   -10
 
 -Mountain West-
 
-1.(14)Nevada:          3-0  (0-0)    --
-2.Air Force:           3-0  (0-0)    --
-3.Wyoming:             3-0  (0-0)    --
-4.New Mexico State:    2-1  (0-0)    --
-5.San Jose State:      2-1  (0-0)    --
-6.UNLV:                2-1  (0-0)    --
-7.(4)Colorado State:   1-2  (0-0)    --
-8.San Diego State:     1-2  (0-0)    --
-9.New Mexico:          1-2  (0-0)    --
-10.Boise State:        1-2  (0-0)    --
-11.Utah State:         1-2  (0-0)    --
-12.Fresno State:       0-3  (0-0)    --
+1.(24)San Diego State:   24-7  (19-3)   --
+2.(4)Nevada:             31-6  (17-5)   -2
+3.(28)Colorado State:    22-12 (14-8)   -5
+4.(52)New Mexico State:  19-12 (13-9)   -6
+5.(79)Wyoming:           17-13 (12-10)  -7
+6.(82)UNLV:              16-14 (12-10)  -7
+7.(111)Utah State:        15-16 (11-11)  -8
+8.(92)San Jose State:    18-15 (10-12)  -9
+9.(113)Air Force:         13-17 (8-14)   -11
+10.(150)Boise State:      12-19 (7-15)   -12
+11.(157)New Mexico:       11-19 (7-15)   -12
+12.(209)Fresno State:      4-27 (2-20)   -17
 
 -Ohio Valley-
 
-1.(6)Southeastern Missouri State:   2-1  (0-0)    --
-2.Grand Canyon:                     2-1  (0-0)    --
-3.Morehead State:                   2-1  (0-0)    --
-4.Northern Illinois:                1-2  (0-0)    --
-5.Arkansas Little Rock:             1-2  (0-0)    --
-6.Kent State:                       1-2  (0-0)    --
-7.Ohio:                             1-2  (0-0)    --
-8.Omaha:                            1-2  (0-0)    --
-9.SIU Edwardsville:                 1-2  (0-0)    --
-10.Troy:                            1-2  (0-0)    --
-11.Saint Louis:                     1-2  (0-0)    --
-12.Appalachian State:               0-3  (0-0)    --
+1.(45)Southeastern Missouri State:  24-10 (16-6)   --
+2.(83)Northern Illinois:            20-12 (16-6)   --
+3.(102)Grand Canyon:                 19-12 (16-6)   --
+4.(110)Saint Louis:                  16-14 (13-9)   -3
+5.(139)SIU Edwardsville:             16-16 (13-9)   -3
+6.(127)Morehead State:               16-15 (12-10)  -4
+7.(128)Ohio:                         15-16 (11-11)  -5
+8.(154)Arkansas Little Rock:         13-18 (11-11)  -5
+9.(160)Appalachian State:            11-19 (9-13)   -7
+10.(180)Kent State:                  10-20 (8-14)   -8
+11.(198)Troy:                         7-23 (5-17)   -11
+12.(213)Omaha:                        3-27 (2-20)   -14
 
 -NEC-
 
-1.Duquesne:              2-1  (0-0)    --
-2.Long Island:           2-1  (0-0)    --
-3.UNC Wilmington:        2-1  (0-0)    --
-4.George Mason:          2-1  (0-0)    --
-5.(23)Robert Morris:     1-2  (0-0)    --
-6.Bryant:                1-2  (0-0)    --
-7.Lipscomb:              1-2  (0-0)    --
-8.Quinnipiac:            1-2  (0-0)    --
-9.UMass:                 1-2  (0-0)    --
-10.UNC Asheville:        1-2  (0-0)    --
-11.Marist:               1-2  (0-0)    --
-12.Fairleigh Dickinson:  0-3  (0-0)    --
+1.(55)Duquesne:             21-11 (16-6)   --
+2.(62)Marist:               20-11 (16-6)   --
+3.(61)George Mason:         21-12 (16-6)   --
+4.(60)Quinnipiac:           21-11 (15-7)   -1
+5.(56)Long Island:          21-11 (15-7)   -1
+6.(97)UNC Wilmington:       19-12 (13-9)   -3
+7.(153)Lipscomb:             13-18 (9-13)   -7
+8.(126)UMass:                15-18 (8-14)   -8
+9.(159)UNC Asheville:        11-19 (8-14)   -8
+10.(174)Robert Morris:       10-20 (7-15)   -9
+11.(200)Bryant:               7-23 (6-16)   -10
+12.(208)Fairleigh Dickinson:  4-26 (3-19)   -13
