@@ -1,19 +1,19 @@
 -United League-
 
-1.Kiev:            17-2    --
-2.Mumbai:          17-2    --
-3.Copenhagen:      17-3    -0.5
-4.Moscow:          14-5    -3
-5.Paris:           14-7    -4
-6.Brussels:        12-8    -5.5
-7.Manchester:      11-8    -6
-8.Rotterdam:       10-10   -7.5
+*-1.Mumbai:            26-4    --
+p-2.Copenhagen:        25-5    -1
+x-3.Kiev:              24-6    -2
+x-4.Moscow:            23-7    -3
+x-5.Paris:             22-8    -4
+x-6.Brussels:          19-11   -7
+x-7.Manchester:        14-16   -12
+x-8.Johannesburg:      13-17   -13
 -----
-9.Beijing:          8-11   -9
-10.Johannesburg:    8-12   -9.5
-11.Dubai:           8-12   -9.5
-12.Omaha:           7-14   -11
-13.Shanghai:        7-15   -11.5
-14.Rio De Janeiro:  4-15   -13
-15.Lagos:           4-16   -13.5
-16.Istanbul:        1-19   -16.5
+n-9.Dubai:             13-17   -13
+n-10.Omaha:            13-17   -13
+n-11.Beijing:          13-17   -13
+n-12.Rotterdam:        12-18   -14
+n-13.Shanghai:          9-21   -17
+n-14.Lagos:             7-23   -19
+d-15.Rio De Janeiro:    6-24   -20
+d-16.Istanbul:          1-29   -25

@@ -239,44 +239,176 @@ public class Team implements Comparable<Team> {
         return 0.0;
     }
 
-    public boolean isBetterThan(Team t, boolean finalDec) {
-        double gb = ((getWin() - t.getWin()) + (t.getLoss() - getLoss())) / 2.0;
+    public boolean isBetterThan(Team two, boolean finalDec) {
+        double gb = ((getWin() - two.getWin()) + (two.getLoss() - getLoss())) / 2.0;
         if (gb > 0) {
             return true;
         }
         else if (gb < 0) {
             return false;
         }
-        if (getWin() + getLoss() < t.getWin() + t.getLoss()) {
+        if (getWin() + getLoss() < two.getWin() + two.getLoss()) {
             return true;
         }
-        else if (getWin() + getLoss() > t.getWin() + t.getLoss()) {
+        else if (getWin() + getLoss() > two.getWin() + two.getLoss()) {
             return false;
         }
-        if (finalDec && !t.equals(this)) {
+        if (finalDec && !two.equals(this)) {
             Scanner keyboard = new Scanner(System.in);
             System.out.println("Tiebreaker:");
             System.out.println(displayToString());
-            System.out.println(t.displayToString());
-            System.out.println();
+            System.out.println(two.displayToString());
+            System.out.println("--" + getConference() + "--");
             System.out.println("(" + getWin() + "-" + getLoss() + ")" + getName()
-                    + " vs " + t.getName() + "(" + t.getWin() + "-" + t.getLoss() + ")");
-            System.out.print("Who wins(type team abreviation): ");
-            boolean valid = false;
-            boolean thisWin = false;
-            while (!valid) {
-                String answer = keyboard.nextLine().toUpperCase();
-                if (answer.equals(getAbreviation())) {
-                    valid = true;
-                    thisWin = true;
+                    + " vs " + two.getName() + "(" + two.getWin() + "-" + two.getLoss() + ")");
+            boolean sameConf = getConference().equals(two.getConference());
+            System.out.print("Start Game? (Simulate through with 'G') ");
+            String answer = keyboard.nextLine();
+            boolean skip = false;
+            if (answer.equals("G")) {
+                skip = true;
+            }
+            ArrayList<Player> oneRoster = new ArrayList<>(roster);
+            int[] onePlayerPoints = new int[5];
+            ArrayList<Player> twoRoster = new ArrayList<>(two.roster);
+            int[] twoPlayerPoints = new int[5];
+            ArrayList<Player> possession = oneRoster;
+            ArrayList<Player> defense = twoRoster;
+            int OTCount = 0;
+            int onePoints = 0;
+            int twoPoints = 0;
+            int endGamePoss = 120;
+            boolean score = false;
+            //Runs through a game
+            for (int i = 0; i < endGamePoss; i++) {
+                if (i == 30 && !skip) {
+                    System.out.print("End of the 1st: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    keyboard.nextLine();
                 }
-                else if (answer.equals(t.getAbreviation())) {
-                    valid = true;
+                else if (i == 60 && !skip) {
+                    System.out.print("Halftime: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    keyboard.nextLine();
+                }
+                else if (i == 90 && !skip) {
+                    System.out.print("End of the 3rd: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    keyboard.nextLine();
+                }
+                else if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3) && !skip) {
+                    System.out.print(endGamePoss-i + " Possessions left: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints + ", ");
+                    if (i%2 == 0) {
+                        System.out.print(getAbreviation() + " Possession");
+                    }
+                    else {
+                        System.out.print(two.getAbreviation() + " Possession");
+                    }
+                    keyboard.nextLine();
+                }
+                else if (i == 120 && !skip) {
+                    System.out.print("End of the Regulation: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    keyboard.nextLine();
+                }
+                else if (i%10 == 0 && i > 120 && !skip) {
+                    System.out.print("End of " + OTCount + "OT: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                    keyboard.nextLine();
+                }
+                if (i % 2 == 0) {
+                    possession = oneRoster;
+                    defense = twoRoster;
                 }
                 else {
-                    System.out.print("not valid, try again: ");
+                    possession = twoRoster;
+                    defense = oneRoster;
+                }
+                int getBallTo = 0;
+                for (Player p : possession) {
+                    getBallTo += p.getRating();
+                }
+                getBallTo -= 300;
+                int whoGetsBall = (int) (Math.random() * getBallTo) + 1;
+                boolean found = false;
+                int totalRating = 0;
+                Player playerWithBall = possession.get(0);
+                for (Player p : possession) {
+                    totalRating += (p.getRating() - 60);
+                    if (!found && totalRating >= whoGetsBall) {
+                        found = true;
+                        playerWithBall = p;
+                    }
+                }
+                Player defender = defense.get(0);
+                for (Player p : defense) {
+                    if (Objects.equals(p.getPosition(), playerWithBall.getPosition())) {
+                        defender = p;
+                    }
+                }
+                int def_effect = playerWithBall.getRating() - (int) (0.45 * defender.getRating()) + 10;
+                int oddsToMake = Math.max(35, Math.min(65, def_effect));
+                int madeScore = (int) (Math.random() * 100) + 1;
+                int pointsScored = 0;
+                if (oddsToMake >= madeScore) {
+                    madeScore = Math.abs(madeScore - oddsToMake);
+                    if (madeScore >= 30) {
+                        pointsScored = 3;
+                    }
+                    else {
+                        pointsScored = 2;
+                    }
+                    if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3) && !skip) {
+                        Team t = this;
+                        if (i % 2 == 1) {
+                            t = two;
+                        }
+                        System.out.print(playerWithBall.getName() + " scores " + pointsScored + " for " + t.getAbreviation() + "!");
+                        keyboard.nextLine();
+                    }
+                }
+                if (i % 2 == 0) {
+                    onePoints += pointsScored;
+                    onePlayerPoints[oneRoster.indexOf(playerWithBall)] += pointsScored;
+                }
+                else {
+                    twoPoints += pointsScored;
+                    twoPlayerPoints[twoRoster.indexOf(playerWithBall)] += pointsScored;
+                }
+                if (i %10 == 9 && onePoints == twoPoints && i >= 119) {
+                    endGamePoss += 10;
+                    OTCount++;
                 }
             }
+            System.out.println();
+            System.out.println(getName() + ": ");
+            for (int i = 0; i < 5; i++) {
+                Player p = oneRoster.get(i);
+                System.out.println("(" + p.getPosition() + ")" + p.getName() + ": " + onePlayerPoints[i]);
+                oneRoster.get(i).addPoints(onePlayerPoints[i]);
+            }
+            System.out.println();
+            System.out.println(two.getName() + ": ");
+            for (int i = 0; i < 5; i++) {
+                Player p = twoRoster.get(i);
+                System.out.println("(" + p.getPosition() + ")" + p.getName() + ": " + twoPlayerPoints[i]);
+                twoRoster.get(i).addPoints(twoPlayerPoints[i]);
+            }
+
+            boolean thisWin = false;
+            if (onePoints > twoPoints) {
+                thisWin = true;
+            }
+
+            System.out.println();
+            System.out.print("Final Score: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+            if (OTCount > 0) {
+                if (OTCount > 1) {
+                    System.out.println("(" + OTCount + "OT)");
+                }
+                else {
+                    System.out.println("(OT)");
+                }
+            }
+            else {
+                System.out.println();
+            }
+
             return thisWin;
         }
         return true;

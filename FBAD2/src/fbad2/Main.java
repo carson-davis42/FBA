@@ -1048,6 +1048,8 @@ public class Main {
 
     public static void playoffs(Scanner keyboard) throws IOException {
         seriesQueue = new ArrayBlockingQueue<>(50);
+        tiebreakersComplete = "Y";
+        toFileSchedule();
         if (startInPlayoffs) {
             readPlayoffs();
         }

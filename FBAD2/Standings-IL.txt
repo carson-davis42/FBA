@@ -1,19 +1,19 @@
 -International League-
 
-x-1.Dublin:    20-0    --
-2.Belfast:     15-4    -4.5
-3.Florence:    14-5    -5.5
-4.Warsaw:      14-5    -5.5
-5.Barcelona:   14-6    -6
-6.Naples:      13-7    -7
-7.Oslo:        11-9    -9
-8.Glasgow:     10-10   -10
+*-1.Dublin:        30-0    --
+p-2.Belfast:       22-8    -8
+x-3.Florence:      21-9    -9
+x-4.Warsaw:        21-9    -9
+x-5.Barcelona:     20-10   -10
+x-6.Naples:        19-11   -11
+x-7.Oslo:          18-12   -12
+x-8.Auckland:      16-14   -14
 -----
-9.Auckland:    10-11   -10.5
-10.Athens:      8-11   -11.5
-11.Stockholm:   7-13   -13
-12.Cairo:       6-13   -13.5
-13.Frankfurt:   5-14   -14.5
-14.Edinburgh:   5-15   -15
-15.Luxembourg:  3-16   -16.5
-16.Tampa:       2-18   -18
+n-9.Glasgow:       15-15   -15
+n-10.Athens:       14-16   -16
+n-11.Stockholm:    11-19   -19
+n-12.Cairo:        10-20   -20
+n-13.Edinburgh:     8-22   -22
+n-14.Frankfurt:     5-25   -25
+n-15.Luxembourg:    5-25   -25
+n-16.Tampa:         5-25   -25

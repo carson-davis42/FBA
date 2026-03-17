@@ -1,48 +1,48 @@
 --League Quarter-Finals--
 -Premier League-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+4-Austin vs Rome-1
+4-Salzburg vs Buenos Aires-0
+4-Guadalajara vs Lisbon-2
+1-Mexico City vs London-4
 -World League-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+4-Zurich vs Lyon-1
+4-Miami vs Hamburg-0
+4-Casablanca vs Dhaka-3
+2-Zagreb vs Sao Paolo-4
 -United League-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+4-Mumbai vs Johannesburg-3
+4-Copenhagen vs Manchester-1
+1-Kiev vs Brussels-4
+1-Moscow vs Paris-4
 -International League-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+4-Dublin vs Auckland-0
+4-Belfast vs Oslo-0
+3-Florence vs Naples-4
+1-Warsaw vs Barcelona-4
 
 --League Semi-Finals--
 -Premier League-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+4-Austin vs London-3
+4-Salzburg vs Guadalajara-0
 -World League-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+1-Zurich vs Sao Paolo-4
+2-Miami vs Casablanca-4
 -United League-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+4-Mumbai vs Paris-2
+4-Copenhagen vs Brussels-0
 -International League-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+4-Dublin vs Barcelona-1
+3-Belfast vs Naples-4
 
 --League Finals--
 -Premier League-
-0-TBD vs TBD-0
+3-Austin vs Salzburg-4
 -World League-
-0-TBD vs TBD-0
+0-Casablanca vs Sao Paolo-4
 -United League-
-0-TBD vs TBD-0
+4-Mumbai vs Copenhagen-2
 -International League-
-0-TBD vs TBD-0
+4-Dublin vs Naples-1
 
 
 Next Games:
