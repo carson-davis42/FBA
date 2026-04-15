@@ -1,98 +1,98 @@
                                               --S76 March Madness--
 --Region 1--
    -Round of 64-
-(1)Indiana vs (16)Montana
-(8)Wake Forest vs (9)Texas Southern
-(5)Michigan State vs (12)Colorado State
-(4)UCLA vs (13)Northeastern
-(3)Oregon vs (14)Quinnipiac
-(6)Florida vs (11)Florida State
-(7)UConn vs (10)Oregon State
-(2)Houston vs (15)James Madison
+(1)Houston vs (16)Lehigh
+(8)Syracuse vs (9)Montana State
+(5)San Diego State vs (12)Wake Forest
+(4)Mississippi State vs (13)Texas Southern
+(3)Michigan State vs (14)St.Bonaventure
+(6)Kansas vs (11)Utah State
+(7)Missouri vs (10)Oregon
+(2)Creighton vs (15)Columbia
    -Round of 32-
-(1)Indiana vs (8)Wake Forest
-(4)UCLA vs (12)Colorado State
-(3)Oregon vs (6)Florida
-(2)Houston vs (10)Oregon State
+(1)Houston vs (9)Montana State
+(4)Mississippi State vs (12)Wake Forest
+(3)Michigan State vs (6)Kansas
+(2)Creighton vs (7)Missouri
    -Sweet 16-
-(1)Indiana vs (12)Colorado State
-(2)Houston vs (6)Florida
+(1)Houston vs (4)Mississippi State
+(7)Missouri vs (3)Michigan State
    -Elite 8-
-(1)Indiana vs (6)Florida
+(4)Mississippi State vs (7)Missouri
 
 
 --Region 2--
    -Round of 64-
-(1)North Carolina vs (16)Stephen F Austin
-(8)Villanova vs (9)Michigan
-(5)Xavier vs (12)Navy
-(4)Purdue vs (13)Oklahoma
-(3)Louisville vs (14)Marist
-(6)Washington vs (11)Dartmouth
-(7)Kansas vs (10)South Dakota State
-(2)Gonzaga vs (15)Georgia State
+(1)UCLA vs (16)Weber State
+(8)Florida State vs (9)Iowa State
+(5)Kentucky vs (12)UAB
+(4)UConn vs (13)Florida
+(3)Colorado State vs (14)Indiana State
+(6)Indiana vs (11)Arkansas
+(7)St.John's vs (10)Baylor
+(2)Gonzaga vs (15)Long Island
    -Round of 32-
-(1)North Carolina vs (9)Michigan
-(4)Purdue vs (5)Xavier
-(3)Louisville vs (6)Washington
-(2)Gonzaga vs (7)Kansas
+(1)UCLA vs (9)Iowa State
+(4)UConn vs (5)Kentucky
+(14)Indiana State vs (6)Indiana
+(2)Gonzaga vs (10)Baylor
    -Sweet 16-
-(1)North Carolina vs (5)Xavier
-(2)Gonzaga vs (6)Washington
+(1)UCLA vs (5)Kentucky
+(10)Baylor vs (6)Indiana
    -Elite 8-
-(1)North Carolina vs (2)Gonzaga
+(5)Kentucky vs (10)Baylor
 
 
 --Region 3--
    -Round of 64-
-(1)Arizona vs (16)Norfolk State
-(8)Loyola-Chicago vs (9)IUPUI
-(5)Baylor vs (12)Duke
-(4)Texas A&M vs (13)Montana State
-(3)Kentucky vs (14)Long Island
-(6)Tulane vs (11)Illinois
-(7)St.John's vs (10)Murray State
-(2)Nevada vs (15)George Mason
+(1)Duke vs (16)North Texas
+(8)Oregon State vs (9)Auburn
+(5)Memphis vs (12)Dartmouth
+(4)Nevada vs (13)Alabama
+(3)Virginia vs (14)Delaware State
+(6)Xavier vs (11)Wyoming
+(7)Illinois vs (10)Cleveland State
+(2)Wichita State vs (15)SIU Edwardsville
    -Round of 32-
-(1)Arizona vs (8)Loyola-Chicago
-(4)Texas A&M vs (5)Baylor
-(3)Kentucky vs (11)Illinois
-(2)Nevada vs (10)Murray State
+(1)Duke vs (8)Oregon State
+(4)Nevada vs (5)Memphis
+(3)Virginia vs (6)Xavier
+(2)Wichita State vs (7)Illinois
    -Sweet 16-
-(1)Arizona vs (5)Baylor
-(2)Nevada vs (3)Kentucky
+(1)Duke vs (5)Memphis
+(2)Wichita State vs (3)Virginia
    -Elite 8-
-(1)Arizona vs (2)Nevada
+(1)Duke vs (2)Wichita State
 
 
 --Region 4--
    -Round of 64-
-(1)Marquette vs (16)Harvard
-(8)Missouri vs (9)Memphis
-(5)San Diego State vs (12)Southeastern Missouri State
-(4)UMBC vs (13)BYU
-(3)Auburn vs (14)Duquesne
-(6)Creighton vs (11)Arkansas Pine Bluff
-(7)Tennessee vs (10)Pitt
-(2)Wichita State vs (15)Winthrop
+(1)Tennessee vs (16)Richmond
+(8)Stetson vs (9)George Mason
+(5)North Carolina vs (12)Saint Mary's
+(4)Villanova vs (13)Nebraska
+(3)Texas vs (14)Harvard
+(6)Marquette vs (11)Vanderbilt
+(7)Loyola-Chicago vs (10)Belmont
+(2)Arizona vs (15)Chattanooga
    -Round of 32-
-(1)Marquette vs (9)Memphis
-(13)BYU vs (12)Southeastern Missouri State
-(3)Auburn vs (11)Arkansas Pine Bluff
-(2)Wichita State vs (7)Tennessee
+(1)Tennessee vs (9)George Mason
+(4)Villanova vs (5)North Carolina
+(3)Texas vs (11)Vanderbilt
+(2)Arizona vs (10)Belmont
    -Sweet 16-
-(9)Memphis vs (13)BYU
-(7)Tennessee vs (3)Auburn
+(1)Tennessee vs (5)North Carolina
+(2)Arizona vs (3)Texas
    -Elite 8-
-(13)BYU vs (3)Auburn
+(1)Tennessee vs (3)Texas
 
 
    --Final Four--
-(1)Indiana vs (13)BYU
-(2)Gonzaga vs (2)Nevada
+(4)Mississippi State vs (3)Texas
+(10)Baylor vs (2)Wichita State
    --National Championship--
-(1)Indiana vs (2)Gonzaga
+(3)Texas vs (2)Wichita State
    --Champions--
-Indiana
+Texas
 
 

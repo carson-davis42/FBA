@@ -1,14 +1,14 @@
 -NEC-
 
-1.(55)Duquesne:             21-11 (16-6)   --
-2.(62)Marist:               20-11 (16-6)   --
-3.(61)George Mason:         21-12 (16-6)   --
-4.(60)Quinnipiac:           21-11 (15-7)   -1
-5.(56)Long Island:          21-11 (15-7)   -1
-6.(97)UNC Wilmington:       19-12 (13-9)   -3
-7.(153)Lipscomb:             13-18 (9-13)   -7
-8.(126)UMass:                15-18 (8-14)   -8
-9.(159)UNC Asheville:        11-19 (8-14)   -8
-10.(174)Robert Morris:       10-20 (7-15)   -9
-11.(200)Bryant:               7-23 (6-16)   -10
-12.(208)Fairleigh Dickinson:  4-26 (3-19)   -13
+1.(27)George Mason:         26-6  (20-2)   --
+2.(82)Duquesne:             19-11 (15-7)   -5
+3.(97)UNC Wilmington:       18-14 (15-7)   -5
+4.(87)Marist:               17-13 (14-8)   -6
+5.(70)Long Island:          20-14 (12-10)  -8
+6.(132)Quinnipiac:           14-17 (11-11)  -9
+7.(144)UMass:                13-19 (8-14)   -12
+8.(171)Robert Morris:        12-20 (8-14)   -12
+9.(164)UNC Asheville:        11-19 (8-14)   -12
+10.(167)Lipscomb:            11-19 (8-14)   -12
+11.(184)Bryant:              10-20 (8-14)   -12
+12.(196)Fairleigh Dickinson:  7-23 (5-17)   -15

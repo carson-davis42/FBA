@@ -1,31 +1,31 @@
 --Conference Quarter-Finals--
 -Eastern-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+4-Boston Bucks vs Toronto Wolves-2
+4-Milwaukee Warriors vs Cincinnati Blue Stripes-3
+2-Manhattan Magic vs Columbus Pirates-4
+1-Carolina Knights vs Detroit Motors-4
 -Western-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+4-Cypress Green Guns vs Memphis Blues-2
+4-Honolulu Rays vs Denver Heights-2
+3-New Orleans Seminoles vs San Antonio Spirits-4
+4-Oakland All-Stars vs Texas Outlaws-1
 
 --Conference Semi-Finals--
 -Eastern-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+4-Boston Bucks vs Detroit Motors-3
+1-Milwaukee Warriors vs Columbus Pirates-4
 -Western-
-0-TBD vs TBD-0
-0-TBD vs TBD-0
+3-Cypress Green Guns vs Oakland All-Stars-4
+2-Honolulu Rays vs San Antonio Spirits-4
 
 --Conference Finals--
 -Eastern-
-0-TBD vs TBD-0
+2-Boston Bucks vs Columbus Pirates-4
 -Western-
-0-TBD vs TBD-0
+3-Oakland All-Stars vs San Antonio Spirits-4
 
 --FBA Finals--
-0-TBD vs TBD-0
+4-San Antonio Spirits vs Columbus Pirates-1
 
 
 Next Games:

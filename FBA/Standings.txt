@@ -1,54 +1,54 @@
 -Eastern-
 
-*-1.Milwaukee Warriors:       69-17 (45-11)  --
-x-2.Boston Bucks:             65-21 (44-12)  -4
-x-3.Columbus Pirates:         60-26 (40-16)  -9
-x-4.Chicago Spartans:         60-26 (39-17)  -9
-x-5.Montreal Chevaliers:      59-27 (37-19)  -10
-x-6.Detroit Motors:           54-32 (35-21)  -15
-x-7.Toronto Wolves:           52-34 (34-22)  -17
-x-8.Carolina Knights:         45-41 (30-26)  -24
+*-1.Boston Bucks:             67-19 (45-11)  --
+x-2.Milwaukee Warriors:       57-29 (35-21)  -10
+x-3.Manhattan Magic:          52-34 (33-23)  -15
+x-4.Carolina Knights:         51-35 (40-16)  -16
+x-5.Detroit Motors:           50-36 (31-25)  -17
+x-6.Columbus Pirates:         49-37 (32-24)  -18
+x-7.Cincinnati Blue Stripes:  49-37 (31-25)  -18
+x-8.Toronto Wolves:           48-38 (32-24)  -19
 -----
-n-9.Cincinnati Blue Stripes:  45-41 (27-29)  -24
-n-10.New York Icons:          33-53 (20-36)  -36
-n-11.Manhattan Magic:         32-54 (17-39)  -37
-n-12.Ohio Valley Sharks:      29-57 (19-37)  -40
-n-13.Atlanta Venom:           27-59 (17-39)  -42
-n-14.Maine Wildcats:          14-72 (11-45)  -55
-n-15.DCB:                      9-77 (5-51)   -60
+n-9.Maine Wildcats:           40-46 (28-28)  -27
+n-10.Chicago Spartans:        40-46 (27-29)  -27
+n-11.Montreal Chevaliers:     37-49 (25-31)  -30
+n-12.Atlanta Venom:           34-52 (21-35)  -33
+n-13.New York Icons:          28-58 (20-36)  -39
+n-14.DCB:                     27-59 (15-41)  -40
+n-15.Ohio Valley Sharks:      10-76 (5-51)   -57
 
 -Western-
 
-*-1.San Antonio Spirits:    71-15 (45-11)  --
-x-2.Oakland All-Stars:      70-16 (44-12)  -1
-x-3.New Orleans Seminoles:  63-23 (44-12)  -8
-x-4.Honolulu Rays:          59-27 (41-15)  -12
-x-5.Cypress Green Guns:     55-31 (34-22)  -16
-x-6.Texas Outlaws:          49-37 (33-23)  -22
-x-7.Vegas Volts:            46-40 (31-25)  -25
-x-8.Seattle Shock:          39-47 (25-31)  -32
+*-1.Cypress Green Guns:     67-19 (43-13)  --
+x-2.Honolulu Rays:          62-24 (43-13)  -5
+x-3.New Orleans Seminoles:  61-25 (40-16)  -6
+x-4.Oakland All-Stars:      57-29 (40-16)  -10
+x-5.Texas Outlaws:          56-30 (36-20)  -11
+x-6.San Antonio Spirits:    56-30 (33-23)  -11
+x-7.Denver Heights:         52-34 (33-23)  -15
+x-8.Memphis Blues:          45-41 (26-30)  -22
 -----
-n-9.Denver Heights:         36-50 (21-35)  -35
-n-10.Florida Panthers:      34-52 (21-35)  -37
-n-11.Phoenix Badgers:       32-54 (25-31)  -39
-n-12.Los Angeles Hawks:     26-60 (17-39)  -45
-n-13.Memphis Blues:         24-62 (14-42)  -47
-n-14.Vancouver Orcas:       17-69 (13-43)  -54
-n-15.St.Louis Kings:        16-70 (12-44)  -55
+n-9.Vegas Volts:            42-44 (28-28)  -25
+n-10.Seattle Shock:         42-44 (25-31)  -25
+n-11.Phoenix Badgers:       37-49 (20-36)  -30
+n-12.St.Louis Kings:        21-65 (17-39)  -46
+n-13.Vancouver Orcas:       20-66 (13-43)  -47
+n-14.Los Angeles Hawks:     17-69 (13-43)  -50
+n-15.Florida Panthers:      16-70 (10-46)  -51
 
 -Lottery-
 
-1.DCB:                       9-77   --
-2.Maine Wildcats:           14-72   -5
-3.St.Louis Kings:           16-70   -7
-4.Vancouver Orcas:          17-69   -8
-5.Memphis Blues:            24-62   -15
-6.Los Angeles Hawks:        26-60   -17
-7.Atlanta Venom:            27-59   -18
-8.Ohio Valley Sharks:       29-57   -20
-9.Phoenix Badgers:          32-54   -23
-10.Manhattan Magic:         32-54   -23
-11.New York Icons:          33-53   -24
-12.Florida Panthers:        34-52   -25
-13.Denver Heights:          36-50   -27
-14.Cincinnati Blue Stripes: 45-41   -36
+1.Ohio Valley Sharks:   10-76   --
+2.Florida Panthers:     16-70   -6
+3.Los Angeles Hawks:    17-69   -7
+4.Vancouver Orcas:      20-66   -10
+5.St.Louis Kings:       21-65   -11
+6.DCB:                  27-59   -17
+7.New York Icons:       28-58   -18
+8.Atlanta Venom:        34-52   -24
+9.Montreal Chevaliers:  37-49   -27
+10.Phoenix Badgers:     37-49   -27
+11.Chicago Spartans:    40-46   -30
+12.Maine Wildcats:      40-46   -30
+13.Seattle Shock:       42-44   -32
+14.Vegas Volts:         42-44   -32

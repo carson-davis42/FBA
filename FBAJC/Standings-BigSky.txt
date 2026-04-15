@@ -1,14 +1,14 @@
 -Big Sky-
 
-1.(53)Montana State:       20-11 (18-4)   --
-2.(105)Weber State:         17-13 (13-9)   -5
-3.(84)High Point:          17-14 (13-9)   -5
-4.(122)San Francisco:       15-15 (12-10)  -6
-5.(93)Longwood:            15-15 (12-10)  -6
-6.(124)Stetson:             15-16 (11-11)  -7
-7.(119)Eastern Washington:  14-16 (10-12)  -8
-8.(108)Evansville:          14-16 (10-12)  -8
-9.(112)Portland State:      16-17 (9-13)   -9
-10.(109)Montana:            16-18 (8-14)   -10
-11.(169)UC San Diego:       11-19 (8-14)   -10
-12.(166)Kennesaw State:     11-21 (8-14)   -10
+1.(35)Stetson:             25-8  (18-4)   --
+2.(36)Montana State:       24-9  (18-4)   --
+3.(92)Weber State:         18-15 (14-8)   -4
+4.(81)Portland State:      17-14 (13-9)   -5
+5.(129)Longwood:            14-17 (11-11)  -7
+6.(118)Montana:             14-17 (10-12)  -8
+7.(151)High Point:          12-19 (10-12)  -8
+8.(150)UC San Diego:        12-19 (9-13)   -9
+9.(147)San Francisco:       11-19 (8-14)   -10
+10.(173)Kennesaw State:      9-21 (8-14)   -10
+11.(189)Evansville:          8-22 (8-14)   -10
+12.(198)Eastern Washington:  6-24 (5-17)   -13

@@ -1,14 +1,14 @@
 -Sun Belt-
 
-1.(41)Arkansas Pine Bluff:  24-8  (20-2)   --
-2.(69)Georgia State:        22-11 (16-6)   -4
-3.(70)James Madison:        21-11 (16-6)   -4
-4.(96)ETSU:                 18-13 (15-7)   -5
-5.(99)Chattanooga:          17-14 (14-8)   -6
-6.(156)Grambling State:      13-18 (9-13)   -11
-7.(164)Arkansas State:       13-20 (8-14)   -12
-8.(178)Western Kentucky:     11-20 (8-14)   -12
-9.(186)Alabama State:        10-20 (8-14)   -12
-10.(203)South Florida:        7-23 (7-15)   -13
-11.(189)Jackson State:        8-22 (6-16)   -14
-12.(207)Furman:               5-25 (5-17)   -15
+1.(73)Chattanooga:          23-10 (17-5)   --
+2.(94)Georgia State:        19-13 (15-7)   -2
+3.(116)Arkansas Pine Bluff:  16-14 (14-8)   -3
+4.(113)Alabama State:        16-15 (14-8)   -3
+5.(117)Western Kentucky:     17-15 (12-10)  -5
+6.(120)Furman:               16-15 (12-10)  -5
+7.(141)Grambling State:      14-16 (12-10)  -5
+8.(148)ETSU:                 14-17 (12-10)  -5
+9.(180)James Madison:        10-20 (10-12)  -7
+10.(200)Arkansas State:       7-24 (6-16)   -11
+11.(205)South Florida:        6-24 (6-16)   -11
+12.(213)Jackson State:        3-27 (2-20)   -15

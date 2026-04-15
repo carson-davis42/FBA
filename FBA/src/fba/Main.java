@@ -531,7 +531,6 @@ public class Main {
                     (TOTAL_NUM_OF_GAMES / 2) || gamesPlayed == (TOTAL_NUM_OF_GAMES * 3 / 4)) {
                 messageToAdjustRatings(keyboard);
                 if (gamesPlayed == (TOTAL_NUM_OF_GAMES * 3 / 4)) {
-                    printTopPlayers(80);
                     System.out.print("Pick All-Stars(Type 'done' when finished): ");
                     String answer = keyboard.nextLine().toUpperCase();
                     while (!answer.equals("DONE")) {
@@ -570,6 +569,8 @@ public class Main {
                 int[] twoPlayerPoints = new int[5];
                 ArrayList<Player> possession = oneRoster;
                 ArrayList<Player> defense = twoRoster;
+                Team pos = one;
+                Team def = two;
                 int OTCount = 0;
                 int onePoints = 0;
                 int twoPoints = 0;
@@ -610,10 +611,14 @@ public class Main {
                     if (i % 2 == 0) {
                         possession = oneRoster;
                         defense = twoRoster;
+                        pos = one;
+                        def = two;
                     }
                     else {
                         possession = twoRoster;
                         defense = oneRoster;
+                        pos = two;
+                        def = one;
                     }
                     int getBallTo = 0;
                     for (Player p : possession) {
@@ -631,12 +636,7 @@ public class Main {
                             playerWithBall = p;
                         }
                     }
-                    Player defender = defense.get(0);
-                    for (Player p : defense) {
-                        if (Objects.equals(p.getPosition(), playerWithBall.getPosition())) {
-                            defender = p;
-                        }
-                    }
+                    Player defender = def.pickDefender(pos, possession.indexOf(playerWithBall));
                     int def_effect = playerWithBall.getRating() - (int) (0.45 * defender.getRating()) + 10;
                     int oddsToMake = Math.max(35, Math.min(65, def_effect));
                     int madeScore = (int) (Math.random() * 100) + 1;
@@ -657,6 +657,10 @@ public class Main {
                             System.out.print(playerWithBall.getName() + " scores " + pointsScored + " for " + t.getAbreviation() + "!");
                             keyboard.nextLine();
                         }
+                    }
+                    else if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3)){
+                        System.out.print(playerWithBall.getName() + " was stopped by " + defender.getName());
+                        keyboard.nextLine();
                     }
                     if (i % 2 == 0) {
                         onePoints += pointsScored;
@@ -746,6 +750,13 @@ public class Main {
                 toFileRemainingSchedule();
                 makeGoodLookinStandings();
                 toFileBestScorers();
+                PrintWriter out = new PrintWriter(new FileWriter("FBA\\Awards.txt"));
+                printTopPlayers(out, 80);
+                printMVPRace(out);
+                printPPKAwardRace(out);
+                printLPAwardRace(out);
+                printMCAwardRace(out);
+                out.close();
                 System.out.print("Ready for next game? ");
                 keyboard.nextLine();
                 System.out.println();
@@ -1279,6 +1290,8 @@ public class Main {
             int[] twoPlayerPoints = new int[5];
             ArrayList<Player> possession = oneRoster;
             ArrayList<Player> defense = twoRoster;
+            Team pos = one;
+            Team def = two;
             int OTCount = 0;
             int onePoints = 0;
             int twoPoints = 0;
@@ -1337,10 +1350,14 @@ public class Main {
                 if (i % 2 == 0) {
                     possession = oneRoster;
                     defense = twoRoster;
+                    pos = one;
+                    def = two;
                 }
                 else {
                     possession = twoRoster;
                     defense = oneRoster;
+                    pos = two;
+                    def = one;
                 }
                 int getBallTo = 0;
                 for (Player p : possession) {
@@ -1358,12 +1375,7 @@ public class Main {
                         playerWithBall = p;
                     }
                 }
-                Player defender = defense.get(0);
-                for (Player p : defense) {
-                    if (Objects.equals(p.getPosition(), playerWithBall.getPosition())) {
-                        defender = p;
-                    }
-                }
+                Player defender = def.pickDefender(pos, possession.indexOf(playerWithBall));
                 int def_effect = playerWithBall.getRating() - (int) (0.45 * defender.getRating()) + 10;
                 int oddsToMake = Math.max(35, Math.min(65, def_effect));
                 int madeScore = (int) (Math.random() * 100) + 1;
@@ -1384,6 +1396,10 @@ public class Main {
                         System.out.print(playerWithBall.getName() + " scores " + pointsScored + " for " + t.getAbreviation() + "!");
                         keyboard.nextLine();
                     }
+                }
+                else if (i > 109 && Math.abs(onePoints - twoPoints) <= 15) {
+                    System.out.print(playerWithBall.getName() + " was stopped by " + defender.getName());
+                    keyboard.nextLine();
                 }
                 if (i % 2 == 0) {
                     onePoints += pointsScored;
@@ -1864,18 +1880,162 @@ public class Main {
         fw.close();
     }
 
-    private static void printTopPlayers(int rating) {
+    private static void printTopPlayers(PrintWriter out, int rating) {
         String[] pos = new String[] {"PG", "SG", "SF", "PF", "C"};
+
+        out.printf("%-3s %-20s %-5s %-6s %-5s%n",
+                "Pos", "Name", "Team", "Rating", "PPG");
+        out.println("--------------------------------------------------");
+
         for (String po : pos) {
+            List<Player> players = new ArrayList<>();
+
             for (Team t : teams.values()) {
                 for (Player p : t.getPlayers()) {
                     if (p.getRating() >= rating && p.getPosition().equals(po)) {
-                        System.out.println(po + " - " + p.getName() + " - " + t.getAbreviation()
-                                + " - " + p.getRating());
+                        players.add(p);
                     }
                 }
             }
+
+            players.sort((a, b) -> Double.compare(b.getPPG(), a.getPPG()));
+
+            for (Player p : players) {
+                Team t = p.getTeam();
+                out.printf("%-3s %-20s %-5s %-6d %-5.1f%n",
+                        po,
+                        p.getName(),
+                        t.getAbreviation(),
+                        p.getRating(),
+                        p.getPPG());
+            }
         }
+    }
+
+    private static void printMVPRace(PrintWriter out) {
+        printAwardRace(out, "MVP Race", new String[]{"PG", "SG", "SF", "PF", "C"}, 10);
+    }
+
+    private static void printPPKAwardRace(PrintWriter out) {
+        printAwardRace(out, "PPK Award Race", new String[]{"PG", "SG"}, 10);
+    }
+
+    private static void printLPAwardRace(PrintWriter out) {
+        printAwardRace(out, "LP Award Race", new String[]{"SF", "PF"}, 10);
+    }
+
+    private static void printMCAwardRace(PrintWriter out) {
+        printAwardRace(out, "MC Award Race", new String[]{"C"}, 10);
+    }
+
+    private static void printAwardRace(PrintWriter out, String awardName, String[] positions, int limit) {
+        List<Player> candidates = new ArrayList<>();
+
+        for (Team t : teams.values()) {
+            for (Player p : t.getPlayers()) {
+                if (matchesPosition(p, positions)) {
+                    candidates.add(p);
+                }
+            }
+        }
+
+        candidates.sort((a, b) -> {
+            int cmp = Double.compare(getAwardScore(b), getAwardScore(a));
+            if (cmp != 0) return cmp;
+
+            cmp = Double.compare(b.getPPG(), a.getPPG());
+            if (cmp != 0) return cmp;
+
+            return Integer.compare(b.getRating(), a.getRating());
+        });
+
+        int actualLimit = Math.min(limit, candidates.size());
+        if (actualLimit == 0) {
+            out.println("\n========== " + awardName + " ==========");
+            out.println("No candidates found.");
+            return;
+        }
+
+        out.println();
+        out.println("========== " + awardName + " ==========");
+        out.printf("%-5s %-20s %-5s %-4s %-6s %-6s %-10s%n",
+                "Rank", "Name", "Team", "Pos", "PPG", "Rate", "Odds");
+        out.println("------------------------------------------------------------------");
+
+        int oddsPool = Math.min(8, candidates.size());
+        double bestScore = getAwardScore(candidates.get(0));
+        double temperature = 2.0;
+
+        List<Double> weights = new ArrayList<>();
+        double totalWeight = 0.0;
+
+        for (int i = 0; i < oddsPool; i++) {
+            double score = getAwardScore(candidates.get(i));
+            double weight = Math.exp((score - bestScore) / temperature);
+            weights.add(weight);
+            totalWeight += weight;
+        }
+
+        for (int i = 0; i < actualLimit; i++) {
+            Player p = candidates.get(i);
+
+            String odds;
+            if (i < oddsPool) {
+                double probability = weights.get(i) / totalWeight;
+                odds = toAmericanOdds(probability);
+
+                int numericOdds = Integer.parseInt(odds.replace("+", ""));
+                if (numericOdds > 6000 && i < 6) {
+                    odds = "+6000";
+                } else if (numericOdds > 8000 && i < 8) {
+                    odds = "+8000";
+                }
+
+            } else {
+                odds = "+10000";
+            }
+
+            out.printf("%-5d %-20s %-5s %-4s %-6.1f %-6d %-10s%n",
+                    i + 1,
+                    p.getName(),
+                    p.getTeam().getAbreviation(),
+                    p.getPosition(),
+                    p.getPPG(),
+                    p.getRating(),
+                    odds);
+        }
+    }
+
+    private static boolean matchesPosition(Player p, String[] positions) {
+        for (String pos : positions) {
+            if (p.getPosition().equals(pos)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static double getAwardScore(Player p) {
+        return p.getPPG() * 0.7 + p.getRating() * 0.3;
+    }
+
+    private static String toAmericanOdds(double probability) {
+        probability = Math.max(0.0001, Math.min(0.9999, probability));
+
+        int odds;
+        if (probability > 0.5) {
+            odds = (int) Math.round(-100 * probability / (1.0 - probability));
+        } else {
+            odds = (int) Math.round(100 * (1.0 - probability) / probability);
+        }
+
+        // Longshot cap
+        if (odds > 10000) odds = 10000;
+
+        // Optional: favorite cap (prevents insane negatives)
+        if (odds < -5000) odds = -5000;
+
+        return odds > 0 ? "+" + odds : String.valueOf(odds);
     }
 
     private static void readResultsForHTH() throws FileNotFoundException {

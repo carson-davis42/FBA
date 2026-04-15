@@ -1,14 +1,14 @@
 -Colonial-
 
-1.(23)UMBC:               27-6  (20-2)   --
-2.(91)Boston U:           19-12 (17-5)   -3
-3.(54)Northeastern:       22-11 (15-7)   -5
-4.(74)Winthrop:           19-13 (14-8)   -6
-5.(131)Indiana State:      15-16 (12-10)  -8
-6.(98)Rhode Island:       17-14 (11-11)  -9
-7.(125)Middle Tennessee:   14-17 (11-11)  -9
-8.(197)George Washington:   8-22 (8-14)   -12
-9.(173)Delaware State:     11-20 (7-15)   -13
-10.(199)Richmond:           7-23 (7-15)   -13
-11.(193)Drake:              8-22 (5-17)   -15
-12.(206)Delaware:           6-24 (5-17)   -15
+1.(51)Indiana State:      24-9  (20-2)   --
+2.(58)Delaware State:     22-10 (16-6)   -4
+3.(96)Middle Tennessee:   16-14 (13-9)   -7
+4.(99)Richmond:           19-15 (12-10)  -8
+5.(112)Drake:              18-15 (12-10)  -8
+6.(101)Northeastern:       16-14 (12-10)  -8
+7.(108)Winthrop:           15-15 (11-11)  -9
+8.(126)Boston U:           15-16 (11-11)  -9
+9.(159)George Washington:  12-18 (10-12)  -10
+10.(174)Rhode Island:      10-21 (6-16)   -14
+11.(203)UMBC:               6-24 (6-16)   -14
+12.(212)Delaware:           3-27 (3-19)   -17

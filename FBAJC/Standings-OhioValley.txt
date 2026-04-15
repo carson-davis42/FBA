@@ -1,14 +1,14 @@
 -Ohio Valley-
 
-1.(45)Southeastern Missouri State:  24-10 (16-6)   --
-2.(83)Northern Illinois:            20-12 (16-6)   --
-3.(102)Grand Canyon:                 19-12 (16-6)   --
-4.(110)Saint Louis:                  16-14 (13-9)   -3
-5.(139)SIU Edwardsville:             16-16 (13-9)   -3
-6.(127)Morehead State:               16-15 (12-10)  -4
-7.(128)Ohio:                         15-16 (11-11)  -5
-8.(154)Arkansas Little Rock:         13-18 (11-11)  -5
-9.(160)Appalachian State:            11-19 (9-13)   -7
-10.(180)Kent State:                  10-20 (8-14)   -8
-11.(198)Troy:                         7-23 (5-17)   -11
-12.(213)Omaha:                        3-27 (2-20)   -14
+1.(72)SIU Edwardsville:             23-10 (17-5)   --
+2.(61)Southeastern Missouri State:  21-10 (15-7)   -2
+3.(80)Troy:                         21-11 (14-8)   -3
+4.(105)Saint Louis:                  17-14 (13-9)   -4
+5.(133)Appalachian State:            15-16 (13-9)   -4
+6.(139)Kent State:                   14-17 (12-10)  -5
+7.(153)Grand Canyon:                 13-17 (11-11)  -6
+8.(170)Arkansas Little Rock:         11-19 (11-11)  -6
+9.(192)Northern Illinois:             9-22 (8-14)   -9
+10.(190)Morehead State:               9-22 (7-15)   -10
+11.(199)Ohio:                         7-23 (7-15)   -10
+12.(210)Omaha:                        5-25 (4-18)   -13

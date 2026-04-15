@@ -1,18 +1,18 @@
 -Western-
 
-*-1.San Antonio Spirits:    71-15 (45-11)  --
-x-2.Oakland All-Stars:      70-16 (44-12)  -1
-x-3.New Orleans Seminoles:  63-23 (44-12)  -8
-x-4.Honolulu Rays:          59-27 (41-15)  -12
-x-5.Cypress Green Guns:     55-31 (34-22)  -16
-x-6.Texas Outlaws:          49-37 (33-23)  -22
-x-7.Vegas Volts:            46-40 (31-25)  -25
-x-8.Seattle Shock:          39-47 (25-31)  -32
+*-1.Cypress Green Guns:     67-19 (43-13)  --
+x-2.Honolulu Rays:          62-24 (43-13)  -5
+x-3.New Orleans Seminoles:  61-25 (40-16)  -6
+x-4.Oakland All-Stars:      57-29 (40-16)  -10
+x-5.Texas Outlaws:          56-30 (36-20)  -11
+x-6.San Antonio Spirits:    56-30 (33-23)  -11
+x-7.Denver Heights:         52-34 (33-23)  -15
+x-8.Memphis Blues:          45-41 (26-30)  -22
 -----
-n-9.Denver Heights:         36-50 (21-35)  -35
-n-10.Florida Panthers:      34-52 (21-35)  -37
-n-11.Phoenix Badgers:       32-54 (25-31)  -39
-n-12.Los Angeles Hawks:     26-60 (17-39)  -45
-n-13.Memphis Blues:         24-62 (14-42)  -47
-n-14.Vancouver Orcas:       17-69 (13-43)  -54
-n-15.St.Louis Kings:        16-70 (12-44)  -55
+n-9.Vegas Volts:            42-44 (28-28)  -25
+n-10.Seattle Shock:         42-44 (25-31)  -25
+n-11.Phoenix Badgers:       37-49 (20-36)  -30
+n-12.St.Louis Kings:        21-65 (17-39)  -46
+n-13.Vancouver Orcas:       20-66 (13-43)  -47
+n-14.Los Angeles Hawks:     17-69 (13-43)  -50
+n-15.Florida Panthers:      16-70 (10-46)  -51

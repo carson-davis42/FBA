@@ -1,21 +1,21 @@
 --NIT--
 
 --Region 1--
-1.Butler vs 16.Cal
-8.USC vs 9.Colorado
-5.Harvard vs 12.Florida
-4.IUPUI vs 13.Air Force
-3.Mississippi State vs 14.Colorado State
-6.Grambling State vs 11.Oklahoma
-7.Iowa vs 10.LSU
-2.Ole Miss vs 15.Southern
+1.Kansas State vs 16.Boise State
+8.UTSA vs 9.Georgetown
+5.Purdue vs 12.Duquesne
+4.Navy vs 13.Texas A&M CC
+3.UCSB vs 14.Clemson
+6.Oral Roberts vs 11.Northwestern
+7.Oklahoma vs 10.Michigan
+2.Southeastern Missouri State vs 15.New Mexico State
 
 --Region 2--
-1.Clemson vs 16.San Jose State
-8.Arkansas Little Rock vs 9.Arkansas Pine Bluff
-5.Marist vs 12.Oklahoma State
-4.Duquesne vs 13.Robert Morris
-3.Arizona State vs 14.Colgate
-6.Iowa State vs 11.North Dakota State
-7.McNeese State vs 10.Murray State
-2.Notre Dame vs 15.Montana State
+1.Pitt vs 16.Georgia State
+8.Troy vs 9.Portland State
+5.North Dakota State vs 12.Butler
+4.Tulane vs 13.Marist
+3.LSU vs 14.Cal
+6.Washington vs 11.UC Irvine
+7.McNeese State vs 10.Seton Hall
+2.Texas Tech vs 15.UNLV

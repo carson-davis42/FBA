@@ -60,6 +60,9 @@ public class Player implements Comparable<Player> {
     }
 
     public double getPPG() {
+        if (PPG == 0) {
+            newPPG(team.getWin() + team.getLoss());
+        }
         return PPG;
     }
 

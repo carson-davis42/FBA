@@ -1240,6 +1240,8 @@ public class Main {
                 int[] twoPlayerPoints = new int[5];
                 ArrayList<Player> possession;
                 ArrayList<Player> defense;
+                Team pos = one;
+                Team def = two;
                 int OTCount = 0;
                 int onePoints = 0;
                 int twoPoints = 0;
@@ -1291,10 +1293,14 @@ public class Main {
                     if (i % 2 == 0) {
                         possession = oneRoster;
                         defense = twoRoster;
+                        pos = one;
+                        def = two;
                     }
                     else {
                         possession = twoRoster;
                         defense = oneRoster;
+                        pos = two;
+                        def = one;
                     }
                     int getBallTo = 0;
                     for (Player p : possession) {
@@ -1312,12 +1318,7 @@ public class Main {
                             playerWithBall = p;
                         }
                     }
-                    Player defender = defense.get(0);
-                    for (Player p : defense) {
-                        if (Objects.equals(p.getPosition(), playerWithBall.getPosition())) {
-                            defender = p;
-                        }
-                    }
+                    Player defender = def.pickDefender(pos, possession.indexOf(playerWithBall));
                     int def_effect = playerWithBall.cur_rating - (int) (0.45 * defender.cur_rating) + 10;
                     int oddsToMake = Math.max(35, Math.min(65, def_effect));
                     int madeScore = (int) (Math.random() * 100);
@@ -1343,6 +1344,10 @@ public class Main {
                             }
                             keyboard.nextLine();
                         }
+                    }
+                    else if (i > num_show && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3) && !skip) {
+                        System.out.print(playerWithBall.getName() + " was stopped by " + defender.getName());
+                        keyboard.nextLine();
                     }
                     if (i % 2 == 0) {
                         onePoints += pointsScored;
@@ -1451,7 +1456,10 @@ public class Main {
                 toFileBestScorers();
                 if (!simulateSeason && updateNames) {
                     System.out.print("Update Names:");
-                    keyboard.nextLine();
+                    String ans = keyboard.nextLine();
+                    while (!ans.toLowerCase().equals("done")) {
+                        ans = keyboard.nextLine();
+                    }
                 }
             }
             if (anotherGame && gamesPlayed >= TOTAL_NUM_CONF_GAMES + CONF_CHALLENGE_TOTAL + PRE_S_TOURN_TOTAL) {
@@ -1732,66 +1740,169 @@ public class Main {
         String gameResults = "FBAJC/Results.txt";
         FootballRanker fr = new FootballRanker(gameResults);
         TreeSet<AllPathsInfo> allpaths = fr.doWeightedAndWinPercentAdjusted(false);
+
         ArrayList<Team> oldRanks = new ArrayList<>(rankings);
-        rankings = new ArrayList<>();
-        inRanks = new ArrayList<>();
-        int longest = 0;
-        int oLongest;
+        ArrayList<Team> oldTop25 = new ArrayList<>(inRanks);
+
+        // -----------------------------
+        // 1. Build FootballRanker order
+        // -----------------------------
+        ArrayList<Team> frOrder = new ArrayList<>();
         for (AllPathsInfo path : allpaths) {
-            rankings.add(teamNames.get(path.getName()));
-            if (path.getName().length() > longest) {
-                longest = path.getName().length();
+            Team t = teamNames.get(path.getName());
+            if (t != null) {
+                frOrder.add(t);
+            }
+        }
+
+        // In case any team somehow isn't present in FootballRanker output
+        for (Team t : teamNames.values()) {
+            if (!frOrder.contains(t)) {
+                frOrder.add(t);
+            }
+        }
+
+        // -----------------------------
+        // 2. Build team_rating order
+        //    This is now the "base" ranking source
+        // -----------------------------
+        ArrayList<Team> ratingOrder = new ArrayList<>(teamNames.values());
+        ratingOrder.sort((t1, t2) -> Double.compare(t2.getTeamRating(), t1.getTeamRating()));
+
+        // -----------------------------
+        // 3. Decide how much FootballRanker matters
+        //
+        //    frWeight = 0.0  -> only team_rating
+        //    frWeight = 1.0  -> only FootballRanker
+        //
+        //    Starts to matter a little after season begins
+        //    Full strength around 65% of season
+        // -----------------------------
+        double seasonProgress = (double) gamesPlayed / TOTAL_NUM_OF_GAMES;
+
+        double blendStart = 0.05;
+        double blendFull = 0.65;
+
+        double frWeight;
+        if (seasonProgress <= blendStart) {
+            frWeight = 0.0;
+        } else if (seasonProgress >= blendFull) {
+            frWeight = 1.0;
+        } else {
+            double x = (seasonProgress - blendStart) / (blendFull - blendStart);
+            frWeight = x * x * (3 - 2 * x); // smoothstep easing
+        }
+
+        double ratingWeight = 1.0 - frWeight;
+
+        // -----------------------------
+        // 4. Create rank maps
+        // -----------------------------
+        HashMap<Team, Integer> ratingRankMap = new HashMap<>();
+        for (int i = 0; i < ratingOrder.size(); i++) {
+            ratingRankMap.put(ratingOrder.get(i), i + 1);
+        }
+
+        HashMap<Team, Integer> frRankMap = new HashMap<>();
+        for (int i = 0; i < frOrder.size(); i++) {
+            frRankMap.put(frOrder.get(i), i + 1);
+        }
+
+        // -----------------------------
+        // 5. Blend team_rating with FootballRanker
+        // -----------------------------
+        ArrayList<Team> blendedOrder = new ArrayList<>(teamNames.values());
+        blendedOrder.sort((t1, t2) -> {
+            double score1 = ratingWeight * ratingRankMap.get(t1) + frWeight * frRankMap.get(t1);
+            double score2 = ratingWeight * ratingRankMap.get(t2) + frWeight * frRankMap.get(t2);
+
+            if (score1 < score2) return -1;
+            if (score1 > score2) return 1;
+
+            // Tiebreak 1: better FootballRanker rank
+            int frCompare = Integer.compare(frRankMap.get(t1), frRankMap.get(t2));
+            if (frCompare != 0) return frCompare;
+
+            // Tiebreak 2: better team rating
+            return Double.compare(t2.getTeamRating(), t1.getTeamRating());
+        });
+
+        rankings = new ArrayList<>(blendedOrder);
+        inRanks = new ArrayList<>();
+
+        // -----------------------------
+        // 6. Formatting for Rankings.txt
+        // -----------------------------
+        int longest = 0;
+        for (Team t : rankings) {
+            if (t.getName().length() > longest) {
+                longest = t.getName().length();
             }
         }
         longest++;
-        oLongest = longest;
-        StringBuilder sb = new StringBuilder("-Rankings-" + "\n");
+        int oLongest = longest;
+
+        StringBuilder sb = new StringBuilder("-Rankings-\n");
         sb.append("Games Played: ").append(gamesPlayed).append("\n");
+
         int rank = 1;
         boolean teamDroppedOut = false;
+
         for (Team t : rankings) {
             if (rank < 26) {
                 inRanks.add(t);
+
                 if (rank == 10) {
                     longest--;
                 }
+
                 sb.append(rank).append(".").append(t.getName()).append(":");
                 for (int a = t.getName().length(); a < longest; a++) {
                     sb.append(" ");
                 }
-                if (!oldRanks.contains(t)) {
+
+                // Compare to previous Top 25 only for display purposes
+                if (!oldTop25.contains(t)) {
                     sb.append("(NR)");
-                }
-                else {
-                    int dif = oldRanks.indexOf(t) - rankings.indexOf(t);
+                } else {
+                    int oldPos = oldTop25.indexOf(t) + 1;
+                    int newPos = inRanks.size();
+                    int dif = oldPos - newPos;
                     sb.append("(").append(dif).append(")");
                 }
+
                 rank++;
                 sb.append("\n");
-            }
-            else {
-                if (oldRanks.contains(t)) {
+            } else {
+                if (oldTop25.contains(t)) {
                     teamDroppedOut = true;
                     sb.append(t.getName()).append(":");
                     for (int a = t.getName().length(); a < oLongest + 2; a++) {
                         sb.append(" ");
                     }
-                    int dif = oldRanks.indexOf(t) - (rank - 1);
+                    int oldPos = oldTop25.indexOf(t) + 1;
+                    int newPos = rank - 1;
+                    int dif = oldPos - newPos;
                     sb.append("(").append(dif).append(")").append("\n");
                 }
             }
+
             if (rank == 26) {
-                sb.append("\n").append("-Dropped-").append("\n");
+                sb.append("\n-Dropped-\n");
                 rank++;
             }
         }
+
         if (!teamDroppedOut) {
             sb.append("none");
         }
+
         if (toFile) {
             if (!simulateSeason && !simulatePreST && !simulateConfT) {
-                System.out.println("New Rankings!");
+                System.out.println("New Rankings! (FootballRanker weight: " +
+                        String.format("%.2f", frWeight) + ")");
             }
+
             File file = new File("FBAJC/Rankings.txt");
             FileWriter fw = new FileWriter(file);
             fw.write(sb.toString());
@@ -2294,7 +2405,10 @@ public class Main {
             if (!Main.simulatePreST) {
                 if (updateNames) {
                     System.out.print("Update Names:");
-                    keyboard.nextLine();
+                    String ans = keyboard.nextLine();
+                    while (!ans.toLowerCase().equals("done")) {
+                        ans = keyboard.nextLine();
+                    }
                 }
                 System.out.print("ready for next game?");
                 keyboard.nextLine();
@@ -2308,16 +2422,24 @@ public class Main {
     }
 
     private static void readEarlyRanks() throws IOException {
-        Scanner input = new Scanner(new File("FBAJC/PreSeasonRanks.txt"));
+        List<Team> sortedTeams = new ArrayList<>(teamNames.values());
+
+        // Sort highest team_rating first
+        sortedTeams.sort((t1, t2) -> Double.compare(t2.getTeamRating(), t1.getTeamRating()));
+
         if (gamesPlayed < PRE_S_TOURN_TOTAL) {
             inRanks = new ArrayList<>();
-            while (input.hasNextLine()) {
-                String line = input.nextLine();
-                Object[] a = line.split("_");
-                inRanks.add(teamNames.get((String) a[1]));
+            rankings = new ArrayList<>();
+
+            // Top 25 teams
+            for (int i = 0; i < Math.min(25, sortedTeams.size()); i++) {
+                inRanks.add(sortedTeams.get(i));
             }
+
             preSeasonRanks = new ArrayList<>(inRanks);
-            StringBuilder sb = new StringBuilder("-Rankings-" + "\n" + "Games Played: " + 0 + "\n");
+
+            StringBuilder sb = new StringBuilder("-Rankings-\nGames Played: 0\n");
+
             int longest = 0;
             for (Team t : inRanks) {
                 rankings.add(t);
@@ -2325,37 +2447,37 @@ public class Main {
                     longest = t.getName().length();
                 }
             }
+
             longest += 2;
+
             int rank = 1;
             for (Team t : inRanks) {
-                if (rank < 26) {
-                    if (rank == 10) {
-                        longest--;
-                    }
-                    sb.append(rank).append(".").append(t.getName()).append(":");
-                    for (int a = t.getName().length(); a < longest; a++) {
-                        sb.append(" ");
-                    }
-                    sb.append("(NR)");
-                    rank++;
-                    sb.append("\n");
+                sb.append(rank).append(".").append(t.getName()).append(":");
+
+                int spacing = longest;
+                if (rank >= 10) {
+                    spacing--;
                 }
-                if (rank == 26) {
-                    sb.append("\n").append("-Dropped-").append("\n").append("none");
-                    rank++;
+
+                for (int a = t.getName().length(); a < spacing; a++) {
+                    sb.append(" ");
                 }
+
+                sb.append("(NR)\n");
+                rank++;
             }
+
+            sb.append("\n-Dropped-\nnone");
+
             File file = new File("FBAJC/Rankings.txt");
             FileWriter fw = new FileWriter(file);
             fw.write(sb.toString());
             fw.close();
-        }
-        else {
+        } else {
             preSeasonRanks = new ArrayList<>();
-            while (input.hasNextLine()) {
-                String line = input.nextLine();
-                Object[] a = line.split("_");
-                preSeasonRanks.add(teamNames.get((String) a[1]));
+
+            for (int i = 0; i < Math.min(25, sortedTeams.size()); i++) {
+                preSeasonRanks.add(sortedTeams.get(i));
             }
         }
     }
@@ -2451,7 +2573,10 @@ public class Main {
             if (!Main.simulatePreST) {
                 if (updateNames) {
                     System.out.print("Update Names:");
-                    keyboard.nextLine();
+                    String ans = keyboard.nextLine();
+                    while (!ans.toLowerCase().equals("done")) {
+                        ans = keyboard.nextLine();
+                    }
                 }
                 System.out.print("ready for next game?");
                 keyboard.nextLine();

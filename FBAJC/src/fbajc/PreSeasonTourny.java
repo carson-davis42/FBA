@@ -116,6 +116,8 @@ public class PreSeasonTourny implements Comparable<PreSeasonTourny> {
         int[] twoPlayerPoints = new int[5];
         ArrayList<Player> possession;
         ArrayList<Player> defense;
+        Team pos = a;
+        Team def = b;
         int OTCount = 0;
         int onePoints = 0;
         int twoPoints = 0;
@@ -160,10 +162,14 @@ public class PreSeasonTourny implements Comparable<PreSeasonTourny> {
             if (i % 2 == 0) {
                 possession = oneRoster;
                 defense = twoRoster;
+                pos = a;
+                def = b;
             }
             else {
                 possession = twoRoster;
                 defense = oneRoster;
+                pos = b;
+                def = a;
             }
             int getBallTo = 0;
             for (Player p : possession) {
@@ -181,12 +187,7 @@ public class PreSeasonTourny implements Comparable<PreSeasonTourny> {
                     playerWithBall = p;
                 }
             }
-            Player defender = defense.get(0);
-            for (Player p : defense) {
-                if (Objects.equals(p.getPosition(), playerWithBall.getPosition())) {
-                    defender = p;
-                }
-            }
+            Player defender = def.pickDefender(pos, possession.indexOf(playerWithBall));
             int def_effect = playerWithBall.cur_rating - (int) (0.45 * defender.cur_rating) + 10;
             int oddsToMake = Math.max(35, Math.min(65, def_effect));
             int madeScore = (int) (Math.random() * 100);
@@ -212,6 +213,10 @@ public class PreSeasonTourny implements Comparable<PreSeasonTourny> {
                     }
                     keyboard.nextLine();
                 }
+            }
+            else if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3) && !skip) {
+                System.out.print(playerWithBall.getName() + " was stopped by " + defender.getName());
+                keyboard.nextLine();
             }
             if (i % 2 == 0) {
                 onePoints += pointsScored;

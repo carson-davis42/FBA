@@ -1,5 +1,5 @@
-0
-N
+1290
+Y
 NO/MEM
 CAR/FLO
 FLO/HON

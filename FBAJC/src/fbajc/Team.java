@@ -388,6 +388,65 @@ public class Team implements Comparable<Team> {
         return Main.rankings.contains(this);
     }
 
+    public Player pickDefender(Team t, int pos) {
+        Player target = t.getPlayers()[pos];
+        int targetRating = target.cur_rating; // change if your rating getter has a different name
+
+        ArrayList<Player> candidates = new ArrayList<>();
+        ArrayList<Double> weights = new ArrayList<>();
+        double totalWeight = 0.0;
+
+        for (int i = 0; i < players.length; i++) {
+            Player defender = players[i];
+            if (defender == null) {
+                continue;
+            }
+
+            double weight = 1.0; // base chance so everyone can be selected
+
+            // Position bonus
+            int posDiff = Math.abs(i - pos);
+            if (posDiff == 0) {
+                weight *= 8.0;   // same position
+            } else if (posDiff == 1) {
+                weight *= 4.0;   // nearby position
+            } else if (posDiff == 2) {
+                weight *= 0.6;   // somewhat similar
+            } else {
+                weight *= 0.2;   // far position, but still possible
+            }
+
+            if (posDiff >= 3) {
+                weight *= 0.02;
+            }
+
+            int ratingDiff = Math.abs(defender.cur_rating - targetRating);
+            double ratingFactor = 1.0 / (1.0 + ratingDiff / 10.0);
+            weight *= (1.0 + ratingFactor);
+
+            candidates.add(defender);
+            weights.add(weight);
+            totalWeight += weight;
+        }
+
+        if (candidates.isEmpty()) {
+            return null;
+        }
+
+        // Weighted random selection
+        double rand = Math.random() * totalWeight;
+        double runningTotal = 0.0;
+
+        for (int i = 0; i < candidates.size(); i++) {
+            runningTotal += weights.get(i);
+            if (rand <= runningTotal) {
+                return candidates.get(i);
+            }
+        }
+
+        return candidates.get(candidates.size() - 1);
+    }
+
     @Override
     public int compareTo(Team o) {
         if (conWinPerc > o.conWinPerc) {
