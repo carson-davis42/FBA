@@ -30,7 +30,7 @@ public class Main {
     private static ArrayBlockingQueue<PlayoffSeries> seriesQueue;
 
     public static void main(String[] args) throws IOException {
-        int season = 77;
+        int season = 78;
         playedGame = false;
         Scanner keyboard = new Scanner(System.in);
         readRosters();

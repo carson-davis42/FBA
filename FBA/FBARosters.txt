@@ -1,211 +1,211 @@
 30
 Atlanta Venom/ATL/E
 5
-Cassius Blackwell/PG/21/3/6/83/2028
-LaMarr Sutton/SG/20/2/2/74/811
-Jaden Stokes/SF/20/1/2/76/1096
-Kamil Bauer/PF/23/1/2/72/822
-Issa Cisse/C/24/3/7/84/2131
+Cassius Blackwell/PG/22/2/6/82/0
+LaMarr Sutton/SG/21/1/2/75/0
+Jaden Stokes/SF/21/3/4/77/0
+Rakeem Holloway/PF/19/2/2/75/0
+Issa Cisse/C/25/2/7/83/0
 Boston Bucks/BOS/E
 5
-Gabriel Greenwood/PG/26/4/8/96/2943
-Riley Shannon/SG/27/4/7/80/1412
-Mubiru Okeke/SF/26/1/1/66/280
-Maddox Dean/PF/20/1/1/68/399
-Olufemi Cisneros/C/25/4/8/96/2881
+Gabriel Greenwood/PG/27/3/8/96/0
+Riley Shannon/SG/28/3/7/79/0
+Koa'e Keano/SF/24/1/1/67/0
+Callan Schwangau/PF/27/1/1/69/0
+Olufemi Cisneros/C/26/3/8/95/0
 Carolina Knights/CAR/E
 5
-Jelani Soweto/PG/22/2/6/89/2262
-Cassius Moon/SG/32/1/3/71/599
-Louis Pepperdash III/SF/21/4/7/88/2162
-Kya Emery/PF/27/4/7/82/1591
-Ivan Petrovich/C/22/1/2/72/695
+Jelani Soweto/PG/23/5/8/90/0
+Terence Hopkins/SG/27/1/2/69/0
+Louis Pepperdash III/SF/22/3/7/91/0
+Kya Emery/PF/28/3/7/81/0
+Ivan Petrovich/C/23/1/1/71/0
 Cypress Green Guns/CGG/W
 5
-Ramiro Mateus/PG/25/4/7/86/2179
-Justin Green/SG/24/2/6/85/2078
-Xavier Rose/SF/25/1/2/69/515
-Kwame Koppel/PF/28/3/7/87/2351
-Kaelan Kingsley/C/23/2/3/68/429
+Ramiro Mateus/PG/26/3/7/87/0
+Justin Green/SG/25/3/7/85/0
+Griffin Correa/SF/28/1/1/67/0
+Kwame Koppel/PF/29/2/7/90/0
+Kaelan Kingsley/C/24/1/3/68/0
 Chicago Spartans/CHI/E
 5
-De'Aaron Higgs/PG/32/1/3/71/788
-Kyan Mathews/SG/28/2/6/75/1078
-Xavier Harwood/SF/29/2/6/78/1284
-Ameer Allen/PF/30/2/8/97/3472
-Derek King/C/30/1/2/68/458
+Jalen Carter/PG/21/2/2/71/0
+Kenyon Rush Jr/SG/22/3/6/75/0
+Xavier Harwood/SF/30/2/5/74/0
+Ameer Allen/PF/31/2/8/94/0
+Damion Bradley/C/30/2/3/68/0
 Cincinnati Blue Stripes/CIN/E
 5
-Angel Wilson/PG/24/2/6/82/1487
-JT Ramsey/SG/22/2/7/91/2554
-Ollie Frye/SF/23/1/5/79/1290
-Rhys Creed/PF/23/1/2/73/752
-Grant Ogden/C/22/2/4/80/1261
+Angel Wilson/PG/25/1/6/80/0
+JT Ramsey/SG/23/2/8/92/0
+Kobe Crawford/SF/31/1/1/67/0
+Rhys Creed/PF/24/2/4/77/0
+Grant Ogden/C/23/3/6/82/0
 Columbus Pirates/CP/E
 5
-Cam Clark/PG/25/1/3/71/677
-Julien Shannon/SG/29/4/8/97/3376
-Clarke Ewing/SF/30/2/5/75/1073
-Andre Robinson/PF/25/1/2/70/589
-Bryson Kirkland/C/29/2/7/80/1527
+Kyron Smart/PG/31/1/3/70/0
+Julien Shannon/SG/30/3/8/95/0
+Akeel Moody/SF/29/1/2/68/0
+Trace Garnett/PF/28/2/6/74/0
+Bryson Kirkland/C/30/2/6/76/0
 DCB/DCB/E
 5
-Kyler Crest/PG/23/3/5/78/1618
-Kendall Hatfield/SG/22/2/2/77/1409
-Niyah Craig/SF/32/1/5/67/650
-Callan Schwangau/PF/26/2/5/70/878
-Kasey Monroe/C/20/1/2/81/1977
+Kyler Crest/PG/24/2/5/80/0
+Kendall Hatfield/SG/23/1/2/77/0
+Clarke Ewing/SF/31/2/5/72/0
+Dior Freeman/PF/22/2/2/71/0
+Kasey Monroe/C/21/4/6/81/0
 Denver Heights/DEN/W
 5
-Beau Riley/PG/19/2/2/71/560
-Uzoma Okorie/SG/24/2/5/73/755
-Ethan Campbell/SF/20/1/2/90/2500
-Ronan Langford/PF/23/2/6/79/1357
-Bello Olumide/C/25/2/7/88/2205
+Beau Riley/PG/20/1/2/73/0
+Ezio Stanek/SG/26/1/2/69/0
+Ethan Campbell/SF/21/5/8/93/0
+Ronan Langford/PF/24/3/6/80/0
+Bello Olumide/C/26/2/7/90/0
 Detroit Motors/DET/E
 5
-Donovan Brooks/PG/23/2/4/78/1067
-Kai Switzer/SG/25/2/6/76/1053
-Cameron Lucic/SF/26/5/8/96/3091
-Hiroshi Tanaka/PF/25/1/1/69/438
-JJ Eaton/C/22/2/6/84/1712
+Donovan Brooks/PG/24/3/5/81/0
+Uzoma Okorie/SG/25/2/4/71/0
+Cameron Lucic/SF/27/4/8/95/0
+Jimi Jackson/PF/30/1/1/67/0
+JJ Eaton/C/23/4/7/85/0
 Florida Panthers/FLO/W
 5
-Simon Sparks/PG/28/1/4/68/740
-Terence Hopkins/SG/26/1/5/71/1120
-Alexei Romano/SF/22/2/4/73/1319
-Jordyn Carroll/PF/31/2/7/80/2342
-Landon Love/C/19/2/2/68/654
+Willy Jacobs/PG/27/2/5/70/0
+Kamil Novakovic/SG/19/2/2/78/0
+AJ Krause/SF/26/3/6/76/0
+Jordyn Carroll/PF/32/1/7/75/0
+Landon Love/C/20/1/2/70/0
 Honolulu Rays/HON/W
 5
-Kyron Smart/PG/30/1/1/70/468
-Reagan Butler/SG/26/4/8/94/2869
-Makenzie Bell/SF/27/3/7/81/1604
-Kodi Bates/PF/29/3/8/87/2220
-Theon Campos/C/31/1/1/67/380
+Rodney Hopper/PG/32/1/1/68/0
+Reagan Butler/SG/27/3/8/94/0
+Makenzie Bell/SF/28/2/7/80/0
+Kodi Bates/PF/30/2/8/87/0
+Jai Li/C/31/1/1/68/0
 Los Angeles Hawks/LA/W
 5
-Bryce Wilson/PG/20/1/2/77/1414
-Luca Rossi/SG/25/2/5/73/1036
-Jaden Samuels/SF/28/1/5/66/425
-Jayce Jackson-Peters/PF/26/3/6/81/2018
-Kiri Camacho/C/27/1/7/75/1469
+Bryce Wilson/PG/21/3/5/79/0
+Luca Rossi/SG/26/1/5/72/0
+Jalen Hall/SF/20/2/2/67/0
+Jayce Jackson-Peters/PF/27/2/6/81/0
+Kiri Camacho/C/28/1/6/73/0
 Manhattan Magic/MAN/E
 5
-KJ Cooke/PG/25/2/6/83/1693
-Kenyon Rush Jr/SG/21/1/1/75/1007
-Keon Whitfield/SF/28/1/6/77/1193
-Denver Bruner/PF/23/3/7/85/1887
-Malik Locke/C/23/1/5/76/1192
+KJ Cooke/PG/26/4/7/83/0
+Nadeem Akers/SG/22/1/3/70/0
+Ollie Frye/SF/24/4/7/81/0
+Denver Bruner/PF/24/2/7/85/0
+Roman Findlay/C/29/1/1/67/0
 Memphis Blues/MEM/W
 5
-Ivory Huntley/PG/23/2/8/92/2916
-Carmelo Brunnell/SG/24/1/3/73/861
-Terrance Barnett/SF/24/2/3/69/533
-Will Fox Jr/PF/19/2/2/81/1554
-Kilian Leclair/C/24/2/6/78/1359
+Ivory Huntley/PG/24/1/8/95/0
+Jarrett Joseph Jr/SG/31/1/2/67/0
+Keon Whitfield/SF/29/2/7/78/0
+Will Fox Jr/PF/20/1/2/82/0
+Kilian Leclair/C/25/2/6/79/0
 Milwaukee Warriors/MIL/E
 5
-Wesley Knight/PG/25/1/4/71/572
-Cooper Wells/SG/20/1/2/83/1578
-Dominic Mercer/SF/22/1/3/72/638
-Clyde King/PF/32/1/8/92/2354
-Keith Russell/C/32/1/8/92/2480
+Wesley Knight/PG/26/2/6/71/0
+Cooper Wells/SG/21/4/7/84/0
+Dominic Mercer/SF/23/2/6/70/0
+Ethan Leitner/PF/23/1/1/68/0
+Malik Locke/C/24/3/5/75/0
 Montreal Chevaliers/MON/E
 5
-Kayan Kidd/PG/32/1/7/80/1861
-Nadir Jacobs/SG/29/2/7/83/2422
-Kieran Schofield/SF/31/2/5/73/1066
-JJ Peterson/PF/27/2/5/72/997
-Paris Walton/C/32/1/1/66/404
+Cam Clark/PG/26/2/6/71/0
+Nadir Jacobs/SG/30/3/6/77/0
+Kieran Schofield/SF/32/1/5/69/0
+JJ Peterson/PF/28/2/4/71/0
+Duke Chudnovsky/C/19/2/2/74/0
 Maine Wildcats/MW/E
 5
-Ace Taylor/PG/31/2/6/73/931
-Nadeem Akers/SG/27/2/5/69/500
-D'Andre Holiday/SF/21/3/6/83/1856
-Shinobu Ochi/PF/23/3/6/82/1822
-Adonis Wonder/C/19/2/2/84/2018
+Ace Taylor/PG/32/1/5/72/7
+Micah Akers/SG/24/3/6/76/4
+D'Andre Holiday/SF/22/2/6/84/24
+Shinobu Ochi/PF/24/2/6/82/23
+Adonis Wonder/C/20/1/2/88/30
 New Orleans Seminoles/NO/W
 5
-Willy Jacobs/PG/26/1/2/69/495
-Jasper Monroe/SG/22/1/1/65/188
-Byron Oden/SF/24/4/8/95/2785
-Tobi Ingram/PF/21/3/6/85/1803
-Payton Atkinson/C/31/2/8/88/2347
+Liam Mercado/PG/22/2/2/69/2
+Sam Bussey/SG/25/1/1/66/0
+Byron Oden/SF/25/3/8/96/43
+Tobi Ingram/PF/22/2/6/86/21
+Payton Atkinson/C/32/1/8/87/15
 New York Icons/NY/E
 5
-SJ Herring/PG/22/2/6/74/1039
-Harley Hamlin/SG/23/1/2/78/1400
-Scottie Riley/SF/23/2/7/86/2715
-Morgan Meyer/PF/30/1/6/71/845
-Jai Li/C/30/1/3/71/745
+SJ Herring/PG/23/2/6/76/0
+Harley Hamlin/SG/24/2/5/79/0
+Scottie Riley/SF/24/1/7/84/0
+Darius Bruner/PF/22/2/2/68/0
+Nikolas Papadopoulos/C/25/2/5/71/0
 Oakland All-Stars/OAK/W
 5
-Kabelo Ayodele/PG/25/2/5/72/648
-Antoine Maddox/SG/30/1/1/66/320
-Akeem Naylor/SF/32/1/8/93/2971
-Harper Holland/PF/25/4/8/97/3183
-Damion Bradley/C/29/1/3/70/571
+Kabelo Ayodele/PG/26/2/5/74/8
+Kai Switzer/SG/26/3/6/76/13
+Alexei Romano/SF/23/2/4/69/6
+Harper Holland/PF/26/3/8/97/45
+Artyom Kovalchuk/C/27/1/2/68/7
 Ohio Valley Sharks/OV/E
 5
-Kymari Rivers/PG/19/2/2/73/1387
-Jarrett Joseph Jr/SG/30/1/2/66/507
-Akeel Moody/SF/28/2/5/70/944
-Trace Garnett/PF/27/2/5/75/1644
-Ifa Fukui/C/26/3/5/72/1340
+Kymari Rivers/PG/20/1/2/75/27
+Carmelo Brunnell/SG/25/2/5/71/17
+Kai Richardson/SF/19/2/2/75/31
+Jamar Williams/PF/23/3/5/78/34
+Ifa Fukui/C/27/2/5/70/26
 Phoenix Badgers/PHX/W
 5
-Donn Duarte/PG/22/2/2/75/1015
-Ezio Stanek/SG/25/2/4/70/618
-Uriel Murray/SF/23/1/2/74/976
-Hakim Cleveland/PF/30/3/6/81/1692
-Merritt Donovan/C/21/3/8/90/2693
+Donn Duarte/PG/23/1/2/78/0
+Joseph Reid-Jones/SG/22/2/2/69/0
+Uriel Murray/SF/24/2/4/75/0
+Hakim Cleveland/PF/31/2/6/79/0
+Merritt Donovan/C/22/2/8/93/0
 San Antonio Spirits/SAS/W
 5
-Jimmy Joyce/PG/21/1/2/68/374
-Avery Wilkins/SG/25/2/6/84/1679
-Duke Simons/SF/28/1/1/65/253
-Jae Simmons/PF/31/2/8/87/2119
-Katleho Cisneros/C/26/3/8/98/3164
+Jimmy Joyce/PG/22/1/2/69/0
+Avery Wilkins/SG/26/2/6/82/0
+Duke Simons/SF/29/1/1/67/0
+Jae Simmons/PF/32/1/8/84/0
+Katleho Cisneros/C/27/2/8/97/0
 Seattle Shock/SEA/W
 5
-Rodney Hopper/PG/31/1/1/68/517
-Baylor Whittaker/SG/24/2/7/86/2429
-Izayah Hilliard/SF/25/2/7/84/1979
-Jamar Williams/PF/22/2/4/78/1285
-Thiago Costa/C/23/2/6/73/875
+Soren Lindberg/PG/19/2/2/80/0
+Baylor Whittaker/SG/25/3/7/85/0
+Izayah Hilliard/SF/26/3/7/82/0
+Morgan Meyer/PF/31/2/4/71/0
+Thiago Costa/C/24/2/5/74/0
 St.Louis Kings/STL/W
 5
-Amari Phillips/PG/20/2/2/74/1198
-Micah Akers/SG/23/1/5/78/1795
-Kobe Crawford/SF/30/2/5/69/694
-Romello Cain/PF/20/1/2/77/1684
-Bobbie Allen/C/30/1/3/70/877
+Amari Phillips/PG/21/1/2/77/21
+Kyan Mathews/SG/29/2/5/72/4
+Xavier Rose/SF/26/2/4/68/21
+Romello Cain/PF/21/3/5/77/18
+Samuel Adeyemi/C/21/2/2/77/26
 Texas Outlaws/TEX/W
 5
-Elliott Sparrow/PG/27/2/8/93/2784
-Jalen Adams/SG/22/4/6/82/1683
-Rylee Cousins/SF/31/1/2/66/289
-Jamari Odom/PF/29/2/8/90/2470
-Azubuike Okoro/C/25/1/1/66/316
+Elliott Sparrow/PG/28/3/8/92/0
+Jalen Adams/SG/23/3/6/82/0
+Rylee Cousins/SF/32/1/1/67/0
+Jamari Odom/PF/30/3/8/89/0
+Azubuike Okoro/C/26/1/2/67/0
 Toronto Wolves/TOR/E
 5
-Rhett Blackwell II/PG/28/1/7/77/1288
-Mitchell Hope/SG/27/2/8/99/3677
-AJ Krause/SF/25/1/6/76/1234
-Jimi Jackson/PF/29/1/1/65/276
-Nikolas Papadopoulos/C/24/1/3/72/759
+Rhett Blackwell II/PG/29/4/7/78/0
+Mitchell Hope/SG/28/1/8/97/0
+Terrance Barnett/SF/25/2/3/69/0
+Kamil Bauer/PF/24/3/6/75/0
+Bobbie Allen/C/31/1/1/68/0
 Vancouver Orcas/VAN/W
 5
-Quinn Ellwood/PG/23/1/2/81/1888
-Mani Varela/SG/21/3/6/83/2106
-Emmanuel Green/SF/19/2/2/72/791
-Dennis Metcalf/PF/22/2/2/71/803
-Kenneth Nkuna/C/26/2/4/73/935
+Quinn Ellwood/PG/24/3/6/81/0
+Mani Varela/SG/22/2/6/83/0
+Emmanuel Green/SF/20/1/2/71/0
+Dennis Metcalf/PF/23/1/2/73/0
+Kenneth Nkuna/C/27/2/4/72/0
 Vegas Volts/VEG/W
 5
-Kris Winter/PG/24/3/6/78/1574
-Yasin Milovanovic/SG/26/2/7/88/2772
-Koa'e Keano/SF/23/1/3/67/434
-Rowan Hawthorne/PF/22/1/2/67/366
-Clay Pitts/C/30/3/7/83/2077
+Kris Winter/PG/25/2/6/79/0
+Yasin Milovanovic/SG/27/1/7/89/0
+Mubiru Okeke/SF/27/2/3/68/0
+Andre Robinson/PF/26/1/2/70/0
+Clay Pitts/C/31/2/7/80/0

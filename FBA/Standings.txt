@@ -1,54 +1,54 @@
 -Eastern-
 
-*-1.Boston Bucks:             67-19 (45-11)  --
-x-2.Milwaukee Warriors:       57-29 (35-21)  -10
-x-3.Manhattan Magic:          52-34 (33-23)  -15
-x-4.Carolina Knights:         51-35 (40-16)  -16
-x-5.Detroit Motors:           50-36 (31-25)  -17
-x-6.Columbus Pirates:         49-37 (32-24)  -18
-x-7.Cincinnati Blue Stripes:  49-37 (31-25)  -18
-x-8.Toronto Wolves:           48-38 (32-24)  -19
+1.Maine Wildcats:            1-0  (0-0)    --
+2.Boston Bucks:              0-0  (0-0)    -0.5
+3.Milwaukee Warriors:        0-0  (0-0)    -0.5
+4.Detroit Motors:            0-0  (0-0)    -0.5
+5.Cincinnati Blue Stripes:   0-0  (0-0)    -0.5
+6.Manhattan Magic:           0-0  (0-0)    -0.5
+7.Columbus Pirates:          0-0  (0-0)    -0.5
+8.Carolina Knights:          0-0  (0-0)    -0.5
 -----
-n-9.Maine Wildcats:           40-46 (28-28)  -27
-n-10.Chicago Spartans:        40-46 (27-29)  -27
-n-11.Montreal Chevaliers:     37-49 (25-31)  -30
-n-12.Atlanta Venom:           34-52 (21-35)  -33
-n-13.New York Icons:          28-58 (20-36)  -39
-n-14.DCB:                     27-59 (15-41)  -40
-n-15.Ohio Valley Sharks:      10-76 (5-51)   -57
+9.Toronto Wolves:            0-0  (0-0)    -0.5
+10.Chicago Spartans:         0-0  (0-0)    -0.5
+11.Atlanta Venom:            0-0  (0-0)    -0.5
+12.Montreal Chevaliers:      0-0  (0-0)    -0.5
+13.DCB:                      0-0  (0-0)    -0.5
+14.New York Icons:           0-0  (0-0)    -0.5
+15.Ohio Valley Sharks:       0-2  (0-0)    -1.5
 
 -Western-
 
-*-1.Cypress Green Guns:     67-19 (43-13)  --
-x-2.Honolulu Rays:          62-24 (43-13)  -5
-x-3.New Orleans Seminoles:  61-25 (40-16)  -6
-x-4.Oakland All-Stars:      57-29 (40-16)  -10
-x-5.Texas Outlaws:          56-30 (36-20)  -11
-x-6.San Antonio Spirits:    56-30 (33-23)  -11
-x-7.Denver Heights:         52-34 (33-23)  -15
-x-8.Memphis Blues:          45-41 (26-30)  -22
+1.New Orleans Seminoles:   1-0  (0-0)    --
+2.St.Louis Kings:          1-0  (0-0)    --
+3.Cypress Green Guns:      0-0  (0-0)    -0.5
+4.San Antonio Spirits:     0-0  (0-0)    -0.5
+5.Denver Heights:          0-0  (0-0)    -0.5
+6.Honolulu Rays:           0-0  (0-0)    -0.5
+7.Texas Outlaws:           0-0  (0-0)    -0.5
+8.Memphis Blues:           0-0  (0-0)    -0.5
 -----
-n-9.Vegas Volts:            42-44 (28-28)  -25
-n-10.Seattle Shock:         42-44 (25-31)  -25
-n-11.Phoenix Badgers:       37-49 (20-36)  -30
-n-12.St.Louis Kings:        21-65 (17-39)  -46
-n-13.Vancouver Orcas:       20-66 (13-43)  -47
-n-14.Los Angeles Hawks:     17-69 (13-43)  -50
-n-15.Florida Panthers:      16-70 (10-46)  -51
+9.Seattle Shock:           0-0  (0-0)    -0.5
+10.Vegas Volts:            0-0  (0-0)    -0.5
+11.Phoenix Badgers:        0-0  (0-0)    -0.5
+12.Los Angeles Hawks:      0-0  (0-0)    -0.5
+13.Vancouver Orcas:        0-0  (0-0)    -0.5
+14.Florida Panthers:       0-0  (0-0)    -0.5
+15.Oakland All-Stars:      0-1  (0-0)    -1
 
 -Lottery-
 
-1.Ohio Valley Sharks:   10-76   --
-2.Florida Panthers:     16-70   -6
-3.Los Angeles Hawks:    17-69   -7
-4.Vancouver Orcas:      20-66   -10
-5.St.Louis Kings:       21-65   -11
-6.DCB:                  27-59   -17
-7.New York Icons:       28-58   -18
-8.Atlanta Venom:        34-52   -24
-9.Montreal Chevaliers:  37-49   -27
-10.Phoenix Badgers:     37-49   -27
-11.Chicago Spartans:    40-46   -30
-12.Maine Wildcats:      40-46   -30
-13.Seattle Shock:       42-44   -32
-14.Vegas Volts:         42-44   -32
+1.Ohio Valley Sharks:    0-2    --
+2.Oakland All-Stars:     0-1    -0.5
+3.Florida Panthers:      0-0    -1
+4.Vancouver Orcas:       0-0    -1
+5.Los Angeles Hawks:     0-0    -1
+6.New York Icons:        0-0    -1
+7.DCB:                   0-0    -1
+8.Montreal Chevaliers:   0-0    -1
+9.Atlanta Venom:         0-0    -1
+10.Phoenix Badgers:      0-0    -1
+11.Chicago Spartans:     0-0    -1
+12.Vegas Volts:          0-0    -1
+13.Seattle Shock:        0-0    -1
+14.Toronto Wolves:       0-0    -1
