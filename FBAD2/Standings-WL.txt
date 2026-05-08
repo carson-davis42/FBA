@@ -1,19 +1,19 @@
 -World League-
 
-*-1.Zurich:              24-6    --
-p-2.Miami:               21-9    -3
-x-3.Casablanca:          20-10   -4
-x-4.Zagreb:              20-10   -4
-x-5.Sao Paolo:           20-10   -4
-x-6.Dhaka:               18-12   -6
-x-7.Hamburg:             18-12   -6
-x-8.Lyon:                17-13   -7
+*-1.Mumbai:              28-2    --
+x-2.Hamburg:             23-7    -5
+x-3.Sao Paolo:           20-10   -8
+x-4.Copenhagen:          20-10   -8
+x-5.Dhaka:               18-12   -10
+x-6.Munich:              17-13   -11
+x-7.Casablanca:          17-13   -11
+x-8.Zagreb:              16-14   -12
 -----
-n-9.Saint Petersburg:    15-15   -9
-n-10.San Jose:           15-15   -9
-n-11.Munich:             12-18   -12
-n-12.Sydney:             11-19   -13
-n-13.Vienna:              9-21   -15
-n-14.Liverpool:           9-21   -15
-d-15.Osaka:               8-22   -16
-d-16.Amsterdam:           3-27   -21
+n-9.Sydney:              16-14   -12
+n-10.Vienna:             13-17   -15
+n-11.Liverpool:          12-18   -16
+n-12.Lyon:               10-20   -18
+n-13.Saint Petersburg:   10-20   -18
+n-14.Tokyo:               8-22   -20
+d-15.San Jose:            8-22   -20
+d-16.Recife:              4-26   -24

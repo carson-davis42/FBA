@@ -26,12 +26,16 @@ public class Main {
     private static ArrayList<PlayoffSeries> seriesWL;
     private static ArrayList<PlayoffSeries> seriesUL;
     private static ArrayList<PlayoffSeries> seriesIL;
+    public static ArrayList<Team> pl_playoff;
+    public static ArrayList<Team> wl_playoff;
+    public static ArrayList<Team> ul_playoff;
+    public static ArrayList<Team> il_playoff;
     public static boolean playoffs;
     private static ArrayBlockingQueue<PlayoffSeries> seriesQueue;
     private static boolean gamePlayed;
 
     public static void main(String[] args) throws IOException {
-        int season = 77;
+        int season = 78;
         Scanner keyboard = new Scanner(System.in);
         readRosters();
         readOrMakeSchedule(true, false); //true if reading a schedule, true to print
@@ -55,19 +59,8 @@ public class Main {
             startInPlayoffs = true;
         }
         playoffs(keyboard);
-        System.out.print("Congrats " + seriesPL.get(seriesPL.size() - 1)
-                .getWinningTeam().getName() + ", ");
-        System.out.println("you are S" + season + " Premier League Champions!");
-        System.out.print("Congrats " + seriesWL.get(seriesWL.size() - 1)
-                .getWinningTeam().getName() + ", ");
-        System.out.println("you are S" + season + " World League Champions!");
-        System.out.print("Congrats " + seriesUL.get(seriesUL.size() - 1)
-                .getWinningTeam().getName() + ", ");
-        System.out.println("you are S" + season + " United League Champions!");
-        System.out.print("Congrats " + seriesIL.get(seriesIL.size() - 1)
-                .getWinningTeam().getName() + ", ");
-        System.out.println("you are S" + season + " International League Champions!");
-        System.out.println("Reset to start S" + (season + 1));
+
+        printSeasonSummary(season);
     }
 
     /**
@@ -601,6 +594,8 @@ public class Main {
                 int[] twoPlayerPoints = new int[5];
                 ArrayList<Player> possession = oneRoster;
                 ArrayList<Player> defense = twoRoster;
+                Team pos = one;
+                Team def = two;
                 int OTCount = 0;
                 int onePoints = 0;
                 int twoPoints = 0;
@@ -641,10 +636,14 @@ public class Main {
                     if (i % 2 == 0) {
                         possession = oneRoster;
                         defense = twoRoster;
+                        pos = one;
+                        def = two;
                     }
                     else {
                         possession = twoRoster;
                         defense = oneRoster;
+                        pos = two;
+                        def = one;
                     }
                     int getBallTo = 0;
                     for (Player p : possession) {
@@ -662,12 +661,7 @@ public class Main {
                             playerWithBall = p;
                         }
                     }
-                    Player defender = defense.get(0);
-                    for (Player p : defense) {
-                        if (Objects.equals(p.getPosition(), playerWithBall.getPosition())) {
-                            defender = p;
-                        }
-                    }
+                    Player defender = def.pickDefender(pos, possession.indexOf(playerWithBall));
                     int def_effect = playerWithBall.getRating() - (int) (0.45 * defender.getRating()) + 10;
                     int oddsToMake = Math.max(35, Math.min(65, def_effect));
                     int madeScore = (int) (Math.random() * 100) + 1;
@@ -688,6 +682,10 @@ public class Main {
                             System.out.print(playerWithBall.getName() + " scores " + pointsScored + " for " + t.getAbreviation() + "!");
                             keyboard.nextLine();
                         }
+                    }
+                    else if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3) && !skip){
+                        System.out.print(playerWithBall.getName() + " was stopped by " + defender.getName());
+                        keyboard.nextLine();
                     }
                     if (i % 2 == 0) {
                         onePoints += pointsScored;
@@ -747,10 +745,10 @@ public class Main {
                 System.out.println(two.getName() + ": " + two.getWin() + "-" + two.getLoss());
                 System.out.println();
                 tiebreakersComplete = "N";
-                toFileSchedule();
-                updateStandings();
                 toFile();
                 toFileWL();
+                toFileSchedule();
+                updateStandings();
                 toFileRemainingSchedule();
                 makeGoodLookinStandings();
                 toFileBestScorers();
@@ -921,14 +919,6 @@ public class Main {
                     if (t.getWin() > TOTAL_NUM_PER_PL_WL - conf.get(1).getLoss()) {
                         sb.append("*-");
                     }
-                    else if (t.getWin() > TOTAL_NUM_PER_PL_WL - conf.get(2).getLoss()) {
-                        if (conf.equals(PL)) {
-                            sb.append("x-");
-                        }
-                        else {
-                            sb.append("p-");
-                        }
-                    }
                     else {
                         sb.append("x-");
                     }
@@ -952,14 +942,6 @@ public class Main {
             else {
                 if (seed == 1) {
                     sb.append("*-");
-                }
-                else if (seed == 2) {
-                    if (conf.equals(PL)) {
-                        sb.append("x-");
-                    }
-                    else {
-                        sb.append("p-");
-                    }
                 }
                 else if (seed > 1 && seed < 9) {
                     sb.append("x-");
@@ -1087,6 +1069,7 @@ public class Main {
             seriesQueue.offer(seriesUL.get(3));
             seriesQueue.offer(seriesIL.get(3));
         }
+        getPlayoffSeeding();
         toFilePlayoffs();
         while (seriesQueue.peek() != null) {
             PlayoffSeries curSer = seriesQueue.poll();
@@ -1094,37 +1077,29 @@ public class Main {
             Team two = curSer.getAway();
             int oRank;
             int tRank;
-            if (PL.contains(one)) {
-                oRank = PL.indexOf(one) + 1;
-                tRank = PL.indexOf(two) + 1;
-            }
-            else if (WL.contains(one)) {
-                oRank = WL.indexOf(one) + 1;
-                tRank = WL.indexOf(two) + 1;
-            }
-            else if (UL.contains(one)) {
-                oRank = UL.indexOf(one) + 1;
-                tRank = UL.indexOf(two) + 1;
-            }
-            else {
-                oRank = IL.indexOf(one) + 1;
-                tRank = IL.indexOf(two) + 1;
-            }
-            int gp = curSer.getAwayWins() + curSer.getHomeWins();
-            playoffs = true;
             String confe;
             if (PL.contains(one)) {
+                oRank = pl_playoff.indexOf(one) + 1;
+                tRank = pl_playoff.indexOf(two) + 1;
                 confe = "Premier League";
             }
             else if (WL.contains(one)) {
+                oRank = wl_playoff.indexOf(one) + 1;
+                tRank = wl_playoff.indexOf(two) + 1;
                 confe = "World League";
             }
             else if (UL.contains(one)) {
+                oRank = ul_playoff.indexOf(one) + 1;
+                tRank = ul_playoff.indexOf(two) + 1;
                 confe = "United League";
             }
             else {
+                oRank = il_playoff.indexOf(one) + 1;
+                tRank = il_playoff.indexOf(two) + 1;
                 confe = "International League";
             }
+            int gp = curSer.getAwayWins() + curSer.getHomeWins();
+            playoffs = true;
             System.out.println("--" + confe + "--");
             if (gp == 2 || gp == 3 || gp == 5) {
                 System.out.println(one.displayToString());
@@ -1148,6 +1123,8 @@ public class Main {
             int[] twoPlayerPoints = new int[5];
             ArrayList<Player> possession = oneRoster;
             ArrayList<Player> defense = twoRoster;
+            Team pos = one;
+            Team def = two;
             int OTCount = 0;
             int onePoints = 0;
             int twoPoints = 0;
@@ -1156,39 +1133,31 @@ public class Main {
             //Runs through a game
             for (int i = 0; i < endGamePoss; i++) {
                 if (i == 30) {
-                    if (gp == 2 || gp == 3 || gp == 5) {
+                    if (gp == 2 || gp == 3 || gp == 5)
                         System.out.print("End of the 1st: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints);
-                    }
-                    else {
+                    else
                         System.out.print("End of the 1st: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
-                    }
                     keyboard.nextLine();
                 }
                 else if (i == 60) {
-                    if (gp == 2 || gp == 3 || gp == 5) {
+                    if (gp == 2 || gp == 3 || gp == 5)
                         System.out.print("Halftime: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints);
-                    }
-                    else {
+                    else
                         System.out.print("Halftime: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
-                    }
                     keyboard.nextLine();
                 }
                 else if (i == 90) {
-                    if (gp == 2 || gp == 3 || gp == 5) {
+                    if (gp == 2 || gp == 3 || gp == 5)
                         System.out.print("End of the 3rd: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints);
-                    }
-                    else {
+                    else
                         System.out.print("End of the 3rd: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
-                    }
                     keyboard.nextLine();
                 }
-                else if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3)) {
-                    if (gp == 2 || gp == 3 || gp == 5) {
+                else if (i > 109 && Math.abs(onePoints - twoPoints) <= 15) {
+                    if (gp == 2 || gp == 3 || gp == 5)
                         System.out.print(endGamePoss-i + " Possessions left: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints + ", ");
-                    }
-                    else {
+                    else
                         System.out.print(endGamePoss-i + " Possessions left: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints + ", ");
-                    }
                     if (i%2 == 0) {
                         System.out.print(one.getAbreviation() + " Possession");
                     }
@@ -1198,30 +1167,30 @@ public class Main {
                     keyboard.nextLine();
                 }
                 else if (i == 120) {
-                    if (gp == 2 || gp == 3 || gp == 5) {
-                        System.out.print("End of Regulation: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints);
-                    }
-                    else {
-                        System.out.print("End of Regulation: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
-                    }
+                    if (gp == 2 || gp == 3 || gp == 5)
+                        System.out.print("End of the Regulation: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints);
+                    else
+                        System.out.print("End of the Regulation: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
                     keyboard.nextLine();
                 }
                 else if (i%10 == 0 && i > 120) {
-                    if (gp == 2 || gp == 3 || gp == 5) {
+                    if (gp == 2 || gp == 3 || gp == 5)
                         System.out.print("End of " + OTCount + "OT: " + two.getName() + ": " + twoPoints + ", " + one.getName() + ": " + onePoints);
-                    }
-                    else {
+                    else
                         System.out.print("End of " + OTCount + "OT: " + one.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
-                    }
                     keyboard.nextLine();
                 }
                 if (i % 2 == 0) {
                     possession = oneRoster;
                     defense = twoRoster;
+                    pos = one;
+                    def = two;
                 }
                 else {
                     possession = twoRoster;
                     defense = oneRoster;
+                    pos = two;
+                    def = one;
                 }
                 int getBallTo = 0;
                 for (Player p : possession) {
@@ -1239,12 +1208,7 @@ public class Main {
                         playerWithBall = p;
                     }
                 }
-                Player defender = defense.get(0);
-                for (Player p : defense) {
-                    if (Objects.equals(p.getPosition(), playerWithBall.getPosition())) {
-                        defender = p;
-                    }
-                }
+                Player defender = def.pickDefender(pos, possession.indexOf(playerWithBall));
                 int def_effect = playerWithBall.getRating() - (int) (0.45 * defender.getRating()) + 10;
                 int oddsToMake = Math.max(35, Math.min(65, def_effect));
                 int madeScore = (int) (Math.random() * 100) + 1;
@@ -1257,7 +1221,7 @@ public class Main {
                     else {
                         pointsScored = 2;
                     }
-                    if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3)) {
+                    if (i > 109 && Math.abs(onePoints - twoPoints) <= 15) {
                         Team t = one;
                         if (i % 2 == 1) {
                             t = two;
@@ -1265,6 +1229,10 @@ public class Main {
                         System.out.print(playerWithBall.getName() + " scores " + pointsScored + " for " + t.getAbreviation() + "!");
                         keyboard.nextLine();
                     }
+                }
+                else if (i > 109 && Math.abs(onePoints - twoPoints) <= 15) {
+                    System.out.print(playerWithBall.getName() + " was stopped by " + defender.getName());
+                    keyboard.nextLine();
                 }
                 if (i % 2 == 0) {
                     onePoints += pointsScored;
@@ -1777,5 +1745,110 @@ public class Main {
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
+    }
+
+    public static void printSeasonSummary(int season) {
+        // print champions
+        System.out.print("Congrats " + seriesPL.get(seriesPL.size() - 1)
+                .getWinningTeam().getName() + ", ");
+        System.out.println("you are S" + season + " Premier League Champions!");
+        System.out.print("Congrats " + seriesWL.get(seriesWL.size() - 1)
+                .getWinningTeam().getName() + ", ");
+        System.out.println("you are S" + season + " World League Champions!");
+        System.out.print("Congrats " + seriesUL.get(seriesUL.size() - 1)
+                .getWinningTeam().getName() + ", ");
+        System.out.println("you are S" + season + " United League Champions!");
+        System.out.print("Congrats " + seriesIL.get(seriesIL.size() - 1)
+                .getWinningTeam().getName() + ", ");
+        System.out.println("you are S" + season + " International League Champions!");
+        System.out.println("Reset to start S" + (season + 1));
+
+        // print promoted/demoted
+        List<Team> wl_promote = new ArrayList<Team>();
+        List<Team> ul_promote = new ArrayList<Team>();
+        List<Team> il_promote = new ArrayList<Team>();
+        List<Team> pl_demote = new ArrayList<Team>();
+        List<Team> wl_demote = new ArrayList<Team>();
+        List<Team> ul_demote = new ArrayList<Team>();
+        if (seriesWL.get(seriesWL.size() - 1).getWinningTeam().equals(WL.get(0))) {
+            wl_promote.add(WL.get(0));
+            wl_promote.add(WL.get(1));
+        }
+        else {
+            wl_promote.add(WL.get(0));
+            wl_promote.add(seriesWL.get(seriesWL.size() - 1).getWinningTeam());
+        }
+        if (seriesUL.get(seriesUL.size() - 1).getWinningTeam().equals(UL.get(0))) {
+            ul_promote.add(UL.get(0));
+            ul_promote.add(UL.get(1));
+        }
+        else {
+            ul_promote.add(UL.get(0));
+            ul_promote.add(seriesUL.get(seriesUL.size() - 1).getWinningTeam());
+        }
+        if (seriesIL.get(seriesIL.size() - 1).getWinningTeam().equals(IL.get(0))) {
+            il_promote.add(IL.get(0));
+            il_promote.add(IL.get(1));
+        }
+        else {
+            il_promote.add(IL.get(0));
+            il_promote.add(seriesIL.get(seriesIL.size() - 1).getWinningTeam());
+        }
+        pl_demote.add(PL.get(14));
+        pl_demote.add(PL.get(15));
+        wl_demote.add(WL.get(14));
+        wl_demote.add(WL.get(15));
+        ul_demote.add(UL.get(14));
+        ul_demote.add(UL.get(15));
+
+        // print promotion/demotion
+        System.out.println("Demoted from Premier League: " + pl_demote.get(0).getName() + ", " + pl_demote.get(1).getName());
+        System.out.println("Promoted from World League: " + wl_promote.get(0).getName() + ", " + wl_promote.get(1).getName());
+        System.out.println("Demoted from World League: " + wl_demote.get(0).getName() + ", " + wl_demote.get(1).getName());
+        System.out.println("Promoted from United League: " + ul_promote.get(0).getName() + ", " + ul_promote.get(1).getName());
+        System.out.println("Demoted from United League: " + ul_demote.get(0).getName() + ", " + ul_demote.get(1).getName());
+        System.out.println("Promoted from International League: " + il_promote.get(0).getName() + ", " + il_promote.get(1).getName());
+    }
+
+    private static void getPlayoffSeeding() {
+        pl_playoff = new ArrayList<Team>();
+        pl_playoff.add(seriesPL.get(0).getHome());
+        pl_playoff.add(seriesPL.get(1).getHome());
+        pl_playoff.add(seriesPL.get(2).getHome());
+        pl_playoff.add(seriesPL.get(3).getHome());
+        pl_playoff.add(seriesPL.get(3).getAway());
+        pl_playoff.add(seriesPL.get(2).getAway());
+        pl_playoff.add(seriesPL.get(1).getAway());
+        pl_playoff.add(seriesPL.get(0).getAway());
+
+        wl_playoff = new ArrayList<Team>();
+        wl_playoff.add(seriesWL.get(0).getHome());
+        wl_playoff.add(seriesWL.get(1).getHome());
+        wl_playoff.add(seriesWL.get(2).getHome());
+        wl_playoff.add(seriesWL.get(3).getHome());
+        wl_playoff.add(seriesWL.get(3).getAway());
+        wl_playoff.add(seriesWL.get(2).getAway());
+        wl_playoff.add(seriesWL.get(1).getAway());
+        wl_playoff.add(seriesWL.get(0).getAway());
+
+        ul_playoff = new ArrayList<Team>();
+        ul_playoff.add(seriesUL.get(0).getHome());
+        ul_playoff.add(seriesUL.get(1).getHome());
+        ul_playoff.add(seriesUL.get(2).getHome());
+        ul_playoff.add(seriesUL.get(3).getHome());
+        ul_playoff.add(seriesUL.get(3).getAway());
+        ul_playoff.add(seriesUL.get(2).getAway());
+        ul_playoff.add(seriesUL.get(1).getAway());
+        ul_playoff.add(seriesUL.get(0).getAway());
+
+        il_playoff = new ArrayList<Team>();
+        il_playoff.add(seriesIL.get(0).getHome());
+        il_playoff.add(seriesIL.get(1).getHome());
+        il_playoff.add(seriesIL.get(2).getHome());
+        il_playoff.add(seriesIL.get(3).getHome());
+        il_playoff.add(seriesIL.get(3).getAway());
+        il_playoff.add(seriesIL.get(2).getAway());
+        il_playoff.add(seriesIL.get(1).getAway());
+        il_playoff.add(seriesIL.get(0).getAway());
     }
 }

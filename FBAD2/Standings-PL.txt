@@ -1,19 +1,19 @@
 -Premier League-
 
-*-1.Austin:          23-7    --
-x-2.Salzburg:        22-8    -1
-x-3.Guadalajara:     19-11   -4
-x-4.Mexico City:     19-11   -4
-x-5.London:          17-13   -6
-x-6.Lisbon:          17-13   -6
-x-7.Buenos Aires:    17-13   -6
-x-8.Rome:            17-13   -6
+*-1.Salzburg:        23-7    --
+x-2.Lisbon:          21-9    -2
+x-3.Austin:          20-10   -3
+x-4.Miami:           19-11   -4
+x-5.London:          19-11   -4
+x-6.Milan:           18-12   -5
+x-7.Zurich:          16-14   -7
+x-8.Buenos Aires:    15-15   -8
 -----
-n-9.Milan:           16-14   -7
-n-10.Vancouver:      15-15   -8
-n-11.Berlin:         13-17   -10
-n-12.Madrid:         13-17   -10
-n-13.Budapest:       11-19   -12
-n-14.Ottawa:         10-20   -13
-d-15.Tokyo:           7-23   -16
-d-16.Recife:          4-26   -19
+n-9.Madrid:          15-15   -8
+n-10.Rome:           14-16   -9
+n-11.Berlin:         14-16   -9
+n-12.Guadalajara:    11-19   -12
+n-13.Ottawa:         10-20   -13
+n-14.Edmonton:        9-21   -14
+d-15.Mexico City:     8-22   -15
+d-16.Budapest:        8-22   -15

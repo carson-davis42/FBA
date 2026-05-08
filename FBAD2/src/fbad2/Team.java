@@ -162,16 +162,16 @@ public class Team implements Comparable<Team> {
         int rank = 0;
         if (Main.playoffs) {
             if (conference.equals("PL")) {
-                rank = Main.PL.indexOf(this) + 1;
+                rank = Main.pl_playoff.indexOf(this) + 1;
             }
             else if (conference.equals("WL")){
-                rank = Main.WL.indexOf(this) + 1;
+                rank = Main.wl_playoff.indexOf(this) + 1;
             }
             else if (conference.equals("UL")){
-                rank = Main.UL.indexOf(this) + 1;
+                rank = Main.ul_playoff.indexOf(this) + 1;
             }
             else {
-                rank = Main.IL.indexOf(this) + 1;
+                rank = Main.il_playoff.indexOf(this) + 1;
             }
         }
         if (Main.playoffs) {
@@ -274,6 +274,8 @@ public class Team implements Comparable<Team> {
             int[] twoPlayerPoints = new int[5];
             ArrayList<Player> possession = oneRoster;
             ArrayList<Player> defense = twoRoster;
+            Team pos = this;
+            Team def = two;
             int OTCount = 0;
             int onePoints = 0;
             int twoPoints = 0;
@@ -281,43 +283,47 @@ public class Team implements Comparable<Team> {
             boolean score = false;
             //Runs through a game
             for (int i = 0; i < endGamePoss; i++) {
-                if (i == 30 && !skip) {
-                    System.out.print("End of the 1st: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                if (i == 30) {
+                    System.out.print("End of the 1st: " + this.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
                     keyboard.nextLine();
                 }
-                else if (i == 60 && !skip) {
-                    System.out.print("Halftime: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                else if (i == 60) {
+                    System.out.print("Halftime: " + this.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
                     keyboard.nextLine();
                 }
-                else if (i == 90 && !skip) {
-                    System.out.print("End of the 3rd: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                else if (i == 90) {
+                    System.out.print("End of the 3rd: " + this.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
                     keyboard.nextLine();
                 }
-                else if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3) && !skip) {
-                    System.out.print(endGamePoss-i + " Possessions left: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints + ", ");
+                else if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3)) {
+                    System.out.print(endGamePoss-i + " Possessions left: " + this.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints + ", ");
                     if (i%2 == 0) {
-                        System.out.print(getAbreviation() + " Possession");
+                        System.out.print(this.getAbreviation() + " Possession");
                     }
                     else {
                         System.out.print(two.getAbreviation() + " Possession");
                     }
                     keyboard.nextLine();
                 }
-                else if (i == 120 && !skip) {
-                    System.out.print("End of the Regulation: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                else if (i == 120) {
+                    System.out.print("End of the Regulation: " + this.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
                     keyboard.nextLine();
                 }
-                else if (i%10 == 0 && i > 120 && !skip) {
-                    System.out.print("End of " + OTCount + "OT: " + getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
+                else if (i%10 == 0 && i > 120) {
+                    System.out.print("End of " + OTCount + "OT: " + this.getName() + ": " + onePoints + ", " + two.getName() + ": " + twoPoints);
                     keyboard.nextLine();
                 }
                 if (i % 2 == 0) {
                     possession = oneRoster;
                     defense = twoRoster;
+                    pos = this;
+                    def = two;
                 }
                 else {
                     possession = twoRoster;
                     defense = oneRoster;
+                    pos = two;
+                    def = this;
                 }
                 int getBallTo = 0;
                 for (Player p : possession) {
@@ -335,12 +341,7 @@ public class Team implements Comparable<Team> {
                         playerWithBall = p;
                     }
                 }
-                Player defender = defense.get(0);
-                for (Player p : defense) {
-                    if (Objects.equals(p.getPosition(), playerWithBall.getPosition())) {
-                        defender = p;
-                    }
-                }
+                Player defender = def.pickDefender(pos, possession.indexOf(playerWithBall));
                 int def_effect = playerWithBall.getRating() - (int) (0.45 * defender.getRating()) + 10;
                 int oddsToMake = Math.max(35, Math.min(65, def_effect));
                 int madeScore = (int) (Math.random() * 100) + 1;
@@ -353,7 +354,7 @@ public class Team implements Comparable<Team> {
                     else {
                         pointsScored = 2;
                     }
-                    if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3) && !skip) {
+                    if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3)) {
                         Team t = this;
                         if (i % 2 == 1) {
                             t = two;
@@ -361,6 +362,10 @@ public class Team implements Comparable<Team> {
                         System.out.print(playerWithBall.getName() + " scores " + pointsScored + " for " + t.getAbreviation() + "!");
                         keyboard.nextLine();
                     }
+                }
+                else if (i > 109 && Math.abs(onePoints - twoPoints) <= (((endGamePoss-i+1)/2) * 3)){
+                    System.out.print(playerWithBall.getName() + " was stopped by " + defender.getName());
+                    keyboard.nextLine();
                 }
                 if (i % 2 == 0) {
                     onePoints += pointsScored;
@@ -376,7 +381,7 @@ public class Team implements Comparable<Team> {
                 }
             }
             System.out.println();
-            System.out.println(getName() + ": ");
+            System.out.println(this.getName() + ": ");
             for (int i = 0; i < 5; i++) {
                 Player p = oneRoster.get(i);
                 System.out.println("(" + p.getPosition() + ")" + p.getName() + ": " + onePlayerPoints[i]);
@@ -412,6 +417,65 @@ public class Team implements Comparable<Team> {
             return thisWin;
         }
         return true;
+    }
+
+    public Player pickDefender(Team t, int pos) {
+        Player target = t.getPlayers()[pos];
+        int targetRating = target.getRating(); // change if your rating getter has a different name
+
+        ArrayList<Player> candidates = new ArrayList<>();
+        ArrayList<Double> weights = new ArrayList<>();
+        double totalWeight = 0.0;
+
+        for (int i = 0; i < players.length; i++) {
+            Player defender = players[i];
+            if (defender == null) {
+                continue;
+            }
+
+            double weight = 1.0; // base chance so everyone can be selected
+
+            // Position bonus
+            int posDiff = Math.abs(i - pos);
+            if (posDiff == 0) {
+                weight *= 8.0;   // same position
+            } else if (posDiff == 1) {
+                weight *= 4.0;   // nearby position
+            } else if (posDiff == 2) {
+                weight *= 0.6;   // somewhat similar
+            } else {
+                weight *= 0.2;   // far position, but still possible
+            }
+
+            if (posDiff >= 3) {
+                weight *= 0.02;
+            }
+
+            int ratingDiff = Math.abs(defender.getRating() - targetRating);
+            double ratingFactor = 1.0 / (1.0 + ratingDiff / 10.0);
+            weight *= (1.0 + ratingFactor);
+
+            candidates.add(defender);
+            weights.add(weight);
+            totalWeight += weight;
+        }
+
+        if (candidates.isEmpty()) {
+            return null;
+        }
+
+        // Weighted random selection
+        double rand = Math.random() * totalWeight;
+        double runningTotal = 0.0;
+
+        for (int i = 0; i < candidates.size(); i++) {
+            runningTotal += weights.get(i);
+            if (rand <= runningTotal) {
+                return candidates.get(i);
+            }
+        }
+
+        return candidates.get(candidates.size() - 1);
     }
 
     @Override
