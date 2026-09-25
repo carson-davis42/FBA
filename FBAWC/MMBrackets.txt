@@ -1,98 +1,98 @@
-                                              --S76 World Cup Greece--
+                                              --S78 World Cup Croatia--
 --Region 1--
    -Round of 64-
-(9)Austria vs (23)UAE
-(21)Switzerland vs (7)Hungary
-(46)Saudi Arabia vs (45)South Korea
-(52)Kenya vs (1)USA
-(33)Nigeria vs (34)Sweden
-(41)Cuba vs (56)Thailand
-(51)Chile vs (3)Italy
-(14)France vs (49)Finland
+(18)Japan vs (27)UAE
+(30)Poland vs (58)Mongolia
+(38)Egypt vs (60)Romania
+(7)England vs (55)Dominican Republic
+(20)Russia vs (59)Senegal
+(77)Iceland vs (44)Taiwan
+(66)Saudi Arabia vs (10)Canada
+(76)Ethiopia vs (34)South Africa
    -Round of 32-
-(23)UAE vs (7)Hungary
-(1)USA vs (46)Saudi Arabia
-(34)Sweden vs (56)Thailand
-(14)France vs (3)Italy
+(18)Japan vs (30)Poland
+(7)England vs (38)Egypt
+(20)Russia vs (77)Iceland
+(34)South Africa vs (10)Canada
    -Sweet 16-
-(23)UAE vs (1)USA
-(3)Italy vs (34)Sweden
+(18)Japan vs (7)England
+(10)Canada vs (20)Russia
    -Elite 8-
-(23)UAE vs (3)Italy
+(7)England vs (10)Canada
 
 
 --Region 2--
    -Round of 64-
-(57)Algeria vs (64)Taiwan
-(38)Norway vs (26)Belgium
-(16)Australia vs (61)Nepal
-(42)Czechia vs (63)Slovenia
-(62)Peru vs (32)Ireland
-(12)Portugal vs (10)Mexico
-(29)Scotland vs (31)India
-(39)Turkey vs (18)Argentina
+(8)India vs (67)South Korea
+(17)Argentina vs (64)Finland
+(81)Georgia vs (12)Switzerland
+(13)Netherlands vs (36)Norway
+(29)Australia vs (56)Chile
+(21)Scotland vs (37)Luxembourg
+(1)Germany vs (4)Austria
+(48)Cuba vs (15)Denmark
    -Round of 32-
-(57)Algeria vs (38)Norway
-(63)Slovenia vs (16)Australia
-(32)Ireland vs (12)Portugal
-(39)Turkey vs (29)Scotland
+(8)India vs (17)Argentina
+(13)Netherlands vs (12)Switzerland
+(29)Australia vs (21)Scotland
+(15)Denmark vs (1)Germany
    -Sweet 16-
-(38)Norway vs (16)Australia
-(29)Scotland vs (12)Portugal
+(8)India vs (13)Netherlands
+(1)Germany vs (21)Scotland
    -Elite 8-
-(16)Australia vs (12)Portugal
+(8)India vs (1)Germany
 
 
 --Region 3--
    -Round of 64-
-(22)Ukraine vs (15)Japan
-(50)Singapore vs (20)Northern Ireland
-(36)Croatia vs (19)Netherlands
-(40)Luxembourg vs (44)Qatar
-(4)Canada vs (48)Colombia
-(5)Germany vs (37)Egypt
-(60)Romania vs (28)South Africa
-(25)Poland vs (8)Russia
+(23)Croatia vs (68)Sri Lanka
+(28)Belgium vs (3)USA
+(35)Greece vs (9)Mexico
+(43)Turkey vs (72)Serbia
+(22)China vs (33)Sweden
+(84)Israel vs (5)Spain
+(75)Philippines vs (39)New Zealand
+(47)Ivory Coast vs (70)Angola
    -Round of 32-
-(22)Ukraine vs (20)Northern Ireland
-(44)Qatar vs (19)Netherlands
-(4)Canada vs (5)Germany
-(8)Russia vs (28)South Africa
+(23)Croatia vs (3)USA
+(43)Turkey vs (9)Mexico
+(22)China vs (5)Spain
+(70)Angola vs (39)New Zealand
    -Sweet 16-
-(20)Northern Ireland vs (19)Netherlands
-(8)Russia vs (4)Canada
+(3)USA vs (9)Mexico
+(70)Angola vs (5)Spain
    -Elite 8-
-(20)Northern Ireland vs (4)Canada
+(3)USA vs (5)Spain
 
 
 --Region 4--
    -Round of 64-
-(47)Indonesia vs (54)Vietnam
-(35)Greece vs (2)Brazil
-(55)El Salvador vs (59)Philippines
-(17)Bangladesh vs (30)Denmark
-(43)Iceland vs (11)Morocco
-(24)China vs (6)England
-(58)Pakistan vs (13)Spain
-(53)Lithuania vs (27)New Zealand
+(11)Brazil vs (65)Venezuela
+(85)Tunisia vs (14)Portugal
+(50)El Salvador vs (6)France
+(2)Italy vs (32)Northern Ireland
+(25)Ukraine vs (54)Peru
+(31)Nigeria vs (26)Morocco
+(19)Ireland vs (24)Hungary
+(61)Czechia vs (16)Bangladesh
    -Round of 32-
-(47)Indonesia vs (2)Brazil
-(17)Bangladesh vs (55)El Salvador
-(11)Morocco vs (24)China
-(27)New Zealand vs (13)Spain
+(11)Brazil vs (14)Portugal
+(2)Italy vs (6)France
+(25)Ukraine vs (31)Nigeria
+(16)Bangladesh vs (19)Ireland
    -Sweet 16-
-(2)Brazil vs (17)Bangladesh
-(13)Spain vs (11)Morocco
+(14)Portugal vs (2)Italy
+(19)Ireland vs (25)Ukraine
    -Elite 8-
-(2)Brazil vs (13)Spain
+(2)Italy vs (19)Ireland
 
 
    --Final Four--
-(3)Italy vs (2)Brazil
-(16)Australia vs (20)Northern Ireland
+(7)England vs (2)Italy
+(1)Germany vs (3)USA
    --National Championship--
-(3)Italy vs (16)Australia
+(2)Italy vs (1)Germany
    --Champions--
-Australia
+Germany
 
 

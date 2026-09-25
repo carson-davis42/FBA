@@ -1,16 +1,16 @@
 -Lottery-
 
-1.Ohio Valley Sharks:    0-2    --
-2.Oakland All-Stars:     0-1    -0.5
-3.Florida Panthers:      0-0    -1
-4.Vancouver Orcas:       0-0    -1
-5.Los Angeles Hawks:     0-0    -1
-6.New York Icons:        0-0    -1
-7.DCB:                   0-0    -1
-8.Montreal Chevaliers:   0-0    -1
-9.Atlanta Venom:         0-0    -1
-10.Phoenix Badgers:      0-0    -1
-11.Chicago Spartans:     0-0    -1
-12.Vegas Volts:          0-0    -1
-13.Seattle Shock:        0-0    -1
-14.Toronto Wolves:       0-0    -1
+1.Florida Panthers:     14-72   --
+2.Montreal Chevaliers:  16-70   -2
+3.Ohio Valley Sharks:   18-68   -4
+4.St.Louis Kings:       20-66   -6
+5.Los Angeles Hawks:    21-65   -7
+6.Milwaukee Warriors:   24-62   -10
+7.Vancouver Orcas:      24-62   -10
+8.New York Icons:       33-53   -19
+9.DCB:                  35-51   -21
+10.Oakland All-Stars:   36-50   -22
+11.Chicago Spartans:    38-48   -24
+12.Vegas Volts:         40-46   -26
+13.Columbus Pirates:    41-45   -27
+14.Phoenix Badgers:     42-44   -28

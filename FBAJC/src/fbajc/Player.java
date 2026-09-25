@@ -81,8 +81,12 @@ public class Player implements Comparable<Player> {
         most_recent_points = 0;
     }
 
-    public void newPPG (int games) {
-        PPG = ((double) points) / ((double) games);
+    public void newPPG(int games) {
+        if (games <= 0) {
+            PPG = 0.0;
+        } else {
+            PPG = ((double) points) / ((double) games);
+        }
     }
 
     public double getPPG () {

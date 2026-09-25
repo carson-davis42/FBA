@@ -1,0 +1,329 @@
+========================================
+     FBAJC CONFERENCE PRESEASON RANKINGS
+========================================
+Season: S78
+
+----------------------------------------
+Big 12 (B12)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      Houston                   83.2    
+2      Iowa State                81.2    
+3      Texas                     80.4    
+4      Kansas                    79.6    
+5      Oklahoma                  77.2    
+6      Texas Tech                76.4    
+7      West Virginia             74.6    
+8      TCU                       74.4    
+9      Kansas State              70.4    
+10     BYU                       70.2    
+11     Oklahoma State            69.4    
+12     Baylor                    68.2    
+
+----------------------------------------
+ACC (ACC)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      North Carolina            84.8    
+2      Duke                      84.8    
+3      Wake Forest               84.2    
+4      Syracuse                  83.0    
+5      Virginia                  79.6    
+6      Florida State             76.8    
+7      Clemson                   72.0    
+8      Louisville                71.0    
+9      Miami                     70.4    
+10     NC State                  70.2    
+11     Notre Dame                70.2    
+12     Virginia Tech             69.4    
+
+----------------------------------------
+Big East (BE)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      UConn                     80.4    
+2      Marquette                 80.2    
+3      Creighton                 77.8    
+4      St.John's                 76.8    
+5      Villanova                 76.4    
+6      Butler                    74.8    
+7      Seton Hall                73.4    
+8      Providence                73.0    
+9      Georgetown                71.8    
+10     Xavier                    70.4    
+11     DePaul                    69.2    
+12     Davidson                  68.4    
+
+----------------------------------------
+SEC (SEC)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      Mississippi State         86.0    
+2      Kentucky                  85.4    
+3      Florida                   82.0    
+4      Tennessee                 80.8    
+5      Texas A&M                 77.8    
+6      Missouri                  77.2    
+7      LSU                       77.0    
+8      Arkansas                  73.0    
+9      Alabama                   72.8    
+10     Auburn                    72.2    
+11     Georgia                   72.0    
+12     Ole Miss                  69.2    
+
+----------------------------------------
+Big Ten (B10)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      Illinois                  82.6    
+2      Michigan                  82.4    
+3      Michigan State            82.4    
+4      Purdue                    82.2    
+5      Indiana                   80.2    
+6      Ohio State                77.4    
+7      Northwestern              76.6    
+8      Wisconsin                 71.2    
+9      Iowa                      71.2    
+10     Minnesota                 71.2    
+11     Maryland                  69.8    
+12     Penn State                66.6    
+
+----------------------------------------
+American (AAC)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      Memphis                   76.0    
+2      Wichita State             75.8    
+3      Cincinnati                74.2    
+4      UAB                       73.2    
+5      FAU                       73.2    
+6      Rice                      71.8    
+7      Akron                     70.4    
+8      SMU                       69.6    
+9      Georgia Tech              69.0    
+10     Tulane                    69.0    
+11     Toledo                    67.6    
+12     UCF                       67.4    
+
+----------------------------------------
+PAC 12 (P12)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      UCLA                      85.0    
+2      Gonzaga                   83.8    
+3      USC                       82.0    
+4      Arizona                   82.0    
+5      Oregon State              78.4    
+6      Oregon                    78.0    
+7      Washington State          76.2    
+8      Arizona State             76.0    
+9      Washington                73.0    
+10     Colorado                  73.0    
+11     Stanford                  72.4    
+12     Utah                      69.2    
+
+----------------------------------------
+Atlantic 10 (A10)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      Pitt                      77.8    
+2      VCU                       74.4    
+3      Vanderbilt                74.0    
+4      Buffalo                   72.6    
+5      Loyola-Chicago            71.4    
+6      Rutgers                   71.2    
+7      Dayton                    70.4    
+8      South Carolina            70.2    
+9      Nebraska                  68.8    
+10     St.Joseph's               68.4    
+11     Boston College            68.2    
+12     East Carolina             67.4    
+
+----------------------------------------
+Patriot (PAT)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      Lehigh                    74.2    
+2      Saint Mary's              72.4    
+3      Saint Peter's             70.8    
+4      Howard                    70.4    
+5      Vermont                   68.4    
+6      Murray State              68.2    
+7      Norfolk State             67.8    
+8      Belmont                   67.4    
+9      Liberty                   67.2    
+10     Army                      67.0    
+11     Navy                      65.8    
+12     Colgate                   63.8    
+
+----------------------------------------
+Colonial (COL)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      Winthrop                  72.6    
+2      Boston U                  71.6    
+3      Indiana State             70.4    
+4      Drake                     70.2    
+5      Rhode Island              69.8    
+6      Northeastern              68.8    
+7      UMBC                      68.0    
+8      Richmond                  67.8    
+9      Middle Tennessee          67.2    
+10     Delaware State            66.8    
+11     George Washington         66.6    
+12     Delaware                  66.2    
+
+----------------------------------------
+Horizon (HOR)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      St.Bonaventure            71.2    
+2      Iona                      70.2    
+3      Northern Kentucky         69.8    
+4      North Dakota State        69.6    
+5      Wofford                   69.4    
+6      Oakland                   68.6    
+7      Santa Clara               68.4    
+8      Cleveland State           68.0    
+9      UC Irvine                 67.4    
+10     South Dakota State        67.0    
+11     IUPUI                     66.4    
+12     Wright State              61.4    
+
+----------------------------------------
+Ivy League (IVY)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      UCSB                      70.2    
+2      Penn                      70.0    
+3      MIT                       70.0    
+4      Cal                       69.8    
+5      Princeton                 69.0    
+6      Chicago                   69.0    
+7      Harvard                   68.6    
+8      Columbia                  68.4    
+9      Yale                      67.6    
+10     Dartmouth                 66.6    
+11     Brown                     66.4    
+12     Cornell                   66.4    
+
+----------------------------------------
+Southern (SOCON)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      Abeline Christian         72.8    
+2      Texas A&M CC              70.0    
+3      Southern                  69.8    
+4      Oral Roberts              69.6    
+5      UTSA                      68.8    
+6      Texas Southern            68.0    
+7      McNeese State             66.4    
+8      North Texas               66.4    
+9      Stephen F Austin          66.2    
+10     Sam Houston State         66.0    
+11     Samford                   66.0    
+12     Texas State               64.8    
+
+----------------------------------------
+Sun Belt (SUN)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      Georgia State             72.0    
+2      ETSU                      68.8    
+3      South Florida             68.4    
+4      Jackson State             68.2    
+5      Western Kentucky          68.2    
+6      Furman                    67.6    
+7      Arkansas Pine Bluff       66.4    
+8      Grambling State           66.4    
+9      Arkansas State            66.2    
+10     Alabama State             66.0    
+11     James Madison             63.0    
+12     Chattanooga               63.0    
+
+----------------------------------------
+Big Sky (SKY)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      San Francisco             71.4    
+2      Evansville                71.2    
+3      Kennesaw State            70.2    
+4      Montana State             70.0    
+5      Longwood                  70.0    
+6      Portland State            67.8    
+7      Eastern Washington        67.6    
+8      Montana                   67.2    
+9      High Point                65.4    
+10     Weber State               65.2    
+11     Stetson                   63.6    
+12     UC San Diego              61.0    
+
+----------------------------------------
+Mountain West (MWC)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      San Diego State           86.4    
+2      Nevada                    83.0    
+3      UNLV                      75.4    
+4      Wyoming                   73.4    
+5      Air Force                 71.8    
+6      Fresno State              70.6    
+7      San Jose State            70.2    
+8      Colorado State            70.2    
+9      Boise State               69.4    
+10     New Mexico State          68.8    
+11     Utah State                68.4    
+12     New Mexico                68.2    
+
+----------------------------------------
+Ohio Valley (OVC)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      Troy                      73.8    
+2      Appalachian State         70.8    
+3      Northern Illinois         70.8    
+4      Kent State                70.0    
+5      Ohio                      69.8    
+6      Morehead State            69.4    
+7      Omaha                     68.0    
+8      Grand Canyon              67.8    
+9      Southeastern Missouri State 66.6    
+10     Arkansas Little Rock      66.6    
+11     Saint Louis               66.0    
+12     SIU Edwardsville          65.2    
+
+----------------------------------------
+NEC (NEC)
+----------------------------------------
+Rank   Team                      Rating  
+----------------------------------------
+1      UNC Wilmington            71.2    
+2      Robert Morris             71.0    
+3      Lipscomb                  69.6    
+4      Duquesne                  69.2    
+5      Bryant                    69.2    
+6      UNC Asheville             68.8    
+7      Fairleigh Dickinson       68.2    
+8      UMass                     68.0    
+9      Quinnipiac                68.0    
+10     Marist                    64.6    
+11     Long Island               64.2    
+12     George Mason              61.0    
+

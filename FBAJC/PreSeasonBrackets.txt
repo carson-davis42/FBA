@@ -1,648 +1,648 @@
    --Champions Classic--
    -First Round-
-West Virginia vs (8)Gonzaga
-Bryant vs (16)Virginia
-George Washington vs (15)Creighton
-McNeese State vs Indiana
+San Francisco vs (22)Texas
+Wichita State vs (18)Florida
+UNLV vs Northern Illinois
+(21)UConn vs (23)Indiana
    -Loser's Bracket-
-West Virginia vs Bryant
-George Washington vs McNeese State
+San Francisco vs Wichita State
+UNLV vs (23)Indiana
    -Semi-Finals-
-(8)Gonzaga vs (16)Virginia
-(15)Creighton vs Indiana
+(22)Texas vs (18)Florida
+Northern Illinois vs (21)UConn
    -7th Place Game-
-Bryant vs George Washington
+San Francisco vs UNLV
    -5th Place Game-
-West Virginia vs McNeese State
+Wichita State vs (23)Indiana
    -3rd Place Game-
-(8)Gonzaga vs Indiana
+(22)Texas vs Northern Illinois
    -Championship-
-(16)Virginia vs (15)Creighton
-   -Champions-
-Creighton
-
-
-   --Maui Jim Invitational--
-   -First Round-
-Ohio vs (5)Michigan State
-(2)UCLA vs Rutgers
-Weber State vs Oklahoma
-(13)Wichita State vs (4)Tennessee
-   -Loser's Bracket-
-Ohio vs Rutgers
-Weber State vs (13)Wichita State
-   -Semi-Finals-
-(5)Michigan State vs (2)UCLA
-Oklahoma vs (4)Tennessee
-   -7th Place Game-
-Ohio vs Weber State
-   -5th Place Game-
-Rutgers vs (13)Wichita State
-   -3rd Place Game-
-(5)Michigan State vs Oklahoma
-   -Championship-
-(2)UCLA vs (4)Tennessee
-   -Champions-
-UCLA
-
-
-   --Goodyear Classic--
-   -First Round-
-Memphis vs (6)Mississippi State
-Arizona State vs (1)Houston
-Dayton vs Belmont
-Drake vs (10)North Carolina
-   -Loser's Bracket-
-Memphis vs Arizona State
-Dayton vs Drake
-   -Semi-Finals-
-(6)Mississippi State vs (1)Houston
-Belmont vs (10)North Carolina
-   -7th Place Game-
-Arizona State vs Dayton
-   -5th Place Game-
-Memphis vs Drake
-   -3rd Place Game-
-(6)Mississippi State vs (10)North Carolina
-   -Championship-
-(1)Houston vs Belmont
-   -Champions-
-Houston
-
-
-   --Nike Invitational--
-   -First Round-
-TCU vs (3)Duke
-Vermont vs Wofford
-St.Joseph's vs UMBC
-Purdue vs (24)Auburn
-   -Loser's Bracket-
-TCU vs Wofford
-UMBC vs Purdue
-   -Semi-Finals-
-(3)Duke vs Vermont
-St.Joseph's vs (24)Auburn
-   -7th Place Game-
-TCU vs UMBC
-   -5th Place Game-
-Wofford vs Purdue
-   -3rd Place Game-
-Vermont vs St.Joseph's
-   -Championship-
-(3)Duke vs (24)Auburn
-   -Champions-
-Duke
-
-
-   --Chick-Fil-A Opener--
-   -First Round-
-SMU vs (18)Kentucky
-South Florida vs Lipscomb
-(19)UConn vs Boston College
-Wisconsin vs (22)Florida State
-   -Loser's Bracket-
-SMU vs South Florida
-Boston College vs Wisconsin
-   -Semi-Finals-
-(18)Kentucky vs Lipscomb
-(19)UConn vs (22)Florida State
-   -7th Place Game-
-South Florida vs Wisconsin
-   -5th Place Game-
-SMU vs Boston College
-   -3rd Place Game-
-Lipscomb vs (22)Florida State
-   -Championship-
-(18)Kentucky vs (19)UConn
-   -Champions-
-UConn
-
-
-   --Fanatics Invitational--
-   -First Round-
-(11)Missouri vs NC State
-Stephen F Austin vs (14)Colorado State
-Michigan vs Boston U
-Duquesne vs MIT
-   -Loser's Bracket-
-NC State vs Stephen F Austin
-Michigan vs Duquesne
-   -Semi-Finals-
-(11)Missouri vs (14)Colorado State
-Boston U vs MIT
-   -7th Place Game-
-NC State vs Duquesne
-   -5th Place Game-
-Stephen F Austin vs Michigan
-   -3rd Place Game-
-(11)Missouri vs MIT
-   -Championship-
-(14)Colorado State vs Boston U
-   -Champions-
-Colorado State
-
-
-   --Cuts Classic--
-   -First Round-
-(9)Illinois vs Dartmouth
-UNC Asheville vs Santa Clara
-(17)Florida vs Colgate
-St.John's vs Abeline Christian
-   -Loser's Bracket-
-Dartmouth vs Santa Clara
-Colgate vs Abeline Christian
-   -Semi-Finals-
-(9)Illinois vs UNC Asheville
-(17)Florida vs St.John's
-   -7th Place Game-
-Santa Clara vs Colgate
-   -5th Place Game-
-Dartmouth vs Abeline Christian
-   -3rd Place Game-
-UNC Asheville vs St.John's
-   -Championship-
-(9)Illinois vs (17)Florida
+(18)Florida vs (21)UConn
    -Champions-
 Florida
 
 
-   --Alaska Invitational--
+   --Maui Jim Invitational--
    -First Round-
-Buffalo vs (7)Arizona
-Liberty vs Virginia Tech
-SIU Edwardsville vs Utah State
-(12)Texas vs Penn
+George Washington vs Kansas
+Chattanooga vs (7)Wake Forest
+(1)San Diego State vs Samford
+Northern Kentucky vs (4)UCLA
    -Loser's Bracket-
-Buffalo vs Virginia Tech
-SIU Edwardsville vs Penn
+George Washington vs Chattanooga
+Samford vs Northern Kentucky
    -Semi-Finals-
-(7)Arizona vs Liberty
-Utah State vs (12)Texas
+Kansas vs (7)Wake Forest
+(1)San Diego State vs (4)UCLA
    -7th Place Game-
-Buffalo vs SIU Edwardsville
+Chattanooga vs Northern Kentucky
    -5th Place Game-
-Virginia Tech vs Penn
+George Washington vs Samford
    -3rd Place Game-
-Liberty vs Utah State
+Kansas vs (4)UCLA
    -Championship-
-(7)Arizona vs (12)Texas
+(7)Wake Forest vs (1)San Diego State
    -Champions-
-Texas
+San Diego State
 
 
-   --Panda Express Battle--
+   --Goodyear Classic--
    -First Round-
-Morehead State vs Oregon
-Georgia State vs Syracuse
-Rice vs Norfolk State
-VCU vs (21)Iowa State
+(12)Illinois vs (17)USC
+Georgia Tech vs (10)Nevada
+Richmond vs Creighton
+Oakland vs Weber State
    -Loser's Bracket-
-Morehead State vs Georgia State
-Norfolk State vs VCU
+(12)Illinois vs Georgia Tech
+Richmond vs Oakland
    -Semi-Finals-
-Oregon vs Syracuse
-Rice vs (21)Iowa State
+(17)USC vs (10)Nevada
+Creighton vs Weber State
    -7th Place Game-
-Morehead State vs Norfolk State
+Georgia Tech vs Oakland
    -5th Place Game-
-Georgia State vs VCU
+(12)Illinois vs Richmond
    -3rd Place Game-
-Oregon vs Rice
+(17)USC vs Weber State
    -Championship-
-Syracuse vs (21)Iowa State
+(10)Nevada vs Creighton
+   -Champions-
+Nevada
+
+
+   --Nike Invitational--
+   -First Round-
+(24)Marquette vs (14)Michigan State
+Drake vs Cornell
+New Mexico State vs (20)Tennessee
+UC Irvine vs Lipscomb
+   -Loser's Bracket-
+(24)Marquette vs Cornell
+New Mexico State vs Lipscomb
+   -Semi-Finals-
+(14)Michigan State vs Drake
+(20)Tennessee vs UC Irvine
+   -7th Place Game-
+Cornell vs New Mexico State
+   -5th Place Game-
+(24)Marquette vs Lipscomb
+   -3rd Place Game-
+Drake vs UC Irvine
+   -Championship-
+(14)Michigan State vs (20)Tennessee
+   -Champions-
+Tennessee
+
+
+   --Chick-Fil-A Opener--
+   -First Round-
+(15)Purdue vs (5)Duke
+New Mexico vs Bryant
+Appalachian State vs Texas A&M CC
+Baylor vs (8)Gonzaga
+   -Loser's Bracket-
+(5)Duke vs Bryant
+Appalachian State vs Baylor
+   -Semi-Finals-
+(15)Purdue vs New Mexico
+Texas A&M CC vs (8)Gonzaga
+   -7th Place Game-
+Bryant vs Baylor
+   -5th Place Game-
+(5)Duke vs Appalachian State
+   -3rd Place Game-
+New Mexico vs Texas A&M CC
+   -Championship-
+(15)Purdue vs (8)Gonzaga
+   -Champions-
+Purdue
+
+
+   --Fanatics Invitational--
+   -First Round-
+Buffalo vs Brown
+(11)Syracuse vs Kansas State
+(16)Arizona vs James Madison
+Akron vs Cleveland State
+   -Loser's Bracket-
+Brown vs Kansas State
+James Madison vs Cleveland State
+   -Semi-Finals-
+Buffalo vs (11)Syracuse
+(16)Arizona vs Akron
+   -7th Place Game-
+Brown vs James Madison
+   -5th Place Game-
+Kansas State vs Cleveland State
+   -3rd Place Game-
+Buffalo vs Akron
+   -Championship-
+(11)Syracuse vs (16)Arizona
    -Champions-
 Syracuse
 
 
+   --Cuts Classic--
+   -First Round-
+Long Island vs Texas Southern
+Colorado State vs (2)Mississippi State
+Cincinnati vs (9)Houston
+Columbia vs Arizona State
+   -Loser's Bracket-
+Long Island vs Colorado State
+Cincinnati vs Columbia
+   -Semi-Finals-
+Texas Southern vs (2)Mississippi State
+(9)Houston vs Arizona State
+   -7th Place Game-
+Colorado State vs Columbia
+   -5th Place Game-
+Long Island vs Cincinnati
+   -3rd Place Game-
+Texas Southern vs Arizona State
+   -Championship-
+(2)Mississippi State vs (9)Houston
+   -Champions-
+Mississippi State
+
+
+   --Alaska Invitational--
+   -First Round-
+(13)Michigan vs Wofford
+Arkansas State vs Oregon State
+(6)North Carolina vs Quinnipiac
+Oklahoma State vs Southeastern Missouri State
+   -Loser's Bracket-
+Wofford vs Arkansas State
+Quinnipiac vs Oklahoma State
+   -Semi-Finals-
+(13)Michigan vs Oregon State
+(6)North Carolina vs Southeastern Missouri State
+   -7th Place Game-
+Arkansas State vs Oklahoma State
+   -5th Place Game-
+Wofford vs Quinnipiac
+   -3rd Place Game-
+Oregon State vs Southeastern Missouri State
+   -Championship-
+(13)Michigan vs (6)North Carolina
+   -Champions-
+North Carolina
+
+
+   --Panda Express Battle--
+   -First Round-
+San Jose State vs Miami
+(3)Kentucky vs UTSA
+Nebraska vs (19)Iowa State
+Penn vs Belmont
+   -Loser's Bracket-
+Miami vs UTSA
+Nebraska vs Belmont
+   -Semi-Finals-
+San Jose State vs (3)Kentucky
+(19)Iowa State vs Penn
+   -7th Place Game-
+UTSA vs Belmont
+   -5th Place Game-
+Miami vs Nebraska
+   -3rd Place Game-
+San Jose State vs Penn
+   -Championship-
+(3)Kentucky vs (19)Iowa State
+   -Champions-
+Kentucky
+
+
    --South Beach Tip Off--
    -First Round-
-Omaha vs Princeton
-IUPUI vs Alabama State
-Xavier vs UNLV
-North Texas vs Portland State
+UNC Wilmington vs Ohio
+Georgetown vs Grambling State
+South Carolina vs Middle Tennessee
+Navy vs Montana State
    -Loser's Bracket-
-Omaha vs Alabama State
-UNLV vs Portland State
+Ohio vs Grambling State
+South Carolina vs Navy
    -Semi-Finals-
-Princeton vs IUPUI
-Xavier vs North Texas
+UNC Wilmington vs Georgetown
+Middle Tennessee vs Montana State
    -7th Place Game-
-Omaha vs UNLV
+Ohio vs Navy
    -5th Place Game-
-Alabama State vs Portland State
+Grambling State vs South Carolina
    -3rd Place Game-
-IUPUI vs North Texas
+UNC Wilmington vs Montana State
    -Championship-
-Princeton vs Xavier
-   -Champions-
-Xavier
-
-
-   --Battle 4 Atlantis--
-   -First Round-
-Middle Tennessee vs Stetson
-Arkansas Pine Bluff vs Troy
-Quinnipiac vs Fresno State
-FAU vs UC Irvine
-   -Loser's Bracket-
-Middle Tennessee vs Arkansas Pine Bluff
-Quinnipiac vs UC Irvine
-   -Semi-Finals-
-Stetson vs Troy
-Fresno State vs FAU
-   -7th Place Game-
-Arkansas Pine Bluff vs Quinnipiac
-   -5th Place Game-
-Middle Tennessee vs UC Irvine
-   -3rd Place Game-
-Troy vs FAU
-   -Championship-
-Stetson vs Fresno State
-   -Champions-
-Stetson
-
-
-   --Jimmy V Classic--
-   -First Round-
-Murray State vs Butler
-Sam Houston State vs St.Bonaventure
-Harvard vs New Mexico State
-James Madison vs Montana
-   -Loser's Bracket-
-Murray State vs Sam Houston State
-New Mexico State vs James Madison
-   -Semi-Finals-
-Butler vs St.Bonaventure
-Harvard vs Montana
-   -7th Place Game-
-Sam Houston State vs James Madison
-   -5th Place Game-
-Murray State vs New Mexico State
-   -3rd Place Game-
-St.Bonaventure vs Montana
-   -Championship-
-Butler vs Harvard
-   -Champions-
-Butler
-
-
-   --DCB Tip Off--
-   -First Round-
-Richmond vs Georgia Tech
-Robert Morris vs DePaul
-Saint Louis vs Washington State
-Chicago vs Montana State
-   -Loser's Bracket-
-Richmond vs Robert Morris
-Saint Louis vs Chicago
-   -Semi-Finals-
-Georgia Tech vs DePaul
-Washington State vs Montana State
-   -7th Place Game-
-Robert Morris vs Chicago
-   -5th Place Game-
-Richmond vs Saint Louis
-   -3rd Place Game-
-Georgia Tech vs Washington State
-   -Championship-
-DePaul vs Montana State
-   -Champions-
-DePaul
-
-
-   --Green Gun Tip Off--
-   -First Round-
-Kennesaw State vs Penn State
-UCF vs UTSA
-(23)Arkansas vs Cleveland State
-Grambling State vs San Jose State
-   -Loser's Bracket-
-Kennesaw State vs UCF
-Cleveland State vs San Jose State
-   -Semi-Finals-
-Penn State vs UTSA
-(23)Arkansas vs Grambling State
-   -7th Place Game-
-Kennesaw State vs Cleveland State
-   -5th Place Game-
-UCF vs San Jose State
-   -3rd Place Game-
-Penn State vs Grambling State
-   -Championship-
-UTSA vs (23)Arkansas
-   -Champions-
-Arkansas
-
-
-   --Independence Opener--
-   -First Round-
-Kansas State vs Wright State
-Winthrop vs Saint Peter's
-South Carolina vs Grand Canyon
-Texas A&M CC vs Evansville
-   -Loser's Bracket-
-Wright State vs Winthrop
-Grand Canyon vs Evansville
-   -Semi-Finals-
-Kansas State vs Saint Peter's
-South Carolina vs Texas A&M CC
-   -7th Place Game-
-Wright State vs Evansville
-   -5th Place Game-
-Winthrop vs Grand Canyon
-   -3rd Place Game-
-Saint Peter's vs Texas A&M CC
-   -Championship-
-Kansas State vs South Carolina
-   -Champions-
-Kansas State
-
-
-   --Fresno Face off--
-   -First Round-
-San Diego State vs George Mason
-Colorado vs Loyola-Chicago
-Oral Roberts vs Providence
-Columbia vs Jackson State
-   -Loser's Bracket-
-San Diego State vs Colorado
-Providence vs Jackson State
-   -Semi-Finals-
-George Mason vs Loyola-Chicago
-Oral Roberts vs Columbia
-   -7th Place Game-
-Colorado vs Jackson State
-   -5th Place Game-
-San Diego State vs Providence
-   -3rd Place Game-
-George Mason vs Oral Roberts
-   -Championship-
-Loyola-Chicago vs Columbia
-   -Champions-
-Columbia
-
-
-   --Sunshine Slam--
-   -First Round-
-Rhode Island vs Davidson
-Cincinnati vs UC San Diego
-Louisville vs Kansas
-South Dakota State vs Northwestern
-   -Loser's Bracket-
-Rhode Island vs Cincinnati
-Louisville vs South Dakota State
-   -Semi-Finals-
-Davidson vs UC San Diego
-Kansas vs Northwestern
-   -7th Place Game-
-Cincinnati vs South Dakota State
-   -5th Place Game-
-Rhode Island vs Louisville
-   -3rd Place Game-
-UC San Diego vs Northwestern
-   -Championship-
-Davidson vs Kansas
-   -Champions-
-Kansas
-
-
-   --Cancun Challenge--
-   -First Round-
-Georgia vs Yale
-(25)Oregon State vs Chattanooga
-Howard vs Long Island
-Kent State vs Air Force
-   -Loser's Bracket-
-Yale vs Chattanooga
-Howard vs Kent State
-   -Semi-Finals-
-Georgia vs (25)Oregon State
-Long Island vs Air Force
-   -7th Place Game-
-Yale vs Kent State
-   -5th Place Game-
-Chattanooga vs Howard
-   -3rd Place Game-
-Georgia vs Long Island
-   -Championship-
-(25)Oregon State vs Air Force
-   -Champions-
-Oregon State
-
-
-   --Emerald Coast Classic--
-   -First Round-
-Iona vs Pitt
-Southern vs UMass
-Delaware State vs Arkansas State
-Boise State vs Ohio State
-   -Loser's Bracket-
-Iona vs Southern
-Arkansas State vs Ohio State
-   -Semi-Finals-
-Pitt vs UMass
-Delaware State vs Boise State
-   -7th Place Game-
-Southern vs Arkansas State
-   -5th Place Game-
-Iona vs Ohio State
-   -3rd Place Game-
-UMass vs Boise State
-   -Championship-
-Pitt vs Delaware State
-   -Champions-
-Pitt
-
-
-   --Empire Classic--
-   -First Round-
-Notre Dame vs Stanford
-Seton Hall vs Ole Miss
-Appalachian State vs Toledo
-Oklahoma State vs Saint Mary's
-   -Loser's Bracket-
-Notre Dame vs Ole Miss
-Appalachian State vs Oklahoma State
-   -Semi-Finals-
-Stanford vs Seton Hall
-Toledo vs Saint Mary's
-   -7th Place Game-
-Ole Miss vs Appalachian State
-   -5th Place Game-
-Notre Dame vs Oklahoma State
-   -3rd Place Game-
-Seton Hall vs Toledo
-   -Championship-
-Stanford vs Saint Mary's
-   -Champions-
-Saint Mary's
-
-
-   --Hall of Fame Classic--
-   -First Round-
-Northern Illinois vs Western Kentucky
-Cal vs Alabama
-Maryland vs USC
-Eastern Washington vs Texas State
-   -Loser's Bracket-
-Northern Illinois vs Cal
-Maryland vs Texas State
-   -Semi-Finals-
-Western Kentucky vs Alabama
-USC vs Eastern Washington
-   -7th Place Game-
-Northern Illinois vs Maryland
-   -5th Place Game-
-Cal vs Texas State
-   -3rd Place Game-
-Western Kentucky vs Eastern Washington
-   -Championship-
-Alabama vs USC
-   -Champions-
-Alabama
-
-
-   --Dole Derby--
-   -First Round-
-Northeastern vs Baylor
-Tulane vs Nevada
-Army vs UCSB
-Oakland vs East Carolina
-   -Loser's Bracket-
-Northeastern vs Tulane
-Army vs East Carolina
-   -Semi-Finals-
-Baylor vs Nevada
-UCSB vs Oakland
-   -7th Place Game-
-Tulane vs Army
-   -5th Place Game-
-Northeastern vs East Carolina
-   -3rd Place Game-
-Nevada vs Oakland
-   -Championship-
-Baylor vs UCSB
-   -Champions-
-Baylor
-
-
-   --Lone Star Classic--
-   -First Round-
-San Francisco vs LSU
-Georgetown vs Akron
-UNC Wilmington vs Clemson
-Wyoming vs Washington
-   -Loser's Bracket-
-LSU vs Akron
-UNC Wilmington vs Washington
-   -Semi-Finals-
-San Francisco vs Georgetown
-Clemson vs Wyoming
-   -7th Place Game-
-Akron vs UNC Wilmington
-   -5th Place Game-
-LSU vs Washington
-   -3rd Place Game-
-San Francisco vs Wyoming
-   -Championship-
-Georgetown vs Clemson
+Georgetown vs Middle Tennessee
    -Champions-
 Georgetown
 
 
+   --Battle 4 Atlantis--
+   -First Round-
+St.Joseph's vs MIT
+Portland State vs Vermont
+Sam Houston State vs Rhode Island
+UAB vs Arkansas Little Rock
+   -Loser's Bracket-
+St.Joseph's vs Vermont
+Sam Houston State vs Arkansas Little Rock
+   -Semi-Finals-
+MIT vs Portland State
+Rhode Island vs UAB
+   -7th Place Game-
+Vermont vs Arkansas Little Rock
+   -5th Place Game-
+St.Joseph's vs Sam Houston State
+   -3rd Place Game-
+Portland State vs Rhode Island
+   -Championship-
+MIT vs UAB
+   -Champions-
+UAB
+
+
+   --Jimmy V Classic--
+   -First Round-
+VCU vs Montana
+Army vs Texas A&M
+Providence vs ETSU
+UMBC vs South Dakota State
+   -Loser's Bracket-
+VCU vs Army
+ETSU vs South Dakota State
+   -Semi-Finals-
+Montana vs Texas A&M
+Providence vs UMBC
+   -7th Place Game-
+Army vs South Dakota State
+   -5th Place Game-
+VCU vs ETSU
+   -3rd Place Game-
+Montana vs UMBC
+   -Championship-
+Texas A&M vs Providence
+   -Champions-
+Texas A&M
+
+
+   --DCB Tip Off--
+   -First Round-
+East Carolina vs Grand Canyon
+Longwood vs Murray State
+Ohio State vs North Texas
+Georgia State vs Princeton
+   -Loser's Bracket-
+East Carolina vs Murray State
+North Texas vs Georgia State
+   -Semi-Finals-
+Grand Canyon vs Longwood
+Ohio State vs Princeton
+   -7th Place Game-
+Murray State vs North Texas
+   -5th Place Game-
+East Carolina vs Georgia State
+   -3rd Place Game-
+Longwood vs Princeton
+   -Championship-
+Grand Canyon vs Ohio State
+   -Champions-
+Ohio State
+
+
+   --Green Gun Tip Off--
+   -First Round-
+Seton Hall vs Robert Morris
+UCF vs Saint Peter's
+Oral Roberts vs Alabama
+Notre Dame vs Stetson
+   -Loser's Bracket-
+Robert Morris vs UCF
+Oral Roberts vs Stetson
+   -Semi-Finals-
+Seton Hall vs Saint Peter's
+Alabama vs Notre Dame
+   -7th Place Game-
+UCF vs Stetson
+   -5th Place Game-
+Robert Morris vs Oral Roberts
+   -3rd Place Game-
+Saint Peter's vs Notre Dame
+   -Championship-
+Seton Hall vs Alabama
+   -Champions-
+Seton Hall
+
+
+   --Independence Opener--
+   -First Round-
+Dayton vs Wisconsin
+Kent State vs Tulane
+Washington State vs Dartmouth
+Northeastern vs Xavier
+   -Loser's Bracket-
+Dayton vs Kent State
+Dartmouth vs Xavier
+   -Semi-Finals-
+Wisconsin vs Tulane
+Washington State vs Northeastern
+   -7th Place Game-
+Kent State vs Dartmouth
+   -5th Place Game-
+Dayton vs Xavier
+   -3rd Place Game-
+Wisconsin vs Northeastern
+   -Championship-
+Tulane vs Washington State
+   -Champions-
+Washington State
+
+
+   --Fresno Face off--
+   -First Round-
+Evansville vs Arkansas
+Clemson vs Arkansas Pine Bluff
+UNC Asheville vs Texas Tech
+Lehigh vs Wright State
+   -Loser's Bracket-
+Evansville vs Arkansas Pine Bluff
+UNC Asheville vs Wright State
+   -Semi-Finals-
+Arkansas vs Clemson
+Texas Tech vs Lehigh
+   -7th Place Game-
+Evansville vs Wright State
+   -5th Place Game-
+Arkansas Pine Bluff vs UNC Asheville
+   -3rd Place Game-
+Clemson vs Texas Tech
+   -Championship-
+Arkansas vs Lehigh
+   -Champions-
+Lehigh
+
+
+   --Sunshine Slam--
+   -First Round-
+Boston U vs DePaul
+North Dakota State vs Ole Miss
+Yale vs South Florida
+Wyoming vs Colorado
+   -Loser's Bracket-
+DePaul vs North Dakota State
+South Florida vs Colorado
+   -Semi-Finals-
+Boston U vs Ole Miss
+Yale vs Wyoming
+   -7th Place Game-
+DePaul vs South Florida
+   -5th Place Game-
+North Dakota State vs Colorado
+   -3rd Place Game-
+Ole Miss vs Yale
+   -Championship-
+Boston U vs Wyoming
+   -Champions-
+Boston U
+
+
+   --Cancun Challenge--
+   -First Round-
+Texas State vs Florida State
+Memphis vs Marist
+Saint Louis vs Boston College
+Saint Mary's vs Maryland
+   -Loser's Bracket-
+Texas State vs Marist
+Boston College vs Maryland
+   -Semi-Finals-
+Florida State vs Memphis
+Saint Louis vs Saint Mary's
+   -7th Place Game-
+Marist vs Boston College
+   -5th Place Game-
+Texas State vs Maryland
+   -3rd Place Game-
+Memphis vs Saint Louis
+   -Championship-
+Florida State vs Saint Mary's
+   -Champions-
+Florida State
+
+
+   --Emerald Coast Classic--
+   -First Round-
+Eastern Washington vs Santa Clara
+TCU vs Jackson State
+Vanderbilt vs SMU
+Washington vs Air Force
+   -Loser's Bracket-
+Santa Clara vs Jackson State
+SMU vs Air Force
+   -Semi-Finals-
+Eastern Washington vs TCU
+Vanderbilt vs Washington
+   -7th Place Game-
+Jackson State vs SMU
+   -5th Place Game-
+Santa Clara vs Air Force
+   -3rd Place Game-
+Eastern Washington vs Washington
+   -Championship-
+TCU vs Vanderbilt
+   -Champions-
+TCU
+
+
+   --Empire Classic--
+   -First Round-
+Missouri vs Stephen F Austin
+Davidson vs Norfolk State
+Northwestern vs Omaha
+George Mason vs Louisville
+   -Loser's Bracket-
+Stephen F Austin vs Norfolk State
+Omaha vs George Mason
+   -Semi-Finals-
+Missouri vs Davidson
+Northwestern vs Louisville
+   -7th Place Game-
+Norfolk State vs George Mason
+   -5th Place Game-
+Stephen F Austin vs Omaha
+   -3rd Place Game-
+Davidson vs Louisville
+   -Championship-
+Missouri vs Northwestern
+   -Champions-
+Northwestern
+
+
+   --Hall of Fame Classic--
+   -First Round-
+Fresno State vs Liberty
+Cal vs Virginia Tech
+BYU vs St.Bonaventure
+Delaware State vs Minnesota
+   -Loser's Bracket-
+Liberty vs Virginia Tech
+BYU vs Delaware State
+   -Semi-Finals-
+Fresno State vs Cal
+St.Bonaventure vs Minnesota
+   -7th Place Game-
+Liberty vs BYU
+   -5th Place Game-
+Virginia Tech vs Delaware State
+   -3rd Place Game-
+Fresno State vs St.Bonaventure
+   -Championship-
+Cal vs Minnesota
+   -Champions-
+Minnesota
+
+
+   --Dole Derby--
+   -First Round-
+Georgia vs Utah
+Rutgers vs Troy
+Fairleigh Dickinson vs Abeline Christian
+Rice vs St.John's
+   -Loser's Bracket-
+Utah vs Rutgers
+Fairleigh Dickinson vs Rice
+   -Semi-Finals-
+Georgia vs Troy
+Abeline Christian vs St.John's
+   -7th Place Game-
+Utah vs Fairleigh Dickinson
+   -5th Place Game-
+Rutgers vs Rice
+   -3rd Place Game-
+Troy vs Abeline Christian
+   -Championship-
+Georgia vs St.John's
+   -Champions-
+St.John's
+
+
+   --Lone Star Classic--
+   -First Round-
+Howard vs Delaware
+Kennesaw State vs Pitt
+UCSB vs Western Kentucky
+McNeese State vs SIU Edwardsville
+   -Loser's Bracket-
+Howard vs Kennesaw State
+Western Kentucky vs McNeese State
+   -Semi-Finals-
+Delaware vs Pitt
+UCSB vs SIU Edwardsville
+   -7th Place Game-
+Kennesaw State vs McNeese State
+   -5th Place Game-
+Howard vs Western Kentucky
+   -3rd Place Game-
+Delaware vs SIU Edwardsville
+   -Championship-
+Pitt vs UCSB
+   -Champions-
+Pitt
+
+
    --London Invitational--
    -First Round-
-Cornell vs Minnesota
-Lehigh vs Samford
-Southeastern Missouri State vs Longwood
-Nebraska vs ETSU
+Utah State vs Penn State
+FAU vs Iona
+LSU vs NC State
+Duquesne vs Stanford
    -Loser's Bracket-
-Cornell vs Lehigh
-Longwood vs ETSU
+Penn State vs FAU
+LSU vs Stanford
    -Semi-Finals-
-Minnesota vs Samford
-Southeastern Missouri State vs Nebraska
+Utah State vs Iona
+NC State vs Duquesne
    -7th Place Game-
-Cornell vs ETSU
+FAU vs Stanford
    -5th Place Game-
-Lehigh vs Longwood
+Penn State vs LSU
    -3rd Place Game-
-Samford vs Southeastern Missouri State
+Iona vs Duquesne
    -Championship-
-Minnesota vs Nebraska
+Utah State vs NC State
    -Champions-
-Nebraska
+Utah State
 
 
    --Austin Showdown--
    -First Round-
-North Dakota State vs New Mexico
-Texas Tech vs (20)Wake Forest
-Indiana State vs UAB
-Marist vs Villanova
+Morehead State vs Villanova
+Oklahoma vs Loyola-Chicago
+Alabama State vs Chicago
+High Point vs Indiana State
    -Loser's Bracket-
-New Mexico vs Texas Tech
-Indiana State vs Marist
+Morehead State vs Oklahoma
+Alabama State vs Indiana State
    -Semi-Finals-
-North Dakota State vs (20)Wake Forest
-UAB vs Villanova
+Villanova vs Loyola-Chicago
+Chicago vs High Point
    -7th Place Game-
-New Mexico vs Marist
+Morehead State vs Alabama State
    -5th Place Game-
-Texas Tech vs Indiana State
+Oklahoma vs Indiana State
    -3rd Place Game-
-(20)Wake Forest vs UAB
+Loyola-Chicago vs High Point
    -Championship-
-North Dakota State vs Villanova
+Villanova vs Chicago
    -Champions-
 Villanova
 
 
    --ESPN Battle--
    -First Round-
-Texas A&M vs Utah
-Brown vs Delaware
-Northern Kentucky vs Miami
-Fairleigh Dickinson vs Navy
+UC San Diego vs (25)Virginia
+Boise State vs Oregon
+Butler vs Harvard
+Winthrop vs Iowa
    -Loser's Bracket-
-Texas A&M vs Delaware
-Northern Kentucky vs Fairleigh Dickinson
+UC San Diego vs Boise State
+Harvard vs Iowa
    -Semi-Finals-
-Utah vs Brown
-Miami vs Navy
+(25)Virginia vs Oregon
+Butler vs Winthrop
    -7th Place Game-
-Delaware vs Fairleigh Dickinson
+UC San Diego vs Iowa
    -5th Place Game-
-Texas A&M vs Northern Kentucky
+Boise State vs Harvard
    -3rd Place Game-
-Brown vs Miami
+Oregon vs Butler
    -Championship-
-Utah vs Navy
+(25)Virginia vs Winthrop
    -Champions-
-Utah
+Virginia
 
 
    --Boston Bucks InvitationalAu--
    -First Round-
-Iowa vs BYU
-Texas Southern vs Furman
-Arkansas Little Rock vs High Point
-Marquette vs Vanderbilt
+Colgate vs Toledo
+IUPUI vs West Virginia
+Southern vs Auburn
+Furman vs UMass
    -Loser's Bracket-
-BYU vs Furman
-Arkansas Little Rock vs Vanderbilt
+Toledo vs IUPUI
+Southern vs Furman
    -Semi-Finals-
-Iowa vs Texas Southern
-High Point vs Marquette
+Colgate vs West Virginia
+Auburn vs UMass
    -7th Place Game-
-Furman vs Arkansas Little Rock
+IUPUI vs Southern
    -5th Place Game-
-BYU vs Vanderbilt
+Toledo vs Furman
    -3rd Place Game-
-Iowa vs High Point
+Colgate vs UMass
    -Championship-
-Texas Southern vs Marquette
+West Virginia vs Auburn
    -Champions-
-Marquette
+West Virginia
 
 

@@ -1,0 +1,332 @@
+
+========== Trae York Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Camden Giles           TENN       PG    28.9   98      +351      
+2     Jaden Mahonee          UH         C     24.9   96      +624      
+3     Aleksandar Petrovic    MISSST     C     23.0   96      +682      
+4     Milo Lawrenz           SDSU       PG    23.8   95      +712      
+5     Daelin Strickland      WF         PF    23.8   95      +769      
+6     Jordi Crowder          NEV        SG    23.9   92      +976      
+7     Christian Flores       SDSU       SG    23.4   93      +982      
+8     Kobe Livingston        UM         PF    24.4   95      +1027     
+9     Kiyan Lovelace         SYR        SG    24.1   93      +10000    
+10    Jalen St.Clair         UK         SG    23.2   94      +10000    
+11    Kellen Ogbu            UH         PG    23.6   93      +10000    
+12    Luke Tennyson          FLO        PF    22.6   93      +10000    
+13    Kade Harmon            UVA        SG    26.1   91      +10000    
+14    Zykeem Bellamy         UH         SF    21.3   96      +10000    
+15    Rylan Rush             UNC        SG    21.4   96      +10000    
+
+========== Angelo Farrell Freshman of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Milo Lawrenz           SDSU       PG    23.8   95      +318      
+2     Jordi Crowder          NEV        SG    23.9   92      +455      
+3     Jalen St.Clair         UK         SG    23.2   94      +485      
+4     Luke Tennyson          FLO        PF    22.6   93      +564      
+5     Miki Lawrenz           UCLA       PF    21.9   90      +1184     
+6     Kadeem Hollingsworth   PITT       SF    23.9   88      +1349     
+7     Keaton Frye            DUKE       SG    20.3   89      +1500     
+8     Zayden Carr            MSU        SF    21.6   89      +1904     
+9     Amare Thornhill        UM         C     20.4   89      +10000    
+10    Brayden Black          ISU        C     21.2   88      +10000    
+11    Derrick Langham        WICH       SF    23.2   86      +10000    
+12    Davis Goldyn           WICH       PG    23.1   86      +10000    
+13    Jakoby Henderson       KU         SF    25.7   93      +10000    
+14    Jon Kingsbury          UNC        C     19.0   86      +10000    
+15    Isaiah Montclair       GU         SF    17.9   86      +10000    
+
+========== Rhett Blackwell Guard of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Camden Giles           TENN       PG    28.9   98      +289      
+2     Milo Lawrenz           SDSU       PG    23.8   95      +601      
+3     Jordi Crowder          NEV        SG    23.9   92      +829      
+4     Christian Flores       SDSU       SG    23.4   93      +834      
+5     Kiyan Lovelace         SYR        SG    24.1   93      +879      
+6     Jalen St.Clair         UK         SG    23.2   94      +879      
+7     Kellen Ogbu            UH         PG    23.6   93      +989      
+8     Kade Harmon            UVA        SG    26.1   91      +1015     
+9     Rylan Rush             UNC        SG    21.4   96      +10000    
+10    Koen Smits             MISSST     PG    21.7   92      +10000    
+
+========== Jacob Peters Forward of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Daelin Strickland      WF         PF    23.8   95      +426      
+2     Kobe Livingston        UM         PF    24.4   95      +583      
+3     Luke Tennyson          FLO        PF    22.6   93      +681      
+4     Zykeem Bellamy         UH         SF    21.3   96      +702      
+5     Mason Ellington        DUKE       PF    23.7   91      +755      
+6     Youssef El-Sayed       ISU        PF    23.9   94      +843      
+7     Dalen Tucker           SDSU       PF    22.4   91      +863      
+8     Caleb Ingram           UK         SF    21.9   91      +1090     
+9     DeAndre Simmons        UCON       PF    23.2   90      +10000    
+10    Noah Brooks            ILL        PF    22.2   91      +10000    
+
+========== Dustin Holloway Center of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Jaden Mahonee          UH         C     24.9   96      +229      
+2     Aleksandar Petrovic    MISSST     C     23.0   96      +256      
+3     Brandon Kato           PUR        C     23.1   91      +839      
+4     Isaiah Freeman         USC        C     25.2   98      +1144     
+5     Dmitri Kolesnikov      PITT       C     22.8   89      +1274     
+6     Anthony Wells          GU         C     20.7   92      +1581     
+7     Amare Thornhill        UM         C     20.4   89      +1880     
+8     Brayden Black          ISU        C     21.2   88      +2087     
+9     Talon Reed             MSU        C     20.5   87      +10000    
+10    Jon Kingsbury          UNC        C     19.0   86      +10000    
+
+========== Big 12 Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Jaden Mahonee          UH         C     24.9   96      +248      
+2     Kellen Ogbu            UH         PG    23.6   93      +507      
+3     Zykeem Bellamy         UH         SF    21.3   96      +537      
+4     Youssef El-Sayed       ISU        PF    23.9   94      +562      
+5     Jakoby Henderson       KU         SF    25.7   93      +844      
+6     Brayden Black          ISU        C     21.2   88      +1942     
+7     Malakai Hill           ISU        SF    21.2   87      +2184     
+8     KT Love                TTU        C     23.6   90      +2311     
+9     Iman Farooq            UT         PF    19.8   88      +10000    
+10    Grant Hollis           UT         SG    20.8   86      +10000    
+
+========== ACC Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Daelin Strickland      WF         PF    23.8   95      +266      
+2     Rylan Rush             UNC        SG    21.4   96      +524      
+3     Kiyan Lovelace         SYR        SG    24.1   93      +617      
+4     Sage Ellis             WF         PG    21.6   92      +640      
+5     Kade Harmon            UVA        SG    26.1   91      +981      
+6     Ethan Copeland         UNC        PF    20.7   91      +1127     
+7     Mason Ellington        DUKE       PF    23.7   91      +1159     
+8     Tyreon Clark           UVA        PF    21.5   90      +2512     
+9     Jace Ellis             FSU        PG    23.0   90      +10000    
+10    Keaton Frye            DUKE       SG    20.3   89      +10000    
+
+========== Big East Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Jaron Fields           STJOHNS    SF    27.3   91      +298      
+2     Zyaire McKnight        MQ         SF    23.8   89      +440      
+3     DeAndre Simmons        UCON       PF    23.2   90      +587      
+4     Anderson Ray           UCON       PG    22.8   88      +816      
+5     Lennox Porter          MQ         PG    22.0   87      +816      
+6     Nazir Karam            VIL        SF    24.9   88      +1004     
+7     Bryce Landry           MQ         SG    18.6   86      +1721     
+8     Tomas Ortega           MQ         C     19.2   85      +1737     
+9     Bryce Tatupu           UCON       C     19.1   86      +10000    
+10    Demarion Gates         CTN        C     20.6   86      +10000    
+
+========== SEC Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Camden Giles           TENN       PG    28.9   98      +215      
+2     Aleksandar Petrovic    MISSST     C     23.0   96      +382      
+3     Luke Tennyson          FLO        PF    22.6   93      +829      
+4     Koen Smits             MISSST     PG    21.7   92      +829      
+5     Jalen St.Clair         UK         SG    23.2   94      +856      
+6     Caleb Ingram           UK         SF    21.9   91      +1555     
+7     Elijah Tate            LSU        SG    27.0   90      +1648     
+8     Cooper Yates           MIZZ       SG    24.3   88      +2567     
+9     Tremaine Lockwood      MISSST     SG    19.3   86      +10000    
+10    Santi Moya             MISSST     SF    18.2   87      +10000    
+
+========== Big Ten Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Kobe Livingston        UM         PF    24.4   95      +319      
+2     Luka Vasiljevic        ILL        SG    22.6   91      +446      
+3     Noah Brooks            ILL        PF    22.2   91      +482      
+4     Brandon Kato           PUR        C     23.1   91      +536      
+5     Micah Thornton         UM         PG    21.6   89      +1216     
+6     Amare Thornhill        UM         C     20.4   89      +1518     
+7     Zayden Carr            MSU        SF    21.6   89      +1643     
+8     Luka Dimitrov          ILL        PG    19.9   84      +1753     
+9     Kristaps Balodis       PUR        PF    18.6   88      +10000    
+10    Karim Ould             UM         SG    19.3   89      +10000    
+
+========== American Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Mason Harlow           WICH       SG    25.6   88      +245      
+2     Derrick Langham        WICH       SF    23.2   86      +538      
+3     Davis Goldyn           WICH       PG    23.1   86      +549      
+4     Tristan Bolden         MEM        SG    22.5   89      +556      
+5     Mamadou Ba             UAB        PF    24.0   85      +1266     
+6     Mateo Cardenas         CIN        PF    21.3   85      +1505     
+7     Filip Piotrowski       MEM        SF    20.5   83      +1695     
+8     Zizi Bradford          MEM        C     19.8   84      +1700     
+9     Camden Lister          TUL        PG    25.3   87      +10000    
+10    X                      CIN        SF    18.4   82      +10000    
+
+========== PAC 12 Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Isaiah Freeman         USC        C     25.2   98      +199      
+2     Zyrell Houston         UCLA       PG    22.3   91      +540      
+3     Miki Lawrenz           UCLA       PF    21.9   90      +662      
+4     Quinn McKinnon         GU         PG    22.9   90      +729      
+5     Anthony Wells          GU         C     20.7   92      +868      
+6     GG Baxter              UCLA       SF    19.3   88      +1368     
+7     Brycen Holcomb         ORE        PG    23.4   90      +2057     
+8     Darius Montague        USC        PG    19.7   87      +2457     
+9     Griffin Raye           USC        PF    19.7   86      +10000    
+10    Isaiah Montclair       GU         SF    17.9   86      +10000    
+
+========== Atlantic 10 Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Kadeem Hollingsworth   PITT       SF    23.9   88      +221      
+2     Dmitri Kolesnikov      PITT       C     22.8   89      +245      
+3     Rodrigo Mendez         PITT       PG    20.0   84      +863      
+4     Jack Merritt           LUC        SG    22.8   84      +897      
+5     Cedric Harmon          VCU        C     18.6   83      +1631     
+6     Grant Rigsby           VCU        PF    19.7   81      +1702     
+7     X                      BC         SG    21.1   82      +2078     
+8     Kyrie Finch            LUC        SF    19.2   80      +2722     
+9     Kerem Aydin            VAN        SG    20.9   84      +10000    
+10    X                      VCU        PG    17.8   78      +10000    
+
+========== Patriot Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     X                      LEH        SF    21.4   87      +195      
+2     X                      STM        PF    20.8   84      +491      
+3     Tatum Carradine        LEH        PG    18.8   83      +610      
+4     X                      STM        C     20.4   80      +886      
+5     X                      STM        PG    18.7   80      +1207     
+6     X                      LEH        SG    16.8   80      +1288     
+7     X                      LEH        C     16.7   77      +1877     
+8     X                      MURRST     SF    22.3   80      +1893     
+9     X                      STP        SG    16.5   79      +10000    
+10    Luc Moreau             FOLK       C     18.8   79      +10000    
+
+========== Colonial Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     X                      BU         C     22.8   83      +263      
+2     Devonte Phelps         WIN        SG    21.8   83      +450      
+3     X                      BU         PG    19.3   82      +629      
+4     X                      WIN        PF    21.5   79      +808      
+5     X                      DRA        PG    20.8   80      +1082     
+6     Reed Sterling          MTU        PF    21.8   81      +1085     
+7     X                      BU         SG    18.2   78      +1273     
+8     X                      NE         C     21.9   79      +1761     
+9     X                      DRA        PF    18.2   78      +10000    
+10    X                      MTU        C     19.8   74      +10000    
+
+========== Horizon Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     X                      NDSU       SF    23.8   81      +233      
+2     X                      NDSU       PG    23.2   81      +262      
+3     X                      STB        SF    19.5   80      +869      
+4     X                      STB        PF    18.3   80      +1084     
+5     X                      CLST       SG    23.6   81      +1125     
+6     X                      SAN        SF    21.3   76      +1825     
+7     X                      STB        PG    17.4   77      +1825     
+8     X                      SDST       SG    23.9   81      +1891     
+9     X                      NKU        C     21.7   77      +10000    
+10    X                      CLST       PF    22.0   78      +10000    
+
+========== Ivy League Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     X                      MIT        C     21.4   83      +297      
+2     X                      UCSB       SG    21.6   83      +742      
+3     X                      CAL        SG    23.2   78      +750      
+4     X                      PENN       SF    19.4   81      +790      
+5     X                      YALE       SG    25.0   84      +836      
+6     Damari Thorne          CAL        SF    19.6   82      +892      
+7     X                      PENN       C     19.9   79      +933      
+8     X                      PENN       PF    19.1   80      +954      
+9     X                      MIT        SF    17.8   79      +10000    
+10    Emil Sedlacek          COL        PG    22.6   80      +10000    
+
+========== Southern Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     X                      UTSA       SF    24.7   83      +133      
+2     X                      SOU        PF    22.2   81      +626      
+3     X                      UTSA       SG    20.4   78      +731      
+4     X                      SFA        SG    23.6   79      +1135     
+5     X                      AMCC       PF    20.0   80      +1463     
+6     X                      SFA        PG    20.2   81      +1623     
+7     X                      ACU        C     17.9   77      +1727     
+8     X                      ORU        SF    21.3   81      +1741     
+9     X                      AMCC       C     20.2   78      +10000    
+10    X                      ACU        PF    17.6   77      +10000    
+
+========== Sun Belt Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     X                      ETSU       PF    22.6   81      +398      
+2     X                      GAST       SF    22.4   79      +402      
+3     X                      GAST       SG    18.0   82      +644      
+4     X                      ETSU       SF    21.2   79      +688      
+5     X                      USF        PG    23.2   81      +880      
+6     X                      GAST       C     17.8   79      +972      
+7     X                      ALST       SF    20.8   80      +1169     
+8     X                      WKU        PG    25.8   80      +1456     
+9     X                      GRAM       PG    20.0   74      +10000    
+10    X                      FUR        SG    18.3   79      +10000    
+
+========== Big Sky Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     X                      MOST       C     23.2   81      +308      
+2     X                      SF         PF    22.9   82      +540      
+3     X                      MOST       PF    22.5   78      +544      
+4     X                      EVA        SF    22.3   79      +665      
+5     X                      LONG       PG    21.4   82      +986      
+6     X                      SF         SF    19.8   81      +1094     
+7     X                      EVA        SG    18.0   81      +1154     
+8     X                      MON        PF    25.3   81      +1659     
+9     X                      MOST       SF    17.2   76      +10000    
+10    X                      EVA        C     18.1   76      +10000    
+
+========== Mountain West Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     Milo Lawrenz           SDSU       PG    23.8   95      +355      
+2     Jordi Crowder          NEV        SG    23.9   92      +385      
+3     Christian Flores       SDSU       SG    23.4   93      +507      
+4     Elias Beck             NEV        PG    21.5   92      +630      
+5     Dalen Tucker           SDSU       PF    22.4   91      +792      
+6     Akeem Navarro          NEV        PF    19.2   89      +1393     
+7     Theo Marchand          NEV        SF    19.9   87      +1565     
+8     X                      BSU        SF    22.7   82      +2903     
+9     Julian Scott           SDSU       SF    19.0   85      +10000    
+10    Barrett Kessley        CSU        PG    26.8   87      +10000    
+
+========== Ohio Valley Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     X                      TROY       SF    21.4   82      +223      
+2     Brandon Cole           TROY       C     18.0   83      +410      
+3     Zae Whitford           GCU        PG    21.2   80      +438      
+4     X                      KENT       C     19.9   79      +1188     
+5     X                      TROY       PF    15.3   78      +1308     
+6     X                      APP        PG    19.8   79      +1563     
+7     X                      OHIO       SF    17.3   77      +1751     
+8     X                      GCU        C     16.9   74      +2075     
+9     X                      SIUE       PF    24.2   79      +10000    
+10    X                      TROY       SG    14.1   74      +10000    
+
+========== NEC Player of the Year ==========
+Rank  Name                   Team       Pos   PPG    Rating  Odds      
+----------------------------------------------------------------
+1     X                      LIP        PF    23.1   81      +499      
+2     X                      RMU        PG    21.2   78      +577      
+3     X                      UNCW       SG    19.0   79      +580      
+4     X                      RMU        C     19.0   80      +681      
+5     X                      UMAS       PG    20.7   79      +737      
+6     X                      UNCW       C     18.9   77      +756      
+7     X                      UMAS       SF    19.7   78      +1006     
+8     X                      UNCW       PF    16.9   77      +1095     
+9     X                      UNCW       SF    14.6   75      +10000    
+10    X                      FDU        SG    18.8   77      +10000    

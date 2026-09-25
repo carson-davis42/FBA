@@ -1,243 +1,243 @@
 Champions Classic
-Indiana
-Gonzaga
-Creighton
-Virginia
-Bryant
-McNeese State
-George Washington
-West Virginia
-Maui Jim Invitational
-Tennessee
-Michigan State
-UCLA
-Wichita State
-Ohio
-Weber State
-Rutgers
-Oklahoma
-Goodyear Classic
-Houston
-Mississippi State
-North Carolina
-Memphis
-Arizona State
-Belmont
-Dayton
-Drake
-Nike Invitational
-Auburn
-Duke
-Purdue
-Wofford
-Vermont
-TCU
-St.Joseph's
-UMBC
-Chick-Fil-A Opener
-Florida State
-Kentucky
-UConn
-SMU
-Lipscomb
-Wisconsin
-Boston College
-South Florida
-Fanatics Invitational
-Missouri
-Colorado State
-Michigan
-Duquesne
-MIT
-NC State
-Boston U
-Stephen F Austin
-Cuts Classic
-Illinois
-Florida
-Abeline Christian
-Colgate
-Santa Clara
-UNC Asheville
-St.John's
-Dartmouth
-Alaska Invitational
 Texas
-Arizona
-Virginia Tech
-Penn
-SIU Edwardsville
-Liberty
-Utah State
-Buffalo
-Panda Express Battle
-Syracuse
-Iowa State
-Norfolk State
-Morehead State
-VCU
-Rice
-Georgia State
-Oregon
-South Beach Tip Off
-Portland State
-IUPUI
-UNLV
-Alabama State
-Xavier
-Princeton
-North Texas
-Omaha
-Battle 4 Atlantis
-Stetson
-Arkansas Pine Bluff
-Fresno State
-UC Irvine
-Troy
-Middle Tennessee
-Quinnipiac
-FAU
-Jimmy V Classic
-Montana
-Sam Houston State
-St.Bonaventure
-Harvard
-James Madison
-Butler
-New Mexico State
-Murray State
-DCB Tip Off
-Montana State
-Saint Louis
-Georgia Tech
-Robert Morris
-Richmond
-DePaul
-Washington State
-Chicago
-Green Gun Tip Off
-Grambling State
-San Jose State
-Cleveland State
-UTSA
-Kennesaw State
-UCF
-Penn State
-Arkansas
-Independence Opener
-Texas A&M CC
-Evansville
-Grand Canyon
-Wright State
-South Carolina
-Winthrop
-Kansas State
-Saint Peter's
-Fresno Face off
-Colorado
-Providence
-Jackson State
-George Mason
-San Diego State
-Columbia
-Oral Roberts
-Loyola-Chicago
-Sunshine Slam
-South Dakota State
-UC San Diego
-Louisville
-Kansas
-Rhode Island
-Northwestern
-Davidson
-Cincinnati
-Cancun Challenge
-Air Force
-Yale
-Oregon State
-Chattanooga
-Long Island
-Howard
-Kent State
-Georgia
-Emerald Coast Classic
-Ohio State
-Pitt
-Iona
-Arkansas State
-Delaware State
-Boise State
-UMass
-Southern
-Empire Classic
-Oklahoma State
-Notre Dame
-Toledo
-Seton Hall
-Saint Mary's
-Ole Miss
-Stanford
-Appalachian State
-Hall of Fame Classic
-Cal
-Eastern Washington
-USC
+Wichita State
+Florida
+UConn
+Indiana
 Northern Illinois
-Texas State
-Maryland
-Alabama
-Western Kentucky
-Dole Derby
-Baylor
-Nevada
-Oakland
-East Carolina
-Northeastern
-Army
-Tulane
-UCSB
-Lone Star Classic
+UNLV
 San Francisco
+Maui Jim Invitational
+UCLA
+Wake Forest
+Kansas
+San Diego State
+Northern Kentucky
+Chattanooga
+George Washington
+Samford
+Goodyear Classic
+USC
+Nevada
+Illinois
+Richmond
+Creighton
+Weber State
+Georgia Tech
+Oakland
+Nike Invitational
+Tennessee
+Marquette
+Michigan State
+Drake
+New Mexico State
+UC Irvine
+Cornell
+Lipscomb
+Chick-Fil-A Opener
+Purdue
+Duke
+Gonzaga
+Texas A&M CC
+New Mexico
+Baylor
+Bryant
+Appalachian State
+Fanatics Invitational
+Arizona
+Syracuse
+Buffalo
+Cleveland State
+Kansas State
+James Madison
+Akron
+Brown
+Cuts Classic
+Mississippi State
+Houston
+Arizona State
+Columbia
+Cincinnati
+Colorado State
+Long Island
+Texas Southern
+Alaska Invitational
+Michigan
+North Carolina
+Arkansas State
+Oregon State
+Quinnipiac
+Wofford
+Oklahoma State
+Southeastern Missouri State
+Panda Express Battle
+Kentucky
+Iowa State
+Nebraska
+UTSA
+Belmont
+Penn
+San Jose State
+Miami
+South Beach Tip Off
+Navy
+Montana State
+South Carolina
+Grambling State
+Ohio
+Middle Tennessee
 Georgetown
 UNC Wilmington
-Clemson
-LSU
-Akron
-Washington
-Wyoming
-London Invitational
-Minnesota
-Southeastern Missouri State
-Nebraska
-Samford
-Lehigh
-Cornell
-Longwood
-ETSU
-Austin Showdown
-Villanova
-Marist
-Indiana State
-Texas Tech
-Wake Forest
-North Dakota State
-New Mexico
+Battle 4 Atlantis
+Vermont
+St.Joseph's
+Portland State
 UAB
-ESPN Battle
-Navy
-Brown
-Delaware
-Northern Kentucky
-Miami
-Fairleigh Dickinson
-Utah
-Texas A&M
-Boston Bucks InvitationalAu
-Texas Southern
-Marquette
+MIT
+Sam Houston State
 Arkansas Little Rock
+Rhode Island
+Jimmy V Classic
+Army
+Providence
+Texas A&M
+ETSU
+Montana
+VCU
+UMBC
+South Dakota State
+DCB Tip Off
+Murray State
+Longwood
+Georgia State
+Princeton
+Ohio State
+North Texas
+Grand Canyon
+East Carolina
+Green Gun Tip Off
+Robert Morris
+Notre Dame
+Seton Hall
+UCF
+Alabama
+Saint Peter's
+Oral Roberts
+Stetson
+Independence Opener
+Wisconsin
+Dayton
+Washington State
+Kent State
+Tulane
+Dartmouth
+Xavier
+Northeastern
+Fresno Face off
+Wright State
+Lehigh
+UNC Asheville
+Arkansas Pine Bluff
+Clemson
+Arkansas
+Texas Tech
+Evansville
+Sunshine Slam
+North Dakota State
+DePaul
+South Florida
+Yale
+Wyoming
+Ole Miss
+Boston U
+Colorado
+Cancun Challenge
+Texas State
+Maryland
+Memphis
+Marist
+Saint Mary's
+Boston College
+Saint Louis
+Florida State
+Emerald Coast Classic
 Vanderbilt
-Furman
-Iowa
+Washington
+SMU
+Eastern Washington
+Santa Clara
+Jackson State
+TCU
+Air Force
+Empire Classic
+Stephen F Austin
+Louisville
+Davidson
+Omaha
+Norfolk State
+Missouri
+Northwestern
+George Mason
+Hall of Fame Classic
+Cal
+Delaware State
+Virginia Tech
+Liberty
+Minnesota
 BYU
+Fresno State
+St.Bonaventure
+Dole Derby
+Abeline Christian
+Rice
+St.John's
+Georgia
+Rutgers
+Fairleigh Dickinson
+Troy
+Utah
+Lone Star Classic
+Kennesaw State
+Western Kentucky
+UCSB
+Delaware
+SIU Edwardsville
+Howard
+Pitt
+McNeese State
+London Invitational
+Iona
+Duquesne
+Stanford
+Penn State
+Utah State
+FAU
+LSU
+NC State
+Austin Showdown
+Chicago
+Alabama State
 High Point
+Oklahoma
+Villanova
+Indiana State
+Morehead State
+Loyola-Chicago
+ESPN Battle
+UC San Diego
+Oregon
+Butler
+Virginia
+Winthrop
+Boise State
+Iowa
+Harvard
+Boston Bucks InvitationalAu
+West Virginia
+Colgate
+Furman
+IUPUI
+Toledo
+Southern
+UMass
+Auburn

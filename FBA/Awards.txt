@@ -1,114 +1,110 @@
 Pos Name                 Team  Rating PPG  
 --------------------------------------------------
-PG  Cassius Blackwell    ATL   82     0.0  
-PG  Gabriel Greenwood    BOS   96     0.0  
-PG  Jelani Soweto        CAR   90     0.0  
-PG  Ramiro Mateus        CGG   87     0.0  
-PG  Angel Wilson         CIN   80     0.0  
-PG  Kyler Crest          DCB   80     0.0  
-PG  Donovan Brooks       DET   81     0.0  
-PG  KJ Cooke             MAN   83     0.0  
-PG  Ivory Huntley        MEM   95     0.0  
-PG  Soren Lindberg       SEA   80     0.0  
-PG  Elliott Sparrow      TEX   92     0.0  
-PG  Quinn Ellwood        VAN   81     0.0  
-SG  Justin Green         CGG   85     0.0  
-SG  JT Ramsey            CIN   92     0.0  
-SG  Julien Shannon       CP    95     0.0  
-SG  Reagan Butler        HON   94     0.0  
-SG  Cooper Wells         MIL   84     0.0  
-SG  Avery Wilkins        SAS   82     0.0  
-SG  Baylor Whittaker     SEA   85     0.0  
-SG  Jalen Adams          TEX   82     0.0  
-SG  Mitchell Hope        TOR   97     0.0  
-SG  Mani Varela          VAN   83     0.0  
-SG  Yasin Milovanovic    VEG   89     0.0  
-SF  Byron Oden           NO    96     43.0 
-SF  D'Andre Holiday      MW    84     24.0 
-SF  Louis Pepperdash III CAR   91     0.0  
-SF  Ethan Campbell       DEN   93     0.0  
-SF  Cameron Lucic        DET   95     0.0  
-SF  Makenzie Bell        HON   80     0.0  
-SF  Ollie Frye           MAN   81     0.0  
-SF  Scottie Riley        NY    84     0.0  
-SF  Izayah Hilliard      SEA   82     0.0  
-PF  Harper Holland       OAK   97     45.0 
-PF  Shinobu Ochi         MW    82     23.0 
-PF  Tobi Ingram          NO    86     21.0 
-PF  Kya Emery            CAR   81     0.0  
-PF  Kwame Koppel         CGG   90     0.0  
-PF  Ameer Allen          CHI   94     0.0  
-PF  Ronan Langford       DEN   80     0.0  
-PF  Kodi Bates           HON   87     0.0  
-PF  Jayce Jackson-Peters LA    81     0.0  
-PF  Denver Bruner        MAN   85     0.0  
-PF  Will Fox Jr          MEM   82     0.0  
-PF  Jae Simmons          SAS   84     0.0  
-PF  Jamari Odom          TEX   89     0.0  
-C   Adonis Wonder        MW    88     30.0 
-C   Payton Atkinson      NO    87     15.0 
-C   Issa Cisse           ATL   83     0.0  
-C   Olufemi Cisneros     BOS   95     0.0  
-C   Grant Ogden          CIN   82     0.0  
-C   Kasey Monroe         DCB   81     0.0  
-C   Bello Olumide        DEN   90     0.0  
-C   JJ Eaton             DET   85     0.0  
-C   Merritt Donovan      PHX   93     0.0  
-C   Katleho Cisneros     SAS   97     0.0  
-C   Clay Pitts           VEG   80     0.0  
+PG  Gabriel Greenwood    BOS   96     34.7 
+PG  Ivory Huntley        MEM   97     33.9 
+PG  Elliott Sparrow      TEX   92     31.3 
+PG  Jelani Soweto        CAR   91     29.1 
+PG  Ramiro Mateus        CGG   88     27.0 
+PG  KJ Cooke             MAN   86     25.9 
+PG  Cassius Blackwell    ATL   85     21.5 
+PG  Donovan Brooks       DET   83     17.5 
+PG  Soren Lindberg       SEA   83     19.8 
+PG  Angel Wilson         CIN   81     16.9 
+PG  Quinn Ellwood        VAN   83     23.3 
+SG  Reagan Butler        HON   96     36.9 
+SG  Mitchell Hope        TOR   98     40.2 
+SG  Julien Shannon       CP    95     40.7 
+SG  JT Ramsey            CIN   93     32.9 
+SG  Yasin Milovanovic    VEG   89     34.0 
+SG  Justin Green         CGG   86     25.4 
+SG  Jalen Adams          TEX   84     22.0 
+SG  Cooper Wells         MIL   85     32.7 
+SG  Baylor Whittaker     SEA   86     23.2 
+SG  Avery Wilkins        SAS   84     20.5 
+SG  Mani Varela          VAN   84     24.8 
+SF  Byron Oden           NO    97     34.6 
+SF  Cameron Lucic        DET   97     36.1 
+SF  Ethan Campbell       DEN   94     31.8 
+SF  Louis Pepperdash III CAR   92     29.1 
+SF  Ollie Frye           MAN   83     21.2 
+SF  Makenzie Bell        HON   81     17.0 
+SF  D'Andre Holiday      MW    85     20.2 
+SF  Scottie Riley        NY    85     26.3 
+SF  Izayah Hilliard      SEA   83     19.6 
+PF  Harper Holland       OAK   98     43.4 
+PF  Ameer Allen          CHI   93     38.5 
+PF  Jamari Odom          TEX   89     29.1 
+PF  Kwame Koppel         CGG   89     29.1 
+PF  Kodi Bates           HON   87     26.5 
+PF  Tobi Ingram          NO    88     23.5 
+PF  Denver Bruner        MAN   86     24.9 
+PF  Will Fox Jr          MEM   84     20.5 
+PF  Jae Simmons          SAS   84     21.7 
+PF  Kya Emery            CAR   81     16.7 
+PF  Shinobu Ochi         MW    83     19.0 
+C   Katleho Cisneros     SAS   98     37.8 
+C   Olufemi Cisneros     BOS   96     31.7 
+C   Merritt Donovan      PHX   95     35.5 
+C   Bello Olumide        DEN   91     28.2 
+C   Payton Atkinson      NO    87     24.4 
+C   Adonis Wonder        MW    88     26.2 
+C   JJ Eaton             DET   86     21.8 
+C   Issa Cisse           ATL   85     22.9 
+C   Grant Ogden          CIN   83     18.3 
+C   Kasey Monroe         DCB   83     22.7 
 
 ========== MVP Race ==========
 Rank  Name                 Team  Pos  PPG    Rate   Odds      
 ------------------------------------------------------------------
-1     Harper Holland       OAK   PF   45.0   97     -233      
-2     Byron Oden           NO    SF   43.0   96     +234      
-3     Adonis Wonder        MW    C    30.0   88     +6000     
-4     D'Andre Holiday      MW    SF   24.0   84     +6000     
-5     Samuel Adeyemi       STL   C    26.0   77     +6000     
-6     Shinobu Ochi         MW    PF   23.0   82     +6000     
-7     Tobi Ingram          NO    PF   21.0   86     +8000     
-8     Amari Phillips       STL   PG   21.0   77     +8000     
-9     Payton Atkinson      NO    C    15.0   87     +10000    
-10    Romello Cain         STL   PF   18.0   77     +10000    
+1     Reagan Butler        HON   SG   36.9   96     +210      
+2     Mitchell Hope        TOR   SG   40.2   98     +654      
+3     Byron Oden           NO    SF   34.6   97     +694      
+4     Katleho Cisneros     SAS   C    37.8   98     +774      
+5     Cameron Lucic        DET   SF   36.1   97     +1034     
+6     Harper Holland       OAK   PF   43.4   98     +1087     
+7     Gabriel Greenwood    BOS   PG   34.7   96     +1113     
+8     Julien Shannon       CP    SG   40.7   95     +1919     
+9     Ivory Huntley        MEM   PG   33.9   97     +10000    
+10    Olufemi Cisneros     BOS   C    31.7   96     +10000    
 
 ========== PPK Award Race ==========
 Rank  Name                 Team  Pos  PPG    Rate   Odds      
 ------------------------------------------------------------------
-1     Amari Phillips       STL   PG   21.0   77     -635      
-2     Kymari Rivers        OV    PG   13.5   75     +2057     
-3     Kai Switzer          OAK   SG   13.0   76     +2111     
-4     Mitchell Hope        TOR   SG   0.0    97     +6000     
-5     Gabriel Greenwood    BOS   PG   0.0    96     +6000     
-6     Julien Shannon       CP    SG   0.0    95     +6000     
-7     Ivory Huntley        MEM   PG   0.0    95     +8000     
-8     Reagan Butler        HON   SG   0.0    94     +8000     
-9     Kabelo Ayodele       OAK   PG   8.0    74     +10000    
-10    JT Ramsey            CIN   SG   0.0    92     +10000    
+1     Reagan Butler        HON   SG   36.9   96     +112      
+2     Mitchell Hope        TOR   SG   40.2   98     +415      
+3     Gabriel Greenwood    BOS   PG   34.7   96     +728      
+4     Julien Shannon       CP    SG   40.7   95     +1278     
+5     Ivory Huntley        MEM   PG   33.9   97     +1402     
+6     Elliott Sparrow      TEX   PG   31.3   92     +2547     
+7     JT Ramsey            CIN   SG   32.9   93     +5273     
+8     Jelani Soweto        CAR   PG   29.1   91     +5675     
+9     Yasin Milovanovic    VEG   SG   34.0   89     +10000    
+10    Ramiro Mateus        CGG   PG   27.0   88     +10000    
 
 ========== LP Award Race ==========
 Rank  Name                 Team  Pos  PPG    Rate   Odds      
 ------------------------------------------------------------------
-1     Harper Holland       OAK   PF   45.0   97     -234      
-2     Byron Oden           NO    SF   43.0   96     +234      
-3     D'Andre Holiday      MW    SF   24.0   84     +6000     
-4     Shinobu Ochi         MW    PF   23.0   82     +6000     
-5     Tobi Ingram          NO    PF   21.0   86     +6000     
-6     Romello Cain         STL   PF   18.0   77     +6000     
-7     Jamar Williams       OV    PF   17.0   78     +8000     
-8     Xavier Rose          STL   SF   21.0   68     +8000     
-9     Kai Richardson       OV    SF   15.5   75     +10000    
-10    Cameron Lucic        DET   SF   0.0    95     +10000    
+1     Byron Oden           NO    SF   34.6   97     +191      
+2     Cameron Lucic        DET   SF   36.1   97     +315      
+3     Harper Holland       OAK   PF   43.4   98     +335      
+4     Ethan Campbell       DEN   SF   31.8   94     +1504     
+5     Ameer Allen          CHI   PF   38.5   93     +2332     
+6     Louis Pepperdash III CAR   SF   29.1   92     +2683     
+7     Jamari Odom          TEX   PF   29.1   89     +3683     
+8     Kwame Koppel         CGG   PF   29.1   89     +5151     
+9     Kodi Bates           HON   PF   26.5   87     +10000    
+10    Tobi Ingram          NO    PF   23.5   88     +10000    
 
 ========== MC Award Race ==========
 Rank  Name                 Team  Pos  PPG    Rate   Odds      
 ------------------------------------------------------------------
-1     Adonis Wonder        MW    C    30.0   88     -1911     
-2     Samuel Adeyemi       STL   C    26.0   77     +2122     
-3     Payton Atkinson      NO    C    15.0   87     +6000     
-4     Ifa Fukui            OV    C    13.0   70     +6000     
-5     Katleho Cisneros     SAS   C    0.0    97     +6000     
-6     Olufemi Cisneros     BOS   C    0.0    95     +6000     
-7     Merritt Donovan      PHX   C    0.0    93     +8000     
-8     Bello Olumide        DEN   C    0.0    90     +8000     
-9     JJ Eaton             DET   C    0.0    85     +10000    
-10    Artyom Kovalchuk     OAK   C    7.0    68     +10000    
+1     Katleho Cisneros     SAS   C    37.8   98     -206      
+2     Olufemi Cisneros     BOS   C    31.7   96     +395      
+3     Merritt Donovan      PHX   C    35.5   95     +1352     
+4     Bello Olumide        DEN   C    28.2   91     +2841     
+5     Payton Atkinson      NO    C    24.4   87     +6000     
+6     Adonis Wonder        MW    C    26.2   88     +6000     
+7     JJ Eaton             DET   C    21.8   86     +8000     
+8     Issa Cisse           ATL   C    22.9   85     +8000     
+9     Grant Ogden          CIN   C    18.3   83     +10000    
+10    Kasey Monroe         DCB   C    22.7   83     +10000    

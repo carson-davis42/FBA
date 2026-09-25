@@ -60,21 +60,6 @@ public class Main {
     }
 
     /**
-     * a test to debug the search of teams
-     *
-     * @param keyboard pre: none
-     */
-    private static void testScanner(Scanner keyboard) {
-        System.out.print("Which team? ");
-        String w = keyboard.nextLine();
-        while (!teams.containsKey(w)) {
-            System.out.print("error, try again: ");
-            w = keyboard.nextLine().toUpperCase();
-        }
-        System.out.println(teams.get(w));
-    }
-
-    /**
      * send out each roster to the FBA Rosters that must be read in
      *
      * @throws IOException
@@ -426,104 +411,6 @@ public class Main {
         }
     }
 
-//    public static void playGames(Scanner keyboard) throws IOException {
-//        boolean anotherGame = true;
-//        while (anotherGame) {
-//            if (gamesPlayed == (TOTAL_NUM_OF_GAMES / 4) || gamesPlayed ==
-//                    (TOTAL_NUM_OF_GAMES / 2) || gamesPlayed == (TOTAL_NUM_OF_GAMES * .75)) {
-//                messageToAdjustRatings(keyboard);
-//                if (gamesPlayed == (TOTAL_NUM_OF_GAMES * .75)) {
-//                    printTopPlayers(80);
-//                    System.out.print("Pick All-Stars(Type 'done' when finished): ");
-//                    String answer = keyboard.nextLine().toUpperCase();
-//                    while (!answer.equals("DONE")) {
-//                        System.out.print("Pick All-Stars(Type 'done' when finished): ");
-//                        answer = keyboard.nextLine().toUpperCase();
-//                    }
-//                }
-//                else if (gamesPlayed == (TOTAL_NUM_OF_GAMES * .5)) {
-//                    System.out.println("TRADE DEADLINE: Look at trade options(Type 'done' when finished): ");
-//                    String answer = keyboard.nextLine().toUpperCase();
-//                    while (!answer.equals("DONE")) {
-//                        System.out.print("Pick All-Stars(Type 'done' when finished): ");
-//                        answer = keyboard.nextLine().toUpperCase();
-//                    }
-//                }
-//            }
-//            if (gamesPlayed == TOTAL_NUM_OF_GAMES) {
-//                anotherGame = false;
-//            }
-//            if (anotherGame) {
-//                toFilePlayoffs();
-//                Team one = schedule[0][gamesPlayed];
-//                Team two = schedule[1][gamesPlayed];
-//                boolean homeWin = false;
-//                System.out.println(one.displayToString());
-//                System.out.println(two.displayToString());
-//                System.out.println();
-//                System.out.println("(" + one.getWin() + "-" + one.getLoss() + ")" + one.getName()
-//                        + " vs " + two.getName() + "(" + two.getWin() + "-" + two.getLoss() + ")");
-//                System.out.print("Who wins(type team abreviation): ");
-//                boolean sameConf = one.getConference().equals(two.getConference());
-//                boolean valid = false;
-//                while (!valid) {
-//                    String answer = keyboard.nextLine().toUpperCase();
-//                    Map<Team, Integer> oHTH = one.getHTH();
-//                    Map<Team, Integer> tHTH = two.getHTH();
-//                    if (answer.equals(one.getAbreviation())) {
-//                        valid = true;
-//                        one.setWin(one.getWin() + 1, sameConf);
-//                        two.setLoss(two.getLoss() + 1, sameConf);
-//                        homeWin = true;
-//                        if (oHTH.containsKey(two)) {
-//                            oHTH.put(two, oHTH.get(two) + 1);
-//                        }
-//                        else {
-//                            oHTH.put(two, 1);
-//                        }
-//                        if (!tHTH.containsKey(one)) {
-//                            tHTH.put(one, 0);
-//                        }
-//
-//                    }
-//                    else if (answer.equals(two.getAbreviation())) {
-//                        valid = true;
-//                        two.setWin(two.getWin() + 1, sameConf);
-//                        one.setLoss(one.getLoss() + 1, sameConf);
-//                        homeWin = false;
-//                        if (tHTH.containsKey(one)) {
-//                            tHTH.put(one, tHTH.get(one) + 1);
-//                        }
-//                        else {
-//                            tHTH.put(one, 1);
-//                        }
-//                        if (!oHTH.containsKey(two)) {
-//                            oHTH.put(two, 0);
-//                        }
-//                    }
-//                    else {
-//                        System.out.print("not valid, try again: ");
-//                    }
-//                }
-//                playedGame = true;
-//                gamesPlayed++;
-//                System.out.println(one.getName() + ": " + one.getWin() + "-" + one.getLoss());
-//                System.out.println(two.getName() + ": " + two.getWin() + "-" + two.getLoss());
-//                System.out.println();
-//                tiebreakersComplete = "N";
-//                toFileResults(one, two, homeWin);
-//                toFileSchedule();
-//                updateStandings();
-//                toFileWL();
-//                toFileRemainingSchedule();
-//                makeGoodLookinStandings();
-//            }
-//            if (gamesPlayed == TOTAL_NUM_OF_GAMES) {
-//                anotherGame = false;
-//            }
-//        }
-//    }
-
     public static void playGamesTest(Scanner keyboard) throws IOException {
         boolean anotherGame = true;
         while (anotherGame) {
@@ -830,13 +717,21 @@ public class Main {
         fw.close();
     }
 
-    private static void messageToAdjustRatings(Scanner keyboard) {
+    private static void messageToAdjustRatings(Scanner keyboard) throws IOException {
         System.out.print("Adjust Ratings(Type 'done' when finished): ");
         String answer = keyboard.nextLine().toUpperCase();
         while (!answer.equals("DONE")) {
             System.out.print("Adjust Ratings(Type 'done' when finished): ");
             answer = keyboard.nextLine().toUpperCase();
         }
+        PrintWriter out = new PrintWriter(new FileWriter("FBA\\Awards.txt"));
+        printTopPlayers(out, 80);
+        printMVPRace(out);
+        printPPKAwardRace(out);
+        printLPAwardRace(out);
+        printMCAwardRace(out);
+        out.close();
+        toFileBestScorers();
     }
 
     public static void updateStandings() throws IOException {
@@ -1460,72 +1355,6 @@ public class Main {
                 }
             }
             toFilePlayoffs();
-
-
-
-
-
-
-//            int oRank;
-//            int tRank;
-//            if (western.contains(one)) {
-//                oRank = western.indexOf(one) + 1;
-//            }
-//            else {
-//                oRank = eastern.indexOf(one) + 1;
-//            }
-//            if (western.contains(two)) {
-//                tRank = western.indexOf(two) + 1;
-//            }
-//            else {
-//                tRank = eastern.indexOf(two) + 1;
-//            }
-//            int gp = curSer.getAwayWins() + curSer.getHomeWins();
-//            playoffs = true;
-//            if (gp == 2 || gp == 3 || gp == 5) {
-//                System.out.println(two.displayToString());
-//                System.out.println(one.displayToString());
-//                System.out.println();
-//                System.out.println("(" + curSer.getAwayWins() + "-" + curSer.getHomeWins() + ")" + tRank + "." + two.getName()
-//                        + " vs " + oRank + "." + one.getName() + "(" + curSer.getHomeWins() + "-" + curSer.getAwayWins() + ")");
-//            }
-//            else {
-//                System.out.println(one.displayToString());
-//                System.out.println(two.displayToString());
-//                System.out.println();
-//                System.out.println("(" + curSer.getHomeWins() + "-" + curSer.getAwayWins() + ")" + oRank + "." + one.getName()
-//                        + " vs " + tRank + "." + two.getName() + "(" + curSer.getAwayWins() + "-" + curSer.getHomeWins() + ")");
-//            }
-//            System.out.print("Who wins(type team abreviation): ");
-//            boolean valid = false;
-//            while (!valid) {
-//                String answer = keyboard.nextLine().toUpperCase();
-//                if (answer.equals(one.getAbreviation())) {
-//                    valid = true;
-//                    curSer.homeWin();
-//                }
-//                else if (answer.equals(two.getAbreviation())) {
-//                    valid = true;
-//                    curSer.awayWin();
-//                }
-//                else {
-//                    System.out.print("not valid, try again: ");
-//                }
-//            }
-//            playedGame = true;
-//            System.out.println(one.getName() + ": " + curSer.getHomeWins() + "-" + curSer.getAwayWins());
-//            System.out.println(two.getName() + ": " + curSer.getAwayWins() + "-" + curSer.getHomeWins());
-//            System.out.println();
-//            if (!curSer.isOver()) {
-//                seriesQueue.offer(curSer);
-//            }
-//            else {
-//                PlayoffSeries next = whereToNext(curSer);
-//                if (next != null && next.ready()) {
-//                    seriesQueue.offer(next);
-//                }
-//            }
-//            toFilePlayoffs();
         }
     }
 
@@ -1898,10 +1727,22 @@ public class Main {
                 }
             }
 
-            players.sort((a, b) -> Double.compare(b.getPPG(), a.getPPG()));
+            players.sort((a, b) -> {
+                int cmp = Double.compare(getAwardScore(b), getAwardScore(a));
+                if (cmp != 0) return cmp;
 
-            for (Player p : players) {
+                cmp = Double.compare(b.getPPG(), a.getPPG());
+                if (cmp != 0) return cmp;
+
+                return Integer.compare(b.getRating(), a.getRating());
+            });
+
+            int limit = Math.min(11, players.size());
+
+            for (int i = 0; i < limit; i++) {
+                Player p = players.get(i);
                 Team t = p.getTeam();
+
                 out.printf("%-3s %-20s %-5s %-6d %-5.1f%n",
                         po,
                         p.getName(),
@@ -2016,7 +1857,27 @@ public class Main {
     }
 
     private static double getAwardScore(Player p) {
-        return p.getPPG() * 0.7 + p.getRating() * 0.3;
+        double ppgScore = p.getPPG() * 0.60;
+        double ratingScore = p.getRating() * 0.20;
+        double teamSuccessScore = getTeamSuccessScore(p) * 0.20;
+
+        return ppgScore + ratingScore + teamSuccessScore;
+    }
+
+    private static double getTeamSuccessScore(Player p) {
+        Team team = p.getTeam();
+        int wins = team.getWin();
+        int losses = team.getLoss();
+        int games = wins + losses;
+
+        if (games == 0) {
+            return 50.0; // neutral early-season value
+        }
+
+        double winPercentage = (double) wins / games;
+
+        // Converts win percentage to a 0-100 style score
+        return winPercentage * 100.0;
     }
 
     private static String toAmericanOdds(double probability) {

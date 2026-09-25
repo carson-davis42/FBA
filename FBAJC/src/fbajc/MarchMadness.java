@@ -1149,4 +1149,8 @@ public class MarchMadness {
             keyboard.nextLine();
         }
     }
+
+    public ArrayList<Team> getNITField() {
+        return new ArrayList<>(NIT_field);
+    }
 }

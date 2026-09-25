@@ -1,30 +1,35 @@
--Rankings-
-Games Played: 3132
-1.Houston:                     (0)
-2.UCLA:                        (0)
-3.Duke:                        (0)
-4.Tennessee:                   (1)
-5.Arizona:                     (-1)
-6.Wichita State:               (1)
-7.Gonzaga:                     (1)
-8.Creighton:                   (-2)
-9.Michigan State:              (0)
-10.Colorado State:             (0)
-11.Virginia:                   (0)
-12.Texas:                      (1)
-13.Villanova:                  (-1)
-14.Mississippi State:          (0)
-15.Nevada:                     (2)
-16.UConn:                      (7)
-17.North Carolina:             (-1)
-18.Memphis:                    (-3)
-19.Kentucky:                   (-1)
-20.San Diego State:            (4)
-21.Marquette:                  (-2)
-22.Indiana:                    (-2)
-23.Kansas:                     (-2)
-24.Xavier:                     (-2)
-25.St.John's:                  (0)
+┌─────────────────────────────────────────────────────────────────┐
+│  FBAJC RANKINGS  ·  SEASON 78   ·  3132 GAMES PLAYED             │
+│  FR Weight: 1.00  ·  Rating Weight: 0.00                          │
+└─────────────────────────────────────────────────────────────────┘
 
--Dropped-
-none
+ #    Δ     TEAM                            CONF    W-L     CONF    RATING
+ ──  ──   ─────────────────────────────   ─────   ──────  ──────  ──────
+R|1    --    Mississippi State               SEC     31-1    22-0    89.8  
+R|2    +1    San Diego State                 MWC     30-2    20-2    88.8  
+R|3    -1    Nevada                          MWC     30-2    21-1    86.4  
+R|4    +1    Wake Forest                     ACC     27-5    19-3    86.6  
+R|5    -1    Florida                         SEC     24-6    17-5    86.0  
+R|6    +3    Houston                         B12     31-1    22-0    87.6  
+R|7    --    Duke                            ACC     24-7    17-5    87.0  
+R|8    -2    Kentucky                        SEC     23-7    16-6    87.6  
+R|9    +2    North Carolina                  ACC     27-5    18-4    87.6  
+R|10   -2    Syracuse                        ACC     24-6    17-5    85.8  
+R|11   -1    UCLA                            P12     26-5    20-2    87.4  
+R|12   --    Illinois                        B10     26-5    19-3    86.2  
+R|13   --    UConn                           BE      26-5    19-3    84.0  
+R|14   +6    Michigan State                  B10     25-7    16-6    85.6  
+R|15   -1    Marquette                       BE      27-4    21-1    84.0  
+R|16   +2    Lehigh                          PAT     30-2    21-1    80.2  
+R|17   -2    Purdue                          B10     26-6    18-4    85.0  
+R|18   +1    Pitt                            A10     30-2    22-0    82.2  
+R|19   -3    Virginia                        ACC     24-7    16-6    83.4  
+R|20   -3    Michigan                        B10     23-8    16-6    86.2  
+R|21   NR    Gonzaga                         P12     23-8    16-6    85.6  
+R|22   NR    Villanova                       BE      24-8    15-7    81.2  
+R|23   -2    Iowa State                      B12     25-6    19-3    84.2  
+R|24   -2    Texas                           B12     25-7    17-5    83.4  
+R|25   NR    USC                             P12     25-7    16-6    86.6  
+ ──  ──   ─────────────────────────────   ─────   ──────  ──────  ──────
+
+ DROPPED: Tennessee (SEC) 21-9 [was #23]  ·  Wichita State (AAC) 26-5 [was #25]  ·  LSU (SEC) 22-11 [was #24]

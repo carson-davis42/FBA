@@ -52,6 +52,11 @@ public class MarchMadness {
         final int[] SEED_OPPS_2 = {1, 2, 5, 6, 9, 10, 13, 14};
         field = new ArrayList<>();
         ArrayList<Team> teams_to_seed = new ArrayList<>(Main.countries);
+        for (int i = teams_to_seed.size() - 1; i > -1; i--) {
+            if (teams_to_seed.get(i).getSeed() > 64) {
+                teams_to_seed.remove(i);
+            }
+        }
         region1 = new ArrayList<>();
         region2 = new ArrayList<>();
         region3 = new ArrayList<>();
@@ -254,6 +259,8 @@ public class MarchMadness {
         int[] twoPlayerPoints = new int[5];
         ArrayList<Player> possession;
         ArrayList<Player> defense;
+        Team pos = one;
+        Team def = two;
         int OTCount = 0;
         int onePoints = 0;
         int twoPoints = 0;
@@ -297,10 +304,14 @@ public class MarchMadness {
             if (i % 2 == 0) {
                 possession = oneRoster;
                 defense = twoRoster;
+                pos = one;
+                def = two;
             }
             else {
                 possession = twoRoster;
                 defense = oneRoster;
+                pos = two;
+                def = one;
             }
             int getBallTo = 0;
             for (Player p : possession) {
@@ -318,15 +329,10 @@ public class MarchMadness {
                     playerWithBall = p;
                 }
             }
-            Player defender = defense.get(0);
-            for (Player p : defense) {
-                if (Objects.equals(p.getPosition(), playerWithBall.getPosition())) {
-                    defender = p;
-                }
-            }
+            Player defender = def.pickDefender(pos, possession.indexOf(playerWithBall));
             int def_effect = playerWithBall.getRating() - (int) (0.45 * defender.getRating()) + 10;
-            int oddsToMake = Math.max(35, Math.min(60, def_effect));
-            int madeScore = (int) (Math.random() * 100);
+            int oddsToMake = Math.max(35, Math.min(65, def_effect));
+            int madeScore = (int) (Math.random() * 100) + 1;
             int pointsScored = 0;
             if (oddsToMake >= madeScore) {
                 madeScore = Math.abs(madeScore - oddsToMake);

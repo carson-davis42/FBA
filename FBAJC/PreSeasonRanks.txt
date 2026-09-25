@@ -1,25 +1,25 @@
-1_Gonzaga
-2_Kansas
-3_Arizona
-4_North Carolina
-5_Nevada
-6_Creighton
-7_Indiana
-8_Houston
-9_San Diego State
-10_Villanova
-11_Tennessee
-12_Xavier
-13_Baylor
-14_Auburn
-15_Marquette
-16_Oklahoma
-17_UCLA
-18_Texas A&M
-19_St.John's
-20_BYU
-21_Texas
-22_Memphis
-23_Purdue
-24_Michigan State
-25_Michigan
+1_San Diego State
+2_Mississippi State
+3_Kentucky
+4_UCLA
+5_Duke
+6_North Carolina
+7_Wake Forest
+8_Gonzaga
+9_Houston
+10_Nevada
+11_Syracuse
+12_Illinois
+13_Michigan
+14_Michigan State
+15_Purdue
+16_Arizona
+17_USC
+18_Florida
+19_Iowa State
+20_Tennessee
+21_UConn
+22_Texas
+23_Indiana
+24_Marquette
+25_Virginia

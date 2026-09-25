@@ -1,0 +1,173 @@
+========================================
+        FBAJC PRESEASON RANKINGS        
+========================================
+Season: S78
+Teams Ranked: Top 78
+
+Rank   Team                      Conf     Rating  
+------------------------------------------------
+1      San Diego State           MWC      86.4    
+2      Mississippi State         SEC      86.0    
+3      Kentucky                  SEC      85.4    
+4      UCLA                      P12      85.0    
+5      Duke                      ACC      84.8    
+6      North Carolina            ACC      84.8    
+7      Wake Forest               ACC      84.2    
+8      Gonzaga                   P12      83.8    
+9      Houston                   B12      83.2    
+10     Syracuse                  ACC      83.0    
+11     Nevada                    MWC      83.0    
+12     Illinois                  B10      82.6    
+13     Michigan State            B10      82.4    
+14     Michigan                  B10      82.4    
+15     Purdue                    B10      82.2    
+16     USC                       P12      82.0    
+17     Florida                   SEC      82.0    
+18     Arizona                   P12      82.0    
+19     Iowa State                B12      81.2    
+20     Tennessee                 SEC      80.8    
+21     Texas                     B12      80.4    
+22     UConn                     BE       80.4    
+23     Marquette                 BE       80.2    
+24     Indiana                   B10      80.2    
+25     Virginia                  ACC      79.6    
+26     Kansas                    B12      79.6    
+27     Oregon State              P12      78.4    
+28     Oregon                    P12      78.0    
+29     Creighton                 BE       77.8    
+30     Pitt                      A10      77.8    
+31     Texas A&M                 SEC      77.8    
+32     Ohio State                B10      77.4    
+33     Missouri                  SEC      77.2    
+34     Oklahoma                  B12      77.2    
+35     LSU                       SEC      77.0    
+36     Florida State             ACC      76.8    
+37     St.John's                 BE       76.8    
+38     Northwestern              B10      76.6    
+39     Villanova                 BE       76.4    
+40     Texas Tech                B12      76.4    
+41     Washington State          P12      76.2    
+42     Memphis                   AAC      76.0    
+43     Arizona State             P12      76.0    
+44     Wichita State             AAC      75.8    
+45     UNLV                      MWC      75.4    
+46     Butler                    BE       74.8    
+47     West Virginia             B12      74.6    
+48     VCU                       A10      74.4    
+49     TCU                       B12      74.4    
+50     Cincinnati                AAC      74.2    
+51     Lehigh                    PAT      74.2    
+52     Vanderbilt                A10      74.0    
+53     Troy                      OVC      73.8    
+54     Seton Hall                BE       73.4    
+55     Wyoming                   MWC      73.4    
+56     UAB                       AAC      73.2    
+57     FAU                       AAC      73.2    
+58     Arkansas                  SEC      73.0    
+59     Colorado                  P12      73.0    
+60     Washington                P12      73.0    
+61     Providence                BE       73.0    
+62     Alabama                   SEC      72.8    
+63     Abeline Christian         SOCON    72.8    
+64     Winthrop                  COL      72.6    
+65     Buffalo                   A10      72.6    
+66     Saint Mary's              PAT      72.4    
+67     Stanford                  P12      72.4    
+68     Auburn                    SEC      72.2    
+69     Clemson                   ACC      72.0    
+70     Georgia State             SUN      72.0    
+71     Georgia                   SEC      72.0    
+72     Rice                      AAC      71.8    
+73     Georgetown                BE       71.8    
+74     Air Force                 MWC      71.8    
+75     Boston U                  COL      71.6    
+76     San Francisco             SKY      71.4    
+77     Loyola-Chicago            A10      71.4    
+78     Minnesota                 B10      71.2    
+
+
+========================================
+        FBAJC PRESEASON TOP PLAYERS     
+========================================
+Players Ranked: Top 78
+
+Rank   Player                    Team       Rating  
+------------------------------------------------
+1      Rylan Rush                UNC        96      
+2      Daelin Strickland         WF         95      
+3      Aleksandar Petrovic       MISSST     95      
+4      Camden Giles              TENN       94      
+5      Milo Lawrenz              SDSU       94      
+6      Isaiah Freeman            USC        93      
+7      Jalen St.Clair            UK         93      
+8      Kobe Livingston           UM         93      
+9      Kiyan Lovelace            SYR        92      
+10     Kellen Ogbu               UH         92      
+11     Christian Flores          SDSU       91      
+12     Zykeem Bellamy            UH         91      
+13     Luke Tennyson             FLO        91      
+14     Elias Beck                NEV        91      
+15     Anthony Wells             GU         90      
+16     Youssef El-Sayed          ISU        90      
+17     Jaron Fields              STJOHNS    90      
+18     Jaden Mahonee             UH         90      
+19     Jordi Crowder             NEV        90      
+20     Mason Ellington           DUKE       90      
+21     Noah Brooks               ILL        90      
+22     Zyrell Houston            UCLA       90      
+23     Jakoby Henderson          KU         90      
+24     Luka Vasiljevic           ILL        89      
+25     Caleb Ingram              UK         89      
+26     Quinn McKinnon            GU         89      
+27     Koen Smits                MISSST     89      
+28     Brandon Kato              PUR        88      
+29     Dalen Tucker              SDSU       88      
+30     Sage Ellis                WF         88      
+31     Kade Harmon               UVA        88      
+32     Brayden Black             ISU        88      
+33     Ethan Copeland            UNC        88      
+34     Elijah Tate               LSU        88      
+35     Zayden Carr               MSU        88      
+36     Zyaire McKnight           MQ         88      
+37     GG Baxter                 UCLA       87      
+38     Kofi Mensah               DUKE       87      
+39     Keaton Frye               DUKE       87      
+40     DeAndre Simmons           UCON       87      
+41     Miki Lawrenz              UCLA       87      
+42     Luke Barlow               ARIZ       86      
+43     DJ Drake                  SYR        86      
+44     KT Love                   TTU        86      
+45     Kobe Daniels              OU         86      
+46     Brycen Holcomb            ORE        86      
+47     Talon Reed                MSU        86      
+48     Amare Thornhill           UM         86      
+49     Rylan Bishop              MSU        86      
+50     Lance Durbin              MIZZ       86      
+51     Anderson Ray              UCON       86      
+52     Malakai Hill              ISU        85      
+53     Tremaine Lockwood         MISSST     85      
+54     Dax Carpenter             ARK        85      
+55     Leo Duarte                UK         85      
+56     Jon Kingsbury             UNC        85      
+57     Darius Montague           USC        85      
+58     Tyreon Clark              UVA        85      
+59     Julian Scott              SDSU       85      
+60     Derrick Langham           WICH       85      
+61     Jahlani George            UT         85      
+62     Barrett Kessley           CSU        85      
+63     Micah Thornton            UM         85      
+64     Cooper Yates              MIZZ       85      
+65     Jace Ellis                FSU        85      
+66     Dmitri Kolesnikov         PITT       85      
+67     Omar Aziz                 NCS        84      
+68     Javion Rollins            KU         84      
+69     Elias Duarte              ARIZ       84      
+70     Carson Vale               MSU        84      
+71     Jakobe Willis             ORST       84      
+72     Isaiah Montclair          GU         84      
+73     Tylin Grant               SYR        84      
+74     Johann Adler              TTU        84      
+75     Karim Ould                UM         84      
+76     Iman Farooq               UT         84      
+77     Kolton Ware               ALA        84      
+78     Nazir Karam               VIL        84      

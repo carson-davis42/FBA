@@ -16,8 +16,8 @@ public class Main {
     public static String host;
 
     public static void main(String[] args) throws IOException {
-        season = 76;
-        host = "Greece";
+        season = 78;
+        host = "Croatia";
         readRosters();
         readOrMakeSchedule(true); //true if reading a schedule, true to print
         playMarchMadness();
@@ -108,6 +108,7 @@ public class Main {
         }
         theBracket = new MarchMadness();
         toFileMM();
+        toFile();
     }
 
 
@@ -187,20 +188,26 @@ public class Main {
     private static void setSeeds()
     {
         ArrayList<Team> teams_to_rank = new ArrayList<>(countries);
-        for (int i = teams_to_rank.size() - 1; i > -1; i--)
-        {
-            double best_rating = 0.0;
-            Team best_team = teams_to_rank.get(0);
-            for (Team t: teams_to_rank)
-            {
-                if (t.getRating() > best_rating)
-                {
-                    best_team = t;
-                    best_rating = t.getRating();
-                }
+        teams_to_rank.sort((a, b) -> {
+            double ratingDiff = b.getRating() - a.getRating();
+
+            // Higher rating first
+            if (ratingDiff > 0) {
+                return 1;
             }
-            best_team.setSeed(64 - i);
-            teams_to_rank.remove(best_team);
+            else if (ratingDiff < 0) {
+                return -1;
+            }
+
+            // Random tiebreaker
+            return Math.random() < 0.5 ? -1 : 1;
+        });
+
+        int rank = 1;
+
+        for (Team t : teams_to_rank) {
+            t.setSeed(rank);
+            rank++;
         }
     }
 

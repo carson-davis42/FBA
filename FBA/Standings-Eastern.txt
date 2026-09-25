@@ -1,18 +1,18 @@
 -Eastern-
 
-1.Maine Wildcats:            1-0  (0-0)    --
-2.Boston Bucks:              0-0  (0-0)    -0.5
-3.Milwaukee Warriors:        0-0  (0-0)    -0.5
-4.Detroit Motors:            0-0  (0-0)    -0.5
-5.Cincinnati Blue Stripes:   0-0  (0-0)    -0.5
-6.Manhattan Magic:           0-0  (0-0)    -0.5
-7.Columbus Pirates:          0-0  (0-0)    -0.5
-8.Carolina Knights:          0-0  (0-0)    -0.5
+*-1.Carolina Knights:         62-24 (42-14)  --
+x-2.Boston Bucks:             60-26 (43-13)  -2
+x-3.Detroit Motors:           56-30 (39-17)  -6
+x-4.Manhattan Magic:          54-32 (34-22)  -8
+x-5.Cincinnati Blue Stripes:  51-35 (32-24)  -11
+x-6.Maine Wildcats:           50-36 (30-26)  -12
+x-7.Toronto Wolves:           48-38 (32-24)  -14
+x-8.Atlanta Venom:            45-41 (28-28)  -17
 -----
-9.Toronto Wolves:            0-0  (0-0)    -0.5
-10.Chicago Spartans:         0-0  (0-0)    -0.5
-11.Atlanta Venom:            0-0  (0-0)    -0.5
-12.Montreal Chevaliers:      0-0  (0-0)    -0.5
-13.DCB:                      0-0  (0-0)    -0.5
-14.New York Icons:           0-0  (0-0)    -0.5
-15.Ohio Valley Sharks:       0-2  (0-0)    -1.5
+n-9.Columbus Pirates:         41-45 (28-28)  -21
+n-10.Chicago Spartans:        38-48 (27-29)  -24
+n-11.DCB:                     35-51 (22-34)  -27
+n-12.New York Icons:          33-53 (24-32)  -29
+n-13.Milwaukee Warriors:      24-62 (17-39)  -38
+n-14.Ohio Valley Sharks:      18-68 (12-44)  -44
+n-15.Montreal Chevaliers:     16-70 (10-46)  -46

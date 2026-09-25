@@ -10,7 +10,7 @@ import java.util.*;
 public class Main {
     //instance variables
     private static TreeMap<String, Team> teams;
-    private static TreeMap<String, Team> teamNames;
+    public static TreeMap<String, Team> teamNames;
     public static ArrayList<Team> Big12;
     public static ArrayList<Team> ACC;
     public static ArrayList<Team> BigEast;
@@ -49,6 +49,7 @@ public class Main {
     private static ArrayList<PostSeasonTourny> postTourniesInOrder;
     public static Set<Team> confChamps;
     private static MarchMadness theBracket;
+    private static NIT theNIT;
     public static int season;
     public static boolean simulatePreST;
     public static boolean simulateSeason;
@@ -57,7 +58,7 @@ public class Main {
     public static double averageTeamRatings;
 
     public static void main(String[] args) throws IOException {
-        season = 76;
+        season = 78;
         reading = true;
         Scanner keyboard = new Scanner(System.in);
         readRosters();
@@ -87,6 +88,7 @@ public class Main {
         playConfTournies();
         confTournies = false;
         marchMadness = true;
+        playNIT();
         playMarchMadness();
         System.out.print("Congrats " + theBracket.getChampion().getName() + ", ");
         System.out.println("you are S" + season + " FBAJC National Champions!");
@@ -374,6 +376,9 @@ public class Main {
         schedule = new Team[2][TOTAL_NUM_CONF_GAMES + CONF_CHALLENGE_TOTAL];
         int game = 0;
         readEarlyRanks();
+        toFilePreSeasonRankingsHistory();
+        toFileConferencePreSeasonRankings();
+        toFilePreSeasonRanks();
         PriorityQueue<ScheduleTeam> gamesLeftOrder = new PriorityQueue<>();
         //3 Parts: tournaments, conf challenges, conf games
         ArrayList<ArrayList<Team>> conferences = new ArrayList<>();
@@ -1220,6 +1225,7 @@ public class Main {
                     System.out.println(one.displayToString());
                     System.out.println(two.displayToString());
                     System.out.println();
+                    printGameAnnouncement(one, two);
                     System.out.print("(" + one.getWin() + "-" + one.getLoss() + ")");
                     if (inRanks.contains(one)) {
                         System.out.print((inRanks.indexOf(one) + 1) + ".");
@@ -1455,11 +1461,7 @@ public class Main {
                 makeGoodLookinStandings();
                 toFileBestScorers();
                 if (!simulateSeason && updateNames) {
-                    System.out.print("Update Names:");
-                    String ans = keyboard.nextLine();
-                    while (!ans.toLowerCase().equals("done")) {
-                        ans = keyboard.nextLine();
-                    }
+                    System.out.print("Update Names!");
                 }
             }
             if (anotherGame && gamesPlayed >= TOTAL_NUM_CONF_GAMES + CONF_CHALLENGE_TOTAL + PRE_S_TOURN_TOTAL) {
@@ -1629,10 +1631,12 @@ public class Main {
         }
         if ((gamesPlayed - PRE_S_TOURN_TOTAL) % 108 == 0 && gamesPlayed > (PRE_S_TOURN_TOTAL - 1) && !reading) {
             updateRankings(true);
+            readRankings();
+            toFileAwards();
         }
     }
 
-    public static void updatePlayerRatings(Team t, boolean won, Team opp) {
+    public static void updatePlayerRatings(Team t, boolean won, Team opp) throws IOException {
         for (Player p: t.roster) {
             int rat = p.cur_rating;
             int mrp = p.most_recent_points;
@@ -1672,49 +1676,121 @@ public class Main {
             if (upgrade > 0) {
                 t.updateTeamRating();
                 averageTeamRatingsUpdate();
-            }
-            if (upgrade > 0 && (!Main.simulatePreST || !Main.simulateSeason || !Main.simulateConfT)) {
-                System.out.println(t.getAbreviation() + ": " + p.getName() + "(" + p.getPosition() + "): +" + upgrade + ", " + p.cur_rating);
-                if (p.getName().equals("X") && ((p.cur_rating >= 80 && p.getGrade().equals("Jr")) || (p.cur_rating >= 78 && p.getGrade().equals("So")) || (p.cur_rating >= 76 && p.getGrade().equals("Fr")))) {
-                    System.out.println("new named player: " + t.getAbreviation() + "(" + p.getPosition() + ")");
-                    updateNames = true;
+                if (p.getName().equals("X") && needsName(p)) {
+                    System.out.println("new named player needed: "
+                            + t.getAbreviation()
+                            + " "
+                            + p.getPosition());
+
+                    appendNameNeeded(t, p);
                 }
             }
         }
     }
 
+    private static boolean needsName(Player p) {
+        return p.getName().equals("X")
+                && ((p.cur_rating >= 80 && p.getGrade().equals("Jr"))
+                || (p.cur_rating >= 78 && p.getGrade().equals("So"))
+                || (p.cur_rating >= 76 && p.getGrade().equals("Fr")));
+    }
+
+    private static void appendNameNeeded(Team t, Player p) throws IOException {
+        FileWriter fw = new FileWriter("FBAJC/NamesNeeded.txt", true);
+
+        fw.write(t.getName()
+                + "/"
+                + t.getAbreviation()
+                + "/"
+                + p.getPosition()
+                + "/"
+                + p.getGrade()
+                + "/"
+                + p.cur_rating
+                + "\n");
+
+        fw.close();
+    }
+
     private static void readRankings() throws FileNotFoundException {
         rankings = new ArrayList<>();
+        inRanks = new ArrayList<>();
+
         File file = new File("FBAJC/Rankings.txt");
         Scanner input = new Scanner(file);
-        input.nextLine();
-        input.nextLine();
-        boolean keepGoin = true;
-        while (input.hasNextLine() && keepGoin) {
-            String next = input.nextLine();
-            if (next.contains(":")) {
-                Object[] a = next.split("\\.");
-                if (a[1].equals("St")) {
-                    String s = (String) a[2];
-                    if (s.startsWith("Joh")) {
-                        a[1] = "St.John's";
-                    }
-                    else if (s.startsWith("Jos")) {
-                        a[1] = "St.Joseph's";
-                    }
-                    else {
-                        a[1] = "St.Bonaventure";
-                    }
-                }
-                Object[] b = ((String) a[1]).split(":");
-                next = (String) b[0];
-                rankings.add(teamNames.get(next));
-                inRanks.add(teamNames.get(next));
+
+        while (input.hasNextLine()) {
+            String line = input.nextLine();
+
+            line = line.trim();
+            if (!line.startsWith("R|")) {
+                continue;
             }
-            else {
-                keepGoin = false;
+            String content = line.substring(2);
+
+            String[] tokens = content.trim().split("\\s+");
+            if (tokens.length < 4) {
+                continue;
+            }
+
+            String conf = null;
+            int confIndex = -1;
+
+            for (int i = 0; i < tokens.length; i++) {
+                if (isConferenceAbbreviation(tokens[i])) {
+                    conf = tokens[i];
+                    confIndex = i;
+                    break;
+                }
+            }
+
+            if (confIndex == -1) {
+                continue;
+            }
+
+            StringBuilder nameBuilder = new StringBuilder();
+
+            // tokens[0] = rank number
+            // tokens[1] = delta
+            // team name starts at tokens[2] and ends before conference
+            for (int i = 2; i < confIndex; i++) {
+                if (i > 2) {
+                    nameBuilder.append(" ");
+                }
+                nameBuilder.append(tokens[i]);
+            }
+
+            String teamName = nameBuilder.toString();
+            Team t = teamNames.get(teamName);
+
+            if (t != null && !inRanks.contains(t)) {
+                rankings.add(t);
+                inRanks.add(t);
             }
         }
+
+        input.close();
+    }
+
+    private static boolean isConferenceAbbreviation(String s) {
+        return s.equals("B12") ||
+                s.equals("ACC") ||
+                s.equals("BE") ||
+                s.equals("SEC") ||
+                s.equals("B10") ||
+                s.equals("AAC") ||
+                s.equals("P12") ||
+                s.equals("A10") ||
+                s.equals("PAT") ||
+                s.equals("COL") ||
+                s.equals("HOR") ||
+                s.equals("IVY") ||
+                s.equals("SOCON") ||
+                s.equals("SUN") ||
+                s.equals("SKY") ||
+                s.equals("MWC") ||
+                s.equals("OVC") ||
+                s.equals("NEC");
     }
 
     private static ArrayList<Team> updateStandHelp(ArrayList<Team> conf) {
@@ -1754,8 +1830,6 @@ public class Main {
                 frOrder.add(t);
             }
         }
-
-        // In case any team somehow isn't present in FootballRanker output
         for (Team t : teamNames.values()) {
             if (!frOrder.contains(t)) {
                 frOrder.add(t);
@@ -1764,24 +1838,18 @@ public class Main {
 
         // -----------------------------
         // 2. Build team_rating order
-        //    This is now the "base" ranking source
         // -----------------------------
         ArrayList<Team> ratingOrder = new ArrayList<>(teamNames.values());
         ratingOrder.sort((t1, t2) -> Double.compare(t2.getTeamRating(), t1.getTeamRating()));
 
         // -----------------------------
-        // 3. Decide how much FootballRanker matters
-        //
-        //    frWeight = 0.0  -> only team_rating
-        //    frWeight = 1.0  -> only FootballRanker
-        //
-        //    Starts to matter a little after season begins
-        //    Full strength around 65% of season
+        // 3. Decide blend weights
+        //    MOVED TO METHOD SCOPE so formatting section can access them
         // -----------------------------
         double seasonProgress = (double) gamesPlayed / TOTAL_NUM_OF_GAMES;
 
         double blendStart = 0.05;
-        double blendFull = 0.65;
+        double blendFull  = 0.65;
 
         double frWeight;
         if (seasonProgress <= blendStart) {
@@ -1790,9 +1858,8 @@ public class Main {
             frWeight = 1.0;
         } else {
             double x = (seasonProgress - blendStart) / (blendFull - blendStart);
-            frWeight = x * x * (3 - 2 * x); // smoothstep easing
+            frWeight = x * x * (3 - 2 * x);
         }
-
         double ratingWeight = 1.0 - frWeight;
 
         // -----------------------------
@@ -1809,100 +1876,113 @@ public class Main {
         }
 
         // -----------------------------
-        // 5. Blend team_rating with FootballRanker
+        // 5. Blend and sort
         // -----------------------------
         ArrayList<Team> blendedOrder = new ArrayList<>(teamNames.values());
         blendedOrder.sort((t1, t2) -> {
             double score1 = ratingWeight * ratingRankMap.get(t1) + frWeight * frRankMap.get(t1);
             double score2 = ratingWeight * ratingRankMap.get(t2) + frWeight * frRankMap.get(t2);
-
             if (score1 < score2) return -1;
-            if (score1 > score2) return 1;
-
-            // Tiebreak 1: better FootballRanker rank
+            if (score1 > score2) return  1;
             int frCompare = Integer.compare(frRankMap.get(t1), frRankMap.get(t2));
             if (frCompare != 0) return frCompare;
-
-            // Tiebreak 2: better team rating
             return Double.compare(t2.getTeamRating(), t1.getTeamRating());
         });
 
         rankings = new ArrayList<>(blendedOrder);
-        inRanks = new ArrayList<>();
+        inRanks  = new ArrayList<>();
 
         // -----------------------------
-        // 6. Formatting for Rankings.txt
+        // 6. Option 4 formatting
         // -----------------------------
-        int longest = 0;
+        int nameCol = 0;
         for (Team t : rankings) {
-            if (t.getName().length() > longest) {
-                longest = t.getName().length();
+            if (t.getName().length() > nameCol) {
+                nameCol = t.getName().length();
             }
         }
-        longest++;
-        int oLongest = longest;
+        nameCol += 2;
 
-        StringBuilder sb = new StringBuilder("-Rankings-\n");
-        sb.append("Games Played: ").append(gamesPlayed).append("\n");
+        String divider = " ──  ──   "
+                + "─".repeat(nameCol)
+                + "   ─────   ──────  ──────  ──────";
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("┌─────────────────────────────────────────────────────────────────┐\n");
+        sb.append(String.format(
+                "│  FBAJC RANKINGS  ·  SEASON %-3d  ·  %-4d GAMES PLAYED             │\n",
+                season, gamesPlayed));
+        sb.append(String.format(
+                "│  FR Weight: %-4s  ·  Rating Weight: %-4s                          │\n",
+                String.format("%.2f", frWeight),
+                String.format("%.2f", ratingWeight)));
+        sb.append("└─────────────────────────────────────────────────────────────────┘\n");
+        sb.append("\n");
+
+        sb.append(String.format(
+                " %-3s  %-3s   %-" + nameCol + "s   %-5s   %-6s  %-6s  %-6s\n",
+                "#", "Δ", "TEAM", "CONF", "W-L", "CONF", "RATING"));
+        sb.append(divider).append("\n");
 
         int rank = 1;
-        boolean teamDroppedOut = false;
-
         for (Team t : rankings) {
-            if (rank < 26) {
-                inRanks.add(t);
+            if (rank > 25) break;
 
-                if (rank == 10) {
-                    longest--;
-                }
+            inRanks.add(t);
 
-                sb.append(rank).append(".").append(t.getName()).append(":");
-                for (int a = t.getName().length(); a < longest; a++) {
-                    sb.append(" ");
-                }
-
-                // Compare to previous Top 25 only for display purposes
-                if (!oldTop25.contains(t)) {
-                    sb.append("(NR)");
-                } else {
-                    int oldPos = oldTop25.indexOf(t) + 1;
-                    int newPos = inRanks.size();
-                    int dif = oldPos - newPos;
-                    sb.append("(").append(dif).append(")");
-                }
-
-                rank++;
-                sb.append("\n");
+            String trend;
+            if (!oldTop25.contains(t)) {
+                trend = "NR";
             } else {
-                if (oldTop25.contains(t)) {
-                    teamDroppedOut = true;
-                    sb.append(t.getName()).append(":");
-                    for (int a = t.getName().length(); a < oLongest + 2; a++) {
-                        sb.append(" ");
-                    }
-                    int oldPos = oldTop25.indexOf(t) + 1;
-                    int newPos = rank - 1;
-                    int dif = oldPos - newPos;
-                    sb.append("(").append(dif).append(")").append("\n");
-                }
+                int diff = (oldTop25.indexOf(t) + 1) - rank;
+                if (diff > 0)      trend = "+" + diff;
+                else if (diff < 0) trend = String.valueOf(diff);
+                else               trend = "--";
             }
 
-            if (rank == 26) {
-                sb.append("\n-Dropped-\n");
-                rank++;
+            String record     = t.getWin()    + "-" + t.getLoss();
+            String confRecord = t.getConWin() + "-" + t.getConLoss();
+            String rating     = String.format("%.1f", t.getTeamRating());
+
+            // Tag line so readRankings() can find ranked entries unambiguously
+            sb.append(String.format(
+                    "R|%-3d  %-3s   %-" + nameCol + "s   %-5s   %-6s  %-6s  %-6s\n",
+                    rank, trend, t.getName(),
+                    t.getConference(), record, confRecord, rating));
+
+            if (rank == 25) {
+                sb.append(divider).append("\n");
             }
+            rank++;
         }
 
-        if (!teamDroppedOut) {
+        // Dropped section
+        sb.append("\n DROPPED: ");
+        boolean anyDropped = false;
+        for (Team t : rankings) {
+            if (rankings.indexOf(t) >= 25 && oldTop25.contains(t)) {
+                int oldPos = oldTop25.indexOf(t) + 1;
+                if (!anyDropped) {
+                    anyDropped = true;
+                } else {
+                    sb.append("  ·  ");
+                }
+                sb.append(t.getName())
+                .append(" (").append(t.getConference()).append(") ")
+                .append(t.getWin()).append("-").append(t.getLoss())
+                .append(" [was #").append(oldPos).append("]");
+            }
+        }
+        if (!anyDropped) {
             sb.append("none");
         }
+        sb.append("\n");
 
         if (toFile) {
             if (!simulateSeason && !simulatePreST && !simulateConfT) {
-                System.out.println("New Rankings! (FootballRanker weight: " +
-                        String.format("%.2f", frWeight) + ")");
+                System.out.println("New Rankings! (FootballRanker weight: "
+                        + String.format("%.2f", frWeight) + ")");
             }
-
             File file = new File("FBAJC/Rankings.txt");
             FileWriter fw = new FileWriter(file);
             fw.write(sb.toString());
@@ -1911,172 +1991,138 @@ public class Main {
     }
 
     public static void makeGoodLookinStandings() throws IOException {
-        //Big 12
-        StringBuilder sb = new StringBuilder("-Big 12-" + "\n" + "\n");
-        StringBuilder bigSB = new StringBuilder();
-        goodLookingStandHelp(Big12, sb, bigSB);
-        File file = new File("FBAJC/Standings-Big12.txt");
+        StringBuilder master = new StringBuilder();
+
+        writeStandingsFile("Big 12", Big12, "FBAJC/Standings-Big12.txt", master);
+        writeStandingsFile("ACC", ACC, "FBAJC/Standings-ACC.txt", master);
+        writeStandingsFile("Big East", BigEast, "FBAJC/Standings-BigEast.txt", master);
+        writeStandingsFile("SEC", SEC, "FBAJC/Standings-SEC.txt", master);
+        writeStandingsFile("Big Ten", BigTen, "FBAJC/Standings-BigTen.txt", master);
+        writeStandingsFile("American", American, "FBAJC/Standings-American.txt", master);
+        writeStandingsFile("PAC 12", PAC12, "FBAJC/Standings-PAC12.txt", master);
+        writeStandingsFile("Atlantic 10", Atlantic10, "FBAJC/Standings-Atlantic10.txt", master);
+        writeStandingsFile("Patriot", Patriot, "FBAJC/Standings-Patriot.txt", master);
+        writeStandingsFile("Colonial", Colonial, "FBAJC/Standings-Colonial.txt", master);
+        writeStandingsFile("Horizon", Horizon, "FBAJC/Standings-Horizon.txt", master);
+        writeStandingsFile("Ivy League", Ivy, "FBAJC/Standings-Ivy.txt", master);
+        writeStandingsFile("Southern", Southern, "FBAJC/Standings-SoCon.txt", master);
+        writeStandingsFile("Sun Belt", SunBelt, "FBAJC/Standings-SunBelt.txt", master);
+        writeStandingsFile("Big Sky", BigSky, "FBAJC/Standings-BigSky.txt", master);
+        writeStandingsFile("Mountain West", MountainWest, "FBAJC/Standings-MountainWest.txt", master);
+        writeStandingsFile("Ohio Valley", OhioValley, "FBAJC/Standings-OhioValley.txt", master);
+        writeStandingsFile("NEC", Northeast, "FBAJC/Standings-NEC.txt", master);
+
+        File file = new File("FBAJC/Standings.txt");
+        FileWriter fw = new FileWriter(file);
+        fw.write(master.toString());
+        fw.close();
+    }
+
+    private static void writeStandingsFile(String confName, ArrayList<Team> conf,
+                                        String fileName, StringBuilder master) throws IOException {
+        StringBuilder sb = new StringBuilder();
+
+        appendStandingsHeader(sb, confName);
+        appendStandingsRows(conf, sb);
+
+        File file = new File(fileName);
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
-        //ACC
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-ACC-" + "\n" + "\n");
-        goodLookingStandHelp(ACC, sb, bigSB);
-        file = new File("FBAJC/Standings-ACC.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Big East
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Big East-" + "\n" + "\n");
-        goodLookingStandHelp(BigEast, sb, bigSB);
-        file = new File("FBAJC/Standings-BigEast.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //SEC
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-SEC-" + "\n" + "\n");
-        goodLookingStandHelp(SEC, sb, bigSB);
-        file = new File("FBAJC/Standings-SEC.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Big Ten
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Big Ten-" + "\n" + "\n");
-        goodLookingStandHelp(BigTen, sb, bigSB);
-        file = new File("FBAJC/Standings-BigTen.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //AAC
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-American-" + "\n" + "\n");
-        goodLookingStandHelp(American, sb, bigSB);
-        file = new File("FBAJC/Standings-American.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //PAC 12
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-PAC 12-" + "\n" + "\n");
-        goodLookingStandHelp(PAC12, sb, bigSB);
-        file = new File("FBAJC/Standings-PAC12.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Atlantic 10
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Atlantic 10-" + "\n" + "\n");
-        goodLookingStandHelp(Atlantic10, sb, bigSB);
-        file = new File("FBAJC/Standings-Atlantic10.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Patriot
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Patriot-" + "\n" + "\n");
-        goodLookingStandHelp(Patriot, sb, bigSB);
-        file = new File("FBAJC/Standings-Patriot.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Colonial
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Colonial-" + "\n" + "\n");
-        goodLookingStandHelp(Colonial, sb, bigSB);
-        file = new File("FBAJC/Standings-Colonial.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Horizon
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Horizon-" + "\n" + "\n");
-        goodLookingStandHelp(Horizon, sb, bigSB);
-        file = new File("FBAJC/Standings-Horizon.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Ivy
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Ivy League-" + "\n" + "\n");
-        goodLookingStandHelp(Ivy, sb, bigSB);
-        file = new File("FBAJC/Standings-Ivy.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Southern
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Southern-" + "\n" + "\n");
-        goodLookingStandHelp(Southern, sb, bigSB);
-        file = new File("FBAJC/Standings-SoCon.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Sun Belt
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Sun Belt-" + "\n" + "\n");
-        goodLookingStandHelp(SunBelt, sb, bigSB);
-        file = new File("FBAJC/Standings-SunBelt.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Big Sky
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Big Sky-" + "\n" + "\n");
-        goodLookingStandHelp(BigSky, sb, bigSB);
-        file = new File("FBAJC/Standings-BigSky.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Mountain West
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Mountain West-" + "\n" + "\n");
-        goodLookingStandHelp(MountainWest, sb, bigSB);
-        file = new File("FBAJC/Standings-MountainWest.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Ohio Valley
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-Ohio Valley-" + "\n" + "\n");
-        goodLookingStandHelp(OhioValley, sb, bigSB);
-        file = new File("FBAJC/Standings-OhioValley.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //NEC
-        sb = new StringBuilder();
-        bigSB.append("\n");
-        sb.append("-NEC-" + "\n" + "\n");
-        goodLookingStandHelp(Northeast, sb, bigSB);
-        file = new File("FBAJC/Standings-NEC.txt");
-        fw = new FileWriter(file);
-        fw.write(sb.toString());
-        fw.close();
-        //Master Standings
-        file = new File("FBAJC/Standings.txt");
-        fw = new FileWriter(file);
-        fw.write(bigSB.toString());
-        fw.close();
+
+        master.append(sb).append("\n");
+    }
+
+    private static void appendStandingsHeader(StringBuilder sb, String confName) {
+        String title = "FBAJC STANDINGS  ·  SEASON " + season + "  ·  " + confName;
+        String games = gamesPlayed + " GAMES PLAYED";
+
+        sb.append("┌──────────────────────────────────────────────────────────────────────────────┐\n");
+        sb.append(String.format("│  %-54s %17s  │%n", title, games));
+        sb.append("└──────────────────────────────────────────────────────────────────────────────┘\n\n");
+
+        sb.append(String.format(
+                " %-4s %-4s %-32s %-7s %-7s %-7s %-6s %-7s%n",
+                "#", "RK", "TEAM", "W-L", "CONF", "PCT", "GB", "RATING"));
+
+        sb.append(" ──── ──── ────────────────────────────── ─────── ─────── ─────── ────── ───────\n");
+    }
+
+    private static void appendStandingsRows(ArrayList<Team> conf, StringBuilder sb) {
+        if (conf.isEmpty()) return;
+
+        Team leader = conf.get(0);
+        int bestConWin  = leader.getConWin();
+        int bestConLoss = leader.getConLoss();
+
+        for (int i = 0; i < conf.size(); i++) {
+            Team t = conf.get(i);
+
+            boolean confDone  = (t.getConWin() + t.getConLoss() >= 22);
+            boolean confChamp = confDone && (t.getConWin() == bestConWin && t.getConLoss() == bestConLoss);
+            boolean clinched  = !confDone && isClinchedShare(t, conf);
+
+            String rankTag = "--";
+            if (inRanks.contains(t)) {
+                rankTag = "#" + (inRanks.indexOf(t) + 1);
+            }
+
+            String name = (confChamp || clinched) ? t.getName() + "*" : t.getName() + "  ";
+            String record     = t.getWin()    + "-" + t.getLoss();
+            String confRecord = t.getConWin() + "-" + t.getConLoss();
+            String pct    = String.format("%.3f", t.getWinPerc());
+            String gb     = formatGamesBack(leader, t);
+            String rating = String.format("%.1f", t.getTeamRating());
+            String nameFormat = (confChamp || clinched) ? " %-4d %-4s %-32s %-7s %-7s %-7s %-6s %-7s%n"
+                                            : " %-4d %-4s %-32s %-7s %-7s %-7s %-6s %-7s%n";
+
+            sb.append(String.format(
+                    nameFormat,
+                    i + 1,
+                    rankTag,
+                    name,
+                    record,
+                    confRecord,
+                    pct,
+                    gb,
+                    rating));
+        }
+
+        sb.append(" ──── ──── ────────────────────────────────── ─────── ─────── ─────── ────── ───────\n");
+    }
+
+    private static boolean isClinchedShare(Team leader, ArrayList<Team> conf) {
+        int leaderGamesLeft = 22 - (leader.getConWin() + leader.getConLoss());
+        // Worst case for leader: lose all remaining
+        int leaderMin = leader.getConWin();
+        // Best case for leader: win all remaining (used to check if others can surpass)
+        int leaderMax = leader.getConWin() + leaderGamesLeft;
+
+        for (Team t : conf) {
+            if (t == leader) continue;
+            int challGamesLeft = 22 - (t.getConWin() + t.getConLoss());
+            int challMax = t.getConWin() + challGamesLeft;
+            // Challenger can strictly exceed the leader's floor — not clinched even a share
+            if (challMax > leaderMin) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static String formatGamesBack(Team leader, Team t) {
+        double gb = ((leader.getConWin() - t.getConWin())
+                + (t.getConLoss() - leader.getConLoss())) / 2.0;
+
+        if (gb == 0.0) {
+            return "--";
+        }
+
+        if (gb == (int) gb) {
+            return String.valueOf((int) gb);
+        }
+
+        return String.format("%.1f", gb);
     }
 
     private static void goodLookingStandHelp(ArrayList<Team> conf,
@@ -2404,11 +2450,7 @@ public class Main {
             }
             if (!Main.simulatePreST) {
                 if (updateNames) {
-                    System.out.print("Update Names:");
-                    String ans = keyboard.nextLine();
-                    while (!ans.toLowerCase().equals("done")) {
-                        ans = keyboard.nextLine();
-                    }
+                    System.out.print("Update Names!");
                 }
                 System.out.print("ready for next game?");
                 keyboard.nextLine();
@@ -2422,27 +2464,48 @@ public class Main {
     }
 
     private static void readEarlyRanks() throws IOException {
-        List<Team> sortedTeams = new ArrayList<>(teamNames.values());
+        inRanks = new ArrayList<>();
+        rankings = new ArrayList<>();
+        preSeasonRanks = new ArrayList<>();
 
-        // Sort highest team_rating first
-        sortedTeams.sort((t1, t2) -> Double.compare(t2.getTeamRating(), t1.getTeamRating()));
+        Scanner input = new Scanner(new File("FBAJC/PreSeasonRanks.txt"));
 
-        if (gamesPlayed < PRE_S_TOURN_TOTAL) {
-            inRanks = new ArrayList<>();
-            rankings = new ArrayList<>();
+        while (input.hasNextLine() && inRanks.size() < 25) {
 
-            // Top 25 teams
-            for (int i = 0; i < Math.min(25, sortedTeams.size()); i++) {
-                inRanks.add(sortedTeams.get(i));
+            String line = input.nextLine().trim();
+
+            if (line.isEmpty()) {
+                continue;
             }
 
-            preSeasonRanks = new ArrayList<>(inRanks);
+            int underscore = line.indexOf("_");
+
+            if (underscore == -1) {
+                continue;
+            }
+
+            String teamName = line.substring(underscore + 1);
+
+            Team t = teamNames.get(teamName);
+
+            if (t != null) {
+                inRanks.add(t);
+                preSeasonRanks.add(t);
+            }
+        }
+
+        input.close();
+
+        // Before preseason tournaments
+        if (gamesPlayed < PRE_S_TOURN_TOTAL) {
 
             StringBuilder sb = new StringBuilder("-Rankings-\nGames Played: 0\n");
 
             int longest = 0;
+
             for (Team t : inRanks) {
                 rankings.add(t);
+
                 if (t.getName().length() > longest) {
                     longest = t.getName().length();
                 }
@@ -2451,10 +2514,16 @@ public class Main {
             longest += 2;
 
             int rank = 1;
+
             for (Team t : inRanks) {
-                sb.append(rank).append(".").append(t.getName()).append(":");
+
+                sb.append(rank)
+                        .append(".")
+                        .append(t.getName())
+                        .append(":");
 
                 int spacing = longest;
+
                 if (rank >= 10) {
                     spacing--;
                 }
@@ -2464,6 +2533,7 @@ public class Main {
                 }
 
                 sb.append("(NR)\n");
+
                 rank++;
             }
 
@@ -2471,14 +2541,9 @@ public class Main {
 
             File file = new File("FBAJC/Rankings.txt");
             FileWriter fw = new FileWriter(file);
+
             fw.write(sb.toString());
             fw.close();
-        } else {
-            preSeasonRanks = new ArrayList<>();
-
-            for (int i = 0; i < Math.min(25, sortedTeams.size()); i++) {
-                preSeasonRanks.add(sortedTeams.get(i));
-            }
         }
     }
 
@@ -2572,11 +2637,7 @@ public class Main {
             }
             if (!Main.simulatePreST) {
                 if (updateNames) {
-                    System.out.print("Update Names:");
-                    String ans = keyboard.nextLine();
-                    while (!ans.toLowerCase().equals("done")) {
-                        ans = keyboard.nextLine();
-                    }
+                    System.out.print("Update Names!");
                 }
                 System.out.print("ready for next game?");
                 keyboard.nextLine();
@@ -2586,6 +2647,7 @@ public class Main {
         if (playedSome) {
             updateRankings(true);
             theBracket = new MarchMadness(rankings);
+            theNIT = new NIT(theBracket.getNITField());
             toFileMM();
             theBracket.printNIT();
         }
@@ -2747,6 +2809,35 @@ public class Main {
         }
         makeGoodLookinStandings();
         makeGoodLookinMM();
+    }
+
+    public static void playNIT() throws IOException {
+        if (theBracket == null) {
+            if (new File("FBAJC/MMStorage.txt").exists()) {
+                readMM();
+            } else {
+                throw new IllegalStateException("March Madness bracket must be created before NIT.");
+            }
+        }
+
+        if (theNIT == null) {
+            if (new File("FBAJC/NITStorage.txt").exists()) {
+                theNIT = new NIT(teamNames); // uses the existing read constructor
+            } else {
+                throw new IllegalStateException("NIT storage not found.");
+            }
+        }
+
+        while (!theNIT.isOver()) {
+            theNIT.playGame();
+            toFileSchedule();
+            toFile();
+            toFileWL();
+            makeGoodLookinStandings();
+        }
+
+        System.out.println("Congrats " + theNIT.getChampion().getName()
+                + ", you are S" + season + " NIT Champions!");
     }
 
     private static void toFileMM() throws IOException {
@@ -3054,5 +3145,471 @@ public class Main {
             }
         }
         averageTeamRatings /= num_teams;
+    }
+
+    private static ArrayList<Team> getPreSeasonRankingList() {
+        ArrayList<Team> sortedTeams = new ArrayList<>(teamNames.values());
+
+        // Random tie breaker so equal team ratings do not always stay in the same order
+        Collections.shuffle(sortedTeams);
+
+        sortedTeams.sort((t1, t2) -> Double.compare(t2.getTeamRating(), t1.getTeamRating()));
+
+        return sortedTeams;
+    }
+
+    private static void toFilePreSeasonRankingsHistory() throws IOException {
+        ArrayList<Team> sortedTeams = getPreSeasonRankingList();
+        int numTeamsToRank = Math.min(season, sortedTeams.size());
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("========================================\n");
+        sb.append("        FBAJC PRESEASON RANKINGS        \n");
+        sb.append("========================================\n");
+        sb.append("Season: S").append(season).append("\n");
+        sb.append("Teams Ranked: Top ").append(numTeamsToRank).append("\n\n");
+
+        sb.append(String.format("%-6s %-25s %-8s %-8s%n",
+                "Rank", "Team", "Conf", "Rating"));
+        sb.append("------------------------------------------------\n");
+
+        for (int i = 0; i < numTeamsToRank; i++) {
+            Team t = sortedTeams.get(i);
+
+            sb.append(String.format("%-6d %-25s %-8s %-8.1f%n",
+                    i + 1,
+                    t.getName(),
+                    t.getConference(),
+                    t.getTeamRating()));
+        }
+
+        sb.append("\n\n");
+        sb.append("========================================\n");
+        sb.append("        FBAJC PRESEASON TOP PLAYERS     \n");
+        sb.append("========================================\n");
+        sb.append("Players Ranked: Top ").append(season).append("\n\n");
+
+        ArrayList<Player> allPlayers = new ArrayList<>();
+
+        for (Team t : teams.values()) {
+            for (Player p : t.getPlayers()) {
+                if (p != null) {
+                    allPlayers.add(p);
+                }
+            }
+        }
+
+        Collections.shuffle(allPlayers);
+        allPlayers.sort((p1, p2) -> Integer.compare(p2.cur_rating, p1.cur_rating));
+
+        int numPlayersToRank = Math.min(season, allPlayers.size());
+
+        sb.append(String.format("%-6s %-25s %-10s %-8s%n",
+                "Rank", "Player", "Team", "Rating"));
+        sb.append("------------------------------------------------\n");
+
+        for (int i = 0; i < numPlayersToRank; i++) {
+            Player p = allPlayers.get(i);
+
+            sb.append(String.format("%-6d %-25s %-10s %-8d%n",
+                    i + 1,
+                    p.getName(),
+                    p.getTeam().getAbreviation(),
+                    p.cur_rating));
+        }
+
+        File file = new File("FBAJC/PreSeasonRankingsHistory.txt");
+        FileWriter fw = new FileWriter(file);
+        fw.write(sb.toString());
+        fw.close();
+    }
+
+    private static void toFileConferencePreSeasonRankings() throws IOException {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("========================================\n");
+        sb.append("     FBAJC CONFERENCE PRESEASON RANKINGS\n");
+        sb.append("========================================\n");
+        sb.append("Season: S").append(season).append("\n\n");
+
+        for (ArrayList<Team> conf : allConferences) {
+            if (conf.isEmpty()) {
+                continue;
+            }
+
+            ArrayList<Team> sortedConf = new ArrayList<>(conf);
+            Collections.shuffle(sortedConf);
+            sortedConf.sort((t1, t2) -> Double.compare(t2.getTeamRating(), t1.getTeamRating()));
+
+            String confAbbr = sortedConf.get(0).getConference();
+
+            sb.append("----------------------------------------\n");
+            sb.append(getConferenceName(confAbbr))
+                    .append(" (")
+                    .append(confAbbr)
+                    .append(")\n");
+            sb.append("----------------------------------------\n");
+
+            sb.append(String.format("%-6s %-25s %-8s%n",
+                    "Rank", "Team", "Rating"));
+            sb.append("----------------------------------------\n");
+
+            for (int i = 0; i < sortedConf.size(); i++) {
+                Team t = sortedConf.get(i);
+
+                sb.append(String.format("%-6d %-25s %-8.1f%n",
+                        i + 1,
+                        t.getName(),
+                        t.getTeamRating()));
+            }
+
+            sb.append("\n");
+        }
+
+        File file = new File("FBAJC/ConferencePreSeasonRankings.txt");
+        FileWriter fw = new FileWriter(file);
+        fw.write(sb.toString());
+        fw.close();
+    }
+
+    private static String getConferenceName(String conf) {
+        if (conf.equals("B12")) return "Big 12";
+        if (conf.equals("ACC")) return "ACC";
+        if (conf.equals("BE")) return "Big East";
+        if (conf.equals("SEC")) return "SEC";
+        if (conf.equals("B10")) return "Big Ten";
+        if (conf.equals("AAC")) return "American";
+        if (conf.equals("P12")) return "PAC 12";
+        if (conf.equals("A10")) return "Atlantic 10";
+        if (conf.equals("PAT")) return "Patriot";
+        if (conf.equals("COL")) return "Colonial";
+        if (conf.equals("HOR")) return "Horizon";
+        if (conf.equals("IVY")) return "Ivy League";
+        if (conf.equals("SOCON")) return "Southern";
+        if (conf.equals("SUN")) return "Sun Belt";
+        if (conf.equals("SKY")) return "Big Sky";
+        if (conf.equals("MWC")) return "Mountain West";
+        if (conf.equals("OVC")) return "Ohio Valley";
+        return "NEC";
+    }
+
+    private static void toFilePreSeasonRanks() throws IOException {
+        ArrayList<Team> sortedTeams = getPreSeasonRankingList();
+
+        int top25 = Math.min(25, sortedTeams.size());
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < top25; i++) {
+            Team t = sortedTeams.get(i);
+
+            sb.append(i + 1)
+                    .append("_")
+                    .append(t.getName());
+
+            if (i != top25 - 1) {
+                sb.append("\n");
+            }
+        }
+
+        File file = new File("FBAJC/PreSeasonRanks.txt");
+        FileWriter fw = new FileWriter(file);
+
+        fw.write(sb.toString());
+        fw.close();
+    }
+
+    private static void toFileAwards() throws IOException {
+        updatePlayerPPGs();
+
+        PrintWriter out = new PrintWriter(new FileWriter("FBAJC/Awards.txt"));
+
+        printAwardRace(out, "Trae York Player of the Year",
+                new String[]{"PG", "SG", "SF", "PF", "C"}, null, false, 15, false);
+
+        printAwardRace(out, "Angelo Farrell Freshman of the Year",
+                new String[]{"PG", "SG", "SF", "PF", "C"}, null, true, 15, false);
+
+        printAwardRace(out, "Rhett Blackwell Guard of the Year",
+                new String[]{"PG", "SG"}, null, false, 10, false);
+
+        printAwardRace(out, "Jacob Peters Forward of the Year",
+                new String[]{"SF", "PF"}, null, false, 10, false);
+
+        printAwardRace(out, "Dustin Holloway Center of the Year",
+                new String[]{"C"}, null, false, 10, false);
+
+        printConferencePlayerOfTheYearRaces(out);
+
+        out.close();
+    }
+
+    private static void updatePlayerPPGs() {
+        for (Team t : teams.values()) {
+            int games = t.getWin() + t.getLoss();
+
+            for (Player p : t.getPlayers()) {
+                if (p != null) {
+                    p.newPPG(games);
+                }
+            }
+        }
+    }
+
+    private static void printConferencePlayerOfTheYearRaces(PrintWriter out) {
+        for (ArrayList<Team> conf : allConferences) {
+            if (conf.isEmpty()) {
+                continue;
+            }
+
+            String confAbbr = conf.get(0).getConference();
+
+            // In printConferencePlayerOfTheYearRaces:
+            printAwardRace(out,
+                getConferenceName(confAbbr) + " Player of the Year",
+                new String[]{"PG", "SG", "SF", "PF", "C"},
+                confAbbr,
+                false,
+                10,
+                true);  // <-- confAward = true
+        }
+    }
+
+    private static void printAwardRace(PrintWriter out, String awardName,
+                                String[] positions, String conference,
+                                boolean freshmenOnly, int limit, boolean confAward) {
+        ArrayList<Player> candidates = new ArrayList<>();
+
+        for (Team t : teams.values()) {
+            if (conference != null && !t.getConference().equals(conference)) {
+                continue;
+            }
+
+            for (Player p : t.getPlayers()) {
+                if (p != null
+                        && matchesPosition(p, positions)
+                        && (!freshmenOnly || p.getGrade().equals("Fr"))) {
+                    candidates.add(p);
+                }
+            }
+        }
+
+        candidates.sort((a, b) -> {
+            int cmp = Double.compare(getAwardScore(b, confAward), getAwardScore(a, confAward));
+            if (cmp != 0) return cmp;
+
+            cmp = Double.compare(b.getPPG(), a.getPPG());
+            if (cmp != 0) return cmp;
+
+            return Integer.compare(b.cur_rating, a.cur_rating);
+        });
+
+        out.println();
+        out.println("========== " + awardName + " ==========");
+
+        if (candidates.isEmpty()) {
+            out.println("No candidates found.");
+            return;
+        }
+
+        out.printf("%-5s %-22s %-10s %-5s %-6s %-7s %-10s%n",
+                "Rank", "Name", "Team", "Pos", "PPG", "Rating", "Odds");
+        out.println("----------------------------------------------------------------");
+
+        int actualLimit = Math.min(limit, candidates.size());
+        int oddsPool = Math.min(8, candidates.size());
+
+        double bestScore = getAwardScore(candidates.get(0), confAward);
+        double temperature = 8.0;
+
+        ArrayList<Double> weights = new ArrayList<>();
+        double totalWeight = 0.0;
+
+        for (int i = 0; i < oddsPool; i++) {
+            double score = getAwardScore(candidates.get(i), confAward);
+            double weight = Math.exp((score - bestScore) / temperature);
+            weights.add(weight);
+            totalWeight += weight;
+        }
+
+        for (int i = 0; i < actualLimit; i++) {
+            Player p = candidates.get(i);
+
+            String odds;
+            if (i < oddsPool) {
+                double probability = weights.get(i) / totalWeight;
+                odds = toAmericanOdds(probability);
+            } else {
+                odds = "+10000";
+            }
+
+            out.printf("%-5d %-22s %-10s %-5s %-6.1f %-7d %-10s%n",
+                    i + 1,
+                    p.getName(),
+                    p.getTeam().getAbreviation(),
+                    p.getPosition(),
+                    p.getPPG(),
+                    p.cur_rating,
+                    odds);
+        }
+    }
+
+    private static boolean matchesPosition(Player p, String[] positions) {
+        for (String pos : positions) {
+            if (p.getPosition().equals(pos)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static double getAwardScore(Player p, boolean confAward) {
+        double ppg = Double.isNaN(p.getPPG()) ? 0.0 : p.getPPG();
+
+        // Normalize each component to a 0-100 scale before weighting
+        double ppgScore    = (ppg / 30.0) * 100;           // 30 PPG = 100
+        double ratingScore = ((p.cur_rating - 60) / 39.0) * 100;  // 60 baseline, 99 = 100
+        double teamScore   = getTeamSuccessScore(p, confAward);    // already 10-100
+
+        return ppgScore * 0.40 + ratingScore * 0.35 + teamScore * 0.25;
+    }
+
+    private static double getTeamSuccessScore(Player p, boolean confAward) {
+        Team t = p.getTeam();
+
+        if (confAward) {
+            int confPos = t.getConf().indexOf(t) + 1;
+            int confSize = t.getConf().size();
+            // 1st = 100, last = ~8
+            return Math.max(10, 101 - (int)(((double)(confPos - 1) / confSize) * 100));
+        }
+
+        if (rankings == null || rankings.isEmpty()) return 50;
+
+        int rank = rankings.indexOf(t) + 1;
+
+        if (rank <= 0 || rank > 25) {
+            // Unranked — use team rating relative to average as a tiebreaker
+            // so strong-team-but-unranked players aren't floored at 10
+            double teamRating = t.getTeamRating();
+            return Math.max(10, Math.min(50, (int)(teamRating - averageTeamRatings + 30)));
+        }
+
+        return Math.max(10, 101 - rank);
+    }
+
+    private static String toAmericanOdds(double probability) {
+        probability = Math.max(0.0001, Math.min(0.9999, probability));
+
+        int odds;
+
+        if (probability > 0.5) {
+            odds = (int) Math.round(-100 * probability / (1.0 - probability));
+        } else {
+            odds = (int) Math.round(100 * (1.0 - probability) / probability);
+        }
+
+        if (odds > 10000) odds = 10000;
+        if (odds < -5000) odds = -5000;
+
+        return odds > 0 ? "+" + odds : String.valueOf(odds);
+    }
+
+    private static void printGameAnnouncement(Team one, Team two) {
+        boolean oneRanked = inRanks.contains(one);
+        boolean twoRanked = inRanks.contains(two);
+
+        if (!oneRanked && !twoRanked) {
+            return;
+        }
+
+        int oneRank = oneRanked ? inRanks.indexOf(one) + 1 : 999;
+        int twoRank = twoRanked ? inRanks.indexOf(two) + 1 : 999;
+
+        boolean rankedMatchup = oneRanked && twoRanked;
+
+        int bestRank = Math.min(oneRank, twoRank);
+
+        String tier;
+
+        if (rankedMatchup) {
+            int worstRank = Math.max(oneRank, twoRank);
+
+            if (worstRank <= 5) {
+                tier = "TOP 5 SHOWDOWN";
+            }
+            else if (worstRank <= 10) {
+                tier = "TOP 10 SHOWDOWN";
+            }
+            else if (worstRank <= 15) {
+                tier = "TOP 15 SHOWDOWN";
+            }
+            else if (worstRank <= 20) {
+                tier = "TOP 20 SHOWDOWN";
+            }
+            else {
+                tier = "RANKED MATCHUP";
+            }
+        }
+        else {
+            if (bestRank <= 5) {
+                tier = "TOP 5 TEAM IN ACTION";
+            }
+            else if (bestRank <= 10) {
+                tier = "TOP 10 TEAM IN ACTION";
+            }
+            else {
+                tier = "RANKED TEAM IN ACTION";
+            }
+        }
+
+        String oneName = oneRanked
+                ? "#" + oneRank + " " + one.getName()
+                : one.getName();
+
+        String twoName = twoRanked
+                ? "#" + twoRank + " " + two.getName()
+                : two.getName();
+
+        String line1 = oneName + " vs " + twoName;
+
+        String line2 = one.getConference()
+                + " · "
+                + one.getWin() + "-" + one.getLoss()
+                + "  vs  "
+                + two.getConference()
+                + " · "
+                + two.getWin() + "-" + two.getLoss();
+
+        String line3 = "Ratings: "
+                + String.format("%.1f", one.getTeamRating())
+                + " vs "
+                + String.format("%.1f", two.getTeamRating());
+
+        final int WIDTH = 62;
+
+        System.out.println();
+        System.out.println("╔══════════════════════════════════════════════════════════════╗");
+        System.out.printf ("║ %-60s ║%n", centerText(tier, 60));
+        System.out.println("╠══════════════════════════════════════════════════════════════╣");
+        System.out.printf ("║ %-60s ║%n", centerText(line1, 60));
+        System.out.printf ("║ %-60s ║%n", centerText(line2, 60));
+        System.out.printf ("║ %-60s ║%n", centerText(line3, 60));
+        System.out.println("╚══════════════════════════════════════════════════════════════╝");
+        System.out.println();
+    }
+
+    private static String centerText(String text, int width) {
+        if (text.length() >= width) {
+            return text;
+        }
+
+        int leftPadding = (width - text.length()) / 2;
+        int rightPadding = width - text.length() - leftPadding;
+
+        return " ".repeat(leftPadding)
+                + text
+                + " ".repeat(rightPadding);
     }
 }

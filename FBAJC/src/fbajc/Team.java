@@ -223,56 +223,90 @@ public class Team implements Comparable<Team> {
         return sb.toString();
     }
 
-    /**
-     * @return a display string representation of the Team
-     */
     public String displayToString() {
-        //Give each player their spaces for printing
         int longest = 0;
+
         for (Player pl : roster) {
             if (pl.getName().length() > longest) {
                 longest = pl.getName().length();
             }
         }
+
         for (Player pl : roster) {
-            pl.setSpaces(longest);
+            pl.setSpaces(longest + 2);
         }
+
         StringBuilder sb = new StringBuilder();
+
         int rank;
+
         if (Main.confTournies) {
-            if (conf_seed != 0) {
-                rank = conf_seed;
-            }
-            else {
-                rank = conf.indexOf(this) + 1;
-            }
+            rank = (conf_seed != 0) ? conf_seed : conf.indexOf(this) + 1;
         }
         else if (Main.marchMadness) {
-            rank  = seed;
+            rank = seed;
         }
         else {
             rank = Main.inRanks.indexOf(this) + 1;
         }
+
+        // =========================================
+        // HEADER
+        // =========================================
+
+        sb.append("====================================================\n");
+
         if (Main.inRanks.contains(this) || Main.confTournies || Main.marchMadness) {
-            sb.append("       -").append("(").append(rank).append(")")
-                    .append(name).append("-").append("\n");
+            sb.append(String.format("   (%d) %s%n", rank, name));
         }
         else {
-            sb.append("       -").append(name).append("-").append("\n");
+            sb.append(String.format("   %s%n", name));
         }
-        //add the starters
-        if (players[0] == null) {
-            sb.append("none").append("\n");
+
+        sb.append("====================================================\n");
+
+        sb.append(String.format("Conference : %-10s", conference));
+
+        if (!Main.marchMadness && !Main.confTournies) {
+            sb.append(String.format("Record : %d-%d%n", win, loss));
+        }
+        else if (Main.confTournies) {
+            sb.append(String.format("Conf Seed : %d%n", rank));
         }
         else {
-            int player = 0;
-            for (Player p : players) {
-                if (players[player] != null) {
-                    sb.append(p).append("\n");
-                }
-                player++;
+            sb.append(String.format("Seed : %d%n", seed));
+        }
+
+        sb.append("----------------------------------------------------\n");
+
+        // =========================================
+        // ROSTER HEADER
+        // =========================================
+
+        sb.append(String.format("%-24s %-4s %-10s %-8s%n",
+                "Player", "Pos", "Class", "Rating"));
+
+        sb.append("----------------------------------------------------\n");
+
+        // =========================================
+        // PLAYERS
+        // =========================================
+
+        for (Player p : players) {
+
+            if (p == null) {
+                continue;
             }
+
+            String stars = p.getRating();
+
+            sb.append(String.format("%-24s %-4s %-10s %-8d%n",
+                    p.getName(),
+                    p.getPosition(),
+                    p.getGrade() + "(" + stars + ")",
+                    p.cur_rating));
         }
+
         return sb.toString();
     }
 

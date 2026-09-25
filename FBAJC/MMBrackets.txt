@@ -1,98 +1,98 @@
-                                              --S76 March Madness--
+                                              --S78 March Madness--
 --Region 1--
    -Round of 64-
-(1)Houston vs (16)Lehigh
-(8)Syracuse vs (9)Montana State
-(5)San Diego State vs (12)Wake Forest
-(4)Mississippi State vs (13)Texas Southern
-(3)Michigan State vs (14)St.Bonaventure
-(6)Kansas vs (11)Utah State
-(7)Missouri vs (10)Oregon
-(2)Creighton vs (15)Columbia
+(1)Mississippi State vs (16)South Florida
+(8)Florida State vs (9)Boston U
+(5)Purdue vs (12)San Jose State
+(4)Lehigh vs (13)Indiana
+(3)North Carolina vs (14)Evansville
+(6)Gonzaga vs (11)Troy
+(7)Wichita State vs (10)Missouri
+(2)Kentucky vs (15)Robert Morris
    -Round of 32-
-(1)Houston vs (9)Montana State
-(4)Mississippi State vs (12)Wake Forest
-(3)Michigan State vs (6)Kansas
-(2)Creighton vs (7)Missouri
+(1)Mississippi State vs (8)Florida State
+(13)Indiana vs (5)Purdue
+(3)North Carolina vs (6)Gonzaga
+(2)Kentucky vs (10)Missouri
    -Sweet 16-
-(1)Houston vs (4)Mississippi State
-(7)Missouri vs (3)Michigan State
+(1)Mississippi State vs (5)Purdue
+(10)Missouri vs (3)North Carolina
    -Elite 8-
-(4)Mississippi State vs (7)Missouri
+(1)Mississippi State vs (3)North Carolina
 
 
 --Region 2--
    -Round of 64-
-(1)UCLA vs (16)Weber State
-(8)Florida State vs (9)Iowa State
-(5)Kentucky vs (12)UAB
-(4)UConn vs (13)Florida
-(3)Colorado State vs (14)Indiana State
-(6)Indiana vs (11)Arkansas
-(7)St.John's vs (10)Baylor
-(2)Gonzaga vs (15)Long Island
+(1)San Diego State vs (16)Quinnipiac
+(8)VCU vs (9)LSU
+(5)Michigan vs (12)St.Bonaventure
+(4)Marquette vs (13)UNLV
+(3)UCLA vs (14)Santa Clara
+(6)Texas vs (11)Oregon
+(7)Tennessee vs (10)Oregon State
+(2)Duke vs (15)Grand Canyon
    -Round of 32-
-(1)UCLA vs (9)Iowa State
-(4)UConn vs (5)Kentucky
-(14)Indiana State vs (6)Indiana
-(2)Gonzaga vs (10)Baylor
+(1)San Diego State vs (9)LSU
+(4)Marquette vs (5)Michigan
+(3)UCLA vs (6)Texas
+(2)Duke vs (7)Tennessee
    -Sweet 16-
-(1)UCLA vs (5)Kentucky
-(10)Baylor vs (6)Indiana
+(1)San Diego State vs (5)Michigan
+(2)Duke vs (6)Texas
    -Elite 8-
-(5)Kentucky vs (10)Baylor
+(5)Michigan vs (2)Duke
 
 
 --Region 3--
    -Round of 64-
-(1)Duke vs (16)North Texas
-(8)Oregon State vs (9)Auburn
-(5)Memphis vs (12)Dartmouth
-(4)Nevada vs (13)Alabama
-(3)Virginia vs (14)Delaware State
-(6)Xavier vs (11)Wyoming
-(7)Illinois vs (10)Cleveland State
-(2)Wichita State vs (15)SIU Edwardsville
+(1)Nevada vs (16)Kent State
+(8)St.John's vs (9)Texas A&M
+(5)Virginia vs (12)Ohio State
+(4)Michigan State vs (13)Texas Tech
+(3)Syracuse vs (14)UTSA
+(6)Villanova vs (11)Montana State
+(7)USC vs (10)UNC Wilmington
+(2)Houston vs (15)Penn
    -Round of 32-
-(1)Duke vs (8)Oregon State
-(4)Nevada vs (5)Memphis
-(3)Virginia vs (6)Xavier
-(2)Wichita State vs (7)Illinois
+(16)Kent State vs (8)St.John's
+(4)Michigan State vs (5)Virginia
+(3)Syracuse vs (6)Villanova
+(2)Houston vs (7)USC
    -Sweet 16-
-(1)Duke vs (5)Memphis
-(2)Wichita State vs (3)Virginia
+(8)St.John's vs (5)Virginia
+(2)Houston vs (3)Syracuse
    -Elite 8-
-(1)Duke vs (2)Wichita State
+(5)Virginia vs (3)Syracuse
 
 
 --Region 4--
    -Round of 64-
-(1)Tennessee vs (16)Richmond
-(8)Stetson vs (9)George Mason
-(5)North Carolina vs (12)Saint Mary's
-(4)Villanova vs (13)Nebraska
-(3)Texas vs (14)Harvard
-(6)Marquette vs (11)Vanderbilt
-(7)Loyola-Chicago vs (10)Belmont
-(2)Arizona vs (15)Chattanooga
+(1)Wake Forest vs (16)UCSB
+(8)Arizona vs (9)Northwestern
+(5)Pitt vs (12)Georgia State
+(4)UConn vs (13)FAU
+(3)Illinois vs (14)Abeline Christian
+(6)Iowa State vs (11)Winthrop
+(7)Memphis vs (10)Kansas
+(2)Florida vs (15)MIT
    -Round of 32-
-(1)Tennessee vs (9)George Mason
-(4)Villanova vs (5)North Carolina
-(3)Texas vs (11)Vanderbilt
-(2)Arizona vs (10)Belmont
+(1)Wake Forest vs (9)Northwestern
+(4)UConn vs (12)Georgia State
+(3)Illinois vs (6)Iowa State
+(2)Florida vs (10)Kansas
    -Sweet 16-
-(1)Tennessee vs (5)North Carolina
-(2)Arizona vs (3)Texas
+(1)Wake Forest vs (12)Georgia State
+(2)Florida vs (3)Illinois
    -Elite 8-
-(1)Tennessee vs (3)Texas
+(1)Wake Forest vs (3)Illinois
 
 
    --Final Four--
-(4)Mississippi State vs (3)Texas
-(10)Baylor vs (2)Wichita State
+(3)North Carolina vs (1)Wake Forest
+(2)Duke vs (3)Syracuse
    --National Championship--
-(3)Texas vs (2)Wichita State
+(3)North Carolina vs (3)Syracuse
    --Champions--
-Texas
+North Carolina
 
 

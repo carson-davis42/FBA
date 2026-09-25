@@ -1,432 +1,432 @@
 Big 12/11
-Oklahoma
 West Virginia
+BYU
+Texas Tech
 Baylor
 TCU
-Texas Tech
-BYU
-Kansas State
 Oklahoma State
+Oklahoma
+Kansas State
 Houston
-West Virginia
+BYU
 Kansas
+Texas Tech
+Texas
 TCU
 Iowa State
-BYU
-Texas
-Kansas State
+Oklahoma
 Houston
 Kansas
+Iowa State
 Texas
-Iowa State
 Houston
-Iowa State
+Texas
 Houston
 ACC/11
-Clemson
 Virginia Tech
-Wake Forest
 Miami
-Syracuse
+Virginia
+Notre Dame
+Florida State
+Clemson
 Louisville
 NC State
-Notre Dame
+Wake Forest
+Miami
+Duke
 Virginia
-Clemson
+Syracuse
+Florida State
+North Carolina
+NC State
+Wake Forest
+Duke
+North Carolina
 Florida State
 Wake Forest
 North Carolina
-Syracuse
-Duke
-NC State
-Clemson
-Florida State
-Duke
-Syracuse
-Florida State
-Duke
-Florida State
+North Carolina
 Big East/11
-Seton Hall
-DePaul
-UConn
-Davidson
 Xavier
-Providence
 Georgetown
-Butler
 Creighton
+DePaul
+Butler
+Providence
 Seton Hall
+Davidson
+Marquette
+Georgetown
+Villanova
+Creighton
+St.John's
+Butler
+UConn
+Seton Hall
+Marquette
 Villanova
 UConn
 St.John's
-Xavier
-Marquette
-Georgetown
-Seton Hall
-UConn
-Georgetown
-Xavier
-UConn
-Xavier
-UConn
+Villanova
+St.John's
+Villanova
 SEC/11
-Florida
-LSU
-Auburn
-Ole Miss
 Arkansas
+Auburn
+Missouri
+Ole Miss
+LSU
+Georgia
 Texas A&M
 Alabama
-Georgia
-Tennessee
-Florida
-Missouri
-Auburn
 Mississippi State
 Arkansas
-Kentucky
-Alabama
 Tennessee
 Missouri
 Kentucky
+LSU
+Florida
+Texas A&M
 Mississippi State
-Tennessee
+Missouri
+Texas A&M
+LSU
 Mississippi State
-Tennessee
+LSU
+Mississippi State
 Big Ten/11
-Ohio State
-Penn State
-Northwestern
-Maryland
-Michigan
+Iowa
 Wisconsin
+Northwestern
+Penn State
+Ohio State
+Maryland
+Indiana
 Minnesota
+Illinois
 Iowa
 Michigan State
+Northwestern
+Michigan
 Ohio State
 Purdue
-Northwestern
-Illinois
-Michigan
-Indiana
 Minnesota
+Illinois
 Michigan State
 Purdue
-Indiana
-Illinois
+Michigan
 Michigan State
-Illinois
+Purdue
 Michigan State
 American/11
-FAU
-Toledo
-Georgia Tech
 Akron
+Tulane
+FAU
+UCF
+Toledo
 Rice
 SMU
-Cincinnati
-UCF
-Wichita State
-FAU
-Tulane
 Georgia Tech
+Wichita State
+Tulane
 UAB
+FAU
+Cincinnati
 Rice
 Memphis
+SMU
+Wichita State
+FAU
+Memphis
 Cincinnati
-Wichita State
-Tulane
+FAU
 Memphis
-UAB
-Wichita State
-Memphis
-Wichita State
+FAU
 PAC 12/11
-USC
 Arizona State
-Oregon State
 Colorado
-Washington
-Stanford
+Oregon State
 Utah
-Washington State
-Gonzaga
-Arizona State
 Oregon
-Oregon State
-Arizona
+Stanford
+Washington State
 Washington
 UCLA
-Washington State
-Gonzaga
-Oregon State
-UCLA
+Arizona State
 Arizona
+Oregon State
+USC
+Oregon
 Gonzaga
+Washington State
 UCLA
-UCLA
+Oregon State
+Gonzaga
+USC
+Oregon State
+USC
+USC
 Atlantic 10/11
-South Carolina
-Boston College
-Pitt
-St.Joseph's
-VCU
-East Carolina
 Rutgers
+St.Joseph's
+Buffalo
 Dayton
 Vanderbilt
+East Carolina
+Nebraska
+South Carolina
+Pitt
+Rutgers
 Boston College
 Buffalo
-Pitt
-Nebraska
-East Carolina
 Loyola-Chicago
-Dayton
 Vanderbilt
-Pitt
-Dayton
+VCU
 Nebraska
 Pitt
-Nebraska
-Nebraska
+Boston College
+VCU
+Loyola-Chicago
+Pitt
+VCU
+VCU
 Patriot/11
-Vermont
+Liberty
+Howard
 Norfolk State
-Saint Peter's
 Colgate
-Liberty
-Army
-Howard
 Murray State
-Belmont
 Vermont
+Belmont
+Army
+Lehigh
+Liberty
+Navy
+Colgate
+Saint Peter's
+Murray State
+Saint Mary's
+Belmont
+Lehigh
+Colgate
+Saint Mary's
+Saint Peter's
 Lehigh
 Saint Peter's
-Navy
-Liberty
-Saint Mary's
-Howard
-Vermont
-Lehigh
-Saint Mary's
-Navy
-Lehigh
-Saint Mary's
 Lehigh
 Colonial/11
-Boston U
-George Washington
 Richmond
-Delaware
-Drake
-UMBC
-Winthrop
 Rhode Island
-Indiana State
-Boston U
 Northeastern
-Richmond
-Middle Tennessee
-Drake
+UMBC
 Delaware State
-Rhode Island
+Delaware
 Indiana State
-Richmond
+George Washington
+Boston U
+Rhode Island
+Middle Tennessee
+Northeastern
+Drake
 Delaware State
-Drake
-Richmond
-Drake
-Richmond
+Winthrop
+Indiana State
+Boston U
+Middle Tennessee
+Indiana State
+Delaware State
+Boston U
+Delaware State
+Boston U
 Horizon/11
 South Dakota State
-Wofford
-Santa Clara
-Oakland
-UC Irvine
-IUPUI
+Iona
 Northern Kentucky
-Iona
+Wright State
 Cleveland State
+UC Irvine
 Wofford
-Wright State
-Santa Clara
+IUPUI
 North Dakota State
-UC Irvine
+South Dakota State
+Santa Clara
+Northern Kentucky
+Oakland
+Cleveland State
 St.Bonaventure
-Iona
-Cleveland State
-Wright State
+Wofford
+North Dakota State
+Santa Clara
 St.Bonaventure
-UC Irvine
-Cleveland State
-UC Irvine
-Cleveland State
+Oakland
+Santa Clara
+St.Bonaventure
+St.Bonaventure
 Ivy/11
-Brown
-Penn
-Cal
-Cornell
-MIT
-Yale
-Princeton
 Chicago
-Dartmouth
-Penn
+Cornell
+Princeton
+Brown
 Columbia
-Cal
+Dartmouth
+Yale
 Harvard
 MIT
+Chicago
 UCSB
-Princeton
-Dartmouth
+Brown
+Cal
+Columbia
+Penn
+Yale
+Chicago
+UCSB
+Penn
 Columbia
 UCSB
-Harvard
 Columbia
-Harvard
-Columbia
+UCSB
 Southern/11
-Texas A&M CC
-Southern
-Oral Roberts
+Texas Southern
+Samford
+Stephen F Austin
 Texas State
-McNeese State
+Oral Roberts
 Sam Houston State
 North Texas
-Abeline Christian
-Texas Southern
-Texas A&M CC
-Stephen F Austin
-Oral Roberts
-Samford
 McNeese State
 UTSA
-North Texas
-Texas Southern
-Stephen F Austin
-North Texas
 Samford
+Texas A&M CC
 Stephen F Austin
-North Texas
-North Texas
+Southern
+Oral Roberts
+Abeline Christian
+McNeese State
+UTSA
+Stephen F Austin
+Abeline Christian
+Southern
+Stephen F Austin
+Abeline Christian
+Abeline Christian
 Sun Belt/11
-ETSU
+Western Kentucky
+Arkansas State
+South Florida
 James Madison
 Furman
+Chattanooga
 Jackson State
+Arkansas Pine Bluff
+Georgia State
 Western Kentucky
+Alabama State
 South Florida
 Grambling State
-Arkansas State
-Chattanooga
-ETSU
-Alabama State
 Furman
-Arkansas Pine Bluff
-Western Kentucky
+ETSU
+Jackson State
 Georgia State
-Arkansas State
-Chattanooga
-Alabama State
-Georgia State
-Western Kentucky
-Chattanooga
-Georgia State
-Chattanooga
+South Florida
+ETSU
+Grambling State
+South Florida
+ETSU
+South Florida
 Big Sky/11
-UC San Diego
-San Francisco
-Longwood
-Eastern Washington
 Montana
-Evansville
 High Point
 Kennesaw State
-Stetson
 UC San Diego
 Portland State
-Longwood
 Weber State
-Montana
+Eastern Washington
+Stetson
 Montana State
 High Point
-Stetson
+Longwood
+Kennesaw State
+San Francisco
+Portland State
+Evansville
+Eastern Washington
+Montana State
+Kennesaw State
+Evansville
 Portland State
 Montana State
-Weber State
-Stetson
-Weber State
-Weber State
+Evansville
+Montana State
 Mountain West/11
-Boise State
-Fresno State
-Utah State
-San Jose State
 New Mexico State
-New Mexico
+Fresno State
 UNLV
+New Mexico
+Wyoming
+Utah State
 Air Force
 Colorado State
+Nevada
+Fresno State
+San Jose State
+UNLV
 Boise State
 Wyoming
-Utah State
 San Diego State
-New Mexico
+Air Force
 Nevada
 UNLV
-Colorado State
+San Diego State
 Wyoming
 Nevada
 San Diego State
-Colorado State
 San Diego State
-Colorado State
 Ohio Valley/11
+Omaha
+SIU Edwardsville
+Appalachian State
 Arkansas Little Rock
 Northern Illinois
-Appalachian State
+Saint Louis
+Morehead State
+Southeastern Missouri State
+Troy
 Omaha
 Kent State
+Arkansas Little Rock
 Ohio
+Northern Illinois
 Grand Canyon
 Morehead State
-SIU Edwardsville
-Northern Illinois
-Saint Louis
-Appalachian State
-Troy
+Omaha
 Kent State
-Southeastern Missouri State
 Morehead State
-SIU Edwardsville
-Saint Louis
-Southeastern Missouri State
-Troy
-SIU Edwardsville
-Troy
-SIU Edwardsville
+Northern Illinois
+Kent State
+Northern Illinois
+Kent State
 NEC/11
-UMass
-Lipscomb
-Long Island
-Fairleigh Dickinson
 Quinnipiac
-Bryant
 UNC Asheville
-Robert Morris
+Fairleigh Dickinson
 George Mason
-UMass
-Marist
+Bryant
 Long Island
+Duquesne
+Marist
 UNC Wilmington
 Quinnipiac
-Duquesne
-Robert Morris
+Lipscomb
+Fairleigh Dickinson
 UMass
 Long Island
 Robert Morris
-UNC Wilmington
-Long Island
-UNC Wilmington
-Long Island
+Duquesne
+Quinnipiac
+Lipscomb
+Robert Morris
+UMass
+Quinnipiac
+UMass
+Quinnipiac
