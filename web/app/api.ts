@@ -22,7 +22,7 @@ export async function putDoc(rel: string, doc: unknown): Promise<void> {
 }
 
 export function useDoc<T>(rel: string | null): { data: T | undefined; error: Error | undefined; reload: () => void } {
-  const [state, setState] = useState<{ data?: T; error?: Error }>({});
+  const [state, setState] = useState<{ rel?: string; data?: T; error?: Error }>({});
   const [version, setVersion] = useState(0);
   const reload = useCallback(() => setVersion(v => v + 1), []);
 
@@ -37,11 +37,12 @@ export function useDoc<T>(rel: string | null): { data: T | undefined; error: Err
     if (!rel) return;
     let live = true;
     getDoc<T>(rel).then(
-      data => live && setState({ data }),
-      error => live && setState({ error: error as Error }),
+      data => live && setState({ rel, data }),
+      error => live && setState({ rel, error: error as Error }),
     );
     return () => { live = false; };
   }, [rel, version]);
 
-  return { data: state.data, error: state.error, reload };
+  const current = rel !== null && state.rel === rel ? state : {};
+  return { data: current.data as T | undefined, error: current.error, reload };
 }
