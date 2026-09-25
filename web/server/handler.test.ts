@@ -98,3 +98,42 @@ describe('HTTP handler security', () => {
     expect(res.status).toBe(400);
   });
 });
+
+describe('HTTP handler host allow-list', () => {
+  let server3: http.Server;
+  let port3: number;
+
+  beforeAll(async () => {
+    const dataDir = mkdtempSync(path.join(tmpdir(), 'fba-http-hosts-'));
+    const logoDir = mkdtempSync(path.join(tmpdir(), 'fba-logos-hosts-'));
+    const storage = new Storage(dataDir);
+    await storage.write('logos/manifest.json', { folders: {} });
+    server3 = http.createServer(createHandler(storage, logoDir, { allowedHosts: ['good.test:1'] }));
+    await new Promise<void>(r => server3.listen(0, '127.0.0.1', r));
+    port3 = (server3.address() as AddressInfo).port;
+  });
+
+  afterAll(() => new Promise<void>(r => server3.close(() => r())));
+
+  function rawRequest(hostHeader: string): Promise<number> {
+    return new Promise((resolve, reject) => {
+      const req = http.request(
+        { host: '127.0.0.1', port: port3, path: '/api/state/logos/manifest.json', method: 'GET', headers: { Host: hostHeader } },
+        res => {
+          res.resume();
+          resolve(res.statusCode ?? 0);
+        },
+      );
+      req.on('error', reject);
+      req.end();
+    });
+  }
+
+  it('rejects a spoofed Host header with 403', async () => {
+    expect(await rawRequest('evil.example')).toBe(403);
+  });
+
+  it('allows a Host header that is on the list', async () => {
+    expect(await rawRequest('good.test:1')).toBe(200);
+  });
+});

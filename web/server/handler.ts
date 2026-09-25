@@ -30,8 +30,18 @@ function readBody(req: http.IncomingMessage): Promise<string> {
   });
 }
 
-export function createHandler(storage: Storage, logoDir: string): http.RequestListener {
+export function createHandler(
+  storage: Storage,
+  logoDir: string,
+  options: { allowedHosts?: string[] } = {},
+): http.RequestListener {
+  const allowedHosts = options.allowedHosts?.map(h => h.toLowerCase());
+
   return async (req, res) => {
+    if (allowedHosts && !allowedHosts.includes((req.headers.host ?? '').toLowerCase())) {
+      return sendJson(res, 403, { error: 'Forbidden host' });
+    }
+
     try {
       const pathname = decodeURIComponent(new URL(req.url ?? '/', 'http://localhost').pathname);
 
