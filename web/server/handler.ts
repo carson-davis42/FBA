@@ -7,6 +7,8 @@ import { Storage, StorageError } from './storage';
 
 const MAX_BODY = 20 * 1024 * 1024;
 
+const isBareName = (s: string) => s.length > 0 && s !== '.' && s !== '..' && path.basename(s) === s && !s.includes('\\');
+
 function sendJson(res: http.ServerResponse, status: number, body: unknown): void {
   res.writeHead(status, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify(body));
@@ -56,7 +58,7 @@ export function createHandler(storage: Storage, logoDir: string): http.RequestLi
         const manifest = (await storage.read('logos/manifest.json')) as LogoManifest;
         const entries = manifest.folders[folder];
         const file = entries ? resolveLogo(entries, folder, Number(season)) : null;
-        if (!file) return sendJson(res, 404, { error: `No logo for ${folder}` });
+        if (!file || !isBareName(folder) || !isBareName(file)) return sendJson(res, 404, { error: `No logo for ${folder}` });
         const data = await readFile(path.join(logoDir, folder, file));
         res.writeHead(200, { 'Content-Type': 'image/png', 'Cache-Control': 'max-age=3600' });
         return res.end(data);

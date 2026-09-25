@@ -105,8 +105,15 @@ export type CalendarFile = z.infer<typeof CalendarFile>;
 export const MetaFile = z.object({ currentSeason: int, rosterSeason: perLeague(int), lastSeason: perLeague(int) });
 export type MetaFile = z.infer<typeof MetaFile>;
 
-export const LogoEntry = z.object({ file: z.string(), from: int.nullable(), to: int.nullable(), variant: int });
+const bareName = z.string().min(1).refine(s => !/[\\/]/.test(s) && s !== '.' && s !== '..', 'must be a bare file or folder name');
+
+export const LogoEntry = z.object({
+  file: bareName.refine(s => /\.png$/i.test(s), 'must be a .png file'),
+  from: int.nullable(),
+  to: int.nullable(),
+  variant: int,
+});
 export type LogoEntry = z.infer<typeof LogoEntry>;
 
-export const LogoManifest = z.object({ folders: z.record(z.string(), z.array(LogoEntry)) });
+export const LogoManifest = z.object({ folders: z.record(bareName, z.array(LogoEntry)) });
 export type LogoManifest = z.infer<typeof LogoManifest>;

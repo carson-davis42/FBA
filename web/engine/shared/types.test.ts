@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { MetaFile, RostersFile } from './types';
+import { LogoManifest, MetaFile, RostersFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -23,5 +23,11 @@ describe('schemas', () => {
   it('requires every league in meta', () => {
     const doc = { currentSeason: 79, rosterSeason: { fba: 79, fbad2: 79, fbajc: 78 }, lastSeason: { fba: 78, fbad2: 78, fbajc: 78, fbawc: 78 } };
     expect(MetaFile.safeParse(doc).success).toBe(false);
+  });
+
+  it('rejects logo manifest entries that are paths', () => {
+    expect(LogoManifest.safeParse({ folders: { x: [{ file: '../../etc/passwd.png', from: null, to: null, variant: 1 }] } }).success).toBe(false);
+    expect(LogoManifest.safeParse({ folders: { '../x': [] } }).success).toBe(false);
+    expect(LogoManifest.safeParse({ folders: { 'Boston Bucks': [{ file: 'Boston Bucks S61-pres..png', from: 61, to: null, variant: 0 }] } }).success).toBe(true);
   });
 });
