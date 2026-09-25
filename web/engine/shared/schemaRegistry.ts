@@ -11,9 +11,9 @@ const RULES: [RegExp, z.ZodTypeAny][] = [
   [/^calendar\.json$/, CalendarFile],
   [/^logos\/manifest\.json$/, LogoManifest],
   [new RegExp(`^leagues/${L}/teams\\.json$`), TeamsFile],
-  [new RegExp(`^leagues/${L}/S\\d+/rosters\\.json$`), RostersFile],
-  [new RegExp(`^leagues/${L}/S\\d+/summary\\.json$`), SummaryFile],
-  [new RegExp(`^leagues/${L}/S\\d+/results\\.json$`), ResultsFile],
+  [new RegExp(`^leagues/${L}/S[1-9]\\d*/rosters\\.json$`), RostersFile],
+  [new RegExp(`^leagues/${L}/S[1-9]\\d*/summary\\.json$`), SummaryFile],
+  [new RegExp(`^leagues/${L}/S[1-9]\\d*/results\\.json$`), ResultsFile],
 ];
 
 export function schemaForPath(rel: string): z.ZodTypeAny | null {

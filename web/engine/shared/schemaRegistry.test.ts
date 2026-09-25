@@ -13,7 +13,12 @@ describe('schemaForPath', () => {
   it.each([
     '../secrets.json', 'leagues/nba/teams.json', 'leagues/fba/S78/../../x.json',
     'leagues/fba/78/rosters.json', 'players.json/extra', '', 'leagues/fba/teams9json',
+    'leagues/fba/S079/rosters.json',
   ])('refuses %s', rel => {
     expect(schemaForPath(rel)).toBeNull();
+  });
+
+  it('still resolves a season without leading zeros', () => {
+    expect(schemaForPath('leagues/fba/S79/rosters.json')).not.toBeNull();
   });
 });
