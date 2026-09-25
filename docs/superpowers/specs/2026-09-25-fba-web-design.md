@@ -69,9 +69,8 @@ web/
 
 All JSON, under `web/data/`.
 
-**`players.json`** is the global registry, keyed by stable `playerId`:
-- `name`, `position`, `birthSeason`, `retiredSeason?`, `hofSeason?`
-- `career[]`: `{ season, league, teamId, rating, age, stars?, classYear?, contract? }`. One entry per season per league, which is how a player's page draws their JC → D2 → FBA → World Cup path.
+**`players.json`** is the global registry, keyed by stable `playerId`. It holds identity only: `name` (null for unnamed "X" placeholders) and `birthSeason` (season − age, when age is known). Retirement and HOF fields arrive with sub-projects 3 and 7.
+- A player's career timeline (JC → D2 → FBA → World Cup) is **derived** by scanning the season roster files, so the data lives in one place. At import, the same person across leagues is linked by normalized name (accents ignored) when birth seasons agree within ±1 and they're not already on that league-season's roster. Every link and every ambiguity is listed in the import report.
 
 **`leagues/<league>/teams.json`** holds team identity: `teamId`, `name`, `abbr`, conference or league group, city, eras (for renames and relocations, such as Charlotte Knights → Carolina Knights), and badge colors for non-FBA teams.
 
@@ -185,8 +184,11 @@ Each league's constants (games, teams per conference, series lengths) are carrie
 ## 9. Starting state
 
 - The app opens at **S79 · Free Agency**, where the calendar sheet's `*Here*` marker is.
-- FBA rosters come from the Rosters sheet "FBA Rosters" tab (Pre-S79, which already includes S79 draft picks). The contract is stored as end season + amount; the `.txt` contract length converts as end = season + length.
-- FBAD2, FBAJC, and FBAWC rosters come from whichever is newer, the `.txt`/roster file or the sheet tab. The importer compares them and records the choice for each league in the import report.
+- FBA rosters come from the Rosters sheet "FBA Rosters" tab (Pre-S79, which already includes S79 draft picks). The contract is stored as end season + amount; the `.txt` contract length converts as end = season + length − 1 (checked against Keano: 1 year → S78, and Holloway: 2 years → S79).
+- Roster sources were chosen by inspecting both copies:
+  - **FBAD2 S79:** players, ages, and ratings from the sheet's "FBA D2 Rosters" tab (already aged for S79); team abbreviations and league assignments from `FBAD2/FBAD2Rosters`.
+  - **FBAJC S78:** `FBAJC/FBAJCRosters`. The sheet tab lists only named players; the file has every player, including unnamed "X" placeholders.
+  - **FBAWC S78:** `FBAWC/FBAWCRosters`. It's the same data as the sheet tab, plus abbreviations.
 - The S78 `.txt` files (results, standings, playoffs, awards) become the locked S78 season archive for FBA, and likewise for the other leagues' most recent completed season.
 
 ## 10. Roadmap (each sub-project gets its own spec → plan → build)
@@ -216,9 +218,9 @@ Until sub-project 7 exists, each offseason calendar step is shown with a "Mark d
    - Calendar from the sheet.
    - The import report.
 6. App shell: sidebar, top bar with the season/step pill, light/dark themes, and routing placeholders for each league page.
-7. Home dashboard: Up Next hero with Continue ▸, and last champions (read from the S78 archive files).
+7. Home dashboard: Up Next hero with Continue ▸, and last champions (read from the S78 archive files). The recent-transactions box arrives with the transactions import in sub-project 3.
 8. Calendar page: step list for S79 with a "Mark done" button to advance.
-9. Read-only roster and team pages for all 4 leagues (roster table plus logo or badge), so the imported data is visible immediately.
+9. Read-only roster and team pages for all 4 leagues (roster table plus logo or badge), so the imported data is visible immediately. World Cup teams use generated badges until sub-project 5 adds flags.
 
 **Out of scope for Foundation:** playing games, brackets, history import (beyond last champions), and offseason automation.
 
