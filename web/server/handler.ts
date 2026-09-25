@@ -2,30 +2,42 @@ import { readFile } from 'node:fs/promises';
 import type http from 'node:http';
 import path from 'node:path';
 import { resolveLogo } from '../engine/shared/logos';
-import type { LogoManifest } from '../engine/shared/types';
+import { LogoManifest } from '../engine/shared/types';
 import { Storage, StorageError } from './storage';
 
-const MAX_BODY = 20 * 1024 * 1024;
+const DEFAULT_MAX_BODY = 20 * 1024 * 1024;
 
 const isBareName = (s: string) => s.length > 0 && s !== '.' && s !== '..' && path.basename(s) === s && !s.includes('\\');
+const isMissing = (e: unknown) => (e as NodeJS.ErrnoException)?.code === 'ENOENT';
 
-function sendJson(res: http.ServerResponse, status: number, body: unknown): void {
-  res.writeHead(status, { 'Content-Type': 'application/json' });
+function sendJson(res: http.ServerResponse, status: number, body: unknown, headers: Record<string, string> = {}): void {
+  res.writeHead(status, { 'Content-Type': 'application/json', ...headers });
   res.end(JSON.stringify(body));
 }
 
-function readBody(req: http.IncomingMessage): Promise<string> {
+/** Resolves to the body text, or null when it exceeds maxBody (caller must drain/destroy the request). */
+function readBody(req: http.IncomingMessage, maxBody: number): Promise<string | null> {
   return new Promise((resolve, reject) => {
+    const contentLength = Number(req.headers['content-length']);
+    if (Number.isFinite(contentLength) && contentLength > maxBody) {
+      resolve(null);
+      return;
+    }
+
     const chunks: Buffer[] = [];
     let size = 0;
+    let tooLarge = false;
     req.on('data', (c: Buffer) => {
+      if (tooLarge) return;
       size += c.length;
-      if (size > MAX_BODY) {
-        reject(new StorageError(413, 'Request body too large'));
-        req.destroy();
+      if (size > maxBody) {
+        tooLarge = true;
+        resolve(null);
       } else chunks.push(c);
     });
-    req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+    req.on('end', () => {
+      if (!tooLarge) resolve(Buffer.concat(chunks).toString('utf8'));
+    });
     req.on('error', reject);
   });
 }
@@ -33,27 +45,37 @@ function readBody(req: http.IncomingMessage): Promise<string> {
 export function createHandler(
   storage: Storage,
   logoDir: string,
-  options: { allowedHosts?: string[] } = {},
+  options: { allowedHosts?: string[]; maxBody?: number } = {},
 ): http.RequestListener {
   const allowedHosts = options.allowedHosts?.map(h => h.toLowerCase());
+  const maxBody = options.maxBody ?? DEFAULT_MAX_BODY;
 
   return async (req, res) => {
     if (allowedHosts && !allowedHosts.includes((req.headers.host ?? '').toLowerCase())) {
       return sendJson(res, 403, { error: 'Forbidden host' });
     }
 
+    let pathname: string;
     try {
-      const pathname = decodeURIComponent(new URL(req.url ?? '/', 'http://localhost').pathname);
+      pathname = decodeURIComponent(new URL(req.url ?? '/', 'http://localhost').pathname);
+    } catch {
+      return sendJson(res, 400, { error: 'Malformed request path' });
+    }
 
+    try {
       if (pathname.startsWith('/api/state/')) {
         const rel = pathname.slice('/api/state/'.length);
         if (req.method === 'GET') return sendJson(res, 200, await storage.read(rel));
         if (req.method === 'PUT') {
+          const body = await readBody(req, maxBody);
+          if (body === null) {
+            req.resume();
+            return sendJson(res, 413, { error: 'Request body too large' }, { Connection: 'close' });
+          }
           let doc: unknown;
           try {
-            doc = JSON.parse(await readBody(req));
-          } catch (e) {
-            if (e instanceof StorageError) throw e;
+            doc = JSON.parse(body);
+          } catch {
             return sendJson(res, 400, { error: 'Request body is not valid JSON' });
           }
           await storage.write(rel, doc);
@@ -65,11 +87,20 @@ export function createHandler(
       const logo = pathname.match(/^\/logos\/([^/]+)\/(\d+)$/);
       if (logo && req.method === 'GET') {
         const [, folder, season] = logo;
-        const manifest = (await storage.read('logos/manifest.json')) as LogoManifest;
-        const entries = manifest.folders[folder];
+        const manifestRaw = await storage.read('logos/manifest.json');
+        const parsed = LogoManifest.safeParse(manifestRaw);
+        if (!parsed.success) return sendJson(res, 500, { error: 'Stored logo manifest is invalid' });
+        const manifest = parsed.data;
+        const entries = Object.hasOwn(manifest.folders, folder) ? manifest.folders[folder] : undefined;
         const file = entries ? resolveLogo(entries, folder, Number(season)) : null;
         if (!file || !isBareName(folder) || !isBareName(file)) return sendJson(res, 404, { error: `No logo for ${folder}` });
-        const data = await readFile(path.join(logoDir, folder, file));
+        let data: Buffer;
+        try {
+          data = await readFile(path.join(logoDir, folder, file));
+        } catch (e) {
+          if (isMissing(e)) return sendJson(res, 404, { error: `No logo for ${folder}` });
+          throw e;
+        }
         res.writeHead(200, { 'Content-Type': 'image/png', 'Cache-Control': 'max-age=3600' });
         return res.end(data);
       }

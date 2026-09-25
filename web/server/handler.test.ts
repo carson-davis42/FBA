@@ -86,8 +86,13 @@ describe('HTTP handler security', () => {
   afterAll(() => new Promise<void>(r => server2.close(() => r())));
 
   it('rejects path traversal in manifest even when written directly to disk', async () => {
+    // The manifest on disk has a non-bare `file` value ('../secret.png'), so it now fails
+    // LogoManifest.safeParse as a whole (M1: the handler validates the manifest instead of
+    // trusting it via an `as` cast). The endpoint still never serves the traversal target;
+    // it now fails closed with 500 instead of 404.
     const res = await fetch(`${base2}/logos/x/79`);
-    expect(res.status).toBe(404);
+    expect(res.status).toBe(500);
+    expect(res.status).not.toBe(200);
   });
 
   it('rejects malicious manifest via PUT', async () => {
@@ -135,5 +140,65 @@ describe('HTTP handler host allow-list', () => {
 
   it('allows a Host header that is on the list', async () => {
     expect(await rawRequest('good.test:1')).toBe(200);
+  });
+});
+
+describe('HTTP handler body size limit', () => {
+  let server4: http.Server;
+  let base4: string;
+
+  beforeAll(async () => {
+    const dataDir = mkdtempSync(path.join(tmpdir(), 'fba-http-bodysize-'));
+    const logoDir = mkdtempSync(path.join(tmpdir(), 'fba-logos-bodysize-'));
+    const storage = new Storage(dataDir);
+    server4 = http.createServer(createHandler(storage, logoDir, { maxBody: 1024 }));
+    await new Promise<void>(r => server4.listen(0, '127.0.0.1', r));
+    base4 = `http://127.0.0.1:${(server4.address() as AddressInfo).port}`;
+  });
+
+  afterAll(() => new Promise<void>(r => server4.close(() => r())));
+
+  it('returns 413 for an oversized body instead of resetting the connection', async () => {
+    const big = 'x'.repeat(5000);
+    const res = await fetch(`${base4}/api/state/calendar.json`, { method: 'PUT', body: JSON.stringify({ big }) });
+    expect(res.status).toBe(413);
+    expect((await res.json()).error).toMatch(/too large/i);
+  });
+});
+
+describe('HTTP handler bad requests', () => {
+  it('returns 400 for a malformed URI escape', async () => {
+    const res = await fetch(`${base}/api/state/%E0%A4%A`);
+    expect(res.status).toBe(400);
+  });
+
+  it('returns 404 (not 500) for a prototype-polluting logo folder name', async () => {
+    const res = await fetch(`${base}/logos/__proto__/79`);
+    expect(res.status).toBe(404);
+  });
+
+  describe('missing logo file on disk', () => {
+    let server5: http.Server;
+    let base5: string;
+
+    beforeAll(async () => {
+      const dataDir = mkdtempSync(path.join(tmpdir(), 'fba-http-missingfile-'));
+      const logoDir = mkdtempSync(path.join(tmpdir(), 'fba-logos-missingfile-'));
+      mkdirSync(path.join(logoDir, 'Ghost Team'));
+      const storage = new Storage(dataDir);
+      await storage.write('logos/manifest.json', {
+        folders: { 'Ghost Team': [{ file: 'Ghost Team S1-pres..png', from: 1, to: null, variant: 0 }] },
+      });
+      server5 = http.createServer(createHandler(storage, logoDir));
+      await new Promise<void>(r => server5.listen(0, '127.0.0.1', r));
+      base5 = `http://127.0.0.1:${(server5.address() as AddressInfo).port}`;
+    });
+
+    afterAll(() => new Promise<void>(r => server5.close(() => r())));
+
+    it('returns 404 when the manifest points at a file that does not exist on disk', async () => {
+      const res = await fetch(`${base5}/logos/Ghost%20Team/79`);
+      expect(res.status).toBe(404);
+    });
   });
 });
