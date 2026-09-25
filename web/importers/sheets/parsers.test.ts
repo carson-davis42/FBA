@@ -36,6 +36,10 @@ describe('parseD2RosterTab', () => {
     expect(t).toMatchObject({ name: 'Amsterdam', country: 'Netherlands' });
     expect(t.players[0]).toEqual({ name: 'Maddox Dean', position: 'PF', age: 22, rating: 94, contractEnd: null, contractAmount: null });
   });
+  it('stops at the Reserves section', () => {
+    const rows = [['Zurich(Switzerland)'], ['(PG)', 'Markus Edmonds', '31', '98'], [], ['Reserves'], ['(PG)', 'Kris Dyer', '30', '']];
+    expect(parseD2RosterTab(rows).map(t => t.name)).toEqual(['Zurich']);
+  });
 });
 
 describe('parseCalendarTab', () => {

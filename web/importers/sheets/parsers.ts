@@ -49,12 +49,14 @@ function parseRosterRows(
   isHeader: (text: string) => boolean,
   readPlayer: (r: string[], position: Position) => SheetPlayer,
   splitCountry: boolean,
+  stopAt?: (text: string) => boolean,
 ): SheetTeam[] {
   const teams: SheetTeam[] = [];
   let current: SheetTeam | null = null;
   for (const r of rows) {
     const text = cell(r, teamCol);
     if (!text || isHeader(text)) continue;
+    if (stopAt && stopAt(text)) break;
     const pos = text.match(POS_CELL);
     if (pos) {
       if (!current) throw new Error(`Player row appears before any team: ${r.join(',')}`);
@@ -88,7 +90,7 @@ export function parseD2RosterTab(rows: string[][]): SheetTeam[] {
     const name = cell(r, 1);
     if (name === 'X' || name === '') return { name: null, position, age: null, rating: null, contractEnd: null, contractAmount: null };
     return { name, position, age: numOrNull(cell(r, 2)), rating: numOrNull(cell(r, 3)), contractEnd: null, contractAmount: null };
-  }, true);
+  }, true, t => t.toLowerCase() === 'reserves');
 }
 
 export function parseCalendarTab(rows: string[][]): ParsedCalendar {
