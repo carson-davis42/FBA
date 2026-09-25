@@ -1,0 +1,14 @@
+{
+  "league": "fbajc",
+  "season": 78,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "National Champion",
+      "champion": "North Carolina",
+      "runnerUp": "Syracuse",
+      "score": null
+    }
+  ]
+}

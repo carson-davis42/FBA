@@ -1,0 +1,14 @@
+{
+  "league": "fbawc",
+  "season": 78,
+  "locked": true,
+  "host": "Croatia",
+  "champions": [
+    {
+      "title": "World Cup Champion",
+      "champion": "Germany",
+      "runnerUp": "Italy",
+      "score": null
+    }
+  ]
+}

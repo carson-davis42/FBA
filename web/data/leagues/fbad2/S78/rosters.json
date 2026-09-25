@@ -1,0 +1,2375 @@
+{
+  "league": "fbad2",
+  "season": 78,
+  "locked": true,
+  "teams": {
+    "ACK": [
+      {
+        "playerId": "p00173",
+        "position": "PG",
+        "rating": 66,
+        "age": 27,
+        "points": 158
+      },
+      {
+        "playerId": "p00174",
+        "position": "SG",
+        "rating": 75,
+        "age": 22,
+        "points": 552
+      },
+      {
+        "playerId": "p00175",
+        "position": "SF",
+        "rating": 70,
+        "age": 28,
+        "points": 329
+      },
+      {
+        "playerId": "p00176",
+        "position": "PF",
+        "rating": 77,
+        "age": 28,
+        "points": 656
+      },
+      {
+        "playerId": "p00177",
+        "position": "C",
+        "rating": 74,
+        "age": 25,
+        "points": 473
+      }
+    ],
+    "AMS": [
+      {
+        "playerId": "p00163",
+        "position": "PG",
+        "rating": 75,
+        "age": 29,
+        "points": 379
+      },
+      {
+        "playerId": "p00164",
+        "position": "SG",
+        "rating": 72,
+        "age": 25,
+        "points": 233
+      },
+      {
+        "playerId": "p00165",
+        "position": "SF",
+        "rating": 75,
+        "age": 26,
+        "points": 349
+      },
+      {
+        "playerId": "p00166",
+        "position": "PF",
+        "rating": 94,
+        "age": 21,
+        "points": 1058
+      },
+      {
+        "playerId": "p00167",
+        "position": "C",
+        "rating": 79,
+        "age": 24,
+        "points": 496
+      }
+    ],
+    "ATH": [
+      {
+        "playerId": "p00168",
+        "position": "PG",
+        "rating": 81,
+        "age": 23,
+        "points": 670
+      },
+      {
+        "playerId": "p00169",
+        "position": "SG",
+        "rating": 69,
+        "age": 24,
+        "points": 181
+      },
+      {
+        "playerId": "p00170",
+        "position": "SF",
+        "rating": 80,
+        "age": 31,
+        "points": 646
+      },
+      {
+        "playerId": "p00171",
+        "position": "PF",
+        "rating": 84,
+        "age": 31,
+        "points": 845
+      },
+      {
+        "playerId": "p00172",
+        "position": "C",
+        "rating": 67,
+        "age": 24,
+        "points": 125
+      }
+    ],
+    "AUS": [
+      {
+        "playerId": "p00178",
+        "position": "PG",
+        "rating": 95,
+        "age": 28,
+        "points": 764
+      },
+      {
+        "playerId": "p00179",
+        "position": "SG",
+        "rating": 73,
+        "age": 28,
+        "points": 190
+      },
+      {
+        "playerId": "p00180",
+        "position": "SF",
+        "rating": 89,
+        "age": 23,
+        "points": 656
+      },
+      {
+        "playerId": "p00181",
+        "position": "PF",
+        "rating": 78,
+        "age": 23,
+        "points": 286
+      },
+      {
+        "playerId": "p00182",
+        "position": "C",
+        "rating": 95,
+        "age": 28,
+        "points": 765
+      }
+    ],
+    "BA": [
+      {
+        "playerId": "p00211",
+        "position": "PG",
+        "rating": 70,
+        "age": 23,
+        "points": 144
+      },
+      {
+        "playerId": "p00212",
+        "position": "SG",
+        "rating": 86,
+        "age": 29,
+        "points": 592
+      },
+      {
+        "playerId": "p00213",
+        "position": "SF",
+        "rating": 95,
+        "age": 30,
+        "points": 971
+      },
+      {
+        "playerId": "p00214",
+        "position": "PF",
+        "rating": 78,
+        "age": 30,
+        "points": 347
+      },
+      {
+        "playerId": "p00215",
+        "position": "C",
+        "rating": 87,
+        "age": 30,
+        "points": 646
+      }
+    ],
+    "BARC": [
+      {
+        "playerId": "p00183",
+        "position": "PG",
+        "rating": 81,
+        "age": 24,
+        "points": 493
+      },
+      {
+        "playerId": "p00459",
+        "position": "SG",
+        "rating": 83,
+        "age": 32,
+        "points": 560
+      },
+      {
+        "playerId": "p00184",
+        "position": "SF",
+        "rating": 78,
+        "age": 29,
+        "points": 404
+      },
+      {
+        "playerId": "p00185",
+        "position": "PF",
+        "rating": 88,
+        "age": 26,
+        "points": 740
+      },
+      {
+        "playerId": "p00186",
+        "position": "C",
+        "rating": 78,
+        "age": 31,
+        "points": 398
+      }
+    ],
+    "BEI": [
+      {
+        "playerId": "p00197",
+        "position": "PG",
+        "rating": 67,
+        "age": 25,
+        "points": 128
+      },
+      {
+        "playerId": "p00198",
+        "position": "SG",
+        "rating": 94,
+        "age": 25,
+        "points": 1208
+      },
+      {
+        "playerId": "p00199",
+        "position": "SF",
+        "rating": 81,
+        "age": 28,
+        "points": 568
+      },
+      {
+        "playerId": "p00200",
+        "position": "PF",
+        "rating": 78,
+        "age": 31,
+        "points": 508
+      },
+      {
+        "playerId": "p00201",
+        "position": "C",
+        "rating": 66,
+        "age": 27,
+        "points": 130
+      }
+    ],
+    "BEL": [
+      {
+        "playerId": "p00187",
+        "position": "PG",
+        "rating": 87,
+        "age": 27,
+        "points": 842
+      },
+      {
+        "playerId": "p00188",
+        "position": "SG",
+        "rating": 66,
+        "age": 28,
+        "points": 136
+      },
+      {
+        "playerId": "p00189",
+        "position": "SF",
+        "rating": 74,
+        "age": 28,
+        "points": 324
+      },
+      {
+        "playerId": "p00190",
+        "position": "PF",
+        "rating": 89,
+        "age": 27,
+        "points": 899
+      },
+      {
+        "playerId": "p00191",
+        "position": "C",
+        "rating": 74,
+        "age": 26,
+        "points": 358
+      }
+    ],
+    "BER": [
+      {
+        "playerId": "p00192",
+        "position": "PG",
+        "rating": 73,
+        "age": 23,
+        "points": 202
+      },
+      {
+        "playerId": "p00193",
+        "position": "SG",
+        "rating": 96,
+        "age": 30,
+        "points": 834
+      },
+      {
+        "playerId": "p00194",
+        "position": "SF",
+        "rating": 97,
+        "age": 29,
+        "points": 868
+      },
+      {
+        "playerId": "p00195",
+        "position": "PF",
+        "rating": 86,
+        "age": 25,
+        "points": 578
+      },
+      {
+        "playerId": "p00196",
+        "position": "C",
+        "rating": 73,
+        "age": 31,
+        "points": 188
+      }
+    ],
+    "BRUS": [
+      {
+        "playerId": "p00202",
+        "position": "PG",
+        "rating": 79,
+        "age": 31,
+        "points": 506
+      },
+      {
+        "playerId": "p00203",
+        "position": "SG",
+        "rating": 91,
+        "age": 23,
+        "points": 978
+      },
+      {
+        "playerId": "p00460",
+        "position": "SF",
+        "rating": 80,
+        "age": 32,
+        "points": 508
+      },
+      {
+        "playerId": "p00204",
+        "position": "PF",
+        "rating": 72,
+        "age": 22,
+        "points": 247
+      },
+      {
+        "playerId": "p00205",
+        "position": "C",
+        "rating": 75,
+        "age": 24,
+        "points": 327
+      }
+    ],
+    "BUD": [
+      {
+        "playerId": "p00206",
+        "position": "PG",
+        "rating": 90,
+        "age": 28,
+        "points": 798
+      },
+      {
+        "playerId": "p00207",
+        "position": "SG",
+        "rating": 71,
+        "age": 27,
+        "points": 187
+      },
+      {
+        "playerId": "p00208",
+        "position": "SF",
+        "rating": 76,
+        "age": 23,
+        "points": 367
+      },
+      {
+        "playerId": "p00209",
+        "position": "PF",
+        "rating": 91,
+        "age": 22,
+        "points": 852
+      },
+      {
+        "playerId": "p00210",
+        "position": "C",
+        "rating": 73,
+        "age": 22,
+        "points": 257
+      }
+    ],
+    "CAI": [
+      {
+        "playerId": "p00216",
+        "position": "PG",
+        "rating": 65,
+        "age": 22,
+        "points": 151
+      },
+      {
+        "playerId": "p00217",
+        "position": "SG",
+        "rating": 87,
+        "age": 27,
+        "points": 1144
+      },
+      {
+        "playerId": "p00218",
+        "position": "SF",
+        "rating": 76,
+        "age": 25,
+        "points": 535
+      },
+      {
+        "playerId": "p00219",
+        "position": "PF",
+        "rating": 68,
+        "age": 29,
+        "points": 200
+      },
+      {
+        "playerId": "p00220",
+        "position": "C",
+        "rating": 72,
+        "age": 27,
+        "points": 395
+      }
+    ],
+    "CAS": [
+      {
+        "playerId": "p00221",
+        "position": "PG",
+        "rating": 86,
+        "age": 23,
+        "points": 704
+      },
+      {
+        "playerId": "p00222",
+        "position": "SG",
+        "rating": 88,
+        "age": 24,
+        "points": 842
+      },
+      {
+        "playerId": "p00223",
+        "position": "SF",
+        "rating": 72,
+        "age": 23,
+        "points": 204
+      },
+      {
+        "playerId": "p00224",
+        "position": "PF",
+        "rating": 86,
+        "age": 28,
+        "points": 706
+      },
+      {
+        "playerId": "p00225",
+        "position": "C",
+        "rating": 68,
+        "age": 22,
+        "points": 176
+      }
+    ],
+    "COP": [
+      {
+        "playerId": "p00226",
+        "position": "PG",
+        "rating": 85,
+        "age": 30,
+        "points": 535
+      },
+      {
+        "playerId": "p00227",
+        "position": "SG",
+        "rating": 96,
+        "age": 28,
+        "points": 969
+      },
+      {
+        "playerId": "p00228",
+        "position": "SF",
+        "rating": 88,
+        "age": 24,
+        "points": 659
+      },
+      {
+        "playerId": "p00229",
+        "position": "PF",
+        "rating": 75,
+        "age": 30,
+        "points": 236
+      },
+      {
+        "playerId": "p00230",
+        "position": "C",
+        "rating": 76,
+        "age": 23,
+        "points": 256
+      }
+    ],
+    "DBA": [
+      {
+        "playerId": "p00236",
+        "position": "PG",
+        "rating": 84,
+        "age": 28,
+        "points": 647
+      },
+      {
+        "playerId": "p00237",
+        "position": "SG",
+        "rating": 77,
+        "age": 23,
+        "points": 381
+      },
+      {
+        "playerId": "p00238",
+        "position": "SF",
+        "rating": 68,
+        "age": 28,
+        "points": 158
+      },
+      {
+        "playerId": "p00239",
+        "position": "PF",
+        "rating": 85,
+        "age": 28,
+        "points": 755
+      },
+      {
+        "playerId": "p00240",
+        "position": "C",
+        "rating": 85,
+        "age": 28,
+        "points": 669
+      }
+    ],
+    "DHA": [
+      {
+        "playerId": "p00231",
+        "position": "PG",
+        "rating": 74,
+        "age": 27,
+        "points": 228
+      },
+      {
+        "playerId": "p00232",
+        "position": "SG",
+        "rating": 99,
+        "age": 31,
+        "points": 1079
+      },
+      {
+        "playerId": "p00233",
+        "position": "PF",
+        "rating": 87,
+        "age": 27,
+        "points": 598
+      },
+      {
+        "playerId": "p00234",
+        "position": "PF",
+        "rating": 77,
+        "age": 27,
+        "points": 313
+      },
+      {
+        "playerId": "p00235",
+        "position": "C",
+        "rating": 82,
+        "age": 28,
+        "points": 427
+      }
+    ],
+    "DUB": [
+      {
+        "playerId": "p00241",
+        "position": "PG",
+        "rating": 92,
+        "age": 31,
+        "points": 799
+      },
+      {
+        "playerId": "p00242",
+        "position": "SG",
+        "rating": 95,
+        "age": 24,
+        "points": 921
+      },
+      {
+        "playerId": "p00243",
+        "position": "SF",
+        "rating": 71,
+        "age": 31,
+        "points": 172
+      },
+      {
+        "playerId": "p00244",
+        "position": "PF",
+        "rating": 87,
+        "age": 24,
+        "points": 693
+      },
+      {
+        "playerId": "p00245",
+        "position": "C",
+        "rating": 71,
+        "age": 23,
+        "points": 136
+      }
+    ],
+    "EDI": [
+      {
+        "playerId": "p00246",
+        "position": "PG",
+        "rating": 77,
+        "age": 23,
+        "points": 465
+      },
+      {
+        "playerId": "p00247",
+        "position": "SG",
+        "rating": 66,
+        "age": 26,
+        "points": 151
+      },
+      {
+        "playerId": "p00248",
+        "position": "SF",
+        "rating": 68,
+        "age": 28,
+        "points": 148
+      },
+      {
+        "playerId": "p00249",
+        "position": "PF",
+        "rating": 82,
+        "age": 25,
+        "points": 738
+      },
+      {
+        "playerId": "p00250",
+        "position": "C",
+        "rating": 85,
+        "age": 22,
+        "points": 971
+      }
+    ],
+    "EDM": [
+      {
+        "playerId": "p00251",
+        "position": "PG",
+        "rating": 70,
+        "age": 26,
+        "points": 239
+      },
+      {
+        "playerId": "p00252",
+        "position": "SG",
+        "rating": 90,
+        "age": 22,
+        "points": 963
+      },
+      {
+        "playerId": "p00253",
+        "position": "SF",
+        "rating": 78,
+        "age": 22,
+        "points": 389
+      },
+      {
+        "playerId": "p00254",
+        "position": "PF",
+        "rating": 68,
+        "age": 26,
+        "points": 191
+      },
+      {
+        "playerId": "p00255",
+        "position": "C",
+        "rating": 83,
+        "age": 31,
+        "points": 670
+      }
+    ],
+    "FLO": [
+      {
+        "playerId": "p00461",
+        "position": "PG",
+        "rating": 69,
+        "age": 28,
+        "points": 150
+      },
+      {
+        "playerId": "p00257",
+        "position": "SG",
+        "rating": 78,
+        "age": 28,
+        "points": 397
+      },
+      {
+        "playerId": "p00258",
+        "position": "SF",
+        "rating": 81,
+        "age": 23,
+        "points": 472
+      },
+      {
+        "playerId": "p00259",
+        "position": "PF",
+        "rating": 92,
+        "age": 26,
+        "points": 831
+      },
+      {
+        "playerId": "p00260",
+        "position": "C",
+        "rating": 91,
+        "age": 23,
+        "points": 894
+      }
+    ],
+    "FRAN": [
+      {
+        "playerId": "p00261",
+        "position": "PG",
+        "rating": 73,
+        "age": 25,
+        "points": 404
+      },
+      {
+        "playerId": "p00262",
+        "position": "SG",
+        "rating": 83,
+        "age": 23,
+        "points": 886
+      },
+      {
+        "playerId": "p00263",
+        "position": "SF",
+        "rating": 79,
+        "age": 29,
+        "points": 580
+      },
+      {
+        "playerId": "p00264",
+        "position": "PF",
+        "rating": 65,
+        "age": 23,
+        "points": 168
+      },
+      {
+        "playerId": "p00265",
+        "position": "C",
+        "rating": 68,
+        "age": 31,
+        "points": 223
+      }
+    ],
+    "GLAS": [
+      {
+        "playerId": "p00266",
+        "position": "PG",
+        "rating": 79,
+        "age": 29,
+        "points": 608
+      },
+      {
+        "playerId": "p00267",
+        "position": "SG",
+        "rating": 79,
+        "age": 26,
+        "points": 466
+      },
+      {
+        "playerId": "p00268",
+        "position": "SF",
+        "rating": 85,
+        "age": 25,
+        "points": 744
+      },
+      {
+        "playerId": "p00269",
+        "position": "PF",
+        "rating": 79,
+        "age": 22,
+        "points": 528
+      },
+      {
+        "playerId": "p00462",
+        "position": "C",
+        "rating": 66,
+        "age": 32,
+        "points": 140
+      }
+    ],
+    "GUAD": [
+      {
+        "playerId": "p00270",
+        "position": "PG",
+        "rating": 95,
+        "age": 23,
+        "points": 783
+      },
+      {
+        "playerId": "p00271",
+        "position": "SG",
+        "rating": 84,
+        "age": 23,
+        "points": 488
+      },
+      {
+        "playerId": "p00272",
+        "position": "SF",
+        "rating": 85,
+        "age": 30,
+        "points": 475
+      },
+      {
+        "playerId": "p00273",
+        "position": "PF",
+        "rating": 69,
+        "age": 23,
+        "points": 123
+      },
+      {
+        "playerId": "p00274",
+        "position": "C",
+        "rating": 92,
+        "age": 30,
+        "points": 685
+      }
+    ],
+    "HAM": [
+      {
+        "playerId": "p00275",
+        "position": "PG",
+        "rating": 80,
+        "age": 22,
+        "points": 416
+      },
+      {
+        "playerId": "p00276",
+        "position": "SG",
+        "rating": 77,
+        "age": 25,
+        "points": 351
+      },
+      {
+        "playerId": "p00463",
+        "position": "SF",
+        "rating": 78,
+        "age": 32,
+        "points": 354
+      },
+      {
+        "playerId": "p00277",
+        "position": "PF",
+        "rating": 98,
+        "age": 23,
+        "points": 916
+      },
+      {
+        "playerId": "p00278",
+        "position": "C",
+        "rating": 89,
+        "age": 24,
+        "points": 708
+      }
+    ],
+    "IST": [
+      {
+        "playerId": "p00464",
+        "position": "PG",
+        "rating": 72,
+        "age": 32,
+        "points": 455
+      },
+      {
+        "playerId": "p00279",
+        "position": "SG",
+        "rating": 72,
+        "age": 23,
+        "points": 471
+      },
+      {
+        "playerId": "p00465",
+        "position": "SF",
+        "rating": 67,
+        "age": 32,
+        "points": 203
+      },
+      {
+        "playerId": "p00280",
+        "position": "PF",
+        "rating": 75,
+        "age": 31,
+        "points": 613
+      },
+      {
+        "playerId": "p00281",
+        "position": "C",
+        "rating": 70,
+        "age": 22,
+        "points": 363
+      }
+    ],
+    "JOH": [
+      {
+        "playerId": "p00282",
+        "position": "PG",
+        "rating": 75,
+        "age": 22,
+        "points": 394
+      },
+      {
+        "playerId": "p00283",
+        "position": "SG",
+        "rating": 65,
+        "age": 29,
+        "points": 72
+      },
+      {
+        "playerId": "p00284",
+        "position": "SF",
+        "rating": 89,
+        "age": 29,
+        "points": 1017
+      },
+      {
+        "playerId": "p00285",
+        "position": "PF",
+        "rating": 88,
+        "age": 29,
+        "points": 856
+      },
+      {
+        "playerId": "p00286",
+        "position": "C",
+        "rating": 71,
+        "age": 29,
+        "points": 274
+      }
+    ],
+    "KIEV": [
+      {
+        "playerId": "p00287",
+        "position": "PG",
+        "rating": 74,
+        "age": 25,
+        "points": 315
+      },
+      {
+        "playerId": "p00288",
+        "position": "SG",
+        "rating": 86,
+        "age": 23,
+        "points": 740
+      },
+      {
+        "playerId": "p00289",
+        "position": "SF",
+        "rating": 90,
+        "age": 26,
+        "points": 865
+      },
+      {
+        "playerId": "p00290",
+        "position": "PF",
+        "rating": 71,
+        "age": 29,
+        "points": 244
+      },
+      {
+        "playerId": "p00291",
+        "position": "C",
+        "rating": 80,
+        "age": 22,
+        "points": 483
+      }
+    ],
+    "LAG": [
+      {
+        "playerId": "p00292",
+        "position": "PG",
+        "rating": 67,
+        "age": 30,
+        "points": 156
+      },
+      {
+        "playerId": "p00293",
+        "position": "SG",
+        "rating": 75,
+        "age": 30,
+        "points": 351
+      },
+      {
+        "playerId": "p00294",
+        "position": "SF",
+        "rating": 88,
+        "age": 22,
+        "points": 846
+      },
+      {
+        "playerId": "p00295",
+        "position": "PF",
+        "rating": 83,
+        "age": 30,
+        "points": 642
+      },
+      {
+        "playerId": "p00296",
+        "position": "C",
+        "rating": 79,
+        "age": 30,
+        "points": 444
+      }
+    ],
+    "LIS": [
+      {
+        "playerId": "p00297",
+        "position": "PG",
+        "rating": 84,
+        "age": 25,
+        "points": 505
+      },
+      {
+        "playerId": "p00466",
+        "position": "SG",
+        "rating": 83,
+        "age": 32,
+        "points": 416
+      },
+      {
+        "playerId": "p00298",
+        "position": "SF",
+        "rating": 96,
+        "age": 26,
+        "points": 890
+      },
+      {
+        "playerId": "p00299",
+        "position": "PF",
+        "rating": 67,
+        "age": 25,
+        "points": 109
+      },
+      {
+        "playerId": "p00300",
+        "position": "C",
+        "rating": 92,
+        "age": 29,
+        "points": 704
+      }
+    ],
+    "LIV": [
+      {
+        "playerId": "p00301",
+        "position": "PG",
+        "rating": 76,
+        "age": 30,
+        "points": 406
+      },
+      {
+        "playerId": "p00302",
+        "position": "SG",
+        "rating": 84,
+        "age": 29,
+        "points": 747
+      },
+      {
+        "playerId": "p00303",
+        "position": "SF",
+        "rating": 73,
+        "age": 30,
+        "points": 316
+      },
+      {
+        "playerId": "p00304",
+        "position": "PF",
+        "rating": 76,
+        "age": 30,
+        "points": 384
+      },
+      {
+        "playerId": "p00305",
+        "position": "C",
+        "rating": 77,
+        "age": 22,
+        "points": 448
+      }
+    ],
+    "LON": [
+      {
+        "playerId": "p00467",
+        "position": "PG",
+        "rating": 89,
+        "age": 32,
+        "points": 575
+      },
+      {
+        "playerId": "p00306",
+        "position": "SG",
+        "rating": 89,
+        "age": 24,
+        "points": 625
+      },
+      {
+        "playerId": "p00307",
+        "position": "SF",
+        "rating": 77,
+        "age": 24,
+        "points": 268
+      },
+      {
+        "playerId": "p00308",
+        "position": "PF",
+        "rating": 93,
+        "age": 26,
+        "points": 717
+      },
+      {
+        "playerId": "p00309",
+        "position": "C",
+        "rating": 82,
+        "age": 25,
+        "points": 411
+      }
+    ],
+    "LUX": [
+      {
+        "playerId": "p00310",
+        "position": "PG",
+        "rating": 74,
+        "age": 26,
+        "points": 499
+      },
+      {
+        "playerId": "p00311",
+        "position": "SG",
+        "rating": 79,
+        "age": 23,
+        "points": 646
+      },
+      {
+        "playerId": "p00312",
+        "position": "SF",
+        "rating": 77,
+        "age": 28,
+        "points": 532
+      },
+      {
+        "playerId": "p00313",
+        "position": "PF",
+        "rating": 69,
+        "age": 27,
+        "points": 271
+      },
+      {
+        "playerId": "p00314",
+        "position": "C",
+        "rating": 73,
+        "age": 23,
+        "points": 334
+      }
+    ],
+    "LYON": [
+      {
+        "playerId": "p00315",
+        "position": "PG",
+        "rating": 83,
+        "age": 27,
+        "points": 670
+      },
+      {
+        "playerId": "p00316",
+        "position": "SG",
+        "rating": 76,
+        "age": 23,
+        "points": 395
+      },
+      {
+        "playerId": "p00317",
+        "position": "SF",
+        "rating": 66,
+        "age": 30,
+        "points": 108
+      },
+      {
+        "playerId": "p00318",
+        "position": "PF",
+        "rating": 94,
+        "age": 25,
+        "points": 1214
+      },
+      {
+        "playerId": "p00319",
+        "position": "C",
+        "rating": 67,
+        "age": 24,
+        "points": 145
+      }
+    ],
+    "MAD": [
+      {
+        "playerId": "p00320",
+        "position": "PG",
+        "rating": 99,
+        "age": 29,
+        "points": 994
+      },
+      {
+        "playerId": "p00321",
+        "position": "SG",
+        "rating": 69,
+        "age": 26,
+        "points": 118
+      },
+      {
+        "playerId": "p00322",
+        "position": "SF",
+        "rating": 83,
+        "age": 23,
+        "points": 450
+      },
+      {
+        "playerId": "p00323",
+        "position": "PF",
+        "rating": 86,
+        "age": 25,
+        "points": 537
+      },
+      {
+        "playerId": "p00324",
+        "position": "C",
+        "rating": 83,
+        "age": 24,
+        "points": 469
+      }
+    ],
+    "MAN": [
+      {
+        "playerId": "p00325",
+        "position": "PG",
+        "rating": 65,
+        "age": 31,
+        "points": 90
+      },
+      {
+        "playerId": "p00468",
+        "position": "SG",
+        "rating": 89,
+        "age": 32,
+        "points": 915
+      },
+      {
+        "playerId": "p00326",
+        "position": "SF",
+        "rating": 66,
+        "age": 26,
+        "points": 103
+      },
+      {
+        "playerId": "p00469",
+        "position": "PF",
+        "rating": 81,
+        "age": 32,
+        "points": 651
+      },
+      {
+        "playerId": "p00327",
+        "position": "C",
+        "rating": 84,
+        "age": 27,
+        "points": 800
+      }
+    ],
+    "MC": [
+      {
+        "playerId": "p00328",
+        "position": "PG",
+        "rating": 71,
+        "age": 25,
+        "points": 273
+      },
+      {
+        "playerId": "p00329",
+        "position": "SG",
+        "rating": 88,
+        "age": 30,
+        "points": 862
+      },
+      {
+        "playerId": "p00330",
+        "position": "SF",
+        "rating": 69,
+        "age": 24,
+        "points": 192
+      },
+      {
+        "playerId": "p00331",
+        "position": "PF",
+        "rating": 67,
+        "age": 22,
+        "points": 120
+      },
+      {
+        "playerId": "p00332",
+        "position": "C",
+        "rating": 90,
+        "age": 31,
+        "points": 1000
+      }
+    ],
+    "MIA": [
+      {
+        "playerId": "p00333",
+        "position": "PG",
+        "rating": 75,
+        "age": 25,
+        "points": 300
+      },
+      {
+        "playerId": "p00334",
+        "position": "SG",
+        "rating": 97,
+        "age": 23,
+        "points": 886
+      },
+      {
+        "playerId": "p00335",
+        "position": "SF",
+        "rating": 90,
+        "age": 27,
+        "points": 783
+      },
+      {
+        "playerId": "p00336",
+        "position": "PF",
+        "rating": 82,
+        "age": 24,
+        "points": 426
+      },
+      {
+        "playerId": "p00337",
+        "position": "C",
+        "rating": 76,
+        "age": 28,
+        "points": 285
+      }
+    ],
+    "MIL": [
+      {
+        "playerId": "p00338",
+        "position": "PG",
+        "rating": 84,
+        "age": 22,
+        "points": 410
+      },
+      {
+        "playerId": "p00339",
+        "position": "SG",
+        "rating": 87,
+        "age": 22,
+        "points": 505
+      },
+      {
+        "playerId": "p00340",
+        "position": "SF",
+        "rating": 79,
+        "age": 24,
+        "points": 282
+      },
+      {
+        "playerId": "p00341",
+        "position": "PF",
+        "rating": 96,
+        "age": 26,
+        "points": 720
+      },
+      {
+        "playerId": "p00342",
+        "position": "C",
+        "rating": 96,
+        "age": 24,
+        "points": 766
+      }
+    ],
+    "MOS": [
+      {
+        "playerId": "p00343",
+        "position": "PG",
+        "rating": 73,
+        "age": 31,
+        "points": 228
+      },
+      {
+        "playerId": "p00470",
+        "position": "SG",
+        "rating": 67,
+        "age": 32,
+        "points": 119
+      },
+      {
+        "playerId": "p00344",
+        "position": "SF",
+        "rating": 94,
+        "age": 23,
+        "points": 902
+      },
+      {
+        "playerId": "p00345",
+        "position": "PF",
+        "rating": 92,
+        "age": 23,
+        "points": 872
+      },
+      {
+        "playerId": "p00346",
+        "position": "C",
+        "rating": 87,
+        "age": 24,
+        "points": 615
+      }
+    ],
+    "MUM": [
+      {
+        "playerId": "p00471",
+        "position": "PG",
+        "rating": 98,
+        "age": 32,
+        "points": 843
+      },
+      {
+        "playerId": "p00347",
+        "position": "SG",
+        "rating": 81,
+        "age": 27,
+        "points": 381
+      },
+      {
+        "playerId": "p00348",
+        "position": "SF",
+        "rating": 77,
+        "age": 22,
+        "points": 288
+      },
+      {
+        "playerId": "p00349",
+        "position": "PF",
+        "rating": 86,
+        "age": 27,
+        "points": 576
+      },
+      {
+        "playerId": "p00350",
+        "position": "C",
+        "rating": 88,
+        "age": 30,
+        "points": 671
+      }
+    ],
+    "MUN": [
+      {
+        "playerId": "p00351",
+        "position": "PG",
+        "rating": 90,
+        "age": 30,
+        "points": 780
+      },
+      {
+        "playerId": "p00352",
+        "position": "SG",
+        "rating": 84,
+        "age": 23,
+        "points": 618
+      },
+      {
+        "playerId": "p00353",
+        "position": "SF",
+        "rating": 73,
+        "age": 22,
+        "points": 237
+      },
+      {
+        "playerId": "p00472",
+        "position": "PF",
+        "rating": 75,
+        "age": 32,
+        "points": 337
+      },
+      {
+        "playerId": "p00354",
+        "position": "C",
+        "rating": 82,
+        "age": 31,
+        "points": 615
+      }
+    ],
+    "NAP": [
+      {
+        "playerId": "p00355",
+        "position": "PG",
+        "rating": 87,
+        "age": 29,
+        "points": 796
+      },
+      {
+        "playerId": "p00356",
+        "position": "SG",
+        "rating": 77,
+        "age": 28,
+        "points": 428
+      },
+      {
+        "playerId": "p00473",
+        "position": "SF",
+        "rating": 95,
+        "age": 32,
+        "points": 1026
+      },
+      {
+        "playerId": "p00357",
+        "position": "PF",
+        "rating": 72,
+        "age": 28,
+        "points": 222
+      },
+      {
+        "playerId": "p00358",
+        "position": "C",
+        "rating": 69,
+        "age": 25,
+        "points": 181
+      }
+    ],
+    "OMA": [
+      {
+        "playerId": "p00359",
+        "position": "PG",
+        "rating": 73,
+        "age": 24,
+        "points": 366
+      },
+      {
+        "playerId": "p00360",
+        "position": "SG",
+        "rating": 92,
+        "age": 31,
+        "points": 1177
+      },
+      {
+        "playerId": "p00474",
+        "position": "SF",
+        "rating": 75,
+        "age": 31,
+        "points": 414
+      },
+      {
+        "playerId": "p00362",
+        "position": "PF",
+        "rating": 72,
+        "age": 25,
+        "points": 291
+      },
+      {
+        "playerId": "p00363",
+        "position": "C",
+        "rating": 66,
+        "age": 29,
+        "points": 139
+      }
+    ],
+    "OSA": [
+      {
+        "playerId": "p00364",
+        "position": "PG",
+        "rating": 76,
+        "age": 23,
+        "points": 369
+      },
+      {
+        "playerId": "p00365",
+        "position": "SG",
+        "rating": 75,
+        "age": 29,
+        "points": 354
+      },
+      {
+        "playerId": "p00366",
+        "position": "SF",
+        "rating": 78,
+        "age": 27,
+        "points": 423
+      },
+      {
+        "playerId": "p00367",
+        "position": "PF",
+        "rating": 76,
+        "age": 28,
+        "points": 382
+      },
+      {
+        "playerId": "p00368",
+        "position": "C",
+        "rating": 90,
+        "age": 25,
+        "points": 974
+      }
+    ],
+    "OSL": [
+      {
+        "playerId": "p00369",
+        "position": "PG",
+        "rating": 82,
+        "age": 28,
+        "points": 777
+      },
+      {
+        "playerId": "p00370",
+        "position": "SG",
+        "rating": 68,
+        "age": 27,
+        "points": 186
+      },
+      {
+        "playerId": "p00371",
+        "position": "SF",
+        "rating": 70,
+        "age": 27,
+        "points": 287
+      },
+      {
+        "playerId": "p00372",
+        "position": "PF",
+        "rating": 68,
+        "age": 22,
+        "points": 201
+      },
+      {
+        "playerId": "p00373",
+        "position": "C",
+        "rating": 89,
+        "age": 23,
+        "points": 1066
+      }
+    ],
+    "OTT": [
+      {
+        "playerId": "p00475",
+        "position": "PG",
+        "rating": 83,
+        "age": 32,
+        "points": 463
+      },
+      {
+        "playerId": "p00374",
+        "position": "SG",
+        "rating": 85,
+        "age": 31,
+        "points": 500
+      },
+      {
+        "playerId": "p00375",
+        "position": "SF",
+        "rating": 91,
+        "age": 24,
+        "points": 734
+      },
+      {
+        "playerId": "p00376",
+        "position": "PF",
+        "rating": 82,
+        "age": 29,
+        "points": 461
+      },
+      {
+        "playerId": "p00377",
+        "position": "C",
+        "rating": 77,
+        "age": 24,
+        "points": 293
+      }
+    ],
+    "PAR": [
+      {
+        "playerId": "p00378",
+        "position": "PG",
+        "rating": 81,
+        "age": 31,
+        "points": 405
+      },
+      {
+        "playerId": "p00379",
+        "position": "SG",
+        "rating": 75,
+        "age": 24,
+        "points": 296
+      },
+      {
+        "playerId": "p00380",
+        "position": "SF",
+        "rating": 84,
+        "age": 31,
+        "points": 600
+      },
+      {
+        "playerId": "p00381",
+        "position": "PF",
+        "rating": 75,
+        "age": 26,
+        "points": 249
+      },
+      {
+        "playerId": "p00382",
+        "position": "C",
+        "rating": 97,
+        "age": 25,
+        "points": 1029
+      }
+    ],
+    "REC": [
+      {
+        "playerId": "p00383",
+        "position": "PG",
+        "rating": 82,
+        "age": 23,
+        "points": 690
+      },
+      {
+        "playerId": "p00384",
+        "position": "SG",
+        "rating": 78,
+        "age": 29,
+        "points": 573
+      },
+      {
+        "playerId": "p00385",
+        "position": "SF",
+        "rating": 71,
+        "age": 29,
+        "points": 270
+      },
+      {
+        "playerId": "p00386",
+        "position": "PF",
+        "rating": 70,
+        "age": 23,
+        "points": 259
+      },
+      {
+        "playerId": "p00387",
+        "position": "C",
+        "rating": 77,
+        "age": 26,
+        "points": 465
+      }
+    ],
+    "RIO": [
+      {
+        "playerId": "p00388",
+        "position": "PG",
+        "rating": 73,
+        "age": 30,
+        "points": 327
+      },
+      {
+        "playerId": "p00389",
+        "position": "SG",
+        "rating": 82,
+        "age": 30,
+        "points": 655
+      },
+      {
+        "playerId": "p00390",
+        "position": "SF",
+        "rating": 73,
+        "age": 23,
+        "points": 308
+      },
+      {
+        "playerId": "p00391",
+        "position": "PF",
+        "rating": 80,
+        "age": 29,
+        "points": 649
+      },
+      {
+        "playerId": "p00392",
+        "position": "C",
+        "rating": 79,
+        "age": 29,
+        "points": 462
+      }
+    ],
+    "ROME": [
+      {
+        "playerId": "p00393",
+        "position": "PG",
+        "rating": 86,
+        "age": 22,
+        "points": 595
+      },
+      {
+        "playerId": "p00476",
+        "position": "SG",
+        "rating": 80,
+        "age": 32,
+        "points": 419
+      },
+      {
+        "playerId": "p00394",
+        "position": "SF",
+        "rating": 75,
+        "age": 26,
+        "points": 264
+      },
+      {
+        "playerId": "p00395",
+        "position": "PF",
+        "rating": 96,
+        "age": 29,
+        "points": 1046
+      },
+      {
+        "playerId": "p00477",
+        "position": "C",
+        "rating": 68,
+        "age": 32,
+        "points": 132
+      }
+    ],
+    "ROT": [
+      {
+        "playerId": "p00396",
+        "position": "PG",
+        "rating": 93,
+        "age": 31,
+        "points": 1002
+      },
+      {
+        "playerId": "p00397",
+        "position": "SG",
+        "rating": 74,
+        "age": 27,
+        "points": 350
+      },
+      {
+        "playerId": "p00398",
+        "position": "SF",
+        "rating": 82,
+        "age": 22,
+        "points": 535
+      },
+      {
+        "playerId": "p00399",
+        "position": "PF",
+        "rating": 75,
+        "age": 27,
+        "points": 313
+      },
+      {
+        "playerId": "p00400",
+        "position": "C",
+        "rating": 72,
+        "age": 28,
+        "points": 254
+      }
+    ],
+    "SALZ": [
+      {
+        "playerId": "p00406",
+        "position": "PG",
+        "rating": 89,
+        "age": 24,
+        "points": 502
+      },
+      {
+        "playerId": "p00407",
+        "position": "SG",
+        "rating": 76,
+        "age": 31,
+        "points": 259
+      },
+      {
+        "playerId": "p00408",
+        "position": "SF",
+        "rating": 97,
+        "age": 30,
+        "points": 746
+      },
+      {
+        "playerId": "p00409",
+        "position": "PF",
+        "rating": 96,
+        "age": 30,
+        "points": 675
+      },
+      {
+        "playerId": "p00478",
+        "position": "C",
+        "rating": 98,
+        "age": 32,
+        "points": 725
+      }
+    ],
+    "SHAN": [
+      {
+        "playerId": "p00420",
+        "position": "PG",
+        "rating": 68,
+        "age": 23,
+        "points": 167
+      },
+      {
+        "playerId": "p00421",
+        "position": "SG",
+        "rating": 65,
+        "age": 22,
+        "points": 121
+      },
+      {
+        "playerId": "p00479",
+        "position": "SF",
+        "rating": 84,
+        "age": 32,
+        "points": 807
+      },
+      {
+        "playerId": "p00422",
+        "position": "PF",
+        "rating": 74,
+        "age": 30,
+        "points": 488
+      },
+      {
+        "playerId": "p00423",
+        "position": "C",
+        "rating": 85,
+        "age": 30,
+        "points": 856
+      }
+    ],
+    "SJ": [
+      {
+        "playerId": "p00410",
+        "position": "PG",
+        "rating": 89,
+        "age": 24,
+        "points": 1063
+      },
+      {
+        "playerId": "p00411",
+        "position": "SG",
+        "rating": 67,
+        "age": 23,
+        "points": 150
+      },
+      {
+        "playerId": "p00412",
+        "position": "SF",
+        "rating": 67,
+        "age": 22,
+        "points": 154
+      },
+      {
+        "playerId": "p00413",
+        "position": "PF",
+        "rating": 77,
+        "age": 29,
+        "points": 486
+      },
+      {
+        "playerId": "p00414",
+        "position": "C",
+        "rating": 77,
+        "age": 23,
+        "points": 479
+      }
+    ],
+    "SP": [
+      {
+        "playerId": "p00415",
+        "position": "PG",
+        "rating": 77,
+        "age": 27,
+        "points": 393
+      },
+      {
+        "playerId": "p00416",
+        "position": "SG",
+        "rating": 71,
+        "age": 22,
+        "points": 173
+      },
+      {
+        "playerId": "p00417",
+        "position": "SF",
+        "rating": 73,
+        "age": 22,
+        "points": 284
+      },
+      {
+        "playerId": "p00418",
+        "position": "PF",
+        "rating": 88,
+        "age": 31,
+        "points": 749
+      },
+      {
+        "playerId": "p00419",
+        "position": "C",
+        "rating": 99,
+        "age": 31,
+        "points": 999
+      }
+    ],
+    "STO": [
+      {
+        "playerId": "p00424",
+        "position": "PG",
+        "rating": 73,
+        "age": 23,
+        "points": 348
+      },
+      {
+        "playerId": "p00425",
+        "position": "SG",
+        "rating": 81,
+        "age": 24,
+        "points": 575
+      },
+      {
+        "playerId": "p00426",
+        "position": "SF",
+        "rating": 93,
+        "age": 24,
+        "points": 1036
+      },
+      {
+        "playerId": "p00427",
+        "position": "PF",
+        "rating": 73,
+        "age": 29,
+        "points": 317
+      },
+      {
+        "playerId": "p00428",
+        "position": "C",
+        "rating": 69,
+        "age": 30,
+        "points": 180
+      }
+    ],
+    "STP": [
+      {
+        "playerId": "p00401",
+        "position": "PG",
+        "rating": 68,
+        "age": 22,
+        "points": 213
+      },
+      {
+        "playerId": "p00402",
+        "position": "SG",
+        "rating": 68,
+        "age": 22,
+        "points": 198
+      },
+      {
+        "playerId": "p00403",
+        "position": "SF",
+        "rating": 91,
+        "age": 31,
+        "points": 1171
+      },
+      {
+        "playerId": "p00404",
+        "position": "PF",
+        "rating": 68,
+        "age": 25,
+        "points": 202
+      },
+      {
+        "playerId": "p00405",
+        "position": "C",
+        "rating": 81,
+        "age": 28,
+        "points": 674
+      }
+    ],
+    "SYD": [
+      {
+        "playerId": "p00429",
+        "position": "PG",
+        "rating": 77,
+        "age": 29,
+        "points": 448
+      },
+      {
+        "playerId": "p00430",
+        "position": "SG",
+        "rating": 74,
+        "age": 29,
+        "points": 308
+      },
+      {
+        "playerId": "p00431",
+        "position": "SF",
+        "rating": 85,
+        "age": 29,
+        "points": 671
+      },
+      {
+        "playerId": "p00480",
+        "position": "PF",
+        "rating": 88,
+        "age": 32,
+        "points": 900
+      },
+      {
+        "playerId": "p00432",
+        "position": "C",
+        "rating": 72,
+        "age": 29,
+        "points": 227
+      }
+    ],
+    "TAM": [
+      {
+        "playerId": "p00481",
+        "position": "PG",
+        "rating": 78,
+        "age": 32,
+        "points": 603
+      },
+      {
+        "playerId": "p00433",
+        "position": "SG",
+        "rating": 72,
+        "age": 31,
+        "points": 365
+      },
+      {
+        "playerId": "p00482",
+        "position": "SF",
+        "rating": 71,
+        "age": 32,
+        "points": 323
+      },
+      {
+        "playerId": "p00434",
+        "position": "PF",
+        "rating": 76,
+        "age": 24,
+        "points": 596
+      },
+      {
+        "playerId": "p00435",
+        "position": "C",
+        "rating": 70,
+        "age": 26,
+        "points": 337
+      }
+    ],
+    "TOK": [
+      {
+        "playerId": "p00436",
+        "position": "PG",
+        "rating": 85,
+        "age": 28,
+        "points": 751
+      },
+      {
+        "playerId": "p00437",
+        "position": "SG",
+        "rating": 72,
+        "age": 29,
+        "points": 249
+      },
+      {
+        "playerId": "p00438",
+        "position": "SF",
+        "rating": 69,
+        "age": 30,
+        "points": 234
+      },
+      {
+        "playerId": "p00439",
+        "position": "PF",
+        "rating": 88,
+        "age": 31,
+        "points": 851
+      },
+      {
+        "playerId": "p00440",
+        "position": "C",
+        "rating": 75,
+        "age": 23,
+        "points": 345
+      }
+    ],
+    "VIE": [
+      {
+        "playerId": "p00441",
+        "position": "PG",
+        "rating": 77,
+        "age": 31,
+        "points": 371
+      },
+      {
+        "playerId": "p00442",
+        "position": "SG",
+        "rating": 70,
+        "age": 25,
+        "points": 196
+      },
+      {
+        "playerId": "p00443",
+        "position": "SF",
+        "rating": 77,
+        "age": 27,
+        "points": 479
+      },
+      {
+        "playerId": "p00444",
+        "position": "PF",
+        "rating": 87,
+        "age": 29,
+        "points": 756
+      },
+      {
+        "playerId": "p00445",
+        "position": "C",
+        "rating": 86,
+        "age": 31,
+        "points": 660
+      }
+    ],
+    "WAR": [
+      {
+        "playerId": "p00446",
+        "position": "PG",
+        "rating": 96,
+        "age": 31,
+        "points": 1102
+      },
+      {
+        "playerId": "p00447",
+        "position": "SG",
+        "rating": 73,
+        "age": 23,
+        "points": 228
+      },
+      {
+        "playerId": "p00448",
+        "position": "SF",
+        "rating": 71,
+        "age": 23,
+        "points": 246
+      },
+      {
+        "playerId": "p00449",
+        "position": "PF",
+        "rating": 78,
+        "age": 27,
+        "points": 466
+      },
+      {
+        "playerId": "p00450",
+        "position": "C",
+        "rating": 77,
+        "age": 28,
+        "points": 371
+      }
+    ],
+    "ZAG": [
+      {
+        "playerId": "p00451",
+        "position": "PG",
+        "rating": 69,
+        "age": 24,
+        "points": 165
+      },
+      {
+        "playerId": "p00452",
+        "position": "SG",
+        "rating": 79,
+        "age": 29,
+        "points": 443
+      },
+      {
+        "playerId": "p00453",
+        "position": "SF",
+        "rating": 86,
+        "age": 30,
+        "points": 680
+      },
+      {
+        "playerId": "p00454",
+        "position": "PF",
+        "rating": 76,
+        "age": 22,
+        "points": 342
+      },
+      {
+        "playerId": "p00483",
+        "position": "C",
+        "rating": 97,
+        "age": 32,
+        "points": 1002
+      }
+    ],
+    "ZUR": [
+      {
+        "playerId": "p00455",
+        "position": "PG",
+        "rating": 98,
+        "age": 30,
+        "points": 898
+      },
+      {
+        "playerId": "p00456",
+        "position": "SG",
+        "rating": 92,
+        "age": 31,
+        "points": 759
+      },
+      {
+        "playerId": "p00457",
+        "position": "SF",
+        "rating": 83,
+        "age": 31,
+        "points": 406
+      },
+      {
+        "playerId": "p00458",
+        "position": "PF",
+        "rating": 69,
+        "age": 23,
+        "points": 104
+      },
+      {
+        "playerId": "p00484",
+        "position": "C",
+        "rating": 81,
+        "age": 32,
+        "points": 397
+      }
+    ]
+  }
+}

@@ -1,0 +1,709 @@
+{
+  "league": "fbad2",
+  "teams": [
+    {
+      "teamId": "ACK",
+      "name": "Auckland",
+      "abbr": "ACK",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(287 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "AMS",
+      "name": "Amsterdam",
+      "abbr": "AMS",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(286 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ATH",
+      "name": "Athens",
+      "abbr": "ATH",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(341 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "AUS",
+      "name": "Austin",
+      "abbr": "AUS",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(58 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BA",
+      "name": "Buenos Aires",
+      "abbr": "BA",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(312 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BARC",
+      "name": "Barcelona",
+      "abbr": "BARC",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(67 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BEI",
+      "name": "Beijing",
+      "abbr": "BEI",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(262 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BEL",
+      "name": "Belfast",
+      "abbr": "BEL",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(301 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BER",
+      "name": "Berlin",
+      "abbr": "BER",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(34 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BRUS",
+      "name": "Brussels",
+      "abbr": "BRUS",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(239 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BUD",
+      "name": "Budapest",
+      "abbr": "BUD",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(302 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CAI",
+      "name": "Cairo",
+      "abbr": "CAI",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(344 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CAS",
+      "name": "Casablanca",
+      "abbr": "CAS",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(217 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "COP",
+      "name": "Copenhagen",
+      "abbr": "COP",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(306 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DBA",
+      "name": "Dubai",
+      "abbr": "DBA",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(65 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DHA",
+      "name": "Dhaka",
+      "abbr": "DHA",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(203 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DUB",
+      "name": "Dublin",
+      "abbr": "DUB",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(96 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "EDI",
+      "name": "Edinburgh",
+      "abbr": "EDI",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(116 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "EDM",
+      "name": "Edmonton",
+      "abbr": "EDM",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(118 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FLO",
+      "name": "Florence",
+      "abbr": "FLO",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(268 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FRAN",
+      "name": "Frankfurt",
+      "abbr": "FRAN",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(291 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GLAS",
+      "name": "Glasgow",
+      "abbr": "GLAS",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(304 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GUAD",
+      "name": "Guadalajara",
+      "abbr": "GUAD",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(211 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "HAM",
+      "name": "Hamburg",
+      "abbr": "HAM",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(20 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "IST",
+      "name": "Istanbul",
+      "abbr": "IST",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(282 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "JOH",
+      "name": "Johannesburg",
+      "abbr": "JOH",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(76 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "KIEV",
+      "name": "Kiev",
+      "abbr": "KIEV",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(279 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LAG",
+      "name": "Lagos",
+      "abbr": "LAG",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(142 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LIS",
+      "name": "Lisbon",
+      "abbr": "LIS",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(75 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LIV",
+      "name": "Liverpool",
+      "abbr": "LIV",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(242 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LON",
+      "name": "London",
+      "abbr": "LON",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(288 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LUX",
+      "name": "Luxembourg",
+      "abbr": "LUX",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(110 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LYON",
+      "name": "Lyon",
+      "abbr": "LYON",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(28 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MAD",
+      "name": "Madrid",
+      "abbr": "MAD",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(293 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MAN",
+      "name": "Manchester",
+      "abbr": "MAN",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(148 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MC",
+      "name": "Mexico City",
+      "abbr": "MC",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(222 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MIA",
+      "name": "Miami",
+      "abbr": "MIA",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(193 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MIL",
+      "name": "Milan",
+      "abbr": "MIL",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(317 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MOS",
+      "name": "Moscow",
+      "abbr": "MOS",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(122 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MUM",
+      "name": "Mumbai",
+      "abbr": "MUM",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(333 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MUN",
+      "name": "Munich",
+      "abbr": "MUN",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(192 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NAP",
+      "name": "Naples",
+      "abbr": "NAP",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(341 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OMA",
+      "name": "Omaha",
+      "abbr": "OMA",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(276 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OSA",
+      "name": "Osaka",
+      "abbr": "OSA",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(195 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OSL",
+      "name": "Oslo",
+      "abbr": "OSL",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(23 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OTT",
+      "name": "Ottawa",
+      "abbr": "OTT",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(324 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PAR",
+      "name": "Paris",
+      "abbr": "PAR",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(211 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "REC",
+      "name": "Recife",
+      "abbr": "REC",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(80 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "RIO",
+      "name": "Rio De Janeiro",
+      "abbr": "RIO",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(129 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ROME",
+      "name": "Rome",
+      "abbr": "ROME",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(253 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ROT",
+      "name": "Rotterdam",
+      "abbr": "ROT",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(142 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SALZ",
+      "name": "Salzburg",
+      "abbr": "SALZ",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(140 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SHAN",
+      "name": "Shanghai",
+      "abbr": "SHAN",
+      "group": "UL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(235 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SJ",
+      "name": "San Jose",
+      "abbr": "SJ",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(351 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SP",
+      "name": "Sao Paolo",
+      "abbr": "SP",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(354 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "STO",
+      "name": "Stockholm",
+      "abbr": "STO",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(110 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "STP",
+      "name": "Saint Petersburg",
+      "abbr": "STP",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(286 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SYD",
+      "name": "Sydney",
+      "abbr": "SYD",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(156 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TAM",
+      "name": "Tampa",
+      "abbr": "TAM",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(49 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TOK",
+      "name": "Tokyo",
+      "abbr": "TOK",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(54 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "VIE",
+      "name": "Vienna",
+      "abbr": "VIE",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(279 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WAR",
+      "name": "Warsaw",
+      "abbr": "WAR",
+      "group": "IL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(209 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ZAG",
+      "name": "Zagreb",
+      "abbr": "ZAG",
+      "group": "WL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(63 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ZUR",
+      "name": "Zurich",
+      "abbr": "ZUR",
+      "group": "PL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(359 55% 36%)",
+        "fg": "#ffffff"
+      }
+    }
+  ]
+}

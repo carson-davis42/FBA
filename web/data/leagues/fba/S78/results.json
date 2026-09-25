@@ -1,0 +1,9037 @@
+{
+  "league": "fba",
+  "season": 78,
+  "locked": true,
+  "games": [
+    {
+      "gameNo": 1,
+      "home": "OAK",
+      "away": "MW",
+      "homePts": 79,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 2,
+      "home": "OV",
+      "away": "STL",
+      "homePts": 73,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 3,
+      "home": "OV",
+      "away": "NO",
+      "homePts": 62,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 4,
+      "home": "PHX",
+      "away": "NY",
+      "homePts": 84,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 5,
+      "home": "CGG",
+      "away": "MEM",
+      "homePts": 74,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 6,
+      "home": "DEN",
+      "away": "VAN",
+      "homePts": 97,
+      "awayPts": 58
+    },
+    {
+      "gameNo": 7,
+      "home": "MON",
+      "away": "NY",
+      "homePts": 71,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 8,
+      "home": "TEX",
+      "away": "OV",
+      "homePts": 71,
+      "awayPts": 49
+    },
+    {
+      "gameNo": 9,
+      "home": "MIL",
+      "away": "MON",
+      "homePts": 71,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 10,
+      "home": "SEA",
+      "away": "CIN",
+      "homePts": 95,
+      "awayPts": 66
+    },
+    {
+      "gameNo": 11,
+      "home": "LA",
+      "away": "STL",
+      "homePts": 83,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 12,
+      "home": "VAN",
+      "away": "HON",
+      "homePts": 72,
+      "awayPts": 101
+    },
+    {
+      "gameNo": 13,
+      "home": "MAN",
+      "away": "MON",
+      "homePts": 99,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 14,
+      "home": "OAK",
+      "away": "DCB",
+      "homePts": 80,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 15,
+      "home": "BOS",
+      "away": "VAN",
+      "homePts": 94,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 16,
+      "home": "MEM",
+      "away": "FLO",
+      "homePts": 88,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 17,
+      "home": "MEM",
+      "away": "SAS",
+      "homePts": 89,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 18,
+      "home": "DEN",
+      "away": "ATL",
+      "homePts": 80,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 19,
+      "home": "DET",
+      "away": "CHI",
+      "homePts": 65,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 20,
+      "home": "VEG",
+      "away": "CIN",
+      "homePts": 82,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 21,
+      "home": "TOR",
+      "away": "CIN",
+      "homePts": 77,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 22,
+      "home": "CAR",
+      "away": "HON",
+      "homePts": 81,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 23,
+      "home": "FLO",
+      "away": "CP",
+      "homePts": 69,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 24,
+      "home": "TOR",
+      "away": "MAN",
+      "homePts": 71,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 25,
+      "home": "NY",
+      "away": "DCB",
+      "homePts": 75,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 26,
+      "home": "PHX",
+      "away": "SAS",
+      "homePts": 74,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 27,
+      "home": "DCB",
+      "away": "ATL",
+      "homePts": 76,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 28,
+      "home": "CAR",
+      "away": "FLO",
+      "homePts": 102,
+      "awayPts": 54
+    },
+    {
+      "gameNo": 29,
+      "home": "NY",
+      "away": "NO",
+      "homePts": 61,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 30,
+      "home": "DET",
+      "away": "FLO",
+      "homePts": 100,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 31,
+      "home": "NO",
+      "away": "TEX",
+      "homePts": 101,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 32,
+      "home": "SEA",
+      "away": "MON",
+      "homePts": 63,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 33,
+      "home": "VAN",
+      "away": "VEG",
+      "homePts": 67,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 34,
+      "home": "CGG",
+      "away": "PHX",
+      "homePts": 87,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 35,
+      "home": "CP",
+      "away": "NY",
+      "homePts": 85,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 36,
+      "home": "ATL",
+      "away": "BOS",
+      "homePts": 56,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 37,
+      "home": "DET",
+      "away": "MW",
+      "homePts": 98,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 38,
+      "home": "MIL",
+      "away": "HON",
+      "homePts": 78,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 39,
+      "home": "VAN",
+      "away": "CHI",
+      "homePts": 65,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 40,
+      "home": "LA",
+      "away": "STL",
+      "homePts": 46,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 41,
+      "home": "NO",
+      "away": "CHI",
+      "homePts": 104,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 42,
+      "home": "CIN",
+      "away": "LA",
+      "homePts": 96,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 43,
+      "home": "BOS",
+      "away": "SEA",
+      "homePts": 75,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 44,
+      "home": "DET",
+      "away": "MAN",
+      "homePts": 95,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 45,
+      "home": "CHI",
+      "away": "MW",
+      "homePts": 101,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 46,
+      "home": "CHI",
+      "away": "CP",
+      "homePts": 73,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 47,
+      "home": "OAK",
+      "away": "HON",
+      "homePts": 86,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 48,
+      "home": "SAS",
+      "away": "VAN",
+      "homePts": 97,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 49,
+      "home": "FLO",
+      "away": "VEG",
+      "homePts": 63,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 50,
+      "home": "SEA",
+      "away": "CAR",
+      "homePts": 71,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 51,
+      "home": "LA",
+      "away": "MIL",
+      "homePts": 61,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 52,
+      "home": "LA",
+      "away": "DEN",
+      "homePts": 77,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 53,
+      "home": "TOR",
+      "away": "VEG",
+      "homePts": 73,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 54,
+      "home": "BOS",
+      "away": "CGG",
+      "homePts": 83,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 55,
+      "home": "TEX",
+      "away": "MON",
+      "homePts": 85,
+      "awayPts": 56
+    },
+    {
+      "gameNo": 56,
+      "home": "SEA",
+      "away": "TOR",
+      "homePts": 67,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 57,
+      "home": "LA",
+      "away": "OV",
+      "homePts": 82,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 58,
+      "home": "CGG",
+      "away": "MAN",
+      "homePts": 85,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 59,
+      "home": "DEN",
+      "away": "FLO",
+      "homePts": 93,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 60,
+      "home": "MW",
+      "away": "NO",
+      "homePts": 85,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 61,
+      "home": "FLO",
+      "away": "OAK",
+      "homePts": 65,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 62,
+      "home": "SAS",
+      "away": "TOR",
+      "homePts": 104,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 63,
+      "home": "NY",
+      "away": "TEX",
+      "homePts": 75,
+      "awayPts": 111
+    },
+    {
+      "gameNo": 64,
+      "home": "MON",
+      "away": "CP",
+      "homePts": 72,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 65,
+      "home": "CAR",
+      "away": "PHX",
+      "homePts": 83,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 66,
+      "home": "BOS",
+      "away": "MEM",
+      "homePts": 96,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 67,
+      "home": "ATL",
+      "away": "CAR",
+      "homePts": 85,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 68,
+      "home": "CGG",
+      "away": "MIL",
+      "homePts": 82,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 69,
+      "home": "STL",
+      "away": "BOS",
+      "homePts": 66,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 70,
+      "home": "SAS",
+      "away": "DCB",
+      "homePts": 93,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 71,
+      "home": "PHX",
+      "away": "OAK",
+      "homePts": 108,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 72,
+      "home": "MEM",
+      "away": "MW",
+      "homePts": 73,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 73,
+      "home": "STL",
+      "away": "LA",
+      "homePts": 66,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 74,
+      "home": "TEX",
+      "away": "MW",
+      "homePts": 86,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 75,
+      "home": "CGG",
+      "away": "CIN",
+      "homePts": 101,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 76,
+      "home": "DEN",
+      "away": "NO",
+      "homePts": 82,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 77,
+      "home": "ATL",
+      "away": "VAN",
+      "homePts": 111,
+      "awayPts": 66
+    },
+    {
+      "gameNo": 78,
+      "home": "CP",
+      "away": "CGG",
+      "homePts": 66,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 79,
+      "home": "DET",
+      "away": "CGG",
+      "homePts": 73,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 80,
+      "home": "OV",
+      "away": "MIL",
+      "homePts": 77,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 81,
+      "home": "VEG",
+      "away": "MON",
+      "homePts": 86,
+      "awayPts": 49
+    },
+    {
+      "gameNo": 82,
+      "home": "MAN",
+      "away": "MW",
+      "homePts": 101,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 83,
+      "home": "CGG",
+      "away": "HON",
+      "homePts": 75,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 84,
+      "home": "HON",
+      "away": "DCB",
+      "homePts": 100,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 85,
+      "home": "DET",
+      "away": "TOR",
+      "homePts": 74,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 86,
+      "home": "SAS",
+      "away": "CHI",
+      "homePts": 95,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 87,
+      "home": "MW",
+      "away": "CP",
+      "homePts": 75,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 88,
+      "home": "OV",
+      "away": "CAR",
+      "homePts": 71,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 89,
+      "home": "DET",
+      "away": "MEM",
+      "homePts": 82,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 90,
+      "home": "DCB",
+      "away": "TOR",
+      "homePts": 73,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 91,
+      "home": "MW",
+      "away": "MAN",
+      "homePts": 68,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 92,
+      "home": "PHX",
+      "away": "MAN",
+      "homePts": 84,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 93,
+      "home": "MW",
+      "away": "SEA",
+      "homePts": 80,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 94,
+      "home": "OAK",
+      "away": "BOS",
+      "homePts": 76,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 95,
+      "home": "DEN",
+      "away": "OV",
+      "homePts": 86,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 96,
+      "home": "MEM",
+      "away": "VEG",
+      "homePts": 91,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 97,
+      "home": "ATL",
+      "away": "TEX",
+      "homePts": 69,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 98,
+      "home": "NO",
+      "away": "STL",
+      "homePts": 106,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 99,
+      "home": "CIN",
+      "away": "OAK",
+      "homePts": 90,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 100,
+      "home": "MEM",
+      "away": "MIL",
+      "homePts": 91,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 101,
+      "home": "OV",
+      "away": "DCB",
+      "homePts": 67,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 102,
+      "home": "CIN",
+      "away": "STL",
+      "homePts": 80,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 103,
+      "home": "SEA",
+      "away": "VEG",
+      "homePts": 94,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 104,
+      "home": "HON",
+      "away": "VEG",
+      "homePts": 105,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 105,
+      "home": "TOR",
+      "away": "TEX",
+      "homePts": 93,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 106,
+      "home": "PHX",
+      "away": "TEX",
+      "homePts": 63,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 107,
+      "home": "CP",
+      "away": "OAK",
+      "homePts": 70,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 108,
+      "home": "TOR",
+      "away": "ATL",
+      "homePts": 76,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 109,
+      "home": "CHI",
+      "away": "SAS",
+      "homePts": 82,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 110,
+      "home": "DEN",
+      "away": "VAN",
+      "homePts": 96,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 111,
+      "home": "CHI",
+      "away": "MIL",
+      "homePts": 99,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 112,
+      "home": "CAR",
+      "away": "TEX",
+      "homePts": 89,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 113,
+      "home": "SAS",
+      "away": "NY",
+      "homePts": 89,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 114,
+      "home": "DEN",
+      "away": "LA",
+      "homePts": 77,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 115,
+      "home": "MIL",
+      "away": "SEA",
+      "homePts": 73,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 116,
+      "home": "BOS",
+      "away": "ATL",
+      "homePts": 87,
+      "awayPts": 52
+    },
+    {
+      "gameNo": 117,
+      "home": "TEX",
+      "away": "CAR",
+      "homePts": 84,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 118,
+      "home": "PHX",
+      "away": "HON",
+      "homePts": 48,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 119,
+      "home": "TOR",
+      "away": "NY",
+      "homePts": 61,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 120,
+      "home": "CIN",
+      "away": "DET",
+      "homePts": 75,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 121,
+      "home": "SAS",
+      "away": "MON",
+      "homePts": 90,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 122,
+      "home": "MIL",
+      "away": "MAN",
+      "homePts": 84,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 123,
+      "home": "DCB",
+      "away": "BOS",
+      "homePts": 73,
+      "awayPts": 104
+    },
+    {
+      "gameNo": 124,
+      "home": "NO",
+      "away": "BOS",
+      "homePts": 103,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 125,
+      "home": "FLO",
+      "away": "VAN",
+      "homePts": 70,
+      "awayPts": 66
+    },
+    {
+      "gameNo": 126,
+      "home": "BOS",
+      "away": "CP",
+      "homePts": 84,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 127,
+      "home": "OAK",
+      "away": "STL",
+      "homePts": 89,
+      "awayPts": 53
+    },
+    {
+      "gameNo": 128,
+      "home": "MON",
+      "away": "NO",
+      "homePts": 74,
+      "awayPts": 101
+    },
+    {
+      "gameNo": 129,
+      "home": "TEX",
+      "away": "DET",
+      "homePts": 85,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 130,
+      "home": "HON",
+      "away": "ATL",
+      "homePts": 90,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 131,
+      "home": "LA",
+      "away": "CAR",
+      "homePts": 94,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 132,
+      "home": "VAN",
+      "away": "NY",
+      "homePts": 76,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 133,
+      "home": "MAN",
+      "away": "FLO",
+      "homePts": 90,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 134,
+      "home": "FLO",
+      "away": "PHX",
+      "homePts": 72,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 135,
+      "home": "MON",
+      "away": "SEA",
+      "homePts": 73,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 136,
+      "home": "CAR",
+      "away": "DEN",
+      "homePts": 71,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 137,
+      "home": "CHI",
+      "away": "STL",
+      "homePts": 70,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 138,
+      "home": "DCB",
+      "away": "FLO",
+      "homePts": 75,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 139,
+      "home": "MEM",
+      "away": "TEX",
+      "homePts": 85,
+      "awayPts": 104
+    },
+    {
+      "gameNo": 140,
+      "home": "VEG",
+      "away": "OV",
+      "homePts": 71,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 141,
+      "home": "MEM",
+      "away": "CP",
+      "homePts": 68,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 142,
+      "home": "CIN",
+      "away": "MEM",
+      "homePts": 82,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 143,
+      "home": "TEX",
+      "away": "CHI",
+      "homePts": 73,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 144,
+      "home": "BOS",
+      "away": "PHX",
+      "homePts": 78,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 145,
+      "home": "CAR",
+      "away": "STL",
+      "homePts": 87,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 146,
+      "home": "CIN",
+      "away": "NY",
+      "homePts": 102,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 147,
+      "home": "ATL",
+      "away": "OV",
+      "homePts": 82,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 148,
+      "home": "OAK",
+      "away": "SAS",
+      "homePts": 77,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 149,
+      "home": "VEG",
+      "away": "DEN",
+      "homePts": 79,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 150,
+      "home": "STL",
+      "away": "NO",
+      "homePts": 75,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 151,
+      "home": "TOR",
+      "away": "DCB",
+      "homePts": 95,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 152,
+      "home": "LA",
+      "away": "VEG",
+      "homePts": 69,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 153,
+      "home": "HON",
+      "away": "MW",
+      "homePts": 71,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 154,
+      "home": "LA",
+      "away": "MAN",
+      "homePts": 75,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 155,
+      "home": "SAS",
+      "away": "DET",
+      "homePts": 91,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 156,
+      "home": "CP",
+      "away": "MIL",
+      "homePts": 86,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 157,
+      "home": "CGG",
+      "away": "STL",
+      "homePts": 96,
+      "awayPts": 63
+    },
+    {
+      "gameNo": 158,
+      "home": "SEA",
+      "away": "TEX",
+      "homePts": 96,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 159,
+      "home": "CGG",
+      "away": "VAN",
+      "homePts": 112,
+      "awayPts": 54
+    },
+    {
+      "gameNo": 160,
+      "home": "CP",
+      "away": "STL",
+      "homePts": 82,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 161,
+      "home": "VAN",
+      "away": "DCB",
+      "homePts": 79,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 162,
+      "home": "BOS",
+      "away": "OV",
+      "homePts": 96,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 163,
+      "home": "MIL",
+      "away": "CGG",
+      "homePts": 82,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 164,
+      "home": "MAN",
+      "away": "CIN",
+      "homePts": 81,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 165,
+      "home": "OV",
+      "away": "MON",
+      "homePts": 76,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 166,
+      "home": "DET",
+      "away": "MAN",
+      "homePts": 87,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 167,
+      "home": "OAK",
+      "away": "CGG",
+      "homePts": 88,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 168,
+      "home": "NO",
+      "away": "MIL",
+      "homePts": 85,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 169,
+      "home": "OAK",
+      "away": "HON",
+      "homePts": 76,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 170,
+      "home": "DEN",
+      "away": "OAK",
+      "homePts": 97,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 171,
+      "home": "NY",
+      "away": "CGG",
+      "homePts": 82,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 172,
+      "home": "VEG",
+      "away": "SEA",
+      "homePts": 61,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 173,
+      "home": "PHX",
+      "away": "CHI",
+      "homePts": 80,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 174,
+      "home": "ATL",
+      "away": "BOS",
+      "homePts": 76,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 175,
+      "home": "ATL",
+      "away": "DCB",
+      "homePts": 97,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 176,
+      "home": "FLO",
+      "away": "DET",
+      "homePts": 65,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 177,
+      "home": "HON",
+      "away": "PHX",
+      "homePts": 101,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 178,
+      "home": "MEM",
+      "away": "TEX",
+      "homePts": 81,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 179,
+      "home": "MON",
+      "away": "FLO",
+      "homePts": 73,
+      "awayPts": 59
+    },
+    {
+      "gameNo": 180,
+      "home": "CIN",
+      "away": "TEX",
+      "homePts": 82,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 181,
+      "home": "CP",
+      "away": "LA",
+      "homePts": 76,
+      "awayPts": 63
+    },
+    {
+      "gameNo": 182,
+      "home": "MAN",
+      "away": "NY",
+      "homePts": 79,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 183,
+      "home": "VEG",
+      "away": "CHI",
+      "homePts": 93,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 184,
+      "home": "SEA",
+      "away": "MIL",
+      "homePts": 61,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 185,
+      "home": "CIN",
+      "away": "TOR",
+      "homePts": 81,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 186,
+      "home": "TOR",
+      "away": "SAS",
+      "homePts": 88,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 187,
+      "home": "CHI",
+      "away": "MW",
+      "homePts": 81,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 188,
+      "home": "MW",
+      "away": "CAR",
+      "homePts": 82,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 189,
+      "home": "NY",
+      "away": "DEN",
+      "homePts": 72,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 190,
+      "home": "NO",
+      "away": "DET",
+      "homePts": 89,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 191,
+      "home": "VAN",
+      "away": "MW",
+      "homePts": 75,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 192,
+      "home": "VAN",
+      "away": "SEA",
+      "homePts": 61,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 193,
+      "home": "NO",
+      "away": "HON",
+      "homePts": 93,
+      "awayPts": 101
+    },
+    {
+      "gameNo": 194,
+      "home": "CAR",
+      "away": "MEM",
+      "homePts": 75,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 195,
+      "home": "MIL",
+      "away": "OV",
+      "homePts": 84,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 196,
+      "home": "DEN",
+      "away": "CGG",
+      "homePts": 89,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 197,
+      "home": "DCB",
+      "away": "SAS",
+      "homePts": 76,
+      "awayPts": 101
+    },
+    {
+      "gameNo": 198,
+      "home": "PHX",
+      "away": "MIL",
+      "homePts": 100,
+      "awayPts": 63
+    },
+    {
+      "gameNo": 199,
+      "home": "STL",
+      "away": "ATL",
+      "homePts": 73,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 200,
+      "home": "FLO",
+      "away": "LA",
+      "homePts": 88,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 201,
+      "home": "CP",
+      "away": "VEG",
+      "homePts": 78,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 202,
+      "home": "FLO",
+      "away": "MON",
+      "homePts": 75,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 203,
+      "home": "TOR",
+      "away": "NO",
+      "homePts": 76,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 204,
+      "home": "DEN",
+      "away": "MON",
+      "homePts": 80,
+      "awayPts": 62
+    },
+    {
+      "gameNo": 205,
+      "home": "VEG",
+      "away": "CAR",
+      "homePts": 83,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 206,
+      "home": "NO",
+      "away": "PHX",
+      "homePts": 107,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 207,
+      "home": "HON",
+      "away": "OAK",
+      "homePts": 97,
+      "awayPts": 63
+    },
+    {
+      "gameNo": 208,
+      "home": "LA",
+      "away": "TOR",
+      "homePts": 64,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 209,
+      "home": "DET",
+      "away": "ATL",
+      "homePts": 96,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 210,
+      "home": "MAN",
+      "away": "VAN",
+      "homePts": 99,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 211,
+      "home": "DCB",
+      "away": "LA",
+      "homePts": 87,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 212,
+      "home": "DEN",
+      "away": "NY",
+      "homePts": 92,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 213,
+      "home": "MEM",
+      "away": "OAK",
+      "homePts": 80,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 214,
+      "home": "SEA",
+      "away": "OV",
+      "homePts": 77,
+      "awayPts": 56
+    },
+    {
+      "gameNo": 215,
+      "home": "SAS",
+      "away": "CP",
+      "homePts": 99,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 216,
+      "home": "CIN",
+      "away": "MIL",
+      "homePts": 94,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 217,
+      "home": "OV",
+      "away": "CHI",
+      "homePts": 67,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 218,
+      "home": "CP",
+      "away": "ATL",
+      "homePts": 82,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 219,
+      "home": "FLO",
+      "away": "MW",
+      "homePts": 79,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 220,
+      "home": "MON",
+      "away": "NY",
+      "homePts": 63,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 221,
+      "home": "DCB",
+      "away": "PHX",
+      "homePts": 102,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 222,
+      "home": "HON",
+      "away": "SAS",
+      "homePts": 102,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 223,
+      "home": "MAN",
+      "away": "NO",
+      "homePts": 78,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 224,
+      "home": "CAR",
+      "away": "CHI",
+      "homePts": 85,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 225,
+      "home": "CGG",
+      "away": "BOS",
+      "homePts": 89,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 226,
+      "home": "MIL",
+      "away": "MEM",
+      "homePts": 46,
+      "awayPts": 107
+    },
+    {
+      "gameNo": 227,
+      "home": "MEM",
+      "away": "SEA",
+      "homePts": 87,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 228,
+      "home": "MW",
+      "away": "DET",
+      "homePts": 80,
+      "awayPts": 104
+    },
+    {
+      "gameNo": 229,
+      "home": "STL",
+      "away": "TOR",
+      "homePts": 74,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 230,
+      "home": "CIN",
+      "away": "NY",
+      "homePts": 88,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 231,
+      "home": "CIN",
+      "away": "SAS",
+      "homePts": 88,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 232,
+      "home": "ATL",
+      "away": "DET",
+      "homePts": 75,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 233,
+      "home": "SEA",
+      "away": "BOS",
+      "homePts": 86,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 234,
+      "home": "FLO",
+      "away": "PHX",
+      "homePts": 80,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 235,
+      "home": "MON",
+      "away": "DCB",
+      "homePts": 59,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 236,
+      "home": "VEG",
+      "away": "STL",
+      "homePts": 71,
+      "awayPts": 62
+    },
+    {
+      "gameNo": 237,
+      "home": "MON",
+      "away": "CP",
+      "homePts": 56,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 238,
+      "home": "OAK",
+      "away": "LA",
+      "homePts": 90,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 239,
+      "home": "ATL",
+      "away": "OV",
+      "homePts": 83,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 240,
+      "home": "CIN",
+      "away": "HON",
+      "homePts": 70,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 241,
+      "home": "MAN",
+      "away": "NY",
+      "homePts": 87,
+      "awayPts": 60
+    },
+    {
+      "gameNo": 242,
+      "home": "SEA",
+      "away": "DEN",
+      "homePts": 71,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 243,
+      "home": "CHI",
+      "away": "DET",
+      "homePts": 79,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 244,
+      "home": "CAR",
+      "away": "VAN",
+      "homePts": 83,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 245,
+      "home": "CHI",
+      "away": "LA",
+      "homePts": 77,
+      "awayPts": 60
+    },
+    {
+      "gameNo": 246,
+      "home": "VAN",
+      "away": "CAR",
+      "homePts": 68,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 247,
+      "home": "MW",
+      "away": "VEG",
+      "homePts": 104,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 248,
+      "home": "NO",
+      "away": "SAS",
+      "homePts": 77,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 249,
+      "home": "OAK",
+      "away": "CAR",
+      "homePts": 84,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 250,
+      "home": "STL",
+      "away": "OV",
+      "homePts": 83,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 251,
+      "home": "CGG",
+      "away": "ATL",
+      "homePts": 96,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 252,
+      "home": "CIN",
+      "away": "DEN",
+      "homePts": 96,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 253,
+      "home": "BOS",
+      "away": "MIL",
+      "homePts": 88,
+      "awayPts": 55
+    },
+    {
+      "gameNo": 254,
+      "home": "PHX",
+      "away": "DEN",
+      "homePts": 73,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 255,
+      "home": "VAN",
+      "away": "HON",
+      "homePts": 72,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 256,
+      "home": "DEN",
+      "away": "MEM",
+      "homePts": 80,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 257,
+      "home": "DCB",
+      "away": "MEM",
+      "homePts": 70,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 258,
+      "home": "TEX",
+      "away": "LA",
+      "homePts": 92,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 259,
+      "home": "MAN",
+      "away": "CAR",
+      "homePts": 83,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 260,
+      "home": "CP",
+      "away": "DEN",
+      "homePts": 71,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 261,
+      "home": "DCB",
+      "away": "TOR",
+      "homePts": 69,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 262,
+      "home": "MW",
+      "away": "MAN",
+      "homePts": 79,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 263,
+      "home": "CP",
+      "away": "MIL",
+      "homePts": 72,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 264,
+      "home": "PHX",
+      "away": "TOR",
+      "homePts": 83,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 265,
+      "home": "SEA",
+      "away": "SAS",
+      "homePts": 83,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 266,
+      "home": "VEG",
+      "away": "NO",
+      "homePts": 105,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 267,
+      "home": "DCB",
+      "away": "STL",
+      "homePts": 77,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 268,
+      "home": "CP",
+      "away": "OV",
+      "homePts": 94,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 269,
+      "home": "CHI",
+      "away": "TEX",
+      "homePts": 76,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 270,
+      "home": "NY",
+      "away": "SEA",
+      "homePts": 68,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 271,
+      "home": "OV",
+      "away": "FLO",
+      "homePts": 75,
+      "awayPts": 62
+    },
+    {
+      "gameNo": 272,
+      "home": "HON",
+      "away": "CP",
+      "homePts": 75,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 273,
+      "home": "SAS",
+      "away": "BOS",
+      "homePts": 76,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 274,
+      "home": "OV",
+      "away": "DET",
+      "homePts": 69,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 275,
+      "home": "MON",
+      "away": "MAN",
+      "homePts": 70,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 276,
+      "home": "VEG",
+      "away": "CGG",
+      "homePts": 85,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 277,
+      "home": "OAK",
+      "away": "SAS",
+      "homePts": 79,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 278,
+      "home": "DET",
+      "away": "SAS",
+      "homePts": 96,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 279,
+      "home": "TEX",
+      "away": "NY",
+      "homePts": 104,
+      "awayPts": 63
+    },
+    {
+      "gameNo": 280,
+      "home": "NO",
+      "away": "HON",
+      "homePts": 83,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 281,
+      "home": "MAN",
+      "away": "CGG",
+      "homePts": 77,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 282,
+      "home": "LA",
+      "away": "DCB",
+      "homePts": 70,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 283,
+      "home": "MW",
+      "away": "TOR",
+      "homePts": 92,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 284,
+      "home": "MON",
+      "away": "VAN",
+      "homePts": 63,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 285,
+      "home": "SAS",
+      "away": "STL",
+      "homePts": 104,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 286,
+      "home": "PHX",
+      "away": "FLO",
+      "homePts": 90,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 287,
+      "home": "BOS",
+      "away": "DEN",
+      "homePts": 91,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 288,
+      "home": "CGG",
+      "away": "CHI",
+      "homePts": 105,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 289,
+      "home": "OAK",
+      "away": "NO",
+      "homePts": 78,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 290,
+      "home": "CHI",
+      "away": "MEM",
+      "homePts": 73,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 291,
+      "home": "ATL",
+      "away": "DEN",
+      "homePts": 89,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 292,
+      "home": "PHX",
+      "away": "CIN",
+      "homePts": 76,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 293,
+      "home": "VEG",
+      "away": "MEM",
+      "homePts": 71,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 294,
+      "home": "PHX",
+      "away": "MON",
+      "homePts": 100,
+      "awayPts": 66
+    },
+    {
+      "gameNo": 295,
+      "home": "CIN",
+      "away": "MIL",
+      "homePts": 73,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 296,
+      "home": "HON",
+      "away": "CIN",
+      "homePts": 104,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 297,
+      "home": "NY",
+      "away": "DCB",
+      "homePts": 69,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 298,
+      "home": "OV",
+      "away": "VAN",
+      "homePts": 80,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 299,
+      "home": "HON",
+      "away": "CAR",
+      "homePts": 82,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 300,
+      "home": "DET",
+      "away": "VEG",
+      "homePts": 101,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 301,
+      "home": "STL",
+      "away": "FLO",
+      "homePts": 80,
+      "awayPts": 101
+    },
+    {
+      "gameNo": 302,
+      "home": "DCB",
+      "away": "MW",
+      "homePts": 67,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 303,
+      "home": "SAS",
+      "away": "OAK",
+      "homePts": 84,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 304,
+      "home": "NY",
+      "away": "BOS",
+      "homePts": 71,
+      "awayPts": 108
+    },
+    {
+      "gameNo": 305,
+      "home": "LA",
+      "away": "MON",
+      "homePts": 92,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 306,
+      "home": "MIL",
+      "away": "TEX",
+      "homePts": 92,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 307,
+      "home": "CP",
+      "away": "SEA",
+      "homePts": 92,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 308,
+      "home": "CAR",
+      "away": "ATL",
+      "homePts": 93,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 309,
+      "home": "CP",
+      "away": "TOR",
+      "homePts": 78,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 310,
+      "home": "ATL",
+      "away": "CP",
+      "homePts": 83,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 311,
+      "home": "LA",
+      "away": "NO",
+      "homePts": 76,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 312,
+      "home": "HON",
+      "away": "SEA",
+      "homePts": 90,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 313,
+      "home": "NY",
+      "away": "MAN",
+      "homePts": 86,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 314,
+      "home": "SEA",
+      "away": "VAN",
+      "homePts": 90,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 315,
+      "home": "NO",
+      "away": "TOR",
+      "homePts": 90,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 316,
+      "home": "MON",
+      "away": "CHI",
+      "homePts": 82,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 317,
+      "home": "SAS",
+      "away": "CGG",
+      "homePts": 87,
+      "awayPts": 106
+    },
+    {
+      "gameNo": 318,
+      "home": "DCB",
+      "away": "MW",
+      "homePts": 76,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 319,
+      "home": "VAN",
+      "away": "FLO",
+      "homePts": 74,
+      "awayPts": 47
+    },
+    {
+      "gameNo": 320,
+      "home": "STL",
+      "away": "MEM",
+      "homePts": 63,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 321,
+      "home": "DET",
+      "away": "TEX",
+      "homePts": 95,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 322,
+      "home": "DEN",
+      "away": "BOS",
+      "homePts": 92,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 323,
+      "home": "VEG",
+      "away": "OAK",
+      "homePts": 95,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 324,
+      "home": "PHX",
+      "away": "FLO",
+      "homePts": 69,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 325,
+      "home": "CIN",
+      "away": "ATL",
+      "homePts": 95,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 326,
+      "home": "CP",
+      "away": "BOS",
+      "homePts": 82,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 327,
+      "home": "STL",
+      "away": "NO",
+      "homePts": 59,
+      "awayPts": 107
+    },
+    {
+      "gameNo": 328,
+      "home": "TEX",
+      "away": "CIN",
+      "homePts": 92,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 329,
+      "home": "SAS",
+      "away": "OAK",
+      "homePts": 87,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 330,
+      "home": "OV",
+      "away": "MW",
+      "homePts": 59,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 331,
+      "home": "MEM",
+      "away": "LA",
+      "homePts": 80,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 332,
+      "home": "CAR",
+      "away": "DET",
+      "homePts": 77,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 333,
+      "home": "OAK",
+      "away": "TOR",
+      "homePts": 80,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 334,
+      "home": "CGG",
+      "away": "MEM",
+      "homePts": 82,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 335,
+      "home": "CAR",
+      "away": "CHI",
+      "homePts": 81,
+      "awayPts": 104
+    },
+    {
+      "gameNo": 336,
+      "home": "MAN",
+      "away": "MIL",
+      "homePts": 96,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 337,
+      "home": "MIL",
+      "away": "CAR",
+      "homePts": 52,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 338,
+      "home": "FLO",
+      "away": "MAN",
+      "homePts": 91,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 339,
+      "home": "CHI",
+      "away": "PHX",
+      "homePts": 74,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 340,
+      "home": "PHX",
+      "away": "OV",
+      "homePts": 94,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 341,
+      "home": "ATL",
+      "away": "NO",
+      "homePts": 75,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 342,
+      "home": "VAN",
+      "away": "DET",
+      "homePts": 79,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 343,
+      "home": "FLO",
+      "away": "VEG",
+      "homePts": 61,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 344,
+      "home": "HON",
+      "away": "SEA",
+      "homePts": 101,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 345,
+      "home": "CGG",
+      "away": "TOR",
+      "homePts": 91,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 346,
+      "home": "HON",
+      "away": "TEX",
+      "homePts": 79,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 347,
+      "home": "NY",
+      "away": "TOR",
+      "homePts": 70,
+      "awayPts": 59
+    },
+    {
+      "gameNo": 348,
+      "home": "VAN",
+      "away": "LA",
+      "homePts": 71,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 349,
+      "home": "CIN",
+      "away": "MW",
+      "homePts": 94,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 350,
+      "home": "BOS",
+      "away": "MW",
+      "homePts": 89,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 351,
+      "home": "MON",
+      "away": "PHX",
+      "homePts": 81,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 352,
+      "home": "STL",
+      "away": "DET",
+      "homePts": 73,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 353,
+      "home": "OAK",
+      "away": "VEG",
+      "homePts": 88,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 354,
+      "home": "OAK",
+      "away": "MON",
+      "homePts": 80,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 355,
+      "home": "DEN",
+      "away": "HON",
+      "homePts": 83,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 356,
+      "home": "CGG",
+      "away": "DCB",
+      "homePts": 93,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 357,
+      "home": "TEX",
+      "away": "CGG",
+      "homePts": 92,
+      "awayPts": 101
+    },
+    {
+      "gameNo": 358,
+      "home": "MW",
+      "away": "NY",
+      "homePts": 93,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 359,
+      "home": "ATL",
+      "away": "MAN",
+      "homePts": 65,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 360,
+      "home": "MW",
+      "away": "STL",
+      "homePts": 92,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 361,
+      "home": "SEA",
+      "away": "CP",
+      "homePts": 78,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 362,
+      "home": "LA",
+      "away": "VAN",
+      "homePts": 73,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 363,
+      "home": "SAS",
+      "away": "MIL",
+      "homePts": 92,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 364,
+      "home": "MEM",
+      "away": "MAN",
+      "homePts": 101,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 365,
+      "home": "OV",
+      "away": "CIN",
+      "homePts": 60,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 366,
+      "home": "FLO",
+      "away": "BOS",
+      "homePts": 63,
+      "awayPts": 108
+    },
+    {
+      "gameNo": 367,
+      "home": "CHI",
+      "away": "CAR",
+      "homePts": 86,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 368,
+      "home": "MIL",
+      "away": "LA",
+      "homePts": 62,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 369,
+      "home": "BOS",
+      "away": "OV",
+      "homePts": 80,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 370,
+      "home": "MON",
+      "away": "OAK",
+      "homePts": 72,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 371,
+      "home": "PHX",
+      "away": "SEA",
+      "homePts": 84,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 372,
+      "home": "ATL",
+      "away": "MIL",
+      "homePts": 93,
+      "awayPts": 66
+    },
+    {
+      "gameNo": 373,
+      "home": "TOR",
+      "away": "MEM",
+      "homePts": 87,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 374,
+      "home": "VEG",
+      "away": "NY",
+      "homePts": 96,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 375,
+      "home": "CP",
+      "away": "CHI",
+      "homePts": 66,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 376,
+      "home": "FLO",
+      "away": "NO",
+      "homePts": 57,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 377,
+      "home": "DCB",
+      "away": "TEX",
+      "homePts": 90,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 378,
+      "home": "DEN",
+      "away": "SAS",
+      "homePts": 92,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 379,
+      "home": "DET",
+      "away": "VAN",
+      "homePts": 81,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 380,
+      "home": "STL",
+      "away": "VEG",
+      "homePts": 65,
+      "awayPts": 60
+    },
+    {
+      "gameNo": 381,
+      "home": "MON",
+      "away": "DET",
+      "homePts": 59,
+      "awayPts": 103
+    },
+    {
+      "gameNo": 382,
+      "home": "OV",
+      "away": "TEX",
+      "homePts": 86,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 383,
+      "home": "NY",
+      "away": "HON",
+      "homePts": 72,
+      "awayPts": 101
+    },
+    {
+      "gameNo": 384,
+      "home": "CIN",
+      "away": "MAN",
+      "homePts": 77,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 385,
+      "home": "SEA",
+      "away": "CGG",
+      "homePts": 72,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 386,
+      "home": "DCB",
+      "away": "OV",
+      "homePts": 75,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 387,
+      "home": "CIN",
+      "away": "TOR",
+      "homePts": 81,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 388,
+      "home": "STL",
+      "away": "PHX",
+      "homePts": 63,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 389,
+      "home": "MW",
+      "away": "CHI",
+      "homePts": 78,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 390,
+      "home": "VEG",
+      "away": "DEN",
+      "homePts": 84,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 391,
+      "home": "OAK",
+      "away": "NO",
+      "homePts": 64,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 392,
+      "home": "OV",
+      "away": "MEM",
+      "homePts": 68,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 393,
+      "home": "BOS",
+      "away": "DCB",
+      "homePts": 100,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 394,
+      "home": "MEM",
+      "away": "ATL",
+      "homePts": 74,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 395,
+      "home": "SEA",
+      "away": "LA",
+      "homePts": 83,
+      "awayPts": 60
+    },
+    {
+      "gameNo": 396,
+      "home": "CAR",
+      "away": "SEA",
+      "homePts": 82,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 397,
+      "home": "LA",
+      "away": "NY",
+      "homePts": 101,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 398,
+      "home": "CAR",
+      "away": "MIL",
+      "homePts": 85,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 399,
+      "home": "MIL",
+      "away": "MON",
+      "homePts": 76,
+      "awayPts": 64
+    },
+    {
+      "gameNo": 400,
+      "home": "VEG",
+      "away": "HON",
+      "homePts": 96,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 401,
+      "home": "BOS",
+      "away": "MIL",
+      "homePts": 96,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 402,
+      "home": "ATL",
+      "away": "CHI",
+      "homePts": 76,
+      "awayPts": 103
+    },
+    {
+      "gameNo": 403,
+      "home": "OV",
+      "away": "CGG",
+      "homePts": 76,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 404,
+      "home": "MAN",
+      "away": "TEX",
+      "homePts": 86,
+      "awayPts": 106
+    },
+    {
+      "gameNo": 405,
+      "home": "MEM",
+      "away": "NO",
+      "homePts": 87,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 406,
+      "home": "DEN",
+      "away": "CP",
+      "homePts": 82,
+      "awayPts": 103
+    },
+    {
+      "gameNo": 407,
+      "home": "STL",
+      "away": "OAK",
+      "homePts": 77,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 408,
+      "home": "CP",
+      "away": "TOR",
+      "homePts": 81,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 409,
+      "home": "VEG",
+      "away": "DET",
+      "homePts": 75,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 410,
+      "home": "VAN",
+      "away": "ATL",
+      "homePts": 73,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 411,
+      "home": "CIN",
+      "away": "FLO",
+      "homePts": 90,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 412,
+      "home": "DEN",
+      "away": "MAN",
+      "homePts": 87,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 413,
+      "home": "LA",
+      "away": "CGG",
+      "homePts": 68,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 414,
+      "home": "ATL",
+      "away": "STL",
+      "homePts": 98,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 415,
+      "home": "LA",
+      "away": "DET",
+      "homePts": 85,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 416,
+      "home": "SAS",
+      "away": "MAN",
+      "homePts": 74,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 417,
+      "home": "MON",
+      "away": "TEX",
+      "homePts": 71,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 418,
+      "home": "MW",
+      "away": "LA",
+      "homePts": 76,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 419,
+      "home": "NY",
+      "away": "PHX",
+      "homePts": 62,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 420,
+      "home": "DCB",
+      "away": "VAN",
+      "homePts": 86,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 421,
+      "home": "CHI",
+      "away": "NO",
+      "homePts": 84,
+      "awayPts": 106
+    },
+    {
+      "gameNo": 422,
+      "home": "TOR",
+      "away": "LA",
+      "homePts": 78,
+      "awayPts": 54
+    },
+    {
+      "gameNo": 423,
+      "home": "DET",
+      "away": "CAR",
+      "homePts": 86,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 424,
+      "home": "MAN",
+      "away": "BOS",
+      "homePts": 76,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 425,
+      "home": "FLO",
+      "away": "NO",
+      "homePts": 83,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 426,
+      "home": "HON",
+      "away": "FLO",
+      "homePts": 85,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 427,
+      "home": "NY",
+      "away": "TOR",
+      "homePts": 83,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 428,
+      "home": "STL",
+      "away": "CGG",
+      "homePts": 76,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 429,
+      "home": "LA",
+      "away": "CP",
+      "homePts": 68,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 430,
+      "home": "VEG",
+      "away": "OAK",
+      "homePts": 77,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 431,
+      "home": "CAR",
+      "away": "SAS",
+      "homePts": 103,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 432,
+      "home": "CHI",
+      "away": "VAN",
+      "homePts": 82,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 433,
+      "home": "NO",
+      "away": "DCB",
+      "homePts": 96,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 434,
+      "home": "MON",
+      "away": "STL",
+      "homePts": 80,
+      "awayPts": 64
+    },
+    {
+      "gameNo": 435,
+      "home": "DCB",
+      "away": "HON",
+      "homePts": 78,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 436,
+      "home": "CIN",
+      "away": "PHX",
+      "homePts": 86,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 437,
+      "home": "DEN",
+      "away": "LA",
+      "homePts": 96,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 438,
+      "home": "HON",
+      "away": "BOS",
+      "homePts": 89,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 439,
+      "home": "SEA",
+      "away": "OAK",
+      "homePts": 82,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 440,
+      "home": "MW",
+      "away": "NY",
+      "homePts": 92,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 441,
+      "home": "FLO",
+      "away": "MEM",
+      "homePts": 56,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 442,
+      "home": "TEX",
+      "away": "MEM",
+      "homePts": 84,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 443,
+      "home": "PHX",
+      "away": "MEM",
+      "homePts": 95,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 444,
+      "home": "BOS",
+      "away": "MAN",
+      "homePts": 92,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 445,
+      "home": "TEX",
+      "away": "CP",
+      "homePts": 107,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 446,
+      "home": "CIN",
+      "away": "ATL",
+      "homePts": 85,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 447,
+      "home": "CHI",
+      "away": "OV",
+      "homePts": 58,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 448,
+      "home": "VEG",
+      "away": "MW",
+      "homePts": 87,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 449,
+      "home": "CHI",
+      "away": "CGG",
+      "homePts": 78,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 450,
+      "home": "TOR",
+      "away": "MON",
+      "homePts": 79,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 451,
+      "home": "VAN",
+      "away": "NO",
+      "homePts": 80,
+      "awayPts": 113
+    },
+    {
+      "gameNo": 452,
+      "home": "DEN",
+      "away": "TEX",
+      "homePts": 74,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 453,
+      "home": "VAN",
+      "away": "SEA",
+      "homePts": 66,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 454,
+      "home": "MIL",
+      "away": "CAR",
+      "homePts": 68,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 455,
+      "home": "SEA",
+      "away": "SAS",
+      "homePts": 92,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 456,
+      "home": "DET",
+      "away": "CIN",
+      "homePts": 92,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 457,
+      "home": "STL",
+      "away": "SAS",
+      "homePts": 63,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 458,
+      "home": "SAS",
+      "away": "MW",
+      "homePts": 87,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 459,
+      "home": "PHX",
+      "away": "CP",
+      "homePts": 74,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 460,
+      "home": "HON",
+      "away": "MIL",
+      "homePts": 84,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 461,
+      "home": "MON",
+      "away": "OV",
+      "homePts": 80,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 462,
+      "home": "DCB",
+      "away": "NY",
+      "homePts": 88,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 463,
+      "home": "DET",
+      "away": "LA",
+      "homePts": 86,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 464,
+      "home": "MAN",
+      "away": "OAK",
+      "homePts": 90,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 465,
+      "home": "MW",
+      "away": "CAR",
+      "homePts": 82,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 466,
+      "home": "MAN",
+      "away": "ATL",
+      "homePts": 78,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 467,
+      "home": "TOR",
+      "away": "DCB",
+      "homePts": 79,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 468,
+      "home": "SAS",
+      "away": "FLO",
+      "homePts": 83,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 469,
+      "home": "MON",
+      "away": "CGG",
+      "homePts": 90,
+      "awayPts": 104
+    },
+    {
+      "gameNo": 470,
+      "home": "DEN",
+      "away": "CGG",
+      "homePts": 100,
+      "awayPts": 104
+    },
+    {
+      "gameNo": 471,
+      "home": "MW",
+      "away": "BOS",
+      "homePts": 85,
+      "awayPts": 106
+    },
+    {
+      "gameNo": 472,
+      "home": "SAS",
+      "away": "MEM",
+      "homePts": 87,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 473,
+      "home": "HON",
+      "away": "MEM",
+      "homePts": 66,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 474,
+      "home": "TOR",
+      "away": "STL",
+      "homePts": 91,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 475,
+      "home": "OV",
+      "away": "MIL",
+      "homePts": 86,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 476,
+      "home": "SEA",
+      "away": "TEX",
+      "homePts": 86,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 477,
+      "home": "CHI",
+      "away": "MON",
+      "homePts": 86,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 478,
+      "home": "ATL",
+      "away": "CAR",
+      "homePts": 77,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 479,
+      "home": "VAN",
+      "away": "MEM",
+      "homePts": 80,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 480,
+      "home": "MW",
+      "away": "DET",
+      "homePts": 74,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 481,
+      "home": "FLO",
+      "away": "CAR",
+      "homePts": 67,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 482,
+      "home": "HON",
+      "away": "VEG",
+      "homePts": 101,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 483,
+      "home": "BOS",
+      "away": "MW",
+      "homePts": 82,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 484,
+      "home": "MAN",
+      "away": "CP",
+      "homePts": 90,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 485,
+      "home": "NY",
+      "away": "OAK",
+      "homePts": 86,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 486,
+      "home": "CIN",
+      "away": "CP",
+      "homePts": 69,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 487,
+      "home": "DEN",
+      "away": "SAS",
+      "homePts": 92,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 488,
+      "home": "MW",
+      "away": "PHX",
+      "homePts": 74,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 489,
+      "home": "CGG",
+      "away": "NO",
+      "homePts": 85,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 490,
+      "home": "DEN",
+      "away": "MIL",
+      "homePts": 89,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 491,
+      "home": "TEX",
+      "away": "NO",
+      "homePts": 102,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 492,
+      "home": "NY",
+      "away": "BOS",
+      "homePts": 69,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 493,
+      "home": "TEX",
+      "away": "OAK",
+      "homePts": 92,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 494,
+      "home": "FLO",
+      "away": "SEA",
+      "homePts": 59,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 495,
+      "home": "CIN",
+      "away": "SEA",
+      "homePts": 85,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 496,
+      "home": "ATL",
+      "away": "DET",
+      "homePts": 64,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 497,
+      "home": "NO",
+      "away": "PHX",
+      "homePts": 79,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 498,
+      "home": "NO",
+      "away": "OV",
+      "homePts": 77,
+      "awayPts": 61
+    },
+    {
+      "gameNo": 499,
+      "home": "MEM",
+      "away": "DCB",
+      "homePts": 80,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 500,
+      "home": "STL",
+      "away": "MIL",
+      "homePts": 51,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 501,
+      "home": "MAN",
+      "away": "CHI",
+      "homePts": 87,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 502,
+      "home": "VEG",
+      "away": "VAN",
+      "homePts": 82,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 503,
+      "home": "OV",
+      "away": "TOR",
+      "homePts": 76,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 504,
+      "home": "BOS",
+      "away": "TOR",
+      "homePts": 109,
+      "awayPts": 103
+    },
+    {
+      "gameNo": 505,
+      "home": "OV",
+      "away": "VEG",
+      "homePts": 68,
+      "awayPts": 101
+    },
+    {
+      "gameNo": 506,
+      "home": "STL",
+      "away": "HON",
+      "homePts": 67,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 507,
+      "home": "DET",
+      "away": "DCB",
+      "homePts": 82,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 508,
+      "home": "CGG",
+      "away": "OAK",
+      "homePts": 99,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 509,
+      "home": "SAS",
+      "away": "DEN",
+      "homePts": 88,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 510,
+      "home": "OAK",
+      "away": "ATL",
+      "homePts": 62,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 511,
+      "home": "MON",
+      "away": "MEM",
+      "homePts": 66,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 512,
+      "home": "CP",
+      "away": "FLO",
+      "homePts": 74,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 513,
+      "home": "PHX",
+      "away": "HON",
+      "homePts": 78,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 514,
+      "home": "CHI",
+      "away": "HON",
+      "homePts": 75,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 515,
+      "home": "NY",
+      "away": "LA",
+      "homePts": 89,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 516,
+      "home": "MEM",
+      "away": "CAR",
+      "homePts": 84,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 517,
+      "home": "VAN",
+      "away": "CIN",
+      "homePts": 75,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 518,
+      "home": "CAR",
+      "away": "VEG",
+      "homePts": 81,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 519,
+      "home": "VAN",
+      "away": "DEN",
+      "homePts": 75,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 520,
+      "home": "CIN",
+      "away": "VEG",
+      "homePts": 87,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 521,
+      "home": "MEM",
+      "away": "NY",
+      "homePts": 85,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 522,
+      "home": "CP",
+      "away": "CIN",
+      "homePts": 82,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 523,
+      "home": "MW",
+      "away": "DCB",
+      "homePts": 95,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 524,
+      "home": "MEM",
+      "away": "CHI",
+      "homePts": 83,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 525,
+      "home": "MW",
+      "away": "MON",
+      "homePts": 98,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 526,
+      "home": "TEX",
+      "away": "MAN",
+      "homePts": 80,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 527,
+      "home": "SAS",
+      "away": "SEA",
+      "homePts": 96,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 528,
+      "home": "CAR",
+      "away": "ATL",
+      "homePts": 90,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 529,
+      "home": "SEA",
+      "away": "PHX",
+      "homePts": 79,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 530,
+      "home": "OV",
+      "away": "TOR",
+      "homePts": 80,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 531,
+      "home": "MIL",
+      "away": "OAK",
+      "homePts": 73,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 532,
+      "home": "CGG",
+      "away": "SAS",
+      "homePts": 93,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 533,
+      "home": "CIN",
+      "away": "DET",
+      "homePts": 86,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 534,
+      "home": "BOS",
+      "away": "STL",
+      "homePts": 86,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 535,
+      "home": "MEM",
+      "away": "FLO",
+      "homePts": 92,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 536,
+      "home": "LA",
+      "away": "TEX",
+      "homePts": 75,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 537,
+      "home": "CP",
+      "away": "CIN",
+      "homePts": 85,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 538,
+      "home": "BOS",
+      "away": "DCB",
+      "homePts": 95,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 539,
+      "home": "DET",
+      "away": "NY",
+      "homePts": 88,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 540,
+      "home": "CHI",
+      "away": "CIN",
+      "homePts": 73,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 541,
+      "home": "STL",
+      "away": "CAR",
+      "homePts": 68,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 542,
+      "home": "LA",
+      "away": "CGG",
+      "homePts": 75,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 543,
+      "home": "ATL",
+      "away": "CIN",
+      "homePts": 85,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 544,
+      "home": "DEN",
+      "away": "NO",
+      "homePts": 87,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 545,
+      "home": "DET",
+      "away": "MON",
+      "homePts": 90,
+      "awayPts": 55
+    },
+    {
+      "gameNo": 546,
+      "home": "DET",
+      "away": "MIL",
+      "homePts": 88,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 547,
+      "home": "SEA",
+      "away": "FLO",
+      "homePts": 83,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 548,
+      "home": "TOR",
+      "away": "FLO",
+      "homePts": 98,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 549,
+      "home": "VAN",
+      "away": "FLO",
+      "homePts": 85,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 550,
+      "home": "CP",
+      "away": "PHX",
+      "homePts": 85,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 551,
+      "home": "CGG",
+      "away": "SEA",
+      "homePts": 92,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 552,
+      "home": "TOR",
+      "away": "DEN",
+      "homePts": 80,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 553,
+      "home": "MIL",
+      "away": "DEN",
+      "homePts": 62,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 554,
+      "home": "BOS",
+      "away": "HON",
+      "homePts": 84,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 555,
+      "home": "CIN",
+      "away": "OV",
+      "homePts": 80,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 556,
+      "home": "CP",
+      "away": "NO",
+      "homePts": 79,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 557,
+      "home": "SAS",
+      "away": "TEX",
+      "homePts": 93,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 558,
+      "home": "TEX",
+      "away": "VEG",
+      "homePts": 80,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 559,
+      "home": "DCB",
+      "away": "NO",
+      "homePts": 67,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 560,
+      "home": "ATL",
+      "away": "MON",
+      "homePts": 79,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 561,
+      "home": "NY",
+      "away": "OV",
+      "homePts": 71,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 562,
+      "home": "MIL",
+      "away": "VAN",
+      "homePts": 68,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 563,
+      "home": "CHI",
+      "away": "OAK",
+      "homePts": 90,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 564,
+      "home": "PHX",
+      "away": "STL",
+      "homePts": 63,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 565,
+      "home": "NY",
+      "away": "MAN",
+      "homePts": 75,
+      "awayPts": 64
+    },
+    {
+      "gameNo": 566,
+      "home": "MAN",
+      "away": "STL",
+      "homePts": 84,
+      "awayPts": 55
+    },
+    {
+      "gameNo": 567,
+      "home": "VAN",
+      "away": "CP",
+      "homePts": 87,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 568,
+      "home": "TOR",
+      "away": "DET",
+      "homePts": 73,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 569,
+      "home": "PHX",
+      "away": "NO",
+      "homePts": 76,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 570,
+      "home": "STL",
+      "away": "CHI",
+      "homePts": 78,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 571,
+      "home": "STL",
+      "away": "LA",
+      "homePts": 94,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 572,
+      "home": "CGG",
+      "away": "CAR",
+      "homePts": 101,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 573,
+      "home": "MON",
+      "away": "ATL",
+      "homePts": 58,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 574,
+      "home": "OV",
+      "away": "BOS",
+      "homePts": 74,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 575,
+      "home": "NY",
+      "away": "VEG",
+      "homePts": 62,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 576,
+      "home": "OV",
+      "away": "HON",
+      "homePts": 82,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 577,
+      "home": "CHI",
+      "away": "DCB",
+      "homePts": 78,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 578,
+      "home": "OAK",
+      "away": "CGG",
+      "homePts": 78,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 579,
+      "home": "VEG",
+      "away": "CP",
+      "homePts": 91,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 580,
+      "home": "FLO",
+      "away": "VAN",
+      "homePts": 80,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 581,
+      "home": "ATL",
+      "away": "MON",
+      "homePts": 85,
+      "awayPts": 55
+    },
+    {
+      "gameNo": 582,
+      "home": "MAN",
+      "away": "PHX",
+      "homePts": 60,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 583,
+      "home": "VEG",
+      "away": "DCB",
+      "homePts": 94,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 584,
+      "home": "BOS",
+      "away": "DET",
+      "homePts": 101,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 585,
+      "home": "CGG",
+      "away": "LA",
+      "homePts": 91,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 586,
+      "home": "HON",
+      "away": "NY",
+      "homePts": 100,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 587,
+      "home": "FLO",
+      "away": "OAK",
+      "homePts": 83,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 588,
+      "home": "CP",
+      "away": "MW",
+      "homePts": 94,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 589,
+      "home": "DEN",
+      "away": "TEX",
+      "homePts": 89,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 590,
+      "home": "VEG",
+      "away": "SEA",
+      "homePts": 65,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 591,
+      "home": "TOR",
+      "away": "MON",
+      "homePts": 86,
+      "awayPts": 64
+    },
+    {
+      "gameNo": 592,
+      "home": "PHX",
+      "away": "CAR",
+      "homePts": 80,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 593,
+      "home": "MIL",
+      "away": "MW",
+      "homePts": 64,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 594,
+      "home": "STL",
+      "away": "SEA",
+      "homePts": 63,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 595,
+      "home": "FLO",
+      "away": "MIL",
+      "homePts": 68,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 596,
+      "home": "OV",
+      "away": "CAR",
+      "homePts": 54,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 597,
+      "home": "CAR",
+      "away": "MAN",
+      "homePts": 65,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 598,
+      "home": "TEX",
+      "away": "LA",
+      "homePts": 71,
+      "awayPts": 64
+    },
+    {
+      "gameNo": 599,
+      "home": "BOS",
+      "away": "MAN",
+      "homePts": 86,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 600,
+      "home": "DEN",
+      "away": "MEM",
+      "homePts": 105,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 601,
+      "home": "SAS",
+      "away": "VAN",
+      "homePts": 87,
+      "awayPts": 52
+    },
+    {
+      "gameNo": 602,
+      "home": "DEN",
+      "away": "HON",
+      "homePts": 93,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 603,
+      "home": "OAK",
+      "away": "PHX",
+      "homePts": 82,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 604,
+      "home": "ATL",
+      "away": "CHI",
+      "homePts": 87,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 605,
+      "home": "LA",
+      "away": "NO",
+      "homePts": 81,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 606,
+      "home": "MAN",
+      "away": "TOR",
+      "homePts": 79,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 607,
+      "home": "DCB",
+      "away": "DEN",
+      "homePts": 84,
+      "awayPts": 109
+    },
+    {
+      "gameNo": 608,
+      "home": "OV",
+      "away": "ATL",
+      "homePts": 74,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 609,
+      "home": "CGG",
+      "away": "NY",
+      "homePts": 104,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 610,
+      "home": "NO",
+      "away": "LA",
+      "homePts": 92,
+      "awayPts": 54
+    },
+    {
+      "gameNo": 611,
+      "home": "HON",
+      "away": "MAN",
+      "homePts": 95,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 612,
+      "home": "SAS",
+      "away": "HON",
+      "homePts": 78,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 613,
+      "home": "SEA",
+      "away": "LA",
+      "homePts": 85,
+      "awayPts": 59
+    },
+    {
+      "gameNo": 614,
+      "home": "DET",
+      "away": "DCB",
+      "homePts": 78,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 615,
+      "home": "CHI",
+      "away": "SEA",
+      "homePts": 88,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 616,
+      "home": "CAR",
+      "away": "MON",
+      "homePts": 88,
+      "awayPts": 62
+    },
+    {
+      "gameNo": 617,
+      "home": "LA",
+      "away": "VAN",
+      "homePts": 80,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 618,
+      "home": "MIL",
+      "away": "STL",
+      "homePts": 71,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 619,
+      "home": "TOR",
+      "away": "MAN",
+      "homePts": 76,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 620,
+      "home": "MW",
+      "away": "MEM",
+      "homePts": 87,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 621,
+      "home": "ATL",
+      "away": "OAK",
+      "homePts": 73,
+      "awayPts": 61
+    },
+    {
+      "gameNo": 622,
+      "home": "SAS",
+      "away": "TEX",
+      "homePts": 88,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 623,
+      "home": "BOS",
+      "away": "TEX",
+      "homePts": 92,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 624,
+      "home": "NY",
+      "away": "MW",
+      "homePts": 77,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 625,
+      "home": "BOS",
+      "away": "ATL",
+      "homePts": 95,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 626,
+      "home": "CAR",
+      "away": "MON",
+      "homePts": 77,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 627,
+      "home": "DCB",
+      "away": "CGG",
+      "homePts": 63,
+      "awayPts": 111
+    },
+    {
+      "gameNo": 628,
+      "home": "VEG",
+      "away": "CGG",
+      "homePts": 78,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 629,
+      "home": "PHX",
+      "away": "LA",
+      "homePts": 99,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 630,
+      "home": "MIL",
+      "away": "SAS",
+      "homePts": 68,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 631,
+      "home": "DEN",
+      "away": "DET",
+      "homePts": 92,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 632,
+      "home": "DET",
+      "away": "CP",
+      "homePts": 79,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 633,
+      "home": "MEM",
+      "away": "TOR",
+      "homePts": 79,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 634,
+      "home": "LA",
+      "away": "OAK",
+      "homePts": 76,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 635,
+      "home": "OAK",
+      "away": "CIN",
+      "homePts": 65,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 636,
+      "home": "CHI",
+      "away": "TOR",
+      "homePts": 84,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 637,
+      "home": "NO",
+      "away": "VAN",
+      "homePts": 85,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 638,
+      "home": "OAK",
+      "away": "FLO",
+      "homePts": 89,
+      "awayPts": 63
+    },
+    {
+      "gameNo": 639,
+      "home": "CP",
+      "away": "MON",
+      "homePts": 91,
+      "awayPts": 66
+    },
+    {
+      "gameNo": 640,
+      "home": "MW",
+      "away": "VAN",
+      "homePts": 98,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 641,
+      "home": "TEX",
+      "away": "DCB",
+      "homePts": 89,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 642,
+      "home": "MON",
+      "away": "OV",
+      "homePts": 70,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 643,
+      "home": "CHI",
+      "away": "BOS",
+      "homePts": 71,
+      "awayPts": 117
+    },
+    {
+      "gameNo": 644,
+      "home": "MIL",
+      "away": "DET",
+      "homePts": 55,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 645,
+      "home": "TOR",
+      "away": "SEA",
+      "homePts": 92,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 646,
+      "home": "HON",
+      "away": "TOR",
+      "homePts": 92,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 647,
+      "home": "PHX",
+      "away": "TEX",
+      "homePts": 98,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 648,
+      "home": "FLO",
+      "away": "NY",
+      "homePts": 58,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 649,
+      "home": "STL",
+      "away": "TEX",
+      "homePts": 74,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 650,
+      "home": "CIN",
+      "away": "CAR",
+      "homePts": 77,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 651,
+      "home": "BOS",
+      "away": "NO",
+      "homePts": 82,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 652,
+      "home": "SEA",
+      "away": "VEG",
+      "homePts": 76,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 653,
+      "home": "TEX",
+      "away": "FLO",
+      "homePts": 88,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 654,
+      "home": "STL",
+      "away": "MAN",
+      "homePts": 78,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 655,
+      "home": "CIN",
+      "away": "DCB",
+      "homePts": 92,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 656,
+      "home": "VEG",
+      "away": "STL",
+      "homePts": 93,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 657,
+      "home": "CP",
+      "away": "OV",
+      "homePts": 81,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 658,
+      "home": "DEN",
+      "away": "VEG",
+      "homePts": 93,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 659,
+      "home": "HON",
+      "away": "OV",
+      "homePts": 71,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 660,
+      "home": "CGG",
+      "away": "VAN",
+      "homePts": 89,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 661,
+      "home": "CHI",
+      "away": "MON",
+      "homePts": 108,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 662,
+      "home": "ATL",
+      "away": "PHX",
+      "homePts": 86,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 663,
+      "home": "VAN",
+      "away": "MIL",
+      "homePts": 85,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 664,
+      "home": "MW",
+      "away": "OAK",
+      "homePts": 90,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 665,
+      "home": "MEM",
+      "away": "HON",
+      "homePts": 93,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 666,
+      "home": "MAN",
+      "away": "SAS",
+      "homePts": 85,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 667,
+      "home": "CGG",
+      "away": "NO",
+      "homePts": 79,
+      "awayPts": 108
+    },
+    {
+      "gameNo": 668,
+      "home": "NY",
+      "away": "CAR",
+      "homePts": 91,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 669,
+      "home": "CHI",
+      "away": "DET",
+      "homePts": 79,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 670,
+      "home": "NY",
+      "away": "VAN",
+      "homePts": 84,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 671,
+      "home": "VEG",
+      "away": "MEM",
+      "homePts": 82,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 672,
+      "home": "CIN",
+      "away": "NO",
+      "homePts": 83,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 673,
+      "home": "PHX",
+      "away": "LA",
+      "homePts": 100,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 674,
+      "home": "STL",
+      "away": "DEN",
+      "homePts": 77,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 675,
+      "home": "CHI",
+      "away": "FLO",
+      "homePts": 99,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 676,
+      "home": "CAR",
+      "away": "CP",
+      "homePts": 84,
+      "awayPts": 103
+    },
+    {
+      "gameNo": 677,
+      "home": "ATL",
+      "away": "MIL",
+      "homePts": 92,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 678,
+      "home": "CAR",
+      "away": "MW",
+      "homePts": 82,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 679,
+      "home": "DET",
+      "away": "BOS",
+      "homePts": 79,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 680,
+      "home": "SAS",
+      "away": "CIN",
+      "homePts": 76,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 681,
+      "home": "SEA",
+      "away": "NO",
+      "homePts": 85,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 682,
+      "home": "DCB",
+      "away": "OV",
+      "homePts": 79,
+      "awayPts": 56
+    },
+    {
+      "gameNo": 683,
+      "home": "MW",
+      "away": "CP",
+      "homePts": 91,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 684,
+      "home": "HON",
+      "away": "CGG",
+      "homePts": 92,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 685,
+      "home": "ATL",
+      "away": "MW",
+      "homePts": 77,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 686,
+      "home": "OV",
+      "away": "SEA",
+      "homePts": 74,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 687,
+      "home": "STL",
+      "away": "MON",
+      "homePts": 72,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 688,
+      "home": "FLO",
+      "away": "TOR",
+      "homePts": 69,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 689,
+      "home": "OAK",
+      "away": "MIL",
+      "homePts": 84,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 690,
+      "home": "CHI",
+      "away": "DEN",
+      "homePts": 89,
+      "awayPts": 114
+    },
+    {
+      "gameNo": 691,
+      "home": "NY",
+      "away": "MW",
+      "homePts": 70,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 692,
+      "home": "TOR",
+      "away": "PHX",
+      "homePts": 83,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 693,
+      "home": "CP",
+      "away": "DCB",
+      "homePts": 78,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 694,
+      "home": "MEM",
+      "away": "HON",
+      "homePts": 96,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 695,
+      "home": "SAS",
+      "away": "NO",
+      "homePts": 99,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 696,
+      "home": "BOS",
+      "away": "CAR",
+      "homePts": 91,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 697,
+      "home": "DCB",
+      "away": "VEG",
+      "homePts": 68,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 698,
+      "home": "MEM",
+      "away": "OAK",
+      "homePts": 74,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 699,
+      "home": "NY",
+      "away": "CP",
+      "homePts": 88,
+      "awayPts": 57
+    },
+    {
+      "gameNo": 700,
+      "home": "SEA",
+      "away": "CHI",
+      "homePts": 81,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 701,
+      "home": "FLO",
+      "away": "SAS",
+      "homePts": 65,
+      "awayPts": 108
+    },
+    {
+      "gameNo": 702,
+      "home": "CIN",
+      "away": "MON",
+      "homePts": 66,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 703,
+      "home": "SEA",
+      "away": "CGG",
+      "homePts": 73,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 704,
+      "home": "DEN",
+      "away": "STL",
+      "homePts": 107,
+      "awayPts": 66
+    },
+    {
+      "gameNo": 705,
+      "home": "DEN",
+      "away": "PHX",
+      "homePts": 117,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 706,
+      "home": "MIL",
+      "away": "DET",
+      "homePts": 72,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 707,
+      "home": "ATL",
+      "away": "MAN",
+      "homePts": 73,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 708,
+      "home": "LA",
+      "away": "TEX",
+      "homePts": 86,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 709,
+      "home": "CHI",
+      "away": "BOS",
+      "homePts": 71,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 710,
+      "home": "VAN",
+      "away": "LA",
+      "homePts": 68,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 711,
+      "home": "MON",
+      "away": "MIL",
+      "homePts": 71,
+      "awayPts": 60
+    },
+    {
+      "gameNo": 712,
+      "home": "CGG",
+      "away": "PHX",
+      "homePts": 74,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 713,
+      "home": "VEG",
+      "away": "VAN",
+      "homePts": 78,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 714,
+      "home": "VEG",
+      "away": "MAN",
+      "homePts": 84,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 715,
+      "home": "BOS",
+      "away": "DET",
+      "homePts": 94,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 716,
+      "home": "FLO",
+      "away": "SAS",
+      "homePts": 68,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 717,
+      "home": "MON",
+      "away": "DCB",
+      "homePts": 51,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 718,
+      "home": "OAK",
+      "away": "SEA",
+      "homePts": 80,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 719,
+      "home": "SEA",
+      "away": "ATL",
+      "homePts": 91,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 720,
+      "home": "TEX",
+      "away": "HON",
+      "homePts": 97,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 721,
+      "home": "NO",
+      "away": "TEX",
+      "homePts": 85,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 722,
+      "home": "VEG",
+      "away": "TOR",
+      "homePts": 86,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 723,
+      "home": "NY",
+      "away": "CIN",
+      "homePts": 81,
+      "awayPts": 66
+    },
+    {
+      "gameNo": 724,
+      "home": "MEM",
+      "away": "STL",
+      "homePts": 86,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 725,
+      "home": "OV",
+      "away": "DCB",
+      "homePts": 57,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 726,
+      "home": "DCB",
+      "away": "ATL",
+      "homePts": 84,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 727,
+      "home": "MAN",
+      "away": "MEM",
+      "homePts": 88,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 728,
+      "home": "CP",
+      "away": "ATL",
+      "homePts": 87,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 729,
+      "home": "BOS",
+      "away": "OAK",
+      "homePts": 102,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 730,
+      "home": "CAR",
+      "away": "MW",
+      "homePts": 84,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 731,
+      "home": "MIL",
+      "away": "FLO",
+      "homePts": 94,
+      "awayPts": 62
+    },
+    {
+      "gameNo": 732,
+      "home": "CP",
+      "away": "VAN",
+      "homePts": 89,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 733,
+      "home": "NO",
+      "away": "MON",
+      "homePts": 98,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 734,
+      "home": "CHI",
+      "away": "OV",
+      "homePts": 84,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 735,
+      "home": "ATL",
+      "away": "NY",
+      "homePts": 92,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 736,
+      "home": "TOR",
+      "away": "ATL",
+      "homePts": 84,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 737,
+      "home": "PHX",
+      "away": "DET",
+      "homePts": 94,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 738,
+      "home": "DEN",
+      "away": "MW",
+      "homePts": 82,
+      "awayPts": 103
+    },
+    {
+      "gameNo": 739,
+      "home": "NO",
+      "away": "SAS",
+      "homePts": 100,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 740,
+      "home": "CGG",
+      "away": "LA",
+      "homePts": 92,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 741,
+      "home": "HON",
+      "away": "DET",
+      "homePts": 88,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 742,
+      "home": "DEN",
+      "away": "CIN",
+      "homePts": 82,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 743,
+      "home": "HON",
+      "away": "TEX",
+      "homePts": 87,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 744,
+      "home": "DCB",
+      "away": "MIL",
+      "homePts": 78,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 745,
+      "home": "NY",
+      "away": "FLO",
+      "homePts": 103,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 746,
+      "home": "CGG",
+      "away": "MON",
+      "homePts": 93,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 747,
+      "home": "DEN",
+      "away": "PHX",
+      "homePts": 84,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 748,
+      "home": "OAK",
+      "away": "CP",
+      "homePts": 77,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 749,
+      "home": "VAN",
+      "away": "BOS",
+      "homePts": 89,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 750,
+      "home": "MAN",
+      "away": "BOS",
+      "homePts": 65,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 751,
+      "home": "BOS",
+      "away": "CIN",
+      "homePts": 108,
+      "awayPts": 106
+    },
+    {
+      "gameNo": 752,
+      "home": "MEM",
+      "away": "CIN",
+      "homePts": 99,
+      "awayPts": 110
+    },
+    {
+      "gameNo": 753,
+      "home": "MW",
+      "away": "OV",
+      "homePts": 81,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 754,
+      "home": "CP",
+      "away": "CAR",
+      "homePts": 57,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 755,
+      "home": "MEM",
+      "away": "STL",
+      "homePts": 94,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 756,
+      "home": "TOR",
+      "away": "VAN",
+      "homePts": 71,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 757,
+      "home": "SAS",
+      "away": "MEM",
+      "homePts": 66,
+      "awayPts": 64
+    },
+    {
+      "gameNo": 758,
+      "home": "OV",
+      "away": "DEN",
+      "homePts": 56,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 759,
+      "home": "SEA",
+      "away": "STL",
+      "homePts": 85,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 760,
+      "home": "VEG",
+      "away": "HON",
+      "homePts": 65,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 761,
+      "home": "LA",
+      "away": "ATL",
+      "homePts": 80,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 762,
+      "home": "MIL",
+      "away": "CHI",
+      "homePts": 72,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 763,
+      "home": "TOR",
+      "away": "OV",
+      "homePts": 78,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 764,
+      "home": "DET",
+      "away": "TOR",
+      "homePts": 92,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 765,
+      "home": "CHI",
+      "away": "MAN",
+      "homePts": 68,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 766,
+      "home": "FLO",
+      "away": "TEX",
+      "homePts": 68,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 767,
+      "home": "NO",
+      "away": "ATL",
+      "homePts": 85,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 768,
+      "home": "PHX",
+      "away": "VEG",
+      "homePts": 89,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 769,
+      "home": "SAS",
+      "away": "OV",
+      "homePts": 85,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 770,
+      "home": "CGG",
+      "away": "TEX",
+      "homePts": 83,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 771,
+      "home": "NY",
+      "away": "CAR",
+      "homePts": 52,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 772,
+      "home": "CAR",
+      "away": "OAK",
+      "homePts": 91,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 773,
+      "home": "DET",
+      "away": "NY",
+      "homePts": 89,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 774,
+      "home": "DEN",
+      "away": "FLO",
+      "homePts": 92,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 775,
+      "home": "NO",
+      "away": "FLO",
+      "homePts": 84,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 776,
+      "home": "OAK",
+      "away": "MAN",
+      "homePts": 76,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 777,
+      "home": "HON",
+      "away": "DEN",
+      "homePts": 93,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 778,
+      "home": "NO",
+      "away": "MW",
+      "homePts": 109,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 779,
+      "home": "TEX",
+      "away": "STL",
+      "homePts": 109,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 780,
+      "home": "VEG",
+      "away": "LA",
+      "homePts": 85,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 781,
+      "home": "DCB",
+      "away": "CIN",
+      "homePts": 91,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 782,
+      "home": "NY",
+      "away": "MIL",
+      "homePts": 75,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 783,
+      "home": "PHX",
+      "away": "SAS",
+      "homePts": 78,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 784,
+      "home": "CGG",
+      "away": "TEX",
+      "homePts": 97,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 785,
+      "home": "MON",
+      "away": "CAR",
+      "homePts": 73,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 786,
+      "home": "VAN",
+      "away": "DEN",
+      "homePts": 73,
+      "awayPts": 101
+    },
+    {
+      "gameNo": 787,
+      "home": "SEA",
+      "away": "MAN",
+      "homePts": 44,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 788,
+      "home": "CIN",
+      "away": "VAN",
+      "homePts": 92,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 789,
+      "home": "DET",
+      "away": "MON",
+      "homePts": 88,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 790,
+      "home": "PHX",
+      "away": "VEG",
+      "homePts": 100,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 791,
+      "home": "MW",
+      "away": "TOR",
+      "homePts": 81,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 792,
+      "home": "DCB",
+      "away": "DET",
+      "homePts": 77,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 793,
+      "home": "ATL",
+      "away": "LA",
+      "homePts": 101,
+      "awayPts": 54
+    },
+    {
+      "gameNo": 794,
+      "home": "MEM",
+      "away": "OV",
+      "homePts": 75,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 795,
+      "home": "OAK",
+      "away": "TEX",
+      "homePts": 70,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 796,
+      "home": "DET",
+      "away": "STL",
+      "homePts": 100,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 797,
+      "home": "SAS",
+      "away": "HON",
+      "homePts": 86,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 798,
+      "home": "OV",
+      "away": "CP",
+      "homePts": 60,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 799,
+      "home": "NY",
+      "away": "CHI",
+      "homePts": 69,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 800,
+      "home": "BOS",
+      "away": "LA",
+      "homePts": 72,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 801,
+      "home": "SEA",
+      "away": "DET",
+      "homePts": 83,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 802,
+      "home": "CAR",
+      "away": "MIL",
+      "homePts": 79,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 803,
+      "home": "CGG",
+      "away": "CP",
+      "homePts": 87,
+      "awayPts": 60
+    },
+    {
+      "gameNo": 804,
+      "home": "HON",
+      "away": "PHX",
+      "homePts": 94,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 805,
+      "home": "SEA",
+      "away": "VAN",
+      "homePts": 96,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 806,
+      "home": "STL",
+      "away": "TEX",
+      "homePts": 74,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 807,
+      "home": "NY",
+      "away": "MON",
+      "homePts": 98,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 808,
+      "home": "BOS",
+      "away": "VEG",
+      "homePts": 84,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 809,
+      "home": "DCB",
+      "away": "MAN",
+      "homePts": 99,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 810,
+      "home": "ATL",
+      "away": "FLO",
+      "homePts": 77,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 811,
+      "home": "MIL",
+      "away": "NO",
+      "homePts": 87,
+      "awayPts": 108
+    },
+    {
+      "gameNo": 812,
+      "home": "CIN",
+      "away": "OV",
+      "homePts": 90,
+      "awayPts": 61
+    },
+    {
+      "gameNo": 813,
+      "home": "OAK",
+      "away": "VEG",
+      "homePts": 87,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 814,
+      "home": "CHI",
+      "away": "TOR",
+      "homePts": 59,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 815,
+      "home": "SAS",
+      "away": "SEA",
+      "homePts": 89,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 816,
+      "home": "NO",
+      "away": "CGG",
+      "homePts": 87,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 817,
+      "home": "MW",
+      "away": "HON",
+      "homePts": 90,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 818,
+      "home": "MEM",
+      "away": "DET",
+      "homePts": 79,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 819,
+      "home": "MON",
+      "away": "CHI",
+      "homePts": 86,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 820,
+      "home": "CAR",
+      "away": "CGG",
+      "homePts": 96,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 821,
+      "home": "OAK",
+      "away": "STL",
+      "homePts": 65,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 822,
+      "home": "CIN",
+      "away": "CP",
+      "homePts": 94,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 823,
+      "home": "NO",
+      "away": "LA",
+      "homePts": 97,
+      "awayPts": 64
+    },
+    {
+      "gameNo": 824,
+      "home": "VAN",
+      "away": "MAN",
+      "homePts": 64,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 825,
+      "home": "DET",
+      "away": "MIL",
+      "homePts": 92,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 826,
+      "home": "DCB",
+      "away": "CHI",
+      "homePts": 94,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 827,
+      "home": "MW",
+      "away": "SAS",
+      "homePts": 70,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 828,
+      "home": "BOS",
+      "away": "FLO",
+      "homePts": 93,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 829,
+      "home": "BOS",
+      "away": "TOR",
+      "homePts": 104,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 830,
+      "home": "PHX",
+      "away": "BOS",
+      "homePts": 82,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 831,
+      "home": "MEM",
+      "away": "MON",
+      "homePts": 78,
+      "awayPts": 64
+    },
+    {
+      "gameNo": 832,
+      "home": "HON",
+      "away": "OAK",
+      "homePts": 95,
+      "awayPts": 55
+    },
+    {
+      "gameNo": 833,
+      "home": "VAN",
+      "away": "NO",
+      "homePts": 87,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 834,
+      "home": "MW",
+      "away": "FLO",
+      "homePts": 81,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 835,
+      "home": "TOR",
+      "away": "MIL",
+      "homePts": 88,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 836,
+      "home": "MEM",
+      "away": "DEN",
+      "homePts": 99,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 837,
+      "home": "MEM",
+      "away": "LA",
+      "homePts": 85,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 838,
+      "home": "MAN",
+      "away": "TOR",
+      "homePts": 62,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 839,
+      "home": "DCB",
+      "away": "CHI",
+      "homePts": 89,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 840,
+      "home": "SAS",
+      "away": "DEN",
+      "homePts": 97,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 841,
+      "home": "TOR",
+      "away": "CIN",
+      "homePts": 85,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 842,
+      "home": "CGG",
+      "away": "SAS",
+      "homePts": 91,
+      "awayPts": 103
+    },
+    {
+      "gameNo": 843,
+      "home": "STL",
+      "away": "MW",
+      "homePts": 70,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 844,
+      "home": "SEA",
+      "away": "HON",
+      "homePts": 98,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 845,
+      "home": "CP",
+      "away": "CHI",
+      "homePts": 99,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 846,
+      "home": "NY",
+      "away": "STL",
+      "homePts": 80,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 847,
+      "home": "PHX",
+      "away": "OAK",
+      "homePts": 83,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 848,
+      "home": "CAR",
+      "away": "NO",
+      "homePts": 91,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 849,
+      "home": "LA",
+      "away": "HON",
+      "homePts": 99,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 850,
+      "home": "CHI",
+      "away": "CAR",
+      "homePts": 71,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 851,
+      "home": "CGG",
+      "away": "HON",
+      "homePts": 72,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 852,
+      "home": "VEG",
+      "away": "MIL",
+      "homePts": 77,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 853,
+      "home": "TEX",
+      "away": "ATL",
+      "homePts": 83,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 854,
+      "home": "NY",
+      "away": "SAS",
+      "homePts": 82,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 855,
+      "home": "STL",
+      "away": "VAN",
+      "homePts": 83,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 856,
+      "home": "OV",
+      "away": "CP",
+      "homePts": 57,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 857,
+      "home": "CIN",
+      "away": "CHI",
+      "homePts": 83,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 858,
+      "home": "HON",
+      "away": "FLO",
+      "homePts": 102,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 859,
+      "home": "NY",
+      "away": "MON",
+      "homePts": 79,
+      "awayPts": 61
+    },
+    {
+      "gameNo": 860,
+      "home": "STL",
+      "away": "DCB",
+      "homePts": 66,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 861,
+      "home": "PHX",
+      "away": "NO",
+      "homePts": 79,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 862,
+      "home": "DCB",
+      "away": "MAN",
+      "homePts": 70,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 863,
+      "home": "SEA",
+      "away": "MW",
+      "homePts": 70,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 864,
+      "home": "TEX",
+      "away": "VAN",
+      "homePts": 95,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 865,
+      "home": "CIN",
+      "away": "CAR",
+      "homePts": 84,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 866,
+      "home": "MIL",
+      "away": "OV",
+      "homePts": 99,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 867,
+      "home": "LA",
+      "away": "FLO",
+      "homePts": 85,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 868,
+      "home": "CP",
+      "away": "MAN",
+      "homePts": 77,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 869,
+      "home": "CGG",
+      "away": "MW",
+      "homePts": 112,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 870,
+      "home": "DET",
+      "away": "PHX",
+      "homePts": 79,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 871,
+      "home": "DEN",
+      "away": "OAK",
+      "homePts": 85,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 872,
+      "home": "MW",
+      "away": "BOS",
+      "homePts": 86,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 873,
+      "home": "SEA",
+      "away": "OAK",
+      "homePts": 75,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 874,
+      "home": "ATL",
+      "away": "CIN",
+      "homePts": 87,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 875,
+      "home": "MON",
+      "away": "ATL",
+      "homePts": 87,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 876,
+      "home": "MEM",
+      "away": "CGG",
+      "homePts": 107,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 877,
+      "home": "MEM",
+      "away": "VEG",
+      "homePts": 100,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 878,
+      "home": "NO",
+      "away": "DEN",
+      "homePts": 76,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 879,
+      "home": "ATL",
+      "away": "VEG",
+      "homePts": 62,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 880,
+      "home": "OAK",
+      "away": "VAN",
+      "homePts": 94,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 881,
+      "home": "CAR",
+      "away": "OV",
+      "homePts": 79,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 882,
+      "home": "NY",
+      "away": "CP",
+      "homePts": 113,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 883,
+      "home": "LA",
+      "away": "FLO",
+      "homePts": 74,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 884,
+      "home": "DCB",
+      "away": "MIL",
+      "homePts": 74,
+      "awayPts": 63
+    },
+    {
+      "gameNo": 885,
+      "home": "MAN",
+      "away": "SEA",
+      "homePts": 81,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 886,
+      "home": "MIL",
+      "away": "TOR",
+      "homePts": 85,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 887,
+      "home": "MON",
+      "away": "LA",
+      "homePts": 70,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 888,
+      "home": "DCB",
+      "away": "BOS",
+      "homePts": 76,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 889,
+      "home": "SEA",
+      "away": "PHX",
+      "homePts": 86,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 890,
+      "home": "SAS",
+      "away": "CGG",
+      "homePts": 99,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 891,
+      "home": "TEX",
+      "away": "FLO",
+      "homePts": 90,
+      "awayPts": 61
+    },
+    {
+      "gameNo": 892,
+      "home": "OAK",
+      "away": "DET",
+      "homePts": 95,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 893,
+      "home": "SAS",
+      "away": "FLO",
+      "homePts": 92,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 894,
+      "home": "HON",
+      "away": "STL",
+      "homePts": 95,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 895,
+      "home": "MON",
+      "away": "CIN",
+      "homePts": 64,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 896,
+      "home": "MEM",
+      "away": "SAS",
+      "homePts": 95,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 897,
+      "home": "DEN",
+      "away": "SEA",
+      "homePts": 76,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 898,
+      "home": "CP",
+      "away": "TEX",
+      "homePts": 74,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 899,
+      "home": "DET",
+      "away": "CAR",
+      "homePts": 97,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 900,
+      "home": "MIL",
+      "away": "VEG",
+      "homePts": 84,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 901,
+      "home": "OAK",
+      "away": "NY",
+      "homePts": 84,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 902,
+      "home": "VAN",
+      "away": "OAK",
+      "homePts": 99,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 903,
+      "home": "TOR",
+      "away": "MIL",
+      "homePts": 84,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 904,
+      "home": "OAK",
+      "away": "OV",
+      "homePts": 87,
+      "awayPts": 61
+    },
+    {
+      "gameNo": 905,
+      "home": "PHX",
+      "away": "MW",
+      "homePts": 90,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 906,
+      "home": "MON",
+      "away": "BOS",
+      "homePts": 57,
+      "awayPts": 108
+    },
+    {
+      "gameNo": 907,
+      "home": "MAN",
+      "away": "DEN",
+      "homePts": 68,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 908,
+      "home": "DEN",
+      "away": "DCB",
+      "homePts": 91,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 909,
+      "home": "NO",
+      "away": "MAN",
+      "homePts": 85,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 910,
+      "home": "CIN",
+      "away": "MON",
+      "homePts": 79,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 911,
+      "home": "CAR",
+      "away": "CP",
+      "homePts": 92,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 912,
+      "home": "NY",
+      "away": "DET",
+      "homePts": 85,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 913,
+      "home": "VEG",
+      "away": "LA",
+      "homePts": 93,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 914,
+      "home": "VAN",
+      "away": "TEX",
+      "homePts": 48,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 915,
+      "home": "PHX",
+      "away": "CGG",
+      "homePts": 78,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 916,
+      "home": "VAN",
+      "away": "TOR",
+      "homePts": 84,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 917,
+      "home": "MEM",
+      "away": "NO",
+      "homePts": 89,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 918,
+      "home": "CP",
+      "away": "BOS",
+      "homePts": 82,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 919,
+      "home": "CHI",
+      "away": "CP",
+      "homePts": 89,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 920,
+      "home": "FLO",
+      "away": "STL",
+      "homePts": 86,
+      "awayPts": 62
+    },
+    {
+      "gameNo": 921,
+      "home": "NY",
+      "away": "OV",
+      "homePts": 92,
+      "awayPts": 49
+    },
+    {
+      "gameNo": 922,
+      "home": "ATL",
+      "away": "MEM",
+      "homePts": 64,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 923,
+      "home": "SAS",
+      "away": "ATL",
+      "homePts": 90,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 924,
+      "home": "TOR",
+      "away": "DET",
+      "homePts": 61,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 925,
+      "home": "MW",
+      "away": "OV",
+      "homePts": 83,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 926,
+      "home": "STL",
+      "away": "CIN",
+      "homePts": 58,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 927,
+      "home": "TEX",
+      "away": "STL",
+      "homePts": 106,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 928,
+      "home": "MEM",
+      "away": "SEA",
+      "homePts": 84,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 929,
+      "home": "LA",
+      "away": "VEG",
+      "homePts": 61,
+      "awayPts": 64
+    },
+    {
+      "gameNo": 930,
+      "home": "CHI",
+      "away": "DCB",
+      "homePts": 97,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 931,
+      "home": "DET",
+      "away": "BOS",
+      "homePts": 78,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 932,
+      "home": "CAR",
+      "away": "DET",
+      "homePts": 89,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 933,
+      "home": "NO",
+      "away": "CGG",
+      "homePts": 82,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 934,
+      "home": "HON",
+      "away": "MON",
+      "homePts": 87,
+      "awayPts": 61
+    },
+    {
+      "gameNo": 935,
+      "home": "MAN",
+      "away": "DCB",
+      "homePts": 76,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 936,
+      "home": "PHX",
+      "away": "SEA",
+      "homePts": 87,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 937,
+      "home": "TOR",
+      "away": "HON",
+      "homePts": 88,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 938,
+      "home": "DET",
+      "away": "ATL",
+      "homePts": 85,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 939,
+      "home": "DET",
+      "away": "OV",
+      "homePts": 107,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 940,
+      "home": "CAR",
+      "away": "OV",
+      "homePts": 84,
+      "awayPts": 64
+    },
+    {
+      "gameNo": 941,
+      "home": "CHI",
+      "away": "VEG",
+      "homePts": 73,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 942,
+      "home": "TEX",
+      "away": "DEN",
+      "homePts": 105,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 943,
+      "home": "ATL",
+      "away": "NY",
+      "homePts": 82,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 944,
+      "home": "SAS",
+      "away": "PHX",
+      "homePts": 106,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 945,
+      "home": "BOS",
+      "away": "CIN",
+      "homePts": 97,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 946,
+      "home": "MAN",
+      "away": "CAR",
+      "homePts": 89,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 947,
+      "home": "NO",
+      "away": "FLO",
+      "homePts": 107,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 948,
+      "home": "LA",
+      "away": "MEM",
+      "homePts": 58,
+      "awayPts": 104
+    },
+    {
+      "gameNo": 949,
+      "home": "MAN",
+      "away": "MW",
+      "homePts": 96,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 950,
+      "home": "STL",
+      "away": "VAN",
+      "homePts": 98,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 951,
+      "home": "CGG",
+      "away": "OAK",
+      "homePts": 104,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 952,
+      "home": "MIL",
+      "away": "CHI",
+      "homePts": 91,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 953,
+      "home": "CIN",
+      "away": "DCB",
+      "homePts": 78,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 954,
+      "home": "PHX",
+      "away": "DEN",
+      "homePts": 77,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 955,
+      "home": "FLO",
+      "away": "ATL",
+      "homePts": 83,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 956,
+      "home": "MW",
+      "away": "TEX",
+      "homePts": 79,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 957,
+      "home": "MIL",
+      "away": "DCB",
+      "homePts": 70,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 958,
+      "home": "SAS",
+      "away": "PHX",
+      "homePts": 104,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 959,
+      "home": "HON",
+      "away": "CGG",
+      "homePts": 108,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 960,
+      "home": "NY",
+      "away": "CHI",
+      "homePts": 71,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 961,
+      "home": "VAN",
+      "away": "MEM",
+      "homePts": 69,
+      "awayPts": 112
+    },
+    {
+      "gameNo": 962,
+      "home": "VEG",
+      "away": "ATL",
+      "homePts": 72,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 963,
+      "home": "TOR",
+      "away": "CP",
+      "homePts": 66,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 964,
+      "home": "BOS",
+      "away": "NY",
+      "homePts": 99,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 965,
+      "home": "OAK",
+      "away": "LA",
+      "homePts": 81,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 966,
+      "home": "SEA",
+      "away": "NO",
+      "homePts": 64,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 967,
+      "home": "MAN",
+      "away": "MON",
+      "homePts": 73,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 968,
+      "home": "CIN",
+      "away": "MAN",
+      "homePts": 77,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 969,
+      "home": "SAS",
+      "away": "VEG",
+      "homePts": 99,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 970,
+      "home": "TEX",
+      "away": "PHX",
+      "homePts": 102,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 971,
+      "home": "MON",
+      "away": "MIL",
+      "homePts": 65,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 972,
+      "home": "CGG",
+      "away": "STL",
+      "homePts": 84,
+      "awayPts": 56
+    },
+    {
+      "gameNo": 973,
+      "home": "CP",
+      "away": "CAR",
+      "homePts": 69,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 974,
+      "home": "SEA",
+      "away": "NY",
+      "homePts": 110,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 975,
+      "home": "SEA",
+      "away": "DEN",
+      "homePts": 79,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 976,
+      "home": "TEX",
+      "away": "TOR",
+      "homePts": 96,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 977,
+      "home": "MW",
+      "away": "CIN",
+      "homePts": 88,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 978,
+      "home": "FLO",
+      "away": "DCB",
+      "homePts": 71,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 979,
+      "home": "NO",
+      "away": "VAN",
+      "homePts": 97,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 980,
+      "home": "LA",
+      "away": "PHX",
+      "homePts": 91,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 981,
+      "home": "DET",
+      "away": "OV",
+      "homePts": 87,
+      "awayPts": 64
+    },
+    {
+      "gameNo": 982,
+      "home": "FLO",
+      "away": "HON",
+      "homePts": 66,
+      "awayPts": 106
+    },
+    {
+      "gameNo": 983,
+      "home": "MIL",
+      "away": "BOS",
+      "homePts": 67,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 984,
+      "home": "MW",
+      "away": "CHI",
+      "homePts": 78,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 985,
+      "home": "OV",
+      "away": "OAK",
+      "homePts": 70,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 986,
+      "home": "MEM",
+      "away": "VAN",
+      "homePts": 99,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 987,
+      "home": "CGG",
+      "away": "OV",
+      "homePts": 96,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 988,
+      "home": "MEM",
+      "away": "DEN",
+      "homePts": 75,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 989,
+      "home": "CAR",
+      "away": "BOS",
+      "homePts": 104,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 990,
+      "home": "CP",
+      "away": "MEM",
+      "homePts": 74,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 991,
+      "home": "MON",
+      "away": "HON",
+      "homePts": 86,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 992,
+      "home": "TOR",
+      "away": "OV",
+      "homePts": 70,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 993,
+      "home": "LA",
+      "away": "PHX",
+      "homePts": 73,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 994,
+      "home": "HON",
+      "away": "SAS",
+      "homePts": 86,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 995,
+      "home": "SEA",
+      "away": "STL",
+      "homePts": 89,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 996,
+      "home": "NO",
+      "away": "VEG",
+      "homePts": 102,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 997,
+      "home": "FLO",
+      "away": "CGG",
+      "homePts": 76,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 998,
+      "home": "STL",
+      "away": "CP",
+      "homePts": 70,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 999,
+      "home": "MIL",
+      "away": "MAN",
+      "homePts": 68,
+      "awayPts": 110
+    },
+    {
+      "gameNo": 1000,
+      "home": "ATL",
+      "away": "HON",
+      "homePts": 83,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 1001,
+      "home": "BOS",
+      "away": "NY",
+      "homePts": 96,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1002,
+      "home": "VEG",
+      "away": "TEX",
+      "homePts": 80,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 1003,
+      "home": "MIL",
+      "away": "TOR",
+      "homePts": 65,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 1004,
+      "home": "NO",
+      "away": "DEN",
+      "homePts": 87,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 1005,
+      "home": "CAR",
+      "away": "BOS",
+      "homePts": 91,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 1006,
+      "home": "MW",
+      "away": "CGG",
+      "homePts": 88,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 1007,
+      "home": "BOS",
+      "away": "MON",
+      "homePts": 69,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 1008,
+      "home": "MAN",
+      "away": "CIN",
+      "homePts": 87,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 1009,
+      "home": "SAS",
+      "away": "CAR",
+      "homePts": 98,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 1010,
+      "home": "FLO",
+      "away": "LA",
+      "homePts": 86,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1011,
+      "home": "HON",
+      "away": "VAN",
+      "homePts": 82,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 1012,
+      "home": "TOR",
+      "away": "CHI",
+      "homePts": 82,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 1013,
+      "home": "CAR",
+      "away": "DCB",
+      "homePts": 94,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 1014,
+      "home": "CHI",
+      "away": "NY",
+      "homePts": 81,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 1015,
+      "home": "OAK",
+      "away": "CHI",
+      "homePts": 84,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 1016,
+      "home": "CIN",
+      "away": "MW",
+      "homePts": 79,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 1017,
+      "home": "DCB",
+      "away": "CP",
+      "homePts": 86,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 1018,
+      "home": "SEA",
+      "away": "MEM",
+      "homePts": 76,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 1019,
+      "home": "VEG",
+      "away": "TEX",
+      "homePts": 78,
+      "awayPts": 108
+    },
+    {
+      "gameNo": 1020,
+      "home": "SAS",
+      "away": "LA",
+      "homePts": 93,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 1021,
+      "home": "PHX",
+      "away": "ATL",
+      "homePts": 73,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 1022,
+      "home": "MW",
+      "away": "DEN",
+      "homePts": 91,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 1023,
+      "home": "OAK",
+      "away": "VAN",
+      "homePts": 72,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 1024,
+      "home": "STL",
+      "away": "SEA",
+      "homePts": 71,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 1025,
+      "home": "MON",
+      "away": "BOS",
+      "homePts": 64,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1026,
+      "home": "MW",
+      "away": "ATL",
+      "homePts": 72,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 1027,
+      "home": "NO",
+      "away": "CP",
+      "homePts": 82,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 1028,
+      "home": "CGG",
+      "away": "VEG",
+      "homePts": 79,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1029,
+      "home": "LA",
+      "away": "MW",
+      "homePts": 59,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 1030,
+      "home": "MAN",
+      "away": "MIL",
+      "homePts": 92,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 1031,
+      "home": "STL",
+      "away": "NY",
+      "homePts": 80,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 1032,
+      "home": "STL",
+      "away": "FLO",
+      "homePts": 64,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 1033,
+      "home": "VAN",
+      "away": "VEG",
+      "homePts": 76,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 1034,
+      "home": "SAS",
+      "away": "VEG",
+      "homePts": 101,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 1035,
+      "home": "FLO",
+      "away": "OV",
+      "homePts": 71,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 1036,
+      "home": "LA",
+      "away": "DEN",
+      "homePts": 59,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 1037,
+      "home": "CP",
+      "away": "DET",
+      "homePts": 81,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1038,
+      "home": "CIN",
+      "away": "CGG",
+      "homePts": 88,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 1039,
+      "home": "ATL",
+      "away": "TOR",
+      "homePts": 84,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 1040,
+      "home": "TEX",
+      "away": "PHX",
+      "homePts": 98,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 1041,
+      "home": "MON",
+      "away": "DEN",
+      "homePts": 81,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 1042,
+      "home": "MW",
+      "away": "DCB",
+      "homePts": 82,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 1043,
+      "home": "MW",
+      "away": "MON",
+      "homePts": 98,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 1044,
+      "home": "PHX",
+      "away": "DCB",
+      "homePts": 73,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 1045,
+      "home": "OAK",
+      "away": "TEX",
+      "homePts": 84,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 1046,
+      "home": "MAN",
+      "away": "ATL",
+      "homePts": 72,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 1047,
+      "home": "NY",
+      "away": "DET",
+      "homePts": 74,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 1048,
+      "home": "CAR",
+      "away": "NY",
+      "homePts": 103,
+      "awayPts": 58
+    },
+    {
+      "gameNo": 1049,
+      "home": "TEX",
+      "away": "SAS",
+      "homePts": 99,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1050,
+      "home": "HON",
+      "away": "CHI",
+      "homePts": 84,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 1051,
+      "home": "OV",
+      "away": "NY",
+      "homePts": 61,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1052,
+      "home": "CAR",
+      "away": "TOR",
+      "homePts": 77,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1053,
+      "home": "MW",
+      "away": "MIL",
+      "homePts": 80,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 1054,
+      "home": "NO",
+      "away": "MEM",
+      "homePts": 112,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1055,
+      "home": "NY",
+      "away": "CIN",
+      "homePts": 70,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 1056,
+      "home": "OAK",
+      "away": "SEA",
+      "homePts": 58,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 1057,
+      "home": "TEX",
+      "away": "VAN",
+      "homePts": 89,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1058,
+      "home": "CP",
+      "away": "MAN",
+      "homePts": 70,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 1059,
+      "home": "CIN",
+      "away": "CHI",
+      "homePts": 72,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1060,
+      "home": "OV",
+      "away": "PHX",
+      "homePts": 80,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1061,
+      "home": "CP",
+      "away": "MON",
+      "homePts": 77,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 1062,
+      "home": "MIL",
+      "away": "NY",
+      "homePts": 97,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 1063,
+      "home": "NO",
+      "away": "STL",
+      "homePts": 88,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 1064,
+      "home": "NO",
+      "away": "SEA",
+      "homePts": 97,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1065,
+      "home": "CP",
+      "away": "DET",
+      "homePts": 90,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 1066,
+      "home": "TOR",
+      "away": "OAK",
+      "homePts": 84,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 1067,
+      "home": "OAK",
+      "away": "DEN",
+      "homePts": 96,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 1068,
+      "home": "MAN",
+      "away": "HON",
+      "homePts": 87,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 1069,
+      "home": "TOR",
+      "away": "CGG",
+      "homePts": 80,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 1070,
+      "home": "HON",
+      "away": "LA",
+      "homePts": 89,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 1071,
+      "home": "MEM",
+      "away": "CGG",
+      "homePts": 97,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 1072,
+      "home": "OV",
+      "away": "SAS",
+      "homePts": 66,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 1073,
+      "home": "OV",
+      "away": "BOS",
+      "homePts": 69,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1074,
+      "home": "DCB",
+      "away": "CAR",
+      "homePts": 83,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 1075,
+      "home": "HON",
+      "away": "VAN",
+      "homePts": 107,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 1076,
+      "home": "FLO",
+      "away": "CHI",
+      "homePts": 73,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 1077,
+      "home": "NY",
+      "away": "MEM",
+      "homePts": 66,
+      "awayPts": 62
+    },
+    {
+      "gameNo": 1078,
+      "home": "STL",
+      "away": "DEN",
+      "homePts": 62,
+      "awayPts": 107
+    },
+    {
+      "gameNo": 1079,
+      "home": "TEX",
+      "away": "SEA",
+      "homePts": 100,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1080,
+      "home": "DET",
+      "away": "MW",
+      "homePts": 61,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 1081,
+      "home": "VAN",
+      "away": "PHX",
+      "homePts": 103,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 1082,
+      "home": "MON",
+      "away": "SAS",
+      "homePts": 76,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 1083,
+      "home": "FLO",
+      "away": "CIN",
+      "homePts": 80,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 1084,
+      "home": "VEG",
+      "away": "BOS",
+      "homePts": 82,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 1085,
+      "home": "MAN",
+      "away": "LA",
+      "homePts": 96,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 1086,
+      "home": "MIL",
+      "away": "CIN",
+      "homePts": 86,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 1087,
+      "home": "CAR",
+      "away": "DCB",
+      "homePts": 102,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 1088,
+      "home": "ATL",
+      "away": "DCB",
+      "homePts": 83,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 1089,
+      "home": "ATL",
+      "away": "MW",
+      "homePts": 87,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1090,
+      "home": "CGG",
+      "away": "FLO",
+      "homePts": 87,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 1091,
+      "home": "TOR",
+      "away": "CAR",
+      "homePts": 67,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 1092,
+      "home": "MIL",
+      "away": "MW",
+      "homePts": 83,
+      "awayPts": 103
+    },
+    {
+      "gameNo": 1093,
+      "home": "LA",
+      "away": "BOS",
+      "homePts": 62,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1094,
+      "home": "TEX",
+      "away": "SEA",
+      "homePts": 91,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 1095,
+      "home": "PHX",
+      "away": "VAN",
+      "homePts": 76,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1096,
+      "home": "SAS",
+      "away": "STL",
+      "homePts": 96,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 1097,
+      "home": "CHI",
+      "away": "MAN",
+      "homePts": 88,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 1098,
+      "home": "DEN",
+      "away": "SEA",
+      "homePts": 94,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 1099,
+      "home": "DET",
+      "away": "CIN",
+      "homePts": 81,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 1100,
+      "home": "NO",
+      "away": "MEM",
+      "homePts": 93,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 1101,
+      "home": "MON",
+      "away": "MAN",
+      "homePts": 67,
+      "awayPts": 103
+    },
+    {
+      "gameNo": 1102,
+      "home": "VEG",
+      "away": "SAS",
+      "homePts": 73,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1103,
+      "home": "BOS",
+      "away": "MON",
+      "homePts": 76,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 1104,
+      "home": "NY",
+      "away": "ATL",
+      "homePts": 81,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 1105,
+      "home": "VAN",
+      "away": "OAK",
+      "homePts": 97,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 1106,
+      "home": "SAS",
+      "away": "LA",
+      "homePts": 112,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 1107,
+      "home": "VAN",
+      "away": "OV",
+      "homePts": 73,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 1108,
+      "home": "DCB",
+      "away": "CP",
+      "homePts": 80,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 1109,
+      "home": "TEX",
+      "away": "MEM",
+      "homePts": 73,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 1110,
+      "home": "CGG",
+      "away": "VEG",
+      "homePts": 98,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1111,
+      "home": "DET",
+      "away": "SEA",
+      "homePts": 96,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 1112,
+      "home": "DEN",
+      "away": "STL",
+      "homePts": 82,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 1113,
+      "home": "STL",
+      "away": "HON",
+      "homePts": 71,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 1114,
+      "home": "VEG",
+      "away": "NO",
+      "homePts": 60,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1115,
+      "home": "DET",
+      "away": "CHI",
+      "homePts": 93,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 1116,
+      "home": "FLO",
+      "away": "SEA",
+      "homePts": 68,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1117,
+      "home": "MIL",
+      "away": "BOS",
+      "homePts": 65,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1118,
+      "home": "ATL",
+      "away": "TOR",
+      "homePts": 87,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 1119,
+      "home": "TOR",
+      "away": "CHI",
+      "homePts": 71,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 1120,
+      "home": "OAK",
+      "away": "DEN",
+      "homePts": 69,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1121,
+      "home": "NO",
+      "away": "SEA",
+      "homePts": 72,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 1122,
+      "home": "CP",
+      "away": "DCB",
+      "homePts": 87,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 1123,
+      "home": "FLO",
+      "away": "MEM",
+      "homePts": 76,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 1124,
+      "home": "NO",
+      "away": "CAR",
+      "homePts": 89,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 1125,
+      "home": "TEX",
+      "away": "MIL",
+      "homePts": 86,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 1126,
+      "home": "CP",
+      "away": "HON",
+      "homePts": 79,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 1127,
+      "home": "CGG",
+      "away": "DET",
+      "homePts": 80,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 1128,
+      "home": "DCB",
+      "away": "MON",
+      "homePts": 84,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 1129,
+      "home": "LA",
+      "away": "HON",
+      "homePts": 84,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 1130,
+      "home": "CIN",
+      "away": "BOS",
+      "homePts": 96,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 1131,
+      "home": "OV",
+      "away": "DET",
+      "homePts": 65,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 1132,
+      "home": "PHX",
+      "away": "VAN",
+      "homePts": 81,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 1133,
+      "home": "OV",
+      "away": "LA",
+      "homePts": 70,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 1134,
+      "home": "MIL",
+      "away": "ATL",
+      "homePts": 75,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 1135,
+      "home": "TEX",
+      "away": "SAS",
+      "homePts": 94,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 1136,
+      "home": "PHX",
+      "away": "STL",
+      "homePts": 85,
+      "awayPts": 69
+    },
+    {
+      "gameNo": 1137,
+      "home": "OAK",
+      "away": "MEM",
+      "homePts": 87,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1138,
+      "home": "OV",
+      "away": "CHI",
+      "homePts": 71,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 1139,
+      "home": "CAR",
+      "away": "TOR",
+      "homePts": 73,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 1140,
+      "home": "DEN",
+      "away": "VEG",
+      "homePts": 87,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 1141,
+      "home": "SEA",
+      "away": "FLO",
+      "homePts": 88,
+      "awayPts": 61
+    },
+    {
+      "gameNo": 1142,
+      "home": "CGG",
+      "away": "SEA",
+      "homePts": 90,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1143,
+      "home": "CIN",
+      "away": "BOS",
+      "homePts": 92,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1144,
+      "home": "DCB",
+      "away": "MON",
+      "homePts": 78,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 1145,
+      "home": "MAN",
+      "away": "OV",
+      "homePts": 93,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1146,
+      "home": "DEN",
+      "away": "TOR",
+      "homePts": 94,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 1147,
+      "home": "OV",
+      "away": "MON",
+      "homePts": 85,
+      "awayPts": 58
+    },
+    {
+      "gameNo": 1148,
+      "home": "CAR",
+      "away": "MAN",
+      "homePts": 90,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 1149,
+      "home": "FLO",
+      "away": "DEN",
+      "homePts": 51,
+      "awayPts": 100
+    },
+    {
+      "gameNo": 1150,
+      "home": "VEG",
+      "away": "PHX",
+      "homePts": 64,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 1151,
+      "home": "FLO",
+      "away": "STL",
+      "homePts": 67,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 1152,
+      "home": "HON",
+      "away": "LA",
+      "homePts": 90,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 1153,
+      "home": "CP",
+      "away": "NY",
+      "homePts": 80,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1154,
+      "home": "BOS",
+      "away": "CHI",
+      "homePts": 92,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 1155,
+      "home": "MIL",
+      "away": "CP",
+      "homePts": 88,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 1156,
+      "home": "MEM",
+      "away": "PHX",
+      "homePts": 89,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 1157,
+      "home": "ATL",
+      "away": "SEA",
+      "homePts": 67,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 1158,
+      "home": "TEX",
+      "away": "CGG",
+      "homePts": 95,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 1159,
+      "home": "MEM",
+      "away": "VAN",
+      "homePts": 76,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 1160,
+      "home": "DET",
+      "away": "OAK",
+      "homePts": 97,
+      "awayPts": 68
+    },
+    {
+      "gameNo": 1161,
+      "home": "TEX",
+      "away": "NO",
+      "homePts": 87,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1162,
+      "home": "SAS",
+      "away": "NO",
+      "homePts": 85,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 1163,
+      "home": "MON",
+      "away": "CIN",
+      "homePts": 69,
+      "awayPts": 109
+    },
+    {
+      "gameNo": 1164,
+      "home": "VAN",
+      "away": "STL",
+      "homePts": 75,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 1165,
+      "home": "STL",
+      "away": "OAK",
+      "homePts": 92,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 1166,
+      "home": "ATL",
+      "away": "CGG",
+      "homePts": 93,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1167,
+      "home": "DCB",
+      "away": "CIN",
+      "homePts": 92,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 1168,
+      "home": "TOR",
+      "away": "CP",
+      "homePts": 79,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 1169,
+      "home": "MAN",
+      "away": "OV",
+      "homePts": 97,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 1170,
+      "home": "CAR",
+      "away": "LA",
+      "homePts": 84,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 1171,
+      "home": "TEX",
+      "away": "HON",
+      "homePts": 88,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1172,
+      "home": "TEX",
+      "away": "VEG",
+      "homePts": 94,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 1173,
+      "home": "MIL",
+      "away": "NY",
+      "homePts": 78,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1174,
+      "home": "CHI",
+      "away": "CIN",
+      "homePts": 91,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 1175,
+      "home": "ATL",
+      "away": "SAS",
+      "homePts": 100,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 1176,
+      "home": "MW",
+      "away": "CIN",
+      "homePts": 73,
+      "awayPts": 74
+    },
+    {
+      "gameNo": 1177,
+      "home": "VAN",
+      "away": "PHX",
+      "homePts": 74,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 1178,
+      "home": "LA",
+      "away": "MEM",
+      "homePts": 85,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 1179,
+      "home": "MW",
+      "away": "ATL",
+      "homePts": 82,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 1180,
+      "home": "MIL",
+      "away": "PHX",
+      "homePts": 78,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 1181,
+      "home": "HON",
+      "away": "MEM",
+      "homePts": 91,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 1182,
+      "home": "CGG",
+      "away": "FLO",
+      "homePts": 111,
+      "awayPts": 66
+    },
+    {
+      "gameNo": 1183,
+      "home": "DEN",
+      "away": "CHI",
+      "homePts": 89,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 1184,
+      "home": "MAN",
+      "away": "DCB",
+      "homePts": 70,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 1185,
+      "home": "VEG",
+      "away": "FLO",
+      "homePts": 84,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 1186,
+      "home": "BOS",
+      "away": "CHI",
+      "homePts": 92,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1187,
+      "home": "DCB",
+      "away": "OAK",
+      "homePts": 86,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 1188,
+      "home": "MON",
+      "away": "TOR",
+      "homePts": 81,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 1189,
+      "home": "NY",
+      "away": "ATL",
+      "homePts": 70,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 1190,
+      "home": "DET",
+      "away": "NO",
+      "homePts": 93,
+      "awayPts": 101
+    },
+    {
+      "gameNo": 1191,
+      "home": "BOS",
+      "away": "SAS",
+      "homePts": 86,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1192,
+      "home": "CAR",
+      "away": "NY",
+      "homePts": 98,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 1193,
+      "home": "DCB",
+      "away": "CAR",
+      "homePts": 85,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1194,
+      "home": "MAN",
+      "away": "CP",
+      "homePts": 100,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 1195,
+      "home": "MON",
+      "away": "MW",
+      "homePts": 68,
+      "awayPts": 67
+    },
+    {
+      "gameNo": 1196,
+      "home": "OAK",
+      "away": "FLO",
+      "homePts": 86,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 1197,
+      "home": "HON",
+      "away": "STL",
+      "homePts": 94,
+      "awayPts": 65
+    },
+    {
+      "gameNo": 1198,
+      "home": "LA",
+      "away": "CIN",
+      "homePts": 75,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 1199,
+      "home": "DET",
+      "away": "DEN",
+      "homePts": 81,
+      "awayPts": 106
+    },
+    {
+      "gameNo": 1200,
+      "home": "VAN",
+      "away": "SAS",
+      "homePts": 88,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 1201,
+      "home": "STL",
+      "away": "VEG",
+      "homePts": 77,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 1202,
+      "home": "MIL",
+      "away": "DCB",
+      "homePts": 91,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 1203,
+      "home": "TOR",
+      "away": "MW",
+      "homePts": 92,
+      "awayPts": 66
+    },
+    {
+      "gameNo": 1204,
+      "home": "NO",
+      "away": "VEG",
+      "homePts": 97,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 1205,
+      "home": "FLO",
+      "away": "CGG",
+      "homePts": 60,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 1206,
+      "home": "FLO",
+      "away": "HON",
+      "homePts": 58,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 1207,
+      "home": "CP",
+      "away": "SAS",
+      "homePts": 73,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 1208,
+      "home": "TEX",
+      "away": "BOS",
+      "homePts": 104,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 1209,
+      "home": "SEA",
+      "away": "HON",
+      "homePts": 82,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 1210,
+      "home": "VEG",
+      "away": "PHX",
+      "homePts": 73,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 1211,
+      "home": "DET",
+      "away": "HON",
+      "homePts": 83,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1212,
+      "home": "NY",
+      "away": "MIL",
+      "homePts": 63,
+      "awayPts": 61
+    },
+    {
+      "gameNo": 1213,
+      "home": "OV",
+      "away": "MAN",
+      "homePts": 86,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 1214,
+      "home": "VAN",
+      "away": "MON",
+      "homePts": 89,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 1215,
+      "home": "CAR",
+      "away": "CIN",
+      "homePts": 85,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 1216,
+      "home": "TEX",
+      "away": "DEN",
+      "homePts": 104,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 1217,
+      "home": "TOR",
+      "away": "MW",
+      "homePts": 90,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 1218,
+      "home": "PHX",
+      "away": "CGG",
+      "homePts": 77,
+      "awayPts": 89
+    },
+    {
+      "gameNo": 1219,
+      "home": "MEM",
+      "away": "PHX",
+      "homePts": 90,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1220,
+      "home": "LA",
+      "away": "CHI",
+      "homePts": 84,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1221,
+      "home": "HON",
+      "away": "NO",
+      "homePts": 88,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 1222,
+      "home": "OAK",
+      "away": "MEM",
+      "homePts": 69,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 1223,
+      "home": "CGG",
+      "away": "DEN",
+      "homePts": 88,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 1224,
+      "home": "CHI",
+      "away": "NY",
+      "homePts": 65,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 1225,
+      "home": "CP",
+      "away": "MW",
+      "homePts": 74,
+      "awayPts": 107
+    },
+    {
+      "gameNo": 1226,
+      "home": "OAK",
+      "away": "PHX",
+      "homePts": 76,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 1227,
+      "home": "CHI",
+      "away": "MIL",
+      "homePts": 94,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 1228,
+      "home": "TOR",
+      "away": "BOS",
+      "homePts": 97,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 1229,
+      "home": "STL",
+      "away": "MEM",
+      "homePts": 60,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 1230,
+      "home": "LA",
+      "away": "SAS",
+      "homePts": 66,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 1231,
+      "home": "TOR",
+      "away": "CAR",
+      "homePts": 96,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1232,
+      "home": "HON",
+      "away": "NO",
+      "homePts": 84,
+      "awayPts": 102
+    },
+    {
+      "gameNo": 1233,
+      "home": "OV",
+      "away": "ATL",
+      "homePts": 79,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1234,
+      "home": "VAN",
+      "away": "CGG",
+      "homePts": 85,
+      "awayPts": 99
+    },
+    {
+      "gameNo": 1235,
+      "home": "OV",
+      "away": "MAN",
+      "homePts": 81,
+      "awayPts": 82
+    },
+    {
+      "gameNo": 1236,
+      "home": "MON",
+      "away": "CAR",
+      "homePts": 71,
+      "awayPts": 96
+    },
+    {
+      "gameNo": 1237,
+      "home": "SEA",
+      "away": "DCB",
+      "homePts": 76,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1238,
+      "home": "MAN",
+      "away": "DET",
+      "homePts": 71,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1239,
+      "home": "VAN",
+      "away": "STL",
+      "homePts": 96,
+      "awayPts": 70
+    },
+    {
+      "gameNo": 1240,
+      "home": "MON",
+      "away": "DET",
+      "homePts": 85,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 1241,
+      "home": "NO",
+      "away": "NY",
+      "homePts": 83,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 1242,
+      "home": "OV",
+      "away": "CIN",
+      "homePts": 82,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 1243,
+      "home": "ATL",
+      "away": "CP",
+      "homePts": 90,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1244,
+      "home": "MIL",
+      "away": "CIN",
+      "homePts": 103,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 1245,
+      "home": "BOS",
+      "away": "CAR",
+      "homePts": 99,
+      "awayPts": 97
+    },
+    {
+      "gameNo": 1246,
+      "home": "TEX",
+      "away": "OAK",
+      "homePts": 88,
+      "awayPts": 93
+    },
+    {
+      "gameNo": 1247,
+      "home": "LA",
+      "away": "SEA",
+      "homePts": 80,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 1248,
+      "home": "DEN",
+      "away": "CAR",
+      "homePts": 72,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 1249,
+      "home": "MAN",
+      "away": "VEG",
+      "homePts": 95,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 1250,
+      "home": "LA",
+      "away": "SAS",
+      "homePts": 93,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 1251,
+      "home": "VEG",
+      "away": "SAS",
+      "homePts": 81,
+      "awayPts": 98
+    },
+    {
+      "gameNo": 1252,
+      "home": "CGG",
+      "away": "DEN",
+      "homePts": 100,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 1253,
+      "home": "CHI",
+      "away": "ATL",
+      "homePts": 101,
+      "awayPts": 76
+    },
+    {
+      "gameNo": 1254,
+      "home": "DCB",
+      "away": "DET",
+      "homePts": 81,
+      "awayPts": 71
+    },
+    {
+      "gameNo": 1255,
+      "home": "MON",
+      "away": "VEG",
+      "homePts": 67,
+      "awayPts": 106
+    },
+    {
+      "gameNo": 1256,
+      "home": "VAN",
+      "away": "CGG",
+      "homePts": 90,
+      "awayPts": 92
+    },
+    {
+      "gameNo": 1257,
+      "home": "NO",
+      "away": "OAK",
+      "homePts": 99,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1258,
+      "home": "FLO",
+      "away": "DEN",
+      "homePts": 74,
+      "awayPts": 101
+    },
+    {
+      "gameNo": 1259,
+      "home": "MEM",
+      "away": "BOS",
+      "homePts": 74,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 1260,
+      "home": "MW",
+      "away": "MIL",
+      "homePts": 82,
+      "awayPts": 73
+    },
+    {
+      "gameNo": 1261,
+      "home": "DCB",
+      "away": "NY",
+      "homePts": 78,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 1262,
+      "home": "BOS",
+      "away": "CP",
+      "homePts": 89,
+      "awayPts": 86
+    },
+    {
+      "gameNo": 1263,
+      "home": "MON",
+      "away": "TOR",
+      "homePts": 61,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 1264,
+      "home": "SEA",
+      "away": "MEM",
+      "homePts": 71,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1265,
+      "home": "STL",
+      "away": "SAS",
+      "homePts": 90,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1266,
+      "home": "VAN",
+      "away": "TEX",
+      "homePts": 90,
+      "awayPts": 85
+    },
+    {
+      "gameNo": 1267,
+      "home": "OV",
+      "away": "MW",
+      "homePts": 82,
+      "awayPts": 72
+    },
+    {
+      "gameNo": 1268,
+      "home": "MIL",
+      "away": "CP",
+      "homePts": 83,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 1269,
+      "home": "VEG",
+      "away": "FLO",
+      "homePts": 60,
+      "awayPts": 62
+    },
+    {
+      "gameNo": 1270,
+      "home": "MAN",
+      "away": "CHI",
+      "homePts": 95,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 1271,
+      "home": "PHX",
+      "away": "MEM",
+      "homePts": 75,
+      "awayPts": 94
+    },
+    {
+      "gameNo": 1272,
+      "home": "NO",
+      "away": "CIN",
+      "homePts": 83,
+      "awayPts": 108
+    },
+    {
+      "gameNo": 1273,
+      "home": "NO",
+      "away": "OAK",
+      "homePts": 94,
+      "awayPts": 75
+    },
+    {
+      "gameNo": 1274,
+      "home": "LA",
+      "away": "SEA",
+      "homePts": 65,
+      "awayPts": 79
+    },
+    {
+      "gameNo": 1275,
+      "home": "CHI",
+      "away": "ATL",
+      "homePts": 88,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 1276,
+      "home": "OV",
+      "away": "NY",
+      "homePts": 68,
+      "awayPts": 78
+    },
+    {
+      "gameNo": 1277,
+      "home": "STL",
+      "away": "CGG",
+      "homePts": 87,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 1278,
+      "home": "TOR",
+      "away": "NY",
+      "homePts": 99,
+      "awayPts": 77
+    },
+    {
+      "gameNo": 1279,
+      "home": "MAN",
+      "away": "DET",
+      "homePts": 70,
+      "awayPts": 84
+    },
+    {
+      "gameNo": 1280,
+      "home": "DET",
+      "away": "CP",
+      "homePts": 71,
+      "awayPts": 83
+    },
+    {
+      "gameNo": 1281,
+      "home": "HON",
+      "away": "DEN",
+      "homePts": 92,
+      "awayPts": 91
+    },
+    {
+      "gameNo": 1282,
+      "home": "STL",
+      "away": "PHX",
+      "homePts": 97,
+      "awayPts": 90
+    },
+    {
+      "gameNo": 1283,
+      "home": "VAN",
+      "away": "SAS",
+      "homePts": 91,
+      "awayPts": 95
+    },
+    {
+      "gameNo": 1284,
+      "home": "MON",
+      "away": "MW",
+      "homePts": 63,
+      "awayPts": 87
+    },
+    {
+      "gameNo": 1285,
+      "home": "CAR",
+      "away": "CIN",
+      "homePts": 82,
+      "awayPts": 81
+    },
+    {
+      "gameNo": 1286,
+      "home": "FLO",
+      "away": "TEX",
+      "homePts": 70,
+      "awayPts": 88
+    },
+    {
+      "gameNo": 1287,
+      "home": "LA",
+      "away": "OAK",
+      "homePts": 86,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 1288,
+      "home": "DCB",
+      "away": "SEA",
+      "homePts": 82,
+      "awayPts": 105
+    },
+    {
+      "gameNo": 1289,
+      "home": "MIL",
+      "away": "ATL",
+      "homePts": 84,
+      "awayPts": 80
+    },
+    {
+      "gameNo": 1290,
+      "home": "TOR",
+      "away": "BOS",
+      "homePts": 95,
+      "awayPts": 93
+    }
+  ]
+}

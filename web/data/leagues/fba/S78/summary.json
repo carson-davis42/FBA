@@ -1,0 +1,14 @@
+{
+  "league": "fba",
+  "season": 78,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Boston Bucks",
+      "runnerUp": "Memphis Blues",
+      "score": "4-1"
+    }
+  ]
+}

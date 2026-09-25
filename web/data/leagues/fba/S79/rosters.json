@@ -1,0 +1,1417 @@
+{
+  "league": "fba",
+  "season": 79,
+  "locked": false,
+  "teams": {
+    "ATL": [
+      {
+        "playerId": "p00001",
+        "position": "PG",
+        "rating": 84,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00002",
+        "position": "SG",
+        "rating": 79,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00003",
+        "position": "SF",
+        "rating": 81,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00004",
+        "position": "PF",
+        "rating": 75,
+        "age": 20,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00005",
+        "position": "C",
+        "rating": 84,
+        "age": 26,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 7
+      }
+    ],
+    "BOS": [
+      {
+        "playerId": "p00006",
+        "position": "PG",
+        "rating": 95,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00007",
+        "position": "SG",
+        "rating": 88,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00008",
+        "position": "SF",
+        "rating": 67,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 78,
+        "contractAmount": 1
+      },
+      {
+        "playerId": "p00009",
+        "position": "PF",
+        "rating": 68,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 78,
+        "contractAmount": 1
+      },
+      {
+        "playerId": "p00010",
+        "position": "C",
+        "rating": 94,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 8
+      }
+    ],
+    "CAR": [
+      {
+        "playerId": "p00011",
+        "position": "PG",
+        "rating": 92,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 82,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00012",
+        "position": "SG",
+        "rating": 69,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 1
+      },
+      {
+        "playerId": "p00013",
+        "position": "SF",
+        "rating": 93,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00014",
+        "position": "PF",
+        "rating": 77,
+        "age": 29,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 7
+      },
+      {
+        "playerId": null,
+        "position": "C",
+        "rating": null,
+        "age": null,
+        "points": 0,
+        "contractEnd": null,
+        "contractAmount": null
+      }
+    ],
+    "CHI": [
+      {
+        "playerId": "p00015",
+        "position": "PG",
+        "rating": 72,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00016",
+        "position": "SG",
+        "rating": 77,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00017",
+        "position": "SF",
+        "rating": 73,
+        "age": 31,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00018",
+        "position": "PF",
+        "rating": 72,
+        "age": 19,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00019",
+        "position": "C",
+        "rating": 73,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 5
+      }
+    ],
+    "CIN": [
+      {
+        "playerId": "p00020",
+        "position": "PG",
+        "rating": 79,
+        "age": 26,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00021",
+        "position": "SG",
+        "rating": 94,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00022",
+        "position": "SF",
+        "rating": 68,
+        "age": 32,
+        "points": 0,
+        "contractEnd": 78,
+        "contractAmount": 1
+      },
+      {
+        "playerId": "p00023",
+        "position": "PF",
+        "rating": 77,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00024",
+        "position": "C",
+        "rating": 83,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      }
+    ],
+    "CP": [
+      {
+        "playerId": "p00025",
+        "position": "PG",
+        "rating": 71,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00026",
+        "position": "SG",
+        "rating": 92,
+        "age": 31,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00027",
+        "position": "SF",
+        "rating": 69,
+        "age": 30,
+        "points": 0,
+        "contractEnd": 78,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00028",
+        "position": "PF",
+        "rating": 74,
+        "age": 29,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00029",
+        "position": "C",
+        "rating": 75,
+        "age": 31,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      }
+    ],
+    "CGG": [
+      {
+        "playerId": "p00030",
+        "position": "PG",
+        "rating": 89,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00031",
+        "position": "SG",
+        "rating": 96,
+        "age": 29,
+        "points": 0,
+        "contractEnd": 82,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00032",
+        "position": "SF",
+        "rating": 68,
+        "age": 29,
+        "points": 0,
+        "contractEnd": 78,
+        "contractAmount": 1
+      },
+      {
+        "playerId": "p00033",
+        "position": "PF",
+        "rating": 92,
+        "age": 30,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 8
+      },
+      {
+        "playerId": null,
+        "position": "C",
+        "rating": null,
+        "age": null,
+        "points": 0,
+        "contractEnd": null,
+        "contractAmount": null
+      }
+    ],
+    "DCB": [
+      {
+        "playerId": "p00034",
+        "position": "PG",
+        "rating": 81,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00035",
+        "position": "SG",
+        "rating": 83,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 82,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00036",
+        "position": "SF",
+        "rating": 77,
+        "age": 30,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00037",
+        "position": "PF",
+        "rating": 73,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00038",
+        "position": "C",
+        "rating": 82,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 6
+      }
+    ],
+    "DEN": [
+      {
+        "playerId": "p00039",
+        "position": "PG",
+        "rating": 73,
+        "age": 21,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00040",
+        "position": "SG",
+        "rating": 69,
+        "age": 29,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 1
+      },
+      {
+        "playerId": "p00041",
+        "position": "SF",
+        "rating": 95,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 82,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00042",
+        "position": "PF",
+        "rating": 81,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00043",
+        "position": "C",
+        "rating": 90,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 82,
+        "contractAmount": 8
+      }
+    ],
+    "DET": [
+      {
+        "playerId": "p00044",
+        "position": "PG",
+        "rating": 82,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00045",
+        "position": "SG",
+        "rating": 71,
+        "age": 26,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00046",
+        "position": "SF",
+        "rating": 95,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00047",
+        "position": "PF",
+        "rating": 68,
+        "age": 31,
+        "points": 0,
+        "contractEnd": 78,
+        "contractAmount": 1
+      },
+      {
+        "playerId": "p00048",
+        "position": "C",
+        "rating": 87,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 7
+      }
+    ],
+    "FLO": [
+      {
+        "playerId": "p00049",
+        "position": "PG",
+        "rating": 70,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00050",
+        "position": "SG",
+        "rating": 81,
+        "age": 20,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00051",
+        "position": "SF",
+        "rating": 77,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00052",
+        "position": "PF",
+        "rating": 77,
+        "age": 21,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00053",
+        "position": "C",
+        "rating": 70,
+        "age": 21,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      }
+    ],
+    "HON": [
+      {
+        "playerId": "p00054",
+        "position": "PG",
+        "rating": 71,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 3
+      },
+      {
+        "playerId": "p00055",
+        "position": "SG",
+        "rating": 96,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00056",
+        "position": "SF",
+        "rating": 79,
+        "age": 29,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00057",
+        "position": "PF",
+        "rating": 84,
+        "age": 31,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00058",
+        "position": "C",
+        "rating": 68,
+        "age": 32,
+        "points": 0,
+        "contractEnd": 78,
+        "contractAmount": 1
+      }
+    ],
+    "LA": [
+      {
+        "playerId": "p00059",
+        "position": "PG",
+        "rating": 78,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00060",
+        "position": "SG",
+        "rating": 80,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00061",
+        "position": "SF",
+        "rating": 71,
+        "age": 21,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00062",
+        "position": "PF",
+        "rating": 80,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00063",
+        "position": "C",
+        "rating": 74,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      }
+    ],
+    "MW": [
+      {
+        "playerId": null,
+        "position": "PG",
+        "rating": null,
+        "age": null,
+        "points": 0,
+        "contractEnd": null,
+        "contractAmount": null
+      },
+      {
+        "playerId": "p00064",
+        "position": "SG",
+        "rating": 79,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00065",
+        "position": "SF",
+        "rating": 83,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00066",
+        "position": "PF",
+        "rating": 82,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00067",
+        "position": "C",
+        "rating": 89,
+        "age": 21,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      }
+    ],
+    "MAN": [
+      {
+        "playerId": "p00068",
+        "position": "PG",
+        "rating": 86,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00069",
+        "position": "SG",
+        "rating": 70,
+        "age": 21,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00070",
+        "position": "SF",
+        "rating": 84,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00071",
+        "position": "PF",
+        "rating": 88,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00072",
+        "position": "C",
+        "rating": 71,
+        "age": 30,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      }
+    ],
+    "MEM": [
+      {
+        "playerId": "p00073",
+        "position": "PG",
+        "rating": 96,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00074",
+        "position": "SG",
+        "rating": 71,
+        "age": 26,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 3
+      },
+      {
+        "playerId": "p00075",
+        "position": "SF",
+        "rating": 69,
+        "age": 21,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00076",
+        "position": "PF",
+        "rating": 84,
+        "age": 21,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00077",
+        "position": "C",
+        "rating": 77,
+        "age": 26,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      }
+    ],
+    "MIL": [
+      {
+        "playerId": "p00078",
+        "position": "PG",
+        "rating": 71,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00079",
+        "position": "SG",
+        "rating": 84,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00080",
+        "position": "SF",
+        "rating": 71,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00081",
+        "position": "PF",
+        "rating": 71,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 3
+      },
+      {
+        "playerId": "p00082",
+        "position": "C",
+        "rating": 77,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      }
+    ],
+    "MON": [
+      {
+        "playerId": "p00083",
+        "position": "PG",
+        "rating": 81,
+        "age": 19,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00084",
+        "position": "SG",
+        "rating": 85,
+        "age": 26,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00085",
+        "position": "SF",
+        "rating": 70,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 3
+      },
+      {
+        "playerId": "p00086",
+        "position": "PF",
+        "rating": 71,
+        "age": 29,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00087",
+        "position": "C",
+        "rating": 78,
+        "age": 20,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      }
+    ],
+    "NO": [
+      {
+        "playerId": "p00088",
+        "position": "PG",
+        "rating": 69,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00089",
+        "position": "SG",
+        "rating": 74,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00090",
+        "position": "SF",
+        "rating": 97,
+        "age": 26,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00091",
+        "position": "PF",
+        "rating": 91,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 83,
+        "contractAmount": 8
+      },
+      {
+        "playerId": null,
+        "position": "C",
+        "rating": null,
+        "age": null,
+        "points": 0,
+        "contractEnd": null,
+        "contractAmount": null
+      }
+    ],
+    "NY": [
+      {
+        "playerId": "p00092",
+        "position": "PG",
+        "rating": 75,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00093",
+        "position": "SG",
+        "rating": 80,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00094",
+        "position": "SF",
+        "rating": 69,
+        "age": 19,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00095",
+        "position": "PF",
+        "rating": 70,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00096",
+        "position": "C",
+        "rating": 75,
+        "age": 26,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      }
+    ],
+    "OAK": [
+      {
+        "playerId": "p00097",
+        "position": "PG",
+        "rating": 70,
+        "age": 21,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00098",
+        "position": "SG",
+        "rating": 76,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00099",
+        "position": "SF",
+        "rating": 86,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 82,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00100",
+        "position": "PF",
+        "rating": 98,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00101",
+        "position": "C",
+        "rating": 68,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 78,
+        "contractAmount": 2
+      }
+    ],
+    "OV": [
+      {
+        "playerId": "p00102",
+        "position": "PG",
+        "rating": 76,
+        "age": 21,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00103",
+        "position": "SG",
+        "rating": 78,
+        "age": 19,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00104",
+        "position": "SF",
+        "rating": 77,
+        "age": 20,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00105",
+        "position": "PF",
+        "rating": 80,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00106",
+        "position": "C",
+        "rating": 72,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 4
+      }
+    ],
+    "PHX": [
+      {
+        "playerId": "p00107",
+        "position": "PG",
+        "rating": 80,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00108",
+        "position": "SG",
+        "rating": 70,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00109",
+        "position": "SF",
+        "rating": 77,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00110",
+        "position": "PF",
+        "rating": 75,
+        "age": 32,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00111",
+        "position": "C",
+        "rating": 95,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 8
+      }
+    ],
+    "SAS": [
+      {
+        "playerId": "p00112",
+        "position": "PG",
+        "rating": 69,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 78,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00113",
+        "position": "SG",
+        "rating": 79,
+        "age": 29,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00114",
+        "position": "SF",
+        "rating": 68,
+        "age": 30,
+        "points": 0,
+        "contractEnd": 78,
+        "contractAmount": 1
+      },
+      {
+        "playerId": "p00115",
+        "position": "PF",
+        "rating": 90,
+        "age": 32,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00116",
+        "position": "C",
+        "rating": 97,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 8
+      }
+    ],
+    "SEA": [
+      {
+        "playerId": "p00117",
+        "position": "PG",
+        "rating": 83,
+        "age": 20,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00118",
+        "position": "SG",
+        "rating": 85,
+        "age": 26,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00119",
+        "position": "SF",
+        "rating": 82,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00120",
+        "position": "PF",
+        "rating": 70,
+        "age": 32,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00121",
+        "position": "C",
+        "rating": 75,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      }
+    ],
+    "STL": [
+      {
+        "playerId": "p00122",
+        "position": "PG",
+        "rating": 77,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00123",
+        "position": "SG",
+        "rating": 76,
+        "age": 19,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00124",
+        "position": "SF",
+        "rating": 71,
+        "age": 27,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 4
+      },
+      {
+        "playerId": "p00125",
+        "position": "PF",
+        "rating": 79,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00126",
+        "position": "C",
+        "rating": 80,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      }
+    ],
+    "TEX": [
+      {
+        "playerId": "p00127",
+        "position": "PG",
+        "rating": 90,
+        "age": 29,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00128",
+        "position": "SG",
+        "rating": 81,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": null,
+        "position": "SF",
+        "rating": null,
+        "age": null,
+        "points": 0,
+        "contractEnd": null,
+        "contractAmount": null
+      },
+      {
+        "playerId": "p00129",
+        "position": "PF",
+        "rating": 85,
+        "age": 31,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 8
+      },
+      {
+        "playerId": "p00130",
+        "position": "C",
+        "rating": 70,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 2
+      }
+    ],
+    "TOR": [
+      {
+        "playerId": "p00131",
+        "position": "PG",
+        "rating": 75,
+        "age": 30,
+        "points": 0,
+        "contractEnd": 81,
+        "contractAmount": 7
+      },
+      {
+        "playerId": "p00132",
+        "position": "SG",
+        "rating": 73,
+        "age": 30,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00133",
+        "position": "SF",
+        "rating": 70,
+        "age": 26,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 3
+      },
+      {
+        "playerId": "p00134",
+        "position": "PF",
+        "rating": 77,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00135",
+        "position": "C",
+        "rating": 72,
+        "age": 28,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 4
+      }
+    ],
+    "VAN": [
+      {
+        "playerId": "p00136",
+        "position": "PG",
+        "rating": 82,
+        "age": 25,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00137",
+        "position": "SG",
+        "rating": 82,
+        "age": 23,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00138",
+        "position": "SF",
+        "rating": 74,
+        "age": 21,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      },
+      {
+        "playerId": "p00139",
+        "position": "PF",
+        "rating": 74,
+        "age": 24,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 3
+      },
+      {
+        "playerId": "p00140",
+        "position": "C",
+        "rating": 71,
+        "age": 22,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 2
+      }
+    ],
+    "VEG": [
+      {
+        "playerId": "p00141",
+        "position": "PG",
+        "rating": 80,
+        "age": 26,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 6
+      },
+      {
+        "playerId": "p00142",
+        "position": "SG",
+        "rating": 73,
+        "age": 31,
+        "points": 0,
+        "contractEnd": 80,
+        "contractAmount": 5
+      },
+      {
+        "playerId": "p00143",
+        "position": "SF",
+        "rating": 74,
+        "age": 32,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 5
+      },
+      {
+        "playerId": null,
+        "position": "PF",
+        "rating": null,
+        "age": null,
+        "points": 0,
+        "contractEnd": null,
+        "contractAmount": null
+      },
+      {
+        "playerId": "p00144",
+        "position": "C",
+        "rating": 76,
+        "age": 32,
+        "points": 0,
+        "contractEnd": 79,
+        "contractAmount": 7
+      }
+    ]
+  }
+}

@@ -1,0 +1,940 @@
+{
+  "league": "fbawc",
+  "teams": [
+    {
+      "teamId": "ALG",
+      "name": "Algeria",
+      "abbr": "ALG",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(289 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ANG",
+      "name": "Angola",
+      "abbr": "ANG",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(234 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ARA",
+      "name": "Austria",
+      "abbr": "ARA",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(325 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ARG",
+      "name": "Argentina",
+      "abbr": "ARG",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(87 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "AUS",
+      "name": "Australia",
+      "abbr": "AUS",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(288 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BANG",
+      "name": "Bangladesh",
+      "abbr": "BANG",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(75 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BEL",
+      "name": "Belgium",
+      "abbr": "BEL",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(35 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BIH",
+      "name": "Bosnia and Herzegovina",
+      "abbr": "BIH",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(293 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BRA",
+      "name": "Brazil",
+      "abbr": "BRA",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(12 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CAN",
+      "name": "Canada",
+      "abbr": "CAN",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(118 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CHI",
+      "name": "China",
+      "abbr": "CHI",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(303 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CHIL",
+      "name": "Chile",
+      "abbr": "CHIL",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(245 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CMR",
+      "name": "Cameroon",
+      "abbr": "CMR",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(146 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "COL",
+      "name": "Colombia",
+      "abbr": "COL",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(84 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CRO",
+      "name": "Croatia",
+      "abbr": "CRO",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(123 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CUBA",
+      "name": "Cuba",
+      "abbr": "CUBA",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(169 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CZE",
+      "name": "Czechia",
+      "abbr": "CZE",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(291 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DEN",
+      "name": "Denmark",
+      "abbr": "DEN",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(242 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DOM",
+      "name": "Dominican Republic",
+      "abbr": "DOM",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(6 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "EGY",
+      "name": "Egypt",
+      "abbr": "EGY",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(251 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ENG",
+      "name": "England",
+      "abbr": "ENG",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(97 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "EPA",
+      "name": "Ethiopia",
+      "abbr": "EPA",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(233 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "EST",
+      "name": "Estonia",
+      "abbr": "EST",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(93 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FIN",
+      "name": "Finland",
+      "abbr": "FIN",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(190 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FRA",
+      "name": "France",
+      "abbr": "FRA",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(51 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GEO",
+      "name": "Georgia",
+      "abbr": "GEO",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(102 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GER",
+      "name": "Germany",
+      "abbr": "GER",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(3 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GRE",
+      "name": "Greece",
+      "abbr": "GRE",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(197 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "HUN",
+      "name": "Hungary",
+      "abbr": "HUN",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(74 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ICE",
+      "name": "Iceland",
+      "abbr": "ICE",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(358 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "IND",
+      "name": "India",
+      "abbr": "IND",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(215 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "INDO",
+      "name": "Indonesia",
+      "abbr": "INDO",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(340 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "IRE",
+      "name": "Ireland",
+      "abbr": "IRE",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(103 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ISR",
+      "name": "Israel",
+      "abbr": "ISR",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(8 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ITA",
+      "name": "Italy",
+      "abbr": "ITA",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(155 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "IVO",
+      "name": "Ivory Coast",
+      "abbr": "IVO",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(71 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "JAM",
+      "name": "Jamaica",
+      "abbr": "JAM",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(348 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "JAP",
+      "name": "Japan",
+      "abbr": "JAP",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(190 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "KAZ",
+      "name": "Kazakhstan",
+      "abbr": "KAZ",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(104 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "KEN",
+      "name": "Kenya",
+      "abbr": "KEN",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(204 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LAT",
+      "name": "Latvia",
+      "abbr": "LAT",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(39 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LITH",
+      "name": "Lithuania",
+      "abbr": "LITH",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(153 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LUX",
+      "name": "Luxembourg",
+      "abbr": "LUX",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(110 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MAL",
+      "name": "Malaysia",
+      "abbr": "MAL",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(243 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MEX",
+      "name": "Mexico",
+      "abbr": "MEX",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(253 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MON",
+      "name": "Mongolia",
+      "abbr": "MON",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(336 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MOR",
+      "name": "Morocco",
+      "abbr": "MOR",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(136 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NEP",
+      "name": "Nepal",
+      "abbr": "NEP",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(316 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NET",
+      "name": "Netherlands",
+      "abbr": "NET",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(88 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NI",
+      "name": "Northern Ireland",
+      "abbr": "NI",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(155 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NIG",
+      "name": "Nigeria",
+      "abbr": "NIG",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(57 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NOR",
+      "name": "Norway",
+      "abbr": "NOR",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(70 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NZ",
+      "name": "New Zealand",
+      "abbr": "NZ",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(145 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PAK",
+      "name": "Pakistan",
+      "abbr": "PAK",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(69 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PERU",
+      "name": "Peru",
+      "abbr": "PERU",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(352 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PHIL",
+      "name": "Philippines",
+      "abbr": "PHIL",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(177 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "POL",
+      "name": "Poland",
+      "abbr": "POL",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(306 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PORT",
+      "name": "Portugal",
+      "abbr": "PORT",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(190 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PRI",
+      "name": "Puerto Rico",
+      "abbr": "PRI",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(134 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "QAT",
+      "name": "Qatar",
+      "abbr": "QAT",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(205 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ROM",
+      "name": "Romania",
+      "abbr": "ROM",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(109 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "RUS",
+      "name": "Russia",
+      "abbr": "RUS",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(211 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SA",
+      "name": "South Africa",
+      "abbr": "SA",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(173 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SALV",
+      "name": "El Salvador",
+      "abbr": "SALV",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(191 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SAU",
+      "name": "Saudi Arabia",
+      "abbr": "SAU",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(118 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SCOT",
+      "name": "Scotland",
+      "abbr": "SCOT",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(152 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SEN",
+      "name": "Senegal",
+      "abbr": "SEN",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(41 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SING",
+      "name": "Singapore",
+      "abbr": "SING",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(348 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SK",
+      "name": "South Korea",
+      "abbr": "SK",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(127 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SLK",
+      "name": "Sri Lanka",
+      "abbr": "SLK",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(177 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SLOV",
+      "name": "Slovenia",
+      "abbr": "SLOV",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(249 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SPA",
+      "name": "Spain",
+      "abbr": "SPA",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(177 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SRB",
+      "name": "Serbia",
+      "abbr": "SRB",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(178 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SWE",
+      "name": "Sweden",
+      "abbr": "SWE",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(284 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SWIS",
+      "name": "Switzerland",
+      "abbr": "SWIS",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(187 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "THAI",
+      "name": "Thailand",
+      "abbr": "THAI",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(95 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TUN",
+      "name": "Tunisia",
+      "abbr": "TUN",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(295 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TUR",
+      "name": "Turkey",
+      "abbr": "TUR",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(14 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TWN",
+      "name": "Taiwan",
+      "abbr": "TWN",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(72 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UAE",
+      "name": "UAE",
+      "abbr": "UAE",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(249 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UKR",
+      "name": "Ukraine",
+      "abbr": "UKR",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(251 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "URU",
+      "name": "Uruguay",
+      "abbr": "URU",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(46 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "USA",
+      "name": "USA",
+      "abbr": "USA",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(83 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "VEN",
+      "name": "Venezuela",
+      "abbr": "VEN",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(145 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "VNM",
+      "name": "Vietnam",
+      "abbr": "VNM",
+      "group": null,
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(16 55% 36%)",
+        "fg": "#ffffff"
+      }
+    }
+  ]
+}

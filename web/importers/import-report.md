@@ -1,0 +1,281 @@
+# Import report
+
+Errors: 0 · Warnings: 12 · Info: 244
+
+## Warnings
+
+### logos
+
+- Undated logo St.Louis Kings/St.Louis Kings 2.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+- Undated logo St.Louis Kings/St.Louis Kings 3.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+- Undated logo St.Louis Kings/St.Louis Kings.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+- Undated logo Texas Outlaws/Texas Outlaws.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+- Undated logo Vancouver Orcas/Vancouver Orcas 2.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+- Undated logo Vancouver Orcas/Vancouver Orcas 3.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+- Undated logo Vancouver Orcas/Vancouver Orcas 4.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+- Undated logo Vancouver Orcas/Vancouver Orcas.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+- Undated logo Vancouver Orcas/Vancouver Vikings.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+- Undated logo Vegas Volts/Vegas Volts 3.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+- Undated logo Vegas Volts/Vegas Volts 4.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+- Undated logo Vegas Volts/Vegas Volts 5.png: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos
+
+## Info
+
+### logos
+
+- Skipped non-PNG file Vegas Volts/Vegas Volts 2.jpg
+- Skipped non-PNG file Vegas Volts/Vegas Volts.webp
+
+### vacancies
+
+- fba S79: Carolina Knights C is vacant
+- fba S79: Cypress Green Guns C is vacant
+- fba S79: Maine Wildcats PG is vacant
+- fba S79: New Orleans Seminoles C is vacant
+- fba S79: Texas Outlaws SF is vacant
+- fba S79: Vegas Volts PF is vacant
+- fbad2 S79: Barcelona SG is vacant
+- fbad2 S79: Brussels SF is vacant
+- fbad2 S79: Glasgow C is vacant
+- fbad2 S79: Hamburg SF is vacant
+- fbad2 S79: Istanbul PG is vacant
+- fbad2 S79: Istanbul SF is vacant
+- fbad2 S79: Lisbon SG is vacant
+- fbad2 S79: London PG is vacant
+- fbad2 S79: Manchester SG is vacant
+- fbad2 S79: Manchester PF is vacant
+- fbad2 S79: Moscow SG is vacant
+- fbad2 S79: Mumbai PG is vacant
+- fbad2 S79: Munich PF is vacant
+- fbad2 S79: Naples SF is vacant
+- fbad2 S79: Ottawa PG is vacant
+- fbad2 S79: Rome SG is vacant
+- fbad2 S79: Rome C is vacant
+- fbad2 S79: Salzburg C is vacant
+- fbad2 S79: Shanghai SF is vacant
+- fbad2 S79: Sydney PF is vacant
+- fbad2 S79: Tampa PG is vacant
+- fbad2 S79: Tampa SF is vacant
+- fbad2 S79: Zagreb C is vacant
+- fbad2 S79: Zurich C is vacant
+
+### same name, different player
+
+- Nadeem Akers (fba:S78) was not linked to an existing player with this name (different age or already on this roster)
+
+### linked players
+
+- 452 players appear on more than one roster; 210 of them span leagues
+
+### cross-league links
+
+- Luke Tennyson (p00018): fba:S79, fbajc:S78
+- Daelin Strickland (p00052): fba:S79, fbajc:S78
+- Isaiah Freeman (p00063): fba:S79, fbajc:S78
+- Rylan Rush (p00069): fba:S79, fbajc:S78
+- Zykeem Bellamy (p00075): fba:S79, fbajc:S78
+- Milo Lawrenz (p00083): fba:S79, fbajc:S78
+- Jakoby Henderson (p00094): fba:S79, fbajc:S78
+- Camden Giles (p00097): fba:S79, fbajc:S78
+- Jalen St.Clair (p00103): fba:S79, fbajc:S78
+- Jordi Crowder (p00123): fba:S79, fbajc:S78
+- Aleksandar Petrovic (p00140): fba:S79, fbajc:S78
+- Maddox Dean (p00166): fbad2:S79, fbad2:S78, fbawc:S78
+- Rick King (p00167): fbad2:S79, fbad2:S78, fbawc:S78
+- Barrett Cline (p00168): fbad2:S79, fbad2:S78, fbawc:S78
+- Eamon Palmer (p00169): fbad2:S79, fbad2:S78, fbawc:S78
+- Jamal Battle (p00170): fbad2:S79, fbad2:S78, fbawc:S78
+- Rui Evans (p00171): fbad2:S79, fbad2:S78, fbawc:S78
+- Dru Clark (p00172): fbad2:S79, fbad2:S78, fbawc:S78
+- Rickie Carver (p00173): fbad2:S79, fbad2:S78, fbawc:S78
+- Kellen Brewer (p00174): fbad2:S79, fbad2:S78, fbawc:S78
+- Payton Gadsby (p00175): fbad2:S79, fbad2:S78, fbawc:S78
+- Omar Lupo (p00176): fbad2:S79, fbad2:S78, fbawc:S78
+- Elijah Dixon (p00177): fbad2:S79, fbad2:S78, fbawc:S78
+- Xavier Booker (p00178): fbad2:S79, fbad2:S78, fbawc:S78
+- AJ Walker (p00182): fbad2:S79, fbad2:S78, fbawc:S78
+- Nasir Young (p00185): fbad2:S79, fbad2:S78, fbawc:S78
+- Jalil Grant (p00187): fbad2:S79, fbad2:S78, fbawc:S78
+- Corey Bell (p00188): fbad2:S79, fbad2:S78, fbawc:S78
+- Dominique Hayward (p00189): fbad2:S79, fbad2:S78, fbawc:S78
+- Uchenna Okonkwu (p00190): fbad2:S79, fbad2:S78, fbawc:S78
+- Amadou Diop (p00191): fbad2:S79, fbad2:S78, fbawc:S78
+- Amari Chase (p00193): fbad2:S79, fbad2:S78, fbawc:S78
+- Jaden Samuels (p00194): fbad2:S79, fbad2:S78, fbawc:S78
+- Jamie Fleming (p00198): fbad2:S79, fbad2:S78, fbawc:S78
+- Omari Hayes (p00200): fbad2:S79, fbad2:S78, fbawc:S78
+- Jaydan Oakley (p00202): fbad2:S79, fbad2:S78, fbawc:S78
+- Fritz Mcintosh (p00203): fbad2:S79, fbad2:S78, fbawc:S78
+- KJ Hanson (p00204): fbad2:S79, fbad2:S78, fbawc:S78
+- Matthias Schmitt (p00205): fbad2:S79, fbad2:S78, fbawc:S78
+- Mason Edmonds (p00206): fbad2:S79, fbad2:S78, fbawc:S78
+- Régulo Whittemore (p00207): fbad2:S79, fbad2:S78, fbawc:S78
+- Calvin Rhodes (p00208): fbad2:S79, fbad2:S78, fbawc:S78
+- PJ Tate (p00209): fbad2:S79, fbad2:S78, fbawc:S78
+- Vaughn Jennings (p00210): fbad2:S79, fbad2:S78, fbawc:S78
+- Benjamin Gould (p00211): fbad2:S79, fbad2:S78, fbawc:S78
+- Isac Payton (p00212): fbad2:S79, fbad2:S78, fbawc:S78
+- Keagan Shannon (p00213): fbad2:S79, fbad2:S78, fbawc:S78
+- Yannis Morales (p00214): fbad2:S79, fbad2:S78, fbawc:S78
+- Killian Hull (p00215): fbad2:S79, fbad2:S78, fbawc:S78
+- Sterling Dupree (p00216): fbad2:S79, fbad2:S78, fbawc:S78
+- Jaden Martin (p00217): fbad2:S79, fbad2:S78, fbawc:S78
+- Clay Walton (p00218): fbad2:S79, fbad2:S78, fbawc:S78
+- Eddie Easton (p00219): fbad2:S79, fbad2:S78, fbawc:S78
+- Kiran Bishop (p00220): fbad2:S79, fbad2:S78, fbawc:S78
+- Arturo Howell (p00221): fbad2:S79, fbad2:S78, fbawc:S78
+- Kaan Black (p00222): fbad2:S79, fbad2:S78, fbawc:S78
+- Tyreek Garner (p00223): fbad2:S79, fbad2:S78, fbawc:S78
+- Kenny Roy (p00224): fbad2:S79, fbad2:S78, fbawc:S78
+- Kairo Holloway (p00225): fbad2:S79, fbad2:S78, fbawc:S78
+- Jadon-Lee Davidson (p00226): fbad2:S79, fbad2:S78, fbawc:S78
+- Shepherd Beckett (p00227): fbad2:S79, fbad2:S78, fbawc:S78
+- Cade Flynn (p00228): fbad2:S79, fbad2:S78, fbawc:S78
+- Tariq Goodwin (p00229): fbad2:S79, fbad2:S78, fbawc:S78
+- Adam Campo (p00230): fbad2:S79, fbad2:S78, fbawc:S78
+- Eric Carr (p00231): fbad2:S79, fbad2:S78, fbawc:S78
+- Antoine Maddox (p00232): fbad2:S79, fbad2:S78, fbawc:S78
+- David Mitchell (p00233): fbad2:S79, fbad2:S78, fbawc:S78
+- Tomas Arias (p00234): fbad2:S79, fbad2:S78, fbawc:S78
+- Haydar Teke (p00235): fbad2:S79, fbad2:S78, fbawc:S78
+- Dimitri Quickley (p00236): fbad2:S79, fbad2:S78, fbawc:S78
+- Daquan Robinson (p00237): fbad2:S79, fbad2:S78, fbawc:S78
+- Sadiq Suero (p00238): fbad2:S79, fbad2:S78, fbawc:S78
+- Elliott Miller (p00239): fbad2:S79, fbad2:S78, fbawc:S78
+- Navaeh Sharpe (p00240): fbad2:S79, fbad2:S78, fbawc:S78
+- Kris Petty (p00241): fbad2:S79, fbad2:S78, fbawc:S78
+- Kip Jensen (p00242): fbad2:S79, fbad2:S78, fbawc:S78
+- Jace Calhoun (p00243): fbad2:S79, fbad2:S78, fbawc:S78
+- Bruno Da Silva (p00244): fbad2:S79, fbad2:S78, fbawc:S78
+- Ezekiel York (p00245): fbad2:S79, fbad2:S78, fbawc:S78
+- Matej Novak (p00249): fbad2:S79, fbad2:S78, fbawc:S78
+- Arvidsson Olsen (p00250): fbad2:S79, fbad2:S78, fbawc:S78
+- Hugh Frazier (p00252): fbad2:S79, fbad2:S78, fbawc:S78
+- Dominykas Hubbard (p00255): fbad2:S79, fbad2:S78, fbawc:S78
+- Jean-Luc Harding (p00266): fbad2:S79, fbad2:S78, fbawc:S78
+- Tristan Peck (p00267): fbad2:S79, fbad2:S78, fbawc:S78
+- KJ Knight (p00268): fbad2:S79, fbad2:S78, fbawc:S78
+- Kerry Khan (p00270): fbad2:S79, fbad2:S78, fbawc:S78
+- RJ Hagan (p00272): fbad2:S79, fbad2:S78, fbawc:S78
+- Callum Kent (p00273): fbad2:S79, fbad2:S78, fbawc:S78
+- Enoch Fisher (p00274): fbad2:S79, fbad2:S78, fbawc:S78
+- Rowan Hawthorne (p00277): fbad2:S79, fbad2:S78, fbawc:S78
+- Robert Bryant (p00278): fbad2:S79, fbad2:S78, fbawc:S78
+- Khalil Burton (p00279): fbad2:S79, fbad2:S78, fbawc:S78
+- Bruno Mitchell (p00280): fbad2:S79, fbad2:S78, fbawc:S78
+- Darnell Stone (p00281): fbad2:S79, fbad2:S78, fbawc:S78
+- Omari Bridges (p00282): fbad2:S79, fbad2:S78, fbawc:S78
+- Rami Frost (p00283): fbad2:S79, fbad2:S78, fbawc:S78
+- Johan Wood (p00284): fbad2:S79, fbad2:S78, fbawc:S78
+- Malaki Krause (p00285): fbad2:S79, fbad2:S78, fbawc:S78
+- Arman Shaw (p00286): fbad2:S79, fbad2:S78, fbawc:S78
+- Amara Adisa (p00287): fbad2:S79, fbad2:S78, fbawc:S78
+- Julius Boyd (p00288): fbad2:S79, fbad2:S78, fbawc:S78
+- Jalen Foster (p00289): fbad2:S79, fbad2:S78, fbawc:S78
+- Kellen Olsen (p00290): fbad2:S79, fbad2:S78, fbawc:S78
+- Torin Jones (p00291): fbad2:S79, fbad2:S78, fbawc:S78
+- Dani Whitehouse (p00292): fbad2:S79, fbad2:S78, fbawc:S78
+- Phoenix McKenzie (p00293): fbad2:S79, fbad2:S78, fbawc:S78
+- Andre Evans (p00294): fbad2:S79, fbad2:S78, fbawc:S78
+- Naeem Thomson (p00295): fbad2:S79, fbad2:S78, fbawc:S78
+- Erik Waller (p00296): fbad2:S79, fbad2:S78, fbawc:S78
+- Miles Davis (p00297): fbad2:S79, fbad2:S78, fbawc:S78
+- Harrison Reiter (p00298): fbad2:S79, fbad2:S78, fbawc:S78
+- Isaiah Wright (p00299): fbad2:S79, fbad2:S78, fbawc:S78
+- Ayomide King (p00300): fbad2:S79, fbad2:S78, fbawc:S78
+- Reese Knox (p00307): fbad2:S79, fbad2:S78, fbawc:S78
+- Dwight Lindsey (p00308): fbad2:S79, fbad2:S78, fbawc:S78
+- Kaleb Davis (p00310): fbad2:S79, fbad2:S78, fbawc:S78
+- Austin Rose (p00311): fbad2:S79, fbad2:S78, fbawc:S78
+- Donovan Myers (p00312): fbad2:S79, fbad2:S78, fbawc:S78
+- Ameer Woodward (p00313): fbad2:S79, fbad2:S78, fbawc:S78
+- Idris Bah (p00314): fbad2:S79, fbad2:S78, fbawc:S78
+- Emmett Waters (p00315): fbad2:S79, fbad2:S78, fbawc:S78
+- Jonah Ellis (p00316): fbad2:S79, fbad2:S78, fbawc:S78
+- Sidney Malone (p00318): fbad2:S79, fbad2:S78, fbawc:S78
+- Simon Sparks (p00320): fbad2:S79, fbad2:S78, fbawc:S78
+- Tristan Hayes (p00322): fbad2:S79, fbad2:S78, fbawc:S78
+- Garrick Thorne (p00324): fbad2:S79, fbad2:S78, fbawc:S78
+- Kobe Reed (p00327): fbad2:S79, fbad2:S78, fbawc:S78
+- Amir Kane (p00329): fbad2:S79, fbad2:S78, fbawc:S78
+- Brooks Braun (p00335): fbad2:S79, fbad2:S78, fbawc:S78
+- Maddox Adams (p00336): fbad2:S79, fbad2:S78, fbawc:S78
+- Simeon Estrada (p00339): fbad2:S79, fbad2:S78, fbawc:S78
+- Dennis Lofton (p00342): fbad2:S79, fbad2:S78, fbawc:S78
+- Tate Foster (p00343): fbad2:S79, fbad2:S78, fbawc:S78
+- Kayden Kelley (p00344): fbad2:S79, fbad2:S78, fbawc:S78
+- Haruki Nakamura (p00345): fbad2:S79, fbad2:S78, fbawc:S78
+- Walker Livingston (p00346): fbad2:S79, fbad2:S78, fbawc:S78
+- Wade Woods (p00347): fbad2:S79, fbad2:S78, fbawc:S78
+- Kai Miller (p00348): fbad2:S79, fbad2:S78, fbawc:S78
+- Damian Roberts (p00349): fbad2:S79, fbad2:S78, fbawc:S78
+- Derrick Donald (p00350): fbad2:S79, fbad2:S78, fbawc:S78
+- Royce Watkins (p00351): fbad2:S79, fbad2:S78, fbawc:S78
+- Tre French (p00355): fbad2:S79, fbad2:S78, fbawc:S78
+- Jordie Lindsay (p00365): fbad2:S79, fbad2:S78, fbawc:S78
+- Christopher Odeke (p00366): fbad2:S79, fbad2:S78, fbawc:S78
+- Royce Willingham (p00368): fbad2:S79, fbad2:S78, fbawc:S78
+- Ezra Banes (p00369): fbad2:S79, fbad2:S78, fbawc:S78
+- Seth Holland (p00370): fbad2:S79, fbad2:S78, fbawc:S78
+- Keith Campbell (p00371): fbad2:S79, fbad2:S78, fbawc:S78
+- Pierce Williams (p00372): fbad2:S79, fbad2:S78, fbawc:S78
+- Dean Mays (p00373): fbad2:S79, fbad2:S78, fbawc:S78
+- Todd Moody (p00375): fbad2:S79, fbad2:S78, fbawc:S78
+- Andrei Kay (p00376): fbad2:S79, fbad2:S78, fbawc:S78
+- Roman Christie (p00380): fbad2:S79, fbad2:S78, fbawc:S78
+- Ignacio Cain (p00382): fbad2:S79, fbad2:S78, fbawc:S78
+- Quintin Nguyen (p00383): fbad2:S79, fbad2:S78, fbawc:S78
+- Kylan Cooper (p00389): fbad2:S79, fbad2:S78, fbawc:S78
+- Franciszek Mazur (p00395): fbad2:S79, fbad2:S78, fbawc:S78
+- Kieran Lacey (p00396): fbad2:S79, fbad2:S78, fbawc:S78
+- Gabriel Uccello (p00397): fbad2:S79, fbad2:S78, fbawc:S78
+- Zaccai Janson (p00398): fbad2:S79, fbad2:S78, fbawc:S78
+- Fletcher Reed (p00402): fbad2:S79, fbad2:S78, fbawc:S78
+- Kyran Walker (p00406): fbad2:S79, fbad2:S78, fbawc:S78
+- Joni Fox (p00407): fbad2:S79, fbad2:S78, fbawc:S78
+- Jalen Flowers (p00408): fbad2:S79, fbad2:S78, fbawc:S78
+- Darien Shepherd (p00409): fbad2:S79, fbad2:S78, fbawc:S78
+- Jesse Boyd (p00417): fbad2:S79, fbad2:S78, fbawc:S78
+- Tyrese Weber (p00418): fbad2:S79, fbad2:S78, fbawc:S78
+- Derek King (p00419): fbad2:S79, fbad2:S78, fbawc:S78
+- Ty Perry (p00420): fbad2:S79, fbad2:S78, fbawc:S78
+- Rafael Hurst (p00423): fbad2:S79, fbad2:S78, fbawc:S78
+- Bryson Curtis (p00424): fbad2:S79, fbad2:S78, fbawc:S78
+- D'Marius Blake (p00425): fbad2:S79, fbad2:S78, fbawc:S78
+- Asher Wainwright (p00426): fbad2:S79, fbad2:S78, fbawc:S78
+- Alan Herbert (p00427): fbad2:S79, fbad2:S78, fbawc:S78
+- Ian Garza (p00428): fbad2:S79, fbad2:S78, fbawc:S78
+- Jaime Tyler (p00429): fbad2:S79, fbad2:S78, fbawc:S78
+- Courtney Bray (p00430): fbad2:S79, fbad2:S78, fbawc:S78
+- Eric Moody (p00431): fbad2:S79, fbad2:S78, fbawc:S78
+- Tamar Brown (p00432): fbad2:S79, fbad2:S78, fbawc:S78
+- Aiden Emmett (p00436): fbad2:S79, fbad2:S78, fbawc:S78
+- Kian Koch (p00439): fbad2:S79, fbad2:S78, fbawc:S78
+- Haiden Mercado (p00446): fbad2:S79, fbad2:S78, fbawc:S78
+- Fabio Bianchi (p00447): fbad2:S79, fbad2:S78, fbawc:S78
+- Benito Montiel (p00448): fbad2:S79, fbad2:S78, fbawc:S78
+- Obi Robert (p00449): fbad2:S79, fbad2:S78, fbawc:S78
+- Braxton Booth (p00450): fbad2:S79, fbad2:S78, fbawc:S78
+- Yuki Yamamoto (p00451): fbad2:S79, fbad2:S78, fbawc:S78
+- Kobi Harris (p00452): fbad2:S79, fbad2:S78, fbawc:S78
+- AJ Story (p00453): fbad2:S79, fbad2:S78, fbawc:S78
+- Brody Fox (p00454): fbad2:S79, fbad2:S78, fbawc:S78
+- Markus Edmonds (p00455): fbad2:S79, fbad2:S78, fbawc:S78
+- Kealan Jansen (p00456): fbad2:S79, fbad2:S78, fbawc:S78
+- Malik Fisher (p00457): fbad2:S79, fbad2:S78, fbawc:S78
+- Thaddeus Mueller (p00458): fbad2:S79, fbad2:S78, fbawc:S78
+- Tyler-Jay Park (p00459): fbad2:S78, fbawc:S78
+- Baxter Michael (p00460): fbad2:S78, fbawc:S78
+- Emmanuel Sykes (p00464): fbad2:S78, fbawc:S78
+- Fabian Gordon (p00465): fbad2:S78, fbawc:S78
+- TJ Wade (p00466): fbad2:S78, fbawc:S78
+- Raife Schmitt (p00467): fbad2:S78, fbawc:S78
+- Kirk Bridges (p00468): fbad2:S78, fbawc:S78
+- Kye Kenny (p00471): fbad2:S78, fbawc:S78
+- Hendrix Parks (p00473): fbad2:S78, fbawc:S78
+- Jayson Cunningham (p00475): fbad2:S78, fbawc:S78
+- Theon Campos (p00478): fbad2:S78, fbawc:S78
+- Ian Griffin (p00479): fbad2:S78, fbawc:S78
+- Yusuf Porter (p00480): fbad2:S78, fbawc:S78
+- Mack Orazio (p00483): fbad2:S78, fbawc:S78
+- Iman Solis (p00484): fbad2:S78, fbawc:S78

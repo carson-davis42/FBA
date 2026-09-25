@@ -1,0 +1,2381 @@
+{
+  "league": "fbajc",
+  "teams": [
+    {
+      "teamId": "BAY",
+      "name": "Baylor",
+      "abbr": "BAY",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(197 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BYU",
+      "name": "BYU",
+      "abbr": "BYU",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(30 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UH",
+      "name": "Houston",
+      "abbr": "UH",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(182 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ISU",
+      "name": "Iowa State",
+      "abbr": "ISU",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(201 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "KU",
+      "name": "Kansas",
+      "abbr": "KU",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(189 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "KSU",
+      "name": "Kansas State",
+      "abbr": "KSU",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(286 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OU",
+      "name": "Oklahoma",
+      "abbr": "OU",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(284 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OSU",
+      "name": "Oklahoma State",
+      "abbr": "OSU",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(285 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TCU",
+      "name": "TCU",
+      "abbr": "TCU",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(86 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UT",
+      "name": "Texas",
+      "abbr": "UT",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(97 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TTU",
+      "name": "Texas Tech",
+      "abbr": "TTU",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(261 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WVU",
+      "name": "West Virginia",
+      "abbr": "WVU",
+      "group": "B12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(326 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CLEM",
+      "name": "Clemson",
+      "abbr": "CLEM",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(137 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DUKE",
+      "name": "Duke",
+      "abbr": "DUKE",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(3 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FSU",
+      "name": "Florida State",
+      "abbr": "FSU",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(22 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LOU",
+      "name": "Louisville",
+      "abbr": "LOU",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(238 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MIA",
+      "name": "Miami",
+      "abbr": "MIA",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(193 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NCS",
+      "name": "NC State",
+      "abbr": "NCS",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(342 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UNC",
+      "name": "North Carolina",
+      "abbr": "UNC",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(14 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ND",
+      "name": "Notre Dame",
+      "abbr": "ND",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(303 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SYR",
+      "name": "Syracuse",
+      "abbr": "SYR",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(305 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UVA",
+      "name": "Virginia",
+      "abbr": "UVA",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(237 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "VATECH",
+      "name": "Virginia Tech",
+      "abbr": "VATECH",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(137 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WF",
+      "name": "Wake Forest",
+      "abbr": "WF",
+      "group": "ACC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(313 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UB",
+      "name": "Butler",
+      "abbr": "UB",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(232 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CTN",
+      "name": "Creighton",
+      "abbr": "CTN",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(15 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DSN",
+      "name": "Davidson",
+      "abbr": "DSN",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(278 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DEP",
+      "name": "DePaul",
+      "abbr": "DEP",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(1 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GTWN",
+      "name": "Georgetown",
+      "abbr": "GTWN",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(33 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MQ",
+      "name": "Marquette",
+      "abbr": "MQ",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(226 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PROV",
+      "name": "Providence",
+      "abbr": "PROV",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(319 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SH",
+      "name": "Seton Hall",
+      "abbr": "SH",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(216 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "STJOHNS",
+      "name": "St.John's",
+      "abbr": "STJOHNS",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(228 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UCON",
+      "name": "UConn",
+      "abbr": "UCON",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(33 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "VIL",
+      "name": "Villanova",
+      "abbr": "VIL",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(282 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "XU",
+      "name": "Xavier",
+      "abbr": "XU",
+      "group": "BE",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(233 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ALA",
+      "name": "Alabama",
+      "abbr": "ALA",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(177 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ARK",
+      "name": "Arkansas",
+      "abbr": "ARK",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(350 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "AUB",
+      "name": "Auburn",
+      "abbr": "AUB",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(291 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FLO",
+      "name": "Florida",
+      "abbr": "FLO",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(45 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UGA",
+      "name": "Georgia",
+      "abbr": "UGA",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(102 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UK",
+      "name": "Kentucky",
+      "abbr": "UK",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(284 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LSU",
+      "name": "LSU",
+      "abbr": "LSU",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(94 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MISSST",
+      "name": "Mississippi State",
+      "abbr": "MISSST",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(326 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MIZZ",
+      "name": "Missouri",
+      "abbr": "MIZZ",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(209 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MISS",
+      "name": "Ole Miss",
+      "abbr": "MISS",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(188 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TENN",
+      "name": "Tennessee",
+      "abbr": "TENN",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(132 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TAMU",
+      "name": "Texas A&M",
+      "abbr": "TAMU",
+      "group": "SEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(281 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ILL",
+      "name": "Illinois",
+      "abbr": "ILL",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(75 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "IU",
+      "name": "Indiana",
+      "abbr": "IU",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(2 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "IOWA",
+      "name": "Iowa",
+      "abbr": "IOWA",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(280 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MD",
+      "name": "Maryland",
+      "abbr": "MD",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(310 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UM",
+      "name": "Michigan",
+      "abbr": "UM",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(300 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MSU",
+      "name": "Michigan State",
+      "abbr": "MSU",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(69 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MIN",
+      "name": "Minnesota",
+      "abbr": "MIN",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(106 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NW",
+      "name": "Northwestern",
+      "abbr": "NW",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(197 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OHSU",
+      "name": "Ohio State",
+      "abbr": "OHSU",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(336 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PSU",
+      "name": "Penn State",
+      "abbr": "PSU",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(206 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PUR",
+      "name": "Purdue",
+      "abbr": "PUR",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(359 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WIS",
+      "name": "Wisconsin",
+      "abbr": "WIS",
+      "group": "B10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(279 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "AKR",
+      "name": "Akron",
+      "abbr": "AKR",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(207 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CIN",
+      "name": "Cincinnati",
+      "abbr": "CIN",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(184 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FAU",
+      "name": "FAU",
+      "abbr": "FAU",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(250 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GT",
+      "name": "Georgia Tech",
+      "abbr": "GT",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(0 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MEM",
+      "name": "Memphis",
+      "abbr": "MEM",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(47 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "RICE",
+      "name": "Rice",
+      "abbr": "RICE",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(297 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SMU",
+      "name": "SMU",
+      "abbr": "SMU",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(155 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TOL",
+      "name": "Toledo",
+      "abbr": "TOL",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(135 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TUL",
+      "name": "Tulane",
+      "abbr": "TUL",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(197 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UAB",
+      "name": "UAB",
+      "abbr": "UAB",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(246 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UCF",
+      "name": "UCF",
+      "abbr": "UCF",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(312 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WICH",
+      "name": "Wichita State",
+      "abbr": "WICH",
+      "group": "AAC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(48 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ARIZ",
+      "name": "Arizona",
+      "abbr": "ARIZ",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(80 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ASU",
+      "name": "Arizona State",
+      "abbr": "ASU",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(113 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "COLO",
+      "name": "Colorado",
+      "abbr": "COLO",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(337 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GU",
+      "name": "Gonzaga",
+      "abbr": "GU",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(351 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ORE",
+      "name": "Oregon",
+      "abbr": "ORE",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(108 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ORST",
+      "name": "Oregon State",
+      "abbr": "ORST",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(317 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "STAN",
+      "name": "Stanford",
+      "abbr": "STAN",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(337 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UCLA",
+      "name": "UCLA",
+      "abbr": "UCLA",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(203 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "USC",
+      "name": "USC",
+      "abbr": "USC",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(85 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UTAH",
+      "name": "Utah",
+      "abbr": "UTAH",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(102 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WASH",
+      "name": "Washington",
+      "abbr": "WASH",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(64 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WSU",
+      "name": "Washington State",
+      "abbr": "WSU",
+      "group": "P12",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(129 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BC",
+      "name": "Boston College",
+      "abbr": "BC",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(148 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BUF",
+      "name": "Buffalo",
+      "abbr": "BUF",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(329 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DAY",
+      "name": "Dayton",
+      "abbr": "DAY",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(263 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ECU",
+      "name": "East Carolina",
+      "abbr": "ECU",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(342 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LUC",
+      "name": "Loyola-Chicago",
+      "abbr": "LUC",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(331 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NEB",
+      "name": "Nebraska",
+      "abbr": "NEB",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(151 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PITT",
+      "name": "Pitt",
+      "abbr": "PITT",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(297 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "RUT",
+      "name": "Rutgers",
+      "abbr": "RUT",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(176 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SC",
+      "name": "South Carolina",
+      "abbr": "SC",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(286 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "STJ",
+      "name": "St.Joseph's",
+      "abbr": "STJ",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(48 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "VAN",
+      "name": "Vanderbilt",
+      "abbr": "VAN",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(125 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "VCU",
+      "name": "VCU",
+      "abbr": "VCU",
+      "group": "A10",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(208 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ARMY",
+      "name": "Army",
+      "abbr": "ARMY",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(349 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BEL",
+      "name": "Belmont",
+      "abbr": "BEL",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(17 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "COLG",
+      "name": "Colgate",
+      "abbr": "COLG",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(299 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "HOW",
+      "name": "Howard",
+      "abbr": "HOW",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(43 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LEH",
+      "name": "Lehigh",
+      "abbr": "LEH",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(203 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LIB",
+      "name": "Liberty",
+      "abbr": "LIB",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(175 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MURRST",
+      "name": "Murray State",
+      "abbr": "MURRST",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(145 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NAVY",
+      "name": "Navy",
+      "abbr": "NAVY",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(54 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FOLK",
+      "name": "Norfolk State",
+      "abbr": "FOLK",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(66 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "STM",
+      "name": "Saint Mary's",
+      "abbr": "STM",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(94 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "STP",
+      "name": "Saint Peter's",
+      "abbr": "STP",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(241 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "VT",
+      "name": "Vermont",
+      "abbr": "VT",
+      "group": "PAT",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(99 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BU",
+      "name": "Boston U",
+      "abbr": "BU",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(90 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DEL",
+      "name": "Delaware",
+      "abbr": "DEL",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(243 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DSU",
+      "name": "Delaware State",
+      "abbr": "DSU",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(124 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DRA",
+      "name": "Drake",
+      "abbr": "DRA",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(37 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GW",
+      "name": "George Washington",
+      "abbr": "GW",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(105 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "INST",
+      "name": "Indiana State",
+      "abbr": "INST",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(115 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MTU",
+      "name": "Middle Tennessee",
+      "abbr": "MTU",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(113 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NE",
+      "name": "Northeastern",
+      "abbr": "NE",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(239 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "URI",
+      "name": "Rhode Island",
+      "abbr": "URI",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(163 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "RICH",
+      "name": "Richmond",
+      "abbr": "RICH",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(348 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UMBC",
+      "name": "UMBC",
+      "abbr": "UMBC",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(145 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WIN",
+      "name": "Winthrop",
+      "abbr": "WIN",
+      "group": "COL",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(235 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CLST",
+      "name": "Cleveland State",
+      "abbr": "CLST",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(199 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "IONA",
+      "name": "Iona",
+      "abbr": "IONA",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(1 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "IUP",
+      "name": "IUPUI",
+      "abbr": "IUP",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(216 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NDSU",
+      "name": "North Dakota State",
+      "abbr": "NDSU",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(202 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NKU",
+      "name": "Northern Kentucky",
+      "abbr": "NKU",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(136 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OAK",
+      "name": "Oakland",
+      "abbr": "OAK",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(172 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SAN",
+      "name": "Santa Clara",
+      "abbr": "SAN",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(164 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SDST",
+      "name": "South Dakota State",
+      "abbr": "SDST",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(242 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "STB",
+      "name": "St.Bonaventure",
+      "abbr": "STB",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(86 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UCI",
+      "name": "UC Irvine",
+      "abbr": "UCI",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(245 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WOF",
+      "name": "Wofford",
+      "abbr": "WOF",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(169 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WRIG",
+      "name": "Wright State",
+      "abbr": "WRIG",
+      "group": "HOR",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(126 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BRN",
+      "name": "Brown",
+      "abbr": "BRN",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(310 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CAL",
+      "name": "Cal",
+      "abbr": "CAL",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(182 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CHI",
+      "name": "Chicago",
+      "abbr": "CHI",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(282 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "COL",
+      "name": "Columbia",
+      "abbr": "COL",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(90 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CORN",
+      "name": "Cornell",
+      "abbr": "CORN",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(45 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DART",
+      "name": "Dartmouth",
+      "abbr": "DART",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(48 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "HAR",
+      "name": "Harvard",
+      "abbr": "HAR",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(142 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MIT",
+      "name": "MIT",
+      "abbr": "MIT",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(24 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PENN",
+      "name": "Penn",
+      "abbr": "PENN",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(221 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PRIN",
+      "name": "Princeton",
+      "abbr": "PRIN",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(162 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UCSB",
+      "name": "UCSB",
+      "abbr": "UCSB",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(61 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "YALE",
+      "name": "Yale",
+      "abbr": "YALE",
+      "group": "IVY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(185 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ACU",
+      "name": "Abeline Christian",
+      "abbr": "ACU",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(73 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MCN",
+      "name": "McNeese State",
+      "abbr": "MCN",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(323 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UNT",
+      "name": "North Texas",
+      "abbr": "UNT",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(6 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ORU",
+      "name": "Oral Roberts",
+      "abbr": "ORU",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(103 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SHSU",
+      "name": "Sam Houston State",
+      "abbr": "SHSU",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(350 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SAM",
+      "name": "Samford",
+      "abbr": "SAM",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(234 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SOU",
+      "name": "Southern",
+      "abbr": "SOU",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(316 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SFA",
+      "name": "Stephen F Austin",
+      "abbr": "SFA",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(191 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "AMCC",
+      "name": "Texas A&M CC",
+      "abbr": "AMCC",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(47 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TXSO",
+      "name": "Texas Southern",
+      "abbr": "TXSO",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(3 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TXST",
+      "name": "Texas State",
+      "abbr": "TXST",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(306 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UTSA",
+      "name": "UTSA",
+      "abbr": "UTSA",
+      "group": "SOCON",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(197 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ALST",
+      "name": "Alabama State",
+      "abbr": "ALST",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(98 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "APB",
+      "name": "Arkansas Pine Bluff",
+      "abbr": "APB",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(245 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ARST",
+      "name": "Arkansas State",
+      "abbr": "ARST",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(215 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CHAT",
+      "name": "Chattanooga",
+      "abbr": "CHAT",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(243 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ETSU",
+      "name": "ETSU",
+      "abbr": "ETSU",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(201 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FUR",
+      "name": "Furman",
+      "abbr": "FUR",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(47 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GAST",
+      "name": "Georgia State",
+      "abbr": "GAST",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(215 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GRAM",
+      "name": "Grambling State",
+      "abbr": "GRAM",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(178 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "JSU",
+      "name": "Jackson State",
+      "abbr": "JSU",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(348 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "JMU",
+      "name": "James Madison",
+      "abbr": "JMU",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(221 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "USF",
+      "name": "South Florida",
+      "abbr": "USF",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(66 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WKU",
+      "name": "Western Kentucky",
+      "abbr": "WKU",
+      "group": "SUN",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(274 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "EWU",
+      "name": "Eastern Washington",
+      "abbr": "EWU",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(28 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "EVA",
+      "name": "Evansville",
+      "abbr": "EVA",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(261 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "HPU",
+      "name": "High Point",
+      "abbr": "HPU",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(322 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "KENN",
+      "name": "Kennesaw State",
+      "abbr": "KENN",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(135 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LONG",
+      "name": "Longwood",
+      "abbr": "LONG",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(241 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MON",
+      "name": "Montana",
+      "abbr": "MON",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(132 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MOST",
+      "name": "Montana State",
+      "abbr": "MOST",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(261 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PTST",
+      "name": "Portland State",
+      "abbr": "PTST",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(237 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SF",
+      "name": "San Francisco",
+      "abbr": "SF",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(216 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "STET",
+      "name": "Stetson",
+      "abbr": "STET",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(330 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UCSD",
+      "name": "UC San Diego",
+      "abbr": "UCSD",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(38 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WEB",
+      "name": "Weber State",
+      "abbr": "WEB",
+      "group": "SKY",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(210 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "AF",
+      "name": "Air Force",
+      "abbr": "AF",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(197 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BSU",
+      "name": "Boise State",
+      "abbr": "BSU",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(207 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CSU",
+      "name": "Colorado State",
+      "abbr": "CSU",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(282 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FRES",
+      "name": "Fresno State",
+      "abbr": "FRES",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(196 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NEV",
+      "name": "Nevada",
+      "abbr": "NEV",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(111 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NMU",
+      "name": "New Mexico",
+      "abbr": "NMU",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(293 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NMSU",
+      "name": "New Mexico State",
+      "abbr": "NMSU",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(126 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SDSU",
+      "name": "San Diego State",
+      "abbr": "SDSU",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(241 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SJSU",
+      "name": "San Jose State",
+      "abbr": "SJSU",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(0 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UNLV",
+      "name": "UNLV",
+      "abbr": "UNLV",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(355 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "USU",
+      "name": "Utah State",
+      "abbr": "USU",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(103 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "WYO",
+      "name": "Wyoming",
+      "abbr": "WYO",
+      "group": "MWC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(218 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "APP",
+      "name": "Appalachian State",
+      "abbr": "APP",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(13 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "ALR",
+      "name": "Arkansas Little Rock",
+      "abbr": "ALR",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(205 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GCU",
+      "name": "Grand Canyon",
+      "abbr": "GCU",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(60 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "KENT",
+      "name": "Kent State",
+      "abbr": "KENT",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(41 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MORE",
+      "name": "Morehead State",
+      "abbr": "MORE",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(310 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NIU",
+      "name": "Northern Illinois",
+      "abbr": "NIU",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(31 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OHIO",
+      "name": "Ohio",
+      "abbr": "OHIO",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(159 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OMA",
+      "name": "Omaha",
+      "abbr": "OMA",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(276 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "STL",
+      "name": "Saint Louis",
+      "abbr": "STL",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(325 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SIUE",
+      "name": "SIU Edwardsville",
+      "abbr": "SIUE",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(307 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SEMO",
+      "name": "Southeastern Missouri State",
+      "abbr": "SEMO",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(99 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TROY",
+      "name": "Troy",
+      "abbr": "TROY",
+      "group": "OVC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(160 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BRY",
+      "name": "Bryant",
+      "abbr": "BRY",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(294 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DUQ",
+      "name": "Duquesne",
+      "abbr": "DUQ",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(202 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FDU",
+      "name": "Fairleigh Dickinson",
+      "abbr": "FDU",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(357 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "GMU",
+      "name": "George Mason",
+      "abbr": "GMU",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(277 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LIP",
+      "name": "Lipscomb",
+      "abbr": "LIP",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(1 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LIU",
+      "name": "Long Island",
+      "abbr": "LIU",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(1 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MAR",
+      "name": "Marist",
+      "abbr": "MAR",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(84 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "QUIN",
+      "name": "Quinnipiac",
+      "abbr": "QUIN",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(239 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "RMU",
+      "name": "Robert Morris",
+      "abbr": "RMU",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(186 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UMAS",
+      "name": "UMass",
+      "abbr": "UMAS",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(249 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UNCA",
+      "name": "UNC Asheville",
+      "abbr": "UNCA",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(141 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "UNCW",
+      "name": "UNC Wilmington",
+      "abbr": "UNCW",
+      "group": "NEC",
+      "logoFolder": null,
+      "badge": {
+        "bg": "hsl(306 55% 36%)",
+        "fg": "#ffffff"
+      }
+    }
+  ]
+}

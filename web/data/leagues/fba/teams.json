@@ -1,0 +1,335 @@
+{
+  "league": "fba",
+  "teams": [
+    {
+      "teamId": "ATL",
+      "name": "Atlanta Venom",
+      "abbr": "ATL",
+      "group": "E",
+      "logoFolder": "Atlanta Venom",
+      "badge": {
+        "bg": "hsl(248 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "BOS",
+      "name": "Boston Bucks",
+      "abbr": "BOS",
+      "group": "E",
+      "logoFolder": "Boston Bucks",
+      "badge": {
+        "bg": "hsl(189 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CAR",
+      "name": "Carolina Knights",
+      "abbr": "CAR",
+      "group": "E",
+      "logoFolder": "Carolina Knights",
+      "badge": {
+        "bg": "hsl(289 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CGG",
+      "name": "Cypress Green Guns",
+      "abbr": "CGG",
+      "group": "W",
+      "logoFolder": "Cypress Green Guns",
+      "badge": {
+        "bg": "hsl(339 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CHI",
+      "name": "Chicago Spartans",
+      "abbr": "CHI",
+      "group": "E",
+      "logoFolder": "Chicago Spartans",
+      "badge": {
+        "bg": "hsl(182 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CIN",
+      "name": "Cincinnati Blue Stripes",
+      "abbr": "CIN",
+      "group": "E",
+      "logoFolder": "Cincinnati Blue Stripes",
+      "badge": {
+        "bg": "hsl(80 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "CP",
+      "name": "Columbus Pirates",
+      "abbr": "CP",
+      "group": "E",
+      "logoFolder": "Columbus Pirates",
+      "badge": {
+        "bg": "hsl(74 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DCB",
+      "name": "DCB",
+      "abbr": "DCB",
+      "group": "E",
+      "logoFolder": "DCB",
+      "badge": {
+        "bg": "hsl(171 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DEN",
+      "name": "Denver Heights",
+      "abbr": "DEN",
+      "group": "W",
+      "logoFolder": "Denver Heights",
+      "badge": {
+        "bg": "hsl(106 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "DET",
+      "name": "Detroit Motors",
+      "abbr": "DET",
+      "group": "E",
+      "logoFolder": "Detroit Motors",
+      "badge": {
+        "bg": "hsl(67 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "FLO",
+      "name": "Florida Panthers",
+      "abbr": "FLO",
+      "group": "W",
+      "logoFolder": "Florida Panthers",
+      "badge": {
+        "bg": "hsl(160 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "HON",
+      "name": "Honolulu Rays",
+      "abbr": "HON",
+      "group": "W",
+      "logoFolder": "Honolulu Rays",
+      "badge": {
+        "bg": "hsl(71 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "LA",
+      "name": "Los Angeles Hawks",
+      "abbr": "LA",
+      "group": "W",
+      "logoFolder": "Los Angeles Hawks",
+      "badge": {
+        "bg": "hsl(213 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MAN",
+      "name": "Manhattan Magic",
+      "abbr": "MAN",
+      "group": "E",
+      "logoFolder": "Manhattan Magic",
+      "badge": {
+        "bg": "hsl(173 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MEM",
+      "name": "Memphis Blues",
+      "abbr": "MEM",
+      "group": "W",
+      "logoFolder": "Memphis Blues",
+      "badge": {
+        "bg": "hsl(272 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MIL",
+      "name": "Milwaukee Warriors",
+      "abbr": "MIL",
+      "group": "E",
+      "logoFolder": "Milwaukee Warriors",
+      "badge": {
+        "bg": "hsl(65 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MON",
+      "name": "Montreal Chevaliers",
+      "abbr": "MON",
+      "group": "E",
+      "logoFolder": "Montreal Chevaliers",
+      "badge": {
+        "bg": "hsl(160 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "MW",
+      "name": "Maine Wildcats",
+      "abbr": "MW",
+      "group": "E",
+      "logoFolder": "Maine Wildcats",
+      "badge": {
+        "bg": "hsl(19 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NO",
+      "name": "New Orleans Seminoles",
+      "abbr": "NO",
+      "group": "W",
+      "logoFolder": "New Orleans Seminoles",
+      "badge": {
+        "bg": "hsl(5 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "NY",
+      "name": "New York Icons",
+      "abbr": "NY",
+      "group": "E",
+      "logoFolder": "New York Icons",
+      "badge": {
+        "bg": "hsl(129 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OAK",
+      "name": "Oakland All-Stars",
+      "abbr": "OAK",
+      "group": "W",
+      "logoFolder": "Oakland All-Stars",
+      "badge": {
+        "bg": "hsl(161 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "OV",
+      "name": "Ohio Valley Sharks",
+      "abbr": "OV",
+      "group": "E",
+      "logoFolder": "Ohio Valley Sharks",
+      "badge": {
+        "bg": "hsl(166 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "PHX",
+      "name": "Phoenix Badgers",
+      "abbr": "PHX",
+      "group": "W",
+      "logoFolder": "Phoenix Badgers",
+      "badge": {
+        "bg": "hsl(171 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SAS",
+      "name": "San Antonio Spirits",
+      "abbr": "SAS",
+      "group": "W",
+      "logoFolder": "San Antonio Spirits",
+      "badge": {
+        "bg": "hsl(246 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "SEA",
+      "name": "Seattle Shock",
+      "abbr": "SEA",
+      "group": "W",
+      "logoFolder": "Seattle Shock",
+      "badge": {
+        "bg": "hsl(42 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "STL",
+      "name": "St.Louis Kings",
+      "abbr": "STL",
+      "group": "W",
+      "logoFolder": "St.Louis Kings",
+      "badge": {
+        "bg": "hsl(123 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TEX",
+      "name": "Texas Outlaws",
+      "abbr": "TEX",
+      "group": "W",
+      "logoFolder": "Texas Outlaws",
+      "badge": {
+        "bg": "hsl(128 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "TOR",
+      "name": "Toronto Wolves",
+      "abbr": "TOR",
+      "group": "E",
+      "logoFolder": "Toronto Wolves",
+      "badge": {
+        "bg": "hsl(287 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "VAN",
+      "name": "Vancouver Orcas",
+      "abbr": "VAN",
+      "group": "W",
+      "logoFolder": "Vancouver Orcas",
+      "badge": {
+        "bg": "hsl(15 55% 36%)",
+        "fg": "#ffffff"
+      }
+    },
+    {
+      "teamId": "VEG",
+      "name": "Vegas Volts",
+      "abbr": "VEG",
+      "group": "W",
+      "logoFolder": "Vegas Volts",
+      "badge": {
+        "bg": "hsl(156 55% 36%)",
+        "fg": "#ffffff"
+      }
+    }
+  ]
+}

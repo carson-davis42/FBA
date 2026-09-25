@@ -1,0 +1,133 @@
+{
+  "season": 79,
+  "steps": [
+    {
+      "id": "adjust-age",
+      "label": "Adjust Age",
+      "kind": "offseason",
+      "league": null,
+      "sub": true,
+      "done": true
+    },
+    {
+      "id": "adjust-pro-ratings-reset",
+      "label": "Adjust Pro Ratings(reset)",
+      "kind": "offseason",
+      "league": null,
+      "sub": true,
+      "done": true
+    },
+    {
+      "id": "s79-fba-draft",
+      "label": "S79 FBA Draft",
+      "kind": "offseason",
+      "league": null,
+      "sub": false,
+      "done": true
+    },
+    {
+      "id": "free-agency-offseason",
+      "label": "Free Agency/Offseason",
+      "kind": "offseason",
+      "league": null,
+      "sub": false,
+      "done": false
+    },
+    {
+      "id": "fbad2-ratings-reset",
+      "label": "FBAD2 Ratings(reset)",
+      "kind": "offseason",
+      "league": null,
+      "sub": true,
+      "done": false
+    },
+    {
+      "id": "fbad2-draft",
+      "label": "FBAD2 Draft",
+      "kind": "offseason",
+      "league": null,
+      "sub": true,
+      "done": false
+    },
+    {
+      "id": "create-s80-class",
+      "label": "Create S80 Class",
+      "kind": "offseason",
+      "league": null,
+      "sub": false,
+      "done": false
+    },
+    {
+      "id": "make-s79-schedules",
+      "label": "Make S79 Schedules",
+      "kind": "offseason",
+      "league": null,
+      "sub": false,
+      "done": false
+    },
+    {
+      "id": "fba-d2",
+      "label": "FBA D2",
+      "kind": "league",
+      "league": "fbad2",
+      "sub": false,
+      "done": false
+    },
+    {
+      "id": "fba",
+      "label": "FBA",
+      "kind": "league",
+      "league": "fba",
+      "sub": false,
+      "done": false
+    },
+    {
+      "id": "s80-fba-draft-lottery",
+      "label": "S80 FBA Draft Lottery",
+      "kind": "offseason",
+      "league": null,
+      "sub": false,
+      "done": false
+    },
+    {
+      "id": "retirement",
+      "label": "Retirement",
+      "kind": "offseason",
+      "league": null,
+      "sub": false,
+      "done": false
+    },
+    {
+      "id": "hall-of-fame-induction",
+      "label": "Hall of Fame Induction",
+      "kind": "offseason",
+      "league": null,
+      "sub": false,
+      "done": false
+    },
+    {
+      "id": "rank-s80-class",
+      "label": "Rank S80 Class",
+      "kind": "offseason",
+      "league": null,
+      "sub": false,
+      "done": false
+    },
+    {
+      "id": "adjust-college-ratings",
+      "label": "Adjust College Ratings",
+      "kind": "offseason",
+      "league": null,
+      "sub": true,
+      "done": false
+    },
+    {
+      "id": "fbajc",
+      "label": "FBAJC",
+      "kind": "league",
+      "league": "fbajc",
+      "sub": false,
+      "done": false
+    }
+  ]
+}

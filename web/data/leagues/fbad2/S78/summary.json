@@ -1,0 +1,32 @@
+{
+  "league": "fbad2",
+  "season": 78,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "Premier League Champion",
+      "champion": "Salzburg",
+      "runnerUp": "Zurich",
+      "score": "4-1"
+    },
+    {
+      "title": "World League Champion",
+      "champion": "Mumbai",
+      "runnerUp": "Hamburg",
+      "score": "4-2"
+    },
+    {
+      "title": "United League Champion",
+      "champion": "Dublin",
+      "runnerUp": "Johannesburg",
+      "score": "4-0"
+    },
+    {
+      "title": "International League Champion",
+      "champion": "Barcelona",
+      "runnerUp": "Naples",
+      "score": "4-3"
+    }
+  ]
+}

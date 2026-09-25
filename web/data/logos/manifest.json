@@ -1,0 +1,472 @@
+{
+  "folders": {
+    "Atlanta Venom": [
+      {
+        "file": "Atlanta Venom S75-pres..png",
+        "from": 75,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Boston Bucks": [
+      {
+        "file": "Boston Bucks S61-pres..png",
+        "from": 61,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Carolina Knights": [
+      {
+        "file": "Cal Tech Knights S41-S67.png",
+        "from": 41,
+        "to": 67,
+        "variant": 0
+      },
+      {
+        "file": "Carolina Knights S73-pres..png",
+        "from": 73,
+        "to": null,
+        "variant": 0
+      },
+      {
+        "file": "Charlotte Knights S68-S72.png",
+        "from": 68,
+        "to": 72,
+        "variant": 0
+      }
+    ],
+    "Chicago Spartans": [
+      {
+        "file": "Chicago Spartans S45-S48.png",
+        "from": 45,
+        "to": 48,
+        "variant": 0
+      },
+      {
+        "file": "Chicago Spartans S49-pres..png",
+        "from": 49,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Cincinnati Blue Stripes": [
+      {
+        "file": "Cincinnati Blue Stripes S45-S63.png",
+        "from": 45,
+        "to": 63,
+        "variant": 0
+      },
+      {
+        "file": "Cincinnati Blue Stripes S64-S78.png",
+        "from": 64,
+        "to": 78,
+        "variant": 0
+      },
+      {
+        "file": "Cincinnati Blue Stripes S79-pres..png",
+        "from": 79,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Columbus Pirates": [
+      {
+        "file": "Columbus Pirates S57-pres..png",
+        "from": 57,
+        "to": null,
+        "variant": 0
+      },
+      {
+        "file": "Former Pirates S1-S34.png",
+        "from": 1,
+        "to": 34,
+        "variant": 0
+      },
+      {
+        "file": "Former Pirates S35-S56.png",
+        "from": 35,
+        "to": 56,
+        "variant": 0
+      }
+    ],
+    "Cypress Green Guns": [
+      {
+        "file": "Cypress Green Guns S1-S21.png",
+        "from": 1,
+        "to": 21,
+        "variant": 0
+      },
+      {
+        "file": "Cypress Green Guns S22-S46.png",
+        "from": 22,
+        "to": 46,
+        "variant": 0
+      },
+      {
+        "file": "Cypress Green Guns S47-pres..png",
+        "from": 47,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "DCB": [
+      {
+        "file": "DCB S1-S43.png",
+        "from": 1,
+        "to": 43,
+        "variant": 0
+      },
+      {
+        "file": "DCB S44-S78.png",
+        "from": 44,
+        "to": 78,
+        "variant": 0
+      },
+      {
+        "file": "DCB S79-pres..png",
+        "from": 79,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Denver Heights": [
+      {
+        "file": "Denver Heights S61-pres..png",
+        "from": 61,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Detroit Motors": [
+      {
+        "file": "Detroit motors S59-pres..png",
+        "from": 59,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "FBA": [
+      {
+        "file": "FBA_logo.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      }
+    ],
+    "Florida Panthers": [
+      {
+        "file": "Florida Panthers S45-S62.png",
+        "from": 45,
+        "to": 62,
+        "variant": 0
+      },
+      {
+        "file": "Florida Panthers S63-pres..png",
+        "from": 63,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Honolulu Rays": [
+      {
+        "file": "Honolulu Rays S68-pres..png",
+        "from": 68,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Los Angeles Hawks": [
+      {
+        "file": "Los Angeles Hawks S59-pres..png",
+        "from": 59,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Los Angeles Labradors": [
+      {
+        "file": "Los Angeles Labradors S80-pres..png",
+        "from": 80,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Maine Wildcats": [
+      {
+        "file": "Maine Wildcats S41-S77.png",
+        "from": 41,
+        "to": 77,
+        "variant": 0
+      },
+      {
+        "file": "Maine Wildcats S78-pres..png",
+        "from": 78,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Manhattan Magic": [
+      {
+        "file": "Manhattan Magic S68-pres..png",
+        "from": 68,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Memphis Blues": [
+      {
+        "file": "Memphis Blues S59-pres..png",
+        "from": 59,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Milwaukee Warriors": [
+      {
+        "file": "Milwaukee Warriors S35-S44.png",
+        "from": 35,
+        "to": 44,
+        "variant": 0
+      },
+      {
+        "file": "Milwaukee Warriors S45-pres..png",
+        "from": 45,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Montreal Chevaliers": [
+      {
+        "file": "Florida Panthers S11.png",
+        "from": 11,
+        "to": 11,
+        "variant": 0
+      },
+      {
+        "file": "Montreal Chevaliers S57-S78.png",
+        "from": 57,
+        "to": 78,
+        "variant": 0
+      },
+      {
+        "file": "Montreal Chevaliers S79-pres..png",
+        "from": 79,
+        "to": null,
+        "variant": 0
+      },
+      {
+        "file": "Montreal S12-S56.png",
+        "from": 12,
+        "to": 56,
+        "variant": 0
+      },
+      {
+        "file": "Texas Outlaws S1-S10.png",
+        "from": 1,
+        "to": 10,
+        "variant": 0
+      }
+    ],
+    "New Orleans Seminoles": [
+      {
+        "file": "Cypress Black Sox S45-S56.png",
+        "from": 45,
+        "to": 56,
+        "variant": 0
+      },
+      {
+        "file": "New Orleans Seminoles S57-pres..png",
+        "from": 57,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "New York Icons": [
+      {
+        "file": "New York Icons S63-pres..png",
+        "from": 63,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Oakland All-Stars": [
+      {
+        "file": "Oakland All-Stars S1-S50.png",
+        "from": 1,
+        "to": 50,
+        "variant": 0
+      },
+      {
+        "file": "Oakland All-Stars S51-pres..png",
+        "from": 51,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Ohio Valley Sharks": [
+      {
+        "file": "Ohio Valley Sharks S41-S69.png",
+        "from": 41,
+        "to": 69,
+        "variant": 0
+      },
+      {
+        "file": "Ohio Valley Sharks S70-pres..png",
+        "from": 70,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Philly Phantoms": [
+      {
+        "file": "Philly Phantoms S80-pres..png",
+        "from": 80,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Phoenix Badgers": [
+      {
+        "file": "Phoenix Badgers S63-pres..png",
+        "from": 63,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "San Antonio Spirits": [
+      {
+        "file": "San Antonio S1-S27.png",
+        "from": 1,
+        "to": 27,
+        "variant": 0
+      },
+      {
+        "file": "San Antonio S28-S56.png",
+        "from": 28,
+        "to": 56,
+        "variant": 0
+      },
+      {
+        "file": "San Antonio Spirits S57-pres..png",
+        "from": 57,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Seattle Shock": [
+      {
+        "file": "Seattle Shock S59-S76.png",
+        "from": 59,
+        "to": 76,
+        "variant": 0
+      },
+      {
+        "file": "Seattle Shock S77.png",
+        "from": 77,
+        "to": 77,
+        "variant": 0
+      },
+      {
+        "file": "Seattle Shock S78-pres..png",
+        "from": 78,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "St.Louis Kings": [
+      {
+        "file": "St.Louis Kings 2.png",
+        "from": null,
+        "to": null,
+        "variant": 2
+      },
+      {
+        "file": "St.Louis Kings 3.png",
+        "from": null,
+        "to": null,
+        "variant": 3
+      },
+      {
+        "file": "St.Louis Kings.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      }
+    ],
+    "Texas Outlaws": [
+      {
+        "file": "Texas Outlaws.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      }
+    ],
+    "Toronto Wolves": [
+      {
+        "file": "Toronto Wolves S68-S78.png",
+        "from": 68,
+        "to": 78,
+        "variant": 0
+      },
+      {
+        "file": "Toronto Wolves S79-pres..png",
+        "from": 79,
+        "to": null,
+        "variant": 0
+      }
+    ],
+    "Vancouver Orcas": [
+      {
+        "file": "Vancouver Orcas 2.png",
+        "from": null,
+        "to": null,
+        "variant": 2
+      },
+      {
+        "file": "Vancouver Orcas 3.png",
+        "from": null,
+        "to": null,
+        "variant": 3
+      },
+      {
+        "file": "Vancouver Orcas 4.png",
+        "from": null,
+        "to": null,
+        "variant": 4
+      },
+      {
+        "file": "Vancouver Orcas.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Vancouver Vikings.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      }
+    ],
+    "Vegas Volts": [
+      {
+        "file": "Vegas Volts 3.png",
+        "from": null,
+        "to": null,
+        "variant": 3
+      },
+      {
+        "file": "Vegas Volts 4.png",
+        "from": null,
+        "to": null,
+        "variant": 4
+      },
+      {
+        "file": "Vegas Volts 5.png",
+        "from": null,
+        "to": null,
+        "variant": 5
+      }
+    ]
+  }
+}
