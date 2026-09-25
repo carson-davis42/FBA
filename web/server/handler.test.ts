@@ -45,6 +45,14 @@ describe('HTTP handler', () => {
     expect(res.status).toBe(400);
   });
 
+  it('rejects a document with an unknown key', async () => {
+    const res = await fetch(`${base}/api/state/calendar.json`, {
+      method: 'PUT',
+      body: JSON.stringify({ ...calendar, bogus: 1 }),
+    });
+    expect(res.status).toBe(400);
+  });
+
   it('serves an era-correct logo', async () => {
     const res = await fetch(`${base}/logos/Boston%20Bucks/79`);
     expect(res.status).toBe(200);

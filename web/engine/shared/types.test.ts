@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { LogoManifest, MetaFile, RostersFile } from './types';
+import { LogoManifest, MetaFile, ResultsFile, RostersFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -23,6 +23,19 @@ describe('schemas', () => {
   it('requires every league in meta', () => {
     const doc = { currentSeason: 79, rosterSeason: { fba: 79, fbad2: 79, fbajc: 78 }, lastSeason: { fba: 78, fbad2: 78, fbajc: 78, fbawc: 78 } };
     expect(MetaFile.safeParse(doc).success).toBe(false);
+  });
+
+  it('rejects a roster entry with an unknown key', () => {
+    const doc = {
+      league: 'fba', season: 79, locked: false,
+      teams: { BOS: [{ playerId: 'p00001', position: 'PG', rating: 95, age: 28, points: 0, bogus: 1 }] },
+    };
+    expect(RostersFile.safeParse(doc).success).toBe(false);
+  });
+
+  it('rejects a game result with an unknown key', () => {
+    const doc = { league: 'fba', season: 79, locked: false, games: [{ gameNo: 1, home: 'BOS', away: 'CAR', homePts: 100, awayPts: 90, ot: 0 }] };
+    expect(ResultsFile.safeParse(doc).success).toBe(false);
   });
 
   it('rejects logo manifest entries that are paths', () => {
