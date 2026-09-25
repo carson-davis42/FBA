@@ -1,0 +1,17 @@
+.hero { display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: 10px; color: #fff; background: linear-gradient(120deg, var(--hero-from), var(--hero-to)); margin-bottom: 16px; }
+.hero img { width: 64px; height: 64px; object-fit: contain; }
+.hero .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; opacity: 0.7; text-transform: uppercase; }
+.hero .title { font-family: var(--font-head); font-size: 22px; font-weight: 800; text-transform: var(--head-transform); }
+.hero .btn.primary { margin-left: auto; }
+.champ-row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+.champ-row:last-child { border-bottom: 0; }
+.champ-row b { text-align: right; }
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-bottom: 1px solid var(--border); }
+.steps li:last-child { border-bottom: 0; }
+.steps li.sub { padding-left: 34px; font-size: 13px; }
+.steps li.done { color: var(--muted); }
+.steps li.current { background: var(--accent-soft); color: var(--accent); font-weight: 700; border-radius: 6px; }
+.steps .mark { width: 20px; text-align: center; }
+.steps .tag { margin-left: auto; font-size: 11px; font-weight: 700; border-radius: 999px; padding: 2px 8px; background: var(--surface-2); border: 1px solid var(--border); color: var(--muted); }
+.cal-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
