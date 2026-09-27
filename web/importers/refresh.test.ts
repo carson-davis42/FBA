@@ -52,6 +52,20 @@ describe('assembleRefresh', () => {
     expect(report.entries.some(e => e.message.includes('Callan Schwangau') && e.message.includes('OV'))).toBe(true);
   });
 
+  it('skips a free agent already on a D2 roster, and a reserves entry already on a D2 roster', () => {
+    const inp = inputs();
+    // Ben Montgomery is already on the D2 Amsterdam roster (see d2Sheet above).
+    inp.freeAgents.push({ name: 'Ben Montgomery', position: 'PG', age: 30, rating: 75, note: '' });
+    inp.reserves.push({ name: 'Ben Montgomery', position: 'PG', age: 30, rating: null, contractEnd: null, contractAmount: null });
+    const report = new Report();
+    const files = assembleRefresh(inp, report);
+    const fa = files['leagues/fba/S79/freeAgents.json'] as FreeAgentsFile;
+    const reserves = files['leagues/fbad2/S79/reserves.json'] as ReservesFile;
+    expect(fa.players.some(p => p.playerId === 'p00002')).toBe(false);
+    expect(reserves.players.some(p => p.playerId === 'p00002')).toBe(false);
+    expect(report.entries.some(e => e.message.includes('Ben Montgomery') && e.message.includes('D2 AMS roster'))).toBe(true);
+  });
+
   it('builds reserves and pick obligations', () => {
     const files = assembleRefresh(inputs(), new Report());
     expect((files['leagues/fbad2/S79/reserves.json'] as ReservesFile).players).toEqual([{ playerId: 'p00005', position: 'PG', age: 30, rating: null }]);

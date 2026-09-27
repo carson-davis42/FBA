@@ -26,19 +26,41 @@ export function assembleRefresh(inp: RefreshInputs, report: Report): Record<stri
   const fba = rosterFromSheet('fba', season, inp.fbaSheet, teamsOf(inp.fbaTeams), reg, report);
   const d2 = rosterFromSheet('fbad2', season, inp.d2Sheet, teamsOf(inp.d2Teams), reg, report);
 
-  const reserves: ReservesFile = {
-    league: 'fbad2', season, locked: false,
-    players: inp.reserves.map(p => ({ playerId: reg.add(p.name, birth(p.age), `fbad2-res:S${season}`), position: p.position, age: p.age, rating: p.rating })),
-  };
-
   const abbrOf = new Map(inp.fbaTeams.teams.map(t => [t.name, t.teamId]));
+  const d2AbbrOf = new Map(inp.d2Teams.teams.map(t => [t.name, t.teamId]));
   const rostered = new Map<string, string>();
   for (const t of inp.fbaSheet) for (const p of t.players) if (p.name) rostered.set(normalizeName(p.name), abbrOf.get(t.name) ?? t.name);
+  const d2Rostered = new Map<string, string>();
+  for (const t of inp.d2Sheet) for (const p of t.players) if (p.name) d2Rostered.set(normalizeName(p.name), d2AbbrOf.get(t.name) ?? t.name);
+
+  const reserves: ReservesFile = {
+    league: 'fbad2', season, locked: false,
+    players: inp.reserves.flatMap(p => {
+      const onD2Team = d2Rostered.get(normalizeName(p.name));
+      if (onD2Team) {
+        report.info('reserves', `${p.name} is listed in D2 Reserves but is on the D2 ${onD2Team} roster; he'll show there`);
+        return [];
+      }
+      return [{ playerId: reg.add(p.name, birth(p.age), `fbad2-res:S${season}`), position: p.position, age: p.age, rating: p.rating }];
+    }),
+  };
+  const reservedNames = new Set(inp.reserves.map(p => normalizeName(p.name)));
+
   const freeAgents: FreeAgentsFile = { league: 'fba', season, locked: false, players: [] };
   for (const fa of inp.freeAgents) {
-    const onTeam = rostered.get(normalizeName(fa.name));
+    const normalized = normalizeName(fa.name);
+    const onTeam = rostered.get(normalized);
     if (onTeam) {
       report.info('free agents', `${fa.name} is listed as a free agent but is on the ${onTeam} roster; he'll show there (as an expired contract if it has ended)`);
+      continue;
+    }
+    const onD2Team = d2Rostered.get(normalized);
+    if (onD2Team) {
+      report.info('free agents', `${fa.name} is listed as a free agent but is on the D2 ${onD2Team} roster; he'll show there`);
+      continue;
+    }
+    if (reservedNames.has(normalized)) {
+      report.info('free agents', `${fa.name} is listed as a free agent but is also in D2 Reserves; he'll show there`);
       continue;
     }
     freeAgents.players.push({

@@ -77,6 +77,15 @@ describe('signPlayer', () => {
     expect(r.label).toBe('Re-sign Dan Price → MON');
   });
 
+  it('refuses to sign a player who is listed in more than one place', () => {
+    const dup: RosterState = {
+      ...baseState(),
+      freeAgents: { ...baseState().freeAgents, players: [...baseState().freeAgents.players, { playerId: 'p00021', position: 'SG', age: 26, rating: 72, rookie: false, note: '' }] },
+    };
+    expect(problems(signPlayer(dup, { playerId: 'p00021', teamId: 'MON', years: 1, amount: 1, rating: 70, conflict: 'release' }, ctx)))
+      .toEqual(['Brooks Burrows is listed in more than one place (free agents, D2 AMS); fix the data first']);
+  });
+
   it('refuses unknown players and closed free agency', () => {
     expect(problems(signPlayer(baseState(), { playerId: 'p00001', teamId: 'CAR', years: 1, amount: 1, conflict: 'keep' }, ctx))).toEqual(['That player is not available to sign']);
     const closed: RosterState = { ...baseState(), freeAgents: { ...baseState().freeAgents, locked: true } };

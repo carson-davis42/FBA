@@ -21,6 +21,16 @@ type Source =
   | { kind: 'd2'; teamId: string; entry: RosterEntry }
   | { kind: 'expired'; teamId: string; entry: RosterEntry };
 
+function locations(state: RosterState, playerId: string): string[] {
+  const out: string[] = [];
+  if (state.freeAgents.players.some(p => p.playerId === playerId)) out.push('free agents');
+  const d2 = findOnRoster(state.d2, playerId);
+  if (d2) out.push(`D2 ${d2.teamId}`);
+  const fba = findOnRoster(state.fba, playerId);
+  if (fba) out.push(`FBA ${fba.teamId}`);
+  return out;
+}
+
 function findSource(state: RosterState, playerId: string): Source | null {
   const fa = state.freeAgents.players.find(p => p.playerId === playerId);
   if (fa) return { kind: 'fa', fa };
@@ -40,8 +50,9 @@ export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContex
   if (!team) return fail([`Unknown FBA team ${input.teamId}`]);
   const src = findSource(state, input.playerId);
   if (!src) return fail(['That player is not available to sign']);
-
   const name = nameOf(state, input.playerId);
+  const where = locations(state, input.playerId);
+  if (where.length > 1) return fail([`${name} is listed in more than one place (${where.join(', ')}); fix the data first`]);
   const position: Position = src.kind === 'fa' ? src.fa.position : src.entry.position;
   const age = src.kind === 'fa' ? src.fa.age : src.entry.age;
   const resign = src.kind === 'expired' && src.teamId === input.teamId;
