@@ -35,6 +35,18 @@ describe('useAutosaveDoc', () => {
     expect(result.current.doc).toEqual({ v: 0 });
   });
 
+  it('sends no fetch when the change returns the same object', async () => {
+    const fetchMock = vi.fn(async () => new Response(JSON.stringify({ ok: true, version: '0000000000000002' })));
+    vi.stubGlobal('fetch', fetchMock);
+    const { result } = renderHook(() => useAutosaveDoc<{ v: number }>('calendar.json', D0, '0000000000000001'));
+    act(() => { result.current.update(d => d); });
+    // Give any queued save a chance to run before asserting it didn't.
+    await new Promise(r => setTimeout(r, 10));
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(result.current.doc).toEqual({ v: 0 });
+    expect(result.current.version).toBe('0000000000000001');
+  });
+
   it('takes new server data when no save is pending', () => {
     const { result, rerender } = renderHook(
       ({ d, v }: { d: { v: number }; v: string | null }) => useAutosaveDoc('calendar.json', d, v),

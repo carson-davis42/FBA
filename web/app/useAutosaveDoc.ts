@@ -38,6 +38,7 @@ export function useAutosaveDoc<T>(path: string, data: T | undefined, version: Ve
   const update = useCallback((change: (current: T) => T) => {
     if (docRef.current === undefined) return;
     const next = change(docRef.current);
+    if (next === docRef.current) return;
     docRef.current = next;
     setLocal(l => ({ ...l, doc: next }));
     setError('');
