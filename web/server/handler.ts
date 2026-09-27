@@ -1,9 +1,10 @@
 import { readFile } from 'node:fs/promises';
 import type http from 'node:http';
 import path from 'node:path';
+import { z } from 'zod';
 import { resolveLogo } from '../engine/shared/logos';
 import { LogoManifest } from '../engine/shared/types';
-import { Storage, StorageError } from './storage';
+import { Storage, StorageError, type BatchWrite } from './storage';
 
 const DEFAULT_MAX_BODY = 20 * 1024 * 1024;
 
@@ -42,6 +43,27 @@ function readBody(req: http.IncomingMessage, maxBody: number): Promise<string | 
   });
 }
 
+const BatchRequest = z.object({
+  label: z.string().min(1).max(200),
+  writes: z.array(z.object({ path: z.string().min(1), doc: z.unknown() }).strict()).min(1).max(50),
+}).strict();
+
+/** Reads and parses a JSON request body. On failure it sends the error response and returns undefined. */
+async function jsonBody(req: http.IncomingMessage, res: http.ServerResponse, maxBody: number): Promise<{ value: unknown } | undefined> {
+  const body = await readBody(req, maxBody);
+  if (body === null) {
+    req.resume();
+    sendJson(res, 413, { error: 'Request body too large' }, { Connection: 'close' });
+    return undefined;
+  }
+  try {
+    return { value: JSON.parse(body) };
+  } catch {
+    sendJson(res, 400, { error: 'Request body is not valid JSON' });
+    return undefined;
+  }
+}
+
 export function createHandler(
   storage: Storage,
   logoDir: string,
@@ -67,21 +89,28 @@ export function createHandler(
         const rel = pathname.slice('/api/state/'.length);
         if (req.method === 'GET') return sendJson(res, 200, await storage.read(rel));
         if (req.method === 'PUT') {
-          const body = await readBody(req, maxBody);
-          if (body === null) {
-            req.resume();
-            return sendJson(res, 413, { error: 'Request body too large' }, { Connection: 'close' });
-          }
-          let doc: unknown;
-          try {
-            doc = JSON.parse(body);
-          } catch {
-            return sendJson(res, 400, { error: 'Request body is not valid JSON' });
-          }
-          await storage.write(rel, doc);
+          const parsed = await jsonBody(req, res, maxBody);
+          if (!parsed) return;
+          await storage.write(rel, parsed.value);
           return sendJson(res, 200, { ok: true });
         }
         return sendJson(res, 405, { error: 'Method not allowed' });
+      }
+
+      if (pathname === '/api/batch') {
+        if (req.method !== 'POST') return sendJson(res, 405, { error: 'Method not allowed' });
+        const parsed = await jsonBody(req, res, maxBody);
+        if (!parsed) return;
+        const batch = BatchRequest.safeParse(parsed.value);
+        if (!batch.success) return sendJson(res, 400, { error: 'Invalid batch request', issues: batch.error.issues });
+        const { batchId } = await storage.writeMany(batch.data.label, batch.data.writes as BatchWrite[]);
+        return sendJson(res, 200, { ok: true, batchId });
+      }
+
+      if (pathname === '/api/undo') {
+        if (req.method !== 'POST') return sendJson(res, 405, { error: 'Method not allowed' });
+        const { label, paths } = await storage.undo();
+        return sendJson(res, 200, { ok: true, label, paths });
       }
 
       const logo = pathname.match(/^\/logos\/([^/]+)\/(\d+)$/);

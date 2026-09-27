@@ -202,3 +202,26 @@ describe('HTTP handler bad requests', () => {
     });
   });
 });
+
+describe('batch and undo routes', () => {
+  const cal = (done: boolean) => ({ season: 79, steps: [{ id: 'a', label: 'A', kind: 'offseason', league: null, sub: false, done }] });
+
+  it('applies a batch and undoes it', async () => {
+    await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', body: JSON.stringify(cal(false)) });
+    const res = await fetch(`${base}/api/batch`, { method: 'POST', body: JSON.stringify({ label: 'Mark A', writes: [{ path: 'calendar.json', doc: cal(true) }] }) });
+    expect(res.status).toBe(200);
+    expect((await res.json()).batchId).toBeTruthy();
+    const undo = await fetch(`${base}/api/undo`, { method: 'POST' });
+    expect(await undo.json()).toEqual({ ok: true, label: 'Mark A', paths: ['calendar.json'] });
+    expect(await (await fetch(`${base}/api/state/calendar.json`)).json()).toEqual(cal(false));
+  });
+
+  it('rejects a malformed batch body', async () => {
+    const res = await fetch(`${base}/api/batch`, { method: 'POST', body: JSON.stringify({ label: '', writes: [] }) });
+    expect(res.status).toBe(400);
+  });
+
+  it('rejects GET on the batch route', async () => {
+    expect((await fetch(`${base}/api/batch`)).status).toBe(405);
+  });
+});

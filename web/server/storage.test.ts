@@ -51,3 +51,69 @@ describe('Storage', () => {
     expect(readdirSync(dir).filter(f => f.endsWith('.tmp'))).toHaveLength(0);
   });
 });
+
+describe('Storage batches and undo', () => {
+  const roster = (season: number, rating: number) => ({ league: 'fba', season, locked: false, teams: { BOS: [{ playerId: 'p00001', position: 'PG', rating, age: 28, points: 0 }] } });
+  const tx = { league: 'fba', season: 79, entries: [] };
+
+  it('writes every document in a batch', async () => {
+    const { storage } = fresh();
+    const { batchId } = await storage.writeMany('Sign', [
+      { path: 'leagues/fba/S79/rosters.json', doc: roster(79, 90) },
+      { path: 'leagues/fba/S79/transactions.json', doc: tx },
+    ]);
+    expect(batchId).toMatch(/^\d+-\d+$/);
+    expect(await storage.read('leagues/fba/S79/rosters.json')).toEqual(roster(79, 90));
+    expect(await storage.read('leagues/fba/S79/transactions.json')).toEqual(tx);
+  });
+
+  it('writes nothing when any document is invalid', async () => {
+    const { storage } = fresh();
+    await storage.write('leagues/fba/S79/rosters.json', roster(79, 90));
+    const failed = storage.writeMany('Bad', [
+      { path: 'leagues/fba/S79/rosters.json', doc: roster(79, 50) },
+      { path: 'leagues/fba/S79/transactions.json', doc: { league: 'fba', season: 79, entries: 'nope' } },
+    ]);
+    expect(await status(failed)).toBe(400);
+    expect(await storage.read('leagues/fba/S79/rosters.json')).toEqual(roster(79, 90));
+    expect(await status(storage.read('leagues/fba/S79/transactions.json'))).toBe(404);
+  });
+
+  it('rejects a document whose season disagrees with its path', async () => {
+    const { storage } = fresh();
+    expect(await status(storage.writeMany('X', [{ path: 'leagues/fba/S79/rosters.json', doc: roster(12, 90) }]))).toBe(400);
+    expect(await status(storage.write('leagues/fba/S79/rosters.json', roster(12, 90)))).toBe(400);
+  });
+
+  it('rejects duplicate paths in one batch', async () => {
+    const { storage } = fresh();
+    const w = { path: 'leagues/fba/S79/rosters.json', doc: roster(79, 90) };
+    expect(await status(storage.writeMany('Dup', [w, w]))).toBe(400);
+  });
+
+  it('undoes the last batch, including files it created', async () => {
+    const { storage } = fresh();
+    await storage.write('leagues/fba/S79/rosters.json', roster(79, 90));
+    await storage.writeMany('Sign Okoro', [
+      { path: 'leagues/fba/S79/rosters.json', doc: roster(79, 70) },
+      { path: 'leagues/fba/S79/transactions.json', doc: tx },
+    ]);
+    expect(await storage.undo()).toEqual({ label: 'Sign Okoro', paths: ['leagues/fba/S79/rosters.json', 'leagues/fba/S79/transactions.json'] });
+    expect(await storage.read('leagues/fba/S79/rosters.json')).toEqual(roster(79, 90));
+    expect(await status(storage.read('leagues/fba/S79/transactions.json'))).toBe(404);
+    expect(await status(storage.undo())).toBe(404);
+  });
+
+  it('refuses to undo when a file changed after the batch', async () => {
+    const { storage } = fresh();
+    await storage.writeMany('Sign', [{ path: 'leagues/fba/S79/rosters.json', doc: roster(79, 70) }]);
+    await storage.write('leagues/fba/S79/rosters.json', roster(79, 71));
+    expect(await status(storage.undo())).toBe(409);
+  });
+
+  it('serializes overlapping writes', async () => {
+    const { storage } = fresh();
+    await Promise.all([1, 2, 3, 4, 5].map(i => storage.writeMany(`w${i}`, [{ path: 'leagues/fba/S79/rosters.json', doc: roster(79, 60 + i) }])));
+    expect(await storage.read('leagues/fba/S79/rosters.json')).toEqual(roster(79, 65));
+  });
+});

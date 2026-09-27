@@ -1,6 +1,6 @@
 import { mkdir, readdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { schemaForPath } from '../engine/shared/schemaRegistry';
+import { pathAgreementProblem, schemaForPath } from '../engine/shared/schemaRegistry';
 
 export class StorageError extends Error {
   constructor(readonly status: number, message: string, readonly issues?: unknown) {
@@ -8,49 +8,182 @@ export class StorageError extends Error {
   }
 }
 
-const isMissing = (e: unknown) => (e as NodeJS.ErrnoException).code === 'ENOENT';
+export interface BatchWrite {
+  path: string;
+  doc: unknown;
+}
+
+interface JournalFile {
+  path: string;
+  before: string | null;
+  after: string;
+}
+
+interface JournalEntry {
+  id: string;
+  label: string;
+  files: JournalFile[];
+}
+
+const isMissing = (e: unknown) => (e as NodeJS.ErrnoException)?.code === 'ENOENT';
+const RETRYABLE = new Set(['EPERM', 'EBUSY', 'EACCES']);
+const MAX_JOURNAL = 50;
+
+function isLocked(text: string): boolean {
+  try {
+    return (JSON.parse(text) as { locked?: unknown })?.locked === true;
+  } catch {
+    return false;
+  }
+}
 
 export class Storage {
   private seq = 0;
+  private chain: Promise<unknown> = Promise.resolve();
 
   constructor(private readonly dataDir: string, private readonly maxBackups = 10) {}
+
+  /** Runs storage mutations one at a time so overlapping requests can't interleave. */
+  private serialize<T>(fn: () => Promise<T>): Promise<T> {
+    const run = this.chain.then(fn, fn);
+    this.chain = run.catch(() => undefined);
+    return run;
+  }
 
   private fullPath(rel: string): string {
     if (!schemaForPath(rel)) throw new StorageError(404, `Unknown document path: ${rel}`);
     return path.join(this.dataDir, ...rel.split('/'));
   }
 
-  async read(rel: string): Promise<unknown> {
-    const file = this.fullPath(rel);
+  private async readRaw(file: string): Promise<string | null> {
     try {
-      return JSON.parse(await readFile(file, 'utf8'));
+      return await readFile(file, 'utf8');
     } catch (e) {
-      if (isMissing(e)) throw new StorageError(404, `Not found: ${rel}`);
+      if (isMissing(e)) return null;
       throw e;
     }
   }
 
-  async write(rel: string, doc: unknown): Promise<void> {
+  private async atomicWrite(file: string, text: string): Promise<void> {
+    await mkdir(path.dirname(file), { recursive: true });
+    const tmp = `${file}.${process.pid}.${this.seq++}.tmp`;
+    await writeFile(tmp, text);
+    for (let attempt = 0; ; attempt++) {
+      try {
+        await rename(tmp, file);
+        return;
+      } catch (e) {
+        const code = (e as NodeJS.ErrnoException).code ?? '';
+        if (!RETRYABLE.has(code) || attempt >= 5) {
+          await unlink(tmp).catch(() => undefined);
+          throw e;
+        }
+        await new Promise(r => setTimeout(r, 20 * (attempt + 1)));
+      }
+    }
+  }
+
+  /** Validates one document for rel and returns its canonical text plus the file's current text. */
+  private async prepare(rel: string, doc: unknown): Promise<{ file: string; text: string; before: string | null }> {
     const file = this.fullPath(rel);
     const result = schemaForPath(rel)!.safeParse(doc);
     if (!result.success) throw new StorageError(400, `Invalid document for ${rel}`, result.error.issues);
+    const mismatch = pathAgreementProblem(rel, result.data);
+    if (mismatch) throw new StorageError(400, mismatch);
+    const before = await this.readRaw(file);
+    if (before !== null && isLocked(before)) throw new StorageError(409, `${rel} belongs to a finished (locked) season and can't be changed`);
+    return { file, text: JSON.stringify(result.data, null, 2) + '\n', before };
+  }
 
-    let existing: string | null = null;
+  async read(rel: string): Promise<unknown> {
+    const text = await this.readRaw(this.fullPath(rel));
+    if (text === null) throw new StorageError(404, `Not found: ${rel}`);
+    return JSON.parse(text);
+  }
+
+  write(rel: string, doc: unknown): Promise<void> {
+    return this.serialize(async () => {
+      const p = await this.prepare(rel, doc);
+      if (p.before !== null) await this.backup(rel, p.before);
+      await this.atomicWrite(p.file, p.text);
+    });
+  }
+
+  writeMany(label: string, writes: BatchWrite[]): Promise<{ batchId: string }> {
+    return this.serialize(async () => {
+      const seen = new Set<string>();
+      const prepared: { rel: string; file: string; text: string; before: string | null }[] = [];
+      for (const w of writes) {
+        if (seen.has(w.path)) throw new StorageError(400, `Duplicate path in batch: ${w.path}`);
+        seen.add(w.path);
+        prepared.push({ rel: w.path, ...(await this.prepare(w.path, w.doc)) });
+      }
+
+      const id = `${Date.now()}-${String(this.seq++).padStart(6, '0')}`;
+      await this.saveJournal({ id, label, files: prepared.map(p => ({ path: p.rel, before: p.before, after: p.text })) });
+
+      const done: typeof prepared = [];
+      try {
+        for (const p of prepared) {
+          if (p.before !== null) await this.backup(p.rel, p.before);
+          await this.atomicWrite(p.file, p.text);
+          done.push(p);
+        }
+      } catch (e) {
+        for (const p of done.reverse()) {
+          if (p.before === null) await unlink(p.file).catch(() => undefined);
+          else await this.atomicWrite(p.file, p.before).catch(() => undefined);
+        }
+        await unlink(this.journalPath(id)).catch(() => undefined);
+        throw e;
+      }
+      return { batchId: id };
+    });
+  }
+
+  undo(): Promise<{ label: string; paths: string[] }> {
+    return this.serialize(async () => {
+      const names = await this.journalNames();
+      const last = names.at(-1);
+      if (!last) throw new StorageError(404, 'Nothing to undo');
+      const entry = JSON.parse(await readFile(path.join(this.journalDir(), last), 'utf8')) as JournalEntry;
+      for (const f of entry.files) {
+        if ((await this.readRaw(this.fullPath(f.path))) !== f.after) {
+          throw new StorageError(409, `Can't undo "${entry.label}": ${f.path} has changed since then`);
+        }
+      }
+      for (const f of entry.files) {
+        const file = this.fullPath(f.path);
+        if (f.before === null) await unlink(file);
+        else await this.atomicWrite(file, f.before);
+      }
+      await unlink(path.join(this.journalDir(), last));
+      return { label: entry.label, paths: entry.files.map(f => f.path) };
+    });
+  }
+
+  private journalDir(): string {
+    return path.join(this.dataDir, '.journal');
+  }
+
+  private journalPath(id: string): string {
+    return path.join(this.journalDir(), `${id}.json`);
+  }
+
+  private async journalNames(): Promise<string[]> {
     try {
-      existing = await readFile(file, 'utf8');
+      return (await readdir(this.journalDir())).filter(n => n.endsWith('.json')).sort();
     } catch (e) {
-      if (!isMissing(e)) throw e;
+      if (isMissing(e)) return [];
+      throw e;
     }
-    if (existing !== null) {
-      const prev = JSON.parse(existing) as { locked?: unknown };
-      if (prev && prev.locked === true) throw new StorageError(409, `${rel} belongs to a finished (locked) season and can't be changed`);
-      await this.backup(rel, existing);
-    }
+  }
 
-    await mkdir(path.dirname(file), { recursive: true });
-    const tmp = `${file}.${process.pid}.${this.seq++}.tmp`;
-    await writeFile(tmp, JSON.stringify(result.data, null, 2) + '\n');
-    await rename(tmp, file);
+  private async saveJournal(entry: JournalEntry): Promise<void> {
+    await mkdir(this.journalDir(), { recursive: true });
+    await writeFile(this.journalPath(entry.id), JSON.stringify(entry));
+    const names = await this.journalNames();
+    for (const old of names.slice(0, Math.max(0, names.length - MAX_JOURNAL))) await unlink(path.join(this.journalDir(), old));
   }
 
   private async backup(rel: string, content: string): Promise<void> {

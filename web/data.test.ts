@@ -8,7 +8,7 @@ const DATA_DIR = path.join(__dirname, 'data');
 function walk(dir: string): string[] {
   const out: string[] = [];
   for (const entry of readdirSync(dir)) {
-    if (entry === '.backups') continue;
+    if (entry === '.backups' || entry === '.journal') continue;
     const full = path.join(dir, entry);
     if (statSync(full).isDirectory()) out.push(...walk(full));
     else if (entry.endsWith('.json')) out.push(full);

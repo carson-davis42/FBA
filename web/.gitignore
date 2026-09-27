@@ -2,3 +2,4 @@ node_modules/
 dist/
 importers/.cache/
 data/.backups/
+data/.journal/
