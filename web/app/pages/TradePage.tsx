@@ -81,7 +81,11 @@ export function TradePage() {
           </select>
         </label>
         {teamIds.map(t => (
-          <button key={t} className="btn" onClick={() => { setTeamIds(ids => ids.filter(x => x !== t)); setAssets(a => a.filter(x => x.from !== t && x.to !== t)); }}>
+          <button key={t} className="btn" onClick={() => {
+            setTeamIds(ids => ids.filter(x => x !== t));
+            setAssets(a => a.filter(x => x.from !== t && x.to !== t));
+            setPickOpts(p => Object.fromEntries(Object.entries(p).filter(([k]) => !k.startsWith(`${t}-`))));
+          }}>
             {t} ✕
           </button>
         ))}
@@ -148,12 +152,21 @@ export function TradePage() {
                     </div>
                   );
                 })}
-                {state.picks.obligations.filter(o => o.owner === from).map(o => (
-                  <div key={o.id} className={`asset ${assets.some(a => a.kind === 'pick' && a.obligationId === o.id) ? 'sending' : ''}`}
-                    onClick={() => toggle({ kind: 'pick', obligationId: o.id, from, to: defaultTo(from) }, a => a.kind === 'pick' && a.obligationId === o.id)}>
-                    {pickLabel(o)}
-                  </div>
-                ))}
+                {state.picks.obligations.filter(o => o.owner === from).map(o => {
+                  const i = assets.findIndex(a => a.kind === 'pick' && a.obligationId === o.id);
+                  return (
+                    <div key={o.id} className={`asset ${i >= 0 ? 'sending' : ''}`}>
+                      <span onClick={() => toggle({ kind: 'pick', obligationId: o.id, from, to: defaultTo(from) }, a => a.kind === 'pick' && a.obligationId === o.id)}>
+                        {pickLabel(o)}
+                      </span>
+                      {i >= 0 && teamIds.length > 2 && (
+                        <select aria-label={`Send ${pickLabel(o)} to`} value={assets[i].to} onChange={ev => setDest(i, ev.target.value)}>
+                          {teamIds.filter(t => t !== from).map(t => <option key={t} value={t}>→ {t}</option>)}
+                        </select>
+                      )}
+                    </div>
+                  );
+                })}
               </>
             )}
           </section>

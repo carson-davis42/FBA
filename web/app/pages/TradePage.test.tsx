@@ -9,12 +9,14 @@ import { TradePage } from './TradePage';
 const badge = { bg: 'hsl(1 55% 36%)', fg: '#ffffff' };
 let posted: { label: string; writes: { path: string; doc: unknown }[] } | null = null;
 
-beforeEach(() => {
+function setupFetch(build: (s: ReturnType<typeof baseState>) => void = () => {}) {
   posted = null;
   const s = baseState();
+  build(s);
   const d: Record<string, unknown> = {
     'meta.json': { currentSeason: 79, rosterSeason: { fba: 79, fbad2: 79, fbajc: 78, fbawc: 78 }, lastSeason: { fba: 78, fbad2: 78, fbajc: 78, fbawc: 78 } },
     'leagues/fba/teams.json': { league: 'fba', teams: ['BOS', 'CAR', 'MON'].map(t => ({ teamId: t, name: `${t} Team`, abbr: t, group: 'E', logoFolder: null, badge })) },
+    'leagues/fbad2/teams.json': { league: 'fbad2', teams: [{ teamId: 'AMS', name: 'AMS Team', abbr: 'AMS', group: 'PL', logoFolder: null, badge }] },
   };
   for (const k of DOC_KEYS) d[docPath(k, 79)] = s[k];
   vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
@@ -22,7 +24,9 @@ beforeEach(() => {
     const doc = d[url.replace('/api/state/', '')];
     return doc ? new Response(JSON.stringify(doc)) : new Response('{}', { status: 404 });
   }));
-});
+}
+
+beforeEach(() => setupFetch());
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
 describe('TradePage', () => {
@@ -45,5 +49,52 @@ describe('TradePage', () => {
     await waitFor(() => expect(posted).not.toBeNull());
     expect(posted!.label).toBe('Trade CAR/MON');
     expect(posted!.writes.map(w => w.path).sort()).toEqual(['leagues/fba/S79/rosters.json', 'leagues/fba/S79/transactions.json', 'leagues/fba/picks.json']);
+  });
+
+  describe('3+ team trades', () => {
+    beforeEach(() => {
+      setupFetch(s => {
+        s.picks = {
+          league: 'fba',
+          obligations: [{
+            id: 'imp-S81-MON-1', season: 81, originalTeam: 'MON', owner: 'CAR',
+            condition: { kind: 'top', n: 4 }, originalCondition: { kind: 'top', n: 4 },
+            originSeason: 81, priority: 1, rolls: [], note: '',
+          }],
+        };
+      });
+    });
+
+    it('lets you choose a destination for a player and an owned pick', async () => {
+      render(
+        <MemoryRouter initialEntries={['/trade/fba?team=CAR']}>
+          <Routes><Route path="/trade/:league" element={<TradePage />} /></Routes>
+        </MemoryRouter>,
+      );
+      fireEvent.change(await screen.findByLabelText('Add team'), { target: { value: 'MON' } });
+      fireEvent.change(screen.getByLabelText('Add team'), { target: { value: 'BOS' } });
+      const car = screen.getByRole('region', { name: 'CAR Team' });
+      fireEvent.click(within(car).getByText('S81 Draft Pick(via MON)(4P)'));
+      fireEvent.change(within(car).getByLabelText('Send S81 Draft Pick(via MON)(4P) to'), { target: { value: 'BOS' } });
+      fireEvent.click(within(car).getByText('Terence Hopkins'));
+      fireEvent.change(within(car).getByLabelText('Send Terence Hopkins to'), { target: { value: 'MON' } });
+      expect(screen.getByText('->BOS S81 Draft Pick(via MON)(4P)')).toBeTruthy();
+      expect(screen.getByText('->MON SG-Terence Hopkins')).toBeTruthy();
+      fireEvent.click(screen.getByRole('button', { name: 'Make trade' }));
+      await waitFor(() => expect(posted).not.toBeNull());
+      expect(posted!.label).toBe('Trade CAR/MON/BOS');
+    });
+  });
+
+  describe('FBAD2', () => {
+    it('has no draft picks section', async () => {
+      render(
+        <MemoryRouter initialEntries={['/trade/fbad2?team=AMS']}>
+          <Routes><Route path="/trade/:league" element={<TradePage />} /></Routes>
+        </MemoryRouter>,
+      );
+      await screen.findByText('AMS Team');
+      expect(screen.queryByText('Draft picks')).toBeNull();
+    });
   });
 });
