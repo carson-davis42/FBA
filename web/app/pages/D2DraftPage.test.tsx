@@ -125,6 +125,15 @@ describe('D2DraftPage: draft board', () => {
     expect(log.batches[0].label).toBe('D2 draft #1: BER selects Kyron Smart');
   });
 
+  it("shows the on-the-clock team's logo next to the heading", async () => {
+    stubApi(docsFor(d2LockedState()));
+    renderPage();
+    await screen.findByText('On the clock: #1 BER Club');
+    const badge = document.querySelector('.team-badge');
+    expect(badge).toBeTruthy();
+    expect(badge!.textContent).toBe('BER');
+  });
+
   it('re-rolls the order before the first pick', async () => {
     const log = stubApi(docsFor(d2LockedState()));
     renderPage();

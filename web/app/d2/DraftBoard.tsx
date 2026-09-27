@@ -5,6 +5,7 @@ import {
 import { d2Name, d2Writes, type D2Result, type D2State } from '../../engine/d2/state';
 import type { TeamsFile } from '../../engine/shared/types';
 import { peekUndo, undoLast, useSaving, type Versions } from '../api';
+import { TeamMark } from '../components/TeamMark';
 import { commitDocs, newBatchId } from '../roster/commit';
 
 export function DraftBoard({ state, versions, teams }: { state: D2State; versions: Versions; teams: TeamsFile | undefined }) {
@@ -97,6 +98,7 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
   const available = availableFor(state, clock.teamId);
   const chosen = available.find(p => p.playerId === selected);
   const roster = state.d2.teams[clock.teamId] ?? [];
+  const clockTeam = teams?.teams.find(t => t.teamId === clock.teamId);
 
   return (
     <section>
@@ -112,7 +114,7 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
           </div>
         </div>
         <div className="card">
-          <h3>On the clock: #{clock.pickNo} {teamName(clock.teamId)}</h3>
+          <h3>{clockTeam && <TeamMark team={clockTeam} season={state.season} size={24} />} On the clock: #{clock.pickNo} {teamName(clock.teamId)}</h3>
           <p className="muted">Needs: {needs.join(', ')}</p>
           <div className="table-wrap">
             <table>
