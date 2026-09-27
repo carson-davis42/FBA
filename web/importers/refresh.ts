@@ -36,7 +36,7 @@ export function assembleRefresh(inp: RefreshInputs, report: Report): Record<stri
   const reserves: ReservesFile = {
     league: 'fbad2', season, locked: false,
     players: inp.reserves.flatMap(p => {
-      const onD2Team = d2Rostered.get(normalizeName(p.name));
+      const onD2Team = p.name ? d2Rostered.get(normalizeName(p.name)) : undefined;
       if (onD2Team) {
         report.info('reserves', `${p.name} is listed in D2 Reserves but is on the D2 ${onD2Team} roster; he'll show there`);
         return [];
@@ -44,7 +44,7 @@ export function assembleRefresh(inp: RefreshInputs, report: Report): Record<stri
       return [{ playerId: reg.add(p.name, birth(p.age), `fbad2-res:S${season}`), position: p.position, age: p.age, rating: p.rating }];
     }),
   };
-  const reservedNames = new Set(inp.reserves.map(p => normalizeName(p.name)));
+  const reservedNames = new Set(inp.reserves.flatMap(p => (p.name ? [normalizeName(p.name)] : [])));
 
   const freeAgents: FreeAgentsFile = { league: 'fba', season, locked: false, players: [] };
   for (const fa of inp.freeAgents) {
