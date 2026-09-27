@@ -51,6 +51,21 @@ describe('TradePage', () => {
     expect(posted!.writes.map(w => w.path).sort()).toEqual(['leagues/fba/S79/rosters.json', 'leagues/fba/S79/transactions.json', 'leagues/fba/picks.json']);
   });
 
+  describe('fewer than 2 teams', () => {
+    it('shows a hint instead of starting a trade when clicking an asset', async () => {
+      render(
+        <MemoryRouter initialEntries={['/trade/fba?team=CAR']}>
+          <Routes><Route path="/trade/:league" element={<TradePage />} /></Routes>
+        </MemoryRouter>,
+      );
+      const car = await screen.findByRole('region', { name: 'CAR Team' });
+      expect(screen.getByText('Add a second team to start a trade.')).toBeTruthy();
+      fireEvent.click(within(car).getByText('Terence Hopkins'));
+      expect(within(car).getByText('Terence Hopkins').closest('.asset')?.className).not.toContain('sending');
+      expect(screen.getByText('Add a second team to start a trade.')).toBeTruthy();
+    });
+  });
+
   describe('3+ team trades', () => {
     beforeEach(() => {
       setupFetch(s => {

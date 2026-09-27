@@ -51,8 +51,11 @@ export function TradePage() {
   const txKey = lg === 'fba' ? 'fbaTx' : 'd2Tx';
   const lines = preview?.ok ? preview.state[txKey].entries.at(-1)!.lines : [];
 
-  const toggle = (asset: TradeAsset, matches: (a: TradeAsset) => boolean) =>
+  const canTrade = teamIds.length >= 2;
+  const toggle = (asset: TradeAsset, matches: (a: TradeAsset) => boolean) => {
+    if (!canTrade) return;
     setAssets(prev => (prev.some(matches) ? prev.filter(a => !matches(a)) : [...prev, asset]));
+  };
   const setDest = (i: number, to: string) => setAssets(prev => prev.map((a, j) => (j === i ? { ...a, to } : a)));
 
   const save = async () => {
@@ -92,6 +95,7 @@ export function TradePage() {
           </button>
         ))}
       </div>
+      {!canTrade && <p className="muted">Add a second team to start a trade.</p>}
 
       <div className="trade-cols">
         {teamIds.map(from => (
