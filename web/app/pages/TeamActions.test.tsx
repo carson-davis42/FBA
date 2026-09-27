@@ -62,6 +62,9 @@ describe('team page actions', () => {
     fireEvent.click(within(dialog).getByRole('button', { name: 'Save' }));
     await waitFor(() => expect(posted).not.toBeNull());
     expect(posted!.label).toBe('Edit Gabriel Greenwood');
+    const txWrite = posted!.writes.find(w => w.path === 'leagues/fba/S79/transactions.json');
+    const entries = (txWrite!.doc as { entries: { lines: string[] }[] }).entries;
+    expect(entries.at(-1)!.lines).toEqual(['Edited PG-Gabriel Greenwood: rating 95→96']);
   });
 
   it('resets the edit dialog when switching players without cancelling', async () => {
@@ -72,6 +75,19 @@ describe('team page actions', () => {
     fireEvent.click(within(row2).getByRole('button', { name: 'Edit' }));
     const dialog = screen.getByRole('region', { name: /edit olufemi cisneros/i });
     expect((within(dialog).getByLabelText('Rating') as HTMLInputElement).value).toBe('94');
+  });
+
+  it('re-signs a restricted, expired player via the Re-sign button', async () => {
+    renderAt('/league/fba/team/MON');
+    const row = (await screen.findByText('Dan Price')).closest('tr')!;
+    fireEvent.click(await within(row).findByRole('button', { name: 'Re-sign' }));
+    const panel = screen.getByRole('region', { name: /sign dan price/i });
+    expect((within(panel).getByLabelText('Team') as HTMLSelectElement).value).toBe('MON');
+    fireEvent.change(within(panel).getByLabelText('Years'), { target: { value: '5' } });
+    fireEvent.change(within(panel).getByLabelText('Amount ($)'), { target: { value: '5' } });
+    fireEvent.click(within(panel).getByRole('button', { name: 'Sign' }));
+    await waitFor(() => expect(posted).not.toBeNull());
+    expect(posted!.label).toBe('Re-sign Dan Price → MON');
   });
 
   it('lists transactions newest first', async () => {

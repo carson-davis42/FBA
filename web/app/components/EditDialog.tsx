@@ -18,8 +18,14 @@ export function EditDialog({ state, league, teamId, playerId, onClose }: {
   if (!entry) return null;
   const name = state.players.players[playerId]?.name ?? 'Unnamed';
 
-  const changes: EditChanges = { rating: num(rating), age: num(age) };
-  if (league === 'fba') Object.assign(changes, { contractEnd: num(end), contractAmount: num(amount), restricted });
+  const changes: EditChanges = {};
+  if (num(rating) !== (entry.rating ?? null)) changes.rating = num(rating);
+  if (num(age) !== (entry.age ?? null)) changes.age = num(age);
+  if (league === 'fba') {
+    if (num(end) !== (entry.contractEnd ?? null)) changes.contractEnd = num(end);
+    if (num(amount) !== (entry.contractAmount ?? null)) changes.contractAmount = num(amount);
+    if (restricted !== Boolean(entry.restricted)) changes.restricted = restricted;
+  }
   const input: EditInput = { league, teamId, playerId, changes };
   const warnings = editWarnings(state, input);
 

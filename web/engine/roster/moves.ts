@@ -174,8 +174,12 @@ function applyEdit(state: RosterState, input: EditInput): { entries: RosterEntry
   const before = team?.find(e => e.playerId === input.playerId);
   if (!team || !before) return null;
   const after: RosterEntry = { ...before, ...input.changes };
+  if (input.changes.restricted === false && before.restricted === undefined) delete after.restricted;
   return { entries: team.map(e => (e === before ? after : e)), before, after };
 }
+
+/** A missing `restricted` is equivalent to false, so diffing and display treat them the same. */
+const restrictedValue = (v: boolean | undefined): boolean => v ?? false;
 
 export function editWarnings(state: RosterState, input: EditInput): string[] {
   const applied = applyEdit(state, input);
@@ -207,8 +211,10 @@ export function editPlayer(state: RosterState, input: EditInput, ctx: MoveContex
   const key = input.league === 'fba' ? 'fba' : 'd2';
   const txKey = input.league === 'fba' ? 'fbaTx' : 'd2Tx';
   const name = nameOf(state, input.playerId);
+  const changed = (f: keyof EditChanges): boolean =>
+    f === 'restricted' ? restrictedValue(applied.before.restricted) !== restrictedValue(applied.after.restricted) : applied.before[f] !== applied.after[f];
   const diffs = (Object.keys(input.changes) as (keyof EditChanges)[])
-    .filter(f => applied.before[f] !== applied.after[f])
+    .filter(changed)
     .map(f => `${FIELD_LABEL[f]} ${show(f, applied.before[f])}→${show(f, applied.after[f])}`);
   const tx = appendTx(state[txKey], ctx, 'edit', [input.teamId], [`Edited ${applied.before.position}-${name}: ${diffs.join(', ') || 'no changes'}`]);
   return {

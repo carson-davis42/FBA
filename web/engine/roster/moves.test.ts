@@ -127,6 +127,13 @@ describe('editPlayer', () => {
     expect(r.state.fbaTx.entries[0]).toMatchObject({ type: 'edit', lines: ['Edited PG-Gabriel Greenwood: rating 95→96, contract end S80→S81'] });
   });
 
+  it('treats a missing restricted field as false, and does not log or store an unchanged restricted: false', () => {
+    const r = ok(editPlayer(baseState(), { league: 'fba', teamId: 'BOS', playerId: 'p00001', changes: { rating: 96, restricted: false } }, ctx));
+    expect(r.state.fba.teams.BOS[0]).toMatchObject({ rating: 96 });
+    expect(Object.hasOwn(r.state.fba.teams.BOS[0], 'restricted')).toBe(false);
+    expect(r.state.fbaTx.entries[0]).toMatchObject({ type: 'edit', lines: ['Edited PG-Gabriel Greenwood: rating 95→96'] });
+  });
+
   it('warns without blocking when an edit breaks a rule', () => {
     const input = { league: 'fba' as const, teamId: 'BOS', playerId: 'p00001', changes: { contractAmount: 10 } };
     expect(editWarnings(baseState(), input)).toEqual(["Amount can't exceed $8"]);
