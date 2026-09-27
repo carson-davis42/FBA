@@ -88,6 +88,19 @@ describe('D2DraftPage: pool', () => {
     ]);
     expect(log.batches[0].writes.find(w => w.path.endsWith('draft.json'))!.baseVersion).toBeNull();
   });
+
+  it('hands off to the version an autosave returned, not the originally loaded one, when Lock pool follows a move', async () => {
+    const log = stubApi(docsFor(pooled()));
+    renderPage();
+    fireEvent.click(await screen.findByRole('button', { name: 'Move Milo Dean up' }));
+    await waitFor(() => expect(log.puts).toHaveLength(1));
+    expect(log.puts[0].ifMatch).toBe('"0000000000000001"');
+
+    fireEvent.click(await screen.findByRole('button', { name: 'Lock pool' }));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    const write = log.batches[0].writes.find(w => w.path === 'leagues/fbad2/S79/pool.json')!;
+    expect(write.baseVersion).toBe('0000000000000002');
+  });
 });
 
 const pickAll = (ids: string[]): D2State => {

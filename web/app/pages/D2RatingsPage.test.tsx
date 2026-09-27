@@ -94,4 +94,24 @@ describe('D2RatingsPage', () => {
     ]);
     expect(log.batches[0].writes.every(w => w.baseVersion === '0000000000000001')).toBe(true);
   });
+
+  it('hands off to the version an autosave returned, not the originally loaded one, when Finish follows an edit', async () => {
+    const s = started();
+    let ratings = s.ratings!;
+    for (const [id, v] of [['p00041', 74], ['p00042', 70], ['p00043', 60], ['p00044', 65]] as const) ratings = setRating(ratings, id, v);
+    const log = stubApi(docsFor({ ...s, ratings }));
+    renderPage();
+    const input = await screen.findByLabelText('New rating for Kris Dyer');
+    fireEvent.change(input, { target: { value: '78' } });
+    fireEvent.blur(input);
+    await waitFor(() => expect(log.puts).toHaveLength(1));
+    expect(log.puts[0].ifMatch).toBe('"0000000000000001"');
+
+    const finish = await screen.findByRole('button', { name: 'Finish ratings' });
+    await waitFor(() => expect((finish as HTMLButtonElement).disabled).toBe(false));
+    fireEvent.click(finish);
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    const write = log.batches[0].writes.find(w => w.path === 'leagues/fbad2/S79/ratings.json')!;
+    expect(write.baseVersion).toBe('0000000000000002');
+  });
 });
