@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { makePick } from '../../engine/d2/draft';
@@ -127,6 +127,18 @@ describe('D2DraftPage: draft board', () => {
     fireEvent.click(await screen.findByRole('button', { name: /Undo last pick/ }));
     await waitFor(() => expect(log.undos).toBe(1));
     expect(screen.queryByRole('button', { name: /Re-roll order/ })).toBeNull();
+  });
+
+  it('hides Undo last pick when the newest pick is blocked (a non-journaled write changed a file since)', async () => {
+    stubApi(docsFor(pickAll(['p00041'])), {
+      undoLabel: 'D2 draft #1: BER selects Kyron Smart', undoBlockedBy: 'leagues/fbad2/S79/draft.json',
+    });
+    renderPage();
+    await screen.findByText('On the clock: #2 BER Club');
+    // Let the peekUndo() check that runs on mount resolve before asserting the button's absence,
+    // so this can't pass merely because that check hasn't settled yet.
+    await act(async () => { await new Promise(r => setTimeout(r, 0)); });
+    expect(screen.queryByRole('button', { name: /Undo last pick/ })).toBeNull();
   });
 
   it('offers only Skip when nobody fits', async () => {

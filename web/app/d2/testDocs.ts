@@ -36,7 +36,7 @@ export interface ApiLog {
  * Stubs fetch with an in-memory API over `docs` (which it mutates on writes). Each doc's version is its write count as
  * 16 digits ("0000000000000001" when first served), sent as an ETag and bumped on every PUT or batch write.
  */
-export function stubApi(docs: Record<string, unknown>, options: { undoLabel?: string | null } = {}): ApiLog {
+export function stubApi(docs: Record<string, unknown>, options: { undoLabel?: string | null; undoBlockedBy?: string | null } = {}): ApiLog {
   const log: ApiLog = { batches: [], puts: [], undos: 0 };
   const counts = new Map<string, number>(Object.keys(docs).map(p => [p, 1]));
   const version = (p: string) => String(counts.get(p) ?? 0).padStart(16, '0');
@@ -54,7 +54,9 @@ export function stubApi(docs: Record<string, unknown>, options: { undoLabel?: st
         log.undos++;
         return new Response(JSON.stringify({ ok: true, label: options.undoLabel ?? 'Undo', paths: [] }));
       }
-      return new Response(JSON.stringify({ ok: true, available: Boolean(options.undoLabel), label: options.undoLabel ?? null }));
+      return new Response(JSON.stringify({
+        ok: true, available: Boolean(options.undoLabel), label: options.undoLabel ?? null, blockedBy: options.undoBlockedBy ?? null,
+      }));
     }
     const path = url.replace('/api/state/', '');
     if (init?.method === 'PUT') {

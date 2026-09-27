@@ -11,12 +11,15 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
   const saving = useSaving();
   const [selected, setSelected] = useState<string | null>(null);
   const [actionError, setActionError] = useState('');
-  const [undoLabel, setUndoLabel] = useState<string | null>(null);
+  const [undoState, setUndoState] = useState<{ label: string | null; blocked: boolean }>({ label: null, blocked: false });
 
   useEffect(() => {
     let live = true;
     const refresh = () => {
-      peekUndo().then(p => { if (live) setUndoLabel(p.available ? p.label : null); }, () => undefined);
+      peekUndo().then(
+        p => { if (live) setUndoState(p.available ? { label: p.label, blocked: p.blockedBy !== null } : { label: null, blocked: false }); },
+        () => undefined,
+      );
     };
     refresh();
     window.addEventListener('doc-saved', refresh);
@@ -59,7 +62,8 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
     }
   };
 
-  const undoButton = isDraftPickLabel(undoLabel) && <button className="btn" disabled={saving} onClick={undo}>↶ Undo last pick</button>;
+  const undoButton = isDraftPickLabel(undoState.label) && !undoState.blocked
+    && <button className="btn" disabled={saving} onClick={undo}>↶ Undo last pick</button>;
   const order = (
     <ol className="pick-order">
       {draft.tickets.map((teamId, i) => {

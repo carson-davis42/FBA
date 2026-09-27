@@ -44,6 +44,21 @@ describe('TopBar undo', () => {
     expect(screen.queryByRole('button', { name: /undo last move/i })).toBeNull();
   });
 
+  it('renders a disabled Undo with an explanatory title when the newest move is blocked', async () => {
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+      if (url === '/api/undo') {
+        return new Response(JSON.stringify({
+          ok: true, available: true, label: 'Start D2 pool', blockedBy: 'leagues/fbad2/S79/pool.json',
+        }));
+      }
+      return new Response(JSON.stringify({ season: 79, steps: [] }));
+    }));
+    render(<TopBar />);
+    const button = await screen.findByRole('button', { name: /undo last move/i }) as HTMLButtonElement;
+    expect(button.disabled).toBe(true);
+    expect(button.title).toBe('Can\'t undo "Start D2 pool": leagues/fbad2/S79/pool.json has changed since');
+  });
+
   it('disables Undo while a save is in flight', async () => {
     undoAvailable = true;
     render(<TopBar />);

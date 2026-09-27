@@ -12,7 +12,7 @@ export function TopBar() {
     const i = currentStepIndex(cal);
     pill = i < 0 ? `S${cal.season} · Complete` : `S${cal.season} · ${cal.steps[i].label}`;
   }
-  const [undo, setUndo] = useState<{ available: boolean; label: string | null }>({ available: false, label: null });
+  const [undo, setUndo] = useState<{ available: boolean; label: string | null; blockedBy: string | null }>({ available: false, label: null, blockedBy: null });
   const [undoMsg, setUndoMsg] = useState('');
   const saving = useSaving();
 
@@ -49,7 +49,12 @@ export function TopBar() {
       <div className="spacer" />
       {undoMsg && <span className="muted undo-msg">{undoMsg}</span>}
       {undo.available && (
-        <button className="btn" disabled={saving} onClick={doUndo} title={undo.label ? `Undo: ${undo.label}` : undefined}>↶ Undo last move</button>
+        <button
+          className="btn"
+          disabled={saving || undo.blockedBy !== null}
+          onClick={doUndo}
+          title={undo.blockedBy ? `Can't undo "${undo.label}": ${undo.blockedBy} has changed since` : undo.label ? `Undo: ${undo.label}` : undefined}
+        >↶ Undo last move</button>
       )}
       {pill && <span className="pill">{pill}</span>}
       <button className="icon-btn" onClick={toggle} aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}>

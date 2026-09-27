@@ -278,16 +278,40 @@ describe('batch and undo routes', () => {
     const setup = await fetch(`${base6}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': setupTag }, body: JSON.stringify(cal(false)) });
     expect(setup.status).toBe(200);
     const before = await fetch(`${base6}/api/undo`);
-    expect(await before.json()).toEqual({ ok: true, available: false, label: null });
+    expect(await before.json()).toEqual({ ok: true, available: false, label: null, blockedBy: null });
 
     const tag = await ifMatch(base6, 'calendar.json');
     await fetch(`${base6}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: 'Mark B', writes: [{ path: 'calendar.json', doc: cal(true), baseVersion: unquote(tag) }] }) });
     const after = await fetch(`${base6}/api/undo`);
-    expect(await after.json()).toEqual({ ok: true, available: true, label: 'Mark B' });
+    expect(await after.json()).toEqual({ ok: true, available: true, label: 'Mark B', blockedBy: null });
 
     await fetch(`${base6}/api/undo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
     const post = await fetch(`${base6}/api/undo`);
-    expect(await post.json()).toEqual({ ok: true, available: false, label: null });
+    expect(await post.json()).toEqual({ ok: true, available: false, label: null, blockedBy: null });
+  });
+
+  it('GET /api/undo reports blockedBy when the file changed since the batch, without consuming the entry', async () => {
+    const dataDir = mkdtempSync(path.join(tmpdir(), 'fba-http-blocked-'));
+    const logoDir = mkdtempSync(path.join(tmpdir(), 'fba-logos-blocked-'));
+    const storage = new Storage(dataDir);
+    const server7 = http.createServer(createHandler(storage, logoDir));
+    await new Promise<void>(r => server7.listen(0, '127.0.0.1', r));
+    const base7 = `http://127.0.0.1:${(server7.address() as AddressInfo).port}`;
+    try {
+      const setup = await fetch(`${base7}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': '"null"' }, body: JSON.stringify(cal(false)) });
+      expect(setup.status).toBe(200);
+      const tag = await ifMatch(base7, 'calendar.json');
+      await fetch(`${base7}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: 'Mark C', writes: [{ path: 'calendar.json', doc: cal(true), baseVersion: unquote(tag) }] }) });
+      // A non-journaled PUT changes calendar.json to a third state (neither the batch's before nor after),
+      // so the batch above can no longer be undone.
+      const laterTag = await ifMatch(base7, 'calendar.json');
+      const other = { season: 79, steps: [{ id: 'a', label: 'Z', kind: 'offseason', league: null, sub: false, done: false }] };
+      await fetch(`${base7}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': laterTag }, body: JSON.stringify(other) });
+      const peek = await fetch(`${base7}/api/undo`);
+      expect(await peek.json()).toEqual({ ok: true, available: true, label: 'Mark C', blockedBy: 'calendar.json' });
+    } finally {
+      await new Promise<void>(r => server7.close(() => r()));
+    }
   });
 });
 

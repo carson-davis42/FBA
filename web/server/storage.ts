@@ -182,12 +182,8 @@ export class Storage {
         const name = names[i];
         const entry = await this.readJournalEntry(name);
         if (!entry) continue;
-        for (const f of entry.files) {
-          const current = await this.readRaw(this.fullPath(f.path));
-          if (current !== f.after && current !== f.before) {
-            throw new StorageError(409, `Can't undo "${entry.label}": ${f.path} has changed since then`);
-          }
-        }
+        const blockedBy = await this.blockedFile(entry);
+        if (blockedBy) throw new StorageError(409, `Can't undo "${entry.label}": ${blockedBy} has changed since then`);
         for (const f of entry.files) {
           const file = this.fullPath(f.path);
           const current = await this.readRaw(file);
@@ -203,15 +199,24 @@ export class Storage {
   }
 
   /** Reports the label of the move `undo()` would restore, without consuming it. */
-  peekUndo(): Promise<{ label: string } | null> {
+  peekUndo(): Promise<{ label: string; blockedBy: string | null } | null> {
     return this.serialize(async () => {
       const names = await this.journalNames();
       for (let i = names.length - 1; i >= 0; i--) {
         const entry = await this.readJournalEntry(names[i]);
-        if (entry) return { label: entry.label };
+        if (entry) return { label: entry.label, blockedBy: await this.blockedFile(entry) };
       }
       return null;
     });
+  }
+
+  /** The first path in the entry whose current text is neither its `after` nor its `before` (i.e. what would block undoing it), or null. */
+  private async blockedFile(entry: JournalEntry): Promise<string | null> {
+    for (const f of entry.files) {
+      const current = await this.readRaw(this.fullPath(f.path));
+      if (current !== f.after && current !== f.before) return f.path;
+    }
+    return null;
   }
 
   /** Reads and parses a journal file. A file that fails to parse is renamed to `<name>.corrupt` and skipped. */

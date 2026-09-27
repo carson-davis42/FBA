@@ -181,8 +181,8 @@ export function undoLast(): Promise<string> {
   });
 }
 
-export async function peekUndo(): Promise<{ available: boolean; label: string | null }> {
+export async function peekUndo(): Promise<{ available: boolean; label: string | null; blockedBy: string | null }> {
   const res = await check(await fetch('/api/undo'));
-  const body = (await res.json()) as { ok: boolean; available: boolean; label: string | null };
-  return { available: body.available, label: body.label };
+  const body = (await res.json()) as { ok: boolean; available: boolean; label: string | null; blockedBy?: string | null };
+  return { available: body.available, label: body.label, blockedBy: body.blockedBy ?? null };
 }

@@ -161,10 +161,19 @@ describe('Storage batches and undo', () => {
     const { storage } = fresh();
     expect(await storage.peekUndo()).toBeNull();
     await storage.writeMany('Sign Okoro', [{ path: 'leagues/fba/S79/rosters.json', doc: roster(79, 70) }]);
-    expect(await storage.peekUndo()).toEqual({ label: 'Sign Okoro' });
-    expect(await storage.peekUndo()).toEqual({ label: 'Sign Okoro' });
+    expect(await storage.peekUndo()).toEqual({ label: 'Sign Okoro', blockedBy: null });
+    expect(await storage.peekUndo()).toEqual({ label: 'Sign Okoro', blockedBy: null });
     await storage.undo();
     expect(await storage.peekUndo()).toBeNull();
+  });
+
+  it('reports blockedBy (the first changed path) instead of failing, when a later write would block the undo', async () => {
+    const { storage } = fresh();
+    await storage.writeMany('Sign', [{ path: 'leagues/fba/S79/rosters.json', doc: roster(79, 70) }]);
+    await storage.write('leagues/fba/S79/rosters.json', roster(79, 71));
+    expect(await storage.peekUndo()).toEqual({ label: 'Sign', blockedBy: 'leagues/fba/S79/rosters.json' });
+    // peekUndo never consumes the entry or throws; undo() still reports the same conflict.
+    expect(await status(storage.undo())).toBe(409);
   });
 
   it('skips a corrupt journal file newer than a valid one, for both peekUndo and undo', async () => {
@@ -174,7 +183,7 @@ describe('Storage batches and undo', () => {
     const garbageName = '99999999999999-999999.json';
     writeFileSync(path.join(journalDir, garbageName), 'not valid json{{{');
 
-    expect(await storage.peekUndo()).toEqual({ label: 'Sign Okoro' });
+    expect(await storage.peekUndo()).toEqual({ label: 'Sign Okoro', blockedBy: null });
     expect(existsSync(path.join(journalDir, `${garbageName}.corrupt`))).toBe(true);
     expect(await storage.undo()).toEqual({ label: 'Sign Okoro', paths: ['leagues/fba/S79/rosters.json'] });
   });

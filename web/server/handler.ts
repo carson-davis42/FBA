@@ -143,7 +143,7 @@ export function createHandler(
       if (pathname === '/api/undo') {
         if (req.method === 'GET') {
           const peek = await storage.peekUndo();
-          return sendJson(res, 200, { ok: true, available: peek !== null, label: peek?.label ?? null });
+          return sendJson(res, 200, { ok: true, available: peek !== null, label: peek?.label ?? null, blockedBy: peek?.blockedBy ?? null });
         }
         if (req.method !== 'POST') return sendJson(res, 405, { error: 'Method not allowed' });
         await readBody(req, maxBody);
