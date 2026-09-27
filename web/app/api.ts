@@ -46,3 +46,18 @@ export function useDoc<T>(rel: string | null): { data: T | undefined; error: Err
   const current = rel !== null && state.rel === rel ? state : {};
   return { data: current.data as T | undefined, error: current.error, reload };
 }
+
+export async function postBatch(label: string, writes: { path: string; doc: unknown }[]): Promise<string> {
+  const res = await check(await fetch('/api/batch', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label, writes }) }));
+  const body = (await res.json()) as { batchId: string };
+  for (const w of writes) window.dispatchEvent(new CustomEvent('doc-saved', { detail: w.path }));
+  window.dispatchEvent(new CustomEvent('batch-saved', { detail: label }));
+  return body.batchId;
+}
+
+export async function undoLast(): Promise<string> {
+  const res = await check(await fetch('/api/undo', { method: 'POST' }));
+  const body = (await res.json()) as { label: string; paths: string[] };
+  for (const p of body.paths) window.dispatchEvent(new CustomEvent('doc-saved', { detail: p }));
+  return body.label;
+}
