@@ -1,6 +1,6 @@
 # Roster refresh report
 
-Errors: 0 · Warnings: 0 · Info: 41
+Errors: 0 · Warnings: 0 · Info: 42
 
 ## Info
 
@@ -45,8 +45,9 @@ Errors: 0 · Warnings: 0 · Info: 41
 - Duke Simons is listed as a free agent but is on the SAS roster; he'll show there (as an expired contract if it has ended)
 - Jai Li is listed as a free agent but is on the HON roster; he'll show there (as an expired contract if it has ended)
 - Callan Schwangau is listed as a free agent but is on the BOS roster; he'll show there (as an expired contract if it has ended)
+- Ignacio Cain is listed as a free agent but is on the D2 PAR roster; he'll show there
 - Griffin Correa is listed as a free agent but is on the CGG roster; he'll show there (as an expired contract if it has ended)
 - Kobe Crawford is listed as a free agent but is on the CIN roster; he'll show there (as an expired contract if it has ended)
 - Jimi Jackson is listed as a free agent but is on the DET roster; he'll show there (as an expired contract if it has ended)
 - Koa'e Keano is listed as a free agent but is on the BOS roster; he'll show there (as an expired contract if it has ended)
-- 102 free agents imported (91 treated as undrafted rookies because they are 22 or younger)
+- 101 free agents imported (91 treated as undrafted rookies because they are 22 or younger)
