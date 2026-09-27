@@ -3,6 +3,7 @@ import type { CalendarStep } from '../engine/shared/types';
 /** Calendar steps that have their own tool page; the tool completes the step instead of "Mark done". */
 export const TOOL_STEPS: Record<string, string> = {
   'free-agency-offseason': '/league/fba/free-agency',
+  'fbad2-ratings-reset': '/league/fbad2/ratings',
 };
 
 export function stepTarget(step: CalendarStep): string {

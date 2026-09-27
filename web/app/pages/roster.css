@@ -30,3 +30,17 @@ legend { font-weight: 700; margin-bottom: 4px; }
 .asset:hover { background: var(--surface-2); }
 .asset.sending { background: var(--accent-soft); }
 .league-links { display: flex; gap: 8px; margin: 4px 0 14px; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tab { border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 6px; padding: 5px 11px; font-weight: 700; }
+.tab.on { background: var(--text); color: var(--surface); border-color: var(--text); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 10px; }
+.chip { border: 1px solid var(--border); background: var(--surface-2); color: var(--text); border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 700; }
+.chip.on { background: var(--accent-soft); border-color: var(--accent); }
+.rating-input { width: 48px; font: inherit; font-weight: 800; text-align: right; border: 1px solid var(--border); border-radius: 4px; padding: 2px 4px; background: var(--surface); color: var(--text); }
+.ratings-table tr.needs td { background: rgba(217, 119, 6, 0.08); }
+.ratings-table tr.needs .rating-input { border-color: #d97706; }
+.ratings-table tr.edited .rating-input { border-color: var(--accent); background: var(--accent-soft); }
+.delta-up { color: var(--good); font-weight: 700; }
+.delta-down { color: var(--accent); font-weight: 700; }
+.inline-problem { font-size: 11px; }

@@ -17,6 +17,8 @@ const docs: Record<string, unknown> = {
     BOS: [{ playerId: 'p00001', position: 'PG', rating: 95, age: 28, points: 0, contractEnd: 80, contractAmount: 8 }, { playerId: null, position: 'SG', rating: null, age: null, points: 0, contractEnd: null, contractAmount: null }],
     MEM: [{ playerId: 'p00002', position: 'PG', rating: 97, age: 26, points: 0, contractEnd: 81, contractAmount: 9 }],
   } },
+  'leagues/fbad2/teams.json': { league: 'fbad2', teams: [{ teamId: 'ACK', name: 'Auckland', abbr: 'ACK', group: 'IL', logoFolder: null, badge }] },
+  'leagues/fbad2/S79/rosters.json': { league: 'fbad2', season: 79, locked: false, teams: { ACK: [{ playerId: 'p00002', position: 'PG', rating: 80, age: 25, points: 0 }] } },
 };
 
 beforeEach(() => {
@@ -48,6 +50,11 @@ describe('LeaguePage', () => {
   it('rejects an unknown league', () => {
     renderAt('/league/nba');
     expect(screen.getByText(/Unknown league/)).toBeTruthy();
+  });
+
+  it('links the D2 ratings reset from the D2 league page', async () => {
+    renderAt('/league/fbad2');
+    expect((await screen.findByRole('link', { name: 'D2 ratings reset' })).getAttribute('href')).toBe('/league/fbad2/ratings');
   });
 });
 
