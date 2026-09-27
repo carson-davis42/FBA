@@ -1,7 +1,7 @@
 import { existsSync, mkdtempSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { Storage, StorageError } from './storage';
 
 const cal = (done: boolean) => ({ season: 79, steps: [{ id: 'a', label: 'A', kind: 'offseason', league: null, sub: false, done }] });
@@ -115,5 +115,43 @@ describe('Storage batches and undo', () => {
     const { storage } = fresh();
     await Promise.all([1, 2, 3, 4, 5].map(i => storage.writeMany(`w${i}`, [{ path: 'leagues/fba/S79/rosters.json', doc: roster(79, 60 + i) }])));
     expect(await storage.read('leagues/fba/S79/rosters.json')).toEqual(roster(79, 65));
+  });
+
+  it('rolls back earlier files when a later write fails mid-batch', async () => {
+    const { storage } = fresh();
+    await storage.write('leagues/fba/S79/rosters.json', roster(79, 90));
+    const s = storage as unknown as { atomicWrite: (f: string, t: string) => Promise<void> };
+    const real = s.atomicWrite.bind(storage);
+    let n = 0;
+    s.atomicWrite = async (f, t) => { n += 1; if (n === 2) throw Object.assign(new Error('disk full'), { code: 'ENOSPC' }); return real(f, t); };
+    const failed = storage.writeMany('Sign', [
+      { path: 'leagues/fba/S79/rosters.json', doc: roster(79, 70) },
+      { path: 'leagues/fba/S79/transactions.json', doc: tx },
+    ]);
+    await expect(failed).rejects.toThrow('disk full');
+    s.atomicWrite = real;
+    expect(await storage.read('leagues/fba/S79/rosters.json')).toEqual(roster(79, 90));
+    expect(await status(storage.read('leagues/fba/S79/transactions.json'))).toBe(404);
+    expect(await status(storage.undo())).toBe(404);
+  });
+
+  it('keeps the journal when the rollback itself fails', async () => {
+    const { storage } = fresh();
+    await storage.write('leagues/fba/S79/rosters.json', roster(79, 90));
+    const s = storage as unknown as { atomicWrite: (f: string, t: string) => Promise<void> };
+    const real = s.atomicWrite.bind(storage);
+    let n = 0;
+    s.atomicWrite = async (f, t) => { n += 1; if (n >= 2) throw Object.assign(new Error('disk full'), { code: 'ENOSPC' }); return real(f, t); };
+    const errSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const failed = storage.writeMany('Sign', [
+      { path: 'leagues/fba/S79/rosters.json', doc: roster(79, 70) },
+      { path: 'leagues/fba/S79/transactions.json', doc: tx },
+    ]);
+    expect(await status(failed)).toBe(500);
+    errSpy.mockRestore();
+    s.atomicWrite = real;
+    expect(await storage.read('leagues/fba/S79/rosters.json')).toEqual(roster(79, 70));
+    expect(await storage.undo()).toEqual({ label: 'Sign', paths: ['leagues/fba/S79/rosters.json', 'leagues/fba/S79/transactions.json'] });
+    expect(await storage.read('leagues/fba/S79/rosters.json')).toEqual(roster(79, 90));
   });
 });

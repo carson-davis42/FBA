@@ -130,9 +130,18 @@ export class Storage {
           done.push(p);
         }
       } catch (e) {
+        const rollbackFailures: string[] = [];
         for (const p of done.reverse()) {
-          if (p.before === null) await unlink(p.file).catch(() => undefined);
-          else await this.atomicWrite(p.file, p.before).catch(() => undefined);
+          try {
+            if (p.before === null) await unlink(p.file);
+            else await this.atomicWrite(p.file, p.before);
+          } catch (re) {
+            rollbackFailures.push(`${p.rel}: ${(re as Error).message}`);
+          }
+        }
+        if (rollbackFailures.length) {
+          console.error(`Batch "${label}" failed and could not be fully rolled back; journal ${id} kept for recovery`, rollbackFailures);
+          throw new StorageError(500, `Save failed partway and could not be fully undone (${rollbackFailures.join('; ')}). Use Undo last move to restore.`);
         }
         await unlink(this.journalPath(id)).catch(() => undefined);
         throw e;
@@ -148,12 +157,15 @@ export class Storage {
       if (!last) throw new StorageError(404, 'Nothing to undo');
       const entry = JSON.parse(await readFile(path.join(this.journalDir(), last), 'utf8')) as JournalEntry;
       for (const f of entry.files) {
-        if ((await this.readRaw(this.fullPath(f.path))) !== f.after) {
+        const current = await this.readRaw(this.fullPath(f.path));
+        if (current !== f.after && current !== f.before) {
           throw new StorageError(409, `Can't undo "${entry.label}": ${f.path} has changed since then`);
         }
       }
       for (const f of entry.files) {
         const file = this.fullPath(f.path);
+        const current = await this.readRaw(file);
+        if (current === f.before) continue;
         if (f.before === null) await unlink(file);
         else await this.atomicWrite(file, f.before);
       }
