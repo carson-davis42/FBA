@@ -4,7 +4,7 @@ import path from 'node:path';
 import { z } from 'zod';
 import { resolveLogo } from '../engine/shared/logos';
 import { LogoManifest } from '../engine/shared/types';
-import { Storage, StorageError, type BatchWrite } from './storage';
+import { Storage, StorageError, type BatchWrite, type Version } from './storage';
 
 const DEFAULT_MAX_BODY = 20 * 1024 * 1024;
 
@@ -43,9 +43,12 @@ function readBody(req: http.IncomingMessage, maxBody: number): Promise<string | 
   });
 }
 
+const VERSION = /^[0-9a-f]{16}$/;
+const VERSION_TAG = /^"([0-9a-f]{16}|null)"$/;
+
 const BatchRequest = z.object({
   label: z.string().min(1).max(200),
-  writes: z.array(z.object({ path: z.string().min(1), doc: z.unknown() }).strict()).min(1).max(50),
+  writes: z.array(z.object({ path: z.string().min(1), doc: z.unknown(), baseVersion: z.string().regex(VERSION).nullable() }).strict()).min(1).max(50),
 }).strict();
 
 /** Reads and parses a JSON request body. On failure it sends the error response and returns undefined. */
@@ -103,12 +106,26 @@ export function createHandler(
     try {
       if (pathname.startsWith('/api/state/')) {
         const rel = pathname.slice('/api/state/'.length);
-        if (req.method === 'GET') return sendJson(res, 200, await storage.read(rel));
+        if (req.method === 'GET') {
+          const { doc, version } = await storage.readWithVersion(rel);
+          return sendJson(res, 200, doc, { ETag: `"${version}"` });
+        }
         if (req.method === 'PUT') {
+          const raw = req.headers['if-match'];
+          if (raw === undefined) {
+            req.resume();
+            return sendJson(res, 428, { error: 'If-Match header required: the version you loaded, or "null" for a new file' });
+          }
+          const tag = typeof raw === 'string' ? raw.trim().match(VERSION_TAG) : null;
+          if (!tag) {
+            req.resume();
+            return sendJson(res, 400, { error: 'Malformed If-Match header' });
+          }
+          const baseVersion: Version = tag[1] === 'null' ? null : tag[1];
           const parsed = await jsonBody(req, res, maxBody);
           if (!parsed) return;
-          await storage.write(rel, parsed.value);
-          return sendJson(res, 200, { ok: true });
+          const { version } = await storage.write(rel, parsed.value, baseVersion);
+          return sendJson(res, 200, { ok: true, version });
         }
         return sendJson(res, 405, { error: 'Method not allowed' });
       }
@@ -119,8 +136,8 @@ export function createHandler(
         if (!parsed) return;
         const batch = BatchRequest.safeParse(parsed.value);
         if (!batch.success) return sendJson(res, 400, { error: 'Invalid batch request', issues: batch.error.issues });
-        const { batchId } = await storage.writeMany(batch.data.label, batch.data.writes as BatchWrite[]);
-        return sendJson(res, 200, { ok: true, batchId });
+        const { batchId, versions } = await storage.writeMany(batch.data.label, batch.data.writes as BatchWrite[]);
+        return sendJson(res, 200, { ok: true, batchId, versions });
       }
 
       if (pathname === '/api/undo') {
@@ -157,7 +174,7 @@ export function createHandler(
 
       sendJson(res, 404, { error: 'Not found' });
     } catch (e) {
-      if (e instanceof StorageError) return sendJson(res, e.status, { error: e.message, issues: e.issues });
+      if (e instanceof StorageError) return sendJson(res, e.status, { error: e.message, issues: e.issues, conflicts: e.conflicts });
       console.error(e);
       sendJson(res, 500, { error: 'Internal server error' });
     }

@@ -1,9 +1,17 @@
 import { mkdir, readdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { pathAgreementProblem, schemaForPath } from '../engine/shared/schemaRegistry';
 
+export type Version = string | null;
+
+/** A document's version: the first 16 hex chars of the SHA-256 of its file text, or null when the file doesn't exist. */
+export function versionOf(text: string | null): Version {
+  return text === null ? null : createHash('sha256').update(text).digest('hex').slice(0, 16);
+}
+
 export class StorageError extends Error {
-  constructor(readonly status: number, message: string, readonly issues?: unknown) {
+  constructor(readonly status: number, message: string, readonly issues?: unknown, readonly conflicts?: string[]) {
     super(message);
   }
 }
@@ -11,6 +19,8 @@ export class StorageError extends Error {
 export interface BatchWrite {
   path: string;
   doc: unknown;
+  /** The version the caller loaded (null = the file must not exist yet). Omitted = unconditional write. */
+  baseVersion?: Version;
 }
 
 interface JournalFile {
@@ -91,7 +101,7 @@ export class Storage {
     const mismatch = pathAgreementProblem(rel, result.data);
     if (mismatch) throw new StorageError(400, mismatch);
     const before = await this.readRaw(file);
-    if (before !== null && isLocked(before)) throw new StorageError(409, `${rel} belongs to a finished (locked) season and can't be changed`);
+    if (before !== null && isLocked(before)) throw new StorageError(409, `${rel} is locked (finished) and can't be changed`);
     return { file, text: JSON.stringify(result.data, null, 2) + '\n', before };
   }
 
@@ -101,15 +111,25 @@ export class Storage {
     return JSON.parse(text);
   }
 
-  write(rel: string, doc: unknown): Promise<void> {
+  async readWithVersion(rel: string): Promise<{ doc: unknown; version: string }> {
+    const text = await this.readRaw(this.fullPath(rel));
+    if (text === null) throw new StorageError(404, `Not found: ${rel}`);
+    return { doc: JSON.parse(text), version: versionOf(text)! };
+  }
+
+  write(rel: string, doc: unknown, baseVersion?: Version): Promise<{ version: string }> {
     return this.serialize(async () => {
       const p = await this.prepare(rel, doc);
+      if (baseVersion !== undefined && versionOf(p.before) !== baseVersion) {
+        throw new StorageError(409, `Changed since it was loaded: ${rel}`, undefined, [rel]);
+      }
       if (p.before !== null) await this.backup(rel, p.before);
       await this.atomicWrite(p.file, p.text);
+      return { version: versionOf(p.text)! };
     });
   }
 
-  writeMany(label: string, writes: BatchWrite[]): Promise<{ batchId: string }> {
+  writeMany(label: string, writes: BatchWrite[]): Promise<{ batchId: string; versions: Record<string, string> }> {
     return this.serialize(async () => {
       const seen = new Set<string>();
       const prepared: { rel: string; file: string; text: string; before: string | null }[] = [];
@@ -118,6 +138,11 @@ export class Storage {
         seen.add(w.path);
         prepared.push({ rel: w.path, ...(await this.prepare(w.path, w.doc)) });
       }
+
+      const conflicts = writes
+        .filter((w, i) => w.baseVersion !== undefined && versionOf(prepared[i].before) !== w.baseVersion)
+        .map(w => w.path);
+      if (conflicts.length) throw new StorageError(409, `Changed since they were loaded: ${conflicts.join(', ')}`, undefined, conflicts);
 
       const id = `${Date.now()}-${String(this.seq++).padStart(6, '0')}`;
       await this.saveJournal({ id, label, files: prepared.map(p => ({ path: p.rel, before: p.before, after: p.text })) });
@@ -146,7 +171,7 @@ export class Storage {
         await unlink(this.journalPath(id)).catch(() => undefined);
         throw e;
       }
-      return { batchId: id };
+      return { batchId: id, versions: Object.fromEntries(prepared.map(p => [p.rel, versionOf(p.text)!])) };
     });
   }
 

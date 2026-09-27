@@ -26,28 +26,35 @@ afterAll(() => new Promise<void>(r => server.close(() => r())));
 
 const calendar = { season: 79, steps: [{ id: 'a', label: 'A', kind: 'offseason', league: null, sub: false, done: false }] };
 
+async function ifMatch(root: string, rel: string): Promise<string> {
+  const res = await fetch(`${root}/api/state/${rel}`);
+  return res.status === 404 ? '"null"' : res.headers.get('etag')!;
+}
+const unquote = (tag: string): string | null => (tag === '"null"' ? null : tag.slice(1, -1));
+
 describe('HTTP handler', () => {
   it('saves and reads documents', async () => {
-    const put = await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', body: JSON.stringify(calendar) });
+    const put = await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': '"null"' }, body: JSON.stringify(calendar) });
     expect(put.status).toBe(200);
     const get = await fetch(`${base}/api/state/calendar.json`);
     expect(await get.json()).toEqual(calendar);
   });
 
   it('returns validation issues for a bad document', async () => {
-    const res = await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', body: JSON.stringify({ season: 1 }) });
+    const res = await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': '"null"' }, body: JSON.stringify({ season: 1 }) });
     expect(res.status).toBe(400);
     expect((await res.json()).issues.length).toBeGreaterThan(0);
   });
 
   it('rejects non-JSON bodies', async () => {
-    const res = await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', body: 'nope' });
+    const res = await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': '"null"' }, body: 'nope' });
     expect(res.status).toBe(400);
   });
 
   it('rejects a document with an unknown key', async () => {
     const res = await fetch(`${base}/api/state/calendar.json`, {
       method: 'PUT',
+      headers: { 'If-Match': '"null"' },
       body: JSON.stringify({ ...calendar, bogus: 1 }),
     });
     expect(res.status).toBe(400);
@@ -98,6 +105,7 @@ describe('HTTP handler security', () => {
   it('rejects malicious manifest via PUT', async () => {
     const res = await fetch(`${base2}/api/state/logos/manifest.json`, {
       method: 'PUT',
+      headers: { 'If-Match': '"null"' },
       body: JSON.stringify({ folders: { x: [{ file: '../../etc/passwd.png', from: null, to: null, variant: 1 }] } }),
     });
     expect(res.status).toBe(400);
@@ -195,7 +203,7 @@ describe('HTTP handler body size limit', () => {
 
   it('returns 413 for an oversized body instead of resetting the connection', async () => {
     const big = 'x'.repeat(5000);
-    const res = await fetch(`${base4}/api/state/calendar.json`, { method: 'PUT', body: JSON.stringify({ big }) });
+    const res = await fetch(`${base4}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': '"null"' }, body: JSON.stringify({ big }) });
     expect(res.status).toBe(413);
     expect((await res.json()).error).toMatch(/too large/i);
   });
@@ -242,8 +250,9 @@ describe('batch and undo routes', () => {
   const cal = (done: boolean) => ({ season: 79, steps: [{ id: 'a', label: 'A', kind: 'offseason', league: null, sub: false, done }] });
 
   it('applies a batch and undoes it', async () => {
-    await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', body: JSON.stringify(cal(false)) });
-    const res = await fetch(`${base}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: 'Mark A', writes: [{ path: 'calendar.json', doc: cal(true) }] }) });
+    await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': '"null"' }, body: JSON.stringify(cal(false)) });
+    const tag = await ifMatch(base, 'calendar.json');
+    const res = await fetch(`${base}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: 'Mark A', writes: [{ path: 'calendar.json', doc: cal(true), baseVersion: unquote(tag) }] }) });
     expect(res.status).toBe(200);
     expect((await res.json()).batchId).toBeTruthy();
     const undo = await fetch(`${base}/api/undo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
@@ -263,16 +272,63 @@ describe('batch and undo routes', () => {
   it('GET /api/undo reports availability based on the newest journal entry', async () => {
     const base6 = base;
     // A fresh undo (from the previous test in this file) may or may not be pending; force a known state.
-    await fetch(`${base6}/api/state/calendar.json`, { method: 'PUT', body: JSON.stringify(cal(false)) });
+    await fetch(`${base6}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': '"null"' }, body: JSON.stringify(cal(false)) });
     const before = await fetch(`${base6}/api/undo`);
     expect(await before.json()).toEqual({ ok: true, available: false, label: null });
 
-    await fetch(`${base6}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: 'Mark B', writes: [{ path: 'calendar.json', doc: cal(true) }] }) });
+    const tag = await ifMatch(base6, 'calendar.json');
+    await fetch(`${base6}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: 'Mark B', writes: [{ path: 'calendar.json', doc: cal(true), baseVersion: unquote(tag) }] }) });
     const after = await fetch(`${base6}/api/undo`);
     expect(await after.json()).toEqual({ ok: true, available: true, label: 'Mark B' });
 
     await fetch(`${base6}/api/undo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
     const post = await fetch(`${base6}/api/undo`);
     expect(await post.json()).toEqual({ ok: true, available: false, label: null });
+  });
+});
+
+describe('versions over HTTP', () => {
+  const tagOf = async (rel: string) => (await fetch(`${base}/api/state/${rel}`)).headers.get('etag');
+
+  it('sends an ETag with every document', async () => {
+    expect(await tagOf('logos/manifest.json')).toMatch(/^"[0-9a-f]{16}"$/);
+  });
+
+  it('requires If-Match on PUT', async () => {
+    const res = await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', body: JSON.stringify(calendar) });
+    expect(res.status).toBe(428);
+  });
+
+  it('rejects a malformed If-Match', async () => {
+    const res = await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': 'abc' }, body: JSON.stringify(calendar) });
+    expect(res.status).toBe(400);
+  });
+
+  it('returns the new version on PUT and refuses a stale one', async () => {
+    const rel = 'leagues/fba/S79/transactions.json';
+    const doc = { league: 'fba', season: 79, entries: [] };
+    const first = await fetch(`${base}/api/state/${rel}`, { method: 'PUT', headers: { 'If-Match': '"null"' }, body: JSON.stringify(doc) });
+    expect(first.status).toBe(200);
+    const { version } = (await first.json()) as { version: string };
+    expect(await tagOf(rel)).toBe(`"${version}"`);
+    const again = await fetch(`${base}/api/state/${rel}`, { method: 'PUT', headers: { 'If-Match': '"null"' }, body: JSON.stringify(doc) });
+    expect(again.status).toBe(409);
+    expect(((await again.json()) as { conflicts: string[] }).conflicts).toEqual([rel]);
+  });
+
+  it('requires baseVersion on batch writes and reports stale ones', async () => {
+    const rel = 'leagues/fbad2/S79/transactions.json';
+    const doc = { league: 'fbad2', season: 79, entries: [] };
+    const post = (writes: unknown[]) => fetch(`${base}/api/batch`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: 'T', writes }),
+    });
+    expect((await post([{ path: rel, doc }])).status).toBe(400);
+    const ok = await post([{ path: rel, doc, baseVersion: null }]);
+    expect(ok.status).toBe(200);
+    const body = (await ok.json()) as { versions: Record<string, string> };
+    expect(`"${body.versions[rel]}"`).toBe(await tagOf(rel));
+    const stale = await post([{ path: rel, doc, baseVersion: null }]);
+    expect(stale.status).toBe(409);
+    expect(((await stale.json()) as { conflicts: string[] }).conflicts).toEqual([rel]);
   });
 });

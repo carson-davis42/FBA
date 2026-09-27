@@ -1,8 +1,8 @@
-import { existsSync, mkdtempSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
-import { Storage, StorageError } from './storage';
+import { Storage, StorageError, versionOf } from './storage';
 
 const cal = (done: boolean) => ({ season: 79, steps: [{ id: 'a', label: 'A', kind: 'offseason', league: null, sub: false, done }] });
 const fresh = () => {
@@ -177,5 +177,79 @@ describe('Storage batches and undo', () => {
     expect(await storage.peekUndo()).toEqual({ label: 'Sign Okoro' });
     expect(existsSync(path.join(journalDir, `${garbageName}.corrupt`))).toBe(true);
     expect(await storage.undo()).toEqual({ label: 'Sign Okoro', paths: ['leagues/fba/S79/rosters.json'] });
+  });
+});
+
+const meta = (season: number) => ({
+  currentSeason: season,
+  rosterSeason: { fba: 79, fbad2: 79, fbajc: 78, fbawc: 78 },
+  lastSeason: { fba: 78, fbad2: 78, fbajc: 78, fbawc: 78 },
+});
+
+describe('Storage versions', () => {
+  it('computes a 16-hex version, and null for a missing file', () => {
+    expect(versionOf(null)).toBeNull();
+    expect(versionOf('abc')).toMatch(/^[0-9a-f]{16}$/);
+    expect(versionOf('abc')).toBe(versionOf('abc'));
+    expect(versionOf('abc')).not.toBe(versionOf('abd'));
+  });
+
+  it('returns the new version from write and readWithVersion', async () => {
+    const { dir, storage } = fresh();
+    const { version } = await storage.write('calendar.json', cal(false), null);
+    expect(version).toBe(versionOf(readFileSync(path.join(dir, 'calendar.json'), 'utf8')));
+    expect(await storage.readWithVersion('calendar.json')).toEqual({ doc: cal(false), version });
+  });
+
+  it('refuses a write whose base version is stale, without writing', async () => {
+    const { storage } = fresh();
+    const { version: v1 } = await storage.write('calendar.json', cal(false), null);
+    await storage.write('calendar.json', cal(true), v1);
+    const err = await storage.write('calendar.json', cal(false), v1).catch((e: unknown) => e);
+    expect(err).toBeInstanceOf(StorageError);
+    expect((err as StorageError).status).toBe(409);
+    expect((err as StorageError).conflicts).toEqual(['calendar.json']);
+    expect(await storage.read('calendar.json')).toEqual(cal(true));
+  });
+
+  it('treats a null base version as "must not exist yet"', async () => {
+    const { storage } = fresh();
+    await storage.write('calendar.json', cal(false), null);
+    expect(await status(storage.write('calendar.json', cal(true), null))).toBe(409);
+  });
+
+  it('writes unconditionally when no base version is given', async () => {
+    const { storage } = fresh();
+    await storage.write('calendar.json', cal(false));
+    await storage.write('calendar.json', cal(true));
+    expect(await storage.read('calendar.json')).toEqual(cal(true));
+  });
+
+  it('refuses a whole batch when any base version is stale', async () => {
+    const { storage } = fresh();
+    const { version: calV } = await storage.write('calendar.json', cal(false), null);
+    await storage.write('meta.json', meta(79), null);
+    const err = await storage.writeMany('Two', [
+      { path: 'calendar.json', doc: cal(true), baseVersion: calV },
+      { path: 'meta.json', doc: meta(80), baseVersion: '0000000000000000' },
+    ]).catch((e: unknown) => e);
+    expect((err as StorageError).status).toBe(409);
+    expect((err as StorageError).conflicts).toEqual(['meta.json']);
+    expect(await storage.read('calendar.json')).toEqual(cal(false));
+    expect(await storage.peekUndo()).toBeNull();
+  });
+
+  it('returns the new version of every file in a batch', async () => {
+    const { dir, storage } = fresh();
+    const r = await storage.writeMany('One', [{ path: 'calendar.json', doc: cal(true), baseVersion: null }]);
+    expect(r.versions['calendar.json']).toBe(versionOf(readFileSync(path.join(dir, 'calendar.json'), 'utf8')));
+  });
+
+  it('names the file in the lock message', async () => {
+    const { storage } = fresh();
+    const summary = { league: 'fba', season: 78, locked: true, host: null, champions: [] };
+    await storage.write('leagues/fba/S78/summary.json', summary);
+    const err = await storage.write('leagues/fba/S78/summary.json', { ...summary, locked: false }).catch((e: unknown) => e);
+    expect((err as StorageError).message).toBe("leagues/fba/S78/summary.json is locked (finished) and can't be changed");
   });
 });
