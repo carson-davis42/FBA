@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { makePick } from '../../engine/d2/draft';
 import { startPool } from '../../engine/d2/pool';
-import type { D2State } from '../../engine/d2/state';
+import { d2Writes, type D2State } from '../../engine/d2/state';
 import { d2BaseState, d2LockedState, d2RatedState } from '../../engine/d2/testFixtures';
 import type { D2PoolFile } from '../../engine/shared/types';
 import { docsFor, stubApi } from '../d2/testDocs';
@@ -145,5 +145,26 @@ describe('D2DraftPage: draft board', () => {
     renderPage();
     expect(await screen.findByText(/The D2 draft is finished/)).toBeTruthy();
     expect(screen.getByText(/SG-Kyron Smart/)).toBeTruthy();
+  });
+
+  it('clears the selected player when the clock changes underneath it', async () => {
+    const docs = docsFor(d2LockedState());
+    stubApi(docs);
+    renderPage();
+    expect(await screen.findByText('On the clock: #1 BER Club')).toBeTruthy();
+    fireEvent.click(screen.getByText('Kyron Smart'));
+    expect(await screen.findByRole('button', { name: 'Draft Kyron Smart → BER Club' })).toBeTruthy();
+
+    // Simulate another tab (or an undo) advancing the draft with a different pick while this
+    // tab still has Kyron Smart selected locally.
+    const picked = makePick(d2LockedState(), 'p00040', { batchId: 'b' });
+    if (!picked.ok) throw new Error(picked.problems.join('; '));
+    for (const w of d2Writes(picked)) {
+      docs[w.path] = w.doc;
+      fireEvent(window, new CustomEvent('doc-saved', { detail: w.path }));
+    }
+
+    expect(await screen.findByText('On the clock: #2 BER Club')).toBeTruthy();
+    expect(screen.queryByRole('button', { name: /^Draft /})).toBeNull();
   });
 });

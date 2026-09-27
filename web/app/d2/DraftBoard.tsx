@@ -29,6 +29,13 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
   const draft = state.draft!;
   const teamName = (id: string) => teams?.teams.find(t => t.teamId === id)?.name ?? id;
 
+  // Clear any locally-selected player whenever the clock moves (a pick, a skip, an undo, or
+  // another tab's change) — a stale selection could otherwise resurface a "Draft X → team"
+  // button for a team or pick that never chose that player.
+  useEffect(() => {
+    setSelected(null);
+  }, [draft.picks.length, draft.tickets.join(',')]);
+
   const run = async (result: D2Result) => {
     if (!result.ok) {
       setActionError(result.problems.join('; '));
@@ -44,6 +51,7 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
   };
   const undo = async () => {
     setActionError('');
+    setSelected(null);
     try {
       await undoLast();
     } catch (e) {
