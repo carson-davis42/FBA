@@ -1,22 +1,40 @@
 import type { z } from 'zod';
 import {
-  CalendarFile, LogoManifest, MetaFile, PlayersFile, ResultsFile, RostersFile, SummaryFile, TeamsFile,
+  CalendarFile, FreeAgentsFile, LogoManifest, MetaFile, PicksFile, PlayersFile, ReservesFile, ResultsFile, RostersFile,
+  SummaryFile, TeamsFile, TransactionsFile,
 } from './types';
 
 const L = '(fba|fbad2|fbajc|fbawc)';
+const S = 'S[1-9]\\d*';
 
 const RULES: [RegExp, z.ZodTypeAny][] = [
   [/^players\.json$/, PlayersFile],
   [/^meta\.json$/, MetaFile],
   [/^calendar\.json$/, CalendarFile],
   [/^logos\/manifest\.json$/, LogoManifest],
+  [/^leagues\/fba\/picks\.json$/, PicksFile],
   [new RegExp(`^leagues/${L}/teams\\.json$`), TeamsFile],
-  [new RegExp(`^leagues/${L}/S[1-9]\\d*/rosters\\.json$`), RostersFile],
-  [new RegExp(`^leagues/${L}/S[1-9]\\d*/summary\\.json$`), SummaryFile],
-  [new RegExp(`^leagues/${L}/S[1-9]\\d*/results\\.json$`), ResultsFile],
+  [new RegExp(`^leagues/${L}/${S}/rosters\\.json$`), RostersFile],
+  [new RegExp(`^leagues/${L}/${S}/summary\\.json$`), SummaryFile],
+  [new RegExp(`^leagues/${L}/${S}/results\\.json$`), ResultsFile],
+  [new RegExp(`^leagues/${L}/${S}/transactions\\.json$`), TransactionsFile],
+  [new RegExp(`^leagues/fba/${S}/freeAgents\\.json$`), FreeAgentsFile],
+  [new RegExp(`^leagues/fbad2/${S}/reserves\\.json$`), ReservesFile],
 ];
 
 export function schemaForPath(rel: string): z.ZodTypeAny | null {
   for (const [re, schema] of RULES) if (re.test(rel)) return schema;
+  return null;
+}
+
+const META = new RegExp(`^leagues/${L}/(?:S([1-9]\\d*)/)?`);
+
+/** A document stored under leagues/<league>/[S<n>/] must carry the same league (and season, when it has one). */
+export function pathAgreementProblem(rel: string, doc: unknown): string | null {
+  const m = rel.match(META);
+  if (!m || typeof doc !== 'object' || doc === null) return null;
+  const d = doc as { league?: unknown; season?: unknown };
+  if ('league' in d && d.league !== m[1]) return `${rel}: league "${String(d.league)}" doesn't match the path`;
+  if (m[2] && 'season' in d && d.season !== Number(m[2])) return `${rel}: season ${String(d.season)} doesn't match the path`;
   return null;
 }

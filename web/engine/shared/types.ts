@@ -49,6 +49,7 @@ export const RosterEntry = z.object({
   contractAmount: z.number().nullable().optional(),
   stars: int.nullable().optional(),
   classYear: ClassYear.nullable().optional(),
+  restricted: z.boolean().optional(),
 }).strict();
 export type RosterEntry = z.infer<typeof RosterEntry>;
 
@@ -117,3 +118,68 @@ export type LogoEntry = z.infer<typeof LogoEntry>;
 
 export const LogoManifest = z.object({ folders: z.record(bareName, z.array(LogoEntry)) }).strict();
 export type LogoManifest = z.infer<typeof LogoManifest>;
+
+const playerId = z.string().regex(/^p\d{5}$/);
+
+export const FreeAgent = z.object({
+  playerId,
+  position: Position,
+  age: int.nullable(),
+  rating: int.nullable(),
+  rookie: z.boolean(),
+  note: z.string(),
+}).strict();
+export type FreeAgent = z.infer<typeof FreeAgent>;
+
+export const FreeAgentsFile = z.object({ league: z.literal('fba'), season: int, locked: z.boolean(), players: z.array(FreeAgent) }).strict();
+export type FreeAgentsFile = z.infer<typeof FreeAgentsFile>;
+
+export const ReservePlayer = z.object({ playerId, position: Position, age: int.nullable(), rating: int.nullable() }).strict();
+export type ReservePlayer = z.infer<typeof ReservePlayer>;
+
+export const ReservesFile = z.object({ league: z.literal('fbad2'), season: int, locked: z.boolean(), players: z.array(ReservePlayer) }).strict();
+export type ReservesFile = z.infer<typeof ReservesFile>;
+
+export const PickCondition = z.discriminatedUnion('kind', [
+  z.object({ kind: z.literal('none') }).strict(),
+  z.object({ kind: z.literal('top'), n: int.min(1) }).strict(),
+  z.object({ kind: z.literal('lottery') }).strict(),
+  z.object({ kind: z.literal('swap'), otherTeam: z.string().min(1), betterTo: z.string().min(1) }).strict(),
+  z.object({ kind: z.literal('custom'), text: z.string().min(1) }).strict(),
+]);
+export type PickCondition = z.infer<typeof PickCondition>;
+
+export const PickRoll = z.object({ fromSeason: int, reason: z.enum(['protected', 'already-owed']) }).strict();
+export type PickRoll = z.infer<typeof PickRoll>;
+
+export const PickObligation = z.object({
+  id: z.string().min(1),
+  season: int,
+  originalTeam: z.string().min(1),
+  owner: z.string().min(1),
+  condition: PickCondition,
+  originalCondition: PickCondition,
+  originSeason: int,
+  priority: int.positive(),
+  rolls: z.array(PickRoll),
+  note: z.string(),
+}).strict();
+export type PickObligation = z.infer<typeof PickObligation>;
+
+export const PicksFile = z.object({ league: z.literal('fba'), obligations: z.array(PickObligation) }).strict();
+export type PicksFile = z.infer<typeof PicksFile>;
+
+export const TransactionType = z.enum(['signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed']);
+export type TransactionType = z.infer<typeof TransactionType>;
+
+export const TransactionEntry = z.object({
+  seq: int.positive(),
+  batchId: z.string().min(1),
+  type: TransactionType,
+  teams: z.array(z.string()),
+  lines: z.array(z.string().min(1)),
+}).strict();
+export type TransactionEntry = z.infer<typeof TransactionEntry>;
+
+export const TransactionsFile = z.object({ league: LeagueId, season: int, entries: z.array(TransactionEntry) }).strict();
+export type TransactionsFile = z.infer<typeof TransactionsFile>;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { LogoManifest, MetaFile, ResultsFile, RostersFile } from './types';
+import { FreeAgentsFile, LogoManifest, MetaFile, PickObligation, PicksFile, ResultsFile, RostersFile, ReservesFile, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -42,5 +42,36 @@ describe('schemas', () => {
     expect(LogoManifest.safeParse({ folders: { x: [{ file: '../../etc/passwd.png', from: null, to: null, variant: 1 }] } }).success).toBe(false);
     expect(LogoManifest.safeParse({ folders: { '../x': [] } }).success).toBe(false);
     expect(LogoManifest.safeParse({ folders: { 'Boston Bucks': [{ file: 'Boston Bucks S61-pres..png', from: 61, to: null, variant: 0 }] } }).success).toBe(true);
+  });
+});
+
+describe('roster-move schemas', () => {
+  it('accepts a restricted roster entry', () => {
+    const doc = { league: 'fba', season: 79, locked: false, teams: { ATL: [{ playerId: 'p00004', position: 'PF', rating: 75, age: 20, points: 0, contractEnd: 79, contractAmount: 2, restricted: true }] } };
+    expect(RostersFile.safeParse(doc).success).toBe(true);
+  });
+
+  it('validates free agents and reserves', () => {
+    expect(FreeAgentsFile.safeParse({ league: 'fba', season: 79, locked: false, players: [{ playerId: 'p01000', position: 'C', age: 22, rating: null, rookie: true, note: 'R' }] }).success).toBe(true);
+    expect(FreeAgentsFile.safeParse({ league: 'fbad2', season: 79, locked: false, players: [] }).success).toBe(false);
+    expect(ReservesFile.safeParse({ league: 'fbad2', season: 79, locked: false, players: [{ playerId: 'p01001', position: 'PG', age: 30, rating: null }] }).success).toBe(true);
+  });
+
+  it('validates pick obligations and their conditions', () => {
+    const ob = {
+      id: 'imp-S80-DCB-1', season: 80, originalTeam: 'DCB', owner: 'OV',
+      condition: { kind: 'top', n: 9 }, originalCondition: { kind: 'lottery' },
+      originSeason: 75, priority: 1, rolls: [], note: '',
+    };
+    expect(PickObligation.safeParse(ob).success).toBe(true);
+    expect(PickObligation.safeParse({ ...ob, condition: { kind: 'top', n: 0 } }).success).toBe(false);
+    expect(PickObligation.safeParse({ ...ob, condition: { kind: 'swap', otherTeam: 'SAS', betterTo: 'DCB' } }).success).toBe(true);
+    expect(PicksFile.safeParse({ league: 'fba', obligations: [ob] }).success).toBe(true);
+  });
+
+  it('validates transactions', () => {
+    const tx = { league: 'fba', season: 79, entries: [{ seq: 1, batchId: 'b1', type: 'signed', teams: ['CAR'], lines: ['Signed C-Azubuike Okoro (2/$2, thru S80)'] }] };
+    expect(TransactionsFile.safeParse(tx).success).toBe(true);
+    expect(TransactionsFile.safeParse({ ...tx, entries: [{ ...tx.entries[0], type: 'waived' }] }).success).toBe(false);
   });
 });
