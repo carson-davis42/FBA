@@ -1,4 +1,5 @@
 import type { RosterEntry } from '../shared/types';
+import { finishRatings, setRating, startRatings } from './ratings';
 import type { D2State } from './state';
 
 const e = (playerId: string | null, position: RosterEntry['position'], rating: number | null, age: number | null, points = 0): RosterEntry =>
@@ -56,4 +57,19 @@ export function d2BaseState(): D2State {
     pool: null,
     draft: null,
   };
+}
+
+/**
+ * d2BaseState with the ratings reset finished: no performance data and no luck, then Reserves rated
+ * PG Kris Dyer 78, SG Kyron Smart 74, PF Myron Mason 70, SG Adrian Napoletani 60, C Brycen Holcomb 65.
+ * Roster ratings: AMS PG 73, SG 72, SF 75, PF 97 · BER PG 72, SF 80, PF 66, C 85.
+ */
+export function d2RatedState(): D2State {
+  const started = startRatings({ ...d2BaseState(), prevD2: null }, () => 0.5);
+  if (!started.ok) throw new Error(started.problems.join('; '));
+  let ratings = started.state.ratings!;
+  for (const [id, v] of [['p00040', 78], ['p00041', 74], ['p00042', 70], ['p00043', 60], ['p00044', 65]] as const) ratings = setRating(ratings, id, v);
+  const finished = finishRatings({ ...started.state, ratings }, { batchId: 'fixture' });
+  if (!finished.ok) throw new Error(finished.problems.join('; '));
+  return finished.state;
 }
