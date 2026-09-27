@@ -1,4 +1,4 @@
-import { existsSync, mkdtempSync, readdirSync } from 'node:fs';
+import { existsSync, mkdtempSync, readdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
@@ -123,7 +123,8 @@ describe('Storage batches and undo', () => {
     const s = storage as unknown as { atomicWrite: (f: string, t: string) => Promise<void> };
     const real = s.atomicWrite.bind(storage);
     let n = 0;
-    s.atomicWrite = async (f, t) => { n += 1; if (n === 2) throw Object.assign(new Error('disk full'), { code: 'ENOSPC' }); return real(f, t); };
+    // Call 1 is the journal write itself; calls 2 and 3 are the two data writes, so this fails the second data write.
+    s.atomicWrite = async (f, t) => { n += 1; if (n === 3) throw Object.assign(new Error('disk full'), { code: 'ENOSPC' }); return real(f, t); };
     const failed = storage.writeMany('Sign', [
       { path: 'leagues/fba/S79/rosters.json', doc: roster(79, 70) },
       { path: 'leagues/fba/S79/transactions.json', doc: tx },
@@ -141,7 +142,8 @@ describe('Storage batches and undo', () => {
     const s = storage as unknown as { atomicWrite: (f: string, t: string) => Promise<void> };
     const real = s.atomicWrite.bind(storage);
     let n = 0;
-    s.atomicWrite = async (f, t) => { n += 1; if (n >= 2) throw Object.assign(new Error('disk full'), { code: 'ENOSPC' }); return real(f, t); };
+    // Call 1 is the journal write; call 2 (the first data write) succeeds, then every write after fails.
+    s.atomicWrite = async (f, t) => { n += 1; if (n >= 3) throw Object.assign(new Error('disk full'), { code: 'ENOSPC' }); return real(f, t); };
     const errSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
     const failed = storage.writeMany('Sign', [
       { path: 'leagues/fba/S79/rosters.json', doc: roster(79, 70) },
@@ -153,5 +155,27 @@ describe('Storage batches and undo', () => {
     expect(await storage.read('leagues/fba/S79/rosters.json')).toEqual(roster(79, 70));
     expect(await storage.undo()).toEqual({ label: 'Sign', paths: ['leagues/fba/S79/rosters.json', 'leagues/fba/S79/transactions.json'] });
     expect(await storage.read('leagues/fba/S79/rosters.json')).toEqual(roster(79, 90));
+  });
+
+  it('peeks the label of the next undo without consuming it', async () => {
+    const { storage } = fresh();
+    expect(await storage.peekUndo()).toBeNull();
+    await storage.writeMany('Sign Okoro', [{ path: 'leagues/fba/S79/rosters.json', doc: roster(79, 70) }]);
+    expect(await storage.peekUndo()).toEqual({ label: 'Sign Okoro' });
+    expect(await storage.peekUndo()).toEqual({ label: 'Sign Okoro' });
+    await storage.undo();
+    expect(await storage.peekUndo()).toBeNull();
+  });
+
+  it('skips a corrupt journal file newer than a valid one, for both peekUndo and undo', async () => {
+    const { dir, storage } = fresh();
+    await storage.writeMany('Sign Okoro', [{ path: 'leagues/fba/S79/rosters.json', doc: roster(79, 70) }]);
+    const journalDir = path.join(dir, '.journal');
+    const garbageName = '99999999999999-999999.json';
+    writeFileSync(path.join(journalDir, garbageName), 'not valid json{{{');
+
+    expect(await storage.peekUndo()).toEqual({ label: 'Sign Okoro' });
+    expect(existsSync(path.join(journalDir, `${garbageName}.corrupt`))).toBe(true);
+    expect(await storage.undo()).toEqual({ label: 'Sign Okoro', paths: ['leagues/fba/S79/rosters.json'] });
   });
 });

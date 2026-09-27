@@ -153,25 +153,52 @@ export class Storage {
   undo(): Promise<{ label: string; paths: string[] }> {
     return this.serialize(async () => {
       const names = await this.journalNames();
-      const last = names.at(-1);
-      if (!last) throw new StorageError(404, 'Nothing to undo');
-      const entry = JSON.parse(await readFile(path.join(this.journalDir(), last), 'utf8')) as JournalEntry;
-      for (const f of entry.files) {
-        const current = await this.readRaw(this.fullPath(f.path));
-        if (current !== f.after && current !== f.before) {
-          throw new StorageError(409, `Can't undo "${entry.label}": ${f.path} has changed since then`);
+      for (let i = names.length - 1; i >= 0; i--) {
+        const name = names[i];
+        const entry = await this.readJournalEntry(name);
+        if (!entry) continue;
+        for (const f of entry.files) {
+          const current = await this.readRaw(this.fullPath(f.path));
+          if (current !== f.after && current !== f.before) {
+            throw new StorageError(409, `Can't undo "${entry.label}": ${f.path} has changed since then`);
+          }
         }
+        for (const f of entry.files) {
+          const file = this.fullPath(f.path);
+          const current = await this.readRaw(file);
+          if (current === f.before) continue;
+          if (f.before === null) await unlink(file);
+          else await this.atomicWrite(file, f.before);
+        }
+        await unlink(path.join(this.journalDir(), name));
+        return { label: entry.label, paths: entry.files.map(f => f.path) };
       }
-      for (const f of entry.files) {
-        const file = this.fullPath(f.path);
-        const current = await this.readRaw(file);
-        if (current === f.before) continue;
-        if (f.before === null) await unlink(file);
-        else await this.atomicWrite(file, f.before);
-      }
-      await unlink(path.join(this.journalDir(), last));
-      return { label: entry.label, paths: entry.files.map(f => f.path) };
+      throw new StorageError(404, 'Nothing to undo');
     });
+  }
+
+  /** Reports the label of the move `undo()` would restore, without consuming it. */
+  peekUndo(): Promise<{ label: string } | null> {
+    return this.serialize(async () => {
+      const names = await this.journalNames();
+      for (let i = names.length - 1; i >= 0; i--) {
+        const entry = await this.readJournalEntry(names[i]);
+        if (entry) return { label: entry.label };
+      }
+      return null;
+    });
+  }
+
+  /** Reads and parses a journal file. A file that fails to parse is renamed to `<name>.corrupt` and skipped. */
+  private async readJournalEntry(name: string): Promise<JournalEntry | null> {
+    const file = path.join(this.journalDir(), name);
+    const text = await readFile(file, 'utf8');
+    try {
+      return JSON.parse(text) as JournalEntry;
+    } catch {
+      await rename(file, `${file}.corrupt`);
+      return null;
+    }
   }
 
   private journalDir(): string {
@@ -193,7 +220,7 @@ export class Storage {
 
   private async saveJournal(entry: JournalEntry): Promise<void> {
     await mkdir(this.journalDir(), { recursive: true });
-    await writeFile(this.journalPath(entry.id), JSON.stringify(entry));
+    await this.atomicWrite(this.journalPath(entry.id), JSON.stringify(entry));
     const names = await this.journalNames();
     for (const old of names.slice(0, Math.max(0, names.length - MAX_JOURNAL))) await unlink(path.join(this.journalDir(), old));
   }

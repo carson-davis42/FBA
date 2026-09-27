@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { currentStepIndex } from '../../engine/shared/calendar';
 import type { CalendarFile } from '../../engine/shared/types';
-import { undoLast, useDoc } from '../api';
+import { peekUndo, undoLast, useDoc } from '../api';
 import { useTheme } from '../useTheme';
 
 export function TopBar() {
@@ -12,18 +12,31 @@ export function TopBar() {
     const i = currentStepIndex(cal);
     pill = i < 0 ? `S${cal.season} · Complete` : `S${cal.season} · ${cal.steps[i].label}`;
   }
-  const [canUndo, setCanUndo] = useState(false);
+  const [undo, setUndo] = useState<{ available: boolean; label: string | null }>({ available: false, label: null });
   const [undoMsg, setUndoMsg] = useState('');
-  useEffect(() => {
-    const onSaved = () => { setCanUndo(true); setUndoMsg(''); };
-    window.addEventListener('batch-saved', onSaved);
-    return () => window.removeEventListener('batch-saved', onSaved);
+
+  const refreshUndo = useCallback(async () => {
+    try {
+      setUndo(await peekUndo());
+    } catch {
+      // Leave the button's current state alone if the check itself fails.
+    }
   }, []);
-  const undo = async () => {
+
+  useEffect(() => { refreshUndo(); }, [refreshUndo]);
+  useEffect(() => {
+    const onSaved = () => { refreshUndo(); setUndoMsg(''); };
+    window.addEventListener('doc-saved', onSaved);
+    return () => window.removeEventListener('doc-saved', onSaved);
+  }, [refreshUndo]);
+
+  const doUndo = async () => {
     try {
       setUndoMsg(`Undid: ${await undoLast()}`);
     } catch (e) {
       setUndoMsg((e as Error).message);
+    } finally {
+      await refreshUndo();
     }
   };
   return (
@@ -34,7 +47,9 @@ export function TopBar() {
       </div>
       <div className="spacer" />
       {undoMsg && <span className="muted undo-msg">{undoMsg}</span>}
-      {canUndo && <button className="btn" onClick={undo}>↶ Undo last move</button>}
+      {undo.available && (
+        <button className="btn" onClick={doUndo} title={undo.label ? `Undo: ${undo.label}` : undefined}>↶ Undo last move</button>
+      )}
       {pill && <span className="pill">{pill}</span>}
       <button className="icon-btn" onClick={toggle} aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}>
         {theme === 'light' ? '☾' : '☀'}
