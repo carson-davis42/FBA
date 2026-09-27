@@ -2,9 +2,10 @@
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { makePick } from '../../engine/d2/draft';
 import { startPool } from '../../engine/d2/pool';
 import type { D2State } from '../../engine/d2/state';
-import { d2BaseState, d2RatedState } from '../../engine/d2/testFixtures';
+import { d2BaseState, d2LockedState, d2RatedState } from '../../engine/d2/testFixtures';
 import type { D2PoolFile } from '../../engine/shared/types';
 import { docsFor, stubApi } from '../d2/testDocs';
 import { D2DraftPage } from './D2DraftPage';
@@ -86,5 +87,63 @@ describe('D2DraftPage: pool', () => {
       'leagues/fbad2/S79/rosters.json', 'leagues/fbad2/S79/transactions.json',
     ]);
     expect(log.batches[0].writes.find(w => w.path.endsWith('draft.json'))!.baseVersion).toBeNull();
+  });
+});
+
+const pickAll = (ids: string[]): D2State => {
+  let s = d2LockedState();
+  for (const id of ids) {
+    const r = makePick(s, id, { batchId: 'b' });
+    if (!r.ok) throw new Error(r.problems.join('; '));
+    s = r.state;
+  }
+  return s;
+};
+
+describe('D2DraftPage: draft board', () => {
+  it('shows the team on the clock and drafts a clicked player', async () => {
+    const log = stubApi(docsFor(d2LockedState()));
+    renderPage();
+    expect(await screen.findByText('On the clock: #1 BER Club')).toBeTruthy();
+    expect(screen.getByText('Needs: PG, SG, PF')).toBeTruthy();
+    fireEvent.click(screen.getByText('Kyron Smart'));
+    fireEvent.click(screen.getByRole('button', { name: 'Draft Kyron Smart → BER Club' }));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    expect(log.batches[0].label).toBe('D2 draft #1: BER selects Kyron Smart');
+  });
+
+  it('re-rolls the order before the first pick', async () => {
+    const log = stubApi(docsFor(d2LockedState()));
+    renderPage();
+    fireEvent.click(await screen.findByRole('button', { name: /Re-roll order/ }));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    expect(log.batches[0].label).toBe('Re-roll D2 draft order');
+    expect(log.batches[0].writes.map(w => w.path)).toEqual(['leagues/fbad2/S79/draft.json']);
+  });
+
+  it('offers Undo last pick when the newest move is a pick, and hides Re-roll after a pick', async () => {
+    const log = stubApi(docsFor(pickAll(['p00041'])), { undoLabel: 'D2 draft #1: BER selects Kyron Smart' });
+    renderPage();
+    fireEvent.click(await screen.findByRole('button', { name: /Undo last pick/ }));
+    await waitFor(() => expect(log.undos).toBe(1));
+    expect(screen.queryByRole('button', { name: /Re-roll order/ })).toBeNull();
+  });
+
+  it('offers only Skip when nobody fits', async () => {
+    const s = pickAll(['p00041', 'p00040', 'p00042']);
+    const noC = { ...s, reserves: { ...s.reserves, players: s.reserves.players.filter(p => p.playerId !== 'p00044') } };
+    const log = stubApi(docsFor(noC));
+    renderPage();
+    fireEvent.click(await screen.findByRole('button', { name: 'Skip pick' }));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    expect(log.batches[0].label).toBe('D2 draft #4: AMS skips');
+    expect(log.batches[0].writes.map(w => w.path)).toContain('calendar.json');
+  });
+
+  it('shows the finished draft', async () => {
+    stubApi(docsFor(pickAll(['p00041', 'p00040', 'p00042', 'p00044'])));
+    renderPage();
+    expect(await screen.findByText(/The D2 draft is finished/)).toBeTruthy();
+    expect(screen.getByText(/SG-Kyron Smart/)).toBeTruthy();
   });
 });

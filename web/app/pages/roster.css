@@ -52,3 +52,9 @@ legend { font-weight: 700; margin-bottom: 4px; }
 .pool-list li.tie { background: rgba(217, 119, 6, 0.10); }
 .pool-list li.cutoff-row { display: block; text-align: center; color: var(--accent); font-weight: 800; border-bottom: 2px dashed var(--accent); cursor: default; background: transparent; }
 .pool-list .rank { font-variant-numeric: tabular-nums; font-weight: 700; }
+.draft-grid { display: grid; grid-template-columns: minmax(240px, 0.9fr) minmax(300px, 1.1fr); gap: 10px; align-items: start; }
+@media (max-width: 760px) { .draft-grid { grid-template-columns: 1fr; } }
+.pick-order { list-style: none; padding: 0; margin: 0 0 8px; max-height: 60vh; overflow: auto; }
+.pick-order li { padding: 4px 6px; border-bottom: 1px solid var(--border); }
+.pick-order li.now { background: var(--accent-soft); font-weight: 700; border-radius: 4px; }
+.pick-order li.done { color: var(--muted); }
