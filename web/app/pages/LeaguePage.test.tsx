@@ -51,6 +51,26 @@ describe('LeaguePage', () => {
   });
 });
 
+describe('LeaguePage with locked rosters', () => {
+  beforeEach(() => {
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+      const lockedDocs: Record<string, unknown> = {
+        ...docs,
+        'leagues/fba/S79/rosters.json': { ...(docs['leagues/fba/S79/rosters.json'] as Record<string, unknown>), locked: true },
+      };
+      const doc = lockedDocs[url.replace('/api/state/', '')];
+      return doc ? new Response(JSON.stringify(doc)) : new Response('{}', { status: 404 });
+    }));
+  });
+
+  it('keeps the Transactions link but hides Free agency and Trade', async () => {
+    renderAt('/league/fba');
+    expect(await screen.findByRole('link', { name: 'Transactions' })).toBeTruthy();
+    expect(screen.queryByRole('link', { name: 'Trade' })).toBeNull();
+    expect(screen.queryByRole('link', { name: 'Free agency' })).toBeNull();
+  });
+});
+
 describe('TeamPage', () => {
   it('shows the roster with contract and vacancy', async () => {
     renderAt('/league/fba/team/BOS');
