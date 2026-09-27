@@ -250,7 +250,9 @@ describe('batch and undo routes', () => {
   const cal = (done: boolean) => ({ season: 79, steps: [{ id: 'a', label: 'A', kind: 'offseason', league: null, sub: false, done }] });
 
   it('applies a batch and undoes it', async () => {
-    await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': '"null"' }, body: JSON.stringify(cal(false)) });
+    const setupTag = await ifMatch(base, 'calendar.json');
+    const setup = await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': setupTag }, body: JSON.stringify(cal(false)) });
+    expect(setup.status).toBe(200);
     const tag = await ifMatch(base, 'calendar.json');
     const res = await fetch(`${base}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: 'Mark A', writes: [{ path: 'calendar.json', doc: cal(true), baseVersion: unquote(tag) }] }) });
     expect(res.status).toBe(200);
@@ -272,7 +274,9 @@ describe('batch and undo routes', () => {
   it('GET /api/undo reports availability based on the newest journal entry', async () => {
     const base6 = base;
     // A fresh undo (from the previous test in this file) may or may not be pending; force a known state.
-    await fetch(`${base6}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': '"null"' }, body: JSON.stringify(cal(false)) });
+    const setupTag = await ifMatch(base6, 'calendar.json');
+    const setup = await fetch(`${base6}/api/state/calendar.json`, { method: 'PUT', headers: { 'If-Match': setupTag }, body: JSON.stringify(cal(false)) });
+    expect(setup.status).toBe(200);
     const before = await fetch(`${base6}/api/undo`);
     expect(await before.json()).toEqual({ ok: true, available: false, label: null });
 
