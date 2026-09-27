@@ -46,3 +46,18 @@ export async function readTabs(file: string, tabs: string[]): Promise<Record<str
   }
   return out;
 }
+
+/** Cells with underlined text, keyed "<row index>:<column index>" (0-based, matching readTabs rows). */
+export async function readUnderlines(file: string, tab: string): Promise<Set<string>> {
+  const wb = new ExcelJS.Workbook();
+  await wb.xlsx.readFile(file);
+  const ws = wb.getWorksheet(tab);
+  if (!ws) throw new Error(`Tab "${tab}" not found in ${path.basename(file)}`);
+  const out = new Set<string>();
+  ws.eachRow({ includeEmpty: false }, (row, n) => {
+    row.eachCell({ includeEmpty: false }, (c, col) => {
+      if (c.font?.underline) out.add(`${n - 1}:${col - 1}`);
+    });
+  });
+  return out;
+}
