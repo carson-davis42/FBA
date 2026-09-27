@@ -31,7 +31,12 @@ async function tracked<T>(work: () => Promise<T>): Promise<T> {
   }
 }
 
-/** True while any save or undo started by this tab is in flight. */
+/**
+ * True while any save or undo started by this tab is in flight, and while any `useDoc` reload
+ * that a save's `doc-saved` notification triggered (in this tab or another) hasn't settled yet.
+ * This keeps the flag true across the handoff from a save's POST to the reload it kicks off, so a
+ * second action can't run against not-yet-refreshed local state and report a misleading conflict.
+ */
 export function useSaving(): boolean {
   return useSyncExternalStore(
     cb => {
@@ -112,6 +117,13 @@ export function useDoc<T>(rel: string | null): DocState<T> {
   useEffect(() => {
     if (!rel) return;
     let live = true;
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      changeInFlight(-1);
+    };
+    changeInFlight(1);
     loadDoc<T>(rel).then(
       r => {
         if (!live) return;
@@ -119,8 +131,11 @@ export function useDoc<T>(rel: string | null): DocState<T> {
         else setState({ rel, data: r.data, version: r.version });
       },
       error => live && setState({ rel, error: error as Error }),
-    );
-    return () => { live = false; };
+    ).finally(finish);
+    return () => {
+      live = false;
+      finish();
+    };
   }, [rel, tick]);
 
   const current = rel !== null && state.rel === rel ? state : {};

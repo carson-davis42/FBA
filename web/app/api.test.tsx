@@ -126,6 +126,42 @@ describe('versions and saving', () => {
     expect(result.current).toBe(false);
   });
 
+  it('stays saving through the reload a batch write triggers for a doc this tab has open', async () => {
+    let releaseReload!: () => void;
+    const reloadPending = new Promise<Response>(r => { releaseReload = () => r(new Response(JSON.stringify({ n: 2 }))); });
+    let firstLoadDone = false;
+    const fetchMock = vi.fn((url: string) => {
+      if (url === '/api/state/a.json') {
+        if (!firstLoadDone) {
+          firstLoadDone = true;
+          return Promise.resolve(new Response(JSON.stringify({ n: 1 })));
+        }
+        return reloadPending;
+      }
+      if (url === '/api/batch') {
+        return Promise.resolve(new Response(JSON.stringify({ ok: true, batchId: '1', versions: {} })));
+      }
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const { result } = renderHook(() => ({ doc: useDoc('a.json'), saving: useSaving() }));
+    await waitFor(() => expect(result.current.doc.data).toEqual({ n: 1 }));
+    expect(result.current.saving).toBe(false);
+
+    let p!: Promise<unknown>;
+    await act(async () => {
+      p = postBatch('X', [{ path: 'a.json', doc: {}, baseVersion: null }]);
+      await p;
+    });
+    // The POST resolved, but the reload it triggered for a.json (still open in this tab) hasn't settled yet.
+    expect(result.current.saving).toBe(true);
+
+    await act(async () => { releaseReload(); await new Promise(r => setTimeout(r, 0)); });
+    expect(result.current.saving).toBe(false);
+    expect(result.current.doc.data).toEqual({ n: 2 });
+  });
+
   it('reloads a doc when another tab reports it saved', async () => {
     const fetchMock = vi.fn(async () => new Response(JSON.stringify({ n: 1 })));
     vi.stubGlobal('fetch', fetchMock);
