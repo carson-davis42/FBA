@@ -2,8 +2,10 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { schemaForPath } from './engine/shared/schemaRegistry';
+import type { FreeAgentsFile, MetaFile, ReservesFile, RostersFile } from './engine/shared/types';
 
 const DATA_DIR = path.join(__dirname, 'data');
+const readData = <T>(rel: string): T => JSON.parse(readFileSync(path.join(DATA_DIR, ...rel.split('/')), 'utf8')) as T;
 
 function walk(dir: string): string[] {
   const out: string[] = [];
@@ -37,4 +39,27 @@ describe('committed data', () => {
       expect(result.success).toBe(true);
     },
   );
+
+  it('has no player listed in more than one pool for the current season', () => {
+    const meta = readData<MetaFile>('meta.json');
+    const fbaSeason = meta.rosterSeason.fba;
+    const d2Season = meta.rosterSeason.fbad2;
+    const fba = readData<RostersFile>(`leagues/fba/S${fbaSeason}/rosters.json`);
+    const d2 = readData<RostersFile>(`leagues/fbad2/S${d2Season}/rosters.json`);
+    const freeAgents = readData<FreeAgentsFile>(`leagues/fba/S${fbaSeason}/freeAgents.json`);
+    const reserves = readData<ReservesFile>(`leagues/fbad2/S${d2Season}/reserves.json`);
+
+    const locations = new Map<string, string[]>();
+    const record = (playerId: string | null, where: string) => {
+      if (playerId === null) return;
+      locations.set(playerId, [...(locations.get(playerId) ?? []), where]);
+    };
+    for (const [teamId, entries] of Object.entries(fba.teams)) for (const e of entries) record(e.playerId, `FBA ${teamId}`);
+    for (const [teamId, entries] of Object.entries(d2.teams)) for (const e of entries) record(e.playerId, `D2 ${teamId}`);
+    for (const p of freeAgents.players) record(p.playerId, 'free agents');
+    for (const p of reserves.players) record(p.playerId, 'D2 Reserves');
+
+    const dupes = [...locations.entries()].filter(([, where]) => where.length > 1);
+    expect(dupes, dupes.map(([id, where]) => `${id}: ${where.join(', ')}`).join('\n')).toEqual([]);
+  });
 });
