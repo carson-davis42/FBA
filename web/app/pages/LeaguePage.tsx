@@ -5,6 +5,7 @@ import { useDoc } from '../api';
 import { teamRating } from '../components/rosterColumns';
 import { TeamMark } from '../components/TeamMark';
 import './league.css';
+import './roster.css';
 
 export function LeaguePage() {
   const { league = '' } = useParams();
@@ -27,6 +28,13 @@ export function LeaguePage() {
         <h1>{LEAGUE_LABEL[league]}</h1>
         <span className="muted">S{season} rosters · {teams.teams.length} teams{rosters.locked ? ' · final (locked)' : ''}</span>
       </div>
+      {(league === 'fba' || league === 'fbad2') && (
+        <div className="league-links">
+          {league === 'fba' && <Link className="btn" to="/league/fba/free-agency">Free agency</Link>}
+          <Link className="btn" to={`/trade/${league}`}>Trade</Link>
+          <Link className="btn" to={`/league/${league}/transactions`}>Transactions</Link>
+        </div>
+      )}
       {[...groups.entries()].map(([code, list]) => (
         <div className="group" key={code ?? 'all'}>
           <h2>{groupLabel(league, code)}</h2>

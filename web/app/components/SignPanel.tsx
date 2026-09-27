@@ -9,7 +9,9 @@ import { commitMove, newBatchId } from '../roster/commit';
 export function SignPanel({ state, teams, playerId, defaultTeam, onClose }: {
   state: RosterState; teams: TeamsFile; playerId: string; defaultTeam: string; onClose: () => void;
 }) {
-  const row = marketRows(state).find(r => r.playerId === playerId);
+  const found = marketRows(state).find(r => r.playerId === playerId);
+  const own = Object.entries(state.fba.teams).flatMap(([t, es]) => es.filter(e => e.playerId === playerId).map(e => ({ t, e })))[0];
+  const row = found ?? (own ? { playerId, name: state.players.players[playerId]?.name ?? 'Unnamed', position: own.e.position, age: own.e.age, rating: own.e.rating, scale: 'FBA' as const, type: 'Expired' as const, from: own.t } : undefined);
   const [teamId, setTeamId] = useState(defaultTeam);
   const [years, setYears] = useState(1);
   const [amount, setAmount] = useState(1);
