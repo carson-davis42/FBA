@@ -32,6 +32,7 @@ export function LeaguePage() {
         <div className="league-links">
           {!rosters.locked && league === 'fba' && <Link className="btn" to="/league/fba/free-agency">Free agency</Link>}
           {!rosters.locked && league === 'fbad2' && <Link className="btn" to="/league/fbad2/ratings">D2 ratings reset</Link>}
+          {!rosters.locked && league === 'fbad2' && <Link className="btn" to="/league/fbad2/draft">D2 draft</Link>}
           {!rosters.locked && <Link className="btn" to={`/trade/${league}`}>Trade</Link>}
           <Link className="btn" to={`/league/${league}/transactions`}>Transactions</Link>
         </div>

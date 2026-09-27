@@ -56,6 +56,11 @@ describe('LeaguePage', () => {
     renderAt('/league/fbad2');
     expect((await screen.findByRole('link', { name: 'D2 ratings reset' })).getAttribute('href')).toBe('/league/fbad2/ratings');
   });
+
+  it('links the D2 draft from the D2 league page', async () => {
+    renderAt('/league/fbad2');
+    expect((await screen.findByRole('link', { name: 'D2 draft' })).getAttribute('href')).toBe('/league/fbad2/draft');
+  });
 });
 
 describe('LeaguePage with locked rosters', () => {

@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { CalendarPage } from '../pages/CalendarPage';
+import { D2DraftPage } from '../pages/D2DraftPage';
 import { D2RatingsPage } from '../pages/D2RatingsPage';
 import { FreeAgencyPage } from '../pages/FreeAgencyPage';
 import { Home } from '../pages/Home';
@@ -21,6 +22,7 @@ export function Layout() {
           <Route path="/" element={<Home />} />
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/league/fbad2/ratings" element={<D2RatingsPage />} />
+          <Route path="/league/fbad2/draft" element={<D2DraftPage />} />
           <Route path="/league/:league" element={<LeaguePage />} />
           <Route path="/league/:league/free-agency" element={<FreeAgencyPage />} />
           <Route path="/league/:league/team/:teamId" element={<TeamPage />} />

@@ -4,6 +4,7 @@ import type { CalendarStep } from '../engine/shared/types';
 export const TOOL_STEPS: Record<string, string> = {
   'free-agency-offseason': '/league/fba/free-agency',
   'fbad2-ratings-reset': '/league/fbad2/ratings',
+  'fbad2-draft': '/league/fbad2/draft',
 };
 
 export function stepTarget(step: CalendarStep): string {
