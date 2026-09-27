@@ -3,6 +3,7 @@ import { currentStepIndex } from '../../engine/shared/calendar';
 import { LEAGUES, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { CalendarFile, LeagueId, MetaFile, SummaryFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
+import { stepTarget } from '../stepRoutes';
 import './pages.css';
 
 function ChampionRows({ league, meta }: { league: LeagueId; meta: MetaFile | undefined }) {
@@ -36,7 +37,7 @@ export function Home() {
   const i = currentStepIndex(cal);
   const step = i < 0 ? null : cal.steps[i];
   const title = !step ? `Season ${cal.season} complete` : step.kind === 'league' && step.league ? `Play ${LEAGUE_LABEL[step.league]} S${cal.season}` : step.label;
-  const target = step?.kind === 'league' && step.league ? `/league/${step.league}` : '/calendar';
+  const target = step ? stepTarget(step) : '/calendar';
 
   return (
     <section>

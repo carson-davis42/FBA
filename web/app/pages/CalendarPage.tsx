@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { currentStepIndex, markCurrentDone, reopenLast } from '../../engine/shared/calendar';
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { CalendarFile } from '../../engine/shared/types';
 import { putDoc, useDoc } from '../api';
+import { TOOL_STEPS } from '../stepRoutes';
 import './pages.css';
 
 export function CalendarPage() {
@@ -29,7 +31,10 @@ export function CalendarPage() {
     <section>
       <h1>Season {cal.season} calendar</h1>
       <div className="cal-actions">
-        {i >= 0 && (
+        {i >= 0 && TOOL_STEPS[cal.steps[i].id] && (
+          <Link className="btn primary" to={TOOL_STEPS[cal.steps[i].id]}>Open {cal.steps[i].label} ▸</Link>
+        )}
+        {i >= 0 && !TOOL_STEPS[cal.steps[i].id] && (
           <button className="btn primary" disabled={busy} onClick={() => save(markCurrentDone(cal))} aria-label={`Mark "${cal.steps[i].label}" done`}>
             ✓ Mark "{cal.steps[i].label}" done
           </button>

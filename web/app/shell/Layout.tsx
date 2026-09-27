@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { CalendarPage } from '../pages/CalendarPage';
+import { FreeAgencyPage } from '../pages/FreeAgencyPage';
 import { Home } from '../pages/Home';
 import { LeaguePage } from '../pages/LeaguePage';
 import { TeamPage } from '../pages/TeamPage';
@@ -17,6 +18,7 @@ export function Layout() {
           <Route path="/" element={<Home />} />
           <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/league/:league" element={<LeaguePage />} />
+          <Route path="/league/:league/free-agency" element={<FreeAgencyPage />} />
           <Route path="/league/:league/team/:teamId" element={<TeamPage />} />
           <Route path="/offseason" element={<Placeholder title="Offseason tools" note="Arrives in sub-project 7. For now, mark offseason steps done on the Calendar page." />} />
           <Route path="/history" element={<Placeholder title="History" note="League history arrives in sub-project 3." />} />
