@@ -24,8 +24,9 @@ export function EditDialog({ state, league, teamId, playerId, onClose }: {
   const warnings = editWarnings(state, input);
 
   const save = async () => {
+    setError('');
     const result = editPlayer(state, input, { batchId: newBatchId() });
-    if (!result.ok) return;
+    if (!result.ok) return setError(result.problems.join('; '));
     try {
       await commitMove(result);
       onClose();

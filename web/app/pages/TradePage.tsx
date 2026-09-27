@@ -37,6 +37,7 @@ export function TradePage() {
   if (!state || !teams) return <p className="muted">Loading…</p>;
 
   const rosters = lg === 'fba' ? state.fba : state.d2;
+  const locked = (lg === 'fba' ? state.fba : state.d2).locked;
   const nameOfTeam = (t: string) => teams.teams.find(x => x.teamId === t)?.name ?? t;
   const defaultTo = (from: string) => teamIds.find(t => t !== from) ?? from;
   const pickKey = (from: string, season: number) => `${from}-${season}`;
@@ -73,6 +74,7 @@ export function TradePage() {
   return (
     <section>
       <h1>{lg === 'fba' ? 'FBA' : 'FBAD2'} trade</h1>
+      {locked && <p className="muted">S{state.season} rosters are final; trades are closed.</p>}
       <div className="form-row">
         <label>Add team
           <select value="" onChange={e => e.target.value && setTeamIds(ids => [...ids, e.target.value])}>
@@ -179,7 +181,7 @@ export function TradePage() {
         {preview && !preview.ok && <ul className="problems">{preview.problems.map(p => <li key={p}>{p}</li>)}</ul>}
         {preview?.ok && preview.warnings.length > 0 && <p className="muted">Fix before free agency ends: {preview.warnings.join('; ')}</p>}
         {saveError && <p className="error">Save failed: {saveError}</p>}
-        <button className="btn primary" disabled={!preview?.ok || busy} onClick={save}>Make trade</button>
+        <button className="btn primary" disabled={locked || !preview?.ok || busy} onClick={save}>Make trade</button>
       </div>
     </section>
   );

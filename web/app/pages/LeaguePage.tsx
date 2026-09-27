@@ -28,7 +28,7 @@ export function LeaguePage() {
         <h1>{LEAGUE_LABEL[league]}</h1>
         <span className="muted">S{season} rosters · {teams.teams.length} teams{rosters.locked ? ' · final (locked)' : ''}</span>
       </div>
-      {(league === 'fba' || league === 'fbad2') && (
+      {(league === 'fba' || league === 'fbad2') && !rosters.locked && (
         <div className="league-links">
           {league === 'fba' && <Link className="btn" to="/league/fba/free-agency">Free agency</Link>}
           <Link className="btn" to={`/trade/${league}`}>Trade</Link>

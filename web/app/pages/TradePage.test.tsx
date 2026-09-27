@@ -86,6 +86,22 @@ describe('TradePage', () => {
     });
   });
 
+  describe('locked rosters', () => {
+    beforeEach(() => {
+      setupFetch(s => { s.fba = { ...s.fba, locked: true }; });
+    });
+
+    it('shows rosters as read-only and disables Make trade', async () => {
+      render(
+        <MemoryRouter initialEntries={['/trade/fba?team=CAR']}>
+          <Routes><Route path="/trade/:league" element={<TradePage />} /></Routes>
+        </MemoryRouter>,
+      );
+      expect(await screen.findByText('S79 rosters are final; trades are closed.')).toBeTruthy();
+      expect((screen.getByRole('button', { name: 'Make trade' }) as HTMLButtonElement).disabled).toBe(true);
+    });
+  });
+
   describe('FBAD2', () => {
     it('has no draft picks section', async () => {
       render(

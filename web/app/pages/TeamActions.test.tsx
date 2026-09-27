@@ -64,6 +64,16 @@ describe('team page actions', () => {
     expect(posted!.label).toBe('Edit Gabriel Greenwood');
   });
 
+  it('resets the edit dialog when switching players without cancelling', async () => {
+    renderAt('/league/fba/team/BOS');
+    const row1 = (await screen.findByText('Gabriel Greenwood')).closest('tr')!;
+    fireEvent.click(await within(row1).findByRole('button', { name: 'Edit' }));
+    const row2 = screen.getByText('Olufemi Cisneros').closest('tr')!;
+    fireEvent.click(within(row2).getByRole('button', { name: 'Edit' }));
+    const dialog = screen.getByRole('region', { name: /edit olufemi cisneros/i });
+    expect((within(dialog).getByLabelText('Rating') as HTMLInputElement).value).toBe('94');
+  });
+
   it('lists transactions newest first', async () => {
     renderAt('/league/fba/transactions');
     expect(await screen.findByText('Signed C-Azubuike Okoro (2/$2, thru S80)')).toBeTruthy();

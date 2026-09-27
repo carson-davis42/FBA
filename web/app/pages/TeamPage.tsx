@@ -41,6 +41,7 @@ export function TeamPage() {
 
   const release = async (playerId: string, kind: 'released' | 'cut') => {
     if (!state) return;
+    setError('');
     const result = releasePlayer(state, { league: lg, teamId, playerId, kind }, { batchId: newBatchId() });
     if (!result.ok) return setError(result.problems.join('; '));
     try {
@@ -89,8 +90,8 @@ export function TeamPage() {
       </div>
       {lg === 'fba' && editable && <PayrollBar total={payroll(entries, season)} />}
       {error && <p className="error">{error}</p>}
-      {editing && state && <EditDialog state={state} league={lg} teamId={teamId} playerId={editing} onClose={() => setEditing(null)} />}
-      {resigning && state && fbaTeams && <SignPanel state={state} teams={fbaTeams} playerId={resigning} defaultTeam={teamId} onClose={() => setResigning(null)} />}
+      {editing && state && <EditDialog key={editing} state={state} league={lg} teamId={teamId} playerId={editing} onClose={() => setEditing(null)} />}
+      {resigning && state && fbaTeams && <SignPanel key={resigning} state={state} teams={fbaTeams} playerId={resigning} defaultTeam={teamId} onClose={() => setResigning(null)} />}
       <div className="table-wrap">
         <RosterTable league={league} entries={entries} players={players.players} extraLabel={editable ? 'Actions' : undefined} renderExtra={editable && state ? actions : undefined} />
       </div>
