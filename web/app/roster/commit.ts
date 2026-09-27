@@ -1,11 +1,20 @@
 import { docPath, type MoveResult } from '../../engine/roster/state';
-import { postBatch } from '../api';
+import { postBatch, type Versions } from '../api';
 
 export function newBatchId(): string {
   return `b${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
 }
 
-export async function commitMove(result: Extract<MoveResult, { ok: true }>, extra: { path: string; doc: unknown }[] = []): Promise<void> {
+/** Saves documents as one batch. Each write carries the version this page loaded, so a stale page can't overwrite newer data. */
+export async function commitDocs(label: string, docs: { path: string; doc: unknown }[], versions: Versions): Promise<void> {
+  const writes = docs.map(d => {
+    if (!(d.path in versions)) throw new Error(`No loaded version for ${d.path}; reload the page`);
+    return { path: d.path, doc: d.doc, baseVersion: versions[d.path] };
+  });
+  await postBatch(label, writes);
+}
+
+export async function commitMove(result: Extract<MoveResult, { ok: true }>, versions: Versions, extra: { path: string; doc: unknown }[] = []): Promise<void> {
   const writes = result.changed.map(k => ({ path: docPath(k, result.state.season), doc: result.state[k] }));
-  await postBatch(result.label, [...writes, ...extra]);
+  await commitDocs(result.label, [...writes, ...extra], versions);
 }

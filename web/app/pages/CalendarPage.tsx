@@ -8,7 +8,7 @@ import { TOOL_STEPS } from '../stepRoutes';
 import './pages.css';
 
 export function CalendarPage() {
-  const { data: cal, error } = useDoc<CalendarFile>('calendar.json');
+  const { data: cal, version, error } = useDoc<CalendarFile>('calendar.json');
   const [saveError, setSaveError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   if (error) return <p className="error">Couldn't load the calendar: {error.message}</p>;
@@ -19,7 +19,7 @@ export function CalendarPage() {
     setBusy(true);
     setSaveError(null);
     try {
-      await putDoc('calendar.json', next);
+      await putDoc('calendar.json', next, version);
     } catch (e) {
       setSaveError((e as Error).message);
     } finally {
