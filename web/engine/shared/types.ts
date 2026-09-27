@@ -134,7 +134,11 @@ export type FreeAgent = z.infer<typeof FreeAgent>;
 export const FreeAgentsFile = z.object({ league: z.literal('fba'), season: int, locked: z.boolean(), players: z.array(FreeAgent) }).strict();
 export type FreeAgentsFile = z.infer<typeof FreeAgentsFile>;
 
-export const ReservePlayer = z.object({ playerId, position: Position, age: int.nullable(), rating: int.nullable() }).strict();
+export const ReservePlayer = z.object({
+  playerId, position: Position, age: int.nullable(), rating: int.nullable(),
+  /** Set when the player came from FBA free agency this offseason. */
+  fromFba: z.literal(true).optional(),
+}).strict();
 export type ReservePlayer = z.infer<typeof ReservePlayer>;
 
 export const ReservesFile = z.object({ league: z.literal('fbad2'), season: int, locked: z.boolean(), players: z.array(ReservePlayer) }).strict();
@@ -169,7 +173,7 @@ export type PickObligation = z.infer<typeof PickObligation>;
 export const PicksFile = z.object({ league: z.literal('fba'), obligations: z.array(PickObligation) }).strict();
 export type PicksFile = z.infer<typeof PicksFile>;
 
-export const TransactionType = z.enum(['signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed']);
+export const TransactionType = z.enum(['signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings']);
 export type TransactionType = z.infer<typeof TransactionType>;
 
 export const TransactionEntry = z.object({
@@ -183,3 +187,51 @@ export type TransactionEntry = z.infer<typeof TransactionEntry>;
 
 export const TransactionsFile = z.object({ league: LeagueId, season: int, entries: z.array(TransactionEntry) }).strict();
 export type TransactionsFile = z.infer<typeof TransactionsFile>;
+
+const d2Rating = int.min(1).max(99);
+
+export const RatingBreakdown = z.object({ age: int, perf: int, luck: int }).strict();
+export type RatingBreakdown = z.infer<typeof RatingBreakdown>;
+
+export const D2RatingRow = z.object({
+  playerId,
+  position: Position,
+  age: int.nullable(),
+  /** D2 team id, or null for Reserves. */
+  team: z.string().min(1).nullable(),
+  oldRating: int.nullable(),
+  suggested: d2Rating.nullable(),
+  breakdown: RatingBreakdown.nullable(),
+  /** The new rating; starts equal to `suggested`. */
+  rating: d2Rating.nullable(),
+}).strict();
+export type D2RatingRow = z.infer<typeof D2RatingRow>;
+
+export const D2RatingsFile = z.object({ league: z.literal('fbad2'), season: int, locked: z.boolean(), players: z.array(D2RatingRow) }).strict();
+export type D2RatingsFile = z.infer<typeof D2RatingsFile>;
+
+const idList = z.array(playerId);
+
+export const D2PoolFile = z.object({
+  league: z.literal('fbad2'),
+  season: int,
+  locked: z.boolean(),
+  /** Every pool player at each position, best first. */
+  order: z.object({ PG: idList, SG: idList, SF: idList, PF: idList, C: idList }).strict(),
+}).strict();
+export type D2PoolFile = z.infer<typeof D2PoolFile>;
+
+export const D2Pick = z.object({ teamId: z.string().min(1), playerId: playerId.nullable(), position: Position.nullable() }).strict();
+export type D2Pick = z.infer<typeof D2Pick>;
+
+export const D2DraftFile = z.object({
+  league: z.literal('fbad2'),
+  season: int,
+  locked: z.boolean(),
+  /** One team id per open slot, in pick order. */
+  tickets: z.array(z.string().min(1)),
+  /** The draft-pool player ids, fixed when the pool locks. They stay in Reserves until picked. */
+  pool: idList,
+  picks: z.array(D2Pick),
+}).strict();
+export type D2DraftFile = z.infer<typeof D2DraftFile>;

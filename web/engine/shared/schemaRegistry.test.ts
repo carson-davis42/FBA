@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { pathAgreementProblem, schemaForPath } from './schemaRegistry';
+import { D2DraftFile, D2PoolFile, D2RatingsFile } from './types';
 
 describe('schemaForPath', () => {
   it.each([
@@ -33,6 +34,15 @@ describe('roster-move paths', () => {
 
   it.each(['leagues/fbad2/picks.json', 'leagues/fbad2/S79/freeAgents.json', 'leagues/fba/S79/reserves.json'])('refuses %s', rel => {
     expect(schemaForPath(rel)).toBeNull();
+  });
+});
+
+describe('D2 cycle documents', () => {
+  it('knows the D2 cycle documents', () => {
+    expect(schemaForPath('leagues/fbad2/S79/ratings.json')).toBe(D2RatingsFile);
+    expect(schemaForPath('leagues/fbad2/S79/pool.json')).toBe(D2PoolFile);
+    expect(schemaForPath('leagues/fbad2/S79/draft.json')).toBe(D2DraftFile);
+    expect(schemaForPath('leagues/fba/S79/ratings.json')).toBeNull();
   });
 });
 

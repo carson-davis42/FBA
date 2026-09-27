@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { FreeAgentsFile, LogoManifest, MetaFile, PickObligation, PicksFile, ResultsFile, RostersFile, ReservesFile, TransactionsFile } from './types';
+import { D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, LogoManifest, MetaFile, PickObligation, PicksFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -75,3 +75,36 @@ describe('roster-move schemas', () => {
     expect(TransactionsFile.safeParse({ ...tx, entries: [{ ...tx.entries[0], type: 'waived' }] }).success).toBe(false);
   });
 });
+
+describe('D2 cycle schemas', () => {
+  const row = { playerId: 'p00001', position: 'PG', age: 24, team: 'AMS', oldRating: 80, suggested: 82, breakdown: { age: 2, perf: 0, luck: 0 }, rating: 82 };
+
+  it('accepts a ratings file and rejects out-of-range ratings', () => {
+    const blank = { ...row, playerId: 'p00002', team: null, oldRating: null, suggested: null, breakdown: null, rating: null };
+    const doc = { league: 'fbad2', season: 79, locked: false, players: [row, blank] };
+    expect(D2RatingsFile.safeParse(doc).success).toBe(true);
+    expect(D2RatingsFile.safeParse({ ...doc, players: [{ ...row, rating: 100 }] }).success).toBe(false);
+    expect(D2RatingsFile.safeParse({ ...doc, players: [{ ...row, rating: 0 }] }).success).toBe(false);
+  });
+
+  it('requires every position in the pool order', () => {
+    const order = { PG: ['p00001'], SG: [], SF: [], PF: [], C: [] };
+    expect(D2PoolFile.safeParse({ league: 'fbad2', season: 79, locked: false, order }).success).toBe(true);
+    const { C: _c, ...missingC } = order;
+    expect(D2PoolFile.safeParse({ league: 'fbad2', season: 79, locked: false, order: missingC }).success).toBe(false);
+  });
+
+  it('accepts a draft with made and skipped picks', () => {
+    const doc = {
+      league: 'fbad2', season: 79, locked: false, tickets: ['AMS', 'BER'], pool: ['p00001'],
+      picks: [{ teamId: 'AMS', playerId: 'p00001', position: 'PG' }, { teamId: 'BER', playerId: null, position: null }],
+    };
+    expect(D2DraftFile.safeParse(doc).success).toBe(true);
+  });
+
+  it('allows the fromFba tag on Reserves and the new transaction types', () => {
+    expect(ReservePlayer.safeParse({ playerId: 'p00001', position: 'C', age: 22, rating: null, fromFba: true }).success).toBe(true);
+    for (const t of ['drafted', 'd2-pool', 'd2-ratings']) expect(TransactionType.safeParse(t).success).toBe(true);
+  });
+});
+

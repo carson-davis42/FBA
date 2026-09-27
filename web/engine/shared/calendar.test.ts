@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { currentStepIndex, markCurrentDone, reopenLast } from './calendar';
+import { currentStepIndex, markCurrentDone, markStepDone, reopenLast } from './calendar';
 import type { CalendarFile } from './types';
 
 const cal = (done: boolean[]): CalendarFile => ({
@@ -24,5 +24,15 @@ describe('calendar helpers', () => {
     const c = cal([false]);
     markCurrentDone(c);
     expect(c.steps[0].done).toBe(false);
+  });
+  it('marks a step done by id and leaves the others alone', () => {
+    const cal = { season: 79, steps: [
+      { id: 'a', label: 'A', kind: 'offseason' as const, league: null, sub: false, done: false },
+      { id: 'b', label: 'B', kind: 'offseason' as const, league: null, sub: false, done: false },
+    ] };
+    const next = markStepDone(cal, 'b');
+    expect(next.steps.map(s => s.done)).toEqual([false, true]);
+    expect(cal.steps[1].done).toBe(false);
+    expect(markStepDone(cal, 'zzz')).toEqual(cal);
   });
 });

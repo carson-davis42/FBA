@@ -16,3 +16,9 @@ export function reopenLast(cal: CalendarFile): CalendarFile {
   if (last < 0) return cal;
   return { ...cal, steps: cal.steps.map((s, j) => (j === last ? { ...s, done: false } : s)) };
 }
+
+/** Marks the step with this id done (whether or not it is the current one). Unknown ids leave the calendar unchanged. */
+export function markStepDone(cal: CalendarFile, id: string): CalendarFile {
+  if (!cal.steps.some(s => s.id === id)) return cal;
+  return { ...cal, steps: cal.steps.map(s => (s.id === id ? { ...s, done: true } : s)) };
+}
