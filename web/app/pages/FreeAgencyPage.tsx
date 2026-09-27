@@ -5,7 +5,7 @@ import { closeFreeAgency, freeAgencyBlockers } from '../../engine/roster/moves';
 import { payroll, POSITIONS } from '../../engine/roster/rules';
 import { currentStepIndex, markCurrentDone } from '../../engine/shared/calendar';
 import type { CalendarFile, Position, TeamsFile } from '../../engine/shared/types';
-import { useDoc } from '../api';
+import { useDoc, useSaving } from '../api';
 import { PayrollBar } from '../components/PayrollBar';
 import { RosterTable } from '../components/RosterTable';
 import { SignPanel } from '../components/SignPanel';
@@ -17,14 +17,15 @@ const TYPES: MarketType[] = ['FA', 'Rookie', 'D2', 'Expired'];
 
 export function FreeAgencyPage() {
   const { league = '' } = useParams();
-  const { state, error } = useRosterState();
+  const { state, versions, error } = useRosterState();
   const { data: teams } = useDoc<TeamsFile>('leagues/fba/teams.json');
-  const { data: cal } = useDoc<CalendarFile>('calendar.json');
+  const { data: cal, version: calVersion } = useDoc<CalendarFile>('calendar.json');
   const [pos, setPos] = useState<Position | 'ALL'>('ALL');
   const [type, setType] = useState<MarketType | 'ALL'>('ALL');
   const [teamId, setTeamId] = useState('');
   const [selected, setSelected] = useState<string | null>(null);
   const [closeError, setCloseError] = useState('');
+  const saving = useSaving();
 
   if (league !== 'fba') return <p className="error">Free agency is only for the FBA.</p>;
   if (error) return <p className="error">Couldn't load rosters: {error.message}</p>;
@@ -44,7 +45,7 @@ export function FreeAgencyPage() {
     const i = currentStepIndex(cal);
     const extra = i >= 0 && cal.steps[i].id === 'free-agency-offseason' ? [{ path: 'calendar.json', doc: markCurrentDone(cal) }] : [];
     try {
-      await commitMove(result, extra);
+      await commitMove(result, { ...versions, 'calendar.json': calVersion }, extra);
     } catch (e) {
       setCloseError((e as Error).message);
     }
@@ -84,7 +85,7 @@ export function FreeAgencyPage() {
       )}
 
       {selected && !closed && (
-        <SignPanel key={selected} state={state} teams={teams} playerId={selected} defaultTeam={teamId} onClose={() => setSelected(null)} />
+        <SignPanel key={selected} state={state} teams={teams} playerId={selected} defaultTeam={teamId} onClose={() => setSelected(null)} versions={versions} />
       )}
 
       <div className="table-wrap">
@@ -110,7 +111,7 @@ export function FreeAgencyPage() {
           <h3>Close free agency</h3>
           {blockers.length ? <ul className="problems">{blockers.map(b => <li key={b}>{b}</li>)}</ul> : <p className="ok">✓ Every team is set. Unsigned players will move to D2 Reserves.</p>}
           {closeError && <p className="error">Save failed: {closeError}</p>}
-          <button className="btn primary" disabled={blockers.length > 0} onClick={close}>Close free agency</button>
+          <button className="btn primary" disabled={blockers.length > 0 || saving} onClick={close}>Close free agency</button>
         </div>
       )}
     </section>

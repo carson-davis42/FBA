@@ -3,7 +3,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { futureSeasons, owedFrom, pickLabel } from '../../engine/roster/picks';
 import { makeTrade, type TradeAsset } from '../../engine/roster/trade';
 import type { PickCondition, TeamsFile } from '../../engine/shared/types';
-import { useDoc } from '../api';
+import { useDoc, useSaving } from '../api';
 import { commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
 import './roster.css';
@@ -23,7 +23,7 @@ function conditionFor(kind: Kind, n: number, text: string, from: string, to: str
 export function TradePage() {
   const { league = '' } = useParams();
   const [search] = useSearchParams();
-  const { state, error } = useRosterState();
+  const { state, versions, error } = useRosterState();
   const lg = league === 'fbad2' ? 'fbad2' : 'fba';
   const { data: teams } = useDoc<TeamsFile>(`leagues/${lg}/teams.json`);
   const [teamIds, setTeamIds] = useState<string[]>(search.get('team') ? [search.get('team')!] : []);
@@ -31,6 +31,7 @@ export function TradePage() {
   const [pickOpts, setPickOpts] = useState<Record<string, { kind: Kind; n: number; text: string; betterTo: string }>>({});
   const [busy, setBusy] = useState(false);
   const [saveError, setSaveError] = useState('');
+  const saving = useSaving();
 
   if (league !== 'fba' && league !== 'fbad2') return <p className="error">Trades are for the FBA and FBAD2.</p>;
   if (error) return <p className="error">Couldn't load rosters: {error.message}</p>;
@@ -64,7 +65,7 @@ export function TradePage() {
     setBusy(true);
     setSaveError('');
     try {
-      await commitMove(result);
+      await commitMove(result, versions);
       setAssets([]);
       setPickOpts({});
     } catch (e) {
@@ -185,7 +186,7 @@ export function TradePage() {
         {preview && !preview.ok && <ul className="problems">{preview.problems.map(p => <li key={p}>{p}</li>)}</ul>}
         {preview?.ok && preview.warnings.length > 0 && <p className="muted">Fix before free agency ends: {preview.warnings.join('; ')}</p>}
         {saveError && <p className="error">Save failed: {saveError}</p>}
-        <button className="btn primary" disabled={locked || !preview?.ok || busy} onClick={save}>Make trade</button>
+        <button className="btn primary" disabled={locked || !preview?.ok || busy || saving} onClick={save}>Make trade</button>
       </div>
     </section>
   );

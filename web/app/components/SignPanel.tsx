@@ -4,10 +4,11 @@ import { signPlayer, type SignInput } from '../../engine/roster/moves';
 import { payroll } from '../../engine/roster/rules';
 import type { RosterState } from '../../engine/roster/state';
 import type { TeamsFile } from '../../engine/shared/types';
+import { useSaving, type Versions } from '../api';
 import { commitMove, newBatchId } from '../roster/commit';
 
-export function SignPanel({ state, teams, playerId, defaultTeam, onClose }: {
-  state: RosterState; teams: TeamsFile; playerId: string; defaultTeam: string; onClose: () => void;
+export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versions }: {
+  state: RosterState; teams: TeamsFile; playerId: string; defaultTeam: string; onClose: () => void; versions: Versions;
 }) {
   const found = marketRows(state).find(r => r.playerId === playerId);
   const own = Object.entries(state.fba.teams).flatMap(([t, es]) => es.filter(e => e.playerId === playerId).map(e => ({ t, e })))[0];
@@ -19,6 +20,7 @@ export function SignPanel({ state, teams, playerId, defaultTeam, onClose }: {
   const [conflict, setConflict] = useState<SignInput['conflict']>('release');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const saving = useSaving();
   if (!row) return null;
 
   const needsRating = row.scale === 'D2' || row.rating === null;
@@ -33,7 +35,7 @@ export function SignPanel({ state, teams, playerId, defaultTeam, onClose }: {
     setBusy(true);
     setError('');
     try {
-      await commitMove(result);
+      await commitMove(result, versions);
       onClose();
     } catch (e) {
       setError((e as Error).message);
@@ -69,7 +71,7 @@ export function SignPanel({ state, teams, playerId, defaultTeam, onClose }: {
       {preview?.ok && <p className="ok">✓ Ready to sign{preview.warnings.length ? `, but ${preview.warnings.join('; ')}` : ''}</p>}
       {error && <p className="error">Save failed: {error}</p>}
       <div className="form-row">
-        <button className="btn primary" disabled={!preview?.ok || busy} onClick={sign}>Sign</button>
+        <button className="btn primary" disabled={!preview?.ok || busy || saving} onClick={sign}>Sign</button>
         <button className="btn" onClick={onClose}>Cancel</button>
       </div>
     </section>

@@ -7,7 +7,7 @@ import { baseState } from '../../engine/roster/testFixtures';
 import { FreeAgencyPage } from './FreeAgencyPage';
 
 const badge = { bg: 'hsl(1 55% 36%)', fg: '#ffffff' };
-let posted: { label: string; writes: { path: string; doc: unknown }[] } | null = null;
+let posted: { label: string; writes: { path: string; doc: unknown; baseVersion: string | null }[] } | null = null;
 
 function docs(): Record<string, unknown> {
   const s = baseState();
@@ -26,7 +26,7 @@ beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
     if (url === '/api/batch') { posted = JSON.parse(String(init!.body)); return new Response(JSON.stringify({ ok: true, batchId: '1-0' })); }
     const doc = d[url.replace('/api/state/', '')];
-    return doc ? new Response(JSON.stringify(doc)) : new Response('{}', { status: 404 });
+    return doc ? new Response(JSON.stringify(doc), { headers: { ETag: '"00000000000000aa"' } }) : new Response('{}', { status: 404 });
   }));
 });
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
@@ -68,6 +68,16 @@ describe('FreeAgencyPage', () => {
     await waitFor(() => expect(posted).not.toBeNull());
     expect(posted!.label).toBe('Sign Azubuike Okoro → CAR');
     expect(posted!.writes.map(w => w.path).sort()).toEqual(['leagues/fba/S79/freeAgents.json', 'leagues/fba/S79/rosters.json', 'leagues/fba/S79/transactions.json']);
+  });
+
+  it('sends the loaded version with every write', async () => {
+    renderPage();
+    fireEvent.click(await screen.findByText('Azubuike Okoro'));
+    const panel = screen.getByRole('region', { name: /sign azubuike okoro/i });
+    fireEvent.change(within(panel).getByLabelText('Team'), { target: { value: 'CAR' } });
+    fireEvent.click(within(panel).getByRole('button', { name: 'Sign' }));
+    await waitFor(() => expect(posted).not.toBeNull());
+    for (const w of posted!.writes) expect(w.baseVersion).toBe('00000000000000aa');
   });
 
   it('shows what blocks closing free agency', async () => {

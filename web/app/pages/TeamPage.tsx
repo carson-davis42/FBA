@@ -4,7 +4,7 @@ import { releasePlayer } from '../../engine/roster/moves';
 import { isExpired, payroll } from '../../engine/roster/rules';
 import { groupLabel, isLeagueId, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { MetaFile, PlayersFile, RosterEntry, RostersFile, TeamsFile } from '../../engine/shared/types';
-import { useDoc } from '../api';
+import { useDoc, useSaving } from '../api';
 import { EditDialog } from '../components/EditDialog';
 import { PayrollBar } from '../components/PayrollBar';
 import { RosterTable } from '../components/RosterTable';
@@ -25,12 +25,13 @@ export function TeamPage() {
   const season = valid && meta ? meta.rosterSeason[league] : undefined;
   const { data: rosters } = useDoc<RostersFile>(season === undefined ? null : `leagues/${league}/S${season}/rosters.json`);
   const editable = (league === 'fba' || league === 'fbad2') && meta !== undefined && season === meta.currentSeason && rosters?.locked === false;
-  const { state } = useRosterState();
+  const { state, versions } = useRosterState();
   const { data: fbaTeams } = useDoc<TeamsFile>(editable ? 'leagues/fba/teams.json' : null);
   const [pending, setPending] = useState<{ playerId: string; kind: 'released' | 'cut' } | null>(null);
   const [editing, setEditing] = useState<string | null>(null);
   const [resigning, setResigning] = useState<string | null>(null);
   const [error, setError] = useState('');
+  const saving = useSaving();
 
   if (!valid) return <p className="error">Unknown league "{league}".</p>;
   if (!teams || !players || !rosters || season === undefined) return <p className="muted">Loading…</p>;
@@ -45,7 +46,7 @@ export function TeamPage() {
     const result = releasePlayer(state, { league: lg, teamId, playerId, kind }, { batchId: newBatchId() });
     if (!result.ok) return setError(result.problems.join('; '));
     try {
-      await commitMove(result);
+      await commitMove(result, versions);
       setPending(null);
     } catch (e) {
       setError((e as Error).message);
@@ -61,7 +62,7 @@ export function TeamPage() {
       const verb = pending.kind === 'cut' ? 'cut' : 'release';
       return (
         <span className="row-actions">
-          <button className="btn primary" onClick={() => release(e.playerId!, pending.kind)}>Confirm {verb}</button>
+          <button className="btn primary" disabled={saving} onClick={() => release(e.playerId!, pending.kind)}>Confirm {verb}</button>
           <button className="btn" onClick={() => setPending(null)}>Cancel</button>
         </span>
       );
@@ -90,8 +91,8 @@ export function TeamPage() {
       </div>
       {lg === 'fba' && editable && <PayrollBar total={payroll(entries, season)} />}
       {error && <p className="error">{error}</p>}
-      {editing && state && <EditDialog key={editing} state={state} league={lg} teamId={teamId} playerId={editing} onClose={() => setEditing(null)} />}
-      {resigning && state && fbaTeams && <SignPanel key={resigning} state={state} teams={fbaTeams} playerId={resigning} defaultTeam={teamId} onClose={() => setResigning(null)} />}
+      {editing && state && <EditDialog key={editing} state={state} league={lg} teamId={teamId} playerId={editing} onClose={() => setEditing(null)} versions={versions} />}
+      {resigning && state && fbaTeams && <SignPanel key={resigning} state={state} teams={fbaTeams} playerId={resigning} defaultTeam={teamId} onClose={() => setResigning(null)} versions={versions} />}
       <div className="table-wrap">
         <RosterTable league={league} entries={entries} players={players.players} extraLabel={editable ? 'Actions' : undefined} renderExtra={editable && state ? actions : undefined} />
       </div>

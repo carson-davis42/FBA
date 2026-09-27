@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { currentStepIndex, markCurrentDone, reopenLast } from '../../engine/shared/calendar';
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { CalendarFile } from '../../engine/shared/types';
-import { putDoc, useDoc } from '../api';
+import { putDoc, useDoc, useSaving } from '../api';
 import { TOOL_STEPS } from '../stepRoutes';
 import './pages.css';
 
@@ -11,6 +11,7 @@ export function CalendarPage() {
   const { data: cal, version, error } = useDoc<CalendarFile>('calendar.json');
   const [saveError, setSaveError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const saving = useSaving();
   if (error) return <p className="error">Couldn't load the calendar: {error.message}</p>;
   if (!cal) return <p className="muted">Loading…</p>;
 
@@ -35,11 +36,11 @@ export function CalendarPage() {
           <Link className="btn primary" to={TOOL_STEPS[cal.steps[i].id]}>Open {cal.steps[i].label} ▸</Link>
         )}
         {i >= 0 && !TOOL_STEPS[cal.steps[i].id] && (
-          <button className="btn primary" disabled={busy} onClick={() => save(markCurrentDone(cal))} aria-label={`Mark "${cal.steps[i].label}" done`}>
+          <button className="btn primary" disabled={busy || saving} onClick={() => save(markCurrentDone(cal))} aria-label={`Mark "${cal.steps[i].label}" done`}>
             ✓ Mark "{cal.steps[i].label}" done
           </button>
         )}
-        <button className="btn" disabled={busy || i === 0} onClick={() => save(reopenLast(cal))} aria-label="Reopen previous step">
+        <button className="btn" disabled={busy || saving || i === 0} onClick={() => save(reopenLast(cal))} aria-label="Reopen previous step">
           ↺ Reopen previous step
         </button>
       </div>

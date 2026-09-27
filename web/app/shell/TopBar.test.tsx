@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { TopBar } from './TopBar';
 
@@ -42,5 +42,21 @@ describe('TopBar undo', () => {
     fireEvent.click(button);
     expect(await screen.findByText('Undid: Sign Azubuike Okoro → CAR')).toBeTruthy();
     expect(screen.queryByRole('button', { name: /undo last move/i })).toBeNull();
+  });
+
+  it('disables Undo while a save is in flight', async () => {
+    undoAvailable = true;
+    render(<TopBar />);
+    const button = await screen.findByRole('button', { name: /undo last move/i });
+    let release!: () => void;
+    const pending = new Promise<void>(r => { release = r; });
+    const { postBatch } = await import('../api');
+    const fetchMock = globalThis.fetch as unknown as ReturnType<typeof vi.fn>;
+    fetchMock.mockImplementationOnce(async () => { await pending; return new Response(JSON.stringify({ ok: true, batchId: '1', versions: {} })); });
+    let p!: Promise<unknown>;
+    act(() => { p = postBatch('X', [{ path: 'calendar.json', doc: {}, baseVersion: null }]); });
+    await waitFor(() => expect((button as HTMLButtonElement).disabled).toBe(true));
+    await act(async () => { release(); await p; });
+    await waitFor(() => expect((screen.getByRole('button', { name: /undo last move/i }) as HTMLButtonElement).disabled).toBe(false));
   });
 });

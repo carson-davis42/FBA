@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { currentStepIndex } from '../../engine/shared/calendar';
 import type { CalendarFile } from '../../engine/shared/types';
-import { peekUndo, undoLast, useDoc } from '../api';
+import { peekUndo, undoLast, useDoc, useSaving } from '../api';
 import { useTheme } from '../useTheme';
 
 export function TopBar() {
@@ -14,6 +14,7 @@ export function TopBar() {
   }
   const [undo, setUndo] = useState<{ available: boolean; label: string | null }>({ available: false, label: null });
   const [undoMsg, setUndoMsg] = useState('');
+  const saving = useSaving();
 
   const refreshUndo = useCallback(async () => {
     try {
@@ -48,7 +49,7 @@ export function TopBar() {
       <div className="spacer" />
       {undoMsg && <span className="muted undo-msg">{undoMsg}</span>}
       {undo.available && (
-        <button className="btn" onClick={doUndo} title={undo.label ? `Undo: ${undo.label}` : undefined}>↶ Undo last move</button>
+        <button className="btn" disabled={saving} onClick={doUndo} title={undo.label ? `Undo: ${undo.label}` : undefined}>↶ Undo last move</button>
       )}
       {pill && <span className="pill">{pill}</span>}
       <button className="icon-btn" onClick={toggle} aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}>

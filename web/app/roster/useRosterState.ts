@@ -1,8 +1,8 @@
 import { DOC_KEYS, docPath, type RosterState } from '../../engine/roster/state';
 import type { MetaFile } from '../../engine/shared/types';
-import { useDoc } from '../api';
+import { useDoc, type Versions } from '../api';
 
-export function useRosterState(): { state?: RosterState; error?: Error } {
+export function useRosterState(): { state?: RosterState; versions: Versions; error?: Error } {
   const meta = useDoc<MetaFile>('meta.json');
   const season = meta.data?.currentSeason;
   const rel = (k: (typeof DOC_KEYS)[number]) => (season === undefined ? null : docPath(k, season));
@@ -14,10 +14,13 @@ export function useRosterState(): { state?: RosterState; error?: Error } {
   const players = useDoc<RosterState['players']>(rel('players'));
   const fbaTx = useDoc<RosterState['fbaTx']>(rel('fbaTx'));
   const d2Tx = useDoc<RosterState['d2Tx']>(rel('d2Tx'));
+  // Same order as DOC_KEYS: fba, d2, freeAgents, reserves, picks, players, fbaTx, d2Tx.
   const docs = [fba, d2, freeAgents, reserves, picks, players, fbaTx, d2Tx];
+  const versions: Versions = season === undefined ? {} : Object.fromEntries(DOC_KEYS.map((k, i) => [docPath(k, season), docs[i].version]));
   const error = meta.error ?? docs.find(d => d.error)?.error;
-  if (season === undefined || docs.some(d => !d.data)) return { error };
+  if (season === undefined || docs.some(d => !d.data)) return { versions, error };
   return {
+    versions,
     state: {
       season, fba: fba.data!, d2: d2.data!, freeAgents: freeAgents.data!, reserves: reserves.data!,
       picks: picks.data!, players: players.data!, fbaTx: fbaTx.data!, d2Tx: d2Tx.data!,
