@@ -53,3 +53,15 @@ describe('PlayerRegistry', () => {
     expect(report.entries.some(e => e.level === 'warn' && e.topic === 'ambiguous names')).toBe(true);
   });
 });
+
+describe('PlayerRegistry.fromFile', () => {
+  it('reuses existing ids and continues numbering', () => {
+    const file = { nextId: 3, players: { p00001: { id: 'p00001', name: 'Gabriel Greenwood', birthSeason: 51 }, p00002: { id: 'p00002', name: 'Milo Lawrenz', birthSeason: null } } };
+    const reg = PlayerRegistry.fromFile(file, new Report());
+    expect(reg.add('Gabriel Greenwood', 51, 'fba:S79')).toBe('p00001');
+    expect(reg.add('Milo Lawrenz', 60, 'fba:S79')).toBe('p00002');
+    expect(reg.add('New Guy', 57, 'fba-fa:S79')).toBe('p00003');
+    expect(reg.toFile().players.p00002.birthSeason).toBe(60);
+    expect(reg.toFile().nextId).toBe(4);
+  });
+});

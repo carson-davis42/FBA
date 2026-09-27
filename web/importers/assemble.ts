@@ -105,8 +105,8 @@ function rosterFromTxt(league: LeagueId, season: number, txt: TxtTeam[], reg: Pl
   return { league, season, locked, teams };
 }
 
-function rosterFromSheet(
-  league: 'fba' | 'fbad2', season: number, sheet: SheetTeam[], txt: TxtTeam[], reg: PlayerRegistry, report: Report,
+export function rosterFromSheet(
+  league: 'fba' | 'fbad2', season: number, sheet: SheetTeam[], txt: { name: string; abbr: string }[], reg: PlayerRegistry, report: Report,
 ): RostersFile {
   const scope = `${league}:S${season}`;
   const abbrByName = new Map(txt.map(t => [t.name, t.abbr]));
@@ -131,7 +131,11 @@ function rosterFromSheet(
         age: p.age === null ? null : Math.round(p.age),
         points: 0,
       };
-      if (league === 'fba') { e.contractEnd = p.contractEnd; e.contractAmount = p.contractAmount; }
+      if (league === 'fba') {
+        e.contractEnd = p.contractEnd;
+        e.contractAmount = p.contractAmount;
+        if (p.restricted) e.restricted = true;
+      }
       return e;
     });
   }

@@ -10,6 +10,20 @@ export class PlayerRegistry {
 
   constructor(private readonly report: Report) {}
 
+  static fromFile(file: PlayersFile, report: Report): PlayerRegistry {
+    const reg = new PlayerRegistry(report);
+    for (const p of Object.values(file.players)) {
+      reg.players.set(p.id, { ...p });
+      reg.scopes.set(p.id, []);
+      if (p.name !== null) {
+        const key = normalizeName(p.name);
+        reg.byName.set(key, [...(reg.byName.get(key) ?? []), p.id]);
+      }
+    }
+    reg.next = file.nextId;
+    return reg;
+  }
+
   add(name: string | null, birthSeason: number | null, scope: string): string {
     if (name === null) return this.create(null, birthSeason, scope);
     const key = normalizeName(name);

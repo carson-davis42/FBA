@@ -38,7 +38,8 @@
         "age": 20,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00005",
@@ -152,7 +153,8 @@
         "age": 22,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00016",
@@ -179,7 +181,8 @@
         "age": 19,
         "points": 0,
         "contractEnd": 80,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00019",
@@ -367,7 +370,8 @@
         "age": 23,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00038",
@@ -490,7 +494,8 @@
         "age": 20,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00051",
@@ -508,7 +513,8 @@
         "age": 21,
         "points": 0,
         "contractEnd": 80,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00053",
@@ -593,7 +599,8 @@
         "age": 21,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00062",
@@ -611,7 +618,8 @@
         "age": 22,
         "points": 0,
         "contractEnd": 80,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       }
     ],
     "MW": [
@@ -678,7 +686,8 @@
         "age": 21,
         "points": 0,
         "contractEnd": 80,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00070",
@@ -734,7 +743,8 @@
         "age": 21,
         "points": 0,
         "contractEnd": 80,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00076",
@@ -810,7 +820,8 @@
         "age": 19,
         "points": 0,
         "contractEnd": 80,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00084",
@@ -846,7 +857,8 @@
         "age": 20,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       }
     ],
     "NO": [
@@ -857,7 +869,8 @@
         "age": 23,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00089",
@@ -922,7 +935,8 @@
         "age": 19,
         "points": 0,
         "contractEnd": 80,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00095",
@@ -931,7 +945,8 @@
         "age": 23,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00096",
@@ -951,7 +966,8 @@
         "age": 21,
         "points": 0,
         "contractEnd": 80,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00098",
@@ -1007,7 +1023,8 @@
         "age": 19,
         "points": 0,
         "contractEnd": 80,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00104",
@@ -1016,7 +1033,8 @@
         "age": 20,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00105",
@@ -1054,7 +1072,8 @@
         "age": 23,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00109",
@@ -1139,7 +1158,8 @@
         "age": 20,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00118",
@@ -1195,7 +1215,8 @@
         "age": 19,
         "points": 0,
         "contractEnd": 80,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       },
       {
         "playerId": "p00124",
@@ -1222,7 +1243,8 @@
         "age": 22,
         "points": 0,
         "contractEnd": 79,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       }
     ],
     "TEX": [
@@ -1363,7 +1385,8 @@
         "age": 22,
         "points": 0,
         "contractEnd": 80,
-        "contractAmount": 2
+        "contractAmount": 2,
+        "restricted": true
       }
     ],
     "VEG": [
