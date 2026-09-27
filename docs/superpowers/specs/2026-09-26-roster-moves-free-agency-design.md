@@ -83,7 +83,7 @@ Each obligation holds:
   - `{ kind: 'swap', otherTeam, betterTo }`
   - `{ kind: 'custom', text }`
 - `originalCondition`
-- `tradedSeason` (the "(S75)" in the sheet)
+- `originSeason` (the season the obligation was first owed for: the "(S75)" in the sheet; rolls since then are season − originSeason)
 - `priority` (the order among obligations owed from the same original team's pick)
 - `rolls[]`: history entries `{ fromSeason, reason: 'protected' | 'already-owed' }`
 - `note`
