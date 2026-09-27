@@ -1,5 +1,6 @@
 import type { RosterEntry } from '../shared/types';
 import { finishRatings, setRating, startRatings } from './ratings';
+import { lockPool, startPool } from './pool';
 import type { D2State } from './state';
 
 const e = (playerId: string | null, position: RosterEntry['position'], rating: number | null, age: number | null, points = 0): RosterEntry =>
@@ -72,4 +73,18 @@ export function d2RatedState(): D2State {
   const finished = finishRatings({ ...started.state, ratings }, { batchId: 'fixture' });
   if (!finished.ok) throw new Error(finished.problems.join('; '));
   return finished.state;
+}
+
+/**
+ * d2RatedState with the pool started and locked at a cutoff of 2 (rng always 0):
+ * BER's PG Milo Dean and PF Adrian Grant are bumped to Reserves.
+ * Open slots: AMS C; BER PG, SG, PF. Tickets: BER, BER, BER, AMS.
+ * Draft pool: Kris Dyer (PG 78), Kyron Smart (SG 74), Myron Mason (PF 70), Brycen Holcomb (C 65).
+ */
+export function d2LockedState(): D2State {
+  const pooled = startPool(d2RatedState());
+  if (!pooled.ok) throw new Error(pooled.problems.join('; '));
+  const locked = lockPool(pooled.state, { batchId: 'fixture' }, () => 0, 2);
+  if (!locked.ok) throw new Error(locked.problems.join('; '));
+  return locked.state;
 }
