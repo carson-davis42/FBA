@@ -120,10 +120,10 @@ describe('HTTP handler host allow-list', () => {
 
   afterAll(() => new Promise<void>(r => server3.close(() => r())));
 
-  function rawRequest(hostHeader: string): Promise<number> {
+  function rawRequest(headers: Record<string, string>): Promise<number> {
     return new Promise((resolve, reject) => {
       const req = http.request(
-        { host: '127.0.0.1', port: port3, path: '/api/state/logos/manifest.json', method: 'GET', headers: { Host: hostHeader } },
+        { host: '127.0.0.1', port: port3, path: '/api/state/logos/manifest.json', method: 'GET', headers },
         res => {
           res.resume();
           resolve(res.statusCode ?? 0);
@@ -135,11 +135,46 @@ describe('HTTP handler host allow-list', () => {
   }
 
   it('rejects a spoofed Host header with 403', async () => {
-    expect(await rawRequest('evil.example')).toBe(403);
+    expect(await rawRequest({ Host: 'evil.example' })).toBe(403);
   });
 
   it('allows a Host header that is on the list', async () => {
-    expect(await rawRequest('good.test:1')).toBe(200);
+    expect(await rawRequest({ Host: 'good.test:1' })).toBe(200);
+  });
+
+  it('rejects an Origin header not derived from the allowed hosts', async () => {
+    expect(await rawRequest({ Host: 'good.test:1', Origin: 'http://evil.example' })).toBe(403);
+  });
+
+  it('allows an Origin header matching an allowed host', async () => {
+    expect(await rawRequest({ Host: 'good.test:1', Origin: 'http://good.test:1' })).toBe(200);
+  });
+});
+
+describe('HTTP handler CSRF protections', () => {
+  it('rejects a POST to /api/undo with a non-JSON Content-Type', async () => {
+    const res = await fetch(`${base}/api/undo`, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: '{}' });
+    expect(res.status).toBe(415);
+  });
+
+  it('rejects a POST to /api/batch with a non-JSON Content-Type', async () => {
+    const res = await fetch(`${base}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: '{}' });
+    expect(res.status).toBe(415);
+  });
+
+  it('accepts a POST to /api/undo with a JSON Content-Type', async () => {
+    const res = await fetch(`${base}/api/undo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    expect(res.status).not.toBe(415);
+  });
+
+  it('rejects a request with Sec-Fetch-Site: cross-site', async () => {
+    const res = await fetch(`${base}/api/state/calendar.json`, { headers: { 'Sec-Fetch-Site': 'cross-site' } });
+    expect(res.status).toBe(403);
+  });
+
+  it('allows a request with Sec-Fetch-Site: same-origin', async () => {
+    const res = await fetch(`${base}/api/state/calendar.json`, { headers: { 'Sec-Fetch-Site': 'same-origin' } });
+    expect(res.status).not.toBe(403);
   });
 });
 
@@ -208,20 +243,36 @@ describe('batch and undo routes', () => {
 
   it('applies a batch and undoes it', async () => {
     await fetch(`${base}/api/state/calendar.json`, { method: 'PUT', body: JSON.stringify(cal(false)) });
-    const res = await fetch(`${base}/api/batch`, { method: 'POST', body: JSON.stringify({ label: 'Mark A', writes: [{ path: 'calendar.json', doc: cal(true) }] }) });
+    const res = await fetch(`${base}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: 'Mark A', writes: [{ path: 'calendar.json', doc: cal(true) }] }) });
     expect(res.status).toBe(200);
     expect((await res.json()).batchId).toBeTruthy();
-    const undo = await fetch(`${base}/api/undo`, { method: 'POST' });
+    const undo = await fetch(`${base}/api/undo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
     expect(await undo.json()).toEqual({ ok: true, label: 'Mark A', paths: ['calendar.json'] });
     expect(await (await fetch(`${base}/api/state/calendar.json`)).json()).toEqual(cal(false));
   });
 
   it('rejects a malformed batch body', async () => {
-    const res = await fetch(`${base}/api/batch`, { method: 'POST', body: JSON.stringify({ label: '', writes: [] }) });
+    const res = await fetch(`${base}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: '', writes: [] }) });
     expect(res.status).toBe(400);
   });
 
   it('rejects GET on the batch route', async () => {
     expect((await fetch(`${base}/api/batch`)).status).toBe(405);
+  });
+
+  it('GET /api/undo reports availability based on the newest journal entry', async () => {
+    const base6 = base;
+    // A fresh undo (from the previous test in this file) may or may not be pending; force a known state.
+    await fetch(`${base6}/api/state/calendar.json`, { method: 'PUT', body: JSON.stringify(cal(false)) });
+    const before = await fetch(`${base6}/api/undo`);
+    expect(await before.json()).toEqual({ ok: true, available: false, label: null });
+
+    await fetch(`${base6}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label: 'Mark B', writes: [{ path: 'calendar.json', doc: cal(true) }] }) });
+    const after = await fetch(`${base6}/api/undo`);
+    expect(await after.json()).toEqual({ ok: true, available: true, label: 'Mark B' });
+
+    await fetch(`${base6}/api/undo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    const post = await fetch(`${base6}/api/undo`);
+    expect(await post.json()).toEqual({ ok: true, available: false, label: null });
   });
 });

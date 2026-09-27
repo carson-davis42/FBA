@@ -70,11 +70,19 @@ export function createHandler(
   options: { allowedHosts?: string[]; maxBody?: number } = {},
 ): http.RequestListener {
   const allowedHosts = options.allowedHosts?.map(h => h.toLowerCase());
+  const allowedOrigins = allowedHosts?.map(h => `http://${h}`);
   const maxBody = options.maxBody ?? DEFAULT_MAX_BODY;
 
   return async (req, res) => {
     if (allowedHosts && !allowedHosts.includes((req.headers.host ?? '').toLowerCase())) {
       return sendJson(res, 403, { error: 'Forbidden host' });
+    }
+    if ((req.headers['sec-fetch-site'] ?? '').toLowerCase() === 'cross-site') {
+      return sendJson(res, 403, { error: 'Cross-site request blocked' });
+    }
+    const origin = req.headers.origin;
+    if (allowedOrigins && origin && !allowedOrigins.includes(origin.toLowerCase())) {
+      return sendJson(res, 403, { error: 'Forbidden origin' });
     }
 
     let pathname: string;
@@ -82,6 +90,14 @@ export function createHandler(
       pathname = decodeURIComponent(new URL(req.url ?? '/', 'http://localhost').pathname);
     } catch {
       return sendJson(res, 400, { error: 'Malformed request path' });
+    }
+
+    if (req.method === 'POST' && (pathname === '/api/batch' || pathname === '/api/undo')) {
+      const contentType = (req.headers['content-type'] ?? '').toLowerCase();
+      if (!contentType.startsWith('application/json')) {
+        req.resume();
+        return sendJson(res, 415, { error: 'Content-Type must be application/json' });
+      }
     }
 
     try {
@@ -108,7 +124,12 @@ export function createHandler(
       }
 
       if (pathname === '/api/undo') {
+        if (req.method === 'GET') {
+          const peek = await storage.peekUndo();
+          return sendJson(res, 200, { ok: true, available: peek !== null, label: peek?.label ?? null });
+        }
         if (req.method !== 'POST') return sendJson(res, 405, { error: 'Method not allowed' });
+        await readBody(req, maxBody);
         const { label, paths } = await storage.undo();
         return sendJson(res, 200, { ok: true, label, paths });
       }

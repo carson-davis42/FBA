@@ -56,8 +56,14 @@ export async function postBatch(label: string, writes: { path: string; doc: unkn
 }
 
 export async function undoLast(): Promise<string> {
-  const res = await check(await fetch('/api/undo', { method: 'POST' }));
+  const res = await check(await fetch('/api/undo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' }));
   const body = (await res.json()) as { label: string; paths: string[] };
   for (const p of body.paths) window.dispatchEvent(new CustomEvent('doc-saved', { detail: p }));
   return body.label;
+}
+
+export async function peekUndo(): Promise<{ available: boolean; label: string | null }> {
+  const res = await check(await fetch('/api/undo'));
+  const body = (await res.json()) as { ok: boolean; available: boolean; label: string | null };
+  return { available: body.available, label: body.label };
 }
