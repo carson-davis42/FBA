@@ -40,6 +40,7 @@ legend { font-weight: 700; margin-bottom: 4px; }
 .rating-input { width: 48px; font: inherit; font-weight: 800; text-align: right; border: 1px solid var(--border); border-radius: 4px; padding: 2px 4px; background: var(--surface); color: var(--text); }
 .ratings-table tr.needs td { background: rgba(217, 119, 6, 0.08); }
 .ratings-table tr.needs .rating-input { border-color: #d97706; }
+.ratings-table tr.edited td { background: color-mix(in srgb, var(--accent-soft) 55%, transparent); }
 .ratings-table tr.edited .rating-input { border-color: var(--accent); background: var(--accent-soft); }
 .delta-up { color: var(--good); font-weight: 700; }
 .delta-down { color: var(--accent); font-weight: 700; }

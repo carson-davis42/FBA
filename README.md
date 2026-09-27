@@ -33,7 +33,7 @@ League data lives in `web/data/` as JSON and is committed like the old `.txt` fi
 - `npm run import -- --refresh-rosters` re-imports the S79 rosters, free agents, reserves, and picks from the sheets and keeps player ids. It refuses once moves have been made in the app.
 
 ### Offseason: the D2 cycle
-- **D2 ratings reset** (`/league/fbad2/ratings`, opened by the "FBAD2 Ratings(reset)" calendar step once free agency is closed): every D2 roster player and Reserve gets a suggested new rating (age, last season's scoring vs. rating, ±2 luck). Players with no D2 rating start blank. Edits save as you type; **Finish ratings** applies them all at once.
+- **D2 ratings reset** (`/league/fbad2/ratings`, opened by the "FBAD2 Ratings(reset)" calendar step once free agency is closed): every D2 roster player and Reserve gets a suggested new rating (age, last season's scoring vs. rating, ±2 luck). Players with no D2 rating start blank. Each edit saves when you leave the box (or press Enter); **Finish ratings** applies them all at once.
 - **D2 pool** (`/league/fbad2/draft`): each position is ranked by the new rating with a line after the top 64. Drag or use ↑/↓ (or Alt+↑/↓) to override. **Lock pool** sends roster players below the line to Reserves and shuffles one draft pick per open roster spot.
 - **D2 draft**: the team on the clock picks from the draft pool at any position it still needs. Re-roll the order before the first pick; **Undo last pick** steps back one pick. **Skip pick** appears only when no eligible player is left for that team; once every pick is made, the full pick order is shown as a summary.
 - Saves are version-checked: if another tab changed the same data, the save is refused and the page reloads instead of overwriting it.
