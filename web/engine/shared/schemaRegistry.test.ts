@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { pathAgreementProblem, schemaForPath } from './schemaRegistry';
-import { D2DraftFile, D2PoolFile, D2RatingsFile } from './types';
+import { AllStarFile, D2DraftFile, D2PoolFile, D2RatingsFile, RatingPauseFile, ScheduleFile } from './types';
 
 describe('schemaForPath', () => {
   it.each([
@@ -43,6 +43,18 @@ describe('D2 cycle documents', () => {
     expect(schemaForPath('leagues/fbad2/S79/pool.json')).toBe(D2PoolFile);
     expect(schemaForPath('leagues/fbad2/S79/draft.json')).toBe(D2DraftFile);
     expect(schemaForPath('leagues/fba/S79/ratings.json')).toBeNull();
+  });
+});
+
+describe('season documents', () => {
+  it('knows the season documents', () => {
+    expect(schemaForPath('leagues/fba/S79/schedule.json')).toBe(ScheduleFile);
+    expect(schemaForPath('leagues/fbad2/S79/schedule.json')).toBe(ScheduleFile);
+    expect(schemaForPath('leagues/fbajc/S79/schedule.json')).toBeNull();
+    expect(schemaForPath('leagues/fba/S79/ratingPause-322.json')).toBe(RatingPauseFile);
+    expect(schemaForPath('leagues/fba/S79/ratingPause-x.json')).toBeNull();
+    expect(schemaForPath('leagues/fba/S79/allstar.json')).toBe(AllStarFile);
+    expect(schemaForPath('leagues/fbad2/S79/allstar.json')).toBeNull();
   });
 });
 

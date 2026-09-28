@@ -78,12 +78,23 @@ export const SummaryFile = z.object({
 }).strict();
 export type SummaryFile = z.infer<typeof SummaryFile>;
 
+const pts = int.nonnegative();
+
+export const BoxLine = z.object({ playerId: z.string().min(1), pts }).strict();
+export type BoxLine = z.infer<typeof BoxLine>;
+
 export const GameResult = z.object({
   gameNo: int.positive(),
   home: z.string(),
   away: z.string(),
-  homePts: int.nonnegative(),
-  awayPts: int.nonnegative(),
+  homePts: pts,
+  awayPts: pts,
+  /** Overtime periods played (absent on imported seasons). */
+  ot: pts.optional(),
+  /** Points per period: 4 quarters, then one entry per OT. */
+  periods: z.object({ home: z.array(pts), away: z.array(pts) }).strict().optional(),
+  /** Points per player, in roster order at tip-off. */
+  box: z.object({ home: z.array(BoxLine), away: z.array(BoxLine) }).strict().optional(),
 }).strict();
 export type GameResult = z.infer<typeof GameResult>;
 
@@ -235,3 +246,112 @@ export const D2DraftFile = z.object({
   picks: z.array(D2Pick),
 }).strict();
 export type D2DraftFile = z.infer<typeof D2DraftFile>;
+
+const seasonLeague = z.enum(['fba', 'fbad2']);
+
+export const PauseKind = z.enum(['ratings', 'deadline', 'allstar']);
+export type PauseKind = z.infer<typeof PauseKind>;
+
+export const SchedulePause = z.object({ afterGame: int.nonnegative(), kind: PauseKind, done: z.boolean() }).strict();
+export type SchedulePause = z.infer<typeof SchedulePause>;
+
+export const ScheduleGame = z.object({ gameNo: int.positive(), home: z.string().min(1), away: z.string().min(1) }).strict();
+export type ScheduleGame = z.infer<typeof ScheduleGame>;
+
+export const ScheduleFile = z.object({
+  league: seasonLeague,
+  season: int,
+  locked: z.boolean(),
+  games: z.array(ScheduleGame),
+  /** In the order they must be finished; several pauses may share an afterGame. */
+  pauses: z.array(SchedulePause),
+}).strict();
+export type ScheduleFile = z.infer<typeof ScheduleFile>;
+
+export const RatingPauseRow = z.object({
+  playerId,
+  teamId: z.string().min(1),
+  position: Position,
+  oldRating: int,
+  games: int.nonnegative(),
+  ppg: z.number().nonnegative(),
+  perf: int.min(-2).max(2).nullable(),
+  suggested: d2Rating.nullable(),
+  rating: d2Rating,
+}).strict();
+export type RatingPauseRow = z.infer<typeof RatingPauseRow>;
+
+export const RatingPauseFile = z.object({
+  league: z.literal('fba'),
+  season: int,
+  afterGame: int.positive(),
+  locked: z.boolean(),
+  players: z.array(RatingPauseRow),
+}).strict();
+export type RatingPauseFile = z.infer<typeof RatingPauseFile>;
+
+const die = int.min(1).max(6);
+export const Dice = z.tuple([die, die]);
+export type Dice = z.infer<typeof Dice>;
+
+/** A sudden-death roll-off: each round records the roll of everyone still tied. */
+export const RollOff = z.object({ ids: z.array(z.string().min(1)), rounds: z.array(z.record(z.string(), Dice)) }).strict();
+export type RollOff = z.infer<typeof RollOff>;
+
+export const ContestRound = z.object({
+  players: idList,
+  rolls: z.record(z.string(), z.array(Dice)),
+  /** Running totals after this round. */
+  totals: z.record(z.string(), int),
+  advanced: idList,
+  rollOffs: z.array(RollOff),
+}).strict();
+export type ContestRound = z.infer<typeof ContestRound>;
+
+export const ContestResult = z.object({ rounds: z.array(ContestRound), winner: playerId }).strict();
+export type ContestResult = z.infer<typeof ContestResult>;
+
+export const DiceRoll = z.object({ team: int.nonnegative(), playerId, dice: Dice }).strict();
+export type DiceRoll = z.infer<typeof DiceRoll>;
+
+/** A dice game between two teams (team numbers are the event's team indexes). rolls[period] = every roll in that period. */
+export const TeamGame = z.object({
+  teams: z.tuple([int.nonnegative(), int.nonnegative()]),
+  rolls: z.array(z.array(DiceRoll)),
+  scores: z.tuple([int.nonnegative(), int.nonnegative()]),
+  rollOff: RollOff.nullable(),
+  winner: int.nonnegative(),
+}).strict();
+export type TeamGame = z.infer<typeof TeamGame>;
+
+export const AllStarSelections = z.object({
+  allStars: idList,
+  captains: idList,
+  youngStars: idList,
+  youngCaptains: idList,
+}).strict();
+export type AllStarSelections = z.infer<typeof AllStarSelections>;
+
+export const ContestTurn = z.object({
+  teamId: z.string().min(1),
+  contest: z.enum(['5pt', 'dunk']).nullable(),
+  playerId: playerId.nullable(),
+}).strict();
+export type ContestTurn = z.infer<typeof ContestTurn>;
+
+export const AllStarFile = z.object({
+  league: z.literal('fba'),
+  season: int,
+  locked: z.boolean(),
+  selections: AllStarSelections.nullable(),
+  /** Captain `first` picks first; picks alternate from there. */
+  asgDraft: z.object({ first: z.union([z.literal(0), z.literal(1)]), picks: idList }).strict().nullable(),
+  contestDraw: z.object({ order: z.array(z.string().min(1)), turns: z.array(ContestTurn) }).strict().nullable(),
+  fivePoint: ContestResult.nullable(),
+  dunk: ContestResult.nullable(),
+  /** Snake draft over `order` (Young-Star team indexes 0–3). */
+  ysgDraft: z.object({ order: z.array(int.min(0).max(3)), picks: idList }).strict().nullable(),
+  ysg: z.object({ semis: z.array(TeamGame), final: TeamGame, champion: int.min(0).max(3) }).strict().nullable(),
+  asg: z.object({ game: TeamGame, mvp: playerId, mvpRollOff: RollOff.nullable() }).strict().nullable(),
+}).strict();
+export type AllStarFile = z.infer<typeof AllStarFile>;

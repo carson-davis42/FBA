@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, LogoManifest, MetaFile, PickObligation, PicksFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, TransactionType, TransactionsFile } from './types';
+import { AllStarFile, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, RatingPauseFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -34,7 +34,7 @@ describe('schemas', () => {
   });
 
   it('rejects a game result with an unknown key', () => {
-    const doc = { league: 'fba', season: 79, locked: false, games: [{ gameNo: 1, home: 'BOS', away: 'CAR', homePts: 100, awayPts: 90, ot: 0 }] };
+    const doc = { league: 'fba', season: 79, locked: false, games: [{ gameNo: 1, home: 'BOS', away: 'CAR', homePts: 100, awayPts: 90, unknown: 0 }] };
     expect(ResultsFile.safeParse(doc).success).toBe(false);
   });
 
@@ -105,6 +105,63 @@ describe('D2 cycle schemas', () => {
   it('allows the fromFba tag on Reserves and the new transaction types', () => {
     expect(ReservePlayer.safeParse({ playerId: 'p00001', position: 'C', age: 22, rating: null, fromFba: true }).success).toBe(true);
     for (const t of ['drafted', 'd2-pool', 'd2-ratings']) expect(TransactionType.safeParse(t).success).toBe(true);
+  });
+});
+
+describe('season schemas', () => {
+  it('keeps old results valid and accepts the new optional fields', () => {
+    const old = { gameNo: 1, home: 'OAK', away: 'MW', homePts: 79, awayPts: 88 };
+    expect(GameResult.safeParse(old).success).toBe(true);
+    const full = {
+      ...old, ot: 1,
+      periods: { home: [20, 20, 20, 19, 0], away: [22, 22, 22, 13, 9] },
+      box: { home: [{ playerId: 'p00001', pts: 30 }], away: [{ playerId: 'p00002', pts: 40 }] },
+    };
+    expect(GameResult.safeParse(full).success).toBe(true);
+    expect(GameResult.safeParse({ ...old, bogus: 1 }).success).toBe(false);
+  });
+
+  it('validates a schedule with pauses', () => {
+    const doc = {
+      league: 'fba', season: 79, locked: false,
+      games: [{ gameNo: 1, home: 'BOS', away: 'CAR' }],
+      pauses: [{ afterGame: 322, kind: 'ratings', done: false }, { afterGame: 645, kind: 'deadline', done: false }],
+    };
+    expect(ScheduleFile.safeParse(doc).success).toBe(true);
+    expect(ScheduleFile.safeParse({ ...doc, league: 'fbajc' }).success).toBe(false);
+    expect(ScheduleFile.safeParse({ ...doc, pauses: [{ afterGame: 1, kind: 'lunch', done: false }] }).success).toBe(false);
+  });
+
+  it('validates a rating pause', () => {
+    const row = { playerId: 'p00001', teamId: 'BOS', position: 'PG', oldRating: 95, games: 20, ppg: 31.5, perf: 1, suggested: 96, rating: 96 };
+    expect(RatingPauseFile.safeParse({ league: 'fba', season: 79, afterGame: 322, locked: false, players: [row] }).success).toBe(true);
+    expect(RatingPauseFile.safeParse({ league: 'fba', season: 79, afterGame: 322, locked: false, players: [{ ...row, perf: 3 }] }).success).toBe(false);
+  });
+
+  it('validates an empty and a partly filled All-Star doc', () => {
+    const empty = {
+      league: 'fba', season: 79, locked: false, selections: null, asgDraft: null, contestDraw: null,
+      fivePoint: null, dunk: null, ysgDraft: null, ysg: null, asg: null,
+    };
+    expect(AllStarFile.safeParse(empty).success).toBe(true);
+    const game = {
+      teams: [0, 1], scores: [7, 5], rollOff: null, winner: 0,
+      rolls: [[{ team: 0, playerId: 'p00001', dice: [3, 4] }, { team: 1, playerId: 'p00002', dice: [2, 3] }]],
+    };
+    const partial = {
+      ...empty,
+      selections: { allStars: ['p00001'], captains: [], youngStars: [], youngCaptains: [] },
+      asgDraft: { first: 1, picks: ['p00003'] },
+      contestDraw: { order: ['BOS', 'CAR'], turns: [{ teamId: 'BOS', contest: '5pt', playerId: 'p00001' }, { teamId: 'CAR', contest: null, playerId: null }] },
+      fivePoint: {
+        winner: 'p00001',
+        rounds: [{ players: ['p00001'], rolls: { p00001: [[1, 2], [3, 4], [5, 6]] }, totals: { p00001: 21 }, advanced: ['p00001'], rollOffs: [] }],
+      },
+      asg: { game, mvp: 'p00001', mvpRollOff: { ids: ['p00001', 'p00003'], rounds: [{ p00001: [6, 6], p00003: [1, 1] }] } },
+    };
+    expect(AllStarFile.safeParse(partial).success).toBe(true);
+    expect(AllStarFile.safeParse({ ...partial, asgDraft: { first: 2, picks: [] } }).success).toBe(false);
+    expect(AllStarFile.safeParse({ ...partial, asg: { ...partial.asg, game: { ...game, rolls: [[{ team: 0, playerId: 'p00001', dice: [7, 1] }]] } } }).success).toBe(false);
   });
 });
 

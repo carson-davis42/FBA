@@ -1,7 +1,7 @@
 import type { z } from 'zod';
 import {
-  CalendarFile, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, LogoManifest, MetaFile, PicksFile, PlayersFile, ReservesFile, ResultsFile, RostersFile,
-  SummaryFile, TeamsFile, TransactionsFile,
+  AllStarFile, CalendarFile, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, LogoManifest, MetaFile, PicksFile, PlayersFile, RatingPauseFile, ReservesFile, ResultsFile, RostersFile,
+  ScheduleFile, SummaryFile, TeamsFile, TransactionsFile,
 } from './types';
 
 const L = '(fba|fbad2|fbajc|fbawc)';
@@ -23,6 +23,9 @@ const RULES: [RegExp, z.ZodTypeAny][] = [
   [new RegExp(`^leagues/fbad2/${S}/ratings\\.json$`), D2RatingsFile],
   [new RegExp(`^leagues/fbad2/${S}/pool\\.json$`), D2PoolFile],
   [new RegExp(`^leagues/fbad2/${S}/draft\\.json$`), D2DraftFile],
+  [new RegExp(`^leagues/(fba|fbad2)/${S}/schedule\\.json$`), ScheduleFile],
+  [new RegExp(`^leagues/fba/${S}/ratingPause-[1-9]\\d*\\.json$`), RatingPauseFile],
+  [new RegExp(`^leagues/fba/${S}/allstar\\.json$`), AllStarFile],
 ];
 
 export function schemaForPath(rel: string): z.ZodTypeAny | null {
