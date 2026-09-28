@@ -35,6 +35,7 @@ export function lockSeeds(state: SeasonState): SeasonResult {
   if (!seasonOver(state)) problems.push('Finish the regular season first');
   const open = state.schedule?.pauses.find(p => !p.done);
   if (open) problems.push(`Finish the ${PAUSE_LABEL[open.kind]} pause (after game ${open.afterGame}) first`);
+  if (!state.awards?.locked) problems.push(`Lock the S${state.season} awards first`);
   if (problems.length) return seasonFail(problems);
   const seeds = seedPreview(state);
   const short = seeds.filter(s => s.teams.length < PLAYOFF_SEEDS).map(s => `${s.group} needs at least ${PLAYOFF_SEEDS} teams`);
