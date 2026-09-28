@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { AllStarPage } from '../allstar/AllStarPage';
 import { CalendarPage } from '../pages/CalendarPage';
 import { D2DraftPage } from '../pages/D2DraftPage';
 import { D2RatingsPage } from '../pages/D2RatingsPage';
@@ -30,6 +31,7 @@ export function Layout() {
           <Route path="/league/fbad2/ratings" element={<D2RatingsPage />} />
           <Route path="/league/fbad2/draft" element={<D2DraftPage />} />
           <Route path="/league/fba/ratings-pause" element={<RatingPausePage />} />
+          <Route path="/league/fba/all-star" element={<AllStarPage />} />
           <Route path="/league/:league/scores" element={<ScoresPage />} />
           <Route path="/league/:league/game/:gameNo" element={<GamePage />} />
           <Route path="/league/:league/standings" element={<StandingsPage />} />
