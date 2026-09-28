@@ -10,8 +10,8 @@ const LABEL = { fba: 'FBA', fbad2: 'D2' } as const;
 
 export function SchedulesPage() {
   const saving = useSaving();
-  const { data: meta } = useDoc<MetaFile>('meta.json');
-  const season = meta?.currentSeason;
+  const meta = useDoc<MetaFile>('meta.json');
+  const season = meta.data?.currentSeason;
   const p = (league: 'fba' | 'fbad2', doc: string) => (season === undefined ? null : `leagues/${league}/S${season}/${doc}.json`);
   const cal = useDoc<CalendarFile>('calendar.json');
   const fbaTeams = useDoc<TeamsFile>('leagues/fba/teams.json');
@@ -22,7 +22,12 @@ export function SchedulesPage() {
   const d2Res = useDoc<ResultsFile>(p('fbad2', 'results'));
   const [message, setMessage] = useState('');
 
+  const required = [meta, cal, fbaTeams, d2Teams];
   const optional = [fbaSched, fbaRes, d2Sched, d2Res];
+  const error = required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
+  if (error) {
+    return <p className="error">{error.message}</p>;
+  }
   if (season === undefined || !cal.data || !fbaTeams.data || !d2Teams.data || optional.some(d => !d.data && !d.missing)) {
     return <p className="muted">Loading…</p>;
   }

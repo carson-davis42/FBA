@@ -46,4 +46,20 @@ describe('SchedulesPage', () => {
     expect(await screen.findByRole('button', { name: 'Re-roll schedules' })).toBeTruthy();
     expect(screen.getByText(/FBA: 16 games/)).toBeTruthy();
   });
+
+  it('shows error when calendar.json fetch fails with non-404', async () => {
+    const docMap = docs(false);
+    const counts = new Map<string, number>(Object.keys(docMap).map(p => [p, 1]));
+    const version = (p: string) => String(counts.get(p) ?? 0).padStart(16, '0');
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (url === '/api/state/calendar.json') {
+        return new Response(JSON.stringify({ error: 'Server error' }), { status: 500 });
+      }
+      const path = url.replace('/api/state/', '');
+      if (!(path in docMap)) return new Response(JSON.stringify({ error: `Not found: ${path}` }), { status: 404 });
+      return new Response(JSON.stringify(docMap[path]), { headers: { ETag: `"${version(path)}"` } });
+    }));
+    render(<MemoryRouter><SchedulesPage /></MemoryRouter>);
+    expect(await screen.findByText('Server error')).toBeTruthy();
+  });
 });
