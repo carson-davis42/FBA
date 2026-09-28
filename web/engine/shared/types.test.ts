@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AllStarFile, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, PlayoffsFile, RatingPauseFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, TransactionType, TransactionsFile } from './types';
+import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, PlayoffsFile, RatingPauseFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -216,5 +216,44 @@ describe('PlayoffsFile', () => {
   it('needs exactly 8 seeded teams per group and rejects unknown keys', () => {
     expect(PlayoffsFile.safeParse(doc({ seeds: [{ group: 'E', teams: ['BOS'], notes: [] }] })).success).toBe(false);
     expect(PlayoffsFile.safeParse({ ...doc(), extra: 1 }).success).toBe(false);
+  });
+});
+
+describe('BoxLine defensive fields', () => {
+  it('accepts lines with and without the defensive stats', () => {
+    expect(BoxLine.safeParse({ playerId: 'p00001', pts: 20 }).success).toBe(true);
+    expect(BoxLine.safeParse({ playerId: 'p00001', pts: 20, def: 11, stops: 6, allowed: 12, exp: 1480 }).success).toBe(true);
+    expect(BoxLine.safeParse({ playerId: 'p00001', pts: 20, def: -1 }).success).toBe(false);
+    expect(BoxLine.safeParse({ playerId: 'p00001', pts: 20, exp: 1.5 }).success).toBe(false);
+  });
+});
+
+describe('AwardsFile', () => {
+  const slot = (s: string, playerId: string | null) => ({ slot: s, playerId, teamId: playerId ? 'BOS' : null });
+  const team = (ids: (string | null)[]) => ['G', 'F', 'C', 'ANY', 'ANY'].map((s, k) => slot(s, ids[k]));
+  const fba = (over: Record<string, unknown> = {}) => ({
+    league: 'fba', season: 79, locked: false,
+    awards: [{ award: 'MVP', playerId: 'p00001', teamId: 'HON' }, { award: 'DPOY', playerId: 'p00002', teamId: 'CAR' }],
+    allFba: { team1: team(['a1', 'a2', 'a3', 'a4', 'a5']), team2: team(['b1', 'b2', 'b3', null, 'b5']) },
+    ...over,
+  });
+
+  it('accepts an FBA draft with an unfilled slot and a D2 doc without All-FBA', () => {
+    expect(AwardsFile.safeParse(fba()).success).toBe(true);
+    const d2 = { league: 'fbad2', season: 79, locked: true, awards: [{ award: 'MVP-PL', playerId: 'p01001', teamId: 'SALZ' }], allFba: null };
+    expect(AwardsFile.safeParse(d2).success).toBe(true);
+  });
+
+  it('rejects duplicate awards, awards from the other league, and All-FBA in the D2', () => {
+    expect(AwardsFile.safeParse(fba({ awards: [{ award: 'MVP', playerId: 'p1', teamId: 'A' }, { award: 'MVP', playerId: 'p2', teamId: 'B' }] })).success).toBe(false);
+    expect(AwardsFile.safeParse(fba({ awards: [{ award: 'MVP-PL', playerId: 'p1', teamId: 'A' }] })).success).toBe(false);
+    const d2 = { league: 'fbad2', season: 79, locked: false, awards: [], allFba: fba().allFba };
+    expect(AwardsFile.safeParse(d2).success).toBe(false);
+  });
+
+  it('rejects All-FBA slots out of order and a player on both teams', () => {
+    const swapped = { team1: [slot('F', 'a1'), slot('G', 'a2'), slot('C', 'a3'), slot('ANY', 'a4'), slot('ANY', 'a5')], team2: team(['b1', 'b2', 'b3', 'b4', 'b5']) };
+    expect(AwardsFile.safeParse(fba({ allFba: swapped })).success).toBe(false);
+    expect(AwardsFile.safeParse(fba({ allFba: { team1: team(['a1', 'a2', 'a3', 'a4', 'a5']), team2: team(['a1', 'b2', 'b3', 'b4', 'b5']) } })).success).toBe(false);
   });
 });
