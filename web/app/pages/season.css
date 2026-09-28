@@ -34,3 +34,21 @@
 .reveal-lines { list-style: none; padding: 0; margin: 8px 0; max-height: 420px; overflow: auto; }
 .reveal-lines li { padding: 3px 0; border-bottom: 1px solid var(--border); }
 .reveal-lines li.group { font-weight: 800; color: var(--muted); border-bottom: 0; padding-top: 8px; }
+.seed-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 10px 0; }
+.seed-list { margin: 0; padding-left: 22px; }
+.seed-list li { padding: 2px 0; }
+.tie-notes { margin: 8px 0 0; padding-left: 18px; font-size: 12px; }
+.next-game { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; margin: 10px 0; border-color: var(--accent); }
+.champion-card { margin: 10px 0; border: 2px solid var(--good); }
+.league-pick { display: flex; gap: 6px; margin: 10px 0; }
+.bracket { display: flex; gap: 12px; overflow-x: auto; padding: 4px 0 10px; }
+.bracket-col { display: flex; flex-direction: column; justify-content: space-around; gap: 10px; min-width: 190px; }
+.series-box { display: grid; gap: 2px; text-align: left; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px; cursor: pointer; font: inherit; }
+.series-box.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.series-side { display: grid; grid-template-columns: 16px 20px 1fr 16px; gap: 4px; align-items: center; font-size: 13px; }
+.series-side .seed { color: var(--muted); font-size: 11px; }
+.series-side .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.series-side .wins { text-align: right; font-variant-numeric: tabular-nums; }
+.series-side.won { font-weight: 800; }
+.series-games { list-style: none; padding: 0; margin: 0; }
+.series-games li { padding: 3px 0; }
