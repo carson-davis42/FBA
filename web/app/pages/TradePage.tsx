@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { futureSeasons, owedFrom, pickLabel } from '../../engine/roster/picks';
 import { makeTrade, type TradeAsset } from '../../engine/roster/trade';
+import { lockProblem } from '../../engine/season/locks';
 import type { PickCondition, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
 import { commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
+import { useSeasonPhase } from '../season/useSeasonPhase';
 import './roster.css';
 
 type Kind = PickCondition['kind'];
@@ -25,6 +27,7 @@ export function TradePage() {
   const [search] = useSearchParams();
   const { state, versions, error } = useRosterState();
   const lg = league === 'fbad2' ? 'fbad2' : 'fba';
+  const phase = useSeasonPhase();
   const { data: teams } = useDoc<TeamsFile>(`leagues/${lg}/teams.json`);
   const [teamIds, setTeamIds] = useState<string[]>(search.get('team') ? [search.get('team')!] : []);
   const [assets, setAssets] = useState<TradeAsset[]>([]);
@@ -38,7 +41,8 @@ export function TradePage() {
   if (!state || !teams) return <p className="muted">Loading…</p>;
 
   const rosters = lg === 'fba' ? state.fba : state.d2;
-  const locked = (lg === 'fba' ? state.fba : state.d2).locked;
+  const tradeLock = phase === undefined ? 'Loading…' : lockProblem(phase, lg, 'trade');
+  const locked = (lg === 'fba' ? state.fba : state.d2).locked || tradeLock !== null;
   const nameOfTeam = (t: string) => teams.teams.find(x => x.teamId === t)?.name ?? t;
   const defaultTo = (from: string) => teamIds.find(t => t !== from) ?? from;
   const pickKey = (from: string, season: number) => `${from}-${season}`;
@@ -48,7 +52,7 @@ export function TradePage() {
     const o = pickOpts[pickKey(a.from, a.season)] ?? { kind: 'none' as Kind, n: 1, text: '', betterTo: a.to };
     return { ...a, condition: conditionFor(o.kind, o.n, o.text, a.from, a.to, o.betterTo) };
   });
-  const preview = teamIds.length >= 2 && assets.length ? makeTrade(state, { league: lg, teams: teamIds, assets: withConditions }, { batchId: 'preview' }) : null;
+  const preview = teamIds.length >= 2 && assets.length ? makeTrade(state, { league: lg, teams: teamIds, assets: withConditions }, { batchId: 'preview', phase }) : null;
   const txKey = lg === 'fba' ? 'fbaTx' : 'd2Tx';
   const lines = preview?.ok ? preview.state[txKey].entries.at(-1)!.lines : [];
 
@@ -60,7 +64,7 @@ export function TradePage() {
   const setDest = (i: number, to: string) => setAssets(prev => prev.map((a, j) => (j === i ? { ...a, to } : a)));
 
   const save = async () => {
-    const result = makeTrade(state, { league: lg, teams: teamIds, assets: withConditions }, { batchId: newBatchId() });
+    const result = makeTrade(state, { league: lg, teams: teamIds, assets: withConditions }, { batchId: newBatchId(), phase });
     if (!result.ok) return;
     setBusy(true);
     setSaveError('');
@@ -79,6 +83,7 @@ export function TradePage() {
     <section>
       <h1>{lg === 'fba' ? 'FBA' : 'FBAD2'} trade</h1>
       {locked && <p className="muted">S{state.season} rosters are final; trades are closed.</p>}
+      {tradeLock && tradeLock !== 'Loading…' && <p className="muted">{tradeLock}</p>}
       <div className="form-row">
         <label>Add team
           <select value="" onChange={e => e.target.value && setTeamIds(ids => [...ids, e.target.value])}>

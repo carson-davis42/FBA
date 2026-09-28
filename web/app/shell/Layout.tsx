@@ -6,6 +6,7 @@ import { FreeAgencyPage } from '../pages/FreeAgencyPage';
 import { GamePage } from '../pages/GamePage';
 import { Home } from '../pages/Home';
 import { LeaguePage } from '../pages/LeaguePage';
+import { RatingPausePage } from '../pages/RatingPausePage';
 import { SchedulesPage } from '../pages/SchedulesPage';
 import { ScoresPage } from '../pages/ScoresPage';
 import { StandingsPage } from '../pages/StandingsPage';
@@ -28,6 +29,7 @@ export function Layout() {
           <Route path="/schedules" element={<SchedulesPage />} />
           <Route path="/league/fbad2/ratings" element={<D2RatingsPage />} />
           <Route path="/league/fbad2/draft" element={<D2DraftPage />} />
+          <Route path="/league/fba/ratings-pause" element={<RatingPausePage />} />
           <Route path="/league/:league/scores" element={<ScoresPage />} />
           <Route path="/league/:league/game/:gameNo" element={<GamePage />} />
           <Route path="/league/:league/standings" element={<StandingsPage />} />

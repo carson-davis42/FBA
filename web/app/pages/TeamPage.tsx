@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { releasePlayer } from '../../engine/roster/moves';
 import { isExpired, payroll } from '../../engine/roster/rules';
+import { lockProblem } from '../../engine/season/locks';
 import { groupLabel, isLeagueId, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { MetaFile, PlayersFile, RosterEntry, RostersFile, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
@@ -13,6 +14,7 @@ import { SignPanel } from '../components/SignPanel';
 import { TeamMark } from '../components/TeamMark';
 import { commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
+import { useSeasonPhase } from '../season/useSeasonPhase';
 import './league.css';
 import './roster.css';
 
@@ -26,6 +28,7 @@ export function TeamPage() {
   const { data: rosters } = useDoc<RostersFile>(season === undefined ? null : `leagues/${league}/S${season}/rosters.json`);
   const editable = (league === 'fba' || league === 'fbad2') && meta !== undefined && season === meta.currentSeason && rosters?.locked === false;
   const { state, versions } = useRosterState();
+  const phase = useSeasonPhase();
   const { data: fbaTeams } = useDoc<TeamsFile>(editable ? 'leagues/fba/teams.json' : null);
   const [pending, setPending] = useState<{ playerId: string; kind: 'released' | 'cut' } | null>(null);
   const [editing, setEditing] = useState<string | null>(null);
@@ -43,7 +46,7 @@ export function TeamPage() {
   const release = async (playerId: string, kind: 'released' | 'cut') => {
     if (!state) return;
     setError('');
-    const result = releasePlayer(state, { league: lg, teamId, playerId, kind }, { batchId: newBatchId() });
+    const result = releasePlayer(state, { league: lg, teamId, playerId, kind }, { batchId: newBatchId(), phase });
     if (!result.ok) return setError(result.problems.join('; '));
     try {
       await commitMove(result, versions);
@@ -54,7 +57,7 @@ export function TeamPage() {
   };
 
   const actions = (e: RosterEntry) => {
-    if (!e.playerId || !state) return null;
+    if (!e.playerId || !state || phase === undefined) return null;
     const tags = [];
     if (e.restricted) tags.push(<span key="r" className="tag tag-restricted">Restricted</span>);
     if (lg === 'fba' && isExpired(e, state.season)) tags.push(<span key="x" className="tag tag-expired">Expired</span>);
@@ -70,10 +73,16 @@ export function TeamPage() {
     return (
       <span className="row-actions">
         {tags}
-        {lg === 'fba' && isExpired(e, state.season) && !state.freeAgents.locked && <button className="btn" onClick={() => setResigning(e.playerId)}>Re-sign</button>}
-        <button className="btn" onClick={() => setPending({ playerId: e.playerId!, kind: 'released' })}>Release</button>
-        <button className="btn" onClick={() => setPending({ playerId: e.playerId!, kind: 'cut' })}>Cut</button>
-        <button className="btn" onClick={() => setEditing(e.playerId)}>Edit</button>
+        {lg === 'fba' && isExpired(e, state.season) && !state.freeAgents.locked && !lockProblem(phase, 'fba', 'sign') && (
+          <button className="btn" onClick={() => setResigning(e.playerId)}>Re-sign</button>
+        )}
+        {!lockProblem(phase, lg, 'release') && (
+          <>
+            <button className="btn" onClick={() => setPending({ playerId: e.playerId!, kind: 'released' })}>Release</button>
+            <button className="btn" onClick={() => setPending({ playerId: e.playerId!, kind: 'cut' })}>Cut</button>
+          </>
+        )}
+        {!lockProblem(phase, lg, 'edit') && <button className="btn" onClick={() => setEditing(e.playerId)}>Edit</button>}
       </span>
     );
   };
@@ -91,8 +100,9 @@ export function TeamPage() {
       </div>
       {lg === 'fba' && editable && <PayrollBar total={payroll(entries, season)} />}
       {error && <p className="error">{error}</p>}
-      {editing && state && <EditDialog key={editing} state={state} league={lg} teamId={teamId} playerId={editing} onClose={() => setEditing(null)} versions={versions} />}
-      {resigning && state && fbaTeams && <SignPanel key={resigning} state={state} teams={fbaTeams} playerId={resigning} defaultTeam={teamId} onClose={() => setResigning(null)} versions={versions} />}
+      {editing && state && <EditDialog key={editing} state={state} league={lg} teamId={teamId} playerId={editing} onClose={() => setEditing(null)} versions={versions} phase={phase} />}
+      {resigning && state && fbaTeams && <SignPanel key={resigning} state={state} teams={fbaTeams} playerId={resigning} defaultTeam={teamId} onClose={() => setResigning(null)} versions={versions} phase={phase} />}
+      {editable && phase && lockProblem(phase, lg, 'release') && <p className="muted">{lockProblem(phase, lg, 'release')}</p>}
       <div className="table-wrap">
         <RosterTable league={league} entries={entries} players={players.players} extraLabel={editable ? 'Actions' : undefined} renderExtra={editable && state ? actions : undefined} />
       </div>

@@ -11,6 +11,7 @@ import { RosterTable } from '../components/RosterTable';
 import { SignPanel } from '../components/SignPanel';
 import { commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
+import { useSeasonPhase } from '../season/useSeasonPhase';
 import './roster.css';
 
 const TYPES: MarketType[] = ['FA', 'Rookie', 'D2', 'Expired'];
@@ -18,6 +19,7 @@ const TYPES: MarketType[] = ['FA', 'Rookie', 'D2', 'Expired'];
 export function FreeAgencyPage() {
   const { league = '' } = useParams();
   const { state, versions, error } = useRosterState();
+  const phase = useSeasonPhase();
   const { data: teams } = useDoc<TeamsFile>('leagues/fba/teams.json');
   const { data: cal, version: calVersion } = useDoc<CalendarFile>('calendar.json');
   const [pos, setPos] = useState<Position | 'ALL'>('ALL');
@@ -85,7 +87,7 @@ export function FreeAgencyPage() {
       )}
 
       {selected && !closed && (
-        <SignPanel key={selected} state={state} teams={teams} playerId={selected} defaultTeam={teamId} onClose={() => setSelected(null)} versions={versions} />
+        <SignPanel key={selected} state={state} teams={teams} playerId={selected} defaultTeam={teamId} onClose={() => setSelected(null)} versions={versions} phase={phase} />
       )}
 
       <div className="table-wrap">

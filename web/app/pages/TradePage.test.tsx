@@ -9,7 +9,7 @@ import { TradePage } from './TradePage';
 const badge = { bg: 'hsl(1 55% 36%)', fg: '#ffffff' };
 let posted: { label: string; writes: { path: string; doc: unknown }[] } | null = null;
 
-function setupFetch(build: (s: ReturnType<typeof baseState>) => void = () => {}) {
+function setupFetch(build: (s: ReturnType<typeof baseState>) => void = () => {}, extra: Record<string, unknown> = {}) {
   posted = null;
   const s = baseState();
   build(s);
@@ -19,6 +19,7 @@ function setupFetch(build: (s: ReturnType<typeof baseState>) => void = () => {})
     'leagues/fbad2/teams.json': { league: 'fbad2', teams: [{ teamId: 'AMS', name: 'AMS Team', abbr: 'AMS', group: 'PL', logoFolder: null, badge }] },
   };
   for (const k of DOC_KEYS) d[docPath(k, 79)] = s[k];
+  Object.assign(d, extra);
   vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
     if (url === '/api/batch') { posted = JSON.parse(String(init!.body)); return new Response(JSON.stringify({ ok: true, batchId: '1-0' })); }
     const doc = d[url.replace('/api/state/', '')];
@@ -127,5 +128,21 @@ describe('TradePage', () => {
       await screen.findByText('AMS Team');
       expect(screen.queryByText('Draft picks')).toBeNull();
     });
+  });
+});
+
+describe('TradePage roster locks', () => {
+  it('is read-only after the trade deadline', async () => {
+    setupFetch(s => { s.freeAgents = { ...s.freeAgents, locked: true }; }, {
+      'leagues/fba/S79/schedule.json': { league: 'fba', season: 79, locked: false, games: [], pauses: [{ afterGame: 645, kind: 'deadline', done: true }] },
+      'leagues/fba/S79/results.json': { league: 'fba', season: 79, locked: false, games: [] },
+    });
+    render(
+      <MemoryRouter initialEntries={['/trade/fba?team=CAR']}>
+        <Routes><Route path="/trade/:league" element={<TradePage />} /></Routes>
+      </MemoryRouter>,
+    );
+    expect(await screen.findByText('The trade deadline has passed: rosters are locked until the offseason')).toBeTruthy();
+    expect((screen.getByRole('button', { name: 'Make trade' }) as HTMLButtonElement).disabled).toBe(true);
   });
 });

@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { finishRatings, parseRatingInput, ratingsBlockers, setRating, startRatings } from '../../engine/d2/ratings';
+import { finishRatings, ratingsBlockers, setRating, startRatings } from '../../engine/d2/ratings';
 import { d2DocPath, d2Name, d2Writes, type D2Result } from '../../engine/d2/state';
 import { POSITIONS } from '../../engine/roster/rules';
 import type { D2RatingRow, D2RatingsFile, Position } from '../../engine/shared/types';
 import { useSaving } from '../api';
+import { RatingInput } from '../components/RatingInput';
 import { useD2State } from '../d2/useD2State';
 import { commitDocs, newBatchId } from '../roster/commit';
 import { useAutosaveDoc } from '../useAutosaveDoc';
@@ -19,34 +20,6 @@ const FILTERS: [Filter, string][] = [
 
 const signed = (n: number) => (n > 0 ? `+${n}` : n < 0 ? `−${-n}` : '±0');
 const isEdited = (r: D2RatingRow) => r.suggested !== null && r.rating !== r.suggested;
-
-function RatingInput({ row, name, disabled, onSave }: {
-  row: D2RatingRow; name: string; disabled: boolean; onSave: (value: number | null) => void;
-}) {
-  const shown = row.rating === null ? '' : String(row.rating);
-  const [text, setText] = useState(shown);
-  const [problem, setProblem] = useState('');
-  useEffect(() => { setText(shown); }, [shown]);
-  const commit = () => {
-    const parsed = parseRatingInput(text);
-    if (!parsed.ok) {
-      setProblem(parsed.problem);
-      return;
-    }
-    setProblem('');
-    if (parsed.value !== row.rating) onSave(parsed.value);
-  };
-  return (
-    <>
-      <input
-        className="rating-input" inputMode="numeric" aria-label={`New rating for ${name}`} value={text} disabled={disabled}
-        onChange={e => setText(e.target.value)} onBlur={commit}
-        onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur(); }}
-      />
-      {problem && <div className="error inline-problem">{problem}</div>}
-    </>
-  );
-}
 
 export function D2RatingsPage() {
   const { state, versions, error } = useD2State();
@@ -136,7 +109,7 @@ export function D2RatingsPage() {
                   </>
                 )}
               </td>
-              <td className="n"><RatingInput row={r} name={name(r.playerId)} disabled={locked} onSave={v => save(r.playerId, v)} /></td>
+              <td className="n"><RatingInput value={r.rating} name={name(r.playerId)} disabled={locked} allowBlank onSave={v => save(r.playerId, v)} /></td>
             </tr>
           ))}
         </tbody>

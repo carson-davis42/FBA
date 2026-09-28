@@ -3,12 +3,13 @@ import { marketRows } from '../../engine/roster/market';
 import { signPlayer, type SignInput } from '../../engine/roster/moves';
 import { payroll } from '../../engine/roster/rules';
 import type { RosterState } from '../../engine/roster/state';
+import type { SeasonPhase } from '../../engine/season/locks';
 import type { TeamsFile } from '../../engine/shared/types';
 import { useSaving, type Versions } from '../api';
 import { commitMove, newBatchId } from '../roster/commit';
 
-export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versions }: {
-  state: RosterState; teams: TeamsFile; playerId: string; defaultTeam: string; onClose: () => void; versions: Versions;
+export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versions, phase }: {
+  state: RosterState; teams: TeamsFile; playerId: string; defaultTeam: string; onClose: () => void; versions: Versions; phase?: SeasonPhase;
 }) {
   const found = marketRows(state).find(r => r.playerId === playerId);
   const own = Object.entries(state.fba.teams).flatMap(([t, es]) => es.filter(e => e.playerId === playerId).map(e => ({ t, e })))[0];
@@ -25,12 +26,12 @@ export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versio
 
   const needsRating = row.scale === 'D2' || row.rating === null;
   const input: SignInput = { playerId, teamId, years, amount, rating: rating === '' ? undefined : Number(rating), conflict };
-  const preview = teamId ? signPlayer(state, input, { batchId: 'preview' }) : null;
+  const preview = teamId ? signPlayer(state, input, { batchId: 'preview', phase }) : null;
   const occupant = teamId ? state.fba.teams[teamId]?.find(e => e.position === row.position && e.playerId !== null && e.playerId !== playerId) : undefined;
   const occupantName = occupant ? state.players.players[occupant.playerId!]?.name ?? 'Unnamed' : '';
 
   const sign = async () => {
-    const result = signPlayer(state, input, { batchId: newBatchId() });
+    const result = signPlayer(state, input, { batchId: newBatchId(), phase });
     if (!result.ok) return;
     setBusy(true);
     setError('');

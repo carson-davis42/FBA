@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { editPlayer, editWarnings, type EditChanges, type EditInput } from '../../engine/roster/moves';
 import type { RosterState } from '../../engine/roster/state';
+import type { SeasonPhase } from '../../engine/season/locks';
 import { useSaving, type Versions } from '../api';
 import { commitMove, newBatchId } from '../roster/commit';
 
 const num = (s: string): number | null => (s.trim() === '' ? null : Number(s));
 
-export function EditDialog({ state, league, teamId, playerId, onClose, versions }: {
-  state: RosterState; league: 'fba' | 'fbad2'; teamId: string; playerId: string; onClose: () => void; versions: Versions;
+export function EditDialog({ state, league, teamId, playerId, onClose, versions, phase }: {
+  state: RosterState; league: 'fba' | 'fbad2'; teamId: string; playerId: string; onClose: () => void; versions: Versions; phase?: SeasonPhase;
 }) {
   const entry = (league === 'fba' ? state.fba : state.d2).teams[teamId]?.find(e => e.playerId === playerId);
   const [rating, setRating] = useState(String(entry?.rating ?? ''));
@@ -33,7 +34,7 @@ export function EditDialog({ state, league, teamId, playerId, onClose, versions 
 
   const save = async () => {
     setError('');
-    const result = editPlayer(state, input, { batchId: newBatchId() });
+    const result = editPlayer(state, input, { batchId: newBatchId(), phase });
     if (!result.ok) return setError(result.problems.join('; '));
     try {
       await commitMove(result, versions);
