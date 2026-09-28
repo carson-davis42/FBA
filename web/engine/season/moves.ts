@@ -131,21 +131,19 @@ export function recordGames(state: SeasonState, games: SimGame[]): SeasonResult 
   const teams = Object.fromEntries(Object.entries(state.rosters.teams).map(([t, entries]) => [
     t, entries.map(e => (e.playerId && add.has(e.playerId) ? { ...e, points: e.points + add.get(e.playerId)! } : e)),
   ]));
-  const done = last === sched.games.length;
-  const changed: SeasonDocKey[] = done ? ['results', 'rosters', 'calendar'] : ['results', 'rosters'];
   const one = results[0];
   const label = results.length === 1
     ? `Game ${one.gameNo}: ${one.away} ${one.awayPts} @ ${one.home} ${one.homePts}`
     : `Games ${results[0].gameNo}–${results[results.length - 1].gameNo}`;
+  // The league's calendar step is marked done by the last playoff final (engine/playoffs/moves.ts), not here.
   return {
     ok: true,
     state: {
       ...state,
       results: { ...state.results, games: [...state.results.games, ...results] },
       rosters: { ...state.rosters, teams },
-      calendar: done ? markStepDone(state.calendar, CALENDAR_STEP[state.league]) : state.calendar,
     },
-    changed,
+    changed: ['results', 'rosters'],
     label,
   };
 }

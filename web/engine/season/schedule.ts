@@ -103,7 +103,7 @@ export function gameDays(games: Pick<ScheduleGame, 'gameNo' | 'home' | 'away'>[]
   return days;
 }
 
-/** FBA pauses at the Java's integer quarter points; D2 has none. */
+/** FBA pauses at the Java's integer quarter points, plus the pre-playoff rating adjustment after the last game; D2 has none. */
 export function defaultPauses(league: SeasonLeague, totalGames: number): SchedulePause[] {
   if (league !== 'fba') return [];
   const q1 = Math.floor(totalGames / 4);
@@ -115,5 +115,6 @@ export function defaultPauses(league: SeasonLeague, totalGames: number): Schedul
     { afterGame: half, kind: 'deadline', done: false },
     { afterGame: q3, kind: 'ratings', done: false },
     { afterGame: q3, kind: 'allstar', done: false },
+    { afterGame: totalGames, kind: 'ratings', done: false },
   ];
 }

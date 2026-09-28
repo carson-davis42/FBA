@@ -123,12 +123,12 @@ describe('ScoresPage', () => {
     expect(screen.queryByText(/The season is played at the FBA D2 step/)).toBeNull();
   });
 
-  it('sim-to-pause reads "the end of the regular season" once the only unfinished pause is already blocking (B3)', async () => {
+  it('sim-to-pause reads the next reachable pause once the only earlier unfinished pause is already blocking (B3)', async () => {
     stubApi(seasonDocs(q3AllstarBlocked()));
     renderAt('/league/fba/scores');
     expect(await screen.findByText('Pause after game 12: All-Star weekend')).toBeTruthy();
     const select = screen.getByRole('combobox', { name: 'Sim to' }) as HTMLSelectElement;
-    expect(select.options[0].textContent).toBe('the end of the regular season');
+    expect(select.options[0].textContent).toBe('the next pause (after game 16)');
   });
 
   it('sim-to-pause reads the next reachable pause while a same-point pause already blocks (B3)', async () => {

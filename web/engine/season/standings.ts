@@ -1,4 +1,4 @@
-import type { GameResult } from '../shared/types';
+import type { GameResult, PlayoffsFile } from '../shared/types';
 import { powerRankings } from '../playoffs/ranker';
 import { orderTeams, type TieNote } from '../playoffs/tiebreak';
 import type { ScheduleTeamInfo, SeasonLeague } from './schedule';
@@ -215,7 +215,8 @@ function toRows(league: SeasonLeague, ordered: TeamRecord[], len: { games: numbe
   }));
 }
 
-export function standings(league: SeasonLeague, teams: ScheduleTeamInfo[], games: GameResult[], len = SEASON_LENGTH[league]): Standings {
+export function standings(league: SeasonLeague, teams: ScheduleTeamInfo[], games: GameResult[], len = SEASON_LENGTH[league], playoffs: PlayoffsFile | null = null): Standings {
+  void playoffs;
   const recs = records(teams, games);
   const better = (a: TeamRecord, b: TeamRecord) => betterThan(league, a, b);
   let ranked: string[] | null = null;

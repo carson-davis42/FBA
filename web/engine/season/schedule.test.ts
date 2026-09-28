@@ -91,6 +91,7 @@ describe('defaultPauses', () => {
       { afterGame: 645, kind: 'deadline', done: false },
       { afterGame: 967, kind: 'ratings', done: false },
       { afterGame: 967, kind: 'allstar', done: false },
+      { afterGame: 1290, kind: 'ratings', done: false },
     ]);
     expect(defaultPauses('fbad2', 960)).toEqual([]);
   });

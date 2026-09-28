@@ -40,7 +40,7 @@ describe('makeSchedules', () => {
     ]);
     const fba = r.writes[0].doc as { games: unknown[]; pauses: { afterGame: number }[] };
     expect(fba.games).toHaveLength(16);
-    expect(fba.pauses.map(p => p.afterGame)).toEqual([4, 8, 8, 12, 12]);
+    expect(fba.pauses.map(p => p.afterGame)).toEqual([4, 8, 8, 12, 12, 16]);
     const cal = r.writes[4].doc as { steps: { id: string; done: boolean }[] };
     expect(cal.steps.find(s => s.id === 'make-s79-schedules')!.done).toBe(true);
   });
@@ -94,21 +94,21 @@ describe('simming and recording', () => {
     expect(recordGames(at4, next)).toEqual({ ok: false, problems: ['Finish the rating adjustment pause (after game 4) first'] });
   });
 
-  it('labels a single game and marks the calendar after the last game', () => {
+  it('labels a single game and no longer marks the calendar after the last game', () => {
     let s = withPausesDoneBefore(fbaSeasonState(), 99);
     const one = ok(recordGames(s, simNextGames(s, 1, mulberry32(8)).games));
     expect(one.label).toMatch(/^Game 1: [A-Z]+ \d+ @ [A-Z]+ \d+$/);
     s = play(s, 15);
     const last = ok(recordGames(s, simNextGames(s, 5, mulberry32(9)).games));
     expect(gamesPlayed(last.state)).toBe(16);
-    expect(last.changed).toContain('calendar');
-    expect(last.state.calendar.steps.find(x => x.id === 'fba')!.done).toBe(true);
+    expect(last.changed).not.toContain('calendar');
+    expect(last.state.calendar.steps.find(x => x.id === 'fba')!.done).toBe(false);
   });
 
-  it('marks the D2 step for the D2 league', () => {
+  it('no longer marks the D2 step at the end of the regular season', () => {
     const s = d2SeasonState();
     const r = ok(recordGames(s, simNextGames(s, 10, mulberry32(1)).games));
-    expect(r.state.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(true);
+    expect(r.state.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(false);
     expect(r.state.calendar.steps.find(x => x.id === 'fba')!.done).toBe(false);
   });
 });
@@ -121,7 +121,7 @@ describe('closeTradeDeadline', () => {
     const ratingsDone = { ...at8, schedule: { ...at8.schedule!, pauses: at8.schedule!.pauses.map((p, i) => (i === 1 ? { ...p, done: true } : p)) } };
     const r = ok(closeTradeDeadline(ratingsDone));
     expect(r.label).toBe('Close trading (trade deadline)');
-    expect(r.state.schedule!.pauses.map(p => p.done)).toEqual([true, true, true, false, false]);
+    expect(r.state.schedule!.pauses.map(p => p.done)).toEqual([true, true, true, false, false, false]);
   });
 });
 
