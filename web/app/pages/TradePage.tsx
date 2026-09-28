@@ -42,7 +42,8 @@ export function TradePage() {
 
   const rosters = lg === 'fba' ? state.fba : state.d2;
   const tradeLock = phase === undefined ? 'Loading…' : lockProblem(phase, lg, 'trade');
-  const locked = (lg === 'fba' ? state.fba : state.d2).locked || tradeLock !== null;
+  const rosterFileLocked = rosters.locked;
+  const locked = rosterFileLocked || tradeLock !== null;
   const nameOfTeam = (t: string) => teams.teams.find(x => x.teamId === t)?.name ?? t;
   const defaultTo = (from: string) => teamIds.find(t => t !== from) ?? from;
   const pickKey = (from: string, season: number) => `${from}-${season}`;
@@ -82,8 +83,8 @@ export function TradePage() {
   return (
     <section>
       <h1>{lg === 'fba' ? 'FBA' : 'FBAD2'} trade</h1>
-      {locked && <p className="muted">S{state.season} rosters are final; trades are closed.</p>}
-      {tradeLock && tradeLock !== 'Loading…' && <p className="muted">{tradeLock}</p>}
+      {rosterFileLocked && <p className="muted">S{state.season} rosters are final; trades are closed.</p>}
+      {!rosterFileLocked && tradeLock && tradeLock !== 'Loading…' && <p className="muted">{tradeLock}</p>}
       <div className="form-row">
         <label>Add team
           <select value="" onChange={e => e.target.value && setTeamIds(ids => [...ids, e.target.value])}>
