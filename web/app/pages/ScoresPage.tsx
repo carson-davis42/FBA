@@ -138,7 +138,12 @@ export function ScoresPage() {
   return (
     <section>
       {header}
-      {over ? <p className="muted">The regular season is complete.</p> : stepProblem && <p className="muted">{stepProblem}</p>}
+      {over ? (
+        <>
+          <p className="muted">The regular season is complete.</p>
+          <p><Link className="btn primary" to={`/league/${lg}/playoffs`}>Playoffs ▸</Link></p>
+        </>
+      ) : stepProblem && <p className="muted">{stepProblem}</p>}
       {pause && (
         <div className="card pause-card">
           <h3>Pause after game {pause.afterGame}: {PAUSE_LABEL[pause.kind]}</h3>

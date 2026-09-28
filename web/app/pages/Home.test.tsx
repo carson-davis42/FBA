@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Home } from './Home';
@@ -38,5 +38,17 @@ describe('Home', () => {
     expect(await screen.findByText('North Carolina')).toBeTruthy();
     expect(await screen.findByText('Germany')).toBeTruthy();
     expect(screen.getByText(/host: Croatia/)).toBeTruthy();
+  });
+
+  it('continues to the playoffs once the current league has finished its regular season', async () => {
+    docs['leagues/fbad2/S79/schedule.json'] = { league: 'fbad2', season: 79, locked: false, games: [{ gameNo: 1, home: 'A', away: 'B' }], pauses: [] };
+    docs['leagues/fbad2/S79/results.json'] = { league: 'fbad2', season: 79, locked: false, games: [{ gameNo: 1, home: 'A', away: 'B', homePts: 70, awayPts: 60 }] };
+    try {
+      render(<MemoryRouter><Home /></MemoryRouter>);
+      await waitFor(() => expect(screen.getByRole('link', { name: /continue/i }).getAttribute('href')).toBe('/league/fbad2/playoffs'));
+    } finally {
+      delete docs['leagues/fbad2/S79/schedule.json'];
+      delete docs['leagues/fbad2/S79/results.json'];
+    }
   });
 });

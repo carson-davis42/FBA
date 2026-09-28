@@ -1,10 +1,20 @@
 import { Link } from 'react-router-dom';
 import { currentStepIndex } from '../../engine/shared/calendar';
 import { LEAGUES, LEAGUE_LABEL } from '../../engine/shared/leagues';
-import type { CalendarFile, LeagueId, MetaFile, SummaryFile } from '../../engine/shared/types';
+import type { CalendarFile, CalendarStep, LeagueId, MetaFile, ResultsFile, ScheduleFile, SummaryFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
 import { stepTarget } from '../stepRoutes';
 import './pages.css';
+
+/** For an FBA/D2 league step: the Playoffs tab once that league's regular season is over, else null. */
+function usePlayoffsTarget(step: CalendarStep | null, season: number | undefined): string | null {
+  const lg = step?.kind === 'league' && (step.league === 'fba' || step.league === 'fbad2') ? step.league : null;
+  const base = lg && season !== undefined ? `leagues/${lg}/S${season}` : null;
+  const sched = useDoc<ScheduleFile>(base && `${base}/schedule.json`);
+  const res = useDoc<ResultsFile>(base && `${base}/results.json`);
+  if (!lg || !sched.data || !res.data) return null;
+  return sched.data.games.length > 0 && res.data.games.length >= sched.data.games.length ? `/league/${lg}/playoffs` : null;
+}
 
 function ChampionRows({ league, meta }: { league: LeagueId; meta: MetaFile | undefined }) {
   const season = meta?.lastSeason[league];
@@ -31,13 +41,14 @@ function ChampionRows({ league, meta }: { league: LeagueId; meta: MetaFile | und
 export function Home() {
   const { data: cal, error } = useDoc<CalendarFile>('calendar.json');
   const { data: meta } = useDoc<MetaFile>('meta.json');
+  const i = cal ? currentStepIndex(cal) : -1;
+  const step = cal && i >= 0 ? cal.steps[i] : null;
+  const playoffs = usePlayoffsTarget(step, meta?.currentSeason);
   if (error) return <p className="error">Couldn't load the calendar: {error.message}. Is the data server running?</p>;
   if (!cal) return <p className="muted">Loading…</p>;
 
-  const i = currentStepIndex(cal);
-  const step = i < 0 ? null : cal.steps[i];
   const title = !step ? `Season ${cal.season} complete` : step.kind === 'league' && step.league ? `Play ${LEAGUE_LABEL[step.league]} S${cal.season}` : step.label;
-  const target = step ? stepTarget(step) : '/calendar';
+  const target = playoffs ?? (step ? stepTarget(step) : '/calendar');
 
   return (
     <section>

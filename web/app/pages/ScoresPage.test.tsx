@@ -2,6 +2,7 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { fullD2State, regularSeasonDone } from '../../engine/playoffs/testFixtures';
 import type { SeasonState } from '../../engine/season/state';
 import { d2SeasonState, fbaSeasonState } from '../../engine/season/testFixtures';
 import type { ResultsFile } from '../../engine/shared/types';
@@ -184,5 +185,12 @@ describe('ScoresPage', () => {
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].label).toBe('Close trading (trade deadline)');
     expect(log.batches[0].writes.map(w => w.path)).toEqual(['leagues/fba/S79/schedule.json']);
+  });
+
+  it('links to the playoffs once the regular season is over', async () => {
+    stubApi(seasonDocs(regularSeasonDone(fullD2State())));
+    renderAt('/league/fbad2/scores');
+    expect(await screen.findByText('The regular season is complete.')).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Playoffs ▸' }).getAttribute('href')).toBe('/league/fbad2/playoffs');
   });
 });
