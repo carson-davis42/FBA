@@ -6,15 +6,15 @@ export function newBatchId(): string {
 }
 
 /** Saves documents as one batch. Each write carries the version this page loaded, so a stale page can't overwrite newer data. */
-export async function commitDocs(label: string, docs: { path: string; doc: unknown }[], versions: Versions): Promise<void> {
+export async function commitDocs(label: string, docs: { path: string; doc: unknown }[], versions: Versions): Promise<Record<string, string>> {
   const writes = docs.map(d => {
     if (!(d.path in versions)) throw new Error(`No loaded version for ${d.path}; reload the page`);
     return { path: d.path, doc: d.doc, baseVersion: versions[d.path] };
   });
-  await postBatch(label, writes);
+  return (await postBatch(label, writes)).versions;
 }
 
-export async function commitMove(result: Extract<MoveResult, { ok: true }>, versions: Versions, extra: { path: string; doc: unknown }[] = []): Promise<void> {
+export async function commitMove(result: Extract<MoveResult, { ok: true }>, versions: Versions, extra: { path: string; doc: unknown }[] = []): Promise<Record<string, string>> {
   const writes = result.changed.map(k => ({ path: docPath(k, result.state.season), doc: result.state[k] }));
-  await commitDocs(result.label, [...writes, ...extra], versions);
+  return commitDocs(result.label, [...writes, ...extra], versions);
 }

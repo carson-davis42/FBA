@@ -7,7 +7,17 @@ export const TOOL_STEPS: Record<string, string> = {
   'fbad2-draft': '/league/fbad2/draft',
 };
 
+/** The page that completes this step, or null when it is still a manual "Mark done" step. */
+export function toolTarget(step: CalendarStep): string | null {
+  if (TOOL_STEPS[step.id]) return TOOL_STEPS[step.id];
+  if (/^make-s\d+-schedules$/.test(step.id)) return '/schedules';
+  if (step.kind === 'league' && (step.league === 'fba' || step.league === 'fbad2')) return `/league/${step.league}/scores`;
+  return null;
+}
+
 export function stepTarget(step: CalendarStep): string {
+  const tool = toolTarget(step);
+  if (tool) return tool;
   if (step.kind === 'league' && step.league) return `/league/${step.league}`;
-  return TOOL_STEPS[step.id] ?? '/calendar';
+  return '/calendar';
 }

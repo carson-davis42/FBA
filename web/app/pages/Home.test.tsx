@@ -28,7 +28,7 @@ describe('Home', () => {
   it('shows the next step with a Continue link to that league', async () => {
     render(<MemoryRouter><Home /></MemoryRouter>);
     expect(await screen.findByText('Play FBAD2 S79')).toBeTruthy();
-    expect(screen.getByRole('link', { name: /continue/i }).getAttribute('href')).toBe('/league/fbad2');
+    expect(screen.getByRole('link', { name: /continue/i }).getAttribute('href')).toBe('/league/fbad2/scores');
   });
 
   it('lists last champions for every league', async () => {

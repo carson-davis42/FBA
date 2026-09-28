@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { isLeagueId, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { MetaFile, TransactionsFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
+import { LeagueTabs } from '../components/LeagueTabs';
 import './roster.css';
 
 export function TransactionsPage() {
@@ -15,6 +16,7 @@ export function TransactionsPage() {
   return (
     <section>
       <h1>{LEAGUE_LABEL[league]} transactions · S{tx.season}</h1>
+      <LeagueTabs league={league} />
       {tx.entries.length === 0 && <p className="muted">No moves yet.</p>}
       <ul className="tx-list">
         {[...tx.entries].reverse().map(e => (

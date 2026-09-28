@@ -5,6 +5,7 @@ import { D2RatingsPage } from '../pages/D2RatingsPage';
 import { FreeAgencyPage } from '../pages/FreeAgencyPage';
 import { Home } from '../pages/Home';
 import { LeaguePage } from '../pages/LeaguePage';
+import { SchedulesPage } from '../pages/SchedulesPage';
 import { TeamPage } from '../pages/TeamPage';
 import { TradePage } from '../pages/TradePage';
 import { TransactionsPage } from '../pages/TransactionsPage';
@@ -21,6 +22,7 @@ export function Layout() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/calendar" element={<CalendarPage />} />
+          <Route path="/schedules" element={<SchedulesPage />} />
           <Route path="/league/fbad2/ratings" element={<D2RatingsPage />} />
           <Route path="/league/fbad2/draft" element={<D2DraftPage />} />
           <Route path="/league/:league" element={<LeaguePage />} />

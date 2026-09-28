@@ -4,7 +4,7 @@ import { currentStepIndex, markCurrentDone, reopenLast } from '../../engine/shar
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { CalendarFile } from '../../engine/shared/types';
 import { putDoc, useDoc, useSaving } from '../api';
-import { TOOL_STEPS } from '../stepRoutes';
+import { toolTarget } from '../stepRoutes';
 import './pages.css';
 
 export function CalendarPage() {
@@ -16,6 +16,7 @@ export function CalendarPage() {
   if (!cal) return <p className="muted">Loading…</p>;
 
   const i = currentStepIndex(cal);
+  const tool = i >= 0 ? toolTarget(cal.steps[i]) : null;
   const save = async (next: CalendarFile) => {
     setBusy(true);
     setSaveError(null);
@@ -32,10 +33,10 @@ export function CalendarPage() {
     <section>
       <h1>Season {cal.season} calendar</h1>
       <div className="cal-actions">
-        {i >= 0 && TOOL_STEPS[cal.steps[i].id] && (
-          <Link className="btn primary" to={TOOL_STEPS[cal.steps[i].id]}>Open {cal.steps[i].label} ▸</Link>
+        {tool && (
+          <Link className="btn primary" to={tool}>Open {cal.steps[i].label} ▸</Link>
         )}
-        {i >= 0 && !TOOL_STEPS[cal.steps[i].id] && (
+        {i >= 0 && !tool && (
           <button className="btn primary" disabled={busy || saving} onClick={() => save(markCurrentDone(cal))} aria-label={`Mark "${cal.steps[i].label}" done`}>
             ✓ Mark "{cal.steps[i].label}" done
           </button>
