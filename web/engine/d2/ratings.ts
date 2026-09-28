@@ -1,5 +1,6 @@
 import { appendTx, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
+import { zBuckets } from '../shared/perfBuckets';
 import type { D2RatingRow, D2RatingsFile, RosterEntry, RostersFile } from '../shared/types';
 import { randInt, type Rng } from './random';
 import { d2Fail, d2Name, poolMembers, type D2Result, type D2State } from './state';
@@ -28,24 +29,9 @@ type Scored = RosterEntry & { playerId: string; rating: number };
  * with points > 0, then bucket each player's residual z-score. Players without data get no entry (→ 0).
  */
 export function performanceScores(prev: RostersFile | null): Map<string, number> {
-  const out = new Map<string, number>();
-  if (!prev) return out;
+  if (!prev) return new Map();
   const rows = Object.values(prev.teams).flat().filter((e): e is Scored => e.playerId !== null && e.rating !== null && e.points > 0);
-  if (rows.length < 3) return out;
-  const n = rows.length;
-  const mx = rows.reduce((s, r) => s + r.rating, 0) / n;
-  const my = rows.reduce((s, r) => s + r.points, 0) / n;
-  const sxx = rows.reduce((s, r) => s + (r.rating - mx) ** 2, 0);
-  const sxy = rows.reduce((s, r) => s + (r.rating - mx) * (r.points - my), 0);
-  const b = sxx === 0 ? 0 : sxy / sxx;
-  const a = my - b * mx;
-  const resid = rows.map(r => r.points - (a + b * r.rating));
-  const sd = Math.sqrt(resid.reduce((s, x) => s + x * x, 0) / n);
-  rows.forEach((r, i) => {
-    const z = sd < 1e-9 ? 0 : resid[i] / sd;
-    out.set(r.playerId, z >= 1.5 ? 2 : z >= 0.5 ? 1 : z <= -1.5 ? -2 : z <= -0.5 ? -1 : 0);
-  });
-  return out;
+  return zBuckets(rows.map(r => ({ id: r.playerId, x: r.rating, y: r.points })));
 }
 
 /** One row per pool player. Players with a D2 rating get a suggestion; everyone else starts blank. */
