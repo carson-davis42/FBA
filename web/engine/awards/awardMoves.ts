@@ -47,6 +47,11 @@ export function awardProblems(state: SeasonState, lastSeason: RostersFile | null
   const rs = races(state, lastSeason);
   const name = (id: string) => playerName(state, id);
   const out: string[] = [];
+  for (const a of doc.awards) {
+    const race = rs.find(r => r.award === a.award);
+    if (!race) out.push(`${AWARD_LABEL[a.award]} isn't an award in this league; clear the pick`);
+    else if (!race.rows.length) out.push(`${race.label} has no eligible players; clear the pick`);
+  }
   for (const race of rs) {
     if (!race.rows.length) continue;
     const pick = doc.awards.find(a => a.award === race.award);

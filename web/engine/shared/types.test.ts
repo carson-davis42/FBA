@@ -254,6 +254,12 @@ describe('AwardsFile', () => {
   it('rejects All-FBA slots out of order and a player on both teams', () => {
     const swapped = { team1: [slot('F', 'a1'), slot('G', 'a2'), slot('C', 'a3'), slot('ANY', 'a4'), slot('ANY', 'a5')], team2: team(['b1', 'b2', 'b3', 'b4', 'b5']) };
     expect(AwardsFile.safeParse(fba({ allFba: swapped })).success).toBe(false);
-    expect(AwardsFile.safeParse(fba({ allFba: { team1: team(['a1', 'a2', 'a3', 'a4', 'a5']), team2: team(['a1', 'b2', 'b3', 'b4', 'b5']) } })).success).toBe(false);
+    expect(AwardsFile.safeParse(fba({ locked: true, allFba: { team1: team(['a1', 'a2', 'a3', 'a4', 'a5']), team2: team(['a1', 'b2', 'b3', 'b4', 'b5']) } })).success).toBe(false);
+  });
+
+  it('allows a player on both All-FBA teams in an unlocked draft, but not once locked', () => {
+    const allFba = { team1: team(['a1', 'a2', 'a3', 'a4', 'a5']), team2: team(['a1', 'a2', 'b3', 'b4', 'b5']) };
+    expect(AwardsFile.safeParse(fba({ allFba })).success).toBe(true);
+    expect(AwardsFile.safeParse(fba({ locked: true, allFba })).success).toBe(false);
   });
 });

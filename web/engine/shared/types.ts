@@ -481,7 +481,7 @@ export const AwardsFile = z.object({
       team.forEach((s, k) => {
         if (s.slot !== ALL_FBA_ORDER[k]) issue(`All-FBA slot ${k + 1} must be ${ALL_FBA_ORDER[k]}`);
         if (s.playerId) {
-          if (seen.has(s.playerId)) issue(`${s.playerId} is on the All-FBA teams twice`);
+          if (doc.locked && seen.has(s.playerId)) issue(`${s.playerId} is on the All-FBA teams twice`);
           seen.add(s.playerId);
         }
       });

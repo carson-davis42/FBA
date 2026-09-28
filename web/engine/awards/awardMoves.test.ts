@@ -81,6 +81,16 @@ describe('picking and locking', () => {
     expect(mc.position).toBe('C');
   });
 
+  it('flags a pick for a race with no eligible players, and a pick from the other league', () => {
+    const { s, st } = started();
+    const doc = st.awards!;
+    expect(races(st, last(s)).find(r => r.award === 'ROTY')!.rows).toEqual([]);
+    const stray = setAward(doc, 'ROTY', doc.awards[0].playerId, doc.awards[0].teamId);
+    expect(awardProblems(st, last(s), stray)).toContain('ROTY has no eligible players; clear the pick');
+    const other = { ...doc, awards: [...doc.awards, { award: 'MVP-PL' as const, playerId: doc.awards[0].playerId, teamId: doc.awards[0].teamId }] };
+    expect(awardProblems(st, last(s), other).some(p => p.endsWith("isn't an award in this league; clear the pick"))).toBe(true);
+  });
+
   it('locks a complete draft with one awards transaction line, then Lock seeds is allowed', () => {
     const { s, st } = started();
     expect(awardProblems(st, last(s), st.awards!)).toEqual([]);

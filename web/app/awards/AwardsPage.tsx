@@ -79,6 +79,11 @@ export function AwardsPage() {
   const rs = races(view, lastSeason);
   const cards = <div className="race-grid">{rs.map(r => <RaceCard key={r.award} race={r} name={name} abbr={abbr} />)}</div>;
   const leagueName = lg === 'fba' ? 'FBA' : 'D2';
+  // Without last season's FBA roster every restricted player looks like a rookie and MIP has no candidates.
+  const lastMissing = lg === 'fba' && !last.data;
+  const lastWarning = lastMissing && (
+    <p className="error">Last season's FBA roster ({lastPath}) couldn't be loaded, so ROTY and MIP can't be decided.</p>
+  );
 
   const run = async (r: SeasonResult) => {
     if (!r.ok) {
@@ -163,7 +168,8 @@ export function AwardsPage() {
       <section>
         {header}
         {note && <p className="muted">{note}</p>}
-        {ready && <button className="btn primary" disabled={saving} onClick={() => run(startAwards(state, lastSeason))}>Start awards</button>}
+        {ready && lastWarning}
+        {ready && <button className="btn primary" disabled={saving || lastMissing} onClick={() => run(startAwards(state, lastSeason))}>Start awards</button>}
         {message && <p className="error">{message}</p>}
         {cards}
       </section>
@@ -174,6 +180,7 @@ export function AwardsPage() {
   return (
     <section>
       {header}
+      {lastWarning}
       <p className="muted">Pick each winner (the race leader is suggested), then lock the awards. Picks save as you go.</p>
       <div className="card">
         <h3>Winners</h3>
@@ -188,6 +195,9 @@ export function AwardsPage() {
                     if (row) autosave.update(cur => setAward(cur, r.award, row.playerId, row.teamId));
                   }}>
                   <option value="" disabled>—</option>
+                  {pick && !r.rows.some(x => x.playerId === pick.playerId) && (
+                    <option value={pick.playerId}>{name(pick.playerId)} (not eligible)</option>
+                  )}
                   {r.rows.map((x, i) => <option key={x.playerId} value={x.playerId}>{i + 1}. {name(x.playerId)} ({abbr(x.teamId)})</option>)}
                 </select>
               </label>
@@ -197,7 +207,7 @@ export function AwardsPage() {
       </div>
       {allFbaTable(doc, true)}
       {problems.length > 0 && <ul className="problems">{problems.map(p => <li key={p}>{p}</li>)}</ul>}
-      <button className="btn primary" disabled={saving || problems.length > 0} onClick={() => run(lockAwards(view, lastSeason, { batchId: newBatchId() }))}>Lock awards</button>
+      <button className="btn primary" disabled={saving || lastMissing || problems.length > 0} onClick={() => run(lockAwards(view, lastSeason, { batchId: newBatchId() }))}>Lock awards</button>
       {autosave.error && <p className="error">{autosave.error}</p>}
       {message && <p className="error">{message}</p>}
       <h2>Races</h2>
