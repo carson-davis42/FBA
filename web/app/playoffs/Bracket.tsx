@@ -19,7 +19,7 @@ function Side({ id, seed, wins, won, teams, season }: { id: string | null; seed:
   return (
     <span className={`series-side${won ? ' won' : ''}`}>
       <span className="seed">{seed ?? ''}</span>
-      {t && <TeamMark team={t} season={season} size={18} />}
+      {t ? <TeamMark team={t} season={season} size={18} /> : <span className="logo" aria-hidden="true" />}
       <span className="name">{t ? `${t.abbr} ${t.name}` : id ?? 'TBD'}</span>
       <span className="wins">{id ? wins : ''}</span>
     </span>

@@ -47,11 +47,14 @@ describe('PlayoffsPage', () => {
   });
 
   it('shows the next game card and the bracket once seeded', async () => {
-    stubApi(seasonDocs(ok(lockSeeds(regularSeasonDone(fullFbaState()))).state));
+    const state = ok(lockSeeds(regularSeasonDone(fullFbaState()))).state;
+    stubApi(seasonDocs(state));
     renderAt('/league/fba/playoffs');
     expect(await screen.findByText(/^Playoff game 1 · East first round, game 1/)).toBeTruthy();
     expect(screen.getByRole('link', { name: 'Watch ▸' }).getAttribute('href')).toBe('/league/fba/playoffs/game/1');
-    expect(screen.getByRole('button', { name: /E04.*E15|E15.*E04/ })).toBeTruthy();
+    const a = state.playoffs!.seeds[0].teams[0];
+    const b = state.playoffs!.seeds[0].teams[7];
+    expect(screen.getByRole('button', { name: new RegExp(`${a}.*${b}|${b}.*${a}`) })).toBeTruthy();
     expect(screen.getAllByText('TBD').length).toBeGreaterThan(0);
   });
 
