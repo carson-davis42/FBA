@@ -95,7 +95,7 @@ The standings show each status the moment it is mathematically certain, not only
   - The regular-season #1 gets it when it clinches first place.
   - The second spot is known only when the league final ends. It goes to the champion, or to the regular-season #2 if the #1 also won the final.
 - **`▼` relegated (PL, WL and UL only):** a team gets it once it can no longer finish above 15th. The check uses the same method as the FBA's `n`, asking whether the team can still reach 14th.
-- `▲` and `▼` show next to `x` or `n`. A promoted #1 shows `x ▲`.
+- `▲` and `▼` show next to `x` or `n`. A promoted #1 shows `* ▲`, since it has clinched first place.
 
 **After the playoffs, both leagues:**
 - The league champion gets `🏆`.
