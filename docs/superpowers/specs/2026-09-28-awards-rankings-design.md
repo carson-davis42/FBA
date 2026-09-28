@@ -169,7 +169,7 @@ AllFbaSlot = { slot: 'G' | 'F' | 'C' | 'ANY', playerId, teamId }   // slots in t
 | `score.ts` | `awardScore`, `americanOdds`, `raceOdds(scores)` (Java pool, softmax and display caps) |
 | `races.ts` | `races(state, lastSeasonRosters)`, which returns each race's rows; `isRookie`, `mipScore`, `suggestAllFba` |
 | `awardMoves.ts` | `setAward`, `setAllFbaSlot`, `lockAwards` (the `SeasonResult` shape) |
-| `rankingsTimeline.ts` | `rankingMarks(league, gamesPlayed)`, `rankingAt(league, teams, games, mark)`, `movement(prev, cur)` |
+| `rankingsTimeline.ts` | `rankingMarks(league, played, total)`, `rankingAt(teams, games, mark, group)`, `movement(prev, cur)` |
 
 **Changes to existing code**
 - `toGameResult` takes `refRating` and adds the defensive fields. `recordGames` and `recordPlayoffGame` pass `leagueRefRating(state.rosters)`.
@@ -193,7 +193,9 @@ AllFbaSlot = { slot: 'G' | 'F' | 'C' | 'ANY', playerId, teamId }   // slots in t
 
 - **Refused moves** show their problems and save nothing.
 - **Saves send versions**, so a stale tab gets the standard conflict reload.
-- **The draft autosave** follows the existing pattern, and a failed autosave shows Retry.
+- **The draft autosave** follows the existing pattern: a failed autosave shows its error and falls back to the saved copy, as the rating-pause editor does.
+- **Duplicate All-FBA picks** are allowed in a draft, so the page can explain them. The schema rejects them only in a locked file.
+- **Missing last-season roster:** if the FBA's last-season roster can't be loaded, a warning shows and Start and Lock stay disabled, since ROTY and MIP depend on it.
 - **Old results** without defensive fields count as zero defensive possessions. A player with fewer than 5 games of defensive data isn't ranked for DPOY.
 
 ## 9. Testing (test-first)
