@@ -216,11 +216,11 @@ What it shows depends on the stage:
 ### Changes to existing pages
 - **Scores:** after the last regular-season game it shows "The regular season is complete. Playoffs ▸" in place of the plain complete line.
 - **Standings:** uses the §3 order and shows the confirmed-status markers (§3).
-- **Home Continue ▸:** goes to the pause after game 1290, then the Playoffs tab to lock seeds, then the next playoff game.
+- **Home Continue ▸:** once the league's regular season is over, goes to the Playoffs tab. That tab links to the pause after game 1290, then offers Lock seeds, then the next game's Watch ▸.
 
 ## 8. Error handling
 
-- **Refused moves** show their problems on the page and save nothing, e.g. "Finish the rating pause after game 1290 first", "This isn't the next playoff game", or "The D2 playoffs come first on the calendar".
+- **Refused moves** show their problems on the page and save nothing, e.g. "Finish the rating adjustment pause (after game 1290) first", "This isn't the next playoff game (next is game N: …)", or, before the D2 is done, "The season is played at the FBA step (current step: FBA D2)".
 - **Conflicts:** saves send versions, so a stale tab gets the standard conflict message and reloads.
 - **A failed save of a finished live game** keeps the final on screen and offers Retry. Reloading before the final replays that game from scratch, the same as the regular season.
 - **Seeds are final once locked.** The only way back is Undo. Undo works newest-first, so it reaches Lock seeds only after every later save, including every playoff game, has been undone.
