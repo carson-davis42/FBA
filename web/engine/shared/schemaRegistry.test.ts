@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { pathAgreementProblem, schemaForPath } from './schemaRegistry';
-import { AllStarFile, D2DraftFile, D2PoolFile, D2RatingsFile, PlayoffsFile, RatingPauseFile, ScheduleFile } from './types';
+import { AllStarFile, AwardsFile, D2DraftFile, D2PoolFile, D2RatingsFile, PlayoffsFile, RatingPauseFile, ScheduleFile } from './types';
 import { seasonDocPath } from '../season/state';
 
 describe('schemaForPath', () => {
@@ -81,5 +81,14 @@ describe('playoffs.json', () => {
   });
   it('has a season doc path', () => {
     expect(seasonDocPath('playoffs', 'fbad2', 79)).toBe('leagues/fbad2/S79/playoffs.json');
+  });
+});
+
+describe('awards.json', () => {
+  it('is registered for the FBA and D2 only, with a season doc path', () => {
+    expect(schemaForPath('leagues/fba/S79/awards.json')).toBe(AwardsFile);
+    expect(schemaForPath('leagues/fbad2/S79/awards.json')).toBe(AwardsFile);
+    expect(schemaForPath('leagues/fbajc/S79/awards.json')).toBeNull();
+    expect(seasonDocPath('awards', 'fba', 79)).toBe('leagues/fba/S79/awards.json');
   });
 });

@@ -56,6 +56,7 @@ export function seasonStateFor(league: SeasonLeague, list: [string, string][], r
     ratingPause: null,
     allstar: null,
     playoffs: null,
+    awards: null,
   };
 }
 

@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 import {
-  AllStarFile, CalendarFile, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, LogoManifest, MetaFile, PicksFile, PlayersFile, PlayoffsFile, RatingPauseFile, ReservesFile, ResultsFile,
+  AllStarFile, AwardsFile, CalendarFile, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, LogoManifest, MetaFile, PicksFile, PlayersFile, PlayoffsFile, RatingPauseFile, ReservesFile, ResultsFile,
   RostersFile, ScheduleFile, SummaryFile, TeamsFile, TransactionsFile,
 } from './types';
 
@@ -25,6 +25,7 @@ const RULES: [RegExp, z.ZodTypeAny][] = [
   [new RegExp(`^leagues/fbad2/${S}/draft\\.json$`), D2DraftFile],
   [new RegExp(`^leagues/(fba|fbad2)/${S}/schedule\\.json$`), ScheduleFile],
   [new RegExp(`^leagues/(fba|fbad2)/${S}/playoffs\\.json$`), PlayoffsFile],
+  [new RegExp(`^leagues/(fba|fbad2)/${S}/awards\\.json$`), AwardsFile],
   [new RegExp(`^leagues/fba/${S}/ratingPause-[1-9]\\d*\\.json$`), RatingPauseFile],
   [new RegExp(`^leagues/fba/${S}/allstar\\.json$`), AllStarFile],
 ];

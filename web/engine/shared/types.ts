@@ -80,7 +80,19 @@ export type SummaryFile = z.infer<typeof SummaryFile>;
 
 const pts = int.nonnegative();
 
-export const BoxLine = z.object({ playerId: z.string().min(1), pts }).strict();
+/** Points per player; games saved from 2b-2b on also carry defensive stats for that player as the defender. */
+export const BoxLine = z.object({
+  playerId: z.string().min(1),
+  pts,
+  /** Possessions defended. */
+  def: pts.optional(),
+  /** Missed shots while defending. */
+  stops: pts.optional(),
+  /** Points allowed while defending. */
+  allowed: pts.optional(),
+  /** Expected points an average defender would have allowed on the same shots, in hundredths. */
+  exp: pts.optional(),
+}).strict();
 export type BoxLine = z.infer<typeof BoxLine>;
 
 export const GameResult = z.object({
@@ -184,7 +196,7 @@ export type PickObligation = z.infer<typeof PickObligation>;
 export const PicksFile = z.object({ league: z.literal('fba'), obligations: z.array(PickObligation) }).strict();
 export type PicksFile = z.infer<typeof PicksFile>;
 
-export const TransactionType = z.enum(['signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings']);
+export const TransactionType = z.enum(['signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards']);
 export type TransactionType = z.infer<typeof TransactionType>;
 
 export const TransactionEntry = z.object({
@@ -434,3 +446,46 @@ export const PlayoffsFile = z.object({
   }
 });
 export type PlayoffsFile = z.infer<typeof PlayoffsFile>;
+
+export const AwardId = z.enum(['MVP', 'ROTY', 'PPK', 'LP', 'MC', 'DPOY', 'MIP', 'MVP-PL', 'MVP-WL', 'MVP-UL', 'MVP-IL']);
+export type AwardId = z.infer<typeof AwardId>;
+
+const FBA_AWARD_IDS: AwardId[] = ['MVP', 'ROTY', 'PPK', 'LP', 'MC', 'DPOY', 'MIP'];
+const ALL_FBA_ORDER = ['G', 'F', 'C', 'ANY', 'ANY'] as const;
+
+export const AllFbaSlot = z.object({
+  slot: z.enum(['G', 'F', 'C', 'ANY']),
+  playerId: z.string().min(1).nullable(),
+  teamId: z.string().min(1).nullable(),
+}).strict();
+export type AllFbaSlot = z.infer<typeof AllFbaSlot>;
+
+export const AwardsFile = z.object({
+  league: seasonLeague,
+  season: int,
+  locked: z.boolean(),
+  awards: z.array(z.object({ award: AwardId, playerId: z.string().min(1), teamId: z.string().min(1) }).strict()),
+  /** FBA only. */
+  allFba: z.object({ team1: z.array(AllFbaSlot).length(5), team2: z.array(AllFbaSlot).length(5) }).strict().nullable(),
+}).strict().superRefine((doc, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  const ids = doc.awards.map(a => a.award);
+  if (new Set(ids).size !== ids.length) issue('Each award can only be given once');
+  for (const id of ids) {
+    if ((doc.league === 'fba') !== FBA_AWARD_IDS.includes(id)) issue(`${id} isn't an ${doc.league === 'fba' ? 'FBA' : 'D2'} award`);
+  }
+  if (doc.league === 'fbad2' && doc.allFba !== null) issue('The D2 has no All-FBA teams');
+  if (doc.allFba) {
+    const seen = new Set<string>();
+    for (const team of [doc.allFba.team1, doc.allFba.team2]) {
+      team.forEach((s, k) => {
+        if (s.slot !== ALL_FBA_ORDER[k]) issue(`All-FBA slot ${k + 1} must be ${ALL_FBA_ORDER[k]}`);
+        if (s.playerId) {
+          if (doc.locked && seen.has(s.playerId)) issue(`${s.playerId} is on the All-FBA teams twice`);
+          seen.add(s.playerId);
+        }
+      });
+    }
+  }
+});
+export type AwardsFile = z.infer<typeof AwardsFile>;

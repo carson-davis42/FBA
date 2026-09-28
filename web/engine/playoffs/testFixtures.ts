@@ -28,8 +28,11 @@ export function fullD2State(seed = 8): SeasonState {
   return seasonStateFor('fbad2', list, ratingsFor(list, seed, 50, 90), 1001);
 }
 
-/** Every regular-season game saved with made-up scores (no box scores), and every pause done unless told otherwise. */
-export function regularSeasonDone(state: SeasonState, seed = 3, opts: { lastPauseOpen?: boolean } = {}): SeasonState {
+/**
+ * Every regular-season game saved with made-up scores (no box scores), and every pause done unless told otherwise.
+ * The awards are a locked stub (so Lock seeds is allowed) unless `awardsOpen`.
+ */
+export function regularSeasonDone(state: SeasonState, seed = 3, opts: { lastPauseOpen?: boolean; awardsOpen?: boolean } = {}): SeasonState {
   const rng = mulberry32(seed);
   const games = state.schedule!.games.map(g => {
     const homePts = 60 + Math.floor(rng() * 40);
@@ -38,7 +41,8 @@ export function regularSeasonDone(state: SeasonState, seed = 3, opts: { lastPaus
     return { gameNo: g.gameNo, home: g.home, away: g.away, homePts, awayPts };
   });
   const pauses = state.schedule!.pauses.map((p, i, all) => ({ ...p, done: !(opts.lastPauseOpen && i === all.length - 1) }));
-  return { ...state, results: { ...state.results!, games }, schedule: { ...state.schedule!, pauses } };
+  const awards = opts.awardsOpen ? null : { league: state.league, season: state.season, locked: true, awards: [], allFba: null };
+  return { ...state, results: { ...state.results!, games }, schedule: { ...state.schedule!, pauses }, awards };
 }
 
 /** Plays up to `maxGames` playoff games (all of them by default) through the real moves. */

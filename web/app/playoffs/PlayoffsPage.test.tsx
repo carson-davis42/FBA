@@ -76,4 +76,11 @@ describe('PlayoffsPage', () => {
     fireEvent.click(screen.getByRole('button', { name: 'IL' }));
     expect(screen.getAllByRole('button', { name: /IL0\d/ }).length).toBeGreaterThan(0);
   });
+
+  it('sends you to the Awards step before Lock seeds', async () => {
+    stubApi(seasonDocs(regularSeasonDone(fullFbaState(), 3, { awardsOpen: true })));
+    renderAt('/league/fba/playoffs');
+    expect((await screen.findByRole('link', { name: 'Awards step ▸' })).getAttribute('href')).toBe('/league/fba/awards');
+    expect(screen.queryByRole('button', { name: 'Lock seeds' })).toBeNull();
+  });
 });
