@@ -83,7 +83,27 @@ The commissioner set this order; it replaces the S61 list:
 
 **Where the order is used:**
 - The **Standings page** uses this order too, so the seeds always match the standings. It replaces 2b-1's post-head-to-head fallbacks, point differential then team id.
-- The clinch markers (`*`, `x`, `n`) are unchanged.
+- The FBA clinch markers (`*`, `x`, `n`) are unchanged.
+
+### Confirmed-status markers
+
+The standings show each status the moment it is mathematically certain, not only at season end.
+
+**D2** (new; the D2 had no markers in 2b-1):
+- **`x` / `n`:** clinched a top-8 playoff spot, or eliminated from one. This is the FBA clinch math with 16 teams.
+- **`▲` promoted (WL, UL and IL only):**
+  - The regular-season #1 gets it when it clinches first place.
+  - The second spot is known only when the league final ends. It goes to the champion, or to the regular-season #2 if the #1 also won the final.
+- **`▼` relegated (PL, WL and UL only):** a team gets it once it can no longer finish above 15th. The check uses the same method as the FBA's `n`, asking whether the team can still reach 14th.
+- `▲` and `▼` show next to `x` or `n`. A promoted #1 shows `x ▲`.
+
+**After the playoffs, both leagues:**
+- The league champion gets `🏆`.
+- In the FBA, the two conference champions get `C`.
+
+**Legends.** Each league's Standings page lists the markers it uses. The lottery table is unchanged.
+
+**How it works.** `standings()` takes the league's `playoffs.json`, or `null`, as an extra optional input, so champions and the final promotions can be marked. The clinch math lives in `engine/season/standings.ts`, next to the FBA's.
 
 **Notes.** Every tie the order breaks produces a plain-language note, saved with the seeds, for example:
 - "MAN over CAR: conference record 37–19 vs 30–26"
@@ -190,7 +210,7 @@ What it shows depends on the stage:
 
 ### Changes to existing pages
 - **Scores:** after the last regular-season game it shows "The regular season is complete. Playoffs ▸" in place of the plain complete line.
-- **Standings:** uses the §3 order.
+- **Standings:** uses the §3 order and shows the confirmed-status markers (§3).
 - **Home Continue ▸:** goes to the pause after game 1290, then the Playoffs tab to lock seeds, then the next playoff game.
 
 ## 8. Error handling
@@ -208,6 +228,12 @@ What it shows depends on the stage:
   - A split that restarts at head-to-head.
   - Note text.
   - Standings order matches the seeds.
+- **Markers:**
+  - D2 `x`/`n` at the clinch boundary.
+  - `▲` for WL, UL and IL #1 as soon as first place is clinched, but never for PL.
+  - `▼` only once 14th is out of reach.
+  - The second `▲` only after the league final, covering both the champion and the #1-won-it (#2 goes up) cases.
+  - `🏆` and FBA `C` from `playoffs.json`.
 - **`ranker`:** the golden test against `FBA/Rankings.txt` using the first 1280 games of `FBA/Results.txt`, which are read-only inputs.
 - **`bracket`:**
   - Pairings 1v8 to 4v5.
