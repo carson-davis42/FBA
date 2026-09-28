@@ -76,6 +76,12 @@ describe('orderTeams', () => {
     expect(ids(r)).toEqual(['C', 'A', 'B']);
     expect(r.notes[0].text).toBe('C, A, B: power ranking #1, unranked, unranked');
   });
+
+  it('adds no note when nobody in the group is ranked, but still orders by id', () => {
+    const r = orderTeams([rec('C', 0, 4), rec('B', 0, 4), rec('A', 0, 4)], { conference: true, ranks: () => [] });
+    expect(ids(r)).toEqual(['A', 'B', 'C']);
+    expect(r.notes).toEqual([]);
+  });
 });
 
 describe('betterAcross (FBA Finals home court)', () => {

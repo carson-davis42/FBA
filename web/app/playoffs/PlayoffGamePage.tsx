@@ -37,7 +37,18 @@ export function PlayoffGamePage() {
   if (error) return <p className="error">Couldn't load the season: {error.message}</p>;
   if (!state) return <p className="muted">Loading…</p>;
   const stored = state.playoffs?.games[gameNo - 1];
-  if (stored && !sim) return <FinalView state={state} r={stored} />;
+  if (stored && !sim) {
+    const storedSeries = state.playoffs!.series.find(s => s.id === stored.seriesId);
+    return (
+      <>
+        {storedSeries && (
+          <p className="muted">Playoff game {gameNo} · {roundName(lg, storedSeries)}, game {stored.gameInSeries}</p>
+        )}
+        <FinalView state={state} r={stored} />
+        <Link to={`/league/${lg}/playoffs`}>Back to the playoffs ▸</Link>
+      </>
+    );
+  }
   if (!sim) {
     return (
       <section>

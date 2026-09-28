@@ -73,6 +73,11 @@ describe('seedPreview and lockSeeds', () => {
     const r = lockSeeds(regularSeasonDone(fbaSeasonState()));
     expect(r.ok).toBe(false);
   });
+
+  it('has no tie notes before any games are played', () => {
+    const seeds = seedPreview(fullFbaState());
+    expect(seeds.map(s => s.notes)).toEqual(seeds.map(() => []));
+  });
 });
 
 describe('recordPlayoffGame', () => {

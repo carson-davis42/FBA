@@ -37,7 +37,9 @@ describe('PlayoffGamePage', () => {
   it('shows a played game as a final', async () => {
     stubApi(seasonDocs(playPlayoffs(seeded(), 5, 1)));
     renderAt('/league/fba/playoffs/game/1');
+    expect(await screen.findByText(/^Playoff game 1 · East first round, game 1/)).toBeTruthy();
     expect(await screen.findByText(/^Final/)).toBeTruthy();
+    expect((await screen.findByRole('link', { name: 'Back to the playoffs ▸' })).getAttribute('href')).toBe('/league/fba/playoffs');
   });
 
   it('refuses any other game', async () => {

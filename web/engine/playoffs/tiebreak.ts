@@ -82,7 +82,9 @@ function breakTie(group: TeamRecord[], step: Step, opts: TieOptions, notes: TieN
   const ranks = opts.ranks();
   const pos = (r: TeamRecord) => { const i = ranks.indexOf(r.teamId); return i < 0 ? Infinity : i; };
   const sorted = [...group].sort((a, b) => pos(a) - pos(b) || (a.teamId < b.teamId ? -1 : a.teamId > b.teamId ? 1 : 0));
-  notes.push(note(sorted, 'power ranking', r => (pos(r) === Infinity ? 'unranked' : `#${pos(r) + 1}`)));
+  if (sorted.some(r => pos(r) !== Infinity)) {
+    notes.push(note(sorted, 'power ranking', r => (pos(r) === Infinity ? 'unranked' : `#${pos(r) + 1}`)));
+  }
   return sorted;
 }
 
