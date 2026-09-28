@@ -43,7 +43,9 @@ describe('SchedulesPage', () => {
   it('shows existing schedules and offers a re-roll', async () => {
     stubApi(docs(true));
     render(<MemoryRouter><SchedulesPage /></MemoryRouter>);
-    expect(await screen.findByRole('button', { name: 'Re-roll schedules' })).toBeTruthy();
+    const btn = await screen.findByRole('button', { name: 'Re-roll schedules' });
+    expect(btn).toBeTruthy();
+    expect((btn as HTMLButtonElement).disabled).toBe(false);
     expect(screen.getByText(/FBA: 16 games/)).toBeTruthy();
   });
 

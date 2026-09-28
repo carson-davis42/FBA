@@ -16,10 +16,28 @@ const open = (stage: Stage) => {
 
 describe('All-Star events', () => {
   it('saves the roll before revealing it, then reveals it roll by roll', async () => {
-    const log = open('drawn');
+    const docs = seasonDocs(allStarSeasonState('drawn'));
+    const batchBodies: { label: string; writes: { path: string; doc: unknown }[] }[] = [];
+    const pending: ((r: Response) => void)[] = [];
+    vi.stubGlobal('fetch', vi.fn((url: string, init?: RequestInit) => {
+      if (url === '/api/batch') {
+        const body = JSON.parse(String(init!.body)) as { label: string; writes: { path: string; doc: unknown }[] };
+        batchBodies.push(body);
+        for (const w of body.writes) docs[w.path] = w.doc;
+        return new Promise<Response>(resolve => pending.push(resolve));
+      }
+      const path = url.replace('/api/state/', '');
+      if (!(path in docs)) return Promise.resolve(new Response(JSON.stringify({ error: `Not found: ${path}` }), { status: 404 }));
+      return Promise.resolve(new Response(JSON.stringify(docs[path]), { headers: { ETag: '"0000000000000001"' } }));
+    }));
+    render(<MemoryRouter><AllStarPage /></MemoryRouter>);
     fireEvent.click(await screen.findByRole('button', { name: 'Run the 5pt contest' }));
-    await waitFor(() => expect(log.batches).toHaveLength(1));
-    expect(log.batches[0].label).toBe('Run the 5pt contest');
+    await waitFor(() => expect(batchBodies).toHaveLength(1));
+    expect(batchBodies[0].label).toBe('Run the 5pt contest');
+    // The save hasn't resolved yet, so no reveal controls should exist.
+    expect(screen.queryByRole('button', { name: 'Roll next' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Roll to end' })).toBeNull();
+    pending[0](new Response(JSON.stringify({ ok: true, batchId: '1-0', versions: {} })));
     fireEvent.click(await screen.findByRole('button', { name: 'Roll next' }));
     expect(screen.getAllByRole('listitem').length).toBeGreaterThan(0);
     fireEvent.click(screen.getByRole('button', { name: 'Roll to end' }));
