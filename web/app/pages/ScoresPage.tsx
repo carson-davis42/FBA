@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { closeTradeDeadline, leagueStepProblem, recordGames, simNextGames } from '../../engine/season/moves';
 import { gameDays } from '../../engine/season/schedule';
@@ -38,6 +38,9 @@ export function ScoresPage() {
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
   const [message, setMessage] = useState('');
   const stop = useRef(false);
+
+  /** Stops an in-progress "Sim to…" loop when the commissioner navigates away, since its Stop button leaves with the page. */
+  useEffect(() => () => { stop.current = true; }, []);
 
   if (!lg) return <p className="error">Scores are only for the FBA and D2.</p>;
   if (error) return <p className="error">Couldn't load the season: {error.message}</p>;

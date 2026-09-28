@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/re
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { SeasonState } from '../../engine/season/state';
-import { fbaSeasonState } from '../../engine/season/testFixtures';
+import { d2SeasonState, fbaSeasonState } from '../../engine/season/testFixtures';
 import type { ResultsFile } from '../../engine/shared/types';
 import { stubApi } from '../d2/testDocs';
 import { seasonDocs } from '../season/testDocs';
@@ -63,6 +63,28 @@ describe('ScoresPage', () => {
     expect(await screen.findByText('The season is played at the FBA step (current step: FBA D2)')).toBeTruthy();
     expect((screen.getByRole('button', { name: 'Quick-sim next game' }) as HTMLButtonElement).disabled).toBe(true);
     expect((screen.getByRole('button', { name: 'Sim' }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('stops simming once the page is left (F8)', async () => {
+    const docs = seasonDocs(d2SeasonState());
+    const batchBodies: unknown[] = [];
+    const pending: ((r: Response) => void)[] = [];
+    vi.stubGlobal('fetch', vi.fn((url: string, init?: RequestInit) => {
+      if (url === '/api/batch') {
+        batchBodies.push(JSON.parse(String(init!.body)));
+        return new Promise<Response>(resolve => pending.push(resolve));
+      }
+      const path = url.replace('/api/state/', '');
+      if (!(path in docs)) return Promise.resolve(new Response(JSON.stringify({ error: `Not found: ${path}` }), { status: 404 }));
+      return Promise.resolve(new Response(JSON.stringify(docs[path]), { headers: { ETag: '"0000000000000001"' } }));
+    }));
+    const { unmount } = renderAt('/league/fbad2/scores');
+    fireEvent.click(await screen.findByRole('button', { name: 'Sim' }));
+    await waitFor(() => expect(batchBodies).toHaveLength(1));
+    unmount();
+    pending[0](new Response(JSON.stringify({ ok: true, batchId: '1-0', versions: {} })));
+    await new Promise(r => setTimeout(r, 20));
+    expect(batchBodies).toHaveLength(1);
   });
 
   it('closes trading at the deadline pause', async () => {
