@@ -90,7 +90,7 @@ The commissioner set this order; it replaces the S61 list:
 The standings show each status the moment it is mathematically certain, not only at season end.
 
 **D2** (new; the D2 had no markers in 2b-1):
-- **`x` / `n`:** clinched a top-8 playoff spot, or eliminated from one. This is the FBA clinch math with 16 teams.
+- **`*` / `x` / `n`:** clinched first place, clinched a top-8 playoff spot, or eliminated from one. This is the FBA clinch math with 16 teams.
 - **`▲` promoted (WL, UL and IL only):**
   - The regular-season #1 gets it when it clinches first place.
   - The second spot is known only when the league final ends. It goes to the champion, or to the regular-season #2 if the #1 also won the final.
@@ -150,7 +150,12 @@ PlayoffsFile {
   - the queue lists only unfinished series whose teams are both known.
 - **The committed `web/data` has no `playoffs.json`**, so `web/data.test.ts` is unaffected.
 
-**Saves.** A new `app/playoffs/commitPlayoffs.ts` sends the loaded versions the way `commitSeason` does.
+**Saves.** `playoffs.json` becomes one more season document:
+- `SeasonState.playoffs` holds it.
+- `'playoffs'` is added to the `SeasonDocKey` values.
+- `useSeasonState` loads it and records its version.
+
+So playoff moves are saved with the existing `commitSeason`, which already sends the loaded versions.
 - **Lock seeds** is one undoable batch that writes `playoffs.json`, labelled e.g. "Lock S79 FBA playoff seeds".
 - **Each playoff game** is one batch that writes `playoffs.json` (the game, series wins, winner, queue and, on the last final, `outcome`). The last final also writes `calendar.json`.
 
