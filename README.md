@@ -37,3 +37,14 @@ League data lives in `web/data/` as JSON and is committed like the old `.txt` fi
 - **D2 pool** (`/league/fbad2/draft`): each position is ranked by the new rating with a line after the top 64. Drag or use ↑/↓ (or Alt+↑/↓) to override. **Lock pool** sends roster players below the line to Reserves and shuffles one draft pick per open roster spot.
 - **D2 draft**: the team on the clock picks from the draft pool at any position it still needs. Re-roll the order before the first pick; **Undo last pick** steps back one pick. **Skip pick** appears only when no eligible player is left for that team; once every pick is made, the full pick order is shown as a summary.
 - Saves are version-checked: if another tab changed the same data, the save is refused and the page reloads instead of overwriting it.
+
+### Season play (S79 regular season)
+- **Schedules** (`/schedules`, the "Make S79 Schedules" calendar step): builds the FBA (86 games per team) and D2 (30 per team) schedules with the Java scheduling rules. You can re-roll until the first game is played.
+- **Scores** (`/league/<fba|fbad2>/scores`): game days, Quick-sim next game, Sim rest of day, and Sim to… (a day, the next pause, or the end of the regular season). Every day is saved on its own, so Undo steps back one day.
+- **Live game** (Watch): the scorebug, play-by-play, win probability and box score, possession by possession (it slows down in the clutch). It is saved at the final buzzer.
+- **Standings**: FBA conferences with the Java clinch markers (`*` #1 seed, `x` playoffs, `n` eliminated) and lottery standings; D2's four leagues.
+- **FBA pauses**:
+  - after games 322, 645 and 967, a rating editor that suggests ±2 from scoring vs. expectation
+  - at 645, the trade deadline (Close trading makes trades read-only for the season)
+  - at 967, the All-Star weekend: selections, the captains' draft, the contest draw, the 5pt and dunk contests, the Young-Star tournament, and the All-Star Game on 2d6 dice
+- **Roster locks**: after free agency closes, rosters only change as the season allows (FBA trades until the deadline).

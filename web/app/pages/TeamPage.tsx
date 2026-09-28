@@ -3,8 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import { releasePlayer } from '../../engine/roster/moves';
 import { isExpired, payroll } from '../../engine/roster/rules';
 import { lockProblem } from '../../engine/season/locks';
+import { playerSeasonStats } from '../../engine/season/ratingPause';
 import { groupLabel, isLeagueId, LEAGUE_LABEL } from '../../engine/shared/leagues';
-import type { MetaFile, PlayersFile, RosterEntry, RostersFile, TeamsFile } from '../../engine/shared/types';
+import type { MetaFile, PlayersFile, ResultsFile, RosterEntry, RostersFile, ScheduleFile, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
 import { EditDialog } from '../components/EditDialog';
 import { PayrollBar } from '../components/PayrollBar';
@@ -26,6 +27,9 @@ export function TeamPage() {
   const { data: players } = useDoc<PlayersFile>(valid ? 'players.json' : null);
   const season = valid && meta ? meta.rosterSeason[league] : undefined;
   const { data: rosters } = useDoc<RostersFile>(season === undefined ? null : `leagues/${league}/S${season}/rosters.json`);
+  const seasonal = (league === 'fba' || league === 'fbad2') && season !== undefined;
+  const { data: schedule } = useDoc<ScheduleFile>(seasonal ? `leagues/${league}/S${season}/schedule.json` : null);
+  const { data: results } = useDoc<ResultsFile>(seasonal ? `leagues/${league}/S${season}/results.json` : null);
   const editable = (league === 'fba' || league === 'fbad2') && meta !== undefined && season === meta.currentSeason && rosters?.locked === false;
   const { state, versions } = useRosterState();
   const phase = useSeasonPhase();
@@ -42,6 +46,9 @@ export function TeamPage() {
   if (!team) return <p className="error">No team "{teamId}" in {LEAGUE_LABEL[league]}.</p>;
   const entries = rosters.teams[team.teamId] ?? [];
   const lg = league === 'fbad2' ? 'fbad2' : 'fba';
+  const stats = playerSeasonStats(results ?? null);
+  const ppg = new Map([...stats].map(([id, s]) => [id, s.games ? s.pts / s.games : 0]));
+  const myGames = schedule ? schedule.games.filter(g => g.home === team.teamId || g.away === team.teamId) : [];
 
   const release = async (playerId: string, kind: 'released' | 'cut') => {
     if (!state) return;
@@ -104,8 +111,31 @@ export function TeamPage() {
       {resigning && state && fbaTeams && <SignPanel key={resigning} state={state} teams={fbaTeams} playerId={resigning} defaultTeam={teamId} onClose={() => setResigning(null)} versions={versions} phase={phase} />}
       {editable && phase && lockProblem(phase, lg, 'release') && <p className="muted">{lockProblem(phase, lg, 'release')}</p>}
       <div className="table-wrap">
-        <RosterTable league={league} entries={entries} players={players.players} extraLabel={editable ? 'Actions' : undefined} renderExtra={editable && state ? actions : undefined} />
+        <RosterTable league={league} entries={entries} players={players.players} ppg={results ? ppg : undefined} extraLabel={editable ? 'Actions' : undefined} renderExtra={editable && state ? actions : undefined} />
       </div>
+      {myGames.length > 0 && (
+        <div className="table-wrap">
+          <h2>S{season} schedule &amp; results</h2>
+          <table className="roster" aria-label="Schedule & results">
+            <thead><tr><th>#</th><th>Opponent</th><th>Result</th></tr></thead>
+            <tbody>
+              {myGames.map(g => {
+                const r = results?.games[g.gameNo - 1];
+                const home = g.home === team.teamId;
+                const mine = r ? (home ? r.homePts : r.awayPts) : 0;
+                const theirs = r ? (home ? r.awayPts : r.homePts) : 0;
+                return (
+                  <tr key={g.gameNo}>
+                    <td>{g.gameNo}</td>
+                    <td>{home ? 'vs ' : '@ '}{home ? g.away : g.home}</td>
+                    <td>{r ? `${mine > theirs ? 'W' : 'L'} ${mine}-${theirs}` : '—'}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
     </section>
   );
 }
