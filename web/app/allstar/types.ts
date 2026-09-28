@@ -11,4 +11,6 @@ export interface StepProps {
   saving: boolean;
   /** Commits an All-Star result; resolves false (after showing the problem) when it failed. */
   save: (r: AllStarResult) => Promise<boolean>;
+  /** Tells the page to keep showing this step (even once the doc's current step has moved on) while a dice reveal is in progress. */
+  onRevealChange?: (active: boolean) => void;
 }

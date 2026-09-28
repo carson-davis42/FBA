@@ -37,15 +37,25 @@ export function teamGameLines(game: TeamGame, label: (team: number) => string, n
   return out;
 }
 
-/** Runs an event once (pre-rolled), reveals it, and saves when the reveal ends. */
+/** Runs an event once (pre-rolled), saves it immediately, then reveals the saved result. */
 function useEvent(props: StepProps) {
   const [pending, setPending] = useState<Extract<AllStarResult, { ok: true }> | null>(null);
-  const start = (r: AllStarResult) => {
-    if (r.ok) setPending(r);
-    else void props.save(r);
+  const [status, setStatus] = useState<'idle' | 'revealing' | 'failed'>('idle');
+
+  const trySave = useCallback(async (r: Extract<AllStarResult, { ok: true }>) => {
+    const ok = await props.save(r);
+    if (ok) props.onRevealChange?.(true);
+    setStatus(ok ? 'revealing' : 'failed');
+  }, [props]);
+
+  const run = (r: AllStarResult) => {
+    if (!r.ok) { void props.save(r); return; }
+    setPending(r);
+    void trySave(r);
   };
-  const onFinished = useCallback(() => { if (pending) void props.save(pending); }, [pending, props]);
-  return { pending, start, onFinished };
+  const retry = () => { if (pending) void trySave(pending); };
+  const onFinished = useCallback(() => { setStatus('idle'); props.onRevealChange?.(false); }, [props]);
+  return { pending, status, run, retry, onFinished };
 }
 
 export function ContestStep(props: StepProps & { contest: '5pt' | 'dunk' }) {
@@ -55,14 +65,15 @@ export function ContestStep(props: StepProps & { contest: '5pt' | 'dunk' }) {
   const name = (id: string) => list.find(p => p.playerId === id)?.name ?? id;
   const label = contest === '5pt' ? '5pt contest' : 'dunk contest';
   const saved = contest === '5pt' ? doc.fivePoint : doc.dunk;
-  if (saved) return <StaticLines lines={contestLines(saved, name)} />;
-  if (ev.pending) {
+  if (ev.status === 'revealing' && ev.pending) {
     const r = contest === '5pt' ? ev.pending.doc.fivePoint! : ev.pending.doc.dunk!;
     return <DiceReveal lines={contestLines(r, name)} onFinished={ev.onFinished} busy={saving} />;
   }
+  if (saved) return <StaticLines lines={contestLines(saved, name)} />;
+  if (ev.status === 'failed') return <button className="btn primary" disabled={saving} onClick={ev.retry}>Retry save</button>;
   if (readOnly) return <p className="muted">Not run yet.</p>;
   return (
-    <button className="btn primary" disabled={saving} onClick={() => ev.start(contest === '5pt' ? runFivePoint(doc, Math.random) : runDunk(doc, Math.random))}>
+    <button className="btn primary" disabled={saving} onClick={() => ev.run(contest === '5pt' ? runFivePoint(doc, Math.random) : runDunk(doc, Math.random))}>
       Run the {label}
     </button>
   );
@@ -129,10 +140,11 @@ export function YsgStep(props: StepProps) {
   const ev = useEvent(props);
   if (!doc) return null;
   const name = (id: string) => list.find(p => p.playerId === id)?.name ?? state.players.players[id]?.name ?? id;
+  if (ev.status === 'revealing' && ev.pending) return <DiceReveal lines={ysgLines(ev.pending.doc, name)} onFinished={ev.onFinished} busy={saving} />;
   if (doc.ysg) return <StaticLines lines={ysgLines(doc, name)} />;
-  if (ev.pending) return <DiceReveal lines={ysgLines(ev.pending.doc, name)} onFinished={ev.onFinished} busy={saving} />;
+  if (ev.status === 'failed') return <button className="btn primary" disabled={saving} onClick={ev.retry}>Retry save</button>;
   if (readOnly) return <p className="muted">Not played yet.</p>;
-  return <button className="btn primary" disabled={saving} onClick={() => ev.start(runYoungStar(doc, Math.random))}>Run the Young-Star tournament</button>;
+  return <button className="btn primary" disabled={saving} onClick={() => ev.run(runYoungStar(doc, Math.random))}>Run the Young-Star tournament</button>;
 }
 
 function asgLines(doc: NonNullable<StepProps['doc']>, name: (id: string) => string): RevealLine[] {
@@ -148,10 +160,11 @@ export function AsgStep(props: StepProps) {
   const name = (id: string) => list.find(p => p.playerId === id)?.name ?? id;
   const teams = asgTeams(doc);
   const sides = [`Team ${name(teams[0][0])}`, `Team ${name(teams[1][0])}`];
+  if (ev.status === 'revealing' && ev.pending) return <DiceReveal lines={asgLines(ev.pending.doc, name)} sides={sides} onFinished={ev.onFinished} busy={saving} />;
   if (doc.asg) return <StaticLines lines={asgLines(doc, name)} />;
-  if (ev.pending) return <DiceReveal lines={asgLines(ev.pending.doc, name)} sides={sides} onFinished={ev.onFinished} busy={saving} />;
+  if (ev.status === 'failed') return <button className="btn primary" disabled={saving} onClick={ev.retry}>Retry save</button>;
   if (readOnly) return <p className="muted">Not played yet.</p>;
-  return <button className="btn primary" disabled={saving} onClick={() => ev.start(runAsg(doc, list, Math.random))}>Play the All-Star Game</button>;
+  return <button className="btn primary" disabled={saving} onClick={() => ev.run(runAsg(doc, list, Math.random))}>Play the All-Star Game</button>;
 }
 
 export function WrapUp({ state, doc, list, saving, finished, onFinish }: StepProps & { finished: boolean; onFinish: () => void }) {

@@ -62,7 +62,10 @@ export function AllStarPage() {
   const current: AllStarStep = step === 'done' ? 'wrapup' : step;
   const shown = view ?? current;
   const reached = (s: AllStarStep) => STEP_ORDER.indexOf(s) <= STEP_ORDER.indexOf(current);
-  const props: StepProps = { state, doc, list, saving, save, readOnly: shown !== current || step === 'done' };
+  const props: StepProps = {
+    state, doc, list, saving, save, readOnly: shown !== current || step === 'done',
+    onRevealChange: active => setView(active ? shown : null),
+  };
 
   return (
     <section>
