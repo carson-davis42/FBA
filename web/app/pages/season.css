@@ -1,5 +1,5 @@
-.league-tabs { display: flex; gap: 4px; margin: 4px 0 14px; border-bottom: 1px solid var(--border); }
-.league-tabs a { padding: 6px 12px; font-weight: 700; color: var(--muted); border-bottom: 2px solid transparent; }
+.league-tabs { display: flex; gap: 4px; margin: 4px 0 14px; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: thin; }
+.league-tabs a { padding: 6px 12px; font-weight: 700; color: var(--muted); border-bottom: 2px solid transparent; white-space: nowrap; flex: 0 0 auto; }
 .league-tabs a.active { color: var(--text); border-bottom-color: var(--accent); }
 .schedule-card { margin-bottom: 10px; }
 .sim-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
