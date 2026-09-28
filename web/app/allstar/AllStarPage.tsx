@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { type AllStarResult, fbaPlayers } from '../../engine/allstar/common';
-import { allStarStep, type AllStarStep, STEP_LABEL, STEP_ORDER } from '../../engine/allstar/steps';
+import { allStarStep, type AllStarStep, finishAllStar, STEP_LABEL, STEP_ORDER } from '../../engine/allstar/steps';
 import { blockingPause, seasonDocPath } from '../../engine/season/state';
 import { useSaving } from '../api';
 import { commitDocs } from '../roster/commit';
+import { commitSeason } from '../season/commitSeason';
 import { useSeasonState } from '../season/useSeasonState';
 import { AsgDraftStep } from './AsgDraftStep';
 import { ContestDrawStep } from './ContestDrawStep';
+import { AsgStep, ContestStep, WrapUp, YsgDraftStep, YsgStep } from './EventSteps';
 import { SelectionStep } from './SelectionStep';
 import type { StepProps } from './types';
 import '../pages/roster.css';
@@ -45,6 +47,18 @@ export function AllStarPage() {
       return false;
     }
   };
+  const finish = async () => {
+    const r = finishAllStar(state);
+    if (!r.ok) {
+      setMessage(r.problems.join('; '));
+      return;
+    }
+    try {
+      await commitSeason(r, versions);
+    } catch (e) {
+      setMessage((e as Error).message);
+    }
+  };
   const current: AllStarStep = step === 'done' ? 'wrapup' : step;
   const shown = view ?? current;
   const reached = (s: AllStarStep) => STEP_ORDER.indexOf(s) <= STEP_ORDER.indexOf(current);
@@ -64,9 +78,11 @@ export function AllStarPage() {
       {shown === 'selections' && <SelectionStep {...props} />}
       {shown === 'asgDraft' && <AsgDraftStep {...props} />}
       {shown === 'contestDraw' && <ContestDrawStep {...props} />}
-      {!['selections', 'asgDraft', 'contestDraw'].includes(shown) && (
-        <p className="muted">This event is built in the next task.</p>
-      )}
+      {(shown === 'fivePoint' || shown === 'dunk') && <ContestStep key={shown} {...props} contest={shown === 'fivePoint' ? '5pt' : 'dunk'} />}
+      {shown === 'ysgDraft' && <YsgDraftStep {...props} />}
+      {shown === 'ysg' && <YsgStep {...props} />}
+      {shown === 'asg' && <AsgStep {...props} />}
+      {shown === 'wrapup' && <WrapUp {...props} finished={step === 'done'} onFinish={finish} />}
     </section>
   );
 }
