@@ -6,7 +6,7 @@ import type {
 import { useDoc, type DocState, type Versions } from '../api';
 
 /** Loads one league's season docs plus the version of every doc a season move may write. */
-export function useSeasonState(league: SeasonLeague | null): { state?: SeasonState; versions: Versions; error?: Error } {
+export function useSeasonState(league: SeasonLeague | null): { state?: SeasonState; versions: Versions; error?: Error; reload: () => void } {
   const meta = useDoc<MetaFile>('meta.json');
   const season = meta.data?.currentSeason;
   const on = league !== null && season !== undefined;
@@ -23,6 +23,10 @@ export function useSeasonState(league: SeasonLeague | null): { state?: SeasonSta
   const pausePath = on && pause?.kind === 'ratings' ? seasonDocPath('ratingPause', 'fba', season, pause.afterGame) : null;
   const ratingPause = useDoc<RatingPauseFile>(pausePath);
 
+  const reload = (): void => {
+    for (const d of [meta, teams, rosters, players, calendar, tx, schedule, results, allstar, ratingPause]) d.reload();
+  };
+
   const versions: Versions = {};
   if (on) {
     const keyed: [SeasonDocKey, DocState<unknown>][] = [['rosters', rosters], ['calendar', calendar], ['tx', tx], ['schedule', schedule], ['results', results]];
@@ -34,9 +38,10 @@ export function useSeasonState(league: SeasonLeague | null): { state?: SeasonSta
   const required: DocState<unknown>[] = [meta, teams, rosters, players, calendar, tx];
   const optional: DocState<unknown>[] = [schedule, results, ...(league === 'fba' ? [allstar] : []), ...(pausePath ? [ratingPause] : [])];
   const error = required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
-  if (!on || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { versions, error };
+  if (!on || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { versions, error, reload };
   return {
     versions,
+    reload,
     state: {
       league, season,
       teams: teams.data!, rosters: rosters.data!, players: players.data!, calendar: calendar.data!, tx: tx.data!,

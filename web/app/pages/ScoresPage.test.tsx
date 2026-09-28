@@ -27,6 +27,31 @@ function atDeadline(): SeasonState {
   };
 }
 
+/** D2 season finished and the calendar has already moved on to FBA. */
+function d2OverAndAdvanced(): SeasonState {
+  const s = d2SeasonState();
+  const games = s.schedule!.games.map(g => ({ gameNo: g.gameNo, home: g.home, away: g.away, homePts: 60, awayPts: 50 }));
+  return {
+    ...s,
+    results: { ...s.results!, games },
+    calendar: { ...s.calendar, steps: s.calendar.steps.map(x => (x.id === 'fba-d2' ? { ...x, done: true } : x)) },
+  };
+}
+
+/** Games 1-12 played; the ratings pause after 12 is resolved but the All-Star pause at the same point still blocks. */
+function q3AllstarBlocked(): SeasonState {
+  const s = fbaSeasonState();
+  const games = s.schedule!.games.slice(0, 12).map(g => ({ gameNo: g.gameNo, home: g.home, away: g.away, homePts: 60, awayPts: 50 }));
+  return {
+    ...s,
+    results: { ...s.results!, games },
+    schedule: {
+      ...s.schedule!,
+      pauses: s.schedule!.pauses.map(p => (p.afterGame < 12 || (p.afterGame === 12 && p.kind === 'ratings') ? { ...p, done: true } : p)),
+    },
+  };
+}
+
 describe('ScoresPage', () => {
   it('asks for schedules first', async () => {
     stubApi(seasonDocs({ ...fbaSeasonState(), schedule: null, results: null }));
@@ -70,8 +95,64 @@ describe('ScoresPage', () => {
     const early: SeasonState = { ...s, calendar: { ...s.calendar, steps: s.calendar.steps.map(x => (x.id === 'fba-d2' ? { ...x, done: false } : x)) } };
     stubApi(seasonDocs(early));
     renderAt('/league/fba/scores');
-    expect(await screen.findByText('Game 1 · Next')).toBeTruthy();
+    expect(await screen.findByText('Game 1 · Upcoming')).toBeTruthy();
     expect(screen.queryByRole('link', { name: 'Watch' })).toBeNull();
+  });
+
+  it('labels the next game "Upcoming" (not "Next") while the league step is blocked (item 3)', async () => {
+    const s = fbaSeasonState();
+    const early: SeasonState = { ...s, calendar: { ...s.calendar, steps: s.calendar.steps.map(x => (x.id === 'fba-d2' ? { ...x, done: false } : x)) } };
+    stubApi(seasonDocs(early));
+    renderAt('/league/fba/scores');
+    expect(await screen.findByText('Game 1 · Upcoming')).toBeTruthy();
+    expect(document.querySelector('.game-card.next')).toBeNull();
+  });
+
+  it('labels the next game "Upcoming" (not "Next") while a pause blocks it (item 3)', async () => {
+    stubApi(seasonDocs(atDeadline()));
+    renderAt('/league/fba/scores');
+    expect(await screen.findByText('Game 9 · Upcoming')).toBeTruthy();
+    expect(screen.queryByText('Game 9 · Next')).toBeNull();
+    expect(document.querySelector('.game-card.next')).toBeNull();
+  });
+
+  it('shows only the season-complete message once the season is over, even if a calendar step problem also applies (B2)', async () => {
+    stubApi(seasonDocs(d2OverAndAdvanced()));
+    renderAt('/league/fbad2/scores');
+    expect(await screen.findByText('The regular season is complete.')).toBeTruthy();
+    expect(screen.queryByText(/The season is played at the FBA D2 step/)).toBeNull();
+  });
+
+  it('sim-to-pause reads "the end of the regular season" once the only unfinished pause is already blocking (B3)', async () => {
+    stubApi(seasonDocs(q3AllstarBlocked()));
+    renderAt('/league/fba/scores');
+    expect(await screen.findByText('Pause after game 12: All-Star weekend')).toBeTruthy();
+    const select = screen.getByRole('combobox', { name: 'Sim to' }) as HTMLSelectElement;
+    expect(select.options[0].textContent).toBe('the end of the regular season');
+  });
+
+  it('sim-to-pause reads the next reachable pause while a same-point pause already blocks (B3)', async () => {
+    stubApi(seasonDocs(atDeadline()));
+    renderAt('/league/fba/scores');
+    expect(await screen.findByText('Pause after game 8: trade deadline')).toBeTruthy();
+    const select = screen.getByRole('combobox', { name: 'Sim to' }) as HTMLSelectElement;
+    expect(select.options[0].textContent).toBe('the next pause (after game 12)');
+  });
+
+  it('offers a Retry button that reloads the season after a failed load (item 4)', async () => {
+    const docs = seasonDocs(fbaSeasonState());
+    let fail = true;
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+      const path = url.replace('/api/state/', '');
+      if (fail && path === 'meta.json') return new Response('{}', { status: 500 });
+      if (!(path in docs)) return new Response(JSON.stringify({ error: `Not found: ${path}` }), { status: 404 });
+      return new Response(JSON.stringify(docs[path]), { headers: { ETag: '"0000000000000001"' } });
+    }));
+    renderAt('/league/fba/scores');
+    expect(await screen.findByText(/Couldn't load the season/)).toBeTruthy();
+    fail = false;
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    expect(await screen.findByText('Game 1 · Next')).toBeTruthy();
   });
 
   it('stops simming once the page is left (F8)', async () => {

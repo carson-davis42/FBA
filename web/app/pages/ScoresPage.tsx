@@ -4,7 +4,7 @@ import { closeTradeDeadline, leagueStepProblem, recordGames, simNextGames } from
 import { gameDays } from '../../engine/season/schedule';
 import { records } from '../../engine/season/standings';
 import {
-  blockingPause, gamesPlayed, nextPause, PAUSE_LABEL, playerName, seasonOver, type SeasonResult, type SeasonState,
+  blockingPause, gamesPlayed, PAUSE_LABEL, playerName, seasonOver, type SeasonResult, type SeasonState,
 } from '../../engine/season/state';
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { Team } from '../../engine/shared/types';
@@ -31,7 +31,7 @@ function TeamLine({ team, rec, pts, won, season }: { team: Team; rec: string; pt
 export function ScoresPage() {
   const { league = '' } = useParams();
   const lg = league === 'fba' || league === 'fbad2' ? league : null;
-  const { state, versions, error } = useSeasonState(lg);
+  const { state, versions, error, reload } = useSeasonState(lg);
   const saving = useSaving();
   const [day, setDay] = useState<number | null>(null);
   const [simTo, setSimTo] = useState('pause');
@@ -43,7 +43,13 @@ export function ScoresPage() {
   useEffect(() => () => { stop.current = true; }, []);
 
   if (!lg) return <p className="error">Scores are only for the FBA and D2.</p>;
-  if (error) return <p className="error">Couldn't load the season: {error.message}</p>;
+  if (error) {
+    return (
+      <p className="error">
+        Couldn't load the season: {error.message} <button className="btn" onClick={reload}>Retry</button>
+      </p>
+    );
+  }
   if (!state) return <p className="muted">Loading…</p>;
   const header = (
     <>
@@ -71,7 +77,7 @@ export function ScoresPage() {
   const stepProblem = leagueStepProblem(state.calendar, lg);
   const blocked = busy || !!pause || over || !!stepProblem;
   const lastOfDay = (d: number) => days[d][days[d].length - 1];
-  const upcoming = nextPause(schedule);
+  const upcoming = schedule.pauses.find(p => !p.done && p.afterGame > played) ?? null;
 
   const stopFor = (t: Target): number => {
     if (t === 'next') return played + 1;
@@ -132,8 +138,7 @@ export function ScoresPage() {
   return (
     <section>
       {header}
-      {over && <p className="muted">The regular season is complete.</p>}
-      {stepProblem && <p className="muted">{stepProblem}</p>}
+      {over ? <p className="muted">The regular season is complete.</p> : stepProblem && <p className="muted">{stepProblem}</p>}
       {pause && (
         <div className="card pause-card">
           <h3>Pause after game {pause.afterGame}: {PAUSE_LABEL[pause.kind]}</h3>
@@ -180,7 +185,7 @@ export function ScoresPage() {
           const home = byTeam.get(g.home);
           const away = byTeam.get(g.away);
           if (!home || !away) return null;
-          const isNext = !r && n === played + 1;
+          const isNext = !r && n === played + 1 && !pause && !stepProblem;
           const status = r ? `Final${r.ot ? (r.ot > 1 ? ` (${r.ot}OT)` : ' (OT)') : ''}` : isNext ? 'Next' : 'Upcoming';
           const lines = r?.box ? [...r.box.home, ...r.box.away] : [];
           const top = lines.length ? lines.reduce((a, b) => (b.pts > a.pts ? b : a)) : null;
@@ -192,7 +197,7 @@ export function ScoresPage() {
               {top && <div className="muted">Top: {playerName(state, top.playerId)} {top.pts}</div>}
               <div className="game-links">
                 {r && <Link to={`/league/${lg}/game/${n}`}>Box score</Link>}
-                {isNext && !pause && !stepProblem && <Link to={`/league/${lg}/game/${n}`}>Watch</Link>}
+                {isNext && <Link to={`/league/${lg}/game/${n}`}>Watch</Link>}
               </div>
             </div>
           );
