@@ -65,6 +65,15 @@ describe('ScoresPage', () => {
     expect((screen.getByRole('button', { name: 'Sim' }) as HTMLButtonElement).disabled).toBe(true);
   });
 
+  it('offers no Watch link before the D2 cycle finishes (F1)', async () => {
+    const s = fbaSeasonState();
+    const early: SeasonState = { ...s, calendar: { ...s.calendar, steps: s.calendar.steps.map(x => (x.id === 'fba-d2' ? { ...x, done: false } : x)) } };
+    stubApi(seasonDocs(early));
+    renderAt('/league/fba/scores');
+    expect(await screen.findByText('Game 1 · Next')).toBeTruthy();
+    expect(screen.queryByRole('link', { name: 'Watch' })).toBeNull();
+  });
+
   it('stops simming once the page is left (F8)', async () => {
     const docs = seasonDocs(d2SeasonState());
     const batchBodies: unknown[] = [];

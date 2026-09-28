@@ -192,7 +192,7 @@ export function ScoresPage() {
               {top && <div className="muted">Top: {playerName(state, top.playerId)} {top.pts}</div>}
               <div className="game-links">
                 {r && <Link to={`/league/${lg}/game/${n}`}>Box score</Link>}
-                {isNext && !pause && <Link to={`/league/${lg}/game/${n}`}>Watch</Link>}
+                {isNext && !pause && !stepProblem && <Link to={`/league/${lg}/game/${n}`}>Watch</Link>}
               </div>
             </div>
           );

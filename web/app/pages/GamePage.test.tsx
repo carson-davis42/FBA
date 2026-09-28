@@ -4,6 +4,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mulberry32 } from '../../engine/d2/random';
 import { recordGames, simNextGames } from '../../engine/season/moves';
+import type { SeasonState } from '../../engine/season/state';
 import { fbaSeasonState } from '../../engine/season/testFixtures';
 import { stubApi } from '../d2/testDocs';
 import { seasonDocs } from '../season/testDocs';
@@ -43,5 +44,14 @@ describe('GamePage', () => {
     stubApi(seasonDocs(fbaSeasonState()));
     renderAt('/league/fba/game/3');
     expect(await screen.findByText("This game isn't up next.")).toBeTruthy();
+  });
+
+  it('refuses to start a game out of calendar order (F1)', async () => {
+    const s = fbaSeasonState();
+    const early: SeasonState = { ...s, calendar: { ...s.calendar, steps: s.calendar.steps.map(x => (x.id === 'fba-d2' ? { ...x, done: false } : x)) } };
+    stubApi(seasonDocs(early));
+    renderAt('/league/fba/game/1');
+    expect(await screen.findByText('The season is played at the FBA step (current step: FBA D2)')).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Next possession' })).toBeNull();
   });
 });

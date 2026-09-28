@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { lineup, recordGames } from '../../engine/season/moves';
+import { leagueStepProblem, lineup, recordGames } from '../../engine/season/moves';
 import { type Possession, simGame, type SimGame, winProbability } from '../../engine/season/sim';
 import { blockingPause, gamesPlayed, playerName, type SeasonState } from '../../engine/season/state';
 import type { GameResult } from '../../engine/shared/types';
@@ -71,7 +71,8 @@ export function GamePage() {
   const [message, setMessage] = useState('');
   const [history, setHistory] = useState<number[]>([]);
 
-  const isNext = !!state?.schedule && !!state.results && gamesPlayed(state) + 1 === n && !blockingPause(state);
+  const stepProblem = state && lg ? leagueStepProblem(state.calendar, lg) : null;
+  const isNext = !!state?.schedule && !!state.results && gamesPlayed(state) + 1 === n && !blockingPause(state) && !stepProblem;
 
   useEffect(() => {
     if (!state || sim || !isNext) return;
@@ -138,7 +139,7 @@ export function GamePage() {
   if (!sim) {
     return (
       <section>
-        <p className="muted">{message || (blockingPause(state) ? 'Finish the pause before playing on.' : "This game isn't up next.")}</p>
+        <p className="muted">{message || (blockingPause(state) ? 'Finish the pause before playing on.' : stepProblem || "This game isn't up next.")}</p>
         <Link to={`/league/${lg}/scores`}>Back to scores ▸</Link>
       </section>
     );
