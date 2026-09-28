@@ -99,7 +99,14 @@ export function PlayoffsPage() {
         )}
         {over && !pause && stepProblem && <p className="muted">{stepProblem}</p>}
         <SeedTables lg={lg} state={state} seeds={seedPreview(state)} teams={teams} />
-        {over && !pause && !stepProblem && <button className="btn primary" disabled={saving} onClick={lock}>Lock seeds</button>}
+        {over && !pause && !stepProblem && !state.awards?.locked && (
+          <div className="card pause-card">
+            <h3>Awards step</h3>
+            <p className="muted">Lock the S{state.season} awards before seeding the playoffs.</p>
+            <Link className="btn primary" to={`/league/${lg}/awards`}>Awards step ▸</Link>
+          </div>
+        )}
+        {over && !pause && !stepProblem && state.awards?.locked && <button className="btn primary" disabled={saving} onClick={lock}>Lock seeds</button>}
         {message && <p className="error">{message}</p>}
       </section>
     );

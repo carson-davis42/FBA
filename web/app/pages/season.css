@@ -52,3 +52,11 @@
 .series-side.won { font-weight: 800; }
 .series-games { list-style: none; padding: 0; margin: 0; }
 .series-games li { padding: 3px 0; }
+.race-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 10px; margin: 10px 0; }
+.race-table .why { font-size: 11px; font-weight: 400; }
+.award-picks { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; }
+.award-picks label { display: flex; flex-direction: column; gap: 4px; font-weight: 700; }
+.award-picks select, .all-fba select { max-width: 100%; }
+.all-fba { width: 100%; }
+.all-fba td:first-child { font-weight: 700; width: 60px; }
+.award-winners { margin: 0; padding-left: 18px; }
