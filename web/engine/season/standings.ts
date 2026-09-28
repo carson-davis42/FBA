@@ -1,4 +1,6 @@
 import type { GameResult } from '../shared/types';
+import { powerRankings } from '../playoffs/ranker';
+import { orderTeams, type TieNote } from '../playoffs/tiebreak';
 import type { ScheduleTeamInfo, SeasonLeague } from './schedule';
 
 export const GROUP_ORDER: Record<SeasonLeague, string[]> = { fba: ['E', 'W'], fbad2: ['PL', 'WL', 'UL', 'IL'] };
@@ -39,7 +41,7 @@ export interface StandingRow {
 }
 
 export interface Standings {
-  groups: { group: string; rows: StandingRow[] }[];
+  groups: { group: string; rows: StandingRow[]; notes: TieNote[] }[];
   /** FBA only: non-playoff teams, worst first. */
   lottery: StandingRow[];
 }
@@ -77,7 +79,7 @@ export function records(teams: ScheduleTeamInfo[], games: GameResult[]): Map<str
 
 const diffOf = (r: TeamRecord) => r.pf - r.pa;
 
-/** Java Team.isBetterThan, with post-head-to-head fallbacks (point differential, then team id) until power rankings exist. */
+/** Java Team.isBetterThan with point-differential and team-id fallbacks. Used for the lottery order only. */
 export function betterThan(league: SeasonLeague, a: TeamRecord, b: TeamRecord): boolean {
   const gb = ((a.w - b.w) + (b.l - a.l)) / 2;
   if (gb > 0) return true;
@@ -216,10 +218,15 @@ function toRows(league: SeasonLeague, ordered: TeamRecord[], len: { games: numbe
 export function standings(league: SeasonLeague, teams: ScheduleTeamInfo[], games: GameResult[], len = SEASON_LENGTH[league]): Standings {
   const recs = records(teams, games);
   const better = (a: TeamRecord, b: TeamRecord) => betterThan(league, a, b);
+  let ranked: string[] | null = null;
+  const ranks = () => {
+    if (ranked === null) ranked = powerRankings(games);
+    return ranked;
+  };
   const present = GROUP_ORDER[league].filter(code => teams.some(t => t.group === code));
   const groups = present.map(group => {
-    const ordered = javaOrder([...recs.values()].filter(r => r.group === group), better);
-    return { group, rows: toRows(league, ordered, len) };
+    const { order, notes } = orderTeams([...recs.values()].filter(r => r.group === group), { conference: league === 'fba', ranks });
+    return { group, rows: toRows(league, order, len), notes };
   });
   let lottery: StandingRow[] = [];
   if (league === 'fba') {
