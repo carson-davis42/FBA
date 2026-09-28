@@ -1,3 +1,4 @@
+import { leagueRefRating } from '../awards/defense';
 import { leagueStepProblem, toGameResult } from '../season/moves';
 import type { SimGame } from '../season/sim';
 import { PLAYOFF_SEEDS, records, SEASON_LENGTH, standings, type Standings } from '../season/standings';
@@ -88,7 +89,7 @@ export function recordPlayoffGame(state: SeasonState, sim: SimGame): SeasonResul
   if (sim.gameNo !== next.gameNo || sim.home.teamId !== next.home || sim.away.teamId !== next.away) {
     return seasonFail([`This isn't the next playoff game (next is game ${next.gameNo}: ${next.away} @ ${next.home})`]);
   }
-  const game: PlayoffGame = { ...toGameResult(sim), seriesId: next.seriesId, gameInSeries: next.gameInSeries };
+  const game: PlayoffGame = { ...toGameResult(sim, leagueRefRating(state.rosters)), seriesId: next.seriesId, gameInSeries: next.gameInSeries };
   const winner = game.homePts > game.awayPts ? game.home : game.away;
   const recs = records(state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group })), state.results?.games ?? []);
   let ranked: string[] | null = null;

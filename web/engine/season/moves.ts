@@ -1,4 +1,5 @@
 import type { Rng } from '../d2/random';
+import { defenseLines, leagueRefRating } from '../awards/defense';
 import { POSITIONS } from '../roster/rules';
 import { currentStepIndex, markStepDone } from '../shared/calendar';
 import type { CalendarFile, CalendarStep, GameResult, PauseKind, ResultsFile, ScheduleFile, TeamsFile } from '../shared/types';
@@ -90,7 +91,10 @@ export function simNextGames(state: SeasonState, max: number, rng: Rng): { games
   return { games: out, problem: null };
 }
 
-export function toGameResult(g: SimGame): GameResult {
+/** A simmed game as saved. With a reference rating, each box line also gets its defensive stats (engine/awards/defense.ts). */
+export function toGameResult(g: SimGame, refRating?: number): GameResult {
+  const d = refRating === undefined ? null : defenseLines(g, refRating);
+  const lines = (side: 'home' | 'away') => g[side].players.map((p, k) => ({ playerId: p.playerId, pts: g.box[side][k], ...(d ? d[side][k] : {}) }));
   return {
     gameNo: g.gameNo,
     home: g.home.teamId,
@@ -99,10 +103,7 @@ export function toGameResult(g: SimGame): GameResult {
     awayPts: g.awayPts,
     ot: g.ot,
     periods: g.periods,
-    box: {
-      home: g.home.players.map((p, k) => ({ playerId: p.playerId, pts: g.box.home[k] })),
-      away: g.away.players.map((p, k) => ({ playerId: p.playerId, pts: g.box.away[k] })),
-    },
+    box: { home: lines('home'), away: lines('away') },
   };
 }
 
@@ -125,7 +126,8 @@ export function recordGames(state: SeasonState, games: SimGame[]): SeasonResult 
   if (pause) problems.push(`Finish the ${PAUSE_LABEL[pause.kind]} pause (after game ${pause.afterGame}) first`);
   if (problems.length) return seasonFail(problems);
 
-  const results = games.map(toGameResult);
+  const ref = leagueRefRating(state.rosters);
+  const results = games.map(g => toGameResult(g, ref));
   const add = new Map<string, number>();
   for (const r of results) for (const line of [...r.box!.home, ...r.box!.away]) add.set(line.playerId, (add.get(line.playerId) ?? 0) + line.pts);
   const teams = Object.fromEntries(Object.entries(state.rosters.teams).map(([t, entries]) => [
