@@ -1,4 +1,5 @@
 import type { PickCondition, PickObligation } from '../shared/types';
+import { lockProblem } from '../season/locks';
 import { futureSeasons, nextPriority, pickLabel } from './picks';
 import { capProblem, normalizeRoster, payroll, slotProblems } from './rules';
 import { appendTx, type DocKey, fail, type MoveContext, type MoveResult, nameOf, type RosterState, withLeague, withTeam } from './state';
@@ -15,6 +16,8 @@ export interface TradeInput {
 }
 
 export function makeTrade(state: RosterState, input: TradeInput, ctx: MoveContext): MoveResult {
+  const locked = lockProblem(ctx.phase, input.league, 'trade');
+  if (locked) return fail([locked]);
   const key = input.league === 'fba' ? 'fba' : 'd2';
   const txKey = input.league === 'fba' ? 'fbaTx' : 'd2Tx';
   const problems: string[] = [];

@@ -1,6 +1,7 @@
 import type {
   FreeAgentsFile, PicksFile, PlayersFile, ReservesFile, RosterEntry, RostersFile, TransactionsFile, TransactionType,
 } from '../shared/types';
+import type { SeasonPhase } from '../season/locks';
 
 export interface RosterState {
   season: number;
@@ -33,6 +34,8 @@ export function docPath(key: DocKey, season: number): string {
 
 export interface MoveContext {
   batchId: string;
+  /** The season phase for roster locks; omitted means the offseason (nothing locked). */
+  phase?: SeasonPhase;
 }
 
 export type MoveResult =

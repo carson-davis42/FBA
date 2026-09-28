@@ -1,4 +1,5 @@
 import type { FreeAgent, Position, RosterEntry } from '../shared/types';
+import { lockProblem } from '../season/locks';
 import {
   CAP, capProblem, contractEndFor, contractProblems, isExpired, MAX_AMOUNT, MAX_YEARS_RESIGN, normalizeRoster, payroll, POSITIONS, slotProblems,
   type ContractKind,
@@ -44,6 +45,8 @@ function findSource(state: RosterState, playerId: string): Source | null {
 const toFreeAgent = (e: RosterEntry): FreeAgent => ({ playerId: e.playerId!, position: e.position, age: e.age, rating: e.rating, rookie: false, note: '' });
 
 export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContext): MoveResult {
+  const locked = lockProblem(ctx.phase, 'fba', 'sign');
+  if (locked) return fail([locked]);
   const { season } = state;
   if (state.freeAgents.locked) return fail(['Free agency is closed']);
   const team = state.fba.teams[input.teamId];
@@ -124,6 +127,8 @@ export interface ReleaseInput {
 }
 
 export function releasePlayer(state: RosterState, input: ReleaseInput, ctx: MoveContext): MoveResult {
+  const locked = lockProblem(ctx.phase, input.league, input.kind === 'cut' ? 'cut' : 'release');
+  if (locked) return fail([locked]);
   const key = input.league === 'fba' ? 'fba' : 'd2';
   const txKey = input.league === 'fba' ? 'fbaTx' : 'd2Tx';
   const team = state[key].teams[input.teamId];
@@ -206,6 +211,8 @@ function show(field: keyof EditChanges, v: unknown): string {
 }
 
 export function editPlayer(state: RosterState, input: EditInput, ctx: MoveContext): MoveResult {
+  const locked = lockProblem(ctx.phase, input.league, 'edit');
+  if (locked) return fail([locked]);
   const applied = applyEdit(state, input);
   if (!applied) return fail([`That player is not on ${input.teamId}`]);
   const key = input.league === 'fba' ? 'fba' : 'd2';
