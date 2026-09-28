@@ -38,6 +38,10 @@ export interface StandingRow {
   l10: string;
   streak: string;
   marker: '*' | 'x' | 'n' | null;
+  /** D2 only: ▲ promoted, ▼ relegated, once certain. */
+  status: '▲' | '▼' | null;
+  /** 🏆 league champion; C FBA conference champion. */
+  badge: '🏆' | 'C' | null;
 }
 
 export interface Standings {
@@ -156,12 +160,13 @@ function clinchX(conf: ClinchRecord[], i: number, len: { games: number; confGame
   return true;
 }
 
-function clinchN(conf: ClinchRecord[], i: number, len: { games: number; confGames: number }): boolean {
-  if (i <= PLAYOFF_SEEDS - 1) return false;
+/** Java clinchN, generalized: the team at `i` can no longer reach the top `spots`. */
+function clinchOut(conf: ClinchRecord[], i: number, len: { games: number; confGames: number }, spots: number): boolean {
+  if (i <= spots - 1) return false;
   const t = conf[i];
   const maxW = t.w + (len.games - played(t));
   const maxCW = t.confW + (len.confGames - confPlayed(t));
-  for (let j = 0; j < Math.min(PLAYOFF_SEEDS, conf.length); j++) {
+  for (let j = 0; j < Math.min(spots, conf.length); j++) {
     if (j === i) continue;
     const temp = conf[j];
     if (temp.w <= maxW) {
@@ -174,6 +179,8 @@ function clinchN(conf: ClinchRecord[], i: number, len: { games: number; confGame
   }
   return true;
 }
+
+const clinchN = (conf: ClinchRecord[], i: number, len: { games: number; confGames: number }) => clinchOut(conf, i, len, PLAYOFF_SEEDS);
 
 /** The Java marker for the team at `index` of a sorted conference: '*' #1 seed, 'x' playoff spot, 'n' eliminated. */
 export function markerFor(conf: ClinchRecord[], index: number, len: { games: number; confGames: number }): '*' | 'x' | 'n' | null {
@@ -196,7 +203,32 @@ function lastTen(log: ('W' | 'L')[]): string {
   return `${ten.filter(x => x === 'W').length}-${ten.filter(x => x === 'L').length}`;
 }
 
-function toRows(league: SeasonLeague, ordered: TeamRecord[], len: { games: number; confGames: number }): StandingRow[] {
+const PROMOTE_FROM = ['WL', 'UL', 'IL'];
+const RELEGATE_FROM = ['PL', 'WL', 'UL'];
+
+/** D2 promotion/relegation, shown once certain: #1 when first place is clinched, the playoff pick after the league final. */
+function statusOf(league: SeasonLeague, group: string, ordered: TeamRecord[], i: number, len: { games: number; confGames: number }, playoffs: PlayoffsFile | null): '▲' | '▼' | null {
+  if (league !== 'fbad2') return null;
+  if (PROMOTE_FROM.includes(group)) {
+    if (i === 0 && clinchStar(ordered, 0, len)) return '▲';
+    const winner = playoffs?.series.find(s => s.id === `${group}-F`)?.winner;
+    if (winner) {
+      const second = winner === ordered[0]?.teamId ? ordered[1]?.teamId : winner;
+      if (ordered[i].teamId === second) return '▲';
+    }
+  }
+  if (RELEGATE_FROM.includes(group) && ordered.length > 2 && clinchOut(ordered, i, len, ordered.length - 2)) return '▼';
+  return null;
+}
+
+function badgeOf(league: SeasonLeague, group: string, teamId: string, playoffs: PlayoffsFile | null): '🏆' | 'C' | null {
+  if (!playoffs) return null;
+  const won = (id: string) => playoffs.series.find(s => s.id === id)?.winner === teamId;
+  if (league === 'fba') return won('FINALS') ? '🏆' : won(`${group}-CF`) ? 'C' : null;
+  return won(`${group}-F`) ? '🏆' : null;
+}
+
+function toRows(league: SeasonLeague, group: string, ordered: TeamRecord[], len: { games: number; confGames: number }, playoffs: PlayoffsFile | null): StandingRow[] {
   const top = ordered[0];
   return ordered.map((r, i) => ({
     teamId: r.teamId,
@@ -211,12 +243,13 @@ function toRows(league: SeasonLeague, ordered: TeamRecord[], len: { games: numbe
     diff: diffOf(r),
     l10: lastTen(r.log),
     streak: streakOf(r.log),
-    marker: league === 'fba' ? markerFor(ordered, i, len) : null,
+    marker: markerFor(ordered, i, len),
+    status: statusOf(league, group, ordered, i, len, playoffs),
+    badge: badgeOf(league, group, r.teamId, playoffs),
   }));
 }
 
 export function standings(league: SeasonLeague, teams: ScheduleTeamInfo[], games: GameResult[], len = SEASON_LENGTH[league], playoffs: PlayoffsFile | null = null): Standings {
-  void playoffs;
   const recs = records(teams, games);
   const better = (a: TeamRecord, b: TeamRecord) => betterThan(league, a, b);
   let ranked: string[] | null = null;
@@ -227,7 +260,7 @@ export function standings(league: SeasonLeague, teams: ScheduleTeamInfo[], games
   const present = GROUP_ORDER[league].filter(code => teams.some(t => t.group === code));
   const groups = present.map(group => {
     const { order, notes } = orderTeams([...recs.values()].filter(r => r.group === group), { conference: league === 'fba', ranks });
-    return { group, rows: toRows(league, order, len), notes };
+    return { group, rows: toRows(league, group, order, len, playoffs), notes };
   });
   let lottery: StandingRow[] = [];
   if (league === 'fba') {

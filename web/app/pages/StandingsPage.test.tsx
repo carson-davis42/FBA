@@ -2,6 +2,7 @@
 import { cleanup, render, screen, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { fullD2State, regularSeasonDone } from '../../engine/playoffs/testFixtures';
 import { d2SeasonState, fbaSeasonState } from '../../engine/season/testFixtures';
 import { stubApi } from '../d2/testDocs';
 import { seasonDocs } from '../season/testDocs';
@@ -35,5 +36,13 @@ describe('StandingsPage', () => {
     stubApi(seasonDocs(d2SeasonState()));
     renderAt('/league/fbad2/standings');
     expect((await screen.findAllByRole('table'))).toHaveLength(2);
+  });
+
+  it('shows the D2 legend and promotion/relegation markers', async () => {
+    const s = regularSeasonDone(fullD2State());
+    stubApi(seasonDocs(s));
+    renderAt('/league/fbad2/standings');
+    expect(await screen.findByText(/▲ promoted · ▼ relegated/)).toBeTruthy();
+    expect(screen.getAllByText(/▼/).length).toBeGreaterThanOrEqual(6);
   });
 });

@@ -29,7 +29,7 @@ function Table({ rows, teams, season, showConf, lottery }: { rows: StandingRow[]
             return (
               <tr key={r.teamId} className={!lottery && r.seed === PLAYOFF_SEEDS ? 'playoff-line' : undefined}>
                 <td>{r.seed}</td>
-                <td className="marker">{r.marker ?? ''}</td>
+                <td className="marker">{[r.marker, r.status, r.badge].filter(Boolean).join(' ')}</td>
                 <td>{t && <TeamMark team={t} season={season} size={20} />} {t?.name ?? r.teamId}</td>
                 <td className="n">{r.w}</td><td className="n">{r.l}</td><td className="n">{pct(r.pct)}</td>
                 {!lottery && <td className="n">{gb(r.gb)}</td>}
@@ -52,12 +52,16 @@ export function StandingsPage() {
   if (error) return <p className="error">Couldn't load the season: {error.message}</p>;
   if (!state) return <p className="muted">Loading…</p>;
   const teams = new Map(state.teams.teams.map(t => [t.teamId, t]));
-  const s = standings(lg, state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group })), state.results?.games ?? []);
+  const s = standings(lg, state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group })), state.results?.games ?? [], undefined, state.playoffs);
   return (
     <section>
       <h1>{LEAGUE_LABEL[lg]} standings · S{state.season}</h1>
       <LeagueTabs league={lg} />
-      {lg === 'fba' && <p className="muted">* clinched the #1 seed · x clinched a playoff spot · n eliminated</p>}
+      <p className="muted">
+        {lg === 'fba'
+          ? '* clinched the #1 seed · x clinched a playoff spot · n eliminated · C conference champion · 🏆 FBA champion'
+          : '* clinched first place · x clinched a playoff spot · n eliminated · ▲ promoted · ▼ relegated · 🏆 league champion'}
+      </p>
       {s.groups.map(g => (
         <div key={g.group}>
           <h2>{groupLabel(lg, g.group)}</h2>

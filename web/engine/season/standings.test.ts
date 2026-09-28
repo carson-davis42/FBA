@@ -61,10 +61,11 @@ describe('standings', () => {
     expect(s.lottery).toEqual([]);
   });
 
-  it('puts D2 leagues in PL, WL, UL, IL order without markers', () => {
+  it('puts D2 leagues in PL, WL, UL, IL order, with markers now shown for D2 too', () => {
     const d2 = [{ teamId: 'X', group: 'WL' }, { teamId: 'Y', group: 'PL' }];
     const s = standings('fbad2', d2, [g(1, 'X', 50, 'Y', 40)]);
     expect(s.groups.map(x => x.group)).toEqual(['PL', 'WL']);
-    expect(s.groups.every(x => x.rows.every(r => r.marker === null))).toBe(true);
+    // Each group here has a single team, trivially clinching first place.
+    expect(s.groups.every(x => x.rows.every(r => r.marker === '*'))).toBe(true);
   });
 });
