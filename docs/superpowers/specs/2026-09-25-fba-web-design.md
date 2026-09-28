@@ -193,8 +193,28 @@ Each league's constants (games, teams per conference, series lengths) are carrie
 
 ## 10. Roadmap (each sub-project gets its own spec → plan → build)
 
-1. **Foundation:** see §11.
-2. **FBA league:** engine port, scores, live game, standings, playoffs bracket, team, player, and stats/awards pages, pause cards, season completion into history.
+This is the single up-to-date list of parts. Update it whenever a part is split, started or finished.
+
+| Part | What it covers | Status | Spec · Plan |
+|---|---|---|---|
+| 1 Foundation | Data server, schemas, importers, app shell, calendar, roster editor (§11) | Done | §11 · [plan](../plans/2026-09-25-foundation.md) |
+| 2a phase 1 | Roster moves, free agency, trades, draft picks, batch undo | Done | [spec](2026-09-26-roster-moves-free-agency-design.md) · [plan](../plans/2026-09-26-roster-moves-phase1.md) |
+| 2a phase 2 | D2 cycle: ratings reset, D2 pool, D2 draft | Done | [spec](2026-09-27-d2-cycle-design.md) · [plan](../plans/2026-09-27-d2-cycle.md) |
+| 2b-1 | Regular season for the FBA and D2: schedules, sim, live game, standings, pauses, All-Star weekend, roster locks | Done | [spec](2026-09-27-season-play-regular-season-design.md) · [plan](../plans/2026-09-27-regular-season.md) |
+| 2b-2a | Postseason for both leagues: seeding tiebreaks, brackets, live playoff games, D2 promotion and relegation, standings markers | Done | [spec](2026-09-27-postseason-design.md) · [plan](../plans/2026-09-28-postseason.md) |
+| 2b-2b | Season awards with live races and odds (FBA and D2 MVPs), defensive stats, power-rankings pages | In progress | [spec](2026-09-28-awards-rankings-design.md) · [plan](../plans/2026-09-28-awards-rankings.md) |
+| 2b-2c | Season wrap-up: champions and awards into history, apply promotion and relegation, lock the season, clear Undo, "Go to next season" | Not started | — |
+| 3 FBA history | Import and views for champions, awards, All-FBA, HOF, team trophy cases with era logos, draft history, player career timelines, transactions, events | Not started | — |
+| 4 FBAD2 | D2 history and anything left after 2b (season play, playoffs and promotion were built in 2b) | Not started | — |
+| 5 FBAWC | Host nation, group/bracket play, flags, World Cup history. Even seasons only | Not started | — |
+| 6 FBAJC | 216 teams / 18 conferences, preseason tournaments, conference challenge, rankings, conference tournaments, March Madness, NIT, recruiting and transfer history, school history pages | Not started | — |
+| 7 Offseason | Calendar step tools (details below) | Not started | — |
+| Later | A separate defensive rating for players (the best basis for DPOY; changes the sim, rosters, drafts and rating adjustments) | Idea | — |
+
+Part 2 was originally one sub-project, "FBA league": engine port, scores, live game, standings, playoffs bracket, team, player, and stats/awards pages, pause cards, season completion into history. It was split into the 2a and 2b parts above as it was built.
+
+The original descriptions of the remaining parts:
+
 3. **FBA history:** import and views for champions, awards, All-FBA, HOF, team trophy cases with era logos, draft history, player career timelines, transactions, events.
 4. **FBAD2:** 64 teams / 4 leagues, playoffs, promotion and relegation display, D2 history.
 5. **FBAWC:** host nation, group/bracket play, flags, World Cup history. Even seasons only.
