@@ -14,6 +14,7 @@ export function seasonDocs(state: SeasonState): Record<string, unknown> {
   };
   if (state.schedule) out[seasonDocPath('schedule', league, season)] = state.schedule;
   if (state.results) out[seasonDocPath('results', league, season)] = state.results;
+  if (state.playoffs) out[seasonDocPath('playoffs', league, season)] = state.playoffs;
   if (state.allstar) out[seasonDocPath('allstar', 'fba', season)] = state.allstar;
   if (state.ratingPause) out[seasonDocPath('ratingPause', 'fba', season, state.ratingPause.afterGame)] = state.ratingPause;
   return out;

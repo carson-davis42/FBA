@@ -355,3 +355,82 @@ export const AllStarFile = z.object({
   asg: z.object({ game: TeamGame, mvp: playerId, mvpRollOff: RollOff.nullable() }).strict().nullable(),
 }).strict();
 export type AllStarFile = z.infer<typeof AllStarFile>;
+
+const teamRef = z.string().min(1);
+
+export const PlayoffSeries = z.object({
+  /** E-R1-1 … E-SF-2, E-CF, FINALS (FBA); PL-R1-1 … PL-F (D2). */
+  id: z.string().min(1),
+  /** Conference or D2 league; null for the FBA Finals. */
+  group: z.string().min(1).nullable(),
+  round: int.min(1).max(4),
+  /** The team with home court in games 1, 2, 5 and 7 (null until known). */
+  home: teamRef.nullable(),
+  away: teamRef.nullable(),
+  homeSeed: int.min(1).max(8).nullable(),
+  awaySeed: int.min(1).max(8).nullable(),
+  homeWins: int.min(0).max(4),
+  awayWins: int.min(0).max(4),
+  winner: teamRef.nullable(),
+  next: z.string().min(1).nullable(),
+}).strict();
+export type PlayoffSeries = z.infer<typeof PlayoffSeries>;
+
+/** A playoff game: `gameNo` counts playoff games in play order; home/away are that game's actual host and visitor. */
+export const PlayoffGame = GameResult.extend({ seriesId: z.string().min(1), gameInSeries: int.min(1).max(7) }).strict();
+export type PlayoffGame = z.infer<typeof PlayoffGame>;
+
+export const PromotionLine = z.object({ league: z.string().min(1), promoted: z.array(teamRef), relegated: z.array(teamRef) }).strict();
+export type PromotionLine = z.infer<typeof PromotionLine>;
+
+export const PlayoffsFile = z.object({
+  league: seasonLeague,
+  season: int,
+  locked: z.boolean(),
+  seeds: z.array(z.object({ group: z.string().min(1), teams: z.array(teamRef).length(8), notes: z.array(z.string()) }).strict()),
+  series: z.array(PlayoffSeries),
+  /** The Java rotation: unfinished series with both teams known, front first. */
+  queue: z.array(z.string().min(1)),
+  games: z.array(PlayoffGame),
+  outcome: z.object({
+    champions: z.array(z.object({ group: z.string().min(1).nullable(), teamId: teamRef, runnerUp: teamRef, score: z.string().min(1) }).strict()),
+    /** D2 only. */
+    promotion: z.array(PromotionLine).nullable(),
+  }).strict().nullable(),
+}).strict().superRefine((doc, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  const byId = new Map(doc.series.map(s => [s.id, s]));
+  if (byId.size !== doc.series.length) issue('Series ids must be unique');
+  for (const s of doc.series) {
+    if (s.homeWins === 4 && s.awayWins === 4) issue(`${s.id}: only one side can have 4 wins`);
+    const leader = s.homeWins === 4 ? s.home : s.awayWins === 4 ? s.away : null;
+    if ((leader === null) !== (s.winner === null) || (leader !== null && s.winner !== leader)) {
+      issue(`${s.id}: the winner must be set exactly when a side has 4 wins, and be that side`);
+    }
+    if (s.next !== null && !byId.has(s.next)) issue(`${s.id}: next series ${s.next} doesn't exist`);
+  }
+  if (new Set(doc.queue).size !== doc.queue.length) issue('The queue lists a series twice');
+  for (const id of doc.queue) {
+    const s = byId.get(id);
+    if (!s) issue(`The queue lists unknown series ${id}`);
+    else if (s.winner !== null || s.home === null || s.away === null) issue(`The queue lists ${id}, which is finished or missing a team`);
+  }
+  const counts = new Map<string, number>();
+  doc.games.forEach((g, k) => {
+    if (g.gameNo !== k + 1) issue(`Playoff game ${k + 1} has gameNo ${g.gameNo}`);
+    const s = byId.get(g.seriesId);
+    if (!s) {
+      issue(`Playoff game ${g.gameNo}: unknown series ${g.seriesId}`);
+      return;
+    }
+    const n = (counts.get(g.seriesId) ?? 0) + 1;
+    counts.set(g.seriesId, n);
+    if (g.gameInSeries !== n) issue(`Playoff game ${g.gameNo}: expected game ${n} of ${g.seriesId}`);
+    const pair = [s.home, s.away];
+    if (g.home === g.away || !pair.includes(g.home) || !pair.includes(g.away)) issue(`Playoff game ${g.gameNo}: teams don't match ${g.seriesId}`);
+  });
+  for (const s of doc.series) {
+    if ((counts.get(s.id) ?? 0) !== s.homeWins + s.awayWins) issue(`${s.id}: wins don't match its games`);
+  }
+});
+export type PlayoffsFile = z.infer<typeof PlayoffsFile>;

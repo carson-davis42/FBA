@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AllStarFile, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, RatingPauseFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, TransactionType, TransactionsFile } from './types';
+import { AllStarFile, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, PlayoffsFile, RatingPauseFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -165,3 +165,56 @@ describe('season schemas', () => {
   });
 });
 
+
+describe('PlayoffsFile', () => {
+  const r1 = (over: Record<string, unknown> = {}) => ({
+    id: 'E-R1-1', group: 'E', round: 1, home: 'BOS', away: 'CAR', homeSeed: 1, awaySeed: 8,
+    homeWins: 0, awayWins: 0, winner: null, next: 'E-SF-1', ...over,
+  });
+  const sf = { id: 'E-SF-1', group: 'E', round: 2, home: null, away: null, homeSeed: null, awaySeed: null, homeWins: 0, awayWins: 0, winner: null, next: null };
+  const game = (over: Record<string, unknown> = {}) => ({
+    gameNo: 1, home: 'BOS', away: 'CAR', homePts: 80, awayPts: 70, seriesId: 'E-R1-1', gameInSeries: 1, ...over,
+  });
+  const doc = (over: Record<string, unknown> = {}) => ({
+    league: 'fba', season: 79, locked: false,
+    seeds: [{ group: 'E', teams: ['BOS', 'DET', 'CIN', 'MAI', 'MAN', 'CAR', 'COL', 'DCB'], notes: ['MAN over CAR: conference record 37–19 vs 30–26'] }],
+    series: [r1(), sf], queue: ['E-R1-1'], games: [], outcome: null, ...over,
+  });
+
+  it('accepts a fresh bracket and one played game', () => {
+    expect(PlayoffsFile.safeParse(doc()).success).toBe(true);
+    expect(PlayoffsFile.safeParse(doc({ series: [r1({ homeWins: 1 }), sf], games: [game()] })).success).toBe(true);
+  });
+
+  it('accepts a finished series with its winner and a D2 promotion outcome', () => {
+    const done = r1({ homeWins: 4, awayWins: 1, winner: 'BOS' });
+    const games = [1, 2, 3, 4, 5].map(n => game({ gameNo: n, gameInSeries: n, homePts: n === 3 ? 60 : 80 }));
+    const outcome = { champions: [{ group: 'E', teamId: 'BOS', runnerUp: 'CAR', score: '4–1' }], promotion: [{ league: 'WL', promoted: ['A', 'B'], relegated: ['C', 'D'] }] };
+    expect(PlayoffsFile.safeParse(doc({ series: [done, sf], queue: [], games, outcome })).success).toBe(true);
+  });
+
+  it('rejects a winner without 4 wins, and 4 wins without a winner', () => {
+    expect(PlayoffsFile.safeParse(doc({ series: [r1({ homeWins: 3, winner: 'BOS' }), sf], queue: [], games: [1, 2, 3].map(n => game({ gameNo: n, gameInSeries: n })) })).success).toBe(false);
+    expect(PlayoffsFile.safeParse(doc({ series: [r1({ homeWins: 4 }), sf], queue: [], games: [1, 2, 3, 4].map(n => game({ gameNo: n, gameInSeries: n })) })).success).toBe(false);
+  });
+
+  it('rejects an unknown next series, and games that disagree with their series', () => {
+    expect(PlayoffsFile.safeParse(doc({ series: [r1({ next: 'E-SF-9' }), sf] })).success).toBe(false);
+    expect(PlayoffsFile.safeParse(doc({ series: [r1({ homeWins: 1 }), sf], games: [game({ home: 'DET' })] })).success).toBe(false);
+    expect(PlayoffsFile.safeParse(doc({ series: [r1({ homeWins: 1 }), sf], games: [game({ gameInSeries: 2 })] })).success).toBe(false);
+    expect(PlayoffsFile.safeParse(doc({ series: [r1({ homeWins: 2 }), sf], games: [game()] })).success).toBe(false);
+    expect(PlayoffsFile.safeParse(doc({ series: [r1({ homeWins: 1 }), sf], games: [game({ gameNo: 2 })] })).success).toBe(false);
+  });
+
+  it('rejects a queue with a finished series or a series missing a team', () => {
+    expect(PlayoffsFile.safeParse(doc({ queue: ['E-R1-1', 'E-SF-1'] })).success).toBe(false);
+    const done = r1({ homeWins: 4, winner: 'BOS' });
+    const games = [1, 2, 3, 4].map(n => game({ gameNo: n, gameInSeries: n }));
+    expect(PlayoffsFile.safeParse(doc({ series: [done, sf], queue: ['E-R1-1'], games })).success).toBe(false);
+  });
+
+  it('needs exactly 8 seeded teams per group and rejects unknown keys', () => {
+    expect(PlayoffsFile.safeParse(doc({ seeds: [{ group: 'E', teams: ['BOS'], notes: [] }] })).success).toBe(false);
+    expect(PlayoffsFile.safeParse({ ...doc(), extra: 1 }).success).toBe(false);
+  });
+});

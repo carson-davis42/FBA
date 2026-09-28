@@ -1,7 +1,7 @@
 import type { SeasonLeague } from '../../engine/season/schedule';
 import { nextPause, seasonDocPath, type SeasonDocKey, type SeasonState } from '../../engine/season/state';
 import type {
-  AllStarFile, CalendarFile, MetaFile, PlayersFile, RatingPauseFile, ResultsFile, RostersFile, ScheduleFile, TeamsFile, TransactionsFile,
+  AllStarFile, CalendarFile, MetaFile, PlayersFile, PlayoffsFile, RatingPauseFile, ResultsFile, RostersFile, ScheduleFile, TeamsFile, TransactionsFile,
 } from '../../engine/shared/types';
 import { useDoc, type DocState, type Versions } from '../api';
 
@@ -18,25 +18,26 @@ export function useSeasonState(league: SeasonLeague | null): { state?: SeasonSta
   const tx = useDoc<TransactionsFile>(at('tx'));
   const schedule = useDoc<ScheduleFile>(at('schedule'));
   const results = useDoc<ResultsFile>(at('results'));
+  const playoffs = useDoc<PlayoffsFile>(at('playoffs'));
   const allstar = useDoc<AllStarFile>(on && league === 'fba' ? seasonDocPath('allstar', 'fba', season) : null);
   const pause = league === 'fba' ? nextPause(schedule.data ?? null) : null;
   const pausePath = on && pause?.kind === 'ratings' ? seasonDocPath('ratingPause', 'fba', season, pause.afterGame) : null;
   const ratingPause = useDoc<RatingPauseFile>(pausePath);
 
   const reload = (): void => {
-    for (const d of [meta, teams, rosters, players, calendar, tx, schedule, results, allstar, ratingPause]) d.reload();
+    for (const d of [meta, teams, rosters, players, calendar, tx, schedule, results, playoffs, allstar, ratingPause]) d.reload();
   };
 
   const versions: Versions = {};
   if (on) {
-    const keyed: [SeasonDocKey, DocState<unknown>][] = [['rosters', rosters], ['calendar', calendar], ['tx', tx], ['schedule', schedule], ['results', results]];
+    const keyed: [SeasonDocKey, DocState<unknown>][] = [['rosters', rosters], ['calendar', calendar], ['tx', tx], ['schedule', schedule], ['results', results], ['playoffs', playoffs]];
     for (const [k, d] of keyed) versions[seasonDocPath(k, league, season)] = d.version;
     if (league === 'fba') versions[seasonDocPath('allstar', 'fba', season)] = allstar.version;
     if (pausePath) versions[pausePath] = ratingPause.version;
   }
 
   const required: DocState<unknown>[] = [meta, teams, rosters, players, calendar, tx];
-  const optional: DocState<unknown>[] = [schedule, results, ...(league === 'fba' ? [allstar] : []), ...(pausePath ? [ratingPause] : [])];
+  const optional: DocState<unknown>[] = [schedule, results, playoffs, ...(league === 'fba' ? [allstar] : []), ...(pausePath ? [ratingPause] : [])];
   const error = required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
   if (!on || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { versions, error, reload };
   return {
@@ -45,7 +46,7 @@ export function useSeasonState(league: SeasonLeague | null): { state?: SeasonSta
     state: {
       league, season,
       teams: teams.data!, rosters: rosters.data!, players: players.data!, calendar: calendar.data!, tx: tx.data!,
-      schedule: schedule.data ?? null, results: results.data ?? null,
+      schedule: schedule.data ?? null, results: results.data ?? null, playoffs: playoffs.data ?? null,
       ratingPause: ratingPause.data ?? null, allstar: allstar.data ?? null,
     },
   };

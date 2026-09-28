@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { pathAgreementProblem, schemaForPath } from './schemaRegistry';
-import { AllStarFile, D2DraftFile, D2PoolFile, D2RatingsFile, RatingPauseFile, ScheduleFile } from './types';
+import { AllStarFile, D2DraftFile, D2PoolFile, D2RatingsFile, PlayoffsFile, RatingPauseFile, ScheduleFile } from './types';
+import { seasonDocPath } from '../season/state';
 
 describe('schemaForPath', () => {
   it.each([
@@ -69,5 +70,16 @@ describe('pathAgreementProblem', () => {
   });
   it('flags a season mismatch', () => {
     expect(pathAgreementProblem('leagues/fba/S79/rosters.json', { league: 'fba', season: 12 })).toMatch(/season/);
+  });
+});
+
+describe('playoffs.json', () => {
+  it('is registered for the FBA and D2 only', () => {
+    expect(schemaForPath('leagues/fba/S79/playoffs.json')).toBe(PlayoffsFile);
+    expect(schemaForPath('leagues/fbad2/S79/playoffs.json')).toBe(PlayoffsFile);
+    expect(schemaForPath('leagues/fbajc/S79/playoffs.json')).toBeNull();
+  });
+  it('has a season doc path', () => {
+    expect(seasonDocPath('playoffs', 'fbad2', 79)).toBe('leagues/fbad2/S79/playoffs.json');
   });
 });
