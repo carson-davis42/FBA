@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { closeTradeDeadline, recordGames, simNextGames } from '../../engine/season/moves';
+import { closeTradeDeadline, leagueStepProblem, recordGames, simNextGames } from '../../engine/season/moves';
 import { gameDays } from '../../engine/season/schedule';
 import { records } from '../../engine/season/standings';
 import {
@@ -65,7 +65,8 @@ export function ScoresPage() {
     return r ? `${r.w}-${r.l}` : '';
   };
   const busy = saving || progress !== null;
-  const blocked = busy || !!pause || over;
+  const stepProblem = leagueStepProblem(state.calendar, lg);
+  const blocked = busy || !!pause || over || !!stepProblem;
   const lastOfDay = (d: number) => days[d][days[d].length - 1];
   const upcoming = nextPause(schedule);
 
@@ -129,6 +130,7 @@ export function ScoresPage() {
     <section>
       {header}
       {over && <p className="muted">The regular season is complete.</p>}
+      {stepProblem && <p className="muted">{stepProblem}</p>}
       {pause && (
         <div className="card pause-card">
           <h3>Pause after game {pause.afterGame}: {PAUSE_LABEL[pause.kind]}</h3>

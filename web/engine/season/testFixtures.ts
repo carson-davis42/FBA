@@ -29,11 +29,12 @@ function rosters(league: SeasonLeague, ratings: Record<string, number[]>, firstI
   return { rosters: { league, season: 79, locked: false, teams }, names };
 }
 
-const calendar = () => ({
+/** Sits at the given league's calendar step (D2 before FBA, per the real season order). */
+const calendar = (league: SeasonLeague) => ({
   season: 79,
   steps: [
     { id: 'make-s79-schedules', label: 'Make S79 Schedules', kind: 'offseason' as const, league: null, sub: false, done: true },
-    { id: 'fba-d2', label: 'FBA D2', kind: 'league' as const, league: 'fbad2' as const, sub: false, done: false },
+    { id: 'fba-d2', label: 'FBA D2', kind: 'league' as const, league: 'fbad2' as const, sub: false, done: league === 'fba' },
     { id: 'fba', label: 'FBA', kind: 'league' as const, league: 'fba' as const, sub: false, done: false },
   ],
 });
@@ -48,7 +49,7 @@ function build(league: SeasonLeague, list: [string, string][], ratings: Record<s
     teams,
     rosters: r.rosters,
     players: { nextId: firstId + 100, players: r.names },
-    calendar: calendar(),
+    calendar: calendar(league),
     tx: { league, season: 79, entries: [] },
     schedule: { league, season: 79, locked: false, games, pauses: defaultPauses(league, games.length) },
     results: { league, season: 79, locked: false, games: [] },

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
+import type { CalendarFile } from '../shared/types';
 import { closeTradeDeadline, lineup, makeSchedules, recordGames, simNextGames } from './moves';
 import { blockingPause, gamesPlayed, gamesUntilStop, seasonDocPath, seasonWrites, type SeasonResult, type SeasonState } from './state';
 import { d2SeasonState, fbaSeasonState } from './testFixtures';
@@ -121,6 +122,58 @@ describe('closeTradeDeadline', () => {
     const r = ok(closeTradeDeadline(ratingsDone));
     expect(r.label).toBe('Close trading (trade deadline)');
     expect(r.state.schedule!.pauses.map(p => p.done)).toEqual([true, true, true, false, false]);
+  });
+});
+
+describe('calendar order (F1)', () => {
+  it('refuses to make schedules before the make-schedules step is current or done', () => {
+    const f = fbaSeasonState();
+    const d = d2SeasonState();
+    const cal: CalendarFile = {
+      season: 79,
+      steps: [
+        { id: 'free-agency-offseason', label: 'Free Agency/Offseason', kind: 'offseason', league: null, sub: false, done: false },
+        { id: 'make-s79-schedules', label: 'Make S79 Schedules', kind: 'offseason', league: null, sub: false, done: false },
+        { id: 'fba-d2', label: 'FBA D2', kind: 'league', league: 'fbad2', sub: false, done: false },
+        { id: 'fba', label: 'FBA', kind: 'league', league: 'fba', sub: false, done: false },
+      ],
+    };
+    const r = makeSchedules({
+      season: 79, calendar: cal,
+      fba: { teams: f.teams, schedule: null, results: null },
+      fbad2: { teams: d.teams, schedule: null, results: null },
+    }, mulberry32(4));
+    expect(r).toEqual({
+      ok: false,
+      problems: ['Schedules are made at the Make S79 Schedules step (current step: Free Agency/Offseason)'],
+    });
+  });
+
+  it('allows a re-roll once the make-schedules step is done, as long as no games are played', () => {
+    const f = fbaSeasonState();
+    const d = d2SeasonState();
+    const r = makeSchedules({
+      season: 79, calendar: f.calendar,
+      fba: { teams: f.teams, schedule: f.schedule, results: f.results },
+      fbad2: { teams: d.teams, schedule: d.schedule, results: d.results },
+    }, mulberry32(4));
+    expect(r.ok && r.label).toBe('Re-roll schedules');
+  });
+
+  it('refuses to sim or record FBA games before the D2 cycle finishes', () => {
+    const s = fbaSeasonState();
+    const early: SeasonState = { ...s, calendar: { ...s.calendar, steps: s.calendar.steps.map(x => (x.id === 'fba-d2' ? { ...x, done: false } : x)) } };
+    expect(simNextGames(early, 1, mulberry32(1))).toEqual({ games: [], problem: 'The season is played at the FBA step (current step: FBA D2)' });
+    const { games } = simNextGames(s, 1, mulberry32(1));
+    expect(recordGames(early, games)).toEqual({ ok: false, problems: ['The season is played at the FBA step (current step: FBA D2)'] });
+  });
+
+  it('refuses to sim or record D2 games once the FBA step is current', () => {
+    const s = d2SeasonState();
+    const late: SeasonState = { ...s, calendar: { ...s.calendar, steps: s.calendar.steps.map(x => (x.id === 'fba-d2' ? { ...x, done: true } : x)) } };
+    expect(simNextGames(late, 1, mulberry32(1))).toEqual({ games: [], problem: 'The season is played at the FBA D2 step (current step: FBA)' });
+    const { games } = simNextGames(s, 1, mulberry32(1));
+    expect(recordGames(late, games)).toEqual({ ok: false, problems: ['The season is played at the FBA D2 step (current step: FBA)'] });
   });
 });
 

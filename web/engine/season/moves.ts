@@ -1,7 +1,7 @@
 import type { Rng } from '../d2/random';
 import { POSITIONS } from '../roster/rules';
-import { markStepDone } from '../shared/calendar';
-import type { CalendarFile, GameResult, PauseKind, ResultsFile, ScheduleFile, TeamsFile } from '../shared/types';
+import { currentStepIndex, markStepDone } from '../shared/calendar';
+import type { CalendarFile, CalendarStep, GameResult, PauseKind, ResultsFile, ScheduleFile, TeamsFile } from '../shared/types';
 import { buildSchedule, defaultPauses, type SeasonLeague } from './schedule';
 import { simGame, type SimGame, type SimTeam } from './sim';
 import {
@@ -12,7 +12,37 @@ export interface ScheduleLeagueInput { teams: TeamsFile; schedule: ScheduleFile 
 export interface MakeSchedulesInput { season: number; calendar: CalendarFile; fba: ScheduleLeagueInput; fbad2: ScheduleLeagueInput }
 export type WritesResult = { ok: true; writes: { path: string; doc: unknown }[]; label: string } | { ok: false; problems: string[] };
 
+/** The calendar's current step, or null once every step is done. */
+function currentStep(cal: CalendarFile): CalendarStep | null {
+  const i = currentStepIndex(cal);
+  return i >= 0 ? cal.steps[i] : null;
+}
+
+/**
+ * null when `wantId` is the calendar's current step (or, with `allowDone`, already done); otherwise the refusal message.
+ * `allowDone` is for schedule-making, which stays open (as a re-roll) once its step is behind us.
+ */
+function calendarProblem(cal: CalendarFile, wantId: string, verb: string, allowDone = false): string | null {
+  const cur = currentStep(cal);
+  if (cur?.id === wantId) return null;
+  const want = cal.steps.find(s => s.id === wantId);
+  if (allowDone && want?.done) return null;
+  return `${verb} at the ${want?.label ?? wantId} step (current step: ${cur ? cur.label : 'none'})`;
+}
+
+/** null unless the make-schedules step for this season is past due (neither current nor done). For gating the Make/Re-roll button. */
+export function scheduleStepProblem(cal: CalendarFile, season: number): string | null {
+  return calendarProblem(cal, schedulesStepId(season), 'Schedules are made', true);
+}
+
+/** null unless this league's calendar step isn't current. For gating sim/record actions and their buttons. */
+export function leagueStepProblem(cal: CalendarFile, league: SeasonLeague): string | null {
+  return calendarProblem(cal, CALENDAR_STEP[league], 'The season is played');
+}
+
 export function makeSchedules(input: MakeSchedulesInput, rng: Rng): WritesResult {
+  const stepProblem = scheduleStepProblem(input.calendar, input.season);
+  if (stepProblem) return { ok: false, problems: [stepProblem] };
   const played = (input.fba.results?.games.length ?? 0) + (input.fbad2.results?.games.length ?? 0);
   if (played > 0) return { ok: false, problems: ["Games have been played; the schedules can't be re-rolled"] };
   const writes: { path: string; doc: unknown }[] = [];
@@ -41,6 +71,8 @@ export function lineup(state: SeasonState, teamId: string): SimTeam | string {
 
 /** Sims up to `max` upcoming games in schedule order, stopping at a pause or the end of the regular season. Nothing is saved. */
 export function simNextGames(state: SeasonState, max: number, rng: Rng): { games: SimGame[]; problem: string | null } {
+  const stepProblem = leagueStepProblem(state.calendar, state.league);
+  if (stepProblem) return { games: [], problem: stepProblem };
   const sched = state.schedule;
   if (!sched || !state.results) return { games: [], problem: 'Make schedules first' };
   const out: SimGame[] = [];
@@ -76,6 +108,8 @@ export function toGameResult(g: SimGame): GameResult {
 
 /** Saves simmed games (which must be the next ones, in order, not past an unfinished pause). */
 export function recordGames(state: SeasonState, games: SimGame[]): SeasonResult {
+  const stepProblem = leagueStepProblem(state.calendar, state.league);
+  if (stepProblem) return seasonFail([stepProblem]);
   const sched = state.schedule;
   if (!sched || !state.results) return seasonFail(['Make schedules first']);
   if (!games.length) return seasonFail(['No games to record']);

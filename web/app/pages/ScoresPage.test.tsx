@@ -55,6 +55,16 @@ describe('ScoresPage', () => {
     expect((screen.getByRole('button', { name: 'Quick-sim next game' }) as HTMLButtonElement).disabled).toBe(true);
   });
 
+  it('blocks sims and explains why before the D2 cycle finishes', async () => {
+    const s = fbaSeasonState();
+    const early: SeasonState = { ...s, calendar: { ...s.calendar, steps: s.calendar.steps.map(x => (x.id === 'fba-d2' ? { ...x, done: false } : x)) } };
+    stubApi(seasonDocs(early));
+    renderAt('/league/fba/scores');
+    expect(await screen.findByText('The season is played at the FBA step (current step: FBA D2)')).toBeTruthy();
+    expect((screen.getByRole('button', { name: 'Quick-sim next game' }) as HTMLButtonElement).disabled).toBe(true);
+    expect((screen.getByRole('button', { name: 'Sim' }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
   it('closes trading at the deadline pause', async () => {
     const log = stubApi(seasonDocs(atDeadline()));
     renderAt('/league/fba/scores');

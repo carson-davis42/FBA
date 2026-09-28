@@ -47,6 +47,23 @@ describe('SchedulesPage', () => {
     expect(screen.getByText(/FBA: 16 games/)).toBeTruthy();
   });
 
+  it('disables Make schedules and explains why, before the make-schedules step', async () => {
+    const f = fbaSeasonState();
+    const docMap = docs(false);
+    docMap['calendar.json'] = {
+      season: 79,
+      steps: [
+        { id: 'free-agency-offseason', label: 'Free Agency/Offseason', kind: 'offseason', league: null, sub: false, done: false },
+        ...f.calendar.steps.map(s => ({ ...s, done: false })),
+      ],
+    };
+    stubApi(docMap);
+    render(<MemoryRouter><SchedulesPage /></MemoryRouter>);
+    const btn = await screen.findByRole('button', { name: 'Make schedules' });
+    expect((btn as HTMLButtonElement).disabled).toBe(true);
+    expect(await screen.findByText('Schedules are made at the Make S79 Schedules step (current step: Free Agency/Offseason)')).toBeTruthy();
+  });
+
   it('shows error when calendar.json fetch fails with non-404', async () => {
     const docMap = docs(false);
     const counts = new Map<string, number>(Object.keys(docMap).map(p => [p, 1]));

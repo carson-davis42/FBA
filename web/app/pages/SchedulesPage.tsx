@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { makeSchedules } from '../../engine/season/moves';
+import { makeSchedules, scheduleStepProblem } from '../../engine/season/moves';
 import { gameDays } from '../../engine/season/schedule';
 import type { CalendarFile, MetaFile, ResultsFile, ScheduleFile, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving, type Versions } from '../api';
@@ -37,6 +37,7 @@ export function SchedulesPage() {
   ];
   const played = leagues.reduce((n, l) => n + (l.results?.games.length ?? 0), 0);
   const exists = leagues.some(l => l.schedule);
+  const stepProblem = scheduleStepProblem(cal.data, season);
 
   const make = async () => {
     const r = makeSchedules({
@@ -79,8 +80,9 @@ export function SchedulesPage() {
           </div>
         );
       })}
-      <button className="btn primary" disabled={saving || played > 0} onClick={make}>{exists ? 'Re-roll schedules' : 'Make schedules'}</button>
-      {played > 0 && <p className="muted">Games have been played, so the schedules can't be re-rolled.</p>}
+      <button className="btn primary" disabled={saving || played > 0 || !!stepProblem} onClick={make}>{exists ? 'Re-roll schedules' : 'Make schedules'}</button>
+      {stepProblem && <p className="muted">{stepProblem}</p>}
+      {!stepProblem && played > 0 && <p className="muted">Games have been played, so the schedules can't be re-rolled.</p>}
       {message && <p className="error">{message}</p>}
     </section>
   );
