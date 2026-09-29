@@ -1,5 +1,5 @@
 import type {
-  CalendarFile, D2DraftFile, D2PoolFile, D2RatingsFile, PlayersFile, Position, ReservesFile, RostersFile, TransactionsFile,
+  CalendarFile, D2DraftFile, D2PoolFile, PlayersFile, Position, RankingFile, ReservesFile, RostersFile, TransactionsFile,
 } from '../shared/types';
 
 /** Everything the D2 ratings reset, pool, and draft read and write for one season. */
@@ -14,7 +14,10 @@ export interface D2State {
   prevD2: RostersFile | null;
   /** True once FBA free agency is closed (the FBA freeAgents doc is locked). */
   freeAgencyClosed: boolean;
-  ratings: D2RatingsFile | null;
+  /** This season's D2 reset ranking (`fbad2/S<n>/ratings.json`). */
+  ratings: RankingFile | null;
+  /** Last season's D2 reset ranking (read-only; its ratings are the suggestion curve). Null if missing. */
+  prevRatings: RankingFile | null;
   pool: D2PoolFile | null;
   draft: D2DraftFile | null;
 }

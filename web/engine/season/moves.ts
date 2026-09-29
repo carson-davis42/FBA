@@ -23,7 +23,7 @@ function currentStep(cal: CalendarFile): CalendarStep | null {
  * null when `wantId` is the calendar's current step (or, with `allowDone`, already done); otherwise the refusal message.
  * `allowDone` is for schedule-making, which stays open (as a re-roll) once its step is behind us.
  */
-function calendarProblem(cal: CalendarFile, wantId: string, verb: string, allowDone = false): string | null {
+export function calendarProblem(cal: CalendarFile, wantId: string, verb: string, allowDone = false): string | null {
   const cur = currentStep(cal);
   if (cur?.id === wantId) return null;
   const want = cal.steps.find(s => s.id === wantId);

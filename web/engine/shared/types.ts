@@ -157,6 +157,8 @@ export const ReservePlayer = z.object({
   playerId, position: Position, age: int.nullable(), rating: int.nullable(),
   /** Set when the player came from FBA free agency this offseason. */
   fromFba: z.literal(true).optional(),
+  /** Their rating on the FBA free-agent list when free agency closed; orders the D2 reset's "New" group. */
+  fbaRating: int.min(1).max(99).optional(),
 }).strict();
 export type ReservePlayer = z.infer<typeof ReservePlayer>;
 
@@ -192,7 +194,9 @@ export type PickObligation = z.infer<typeof PickObligation>;
 export const PicksFile = z.object({ league: z.literal('fba'), obligations: z.array(PickObligation) }).strict();
 export type PicksFile = z.infer<typeof PicksFile>;
 
-export const TransactionType = z.enum(['signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards', 'season']);
+export const TransactionType = z.enum([
+  'signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards', 'season', 'class', 'commit', 'portal',
+]);
 export type TransactionType = z.infer<typeof TransactionType>;
 
 export const TransactionEntry = z.object({
@@ -209,26 +213,6 @@ export const TransactionsFile = z.object({ league: LeagueId, season: int, locked
 export type TransactionsFile = z.infer<typeof TransactionsFile>;
 
 const d2Rating = int.min(1).max(99);
-
-export const RatingBreakdown = z.object({ age: int, perf: int, luck: int }).strict();
-export type RatingBreakdown = z.infer<typeof RatingBreakdown>;
-
-export const D2RatingRow = z.object({
-  playerId,
-  position: Position,
-  age: int.nullable(),
-  /** D2 team id, or null for Reserves. */
-  team: z.string().min(1).nullable(),
-  oldRating: int.nullable(),
-  suggested: d2Rating.nullable(),
-  breakdown: RatingBreakdown.nullable(),
-  /** The new rating; starts equal to `suggested`. */
-  rating: d2Rating.nullable(),
-}).strict();
-export type D2RatingRow = z.infer<typeof D2RatingRow>;
-
-export const D2RatingsFile = z.object({ league: z.literal('fbad2'), season: int, locked: z.boolean(), players: z.array(D2RatingRow) }).strict();
-export type D2RatingsFile = z.infer<typeof D2RatingsFile>;
 
 const idList = z.array(playerId);
 
@@ -255,6 +239,95 @@ export const D2DraftFile = z.object({
   picks: z.array(D2Pick),
 }).strict();
 export type D2DraftFile = z.infer<typeof D2DraftFile>;
+
+export const RankingKind = z.enum(['d2-reset']);
+export type RankingKind = z.infer<typeof RankingKind>;
+
+export const RankingRow = z.object({
+  playerId,
+  position: Position,
+  age: int.nullable(),
+  /** Team id, or null (D2 Reserves). */
+  team: z.string().min(1).nullable(),
+  /** Last season's base rating in this league; null = new to this league. */
+  prevRating: int.nullable(),
+  /** A rating from another league, used only to order the "New" group. */
+  otherRating: int.nullable(),
+  /** One line of context, e.g. "412 pts". */
+  stat: z.string().min(1).nullable(),
+}).strict();
+export type RankingRow = z.infer<typeof RankingRow>;
+
+/** One click-to-rank reset. `order` is the new ranking, best first; rank k's suggestion is curve[k - 1]. */
+export const RankingFile = z.object({
+  league: LeagueId,
+  season: int,
+  kind: RankingKind,
+  locked: z.boolean(),
+  rows: z.array(RankingRow),
+  order: idList,
+  /** What the commissioner entered or accepted; a sent-back row keeps its rating. */
+  ratings: z.record(playerId, d2Rating),
+  curve: z.array(d2Rating),
+}).strict().superRefine((doc, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  const ids = new Set(doc.rows.map(r => r.playerId));
+  if (ids.size !== doc.rows.length) issue('A player is listed twice in the rows');
+  if (new Set(doc.order).size !== doc.order.length) issue('A player is ranked twice');
+  for (const id of doc.order) if (!ids.has(id)) issue(`${id} is ranked but isn't in the rows`);
+  for (const id of Object.keys(doc.ratings)) if (!ids.has(id)) issue(`${id} has a rating but isn't in the rows`);
+  if (doc.curve.some((v, k) => k > 0 && v > doc.curve[k - 1])) issue('The curve must run from high to low');
+  if (doc.locked) {
+    if (doc.order.length !== doc.rows.length) issue('A finished ranking must rank every player');
+    if (doc.order.some(id => doc.ratings[id] === undefined)) issue('A finished ranking must rate every player');
+  }
+});
+export type RankingFile = z.infer<typeof RankingFile>;
+
+export const Prospect = z.object({
+  playerId,
+  position: Position,
+  /** 'Fr' for recruits; a transfer's current class year. */
+  classYear: ClassYear,
+  /** Recruits: null until Rank Class (7c). Transfers: their college rating. */
+  rating: d2Rating.nullable(),
+  stars: int.min(3).max(5).nullable(),
+  /** Projection counts per school (team id); each count is at least 1. */
+  projections: z.record(z.string().min(1), int.positive()),
+  committedTo: z.string().min(1).nullable(),
+}).strict();
+export type Prospect = z.infer<typeof Prospect>;
+
+export const PortalPlayer = Prospect.extend({ fromTeam: z.string().min(1) }).strict();
+export type PortalPlayer = z.infer<typeof PortalPlayer>;
+
+/** A Create Class row; the name may be blank while it is being typed. */
+export const ClassDraftRow = z.object({ name: z.string(), position: Position }).strict();
+export type ClassDraftRow = z.infer<typeof ClassDraftRow>;
+
+/** The recruiting board of the class created in calendar season `season`; it plays its Freshman year in that season's FBAJC. */
+export const RecruitingFile = z.object({
+  league: z.literal('fbajc'),
+  season: int,
+  classOf: int,
+  locked: z.boolean(),
+  /** Create Class rows before "Create class". */
+  classDraft: z.array(ClassDraftRow),
+  created: z.boolean(),
+  recruits: z.array(Prospect),
+  portal: z.array(PortalPlayer),
+}).strict().superRefine((doc, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  if (doc.classOf !== doc.season + 1) issue('classOf must be the season + 1');
+  const seen = new Set<string>();
+  for (const p of [...doc.recruits, ...doc.portal]) {
+    if (seen.has(p.playerId)) issue(`${p.playerId} is on the board twice`);
+    seen.add(p.playerId);
+  }
+  if (doc.created && doc.classDraft.length) issue('The class draft must be empty once the class is created');
+  if (!doc.created && doc.recruits.length) issue('There are no recruits until the class is created');
+});
+export type RecruitingFile = z.infer<typeof RecruitingFile>;
 
 const seasonLeague = z.enum(['fba', 'fbad2']);
 

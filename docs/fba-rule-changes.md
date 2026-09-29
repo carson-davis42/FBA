@@ -200,4 +200,5 @@ S78 - For D2, new promotion rules: Regular Season champion & Playoffs champion a
 S78 - For the young-star tournament, the 4 team captains are the most recent hall of fame class + a former young-star tournament winning captain.
 S78 - Planned FBA Expansion (Philly Phantoms & Los Angeles Labradors) has been delayed to S80.
 S78 - Every season a protected pick gets pushed back, the protection shrinks by 1 pick.
+S79 - The S74 skip/honorary pick rule is removed as of the S79 Draft. The draft runs in order and every team makes a selection.
 ```

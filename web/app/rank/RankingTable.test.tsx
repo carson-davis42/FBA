@@ -1,0 +1,122 @@
+// @vitest-environment jsdom
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { useState } from 'react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { rankingDoc, rankName } from '../../engine/rank/testFixtures';
+import type { RankingFile } from '../../engine/shared/types';
+import { RankingTable } from './RankingTable';
+
+afterEach(cleanup);
+
+const ALL = ['p00002', 'p00001', 'p00003', 'p00006', 'p00004', 'p00005'];
+const IN_ORDER = { p00002: 85, p00001: 85, p00003: 80, p00006: 75, p00004: 70, p00005: 65 };
+
+function Harness({ initial, extra = [], onFinish = () => {} }: { initial: RankingFile; extra?: string[]; onFinish?: () => void }) {
+  const [doc, setDoc] = useState(initial);
+  return (
+    <RankingTable
+      doc={doc} name={rankName} teamLabel={t => t ?? 'Reserves'} otherLabel="FBA" onChange={change => setDoc(change)}
+      extraBlockers={extra} finishLabel="Finish ratings" onFinish={onFinish} busy={false}
+    />
+  );
+}
+
+const leftNames = () => within(screen.getByRole('table', { name: "Last season's order" })).queryAllByRole('button').map(b => b.textContent);
+const rightNames = () => within(screen.getByRole('table', { name: 'New ranking' })).queryAllByRole('row').slice(1)
+  .map(r => (r as HTMLTableRowElement).cells[1].textContent);
+const box = (name: string) => screen.getByLabelText(`New rating for ${name}`) as HTMLInputElement;
+
+describe('RankingTable', () => {
+  it("lists last season's order with a New divider, and ranks a clicked player next", () => {
+    render(<Harness initial={rankingDoc()} />);
+    expect(leftNames()).toEqual(['Ben Cole', 'Ada Stone', 'Cal Reyes', 'Finn Lowe', 'Dev Hart', 'Eli Park']);
+    const left = screen.getByRole('table', { name: "Last season's order" });
+    expect(within(left).getByText('New')).toBeTruthy();
+    expect(within(left).getByText('FBA 75')).toBeTruthy();
+    expect(within(left).getAllByText('300 pts')).toHaveLength(3);
+    fireEvent.click(screen.getByRole('button', { name: 'Rank Ada Stone next' }));
+    expect(rightNames()).toEqual(['Ada Stone']);
+    expect(leftNames()).toEqual(['Ben Cole', 'Cal Reyes', 'Finn Lowe', 'Dev Hart', 'Eli Park']);
+  });
+
+  it('sends a ranked player back to their place', () => {
+    render(<Harness initial={rankingDoc()} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Rank Ada Stone next' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Send Ada Stone back' }));
+    expect(rightNames()).toEqual([]);
+    expect(leftNames()[1]).toBe('Ada Stone');
+  });
+
+  it('takes the rest in order', () => {
+    render(<Harness initial={rankingDoc()} />);
+    fireEvent.click(screen.getByRole('button', { name: 'Take the rest in order' }));
+    expect(rightNames()).toEqual(['Ben Cole', 'Ada Stone', 'Cal Reyes', 'Finn Lowe', 'Dev Hart', 'Eli Park']);
+    expect(leftNames()).toEqual([]);
+    expect(screen.queryByRole('button', { name: 'Take the rest in order' })).toBeNull();
+  });
+
+  it('shows empty rating boxes, with a separate suggestion chip, only once everyone is ranked', () => {
+    render(<Harness initial={rankingDoc({ order: ['p00002'] })} />);
+    expect(screen.queryByLabelText('New rating for Ben Cole')).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Take the rest in order' }));
+    expect(box('Ben Cole').value).toBe('');
+    const chip = screen.getByRole('button', { name: 'Use suggested 90 for Ben Cole' });
+    expect(chip.textContent).toBe('suggested 90');
+    expect(screen.queryByRole('button', { name: /^Use suggested \d+ for Finn Lowe$/ })).toBeNull();
+    fireEvent.click(chip);
+    expect(box('Ben Cole').value).toBe('90');
+    fireEvent.click(screen.getByRole('button', { name: 'Send Eli Park back' }));
+    expect(screen.queryByLabelText('New rating for Ben Cole')).toBeNull();
+  });
+
+  it('uses all suggestions without overwriting a typed rating', () => {
+    render(<Harness initial={rankingDoc({ order: ALL })} />);
+    fireEvent.change(box('Ada Stone'), { target: { value: '84' } });
+    fireEvent.blur(box('Ada Stone'));
+    fireEvent.click(screen.getByRole('button', { name: 'Use all suggestions' }));
+    expect(['Ben Cole', 'Ada Stone', 'Cal Reyes', 'Finn Lowe'].map(n => box(n).value)).toEqual(['90', '84', '80', '']);
+  });
+
+  it('flags out-of-order rows and keeps Finish disabled until everyone is rated in order', () => {
+    const onFinish = vi.fn();
+    render(<Harness initial={rankingDoc({ order: ALL, ratings: { ...IN_ORDER, p00001: 86 } })} onFinish={onFinish} />);
+    expect(screen.getByText('#2 Ada Stone (86) is rated above #1 Ben Cole (85)')).toBeTruthy();
+    expect(screen.getByTitle('Rated above a player ranked higher')).toBeTruthy();
+    const finish = screen.getByRole('button', { name: 'Finish ratings' }) as HTMLButtonElement;
+    expect(finish.disabled).toBe(true);
+    fireEvent.change(box('Ada Stone'), { target: { value: '84' } });
+    fireEvent.blur(box('Ada Stone'));
+    expect(screen.queryByTitle('Rated above a player ranked higher')).toBeNull();
+    expect(finish.disabled).toBe(false);
+    fireEvent.click(finish);
+    expect(onFinish).toHaveBeenCalledTimes(1);
+  });
+
+  it("lists the caller's blockers and keeps Finish disabled for them", () => {
+    render(<Harness initial={rankingDoc({ order: ALL, ratings: IN_ORDER })} extra={['Kris Dyer is no longer in the D2 pool']} />);
+    expect(screen.getByText('Kris Dyer is no longer in the D2 pool')).toBeTruthy();
+    expect((screen.getByRole('button', { name: 'Finish ratings' }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('filters both columns by position, while taking still appends to the one ranking', () => {
+    render(<Harness initial={rankingDoc({ order: ['p00002'] })} />);
+    fireEvent.click(screen.getByRole('button', { name: 'C' }));
+    expect(leftNames()).toEqual(['Finn Lowe']);
+    expect(rightNames()).toEqual([]);
+    fireEvent.click(screen.getByRole('button', { name: 'Rank Finn Lowe next' }));
+    fireEvent.click(screen.getByRole('button', { name: 'SG' }));
+    expect(leftNames()).toEqual([]);
+    expect(rightNames()).toEqual(['Ben Cole']);
+    fireEvent.click(screen.getByRole('button', { name: 'All' }));
+    expect(rightNames()).toEqual(['Ben Cole', 'Finn Lowe']);
+  });
+
+  it('is read-only once locked', () => {
+    render(<Harness initial={rankingDoc({ locked: true, order: ALL, ratings: IN_ORDER })} />);
+    for (const name of ['Take the rest in order', 'Use all suggestions', 'Finish ratings']) expect(screen.queryByRole('button', { name })).toBeNull();
+    expect(screen.queryByRole('button', { name: /^Send .* back$/ })).toBeNull();
+    expect(screen.queryByRole('button', { name: /^Use suggested/ })).toBeNull();
+    expect(box('Ben Cole').disabled).toBe(true);
+    expect(box('Ben Cole').value).toBe('85');
+  });
+});

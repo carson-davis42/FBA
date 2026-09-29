@@ -257,7 +257,13 @@ export function closeFreeAgency(state: RosterState, ctx: MoveContext): MoveResul
   const moved = state.freeAgents.players;
   const reserves = {
     ...state.reserves,
-    players: [...state.reserves.players, ...moved.map(p => ({ playerId: p.playerId, position: p.position, age: p.age, rating: null, fromFba: true as const }))],
+    players: [
+      ...state.reserves.players,
+      ...moved.map(p => ({
+        playerId: p.playerId, position: p.position, age: p.age, rating: null, fromFba: true as const,
+        ...(p.rating !== null ? { fbaRating: p.rating } : {}),
+      })),
+    ],
   };
   const fbaTx = appendTx(state.fbaTx, ctx, 'fa-closed', [], [`Free agency closed: ${moved.length} unsigned players moved to D2 Reserves`]);
   return {

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
-/** Scores · Standings · Playoffs · Awards · Rankings · Teams · Transactions for the FBA and D2; other leagues only have Teams for now. */
+/** Scores · Standings · Playoffs · Awards · Rankings · Teams · Transactions for the FBA and D2; Teams · Recruiting for the FBAJC; other leagues only have Teams for now. */
 export function LeagueTabs({ league }: { league: string }) {
   const nav = useRef<HTMLElement>(null);
   const { pathname } = useLocation();
@@ -11,7 +11,9 @@ export function LeagueTabs({ league }: { league: string }) {
   }, [pathname]);
   const tabs: [string, string][] = league === 'fba' || league === 'fbad2'
     ? [['scores', 'Scores'], ['standings', 'Standings'], ['playoffs', 'Playoffs'], ['awards', 'Awards'], ['rankings', 'Rankings'], ['', 'Teams'], ['transactions', 'Transactions']]
-    : [['', 'Teams']];
+    : league === 'fbajc'
+      ? [['', 'Teams'], ['recruiting', 'Recruiting']]
+      : [['', 'Teams']];
   return (
     <nav ref={nav} className="league-tabs" aria-label="League sections">
       {tabs.map(([path, label]) => (

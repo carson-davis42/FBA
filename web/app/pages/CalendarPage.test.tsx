@@ -83,3 +83,47 @@ describe('CalendarPage', () => {
     await waitFor(() => expect(reopen.disabled).toBe(false));
   });
 });
+
+describe('CalendarPage FBAJC gate', () => {
+  const atFbajc = { season: 79, steps: [
+    { id: 'adjust-college-ratings', label: 'Adjust College Ratings', kind: 'offseason', league: null, sub: true, done: true },
+    { id: 'fbajc', label: 'FBAJC', kind: 'league', league: 'fbajc', sub: false, done: false },
+  ] };
+  const board = (committedTo: string | null) => ({
+    league: 'fbajc', season: 79, classOf: 80, locked: false, classDraft: [], created: true,
+    recruits: [{ playerId: 'p01914', position: 'PG', classYear: 'Fr', rating: null, stars: null, projections: {}, committedTo }],
+    portal: [],
+  });
+  const markDone = async () => screen.findByRole('button', { name: /mark "FBAJC" done/i }) as Promise<HTMLButtonElement>;
+
+  it('keeps Mark done off while anyone is uncommitted', async () => {
+    current = atFbajc;
+    extra['leagues/fbajc/S79/recruiting.json'] = board(null);
+    render(<MemoryRouter><CalendarPage /></MemoryRouter>);
+    expect(await screen.findByText("1 recruit and 0 portal players haven't committed yet")).toBeTruthy();
+    expect((await markDone()).disabled).toBe(true);
+  });
+
+  it('allows Mark done once everyone has committed', async () => {
+    current = atFbajc;
+    extra['leagues/fbajc/S79/recruiting.json'] = board('DUKE');
+    render(<MemoryRouter><CalendarPage /></MemoryRouter>);
+    const button = await markDone();
+    await waitFor(() => expect(button.disabled).toBe(false));
+  });
+
+  it('has no gate without a recruiting doc', async () => {
+    current = atFbajc;
+    render(<MemoryRouter><CalendarPage /></MemoryRouter>);
+    const button = await markDone();
+    await waitFor(() => expect(button.disabled).toBe(false));
+  });
+
+  it('keeps Mark done off when the recruiting doc fails to load', async () => {
+    current = atFbajc;
+    errors['leagues/fbajc/S79/recruiting.json'] = 500;
+    render(<MemoryRouter><CalendarPage /></MemoryRouter>);
+    expect(await screen.findByText(/Couldn't check recruiting/)).toBeTruthy();
+    expect((await markDone()).disabled).toBe(true);
+  });
+});

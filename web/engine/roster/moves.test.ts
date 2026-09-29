@@ -166,6 +166,7 @@ describe('closing free agency', () => {
     expect(r.state.freeAgents).toEqual({ league: 'fba', season: 79, locked: true, players: [] });
     expect(r.state.reserves.players.map(p => [p.playerId, p.rating])).toEqual([['p00040', null], ['p00031', null], ['p00032', null]]);
     expect(r.state.reserves.players.map(p => p.fromFba ?? false)).toEqual([false, true, true]);
+    expect(r.state.reserves.players.map(p => p.fbaRating ?? null)).toEqual([null, null, 69]);
     expect(r.state.fbaTx.entries.at(-1)).toMatchObject({ type: 'fa-closed', lines: ['Free agency closed: 2 unsigned players moved to D2 Reserves'] });
     expect(r.changed.sort()).toEqual(['fbaTx', 'freeAgents', 'reserves']);
   });

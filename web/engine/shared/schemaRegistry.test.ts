@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { pathAgreementProblem, schemaForPath } from './schemaRegistry';
-import { AllStarFile, AwardsFile, D2DraftFile, D2PoolFile, D2RatingsFile, PlayoffsFile, RatingPauseFile, ScheduleFile } from './types';
+import { AllStarFile, AwardsFile, D2DraftFile, D2PoolFile, RankingFile, PlayoffsFile, RatingPauseFile, RecruitingFile, ScheduleFile } from './types';
 import { seasonDocPath } from '../season/state';
 
 describe('schemaForPath', () => {
@@ -40,7 +40,7 @@ describe('roster-move paths', () => {
 
 describe('D2 cycle documents', () => {
   it('knows the D2 cycle documents', () => {
-    expect(schemaForPath('leagues/fbad2/S79/ratings.json')).toBe(D2RatingsFile);
+    expect(schemaForPath('leagues/fbad2/S79/ratings.json')).toBe(RankingFile);
     expect(schemaForPath('leagues/fbad2/S79/pool.json')).toBe(D2PoolFile);
     expect(schemaForPath('leagues/fbad2/S79/draft.json')).toBe(D2DraftFile);
     expect(schemaForPath('leagues/fba/S79/ratings.json')).toBeNull();
@@ -96,5 +96,12 @@ describe('awards.json', () => {
 describe('summary.json as a season doc', () => {
   it('has a season doc path', () => {
     expect(seasonDocPath('summary', 'fbad2', 79)).toBe('leagues/fbad2/S79/summary.json');
+  });
+});
+
+describe('part 7a documents', () => {
+  it('knows the recruiting board', () => {
+    expect(schemaForPath('leagues/fbajc/S79/recruiting.json')).toBe(RecruitingFile);
+    expect(schemaForPath('leagues/fba/S79/recruiting.json')).toBeNull();
   });
 });

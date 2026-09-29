@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, PlayoffsFile, RatingPauseFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
+import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, PlayoffsFile, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -77,16 +77,6 @@ describe('roster-move schemas', () => {
 });
 
 describe('D2 cycle schemas', () => {
-  const row = { playerId: 'p00001', position: 'PG', age: 24, team: 'AMS', oldRating: 80, suggested: 82, breakdown: { age: 2, perf: 0, luck: 0 }, rating: 82 };
-
-  it('accepts a ratings file and rejects out-of-range ratings', () => {
-    const blank = { ...row, playerId: 'p00002', team: null, oldRating: null, suggested: null, breakdown: null, rating: null };
-    const doc = { league: 'fbad2', season: 79, locked: false, players: [row, blank] };
-    expect(D2RatingsFile.safeParse(doc).success).toBe(true);
-    expect(D2RatingsFile.safeParse({ ...doc, players: [{ ...row, rating: 100 }] }).success).toBe(false);
-    expect(D2RatingsFile.safeParse({ ...doc, players: [{ ...row, rating: 0 }] }).success).toBe(false);
-  });
-
   it('requires every position in the pool order', () => {
     const order = { PG: ['p00001'], SG: [], SF: [], PF: [], C: [] };
     expect(D2PoolFile.safeParse({ league: 'fbad2', season: 79, locked: false, order }).success).toBe(true);
@@ -312,5 +302,69 @@ describe('TransactionsFile lock and season entries', () => {
     expect(TransactionsFile.safeParse({ league: 'fba', season: 79, entries: [entry] }).success).toBe(true);
     expect(TransactionsFile.safeParse({ league: 'fba', season: 79, locked: true, entries: [entry] }).success).toBe(true);
     expect(TransactionsFile.safeParse({ league: 'fba', season: 79, locked: 'yes', entries: [] }).success).toBe(false);
+  });
+});
+
+describe('Part 7a schemas', () => {
+  const row = (playerId: string, prevRating: number | null) =>
+    ({ playerId, position: 'PG', age: 25, team: 'AMS', prevRating, otherRating: null, stat: null });
+  const ranking = {
+    league: 'fbad2', season: 79, kind: 'd2-reset', locked: false,
+    rows: [row('p00001', 80), row('p00002', null)],
+    order: ['p00001'],
+    ratings: { p00001: 81, p00002: 70 },
+    curve: [80, 75],
+  };
+  const ok = (patch: object) => RankingFile.safeParse({ ...ranking, ...patch }).success;
+
+  it('accepts a ranking in progress, where a sent-back row keeps its rating', () => {
+    expect(ok({})).toBe(true);
+    expect(ok({ rows: [{ ...row('p00001', 80), team: null, stat: '412 pts', otherRating: 71 }, row('p00002', null)] })).toBe(true);
+  });
+
+  it('rejects duplicate rows, unknown or repeated ranks, unknown ratings, a rising curve, bad ratings and unknown kinds', () => {
+    expect(ok({ rows: [row('p00001', 80), row('p00001', 70)] })).toBe(false);
+    expect(ok({ order: ['p00001', 'p00001'] })).toBe(false);
+    expect(ok({ order: ['p00009'] })).toBe(false);
+    expect(ok({ ratings: { p00009: 70 } })).toBe(false);
+    expect(ok({ curve: [75, 80] })).toBe(false);
+    expect(ok({ curve: [100] })).toBe(false);
+    expect(ok({ ratings: { p00001: 100 } })).toBe(false);
+    expect(ok({ ratings: { p00001: 0 } })).toBe(false);
+    expect(ok({ kind: 'fba-reset' })).toBe(false);
+  });
+
+  it('only locks a ranking that ranks and rates everyone', () => {
+    expect(ok({ locked: true })).toBe(false);
+    expect(ok({ locked: true, order: ['p00001', 'p00002'] })).toBe(true);
+    expect(ok({ locked: true, order: ['p00001', 'p00002'], ratings: { p00001: 81 } })).toBe(false);
+  });
+
+  const recruit = { playerId: 'p01914', position: 'PG', classYear: 'Fr', rating: null, stars: null, projections: { TEX: 2, UH: 1 }, committedTo: null };
+  const transfer = { ...recruit, playerId: 'p00485', classYear: 'Jr', rating: 78, stars: 4, projections: {}, committedTo: 'TEX', fromTeam: 'BAY' };
+  const board = { league: 'fbajc', season: 79, classOf: 80, locked: false, classDraft: [], created: true, recruits: [recruit], portal: [transfer] };
+  const okBoard = (patch: object) => RecruitingFile.safeParse({ ...board, ...patch }).success;
+
+  it('accepts a recruiting board, and a class draft before the class exists', () => {
+    expect(okBoard({})).toBe(true);
+    expect(okBoard({ created: false, recruits: [], portal: [], classDraft: [{ name: '', position: 'C' }, { name: 'Zion Carter', position: 'PG' }] })).toBe(true);
+  });
+
+  it('rejects a wrong classOf, a player listed twice, draft rows after creation, recruits before it, and bad counts or stars', () => {
+    expect(okBoard({ classOf: 81 })).toBe(false);
+    expect(okBoard({ portal: [{ ...transfer, playerId: 'p01914' }] })).toBe(false);
+    expect(okBoard({ classDraft: [{ name: 'Zion Carter', position: 'PG' }] })).toBe(false);
+    expect(okBoard({ created: false })).toBe(false);
+    expect(okBoard({ recruits: [{ ...recruit, projections: { TEX: 0 } }] })).toBe(false);
+    expect(okBoard({ recruits: [{ ...recruit, stars: 2 }] })).toBe(false);
+    expect(okBoard({ portal: [{ ...transfer, fromTeam: undefined }] })).toBe(false);
+    expect(okBoard({ league: 'fba' })).toBe(false);
+  });
+
+  it('knows the recruiting transaction types and keeps an FBA rating on a Reserve', () => {
+    for (const type of ['class', 'commit', 'portal']) expect(TransactionType.safeParse(type).success).toBe(true);
+    const reserve = { playerId: 'p00041', position: 'SG', age: 23, rating: null, fromFba: true };
+    expect(ReservePlayer.safeParse({ ...reserve, fbaRating: 71 }).success).toBe(true);
+    expect(ReservePlayer.safeParse({ ...reserve, fbaRating: 0 }).success).toBe(false);
   });
 });

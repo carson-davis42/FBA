@@ -27,4 +27,13 @@ describe('LeagueTabs', () => {
       Element.prototype.scrollIntoView = original;
     }
   });
+
+  it('gives the FBAJC Teams and Recruiting, and the World Cup only Teams', () => {
+    render(<MemoryRouter><LeagueTabs league="fbajc" /></MemoryRouter>);
+    const links = screen.getAllByRole('link');
+    expect(links.map(a => [a.textContent, a.getAttribute('href')])).toEqual([['Teams', '/league/fbajc'], ['Recruiting', '/league/fbajc/recruiting']]);
+    cleanup();
+    render(<MemoryRouter><LeagueTabs league="fbawc" /></MemoryRouter>);
+    expect(screen.getAllByRole('link').map(a => a.textContent)).toEqual(['Teams']);
+  });
 });

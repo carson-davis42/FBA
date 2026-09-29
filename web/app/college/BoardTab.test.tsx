@@ -1,0 +1,117 @@
+// @vitest-environment jsdom
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { useState } from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import { afterEach, describe, expect, it } from 'vitest';
+import { addProjection, commit } from '../../engine/college/recruiting';
+import type { RecruitingResult, RecruitingState } from '../../engine/college/state';
+import { collegeBaseState, collegeClassState } from '../../engine/college/testFixtures';
+import { BoardTab } from './BoardTab';
+
+afterEach(cleanup);
+
+function Harness({ initial, runs }: { initial: RecruitingState; runs: RecruitingResult[] }) {
+  const [state, setState] = useState(initial);
+  const onRun = (r: RecruitingResult) => {
+    runs.push(r);
+    if (r.ok) setState(r.state);
+  };
+  return <MemoryRouter><BoardTab state={state} saving={false} onRun={onRun} /></MemoryRouter>;
+}
+
+const ok = (r: RecruitingResult) => {
+  if (!r.ok) throw new Error(r.problems.join('; '));
+  return r.state;
+};
+const names = (table: string) => within(screen.getByRole('table', { name: table })).queryAllByRole('row').slice(1)
+  .map(r => (r as HTMLTableRowElement).cells[0].textContent);
+const button = (name: string) => screen.getByRole('button', { name }) as HTMLButtonElement;
+
+describe('BoardTab', () => {
+  it('asks for the class first', () => {
+    render(<Harness initial={collegeBaseState()} runs={[]} />);
+    expect(screen.getByText(/Create the S80 class first/)).toBeTruthy();
+    expect(screen.getByRole('link', { name: /Go to the class/ }).getAttribute('href')).toBe('/league/fbajc/recruiting?tab=class');
+  });
+
+  it('shows the counts and the projections as shares', () => {
+    let s = collegeClassState();
+    for (const t of ['TEX', 'TEX', 'BAY']) s = ok(addProjection(s, 'p01914', t));
+    render(<Harness initial={s} runs={[]} />);
+    expect(screen.getByText('0 of 3 committed · 0 in the portal')).toBeTruthy();
+    expect(names('Class of S80')).toEqual(['Zion Carter', 'Malik Ford', 'Eli Grant']);
+    const zion = screen.getByText('Zion Carter').closest('tr')!;
+    expect(within(zion).getByText('67% TEX')).toBeTruthy();
+    expect(within(zion).getByText('33% BAY')).toBeTruthy();
+    expect(screen.getByText('Nobody is in the portal.')).toBeTruthy();
+  });
+
+  it('adds a projection with the school picker, and removes one', () => {
+    const runs: RecruitingResult[] = [];
+    render(<Harness initial={collegeClassState()} runs={runs} />);
+    fireEvent.click(button('Add a projection for Zion Carter'));
+    const dialog = screen.getByRole('dialog', { name: 'Project Zion Carter' });
+    fireEvent.change(within(dialog).getByLabelText('Search schools'), { target: { value: 'tex' } });
+    expect(within(dialog).queryByRole('button', { name: 'Baylor' })).toBeNull();
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Texas' }));
+    expect(runs.at(-1)).toMatchObject({ ok: true, label: 'Project Zion Carter to Texas' });
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(screen.getByText('100% TEX')).toBeTruthy();
+    fireEvent.click(button('Remove a TEX projection for Zion Carter'));
+    expect(runs.at(-1)).toMatchObject({ ok: true, label: 'Remove a Texas projection for Zion Carter' });
+  });
+
+  it('commits through the picker, listing projected schools first and saying who would leave', () => {
+    const runs: RecruitingResult[] = [];
+    render(<Harness initial={ok(addProjection(collegeClassState(), 'p01914', 'BAY'))} runs={runs} />);
+    fireEvent.click(button('Commit Zion Carter'));
+    const dialog = screen.getByRole('dialog', { name: 'Commit Zion Carter' });
+    expect(within(dialog).getAllByRole('heading').map(h => h.textContent)).toEqual(['Commit · Zion Carter', 'Projected', 'Big 12', 'ACC']);
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Duke' }));
+    expect(within(dialog).getByText('Open spot')).toBeTruthy();
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Baylor' }));
+    expect(within(dialog).getByText('Jaden Moss (So, 82) will enter the portal')).toBeTruthy();
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Confirm commit' }));
+    expect(runs.at(-1)).toMatchObject({ ok: true, label: 'Zion Carter commits to Baylor' });
+    expect(screen.getByText('Committed: Baylor')).toBeTruthy();
+    expect(screen.getByText('1 of 3 committed · 1 in the portal')).toBeTruthy();
+    expect(names('Transfer portal')).toEqual(['Jaden Moss']);
+  });
+
+  it('refuses in the picker to displace someone who committed this cycle', () => {
+    render(<Harness initial={ok(commit(collegeClassState(), 'p01914', 'BAY', { batchId: 't' }))} runs={[]} />);
+    fireEvent.click(button('Commit Jaden Moss'));
+    const dialog = screen.getByRole('dialog', { name: 'Commit Jaden Moss' });
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Baylor' }));
+    expect(within(dialog).getByText('Baylor already has Zion Carter committed at PG. Decommit them first')).toBeTruthy();
+    expect((within(dialog).getByRole('button', { name: 'Confirm commit' }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('decommits', () => {
+    const runs: RecruitingResult[] = [];
+    render(<Harness initial={ok(commit(collegeClassState(), 'p01914', 'BAY', { batchId: 't' }))} runs={runs} />);
+    fireEvent.click(button('Decommit Zion Carter'));
+    expect(runs.at(-1)).toMatchObject({ ok: true, label: 'Zion Carter decommits from Baylor' });
+    expect(button('Commit Zion Carter')).toBeTruthy();
+  });
+
+  it('filters by position, commitment and name', () => {
+    render(<Harness initial={ok(commit(collegeClassState(), 'p01914', 'DUKE', { batchId: 't' }))} runs={[]} />);
+    fireEvent.click(button('SG'));
+    expect(names('Class of S80')).toEqual(['Malik Ford']);
+    fireEvent.click(button('All'));
+    fireEvent.click(button('Committed'));
+    expect(names('Class of S80')).toEqual(['Zion Carter']);
+    fireEvent.click(button('Uncommitted'));
+    expect(names('Class of S80')).toEqual(['Malik Ford', 'Eli Grant']);
+    fireEvent.click(button('Everyone'));
+    fireEvent.change(screen.getByLabelText('Search names'), { target: { value: 'eli' } });
+    expect(names('Class of S80')).toEqual(['Eli Grant']);
+  });
+
+  it('is read-only once locked', () => {
+    const s = collegeClassState();
+    render(<Harness initial={{ ...s, recruiting: { ...s.recruiting, locked: true } }} runs={[]} />);
+    expect(screen.queryByRole('button', { name: /^(Commit|Add a projection for) / })).toBeNull();
+  });
+});

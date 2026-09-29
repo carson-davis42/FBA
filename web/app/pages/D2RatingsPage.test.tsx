@@ -1,11 +1,12 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { setRating, startRatings } from '../../engine/d2/ratings';
-import type { D2State } from '../../engine/d2/state';
-import { d2BaseState } from '../../engine/d2/testFixtures';
-import type { D2RatingsFile } from '../../engine/shared/types';
+import { startRatings } from '../../engine/d2/ratings';
+import { d2Name, type D2State } from '../../engine/d2/state';
+import { d2BaseState, d2RatedState } from '../../engine/d2/testFixtures';
+import { applyAllSuggestions, setRating, takeRest } from '../../engine/rank/ranking';
+import type { RankingFile } from '../../engine/shared/types';
 import { docsFor, stubApi } from '../d2/testDocs';
 import { D2RatingsPage } from './D2RatingsPage';
 
@@ -14,9 +15,15 @@ afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 const renderPage = () => render(<MemoryRouter><D2RatingsPage /></MemoryRouter>);
 
 const started = (): D2State => {
-  const r = startRatings({ ...d2BaseState(), prevD2: null }, () => 0.5);
+  const r = startRatings({ ...d2BaseState(), prevD2: null });
   if (!r.ok) throw new Error(r.problems.join('; '));
   return r.state;
+};
+/** Everyone ranked in last season's order and rated in order, so the reset can be finished. */
+const complete = (s: D2State): D2State => {
+  let doc = applyAllSuggestions(takeRest(s.ratings!, id => d2Name(s, id)));
+  for (const [id, v] of [['p00041', 66], ['p00043', 64], ['p00044', 62], ['p00040', 60], ['p00042', 58]] as const) doc = setRating(doc, id, v);
+  return { ...s, ratings: doc };
 };
 
 describe('D2RatingsPage', () => {
@@ -33,55 +40,27 @@ describe('D2RatingsPage', () => {
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].label).toBe('Start D2 ratings reset');
     expect(log.batches[0].writes.map(w => [w.path, w.baseVersion])).toEqual([['leagues/fbad2/S79/ratings.json', null]]);
+    expect((log.batches[0].writes[0].doc as RankingFile).kind).toBe('d2-reset');
   });
 
-  it('groups blank players first, counts them, tags FBA free agents, and blocks Finish', async () => {
-    stubApi(docsFor(started()));
-    renderPage();
-    expect(await screen.findByText('Needs a rating · 5')).toBeTruthy();
-    expect(screen.getByText('5 need a rating')).toBeTruthy();
-    expect(screen.getByText('5 players still need a rating')).toBeTruthy();
-    expect(screen.getByText('FBA FA', { selector: '.tag' })).toBeTruthy();
-    expect((screen.getByRole('button', { name: 'Finish ratings' }) as HTMLButtonElement).disabled).toBe(true);
-  });
-
-  it('filters by position tab and sorts rated players by new rating', async () => {
-    stubApi(docsFor(started()));
-    renderPage();
-    fireEvent.click(await screen.findByRole('tab', { name: /^PG/ }));
-    const wrap = screen.getByText('Rated · 2').nextElementSibling as HTMLElement;
-    const names = within(wrap).getAllByRole('row').slice(1).map(r => (r as HTMLTableRowElement).cells[0].textContent);
-    expect(names).toEqual(['Ben Montgomery', 'Milo Dean']);
-    expect(screen.queryByText('Kyron Smart')).toBeNull();
-  });
-
-  it('autosaves an edited rating with If-Match', async () => {
+  it("lists last season's order with the FBA free agent first among new players, and autosaves a click", async () => {
     const log = stubApi(docsFor(started()));
     renderPage();
-    const input = await screen.findByLabelText('New rating for Kris Dyer');
-    fireEvent.change(input, { target: { value: '78' } });
-    fireEvent.blur(input);
+    await screen.findByRole('button', { name: 'Rank Maddox Dean next' });
+    expect(screen.getAllByRole('button', { name: /^Rank .* next$/ }).map(b => b.textContent)).toEqual([
+      'Maddox Dean', 'Xavier Booker', 'Jalil Grant', 'Ben Montgomery', 'Jamal Edwards', 'Brooks Burrows', 'Milo Dean', 'Adrian Grant',
+      'Kyron Smart', 'Adrian Napoletani', 'Brycen Holcomb', 'Kris Dyer', 'Myron Mason',
+    ]);
+    expect(screen.getByText('FBA 71')).toBeTruthy();
+    expect(screen.getByText("13 players aren't ranked yet")).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Rank Xavier Booker next' }));
     await waitFor(() => expect(log.puts).toHaveLength(1));
-    expect(log.puts[0].path).toBe('leagues/fbad2/S79/ratings.json');
-    expect(log.puts[0].ifMatch).toBe('"0000000000000001"');
-    expect((log.puts[0].doc as D2RatingsFile).players.find(r => r.playerId === 'p00040')!.rating).toBe(78);
-  });
-
-  it('rejects an invalid rating without saving', async () => {
-    const log = stubApi(docsFor(started()));
-    renderPage();
-    const input = await screen.findByLabelText('New rating for Kris Dyer');
-    fireEvent.change(input, { target: { value: 'abc' } });
-    fireEvent.blur(input);
-    expect(await screen.findByText('Enter a whole number from 1 to 99')).toBeTruthy();
-    expect(log.puts).toHaveLength(0);
+    expect(log.puts[0]).toMatchObject({ path: 'leagues/fbad2/S79/ratings.json', ifMatch: '"0000000000000001"' });
+    expect((log.puts[0].doc as RankingFile).order).toEqual(['p00028']);
   });
 
   it('finishes as one batch that includes the calendar', async () => {
-    const s = started();
-    let ratings = s.ratings!;
-    for (const [id, v] of [['p00040', 78], ['p00041', 74], ['p00042', 70], ['p00043', 60], ['p00044', 65]] as const) ratings = setRating(ratings, id, v);
-    const log = stubApi(docsFor({ ...s, ratings }));
+    const log = stubApi(docsFor(complete(started())));
     renderPage();
     const finish = await screen.findByRole('button', { name: 'Finish ratings' });
     await waitFor(() => expect((finish as HTMLButtonElement).disabled).toBe(false));
@@ -95,23 +74,27 @@ describe('D2RatingsPage', () => {
     expect(log.batches[0].writes.every(w => w.baseVersion === '0000000000000001')).toBe(true);
   });
 
-  it('hands off to the version an autosave returned, not the originally loaded one, when Finish follows an edit', async () => {
-    const s = started();
-    let ratings = s.ratings!;
-    for (const [id, v] of [['p00041', 74], ['p00042', 70], ['p00043', 60], ['p00044', 65]] as const) ratings = setRating(ratings, id, v);
-    const log = stubApi(docsFor({ ...s, ratings }));
+  it('hands off to the version an autosave returned when Finish follows an edit', async () => {
+    const s = complete(started());
+    const log = stubApi(docsFor({ ...s, ratings: setRating(s.ratings!, 'p00040', null) }));
     renderPage();
-    const input = await screen.findByLabelText('New rating for Kris Dyer');
-    fireEvent.change(input, { target: { value: '78' } });
+    const finish = await screen.findByRole('button', { name: 'Finish ratings' });
+    expect((finish as HTMLButtonElement).disabled).toBe(true);
+    const input = screen.getByLabelText('New rating for Kris Dyer');
+    fireEvent.change(input, { target: { value: '60' } });
     fireEvent.blur(input);
     await waitFor(() => expect(log.puts).toHaveLength(1));
     expect(log.puts[0].ifMatch).toBe('"0000000000000001"');
-
-    const finish = await screen.findByRole('button', { name: 'Finish ratings' });
     await waitFor(() => expect((finish as HTMLButtonElement).disabled).toBe(false));
     fireEvent.click(finish);
     await waitFor(() => expect(log.batches).toHaveLength(1));
-    const write = log.batches[0].writes.find(w => w.path === 'leagues/fbad2/S79/ratings.json')!;
-    expect(write.baseVersion).toBe('0000000000000002');
+    expect(log.batches[0].writes.find(w => w.path === 'leagues/fbad2/S79/ratings.json')!.baseVersion).toBe('0000000000000002');
+  });
+
+  it('is read-only and points to the pool once finished', async () => {
+    stubApi(docsFor(d2RatedState()));
+    renderPage();
+    expect(await screen.findByText(/D2 ratings are finished/)).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Finish ratings' })).toBeNull();
   });
 });
