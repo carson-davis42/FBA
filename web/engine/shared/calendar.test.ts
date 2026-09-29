@@ -40,9 +40,10 @@ describe('calendar helpers', () => {
 });
 
 describe('calendarFor', () => {
-  it('matches the committed S79 calendar (golden)', () => {
+  it('matches the committed calendar for its season (golden)', () => {
     const committed = JSON.parse(readFileSync(path.join(__dirname, '..', '..', 'data', 'calendar.json'), 'utf8')) as CalendarFile;
-    expect(calendarFor(79)).toEqual({ ...committed, steps: committed.steps.map(s => ({ ...s, done: false })) });
+    expect(calendarFor(committed.season)).toEqual({ ...committed, steps: committed.steps.map(s => ({ ...s, done: false })) });
+    expect(committed.season).toBeGreaterThanOrEqual(79);
   });
 
   it('adds the World Cup after the draft lottery in even seasons only', () => {
