@@ -120,7 +120,7 @@ export function nextSeasonDocs(input: NextSeasonInput, ctx: MoveContext): NextSe
     appendTx({ league, season: next, entries: [] }, ctx, 'season', [], [`S${next} season started`]);
   const reserves: ReservesFile = {
     league: 'fbad2', season: next, locked: false,
-    players: (input.fbad2.reserves?.players ?? []).map(({ fromFba: _fromFba, ...rest }) => rest),
+    players: (input.fbad2.reserves?.players ?? []).map(({ fromFba: _fromFba, fbaRating: _fbaRating, ...rest }) => rest),
   };
   writes.push(
     { path: p.next.fbaRosters, doc: carry(input.fba.rosters) },

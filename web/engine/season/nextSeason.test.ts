@@ -34,7 +34,7 @@ function ready(): NextSeasonInput {
     fbad2: {
       rosters: withPoints(d2.rosters),
       reserves: { league: 'fbad2', season: 79, locked: false, players: [
-        { playerId: 'p09001', position: 'C', age: 30, rating: 60, fromFba: true },
+        { playerId: 'p09001', position: 'C', age: 30, rating: 60, fromFba: true, fbaRating: 71 },
         { playerId: 'p09002', position: 'PG', age: 24, rating: 55 },
       ] },
       tx: d2.tx,
