@@ -1,4 +1,7 @@
-import type { ClassYear, PlayersFile, Position, RosterEntry, RostersFile, TeamsFile } from '../shared/types';
+import type { ClassDraftRow, ClassYear, PlayersFile, Position, RosterEntry, RostersFile, TeamsFile } from '../shared/types';
+import { createClass } from './recruiting';
+import { setupCollegeRosters } from './setup';
+import { emptyRecruiting, type RecruitingState } from './state';
 
 const badge = { bg: 'hsl(1 55% 36%)', fg: '#ffffff' };
 
@@ -68,4 +71,42 @@ export function collegePros(): { fba: RostersFile; d2: RostersFile } {
 /** The S78 college players now in the S79 pro data. */
 export function collegeProIds(): Set<string> {
   return new Set(['p00500', 'p00510']);
+}
+
+/**
+ * S79 FBAJC after the one-time setup (see collegeS78Rosters for the rosters), before the S80 class exists.
+ * Calendar: FBAD2 Draft done, then Create S80 Class (current), Make S79 Schedules, FBAJC.
+ */
+export function collegeBaseState(): RecruitingState {
+  const set = setupCollegeRosters({ season: 79, prev: collegeS78Rosters(), proIds: collegeProIds() });
+  if (!set.ok) throw new Error(set.problems.join('; '));
+  return {
+    season: 79,
+    recruiting: emptyRecruiting(79),
+    rosters: set.rosters,
+    teams: collegeTeams(),
+    players: collegePlayers(),
+    tx: { league: 'fbajc', season: 79, entries: [] },
+    calendar: {
+      season: 79,
+      steps: [
+        { id: 'fbad2-draft', label: 'FBAD2 Draft', kind: 'offseason', league: null, sub: true, done: true },
+        { id: 'create-s80-class', label: 'Create S80 Class', kind: 'offseason', league: null, sub: false, done: false },
+        { id: 'make-s79-schedules', label: 'Make S79 Schedules', kind: 'offseason', league: null, sub: false, done: false },
+        { id: 'fbajc', label: 'FBAJC', kind: 'league', league: 'fbajc', sub: false, done: false },
+      ],
+    },
+  };
+}
+
+export const CLASS_DRAFT: ClassDraftRow[] = [
+  { name: 'Zion Carter', position: 'PG' }, { name: 'Malik Ford', position: 'SG' }, { name: 'Eli Grant', position: 'PF' },
+];
+
+/** collegeBaseState with the S80 class created from CLASS_DRAFT: Zion Carter PG p01914, Malik Ford SG p01915, Eli Grant PF p01916. */
+export function collegeClassState(): RecruitingState {
+  const s = collegeBaseState();
+  const r = createClass({ ...s, recruiting: { ...s.recruiting, classDraft: CLASS_DRAFT } }, { batchId: 'fixture' });
+  if (!r.ok) throw new Error(r.problems.join('; '));
+  return r.state;
 }
