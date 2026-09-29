@@ -64,6 +64,29 @@ describe('Home', () => {
     }
   });
 
+  it('shows the transfer-portal banner while the portal is open, and hides it otherwise', async () => {
+    const cal = docs['calendar.json'];
+    docs['calendar.json'] = { season: 79, steps: [
+      { id: 'make-s79-schedules', label: 'Make S79 Schedules', kind: 'offseason', league: null, sub: false, done: true },
+      { id: 'fbajc', label: 'FBAJC', kind: 'league', league: 'fbajc', sub: false, done: false },
+    ] };
+    docs['leagues/fbajc/S78/recruiting.json'] = { league: 'fbajc', season: 78, classOf: 79, locked: false, classDraft: [], created: true, recruits: [], portal: [{ playerId: 'p1' }] };
+    try {
+      const { unmount } = render(<MemoryRouter><Home /></MemoryRouter>);
+      expect(await screen.findByText('The S79 transfer portal is open · 1 player in it')).toBeTruthy();
+      expect(screen.getByRole('link', { name: 'Open the portal ▸' }).getAttribute('href')).toBe('/league/fbajc/portal');
+      unmount();
+      docs['calendar.json'] = { season: 79, steps: [{ id: 'fbajc', label: 'FBAJC', kind: 'league', league: 'fbajc', sub: false, done: true }] };
+      render(<MemoryRouter><Home /></MemoryRouter>);
+      expect(await screen.findByText('Season 79 complete')).toBeTruthy();
+      await new Promise(r => setTimeout(r, 20));
+      expect(screen.queryByText(/transfer portal is open/)).toBeNull();
+    } finally {
+      docs['calendar.json'] = cal;
+      delete docs['leagues/fbajc/S78/recruiting.json'];
+    }
+  });
+
   it("shows this season's champions once that season is finished", async () => {
     docs['leagues/fba/S79/summary.json'] = { league: 'fba', season: 79, locked: true, host: null, champions: [{ title: 'FBA Champion', champion: 'Hawaii Volcanoes', runnerUp: 'Boston Bucks', score: '4–2' }] };
     try {

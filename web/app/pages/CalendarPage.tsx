@@ -7,6 +7,7 @@ import { currentStepIndex, markCurrentDone, reopenLast, reopenProblem } from '..
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { CalendarFile, RecruitingFile, RostersFile, SummaryFile } from '../../engine/shared/types';
 import { putDoc, useDoc, useSaving } from '../api';
+import { PortalBanner } from '../components/PortalBanner';
 import { toolTarget } from '../stepRoutes';
 import './pages.css';
 
@@ -56,6 +57,7 @@ export function CalendarPage() {
   return (
     <section>
       <h1>Season {cal.season} calendar</h1>
+      <PortalBanner />
       <div className="cal-actions">
         {tool && (
           <Link className="btn primary" to={tool}>Open {cal.steps[i].label} ▸</Link>

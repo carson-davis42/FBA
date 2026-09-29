@@ -3,6 +3,7 @@ import { currentStepIndex } from '../../engine/shared/calendar';
 import { LEAGUES, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { CalendarFile, CalendarStep, LeagueId, MetaFile, ResultsFile, ScheduleFile, SummaryFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
+import { PortalBanner } from '../components/PortalBanner';
 import { stepTarget } from '../stepRoutes';
 import './pages.css';
 
@@ -54,6 +55,7 @@ export function Home() {
 
   return (
     <section>
+      <PortalBanner />
       <div className="hero">
         <img src="/logos/FBA/1" alt="" />
         <div>

@@ -15,3 +15,5 @@
 .steps .mark { width: 20px; text-align: center; }
 .steps .tag { margin-left: auto; font-size: 11px; font-weight: 700; border-radius: 999px; padding: 2px 8px; background: var(--surface-2); border: 1px solid var(--border); color: var(--muted); }
 .cal-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+.banner { margin: 0 0 16px; padding: 10px 14px; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent-soft); color: var(--text); }
+.banner a { font-weight: 700; margin-left: 4px; }
