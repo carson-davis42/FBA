@@ -169,6 +169,10 @@ export class Storage {
             rollbackFailures.push(`${p.rel}: ${(re as Error).message}`);
           }
         }
+        if (rollbackFailures.length && options.resetUndo) {
+          console.error(`Batch "${label}" failed and could not be fully rolled back; the previous copies are in .backups/`, rollbackFailures);
+          throw new StorageError(500, `Save failed partway and could not be fully undone (${rollbackFailures.join('; ')}). The previous copies are in .backups/.`);
+        }
         if (rollbackFailures.length) {
           console.error(`Batch "${label}" failed and could not be fully rolled back; journal ${id} kept for recovery`, rollbackFailures);
           throw new StorageError(500, `Save failed partway and could not be fully undone (${rollbackFailures.join('; ')}). Use Undo last move to restore.`);
