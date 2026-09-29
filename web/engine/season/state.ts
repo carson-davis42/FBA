@@ -1,5 +1,5 @@
 import type {
-  AllStarFile, AwardsFile, CalendarFile, PauseKind, PlayersFile, PlayoffsFile, RatingPauseFile, ResultsFile, RostersFile, ScheduleFile, SchedulePause, TeamsFile, TransactionsFile,
+  AllStarFile, AwardsFile, CalendarFile, PauseKind, PlayersFile, PlayoffsFile, RatingPauseFile, ResultsFile, RostersFile, ScheduleFile, SchedulePause, SummaryFile, TeamsFile, TransactionsFile,
 } from '../shared/types';
 import type { SeasonLeague } from './schedule';
 
@@ -21,9 +21,11 @@ export interface SeasonState {
   playoffs: PlayoffsFile | null;
   /** This league's season awards: a draft while picking, then locked. */
   awards: AwardsFile | null;
+  /** The locked season record, once the league's season is finished. */
+  summary: SummaryFile | null;
 }
 
-export type SeasonDocKey = 'rosters' | 'calendar' | 'tx' | 'schedule' | 'results' | 'ratingPause' | 'allstar' | 'playoffs' | 'awards';
+export type SeasonDocKey = 'rosters' | 'calendar' | 'tx' | 'schedule' | 'results' | 'ratingPause' | 'allstar' | 'playoffs' | 'awards' | 'summary';
 
 export function seasonDocPath(key: SeasonDocKey, league: SeasonLeague, season: number, afterGame?: number): string {
   switch (key) {
@@ -34,6 +36,7 @@ export function seasonDocPath(key: SeasonDocKey, league: SeasonLeague, season: n
     case 'results': return `leagues/${league}/S${season}/results.json`;
     case 'playoffs': return `leagues/${league}/S${season}/playoffs.json`;
     case 'awards': return `leagues/${league}/S${season}/awards.json`;
+    case 'summary': return `leagues/${league}/S${season}/summary.json`;
     case 'ratingPause':
       if (afterGame === undefined) throw new Error('A rating pause path needs its afterGame');
       return `leagues/fba/S${season}/ratingPause-${afterGame}.json`;

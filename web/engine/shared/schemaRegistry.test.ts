@@ -92,3 +92,9 @@ describe('awards.json', () => {
     expect(seasonDocPath('awards', 'fba', 79)).toBe('leagues/fba/S79/awards.json');
   });
 });
+
+describe('summary.json as a season doc', () => {
+  it('has a season doc path', () => {
+    expect(seasonDocPath('summary', 'fbad2', 79)).toBe('leagues/fbad2/S79/summary.json');
+  });
+});
