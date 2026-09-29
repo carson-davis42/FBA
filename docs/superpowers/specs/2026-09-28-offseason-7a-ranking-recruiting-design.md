@@ -73,7 +73,7 @@ Schema checks (`superRefine`): `rows` ids are unique; `order` ids are unique and
 - `takeRest(doc)`: appends every left row, in `leftRows` order.
 - `suggestion(doc, k)`: `curve[k-1] ?? null`.
 - `setRating(doc, id, value | null)`: value 1–99 or clears it.
-- `useAllSuggestions(doc)`: sets every ranked row that has no rating and has a suggestion to its suggestion. It never overwrites a typed rating.
+- `applyAllSuggestions(doc)`: sets every ranked row that has no rating and has a suggestion to its suggestion. It never overwrites a typed rating.
 - `rankingBlockers(doc)`: "N players aren't ranked yet", "N players still need a rating", and one line per out-of-order pair ("#12 Name (84) is rated above #11 Name (83)"). An empty list means the doc can be locked.
 - `outOfOrder(doc)`: the set of ids to flag on screen.
 
@@ -93,7 +93,7 @@ The existing D2 reset keeps its place in the calendar, its start condition (FBA 
 
 - **Start** (`startRatings`) builds the `RankingFile`:
   - `rows`: every D2 pool member (D2 rosters plus Reserves, from `poolMembers`) with `prevRating` = the current (pre-reset) D2 rating.
-  - `otherRating`: that player's rating on this season's FBA free-agent list, if any (players who came down from FBA free agency). Otherwise null.
+  - `otherRating`: the player's FBA rating kept on their Reserve entry as `ReservePlayer.fbaRating` (copied by `closeFreeAgency` for players who came down from FBA free agency, since closing FA empties the list; stripped at "Go to next season"). Otherwise null.
   - `stat`: last season's D2 points ("412 pts"), or null.
   - `curve`: the previous season's locked `fbad2/S<n-1>/ratings.json` ratings, sorted high to low, if it exists. Otherwise the non-null `prevRating`s of these rows, sorted high to low. For S79 that's 296 values, taken from the D2 rosters, so ranks past 296 get no suggestion.
   - `order` and `ratings` start empty. The Rng parameter goes (nothing is random now).
@@ -125,7 +125,7 @@ setupCollegeRosters(input: {
 - `leagues/fbajc/S<n>/transactions.json`, with one `season` entry ("S79 college rosters set up from S78");
 - `meta.json`, with `rosterSeason.fbajc = n`.
 
-From S80 on, 7d's Adjust Age builds the rosters instead, and the panel never shows again.
+From S80 on, 7d's Adjust Age builds the rosters instead. The panel's condition (`rosterSeason.fbajc === n − 1`) holds again after the S80 rollover until Adjust Age runs, so 7d must replace that condition.
 
 ## 6. Create S{n+1} Class and the recruiting document
 
@@ -216,7 +216,7 @@ Schema checks: `classOf === season + 1`; player ids are unique across `recruits`
   - `leftRows` ordering, including the New group and ties;
   - take, sendBack (the rating is kept) and takeRest;
   - suggestion beyond the curve;
-  - useAllSuggestions never overwrites a typed rating;
+  - applyAllSuggestions never overwrites a typed rating;
   - each blocker, and out-of-order detection;
   - schema superRefine cases.
 - **`d2/ratings.test.ts`** (rewritten):
@@ -262,3 +262,17 @@ Schema checks: `classOf === season + 1`; player ids are unique across `recruits`
 - The lottery, retirement and Hall of Fame (7b).
 - Adjust Age, underclassmen declaring or entering the portal, Adjust Pro Ratings, the FBA draft (7d).
 - The FBAJC season itself (part 6), the S80 expansion (its own part), and any other ranking kind besides the D2 reset.
+
+## 12. Clarifications accepted at the final review
+
+The plan's "Notes on the spec" (docs/superpowers/plans/2026-09-28-offseason-7a.md) were accepted in the final review and are part of this spec:
+
+- Ranking engine functions that sort or name rows (`leftRows`, `takeRest`, `rankingBlockers`) take a `name: (playerId) => string` argument.
+- Ranking edits (`take`, `sendBack`, `takeRest`, `setRating`, `applyAllSuggestions`) return a `RankingFile`; a refused edit returns the same object unchanged. They are autosaved doc edits, not batch moves.
+- Out of order: a ranked, rated player is out of order when their rating is higher than the lowest rating ranked above them (`85, 90, 88` flags both 90 and 88). Unrated rows are skipped; equal ratings are fine.
+- `rankingBlockers` doesn't check `locked`; the D2 layer keeps its own blocker. D2 membership blockers are `membershipBlockers(state)`. Curve values are clamped to 1–99.
+- The recruiting page shows only the setup panel (or a "don't exist yet" note) until the S{n} college rosters exist. The recruiting doc is created by the first class-draft autosave or by Create Class. A missing S{n} college transactions doc counts as empty.
+- After creation the Class tab lists recruits with rename, position and Remove; refusals `Name has committed; decommit them first`, `Remove Name's projections first`, `Enter a name`.
+- New player ids are `p` + the zero-padded 5-digit `nextId`. Displaced returning players keep class year, rating and stars in the portal; a slot whose player has no class year can't be displaced.
+- Create Class only runs at the Create S{n+1} Class step (`The class is created at the Create S80 Class step (current step: …)`); the class draft can autosave at any time.
+- "Go to next season" re-checks the FBAJC gate, so a board with anyone uncommitted (e.g. after a later decommit or Undo) can't be locked by the rollover.
