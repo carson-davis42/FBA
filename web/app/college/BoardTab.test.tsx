@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it } from 'vitest';
 import { addProjection, commit } from '../../engine/college/recruiting';
 import type { RecruitingResult, RecruitingState } from '../../engine/college/state';
-import { collegeBaseState, collegeClassState } from '../../engine/college/testFixtures';
+import { collegeBaseState, collegeClassState, collegeCurrentClassState } from '../../engine/college/testFixtures';
 import { BoardTab } from './BoardTab';
 
 afterEach(cleanup);
@@ -63,7 +63,7 @@ describe('BoardTab', () => {
 
   it('commits through the picker, listing projected schools first and saying who would leave', () => {
     const runs: RecruitingResult[] = [];
-    render(<Harness initial={ok(addProjection(collegeClassState(), 'p01914', 'BAY'))} runs={runs} />);
+    render(<Harness initial={ok(addProjection(collegeCurrentClassState(), 'p01914', 'BAY'))} runs={runs} />);
     fireEvent.click(button('Commit Zion Carter'));
     const dialog = screen.getByRole('dialog', { name: 'Commit Zion Carter' });
     expect(within(dialog).getAllByRole('heading').map(h => h.textContent)).toEqual(['Commit · Zion Carter', 'Projected', 'Big 12', 'ACC']);
@@ -79,7 +79,7 @@ describe('BoardTab', () => {
   });
 
   it('refuses in the picker to displace someone who committed this cycle', () => {
-    render(<Harness initial={ok(commit(collegeClassState(), 'p01914', 'BAY', { batchId: 't' }))} runs={[]} />);
+    render(<Harness initial={ok(commit(collegeCurrentClassState(), 'p01914', 'BAY', { batchId: 't' }))} runs={[]} />);
     fireEvent.click(button('Commit Jaden Moss'));
     const dialog = screen.getByRole('dialog', { name: 'Commit Jaden Moss' });
     fireEvent.click(within(dialog).getByRole('button', { name: 'Baylor' }));

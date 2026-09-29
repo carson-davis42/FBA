@@ -74,7 +74,7 @@ describe('RecruitingPage', () => {
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].label).toBe('Zion Carter commits to Duke');
     expect(log.batches[0].writes.map(w => w.path)).toEqual([
-      'leagues/fbajc/S79/recruiting.json', 'leagues/fbajc/S79/rosters.json', 'leagues/fbajc/S79/transactions.json',
+      'leagues/fbajc/S79/recruiting.json', 'leagues/fbajc/S79/transactions.json',
     ]);
     expect(log.batches[0].writes.every(w => w.baseVersion === '0000000000000001')).toBe(true);
   });

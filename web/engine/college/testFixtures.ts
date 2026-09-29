@@ -110,3 +110,9 @@ export function collegeClassState(): RecruitingState {
   if (!r.ok) throw new Error(r.problems.join('; '));
   return r.state;
 }
+
+/** collegeClassState as the class that plays this season: board S78 (`season` 78, `classOf` 79), so commits go onto the S79 rosters. */
+export function collegeCurrentClassState(): RecruitingState {
+  const s = collegeClassState();
+  return { ...s, recruiting: { ...s.recruiting, season: 78, classOf: 79 } };
+}

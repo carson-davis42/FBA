@@ -25,7 +25,7 @@ export function CalendarPage() {
   // The FBAJC step waits until every recruit and portal player has committed (a missing recruiting doc means no gate).
   const atFbajc = i >= 0 && cal.steps[i].id === 'fbajc';
   const gate = !atFbajc ? null
-    : recruiting.data ? fbajcGateProblem(recruiting.data)
+    : recruiting.data ? fbajcGateProblem(recruiting.data, null)
     : recruiting.missing ? null
     : recruiting.error ? `Couldn't check recruiting: ${recruiting.error.message}`
     : 'Checking recruiting…';

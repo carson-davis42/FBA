@@ -1,6 +1,6 @@
 import type { CalendarFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../shared/types';
 
-/** Everything the recruiting page reads and writes for the class created in calendar season `season`. */
+/** Everything the recruiting page reads and writes. `season` is the calendar season (rosters and tx); `recruiting.season` is where the board lives. */
 export interface RecruitingState {
   season: number;
   recruiting: RecruitingFile;
@@ -14,11 +14,19 @@ export interface RecruitingState {
   calendar: CalendarFile;
 }
 
+/** leagues/fbajc/S{season}/recruiting.json: the board of the class created in `season` (it plays in season + 1). */
+export const boardPath = (season: number) => `leagues/fbajc/S${season}/recruiting.json`;
+/** In calendar season n: the class that plays this season (board S{n−1}) and the next class (board S{n}). */
+export const currentClassBoardSeason = (n: number) => n - 1;
+export const nextClassBoardSeason = (n: number) => n;
+/** True when the board's class plays in the state's season (commits go onto this season's rosters). */
+export const playsThisSeason = (s: RecruitingState) => s.recruiting.classOf === s.season;
+
 export type RecruitingDocKey = 'recruiting' | 'rosters' | 'players' | 'tx' | 'calendar';
 
 export function recruitingDocPath(key: RecruitingDocKey, season: number): string {
   switch (key) {
-    case 'recruiting': return `leagues/fbajc/S${season}/recruiting.json`;
+    case 'recruiting': return boardPath(season);
     case 'rosters': return `leagues/fbajc/S${season}/rosters.json`;
     case 'tx': return `leagues/fbajc/S${season}/transactions.json`;
     case 'players': return 'players.json';
@@ -34,7 +42,10 @@ export const recruitingFail = (problems: string[]): RecruitingResult => ({ ok: f
 
 /** The batch writes for a successful result: one per changed document. */
 export function recruitingWrites(result: Extract<RecruitingResult, { ok: true }>): { path: string; doc: unknown }[] {
-  return result.changed.map(k => ({ path: recruitingDocPath(k, result.state.season), doc: result.state[k] }));
+  return result.changed.map(k => ({
+    path: recruitingDocPath(k, k === 'recruiting' ? result.state.recruiting.season : result.state.season),
+    doc: result.state[k],
+  }));
 }
 
 /** A new recruiting doc for the class created in `season` (it plays its Freshman year in that season's FBAJC). */

@@ -2,9 +2,9 @@ import { POSITIONS } from '../roster/rules';
 import { appendTx, withTeam, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
 import { calendarProblem } from '../season/moves';
-import type { ClassDraftRow, PortalPlayer, Position, Prospect, RecruitingFile, RosterEntry } from '../shared/types';
+import type { ClassDraftRow, PortalPlayer, Position, Prospect, RecruitingFile, RosterEntry, RostersFile } from '../shared/types';
 import { collegeHole } from './setup';
-import { collegeName, recruitingFail, schoolName, type RecruitingDocKey, type RecruitingResult, type RecruitingState } from './state';
+import { collegeName, playsThisSeason, recruitingFail, schoolName, type RecruitingDocKey, type RecruitingResult, type RecruitingState } from './state';
 
 const LOCKED = 'Recruiting for this class is finished';
 const LINE = /^(.+?)\s*[\t,]\s*(PG|SG|SF|PF|C)\s*$/i;
@@ -50,7 +50,7 @@ export function draftCounts(doc: RecruitingFile): Record<Position, number> {
   return out;
 }
 
-/** Create S{n+1} Class: a new player (born n − 18) and an uncommitted Freshman recruit per draft row. */
+/** Create S{k} Class (k = `classOf`): a new player (born k − 18) and an uncommitted Freshman recruit per draft row. */
 export function createClass(state: RecruitingState, ctx: MoveContext): RecruitingResult {
   const doc = state.recruiting;
   if (doc.locked) return recruitingFail([LOCKED]);
@@ -64,7 +64,7 @@ export function createClass(state: RecruitingState, ctx: MoveContext): Recruitin
   const people = { ...state.players.players };
   const recruits: Prospect[] = doc.classDraft.map(r => {
     const id = `p${String(nextId++).padStart(5, '0')}`;
-    people[id] = { id, name: r.name.trim(), birthSeason: state.season - 18 };
+    people[id] = { id, name: r.name.trim(), birthSeason: doc.classOf - 18 };
     return { playerId: id, position: r.position, classYear: 'Fr', rating: null, stars: null, projections: {}, committedTo: null };
   });
   const k = recruits.length;
@@ -198,7 +198,7 @@ export function formatShares(p: Prospect, abbr: (teamId: string) => string): str
   return projectionShares(p).map(s => `${s.pct}% ${abbr(s.teamId)}`).join(' · ');
 }
 
-type Slot = { ok: true; index: number; displaced: RosterEntry | null } | { ok: false; problem: string };
+type Slot = { ok: true; index: number; displaced: RosterEntry | null; unnamed?: true } | { ok: false; problem: string };
 
 /** The slot at the player's position on that school's roster, and who would have to leave it. */
 function slotFor(state: RecruitingState, p: Prospect, teamId: string, school: string): Slot {
@@ -208,6 +208,8 @@ function slotFor(state: RecruitingState, p: Prospect, teamId: string, school: st
   if (index < 0) return { ok: false, problem: `${school} has no ${p.position} spot` };
   const holder = entries[index];
   if (holder.playerId === null) return { ok: true, index, displaced: null };
+  // An unnamed (X) holder is simply replaced: nobody goes to the portal.
+  if (state.players.players[holder.playerId]?.name == null) return { ok: true, index, displaced: null, unnamed: true };
   const holderName = collegeName(state.players, holder.playerId);
   if (committedThisCycle(state.recruiting, holder.playerId)) {
     return { ok: false, problem: `${school} already has ${holderName} committed at ${p.position}. Decommit them first` };
@@ -216,14 +218,30 @@ function slotFor(state: RecruitingState, p: Prospect, teamId: string, school: st
   return { ok: true, index, displaced: holder };
 }
 
-const ratingNote = (rating: number | null) => (rating !== null ? `, ${rating}` : '');
+/** For a next-class board: why this player can't take that school's spot at their position (someone else already committed there), or null. */
+function sameSlotCommit(state: RecruitingState, p: Prospect, teamId: string): string | null {
+  const other = [...state.recruiting.recruits, ...state.recruiting.portal].find(
+    x => x.playerId !== p.playerId && x.committedTo === teamId && x.position === p.position,
+  );
+  if (!other) return null;
+  return `${schoolName(state, teamId)} already has ${collegeName(state.players, other.playerId)} committed at ${p.position} for the S${state.recruiting.classOf} class. Decommit them first`;
+}
+
+const ratingNote =(rating: number | null) => (rating !== null ? `, ${rating}` : '');
 
 /** What committing to this school would do: "Open spot", "Name (Jr, 78) will enter the portal", or why it's refused. */
 export function commitPreview(state: RecruitingState, playerId: string, teamId: string): { ok: true; text: string } | { ok: false; text: string } {
   const check = boardCheck(state, playerId, teamId);
   if (!check.ok) return { ok: false, text: check.problems.join('; ') };
-  const slot = slotFor(state, check.found.p, teamId, check.school);
+  const p = check.found.p;
+  if (!playsThisSeason(state)) {
+    const taken = sameSlotCommit(state, p, teamId);
+    if (taken) return { ok: false, text: taken };
+    return { ok: true, text: `Joins the S${state.recruiting.classOf} roster at Adjust Age` };
+  }
+  const slot = slotFor(state, p, teamId, check.school);
   if (!slot.ok) return { ok: false, text: slot.problem };
+  if (slot.unnamed) return { ok: true, text: 'Replaces an unnamed player' };
   if (!slot.displaced) return { ok: true, text: 'Open spot' };
   const d = slot.displaced;
   return { ok: true, text: `${collegeName(state.players, d.playerId!)} (${d.classYear}${ratingNote(d.rating)}) will enter the portal` };
@@ -238,6 +256,25 @@ export function commit(state: RecruitingState, playerId: string, teamId: string,
   if (!check.ok) return check;
   const { found, name, school } = check;
   const p = found.p;
+  const what = found.list === 'portal'
+    ? `${p.classYear} ${p.position}, transfer from ${schoolName(state, found.p.fromTeam)}`
+    : `${p.stars !== null ? `${p.stars}★ ` : ''}${p.position}`;
+  const commitLine = `${name} (${what}) commits to ${school}`;
+  if (!playsThisSeason(state)) {
+    // The class plays next season: only the board and the log change; the rosters are built at Adjust Age.
+    const taken = sameSlotCommit(state, p, teamId);
+    if (taken) return recruitingFail([taken]);
+    return {
+      ok: true,
+      state: {
+        ...state,
+        recruiting: withProspect(state.recruiting, playerId, x => ({ ...x, committedTo: teamId })),
+        tx: appendTx(state.tx, ctx, 'commit', [teamId], [commitLine]),
+      },
+      changed: ['recruiting', 'tx'],
+      label: `${name} commits to ${school}`,
+    };
+  }
   const slot = slotFor(state, p, teamId, school);
   if (!slot.ok) return recruitingFail([slot.problem]);
   let recruiting = state.recruiting;
@@ -256,10 +293,7 @@ export function commit(state: RecruitingState, playerId: string, teamId: string,
   const entry: RosterEntry = { playerId, position: p.position, rating: p.rating, age: null, points: 0, stars: p.stars, classYear: p.classYear };
   const rosters = withTeam(state.rosters, teamId, state.rosters.teams[teamId].map((e, i) => (i === slot.index ? entry : e)));
   recruiting = withProspect(recruiting, playerId, x => ({ ...x, committedTo: teamId }));
-  const what = found.list === 'portal'
-    ? `${p.classYear} ${p.position}, transfer from ${schoolName(state, found.p.fromTeam)}`
-    : `${p.stars !== null ? `${p.stars}★ ` : ''}${p.position}`;
-  tx = appendTx(tx, ctx, 'commit', [teamId], [`${name} (${what}) commits to ${school}`]);
+  tx = appendTx(tx, ctx, 'commit', [teamId], [commitLine]);
   return { ok: true, state: { ...state, recruiting, rosters, tx }, changed: ['recruiting', 'rosters', 'tx'], label: `${name} commits to ${school}` };
 }
 
@@ -272,13 +306,15 @@ export function decommit(state: RecruitingState, playerId: string, ctx: MoveCont
   const teamId = found.p.committedTo;
   if (!teamId) return recruitingFail([`${name} hasn't committed`]);
   const school = schoolName(state, teamId);
+  const line = `${name} decommits from ${school}`;
+  const recruiting = withProspect(state.recruiting, playerId, x => ({ ...x, committedTo: null }));
+  const tx = appendTx(state.tx, ctx, 'commit', [teamId], [line]);
+  if (!playsThisSeason(state)) return { ok: true, state: { ...state, recruiting, tx }, changed: ['recruiting', 'tx'], label: line };
   const entries = state.rosters.teams[teamId] ?? [];
   const index = entries.findIndex(e => e.playerId === playerId);
   if (index < 0) return recruitingFail([`${name} isn't on ${school}'s roster`]);
   const rosters = withTeam(state.rosters, teamId, entries.map((e, i) => (i === index ? collegeHole(e.position) : e)));
-  const recruiting = withProspect(state.recruiting, playerId, x => ({ ...x, committedTo: null }));
-  const tx = appendTx(state.tx, ctx, 'commit', [teamId], [`${name} decommits from ${school}`]);
-  return { ok: true, state: { ...state, recruiting, rosters, tx }, changed: ['recruiting', 'rosters', 'tx'], label: `${name} decommits from ${school}` };
+  return { ok: true, state: { ...state, recruiting, rosters, tx }, changed: ['recruiting', 'rosters', 'tx'], label: line };
 }
 
 /** Recruits and portal players with no commitment yet. */
@@ -286,12 +322,18 @@ export function uncommitted(doc: RecruitingFile): { recruits: Prospect[]; portal
   return { recruits: doc.recruits.filter(p => !p.committedTo), portal: doc.portal.filter(p => !p.committedTo) };
 }
 
-/** Why the FBAJC step can't be marked done yet, or null (also null when there is no recruiting doc). */
-export function fbajcGateProblem(doc: RecruitingFile | null): string | null {
-  if (!doc) return null;
-  const open = uncommitted(doc);
-  const r = open.recruits.length;
-  const m = open.portal.length;
-  if (!r && !m) return null;
-  return `${r} ${r === 1 ? 'recruit' : 'recruits'} and ${m} ${m === 1 ? 'portal player' : 'portal players'} haven't committed yet`;
+/** Why the FBAJC step can't be marked done yet, or null (a missing board or roster doc adds no problem). */
+export function fbajcGateProblem(board: RecruitingFile | null, rosters: RostersFile | null): string | null {
+  const parts: string[] = [];
+  if (board) {
+    const open = uncommitted(board);
+    const r = open.recruits.length;
+    const m = open.portal.length;
+    if (r || m) parts.push(`${r} ${r === 1 ? 'recruit' : 'recruits'} and ${m} ${m === 1 ? 'portal player' : 'portal players'} haven't committed yet`);
+  }
+  if (rosters) {
+    const h = Object.values(rosters.teams).reduce((n, entries) => n + entries.filter(e => e.playerId === null).length, 0);
+    if (h) parts.push(`${h} open ${h === 1 ? 'spot needs a walk-on' : 'spots need walk-ons'}`);
+  }
+  return parts.length ? parts.join('; ') : null;
 }
