@@ -107,4 +107,10 @@ describe('resolvePicks', () => {
     const r = resolvePicks({ season: 80, order: orderWithDcbAt(1), lotterySize: LOTTERY_SIZE, obligations: [later] });
     expect(r.obligations).toEqual([later]);
   });
+
+  it('throws when an obligation names a team that is not in the draft order', () => {
+    expect(() => resolvePicks({ season: 80, order: orderWithDcbAt(1), lotterySize: LOTTERY_SIZE, obligations: [ob({ id: 'z', originalTeam: 'ZZZ' })] })).toThrow(/ZZZ/);
+    const swap = ob({ id: 's', originalTeam: 'DCB', condition: { kind: 'swap', otherTeam: 'ZZZ', betterTo: 'DCB' } });
+    expect(() => resolvePicks({ season: 80, order: orderWithDcbAt(1), lotterySize: LOTTERY_SIZE, obligations: [swap] })).toThrow(/ZZZ/);
+  });
 });

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, PlayoffsFile, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
+import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, FreeAgentsFile, GameResult, HallOfFameFile, LogoManifest, LotteryFile, MetaFile, PickObligation, PicksFile, Player, PlayoffsFile, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -366,5 +366,40 @@ describe('Part 7a schemas', () => {
     const reserve = { playerId: 'p00041', position: 'SG', age: 23, rating: null, fromFba: true };
     expect(ReservePlayer.safeParse({ ...reserve, fbaRating: 71 }).success).toBe(true);
     expect(ReservePlayer.safeParse({ ...reserve, fbaRating: 0 }).success).toBe(false);
+  });
+});
+
+describe('Part 7b schemas', () => {
+  const lottery = {
+    league: 'fba', season: 79, draftSeason: 80, locked: true,
+    odds: [{ teamId: 'AAA', slot: 1, w: 20, l: 66, pct: 14 }],
+    lottery: ['AAA'], order: ['AAA', 'BBB'],
+    picks: [{ slot: 1, originalTeam: 'AAA', owner: 'BBB', obligationId: 'x', flag: null }, { slot: 2, originalTeam: 'BBB', owner: 'BBB', obligationId: null, flag: 'Custom' }],
+  };
+  const card = { name: 'Ann Star', playerId: 'p00001', retiredSeason: 'S64', lines: ['MVP'] };
+  const hof = { league: 'fba', classes: [{ season: 'S8', inductees: [card, { ...card, playerId: null, retiredSeason: 'FFL' }] }], nominees: [card], removed: [{ name: 'Bo Old', playerId: null }] };
+
+  it('accepts a lottery file and rejects extra keys', () => {
+    expect(LotteryFile.safeParse(lottery).success).toBe(true);
+    expect(LotteryFile.safeParse({ ...lottery, extra: 1 }).success).toBe(false);
+    expect(LotteryFile.safeParse({ ...lottery, league: 'fbad2' }).success).toBe(false);
+  });
+
+  it('accepts a Hall of Fame file and rejects more than 15 nominees', () => {
+    expect(HallOfFameFile.safeParse(hof).success).toBe(true);
+    expect(HallOfFameFile.safeParse({ ...hof, nominees: Array.from({ length: 15 }, () => card) }).success).toBe(true);
+    expect(HallOfFameFile.safeParse({ ...hof, nominees: Array.from({ length: 16 }, () => card) }).success).toBe(false);
+  });
+
+  it('accepts a retired player and rejects an unknown key', () => {
+    const p = { id: 'p00001', name: 'Ann Star', birthSeason: 50 };
+    const retired = { season: 79, league: 'fba', teamId: null, position: 'PG' };
+    expect(Player.safeParse({ ...p, retired }).success).toBe(true);
+    expect(Player.safeParse({ ...p, retired: { ...retired, extra: 1 } }).success).toBe(false);
+    expect(Player.safeParse({ ...p, extra: 1 }).success).toBe(false);
+  });
+
+  it('knows the new transaction types', () => {
+    for (const t of ['lottery', 'retired', 'hall-of-fame']) expect(TransactionType.safeParse(t).success).toBe(true);
   });
 });
