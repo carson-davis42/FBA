@@ -1,4 +1,5 @@
-import type { ClassDraftRow, ClassYear, PlayersFile, Position, RosterEntry, RostersFile, TeamsFile } from '../shared/types';
+import type { ClassDraftRow, ClassYear, PlayersFile, PortalPlayer, Position, RecruitingFile, RosterEntry, RostersFile, TeamsFile } from '../shared/types';
+import type { CollegeRatingsState } from './collegeRatings';
 import { createClass } from './recruiting';
 import { setupCollegeRosters } from './setup';
 import { emptyRecruiting, type RecruitingState } from './state';
@@ -115,4 +116,52 @@ export function collegeClassState(): RecruitingState {
 export function collegeCurrentClassState(): RecruitingState {
   const s = collegeClassState();
   return { ...s, recruiting: { ...s.recruiting, season: 78, classOf: 79 } };
+}
+
+const collegeHoleEntry = (position: Position): RosterEntry => ({ playerId: null, position, rating: null, age: null, points: 0, stars: null, classYear: null });
+
+/**
+ * S79 college data with the ratings step current (board S78, the S79 class):
+ * - BAY: Jaden Moss p00485 (So, 82) on the roster, plus recruit Zion Carter p01914 committed at C (a recruit: excluded).
+ * - DUKE: Luis Vega p00503 (Jr, 66), a portal player from TEX committed to DUKE at PF.
+ * - Portal, uncommitted: Omar Reed p00488 (Sr, 69) from BAY.
+ * - Unnamed X players stay on the rosters and are excluded.
+ */
+export function collegeRatingsBaseState(): CollegeRatingsState {
+  const s = collegeCurrentClassState();
+  const teams = { ...s.rosters.teams };
+  teams.BAY = teams.BAY.map(e => {
+    if (e.position === 'PF') return collegeHoleEntry('PF');
+    if (e.position === 'C') return { playerId: 'p01914', position: 'C' as const, rating: null, age: null, points: 0, stars: 4, classYear: 'Fr' as const };
+    return e;
+  });
+  teams.TEX = teams.TEX.map(e => (e.playerId === 'p00503' ? collegeHoleEntry('PF') : e));
+  teams.DUKE = teams.DUKE.map(e => (e.position === 'PF' ? { playerId: 'p00503', position: 'PF' as const, rating: 66, age: null, points: 0, stars: null, classYear: 'Jr' as const } : e));
+  const portal: PortalPlayer[] = [
+    { playerId: 'p00503', position: 'PF', classYear: 'Jr', rating: 66, stars: null, projections: {}, committedTo: 'DUKE', fromTeam: 'TEX' },
+    { playerId: 'p00488', position: 'PF', classYear: 'Sr', rating: 69, stars: null, projections: {}, committedTo: null, fromTeam: 'BAY' },
+  ];
+  const board: RecruitingFile = {
+    ...s.recruiting,
+    recruits: s.recruiting.recruits.map(r => (r.playerId === 'p01914' ? { ...r, committedTo: 'BAY' } : r)),
+    portal,
+  };
+  return {
+    season: 79,
+    board,
+    rosters: { ...s.rosters, teams },
+    prevRosters: collegeS78Rosters(),
+    players: s.players,
+    ratings: null,
+    prevRatings: null,
+    tx: s.tx,
+    calendar: {
+      season: 79,
+      steps: [
+        { id: 'rank-s80-class', label: 'Rank S80 Class', kind: 'offseason', league: null, sub: false, done: true },
+        { id: 'adjust-college-ratings', label: 'Adjust College Ratings', kind: 'offseason', league: null, sub: true, done: false },
+        { id: 'fbajc', label: 'FBAJC', kind: 'league', league: 'fbajc', sub: false, done: false },
+      ],
+    },
+  };
 }

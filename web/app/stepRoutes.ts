@@ -6,6 +6,7 @@ export const TOOL_STEPS: Record<string, string> = {
   'fbad2-ratings-reset': '/league/fbad2/ratings',
   'fbad2-draft': '/league/fbad2/draft',
   retirement: '/retirement',
+  'adjust-college-ratings': '/league/fbajc/ratings',
   'hall-of-fame-induction': '/league/fba/hall-of-fame?tab=nominees',
 };
 

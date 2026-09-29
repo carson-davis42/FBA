@@ -27,6 +27,12 @@ describe('step routes', () => {
     expect(toolTarget(step('rank-sx-class'))).toBeNull();
   });
 
+  it('opens Adjust College Ratings on the college ratings page', () => {
+    expect(TOOL_STEPS['adjust-college-ratings']).toBe('/league/fbajc/ratings');
+    expect(toolTarget(step('adjust-college-ratings'))).toBe('/league/fbajc/ratings');
+    expect(stepTarget(step('adjust-college-ratings'))).toBe('/league/fbajc/ratings');
+  });
+
   it('opens the draft lottery page from its calendar step', () => {
     expect(toolTarget(step('s80-fba-draft-lottery'))).toBe('/league/fba/lottery');
     expect(stepTarget(step('s81-fba-draft-lottery'))).toBe('/league/fba/lottery');
