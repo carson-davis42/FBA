@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, PlayoffsFile, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
+import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, PlayoffsFile, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -77,16 +77,6 @@ describe('roster-move schemas', () => {
 });
 
 describe('D2 cycle schemas', () => {
-  const row = { playerId: 'p00001', position: 'PG', age: 24, team: 'AMS', oldRating: 80, suggested: 82, breakdown: { age: 2, perf: 0, luck: 0 }, rating: 82 };
-
-  it('accepts a ratings file and rejects out-of-range ratings', () => {
-    const blank = { ...row, playerId: 'p00002', team: null, oldRating: null, suggested: null, breakdown: null, rating: null };
-    const doc = { league: 'fbad2', season: 79, locked: false, players: [row, blank] };
-    expect(D2RatingsFile.safeParse(doc).success).toBe(true);
-    expect(D2RatingsFile.safeParse({ ...doc, players: [{ ...row, rating: 100 }] }).success).toBe(false);
-    expect(D2RatingsFile.safeParse({ ...doc, players: [{ ...row, rating: 0 }] }).success).toBe(false);
-  });
-
   it('requires every position in the pool order', () => {
     const order = { PG: ['p00001'], SG: [], SF: [], PF: [], C: [] };
     expect(D2PoolFile.safeParse({ league: 'fbad2', season: 79, locked: false, order }).success).toBe(true);

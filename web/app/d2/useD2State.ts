@@ -1,6 +1,6 @@
 import { d2DocPath, type D2DocKey, type D2State } from '../../engine/d2/state';
 import type {
-  CalendarFile, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, MetaFile, PlayersFile, ReservesFile, RostersFile, TransactionsFile,
+  CalendarFile, D2DraftFile, D2PoolFile, FreeAgentsFile, MetaFile, PlayersFile, RankingFile, ReservesFile, RostersFile, TransactionsFile,
 } from '../../engine/shared/types';
 import { useDoc, type DocState, type Versions } from '../api';
 
@@ -13,12 +13,13 @@ export function useD2State(): { state?: D2State; versions: Versions; error?: Err
   const reserves = useDoc<ReservesFile>(at('reserves'));
   const d2Tx = useDoc<TransactionsFile>(at('d2Tx'));
   const calendar = useDoc<CalendarFile>(at('calendar'));
-  const ratings = useDoc<D2RatingsFile>(at('ratings'));
+  const ratings = useDoc<RankingFile>(at('ratings'));
   const pool = useDoc<D2PoolFile>(at('pool'));
   const draft = useDoc<D2DraftFile>(at('draft'));
   const players = useDoc<PlayersFile>(season === undefined ? null : 'players.json');
   const prevD2 = useDoc<RostersFile>(season === undefined ? null : `leagues/fbad2/S${season - 1}/rosters.json`);
-  const freeAgents = useDoc<FreeAgentsFile>(season === undefined ? null : `leagues/fba/S${season}/freeAgents.json`);
+  const prevRatings = useDoc<RankingFile>(season === undefined ? null : `leagues/fbad2/S${season - 1}/ratings.json`);
+  const freeAgents =useDoc<FreeAgentsFile>(season === undefined ? null : `leagues/fba/S${season}/freeAgents.json`);
 
   const versions: Versions = {};
   if (season !== undefined) {
@@ -29,7 +30,7 @@ export function useD2State(): { state?: D2State; versions: Versions; error?: Err
   }
 
   const required: DocState<unknown>[] = [d2, reserves, d2Tx, calendar, players];
-  const optional: DocState<unknown>[] = [ratings, pool, draft, prevD2, freeAgents];
+  const optional: DocState<unknown>[] = [ratings, pool, draft, prevD2, prevRatings, freeAgents];
   const error = meta.error ?? required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
   if (season === undefined || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { versions, error };
   return {
@@ -42,6 +43,7 @@ export function useD2State(): { state?: D2State; versions: Versions; error?: Err
       players: players.data!,
       calendar: calendar.data!,
       prevD2: prevD2.data ?? null,
+      prevRatings: prevRatings.data ?? null,
       freeAgencyClosed: freeAgents.data?.locked ?? false,
       ratings: ratings.data ?? null,
       pool: pool.data ?? null,

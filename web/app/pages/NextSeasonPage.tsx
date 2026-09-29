@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { nextSeasonDocs, nextSeasonPaths, type NextSeasonInput } from '../../engine/season/nextSeason';
 import { groupLabel } from '../../engine/shared/leagues';
 import type {
-  CalendarFile, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, MetaFile, ReservesFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile,
+  CalendarFile, D2DraftFile, D2PoolFile, RankingFile, FreeAgentsFile, MetaFile, ReservesFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile,
 } from '../../engine/shared/types';
 import { useDoc, useSaving, type DocState, type Versions } from '../api';
 import { commitDocs, newBatchId } from '../roster/commit';
@@ -27,7 +27,7 @@ export function NextSeasonPage() {
   const d2Rosters = useDoc<RostersFile>(p && p.fbad2.rosters);
   const d2Reserves = useDoc<ReservesFile>(p && p.fbad2.reserves);
   const d2Tx = useDoc<TransactionsFile>(p && p.fbad2.tx);
-  const d2Ratings = useDoc<D2RatingsFile>(p && p.fbad2.ratings);
+  const d2Ratings = useDoc<RankingFile>(p && p.fbad2.ratings);
   const d2Pool = useDoc<D2PoolFile>(p && p.fbad2.pool);
   const d2Draft = useDoc<D2DraftFile>(p && p.fbad2.draft);
   const d2Summary = useDoc<SummaryFile>(p && p.fbad2.summary);

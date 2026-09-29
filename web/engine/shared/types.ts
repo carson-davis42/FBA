@@ -214,26 +214,6 @@ export type TransactionsFile = z.infer<typeof TransactionsFile>;
 
 const d2Rating = int.min(1).max(99);
 
-export const RatingBreakdown = z.object({ age: int, perf: int, luck: int }).strict();
-export type RatingBreakdown = z.infer<typeof RatingBreakdown>;
-
-export const D2RatingRow = z.object({
-  playerId,
-  position: Position,
-  age: int.nullable(),
-  /** D2 team id, or null for Reserves. */
-  team: z.string().min(1).nullable(),
-  oldRating: int.nullable(),
-  suggested: d2Rating.nullable(),
-  breakdown: RatingBreakdown.nullable(),
-  /** The new rating; starts equal to `suggested`. */
-  rating: d2Rating.nullable(),
-}).strict();
-export type D2RatingRow = z.infer<typeof D2RatingRow>;
-
-export const D2RatingsFile = z.object({ league: z.literal('fbad2'), season: int, locked: z.boolean(), players: z.array(D2RatingRow) }).strict();
-export type D2RatingsFile = z.infer<typeof D2RatingsFile>;
-
 const idList = z.array(playerId);
 
 export const D2PoolFile = z.object({

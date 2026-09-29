@@ -1,5 +1,5 @@
 import type { RosterEntry } from '../shared/types';
-import { finishRatings, setRating, startRatings } from './ratings';
+import { finishRatings, startRatings } from './ratings';
 import { lockPool, startPool } from './pool';
 import type { D2State } from './state';
 
@@ -16,7 +16,7 @@ const NAMES: Record<string, string> = {
  * S79 D2 right after FBA free agency closed, before the ratings reset.
  * - AMS: full except C is vacant.
  * - BER: SG is vacant.
- * - Reserves (all unrated): PG Kris Dyer (30), SG Kyron Smart (23, from FBA free agency),
+ * - Reserves (all unrated): PG Kris Dyer (30), SG Kyron Smart (23, from FBA free agency, FBA rating 71),
  *   PF Myron Mason (25), SG Adrian Napoletani (27), C Brycen Holcomb (26).
  * - prevD2 is S78 with season point totals.
  */
@@ -32,7 +32,7 @@ export function d2BaseState(): D2State {
     reserves: {
       league: 'fbad2', season: 79, locked: false, players: [
         { playerId: 'p00040', position: 'PG', age: 30, rating: null },
-        { playerId: 'p00041', position: 'SG', age: 23, rating: null, fromFba: true },
+        { playerId: 'p00041', position: 'SG', age: 23, rating: null, fromFba: true, fbaRating: 71 },
         { playerId: 'p00042', position: 'PF', age: 25, rating: null },
         { playerId: 'p00043', position: 'SG', age: 27, rating: null },
         { playerId: 'p00044', position: 'C', age: 26, rating: null },
@@ -55,21 +55,27 @@ export function d2BaseState(): D2State {
     },
     freeAgencyClosed: true,
     ratings: null,
+    prevRatings: null,
     pool: null,
     draft: null,
   };
 }
 
+/** The finished D2 reset in d2RatedState: [player, new rating], best first. */
+const RATED: [string, number][] = [
+  ['p00023', 97], ['p00028', 85], ['p00026', 80], ['p00040', 78], ['p00022', 75], ['p00041', 74], ['p00020', 73],
+  ['p00021', 72], ['p00025', 72], ['p00042', 70], ['p00027', 66], ['p00044', 65], ['p00043', 60],
+];
+
 /**
- * d2BaseState with the ratings reset finished: no performance data and no luck, then Reserves rated
- * PG Kris Dyer 78, SG Kyron Smart 74, PF Myron Mason 70, SG Adrian Napoletani 60, C Brycen Holcomb 65.
+ * d2BaseState (no performance data) with the ratings reset finished, ranked and rated as RATED:
+ * Reserves PG Kris Dyer 78, SG Kyron Smart 74, PF Myron Mason 70, SG Adrian Napoletani 60, C Brycen Holcomb 65.
  * Roster ratings: AMS PG 73, SG 72, SF 75, PF 97 · BER PG 72, SF 80, PF 66, C 85.
  */
 export function d2RatedState(): D2State {
-  const started = startRatings({ ...d2BaseState(), prevD2: null }, () => 0.5);
+  const started = startRatings({ ...d2BaseState(), prevD2: null });
   if (!started.ok) throw new Error(started.problems.join('; '));
-  let ratings = started.state.ratings!;
-  for (const [id, v] of [['p00040', 78], ['p00041', 74], ['p00042', 70], ['p00043', 60], ['p00044', 65]] as const) ratings = setRating(ratings, id, v);
+  const ratings = { ...started.state.ratings!, order: RATED.map(([id]) => id), ratings: Object.fromEntries(RATED) };
   const finished = finishRatings({ ...started.state, ratings }, { batchId: 'fixture' });
   if (!finished.ok) throw new Error(finished.problems.join('; '));
   return finished.state;

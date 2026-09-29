@@ -1,93 +1,114 @@
 import { describe, expect, it } from 'vitest';
-import type { RosterEntry, RostersFile } from '../shared/types';
-import {
-  ageAdjustment, buildRatings, clampSuggested, finishRatings, parseRatingInput, performanceScores, ratingsBlockers, setRating, startRatings,
-} from './ratings';
-import type { D2Result, D2State } from './state';
+import { applyAllSuggestions, setRating, takeRest } from '../rank/ranking';
+import { RankingFile } from '../shared/types';
+import { buildRankingRows, d2Curve, finishRatings, membershipBlockers, parseRatingInput, ratingsBlockers, startRatings } from './ratings';
+import { d2Name, type D2Result, type D2State } from './state';
 import { d2BaseState, d2RatedState } from './testFixtures';
 
 const ctx = { batchId: 'b1' };
-const noLuck = () => 0.5; // randInt(-2, 2) → 0
 const ok = (r: D2Result) => {
   if (!r.ok) throw new Error(`expected ok, got ${r.problems.join('; ')}`);
   return r;
 };
-const prev = (rows: [string, number, number][]): RostersFile => ({
-  league: 'fbad2', season: 78, locked: true,
-  teams: { T: rows.map(([playerId, rating, points]): RosterEntry => ({ playerId, position: 'PG', rating, age: 25, points })) },
+const started = (s: D2State = d2BaseState()): D2State => ok(startRatings(s)).state;
+/** Everyone ranked in last season's order; the 8 with a suggestion take it; the 5 new players are rated 66, 64, 62, 60, 58. */
+const ranked = (s: D2State): D2State => {
+  let doc = applyAllSuggestions(takeRest(s.ratings!, id => d2Name(s, id)));
+  for (const [id, v] of [['p00041', 66], ['p00043', 64], ['p00044', 62], ['p00040', 60], ['p00042', 58]] as const) doc = setRating(doc, id, v);
+  return { ...s, ratings: doc };
+};
+const prevFile = (ratings: Record<string, number>, locked = true): RankingFile => ({
+  league: 'fbad2', season: 78, kind: 'd2-reset', locked,
+  rows: Object.keys(ratings).map(playerId => ({ playerId, position: 'PG', age: 25, team: 'AMS', prevRating: 70, otherRating: null, stat: null })),
+  order: Object.keys(ratings), ratings, curve: [],
 });
 
-describe('ageAdjustment', () => {
-  it('follows the age table at every boundary', () => {
-    expect([19, 22, 23, 25, 26, 29, 30, 31, 32].map(ageAdjustment)).toEqual([3, 3, 2, 2, 0, 0, -2, -2, -3]);
-    expect(ageAdjustment(null)).toBe(0);
-  });
-});
-
-describe('clampSuggested', () => {
-  it('keeps suggestions between 40 and 99', () => {
-    expect([30, 40, 77, 99, 104].map(clampSuggested)).toEqual([40, 40, 77, 99, 99]);
-  });
-});
-
-describe('performanceScores', () => {
-  it('buckets each player by how far their points sit from the rating trend', () => {
-    const scores = performanceScores(prev([['a', 70, 100], ['b', 70, 100], ['c', 70, 100], ['d', 70, 100], ['e', 70, 300], ['z', 70, 0]]));
-    expect(Object.fromEntries(scores)).toEqual({ a: -1, b: -1, c: -1, d: -1, e: 2 });
-  });
-
-  it('gives everyone 0 when points follow the trend exactly', () => {
-    const scores = performanceScores(prev([['a', 60, 100], ['b', 70, 200], ['c', 80, 300]]));
-    expect(Object.fromEntries(scores)).toEqual({ a: 0, b: 0, c: 0 });
-  });
-
-  it('returns nothing without enough data', () => {
-    expect(performanceScores(null).size).toBe(0);
-    expect(performanceScores(prev([['a', 60, 100], ['b', 70, 200]])).size).toBe(0);
-  });
-});
-
-describe('buildRatings', () => {
-  it('suggests old + age + perf + luck for rated players and leaves the rest blank', () => {
-    const rows = buildRatings({ ...d2BaseState(), prevD2: null }, noLuck);
-    expect(rows.map(r => [r.playerId, r.team, r.oldRating, r.suggested, r.rating])).toEqual([
-      ['p00020', 'AMS', 75, 73, 73], ['p00021', 'AMS', 72, 72, 72], ['p00022', 'AMS', 75, 75, 75], ['p00023', 'AMS', 94, 97, 97],
-      ['p00025', 'BER', 70, 72, 72], ['p00026', 'BER', 80, 80, 80], ['p00027', 'BER', 68, 66, 66], ['p00028', 'BER', 85, 85, 85],
-      ['p00040', null, null, null, null], ['p00041', null, null, null, null], ['p00042', null, null, null, null],
+describe('buildRankingRows', () => {
+  it("lists every pool member with the current D2 rating, last season's points and an FBA rating", () => {
+    const rows = buildRankingRows(d2BaseState());
+    expect(rows.map(r => [r.playerId, r.team, r.prevRating, r.otherRating, r.stat])).toEqual([
+      ['p00020', 'AMS', 75, null, '300 pts'], ['p00021', 'AMS', 72, null, '300 pts'], ['p00022', 'AMS', 75, null, '300 pts'], ['p00023', 'AMS', 94, null, '700 pts'],
+      ['p00025', 'BER', 70, null, '300 pts'], ['p00026', 'BER', 80, null, '300 pts'], ['p00027', 'BER', 68, null, '300 pts'], ['p00028', 'BER', 85, null, '300 pts'],
+      ['p00040', null, null, null, null], ['p00041', null, null, 71, null], ['p00042', null, null, null, null],
       ['p00043', null, null, null, null], ['p00044', null, null, null, null],
     ]);
-    expect(rows[0].breakdown).toEqual({ age: -2, perf: 0, luck: 0 });
-    expect(rows[8].breakdown).toBeNull();
+    expect(rows[0]).toMatchObject({ position: 'PG', age: 30 });
   });
 
-  it("uses last season's performance", () => {
-    const s = { ...d2BaseState(), prevD2: prev([['p00020', 70, 300], ['x1', 70, 100], ['x2', 70, 100], ['x3', 70, 100], ['x4', 70, 100]]) };
-    const row = buildRatings(s, noLuck).find(r => r.playerId === 'p00020')!;
-    expect(row.breakdown).toEqual({ age: -2, perf: 2, luck: 0 });
-    expect(row.suggested).toBe(75);
+  it('has no stat without last season', () => {
+    expect(buildRankingRows({ ...d2BaseState(), prevD2: null }).every(r => r.stat === null)).toBe(true);
+  });
+});
+
+describe('d2Curve', () => {
+  it("uses last season's finished ratings, high to low", () => {
+    expect(d2Curve(prevFile({ p00001: 80, p00002: 91, p00003: 77 }), [])).toEqual([91, 80, 77]);
   });
 
-  it('draws luck from the rng, only for rated players', () => {
-    let calls = 0;
-    const rows = buildRatings({ ...d2BaseState(), prevD2: null }, () => { calls++; return 0; });
-    expect(calls).toBe(8);
-    expect(rows[0].breakdown!.luck).toBe(-2);
+  it("falls back to these rows' current ratings when last season has no finished reset", () => {
+    const rows = buildRankingRows(d2BaseState());
+    expect(d2Curve(null, rows)).toEqual([94, 85, 80, 75, 75, 72, 70, 68]);
+    expect(d2Curve(prevFile({ p00001: 99 }, false), rows)).toEqual([94, 85, 80, 75, 75, 72, 70, 68]);
   });
 });
 
 describe('startRatings', () => {
-  it('creates the ratings doc once free agency is closed', () => {
-    const r = ok(startRatings(d2BaseState(), noLuck));
+  it('builds an empty ranking with the curve once free agency is closed', () => {
+    const r = ok(startRatings(d2BaseState()));
     expect(r.changed).toEqual(['ratings']);
     expect(r.label).toBe('Start D2 ratings reset');
-    expect(r.state.ratings).toMatchObject({ league: 'fbad2', season: 79, locked: false });
-    expect(r.state.ratings!.players).toHaveLength(13);
+    expect(r.state.ratings).toMatchObject({ league: 'fbad2', season: 79, kind: 'd2-reset', locked: false, order: [], ratings: {} });
+    expect(r.state.ratings!.rows).toHaveLength(13);
+    expect(r.state.ratings!.curve).toEqual([94, 85, 80, 75, 75, 72, 70, 68]);
+    expect(RankingFile.safeParse(r.state.ratings).success).toBe(true);
+    const withPrev = ok(startRatings({ ...d2BaseState(), prevRatings: prevFile({ p00001: 88, p00002: 90 }) }));
+    expect(withPrev.state.ratings!.curve).toEqual([90, 88]);
   });
 
   it('refuses before free agency closes, or twice', () => {
-    expect(startRatings({ ...d2BaseState(), freeAgencyClosed: false }, noLuck)).toEqual({ ok: false, problems: ['Close free agency first'] });
-    const started = ok(startRatings(d2BaseState(), noLuck)).state;
-    expect(startRatings(started, noLuck)).toEqual({ ok: false, problems: ['The ratings reset has already started'] });
+    expect(startRatings({ ...d2BaseState(), freeAgencyClosed: false })).toEqual({ ok: false, problems: ['Close free agency first'] });
+    expect(startRatings(started())).toEqual({ ok: false, problems: ['The ratings reset has already started'] });
+  });
+});
+
+describe('ratingsBlockers', () => {
+  it('asks for a full ranking, then a rating for everyone, then the right order', () => {
+    const s = started();
+    expect(ratingsBlockers(s)).toEqual(["13 players aren't ranked yet"]);
+    expect(ratingsBlockers({ ...s, ratings: takeRest(s.ratings!, id => d2Name(s, id)) })).toEqual(['13 players still need a rating']);
+    const r = ranked(s);
+    expect(ratingsBlockers(r)).toEqual([]);
+    expect(ratingsBlockers({ ...r, ratings: setRating(r.ratings!, 'p00041', 99) })).toEqual(['#9 Kyron Smart (99) is rated above #8 Adrian Grant (68)']);
+  });
+
+  it('flags players missing from, or no longer in, the list', () => {
+    const s = started();
+    const moved = { ...s, reserves: { ...s.reserves, players: s.reserves.players.filter(p => p.playerId !== 'p00043') } };
+    expect(membershipBlockers(moved)).toEqual(['Adrian Napoletani is no longer in the D2 pool']);
+    const missing = { ...s, ratings: { ...s.ratings!, rows: s.ratings!.rows.filter(r => r.playerId !== 'p00044') } };
+    expect(membershipBlockers(missing)).toEqual(["Brycen Holcomb isn't in the ratings list"]);
+    expect(ratingsBlockers(ranked(moved))).toEqual(['Adrian Napoletani is no longer in the D2 pool']);
+  });
+});
+
+describe('finishRatings', () => {
+  it('is refused while blocked', () => {
+    expect(finishRatings(started(), ctx)).toEqual({ ok: false, problems: ["13 players aren't ranked yet"] });
+  });
+
+  it('writes the new ratings onto rosters and Reserves, locks, logs, and marks the calendar', () => {
+    const r = ok(finishRatings(ranked(started()), ctx));
+    expect(r.label).toBe('Finish D2 ratings');
+    expect(r.changed).toEqual(['d2', 'reserves', 'ratings', 'd2Tx', 'calendar']);
+    expect(r.state.d2.teams.AMS.map(e => e.rating)).toEqual([75, 72, 75, 94, null]);
+    expect(r.state.d2.teams.BER.map(e => e.rating)).toEqual([70, null, 80, 68, 85]);
+    expect(r.state.reserves.players.map(p => p.rating)).toEqual([60, 66, 58, 64, 62]);
+    expect(r.state.reserves.players[1]).toMatchObject({ fromFba: true, fbaRating: 71 });
+    expect(r.state.ratings!.locked).toBe(true);
+    expect(RankingFile.safeParse(r.state.ratings).success).toBe(true);
+    expect(r.state.d2Tx.entries.at(-1)).toMatchObject({ type: 'd2-ratings', teams: [], lines: ['D2 ratings reset: 13 players ranked, 8 took the suggestion'] });
+    expect(r.state.calendar.steps.find(x => x.id === 'fbad2-ratings-reset')!.done).toBe(true);
+    expect(ratingsBlockers(r.state)).toEqual(['D2 ratings are already finished']);
   });
 });
 
@@ -99,47 +120,12 @@ describe('parseRatingInput', () => {
   });
 });
 
-describe('finishRatings', () => {
-  const started = (): D2State => ok(startRatings({ ...d2BaseState(), prevD2: null }, noLuck)).state;
-  const rateReserves = (s: D2State): D2State => {
-    let ratings = s.ratings!;
-    for (const [id, v] of [['p00040', 78], ['p00041', 74], ['p00042', 70], ['p00043', 60], ['p00044', 65]] as const) ratings = setRating(ratings, id, v);
-    return { ...s, ratings };
-  };
-
-  it('is blocked while anyone is blank', () => {
-    expect(ratingsBlockers(started())).toEqual(['5 players still need a rating']);
-    expect(finishRatings(started(), ctx).ok).toBe(false);
-  });
-
-  it('flags players missing from, or no longer in, the list', () => {
-    const s = rateReserves(started());
-    const moved = { ...s, reserves: { ...s.reserves, players: s.reserves.players.filter(p => p.playerId !== 'p00043') } };
-    expect(ratingsBlockers(moved)).toEqual(['Adrian Napoletani is no longer in the D2 pool']);
-    const extra = { ...s, ratings: { ...s.ratings!, players: s.ratings!.players.filter(r => r.playerId !== 'p00044') } };
-    expect(ratingsBlockers(extra)).toEqual(["Brycen Holcomb isn't in the ratings list"]);
-  });
-
-  it('writes the new ratings onto rosters and Reserves, locks, logs, and marks the calendar', () => {
-    let s = rateReserves(started());
-    s = { ...s, ratings: setRating(s.ratings!, 'p00020', 76) };
-    const r = ok(finishRatings(s, ctx));
-    expect(r.label).toBe('Finish D2 ratings');
-    expect(r.changed).toEqual(['d2', 'reserves', 'ratings', 'd2Tx', 'calendar']);
-    expect(r.state.d2.teams.AMS.map(e => e.rating)).toEqual([76, 72, 75, 97, null]);
-    expect(r.state.reserves.players.map(p => p.rating)).toEqual([78, 74, 70, 60, 65]);
-    expect(r.state.reserves.players[1].fromFba).toBe(true);
-    expect(r.state.ratings!.locked).toBe(true);
-    expect(r.state.d2Tx.entries.at(-1)).toMatchObject({ type: 'd2-ratings', teams: [], lines: ['D2 ratings reset: 13 players, 1 edited'] });
-    expect(r.state.calendar.steps.find(x => x.id === 'fbad2-ratings-reset')!.done).toBe(true);
-    expect(ratingsBlockers(r.state)).toEqual(['D2 ratings are already finished']);
-  });
-});
-
 describe('d2RatedState fixture', () => {
   it('has the documented ratings', () => {
     const s = d2RatedState();
+    expect(s.d2.teams.AMS.map(e => e.rating)).toEqual([73, 72, 75, 97, null]);
     expect(s.d2.teams.BER.map(e => e.rating)).toEqual([72, null, 80, 66, 85]);
+    expect(s.reserves.players.map(p => p.rating)).toEqual([78, 74, 70, 60, 65]);
     expect(s.ratings!.locked).toBe(true);
   });
 });

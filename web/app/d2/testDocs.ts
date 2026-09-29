@@ -19,6 +19,7 @@ export function docsFor(state: D2State): Record<string, unknown> {
     'leagues/fba/S79/freeAgents.json': { league: 'fba', season: 79, locked: state.freeAgencyClosed, players: [] },
   };
   if (state.prevD2) out['leagues/fbad2/S78/rosters.json'] = state.prevD2;
+  if (state.prevRatings) out[`leagues/fbad2/S${state.season - 1}/ratings.json`] = state.prevRatings;
   for (const k of ['d2', 'reserves', 'd2Tx', 'calendar', 'ratings', 'pool', 'draft'] as const) {
     const doc = state[k];
     if (doc) out[d2DocPath(k, state.season)] = doc;

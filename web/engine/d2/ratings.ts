@@ -1,57 +1,10 @@
+import { rankingBlockers, suggestionsTaken } from '../rank/ranking';
 import { appendTx, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
-import { zBuckets } from '../shared/perfBuckets';
-import type { D2RatingRow, D2RatingsFile, RosterEntry, RostersFile } from '../shared/types';
-import { randInt, type Rng } from './random';
+import type { RankingFile, RankingRow } from '../shared/types';
 import { d2Fail, d2Name, poolMembers, type D2Result, type D2State } from './state';
 
-export const MIN_SUGGESTED = 40;
 export const MAX_RATING = 99;
-
-/** Ages are this season's (already advanced). Players retire after their age-32 season. */
-export function ageAdjustment(age: number | null): number {
-  if (age === null) return 0;
-  if (age <= 22) return 3;
-  if (age <= 25) return 2;
-  if (age <= 29) return 0;
-  if (age <= 31) return -2;
-  return -3;
-}
-
-export function clampSuggested(n: number): number {
-  return Math.max(MIN_SUGGESTED, Math.min(MAX_RATING, n));
-}
-
-type Scored = RosterEntry & { playerId: string; rating: number };
-
-/**
- * −2…+2 per player from last season's D2 point totals: fit points ≈ a + b·rating over everyone
- * with points > 0, then bucket each player's residual z-score. Players without data get no entry (→ 0).
- */
-export function performanceScores(prev: RostersFile | null): Map<string, number> {
-  if (!prev) return new Map();
-  const rows = Object.values(prev.teams).flat().filter((e): e is Scored => e.playerId !== null && e.rating !== null && e.points > 0);
-  return zBuckets(rows.map(r => ({ id: r.playerId, x: r.rating, y: r.points })));
-}
-
-/** One row per pool player. Players with a D2 rating get a suggestion; everyone else starts blank. */
-export function buildRatings(state: D2State, rng: Rng): D2RatingRow[] {
-  const perf = performanceScores(state.prevD2);
-  return poolMembers(state).map(m => {
-    const base = { playerId: m.playerId, position: m.position, age: m.age, team: m.team, oldRating: m.rating };
-    if (m.rating === null) return { ...base, suggested: null, breakdown: null, rating: null };
-    const breakdown = { age: ageAdjustment(m.age), perf: perf.get(m.playerId) ?? 0, luck: randInt(rng, -2, 2) };
-    const suggested = clampSuggested(m.rating + breakdown.age + breakdown.perf + breakdown.luck);
-    return { ...base, suggested, breakdown, rating: suggested };
-  });
-}
-
-export function startRatings(state: D2State, rng: Rng): D2Result {
-  if (!state.freeAgencyClosed) return d2Fail(['Close free agency first']);
-  if (state.ratings) return d2Fail(['The ratings reset has already started']);
-  const ratings: D2RatingsFile = { league: 'fbad2', season: state.season, locked: false, players: buildRatings(state, rng) };
-  return { ok: true, state: { ...state, ratings }, changed: ['ratings'], label: 'Start D2 ratings reset' };
-}
 
 /** Parses a typed rating: blank → null, otherwise a whole number from 1 to 99. */
 export function parseRatingInput(text: string): { ok: true; value: number | null } | { ok: false; problem: string } {
@@ -61,35 +14,71 @@ export function parseRatingInput(text: string): { ok: true; value: number | null
   return { ok: true, value: Number(t) };
 }
 
-export function setRating(ratings: D2RatingsFile, playerId: string, value: number | null): D2RatingsFile {
-  return { ...ratings, players: ratings.players.map(r => (r.playerId === playerId ? { ...r, rating: value } : r)) };
+/** One ranking row per D2 pool member (rosters in team order, then Reserves). */
+export function buildRankingRows(state: D2State): RankingRow[] {
+  const points = new Map<string, number>();
+  for (const e of Object.values(state.prevD2?.teams ?? {}).flat()) {
+    if (e.playerId) points.set(e.playerId, (points.get(e.playerId) ?? 0) + e.points);
+  }
+  const fbaRating = new Map(state.reserves.players.flatMap(p => (p.fbaRating === undefined ? [] : [[p.playerId, p.fbaRating] as const])));
+  return poolMembers(state).map(m => ({
+    playerId: m.playerId,
+    position: m.position,
+    age: m.age,
+    team: m.team,
+    prevRating: m.rating,
+    otherRating: fbaRating.get(m.playerId) ?? null,
+    stat: points.has(m.playerId) ? `${points.get(m.playerId)} pts` : null,
+  }));
+}
+
+/** The suggestion ladder, high to low: last season's finished D2 reset ratings; without one, these rows' current D2 ratings. */
+export function d2Curve(prevRatings: RankingFile | null, rows: RankingRow[]): number[] {
+  const source = prevRatings?.locked
+    ? Object.values(prevRatings.ratings)
+    : rows.flatMap(r => (r.prevRating === null ? [] : [r.prevRating]));
+  return source.map(v => Math.max(1, Math.min(MAX_RATING, v))).sort((a, b) => b - a);
+}
+
+export function startRatings(state: D2State): D2Result {
+  if (!state.freeAgencyClosed) return d2Fail(['Close free agency first']);
+  if (state.ratings) return d2Fail(['The ratings reset has already started']);
+  const rows = buildRankingRows(state);
+  const ratings: RankingFile = {
+    league: 'fbad2', season: state.season, kind: 'd2-reset', locked: false, rows, order: [], ratings: {}, curve: d2Curve(state.prevRatings, rows),
+  };
+  return { ok: true, state: { ...state, ratings }, changed: ['ratings'], label: 'Start D2 ratings reset' };
+}
+
+/** The ranking must list exactly the D2 pool: nobody missing, nobody who has left it. */
+export function membershipBlockers(state: D2State): string[] {
+  if (!state.ratings) return [];
+  const listed = new Set(state.ratings.rows.map(r => r.playerId));
+  const members = poolMembers(state);
+  const present = new Set(members.map(m => m.playerId));
+  const out: string[] = [];
+  for (const m of members) if (!listed.has(m.playerId)) out.push(`${d2Name(state, m.playerId)} isn't in the ratings list`);
+  for (const r of state.ratings.rows) if (!present.has(r.playerId)) out.push(`${d2Name(state, r.playerId)} is no longer in the D2 pool`);
+  return out;
 }
 
 export function ratingsBlockers(state: D2State): string[] {
   if (!state.ratings) return ['Start the ratings reset first'];
   if (state.ratings.locked) return ['D2 ratings are already finished'];
-  const out: string[] = [];
-  const blanks = state.ratings.players.filter(r => r.rating === null).length;
-  if (blanks) out.push(`${blanks} ${blanks === 1 ? 'player still needs' : 'players still need'} a rating`);
-  const listed = new Set(state.ratings.players.map(r => r.playerId));
-  const members = poolMembers(state);
-  const present = new Set(members.map(m => m.playerId));
-  for (const m of members) if (!listed.has(m.playerId)) out.push(`${d2Name(state, m.playerId)} isn't in the ratings list`);
-  for (const r of state.ratings.players) if (!present.has(r.playerId)) out.push(`${d2Name(state, r.playerId)} is no longer in the D2 pool`);
-  return out;
+  return [...rankingBlockers(state.ratings, id => d2Name(state, id)), ...membershipBlockers(state)];
 }
 
 export function finishRatings(state: D2State, ctx: MoveContext): D2Result {
   const blockers = ratingsBlockers(state);
   if (blockers.length) return d2Fail(blockers);
   const ratings = state.ratings!;
-  const next = new Map(ratings.players.map(r => [r.playerId, r.rating!]));
+  const next = new Map(Object.entries(ratings.ratings));
   const teams = Object.fromEntries(Object.entries(state.d2.teams).map(([t, entries]) => [
     t, entries.map(e => (e.playerId !== null && next.has(e.playerId) ? { ...e, rating: next.get(e.playerId)! } : e)),
   ]));
   const reserves = { ...state.reserves, players: state.reserves.players.map(p => ({ ...p, rating: next.get(p.playerId) ?? p.rating })) };
-  const edited = ratings.players.filter(r => r.suggested !== null && r.rating !== r.suggested).length;
-  const d2Tx = appendTx(state.d2Tx, ctx, 'd2-ratings', [], [`D2 ratings reset: ${ratings.players.length} players, ${edited} edited`]);
+  const line = `D2 ratings reset: ${ratings.rows.length} players ranked, ${suggestionsTaken(ratings)} took the suggestion`;
+  const d2Tx = appendTx(state.d2Tx, ctx, 'd2-ratings', [], [line]);
   return {
     ok: true,
     state: {

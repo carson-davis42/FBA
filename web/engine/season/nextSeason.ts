@@ -2,7 +2,7 @@ import { TIERS } from '../playoffs/promotion';
 import { appendTx, type MoveContext } from '../roster/state';
 import { calendarFor } from '../shared/calendar';
 import type {
-  CalendarFile, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, MetaFile, PromotionLine, ReservesFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile,
+  CalendarFile, D2DraftFile, D2PoolFile, RankingFile, FreeAgentsFile, MetaFile, PromotionLine, ReservesFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile,
 } from '../shared/types';
 
 export const D2_LEAGUE_SIZE = 16;
@@ -72,7 +72,7 @@ export interface NextSeasonInput {
   fba: { rosters: RostersFile; freeAgents: FreeAgentsFile | null; tx: TransactionsFile; summary: SummaryFile | null };
   fbad2: {
     rosters: RostersFile; reserves: ReservesFile | null; tx: TransactionsFile;
-    ratings: D2RatingsFile | null; pool: D2PoolFile | null; draft: D2DraftFile | null; summary: SummaryFile | null;
+    ratings: RankingFile | null; pool: D2PoolFile | null; draft: D2DraftFile | null; summary: SummaryFile | null;
   };
   /** True when S{n+1} FBA or D2 rosters already exist. */
   nextStarted: boolean;
