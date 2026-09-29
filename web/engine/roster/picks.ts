@@ -59,6 +59,8 @@ export function resolvePicks(input: { season: number; order: string[]; lotterySi
   );
   const kept = input.obligations.filter(o => o.season !== season);
   const current = input.obligations.filter(o => o.season === season);
+  const unknown = [...new Set(current.flatMap(o => [o.originalTeam, ...(o.condition.kind === 'swap' ? [o.condition.otherTeam] : [])]))].filter(t => !slotOf.has(t));
+  if (unknown.length) throw new Error(`S${season} picks name teams not in the draft order: ${unknown.join(', ')}`);
   const rolled: PickObligation[] = [];
 
   const swaps = current.filter(o => o.condition.kind === 'swap');
@@ -110,8 +112,6 @@ export function resolvePicks(input: { season: number; order: string[]; lotterySi
       });
     }
   }
-
-  kept.push(...current.filter(o => o.condition.kind !== 'swap' && !slotOf.has(o.originalTeam)));
 
   const placed: PickObligation[] = [];
   for (const r of rolled) placed.push({ ...r, priority: nextPriority([...kept, ...placed], r.season, r.originalTeam) });

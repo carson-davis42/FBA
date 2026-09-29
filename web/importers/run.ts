@@ -7,6 +7,7 @@ import { assemble } from './assemble';
 import { buildLogoManifest } from './logoManifest';
 import { Report } from './report';
 import { assembleRefresh } from './refresh';
+import { parseHallOfFameTab } from './sheets/hallOfFame';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
 import { downloadWorkbook, readTabs, readUnderlines } from './sheets/xlsx';
 import { parseBracketFile, parseD2Playoffs, parseFbaPlayoffs, parseFbaResults } from './txt/archives';
@@ -79,8 +80,33 @@ async function refreshRosters(): Promise<void> {
   console.log(`Refreshed ${Object.keys(files).length} documents (${report.count('warn')} warnings). Report: web/importers/refresh-report.md`);
 }
 
+async function importHallOfFame(): Promise<void> {
+  const rel = 'leagues/fba/hallOfFame.json';
+  const file = path.join(DATA, ...rel.split('/'));
+  if (existsSync(file) && !process.argv.includes('--force')) {
+    console.error(`${rel} already exists. Re-run with "npm run import -- --hall-of-fame --force" to overwrite it.`);
+    process.exit(1);
+  }
+  const report = new Report();
+  rmSync(path.join(CACHE, `${SHEETS.main}.xlsx`), { force: true });
+  console.log('Downloading current main sheet...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.main, CACHE), ['Hall of Fame']);
+  const doc = parseHallOfFameTab(tabs['Hall of Fame'], readJson<PlayersFile>('players.json'), report);
+  const r = schemaForPath(rel)?.safeParse(doc);
+  if (!r?.success) report.error('schema', `${rel}: ${r ? r.error.issues.slice(0, 3).map(i => `${i.path.join('.')} ${i.message}`).join('; ') : 'no schema'}`);
+  writeFileSync(path.join(WEB, 'importers', 'hall-of-fame-report.md'), report.toMarkdown('Hall of Fame import report'));
+  if (report.hasErrors) {
+    console.error(`Hall of Fame import found ${report.count('error')} error(s); nothing was written. See web/importers/hall-of-fame-report.md`);
+    process.exit(1);
+  }
+  mkdirSync(path.dirname(file), { recursive: true });
+  writeFileSync(file, JSON.stringify(doc, null, 2) + '\n');
+  console.log(`Wrote ${rel}: ${doc.classes.length} classes, ${doc.nominees.length} nominees (${report.count('warn')} warnings). Report: web/importers/hall-of-fame-report.md`);
+}
+
 async function main(): Promise<void> {
   if (process.argv.includes('--refresh-rosters')) return refreshRosters();
+  if (process.argv.includes('--hall-of-fame')) return importHallOfFame();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');
     process.exit(1);

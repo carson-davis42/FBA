@@ -59,6 +59,21 @@ describe('TopBar undo', () => {
     expect(button.title).toBe('Can\'t undo "Start D2 pool": leagues/fbad2/S79/pool.json has changed since');
   });
 
+  it('explains that a drawn lottery is final', async () => {
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+      if (url === '/api/undo') {
+        return new Response(JSON.stringify({
+          ok: true, available: true, label: 'S80 Draft Lottery', blockedBy: 'leagues/fba/S79/lottery.json',
+        }));
+      }
+      return new Response(JSON.stringify({ season: 79, steps: [] }));
+    }));
+    render(<TopBar />);
+    const button = await screen.findByRole('button', { name: /undo last move/i }) as HTMLButtonElement;
+    expect(button.disabled).toBe(true);
+    expect(button.title).toBe('"S80 Draft Lottery" is final and can\'t be undone');
+  });
+
   it('disables Undo while a save is in flight', async () => {
     undoAvailable = true;
     render(<TopBar />);

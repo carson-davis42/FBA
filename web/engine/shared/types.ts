@@ -13,10 +13,20 @@ export type Position = z.infer<typeof Position>;
 export const ClassYear = z.enum(['Fr', 'So', 'Jr', 'Sr']);
 export type ClassYear = z.infer<typeof ClassYear>;
 
+export const RetiredInfo = z.object({
+  season: int,
+  league: z.enum(['fba', 'fbad2']),
+  /** null = D2 Reserves. */
+  teamId: z.string().min(1).nullable(),
+  position: Position,
+}).strict();
+export type RetiredInfo = z.infer<typeof RetiredInfo>;
+
 export const Player = z.object({
   id: z.string().regex(/^p\d{5}$/),
   name: z.string().min(1).nullable(),
   birthSeason: int.nullable(),
+  retired: RetiredInfo.optional(),
 }).strict();
 export type Player = z.infer<typeof Player>;
 
@@ -195,7 +205,7 @@ export const PicksFile = z.object({ league: z.literal('fba'), obligations: z.arr
 export type PicksFile = z.infer<typeof PicksFile>;
 
 export const TransactionType = z.enum([
-  'signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards', 'season', 'class', 'commit', 'portal',
+  'signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards', 'season', 'class', 'commit', 'portal', 'lottery', 'retired', 'hall-of-fame',
 ]);
 export type TransactionType = z.infer<typeof TransactionType>;
 
@@ -651,3 +661,49 @@ export const SummaryFile = z.object({
   if (new Set(teams).size !== teams.length) issue('A team is listed twice in the standings');
 });
 export type SummaryFile = z.infer<typeof SummaryFile>;
+
+export const LotteryOdds = z.object({ teamId: z.string().min(1), slot: int.positive(), w: int, l: int, pct: z.number().min(0).max(100) }).strict();
+export type LotteryOdds = z.infer<typeof LotteryOdds>;
+
+export const LotteryPick = z.object({
+  slot: int.positive(),
+  originalTeam: z.string().min(1),
+  owner: z.string().min(1),
+  obligationId: z.string().min(1).nullable(),
+  flag: z.string().min(1).nullable(),
+}).strict();
+export type LotteryPick = z.infer<typeof LotteryPick>;
+
+/** leagues/fba/S{n}/lottery.json: the lottery held in season n for the S{n+1} draft. */
+export const LotteryFile = z.object({
+  league: z.literal('fba'),
+  season: int,
+  draftSeason: int,
+  locked: z.boolean(),
+  odds: z.array(LotteryOdds),
+  /** The drawn lottery, pick 1 first. */
+  lottery: z.array(z.string().min(1)),
+  /** The full draft order, pick 1 first. */
+  order: z.array(z.string().min(1)),
+  picks: z.array(LotteryPick),
+}).strict();
+export type LotteryFile = z.infer<typeof LotteryFile>;
+
+export const HofCard = z.object({
+  name: z.string().min(1),
+  playerId: z.string().regex(/^p\d{5}$/).nullable(),
+  /** Text: the sheet has "S64", "FFL" and "S--". */
+  retiredSeason: z.string().min(1),
+  lines: z.array(z.string()),
+}).strict();
+export type HofCard = z.infer<typeof HofCard>;
+
+export const HallOfFameFile = z.object({
+  league: z.literal('fba'),
+  /** Oldest first; `season` is text like "S8". */
+  classes: z.array(z.object({ season: z.string().min(1), inductees: z.array(HofCard) }).strict()),
+  nominees: z.array(HofCard).max(15),
+  /** Removed nominees; they can't be nominated again. */
+  removed: z.array(z.object({ name: z.string().min(1), playerId: z.string().regex(/^p\d{5}$/).nullable() }).strict()),
+}).strict();
+export type HallOfFameFile = z.infer<typeof HallOfFameFile>;

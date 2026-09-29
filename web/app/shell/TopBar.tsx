@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { currentStepIndex } from '../../engine/shared/calendar';
+import { isUndoProtected } from '../../engine/shared/schemaRegistry';
 import type { CalendarFile } from '../../engine/shared/types';
 import { peekUndo, undoLast, useDoc, useSaving } from '../api';
 import { useTheme } from '../useTheme';
@@ -53,7 +54,8 @@ export function TopBar() {
           className="btn"
           disabled={saving || undo.blockedBy !== null}
           onClick={doUndo}
-          title={undo.blockedBy ? `Can't undo "${undo.label}": ${undo.blockedBy} has changed since` : undo.label ? `Undo: ${undo.label}` : undefined}
+          title={undo.blockedBy && isUndoProtected(undo.blockedBy) ? `"${undo.label}" is final and can't be undone`
+            : undo.blockedBy ? `Can't undo "${undo.label}": ${undo.blockedBy} has changed since` : undo.label ? `Undo: ${undo.label}` : undefined}
         >↶ Undo last move</button>
       )}
       {pill && <span className="pill">{pill}</span>}

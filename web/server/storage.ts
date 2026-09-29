@@ -1,7 +1,7 @@
 import { mkdir, readdir, readFile, rename, rm, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-import { pathAgreementProblem, schemaForPath } from '../engine/shared/schemaRegistry';
+import { isUndoProtected, pathAgreementProblem, schemaForPath } from '../engine/shared/schemaRegistry';
 
 export type Version = string | null;
 
@@ -193,6 +193,7 @@ export class Storage {
         const entry = await this.readJournalEntry(name);
         if (!entry) continue;
         const blockedBy = await this.blockedFile(entry);
+        if (blockedBy && isUndoProtected(blockedBy)) throw new StorageError(409, `Can't undo "${entry.label}": it is final`);
         if (blockedBy) throw new StorageError(409, `Can't undo "${entry.label}": ${blockedBy} has changed since then`);
         for (const f of entry.files) {
           const file = this.fullPath(f.path);
@@ -253,8 +254,13 @@ export class Storage {
     }
   }
 
-  /** The first path in the entry whose current text is neither its `after` nor its `before` (i.e. what would block undoing it), or null. */
+  /**
+   * What would block undoing the entry, or null: an undo-protected path it wrote (the move is final), else the first path
+   * whose current text is neither its `after` nor its `before`.
+   */
   private async blockedFile(entry: JournalEntry): Promise<string | null> {
+    const final = entry.files.find(f => isUndoProtected(f.path));
+    if (final) return final.path;
     for (const f of entry.files) {
       const current = await this.readRaw(this.fullPath(f.path));
       if (current !== f.after && current !== f.before) return f.path;

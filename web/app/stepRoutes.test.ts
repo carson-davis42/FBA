@@ -13,13 +13,27 @@ describe('step routes', () => {
     expect(toolTarget(step('make-s79-schedules'))).toBe('/schedules');
     expect(toolTarget(step('fba-d2', 'league', 'fbad2'))).toBe('/league/fbad2/scores');
     expect(toolTarget(step('fba', 'league', 'fba'))).toBe('/league/fba/scores');
-    expect(toolTarget(step('retirement'))).toBeNull();
     expect(stepTarget(step('fbajc', 'league', 'fbajc'))).toBe('/league/fbajc');
-    expect(stepTarget(step('retirement'))).toBe('/calendar');
   });
 
   it('opens Create Class on the recruiting page', () => {
     expect(toolTarget(step('create-s80-class'))).toBe('/league/fbajc/recruiting?tab=class');
     expect(stepTarget(step('create-s81-class'))).toBe('/league/fbajc/recruiting?tab=class');
+  });
+
+  it('opens the draft lottery page from its calendar step', () => {
+    expect(toolTarget(step('s80-fba-draft-lottery'))).toBe('/league/fba/lottery');
+    expect(stepTarget(step('s81-fba-draft-lottery'))).toBe('/league/fba/lottery');
+  });
+
+  it('opens the retirement page from its calendar step', () => {
+    expect(TOOL_STEPS.retirement).toBe('/retirement');
+    expect(toolTarget(step('retirement'))).toBe('/retirement');
+    expect(stepTarget(step('retirement'))).toBe('/retirement');
+  });
+
+  it('opens the Hall of Fame nominees tab from its calendar step', () => {
+    expect(TOOL_STEPS['hall-of-fame-induction']).toBe('/league/fba/hall-of-fame?tab=nominees');
+    expect(stepTarget(step('hall-of-fame-induction'))).toBe('/league/fba/hall-of-fame?tab=nominees');
   });
 });
