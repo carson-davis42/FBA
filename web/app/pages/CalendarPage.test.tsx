@@ -7,6 +7,8 @@ import { CalendarPage } from './CalendarPage';
 let saved: unknown = null;
 let current: unknown;
 let extra: Record<string, unknown> = {};
+let errors: Record<string, number> = {};
+let pending: Record<string, Promise<void>> = {};
 const calendar = { season: 79, steps: [
   { id: 'age', label: 'Adjust Age', kind: 'offseason', league: null, sub: true, done: true },
   { id: 'fa', label: 'Free Agency/Offseason', kind: 'offseason', league: null, sub: false, done: false },
@@ -17,10 +19,14 @@ beforeEach(() => {
   saved = null;
   current = calendar;
   extra = {};
+  errors = {};
+  pending = {};
   vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
     if (init?.method === 'PUT') { saved = JSON.parse(String(init.body)); return new Response('{"ok":true}'); }
     const rel = url.replace('/api/state/', '');
     if (rel === 'calendar.json') return new Response(JSON.stringify(saved ?? current));
+    if (rel in pending) await pending[rel];
+    if (rel in errors) return new Response(JSON.stringify({ error: `Failed: ${rel}` }), { status: errors[rel] });
     if (rel in extra) return new Response(JSON.stringify(extra[rel]));
     return new Response(JSON.stringify({ error: `Not found: ${rel}` }), { status: 404 });
   }));
@@ -58,5 +64,22 @@ describe('CalendarPage', () => {
     render(<MemoryRouter><CalendarPage /></MemoryRouter>);
     expect((await screen.findByRole('link', { name: 'Go to next season ▸' })).getAttribute('href')).toBe('/next-season');
     expect(screen.queryByRole('button', { name: /^Mark/ })).toBeNull();
+  });
+
+  it('keeps Reopen disabled and shows the error when a season summary fails to load', async () => {
+    errors['leagues/fba/S79/summary.json'] = 500;
+    render(<MemoryRouter><CalendarPage /></MemoryRouter>);
+    expect(await screen.findByText(/Couldn't check whether S79 is finished/)).toBeTruthy();
+    expect((screen.getByRole('button', { name: /reopen previous step/i }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('keeps Reopen disabled until both season summaries are known', async () => {
+    let release!: () => void;
+    pending['leagues/fba/S79/summary.json'] = new Promise<void>(r => { release = r; });
+    render(<MemoryRouter><CalendarPage /></MemoryRouter>);
+    const reopen = await screen.findByRole('button', { name: /reopen previous step/i }) as HTMLButtonElement;
+    expect(reopen.disabled).toBe(true);
+    release();
+    await waitFor(() => expect(reopen.disabled).toBe(false));
   });
 });

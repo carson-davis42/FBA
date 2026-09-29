@@ -24,6 +24,10 @@ export function CalendarPage() {
   if (fbaSummary.data?.locked) finished.add(CALENDAR_STEP.fba);
   if (d2Summary.data?.locked) finished.add(CALENDAR_STEP.fbad2);
   const reopenWhy = reopenProblem(cal, finished);
+  // Reopen stays off until both summaries are known (loaded, or confirmed missing with a 404).
+  const summaries = [fbaSummary, d2Summary];
+  const summariesKnown = summaries.every(d => d.data || d.missing);
+  const summaryError = summaries.find(d => d.error && !d.missing)?.error;
   const save = async (next: CalendarFile) => {
     setBusy(true);
     setSaveError(null);
@@ -51,7 +55,7 @@ export function CalendarPage() {
         {i < 0 && <Link className="btn primary" to="/next-season">Go to next season ▸</Link>}
         <button
           className="btn"
-          disabled={busy || saving || i === 0 || reopenWhy !== null}
+          disabled={busy || saving || i === 0 || !summariesKnown || reopenWhy !== null}
           title={reopenWhy ?? undefined}
           onClick={() => save(reopenLast(cal))}
           aria-label="Reopen previous step"
@@ -59,6 +63,7 @@ export function CalendarPage() {
           ↺ Reopen previous step
         </button>
         {reopenWhy && <span className="muted">{reopenWhy}</span>}
+        {summaryError && <span className="error">Couldn't check whether S{cal.season} is finished: {summaryError.message}</span>}
       </div>
       {saveError && <p className="error">Save failed: {saveError}</p>}
       <p className="muted">Until each league and offseason tool is built, mark steps done here once you've handled them.</p>
