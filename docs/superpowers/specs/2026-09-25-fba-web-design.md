@@ -204,7 +204,7 @@ This is the single up-to-date list of parts. Update it whenever a part is split,
 | 2b-2a | Postseason for both leagues: seeding tiebreaks, brackets, live playoff games, D2 promotion and relegation, standings markers | Done | [spec](2026-09-27-postseason-design.md) · [plan](../plans/2026-09-28-postseason.md) |
 | 2b-2b | Season awards with live races and odds (FBA and D2 MVPs), defensive stats, power-rankings pages | Done | [spec](2026-09-28-awards-rankings-design.md) · [plan](../plans/2026-09-28-awards-rankings.md) |
 | 2b-2c | Season wrap-up: each league's season record into history, lock the season, clear Undo; "Go to next season" applies promotion and relegation, creates the next season's docs and resets the calendar | Done | [spec](2026-09-28-season-wrap-up-design.md) · [plan](../plans/2026-09-28-season-wrap-up.md) |
-| 7a Offseason | Shared click-to-rank tool, D2 ratings reset rebuilt on it, one-time S79 college rosters, Create Class, recruiting board (projections, commits, decommits, portal by displacement) | Spec written | [spec](2026-09-28-offseason-7a-ranking-recruiting-design.md) |
+| 7a Offseason | Shared click-to-rank tool, D2 ratings reset rebuilt on it, one-time S79 college rosters, Create Class, recruiting board (projections, commits, decommits, portal by displacement) | Spec approved | [spec](2026-09-28-offseason-7a-ranking-recruiting-design.md) |
 | 7b Offseason | Season tail: FBA draft lottery, retirement, Hall of Fame induction | Not started | — |
 | 7c Offseason | Rank Class, walk-on fill before FBAJC, Adjust College Ratings | Not started | — |
 | 7d Offseason | Adjust Age (pros and college: leavers, declare, portal), Adjust Pro Ratings with draft prospects, FBA draft | Not started | — |

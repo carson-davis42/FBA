@@ -1,7 +1,7 @@
 # Part 7a: Ranking tool, D2 reset, college setup, Create Class and the recruiting board — Design
 
 **Date:** 2026-09-28
-**Status:** Approved in brainstorming; spec under review
+**Status:** Approved (plan pending)
 **Branch:** `offseason`
 **Parent spec:** `docs/superpowers/specs/2026-09-25-fba-web-design.md` (§10 roadmap, part 7)
 **Ledger:** `.superpowers/sdd/progress.md` (decisions D1–D21 for all of part 7)
