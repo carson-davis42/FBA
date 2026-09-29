@@ -158,24 +158,26 @@ export function ScoresPage() {
           {pause.kind === 'allstar' && <Link className="btn primary" to="/league/fba/all-star">All-Star weekend ▸</Link>}
         </div>
       )}
-      <div className="sim-controls">
-        <button className="btn" disabled={blocked} onClick={() => sim('next')}>Quick-sim next game</button>
-        <button className="btn" disabled={blocked} onClick={() => sim('day')}>Sim rest of day</button>
-        <label>Sim to
-          <select aria-label="Sim to" value={simTo} onChange={e => setSimTo(e.target.value)}>
-            <option value="pause">{upcoming ? `the next pause (after game ${upcoming.afterGame})` : 'the end of the regular season'}</option>
-            <option value="season">the end of the regular season</option>
-            {days.map((_, d) => (d >= Math.max(currentDay, 0) ? <option key={d} value={String(d)}>the end of day {d + 1}</option> : null))}
-          </select>
-        </label>
-        <button className="btn primary" disabled={blocked} onClick={() => sim(simTo === 'pause' || simTo === 'season' ? simTo : Number(simTo))}>Sim</button>
-        {progress && (
-          <span className="sim-progress">
-            <progress max={progress.total || 1} value={progress.done} /> {progress.done}/{progress.total}
-            <button className="btn" onClick={() => { stop.current = true; }}>Stop</button>
-          </span>
-        )}
-      </div>
+      {!over && (
+        <div className="sim-controls">
+          <button className="btn" disabled={blocked} onClick={() => sim('next')}>Quick-sim next game</button>
+          <button className="btn" disabled={blocked} onClick={() => sim('day')}>Sim rest of day</button>
+          <label>Sim to
+            <select aria-label="Sim to" value={simTo} onChange={e => setSimTo(e.target.value)}>
+              <option value="pause">{upcoming ? `the next pause (after game ${upcoming.afterGame})` : 'the end of the regular season'}</option>
+              <option value="season">the end of the regular season</option>
+              {days.map((_, d) => (d >= Math.max(currentDay, 0) ? <option key={d} value={String(d)}>the end of day {d + 1}</option> : null))}
+            </select>
+          </label>
+          <button className="btn primary" disabled={blocked} onClick={() => sim(simTo === 'pause' || simTo === 'season' ? simTo : Number(simTo))}>Sim</button>
+          {progress && (
+            <span className="sim-progress">
+              <progress max={progress.total || 1} value={progress.done} /> {progress.done}/{progress.total}
+              <button className="btn" onClick={() => { stop.current = true; }}>Stop</button>
+            </span>
+          )}
+        </div>
+      )}
       {message && <p className="error">{message}</p>}
       <div className="day-strip">
         <button className="btn" aria-label="Previous day" disabled={shownDay === 0} onClick={() => setDay(shownDay - 1)}>‹</button>

@@ -10,7 +10,13 @@ import { LiveGame } from '../season/LiveGame';
 import { useSeasonState } from '../season/useSeasonState';
 import '../pages/season.css';
 
+/** Keyed on the game number, so changing the URL starts fresh instead of keeping another game's live sim. */
 export function PlayoffGamePage() {
+  const { n = '' } = useParams();
+  return <PlayoffGame key={n} />;
+}
+
+function PlayoffGame() {
   const { league = '', n = '' } = useParams();
   const lg = league === 'fba' || league === 'fbad2' ? league : null;
   const gameNo = Number(n);

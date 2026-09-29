@@ -8,6 +8,8 @@ export interface RevealLine {
   /** Which scoreboard side this roll counts for, and how much. */
   side?: number;
   value?: number;
+  /** Printed without its group header, because the text already says what it is. */
+  bare?: boolean;
 }
 
 export function DiceFaces({ dice }: { dice: Dice }) {
@@ -19,7 +21,7 @@ export function StaticLines({ lines }: { lines: RevealLine[] }) {
     <ul className="reveal-lines">
       {lines.map((l, i) => (
         <li key={i}>
-          {(i === 0 || lines[i - 1].group !== l.group) && <strong>{l.group} · </strong>}
+          {(i === 0 || lines[i - 1].group !== l.group) && !l.bare && <strong>{l.group} · </strong>}
           {l.dice && <DiceFaces dice={l.dice} />} {l.text}
         </li>
       ))}
