@@ -262,3 +262,44 @@ describe('Storage versions', () => {
     expect((err as StorageError).message).toBe("leagues/fba/S78/summary.json is locked (finished) and can't be changed");
   });
 });
+
+describe('Storage resetUndo', () => {
+  const files = (dir: string, sub: string) => (existsSync(path.join(dir, sub)) ? readdirSync(path.join(dir, sub)) : []);
+
+  it('writes without a journal entry, then clears the journal and backups', async () => {
+    const { dir, storage } = fresh();
+    await storage.write('calendar.json', cal(false));
+    await storage.writeMany('Mark', [{ path: 'calendar.json', doc: cal(true) }]);
+    expect(files(dir, '.journal')).toHaveLength(1);
+    expect(files(dir, '.backups').length).toBeGreaterThan(0);
+    await storage.writeMany('Finish', [{ path: 'calendar.json', doc: cal(false) }], { resetUndo: true });
+    expect(await storage.read('calendar.json')).toEqual(cal(false));
+    expect(files(dir, '.journal')).toEqual([]);
+    expect(files(dir, '.backups')).toEqual([]);
+    expect(await storage.peekUndo()).toBeNull();
+    expect(await status(storage.undo())).toBe(404);
+  });
+
+  it('keeps the journal and backups when the batch fails', async () => {
+    const { dir, storage } = fresh();
+    await storage.write('calendar.json', cal(false));
+    await storage.writeMany('Mark', [{ path: 'calendar.json', doc: cal(true) }]);
+    const backups = files(dir, '.backups');
+    const failed = storage.writeMany('Finish', [{ path: 'calendar.json', doc: cal(false), baseVersion: '0000000000000000' }], { resetUndo: true });
+    expect(await status(failed)).toBe(409);
+    expect(files(dir, '.journal')).toHaveLength(1);
+    expect(files(dir, '.backups')).toEqual(backups);
+    expect(await storage.peekUndo()).toEqual({ label: 'Mark', blockedBy: null });
+  });
+});
+
+describe('Storage history', () => {
+  it("returns every summary of a league in season order, and nothing for a league with none", async () => {
+    const { storage } = fresh();
+    const sum = (season: number) => ({ league: 'fba', season, locked: true, host: null, champions: [] });
+    for (const s of [79, 9, 78]) await storage.write(`leagues/fba/S${s}/summary.json`, sum(s));
+    await storage.write('leagues/fba/S80/rosters.json', { league: 'fba', season: 80, locked: false, teams: {} });
+    expect(await storage.history('fba')).toEqual([sum(9), sum(78), sum(79)]);
+    expect(await storage.history('fbad2')).toEqual([]);
+  });
+});

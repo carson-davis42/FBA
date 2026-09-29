@@ -27,7 +27,7 @@ export function docsFor(state: D2State): Record<string, unknown> {
 }
 
 export interface ApiLog {
-  batches: { label: string; writes: { path: string; doc: unknown; baseVersion: string | null }[] }[];
+  batches: { label: string; writes: { path: string; doc: unknown; baseVersion: string | null }[]; resetUndo?: boolean }[];
   puts: { path: string; ifMatch: string | null; doc: unknown }[];
   undos: number;
 }
