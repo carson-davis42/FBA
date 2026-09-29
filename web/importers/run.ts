@@ -7,8 +7,10 @@ import { assemble } from './assemble';
 import { buildLogoManifest } from './logoManifest';
 import { Report } from './report';
 import { assembleRefresh } from './refresh';
+import { applyNameFixes, planNameFixes } from './fixNames';
 import { parseHallOfFameTab } from './sheets/hallOfFame';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
+import { parsePlayersTab } from './sheets/playersTab';
 import { downloadWorkbook, readTabs, readUnderlines } from './sheets/xlsx';
 import { parseBracketFile, parseD2Playoffs, parseFbaPlayoffs, parseFbaResults } from './txt/archives';
 import { parseRosterTxt } from './txt/rosters';
@@ -104,9 +106,29 @@ async function importHallOfFame(): Promise<void> {
   console.log(`Wrote ${rel}: ${doc.classes.length} classes, ${doc.nominees.length} nominees (${report.count('warn')} warnings). Report: web/importers/hall-of-fame-report.md`);
 }
 
+async function fixNames(): Promise<void> {
+  const report = new Report();
+  rmSync(path.join(CACHE, `${SHEETS.main}.xlsx`), { force: true });
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.main, CACHE), ['Players']);
+  const players = readJson<PlayersFile>('players.json');
+  const fixes = planNameFixes(players, parsePlayersTab(tabs['Players']), report);
+  writeFileSync(path.join(WEB, 'importers', 'fix-names-report.md'), report.toMarkdown('Name check report'));
+  if (!process.argv.includes('--apply')) {
+    console.log(`${fixes.length} renames proposed (nothing written). See web/importers/fix-names-report.md, then re-run with --apply.`);
+    return;
+  }
+  const skip = process.argv.flatMap((a, i, all) => (a === '--skip' && all[i + 1] ? [all[i + 1]] : []));
+  const next = applyNameFixes(players, fixes, skip);
+  const r = schemaForPath('players.json')!.safeParse(next);
+  if (!r.success) { console.error('players.json would not validate; nothing written'); process.exit(1); }
+  writeFileSync(path.join(DATA, 'players.json'), JSON.stringify(next, null, 2) + '\n');
+  console.log(`Renamed ${fixes.filter(f => !skip.includes(f.from)).length} players.`);
+}
+
 async function main(): Promise<void> {
   if (process.argv.includes('--refresh-rosters')) return refreshRosters();
   if (process.argv.includes('--hall-of-fame')) return importHallOfFame();
+  if (process.argv.includes('--fix-names')) return fixNames();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');
     process.exit(1);
