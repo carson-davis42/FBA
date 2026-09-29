@@ -1,0 +1,15 @@
+.rank-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+@media (max-width: 760px) { .rank-cols { grid-template-columns: 1fr; } }
+.rank-col h3 { margin: 0; }
+.rank-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.rank-table th, .rank-table td { padding: 4px 6px; border-bottom: 1px solid var(--border); text-align: left; }
+.rank-table .n { text-align: right; }
+.rank-table tr.rank-take { cursor: pointer; }
+.rank-table tr.rank-take:hover { background: var(--surface-2); }
+.rank-name { background: none; border: 0; padding: 0; color: inherit; font: inherit; font-weight: 700; cursor: pointer; text-align: left; }
+.rank-divider td { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); background: var(--surface-2); }
+.rank-table tr.out-of-order { background: var(--accent-soft); }
+.rank-flag { color: var(--accent); font-weight: 700; margin-left: 4px; }
+.rank-rating { white-space: nowrap; }
+.suggest { margin-left: 6px; border: 1px dashed var(--border); background: transparent; color: var(--muted); border-radius: 999px; padding: 1px 8px; font-size: 11px; cursor: pointer; }
+.suggest:hover { color: var(--text); border-color: var(--text); }
