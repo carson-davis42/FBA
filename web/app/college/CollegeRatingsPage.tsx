@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { collegeMembershipBlockers, collegeRatingsPath, finishCollegeRatings, startCollegeRatings, type CollegeRatingsState } from '../../engine/college/collegeRatings';
 import { boardPath, collegeName, currentClassBoardSeason, emptyRecruiting } from '../../engine/college/state';
-import type { CalendarFile, MetaFile, PlayersFile, RankingFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../../engine/shared/types';
+import type { CalendarFile, MetaFile, PlayersFile, RankingFile, RankingRow, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../../engine/shared/types';
 import type { WritesResult } from '../../engine/season/moves';
 import { useDoc, useSaving, type Versions } from '../api';
 import { RankingTable } from '../rank/RankingTable';
@@ -66,7 +66,12 @@ export function CollegeRatingsPage() {
     calendar: calendar.data!,
     tx: tx.data ?? emptyTx!,
   };
-  const schoolLabel = (team: string | null) => (team === null ? 'Portal' : teams.data!.teams.find(t => t.teamId === team)?.name ?? team);
+  const schoolOf = (team: string) => teams.data!.teams.find(t => t.teamId === team)?.name ?? team;
+  const schoolLabel = (team: string | null, row?: RankingRow) => {
+    if (team !== null) return schoolOf(team);
+    const from = row ? state.board.portal.find(p => p.playerId === row.playerId)?.fromTeam : undefined;
+    return from ? `Portal (from ${schoolOf(from)})` : 'Portal';
+  };
 
   const run = async (result: WritesResult) => {
     if (!result.ok) {

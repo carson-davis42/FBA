@@ -1,14 +1,14 @@
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { CalendarFile, MetaFile, PlayersFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
+import type { CalendarFile, MetaFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
 import { buildLogoManifest } from './logoManifest';
 import { Report } from './report';
 import { assembleRefresh } from './refresh';
 import { applyNameFixes, planNameFixes } from './fixNames';
-import { buildClassImport } from './recruitingClassImport';
+import { buildClassImport, previousImportProblem } from './recruitingClassImport';
 import { parseHallOfFameTab } from './sheets/hallOfFame';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
 import { parsePlayersTab } from './sheets/playersTab';
@@ -138,6 +138,13 @@ async function importRecruitingClass(): Promise<void> {
     console.error(`Set up the S${n} college rosters on the Recruiting page first`);
     process.exit(1);
   }
+  const boardFile = path.join(DATA, ...boardRel.split('/'));
+  const players = readJson<PlayersFile>('players.json');
+  const previous = previousImportProblem(existsSync(boardFile) ? readJson<RecruitingFile>(boardRel) : null, players);
+  if (previous) {
+    console.error(previous);
+    process.exit(1);
+  }
   if (existsSync(path.join(DATA, ...boardRel.split('/'))) && !process.argv.includes('--force')) {
     console.error(`${boardRel} already exists. Re-run with "npm run import -- --recruiting-class --force" to overwrite it.`);
     process.exit(1);
@@ -153,7 +160,7 @@ async function importRecruitingClass(): Promise<void> {
   const files = buildClassImport({
     rows,
     classOf: n,
-    players: readJson<PlayersFile>('players.json'),
+    players,
     teams: readJson<TeamsFile>('leagues/fbajc/teams.json'),
     rosters: readJson<RostersFile>(rostersRel),
     tx: existsSync(txFile) ? readJson<TransactionsFile>(txRel) : { league: 'fbajc', season: n, entries: [] },

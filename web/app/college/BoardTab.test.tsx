@@ -32,7 +32,14 @@ describe('BoardTab', () => {
   it('asks for the class first', () => {
     render(<Harness initial={collegeBaseState()} runs={[]} />);
     expect(screen.getByText(/Create the S80 class first/)).toBeTruthy();
-    expect(screen.getByRole('link', { name: /Go to the class/ }).getAttribute('href')).toBe('/league/fbajc/recruiting?tab=class');
+    expect(screen.getByRole('link', { name: /Go to the class/ }).getAttribute('href')).toBe('/league/fbajc/recruiting?class=80&tab=class');
+  });
+
+  it('says the current class is missing, without a link to a Class tab it does not have', () => {
+    const s = collegeBaseState();
+    render(<Harness initial={{ ...s, recruiting: { ...s.recruiting, season: 78, classOf: 79 } }} runs={[]} />);
+    expect(screen.getByText(/The S79 class board doesn't exist yet/)).toBeTruthy();
+    expect(screen.queryByRole('link')).toBeNull();
   });
 
   it('shows the counts and the projections as shares', () => {
@@ -134,7 +141,7 @@ describe('BoardTab', () => {
       fireEvent.click(button('Fill 6 open spots with walk-ons'));
       expect(runs).toHaveLength(1);
       expect(runs[0]).toMatchObject({ ok: true, label: 'Fill 6 open spots with walk-ons', changed: ['rosters', 'players', 'tx'] });
-      expect(screen.queryByRole('button', { name: /walk-ons/ })).toBeNull();
+      expect(button('Fill open spots with walk-ons').disabled).toBe(true);
     });
 
     it('is disabled with the reason until the FBAJC gate is clear', () => {
@@ -142,6 +149,21 @@ describe('BoardTab', () => {
       render(<Harness initial={s} runs={[]} />);
       expect(button('Fill 6 open spots with walk-ons').disabled).toBe(true);
       expect(screen.getByText(walkOnProblem(s)!)).toBeTruthy();
+    });
+
+    it('is disabled with the reason when there are no open spots', () => {
+      const s = ready();
+      const full = { ...s, rosters: { ...s.rosters, teams: Object.fromEntries(Object.entries(s.rosters.teams).map(([t, es]) => [t, es.map(e => (e.playerId === null ? { ...e, playerId: 'p00486', classYear: 'Fr' as const, rating: 60 } : e))])) } };
+      render(<Harness initial={full} runs={[]} />);
+      expect(button('Fill open spots with walk-ons').disabled).toBe(true);
+      expect(screen.getByText('There are no open spots')).toBeTruthy();
+    });
+
+    it('is disabled with the reason when the board is locked', () => {
+      const s = ready();
+      render(<Harness initial={{ ...s, recruiting: { ...s.recruiting, locked: true } }} runs={[]} />);
+      expect(button('Fill 6 open spots with walk-ons').disabled).toBe(true);
+      expect(screen.getByText('The board is locked')).toBeTruthy();
     });
 
     it('is not shown on the next class board', () => {

@@ -2,7 +2,7 @@ import { starsFor } from '../engine/college/classRanking';
 import { emptyRecruiting, recruitingWrites, type RecruitingState } from '../engine/college/state';
 import { commit } from '../engine/college/recruiting';
 import type { MoveContext } from '../engine/roster/state';
-import type { CalendarFile, PlayersFile, Prospect, RankingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
+import type { CalendarFile, PlayersFile, Prospect, RecruitingFile, RankingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { Report } from './report';
 import { closeMatches, sameName, type SheetPlayer } from './sheets/playersTab';
 import { parseSchoolCell, type ClassRow } from './sheets/recruitingClass';
@@ -19,6 +19,19 @@ export interface ClassImportInput {
 }
 
 const TOPIC = 'Recruiting class';
+
+/**
+ * Why the class import must not run again (even with --force), or null. The importer mints new players, so a re-run on data it already
+ * wrote would create a second copy of every recruit: the first copies would be treated as returning holders and sent to the portal.
+ * `board` is the existing S{classOf − 1}/recruiting.json (null when there is none yet).
+ */
+export function previousImportProblem(board: RecruitingFile | null, players: PlayersFile): string | null {
+  if (!board) return null;
+  const present = board.recruits.filter(r => r.playerId in players.players).length;
+  if (present === 0) return null;
+  return `The S${board.classOf} class import is already in players.json (${present} of its ${board.recruits.length} recruits). Re-importing would duplicate them. `
+    + 'Restore web/data from git first (git checkout -- web/data), then run the import again.';
+}
 
 const norm = (s: string): string => s.trim().toLowerCase();
 

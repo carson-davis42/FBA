@@ -32,6 +32,10 @@ describe('name matching', () => {
     expect(closeMatches('Kellen Ogbu', sheet)).toEqual([{ name: 'Kellan Ogbu', born: 59 }]);
   });
 
+  it('closeMatches skips names whose length differs by more than 2', () => {
+    expect(closeMatches('Ann', [{ name: 'Anna', born: 1 }, { name: 'Annabelle Long', born: 2 }])).toEqual([{ name: 'Anna', born: 1 }]);
+  });
+
   it('closeMatches returns nothing when the name is in the sheet, apostrophes aside', () => {
     expect(closeMatches("Jamari O'Neal", [{ name: 'Jamari O’Neal', born: null }])).toEqual([]);
   });

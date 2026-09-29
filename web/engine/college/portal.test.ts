@@ -126,6 +126,12 @@ describe('takeOutOfPortal', () => {
     expect(problems(takeOutOfPortal(s, 'p00512', ctx))).toEqual(["p00512 isn't in the transfer portal"]);
   });
 
+  it('refuses once the portal has closed', () => {
+    const s = entered();
+    const closed = { ...s, calendar: stepDone(s.calendar, 'fbajc') };
+    expect(problems(takeOutOfPortal(closed, 'p00510', ctx))).toEqual(['The S79 transfer portal is closed']);
+  });
+
   it('refuses on a next-class board', () => {
     const s = entered();
     const next = { ...s, recruiting: { ...s.recruiting, season: 79, classOf: 80 } };

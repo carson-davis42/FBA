@@ -34,5 +34,7 @@ export function editDistance(a: string, b: string): number {
 /** Sheet names within edit distance 2 of `name` (none when `name` is in the sheet). */
 export function closeMatches(name: string, sheet: SheetPlayer[]): SheetPlayer[] {
   if (sheet.some(s => sameName(s.name, name))) return [];
-  return sheet.filter(s => editDistance(s.name, name) <= 2);
+  const len = norm(name).length;
+  // Names whose lengths differ by more than 2 can't be within distance 2.
+  return sheet.filter(s => Math.abs(norm(s.name).length - len) <= 2 && editDistance(s.name, name) <= 2);
 }

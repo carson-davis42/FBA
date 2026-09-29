@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import type { CalendarFile, PlayersFile, RecruitingFile, RankingFile, RostersFile, RosterEntry, TeamsFile, TransactionsFile } from '../engine/shared/types';
-import { buildClassImport, type ClassImportInput } from './recruitingClassImport';
+import { buildClassImport, previousImportProblem, type ClassImportInput } from './recruitingClassImport';
 import { Report } from './report';
 import type { ClassRow } from './sheets/recruitingClass';
 import type { SheetPlayer } from './sheets/playersTab';
@@ -182,5 +182,29 @@ describe('buildClassImport', () => {
       const r = schemaForPath(f.path)?.safeParse(f.doc);
       expect(r?.success, f.path).toBe(true);
     }
+  });
+});
+
+describe('previousImportProblem', () => {
+  it('allows the first import: no board yet', () => {
+    expect(previousImportProblem(null, players())).toBeNull();
+  });
+
+  it('allows a re-import once the data is restored: the board exists but its recruits are not in players.json', () => {
+    const board = run().doc('leagues/fbajc/S78/recruiting.json') as RecruitingFile;
+    expect(previousImportProblem(board, players())).toBeNull();
+  });
+
+  it("refuses a second import on the first run's output, and says to restore from git", () => {
+    const first = run();
+    const board = first.doc('leagues/fbajc/S78/recruiting.json') as RecruitingFile;
+    const after = first.doc('players.json') as PlayersFile;
+    const problem = previousImportProblem(board, after);
+    expect(problem).toMatch(/already in players\.json/);
+    expect(problem).toContain('git checkout -- web/data');
+
+    // What the second run would have done without the check: mint a second copy of every recruit.
+    const second = run({ players: after, rosters: first.doc('leagues/fbajc/S79/rosters.json') as RostersFile, tx: first.doc('leagues/fbajc/S79/transactions.json') as TransactionsFile });
+    expect((second.doc('players.json') as PlayersFile).nextId).toBe(1920);
   });
 });

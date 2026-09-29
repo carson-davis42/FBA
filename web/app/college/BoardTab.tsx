@@ -34,9 +34,11 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
   const [picking, setPicking] = useState<Picking | null>(null);
   const doc = state.recruiting;
   if (!doc.created && doc.portal.length === 0) {
+    // The current class is board-only (no Class tab), so it cannot be created from here.
+    if (playsThisSeason(state)) return <p className="muted">The S{doc.classOf} class board doesn't exist yet. Import it, or create it in the previous season.</p>;
     return (
       <p className="muted">
-        Create the S{doc.classOf} class first. <Link to="/league/fbajc/recruiting?tab=class">Go to the class ▸</Link>
+        Create the S{doc.classOf} class first. <Link to={`/league/fbajc/recruiting?class=${doc.classOf}&tab=class`}>Go to the class ▸</Link>
       </p>
     );
   }
@@ -53,7 +55,12 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
     onRun(result);
   };
   const spots = openSpots(state.rosters);
-  const walkOnBlock = playsThisSeason(state) && !locked && spots > 0 ? { problem: walkOnProblem(state), label: `Fill ${spots} open ${spots === 1 ? 'spot' : 'spots'} with walk-ons` } : null;
+  const walkOnBlock = playsThisSeason(state)
+    ? {
+      problem: locked ? walkOnProblem(state) ?? 'The board is locked' : walkOnProblem(state),
+      label: spots === 0 ? 'Fill open spots with walk-ons' : `Fill ${spots} open ${spots === 1 ? 'spot' : 'spots'} with walk-ons`,
+    }
+    : null;
   const picked = picking ? [...doc.recruits, ...doc.portal].find(p => p.playerId === picking.playerId) ?? null : null;
 
   const row = (p: Prospect | PortalPlayer) => (

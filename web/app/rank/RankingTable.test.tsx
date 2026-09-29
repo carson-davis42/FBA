@@ -12,12 +12,12 @@ afterEach(cleanup);
 const ALL = ['p00002', 'p00001', 'p00003', 'p00006', 'p00004', 'p00005'];
 const IN_ORDER = { p00002: 85, p00001: 85, p00003: 80, p00006: 75, p00004: 70, p00005: 65 };
 
-function Harness({ initial, extra = [], onFinish = () => {}, withConsensus = false }: { initial: RankingFile; extra?: string[]; onFinish?: () => void; withConsensus?: boolean }) {
+function Harness({ initial, extra = [], onFinish = () => {}, withConsensus = false, leftLabel }: { initial: RankingFile; extra?: string[]; onFinish?: () => void; withConsensus?: boolean; leftLabel?: string }) {
   const [doc, setDoc] = useState(initial);
   return (
     <RankingTable
       doc={doc} name={rankName} teamLabel={t => t ?? 'Reserves'} otherLabel="FBA" onChange={change => setDoc(change)}
-      extraBlockers={extra} finishLabel="Finish ratings" onFinish={onFinish} busy={false}
+      leftLabel={leftLabel} extraBlockers={extra} finishLabel="Finish ratings" onFinish={onFinish} busy={false}
       consensus={withConsensus ? { onSet: (id, v) => setDoc(cur => setConsensus(cur, id, v)) } : undefined}
     />
   );
@@ -39,6 +39,21 @@ describe('RankingTable', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Rank Ada Stone next' }));
     expect(rightNames()).toEqual(['Ada Stone']);
     expect(leftNames()).toEqual(['Ben Cole', 'Cal Reyes', 'Finn Lowe', 'Dev Hart', 'Eli Park']);
+  });
+
+  it('names the left list with leftLabel, and passes the row to teamLabel', () => {
+    const seen: (string | null)[] = [];
+    render(
+      <RankingTable
+        doc={rankingDoc()} name={rankName} teamLabel={(t, row) => { seen.push(row?.playerId ?? null); return t ?? 'Reserves'; }} otherLabel="FBA"
+        onChange={() => {}} extraBlockers={[]} finishLabel="Finish ratings" onFinish={() => {}} busy={false} leftLabel="Unranked"
+      />,
+    );
+    expect(screen.getByRole('heading', { name: 'Unranked · 6' })).toBeTruthy();
+    expect(screen.getByRole('table', { name: 'Unranked' })).toBeTruthy();
+    expect(screen.queryByText(/Last season's order/)).toBeNull();
+    expect(seen.length).toBeGreaterThan(0);
+    expect(seen.every(id => id !== null)).toBe(true);
   });
 
   it('sends a ranked player back to their place', () => {

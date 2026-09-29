@@ -228,7 +228,7 @@ function sameSlotCommit(state: RecruitingState, p: Prospect, teamId: string): st
   return `${schoolName(state, teamId)} already has ${collegeName(state.players, other.playerId)} committed at ${p.position} for the S${state.recruiting.classOf} class. Decommit them first`;
 }
 
-const ratingNote =(rating: number | null) => (rating !== null ? `, ${rating}` : '');
+const ratingNote = (rating: number | null) => (rating !== null ? `, ${rating}` : '');
 
 /** What committing to this school would do: "Open spot", "Name (Jr, 78) will enter the portal", or why it's refused. */
 export function commitPreview(state: RecruitingState, playerId: string, teamId: string): { ok: true; text: string } | { ok: false; text: string } {

@@ -72,12 +72,12 @@ describe('CollegeRatingsPage', () => {
     expect((log.batches[0].writes[0].doc as RankingFile).kind).toBe('college-reset');
   });
 
-  it('shows the school name, or Portal, and last season points', async () => {
+  it('shows the school name, or Portal (from school), and last season points', async () => {
     stubApi(docsFor(started()));
     renderPage();
     await screen.findByRole('button', { name: 'Rank Jaden Moss next' });
     expect(screen.getAllByRole('button', { name: /^Rank .* next$/ }).map(b => b.textContent)).toEqual(['Jaden Moss', 'Omar Reed', 'Luis Vega']);
-    expect(screen.getByText('Portal')).toBeTruthy();
+    expect(screen.getByText('Portal (from Baylor)')).toBeTruthy();
     expect(screen.getByText('Baylor')).toBeTruthy();
     expect(screen.getByText('Duke')).toBeTruthy();
     expect(screen.getAllByText('S78: 300 pts')).toHaveLength(3);

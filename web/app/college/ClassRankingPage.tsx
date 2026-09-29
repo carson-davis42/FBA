@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { classBlockers, classRankingPath, finishClassRanking, setConsensus, startClassRanking, type ClassRankState } from '../../engine/college/classRanking';
-import { boardPath, collegeName, nextClassBoardSeason } from '../../engine/college/state';
+import { boardPath, collegeName, emptyRecruiting, nextClassBoardSeason } from '../../engine/college/state';
 import { rankingBlockers } from '../../engine/rank/ranking';
 import type { CalendarFile, MetaFile, PlayersFile, RankingFile, RecruitingFile, TransactionsFile } from '../../engine/shared/types';
 import type { WritesResult } from '../../engine/season/moves';
@@ -32,8 +32,8 @@ export function ClassRankingPage() {
   const saving = useSaving();
   const [error, setError] = useState('');
 
-  const required = [board, players, calendar];
-  const optional = [ranking, prev, tx];
+  const required = [players, calendar];
+  const optional = [board, ranking, prev, tx];
   const loadError = meta.error ?? required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
   const title = <h1>{boardSeason === undefined ? 'Rank Class' : `Rank S${boardSeason + 1} Class`}</h1>;
   if (loadError) return <p className="error">Couldn't load the class ranking: {loadError.message}</p>;
@@ -41,7 +41,8 @@ export function ClassRankingPage() {
     return <p className="muted">Loading…</p>;
   }
 
-  const boardDoc = board.data!;
+  // A missing next-class board means the class hasn't been created yet.
+  const boardDoc = board.data ?? emptyRecruiting(boardSeason);
   if (!boardDoc.created) {
     return (
       <section>
@@ -111,6 +112,7 @@ export function ClassRankingPage() {
         doc={doc}
         name={name}
         teamLabel={team => team ?? '—'}
+        leftLabel="Unranked"
         otherLabel="FBA"
         onChange={autosave.update}
         extraBlockers={extra}

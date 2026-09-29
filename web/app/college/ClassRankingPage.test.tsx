@@ -98,6 +98,23 @@ describe('ClassRankingPage', () => {
     expect(screen.queryByRole('button', { name: 'Start ranking' })).toBeNull();
   });
 
+  it('treats a missing next-class board as not created', async () => {
+    const s = classState();
+    const docs = docsFor(s);
+    delete docs[boardPath(79)];
+    stubApi(docs);
+    renderPage();
+    expect(await screen.findByText(/hasn't been created yet/)).toBeTruthy();
+    expect(screen.queryByText(/Couldn't load/)).toBeNull();
+  });
+
+  it('labels the unranked list "Unranked"', async () => {
+    stubApi(docsFor(started()));
+    renderPage();
+    expect(await screen.findByRole('table', { name: 'Unranked' })).toBeTruthy();
+    expect(screen.queryByRole('table', { name: "Last season's order" })).toBeNull();
+  });
+
   it('starts the ranking as one write that creates the class ranking', async () => {
     const log = stubApi(docsFor(classState()));
     renderPage();

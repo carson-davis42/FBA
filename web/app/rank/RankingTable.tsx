@@ -15,11 +15,13 @@ export interface RankingTableProps {
   doc: RankingFile;
   name: NameOf;
   /** How the Team column shows a row's team (null = no team, e.g. D2 Reserves). */
-  teamLabel: (team: string | null) => string;
+  teamLabel: (team: string | null, row?: RankingRow) => string;
   /** Short name of the league `otherRating` comes from, e.g. "FBA"; shown as "FBA 71" in the Prev column of new players. */
   otherLabel: string;
   /** Applies a change to the latest copy of the doc (e.g. useAutosaveDoc's update). */
   onChange: (change: (current: RankingFile) => RankingFile) => void;
+  /** Heading of the not-yet-ranked list; default "Last season's order". */
+  leftLabel?: string;
   /** Blockers from the caller (e.g. pool membership), listed after the ranking's own. */
   extraBlockers: string[];
   finishLabel: string;
@@ -62,7 +64,7 @@ function ConsensusInput({ value, name, disabled, onSave }: { value: number | nul
  * the league). Right: the new ranking. Rating boxes appear once everyone is ranked; each starts empty, with the
  * suggestion as a separate chip. The position filter is for reading only.
  */
-export function RankingTable({ doc, name, teamLabel, otherLabel, onChange, extraBlockers, finishLabel, onFinish, busy, consensus }: RankingTableProps) {
+export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "Last season's order", onChange, extraBlockers, finishLabel, onFinish, busy, consensus }: RankingTableProps) {
   const [filter, setFilter] = useState<Filter>('ALL');
   const locked = doc.locked;
   const shown = (r: RankingRow) => filter === 'ALL' || r.position === filter;
@@ -85,13 +87,13 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, onChange, extra
       <div className="rank-cols">
         <div className="rank-col">
           <div className="toolbar">
-            <h3>Last season's order · {left.length}</h3>
+            <h3>{leftLabel} · {left.length}</h3>
             {!locked && left.length > 0 && (
               <button type="button" className="btn" onClick={() => onChange(cur => takeRest(cur, name))}>Take the rest in order</button>
             )}
           </div>
           <div className="table-wrap">
-            <table className="rank-table" aria-label="Last season's order">
+            <table className="rank-table" aria-label={leftLabel}>
               <thead>
                 <tr><th className="n">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th><th>Stat</th></tr>
               </thead>
@@ -110,7 +112,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, onChange, extra
                         </td>
                         <td>{r.position}</td>
                         <td className="n">{r.age ?? '—'}</td>
-                        <td>{teamLabel(r.team)}</td>
+                        <td>{teamLabel(r.team, r)}</td>
                         <td className="n">{prev(r)}</td>
                         <td>{r.stat ?? ''}</td>
                       </tr>
@@ -154,7 +156,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, onChange, extra
                       <td>{name(r.playerId)}{bad && <span className="rank-flag" title="Rated above a player ranked higher">⚠</span>}</td>
                       <td>{r.position}</td>
                       <td className="n">{r.age ?? '—'}</td>
-                      <td>{teamLabel(r.team)}</td>
+                      <td>{teamLabel(r.team, r)}</td>
                       <td className="n">{prev(r)}</td>
                       {allPlaced && (
                         <td className="rank-rating">
