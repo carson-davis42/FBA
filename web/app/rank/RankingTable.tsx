@@ -1,4 +1,5 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { applyClassSuggestions, consensusSuggestion, parseConsensusInput, starsFor } from '../../engine/college/classRanking';
 import {
   applyAllSuggestions, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, take, takeRest, type NameOf,
 } from '../../engine/rank/ranking';
@@ -25,6 +26,35 @@ export interface RankingTableProps {
   onFinish: () => void;
   /** True while a save is running: Finish is disabled. */
   busy: boolean;
+  /** Class ranking only: shows a Consensus box (with stars and a suggestion chip) next to Rating; "Use all suggestions" fills consensus too. */
+  consensus?: { onSet: (playerId: string, value: number | null) => void };
+}
+
+/** A consensus box that saves on blur (or Enter): blank clears it, otherwise 70 to 100 with up to 2 decimals. */
+function ConsensusInput({ value, name, disabled, onSave }: { value: number | null; name: string; disabled: boolean; onSave: (value: number | null) => void }) {
+  const shown = value === null ? '' : String(value);
+  const [text, setText] = useState(shown);
+  const [problem, setProblem] = useState('');
+  useEffect(() => { setText(shown); }, [shown]);
+  const commit = () => {
+    const parsed = parseConsensusInput(text);
+    if (!parsed.ok) {
+      setProblem(parsed.problem);
+      return;
+    }
+    setProblem('');
+    if (parsed.value !== value) onSave(parsed.value);
+  };
+  return (
+    <>
+      <input
+        className="rating-input" inputMode="decimal" aria-label={`Consensus for ${name}`} value={text} disabled={disabled}
+        onChange={e => setText(e.target.value)} onBlur={commit}
+        onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur(); }}
+      />
+      {problem && <div className="error inline-problem">{problem}</div>}
+    </>
+  );
 }
 
 /**
@@ -32,7 +62,7 @@ export interface RankingTableProps {
  * the league). Right: the new ranking. Rating boxes appear once everyone is ranked; each starts empty, with the
  * suggestion as a separate chip. The position filter is for reading only.
  */
-export function RankingTable({ doc, name, teamLabel, otherLabel, onChange, extraBlockers, finishLabel, onFinish, busy }: RankingTableProps) {
+export function RankingTable({ doc, name, teamLabel, otherLabel, onChange, extraBlockers, finishLabel, onFinish, busy, consensus }: RankingTableProps) {
   const [filter, setFilter] = useState<Filter>('ALL');
   const locked = doc.locked;
   const shown = (r: RankingRow) => filter === 'ALL' || r.position === filter;
@@ -95,7 +125,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, onChange, extra
           <div className="toolbar">
             <h3>New ranking · {doc.order.length}</h3>
             {!locked && allPlaced && (
-              <button type="button" className="btn" onClick={() => onChange(applyAllSuggestions)}>Use all suggestions</button>
+              <button type="button" className="btn" onClick={() => onChange(consensus ? applyClassSuggestions : applyAllSuggestions)}>Use all suggestions</button>
             )}
           </div>
           {!locked && !allPlaced && doc.order.length > 0 && <p className="muted">Rating boxes appear once every player is ranked.</p>}
@@ -105,6 +135,8 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, onChange, extra
                 <tr>
                   <th className="n">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th>
                   {allPlaced && <th>Rating</th>}
+                  {allPlaced && consensus && <th>Consensus</th>}
+                  {allPlaced && consensus && <th>Stars</th>}
                   <th><span className="muted">Back</span></th>
                 </tr>
               </thead>
@@ -113,6 +145,9 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, onChange, extra
                   if (!shown(r)) return null;
                   const s = suggestion(doc, i + 1);
                   const bad = flagged.has(r.playerId);
+                  const c = doc.consensus?.[r.playerId] ?? null;
+                  const cs = consensus ? consensusSuggestion(doc, i + 1) : null;
+                  const stars = c === null ? null : starsFor(c);
                   return (
                     <tr key={r.playerId} className={bad ? 'out-of-order' : undefined}>
                       <td className="n">{i + 1}</td>
@@ -136,6 +171,22 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, onChange, extra
                             </button>
                           )}
                         </td>
+                      )}
+                      {allPlaced && consensus && (
+                        <td className="rank-rating">
+                          <ConsensusInput value={c} name={name(r.playerId)} disabled={locked} onSave={v => consensus.onSet(r.playerId, v)} />
+                          {cs !== null && !locked && (
+                            <button
+                              type="button" className="suggest" aria-label={`Use suggested consensus ${cs} for ${name(r.playerId)}`}
+                              onClick={() => consensus.onSet(r.playerId, cs)}
+                            >
+                              suggested {cs}
+                            </button>
+                          )}
+                        </td>
+                      )}
+                      {allPlaced && consensus && (
+                        <td>{stars !== null && <span aria-label={`${stars} stars`}>{'★'.repeat(stars)}</span>}</td>
                       )}
                       <td>
                         {!locked && (

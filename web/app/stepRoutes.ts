@@ -15,6 +15,7 @@ export function toolTarget(step: CalendarStep): string | null {
   if (/^make-s\d+-schedules$/.test(step.id)) return '/schedules';
   if (/^s\d+-fba-draft-lottery$/.test(step.id)) return '/league/fba/lottery';
   if (/^create-s\d+-class$/.test(step.id)) return '/league/fbajc/recruiting?tab=class';
+  if (/^rank-s\d+-class$/.test(step.id)) return '/league/fbajc/class-ranking';
   if (step.kind === 'league' && (step.league === 'fba' || step.league === 'fbad2')) return `/league/${step.league}/scores`;
   return null;
 }

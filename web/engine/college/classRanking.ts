@@ -26,6 +26,17 @@ export function consensusSuggestion(doc: RankingFile, k: number): number | null 
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
 
+/** Parses a typed consensus: blank clears it (null); otherwise 70 to 100 with at most 2 decimals. */
+export function parseConsensusInput(text: string): { ok: true; value: number | null } | { ok: false; problem: string } {
+  const t = text.trim();
+  if (t === '') return { ok: true, value: null };
+  const value = Number(t);
+  if (!/^\d+(\.\d{1,2})?$/.test(t) || value < MIN_CONSENSUS || value > MAX_CONSENSUS) {
+    return { ok: false, problem: `Enter a consensus from ${MIN_CONSENSUS} to ${MAX_CONSENSUS}, with up to 2 decimals` };
+  }
+  return { ok: true, value };
+}
+
 /** Sets or clears (null) a consensus, 70-100, rounded to 2 decimals. Anything else, or a locked doc, returns the same object. */
 export function setConsensus(doc: RankingFile, playerId: string, value: number | null): RankingFile {
   if (doc.locked || !doc.rows.some(r => r.playerId === playerId)) return doc;

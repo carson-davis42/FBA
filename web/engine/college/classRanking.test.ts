@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { applyClassSuggestions, classBlockers, classRankingPath, consensusSuggestion, finishClassRanking, setConsensus, starsFor, startClassRanking, type ClassRankState } from './classRanking';
+import { applyClassSuggestions, classBlockers, classRankingPath, consensusSuggestion, finishClassRanking, parseConsensusInput, setConsensus, starsFor, startClassRanking, type ClassRankState } from './classRanking';
 import { addDraftRow, appendDraftRows, editRecruit, removeRecruit } from './recruiting';
 import { boardPath, collegeName } from './state';
 import { collegeClassState } from './testFixtures';
@@ -212,5 +212,18 @@ describe('class edits once ranked', () => {
     expect(appendDraftRows(s.recruiting, [{ name: 'A', position: 'PG' }])).toBe(s.recruiting);
     expect(ok(editRecruit(s, id, { name: 'New Name' })).changed).toEqual(['players']);
     expect(ok(editRecruit(s, id, { position: 'C' })).changed).toEqual(['recruiting']);
+  });
+});
+
+describe('parseConsensusInput', () => {
+  it('accepts blank, or 70 to 100 with up to 2 decimals', () => {
+    expect(parseConsensusInput('')).toEqual({ ok: true, value: null });
+    expect(parseConsensusInput('  ')).toEqual({ ok: true, value: null });
+    expect([' 98.8 ', '70', '100', '100.00', '94.25'].map(t => parseConsensusInput(t))).toEqual([
+      { ok: true, value: 98.8 }, { ok: true, value: 70 }, { ok: true, value: 100 }, { ok: true, value: 100 }, { ok: true, value: 94.25 },
+    ]);
+  });
+  it('rejects anything else', () => {
+    for (const t of ['69.99', '100.01', '101', 'abc', '9x', '94.255', '.5', '-80', '1e2']) expect(parseConsensusInput(t).ok, t).toBe(false);
   });
 });

@@ -21,6 +21,12 @@ describe('step routes', () => {
     expect(stepTarget(step('create-s81-class'))).toBe('/league/fbajc/recruiting?tab=class');
   });
 
+  it('opens Rank Class on the class ranking page', () => {
+    expect(toolTarget(step('rank-s80-class'))).toBe('/league/fbajc/class-ranking');
+    expect(stepTarget(step('rank-s81-class'))).toBe('/league/fbajc/class-ranking');
+    expect(toolTarget(step('rank-sx-class'))).toBeNull();
+  });
+
   it('opens the draft lottery page from its calendar step', () => {
     expect(toolTarget(step('s80-fba-draft-lottery'))).toBe('/league/fba/lottery');
     expect(stepTarget(step('s81-fba-draft-lottery'))).toBe('/league/fba/lottery');
