@@ -204,11 +204,15 @@ This is the single up-to-date list of parts. Update it whenever a part is split,
 | 2b-2a | Postseason for both leagues: seeding tiebreaks, brackets, live playoff games, D2 promotion and relegation, standings markers | Done | [spec](2026-09-27-postseason-design.md) · [plan](../plans/2026-09-28-postseason.md) |
 | 2b-2b | Season awards with live races and odds (FBA and D2 MVPs), defensive stats, power-rankings pages | Done | [spec](2026-09-28-awards-rankings-design.md) · [plan](../plans/2026-09-28-awards-rankings.md) |
 | 2b-2c | Season wrap-up: each league's season record into history, lock the season, clear Undo; "Go to next season" applies promotion and relegation, creates the next season's docs and resets the calendar | Done | [spec](2026-09-28-season-wrap-up-design.md) · [plan](../plans/2026-09-28-season-wrap-up.md) |
-| 7 Offseason | Calendar step tools (details below). Moved up on 2026-09-28 to follow 2b-2c, so the S80 offseason has tools before it is played | Not started | — |
+| 7a Offseason | Shared click-to-rank tool, D2 ratings reset rebuilt on it, one-time S79 college rosters, Create Class, recruiting board (projections, commits, decommits, portal by displacement) | Spec written | [spec](2026-09-28-offseason-7a-ranking-recruiting-design.md) |
+| 7b Offseason | Season tail: FBA draft lottery, retirement, Hall of Fame induction | Not started | — |
+| 7c Offseason | Rank Class, walk-on fill before FBAJC, Adjust College Ratings | Not started | — |
+| 7d Offseason | Adjust Age (pros and college: leavers, declare, portal), Adjust Pro Ratings with draft prospects, FBA draft | Not started | — |
 | 3 FBA history | Import and views for champions, awards, All-FBA, HOF, team trophy cases with era logos, draft history, player career timelines, transactions, events | Not started | — |
 | 4 FBAD2 | D2 history and anything left after 2b (season play, playoffs and promotion were built in 2b) | Not started | — |
 | 5 FBAWC | Host nation, group/bracket play, flags, World Cup history. Even seasons only | Not started | — |
 | 6 FBAJC | 216 teams / 18 conferences, preseason tournaments, conference challenge, rankings, conference tournaments, March Madness, NIT, recruiting and transfer history, school history pages | Not started | — |
+| FBA expansion | Philly Phantoms and Los Angeles Labradors (planned for S80): add teams, expansion draft, 16-team lottery odds | Not started | — |
 | Later | A separate defensive rating for players (the best basis for DPOY; changes the sim, rosters, drafts and rating adjustments) | Idea | — |
 
 Part 2 was originally one sub-project, "FBA league": engine port, scores, live game, standings, playoffs bracket, team, player, and stats/awards pages, pause cards, season completion into history. It was split into the 2a and 2b parts above as it was built.
@@ -221,7 +225,7 @@ The original descriptions of the remaining parts:
 6. **FBAJC:** 216 teams / 18 conferences, preseason tournaments, conference challenge, rankings, conference tournaments, March Madness, NIT, recruiting and transfer history, school history pages.
 7. **Offseason:** calendar step tools. Automated: aging, contract expiry, draft lottery, promotion/relegation, class progression. Guided: rating adjustments, drafts (drag-and-drop board), free agency, trades, retirement, HOF, creating and ranking the recruit class. Rules are gathered from the user at the start of this sub-project.
 
-Until sub-project 7 exists, each offseason calendar step is shown with a "Mark done" button so the calendar can advance while you make changes in the roster editor.
+Part 7 was split into 7a–7d on 2026-09-28 (rules and decisions D1–D21 in `.superpowers/sdd/progress.md`). Until each sub-part exists, its offseason calendar steps are shown with a "Mark done" button so the calendar can advance while you make changes in the roster editor.
 
 ## 11. Sub-project 1: Foundation (detailed scope)
 
