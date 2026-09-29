@@ -22,6 +22,7 @@ import { TransactionsPage } from '../pages/TransactionsPage';
 import { Placeholder } from '../components/Placeholder';
 import { RecruitingPage } from '../college/RecruitingPage';
 import { LotteryPage } from '../offseason/LotteryPage';
+import { RetirementPage } from '../offseason/RetirementPage';
 import { Sidebar } from './Sidebar';
 import { TopBar } from './TopBar';
 
@@ -40,6 +41,7 @@ export function Layout() {
           <Route path="/league/fbad2/draft" element={<D2DraftPage />} />
           <Route path="/league/fbajc/recruiting" element={<RecruitingPage />} />
           <Route path="/league/fba/lottery" element={<LotteryPage />} />
+          <Route path="/retirement" element={<RetirementPage />} />
           <Route path="/league/fba/ratings-pause" element={<RatingPausePage />} />
           <Route path="/league/fba/all-star" element={<AllStarPage />} />
           <Route path="/league/:league/scores" element={<ScoresPage />} />

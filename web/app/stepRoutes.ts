@@ -5,6 +5,7 @@ export const TOOL_STEPS: Record<string, string> = {
   'free-agency-offseason': '/league/fba/free-agency',
   'fbad2-ratings-reset': '/league/fbad2/ratings',
   'fbad2-draft': '/league/fbad2/draft',
+  retirement: '/retirement',
 };
 
 /** The page that completes this step, or null when it is still a manual "Mark done" step. */
