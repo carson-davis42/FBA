@@ -1,7 +1,7 @@
 # Part 2b-2c: Season Wrap-up and "Go to next season" — Design
 
 **Date:** 2026-09-28
-**Status:** Approved in brainstorming; awaiting spec review
+**Status:** Approved; built (plan `docs/superpowers/plans/2026-09-28-season-wrap-up.md`)
 **Branch:** `wrap-up`
 **Parent specs:**
 - `docs/superpowers/specs/2026-09-25-fba-web-design.md`
@@ -46,7 +46,7 @@
 
 - `recordPlayoffGame` no longer calls `markStepDone`. It still sets `outcome` (champions, D2 promotion) when the last final ends.
 - The playoffs page's champion card shows **"Finish S{n} {FBA|D2} season ▸"** once `outcome` is set and the step is still current. Home's **Continue ▸** routes there while the league step is current and `outcome` is set.
-- The button runs `finishSeason(state)` and commits its writes as one batch with `resetUndo: true`.
+- The button runs `finishSeason(state, pauses, ctx)` and commits its writes as one batch with `resetUndo: true`.
 - `finishSeason` refuses (returns problems) unless:
   - the league's calendar step is the current step;
   - `playoffs.outcome` is set (every final decided);
@@ -54,12 +54,12 @@
   - the season's `summary.json` does not exist yet.
 - Its writes:
   - `leagues/<lg>/S<n>/summary.json`, `locked: true` (section 4);
-  - `locked: true` on that season's `schedule.json`, `results.json`, `playoffs.json`, `awards.json`, and for the FBA also `allstar.json` and every `ratingPause-*.json`;
+  - `locked: true` on that season's `schedule.json`, `results.json`, `playoffs.json`, and for the FBA also `allstar.json`, each only if not already locked (the server refuses to rewrite a locked doc). `awards.json` and every finished `ratingPause-*.json` are already locked; `finishSeason` refuses if a rating-pause doc passed in is unlocked;
   - a transaction entry "S{n} season finished" (type `season`, added to the enum);
   - `calendar.json` with the league step marked done.
 - After finishing:
   - Scores, Standings, Playoffs, Awards and Rankings stay viewable; their play controls are gone because the step is done and the docs are locked.
-  - Rosters, free agents and reserves stay open: the tail steps (retirement and so on) still change them.
+  - The finish doesn't lock rosters, free agents or reserves; "Go to next season" does. (Roster moves in the S{n} tail are still refused by the existing post-deadline phase lock in `engine/season/locks.ts`; part 7 revisits this when the tail steps get tools.)
   - Home's "last champions" box reads the newest locked summary for each league (the current season's if it exists, else `meta.lastSeason`'s).
 
 ### 3.2 Reopen
@@ -111,7 +111,7 @@
 - **Champions:**
   - `title` follows the S78 wording: "FBA Champion"; for the D2, "Premier League Champion", "World League Champion", "United League Champion", "International League Champion".
   - `champion` and `runnerUp` are the teams' names that season.
-  - `score` comes from `playoffs.outcome`.
+  - `score` comes from `playoffs.outcome` (en dash, "4–1"; the imported S78 summaries use a hyphen, which part 3 normalises).
   - `group` is null for the FBA and the D2 league id otherwise.
 - **Awards and All-FBA** are copied from the locked `awards.json`.
 - **All-Star** (FBA only), from `allstar.json`:
@@ -212,13 +212,13 @@ A pure `calendarFor(season)` in `engine/shared/calendar.ts` returns a fresh cale
 
 - `seasonRecord(state, pauses: RatingPauseFile[]): SummaryFile`: builds section 4 from a season's loaded docs.
 - `playerLines(games: {regular: GameResult[]; playoffs: GameResult[]}, rosters, pauses): SummaryPlayerLine[]`.
-- `finishSeason(state, pauses): SeasonResult`: the section 3.1 checks and writes.
+- `finishSeason(state, pauses, ctx: MoveContext): SeasonResult`: the section 3.1 checks and writes.
   - `SeasonDocKey` gains `summary`.
   - The rating-pause docs are passed in, with their paths and versions, because `SeasonState` holds only the current one.
-- `nextSeasonDocs(input): { ok: true; writes; label } | { ok: false; problems }`: section 5.
+- In `web/engine/season/nextSeason.ts`: `nextSeasonDocs(input, ctx): { ok: true; writes; label; moves } | { ok: false; problems }`: section 5; `nextSeasonPaths(n)` lists every path it reads or writes.
   - Its input is the calendar, meta, both leagues' S{n} docs, the D2 teams and both S{n} summaries.
   - It is a separate move from `SeasonResult` because it spans both leagues and global docs.
-- `applyPromotion(teams, lines): TeamsFile`, with the 16-per-league check.
+- `applyPromotion(teams, lines): { ok: true; teams; moves } | { ok: false; problems }`, with the 16-per-league check.
 - `calendarFor(season)` (section 6), and `reopenProblem(cal, finished: Set<string>)` for section 3.2.
 
 ## 9. Screens
