@@ -32,6 +32,7 @@ export function NextSeasonPage() {
   const d2Draft = useDoc<D2DraftFile>(p && p.fbad2.draft);
   const d2Summary = useDoc<SummaryFile>(p && p.fbad2.summary);
   const recruiting = useDoc<RecruitingFile>(p && p.fbajc.recruiting);
+  const collegeRosters = useDoc<RostersFile>(p && p.fbajc.rosters);
   const nextFbaRosters = useDoc<RostersFile>(p && p.next.fbaRosters);
   const nextFbaFreeAgents = useDoc<FreeAgentsFile>(p && p.next.fbaFreeAgents);
   const nextFbaTx = useDoc<TransactionsFile>(p && p.next.fbaTx);
@@ -46,7 +47,7 @@ export function NextSeasonPage() {
     [p.fba.rosters, fbaRosters], [p.fba.freeAgents, fbaFreeAgents], [p.fba.tx, fbaTx], [p.fba.summary, fbaSummary],
     [p.fbad2.rosters, d2Rosters], [p.fbad2.reserves, d2Reserves], [p.fbad2.tx, d2Tx],
     [p.fbad2.ratings, d2Ratings], [p.fbad2.pool, d2Pool], [p.fbad2.draft, d2Draft], [p.fbad2.summary, d2Summary],
-    [p.fbajc.recruiting, recruiting],
+    [p.fbajc.recruiting, recruiting], [p.fbajc.rosters, collegeRosters],
     [p.next.fbaRosters, nextFbaRosters], [p.next.fbaFreeAgents, nextFbaFreeAgents], [p.next.fbaTx, nextFbaTx],
     [p.next.d2Rosters, nextD2Rosters], [p.next.d2Reserves, nextD2Reserves], [p.next.d2Tx, nextD2Tx],
   ];
@@ -65,7 +66,7 @@ export function NextSeasonPage() {
       rosters: d2Rosters.data!, reserves: d2Reserves.data ?? null, tx: d2Tx.data!,
       ratings: d2Ratings.data ?? null, pool: d2Pool.data ?? null, draft: d2Draft.data ?? null, summary: d2Summary.data ?? null,
     },
-    fbajc: { recruiting: recruiting.data ?? null },
+    fbajc: { recruiting: recruiting.data ?? null, rosters: collegeRosters.data ?? null },
     nextStarted: Boolean(nextFbaRosters.data || nextD2Rosters.data),
   };
   const preview = nextSeasonDocs(input, { batchId: 'preview' });

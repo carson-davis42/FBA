@@ -3,7 +3,7 @@ import { RecruitingFile, type ClassDraftRow } from '../shared/types';
 import {
   addDraftRow, appendDraftRows, createClass, draftCounts, editDraftRow, editRecruit, parseClassList, removeDraftRow, removeRecruit,
 } from './recruiting';
-import { emptyRecruiting, recruitingWrites, type RecruitingResult, type RecruitingState } from './state';
+import { boardPath, currentClassBoardSeason, emptyRecruiting, nextClassBoardSeason, playsThisSeason, recruitingDocPath, recruitingWrites, type RecruitingResult, type RecruitingState } from './state';
 import { collegeBaseState, collegeClassState } from './testFixtures';
 
 const ctx = { batchId: 'b1' };
@@ -65,8 +65,8 @@ describe('createClass', () => {
     expect(r.label).toBe('Create S80 class');
     expect(r.changed).toEqual(['recruiting', 'players', 'tx', 'calendar']);
     expect(r.state.players.nextId).toBe(1916);
-    expect(r.state.players.players.p01914).toEqual({ id: 'p01914', name: 'Zion Carter', birthSeason: 61 });
-    expect(r.state.players.players.p01915).toEqual({ id: 'p01915', name: 'Malik Ford', birthSeason: 61 });
+    expect(r.state.players.players.p01914).toEqual({ id: 'p01914', name: 'Zion Carter', birthSeason: 62 });
+    expect(r.state.players.players.p01915).toEqual({ id: 'p01915', name: 'Malik Ford', birthSeason: 62 });
     expect(r.state.recruiting).toMatchObject({ created: true, classDraft: [], classOf: 80 });
     expect(r.state.recruiting.recruits).toEqual([
       { playerId: 'p01914', position: 'PG', classYear: 'Fr', rating: null, stars: null, projections: {}, committedTo: null },
@@ -92,6 +92,28 @@ describe('createClass', () => {
   });
 });
 
+describe('board paths and timeline', () => {
+  it('puts the board at the season it was created in', () => {
+    expect(boardPath(78)).toBe('leagues/fbajc/S78/recruiting.json');
+    expect(recruitingDocPath('recruiting', 78)).toBe(boardPath(78));
+    expect(currentClassBoardSeason(79)).toBe(78);
+    expect(nextClassBoardSeason(79)).toBe(79);
+    expect(emptyRecruiting(79)).toMatchObject({ season: 79, classOf: 80 });
+  });
+
+  it('knows whether the class plays this season', () => {
+    const s = collegeClassState();
+    expect(playsThisSeason(s)).toBe(false);
+    expect(playsThisSeason({ ...s, recruiting: { ...s.recruiting, season: 78, classOf: 79 } })).toBe(true);
+  });
+
+  it('writes the board to its own season and everything else to the calendar season', () => {
+    const s = collegeClassState();
+    const r = ok(editRecruit({ ...s, recruiting: { ...s.recruiting, season: 78, classOf: 79 } }, 'p01914', { name: 'Zion Carver', position: 'SG' }));
+    expect(recruitingWrites(r).map(w => w.path)).toEqual(['players.json', 'leagues/fbajc/S78/recruiting.json']);
+  });
+});
+
 describe('createClass calendar gate', () => {
   it('refuses unless Create S80 Class is the current step', () => {
     const s = drafted([{ name: 'A B', position: 'PG' }]);
@@ -112,7 +134,7 @@ describe('editRecruit and removeRecruit', () => {
     const renamed = ok(editRecruit(s, 'p01914', { name: ' Zion Carver ' }));
     expect(renamed.changed).toEqual(['players']);
     expect(renamed.label).toBe('Edit Zion Carver');
-    expect(renamed.state.players.players.p01914).toEqual({ id: 'p01914', name: 'Zion Carver', birthSeason: 61 });
+    expect(renamed.state.players.players.p01914).toEqual({ id: 'p01914', name: 'Zion Carver', birthSeason: 62 });
     const moved = ok(editRecruit(s, 'p01914', { position: 'SG' }));
     expect(moved.changed).toEqual(['recruiting']);
     expect(moved.state.recruiting.recruits[0].position).toBe('SG');

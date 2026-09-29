@@ -16,9 +16,21 @@ describe('step routes', () => {
     expect(stepTarget(step('fbajc', 'league', 'fbajc'))).toBe('/league/fbajc');
   });
 
-  it('opens Create Class on the recruiting page', () => {
-    expect(toolTarget(step('create-s80-class'))).toBe('/league/fbajc/recruiting?tab=class');
-    expect(stepTarget(step('create-s81-class'))).toBe('/league/fbajc/recruiting?tab=class');
+  it('opens Create Class on the recruiting page for that class', () => {
+    expect(toolTarget(step('create-s80-class'))).toBe('/league/fbajc/recruiting?class=80&tab=class');
+    expect(stepTarget(step('create-s81-class'))).toBe('/league/fbajc/recruiting?class=81&tab=class');
+  });
+
+  it('opens Rank Class on the class ranking page', () => {
+    expect(toolTarget(step('rank-s80-class'))).toBe('/league/fbajc/class-ranking');
+    expect(stepTarget(step('rank-s81-class'))).toBe('/league/fbajc/class-ranking');
+    expect(toolTarget(step('rank-sx-class'))).toBeNull();
+  });
+
+  it('opens Adjust College Ratings on the college ratings page', () => {
+    expect(TOOL_STEPS['adjust-college-ratings']).toBe('/league/fbajc/ratings');
+    expect(toolTarget(step('adjust-college-ratings'))).toBe('/league/fbajc/ratings');
+    expect(stepTarget(step('adjust-college-ratings'))).toBe('/league/fbajc/ratings');
   });
 
   it('opens the draft lottery page from its calendar step', () => {

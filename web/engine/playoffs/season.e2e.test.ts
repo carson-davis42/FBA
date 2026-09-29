@@ -117,7 +117,7 @@ describe('a whole S79 in the engine: D2, finish, FBA, finish, the tail, then S80
       fba: { rosters: fba.rosters, freeAgents: null, tx: fba.tx, summary: fba.summary },
       fbad2: { rosters: d2.rosters, reserves: null, tx: d2.tx, ratings: null, pool: null, draft: null, summary: d2.summary },
       nextStarted: false,
-      fbajc: { recruiting: null },
+      fbajc: { recruiting: null, rosters: null },
     }, ctx);
     if (!next.ok) throw new Error(next.problems.join('; '));
     for (const w of next.writes) {

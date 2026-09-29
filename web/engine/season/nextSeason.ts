@@ -1,4 +1,5 @@
 import { fbajcGateProblem } from '../college/recruiting';
+import { boardPath } from '../college/state';
 import { TIERS } from '../playoffs/promotion';
 import { appendTx, type MoveContext } from '../roster/state';
 import { calendarFor } from '../shared/calendar';
@@ -59,7 +60,7 @@ export function nextSeasonPaths(n: number) {
       rosters: d2(n, 'rosters'), reserves: d2(n, 'reserves'), tx: d2(n, 'transactions'),
       ratings: d2(n, 'ratings'), pool: d2(n, 'pool'), draft: d2(n, 'draft'), summary: d2(n, 'summary'),
     },
-    fbajc: { recruiting: `leagues/fbajc/S${n}/recruiting.json` },
+    fbajc: { recruiting: boardPath(n - 1), rosters: `leagues/fbajc/S${n}/rosters.json` },
     next: {
       fbaRosters: fba(n + 1, 'rosters'), fbaFreeAgents: fba(n + 1, 'freeAgents'), fbaTx: fba(n + 1, 'transactions'),
       d2Rosters: d2(n + 1, 'rosters'), d2Reserves: d2(n + 1, 'reserves'), d2Tx: d2(n + 1, 'transactions'),
@@ -76,8 +77,8 @@ export interface NextSeasonInput {
     rosters: RostersFile; reserves: ReservesFile | null; tx: TransactionsFile;
     ratings: RankingFile | null; pool: D2PoolFile | null; draft: D2DraftFile | null; summary: SummaryFile | null;
   };
-  /** The recruiting board of the class created this season (null if none). */
-  fbajc: { recruiting: RecruitingFile | null };
+  /** The board of the class that plays this season (S{n−1} board) and this season's college rosters; null when missing. */
+  fbajc: { recruiting: RecruitingFile | null; rosters: RostersFile | null };
   /** True when S{n+1} FBA or D2 rosters already exist. */
   nextStarted: boolean;
 }
@@ -95,7 +96,7 @@ export function nextSeasonDocs(input: NextSeasonInput, ctx: MoveContext): NextSe
   if (input.meta.currentSeason !== n) problems.push(`The calendar is for S${n} but the current season is S${input.meta.currentSeason}`);
   if (!input.fba.summary?.locked) problems.push(`Finish the S${n} FBA season first`);
   if (!input.fbad2.summary?.locked) problems.push(`Finish the S${n} D2 season first`);
-  const gate = fbajcGateProblem(input.fbajc.recruiting);
+  const gate = fbajcGateProblem(input.fbajc.recruiting, input.fbajc.rosters);
   if (gate) problems.push(gate);
   if (input.nextStarted) problems.push(`S${n + 1} has already started`);
   const promo = applyPromotion(input.d2Teams, input.fbad2.summary?.promotion ?? []);

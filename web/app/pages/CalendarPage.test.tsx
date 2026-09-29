@@ -90,7 +90,7 @@ describe('CalendarPage FBAJC gate', () => {
     { id: 'fbajc', label: 'FBAJC', kind: 'league', league: 'fbajc', sub: false, done: false },
   ] };
   const board = (committedTo: string | null) => ({
-    league: 'fbajc', season: 79, classOf: 80, locked: false, classDraft: [], created: true,
+    league: 'fbajc', season: 78, classOf: 79, locked: false, classDraft: [], created: true,
     recruits: [{ playerId: 'p01914', position: 'PG', classYear: 'Fr', rating: null, stars: null, projections: {}, committedTo }],
     portal: [],
   });
@@ -98,7 +98,7 @@ describe('CalendarPage FBAJC gate', () => {
 
   it('keeps Mark done off while anyone is uncommitted', async () => {
     current = atFbajc;
-    extra['leagues/fbajc/S79/recruiting.json'] = board(null);
+    extra['leagues/fbajc/S78/recruiting.json'] = board(null);
     render(<MemoryRouter><CalendarPage /></MemoryRouter>);
     expect(await screen.findByText("1 recruit and 0 portal players haven't committed yet")).toBeTruthy();
     expect((await markDone()).disabled).toBe(true);
@@ -106,10 +106,20 @@ describe('CalendarPage FBAJC gate', () => {
 
   it('allows Mark done once everyone has committed', async () => {
     current = atFbajc;
-    extra['leagues/fbajc/S79/recruiting.json'] = board('DUKE');
+    extra['leagues/fbajc/S78/recruiting.json'] = board('DUKE');
     render(<MemoryRouter><CalendarPage /></MemoryRouter>);
     const button = await markDone();
     await waitFor(() => expect(button.disabled).toBe(false));
+  });
+
+  it('keeps Mark done off while college rosters have open spots, even with a fully committed board', async () => {
+    current = atFbajc;
+    extra['leagues/fbajc/S78/recruiting.json'] = board('DUKE');
+    const hole = { playerId: null, position: 'PF', rating: null, age: null, points: 0, stars: null, classYear: null };
+    extra['leagues/fbajc/S79/rosters.json'] = { league: 'fbajc', season: 79, locked: false, teams: { DUKE: [hole, hole], UNC: [hole] } };
+    render(<MemoryRouter><CalendarPage /></MemoryRouter>);
+    expect(await screen.findByText('3 open spots need walk-ons')).toBeTruthy();
+    expect((await markDone()).disabled).toBe(true);
   });
 
   it('has no gate without a recruiting doc', async () => {
@@ -121,7 +131,7 @@ describe('CalendarPage FBAJC gate', () => {
 
   it('keeps Mark done off when the recruiting doc fails to load', async () => {
     current = atFbajc;
-    errors['leagues/fbajc/S79/recruiting.json'] = 500;
+    errors['leagues/fbajc/S78/recruiting.json'] = 500;
     render(<MemoryRouter><CalendarPage /></MemoryRouter>);
     expect(await screen.findByText(/Couldn't check recruiting/)).toBeTruthy();
     expect((await markDone()).disabled).toBe(true);

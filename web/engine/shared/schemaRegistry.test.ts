@@ -114,3 +114,11 @@ describe('part 7a documents', () => {
     expect(schemaForPath('leagues/fba/S79/recruiting.json')).toBeNull();
   });
 });
+
+describe('part 7c documents', () => {
+  it('routes the college class ranking and ratings documents', () => {
+    expect(schemaForPath('leagues/fbajc/S79/classRanking.json')).toBe(RankingFile);
+    expect(schemaForPath('leagues/fbajc/S79/ratings.json')).toBe(RankingFile);
+    expect(schemaForPath('leagues/fba/S79/classRanking.json')).toBeNull();
+  });
+});

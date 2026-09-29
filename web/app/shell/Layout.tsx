@@ -20,6 +20,9 @@ import { TeamPage } from '../pages/TeamPage';
 import { TradePage } from '../pages/TradePage';
 import { TransactionsPage } from '../pages/TransactionsPage';
 import { Placeholder } from '../components/Placeholder';
+import { CollegeRatingsPage } from '../college/CollegeRatingsPage';
+import { ClassRankingPage } from '../college/ClassRankingPage';
+import { PortalPage } from '../college/PortalPage';
 import { RecruitingPage } from '../college/RecruitingPage';
 import { HallOfFamePage } from '../offseason/HallOfFamePage';
 import { LotteryPage } from '../offseason/LotteryPage';
@@ -41,6 +44,9 @@ export function Layout() {
           <Route path="/league/fbad2/ratings" element={<D2RatingsPage />} />
           <Route path="/league/fbad2/draft" element={<D2DraftPage />} />
           <Route path="/league/fbajc/recruiting" element={<RecruitingPage />} />
+          <Route path="/league/fbajc/portal" element={<PortalPage />} />
+          <Route path="/league/fbajc/class-ranking" element={<ClassRankingPage />} />
+          <Route path="/league/fbajc/ratings" element={<CollegeRatingsPage />} />
           <Route path="/league/fba/lottery" element={<LotteryPage />} />
           <Route path="/retirement" element={<RetirementPage />} />
           <Route path="/league/fba/hall-of-fame" element={<HallOfFamePage />} />

@@ -44,7 +44,7 @@ function ready(): NextSeasonInput {
       summary: { league: 'fbad2', season: 79, locked: true, host: null, champions: [], promotion: PROMOTION },
     },
     nextStarted: false,
-    fbajc: { recruiting: null },
+    fbajc: { recruiting: null, rosters: null },
   };
 }
 
@@ -55,25 +55,33 @@ const run = (input: NextSeasonInput) => {
 };
 
 describe('nextSeasonDocs', () => {
-  it('locks the S79 recruiting board when there is one', () => {
-    const recruiting: RecruitingFile = { league: 'fbajc', season: 79, classOf: 80, locked: false, classDraft: [], created: true, recruits: [], portal: [] };
-    const r = run({ ...ready(), fbajc: { recruiting } });
+  it('locks the S78 board (the class playing S79) when there is one, and leaves S79 alone', () => {
+    const recruiting: RecruitingFile = { league: 'fbajc', season: 78, classOf: 79, locked: false, classDraft: [], created: true, recruits: [], portal: [] };
+    const r = run({ ...ready(), fbajc: { recruiting, rosters: null } });
     const paths = r.writes.map(w => w.path);
-    expect(paths.indexOf('leagues/fbajc/S79/recruiting.json')).toBe(paths.indexOf('leagues/fbad2/S79/draft.json') + 1);
-    expect(r.writes.find(w => w.path === 'leagues/fbajc/S79/recruiting.json')!.doc).toEqual({ ...recruiting, locked: true });
-    const done = run({ ...ready(), fbajc: { recruiting: { ...recruiting, locked: true } } });
+    expect(paths.indexOf('leagues/fbajc/S78/recruiting.json')).toBe(paths.indexOf('leagues/fbad2/S79/draft.json') + 1);
+    expect(r.writes.find(w => w.path === 'leagues/fbajc/S78/recruiting.json')!.doc).toEqual({ ...recruiting, locked: true });
+    expect(paths).not.toContain('leagues/fbajc/S79/recruiting.json');
+    const done = run({ ...ready(), fbajc: { recruiting: { ...recruiting, locked: true }, rosters: null } });
     expect(done.writes.some(w => w.path.endsWith('/recruiting.json'))).toBe(false);
   });
 
   it('refuses while a recruit or portal player is uncommitted, and rolls over once the board is fully committed', () => {
     const recruiting: RecruitingFile = {
-      league: 'fbajc', season: 79, classOf: 80, locked: false, classDraft: [], created: true, portal: [],
+      league: 'fbajc', season: 78, classOf: 79, locked: false, classDraft: [], created: true, portal: [],
       recruits: [{ playerId: 'p01914', position: 'PG', classYear: 'Fr', rating: null, stars: null, projections: {}, committedTo: null }],
     };
-    const bad = nextSeasonDocs({ ...ready(), fbajc: { recruiting } }, ctx);
+    const bad = nextSeasonDocs({ ...ready(), fbajc: { recruiting, rosters: null } }, ctx);
     expect(bad).toEqual({ ok: false, problems: ["1 recruit and 0 portal players haven't committed yet"] });
     const committed = { ...recruiting, recruits: [{ ...recruiting.recruits[0], committedTo: 'BAY' }] };
-    expect(run({ ...ready(), fbajc: { recruiting: committed } }).ok).toBe(true);
+    expect(run({ ...ready(), fbajc: { recruiting: committed, rosters: null } }).ok).toBe(true);
+  });
+
+  it('refuses while the S79 college rosters have open spots', () => {
+    const hole = { playerId: null, position: 'PF' as const, rating: null, age: null, points: 0, stars: null, classYear: null };
+    const rosters: RostersFile = { league: 'fbajc', season: 79, locked: false, teams: { DUKE: [hole] } };
+    const r = nextSeasonDocs({ ...ready(), fbajc: { recruiting: null, rosters } }, ctx);
+    expect(r).toEqual({ ok: false, problems: ['1 open spot needs a walk-on'] });
   });
 
   it('writes every row of the rollover table, as valid docs', () => {

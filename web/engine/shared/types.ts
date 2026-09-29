@@ -205,7 +205,7 @@ export const PicksFile = z.object({ league: z.literal('fba'), obligations: z.arr
 export type PicksFile = z.infer<typeof PicksFile>;
 
 export const TransactionType = z.enum([
-  'signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards', 'season', 'class', 'commit', 'portal', 'lottery', 'retired', 'hall-of-fame',
+  'signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards', 'season', 'class', 'commit', 'portal', 'lottery', 'retired', 'hall-of-fame', 'walk-on', 'college-ratings',
 ]);
 export type TransactionType = z.infer<typeof TransactionType>;
 
@@ -223,6 +223,8 @@ export const TransactionsFile = z.object({ league: LeagueId, season: int, locked
 export type TransactionsFile = z.infer<typeof TransactionsFile>;
 
 const d2Rating = int.min(1).max(99);
+
+const consensus = z.number().min(70).max(100);
 
 const idList = z.array(playerId);
 
@@ -250,7 +252,7 @@ export const D2DraftFile = z.object({
 }).strict();
 export type D2DraftFile = z.infer<typeof D2DraftFile>;
 
-export const RankingKind = z.enum(['d2-reset']);
+export const RankingKind = z.enum(['d2-reset', 'college-class', 'college-reset']);
 export type RankingKind = z.infer<typeof RankingKind>;
 
 export const RankingRow = z.object({
@@ -279,6 +281,9 @@ export const RankingFile = z.object({
   /** What the commissioner entered or accepted; a sent-back row keeps its rating. */
   ratings: z.record(playerId, d2Rating),
   curve: z.array(d2Rating),
+  /** college-class only: each player's consensus, and the suggestion ladder (high to low). */
+  consensus: z.record(playerId, consensus).optional(),
+  consensusCurve: z.array(consensus).optional(),
 }).strict().superRefine((doc, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const ids = new Set(doc.rows.map(r => r.playerId));
@@ -291,6 +296,12 @@ export const RankingFile = z.object({
     if (doc.order.length !== doc.rows.length) issue('A finished ranking must rank every player');
     if (doc.order.some(id => doc.ratings[id] === undefined)) issue('A finished ranking must rate every player');
   }
+  if (doc.kind !== 'college-class' && (doc.consensus || doc.consensusCurve)) issue('Only a class ranking has consensus');
+  for (const id of Object.keys(doc.consensus ?? {})) if (!ids.has(id)) issue(`${id} has a consensus but isn't in the rows`);
+  if ((doc.consensusCurve ?? []).some((v, k, a) => k > 0 && v > a[k - 1])) issue('The consensus curve must run from high to low');
+  if (doc.locked && doc.kind === 'college-class' && doc.order.some(id => doc.consensus?.[id] === undefined)) {
+    issue('A finished class ranking must give every player a consensus');
+  }
 });
 export type RankingFile = z.infer<typeof RankingFile>;
 
@@ -302,6 +313,8 @@ export const Prospect = z.object({
   /** Recruits: null until Rank Class (7c). Transfers: their college rating. */
   rating: d2Rating.nullable(),
   stars: int.min(3).max(5).nullable(),
+  /** Recruiting score shown on the board (stars follow it: 90+ 5★, 80+ 4★, 70+ 3★). Null until Rank Class. */
+  consensus: consensus.nullable().optional(),
   /** Projection counts per school (team id); each count is at least 1. */
   projections: z.record(z.string().min(1), int.positive()),
   committedTo: z.string().min(1).nullable(),

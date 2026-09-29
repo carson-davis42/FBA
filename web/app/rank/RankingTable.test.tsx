@@ -2,6 +2,7 @@
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { setConsensus } from '../../engine/college/classRanking';
 import { rankingDoc, rankName } from '../../engine/rank/testFixtures';
 import type { RankingFile } from '../../engine/shared/types';
 import { RankingTable } from './RankingTable';
@@ -11,12 +12,13 @@ afterEach(cleanup);
 const ALL = ['p00002', 'p00001', 'p00003', 'p00006', 'p00004', 'p00005'];
 const IN_ORDER = { p00002: 85, p00001: 85, p00003: 80, p00006: 75, p00004: 70, p00005: 65 };
 
-function Harness({ initial, extra = [], onFinish = () => {} }: { initial: RankingFile; extra?: string[]; onFinish?: () => void }) {
+function Harness({ initial, extra = [], onFinish = () => {}, withConsensus = false, leftLabel }: { initial: RankingFile; extra?: string[]; onFinish?: () => void; withConsensus?: boolean; leftLabel?: string }) {
   const [doc, setDoc] = useState(initial);
   return (
     <RankingTable
       doc={doc} name={rankName} teamLabel={t => t ?? 'Reserves'} otherLabel="FBA" onChange={change => setDoc(change)}
-      extraBlockers={extra} finishLabel="Finish ratings" onFinish={onFinish} busy={false}
+      leftLabel={leftLabel} extraBlockers={extra} finishLabel="Finish ratings" onFinish={onFinish} busy={false}
+      consensus={withConsensus ? { onSet: (id, v) => setDoc(cur => setConsensus(cur, id, v)) } : undefined}
     />
   );
 }
@@ -37,6 +39,21 @@ describe('RankingTable', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Rank Ada Stone next' }));
     expect(rightNames()).toEqual(['Ada Stone']);
     expect(leftNames()).toEqual(['Ben Cole', 'Cal Reyes', 'Finn Lowe', 'Dev Hart', 'Eli Park']);
+  });
+
+  it('names the left list with leftLabel, and passes the row to teamLabel', () => {
+    const seen: (string | null)[] = [];
+    render(
+      <RankingTable
+        doc={rankingDoc()} name={rankName} teamLabel={(t, row) => { seen.push(row?.playerId ?? null); return t ?? 'Reserves'; }} otherLabel="FBA"
+        onChange={() => {}} extraBlockers={[]} finishLabel="Finish ratings" onFinish={() => {}} busy={false} leftLabel="Unranked"
+      />,
+    );
+    expect(screen.getByRole('heading', { name: 'Unranked · 6' })).toBeTruthy();
+    expect(screen.getByRole('table', { name: 'Unranked' })).toBeTruthy();
+    expect(screen.queryByText(/Last season's order/)).toBeNull();
+    expect(seen.length).toBeGreaterThan(0);
+    expect(seen.every(id => id !== null)).toBe(true);
   });
 
   it('sends a ranked player back to their place', () => {
@@ -118,5 +135,71 @@ describe('RankingTable', () => {
     expect(screen.queryByRole('button', { name: /^Use suggested/ })).toBeNull();
     expect(box('Ben Cole').disabled).toBe(true);
     expect(box('Ben Cole').value).toBe('85');
+  });
+
+  describe('with a consensus column', () => {
+    const classDoc = (patch: Partial<RankingFile> = {}) => rankingDoc({
+      kind: 'college-class', order: ALL, ratings: IN_ORDER, consensusCurve: [98.8, 91, 79.5], consensus: {}, ...patch,
+    });
+    const cbox = (name: string) => screen.getByLabelText(`Consensus for ${name}`) as HTMLInputElement;
+    const headers = () => within(screen.getByRole('table', { name: 'New ranking' })).getAllByRole('columnheader').map(h => h.textContent);
+
+    it('is absent without the prop', () => {
+      render(<Harness initial={classDoc()} />);
+      expect(headers()).not.toContain('Consensus');
+      expect(screen.queryByLabelText('Consensus for Ben Cole')).toBeNull();
+    });
+
+    it('shows a Consensus box, the stars and a suggested chip once everyone is ranked', () => {
+      render(<Harness initial={classDoc({ consensus: { p00002: 95 } })} withConsensus />);
+      expect(headers()).toContain('Consensus');
+      expect(cbox('Ben Cole').value).toBe('95');
+      expect(cbox('Ada Stone').value).toBe('');
+      expect(screen.getByLabelText('5 stars')).toBeTruthy();
+      expect(screen.getAllByLabelText(/stars$/)).toHaveLength(1);
+      expect(screen.getByRole('button', { name: 'Use suggested consensus 91 for Ada Stone' }).textContent).toBe('suggested 91');
+      expect(screen.getByRole('button', { name: 'Use suggested consensus 98.8 for Ben Cole' }).textContent).toBe('suggested 98.8');
+      fireEvent.click(screen.getByRole('button', { name: 'Use suggested consensus 91 for Ada Stone' }));
+      expect(cbox('Ada Stone').value).toBe('91');
+      expect(screen.getAllByLabelText('5 stars')).toHaveLength(2);
+    });
+
+    it('hides the column until everyone is ranked', () => {
+      render(<Harness initial={classDoc({ order: ['p00002'] })} withConsensus />);
+      expect(headers()).not.toContain('Consensus');
+    });
+
+    it('saves a typed consensus on blur, and clears it when blank', () => {
+      render(<Harness initial={classDoc()} withConsensus />);
+      fireEvent.change(cbox('Cal Reyes'), { target: { value: '82.25' } });
+      fireEvent.blur(cbox('Cal Reyes'));
+      expect(cbox('Cal Reyes').value).toBe('82.25');
+      expect(screen.getByLabelText('4 stars')).toBeTruthy();
+      fireEvent.change(cbox('Cal Reyes'), { target: { value: '' } });
+      fireEvent.blur(cbox('Cal Reyes'));
+      expect(cbox('Cal Reyes').value).toBe('');
+      expect(screen.queryByLabelText('4 stars')).toBeNull();
+    });
+
+    it('rejects an out-of-range consensus with a message and does not save it', () => {
+      render(<Harness initial={classDoc()} withConsensus />);
+      fireEvent.change(cbox('Cal Reyes'), { target: { value: '65' } });
+      fireEvent.blur(cbox('Cal Reyes'));
+      expect(screen.getByText('Enter a consensus from 70 to 100, with up to 2 decimals')).toBeTruthy();
+      expect(screen.queryByLabelText(/stars$/)).toBeNull();
+    });
+
+    it('uses all suggestions for the ratings and the consensus, without overwriting', () => {
+      render(<Harness initial={classDoc({ ratings: { p00001: 84 }, consensus: { p00002: 96 } })} withConsensus />);
+      fireEvent.click(screen.getByRole('button', { name: 'Use all suggestions' }));
+      expect(['Ben Cole', 'Ada Stone', 'Cal Reyes'].map(n => cbox(n).value)).toEqual(['96', '91', '79.5']);
+      expect(box('Ada Stone').value).toBe('84');
+    });
+
+    it('is read-only once locked', () => {
+      render(<Harness initial={classDoc({ locked: true, consensus: { p00002: 95 } })} withConsensus />);
+      expect(cbox('Ben Cole').disabled).toBe(true);
+      expect(screen.queryByRole('button', { name: /^Use suggested consensus/ })).toBeNull();
+    });
   });
 });
