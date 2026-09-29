@@ -1,0 +1,1930 @@
+{
+  "league": "fba",
+  "classes": [
+    {
+      "season": "S8",
+      "inductees": [
+        {
+          "name": "Matt Quinsler",
+          "playerId": null,
+          "retiredSeason": "S6",
+          "lines": [
+            "USA: FFL-S6",
+            "1x Conference Champion",
+            "2x FBA C-Ship app."
+          ]
+        },
+        {
+          "name": "Carson Davis",
+          "playerId": null,
+          "retiredSeason": "S8",
+          "lines": [
+            "CGG: FFL-S8",
+            "6x Conference Champion",
+            "6x FBA C-Ship app.",
+            "5x FBA Champion",
+            "4x FBA C-Ship MVP",
+            "1x MVP"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S10",
+      "inductees": [
+        {
+          "name": "Leon Frins",
+          "playerId": null,
+          "retiredSeason": "FFL",
+          "lines": [
+            "DCB: FFL-FFL"
+          ]
+        },
+        {
+          "name": "Mahonee",
+          "playerId": null,
+          "retiredSeason": "FFL",
+          "lines": [
+            "CGG: FFL-FFL"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S12",
+      "inductees": [
+        {
+          "name": "Marcus Quinsler",
+          "playerId": null,
+          "retiredSeason": "FFL",
+          "lines": [
+            "USA: FFL-FFL"
+          ]
+        },
+        {
+          "name": "Matt Leisliar",
+          "playerId": null,
+          "retiredSeason": "S7",
+          "lines": [
+            "CGG: FFL-S7",
+            "5x Conference Champion",
+            "5x FBA C-Ship app.",
+            "4x FBA Champion",
+            "1x FBA C-Ship MVP"
+          ]
+        },
+        {
+          "name": "Stevie Smith",
+          "playerId": null,
+          "retiredSeason": "S10",
+          "lines": [
+            "FP: FFL-S10",
+            "5x Conference Champion",
+            "3x FBA C-Ship app.",
+            "1x FBA Champion"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S14",
+      "inductees": [
+        {
+          "name": "Michael Sandoval",
+          "playerId": null,
+          "retiredSeason": "S2",
+          "lines": [
+            "FP: FFL-S2"
+          ]
+        },
+        {
+          "name": "Saun Mathews",
+          "playerId": null,
+          "retiredSeason": "S13",
+          "lines": [
+            "San Diego State: S1-S2",
+            "TEX: FFL-S10",
+            "USA: S11-S13",
+            "1x Conference Champion"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S16",
+      "inductees": [
+        {
+          "name": "Saun Smith",
+          "playerId": null,
+          "retiredSeason": "S14",
+          "lines": [
+            "CGG: FFL-S14",
+            "5x Conference Champion",
+            "6x FBA C-Ship app.",
+            "3x FBA Champion",
+            "2x FBA C-Ship MVP",
+            "3x MVP"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S18",
+      "inductees": [
+        {
+          "name": "Charlie Winagin",
+          "playerId": null,
+          "retiredSeason": "S15",
+          "lines": [
+            "CGG: FFL-S15",
+            "11x Conference Champion",
+            "12x FBA C-Ship app.",
+            "7x FBA Champion"
+          ]
+        },
+        {
+          "name": "Ricky Calaue",
+          "playerId": null,
+          "retiredSeason": "S17",
+          "lines": [
+            "DCB: FFL-S17",
+            "6x Conference Champion",
+            "5x FBA C-Ship app.",
+            "2x FBA Champion",
+            "2x FBA C-Ship MVP",
+            "3x MVP"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S20",
+      "inductees": [
+        {
+          "name": "Carlos Wilson",
+          "playerId": null,
+          "retiredSeason": "S18",
+          "lines": [
+            "FP: FFL-S18",
+            "6x Conference Champion",
+            "4x FBA C-Ship app.",
+            "2x FBA Champion"
+          ]
+        },
+        {
+          "name": "Mikey Brewer",
+          "playerId": null,
+          "retiredSeason": "S19",
+          "lines": [
+            "FP: FFL-S19",
+            "6x Conference Champion",
+            "4x FBA C-Ship app.",
+            "2x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "3x MVP"
+          ]
+        },
+        {
+          "name": "Rashad Lamair",
+          "playerId": null,
+          "retiredSeason": "S20",
+          "lines": [
+            "DCB: FFL-S20",
+            "6x Conference Champion",
+            "5x FBA C-Ship app.",
+            "2x FBA Champion"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S22",
+      "inductees": [
+        {
+          "name": "David Opollo",
+          "playerId": null,
+          "retiredSeason": "S18",
+          "lines": [
+            "USA: FFL-S18",
+            "2x Conference Champion",
+            "4x FBA C-Ship app."
+          ]
+        },
+        {
+          "name": "Kevin Davidson",
+          "playerId": null,
+          "retiredSeason": "S21",
+          "lines": [
+            "MON: FFL-S21",
+            "8x Conference Champion",
+            "5x FBA C-Ship app.",
+            "2x FBA Champion"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S24",
+      "inductees": [
+        {
+          "name": "Kenny McGuire",
+          "playerId": null,
+          "retiredSeason": "S23",
+          "lines": [
+            "OAK: FFL-S23",
+            "3x Conference Champion",
+            "4x FBA C-Ship app.",
+            "2x FBA Champion"
+          ]
+        },
+        {
+          "name": "Stephen Talaha",
+          "playerId": null,
+          "retiredSeason": "S23",
+          "lines": [
+            "OAK: FFL-S23",
+            "3x Conference Champion",
+            "4x FBA C-Ship app.",
+            "2x FBA Champion",
+            "2x FBA C-Ship MVP",
+            "2x MVP"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S26",
+      "inductees": [
+        {
+          "name": "Saun Quinsler",
+          "playerId": null,
+          "retiredSeason": "S23",
+          "lines": [
+            "USA: FFL-S23",
+            "6x Conference Champion",
+            "8x FBA C-Ship app.",
+            "3x FBA Champion",
+            "1x MVP"
+          ]
+        },
+        {
+          "name": "Peter Hernandez",
+          "playerId": null,
+          "retiredSeason": "S19",
+          "lines": [
+            "DCB: FFL-S19",
+            "6x Conference Champion",
+            "5x FBA C-Ship app.",
+            "2x FBA Champion"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S28",
+      "inductees": [
+        {
+          "name": "Billy James",
+          "playerId": null,
+          "retiredSeason": "S27",
+          "lines": [
+            "CGG: S8-S27",
+            "9x Conference Champion",
+            "11x FBA C-Ship app.",
+            "6x FBA Champion",
+            "2x FBA C-Ship MVP"
+          ]
+        },
+        {
+          "name": "Lance Stephenson",
+          "playerId": null,
+          "retiredSeason": "S5",
+          "lines": [
+            "TEX: FFL-S5"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S30",
+      "inductees": [
+        {
+          "name": "Stephen Quinsler",
+          "playerId": null,
+          "retiredSeason": "S24",
+          "lines": [
+            "USA: FFL-S24",
+            "2x Conference Champion",
+            "3x FBA C-Ship app."
+          ]
+        },
+        {
+          "name": "Isaiah Howard",
+          "playerId": null,
+          "retiredSeason": "S27",
+          "lines": [
+            "MON: S8-S23",
+            "USA/OAK: S24-S26",
+            "DCB: S27",
+            "3x Conference Champion",
+            "2x FBA C-Ship app.",
+            "2x FBA Champion",
+            "2x FBA C-Ship MVP",
+            "2x MVP"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S32",
+      "inductees": [
+        {
+          "name": "Parker Peters",
+          "playerId": null,
+          "retiredSeason": "S31",
+          "lines": [
+            "Purdue: S3",
+            "CGG: S16-S31",
+            "6x Conference Champion",
+            "7x FBA C-Ship app.",
+            "6x FBA Champion",
+            "2x FBA C-Ship MVP",
+            "2x MVP"
+          ]
+        },
+        {
+          "name": "Shawn White",
+          "playerId": null,
+          "retiredSeason": "FFL",
+          "lines": [
+            "CGG: FFL-FFL"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S34",
+      "inductees": [
+        {
+          "name": "Mike Trail",
+          "playerId": null,
+          "retiredSeason": "S33",
+          "lines": [
+            "DCB: S18-S33",
+            "4x Conference Champion",
+            "3x FBA C-Ship app.",
+            "2x FBA Champion",
+            "2x FBA C-Ship MVP",
+            "1x MVP"
+          ]
+        },
+        {
+          "name": "Marwin Campé",
+          "playerId": null,
+          "retiredSeason": "S34",
+          "lines": [
+            "CGG: S15-S34",
+            "10x Conference Champion",
+            "11x FBA C-Ship app.",
+            "8x FBA Champion",
+            "1x FBA C-Ship MVP"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S36",
+      "inductees": [
+        {
+          "name": "Charles James",
+          "playerId": null,
+          "retiredSeason": "S35",
+          "lines": [
+            "MON: S16-S34",
+            "MIL: S35",
+            "7x Conference Champion",
+            "8x FBA C-Ship app.",
+            "1x MVP"
+          ]
+        },
+        {
+          "name": "Georgie Rose",
+          "playerId": null,
+          "retiredSeason": "S34",
+          "lines": [
+            "FP: S15-S28",
+            "DCB: S29-S34",
+            "5x Conference Champion",
+            "5x FBA C-Ship app.",
+            "2x FBA Champion",
+            "1x FBA C-Ship app.",
+            "1x MVP"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S38",
+      "inductees": [
+        {
+          "name": "Clay Peterson",
+          "playerId": null,
+          "retiredSeason": "S38",
+          "lines": [
+            "USA: S19-S33",
+            "CGG: S33-S37",
+            "USA: S38",
+            "10x Conference Champion",
+            "10x FBA C-Ship app.",
+            "9x FBA Champion",
+            "4x FBA C-Ship MVP",
+            "5x MVP"
+          ]
+        },
+        {
+          "name": "Jalen Mathews",
+          "playerId": null,
+          "retiredSeason": "S37",
+          "lines": [
+            "MON: S18-S37",
+            "8x Conference Champion",
+            "8x FBA C-Ship app.",
+            "1x FBA Champion"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S40",
+      "inductees": [
+        {
+          "name": "Mateo Nasano",
+          "playerId": null,
+          "retiredSeason": "S26",
+          "lines": [
+            "OAK: S7-S26",
+            "1x Conference Champion",
+            "2x FBA C-Ship app.",
+            "1x FBA Champion"
+          ]
+        },
+        {
+          "name": "Jacolby Noel",
+          "playerId": null,
+          "retiredSeason": "S37",
+          "lines": [
+            "USA: S18-S28",
+            "FP: S29-S37",
+            "6x Conference Champion",
+            "5x FBA C-Ship app.",
+            "4x FBA Champion"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S42",
+      "inductees": [
+        {
+          "name": "Mitchel Corey",
+          "playerId": null,
+          "retiredSeason": "S42",
+          "lines": [
+            "OAK: S23-S42",
+            "4x Conference Champion",
+            "6x FBA C-Ship app.",
+            "3x FBA Champion"
+          ]
+        },
+        {
+          "name": "Saun Payton",
+          "playerId": null,
+          "retiredSeason": "FFL",
+          "lines": [
+            "SOX: FFL-FFL"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S44",
+      "inductees": [
+        {
+          "name": "Andrew Owens",
+          "playerId": null,
+          "retiredSeason": "S43",
+          "lines": [
+            "OAK: S24-S43",
+            "4x Conference Champion",
+            "6x FBA C-Ship app.",
+            "3x FBA Champion"
+          ]
+        },
+        {
+          "name": "Jeremy Evans",
+          "playerId": null,
+          "retiredSeason": "S43",
+          "lines": [
+            "MON: S24-S36",
+            "DCB: S37-S43",
+            "6x Conference Champion",
+            "7x FBA C-Ship app.",
+            "1x FBA Champion",
+            "1x MVP"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S46",
+      "inductees": [
+        {
+          "name": "Milo Machado",
+          "playerId": null,
+          "retiredSeason": "S45",
+          "lines": [
+            "OAK: S26-S45",
+            "S26 ROTY",
+            "4x Conference Champion",
+            "6x FBA C-Ship app.",
+            "3x FBA Champion",
+            "3x FBA C-Ship app.",
+            "7x MVP"
+          ]
+        },
+        {
+          "name": "Peter Rosenberg",
+          "playerId": null,
+          "retiredSeason": "S45",
+          "lines": [
+            "DCB: S26-S45",
+            "7x Conference Champion",
+            "6x FBA C-Ship app.",
+            "1x FBA Champion"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S48",
+      "inductees": [
+        {
+          "name": "Louis Pepperdash",
+          "playerId": null,
+          "retiredSeason": "S48",
+          "lines": [
+            "Louisville: S4",
+            "MON: S29-S34",
+            "MIL: S35-S40",
+            "USA: S41-S48",
+            "3x FBA C-Ship app.",
+            "2x FBA Champion",
+            "1x Conference Champion",
+            "1x FBA C-Ship MVP",
+            "1x MVP",
+            "1x All-Star",
+            "1x ASG MVP",
+            "1x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Brendin Brown",
+          "playerId": null,
+          "retiredSeason": "S48",
+          "lines": [
+            "USA: S29-S48",
+            "1x Conference Champion",
+            "1x FBA C-Ship app.",
+            "1x All-Star"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S50",
+      "inductees": [
+        {
+          "name": "Jacob Peters",
+          "playerId": null,
+          "retiredSeason": "S49",
+          "lines": [
+            "Texas Tech: S4-S5",
+            "DCB: S30-S49",
+            "5x Conference Champion",
+            "6x FBA C-Ship app.",
+            "1x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "1x MVP",
+            "1x All-Star"
+          ]
+        },
+        {
+          "name": "AJ Brewer",
+          "playerId": null,
+          "retiredSeason": "S49",
+          "lines": [
+            "MON: S30-S34",
+            "STL: S35-S37",
+            "CGG: S38-S49",
+            "S30 ROTY",
+            "11x Conference Champion",
+            "9x FBA C-Ship app.",
+            "8x FBA Champion"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S52",
+      "inductees": [
+        {
+          "name": "Paulo Pierre-Kent",
+          "playerId": null,
+          "retiredSeason": "S52",
+          "lines": [
+            "CGG: S33-S52",
+            "S33 ROTY",
+            "17x Conference Champion",
+            "15x FBA C-Ship app.",
+            "14x FBA Champion",
+            "14x FBA C-Ship MVP",
+            "10x MVP",
+            "5x All-Star",
+            "1x ASG MVP",
+            "4x All-FBA T1",
+            "1x All-FBA T2"
+          ]
+        },
+        {
+          "name": "JaMichael Stephens",
+          "playerId": null,
+          "retiredSeason": "S52",
+          "lines": [
+            "CGG: S33-S44",
+            "SOX: S45-S52",
+            "1x FBA C-Ship app.",
+            "1x MVP",
+            "5x All-Star",
+            "1x All-FBA T1",
+            "2x All-FBA T2"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S54",
+      "inductees": [
+        {
+          "name": "Alonzo Mayne",
+          "playerId": null,
+          "retiredSeason": "S53",
+          "lines": [
+            "North Carolina: S4-S7",
+            "FP: S34-S53",
+            "S34 ROTY",
+            "3x Conference Champion",
+            "2x FBA C-Ship app.",
+            "1x MVP",
+            "5x All-Star",
+            "2x All-FBA T1",
+            "2x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Jimmy Hayward",
+          "playerId": null,
+          "retiredSeason": "S51",
+          "lines": [
+            "Yale: S6-S8",
+            "MIL: S35-S51",
+            "S35 ROTY",
+            "5x Conference Champion",
+            "7x FBA C-Ship app.",
+            "4x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "3x All-Star"
+          ]
+        },
+        {
+          "name": "Giovanni McCullough",
+          "playerId": null,
+          "retiredSeason": "S54",
+          "lines": [
+            "SOX: S46-S54",
+            "2x FBA C-Ship app.",
+            "1x FBA Champion",
+            "4x All-Star",
+            "1x All-FBA T1",
+            "1x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Charlie Moran",
+          "playerId": null,
+          "retiredSeason": "S52",
+          "lines": [
+            "Texas Tech: S6",
+            "FP: S33-S52",
+            "3x Conference Champion",
+            "2x FBA C-Ship app.",
+            "4x All-Star"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S55",
+      "inductees": [
+        {
+          "name": "Jordan Lane",
+          "playerId": null,
+          "retiredSeason": "S53",
+          "lines": [
+            "MON: S34-S53",
+            "3x Conference Champion",
+            "1x FBA C-Ship app.",
+            "1x All-Star"
+          ]
+        },
+        {
+          "name": "KeShawn Danielson",
+          "playerId": null,
+          "retiredSeason": "S54",
+          "lines": [
+            "MON-S37-S54",
+            "S37 ROTY",
+            "4x Conference Champion",
+            "2x FBA C-Ship app."
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S56",
+      "inductees": [
+        {
+          "name": "Simon Lassar",
+          "playerId": null,
+          "retiredSeason": "S55",
+          "lines": [
+            "Louisville: S13-S16",
+            "MIL: S43-S55",
+            "5x Conference Champion",
+            "6x FBA C-Ship app.",
+            "3x FBA Champion",
+            "3x FBA C-Ship MVP",
+            "2x MVP",
+            "5x All-Star",
+            "1x All-FBA T1",
+            "1x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Mekhi Cisneros",
+          "playerId": null,
+          "retiredSeason": "S56",
+          "lines": [
+            "Purdue: S18",
+            "CIN: S45-S56",
+            "S45 ROTY",
+            "2x Conference Champion",
+            "2x FBA C-Ship app.",
+            "1x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "1x MVP",
+            "8x All-Star",
+            "3x All-FBA T1",
+            "1x All-FBA T2"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S57",
+      "inductees": [
+        {
+          "name": "Abraham Krause",
+          "playerId": null,
+          "retiredSeason": "S56",
+          "lines": [
+            "Kansas: S17-S18",
+            "FLO: S45-S56",
+            "3x Conference Champion",
+            "1x FBA C-Ship app.",
+            "1x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "1x MVP",
+            "4x All-Star",
+            "2x All-FBA T1",
+            "1x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Rhett Blackwell",
+          "playerId": null,
+          "retiredSeason": "S56",
+          "lines": [
+            "Villanova: S16-S18",
+            "SOX: S45-S53",
+            "DCB: S54-S56",
+            "1x FBA C-Ship app.",
+            "1x All-Star"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S58",
+      "inductees": [
+        {
+          "name": "Demarcus Allen",
+          "playerId": null,
+          "retiredSeason": "S54",
+          "lines": [
+            "Duke: S9-S12",
+            "MW: S41-S54",
+            "S41 ROTY",
+            "3x Conference Champion",
+            "3x FBA C-Ship app.",
+            "1x MVP",
+            "1x All-Star",
+            "1x All-FBA T1"
+          ]
+        },
+        {
+          "name": "Jose Hernandez",
+          "playerId": null,
+          "retiredSeason": "S47",
+          "lines": [
+            "FP: S28-S34",
+            "CGG: S35-S47",
+            "S28 ROTY",
+            "12x Conference Champion",
+            "10x FBA C-Ship app.",
+            "9x FBA Champion"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S59",
+      "inductees": [
+        {
+          "name": "Aaron Smith",
+          "playerId": null,
+          "retiredSeason": "S54",
+          "lines": [
+            "MIL: S37-S54",
+            "5x Conference Champion",
+            "7x FBA C-Ship app.",
+            "4x FBA Champion",
+            "1x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Stephen Falls",
+          "playerId": null,
+          "retiredSeason": "S53",
+          "lines": [
+            "OV: S41-S47",
+            "CT: S48-S53"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S60",
+      "inductees": [
+        {
+          "name": "Izayah Coffey",
+          "playerId": null,
+          "retiredSeason": "S60",
+          "lines": [
+            "Kansas: S18;S48",
+            "CGG: S49-S60",
+            "4x Conference Champion",
+            "4x FBA C-Ship app.",
+            "3x FBA Champion",
+            "1x MVP",
+            "7x All-Star",
+            "1x ASG MVP",
+            "2x All-FBA T1",
+            "3x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Jair Bryant",
+          "playerId": null,
+          "retiredSeason": "S59",
+          "lines": [
+            "West Virginia: S16-S18;S48",
+            "OAK: S49-S59",
+            "1x FBA C-Ship app.",
+            "1x MVP",
+            "5x All-Star",
+            "3x All-FBA T1"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S61",
+      "inductees": [
+        {
+          "name": "Marquis Greenwood",
+          "playerId": null,
+          "retiredSeason": "S61",
+          "lines": [
+            "Duke: S49-S50",
+            "CT: S51-S61",
+            "2x FBA C-Ship app.",
+            "1x FBA Champion",
+            "7x All-Star",
+            "4x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Cason Baker",
+          "playerId": null,
+          "retiredSeason": "S60",
+          "lines": [
+            "Kentucky: S17-S18;S48",
+            "MW: S49-S60",
+            "1x Conference Champion",
+            "2x FBA C-Ship app.",
+            "4x All-Star",
+            "1x All-FBA T1",
+            "1x All-FBA T2"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S62",
+      "inductees": [
+        {
+          "name": "Jaeden Reid-Jones",
+          "playerId": null,
+          "retiredSeason": "S61",
+          "lines": [
+            "Michigan: S49-S50",
+            "CIN: S51-S61",
+            "1x Conference Champion",
+            "2x FBA C-Ship app.",
+            "1x FBA Champion",
+            "2x All-Star",
+            "1x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Trae York",
+          "playerId": null,
+          "retiredSeason": "S54",
+          "lines": [
+            "TCU: S10-S12",
+            "TEX: S41-S54",
+            "1x Conference Champion",
+            "1x FBA C-Ship app.",
+            "1x FBA Champion",
+            "2x All-Star"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S63",
+      "inductees": [
+        {
+          "name": "Brooks Whittaker",
+          "playerId": null,
+          "retiredSeason": "S63",
+          "lines": [
+            "Iowa State: S49-S50",
+            "FLO: S51-S56",
+            "SAS: S57-S62",
+            "NY: S63",
+            "S51 ROTY",
+            "6x Conference Champion",
+            "4x FBA C-Ship app.",
+            "3x FBA Champion",
+            "2x MVP",
+            "10x All-Star",
+            "5x All-FBA T1",
+            "2x All-FBA T2",
+            "2x LP Award",
+            "1x ASG MVP"
+          ]
+        },
+        {
+          "name": "Kyson Bates",
+          "playerId": null,
+          "retiredSeason": "S63",
+          "lines": [
+            "Kentucky: S49-S50",
+            "STL: S51-S62",
+            "PHX: S63",
+            "1x Conference Champion",
+            "1x FBA C-Ship app.",
+            "1x FBA Champion",
+            "5x All-Star",
+            "2x All-FBA T1",
+            "1x MC Award"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S64",
+      "inductees": [
+        {
+          "name": "Jaylen Oden",
+          "playerId": null,
+          "retiredSeason": "S64",
+          "lines": [
+            "Texas A&M: S49",
+            "Duke: S50-S52",
+            "CHI: S53-S64",
+            "3x Conference Champion",
+            "1x FBA C-Ship app.",
+            "1x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "1x MVP",
+            "11x All-Star",
+            "6x All-FBA T1",
+            "2x All-FBA T2",
+            "2x PPK Award",
+            "3x DPOY"
+          ]
+        },
+        {
+          "name": "Wes Ware",
+          "playerId": null,
+          "retiredSeason": "S64",
+          "lines": [
+            "Iowa State: S50-S52",
+            "STL: S53-S57",
+            "TEX: S58-S59",
+            "SAS: S60-S64",
+            "3x Conference Champion",
+            "3x FBA C-Ship app.",
+            "3x FBA Champion",
+            "3x FBA C-Ship MVP",
+            "8x All-Star",
+            "4x All-FBA T1",
+            "3x All-FBA T2",
+            "2x MVP",
+            "2x PPK Award"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S65",
+      "inductees": [
+        {
+          "name": "Kellen Haas",
+          "playerId": null,
+          "retiredSeason": "S65",
+          "lines": [
+            "Oklahoma: S51-S52",
+            "CP: S53-S65",
+            "8x All-Star",
+            "1x ASG MVP",
+            "3x All-FBA T1",
+            "3x All-FBA T2",
+            "2x MC Award"
+          ]
+        },
+        {
+          "name": "Russ Werner",
+          "playerId": null,
+          "retiredSeason": "S65",
+          "lines": [
+            "Villanova: S51-S52",
+            "DCB: S53-S56",
+            "NO: S57-S65",
+            "5x Conference Champion",
+            "4x FBA C-Ship app.",
+            "2x FBA Champion",
+            "7x All-Star",
+            "1x ASG MVP",
+            "3x All-FBA T2"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S66",
+      "inductees": [
+        {
+          "name": "Jaime Snow",
+          "playerId": null,
+          "retiredSeason": "S66",
+          "lines": [
+            "Florida State: S52-S54",
+            "OV: S55-S62",
+            "BOS: S63-S66",
+            "2x Conference Champion",
+            "1x MVP",
+            "9x All-Star",
+            "2x All-FBA T1",
+            "3x FBA C-Ship app.",
+            "1x FBA Champion"
+          ]
+        },
+        {
+          "name": "Dawson Chudnovsky",
+          "playerId": null,
+          "retiredSeason": "S66",
+          "lines": [
+            "Duke: S52-S54",
+            "NO: S55-S61",
+            "SEA: S62-S66",
+            "2x Conference Champion",
+            "3x FBA C-Ship app.",
+            "1x FBA Champion",
+            "7x All-Star",
+            "1x MC Award",
+            "1x All-FBA T1"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S67",
+      "inductees": [
+        {
+          "name": "Frank Wonder",
+          "playerId": null,
+          "retiredSeason": "S67",
+          "lines": [
+            "Oregon: S53-S54",
+            "MON: S55-S61",
+            "SAS: S62-S67",
+            "5x All-Star",
+            "2x Conference Champion",
+            "2x FBA C-Ship app.",
+            "2x FBA Champion",
+            "2x All-FBA T1",
+            "2x MC Award",
+            "1x DPOY"
+          ]
+        },
+        {
+          "name": "Tyrell Everett",
+          "playerId": null,
+          "retiredSeason": "S65",
+          "lines": [
+            "Arizona State: S51-S52",
+            "NO: S53-S59",
+            "DCB: S60-S65",
+            "3x Conference Champion",
+            "4x FBA C-Ship app.",
+            "2x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "3x All-Star",
+            "2x All-FBA T2"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S68",
+      "inductees": [
+        {
+          "name": "Isaac Frye",
+          "playerId": null,
+          "retiredSeason": "S67",
+          "lines": [
+            "Nevada: S53-S56",
+            "CP: S57-S63",
+            "DEN: S64-S67",
+            "6x All-Star",
+            "1x All-FBA T2",
+            "1x FBA C-Ship app.",
+            "1x FBA Champion",
+            "1x Conference Champion"
+          ]
+        },
+        {
+          "name": "Davis Morse",
+          "playerId": null,
+          "retiredSeason": "S67",
+          "lines": [
+            "Wichita State: S54",
+            "SAS: S55-S59",
+            "TEX: S60-S67",
+            "1x Conference Champion",
+            "2x FBA C-Ship app.",
+            "6x All-Star",
+            "1x All-FBA T1",
+            "1x All-FBA T2"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S69",
+      "inductees": [
+        {
+          "name": "Timothy Cole",
+          "playerId": null,
+          "retiredSeason": "S69",
+          "lines": [
+            "North Carolina: S55-S56",
+            "NO-S57-S66",
+            "NY: S67-S69",
+            "6x Conference Champion",
+            "5x FBA C-Ship app.",
+            "2x FBA Champion",
+            "2x FBA C-Ship MVP",
+            "4x MVP",
+            "13x All-Star",
+            "2x ASG MVP",
+            "8x All-FBA T1",
+            "4x All-FBA T2",
+            "6x PPK Award",
+            "1x DPOY"
+          ]
+        },
+        {
+          "name": "Willis Fox",
+          "playerId": null,
+          "retiredSeason": "S69",
+          "lines": [
+            "Wake Forest: S55-S56",
+            "MIL: S57-S63",
+            "MON: S64-S69",
+            "3x Conference Champion",
+            "12x All-Star",
+            "1x All-FBA T1",
+            "3x All-FBA T2",
+            "1x MC Award",
+            "1x FBA C-Ship app."
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S70",
+      "inductees": [
+        {
+          "name": "Ignazio D'Angelo",
+          "playerId": null,
+          "retiredSeason": "S70",
+          "lines": [
+            "D2(Rome): S56",
+            "DCB: S57-S70",
+            "S57 ROTY",
+            "4x Conference Champion",
+            "4x FBA C-Ship app.",
+            "1x MVP",
+            "14x All-Star",
+            "3x All-FBA T1",
+            "6x All-FBA T2",
+            "1x PPK Award",
+            "1x FBA Champion",
+            "1x FBA C-Ship MVP"
+          ]
+        },
+        {
+          "name": "Kenyon Rush",
+          "playerId": null,
+          "retiredSeason": "S63",
+          "lines": [
+            "North Carolina: S50",
+            "MON: S51-S63",
+            "1x Conference Champion",
+            "1x FBA C-Ship app.",
+            "6x All-Star",
+            "1x All-FBA T2"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S71",
+      "inductees": [
+        {
+          "name": "Peter George",
+          "playerId": null,
+          "retiredSeason": "S71",
+          "lines": [
+            "Wisconsin: S57-S58",
+            "LA: S59-S63",
+            "SAS: S64-S68",
+            "PHX: S69",
+            "LA: S70-S71",
+            "7x All-Star",
+            "1x FBA C-Ship app.",
+            "1x FBA Champion",
+            "1x Conference Champion",
+            "1x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Dirk Russel",
+          "playerId": null,
+          "retiredSeason": "S54",
+          "lines": [
+            "West Virginia: S11-S14",
+            "OAK: S41-S54",
+            "1x Conference Champion",
+            "1x FBA C-Ship app.",
+            "4x All-Star",
+            "1x All-FBA T2"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S72",
+      "inductees": [
+        {
+          "name": "Buddy Merritt",
+          "playerId": null,
+          "retiredSeason": "S72",
+          "lines": [
+            "Texas Tech: S58",
+            "SEA: S59-S70",
+            "MIL: S71-S72",
+            "1x FBA C-Ship app.",
+            "1x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "14x All-Star",
+            "1x ASG MVP",
+            "1x Young-Star",
+            "1x YSG MVP",
+            "5x All-FBA T2",
+            "2x DPOY",
+            "3x All-FBA T1",
+            "1x MVP",
+            "2x PPK Award"
+          ]
+        },
+        {
+          "name": "Michal Ewing",
+          "playerId": null,
+          "retiredSeason": "S72",
+          "lines": [
+            "Seton Hall: S58",
+            "FLO: S59-S71",
+            "LA: S72",
+            "S59 ROTY",
+            "4x Conference Champion",
+            "11x All-Star",
+            "1x Young-Star",
+            "1x All-FBA T1",
+            "1x LP Award",
+            "5x FBA C-Ship app.",
+            "2x FBA Champion",
+            "2x FBA C-Ship MVP",
+            "1x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Isaiah Harper",
+          "playerId": null,
+          "retiredSeason": "S72",
+          "lines": [
+            "Duke: S58",
+            "DET: S59-S72",
+            "13x All-Star",
+            "1x Young-Star",
+            "1x All-FBA T1",
+            "2x All-FBA T2"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S73",
+      "inductees": [
+        {
+          "name": "Thomas Ingram",
+          "playerId": null,
+          "retiredSeason": "S73",
+          "lines": [
+            "Oregon: S59",
+            "TEX: S60-S66",
+            "DEN: S67-S73",
+            "14x All-Star",
+            "2x Young-Star",
+            "1x YSG MVP",
+            "2x All-FBA T1",
+            "2x LP Award",
+            "2x FBA C-Ship app.",
+            "4x All-FBA T2",
+            "1x FBA Champion",
+            "1x Conference Champion",
+            "1x ASG MVP"
+          ]
+        },
+        {
+          "name": "Mitchell Carson",
+          "playerId": null,
+          "retiredSeason": "S73",
+          "lines": [
+            "Butler: S59",
+            "MW: S60-S66",
+            "STL: S67-S72",
+            "PHX: S72-S73",
+            "S60 ROTY",
+            "1x FBA C-Ship app.",
+            "12x All-Star",
+            "2x Young-Star",
+            "1x All-FBA T1",
+            "2x All-FBA T2",
+            "1x LP Award",
+            "1x Conference Champion"
+          ]
+        },
+        {
+          "name": "Mel Duncan",
+          "playerId": null,
+          "retiredSeason": "S73",
+          "lines": [
+            "Villanova: S59",
+            "LA: S60-S73",
+            "9x All-Star",
+            "2x Young-Star",
+            "1x All-FBA T2",
+            "1x Conference Champion"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S74",
+      "inductees": [
+        {
+          "name": "Darius Crewe",
+          "playerId": null,
+          "retiredSeason": "S74",
+          "lines": [
+            "Kansas: S60",
+            "BOS: S61-S67",
+            "DCB: S68-S74",
+            "14x All-Star",
+            "2x Young-Star",
+            "5x All-FBA T1",
+            "5x MC Award",
+            "4x FBA C-Ship app.",
+            "2x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "2x Conference Champion",
+            "1x ASG MVP",
+            "4x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Kamden Pierre-Kent",
+          "playerId": null,
+          "retiredSeason": "S74",
+          "lines": [
+            "Arizona: S60",
+            "DEN: S61-S74",
+            "S61 ROTY",
+            "12x All-Star",
+            "2x Young-Star",
+            "5x All-FBA T2",
+            "1x ASG MVP",
+            "1x FBA C-Ship app.",
+            "1x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "1x Conference Champion",
+            "6x All-FBA T1",
+            "3x PPK Award",
+            "1x MVP"
+          ]
+        },
+        {
+          "name": "Zander Swanson",
+          "playerId": null,
+          "retiredSeason": "S59",
+          "lines": [
+            "Duke: S48",
+            "TEX: S49-S57",
+            "STL: S58",
+            "DET: S59",
+            "2x Conference Champion",
+            "1x FBA C-Ship app.",
+            "1x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "1x All-Star",
+            "1x All-FBA T1"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S75",
+      "inductees": [
+        {
+          "name": "Lamar Powell",
+          "playerId": null,
+          "retiredSeason": "S75",
+          "lines": [
+            "Kentucky: S61",
+            "STL: S62-S75",
+            "12x All-Star",
+            "2x Young-Star",
+            "1x All-FBA T1",
+            "1x LP Award",
+            "1x YSG MVP",
+            "1x Conference Champion",
+            "1x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Josh Fields",
+          "playerId": null,
+          "retiredSeason": "S75",
+          "lines": [
+            "Arizona State: S61",
+            "LA: S62-S71",
+            "SAS: S72",
+            "LA: S73-S75",
+            "NO: S75",
+            "S62 ROTY",
+            "2x Young-Star",
+            "1x YSG MVP",
+            "1x All-FBA T2",
+            "9x All-Star",
+            "1x Conference Champion"
+          ]
+        },
+        {
+          "name": "Eric Beck",
+          "playerId": null,
+          "retiredSeason": "S68",
+          "lines": [
+            "UCF: S54-S56",
+            "OAK: S57-S68",
+            "5x All-Star"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S76",
+      "inductees": [
+        {
+          "name": "Oluwatobiloba Jaramillo",
+          "playerId": null,
+          "retiredSeason": "S76",
+          "lines": [
+            "Michigan State: S62",
+            "STL: S63-S66",
+            "MW: S67-S73",
+            "MON: S74-S76",
+            "S63 ROTY",
+            "14x All-Star",
+            "2x Young-Star",
+            "4x DPOY",
+            "3x All-FBA T2",
+            "1x Conference Champion"
+          ]
+        },
+        {
+          "name": "Haydon Burnett",
+          "playerId": null,
+          "retiredSeason": "S76",
+          "lines": [
+            "Duke: S62",
+            "MON: S63-S76",
+            "2x Young-Star",
+            "2x DPOY",
+            "11x All-Star",
+            "3x Conference Champion",
+            "2x FBA C-Ship app.",
+            "2x ASG MVP",
+            "1x FBA Champion",
+            "3x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Nasir Rhodes",
+          "playerId": null,
+          "retiredSeason": "S76",
+          "lines": [
+            "North Carolina: S62",
+            "OV: S63-S76",
+            "1x Young-Star",
+            "9x All-Star",
+            "3x Conference Champion",
+            "2x FBA C-Ship app.",
+            "2x FBA Champion",
+            "2x All-FBA T2"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S77",
+      "inductees": [
+        {
+          "name": "Keith Russell",
+          "playerId": null,
+          "retiredSeason": "S77",
+          "lines": [
+            "Oregon: S63",
+            "OV: S64-S75",
+            "MIL: S76-S77",
+            "1x DPOY",
+            "2x Young-Star",
+            "14x All-Star",
+            "3x All-FBA T2",
+            "3x MVP",
+            "5x MC Award",
+            "8x All-FBA T1",
+            "4x Conference Champion",
+            "3x FBA C-Ship app.",
+            "3x FBA Champion",
+            "3x FBA C-Ship MVP",
+            "1x ASG MVP"
+          ]
+        },
+        {
+          "name": "Clyde King",
+          "playerId": null,
+          "retiredSeason": "S77",
+          "lines": [
+            "Kansas: S63",
+            "MIL: S64-S77",
+            "14x All-Star",
+            "2x Young-Star",
+            "1x YSG MVP",
+            "5x All-FBA T2",
+            "5x LP Award",
+            "7x All-FBA T1",
+            "2x MVP",
+            "1x Conference Champion",
+            "1x FBA C-Ship app.",
+            "1x FBA Champion"
+          ]
+        },
+        {
+          "name": "Akeem Naylor",
+          "playerId": null,
+          "retiredSeason": "S77",
+          "lines": [
+            "Wake Forest: S63",
+            "CIN: S64-S69",
+            "MON: S70-S73",
+            "OAK: S74-S77",
+            "14x All-Star",
+            "2x Young-Star",
+            "9x All-FBA T1",
+            "1x MVP",
+            "5x LP Award",
+            "3x ASG MVP",
+            "3x FBA C-Ship app.",
+            "2x FBA Champion",
+            "1x FBA C-Ship MVP",
+            "2x Conference Champion",
+            "1x All-FBA T2"
+          ]
+        }
+      ]
+    },
+    {
+      "season": "S78",
+      "inductees": [
+        {
+          "name": "Payton Atkinson",
+          "playerId": "p00157",
+          "retiredSeason": "S78",
+          "lines": [
+            "Alabama: S64",
+            "FLO: S65-S76",
+            "NO: S77-S78",
+            "14x All-Star",
+            "2x Young-Star",
+            "6x FBA C-Ship app.",
+            "2x FBA Champion",
+            "4x Conference Champion",
+            "1x MC Award",
+            "1x All-FBA T1",
+            "5x All-FBA T2"
+          ]
+        },
+        {
+          "name": "Jae Simmons",
+          "playerId": "p00158",
+          "retiredSeason": "S78",
+          "lines": [
+            "UCLA: S64",
+            "NY: S65-S71",
+            "SAS: S72-S78",
+            "S65 ROTY",
+            "13x All-Star",
+            "2x Young-Star",
+            "1x All-FBA T1",
+            "3x Conference Champion",
+            "1x ASG MVP",
+            "1x All-FBA T2",
+            "4x FBA C-Ship app.",
+            "1x FBA Champion"
+          ]
+        },
+        {
+          "name": "Kayan Kidd",
+          "playerId": null,
+          "retiredSeason": "S77",
+          "lines": [
+            "Stanford: S63",
+            "FLO: S64-S75",
+            "NO: S76",
+            "MON: S77",
+            "2x Young-Star",
+            "6x FBA C-Ship app.",
+            "2x FBA Champion",
+            "4x Conference Champion",
+            "10x All-Star"
+          ]
+        }
+      ]
+    }
+  ],
+  "nominees": [
+    {
+      "name": "Tristin Kidd",
+      "playerId": null,
+      "retiredSeason": "S68",
+      "lines": [
+        "Belmont: S54",
+        "Florida State: S55-S56",
+        "OAK: S57-S64",
+        "FLO: S65-S68",
+        "1x All-Star",
+        "1x All-FBA T1",
+        "1x LP Award",
+        "3x FBA C-Ship app.",
+        "2x FBA Champion",
+        "2x Conference Champion"
+      ]
+    },
+    {
+      "name": "Dustin Holloway",
+      "playerId": null,
+      "retiredSeason": "S70",
+      "lines": [
+        "UCLA: S56-S58",
+        "MEM: S59-S70",
+        "4x All-Star",
+        "1x ASG MVP",
+        "1x Young-Star",
+        "1x DPOY"
+      ]
+    },
+    {
+      "name": "Chandler Arias",
+      "playerId": null,
+      "retiredSeason": "S64",
+      "lines": [
+        "Texas Tech: S51-S52",
+        "CGG: S53-S64",
+        "1x Conference Champion",
+        "1x FBA C-Ship app.",
+        "5x All-Star",
+        "2x All-FBA T2"
+      ]
+    },
+    {
+      "name": "James Willis",
+      "playerId": null,
+      "retiredSeason": "S64",
+      "lines": [
+        "Texas Tech: S51-S52",
+        "USA: S53-S54",
+        "CT: S55-S64",
+        "2x FBA C-Ship app.",
+        "1x FBA Champion",
+        "3x All-Star",
+        "1x All-FBA T2"
+      ]
+    },
+    {
+      "name": "Bradley Stafford",
+      "playerId": null,
+      "retiredSeason": "S59",
+      "lines": [
+        "Arizona: S48-S50",
+        "MON: S51-S58",
+        "LA: S59",
+        "1x Conference Champion",
+        "1x FBA C-Ship app.",
+        "3x All-Star",
+        "1x All-FBA T2"
+      ]
+    },
+    {
+      "name": "Freddy King",
+      "playerId": null,
+      "retiredSeason": "S66",
+      "lines": [
+        "Wisconsin: S52",
+        "CIN: S53-S63",
+        "BOS: S64-S66",
+        "4x FBA C-Ship app.",
+        "2x FBA Champion",
+        "2x All-Star",
+        "2x All-FBA T2",
+        "1x Conference Champion"
+      ]
+    },
+    {
+      "name": "Raymond Alford",
+      "playerId": null,
+      "retiredSeason": "S55",
+      "lines": [
+        "STL: S43-S48",
+        "OV: S49-S55",
+        "2x All-Star",
+        "1x All-FBA T1"
+      ]
+    },
+    {
+      "name": "Romeo Quintero",
+      "playerId": null,
+      "retiredSeason": "S71",
+      "lines": [
+        "Kentucky: S57-S58",
+        "STL: S59-S64",
+        "MON: S65-S69",
+        "NY: S70-S71",
+        "3x All-Star",
+        "2x Conference Champion",
+        "1x FBA C-Ship app."
+      ]
+    },
+    {
+      "name": "Dominick West",
+      "playerId": null,
+      "retiredSeason": "S58",
+      "lines": [
+        "DCB: S47-S58",
+        "1x Conference Champion",
+        "2x FBA C-Ship app.",
+        "1x All-Star",
+        "1x All-FBA T2"
+      ]
+    },
+    {
+      "name": "Memphis Conrad",
+      "playerId": null,
+      "retiredSeason": "S62",
+      "lines": [
+        "Texas Tech: S48-S50",
+        "CGG: S51-S59",
+        "CP: S60-S61",
+        "SAS: S62",
+        "4x Conference Champion",
+        "4x FBA C-Ship app.",
+        "3x FBA Champion",
+        "1x All-Star"
+      ]
+    },
+    {
+      "name": "Angelo Farrell",
+      "playerId": null,
+      "retiredSeason": "S60",
+      "lines": [
+        "Wichita State: S48",
+        "OV: S49-S60",
+        "S49 ROTY",
+        "1x Conference Champion",
+        "3x All-Star",
+        "1x All-FBA T1"
+      ]
+    },
+    {
+      "name": "Justin Johnson",
+      "playerId": null,
+      "retiredSeason": "S47",
+      "lines": [
+        "FP: S29-S37",
+        "CGG: S38-S47",
+        "S29 ROTY",
+        "12x Conference Champion",
+        "8x FBA C-Ship app.",
+        "6x FBA Champion"
+      ]
+    },
+    {
+      "name": "Colby Wagner",
+      "playerId": null,
+      "retiredSeason": "S37",
+      "lines": [
+        "FP: S18-S27",
+        "CGG: S28-S32",
+        "USA: S33-S37",
+        "4x Conference Champion",
+        "5x FBA C-Ship app.",
+        "2x FBA Champion"
+      ]
+    }
+  ],
+  "removed": []
+}
