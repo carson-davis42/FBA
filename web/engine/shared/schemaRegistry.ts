@@ -26,6 +26,8 @@ const RULES: [RegExp, z.ZodTypeAny][] = [
   [new RegExp(`^leagues/fbad2/${S}/pool\\.json$`), D2PoolFile],
   [new RegExp(`^leagues/fbad2/${S}/draft\\.json$`), D2DraftFile],
   [new RegExp(`^leagues/fbajc/${S}/recruiting\\.json$`), RecruitingFile],
+  [new RegExp(`^leagues/fbajc/${S}/classRanking\\.json$`), RankingFile],
+  [new RegExp(`^leagues/fbajc/${S}/ratings\\.json$`), RankingFile],
   [new RegExp(`^leagues/(fba|fbad2)/${S}/schedule\\.json$`), ScheduleFile],
   [new RegExp(`^leagues/(fba|fbad2)/${S}/playoffs\\.json$`), PlayoffsFile],
   [new RegExp(`^leagues/(fba|fbad2)/${S}/awards\\.json$`), AwardsFile],

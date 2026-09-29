@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, FreeAgentsFile, GameResult, HallOfFameFile, LogoManifest, LotteryFile, MetaFile, PickObligation, PicksFile, Player, PlayoffsFile, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
+import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, FreeAgentsFile, GameResult, HallOfFameFile, LogoManifest, LotteryFile, MetaFile, PickObligation, PicksFile, Player, PlayoffsFile, Prospect, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -401,5 +401,52 @@ describe('Part 7b schemas', () => {
 
   it('knows the new transaction types', () => {
     for (const t of ['lottery', 'retired', 'hall-of-fame']) expect(TransactionType.safeParse(t).success).toBe(true);
+  });
+});
+
+describe('Part 7c schemas', () => {
+  const recruit = { playerId: 'p01914', position: 'PG', classYear: 'Fr', rating: null, stars: null, projections: { TEX: 2 }, committedTo: null };
+
+  it('accepts a prospect with consensus between 70 and 100', () => {
+    expect(Prospect.safeParse({ ...recruit, consensus: 96.84 }).success).toBe(true);
+    expect(Prospect.safeParse({ ...recruit, consensus: 69.9 }).success).toBe(false);
+  });
+
+  it('accepts a prospect with no consensus key', () => {
+    expect(Prospect.safeParse(recruit).success).toBe(true);
+  });
+
+  const ranking = (kind: string, locked: boolean, consensus?: Record<string, number>, consensusCurve?: number[], patch?: object) => ({
+    league: 'fbajc', season: 79, kind, locked,
+    rows: [{ playerId: 'p00001', position: 'PG', age: 25, team: 'TEX', prevRating: null, otherRating: null, stat: null }],
+    order: locked ? ['p00001'] : [],
+    ratings: locked ? { p00001: 80 } : {},
+    curve: [80],
+    ...(consensus && { consensus }),
+    ...(consensusCurve && { consensusCurve }),
+    ...patch,
+  });
+
+  it('accepts a college-class ranking with consensus and consensusCurve', () => {
+    expect(RankingFile.safeParse(ranking('college-class', false, { p00001: 85 }, [90, 85])).success).toBe(true);
+  });
+
+  it('rejects a d2-reset ranking with consensus', () => {
+    const doc = ranking('d2-reset', false, { p00001: 85 });
+    expect(RankingFile.safeParse(doc).success).toBe(false);
+  });
+
+  it('rejects a locked college-class ranking where a ranked player has no consensus', () => {
+    const doc = ranking('college-class', true);
+    expect(RankingFile.safeParse(doc).success).toBe(false);
+  });
+
+  it('rejects a consensusCurve that goes up', () => {
+    const doc = ranking('college-class', false, { p00001: 85 }, [80, 90]);
+    expect(RankingFile.safeParse(doc).success).toBe(false);
+  });
+
+  it('knows the new transaction types', () => {
+    for (const t of ['walk-on', 'college-ratings']) expect(TransactionType.safeParse(t).success).toBe(true);
   });
 });
