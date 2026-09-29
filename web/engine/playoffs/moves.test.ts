@@ -105,14 +105,14 @@ describe('recordPlayoffGame', () => {
     if (!swapped.ok) expect(swapped.problems[0]).toMatch(/^This isn't the next playoff game/);
   });
 
-  it('marks the calendar step done only with the last final (FBA)', () => {
+  it('sets the outcome with the last final and leaves the calendar step current (FBA)', () => {
     const s = seeded();
     const almost = playPlayoffs(s, 5);
     const pf = almost.playoffs!;
     expect(pf.outcome).not.toBeNull();
     expect(pf.outcome!.champions).toEqual([expect.objectContaining({ group: null, teamId: pf.series.find(x => x.id === FINALS)!.winner })]);
     expect(pf.outcome!.promotion).toBeNull();
-    expect(almost.calendar.steps.find(x => x.id === 'fba')!.done).toBe(true);
+    expect(almost.calendar.steps.find(x => x.id === 'fba')!.done).toBe(false);
     expect(nextPlayoffGame(pf)).toBeNull();
     const partway = playPlayoffs(s, 5, pf.games.length - 1);
     expect(partway.calendar.steps.find(x => x.id === 'fba')!.done).toBe(false);
@@ -124,7 +124,7 @@ describe('recordPlayoffGame', () => {
     const out = s.playoffs!.outcome!;
     expect(out.champions.map(c => c.group)).toEqual(['PL', 'WL', 'UL', 'IL']);
     expect(out.promotion!.map(p => [p.league, p.promoted.length, p.relegated.length])).toEqual([['PL', 0, 2], ['WL', 2, 2], ['UL', 2, 2], ['IL', 2, 0]]);
-    expect(s.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(true);
+    expect(s.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(false);
     expect(PlayoffsFile.safeParse(s.playoffs).success).toBe(true);
   });
 });

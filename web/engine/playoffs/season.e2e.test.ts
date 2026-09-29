@@ -65,7 +65,7 @@ describe('a whole S79 in the engine: D2, then FBA', () => {
     expect(d2pf.games.length).toBeLessThanOrEqual(28 * 7);
     expect(d2pf.games.slice(0, 4).map(g => g.seriesId)).toEqual(['PL-R1-1', 'WL-R1-1', 'UL-R1-1', 'IL-R1-1']);
     expect(d2pf.outcome!.champions).toHaveLength(4);
-    expect(d2.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(true);
+    expect(d2.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(false);
 
     let fba = playRegular(fullFbaState(), rng);
     expect(fba.results!.games).toHaveLength(1290);
@@ -82,7 +82,7 @@ describe('a whole S79 in the engine: D2, then FBA', () => {
     expect(pf.games.length).toBeLessThanOrEqual(105);
     expect(pf.games.slice(0, 2).map(g => g.seriesId)).toEqual(['E-R1-1', 'W-R1-1']);
     expect(pf.outcome!.champions).toHaveLength(1);
-    expect(fba.calendar.steps.find(x => x.id === 'fba')!.done).toBe(true);
+    expect(fba.calendar.steps.find(x => x.id === 'fba')!.done).toBe(false);
     expect(fba.rosters).toBe(pointsBefore);
   });
 });

@@ -2,7 +2,10 @@ import { seasonStandings } from '../playoffs/moves';
 import { POSITIONS } from '../roster/rules';
 import { groupLabel } from '../shared/leagues';
 import type { BoxLine, GameResult, Position, RatingPauseFile, RostersFile, SeasonTotals, SummaryFile, SummaryPlayerLine } from '../shared/types';
-import type { SeasonState } from './state';
+import { appendTx, type MoveContext } from '../roster/state';
+import { markStepDone } from '../shared/calendar';
+import { leagueStepProblem } from './moves';
+import { CALENDAR_STEP, seasonFail, type SeasonDocKey, type SeasonResult, type SeasonState } from './state';
 
 const zero = (): SeasonTotals => ({ g: 0, pts: 0, def: 0, stops: 0, allowed: 0, exp: 0 });
 
@@ -119,5 +122,45 @@ export function seasonRecord(state: SeasonState, pauses: RatingPauseFile[]): Sum
     bracket: pf ? { seeds: pf.seeds, series: pf.series } : null,
     promotion: state.league === 'fbad2' ? pf?.outcome?.promotion ?? null : null,
     players: playerLines({ regular: state.results?.games ?? [], playoffs: pf?.games ?? [] }, state.rosters, pauses),
+  };
+}
+
+const LEAGUE_NAME = { fba: 'FBA', fbad2: 'D2' } as const;
+const LOCKABLE = ['schedule', 'results', 'playoffs', 'allstar'] as const;
+
+/** Locks a doc that isn't locked yet; the server refuses to rewrite a locked doc, so locked ones are left alone. */
+const locked = <T extends { locked: boolean }>(d: T | null): T | null => (d && !d.locked ? { ...d, locked: true } : d);
+
+/**
+ * "Finish S{n} season": writes the locked season record, locks the season's game docs, logs a `season`
+ * transaction and marks the league's calendar step done. `pauses` are every rating-pause doc of the season.
+ */
+export function finishSeason(state: SeasonState, pauses: RatingPauseFile[], ctx: MoveContext): SeasonResult {
+  const name = LEAGUE_NAME[state.league];
+  const problems: string[] = [];
+  const step = leagueStepProblem(state.calendar, state.league);
+  if (step) problems.push(step);
+  if (!state.playoffs?.outcome) problems.push('Finish the playoffs first');
+  if (!state.awards?.locked) problems.push(`Lock the S${state.season} awards first`);
+  if (state.summary) problems.push(`The S${state.season} ${name} season is already finished`);
+  for (const p of pauses) if (!p.locked) problems.push(`Finish the rating adjustments after game ${p.afterGame} first`);
+  if (problems.length) return seasonFail(problems);
+
+  const toLock = LOCKABLE.filter(k => state[k] !== null && !state[k]!.locked);
+  const changed: SeasonDocKey[] = ['summary', ...toLock, 'tx', 'calendar'];
+  return {
+    ok: true,
+    state: {
+      ...state,
+      summary: seasonRecord(state, pauses),
+      schedule: locked(state.schedule),
+      results: locked(state.results),
+      playoffs: locked(state.playoffs),
+      allstar: locked(state.allstar),
+      tx: appendTx(state.tx, ctx, 'season', [], [`S${state.season} ${name} season finished`]),
+      calendar: markStepDone(state.calendar, CALENDAR_STEP[state.league]),
+    },
+    changed,
+    label: `Finish S${state.season} ${name} season`,
   };
 }

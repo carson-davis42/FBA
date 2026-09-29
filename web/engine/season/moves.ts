@@ -137,7 +137,7 @@ export function recordGames(state: SeasonState, games: SimGame[]): SeasonResult 
   const label = results.length === 1
     ? `Game ${one.gameNo}: ${one.away} ${one.awayPts} @ ${one.home} ${one.homePts}`
     : `Games ${results[0].gameNo}–${results[results.length - 1].gameNo}`;
-  // The league's calendar step is marked done by the last playoff final (engine/playoffs/moves.ts), not here.
+  // The league's calendar step is marked done by "Finish S{n} season" (engine/season/wrapUp.ts), not here.
   return {
     ok: true,
     state: {

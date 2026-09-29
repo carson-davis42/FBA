@@ -6,9 +6,9 @@ import { lockSeeds } from '../playoffs/moves';
 import { fullD2State, fullFbaState, playPlayoffs, regularSeasonDone } from '../playoffs/testFixtures';
 import { SummaryFile, type AllStarFile, type GameResult, type RatingPauseFile, type RostersFile } from '../shared/types';
 import { recordGames, simNextGames } from './moves';
-import type { SeasonResult } from './state';
+import { seasonWrites, type SeasonResult, type SeasonState } from './state';
 import { d2SeasonState } from './testFixtures';
-import { playerLines, seasonRecord } from './wrapUp';
+import { finishSeason, playerLines, seasonRecord } from './wrapUp';
 
 const ok = (r: SeasonResult) => {
   if (!r.ok) throw new Error(r.problems.join('; '));
@@ -126,5 +126,48 @@ describe('seasonRecord', () => {
     for (const r of rec.standings!) expect(r.group).toBe(s.teams.teams.find(t => t.teamId === r.teamId)!.group);
     expect(Math.max(...rec.standings!.map(r => r.playoff?.round ?? 0))).toBe(3);
     expect(rec.standings!.filter(r => r.playoff?.champion).map(r => r.teamId).sort()).toEqual(out.champions.map(c => c.teamId).sort());
+  });
+});
+
+describe('finishSeason', () => {
+  const ctx = { batchId: 'fin' };
+
+  it('writes the locked record, locks the game docs, logs it and marks the league step done', () => {
+    const s = d2Done();
+    expect(s.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(false);
+    const r = ok(finishSeason(s, [], ctx));
+    expect(r.label).toBe('Finish S79 D2 season');
+    expect(seasonWrites(r).map(w => w.path)).toEqual([
+      'leagues/fbad2/S79/summary.json', 'leagues/fbad2/S79/schedule.json', 'leagues/fbad2/S79/results.json',
+      'leagues/fbad2/S79/playoffs.json', 'leagues/fbad2/S79/transactions.json', 'calendar.json',
+    ]);
+    expect(r.state.summary).toEqual(seasonRecord(s, []));
+    for (const d of [r.state.schedule, r.state.results, r.state.playoffs]) expect(d!.locked).toBe(true);
+    expect(r.state.tx.entries.at(-1)).toEqual({ seq: 1, batchId: 'fin', type: 'season', teams: [], lines: ['S79 D2 season finished'] });
+    expect(r.state.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(true);
+  });
+
+  it('locks an unlocked All-Star doc too, and skips docs that are already locked (FBA)', () => {
+    const s = { ...fbaDone(), allstar: allStarDoc(false) };
+    const r = ok(finishSeason(s, [pause(1290, [])], ctx));
+    expect(r.changed).toEqual(['summary', 'schedule', 'results', 'playoffs', 'allstar', 'tx', 'calendar']);
+    expect(r.state.allstar!.locked).toBe(true);
+    expect(r.state.tx.entries.at(-1)!.lines).toEqual(['S79 FBA season finished']);
+    expect(ok(finishSeason({ ...s, allstar: allStarDoc(true) }, [], ctx)).changed).not.toContain('allstar');
+  });
+
+  it('refuses before the last final, with unlocked awards, twice, off-step, or with an unfinished rating pause', () => {
+    const s = d2Done();
+    const problems = (x: SeasonState, pauses: RatingPauseFile[] = []) => {
+      const r = finishSeason(x, pauses, ctx);
+      return r.ok ? [] : r.problems;
+    };
+    const partway = playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6, 10);
+    expect(problems(partway)).toEqual(['Finish the playoffs first']);
+    expect(problems({ ...s, awards: { ...s.awards!, locked: false } })).toEqual(['Lock the S79 awards first']);
+    const finished = ok(finishSeason(s, [], ctx));
+    expect(problems({ ...finished.state, calendar: s.calendar })).toEqual(['The S79 D2 season is already finished']);
+    expect(problems({ ...s, calendar: finished.state.calendar })[0]).toMatch(/^The season is played at the FBA D2 step/);
+    expect(problems(s, [{ ...pause(1290, []), locked: false }])).toEqual(['Finish the rating adjustments after game 1290 first']);
   });
 });
