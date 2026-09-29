@@ -91,7 +91,7 @@ export function RecruitingPage() {
       {actionError && <p className="error">{actionError}</p>}
       {tab === 'class'
         ? <ClassTab state={state} saving={saving} onDraft={autosave.update} onRun={run} />
-        : <BoardTab state={state} saving={saving} onRun={run} />}
+        : <BoardTab state={state} saving={saving} onRun={run} rng={Math.random} />}
     </section>
   );
 }

@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import {
   addProjection, commit, commitPreview, decommit, projectionShares, removeProjection, uncommitted,
 } from '../../engine/college/recruiting';
-import { collegeName, schoolAbbr, schoolName, type RecruitingResult, type RecruitingState } from '../../engine/college/state';
+import { collegeName, playsThisSeason, schoolAbbr, schoolName, type RecruitingResult, type RecruitingState } from '../../engine/college/state';
+import { fillWalkOns, openSpots, walkOnProblem } from '../../engine/college/walkOns';
+import type { Rng } from '../../engine/d2/random';
 import { groupLabel } from '../../engine/shared/leagues';
 import { POSITIONS } from '../../engine/roster/rules';
 import type { PortalPlayer, Position, Prospect, Team } from '../../engine/shared/types';
@@ -20,10 +22,12 @@ interface Props {
   state: RecruitingState;
   saving: boolean;
   onRun: (result: RecruitingResult) => void;
+  /** Random source for walk-on ratings; pages use Math.random. */
+  rng?: Rng;
 }
 
 /** The recruiting board: the class and the transfer portal, with projections, commits and decommits. */
-export function BoardTab({ state, saving, onRun }: Props) {
+export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
   const [pos, setPos] = useState<'ALL' | Position>('ALL');
   const [status, setStatus] = useState<Status>('all');
   const [search, setSearch] = useState('');
@@ -48,6 +52,8 @@ export function BoardTab({ state, saving, onRun }: Props) {
     setPicking(null);
     onRun(result);
   };
+  const spots = openSpots(state.rosters);
+  const walkOnBlock = playsThisSeason(state) && !locked && spots > 0 ? { problem: walkOnProblem(state), label: `Fill ${spots} open ${spots === 1 ? 'spot' : 'spots'} with walk-ons` } : null;
   const picked = picking ? [...doc.recruits, ...doc.portal].find(p => p.playerId === picking.playerId) ?? null : null;
 
   const row = (p: Prospect | PortalPlayer) => (
@@ -108,6 +114,17 @@ export function BoardTab({ state, saving, onRun }: Props) {
   return (
     <div>
       <p className="muted">{`${doc.recruits.length - open.recruits.length} of ${doc.recruits.length} committed · ${open.portal.length} in the portal`}</p>
+      {walkOnBlock && (
+        <div className="walk-ons">
+          <button
+            type="button" className="btn primary" disabled={saving || walkOnBlock.problem !== null}
+            onClick={() => run(fillWalkOns(state, rng, { batchId: newBatchId() }))}
+          >
+            {walkOnBlock.label}
+          </button>
+          {walkOnBlock.problem && <p className="muted">{walkOnBlock.problem}</p>}
+        </div>
+      )}
       <div className="chips" role="group" aria-label="Position filter">
         {(['ALL', ...POSITIONS] as ('ALL' | Position)[]).map(p => (
           <button key={p} type="button" className={`chip${pos === p ? ' on' : ''}`} aria-pressed={pos === p} onClick={() => setPos(p)}>{p === 'ALL' ? 'All' : p}</button>

@@ -6,6 +6,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { addProjection, commit } from '../../engine/college/recruiting';
 import type { RecruitingResult, RecruitingState } from '../../engine/college/state';
 import { collegeBaseState, collegeClassState, collegeCurrentClassState } from '../../engine/college/testFixtures';
+import { walkOnProblem } from '../../engine/college/walkOns';
 import { BoardTab } from './BoardTab';
 
 afterEach(cleanup);
@@ -113,5 +114,39 @@ describe('BoardTab', () => {
     const s = collegeClassState();
     render(<Harness initial={{ ...s, recruiting: { ...s.recruiting, locked: true } }} runs={[]} />);
     expect(screen.queryByRole('button', { name: /^(Commit|Add a projection for) / })).toBeNull();
+  });
+
+  describe('walk-ons', () => {
+    /** The current class with everyone committed and the FBAJC step current: BAY, TEX and DUKE have 6 open spots. */
+    const ready = (): RecruitingState => {
+      const s = collegeCurrentClassState();
+      return {
+        ...s,
+        recruiting: { ...s.recruiting, recruits: [], portal: [] },
+        calendar: { season: 79, steps: [{ id: 'fbajc', label: 'FBAJC', kind: 'league', league: 'fbajc', sub: false, done: false }] },
+      };
+    };
+
+    it('fills the open spots with one move', () => {
+      const runs: RecruitingResult[] = [];
+      render(<Harness initial={ready()} runs={runs} />);
+      expect(walkOnProblem(ready())).toBeNull();
+      fireEvent.click(button('Fill 6 open spots with walk-ons'));
+      expect(runs).toHaveLength(1);
+      expect(runs[0]).toMatchObject({ ok: true, label: 'Fill 6 open spots with walk-ons', changed: ['rosters', 'players', 'tx'] });
+      expect(screen.queryByRole('button', { name: /walk-ons/ })).toBeNull();
+    });
+
+    it('is disabled with the reason until the FBAJC gate is clear', () => {
+      const s = collegeCurrentClassState();
+      render(<Harness initial={s} runs={[]} />);
+      expect(button('Fill 6 open spots with walk-ons').disabled).toBe(true);
+      expect(screen.getByText(walkOnProblem(s)!)).toBeTruthy();
+    });
+
+    it('is not shown on the next class board', () => {
+      render(<Harness initial={collegeClassState()} runs={[]} />);
+      expect(screen.queryByRole('button', { name: /walk-ons/ })).toBeNull();
+    });
   });
 });
