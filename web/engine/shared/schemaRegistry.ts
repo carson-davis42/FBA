@@ -33,6 +33,11 @@ const RULES: [RegExp, z.ZodTypeAny][] = [
   [new RegExp(`^leagues/fba/${S}/allstar\\.json$`), AllStarFile],
 ];
 
+/** Docs whose save is final: Undo stops at the move that wrote them (a drawn lottery can't be redrawn). */
+const UNDO_PROTECTED = [new RegExp(`^leagues/fba/${S}/lottery\\.json$`)];
+
+export const isUndoProtected = (rel: string): boolean => UNDO_PROTECTED.some(re => re.test(rel));
+
 export function schemaForPath(rel: string): z.ZodTypeAny | null {
   for (const [re, schema] of RULES) if (re.test(rel)) return schema;
   return null;

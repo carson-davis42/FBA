@@ -176,6 +176,22 @@ describe('Storage batches and undo', () => {
     expect(await status(storage.undo())).toBe(409);
   });
 
+  it('never undoes a drawn lottery: peekUndo reports it as blocked and undo refuses', async () => {
+    const { storage } = fresh();
+    const lottery = { league: 'fba', season: 79, draftSeason: 80, locked: true, odds: [], lottery: [], order: [], picks: [] };
+    await storage.writeMany('S80 Draft Lottery', [
+      { path: 'leagues/fba/S79/lottery.json', doc: lottery },
+      { path: 'calendar.json', doc: cal(true) },
+    ]);
+    expect(await storage.peekUndo()).toEqual({ label: 'S80 Draft Lottery', blockedBy: 'leagues/fba/S79/lottery.json' });
+    await expect(storage.undo()).rejects.toThrow(/final/);
+    expect(await storage.read('leagues/fba/S79/lottery.json')).toEqual(lottery);
+    // Later moves still undo; Undo just stops at the lottery.
+    await storage.writeMany('Mark A', [{ path: 'calendar.json', doc: cal(false) }]);
+    expect(await storage.undo()).toEqual({ label: 'Mark A', paths: ['calendar.json'] });
+    expect(await status(storage.undo())).toBe(409);
+  });
+
   it('skips a corrupt journal file newer than a valid one, for both peekUndo and undo', async () => {
     const { dir, storage } = fresh();
     await storage.writeMany('Sign Okoro', [{ path: 'leagues/fba/S79/rosters.json', doc: roster(79, 70) }]);
