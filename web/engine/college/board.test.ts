@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { RecruitingFile, RostersFile } from '../shared/types';
 import {
-  addProjection, commit, commitPreview, decommit, fbajcGateProblem, formatShares, projectionShares, removeProjection, uncommitted,
+  addProjection, commit, commitPreview, decommit, fbajcGateProblem, formatShares, projectionShares, removeProjection, uncommitted, unplacedCommits,
 } from './recruiting';
 import { collegeHole } from './setup';
 import { recruitingWrites, type RecruitingResult, type RecruitingState } from './state';
@@ -230,5 +230,36 @@ describe('current-class commits', () => {
     expect(recruitingWrites(r).map(w => w.path)).toEqual([
       'leagues/fbajc/S78/recruiting.json', 'leagues/fbajc/S79/rosters.json', 'leagues/fbajc/S79/transactions.json',
     ]);
+  });
+});
+
+describe('unplacedCommits', () => {
+  it('lists committed board players who are not on their school roster', () => {
+    const s = ok(commit(currentClassState(), 'p01914', 'BAY', ctx)).state;
+    expect(unplacedCommits(s.recruiting, s.rosters)).toEqual([]);
+    const off = { ...s.rosters, teams: { ...s.rosters.teams, BAY: s.rosters.teams.BAY.map(x => (x.playerId === 'p01914' ? collegeHole('PG') : x)) } };
+    expect(unplacedCommits(s.recruiting, off)).toEqual(['p01914']);
+  });
+
+  it('ignores uncommitted players', () => {
+    const s = currentClassState();
+    expect(unplacedCommits(s.recruiting, s.rosters)).toEqual([]);
+  });
+
+  it('feeds the FBAJC gate between the uncommitted and open-spot parts', () => {
+    const named = (id: string, position: 'PG' | 'SG' | 'SF' | 'PF' | 'C') => ({ playerId: id, position, rating: 70, age: null, points: 0, stars: null, classYear: 'So' as const });
+    const full = (open = false): RostersFile => ({
+      league: 'fbajc', season: 79, locked: false,
+      teams: { BAY: [open ? collegeHole('PG') : named('p00001', 'PG'), named('p00002', 'SG'), named('p00003', 'SF'), named('p00004', 'PF'), named('p00005', 'C')] },
+    });
+    const base = currentClassState().recruiting;
+    const [a, b, c] = base.recruits;
+    const board = (recruits: typeof base.recruits) => ({ ...base, recruits, portal: [] });
+    expect(fbajcGateProblem(board([{ ...a, committedTo: 'BAY' }]), full())).toBe("1 committed player isn't on the rosters yet");
+    expect(fbajcGateProblem(board([{ ...a, committedTo: 'BAY' }, { ...b, committedTo: 'BAY' }]), full())).toBe("2 committed players aren't on the rosters yet");
+    expect(fbajcGateProblem(board([{ ...a, committedTo: 'BAY' }, { ...b, committedTo: 'BAY' }, c]), full(true))).toBe(
+      "1 recruit and 0 portal players haven't committed yet; 2 committed players aren't on the rosters yet; 1 open spot needs a walk-on",
+    );
+    expect(fbajcGateProblem(board([]), full())).toBeNull();
   });
 });

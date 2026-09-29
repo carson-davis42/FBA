@@ -28,9 +28,16 @@ export function recruitingDocs(state: RecruitingState, options: { recruiting?: b
   return out;
 }
 
-/** The documents before the one-time setup: no S79 college rosters, transactions or recruiting doc; meta.rosterSeason.fbajc as given. */
-export function setupDocs(fbajcSeason = 78): Record<string, unknown> {
-  const out = recruitingDocs(collegeBaseState(), { recruiting: false });
+/**
+ * The documents before the one-time setup: no S79 college rosters, transactions or recruiting doc; meta.rosterSeason.fbajc as given.
+ * `adjustAge` adds an Adjust Age step to the calendar, done or not; left out, the calendar has none.
+ */
+export function setupDocs(fbajcSeason = 78, options: { adjustAge?: boolean } = {}): Record<string, unknown> {
+  const base = collegeBaseState();
+  const steps = options.adjustAge === undefined
+    ? base.calendar.steps
+    : [{ id: 'adjust-age', label: 'Adjust Age', kind: 'offseason' as const, league: null, sub: true, done: options.adjustAge }, ...base.calendar.steps];
+  const out = recruitingDocs({ ...base, calendar: { ...base.calendar, steps } }, { recruiting: false });
   delete out['leagues/fbajc/S79/rosters.json'];
   delete out['leagues/fbajc/S79/transactions.json'];
   out['meta.json'] = meta(fbajcSeason);

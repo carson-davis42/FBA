@@ -76,6 +76,13 @@ describe('walkOnProblem', () => {
     expect(walkOnProblem({ ...s, recruiting: board })).toBe("3 recruits and 0 portal players haven't committed yet");
   });
 
+  it('refuses while a committed player is not on the rosters', () => {
+    const s = fixture();
+    const [r] = collegeCurrentClassState().recruiting.recruits;
+    const recruiting = { ...s.recruiting, recruits: [{ ...r, committedTo: 'BAY' }] };
+    expect(walkOnProblem({ ...s, recruiting })).toBe("1 committed player isn't on the rosters yet");
+  });
+
   it("refuses on the next class's board", () => {
     const s = fixture();
     expect(walkOnProblem({ ...s, recruiting: { ...s.recruiting, season: 79, classOf: 80 } })).toBe("Walk-ons fill this season's rosters");

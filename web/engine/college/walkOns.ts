@@ -3,7 +3,7 @@ import { randInt } from '../d2/random';
 import { appendTx, type MoveContext } from '../roster/state';
 import { calendarProblem } from '../season/moves';
 import type { RosterEntry, RostersFile } from '../shared/types';
-import { fbajcGateProblem } from './recruiting';
+import { fbajcGateProblem, unplacedCommitsProblem } from './recruiting';
 import { playsThisSeason, recruitingFail, type RecruitingResult, type RecruitingState } from './state';
 
 /** Team.java: (int)(random*13) + base. */
@@ -22,6 +22,8 @@ export function walkOnProblem(state: RecruitingState): string | null {
   if (!playsThisSeason(state)) return "Walk-ons fill this season's rosters";
   const gate = fbajcGateProblem(state.recruiting, null);
   if (gate) return gate;
+  const unplaced = unplacedCommitsProblem(state.recruiting, state.rosters);
+  if (unplaced) return unplaced;
   return openSpots(state.rosters) === 0 ? 'There are no open spots' : null;
 }
 
