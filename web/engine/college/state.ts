@@ -12,6 +12,8 @@ export interface RecruitingState {
   /** This season's FBAJC transactions. */
   tx: TransactionsFile;
   calendar: CalendarFile;
+  /** True once this board's class ranking exists: recruits can no longer be added or removed. */
+  ranked?: boolean;
 }
 
 /** leagues/fbajc/S{season}/recruiting.json: the board of the class created in `season` (it plays in season + 1). */

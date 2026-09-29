@@ -112,6 +112,7 @@ export function editRecruit(state: RecruitingState, playerId: string, patch: { n
 export function removeRecruit(state: RecruitingState, playerId: string): RecruitingResult {
   const doc = state.recruiting;
   if (doc.locked) return recruitingFail([LOCKED]);
+  if (state.ranked) return recruitingFail(["The class is being ranked; recruits can't be removed"]);
   const p = doc.recruits.find(r => r.playerId === playerId);
   if (!p) return recruitingFail([`${playerId} isn't in the class`]);
   const name = collegeName(state.players, playerId);

@@ -1,3 +1,4 @@
+import { starsFor } from '../engine/college/classRanking';
 import { emptyRecruiting, recruitingWrites, type RecruitingState } from '../engine/college/state';
 import { commit } from '../engine/college/recruiting';
 import type { MoveContext } from '../engine/roster/state';
@@ -18,9 +19,6 @@ export interface ClassImportInput {
 }
 
 const TOPIC = 'Recruiting class';
-
-/** Stars follow the consensus: 90+ 5, 80+ 4, 70+ 3. */
-const starsFor = (consensus: number): number | null => (consensus >= 90 ? 5 : consensus >= 80 ? 4 : consensus >= 70 ? 3 : null);
 
 const norm = (s: string): string => s.trim().toLowerCase();
 

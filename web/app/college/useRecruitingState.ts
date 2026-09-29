@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
+import { classRankingPath } from '../../engine/college/classRanking';
 import { proPlayerIds } from '../../engine/college/setup';
 import { boardPath, emptyRecruiting, recruitingDocPath, type RecruitingDocKey, type RecruitingState } from '../../engine/college/state';
 import type {
-  CalendarFile, FreeAgentsFile, MetaFile, PlayersFile, RecruitingFile, ReservesFile, RostersFile, TeamsFile, TransactionsFile,
+  CalendarFile, FreeAgentsFile, MetaFile, PlayersFile, RankingFile, RecruitingFile, ReservesFile, RostersFile, TeamsFile, TransactionsFile,
 } from '../../engine/shared/types';
 import { useDoc, type DocState, type Versions } from '../api';
 
@@ -24,6 +25,7 @@ export function useRecruitingState(boardSeason: number | undefined): { season?: 
   const n = meta.data?.currentSeason;
   const at = (k: RecruitingDocKey) => (n === undefined ? null : recruitingDocPath(k, n));
   const recruiting = useDoc<RecruitingFile>(n === undefined || boardSeason === undefined ? null : boardPath(boardSeason));
+  const classRanking = useDoc<RankingFile>(n === undefined || boardSeason === undefined ? null : classRankingPath(boardSeason));
   const rosters = useDoc<RostersFile>(at('rosters'));
   const tx = useDoc<TransactionsFile>(at('tx'));
   const players = useDoc<PlayersFile>(at('players'));
@@ -53,7 +55,7 @@ export function useRecruitingState(boardSeason: number | undefined): { season?: 
   }
 
   const required: DocState<unknown>[] = [players, calendar, teams, fba, d2];
-  const optional: DocState<unknown>[] = [recruiting, rosters, tx, prev, freeAgents, reserves];
+  const optional: DocState<unknown>[] = [recruiting, classRanking, rosters, tx, prev, freeAgents, reserves];
   const error = meta.error ?? required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
   if (n === undefined || boardSeason === undefined || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { season: n, versions, error };
   if (!rosters.data) return { season: n, versions, error, setup: { meta: meta.data!, prev: prev.data ?? null, proIds } };
@@ -69,6 +71,7 @@ export function useRecruitingState(boardSeason: number | undefined): { season?: 
       players: players.data!,
       tx: tx.data ?? emptyTx!,
       calendar: calendar.data!,
+      ranked: classRanking.data !== undefined,
     },
   };
 }
