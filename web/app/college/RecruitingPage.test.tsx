@@ -2,7 +2,7 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CLASS_DRAFT, collegeBaseState, collegeClassState } from '../../engine/college/testFixtures';
+import { CLASS_DRAFT, collegeBaseState, collegeClassState, collegeCurrentClassState } from '../../engine/college/testFixtures';
 import type { RecruitingFile } from '../../engine/shared/types';
 import { stubApi } from '../d2/testDocs';
 import { RecruitingPage } from './RecruitingPage';
@@ -84,5 +84,69 @@ describe('RecruitingPage', () => {
     renderAt('/league/fbajc/recruiting?tab=class');
     expect(await screen.findByLabelText('Name of Zion Carter')).toBeTruthy();
     expect(screen.getByRole('tab', { name: 'Class' }).getAttribute('aria-selected')).toBe('true');
+  });
+
+  describe('the class picker', () => {
+    const both = () => {
+      const docs = recruitingDocs(collegeClassState());
+      docs['leagues/fbajc/S78/recruiting.json'] = collegeCurrentClassState().recruiting;
+      return docs;
+    };
+
+    it('defaults to the class that plays this season when its board exists', async () => {
+      stubApi(both());
+      renderAt('/league/fbajc/recruiting');
+      expect(await screen.findByRole('heading', { name: 'FBAJC recruiting · Class of S79' })).toBeTruthy();
+      expect((screen.getByRole('combobox', { name: 'Class' }) as HTMLSelectElement).value).toBe('79');
+      expect(screen.getAllByRole('option').map(o => o.textContent)).toEqual(['S79 class (plays S79)', 'S80 class']);
+    });
+
+    it('defaults to the next class when the S78 board does not exist', async () => {
+      stubApi(recruitingDocs(collegeClassState()));
+      renderAt('/league/fbajc/recruiting');
+      expect(await screen.findByRole('heading', { name: 'FBAJC recruiting · Class of S80' })).toBeTruthy();
+      expect((screen.getByRole('combobox', { name: 'Class' }) as HTMLSelectElement).value).toBe('80');
+    });
+
+    it('switches class with the picker (?class=)', async () => {
+      stubApi(both());
+      renderAt('/league/fbajc/recruiting');
+      await screen.findByRole('heading', { name: 'FBAJC recruiting · Class of S79' });
+      fireEvent.change(screen.getByRole('combobox', { name: 'Class' }), { target: { value: '80' } });
+      expect(await screen.findByRole('heading', { name: 'FBAJC recruiting · Class of S80' })).toBeTruthy();
+      expect(screen.getByRole('tab', { name: 'Class' })).toBeTruthy();
+      fireEvent.change(screen.getByRole('combobox', { name: 'Class' }), { target: { value: '79' } });
+      expect(await screen.findByRole('heading', { name: 'FBAJC recruiting · Class of S79' })).toBeTruthy();
+    });
+
+    it('shows the Board tab only for the S79 class, and its commit writes the S78 board and the S79 rosters', async () => {
+      const log = stubApi(both());
+      renderAt('/league/fbajc/recruiting?class=79&tab=class');
+      fireEvent.click(await enabled('Commit Zion Carter'));
+      expect(screen.queryByRole('tab', { name: 'Class' })).toBeNull();
+      expect(screen.getByRole('tab', { name: 'Board' }).getAttribute('aria-selected')).toBe('true');
+      fireEvent.click(screen.getByRole('button', { name: 'Duke' }));
+      fireEvent.click(await enabled('Confirm commit'));
+      await waitFor(() => expect(log.batches).toHaveLength(1));
+      expect(log.batches[0].label).toBe('Zion Carter commits to Duke');
+      expect(log.batches[0].writes.map(w => w.path).sort()).toEqual([
+        'leagues/fbajc/S78/recruiting.json', 'leagues/fbajc/S79/rosters.json', 'leagues/fbajc/S79/transactions.json',
+      ]);
+      expect(log.batches[0].writes.every(w => w.baseVersion === '0000000000000001')).toBe(true);
+    });
+
+    it('shows the Class and Board tabs for the S80 class, and its commit writes the S79 board and tx but no rosters', async () => {
+      const log = stubApi(both());
+      renderAt('/league/fbajc/recruiting?class=80');
+      fireEvent.click(await enabled('Commit Zion Carter'));
+      expect(screen.getByRole('tab', { name: 'Class' })).toBeTruthy();
+      expect(screen.getByRole('tab', { name: 'Board' })).toBeTruthy();
+      fireEvent.click(screen.getByRole('button', { name: 'Duke' }));
+      fireEvent.click(await enabled('Confirm commit'));
+      await waitFor(() => expect(log.batches).toHaveLength(1));
+      expect(log.batches[0].writes.map(w => w.path).sort()).toEqual([
+        'leagues/fbajc/S79/recruiting.json', 'leagues/fbajc/S79/transactions.json',
+      ]);
+    });
   });
 });

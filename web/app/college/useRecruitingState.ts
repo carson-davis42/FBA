@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { proPlayerIds } from '../../engine/college/setup';
-import { emptyRecruiting, recruitingDocPath, type RecruitingDocKey, type RecruitingState } from '../../engine/college/state';
+import { boardPath, emptyRecruiting, recruitingDocPath, type RecruitingDocKey, type RecruitingState } from '../../engine/college/state';
 import type {
   CalendarFile, FreeAgentsFile, MetaFile, PlayersFile, RecruitingFile, ReservesFile, RostersFile, TeamsFile, TransactionsFile,
 } from '../../engine/shared/types';
@@ -15,14 +15,15 @@ export interface CollegeSetupInput {
 }
 
 /**
- * Loads the recruiting board for the current calendar season: `state` once the season's college rosters exist,
- * otherwise `setup` for the one-time setup panel. `versions` holds every doc either of them may write.
+ * Loads the recruiting board at S{boardSeason} (the class of boardSeason + 1) with the calendar season n's rosters, tx and calendar:
+ * `state` once the season's college rosters exist, otherwise `setup` for the one-time setup panel.
+ * `versions` holds every doc either of them may write.
  */
-export function useRecruitingState(): { season?: number; state?: RecruitingState; setup?: CollegeSetupInput; versions: Versions; error?: Error } {
+export function useRecruitingState(boardSeason: number | undefined): { season?: number; state?: RecruitingState; setup?: CollegeSetupInput; versions: Versions; error?: Error } {
   const meta = useDoc<MetaFile>('meta.json');
   const n = meta.data?.currentSeason;
   const at = (k: RecruitingDocKey) => (n === undefined ? null : recruitingDocPath(k, n));
-  const recruiting = useDoc<RecruitingFile>(at('recruiting'));
+  const recruiting = useDoc<RecruitingFile>(n === undefined || boardSeason === undefined ? null : boardPath(boardSeason));
   const rosters = useDoc<RostersFile>(at('rosters'));
   const tx = useDoc<TransactionsFile>(at('tx'));
   const players = useDoc<PlayersFile>(at('players'));
@@ -34,7 +35,7 @@ export function useRecruitingState(): { season?: number; state?: RecruitingState
   const d2 = useDoc<RostersFile>(n === undefined ? null : `leagues/fbad2/S${n}/rosters.json`);
   const reserves = useDoc<ReservesFile>(n === undefined ? null : `leagues/fbad2/S${n}/reserves.json`);
   // Stable stand-ins for docs that don't exist yet: useAutosaveDoc resyncs whenever its data changes identity.
-  const emptyBoard = useMemo(() => (n === undefined ? undefined : emptyRecruiting(n)), [n]);
+  const emptyBoard = useMemo(() => (boardSeason === undefined ? undefined : emptyRecruiting(boardSeason)), [boardSeason]);
   const emptyTx = useMemo<TransactionsFile | undefined>(() => (n === undefined ? undefined : { league: 'fbajc', season: n, entries: [] }), [n]);
   const proIds = useMemo(
     () => (fba.data && d2.data ? proPlayerIds({ fba: fba.data, freeAgents: freeAgents.data ?? null, d2: d2.data, reserves: reserves.data ?? null }) : new Set<string>()),
@@ -44,16 +45,17 @@ export function useRecruitingState(): { season?: number; state?: RecruitingState
   const versions: Versions = {};
   if (n !== undefined) {
     const writable: [RecruitingDocKey, DocState<unknown>][] = [
-      ['recruiting', recruiting], ['rosters', rosters], ['tx', tx], ['players', players], ['calendar', calendar],
+      ['rosters', rosters], ['tx', tx], ['players', players], ['calendar', calendar],
     ];
     for (const [k, d] of writable) versions[recruitingDocPath(k, n)] = d.version;
+    if (boardSeason !== undefined) versions[boardPath(boardSeason)] = recruiting.version;
     versions['meta.json'] = meta.version;
   }
 
   const required: DocState<unknown>[] = [players, calendar, teams, fba, d2];
   const optional: DocState<unknown>[] = [recruiting, rosters, tx, prev, freeAgents, reserves];
   const error = meta.error ?? required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
-  if (n === undefined || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { season: n, versions, error };
+  if (n === undefined || boardSeason === undefined || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { season: n, versions, error };
   if (!rosters.data) return { season: n, versions, error, setup: { meta: meta.data!, prev: prev.data ?? null, proIds } };
   return {
     season: n,

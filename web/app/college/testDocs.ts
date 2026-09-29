@@ -1,4 +1,4 @@
-import type { RecruitingState } from '../../engine/college/state';
+import { boardPath, type RecruitingState } from '../../engine/college/state';
 import { collegeBaseState, collegePros, collegeS78Rosters } from '../../engine/college/testFixtures';
 
 const meta = (fbajc: number) => ({
@@ -7,7 +7,10 @@ const meta = (fbajc: number) => ({
   lastSeason: { fba: 78, fbad2: 78, fbajc: 78, fbawc: 78 },
 });
 
-/** Every document the recruiting page loads once the S79 college rosters exist. `recruiting: false` leaves the recruiting doc out (404). */
+/**
+ * Every document the recruiting page loads once the S79 college rosters exist. The board sits at its own path
+ * (S79 for the S80 class, S78 for the class that plays S79). `recruiting: false` leaves the board out (404).
+ */
 export function recruitingDocs(state: RecruitingState, options: { recruiting?: boolean } = {}): Record<string, unknown> {
   const { fba, d2 } = collegePros();
   const out: Record<string, unknown> = {
@@ -21,7 +24,7 @@ export function recruitingDocs(state: RecruitingState, options: { recruiting?: b
     'leagues/fba/S79/rosters.json': fba,
     'leagues/fbad2/S79/rosters.json': d2,
   };
-  if (options.recruiting !== false) out['leagues/fbajc/S79/recruiting.json'] = state.recruiting;
+  if (options.recruiting !== false) out[boardPath(state.recruiting.season)] = state.recruiting;
   return out;
 }
 
