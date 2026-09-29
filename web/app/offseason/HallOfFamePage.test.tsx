@@ -173,6 +173,12 @@ describe('HallOfFamePage', () => {
     expect(doc.nominees.map(n => n.name)).toEqual(['Ben Birch']);
   });
 
+  it('explains that the class needs nominees when there are none', async () => {
+    stubApi(docs(hof()));
+    renderPage('nominees');
+    expect(await screen.findByText(/The class needs nominees/)).toBeTruthy();
+  });
+
   it('disables induction with the calendar text before the step is current', async () => {
     const log = stubApi(docs(hof({ nominees: [card('Ann Ash')] }), calendarAt('retirement')));
     renderPage('nominees');

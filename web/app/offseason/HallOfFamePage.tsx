@@ -12,6 +12,9 @@ import '../pages/roster.css';
 
 type Tab = 'hall' | 'nominees';
 
+/** A nominee's identity for the induct ticks: the player id, or the name when the card isn't linked. */
+const cardKey = (card: HofCard): string => card.playerId ?? `name:${card.name.trim().toLowerCase()}`;
+
 const linesOf = (text: string): string[] => text.split('\n').map(l => l.trim()).filter(l => l !== '');
 
 function Card({ card, children }: { card: HofCard; children?: React.ReactNode }) {
@@ -37,7 +40,7 @@ export function HallOfFamePage() {
   const history = useHistory('fba');
   const saving = useSaving();
   const [picked, setPicked] = useState<string[]>([]);
-  const [inductees, setInductees] = useState<number[]>([]);
+  const [inductees, setInductees] = useState<string[]>([]);
   const [name, setName] = useState('');
   const [retiredSeason, setRetiredSeason] = useState('');
   const [actionError, setActionError] = useState('');
@@ -103,6 +106,7 @@ export function HallOfFamePage() {
     <div>
       <h2>Nominees</h2>
       <p>{doc.nominees.length} of {NOMINEE_CAP}</p>
+      {doc.nominees.length === 0 && <p className="muted">The class needs nominees: add one (from the candidates or by name) before inducting.</p>}
       <div className="hof-grid">
         {doc.nominees.map((card, i) => (
           <Card key={`${i}${card.name}${card.lines.join('\n')}`} card={card}>
@@ -116,7 +120,7 @@ export function HallOfFamePage() {
               }}
             />
             <p>
-              <label><input type="checkbox" aria-label={`Induct ${card.name}`} checked={inductees.includes(i)} onChange={() => toggle(inductees, setInductees, i)} /> Induct</label>{' '}
+              <label><input type="checkbox" aria-label={`Induct ${card.name}`} checked={inductees.includes(cardKey(card))} onChange={() => toggle(inductees, setInductees, cardKey(card))} /> Induct</label>{' '}
               <button className="btn" disabled={saving} onClick={() => {
                 if (!window.confirm(`Remove ${card.name} from the nominees? They can't be nominated again.`)) return;
                 void run(removeNominee(doc, i)).then(ok => { if (ok) settle(); });
@@ -129,7 +133,7 @@ export function HallOfFamePage() {
         <button className="btn primary" disabled={saving || Boolean(problem)} onClick={() => {
           void run(induct(
             { season: n, calendar: cal, hof: doc, players: players.data!, tx: tx.data!, summaries },
-            inductees,
+            doc.nominees.flatMap((c, i) => (inductees.includes(cardKey(c)) ? [i] : [])),
             { batchId: newBatchId() },
           )).then(ok => { if (ok) settle(); });
         }}>Induct class</button>

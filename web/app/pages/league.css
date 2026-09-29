@@ -23,3 +23,4 @@
 .hof-card ul { margin: 6px 0 0; padding-left: 18px; }
 .hof-card textarea { width: 100%; box-sizing: border-box; margin-top: 6px; font: inherit; }
 .hof-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; }
+.lottery-list { list-style: none; padding-left: 0; }

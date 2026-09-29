@@ -24,10 +24,10 @@ const hofWrite = (hof: HallOfFameFile, label: string): WritesResult => ({ ok: tr
 
 /** Named retirees who aren't a nominee, an inductee or removed, newest retirement first, then by name. */
 export function candidates(hof: HallOfFameFile, players: PlayersFile): Candidate[] {
-  const seen = new Set(known(hof).flatMap(k => (k.playerId === null ? [] : [k.playerId])));
+  const taken = known(hof);
   const out: Candidate[] = [];
   for (const p of Object.values(players.players)) {
-    if (!p.retired || p.name === null || seen.has(p.id)) continue;
+    if (!p.retired || p.name === null || taken.some(k => same(k, { name: p.name!, playerId: p.id }))) continue;
     out.push({ playerId: p.id, name: p.name, retired: p.retired });
   }
   return out.sort((a, b) => b.retired.season - a.retired.season || a.name.localeCompare(b.name));
@@ -39,7 +39,7 @@ export function candidates(hof: HallOfFameFile, players: PlayersFile): Candidate
  */
 export function prefillCard(c: Candidate, summaries: SummaryFile[]): HofCard {
   const { retired } = c;
-  const team = retired.league === 'fba' ? retired.teamId : `D2 ${retired.teamId ?? 'Reserves'}`;
+  const team = retired.league === 'fba' ? retired.teamId ?? '?' : `D2 ${retired.teamId ?? 'Reserves'}`;
   const lines = [`${team}: …-S${retired.season}`];
   for (const s of [...summaries].sort((a, b) => a.season - b.season)) {
     for (const a of s.awards ?? []) if (a.playerId === c.playerId) lines.push(`S${s.season} ${a.award}`);

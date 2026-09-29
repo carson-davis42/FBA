@@ -59,6 +59,16 @@ describe('candidates', () => {
     });
     expect(candidates(h, players()).map(c => c.playerId)).toEqual([pid(2), pid(1), pid(3)]);
   });
+  it('excludes retirees the duplicate check would refuse, matching null-id cards by name', () => {
+    const h = hof({
+      nominees: [card('  zed ZEPHYR ')],
+      classes: [{ season: 'S70', inductees: [card('Al Able')] }],
+      removed: [{ name: 'bo baker', playerId: null }],
+    });
+    const list = candidates(h, players());
+    expect(list.map(c => c.playerId)).toEqual([pid(4), pid(5), pid(6)]);
+    for (const c of list) expect(addNominees(h, [prefillCard(c, [])]).ok).toBe(true);
+  });
   it('carries the name and retired info, and skips unnamed and unretired players', () => {
     const list = candidates(hof(), players());
     expect(list.find(c => c.playerId === pid(3))).toEqual({ playerId: pid(3), name: 'Bo Baker', retired: retired(78, 'fbad2', null) });
@@ -89,6 +99,13 @@ describe('prefillCard', () => {
   });
   it('tolerates summaries with no awards or All-FBA teams', () => {
     expect(prefillCard(c(1), [summary(78), summary(79, { allFba: null })]).lines).toEqual(['DCB: …-S79']);
+  });
+});
+
+describe('prefillCard with a null FBA team', () => {
+  it('uses a question mark instead of null', () => {
+    const c = { playerId: pid(1), name: 'Zed Zephyr', retired: retired(79, 'fba', null) };
+    expect(prefillCard(c, []).lines[0]).toBe('?: …-S79');
   });
 });
 
