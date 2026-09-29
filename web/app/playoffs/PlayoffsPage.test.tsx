@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { lockSeeds } from '../../engine/playoffs/moves';
 import { fullD2State, fullFbaState, playPlayoffs, regularSeasonDone } from '../../engine/playoffs/testFixtures';
 import type { SeasonResult } from '../../engine/season/state';
+import { finishSeason } from '../../engine/season/wrapUp';
 import { stubApi } from '../d2/testDocs';
 import { seasonDocs } from '../season/testDocs';
 import { PlayoffsPage } from './PlayoffsPage';
@@ -82,5 +83,61 @@ describe('PlayoffsPage', () => {
     renderAt('/league/fba/playoffs');
     expect((await screen.findByRole('link', { name: 'Awards step ▸' })).getAttribute('href')).toBe('/league/fba/awards');
     expect(screen.queryByRole('button', { name: 'Lock seeds' })).toBeNull();
+  });
+
+  it('finishes the D2 season as one batch that clears Undo, then says so', async () => {
+    const done = playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
+    const log = stubApi(seasonDocs(done));
+    renderAt('/league/fbad2/playoffs');
+    fireEvent.click(await screen.findByRole('button', { name: 'Finish S79 D2 season ▸' }));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    expect(log.batches[0]).toMatchObject({ label: 'Finish S79 D2 season', resetUndo: true });
+    expect(log.batches[0].writes.map(w => w.path)).toEqual([
+      'leagues/fbad2/S79/summary.json', 'leagues/fbad2/S79/schedule.json', 'leagues/fbad2/S79/results.json',
+      'leagues/fbad2/S79/playoffs.json', 'leagues/fbad2/S79/transactions.json', 'calendar.json',
+    ]);
+    expect(log.batches[0].writes[0].baseVersion).toBeNull();
+    expect(await screen.findByText('The S79 D2 season is finished.')).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Finish S79 D2 season ▸' })).toBeNull();
+  });
+
+  it('offers Finish for the FBA once the Finals are over, but not before', async () => {
+    const seeded = ok(lockSeeds(regularSeasonDone(fullFbaState()))).state;
+    const done = playPlayoffs(seeded, 5);
+    stubApi(seasonDocs(done));
+    renderAt('/league/fba/playoffs');
+    expect(await screen.findByRole('button', { name: 'Finish S79 FBA season ▸' })).toBeTruthy();
+    cleanup();
+    stubApi(seasonDocs(playPlayoffs(seeded, 5, done.playoffs!.games.length - 1)));
+    renderAt('/league/fba/playoffs');
+    expect(await screen.findByRole('link', { name: 'Watch ▸' })).toBeTruthy();
+    expect(screen.queryByRole('button', { name: /^Finish S79/ })).toBeNull();
+  });
+
+  it('shows a failed save with Retry, and Retry saves', async () => {
+    const done = playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
+    const log = stubApi(seasonDocs(done));
+    const inner = globalThis.fetch;
+    let failNext = true;
+    vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
+      if (url === '/api/batch' && failNext) {
+        failNext = false;
+        return new Response(JSON.stringify({ error: 'disk full' }), { status: 500 });
+      }
+      return inner(url, init);
+    }));
+    renderAt('/league/fbad2/playoffs');
+    fireEvent.click(await screen.findByRole('button', { name: 'Finish S79 D2 season ▸' }));
+    expect(await screen.findByText(/Save failed: disk full/)).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+  });
+
+  it('shows a finished season as finished, with no Finish button', async () => {
+    const done = playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
+    stubApi(seasonDocs(ok(finishSeason(done, [], { batchId: 't' })).state));
+    renderAt('/league/fbad2/playoffs');
+    expect(await screen.findByText('The S79 D2 season is finished.')).toBeTruthy();
+    expect(screen.queryByRole('button', { name: /^Finish S79/ })).toBeNull();
   });
 });
