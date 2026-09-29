@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fbajcGateProblem } from '../../engine/college/recruiting';
+import { boardPath } from '../../engine/college/state';
 import { CALENDAR_STEP } from '../../engine/season/state';
 import { currentStepIndex, markCurrentDone, reopenLast, reopenProblem } from '../../engine/shared/calendar';
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
-import type { CalendarFile, RecruitingFile, SummaryFile } from '../../engine/shared/types';
+import type { CalendarFile, RecruitingFile, RostersFile, SummaryFile } from '../../engine/shared/types';
 import { putDoc, useDoc, useSaving } from '../api';
 import { toolTarget } from '../stepRoutes';
 import './pages.css';
@@ -13,7 +14,8 @@ export function CalendarPage() {
   const { data: cal, version, error } = useDoc<CalendarFile>('calendar.json');
   const fbaSummary = useDoc<SummaryFile>(cal ? `leagues/fba/S${cal.season}/summary.json` : null);
   const d2Summary = useDoc<SummaryFile>(cal ? `leagues/fbad2/S${cal.season}/summary.json` : null);
-  const recruiting = useDoc<RecruitingFile>(cal ? `leagues/fbajc/S${cal.season}/recruiting.json` : null);
+  const recruiting = useDoc<RecruitingFile>(cal ? boardPath(cal.season - 1) : null);
+  const collegeRosters = useDoc<RostersFile>(cal ? `leagues/fbajc/S${cal.season}/rosters.json` : null);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const saving = useSaving();
@@ -22,13 +24,15 @@ export function CalendarPage() {
 
   const i = currentStepIndex(cal);
   const tool = i >= 0 ? toolTarget(cal.steps[i]) : null;
-  // The FBAJC step waits until every recruit and portal player has committed (a missing recruiting doc means no gate).
+  // The FBAJC step waits until every recruit and portal player of the class playing this season has committed
+  // and no college roster has an open spot (a missing board or rosters doc means no gate).
   const atFbajc = i >= 0 && cal.steps[i].id === 'fbajc';
+  const known = (d: { data?: unknown; missing?: boolean }) => Boolean(d.data || d.missing);
   const gate = !atFbajc ? null
-    : recruiting.data ? fbajcGateProblem(recruiting.data, null)
-    : recruiting.missing ? null
-    : recruiting.error ? `Couldn't check recruiting: ${recruiting.error.message}`
-    : 'Checking recruiting…';
+    : recruiting.error && !recruiting.missing ? `Couldn't check recruiting: ${recruiting.error.message}`
+    : collegeRosters.error && !collegeRosters.missing ? `Couldn't check recruiting: ${collegeRosters.error.message}`
+    : !known(recruiting) || !known(collegeRosters) ? 'Checking recruiting…'
+    : fbajcGateProblem(recruiting.data ?? null, collegeRosters.data ?? null);
   const finished = new Set<string>();
   if (fbaSummary.data?.locked) finished.add(CALENDAR_STEP.fba);
   if (d2Summary.data?.locked) finished.add(CALENDAR_STEP.fbad2);
