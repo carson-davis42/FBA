@@ -22,4 +22,9 @@ describe('step routes', () => {
     expect(toolTarget(step('create-s80-class'))).toBe('/league/fbajc/recruiting?tab=class');
     expect(stepTarget(step('create-s81-class'))).toBe('/league/fbajc/recruiting?tab=class');
   });
+
+  it('opens the draft lottery page from its calendar step', () => {
+    expect(toolTarget(step('s80-fba-draft-lottery'))).toBe('/league/fba/lottery');
+    expect(stepTarget(step('s81-fba-draft-lottery'))).toBe('/league/fba/lottery');
+  });
 });
