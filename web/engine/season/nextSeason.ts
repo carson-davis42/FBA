@@ -2,7 +2,7 @@ import { TIERS } from '../playoffs/promotion';
 import { appendTx, type MoveContext } from '../roster/state';
 import { calendarFor } from '../shared/calendar';
 import type {
-  CalendarFile, D2DraftFile, D2PoolFile, RankingFile, FreeAgentsFile, MetaFile, PromotionLine, ReservesFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile,
+  CalendarFile, D2DraftFile, D2PoolFile, RankingFile, FreeAgentsFile, MetaFile, PromotionLine, RecruitingFile, ReservesFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile,
 } from '../shared/types';
 
 export const D2_LEAGUE_SIZE = 16;
@@ -58,6 +58,7 @@ export function nextSeasonPaths(n: number) {
       rosters: d2(n, 'rosters'), reserves: d2(n, 'reserves'), tx: d2(n, 'transactions'),
       ratings: d2(n, 'ratings'), pool: d2(n, 'pool'), draft: d2(n, 'draft'), summary: d2(n, 'summary'),
     },
+    fbajc: { recruiting: `leagues/fbajc/S${n}/recruiting.json` },
     next: {
       fbaRosters: fba(n + 1, 'rosters'), fbaFreeAgents: fba(n + 1, 'freeAgents'), fbaTx: fba(n + 1, 'transactions'),
       d2Rosters: d2(n + 1, 'rosters'), d2Reserves: d2(n + 1, 'reserves'), d2Tx: d2(n + 1, 'transactions'),
@@ -74,6 +75,8 @@ export interface NextSeasonInput {
     rosters: RostersFile; reserves: ReservesFile | null; tx: TransactionsFile;
     ratings: RankingFile | null; pool: D2PoolFile | null; draft: D2DraftFile | null; summary: SummaryFile | null;
   };
+  /** The recruiting board of the class created this season (null if none). */
+  fbajc: { recruiting: RecruitingFile | null };
   /** True when S{n+1} FBA or D2 rosters already exist. */
   nextStarted: boolean;
 }
@@ -111,6 +114,7 @@ export function nextSeasonDocs(input: NextSeasonInput, ctx: MoveContext): NextSe
   lock(p.fbad2.ratings, input.fbad2.ratings);
   lock(p.fbad2.pool, input.fbad2.pool);
   lock(p.fbad2.draft, input.fbad2.draft);
+  lock(p.fbajc.recruiting, input.fbajc.recruiting);
 
   const carry = (r: RostersFile): RostersFile => ({
     ...r, season: next, locked: false,

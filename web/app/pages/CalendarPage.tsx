@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { fbajcGateProblem } from '../../engine/college/recruiting';
 import { CALENDAR_STEP } from '../../engine/season/state';
 import { currentStepIndex, markCurrentDone, reopenLast, reopenProblem } from '../../engine/shared/calendar';
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
-import type { CalendarFile, SummaryFile } from '../../engine/shared/types';
+import type { CalendarFile, RecruitingFile, SummaryFile } from '../../engine/shared/types';
 import { putDoc, useDoc, useSaving } from '../api';
 import { toolTarget } from '../stepRoutes';
 import './pages.css';
@@ -12,6 +13,7 @@ export function CalendarPage() {
   const { data: cal, version, error } = useDoc<CalendarFile>('calendar.json');
   const fbaSummary = useDoc<SummaryFile>(cal ? `leagues/fba/S${cal.season}/summary.json` : null);
   const d2Summary = useDoc<SummaryFile>(cal ? `leagues/fbad2/S${cal.season}/summary.json` : null);
+  const recruiting = useDoc<RecruitingFile>(cal ? `leagues/fbajc/S${cal.season}/recruiting.json` : null);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const saving = useSaving();
@@ -20,6 +22,13 @@ export function CalendarPage() {
 
   const i = currentStepIndex(cal);
   const tool = i >= 0 ? toolTarget(cal.steps[i]) : null;
+  // The FBAJC step waits until every recruit and portal player has committed (a missing recruiting doc means no gate).
+  const atFbajc = i >= 0 && cal.steps[i].id === 'fbajc';
+  const gate = !atFbajc ? null
+    : recruiting.data ? fbajcGateProblem(recruiting.data)
+    : recruiting.missing ? null
+    : recruiting.error ? `Couldn't check recruiting: ${recruiting.error.message}`
+    : 'Checking recruiting…';
   const finished = new Set<string>();
   if (fbaSummary.data?.locked) finished.add(CALENDAR_STEP.fba);
   if (d2Summary.data?.locked) finished.add(CALENDAR_STEP.fbad2);
@@ -48,10 +57,11 @@ export function CalendarPage() {
           <Link className="btn primary" to={tool}>Open {cal.steps[i].label} ▸</Link>
         )}
         {i >= 0 && !tool && (
-          <button className="btn primary" disabled={busy || saving} onClick={() => save(markCurrentDone(cal))} aria-label={`Mark "${cal.steps[i].label}" done`}>
+          <button className="btn primary" disabled={busy || saving || gate !== null} onClick={() => save(markCurrentDone(cal))} aria-label={`Mark "${cal.steps[i].label}" done`}>
             ✓ Mark "{cal.steps[i].label}" done
           </button>
         )}
+        {gate && <span className="muted">{gate}</span>}
         {i < 0 && <Link className="btn primary" to="/next-season">Go to next season ▸</Link>}
         <button
           className="btn"

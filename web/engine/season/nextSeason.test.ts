@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { fullD2State } from '../playoffs/testFixtures';
 import { calendarFor } from '../shared/calendar';
 import { pathAgreementProblem, schemaForPath } from '../shared/schemaRegistry';
-import type { CalendarFile, PromotionLine, ReservesFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../shared/types';
+import type { CalendarFile, PromotionLine, RecruitingFile, ReservesFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../shared/types';
 import { applyPromotion, nextSeasonDocs, type NextSeasonInput } from './nextSeason';
 import { fbaSeasonState } from './testFixtures';
 
@@ -44,6 +44,7 @@ function ready(): NextSeasonInput {
       summary: { league: 'fbad2', season: 79, locked: true, host: null, champions: [], promotion: PROMOTION },
     },
     nextStarted: false,
+    fbajc: { recruiting: null },
   };
 }
 
@@ -54,6 +55,16 @@ const run = (input: NextSeasonInput) => {
 };
 
 describe('nextSeasonDocs', () => {
+  it('locks the S79 recruiting board when there is one', () => {
+    const recruiting: RecruitingFile = { league: 'fbajc', season: 79, classOf: 80, locked: false, classDraft: [], created: true, recruits: [], portal: [] };
+    const r = run({ ...ready(), fbajc: { recruiting } });
+    const paths = r.writes.map(w => w.path);
+    expect(paths.indexOf('leagues/fbajc/S79/recruiting.json')).toBe(paths.indexOf('leagues/fbad2/S79/draft.json') + 1);
+    expect(r.writes.find(w => w.path === 'leagues/fbajc/S79/recruiting.json')!.doc).toEqual({ ...recruiting, locked: true });
+    const done = run({ ...ready(), fbajc: { recruiting: { ...recruiting, locked: true } } });
+    expect(done.writes.some(w => w.path.endsWith('/recruiting.json'))).toBe(false);
+  });
+
   it('writes every row of the rollover table, as valid docs', () => {
     const input = ready();
     const r = run(input);
