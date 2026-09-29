@@ -31,4 +31,9 @@ describe('step routes', () => {
     expect(toolTarget(step('retirement'))).toBe('/retirement');
     expect(stepTarget(step('retirement'))).toBe('/retirement');
   });
+
+  it('opens the Hall of Fame nominees tab from its calendar step', () => {
+    expect(TOOL_STEPS['hall-of-fame-induction']).toBe('/league/fba/hall-of-fame?tab=nominees');
+    expect(stepTarget(step('hall-of-fame-induction'))).toBe('/league/fba/hall-of-fame?tab=nominees');
+  });
 });

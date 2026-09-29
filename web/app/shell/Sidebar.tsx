@@ -13,6 +13,7 @@ export function Sidebar() {
       <NavLink to="/offseason">Offseason tools</NavLink>
       <div className="section">Archive</div>
       <NavLink to="/history">History</NavLink>
+      <NavLink to="/league/fba/hall-of-fame">Hall of Fame</NavLink>
     </nav>
   );
 }

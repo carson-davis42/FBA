@@ -21,6 +21,7 @@ import { TradePage } from '../pages/TradePage';
 import { TransactionsPage } from '../pages/TransactionsPage';
 import { Placeholder } from '../components/Placeholder';
 import { RecruitingPage } from '../college/RecruitingPage';
+import { HallOfFamePage } from '../offseason/HallOfFamePage';
 import { LotteryPage } from '../offseason/LotteryPage';
 import { RetirementPage } from '../offseason/RetirementPage';
 import { Sidebar } from './Sidebar';
@@ -42,6 +43,7 @@ export function Layout() {
           <Route path="/league/fbajc/recruiting" element={<RecruitingPage />} />
           <Route path="/league/fba/lottery" element={<LotteryPage />} />
           <Route path="/retirement" element={<RetirementPage />} />
+          <Route path="/league/fba/hall-of-fame" element={<HallOfFamePage />} />
           <Route path="/league/fba/ratings-pause" element={<RatingPausePage />} />
           <Route path="/league/fba/all-star" element={<AllStarPage />} />
           <Route path="/league/:league/scores" element={<ScoresPage />} />
