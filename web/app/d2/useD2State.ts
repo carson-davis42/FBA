@@ -19,7 +19,7 @@ export function useD2State(): { state?: D2State; versions: Versions; error?: Err
   const players = useDoc<PlayersFile>(season === undefined ? null : 'players.json');
   const prevD2 = useDoc<RostersFile>(season === undefined ? null : `leagues/fbad2/S${season - 1}/rosters.json`);
   const prevRatings = useDoc<RankingFile>(season === undefined ? null : `leagues/fbad2/S${season - 1}/ratings.json`);
-  const freeAgents =useDoc<FreeAgentsFile>(season === undefined ? null : `leagues/fba/S${season}/freeAgents.json`);
+  const freeAgents = useDoc<FreeAgentsFile>(season === undefined ? null : `leagues/fba/S${season}/freeAgents.json`);
 
   const versions: Versions = {};
   if (season !== undefined) {

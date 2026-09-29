@@ -1,6 +1,7 @@
 import { POSITIONS } from '../roster/rules';
 import { appendTx, withTeam, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
+import { calendarProblem } from '../season/moves';
 import type { ClassDraftRow, PortalPlayer, Position, Prospect, RecruitingFile, RosterEntry } from '../shared/types';
 import { collegeHole } from './setup';
 import { collegeName, recruitingFail, schoolName, type RecruitingDocKey, type RecruitingResult, type RecruitingState } from './state';
@@ -54,6 +55,8 @@ export function createClass(state: RecruitingState, ctx: MoveContext): Recruitin
   const doc = state.recruiting;
   if (doc.locked) return recruitingFail([LOCKED]);
   if (doc.created) return recruitingFail(['The class has already been created']);
+  const stepProblem = calendarProblem(state.calendar, `create-s${doc.classOf}-class`, 'The class is created');
+  if (stepProblem) return recruitingFail([stepProblem]);
   if (!doc.classDraft.length) return recruitingFail(['Add at least one recruit first']);
   const blank = doc.classDraft.filter(r => !r.name.trim()).length;
   if (blank) return recruitingFail([blank === 1 ? '1 row needs a name' : `${blank} rows need a name`]);

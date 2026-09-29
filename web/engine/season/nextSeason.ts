@@ -1,3 +1,4 @@
+import { fbajcGateProblem } from '../college/recruiting';
 import { TIERS } from '../playoffs/promotion';
 import { appendTx, type MoveContext } from '../roster/state';
 import { calendarFor } from '../shared/calendar';
@@ -94,6 +95,8 @@ export function nextSeasonDocs(input: NextSeasonInput, ctx: MoveContext): NextSe
   if (input.meta.currentSeason !== n) problems.push(`The calendar is for S${n} but the current season is S${input.meta.currentSeason}`);
   if (!input.fba.summary?.locked) problems.push(`Finish the S${n} FBA season first`);
   if (!input.fbad2.summary?.locked) problems.push(`Finish the S${n} D2 season first`);
+  const gate = fbajcGateProblem(input.fbajc.recruiting);
+  if (gate) problems.push(gate);
   if (input.nextStarted) problems.push(`S${n + 1} has already started`);
   const promo = applyPromotion(input.d2Teams, input.fbad2.summary?.promotion ?? []);
   if (!promo.ok) problems.push(...promo.problems);

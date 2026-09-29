@@ -65,6 +65,17 @@ describe('nextSeasonDocs', () => {
     expect(done.writes.some(w => w.path.endsWith('/recruiting.json'))).toBe(false);
   });
 
+  it('refuses while a recruit or portal player is uncommitted, and rolls over once the board is fully committed', () => {
+    const recruiting: RecruitingFile = {
+      league: 'fbajc', season: 79, classOf: 80, locked: false, classDraft: [], created: true, portal: [],
+      recruits: [{ playerId: 'p01914', position: 'PG', classYear: 'Fr', rating: null, stars: null, projections: {}, committedTo: null }],
+    };
+    const bad = nextSeasonDocs({ ...ready(), fbajc: { recruiting } }, ctx);
+    expect(bad).toEqual({ ok: false, problems: ["1 recruit and 0 portal players haven't committed yet"] });
+    const committed = { ...recruiting, recruits: [{ ...recruiting.recruits[0], committedTo: 'BAY' }] };
+    expect(run({ ...ready(), fbajc: { recruiting: committed } }).ok).toBe(true);
+  });
+
   it('writes every row of the rollover table, as valid docs', () => {
     const input = ready();
     const r = run(input);

@@ -92,6 +92,20 @@ describe('createClass', () => {
   });
 });
 
+describe('createClass calendar gate', () => {
+  it('refuses unless Create S80 Class is the current step', () => {
+    const s = drafted([{ name: 'A B', position: 'PG' }]);
+    const steps = [
+      { id: 'free-agency', label: 'Free Agency/Offseason', kind: 'offseason' as const, league: null, sub: false, done: false },
+      ...s.calendar.steps.map(x => (x.id === 'create-s80-class' ? { ...x, done: false } : x)),
+    ];
+    expect(createClass({ ...s, calendar: { ...s.calendar, steps } }, ctx)).toEqual({
+      ok: false,
+      problems: ['The class is created at the Create S80 Class step (current step: Free Agency/Offseason)'],
+    });
+  });
+});
+
 describe('editRecruit and removeRecruit', () => {
   it('renames a recruit in players.json, or changes their position on the board', () => {
     const s = collegeClassState();
