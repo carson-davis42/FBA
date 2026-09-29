@@ -17,8 +17,10 @@ function usePlayoffsTarget(step: CalendarStep | null, season: number | undefined
 }
 
 function ChampionRows({ league, meta }: { league: LeagueId; meta: MetaFile | undefined }) {
-  const season = meta?.lastSeason[league];
-  const { data } = useDoc<SummaryFile>(season === undefined ? null : `leagues/${league}/S${season}/summary.json`);
+  const current = useDoc<SummaryFile>(meta ? `leagues/${league}/S${meta.currentSeason}/summary.json` : null);
+  const last = useDoc<SummaryFile>(meta ? `leagues/${league}/S${meta.lastSeason[league]}/summary.json` : null);
+  // The newest locked record: this season's once it is finished, else last season's.
+  const data = current.data?.locked ? current.data : last.data;
   if (!data) return null;
   if (!data.champions.length) {
     return <div className="champ-row"><span>{LEAGUE_LABEL[league]} S{data.season}</span><span className="muted">—</span></div>;
@@ -48,7 +50,7 @@ export function Home() {
   if (!cal) return <p className="muted">Loading…</p>;
 
   const title = !step ? `Season ${cal.season} complete` : step.kind === 'league' && step.league ? `Play ${LEAGUE_LABEL[step.league]} S${cal.season}` : step.label;
-  const target = playoffs ?? (step ? stepTarget(step) : '/calendar');
+  const target = playoffs ?? (step ? stepTarget(step) : '/next-season');
 
   return (
     <section>

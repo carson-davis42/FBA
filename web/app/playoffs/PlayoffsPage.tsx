@@ -13,6 +13,7 @@ import { TeamMark } from '../components/TeamMark';
 import { commitSeason } from '../season/commitSeason';
 import { useSeasonState } from '../season/useSeasonState';
 import { Bracket } from './Bracket';
+import { FinishSeasonCard } from './FinishSeasonCard';
 import '../pages/season.css';
 
 function SeedTables({ lg, state, seeds, teams }: { lg: SeasonLeague; state: SeasonState; seeds: PlayoffsFile['seeds']; teams: Map<string, Team> }) {
@@ -138,6 +139,7 @@ export function PlayoffsPage() {
               {' · '}{p.relegated.length ? `relegated ${p.relegated.map(name).join(', ')}` : 'no relegation'}
             </p>
           ))}
+          <FinishSeasonCard state={state} versions={versions} />
         </div>
       )}
       {next && nextSeries && (

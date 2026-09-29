@@ -262,3 +262,69 @@ describe('Storage versions', () => {
     expect((err as StorageError).message).toBe("leagues/fba/S78/summary.json is locked (finished) and can't be changed");
   });
 });
+
+describe('Storage resetUndo', () => {
+  const files = (dir: string, sub: string) => (existsSync(path.join(dir, sub)) ? readdirSync(path.join(dir, sub)) : []);
+
+  it('writes without a journal entry, then clears the journal and backups', async () => {
+    const { dir, storage } = fresh();
+    await storage.write('calendar.json', cal(false));
+    await storage.writeMany('Mark', [{ path: 'calendar.json', doc: cal(true) }]);
+    expect(files(dir, '.journal')).toHaveLength(1);
+    expect(files(dir, '.backups').length).toBeGreaterThan(0);
+    await storage.writeMany('Finish', [{ path: 'calendar.json', doc: cal(false) }], { resetUndo: true });
+    expect(await storage.read('calendar.json')).toEqual(cal(false));
+    expect(files(dir, '.journal')).toEqual([]);
+    expect(files(dir, '.backups')).toEqual([]);
+    expect(await storage.peekUndo()).toBeNull();
+    expect(await status(storage.undo())).toBe(404);
+  });
+
+  it('keeps the journal and backups when the batch fails', async () => {
+    const { dir, storage } = fresh();
+    await storage.write('calendar.json', cal(false));
+    await storage.writeMany('Mark', [{ path: 'calendar.json', doc: cal(true) }]);
+    const backups = files(dir, '.backups');
+    const failed = storage.writeMany('Finish', [{ path: 'calendar.json', doc: cal(false), baseVersion: '0000000000000000' }], { resetUndo: true });
+    expect(await status(failed)).toBe(409);
+    expect(files(dir, '.journal')).toHaveLength(1);
+    expect(files(dir, '.backups')).toEqual(backups);
+    expect(await storage.peekUndo()).toEqual({ label: 'Mark', blockedBy: null });
+  });
+
+  it('points at .backups, not a journal, when the rollback itself fails', async () => {
+    const { dir, storage } = fresh();
+    const roster = (rating: number) => ({ league: 'fba', season: 79, locked: false, teams: { BOS: [{ playerId: 'p00001', position: 'PG', rating, age: 28, points: 0 }] } });
+    const tx = { league: 'fba', season: 79, entries: [] };
+    await storage.write('leagues/fba/S79/rosters.json', roster(90));
+    const s = storage as unknown as { atomicWrite: (f: string, t: string) => Promise<void> };
+    const real = s.atomicWrite.bind(storage);
+    let n = 0;
+    // resetUndo writes no journal: call 1 is the first data write and succeeds, then every write after fails.
+    s.atomicWrite = async (f, t) => { n += 1; if (n >= 2) throw Object.assign(new Error('disk full'), { code: 'ENOSPC' }); return real(f, t); };
+    const errSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const err = await storage.writeMany('Finish', [
+      { path: 'leagues/fba/S79/rosters.json', doc: roster(70) },
+      { path: 'leagues/fba/S79/transactions.json', doc: tx },
+    ], { resetUndo: true }).catch((e: unknown) => e);
+    errSpy.mockRestore();
+    s.atomicWrite = real;
+    expect(err).toBeInstanceOf(StorageError);
+    expect((err as StorageError).status).toBe(500);
+    expect((err as StorageError).message).toContain('The previous copies are in .backups/');
+    expect((err as StorageError).message).not.toContain('Undo');
+    expect(files(dir, '.backups').length).toBeGreaterThan(0);
+    expect(await storage.peekUndo()).toBeNull();
+  });
+});
+
+describe('Storage history', () => {
+  it("returns every summary of a league in season order, and nothing for a league with none", async () => {
+    const { storage } = fresh();
+    const sum = (season: number) => ({ league: 'fba', season, locked: true, host: null, champions: [] });
+    for (const s of [79, 9, 78]) await storage.write(`leagues/fba/S${s}/summary.json`, sum(s));
+    await storage.write('leagues/fba/S80/rosters.json', { league: 'fba', season: 80, locked: false, teams: {} });
+    expect(await storage.history('fba')).toEqual([sum(9), sum(78), sum(79)]);
+    expect(await storage.history('fbad2')).toEqual([]);
+  });
+});

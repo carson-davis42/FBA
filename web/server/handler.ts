@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import type http from 'node:http';
 import path from 'node:path';
 import { z } from 'zod';
+import { isLeagueId } from '../engine/shared/leagues';
 import { resolveLogo } from '../engine/shared/logos';
 import { LogoManifest } from '../engine/shared/types';
 import { Storage, StorageError, type BatchWrite, type Version } from './storage';
@@ -49,6 +50,7 @@ const VERSION_TAG = /^"([0-9a-f]{16}|null)"$/;
 const BatchRequest = z.object({
   label: z.string().min(1).max(200),
   writes: z.array(z.object({ path: z.string().min(1), doc: z.unknown(), baseVersion: z.string().regex(VERSION).nullable() }).strict()).min(1).max(50),
+  resetUndo: z.boolean().optional(),
 }).strict();
 
 /** Reads and parses a JSON request body. On failure it sends the error response and returns undefined. */
@@ -136,7 +138,7 @@ export function createHandler(
         if (!parsed) return;
         const batch = BatchRequest.safeParse(parsed.value);
         if (!batch.success) return sendJson(res, 400, { error: 'Invalid batch request', issues: batch.error.issues });
-        const { batchId, versions } = await storage.writeMany(batch.data.label, batch.data.writes as BatchWrite[]);
+        const { batchId, versions } = await storage.writeMany(batch.data.label, batch.data.writes as BatchWrite[], { resetUndo: batch.data.resetUndo });
         return sendJson(res, 200, { ok: true, batchId, versions });
       }
 
@@ -149,6 +151,14 @@ export function createHandler(
         await readBody(req, maxBody);
         const { label, paths } = await storage.undo();
         return sendJson(res, 200, { ok: true, label, paths });
+      }
+
+      const history = pathname.match(/^\/api\/history\/([^/]+)$/);
+      if (history) {
+        if (req.method !== 'GET') return sendJson(res, 405, { error: 'Method not allowed' });
+        const league = history[1];
+        if (!isLeagueId(league)) return sendJson(res, 404, { error: `Unknown league: ${league}` });
+        return sendJson(res, 200, { league, seasons: await storage.history(league) });
       }
 
       const logo = pathname.match(/^\/logos\/([^/]+)\/(\d+)$/);

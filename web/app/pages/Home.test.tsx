@@ -51,4 +51,29 @@ describe('Home', () => {
       delete docs['leagues/fbad2/S79/results.json'];
     }
   });
+
+  it('continues to the next season once every step is done', async () => {
+    const cal = docs['calendar.json'];
+    docs['calendar.json'] = { season: 79, steps: [{ id: 'fbajc', label: 'FBAJC', kind: 'league', league: 'fbajc', sub: false, done: true }] };
+    try {
+      render(<MemoryRouter><Home /></MemoryRouter>);
+      expect(await screen.findByText('Season 79 complete')).toBeTruthy();
+      expect(screen.getByRole('link', { name: /continue/i }).getAttribute('href')).toBe('/next-season');
+    } finally {
+      docs['calendar.json'] = cal;
+    }
+  });
+
+  it("shows this season's champions once that season is finished", async () => {
+    docs['leagues/fba/S79/summary.json'] = { league: 'fba', season: 79, locked: true, host: null, champions: [{ title: 'FBA Champion', champion: 'Hawaii Volcanoes', runnerUp: 'Boston Bucks', score: '4–2' }] };
+    try {
+      render(<MemoryRouter><Home /></MemoryRouter>);
+      expect(await screen.findByText('Hawaii Volcanoes')).toBeTruthy();
+      expect(screen.getByText('FBA S79 · FBA Champion')).toBeTruthy();
+      expect(screen.queryByText('Boston Bucks')).toBeNull();
+      expect(await screen.findByText('Salzburg')).toBeTruthy();
+    } finally {
+      delete docs['leagues/fba/S79/summary.json'];
+    }
+  });
 });

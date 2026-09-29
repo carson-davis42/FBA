@@ -1,7 +1,8 @@
 // @vitest-environment jsdom
 import { act, cleanup, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ApiError, CONFLICT_MESSAGE, postBatch, putDoc, useDoc, useSaving } from './api';
+import { ApiError, CONFLICT_MESSAGE, postBatch, putDoc, useDoc, useHistory, useSaving } from './api';
+import { commitDocs } from './roster/commit';
 
 describe('useDoc', () => {
   let resolveB: (value: { n: number }) => void;
@@ -180,5 +181,30 @@ describe('versions and saving', () => {
     await postBatch('X', [{ path: 'a.json', doc: {}, baseVersion: null }]);
     expect(await got).toEqual({ paths: ['a.json'] });
     other.close();
+  });
+});
+
+describe('resetUndo passthrough and history', () => {
+  afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+
+  it('sends resetUndo only when asked, through postBatch and commitDocs', async () => {
+    const bodies: unknown[] = [];
+    vi.stubGlobal('fetch', vi.fn(async (_url: string, init?: RequestInit) => {
+      bodies.push(JSON.parse(String(init!.body)));
+      return new Response(JSON.stringify({ ok: true, batchId: '1', versions: {} }));
+    }));
+    const writes = [{ path: 'calendar.json', doc: {}, baseVersion: null }];
+    await postBatch('A', writes);
+    await postBatch('B', writes, { resetUndo: true });
+    await commitDocs('C', [{ path: 'calendar.json', doc: {} }], { 'calendar.json': null }, { resetUndo: true });
+    expect(bodies).toEqual([{ label: 'A', writes }, { label: 'B', writes, resetUndo: true }, { label: 'C', writes, resetUndo: true }]);
+  });
+
+  it('loads a league history', async () => {
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => (url === '/api/history/fba'
+      ? new Response(JSON.stringify({ league: 'fba', seasons: [{ season: 78 }] }))
+      : new Response('{}', { status: 404 }))));
+    const { result } = renderHook(() => useHistory('fba'));
+    await waitFor(() => expect(result.current.seasons).toEqual([{ season: 78 }]));
   });
 });

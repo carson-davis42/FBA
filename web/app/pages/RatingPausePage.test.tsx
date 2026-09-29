@@ -2,6 +2,7 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { fullFbaState, regularSeasonDone } from '../../engine/playoffs/testFixtures';
 import { startRatingPause } from '../../engine/season/ratingPause';
 import type { SeasonState } from '../../engine/season/state';
 import { fbaSeasonState } from '../../engine/season/testFixtures';
@@ -62,5 +63,12 @@ describe('RatingPausePage', () => {
       'leagues/fba/S79/ratingPause-4.json', 'leagues/fba/S79/rosters.json', 'leagues/fba/S79/schedule.json', 'leagues/fba/S79/transactions.json',
     ]);
     expect(log.batches[0].writes.find(w => w.path.endsWith('ratingPause-4.json'))!.baseVersion).toBe('0000000000000002');
+  });
+
+  it('continues to the playoffs once the last rating pause is done', async () => {
+    stubApi(seasonDocs(regularSeasonDone(fullFbaState())));
+    renderPage();
+    expect((await screen.findByRole('link', { name: 'Continue to playoffs ▸' })).getAttribute('href')).toBe('/league/fba/playoffs');
+    expect(screen.queryByRole('link', { name: 'Back to scores ▸' })).toBeNull();
   });
 });

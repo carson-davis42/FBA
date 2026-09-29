@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
+import type { SummaryFile } from '../engine/shared/types';
 
 export type Version = string | null;
 /** Loaded document versions, keyed by data path (e.g. `calendar.json`). */
@@ -161,10 +162,12 @@ export interface VersionedWrite {
   baseVersion: Version;
 }
 
-export function postBatch(label: string, writes: VersionedWrite[]): Promise<{ batchId: string; versions: Record<string, string> }> {
+export function postBatch(label: string, writes: VersionedWrite[], options: { resetUndo?: boolean } = {}): Promise<{ batchId: string; versions: Record<string, string> }> {
   return tracked(async () => {
     const res = await check(await fetch('/api/batch', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ label, writes }),
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(options.resetUndo ? { label, writes, resetUndo: true } : { label, writes }),
     }));
     const body = (await res.json()) as { batchId: string; versions?: Record<string, string> };
     notifySaved(writes.map(w => w.path));
@@ -185,4 +188,22 @@ export async function peekUndo(): Promise<{ available: boolean; label: string | 
   const res = await check(await fetch('/api/undo'));
   const body = (await res.json()) as { ok: boolean; available: boolean; label: string | null; blockedBy?: string | null };
   return { available: body.available, label: body.label, blockedBy: body.blockedBy ?? null };
+}
+
+/** Every saved season record of a league, oldest first (`GET /api/history/<league>`). */
+export function useHistory(league: string | null): { seasons?: SummaryFile[]; error?: Error } {
+  const [state, setState] = useState<{ league?: string; seasons?: SummaryFile[]; error?: Error }>({});
+  useEffect(() => {
+    if (!league) return;
+    let live = true;
+    fetch(`/api/history/${league}`)
+      .then(check)
+      .then(res => res.json() as Promise<{ seasons: SummaryFile[] }>)
+      .then(
+        body => { if (live) setState({ league, seasons: body.seasons }); },
+        (error: unknown) => { if (live) setState({ league, error: error as Error }); },
+      );
+    return () => { live = false; };
+  }, [league]);
+  return league !== null && state.league === league ? { seasons: state.seasons, error: state.error } : {};
 }

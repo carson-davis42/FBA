@@ -66,17 +66,13 @@ export const Champion = z.object({
   champion: z.string(),
   runnerUp: z.string().nullable(),
   score: z.string().nullable(),
+  /** Set on seasons finished in the app (2b-2c on); imported seasons may lack them. */
+  teamId: z.string().min(1).optional(),
+  runnerUpId: z.string().min(1).optional(),
+  /** The D2 league of this title; null for the FBA. */
+  group: z.string().min(1).nullable().optional(),
 }).strict();
 export type Champion = z.infer<typeof Champion>;
-
-export const SummaryFile = z.object({
-  league: LeagueId,
-  season: int,
-  locked: z.boolean(),
-  host: z.string().nullable(),
-  champions: z.array(Champion),
-}).strict();
-export type SummaryFile = z.infer<typeof SummaryFile>;
 
 const pts = int.nonnegative();
 
@@ -196,7 +192,7 @@ export type PickObligation = z.infer<typeof PickObligation>;
 export const PicksFile = z.object({ league: z.literal('fba'), obligations: z.array(PickObligation) }).strict();
 export type PicksFile = z.infer<typeof PicksFile>;
 
-export const TransactionType = z.enum(['signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards']);
+export const TransactionType = z.enum(['signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards', 'season']);
 export type TransactionType = z.infer<typeof TransactionType>;
 
 export const TransactionEntry = z.object({
@@ -208,7 +204,8 @@ export const TransactionEntry = z.object({
 }).strict();
 export type TransactionEntry = z.infer<typeof TransactionEntry>;
 
-export const TransactionsFile = z.object({ league: LeagueId, season: int, entries: z.array(TransactionEntry) }).strict();
+/** Locked by "Go to next season" once its season is over. */
+export const TransactionsFile = z.object({ league: LeagueId, season: int, locked: z.boolean().optional(), entries: z.array(TransactionEntry) }).strict();
 export type TransactionsFile = z.infer<typeof TransactionsFile>;
 
 const d2Rating = int.min(1).max(99);
@@ -395,11 +392,14 @@ export type PlayoffGame = z.infer<typeof PlayoffGame>;
 export const PromotionLine = z.object({ league: z.string().min(1), promoted: z.array(teamRef), relegated: z.array(teamRef) }).strict();
 export type PromotionLine = z.infer<typeof PromotionLine>;
 
+export const PlayoffSeed = z.object({ group: z.string().min(1), teams: z.array(teamRef).length(8), notes: z.array(z.string()) }).strict();
+export type PlayoffSeed = z.infer<typeof PlayoffSeed>;
+
 export const PlayoffsFile = z.object({
   league: seasonLeague,
   season: int,
   locked: z.boolean(),
-  seeds: z.array(z.object({ group: z.string().min(1), teams: z.array(teamRef).length(8), notes: z.array(z.string()) }).strict()),
+  seeds: z.array(PlayoffSeed),
   series: z.array(PlayoffSeries),
   /** The Java rotation: unfinished series with both teams known, front first. */
   queue: z.array(z.string().min(1)),
@@ -460,13 +460,18 @@ export const AllFbaSlot = z.object({
 }).strict();
 export type AllFbaSlot = z.infer<typeof AllFbaSlot>;
 
+export const AwardEntry = z.object({ award: AwardId, playerId: z.string().min(1), teamId: z.string().min(1) }).strict();
+export type AwardEntry = z.infer<typeof AwardEntry>;
+
+export const AllFbaTeams = z.object({ team1: z.array(AllFbaSlot).length(5), team2: z.array(AllFbaSlot).length(5) }).strict();
+
 export const AwardsFile = z.object({
   league: seasonLeague,
   season: int,
   locked: z.boolean(),
-  awards: z.array(z.object({ award: AwardId, playerId: z.string().min(1), teamId: z.string().min(1) }).strict()),
+  awards: z.array(AwardEntry),
   /** FBA only. */
-  allFba: z.object({ team1: z.array(AllFbaSlot).length(5), team2: z.array(AllFbaSlot).length(5) }).strict().nullable(),
+  allFba: AllFbaTeams.nullable(),
 }).strict().superRefine((doc, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const ids = doc.awards.map(a => a.award);
@@ -489,3 +494,87 @@ export const AwardsFile = z.object({
   }
 });
 export type AwardsFile = z.infer<typeof AwardsFile>;
+
+/** Regular-season or playoff sums for one player; the defense fields add up the box lines that carry them (games from 2b-2b on). */
+export const SeasonTotals = z.object({ g: pts, pts, def: pts, stops: pts, allowed: pts, exp: pts }).strict();
+export type SeasonTotals = z.infer<typeof SeasonTotals>;
+
+/** One team stint (teamId and stint set), or a traded player's season total (both null). */
+export const SummaryPlayerLine = z.object({
+  playerId,
+  teamId: z.string().min(1).nullable(),
+  stint: int.positive().nullable(),
+  position: Position,
+  ratingStart: int.nullable(),
+  ratingEnd: int.nullable(),
+  rs: SeasonTotals,
+  /** null when the player had no playoff games on this line. */
+  po: SeasonTotals.nullable(),
+}).strict();
+export type SummaryPlayerLine = z.infer<typeof SummaryPlayerLine>;
+
+export const SummaryStanding = z.object({
+  teamId: teamRef,
+  name: z.string().min(1),
+  /** The conference (FBA) or league (D2) that season. */
+  group: z.string().min(1),
+  /** Place within the group. */
+  rank: int.positive(),
+  w: pts,
+  l: pts,
+  confW: pts,
+  confL: pts,
+  diff: int,
+  marker: z.enum(['*', 'x', 'n']).nullable(),
+  seed: int.min(1).max(8).nullable(),
+  /** The last round the team played; null = missed the playoffs. */
+  playoff: z.object({ round: int.min(1).max(4), champion: z.boolean() }).strict().nullable(),
+}).strict();
+export type SummaryStanding = z.infer<typeof SummaryStanding>;
+
+export const SummaryAllStar = z.object({
+  allStars: idList,
+  youngStars: idList,
+  asgMvp: playerId.nullable(),
+  fivePoint: playerId.nullable(),
+  dunk: playerId.nullable(),
+}).strict();
+export type SummaryAllStar = z.infer<typeof SummaryAllStar>;
+
+/** The record of a finished season. The fields after `champions` are optional, so the imported S78 summaries stay valid. */
+export const SummaryFile = z.object({
+  league: LeagueId,
+  season: int,
+  locked: z.boolean(),
+  host: z.string().nullable(),
+  champions: z.array(Champion),
+  awards: z.array(AwardEntry).optional(),
+  /** FBA only. */
+  allFba: AllFbaTeams.nullable().optional(),
+  /** FBA only. */
+  allStar: SummaryAllStar.nullable().optional(),
+  standings: z.array(SummaryStanding).optional(),
+  bracket: z.object({ seeds: z.array(PlayoffSeed), series: z.array(PlayoffSeries) }).strict().nullable().optional(),
+  /** D2 only. */
+  promotion: z.array(PromotionLine).nullable().optional(),
+  players: z.array(SummaryPlayerLine).optional(),
+}).strict().superRefine((doc, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  if (doc.league !== 'fba' && (doc.allFba || doc.allStar)) issue('Only the FBA has All-FBA teams and an All-Star weekend');
+  if (doc.league !== 'fbad2' && doc.promotion) issue('Only the D2 has promotion and relegation');
+  const keys = new Set<string>();
+  const stints = new Map<string, number>();
+  const totals = new Set<string>();
+  for (const p of doc.players ?? []) {
+    if ((p.teamId === null) !== (p.stint === null)) issue(`${p.playerId}: a line has both a team and a stint, or neither`);
+    const key = `${p.playerId}#${p.stint ?? 'total'}`;
+    if (keys.has(key)) issue(`${p.playerId} has two lines for ${p.stint === null ? 'the season total' : `stint ${p.stint}`}`);
+    keys.add(key);
+    if (p.stint === null) totals.add(p.playerId);
+    else stints.set(p.playerId, (stints.get(p.playerId) ?? 0) + 1);
+  }
+  for (const id of totals) if ((stints.get(id) ?? 0) < 2) issue(`${id} has a season total but fewer than two team lines`);
+  const teams = (doc.standings ?? []).map(r => r.teamId);
+  if (new Set(teams).size !== teams.length) issue('A team is listed twice in the standings');
+});
+export type SummaryFile = z.infer<typeof SummaryFile>;

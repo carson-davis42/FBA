@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { POSITIONS } from '../../engine/roster/rules';
 import { finishRatingPause, MIN_PAUSE_GAMES, setPauseRating, startRatingPause } from '../../engine/season/ratingPause';
-import { blockingPause, playerName, seasonDocPath, type SeasonResult } from '../../engine/season/state';
+import { blockingPause, playerName, seasonDocPath, seasonOver, type SeasonResult } from '../../engine/season/state';
 import type { Position, RatingPauseFile } from '../../engine/shared/types';
 import { useSaving } from '../api';
 import { RatingInput } from '../components/RatingInput';
@@ -31,7 +31,10 @@ export function RatingPausePage() {
   if (!state) return <p className="muted">Loading…</p>;
   const title = <h1>S{state.season} rating adjustments</h1>;
   if (!due) {
-    return <section>{title}<p className="muted">No rating adjustment is due right now. <Link to="/league/fba/scores">Back to scores ▸</Link></p></section>;
+    const next = seasonOver(state)
+      ? <Link to="/league/fba/playoffs">Continue to playoffs ▸</Link>
+      : <Link to="/league/fba/scores">Back to scores ▸</Link>;
+    return <section>{title}<p className="muted">No rating adjustment is due right now. {next}</p></section>;
   }
 
   const run = async (r: SeasonResult) => {

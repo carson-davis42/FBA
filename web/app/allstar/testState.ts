@@ -29,7 +29,7 @@ export function allStarSeasonState(stage: Stage): SeasonState {
     tx: { league: 'fba', season: 79, entries: [] },
     schedule: { league: 'fba', season: 79, locked: false, games, pauses: [{ afterGame: 12, kind: 'allstar', done: false }] },
     results: { league: 'fba', season: 79, locked: false, games: games.map(g => ({ ...g, homePts: 50, awayPts: 40 })) },
-    ratingPause: null, allstar: null, playoffs: null, awards: null,
+    ratingPause: null, allstar: null, playoffs: null, awards: null, summary: null,
   };
   const at = ORDER.indexOf(stage);
   if (at === 0) return state;

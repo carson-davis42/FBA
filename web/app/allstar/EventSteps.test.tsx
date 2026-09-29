@@ -4,7 +4,10 @@ import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { stubApi } from '../d2/testDocs';
 import { seasonDocs } from '../season/testDocs';
+import type { TeamGame } from '../../engine/shared/types';
 import { AllStarPage } from './AllStarPage';
+import { StaticLines } from './DiceReveal';
+import { gameResultText, ysgLines } from './EventSteps';
 import { allStarSeasonState, type Stage } from './testState';
 
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
@@ -101,5 +104,21 @@ describe('All-Star events', () => {
     fireEvent.click(await screen.findByRole('button', { name: 'Finish All-Star weekend' }));
     await waitFor(() => expect(log2.batches).toHaveLength(1));
     expect(log2.batches[0].writes.map(w => w.path)).toEqual(['leagues/fba/S79/allstar.json', 'leagues/fba/S79/schedule.json']);
+  });
+
+  it('reads the Young-Star finals and champions without repeated prefixes (B6)', () => {
+    const doc = allStarSeasonState('complete').allstar!;
+    const { container } = render(<StaticLines lines={ysgLines(doc, id => id)} />);
+    const text = container.textContent ?? '';
+    expect(text).not.toMatch(/final · Final:/);
+    expect(text).not.toContain('Champions · ');
+    expect(text.match(/Final: /g)).toHaveLength(3);
+    expect(text).toContain('Champions: Team ');
+  });
+
+  it('says when a roll-off decided a game (B7)', () => {
+    const game: TeamGame = { teams: [0, 1], rolls: [], scores: [144, 144], rollOff: { ids: ['0', '1'], rounds: [] }, winner: 1 };
+    expect(gameResultText(game, t => `Team ${t + 1}`)).toBe('Team 2 144–144, won the roll-off');
+    expect(gameResultText({ ...game, scores: [150, 140], rollOff: null, winner: 0 }, t => `Team ${t + 1}`)).toBe('Team 1 150–140');
   });
 });

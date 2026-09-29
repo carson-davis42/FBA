@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { Link, MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { lockSeeds } from '../../engine/playoffs/moves';
 import { fullFbaState, playPlayoffs, regularSeasonDone } from '../../engine/playoffs/testFixtures';
@@ -47,5 +47,19 @@ describe('PlayoffGamePage', () => {
     renderAt('/league/fba/playoffs/game/3');
     expect(await screen.findByText("This isn't the next playoff game.")).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Next possession' })).toBeNull();
+  });
+
+  it('loads the game in the URL when it changes while the page is open', async () => {
+    stubApi(seasonDocs(seeded()));
+    render(
+      <MemoryRouter initialEntries={['/league/fba/playoffs/game/1']}>
+        <Link to="/league/fba/playoffs/game/3">go to 3</Link>
+        <Routes><Route path="/league/:league/playoffs/game/:n" element={<PlayoffGamePage />} /></Routes>
+      </MemoryRouter>,
+    );
+    expect(await screen.findByRole('button', { name: 'Sim to end' })).toBeTruthy();
+    fireEvent.click(screen.getByRole('link', { name: 'go to 3' }));
+    expect(await screen.findByText("This isn't the next playoff game.")).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Sim to end' })).toBeNull();
   });
 });

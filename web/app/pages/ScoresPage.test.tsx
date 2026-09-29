@@ -192,5 +192,7 @@ describe('ScoresPage', () => {
     renderAt('/league/fbad2/scores');
     expect(await screen.findByText('The regular season is complete.')).toBeTruthy();
     expect(screen.getByRole('link', { name: 'Playoffs ▸' }).getAttribute('href')).toBe('/league/fbad2/playoffs');
+    expect(screen.queryByRole('combobox', { name: 'Sim to' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Quick-sim next game' })).toBeNull();
   });
 });

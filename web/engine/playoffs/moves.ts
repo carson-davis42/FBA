@@ -2,10 +2,7 @@ import { leagueRefRating } from '../awards/defense';
 import { leagueStepProblem, toGameResult } from '../season/moves';
 import type { SimGame } from '../season/sim';
 import { PLAYOFF_SEEDS, records, SEASON_LENGTH, standings, type Standings } from '../season/standings';
-import {
-  CALENDAR_STEP, PAUSE_LABEL, seasonFail, seasonOver, type SeasonDocKey, type SeasonResult, type SeasonState,
-} from '../season/state';
-import { markStepDone } from '../shared/calendar';
+import { PAUSE_LABEL, seasonFail, seasonOver, type SeasonResult, type SeasonState } from '../season/state';
 import type { PlayoffGame, PlayoffsFile } from '../shared/types';
 import { advance, buildBracket, finalId, FINALS, hostOf } from './bracket';
 import { promotion } from './promotion';
@@ -80,7 +77,7 @@ function outcomeOf(state: SeasonState, pf: PlayoffsFile): PlayoffsFile['outcome'
   return { champions, promotion: promotion(order, Object.fromEntries(champions.map(c => [c.group!, c.teamId]))) };
 }
 
-/** Saves a watched playoff game, which must be the front of the rotation. The last final marks the calendar step done. */
+/** Saves a watched playoff game, which must be the front of the rotation. The last final sets the outcome. */
 export function recordPlayoffGame(state: SeasonState, sim: SimGame): SeasonResult {
   const step = leagueStepProblem(state.calendar, state.league);
   if (step) return seasonFail([step]);
@@ -102,17 +99,12 @@ export function recordPlayoffGame(state: SeasonState, sim: SimGame): SeasonResul
   const moved = advance(pf, next.seriesId, winner, better);
   let playoffs: PlayoffsFile = { ...pf, series: moved.series, queue: moved.queue, games: [...pf.games, game] };
   const outcome = outcomeOf(state, playoffs);
-  const changed: SeasonDocKey[] = ['playoffs'];
-  let calendar = state.calendar;
-  if (outcome) {
-    playoffs = { ...playoffs, outcome };
-    calendar = markStepDone(calendar, CALENDAR_STEP[state.league]);
-    changed.push('calendar');
-  }
+  if (outcome) playoffs = { ...playoffs, outcome };
+  // The league's calendar step stays current until "Finish S{n} season" (engine/season/wrapUp.ts).
   return {
     ok: true,
-    state: { ...state, playoffs, calendar },
-    changed,
+    state: { ...state, playoffs },
+    changed: ['playoffs'],
     label: `Playoff game ${game.gameNo}: ${game.away} ${game.awayPts} @ ${game.home} ${game.homePts}`,
   };
 }

@@ -1,4 +1,4 @@
-import { mkdir, readdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, rename, rm, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { pathAgreementProblem, schemaForPath } from '../engine/shared/schemaRegistry';
@@ -21,6 +21,11 @@ export interface BatchWrite {
   doc: unknown;
   /** The version the caller loaded (null = the file must not exist yet). Omitted = unconditional write. */
   baseVersion?: Version;
+}
+
+export interface WriteOptions {
+  /** Write without a journal entry, then delete every journal entry and backup once all writes succeed. */
+  resetUndo?: boolean;
 }
 
 interface JournalFile {
@@ -129,7 +134,7 @@ export class Storage {
     });
   }
 
-  writeMany(label: string, writes: BatchWrite[]): Promise<{ batchId: string; versions: Record<string, string> }> {
+  writeMany(label: string, writes: BatchWrite[], options: WriteOptions = {}): Promise<{ batchId: string; versions: Record<string, string> }> {
     return this.serialize(async () => {
       const seen = new Set<string>();
       const prepared: { rel: string; file: string; text: string; before: string | null }[] = [];
@@ -145,7 +150,7 @@ export class Storage {
       if (conflicts.length) throw new StorageError(409, `Changed since they were loaded: ${conflicts.join(', ')}`, undefined, conflicts);
 
       const id = `${Date.now()}-${String(this.seq++).padStart(6, '0')}`;
-      await this.saveJournal({ id, label, files: prepared.map(p => ({ path: p.rel, before: p.before, after: p.text })) });
+      if (!options.resetUndo) await this.saveJournal({ id, label, files: prepared.map(p => ({ path: p.rel, before: p.before, after: p.text })) });
 
       const done: typeof prepared = [];
       try {
@@ -164,6 +169,10 @@ export class Storage {
             rollbackFailures.push(`${p.rel}: ${(re as Error).message}`);
           }
         }
+        if (rollbackFailures.length && options.resetUndo) {
+          console.error(`Batch "${label}" failed and could not be fully rolled back; the previous copies are in .backups/`, rollbackFailures);
+          throw new StorageError(500, `Save failed partway and could not be fully undone (${rollbackFailures.join('; ')}). The previous copies are in .backups/.`);
+        }
         if (rollbackFailures.length) {
           console.error(`Batch "${label}" failed and could not be fully rolled back; journal ${id} kept for recovery`, rollbackFailures);
           throw new StorageError(500, `Save failed partway and could not be fully undone (${rollbackFailures.join('; ')}). Use Undo last move to restore.`);
@@ -171,6 +180,7 @@ export class Storage {
         await unlink(this.journalPath(id)).catch(() => undefined);
         throw e;
       }
+      if (options.resetUndo) await this.clearUndo();
       return { batchId: id, versions: Object.fromEntries(prepared.map(p => [p.rel, versionOf(p.text)!])) };
     });
   }
@@ -208,6 +218,39 @@ export class Storage {
       }
       return null;
     });
+  }
+
+  /** Every leagues/<league>/S<n>/summary.json, ordered by n. */
+  async history(league: string): Promise<unknown[]> {
+    let names: string[];
+    try {
+      names = await readdir(path.join(this.dataDir, 'leagues', league));
+    } catch (e) {
+      if (isMissing(e)) return [];
+      throw e;
+    }
+    const seasons = names
+      .map(n => /^S([1-9]\d*)$/.exec(n))
+      .filter((m): m is RegExpExecArray => m !== null)
+      .map(m => Number(m[1]))
+      .sort((a, b) => a - b);
+    const out: unknown[] = [];
+    for (const n of seasons) {
+      const text = await this.readRaw(this.fullPath(`leagues/${league}/S${n}/summary.json`));
+      if (text !== null) out.push(JSON.parse(text));
+    }
+    return out;
+  }
+
+  /** Deletes the Undo journal and the backups. A failure is logged, not thrown: the batch itself has already been saved. */
+  private async clearUndo(): Promise<void> {
+    for (const dir of [this.journalDir(), path.join(this.dataDir, '.backups')]) {
+      try {
+        await rm(dir, { recursive: true, force: true, maxRetries: 5 });
+      } catch (e) {
+        console.error(`Couldn't clear ${dir}`, e);
+      }
+    }
   }
 
   /** The first path in the entry whose current text is neither its `after` nor its `before` (i.e. what would block undoing it), or null. */

@@ -360,3 +360,31 @@ describe('versions over HTTP', () => {
     expect(((await stale.json()) as { conflicts: string[] }).conflicts).toEqual([rel]);
   });
 });
+
+describe('history and resetUndo routes', () => {
+  const cal = (done: boolean) => ({ season: 79, steps: [{ id: 'a', label: 'A', kind: 'offseason', league: null, sub: false, done }] });
+  const post = (body: unknown) => fetch(`${base}/api/batch`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+
+  it('returns summaries in season order, 404s an unknown league and refuses other methods', async () => {
+    const sum = (season: number) => ({ league: 'fbajc', season, locked: true, host: null, champions: [] });
+    for (const s of [12, 3]) {
+      const tag = await ifMatch(base, `leagues/fbajc/S${s}/summary.json`);
+      const put = await fetch(`${base}/api/state/leagues/fbajc/S${s}/summary.json`, { method: 'PUT', headers: { 'If-Match': tag }, body: JSON.stringify(sum(s)) });
+      expect(put.status).toBe(200);
+    }
+    expect(await (await fetch(`${base}/api/history/fbajc`)).json()).toEqual({ league: 'fbajc', seasons: [sum(3), sum(12)] });
+    expect((await fetch(`${base}/api/history/nba`)).status).toBe(404);
+    expect((await fetch(`${base}/api/history/fbajc`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })).status).toBe(405);
+  });
+
+  it('clears Undo after a resetUndo batch, and rejects a non-boolean resetUndo', async () => {
+    const tag1 = await ifMatch(base, 'calendar.json');
+    expect((await post({ label: 'Mark R', writes: [{ path: 'calendar.json', doc: cal(true), baseVersion: unquote(tag1) }] })).status).toBe(200);
+    expect((await (await fetch(`${base}/api/undo`)).json()).available).toBe(true);
+    const tag2 = await ifMatch(base, 'calendar.json');
+    expect((await post({ label: 'Finish', writes: [{ path: 'calendar.json', doc: cal(false), baseVersion: unquote(tag2) }], resetUndo: true })).status).toBe(200);
+    expect(await (await fetch(`${base}/api/undo`)).json()).toEqual({ ok: true, available: false, label: null, blockedBy: null });
+    const tag3 = await ifMatch(base, 'calendar.json');
+    expect((await post({ label: 'X', writes: [{ path: 'calendar.json', doc: cal(true), baseVersion: unquote(tag3) }], resetUndo: 'yes' })).status).toBe(400);
+  });
+});

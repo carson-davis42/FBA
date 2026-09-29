@@ -15,4 +15,16 @@ describe('LeagueTabs', () => {
       '/league/fba/scores', '/league/fba/standings', '/league/fba/playoffs', '/league/fba/awards', '/league/fba/rankings', '/league/fba', '/league/fba/transactions',
     ]);
   });
+
+  it('scrolls the active tab into view (phone width)', () => {
+    const seen: Element[] = [];
+    const original = Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView = function (this: Element) { seen.push(this); };
+    try {
+      render(<MemoryRouter initialEntries={['/league/fba/rankings']}><LeagueTabs league="fba" /></MemoryRouter>);
+      expect(seen.map(e => e.textContent)).toEqual(['Rankings']);
+    } finally {
+      Element.prototype.scrollIntoView = original;
+    }
+  });
 });

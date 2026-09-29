@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { currentStepIndex, markCurrentDone, reopenLast } from '../../engine/shared/calendar';
+import { CALENDAR_STEP } from '../../engine/season/state';
+import { currentStepIndex, markCurrentDone, reopenLast, reopenProblem } from '../../engine/shared/calendar';
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
-import type { CalendarFile } from '../../engine/shared/types';
+import type { CalendarFile, SummaryFile } from '../../engine/shared/types';
 import { putDoc, useDoc, useSaving } from '../api';
 import { toolTarget } from '../stepRoutes';
 import './pages.css';
 
 export function CalendarPage() {
   const { data: cal, version, error } = useDoc<CalendarFile>('calendar.json');
+  const fbaSummary = useDoc<SummaryFile>(cal ? `leagues/fba/S${cal.season}/summary.json` : null);
+  const d2Summary = useDoc<SummaryFile>(cal ? `leagues/fbad2/S${cal.season}/summary.json` : null);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const saving = useSaving();
@@ -17,6 +20,14 @@ export function CalendarPage() {
 
   const i = currentStepIndex(cal);
   const tool = i >= 0 ? toolTarget(cal.steps[i]) : null;
+  const finished = new Set<string>();
+  if (fbaSummary.data?.locked) finished.add(CALENDAR_STEP.fba);
+  if (d2Summary.data?.locked) finished.add(CALENDAR_STEP.fbad2);
+  const reopenWhy = reopenProblem(cal, finished);
+  // Reopen stays off until both summaries are known (loaded, or confirmed missing with a 404).
+  const summaries = [fbaSummary, d2Summary];
+  const summariesKnown = summaries.every(d => d.data || d.missing);
+  const summaryError = summaries.find(d => d.error && !d.missing)?.error;
   const save = async (next: CalendarFile) => {
     setBusy(true);
     setSaveError(null);
@@ -41,9 +52,18 @@ export function CalendarPage() {
             ✓ Mark "{cal.steps[i].label}" done
           </button>
         )}
-        <button className="btn" disabled={busy || saving || i === 0} onClick={() => save(reopenLast(cal))} aria-label="Reopen previous step">
+        {i < 0 && <Link className="btn primary" to="/next-season">Go to next season ▸</Link>}
+        <button
+          className="btn"
+          disabled={busy || saving || i === 0 || !summariesKnown || reopenWhy !== null}
+          title={reopenWhy ?? undefined}
+          onClick={() => save(reopenLast(cal))}
+          aria-label="Reopen previous step"
+        >
           ↺ Reopen previous step
         </button>
+        {reopenWhy && <span className="muted">{reopenWhy}</span>}
+        {summaryError && <span className="error">Couldn't check whether S{cal.season} is finished: {summaryError.message}</span>}
       </div>
       {saveError && <p className="error">Save failed: {saveError}</p>}
       <p className="muted">Until each league and offseason tool is built, mark steps done here once you've handled them.</p>

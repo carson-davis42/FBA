@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, PlayoffsFile, RatingPauseFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, TransactionType, TransactionsFile } from './types';
+import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, D2RatingsFile, FreeAgentsFile, GameResult, LogoManifest, MetaFile, PickObligation, PicksFile, PlayoffsFile, RatingPauseFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -261,5 +261,56 @@ describe('AwardsFile', () => {
     const allFba = { team1: team(['a1', 'a2', 'a3', 'a4', 'a5']), team2: team(['a1', 'a2', 'b3', 'b4', 'b5']) };
     expect(AwardsFile.safeParse(fba({ allFba })).success).toBe(true);
     expect(AwardsFile.safeParse(fba({ locked: true, allFba })).success).toBe(false);
+  });
+});
+
+describe('SummaryFile season record', () => {
+  const totals = { g: 50, pts: 1100, def: 3000, stops: 1700, allowed: 2600, exp: 264100 };
+  const line = (over: Record<string, unknown> = {}) => ({
+    playerId: 'p00001', teamId: 'BOS', stint: 1, position: 'PG', ratingStart: 84, ratingEnd: 86, rs: totals, po: null, ...over,
+  });
+  const standing = (teamId: string) => ({
+    teamId, name: `${teamId} Club`, group: 'E', rank: 1, w: 60, l: 26, confW: 40, confL: 16, diff: -12, marker: '*', seed: 1, playoff: { round: 4, champion: true },
+  });
+  const record = (over: Record<string, unknown> = {}) => ({
+    league: 'fba', season: 79, locked: true, host: null,
+    champions: [{ title: 'FBA Champion', champion: 'Boston Bucks', runnerUp: 'Memphis Blues', score: '4–1', teamId: 'BOS', runnerUpId: 'MEM', group: null }],
+    awards: [{ award: 'MVP', playerId: 'p00001', teamId: 'BOS' }],
+    allFba: null,
+    allStar: { allStars: ['p00001'], youngStars: [], asgMvp: 'p00001', fivePoint: null, dunk: null },
+    standings: [standing('BOS'), standing('MEM')],
+    bracket: { seeds: [], series: [] },
+    promotion: null,
+    players: [line(), line({ stint: 2, teamId: 'MEM', po: totals }), line({ stint: null, teamId: null })],
+    ...over,
+  });
+
+  it('accepts a full S79 record and the bare S78 shape', () => {
+    expect(SummaryFile.safeParse(record()).success).toBe(true);
+    const s78 = { league: 'fba', season: 78, locked: true, host: null, champions: [{ title: 'FBA Champion', champion: 'Boston Bucks', runnerUp: 'Memphis Blues', score: '4-1' }] };
+    expect(SummaryFile.safeParse(s78).success).toBe(true);
+  });
+
+  it('keeps All-FBA and All-Star to the FBA, and promotion to the D2', () => {
+    expect(SummaryFile.safeParse(record({ league: 'fbad2' })).success).toBe(false);
+    expect(SummaryFile.safeParse(record({ league: 'fbad2', allStar: null })).success).toBe(true);
+    expect(SummaryFile.safeParse(record({ promotion: [{ league: 'WL', promoted: [], relegated: [] }] })).success).toBe(false);
+    expect(SummaryFile.safeParse(record({ league: 'fbad2', allStar: null, promotion: [{ league: 'WL', promoted: ['A', 'B'], relegated: [] }] })).success).toBe(true);
+  });
+
+  it('rejects duplicate stint lines, a total without two stints, a half-total line, and duplicate standings teams', () => {
+    expect(SummaryFile.safeParse(record({ players: [line(), line()] })).success).toBe(false);
+    expect(SummaryFile.safeParse(record({ players: [line(), line({ stint: null, teamId: null })] })).success).toBe(false);
+    expect(SummaryFile.safeParse(record({ players: [line({ stint: null })] })).success).toBe(false);
+    expect(SummaryFile.safeParse(record({ standings: [standing('BOS'), standing('BOS')] })).success).toBe(false);
+  });
+});
+
+describe('TransactionsFile lock and season entries', () => {
+  const entry = { seq: 1, batchId: 'b1', type: 'season', teams: [], lines: ['S79 FBA season finished'] };
+  it('accepts a season entry, with and without locked', () => {
+    expect(TransactionsFile.safeParse({ league: 'fba', season: 79, entries: [entry] }).success).toBe(true);
+    expect(TransactionsFile.safeParse({ league: 'fba', season: 79, locked: true, entries: [entry] }).success).toBe(true);
+    expect(TransactionsFile.safeParse({ league: 'fba', season: 79, locked: 'yes', entries: [] }).success).toBe(false);
   });
 });

@@ -37,6 +37,13 @@ export function teamGameLines(game: TeamGame, label: (team: number) => string, n
   return out;
 }
 
+/** "Team X 150–140", or "Team X 144–144, won the roll-off" when a roll-off decided the game. */
+export function gameResultText(game: TeamGame, label: (team: number) => string): string {
+  const side = game.teams.indexOf(game.winner);
+  const text = `${label(game.winner)} ${game.scores[side]}–${game.scores[1 - side]}`;
+  return game.rollOff ? `${text}, won the roll-off` : text;
+}
+
 /** Runs an event once (pre-rolled), saves it immediately, then reveals the saved result. */
 function useEvent(props: StepProps) {
   const [pending, setPending] = useState<Extract<AllStarResult, { ok: true }> | null>(null);
@@ -125,13 +132,18 @@ export function YsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
   );
 }
 
-function ysgLines(doc: NonNullable<StepProps['doc']>, name: (id: string) => string): RevealLine[] {
+export function ysgLines(doc: NonNullable<StepProps['doc']>, name: (id: string) => string): RevealLine[] {
   const ysg = doc.ysg!;
   const label = (t: number) => `Team ${name(doc.selections!.youngCaptains[t])}`;
   const games: [string, TeamGame][] = [['Semifinal 1', ysg.semis[0]], ['Semifinal 2', ysg.semis[1]], ['Final', ysg.final]];
   return [
-    ...games.flatMap(([title, g]) => teamGameLines(g, label, name, i => `${title} · round ${i + 1}`).map(l => ({ ...l, side: undefined, group: l.group === 'Final' || l.group === 'Roll-off' ? `${title} · ${l.group.toLowerCase()}` : l.group }))),
-    { group: 'Champions', text: `Champions: ${label(ysg.champion)}` },
+    ...games.flatMap(([title, g]) => teamGameLines(g, label, name, i => `${title} · round ${i + 1}`).map(l => ({
+      ...l,
+      side: undefined,
+      group: l.group === 'Final' || l.group === 'Roll-off' ? `${title} · ${l.group.toLowerCase()}` : l.group,
+      bare: l.group === 'Final' || undefined,
+    }))),
+    { group: 'Champions', text: `Champions: ${label(ysg.champion)}`, bare: true },
   ];
 }
 
@@ -179,7 +191,7 @@ export function WrapUp({ state, doc, list, saving, finished, onFinish }: StepPro
         <li>5pt contest: {name(doc.fivePoint.winner)}</li>
         <li>Dunk contest: {name(doc.dunk.winner)}</li>
         <li>Young-Star champions: Team {name(doc.selections!.youngCaptains[doc.ysg.champion])}</li>
-        <li>All-Star Game: Team {name(teams[g.winner][0])} {g.scores[g.winner]}–{g.scores[1 - g.winner]} · MVP {name(doc.asg.mvp)}</li>
+        <li>All-Star Game: {gameResultText(g, t => `Team ${name(teams[t][0])}`)} · MVP {name(doc.asg.mvp)}</li>
       </ul>
       {finished ? <p className="muted">The All-Star weekend is finished.</p> : (
         <button className="btn primary" disabled={saving} onClick={onFinish}>Finish All-Star weekend</button>
