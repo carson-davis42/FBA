@@ -7,6 +7,7 @@ import './history.css';
 const FEATURES: { to: string; title: string; text: string }[] = [
   { to: '/history/fba/championships', title: 'Championships', text: 'Every champion, runner-up and Finals MVP.' },
   { to: '/history/fba/teams', title: 'Teams', text: 'Every franchise: eras, logos and trophy case.' },
+  { to: '/history/fba/drafts', title: 'Drafts', text: 'Every draft board since S49.' },
   { to: '/history/fba/awards', title: 'Awards', text: 'The winners of each award, season by season.' },
   { to: '/history/fba/awards/players', title: 'Awards by player', text: 'Award counts for every player, sortable.' },
   { to: '/history/fba/leaders', title: 'Career leaders', text: 'Points, games and points per game.' },
@@ -21,7 +22,7 @@ export function HistoryHome() {
   const latest = seasons.reduce((m, s) => Math.max(m, s.season), 0);
   const ordered = [...seasons].sort((a, b) => b.season - a.season);
   const cards = latest > 0
-    ? [FEATURES[0], FEATURES[1], FEATURES[2], { to: `/history/fba/season/${latest}`, title: 'Seasons', text: 'Standings, playoffs and awards for any season.' }, ...FEATURES.slice(3)]
+    ? [FEATURES[0], FEATURES[1], FEATURES[2], FEATURES[3], { to: `/history/fba/season/${latest}`, title: 'Seasons', text: 'Standings, playoffs and awards for any season.' }, ...FEATURES.slice(4)]
     : FEATURES;
   return (
     <section className="stack">

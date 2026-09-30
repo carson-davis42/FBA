@@ -1,13 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { awardTotals, careerStats, liveCareer } from '../../engine/history/career';
 import { playerHonours } from '../../engine/history/honours';
-import type { AwardCountsFile, HallOfFameFile, PlayerBiosFile, PlayersFile } from '../../engine/shared/types';
+import type { AwardCountsFile, DraftHistoryFile, HallOfFameFile, PlayerBiosFile, PlayersFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
 import { Badge } from '../components/Badge';
 import { Hero } from '../components/Hero';
 import { TeamMark } from '../components/TeamMark';
 import { teamTheme } from '../components/teamColors';
 import { CareerSection, hasCareer } from './CareerSection';
+import { draftLine } from './DraftSeasonPage';
 import { SkippedWarning } from './PlayerLink';
 import { findTeam, TeamAbbr, useFbaTeams } from './useTeams';
 import './history.css';
@@ -22,16 +23,18 @@ export function PlayerHistoryPage() {
   const bios = useDoc<PlayerBiosFile>('leagues/fba/playerBios.json');
   const counts = useDoc<AwardCountsFile>('leagues/fba/awardCounts.json');
   const hall = useDoc<HallOfFameFile>('leagues/fba/hallOfFame.json');
+  const drafts = useDoc<DraftHistoryFile>('leagues/fba/draftHistory.json');
   const { settled, teams } = useFbaTeams();
   const failure = error ?? players.error ?? (bios.missing ? undefined : bios.error)
     ?? (counts.missing ? undefined : counts.error) ?? (hall.missing ? undefined : hall.error);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
-  if (!seasons || !players.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing) || (!hall.data && !hall.missing) || !settled) {
+  if (!seasons || !players.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing) || (!hall.data && !hall.missing) || (!drafts.data && !drafts.missing && !drafts.error) || !settled) {
     return <p className="muted">Loading…</p>;
   }
   const player = players.data.players[playerId];
   if (!player) return <p className="muted">Not found</p>;
 
+  const drafted = draftLine(drafts.data ?? null, playerId);
   const bio = bios.data?.bios.find(b => b.playerId === playerId) ?? null;
   const honours = playerHonours(seasons, playerId);
   const bySeason = new Map<number, string[]>();
@@ -76,6 +79,7 @@ export function PlayerHistoryPage() {
           </div>
         )}
       </Hero>
+      {drafted && <p className="muted">{drafted}</p>}
       <SkippedWarning errors={errors} />
       {!bio && !hasCareer(career) && !hasAwards && honours.length === 0 && stats.rows.length === 0 && <p className="muted">No history recorded</p>}
       <CareerSection career={career} born={bio ? bio.born : null} totals={totals} />

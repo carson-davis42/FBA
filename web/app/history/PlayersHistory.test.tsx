@@ -2,7 +2,7 @@
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { AwardCountsFile, PlayerBiosFile, PlayersFile, SummaryFile, SummaryPlayerLine } from '../../engine/shared/types';
+import type { AwardCountsFile, DraftHistoryFile, PlayerBiosFile, PlayersFile, SummaryFile, SummaryPlayerLine } from '../../engine/shared/types';
 import { PlayerHistoryPage } from './PlayerHistoryPage';
 import { PlayersHistoryPage } from './PlayersHistoryPage';
 
@@ -59,13 +59,14 @@ const s79: SummaryFile = {
   players: [line('SEA', 1, [50, 1000], [10, 300])],
 };
 
-function stub(opts: { bios?: PlayerBiosFile | null; seasons?: SummaryFile[]; counts?: AwardCountsFile } = {}) {
+function stub(opts: { bios?: PlayerBiosFile | null; seasons?: SummaryFile[]; counts?: AwardCountsFile; drafts?: DraftHistoryFile } = {}) {
   const b = 'bios' in opts ? opts.bios : bios;
   const seasons = opts.seasons ?? [s72, s71];
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
     if (url === '/api/history/fba') return new Response(JSON.stringify({ seasons, errors: [] }));
     const docs: Record<string, unknown> = { '/api/state/players.json': players };
     if (b) docs['/api/state/leagues/fba/playerBios.json'] = b;
+    if (opts.drafts) docs['/api/state/leagues/fba/draftHistory.json'] = opts.drafts;
     if (opts.counts) docs['/api/state/leagues/fba/awardCounts.json'] = opts.counts;
     if (url in docs) return new Response(JSON.stringify(docs[url]), { headers: { ETag: '"0000000000000001"' } });
     return new Response('{}', { status: 404 });
@@ -180,6 +181,15 @@ describe('PlayerHistoryPage', () => {
     cleanup();
     renderAt('/history/fba/players/p00002');
     expect(await screen.findByText('Born: FFL S1(-53)')).toBeTruthy();
+  });
+
+  it('shows the drafted line from the draft history', async () => {
+    const drafts: DraftHistoryFile = { drafts: [{ season: 78, kind: 'draft', picks: [
+      { pick: 1, teamId: 'SEA', teamName: 'Seattle', viaTeamId: null, name: 'Cameron Lučić', playerId: 'p00001', pos: 'PG', detail: null, college: null },
+    ] }] };
+    stub({ drafts });
+    renderAt('/history/fba/players/p00001');
+    expect(await screen.findByText('Drafted S78, #1 by Seattle')).toBeTruthy();
   });
 
   it('shows Not found for an unknown id', async () => {
