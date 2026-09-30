@@ -32,9 +32,12 @@ export function parseAwardsByPlayer(rows: string[][], bad: string[] = []): Award
     if (!key) throw new Error(`Awards by player tab: unknown column "${text}"`);
     columns.push({ col, key });
   }
+  // Below the table the tab repeats the counts as one alphabetical block per award, each headed "MVP(S1) | | Updated S78".
+  const end = rows.findIndex((r, i) => i > 0 && r.some((cell, col) => col % 2 === 0 && /\(S\d+\)$/.test((cell ?? '').trim())));
+  const data = rows.slice(1, end < 0 ? rows.length : end);
   const out: AwardsByPlayerRow[] = [];
   for (const { col, key } of columns) {
-    for (const r of rows.slice(1)) {
+    for (const r of data) {
       const name = (r[col] ?? '').trim();
       if (name === '') continue;
       const text = (r[col + 1] ?? '').trim();

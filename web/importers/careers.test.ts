@@ -32,6 +32,12 @@ describe('parseAwardsByPlayer', () => {
     expect(rows).toEqual([{ key: 'MVP', name: 'Milo Machado', count: 7 }]);
   });
 
+  it('stops at the per-award blocks below the table', () => {
+    const rows = parseAwardsByPlayer([['MVP(S1)', ''], ['Milo Machado', '7.0'], ['', ''], ['MVP(S1)', '', 'Updated S78'], ['Milo Machado', '7.0'],
+      ['ASG(S48)', '', 'Updated S78'], ['Ameer Allen', '13.0']]);
+    expect(rows).toEqual([{ key: 'MVP', name: 'Milo Machado', count: 7 }]);
+  });
+
   it('throws on an unknown header', () => {
     expect(() => parseAwardsByPlayer([['Dunk(S3)', ''], ['A B', '1']])).toThrow('Awards by player tab: unknown column "Dunk(S3)"');
   });
