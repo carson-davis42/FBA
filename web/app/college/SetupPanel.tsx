@@ -14,7 +14,7 @@ export function SetupPanel({ season, setup, versions }: { season: number; setup:
   // Adjust Age builds the S{n} college rosters; until it has run, there is nothing to set up here.
   if (setup.calendar.steps.find(s => s.id === 'adjust-age')?.done === false) {
     return (
-      <div className="card">
+      <div className="card headed">
         <p>Run Adjust Age to build the S{season} college rosters.</p>
         <Link to="/offseason/adjust-age">Adjust Age</Link>
       </div>
@@ -46,7 +46,7 @@ export function SetupPanel({ season, setup, versions }: { season: number; setup:
   };
 
   return (
-    <div className="card">
+    <div className="card headed">
       <h3>Set up S{season} college rosters</h3>
       <p>
         The S{season} college rosters are built from S{season - 1}: class years move up, every Senior leaves, and players now in the pros

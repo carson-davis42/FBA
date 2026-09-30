@@ -7,8 +7,10 @@ import { useDoc, useSaving } from '../api';
 import { DraftBoard } from '../d2/DraftBoard';
 import { PoolBuilder } from '../d2/PoolBuilder';
 import { useD2State } from '../d2/useD2State';
+import { PageHeader } from '../components/PageHeader';
 import { commitDocs } from '../roster/commit';
 import './roster.css';
+import '../offseason/offseason.css';
 
 export function D2DraftPage() {
   const { state, versions, error } = useD2State();
@@ -21,9 +23,9 @@ export function D2DraftPage() {
 
   if (!state.ratings?.locked) {
     return (
-      <section>
-        <h1>S{state.season} D2 draft</h1>
-        <p className="muted">Finish D2 ratings first. <Link to="/league/fbad2/ratings">Go to the ratings reset ▸</Link></p>
+      <section className="stack">
+        <PageHeader kicker="FBAD2" title={`S${state.season} D2 draft`} />
+        <div className="card"><p className="muted">Finish D2 ratings first. <Link to="/league/fbad2/ratings">Go to the ratings reset ▸</Link></p></div>
       </section>
     );
   }
@@ -43,10 +45,12 @@ export function D2DraftPage() {
       }
     };
     return (
-      <section>
-        <h1>S{state.season} D2 pool</h1>
-        <p className="muted">Ranks every D2 player at each position by their new rating. You can reorder before locking.</p>
-        <button className="btn primary" disabled={saving} onClick={start}>Start pool</button>
+      <section className="stack">
+        <PageHeader kicker="FBAD2" title={`S${state.season} D2 pool`} />
+        <div className="card">
+          <p className="muted">Ranks every D2 player at each position by their new rating. You can reorder before locking.</p>
+          <button className="btn primary" disabled={saving} onClick={start}>Start pool</button>
+        </div>
         {actionError && <p className="error">{actionError}</p>}
       </section>
     );

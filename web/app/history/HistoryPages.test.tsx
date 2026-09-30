@@ -60,7 +60,7 @@ describe('History pages', () => {
     stub();
     renderAt(<ChampionshipsPage />);
     expect(await screen.findByRole('heading', { name: 'FBA Championships' })).toBeTruthy();
-    const rows = (await screen.findAllByRole('row')).slice(1);
+    const rows = await screen.findAllByRole('listitem');
     expect(rows).toHaveLength(2);
     expect(within(rows[0]).getByRole('link', { name: 'S48' }).getAttribute('href')).toBe('/history/fba/season/48');
     expect(rows[0].textContent).toContain('Boston');
@@ -74,24 +74,26 @@ describe('History pages', () => {
     stub();
     renderAt(<AwardsHistoryPage />);
     expect(await screen.findByRole('heading', { name: 'FBA Awards' })).toBeTruthy();
-    const rows = (await screen.findAllByRole('row')).slice(1);
-    expect(within(rows[0]).getByRole('link', { name: 'Cameron Lučić' }).getAttribute('href')).toBe('/history/fba/players/p00001');
-    expect(rows[0].textContent).toContain('Cameron Lučić (BOS)');
-    expect(rows[0].textContent).toContain('Sam Nobody (UTA)');
-    expect(rows[1].textContent).toContain('Ray Allen');
-    expect(rows[1].textContent).not.toContain('(?)');
-    expect(rows[1].textContent).not.toContain('Ray Allen (');
+    await screen.findAllByRole('listitem');
+    const winner = (name: string) => screen.getByRole('link', { name }).closest('li') as HTMLElement;
+    expect(screen.getByRole('link', { name: 'Cameron Lučić' }).getAttribute('href')).toBe('/history/fba/players/p00001');
+    expect(winner('Cameron Lučić').textContent).toContain('BOS');
+    expect(winner('Sam Nobody').textContent).toContain('UTA');
+    expect(winner('Ray Allen').textContent).toContain('S47');
+    expect(winner('Ray Allen').textContent).not.toContain('?');
+    expect(winner('Ray Allen').textContent).not.toContain('BOS');
+    expect(winner('Ray Allen').textContent).not.toContain('UTA');
   });
 
   it('renders the Championships and Awards pages with no seasons', async () => {
     stub([], false, []);
     renderAt(<ChampionshipsPage />);
     expect(await screen.findByRole('heading', { name: 'FBA Championships' })).toBeTruthy();
-    expect(screen.queryAllByRole('row').slice(1)).toHaveLength(0);
+    expect(screen.queryAllByRole('listitem')).toHaveLength(0);
     cleanup();
     renderAt(<AwardsHistoryPage />);
     expect(await screen.findByRole('heading', { name: 'FBA Awards' })).toBeTruthy();
-    expect(screen.queryAllByRole('row').slice(1)).toHaveLength(0);
+    expect(screen.queryAllByRole('listitem')).toHaveLength(0);
   });
 
   it('warns about seasons that could not be read', async () => {

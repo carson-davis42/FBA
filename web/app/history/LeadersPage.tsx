@@ -3,8 +3,9 @@ import { careerTotalsAll } from '../../engine/history/career';
 import { playerIndex } from '../../engine/history/views';
 import type { PlayerBiosFile, PlayersFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
+import { PageHeader } from '../components/PageHeader';
 import { PlayerLink, SkippedWarning } from './PlayerLink';
-import '../pages/season.css';
+import './history.css';
 
 const TOP = 25;
 const MIN_GAMES = 40;
@@ -32,15 +33,15 @@ export function LeadersPage() {
   const top = (list: Row[], key: 'pts' | 'gp' | 'ppg') =>
     [...list].sort((a, b) => b[key] - a[key] || a.name.localeCompare(b.name) || a.playerId.localeCompare(b.playerId)).slice(0, TOP);
   const table = (title: string, column: string, list: Row[], value: (r: Row) => string) => (
-    <div>
-      <h2>{title}</h2>
+    <section className="card headed leader-card">
+      <div className="card-head"><h2>{title}</h2></div>
       <div className="table-wrap">
-        <table className="standings">
-          <thead><tr><th className="n">Rank</th><th>Player</th><th className="n">{column}</th></tr></thead>
+        <table className="stat-table">
+          <thead><tr><th className="n rank">Rank</th><th>Player</th><th className="n">{column}</th></tr></thead>
           <tbody>
             {list.map((r, k) => (
               <tr key={r.playerId}>
-                <td className="n">{k + 1}</td>
+                <td className="n rank">{k + 1}</td>
                 <td><PlayerLink id={r.playerId} players={players.data as PlayersFile} /></td>
                 <td className="n">{value(r)}</td>
               </tr>
@@ -48,18 +49,20 @@ export function LeadersPage() {
           </tbody>
         </table>
       </div>
-    </div>
+    </section>
   );
   return (
-    <section>
-      <h1>Career leaders</h1>
+    <section className="stack">
+      <PageHeader kicker="FBA history" title="Career leaders" />
       <SkippedWarning errors={errors} />
       {rows.length === 0 ? <p className="muted">No seasons played in the app yet</p> : (
         <>
           <p className="muted">Since S79</p>
-          {table('Points', 'PTS', top(rows, 'pts'), r => String(r.pts))}
-          {table('Games', 'GP', top(rows, 'gp'), r => String(r.gp))}
-          {table(`Points per game (min ${MIN_GAMES} games)`, 'PPG', top(rows.filter(r => r.gp >= MIN_GAMES), 'ppg'), r => r.ppg.toFixed(1))}
+          <div className="card-grid leaders">
+            {table('Points', 'PTS', top(rows, 'pts'), r => String(r.pts))}
+            {table('Games', 'GP', top(rows, 'gp'), r => String(r.gp))}
+            {table(`Points per game (min ${MIN_GAMES} games)`, 'PPG', top(rows.filter(r => r.gp >= MIN_GAMES), 'ppg'), r => r.ppg.toFixed(1))}
+          </div>
         </>
       )}
     </section>

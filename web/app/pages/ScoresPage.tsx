@@ -9,8 +9,9 @@ import {
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { Team } from '../../engine/shared/types';
 import { useSaving, type Versions } from '../api';
-import { LeagueTabs } from '../components/LeagueTabs';
-import { TeamMark } from '../components/TeamMark';
+import { Badge } from '../components/Badge';
+import { PageHeader } from '../components/PageHeader';
+import { TeamName } from '../components/TeamName';
 import { commitSeason } from '../season/commitSeason';
 import { useSeasonState } from '../season/useSeasonState';
 import './season.css';
@@ -20,8 +21,7 @@ type Target = 'next' | 'day' | 'pause' | 'season' | number;
 function TeamLine({ team, rec, pts, won, season }: { team: Team; rec: string; pts: number | null; won: boolean; season: number }) {
   return (
     <div className={`team-line${won ? ' won' : ''}`}>
-      <TeamMark team={team} season={season} size={22} />
-      <span>{team.abbr}</span>
+      <TeamName team={team} season={season} variant="abbr" size={24} />
       <span className="rec">{rec}</span>
       <span className="pts">{pts ?? ''}</span>
     </div>
@@ -51,14 +51,9 @@ export function ScoresPage() {
     );
   }
   if (!state) return <p className="muted">Loading…</p>;
-  const header = (
-    <>
-      <h1>{LEAGUE_LABEL[lg]} scores · S{state.season}</h1>
-      <LeagueTabs league={lg} />
-    </>
-  );
+  const header = <PageHeader kicker={`${LEAGUE_LABEL[lg]} · S${state.season}`} title="Scores" />;
   if (!state.schedule || !state.results) {
-    return <section>{header}<p className="muted">No schedule yet. <Link to="/schedules">Make schedules ▸</Link></p></section>;
+    return <section className="stack">{header}<p className="muted">No schedule yet. <Link to="/schedules">Make schedules ▸</Link></p></section>;
   }
   const schedule = state.schedule;
   const days = gameDays(schedule.games);
@@ -136,16 +131,16 @@ export function ScoresPage() {
   };
 
   return (
-    <section>
+    <section className="stack">
       {header}
       {over ? (
-        <>
+        <div className="card">
           <p className="muted">The regular season is complete.</p>
           <p><Link className="btn primary" to={`/league/${lg}/playoffs`}>Playoffs ▸</Link></p>
-        </>
+        </div>
       ) : stepProblem && <p className="muted">{stepProblem}</p>}
       {pause && (
-        <div className="card pause-card">
+        <div className="card headed pause-card">
           <h3>Pause after game {pause.afterGame}: {PAUSE_LABEL[pause.kind]}</h3>
           {pause.kind === 'ratings' && <Link className="btn primary" to="/league/fba/ratings-pause">Adjust ratings ▸</Link>}
           {pause.kind === 'deadline' && (
@@ -159,7 +154,7 @@ export function ScoresPage() {
         </div>
       )}
       {!over && (
-        <div className="sim-controls">
+        <div className="card sim-controls">
           <button className="btn" disabled={blocked} onClick={() => sim('next')}>Quick-sim next game</button>
           <button className="btn" disabled={blocked} onClick={() => sim('day')}>Sim rest of day</button>
           <label>Sim to
@@ -184,8 +179,13 @@ export function ScoresPage() {
         <strong>Day {shownDay + 1} of {days.length}</strong>
         <button className="btn" aria-label="Next day" disabled={shownDay >= days.length - 1} onClick={() => setDay(shownDay + 1)}>›</button>
         {currentDay >= 0 && shownDay !== currentDay && <button className="btn" onClick={() => setDay(null)}>Today</button>}
+        <div className="chips day-chips" role="group" aria-label="Game days">
+          {days.map((_, d) => (
+            <button key={d} type="button" className={`chip${d === shownDay ? ' active' : ''}${d === currentDay ? ' today' : ''}`} aria-pressed={d === shownDay} aria-label={`Go to day ${d + 1}`} onClick={() => setDay(d)}>{d + 1}</button>
+          ))}
+        </div>
       </div>
-      <div className="game-cards">
+      <div className="card-grid game-cards">
         {(days[shownDay] ?? []).map(n => {
           const g = schedule.games[n - 1];
           const r = state.results!.games[n - 1];
@@ -197,8 +197,11 @@ export function ScoresPage() {
           const lines = r?.box ? [...r.box.home, ...r.box.away] : [];
           const top = lines.length ? lines.reduce((a, b) => (b.pts > a.pts ? b : a)) : null;
           return (
-            <div key={n} className={`game-card${isNext ? ' next' : ''}`}>
-              <div className="game-status">Game {n} · {status}</div>
+            <div key={n} className={`card game-card${isNext ? ' next' : ''}`}>
+              <div className="game-head">
+                <div className="game-status">Game {n} · {status}</div>
+                {r ? <Badge kind="final">final</Badge> : isNext ? <Badge kind="current">next</Badge> : null}
+              </div>
               <TeamLine team={away} rec={rec(away.teamId)} pts={r ? r.awayPts : null} won={!!r && r.awayPts > r.homePts} season={state.season} />
               <TeamLine team={home} rec={rec(home.teamId)} pts={r ? r.homePts : null} won={!!r && r.homePts > r.awayPts} season={state.season} />
               {top && <div className="muted">Top: {playerName(state, top.playerId)} {top.pts}</div>}

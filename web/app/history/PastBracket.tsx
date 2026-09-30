@@ -1,15 +1,14 @@
 import type { PastBracket as PastBracketDoc, PastSeries, PastSide, Team } from '../../engine/shared/types';
-import { TeamMark } from '../components/TeamMark';
-import { SideRow } from '../playoffs/Bracket';
+import { TeamName } from '../components/TeamName';
+import { ChampBadge, SideRow } from '../playoffs/Bracket';
 
 function Side({ side, wins, won, teams, season }: { side: PastSide | null; wins: number; won: boolean; teams: Team[]; season: number }) {
-  if (!side) return <SideRow seed={null} mark={<span className="logo" aria-hidden="true" />} text="BYE" wins={null} won={false} />;
+  if (!side) return <SideRow seed={null} name="BYE" wins={null} won={false} />;
   const t = teams.find(x => x.name === side.name);
   return (
     <SideRow
       seed={side.seed}
-      mark={t ? <TeamMark team={t} season={season} size={18} /> : <span className="logo" aria-hidden="true" />}
-      text={t ? `${t.abbr} ${t.name}` : side.name}
+      name={t ? <TeamName team={t} season={season} variant="abbr" size={20} /> : side.name}
       wins={wins}
       won={won}
     />
@@ -32,13 +31,18 @@ export function PastBracket({ bracket, teams, season }: { bracket: PastBracketDo
   const left = Array.from({ length: R - 1 }, (_, i) => pick(i + 1, 'left'));
   const right = Array.from({ length: R - 1 }, (_, i) => pick(R - 1 - i, 'right'));
   const centre = [byId.get(`R${R}-1`)].filter((s): s is PastSeries => !!s);
-  const columns = [...left, centre, ...right];
+  const columns = [
+    ...left.map(col => ({ col, dir: 'l' })),
+    { col: centre, dir: 'mid' },
+    ...right.map(col => ({ col, dir: 'r' })),
+  ];
   return (
     <div className="bracket">
-      {columns.map((col, k) => (
-        <div key={k} className="bracket-col">
+      {columns.map(({ col, dir }, k) => (
+        <div key={k} className={`bracket-col ${dir}`}>
           {col.map(s => (
-            <div key={s.id} className="series-box">
+            <div key={s.id} className={`series-box${dir === 'mid' ? ' finals' : ''}${s.winner ? ' decided' : ''}`}>
+              {dir === 'mid' && s.winner && <ChampBadge />}
               <Side side={s.home} wins={s.homeWins} won={s.winner === 'home'} teams={teams} season={season} />
               <Side side={s.away} wins={s.awayWins} won={s.winner === 'away'} teams={teams} season={season} />
             </div>

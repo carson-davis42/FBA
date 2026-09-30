@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mulberry32 } from '../../engine/d2/random';
@@ -24,6 +24,7 @@ describe('team page season view', () => {
       </MemoryRouter>,
     );
     expect(await screen.findByText('PPG')).toBeTruthy();
+    fireEvent.click(screen.getByRole('tab', { name: 'Schedule' }));
     const sched = await screen.findByRole('table', { name: 'Schedule & results' });
     const rows = within(sched).getAllByRole('row').slice(1);
     const teamGames = r.state.schedule!.games.filter(g => g.home === played.home || g.away === played.home);

@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { MemoryRouter, useNavigate, type NavigateFunction } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Layout } from './Layout';
 
@@ -30,14 +30,15 @@ describe('Layout', () => {
   it('shows the brand, league links, and the season pill', async () => {
     render(<MemoryRouter initialEntries={['/history']}><Layout /></MemoryRouter>);
     expect(screen.getByText('FBA Universe')).toBeTruthy();
-    for (const label of ['FBA', 'FBAD2', 'FBAJC', 'World Cup']) expect(screen.getByRole('link', { name: new RegExp(`^${label}$`) })).toBeTruthy();
+    const leagues = screen.getByRole('navigation', { name: 'Leagues' });
+    for (const label of ['FBA', 'D2', 'JC', 'WC']) expect(within(leagues).getByRole('link', { name: label })).toBeTruthy();
     expect(await screen.findByText('S79 · Free Agency/Offseason')).toBeTruthy();
     expect(await screen.findByRole('heading', { name: 'History' })).toBeTruthy();
   });
 
-  it('links the sidebar Hall of Fame to History and serves that route', async () => {
+  it('links the Hall of Fame to History and serves that route', async () => {
     render(<MemoryRouter initialEntries={['/history/fba/hall-of-fame']}><Layout /></MemoryRouter>);
-    expect(screen.getByRole('link', { name: 'Hall of Fame' }).getAttribute('href')).toBe('/history/fba/hall-of-fame');
+    expect(within(screen.getByRole('navigation', { name: 'Site sections' })).getByRole('link', { name: 'Hall of Fame' }).getAttribute('href')).toBe('/history/fba/hall-of-fame');
     expect(await screen.findByRole('heading', { name: 'Hall of Fame' })).toBeTruthy();
   });
 
@@ -46,5 +47,18 @@ describe('Layout', () => {
     expect(document.documentElement.dataset.theme).toBe('light');
     fireEvent.click(screen.getByRole('button', { name: /dark mode/i }));
     expect(document.documentElement.dataset.theme).toBe('dark');
+  });
+});
+
+describe('Layout page wrapper', () => {
+  it('keeps the page mounted across a param-only change and remounts it for another page', () => {
+    let go: NavigateFunction = () => {};
+    function Grab() { go = useNavigate(); return null; }
+    const { container } = render(<MemoryRouter initialEntries={['/history/fba/season/78']}><Grab /><Layout /></MemoryRouter>);
+    const first = container.querySelector('.page-in');
+    act(() => go('/history/fba/season/77'));
+    expect(container.querySelector('.page-in')).toBe(first);
+    act(() => go('/calendar'));
+    expect(container.querySelector('.page-in')).not.toBe(first);
   });
 });

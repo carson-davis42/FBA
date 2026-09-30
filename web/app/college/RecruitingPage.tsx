@@ -3,15 +3,15 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { boardPath, currentClassBoardSeason, recruitingWrites, type RecruitingResult } from '../../engine/college/state';
 import type { MetaFile, RecruitingFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
-import { LeagueTabs } from '../components/LeagueTabs';
+import { PageHeader } from '../components/PageHeader';
 import { commitDocs } from '../roster/commit';
 import { useAutosaveDoc } from '../useAutosaveDoc';
 import { BoardTab } from './BoardTab';
 import { ClassTab } from './ClassTab';
 import { SetupPanel } from './SetupPanel';
 import { useRecruitingState } from './useRecruitingState';
-import '../pages/league.css';
 import '../pages/roster.css';
+import './college.css';
 
 /**
  * FBAJC recruiting (/league/fbajc/recruiting?class=): Create Class and the recruiting board of one class.
@@ -43,9 +43,10 @@ export function RecruitingPage() {
   if (load.error) return <p className="error">Couldn't load recruiting: {load.error.message}</p>;
   if (n === undefined || classOf === undefined || (!load.state && !load.setup)) return <p className="muted">Loading…</p>;
   const head = (
-    <>
-      <div className="league-head">
-        <h1>FBAJC recruiting · Class of S{classOf}</h1>
+    <PageHeader
+      kicker="FBAJC"
+      title={`FBAJC recruiting · Class of S${classOf}`}
+      actions={(
         <label className="muted">
           Class{' '}
           <select aria-label="Class" value={classOf} onChange={e => setParams({ class: e.target.value })}>
@@ -53,11 +54,10 @@ export function RecruitingPage() {
             <option value={n + 1}>S{n + 1} class</option>
           </select>
         </label>
-      </div>
-      <LeagueTabs league="fbajc" />
-    </>
+      )}
+    />
   );
-  if (!load.state) return <section>{head}<SetupPanel season={n} setup={load.setup!} versions={load.versions} /></section>;
+  if (!load.state) return <section className="stack">{head}<SetupPanel season={n} setup={load.setup!} versions={load.versions} /></section>;
 
   const recruiting = autosave.doc ?? load.state.recruiting;
   const state = { ...load.state, recruiting };
@@ -79,13 +79,13 @@ export function RecruitingPage() {
   const wanted = params.get('tab');
   const tab = boardOnly ? 'board' : wanted === 'class' || wanted === 'board' ? wanted : recruiting.created ? 'board' : 'class';
   const tabLink = (id: 'board' | 'class', label: string) => (
-    <Link role="tab" aria-selected={tab === id} className={`tab${tab === id ? ' on' : ''}`} to={`/league/fbajc/recruiting?class=${classOf}&tab=${id}`}>{label}</Link>
+    <Link role="tab" aria-selected={tab === id} className={tab === id ? 'active' : ''} to={`/league/fbajc/recruiting?class=${classOf}&tab=${id}`}>{label}</Link>
   );
 
   return (
-    <section>
+    <section className="stack">
       {head}
-      <div className="tabs" role="tablist">{tabLink('board', 'Board')}{!boardOnly && tabLink('class', 'Class')}</div>
+      <div className="subnav" role="tablist">{tabLink('board', 'Board')}{!boardOnly && tabLink('class', 'Class')}</div>
       {recruiting.locked && <p className="muted">Recruiting for this class is finished.</p>}
       {autosave.error && <p className="error">{autosave.error}</p>}
       {actionError && <p className="error">{actionError}</p>}

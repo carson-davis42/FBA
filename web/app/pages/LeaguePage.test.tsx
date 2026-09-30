@@ -75,9 +75,9 @@ describe('LeaguePage with locked rosters', () => {
     }));
   });
 
-  it('keeps the Transactions link but hides Free agency and Trade', async () => {
+  it('hides Free agency and Trade', async () => {
     renderAt('/league/fba');
-    expect(await screen.findByRole('link', { name: 'Transactions' })).toBeTruthy();
+    await screen.findByRole('heading', { name: 'Teams' });
     expect(screen.queryByRole('link', { name: 'Trade' })).toBeNull();
     expect(screen.queryByRole('link', { name: 'Free agency' })).toBeNull();
   });

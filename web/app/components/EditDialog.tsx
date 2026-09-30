@@ -45,7 +45,7 @@ export function EditDialog({ state, league, teamId, playerId, onClose, versions,
   };
 
   return (
-    <section className="card sign-panel" aria-label={`Edit ${name}`}>
+    <section className="card headed sign-panel edit-dialog" aria-label={`Edit ${name}`}>
       <h3>Edit {name}</h3>
       <div className="form-row">
         <label>Rating <input type="number" value={rating} onChange={e => setRating(e.target.value)} /></label>

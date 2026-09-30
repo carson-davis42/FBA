@@ -80,9 +80,9 @@ describe('AwardsByPlayerPage', () => {
     renderAt(<AwardsByPlayerPage />);
     await screen.findByRole('link', { name: 'Ann Alpha' });
     const sorted = () => screen.getAllByRole('columnheader').filter(h => h.getAttribute('aria-sort') === 'descending').map(h => h.textContent);
-    expect(sorted()).toEqual(['MVP ▼']);
+    expect(sorted()).toEqual(['MVP▼']);
     fireEvent.click(screen.getByRole('button', { name: 'ASG' }));
-    expect(sorted()).toEqual(['ASG ▼']);
+    expect(sorted()).toEqual(['ASG▼']);
   });
 
   it('warns when the award counts baseline is missing', async () => {

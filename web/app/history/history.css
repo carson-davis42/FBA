@@ -1,0 +1,29 @@
+/* history: hub, championships timeline, award cards, leaders, plaques */
+.feature { display: grid; gap: var(--s1); text-decoration: none; color: var(--text); }
+.feature-title { font-family: var(--font-head); font-size: var(--fs-lg); text-transform: var(--head-transform); letter-spacing: 0.02em; }
+
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.timeline-row { display: flex; align-items: center; gap: var(--s4); flex-wrap: wrap; padding: var(--s3) var(--s4); background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: var(--r); box-shadow: var(--shadow-1); }
+.timeline-season { font-family: var(--font-head); font-size: var(--fs-display); line-height: 1; min-width: 2.2em; color: var(--text); text-decoration: none; }
+.timeline-season:hover { color: var(--accent); }
+.timeline-body { flex: 1 1 200px; min-width: 0; display: grid; gap: 2px; }
+.timeline-champ { font-family: var(--font-head); font-size: var(--fs-lg); font-weight: 700; }
+.timeline-row .badge { margin-left: auto; }
+
+.winner-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s1); }
+.winner-list.card { padding: var(--s3) var(--s4); }
+.winner-list li { display: flex; align-items: center; gap: var(--s2); flex-wrap: wrap; }
+.winner-list li > .chip { min-width: 3.4em; justify-content: center; }
+.winner-list .team-name { margin-left: auto; }
+
+.leaders { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.leader-card .table-wrap { border: 0; border-radius: 0; background: transparent; }
+.leader-card .stat-table tbody tr:first-child td { font-size: var(--fs-md); font-weight: 700; padding-top: var(--s3); padding-bottom: var(--s3); }
+.leader-card .stat-table tbody tr:first-child td:first-child { box-shadow: inset 4px 0 0 var(--gold); }
+
+.plaque { display: grid; gap: var(--s1); align-content: start; }
+.card.headed.plaque { border-top-color: var(--gold); }
+.plaque .plaque-name { margin: 0; font-family: var(--font-head); font-size: var(--fs-xl); line-height: 1.05; text-transform: var(--head-transform); letter-spacing: 0.02em; color: var(--text); }
+.plaque ul { margin: 0; padding-left: var(--s4); }
+
+.badge-row { display: flex; flex-wrap: wrap; gap: var(--s1); }

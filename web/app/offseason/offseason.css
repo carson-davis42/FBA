@@ -1,0 +1,54 @@
+/* Offseason tools: lottery and draft order lists, ratings inputs, HOF cards, D2 boards. Built on the shared tokens and classes. */
+.card.toolbar { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
+.card.toolbar > p { margin: 0; }
+.card > h2 { font-family: var(--font-head); font-size: var(--fs-lg); text-transform: var(--head-transform); letter-spacing: 0.02em; margin: 0 0 var(--s3); }
+.card > .table-wrap { margin-bottom: 0; }
+.card > p:last-child, .card > ul:last-child { margin-bottom: 0; }
+
+.order-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+.order-list li { display: grid; grid-template-columns: 2.5em minmax(0, 1fr) auto; gap: var(--s2); align-items: center; padding: var(--s2) var(--s3); background: var(--surface); border-left: 4px solid transparent; }
+.order-list li.now { border-left-color: var(--accent); background: var(--accent-soft); font-weight: 700; }
+.order-list li.done { color: var(--muted); }
+.order-num { font-family: var(--font-head); font-size: var(--fs-md); font-weight: 800; font-variant-numeric: tabular-nums; text-align: right; color: var(--muted); }
+.order-list li.now .order-num { color: var(--accent); }
+.pick-badges { display: inline-flex; gap: var(--s1); flex-wrap: wrap; justify-content: flex-end; }
+.odds { display: inline-flex; align-items: center; gap: var(--s2); justify-content: flex-end; min-width: 8em; }
+.odds-bar { display: inline-block; flex: 1 1 auto; height: 8px; min-width: 40px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.odds-bar i { display: block; height: 100%; background: var(--accent); }
+.clock-card { border-left: 4px solid var(--accent); background: var(--accent-soft); font-size: var(--fs-md); }
+.clock-card p { margin: 0; }
+
+.rating-input { width: 56px; font: inherit; font-weight: 800; text-align: right; border: 1px solid var(--border); border-radius: var(--r-sm); padding: 3px 6px; background: var(--surface); color: var(--text); }
+.rating-input:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.rating-input.changed { border-color: var(--accent); background: var(--accent-soft); }
+.ratings-table tr.edited .rating-input { border-color: var(--accent); background: var(--accent-soft); }
+.card input[type='search'], .card input[type='number'], .card input:not([type]), .card input[type='text'], .card textarea, .card select {
+  font: inherit; padding: 5px 8px; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); color: var(--text); max-width: 100%;
+}
+.card input[type='checkbox'] { accent-color: var(--accent); }
+.card .rating-input { width: 56px; padding: 3px 6px; }
+
+.hof-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--s3); margin-bottom: var(--s3); }
+.hof-grid > * { min-width: 0; }
+.hof-card { border: 1px solid var(--border); border-top: 3px solid var(--gold); border-radius: var(--r); padding: var(--s3); background: var(--surface); box-shadow: var(--shadow-1); }
+.hof-card h3 { margin: 0 0 var(--s1); font-family: var(--font-head); font-size: var(--fs-lg); text-transform: var(--head-transform); }
+.hof-card textarea { width: 100%; box-sizing: border-box; }
+.hof-form { display: flex; flex-wrap: wrap; gap: var(--s3); align-items: flex-end; }
+.hof-form label { font-size: var(--fs-sm); font-weight: 600; color: var(--muted); }
+.plain-list { margin: 0; padding-left: var(--s4); display: grid; gap: var(--s1); }
+.plain-list.tight { list-style: none; padding-left: 0; }
+.plain-list li .btn { margin-left: var(--s1); }
+.stat-table tr.now td { font-weight: 700; }
+.stat-table tr.now td:first-child { box-shadow: inset 4px 0 0 var(--accent); }
+
+/* D2 pool and draft boards */
+.subnav.inline { position: static; top: auto; border-bottom: 0; background: none; padding: 0; overflow-x: auto; max-width: 100%; }
+.pool-list.card { padding: var(--s2); overflow-x: auto; }
+.pool-list li.tie { background: var(--accent-soft); }
+.pool-list li.bumped { box-shadow: inset 3px 0 0 var(--accent); }
+.pool-list li[draggable='true'] { cursor: grab; }
+.pool-list li.cutoff-row { border-bottom-color: var(--accent); }
+.pick-order li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); }
+.pick-order li.now { box-shadow: inset 4px 0 0 var(--accent); border-radius: 0; }
+.pick-order .rank { font-family: var(--font-head); font-weight: 800; min-width: 2.2em; color: var(--muted); }
+.pick-order .chip { margin: 0; }

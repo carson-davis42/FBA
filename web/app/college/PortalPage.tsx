@@ -6,12 +6,12 @@ import { groupLabel } from '../../engine/shared/leagues';
 import { POSITIONS } from '../../engine/roster/rules';
 import type { MetaFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
-import { LeagueTabs } from '../components/LeagueTabs';
+import { PageHeader } from '../components/PageHeader';
 import { commitDocs, newBatchId } from '../roster/commit';
 import { useRecruitingState } from './useRecruitingState';
-import '../pages/league.css';
 import '../pages/roster.css';
 import './college.css';
+import '../offseason/offseason.css';
 
 /**
  * The FBAJC transfer portal (/league/fbajc/portal): put returning players (So/Jr/Sr) in the portal, and take them back out.
@@ -29,16 +29,11 @@ export function PortalPage() {
   const [position, setPosition] = useState('');
   const [error, setError] = useState('');
 
-  const head = (
-    <>
-      <div className="league-head"><h1>FBAJC transfer portal</h1></div>
-      <LeagueTabs league="fbajc" />
-    </>
-  );
+  const head = <PageHeader kicker="FBAJC" title="FBAJC transfer portal" />;
   if (meta.error) return <p className="error">Couldn't load the portal: {meta.error.message}</p>;
   if (load.error) return <p className="error">Couldn't load the portal: {load.error.message}</p>;
   if (n === undefined || (!load.state && !load.setup)) return <p className="muted">Loading…</p>;
-  if (!load.state) return <section>{head}<p className="muted">{`The S${n} college rosters don't exist yet.`}</p></section>;
+  if (!load.state) return <section className="stack">{head}<div className="card"><p className="muted">{`The S${n} college rosters don't exist yet.`}</p></div></section>;
 
   const state = load.state;
   const closed = portalProblem(state.calendar);
@@ -78,10 +73,11 @@ export function PortalPage() {
   const k = picked.size;
 
   return (
-    <section>
+    <section className="stack">
       {head}
-      <p className={closed ? 'muted' : 'banner'}>{closed ?? `The S${n} transfer portal is open.`}</p>
+      <p className={closed ? 'muted' : 'card headed banner'}>{closed ?? `The S${n} transfer portal is open.`}</p>
       {error && <p className="error">{error}</p>}
+      <div className="card">
       <h2>Put players in the portal</h2>
       <div className="chips">
         <input className="college-search" aria-label="Search names" placeholder="Search names" value={search} onChange={e => setSearch(e.target.value)} />
@@ -104,8 +100,8 @@ export function PortalPage() {
           {`Put ${k} ${k === 1 ? 'player' : 'players'} in the portal`}
         </button>
       </div>
-      <div className="table-wrap">
-        <table className="board-table" aria-label="Players who can enter the portal">
+      <div className="table-wrap tall">
+        <table className="stat-table board-table" aria-label="Players who can enter the portal">
           <thead>
             <tr><th /><th>Name</th><th>School</th><th>Yr</th><th>Pos</th><th className="n">Rtg</th></tr>
           </thead>
@@ -128,10 +124,12 @@ export function PortalPage() {
           </tbody>
         </table>
       </div>
+      </div>
+      <div className="card">
       <h2>In the portal · {inPortal.length}</h2>
       {inPortal.length === 0 ? <p className="muted">Nobody is in the portal.</p> : (
-        <div className="table-wrap">
-          <table className="board-table" aria-label="In the portal">
+        <div className="table-wrap tall">
+          <table className="stat-table board-table" aria-label="In the portal">
             <thead>
               <tr><th>Name</th><th>From</th><th>Pos</th><th>Yr</th><th className="n">Rtg</th><th>Projections</th><th><span className="muted">Actions</span></th></tr>
             </thead>
@@ -166,6 +164,7 @@ export function PortalPage() {
           </table>
         </div>
       )}
+      </div>
     </section>
   );
 }

@@ -6,6 +6,7 @@ import type { RatingPauseFile } from '../../engine/shared/types';
 import { ApiError, getDoc, useSaving, type Versions } from '../api';
 import { newBatchId } from '../roster/commit';
 import { commitSeason } from '../season/commitSeason';
+import './playoffs.css';
 
 const LEAGUE_NAME = { fba: 'FBA', fbad2: 'D2' } as const;
 
@@ -27,7 +28,7 @@ export function FinishSeasonCard({ state, versions }: { state: SeasonState; vers
   const [problems, setProblems] = useState<string[]>([]);
   const [saveError, setSaveError] = useState('');
   const name = LEAGUE_NAME[state.league];
-  if (state.summary) return <p className="muted">The S{state.season} {name} season is finished.</p>;
+  if (state.summary) return <div className="card headed"><p className="muted">The S{state.season} {name} season is finished.</p></div>;
   if (leagueStepProblem(state.calendar, state.league)) return null;
 
   const finish = async () => {
@@ -51,7 +52,8 @@ export function FinishSeasonCard({ state, versions }: { state: SeasonState; vers
   };
 
   return (
-    <div className="finish-season">
+    <div className="card headed finish-season">
+      <div className="card-head"><h3>Wrap up the season</h3></div>
       {!saveError && <button className="btn primary" disabled={saving} onClick={finish}>Finish S{state.season} {name} season ▸</button>}
       {problems.length > 0 && <ul>{problems.map(p => <li key={p} className="error">{p}</li>)}</ul>}
       {saveError && (

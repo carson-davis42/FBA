@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom';
+import { seasonDocPath } from '../../engine/season/state';
 import { currentStepIndex } from '../../engine/shared/calendar';
 import { LEAGUES, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { CalendarFile, CalendarStep, LeagueId, MetaFile, ResultsFile, ScheduleFile, SummaryFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
+import { Badge } from '../components/Badge';
+import { Hero } from '../components/Hero';
 import { PortalBanner } from '../components/PortalBanner';
+import { useSeasonState } from '../season/useSeasonState';
+import { TickerChip } from '../shell/Ticker';
+import { tickerItems } from '../shell/tickerItems';
 import { stepTarget } from '../stepRoutes';
 import './pages.css';
 
@@ -41,6 +47,21 @@ function ChampionRows({ league, meta }: { league: LeagueId; meta: MetaFile | und
   );
 }
 
+function LatestResults({ cal }: { cal: CalendarFile }) {
+  const { state } = useSeasonState('fba');
+  const { data: lastSummary } = useDoc<SummaryFile>(state ? seasonDocPath('summary', 'fba', state.season - 1) : null);
+  const t = tickerItems({ league: 'fba', label: 'FBA', state, lastSummary, calendar: cal });
+  const teams = state?.teams.teams ?? [];
+  return (
+    <div className="card headed">
+      <div className="card-head"><h3>Latest results</h3></div>
+      <div className="latest-list">
+        {t.items.map(it => <TickerChip key={it.key} item={it} teams={teams} season={state?.season ?? cal.season} />)}
+      </div>
+    </div>
+  );
+}
+
 export function Home() {
   const { data: cal, error } = useDoc<CalendarFile>('calendar.json');
   const { data: meta } = useDoc<MetaFile>('meta.json');
@@ -56,19 +77,25 @@ export function Home() {
   return (
     <section>
       <PortalBanner />
-      <div className="hero">
-        <img src="/logos/FBA/1" alt="" />
-        <div>
-          <div className="eyebrow">Up next</div>
-          <div className="title">{title}</div>
-        </div>
-        <Link className="btn primary" to={target}>Continue ▸</Link>
+      <Hero kicker={`Season ${cal.season}`} title={title} logo={<img src="/logos/FBA/1" alt="" />}>
+        <Link className="btn primary big" to={target}>Continue ▸</Link>
+      </Hero>
+      <div className="card-grid home-leagues">
+        {LEAGUES.map(lg => (
+          <Link key={lg} className="card link" to={`/league/${lg}`}>
+            <div className="card-head">
+              <h2>{LEAGUE_LABEL[lg]}</h2>
+              {step?.kind === 'league' && step.league === lg && <Badge kind="current">Current</Badge>}
+            </div>
+          </Link>
+        ))}
       </div>
       <div className="grid-2">
-        <div className="card">
-          <h3>Last champions</h3>
+        <div className="card headed">
+          <div className="card-head"><h3>Last champions</h3></div>
           {LEAGUES.map(lg => <ChampionRows key={lg} league={lg} meta={meta} />)}
         </div>
+        <LatestResults cal={cal} />
       </div>
     </section>
   );

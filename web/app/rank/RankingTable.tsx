@@ -7,6 +7,7 @@ import { POSITIONS } from '../../engine/roster/rules';
 import type { Position, RankingFile, RankingRow } from '../../engine/shared/types';
 import { RatingInput } from '../components/RatingInput';
 import '../pages/roster.css';
+import '../offseason/offseason.css';
 import './rank.css';
 
 type Filter = 'ALL' | Position;
@@ -76,8 +77,8 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   let dividerShown = false;
 
   return (
-    <div className="rank">
-      <div className="chips" role="group" aria-label="Position filter">
+    <div className="rank stack">
+      <div className="chips card" role="group" aria-label="Position filter">
         {(['ALL', ...POSITIONS] as Filter[]).map(f => (
           <button key={f} type="button" className={`chip${filter === f ? ' on' : ''}`} aria-pressed={filter === f} onClick={() => setFilter(f)}>
             {f === 'ALL' ? 'All' : f}
@@ -85,17 +86,17 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
         ))}
       </div>
       <div className="rank-cols">
-        <div className="rank-col">
-          <div className="toolbar">
+        <div className="rank-col card">
+          <div className="toolbar rank-head">
             <h3>{leftLabel} · {left.length}</h3>
             {!locked && left.length > 0 && (
               <button type="button" className="btn" onClick={() => onChange(cur => takeRest(cur, name))}>Take the rest in order</button>
             )}
           </div>
           <div className="table-wrap">
-            <table className="rank-table" aria-label={leftLabel}>
+            <table className="stat-table rank-table" aria-label={leftLabel}>
               <thead>
-                <tr><th className="n">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th><th>Stat</th></tr>
+                <tr><th className="rank">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th><th>Stat</th></tr>
               </thead>
               <tbody>
                 {left.map((r, i) => {
@@ -106,7 +107,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
                     <Fragment key={r.playerId}>
                       {divider && <tr className="rank-divider"><td colSpan={7}>New</td></tr>}
                       <tr className={locked ? undefined : 'rank-take'} onClick={locked ? undefined : () => onChange(cur => take(cur, r.playerId))}>
-                        <td className="n">{i + 1}</td>
+                        <td className="rank">{i + 1}</td>
                         <td>
                           <button type="button" className="rank-name" disabled={locked} aria-label={`Rank ${name(r.playerId)} next`}>{name(r.playerId)}</button>
                         </td>
@@ -123,8 +124,8 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
             </table>
           </div>
         </div>
-        <div className="rank-col">
-          <div className="toolbar">
+        <div className="rank-col card">
+          <div className="toolbar rank-head">
             <h3>New ranking · {doc.order.length}</h3>
             {!locked && allPlaced && (
               <button type="button" className="btn" onClick={() => onChange(consensus ? applyClassSuggestions : applyAllSuggestions)}>Use all suggestions</button>
@@ -132,10 +133,10 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
           </div>
           {!locked && !allPlaced && doc.order.length > 0 && <p className="muted">Rating boxes appear once every player is ranked.</p>}
           <div className="table-wrap">
-            <table className="rank-table" aria-label="New ranking">
+            <table className="stat-table rank-table" aria-label="New ranking">
               <thead>
                 <tr>
-                  <th className="n">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th>
+                  <th className="rank">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th>
                   {allPlaced && <th>Rating</th>}
                   {allPlaced && consensus && <th>Consensus</th>}
                   {allPlaced && consensus && <th>Stars</th>}
@@ -152,7 +153,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
                   const stars = c === null ? null : starsFor(c);
                   return (
                     <tr key={r.playerId} className={bad ? 'out-of-order' : undefined}>
-                      <td className="n">{i + 1}</td>
+                      <td className="rank">{i + 1}</td>
                       <td>{name(r.playerId)}{bad && <span className="rank-flag" title="Rated above a player ranked higher">⚠</span>}</td>
                       <td>{r.position}</td>
                       <td className="n">{r.age ?? '—'}</td>
@@ -205,7 +206,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
       </div>
       {!locked && blockers.length > 0 && <ul className="problems">{blockers.map(b => <li key={b}>{b}</li>)}</ul>}
       {!locked && (
-        <div className="toolbar">
+        <div className="toolbar card">
           <button type="button" className="btn primary" disabled={busy || blockers.length > 0} onClick={onFinish}>{finishLabel}</button>
         </div>
       )}

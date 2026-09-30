@@ -3,6 +3,8 @@ import { makeSchedules, scheduleStepProblem } from '../../engine/season/moves';
 import { gameDays } from '../../engine/season/schedule';
 import type { CalendarFile, MetaFile, ResultsFile, ScheduleFile, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving, type Versions } from '../api';
+import { PageHeader } from '../components/PageHeader';
+import { TeamName } from '../components/TeamName';
 import { commitDocs } from '../roster/commit';
 import './season.css';
 
@@ -63,24 +65,39 @@ export function SchedulesPage() {
   };
 
   return (
-    <section>
-      <h1>S{season} schedules</h1>
+    <section className="stack">
+      <PageHeader kicker="Regular season" title={`S${season} schedules`} actions={
+        <button className="btn primary" disabled={saving || played > 0 || !!stepProblem} onClick={make}>{exists ? 'Re-roll schedules' : 'Make schedules'}</button>
+      } />
       {leagues.map(l => {
         const perTeam = l.schedule && l.teams.teams.length ? (l.schedule.games.length * 2) / l.teams.teams.length : 0;
         const days = l.schedule ? gameDays(l.schedule.games) : [];
         return (
-          <div className="card schedule-card" key={l.league}>
-            <h3>{LABEL[l.league]}</h3>
+          <div className="card headed schedule-card" key={l.league}>
+            <div className="card-head"><h3>{LABEL[l.league]}</h3></div>
             {l.schedule
               ? <p>{LABEL[l.league]}: {l.schedule.games.length} games · {perTeam} per team · {days.length} game days · {l.results?.games.length ?? 0} played</p>
               : <p className="muted">{LABEL[l.league]}: not made yet</p>}
             {l.schedule && days[0] && (
-              <p className="muted">Day 1: {days[0].map(n => `${l.schedule!.games[n - 1].away} @ ${l.schedule!.games[n - 1].home}`).join(' · ')}</p>
+              <>
+                <p className="muted">Day 1</p>
+                <div className="table-wrap">
+                  <table className="stat-table">
+                    <thead><tr><th>Away</th><th>Home</th></tr></thead>
+                    <tbody>
+                      {days[0].map(n => {
+                        const g = l.schedule!.games[n - 1];
+                        const team = (id: string) => { const t = l.teams.teams.find(x => x.teamId === id); return t ? <TeamName team={t} season={season} variant="abbr" size={20} /> : id; };
+                        return <tr key={n}><td>{team(g.away)}</td><td>{team(g.home)}</td></tr>;
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </>
             )}
           </div>
         );
       })}
-      <button className="btn primary" disabled={saving || played > 0 || !!stepProblem} onClick={make}>{exists ? 'Re-roll schedules' : 'Make schedules'}</button>
       {stepProblem && <p className="muted">{stepProblem}</p>}
       {!stepProblem && played > 0 && <p className="muted">Games have been played, so the schedules can't be re-rolled.</p>}
       {message && <p className="error">{message}</p>}

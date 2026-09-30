@@ -4,6 +4,7 @@ import { type AllStarResult, fbaPlayers } from '../../engine/allstar/common';
 import { allStarStep, type AllStarStep, finishAllStar, STEP_LABEL, STEP_ORDER } from '../../engine/allstar/steps';
 import { blockingPause, seasonDocPath } from '../../engine/season/state';
 import { useSaving } from '../api';
+import { PageHeader } from '../components/PageHeader';
 import { commitDocs } from '../roster/commit';
 import { commitSeason } from '../season/commitSeason';
 import { useSeasonState } from '../season/useSeasonState';
@@ -23,12 +24,12 @@ export function AllStarPage() {
 
   if (error) return <p className="error">Couldn't load the season: {error.message}</p>;
   if (!state) return <p className="muted">Loading…</p>;
-  const title = <h1>S{state.season} All-Star weekend</h1>;
+  const title = <PageHeader kicker="FBA" title={`S${state.season} All-Star weekend`} />;
   const doc = state.allstar;
   const step = allStarStep(doc);
   const pause = blockingPause(state);
   if (step !== 'done' && pause?.kind !== 'allstar') {
-    return <section>{title}<p className="muted">The All-Star weekend happens at the ¾ pause. <Link to="/league/fba/scores">Back to scores ▸</Link></p></section>;
+    return <section className="stack">{title}<p className="muted">The All-Star weekend happens at the ¾ pause. <Link to="/league/fba/scores">Back to scores ▸</Link></p></section>;
   }
 
   const list = fbaPlayers(state.rosters, state.players);
@@ -68,7 +69,7 @@ export function AllStarPage() {
   };
 
   return (
-    <section>
+    <section className="stack">
       {title}
       <div className="step-bar">
         {STEP_ORDER.map((s, i) => (

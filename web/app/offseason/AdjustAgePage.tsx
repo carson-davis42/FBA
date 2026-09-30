@@ -7,8 +7,9 @@ import type {
   CalendarFile, DraftFile, FreeAgentsFile, MetaFile, PlayersFile, RecruitingFile, ReservesFile, RostersFile, TeamsFile, TransactionsFile,
 } from '../../engine/shared/types';
 import { useDoc, useSaving, type Versions } from '../api';
+import { PageHeader } from '../components/PageHeader';
 import { commitDocs, newBatchId } from '../roster/commit';
-import '../pages/league.css';
+import './offseason.css';
 
 const plural = (k: number, one: string, many: string) => `${k} ${k === 1 ? one : many}`;
 
@@ -44,14 +45,16 @@ export function AdjustAgePage() {
   if (loadError) return <p className="error">Couldn't load Adjust Age: {loadError.message}</p>;
   if (n === undefined || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return <p className="muted">Loading…</p>;
 
-  const title = <h1>Adjust Age</h1>;
+  const title = <PageHeader kicker="Offseason" title="Adjust Age" />;
   const done = calendar.data!.steps.find(s => s.id === ADJUST_AGE_STEP)?.done ?? false;
   if (done) {
     return (
-      <section>
+      <section className="stack">
         {title}
-        <p>Ages are adjusted.</p>
-        <p><Link to="/league/fba/draft">Draft board ▸</Link> <Link to="/league/fba/ratings">Pro ratings ▸</Link></p>
+        <div className="card">
+          <p>Ages are adjusted.</p>
+          <div className="chips"><Link className="chip" to="/league/fba/draft">Draft board ▸</Link> <Link className="chip" to="/league/fba/ratings">Pro ratings ▸</Link></div>
+        </div>
       </section>
     );
   }
@@ -75,9 +78,9 @@ export function AdjustAgePage() {
   const result = adjustAgePreview(state);
   if (!result.ok) {
     return (
-      <section>
+      <section className="stack">
         {title}
-        {result.problems.map(p => <p key={p} className="error">{p}</p>)}
+        <div className="card">{result.problems.map(p => <p key={p} className="error">{p}</p>)}</div>
       </section>
     );
   }
@@ -119,26 +122,30 @@ export function AdjustAgePage() {
   };
 
   return (
-    <section>
+    <section className="stack">
       {title}
-      <p className="muted">Everyone gets a year older, the college classes move up and the S{n} commitments join their schools.</p>
-      <ul>
-        <li>{plural(aged, 'player ages a year', 'players age a year')}</li>
-        <li>{plural(seniors, `Senior enters the S${n} draft`, `Seniors enter the S${n} draft`)}</li>
-        <li>{plural(xSeniors, 'unnamed Senior leaves', 'unnamed Seniors leave')}</li>
-        <li>{plural(placed, 'commitment joins its school', 'commitments join their schools')}</li>
-      </ul>
+      <div className="card headed">
+        <p className="muted">Everyone gets a year older, the college classes move up and the S{n} commitments join their schools.</p>
+        <ul className="plain-list">
+          <li>{plural(aged, 'player ages a year', 'players age a year')}</li>
+          <li>{plural(seniors, `Senior enters the S${n} draft`, `Seniors enter the S${n} draft`)}</li>
+          <li>{plural(xSeniors, 'unnamed Senior leaves', 'unnamed Seniors leave')}</li>
+          <li>{plural(placed, 'commitment joins its school', 'commitments join their schools')}</li>
+        </ul>
+      </div>
       {displaced.length > 0 && (
-        <div>
+        <div className="card">
           <h2>Displaced to the portal</h2>
-          <ul aria-label="Displaced to the portal">
+          <ul className="plain-list" aria-label="Displaced to the portal">
             {displaced.map(d => (
               <li key={d.playerId}>{collegeName(players.data!, d.playerId)}, {school(d.teamId)}, {d.classYear}</li>
             ))}
           </ul>
         </div>
       )}
-      <p><button className="btn primary" disabled={saving} onClick={run}>Adjust Age</button></p>
+      <div className="card toolbar">
+        <button className="btn primary" disabled={saving} onClick={run}>Adjust Age</button>
+      </div>
       {error && <p className="error">{error}</p>}
     </section>
   );

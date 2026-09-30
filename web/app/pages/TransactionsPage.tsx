@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { isLeagueId, LEAGUE_LABEL } from '../../engine/shared/leagues';
-import type { MetaFile, TransactionsFile } from '../../engine/shared/types';
+import type { MetaFile, TeamsFile, TransactionsFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
-import { LeagueTabs } from '../components/LeagueTabs';
+import { PageHeader } from '../components/PageHeader';
+import { TeamName } from '../components/TeamName';
 import './roster.css';
 
 export function TransactionsPage() {
@@ -10,19 +11,29 @@ export function TransactionsPage() {
   const valid = isLeagueId(league);
   const { data: meta } = useDoc<MetaFile>(valid ? 'meta.json' : null);
   const { data: tx, error } = useDoc<TransactionsFile>(valid && meta ? `leagues/${league}/S${meta.currentSeason}/transactions.json` : null);
+  const { data: teams } = useDoc<TeamsFile>(valid ? `leagues/${league}/teams.json` : null);
   if (!valid) return <p className="error">Unknown league "{league}".</p>;
   if (error) return <p className="muted">No transactions yet this season.</p>;
   if (!tx) return <p className="muted">Loading…</p>;
   return (
     <section>
-      <h1>{LEAGUE_LABEL[league]} transactions · S{tx.season}</h1>
-      <LeagueTabs league={league} />
+      <PageHeader kicker={LEAGUE_LABEL[league]} title={`${LEAGUE_LABEL[league]} transactions · S${tx.season}`} />
       {tx.entries.length === 0 && <p className="muted">No moves yet.</p>}
-      <ul className="tx-list">
+      <ul className="tx-feed">
         {[...tx.entries].reverse().map(e => (
-          <li key={e.seq}>
-            <b>{e.teams.join('/') || 'League'}</b> <span className="tag">{e.type}</span>
-            {e.lines.map(l => <div key={l}>{l}</div>)}
+          <li key={e.seq} className="tx-row card">
+            <div className="tx-rail" title={`Step ${e.seq}`}>#{e.seq}</div>
+            <div className="tx-main">
+              <div className="tx-head">
+                {e.teams.length === 0 && <b>League</b>}
+                {e.teams.map(id => {
+                  const t = teams?.teams.find(x => x.teamId === id);
+                  return t ? <TeamName key={id} team={t} season={tx.season} variant="abbr" size={20} to={`/league/${league}/team/${id}`} /> : <b key={id}>{id}</b>;
+                })}
+                <span className="badge">{e.type}</span>
+              </div>
+              {e.lines.map(l => <div key={l} className="tx-line">{l}</div>)}
+            </div>
           </li>
         ))}
       </ul>

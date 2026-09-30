@@ -5,9 +5,10 @@ import {
 import { calendarProblem } from '../../engine/season/moves';
 import type { CalendarFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
+import { PageHeader } from '../components/PageHeader';
 import { commitDocs, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
-import '../pages/league.css';
+import './offseason.css';
 
 const MIN_QUERY = 3;
 const MAX_RESULTS = 20;
@@ -27,9 +28,9 @@ export function RetirementPage() {
   if (err) return <p className="error">Couldn't load retirement: {err.message}</p>;
   if (!state || !calendar.data) return <p className="muted">Loading…</p>;
   const cal = calendar.data;
-  const title = <h1>S{state.season} Retirement</h1>;
+  const title = <PageHeader kicker="Offseason" title={`S${state.season} Retirement`} />;
   const done = cal.steps.find(s => s.id === RETIREMENT_STEP)?.done ?? false;
-  if (done) return <section>{title}<p>Retirement is done for S{state.season}.</p></section>;
+  if (done) return <section className="stack">{title}<div className="card"><p>Retirement is done for S{state.season}.</p></div></section>;
 
   const auto = autoRetirees(pool);
   const byId = new Map(pool.map(r => [r.playerId, r]));
@@ -68,46 +69,53 @@ export function RetirementPage() {
   );
 
   return (
-    <section>
+    <section className="stack">
       {title}
-      <p className="muted">Players age {RETIRE_AGE} and older retire automatically. Add anyone else who retires early.</p>
-      <div className="table-wrap"><table className="roster">
-        <thead><tr><th>Name</th><th>Pos</th><th>Team</th><th>League</th><th className="num">Age</th><th></th></tr></thead>
-        <tbody>
-          {auto.map(r => row(r, false))}
-          {earlyRows.map(r => row(r, true))}
-        </tbody>
-      </table></div>
-      <p>
-        <label>Add an early retirement{' '}
-          <input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder={`At least ${MIN_QUERY} letters`} />
-        </label>
-      </p>
-      {results.length > 0 && (
-        <ul aria-label="Search results">
-          {results.map(r => (
-            <li key={r.playerId}>
-              <span>{r.name}</span> {r.position} {place(r)} {leagueName(r)}, age {r.age ?? '?'}{' '}
-              <button className="btn" onClick={() => add(r.playerId)}>Add</button>
-            </li>
-          ))}
-        </ul>
-      )}
-      {unknown.length > 0 && (
-        <div className="muted">
-          <p>Unknown age: these players have no birth season, so they are not retired automatically.</p>
-          <ul>
-            {unknown.map(r => (
+      <div className="card">
+        <p className="muted">Players age {RETIRE_AGE} and older retire automatically. Add anyone else who retires early.</p>
+        <div className="table-wrap tall"><table className="stat-table">
+          <thead><tr><th>Name</th><th>Pos</th><th>Team</th><th>League</th><th className="num">Age</th><th></th></tr></thead>
+          <tbody>
+            {auto.map(r => row(r, false))}
+            {earlyRows.map(r => row(r, true))}
+          </tbody>
+        </table></div>
+      </div>
+      <div className="card">
+        <h2>Early retirements</h2>
+        <p>
+          <label>Add an early retirement{' '}
+            <input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder={`At least ${MIN_QUERY} letters`} />
+          </label>
+        </p>
+        {results.length > 0 && (
+          <ul className="plain-list tight" aria-label="Search results">
+            {results.map(r => (
               <li key={r.playerId}>
-                {r.name} ({r.position}, {place(r)}, {leagueName(r)}){' '}
+                <span>{r.name}</span> {r.position} {place(r)} {leagueName(r)}, age {r.age ?? '?'}{' '}
                 <button className="btn" onClick={() => add(r.playerId)}>Add</button>
               </li>
             ))}
           </ul>
-        </div>
-      )}
-      <p><button className="btn primary" disabled={saving || Boolean(problem)} onClick={retire}>Retire {total} {total === 1 ? 'player' : 'players'}</button></p>
-      {problem && <p className="muted">{problem}</p>}
+        )}
+        {unknown.length > 0 && (
+          <div className="muted">
+            <p>Unknown age: these players have no birth season, so they are not retired automatically.</p>
+            <ul className="plain-list">
+              {unknown.map(r => (
+                <li key={r.playerId}>
+                  {r.name} ({r.position}, {place(r)}, {leagueName(r)}){' '}
+                  <button className="btn" onClick={() => add(r.playerId)}>Add</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className="card toolbar">
+        <button className="btn primary" disabled={saving || Boolean(problem)} onClick={retire}>Retire {total} {total === 1 ? 'player' : 'players'}</button>
+        {problem && <span className="muted">{problem}</span>}
+      </div>
       {actionError && <p className="error">{actionError}</p>}
     </section>
   );

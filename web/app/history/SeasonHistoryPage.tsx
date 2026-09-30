@@ -4,16 +4,23 @@ import { AWARD_LABEL } from '../../engine/awards/races';
 import { formatScore } from '../../engine/history/format';
 import type { PastAllFbaSlot, PlayersFile, SummaryFile, SummaryStanding, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
+import { Badge } from '../components/Badge';
+import { Hero } from '../components/Hero';
+import { SubNav } from '../components/SubNav';
+import { TeamMark } from '../components/TeamMark';
+import { teamTheme } from '../components/teamColors';
 import { Bracket } from '../playoffs/Bracket';
 import { PastBracket } from './PastBracket';
 import { PlayerLink, SkippedWarning } from './PlayerLink';
+import { findTeam, TeamAbbr, TeamFull } from './useTeams';
+import './history.css';
 import '../pages/season.css';
 
 type Tab = 'standings' | 'playoffs' | 'awards' | 'allstar';
 const TABS: { id: Tab; label: string }[] = [
   { id: 'standings', label: 'Standings' },
   { id: 'playoffs', label: 'Playoffs' },
-  { id: 'awards', label: 'Awards & All-FBA' },
+  { id: 'awards', label: 'Awards' },
   { id: 'allstar', label: 'All-Star' },
 ];
 
@@ -21,13 +28,13 @@ const signed = (x: number) => (x > 0 ? `+${x}` : String(x));
 
 interface Columns { showConf: boolean; showDiff: boolean; showMarker: boolean; showSeed: boolean }
 
-function StandingsTable({ rows, showConf, showDiff, showMarker, showSeed }: { rows: SummaryStanding[] } & Columns) {
+function StandingsTable({ rows, teams, season, showConf, showDiff, showMarker, showSeed }: { rows: SummaryStanding[]; teams: Team[]; season: number } & Columns) {
   return (
     <div className="table-wrap">
-      <table className="standings">
+      <table className="stat-table standings">
         <thead>
           <tr>
-            <th>Rank</th><th>Team</th><th className="n">W</th><th className="n">L</th><th className="n">W%</th>
+            <th className="rank">Rank</th><th>Team</th><th className="n">W</th><th className="n">L</th><th className="n">W%</th>
             {showConf && <th className="n">Conf</th>}
             {showDiff && <th className="n">Diff</th>}
             {showMarker && <th></th>}
@@ -37,8 +44,8 @@ function StandingsTable({ rows, showConf, showDiff, showMarker, showSeed }: { ro
         <tbody>
           {rows.map(r => (
             <tr key={r.teamId}>
-              <td>{r.rank}</td>
-              <td>{r.name}</td>
+              <td className="rank">{r.rank}</td>
+              <td><TeamFull teams={teams} teamId={r.teamId} name={r.name} season={season} /></td>
               <td className="n">{r.w}</td>
               <td className="n">{r.l}</td>
               <td className="n">{r.w + r.l === 0 ? '—' : (r.w / (r.w + r.l)).toFixed(3)}</td>
@@ -54,7 +61,7 @@ function StandingsTable({ rows, showConf, showDiff, showMarker, showSeed }: { ro
   );
 }
 
-function Standings({ season }: { season: SummaryFile }) {
+function Standings({ season, teams }: { season: SummaryFile; teams: Team[] }) {
   const rows = season.standings;
   if (!rows || rows.length === 0) return <p className="muted">No standings recorded</p>;
   const some = (f: (r: SummaryStanding) => boolean) => rows.some(f);
@@ -66,11 +73,11 @@ function Standings({ season }: { season: SummaryFile }) {
   };
   const byRank = (group: string) => rows.filter(r => r.group === group).sort((a, b) => a.rank - b.rank);
   return (
-    <div>
-      <h2>Eastern Conference</h2>
-      <StandingsTable rows={byRank('E')} {...flags} />
-      <h2>Western Conference</h2>
-      <StandingsTable rows={byRank('W')} {...flags} />
+    <div className="stack">
+      <h2 className="section-title">Eastern Conference</h2>
+      <StandingsTable rows={byRank('E')} teams={teams} season={season.season} {...flags} />
+      <h2 className="section-title">Western Conference</h2>
+      <StandingsTable rows={byRank('W')} teams={teams} season={season.season} {...flags} />
     </div>
   );
 }
@@ -78,7 +85,7 @@ function Standings({ season }: { season: SummaryFile }) {
 function Playoffs({ season, teams, players }: { season: SummaryFile; teams: Team[]; players: PlayersFile }) {
   const champion = season.champions.find(c => c.title === 'FBA Champion');
   return (
-    <div>
+    <div className="stack">
       {season.bracket ? (
         <Bracket league="fba" series={season.bracket.series} teams={new Map(teams.map(t => [t.teamId, t]))} season={season.season} group={null} open={null} />
       ) : season.pastBracket ? (
@@ -93,51 +100,51 @@ function Playoffs({ season, teams, players }: { season: SummaryFile; teams: Team
   );
 }
 
-function AllFbaTable({ title, slots, players }: { title: string; slots: PastAllFbaSlot[]; players: PlayersFile }) {
+function AllFbaTable({ title, slots, players, teams, season }: { title: string; slots: PastAllFbaSlot[]; players: PlayersFile; teams: Team[]; season: number }) {
   return (
-    <div>
-      <h3>{title}</h3>
+    <section className="card headed">
+      <div className="card-head"><h3>{title}</h3></div>
       <div className="table-wrap">
-        <table className="standings">
+        <table className="stat-table">
           <tbody>
             {slots.map((s, k) => (
               <tr key={k}>
                 <td>{s.slot}</td>
                 <td>
                   <PlayerLink id={s.playerId} players={players} />
-                  {s.playerId && s.teamId && ` (${s.teamId})`}
+                  {s.playerId && s.teamId && <TeamAbbr teams={teams} teamId={s.teamId} season={season} />}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </div>
+    </section>
   );
 }
 
-function Awards({ season, players }: { season: SummaryFile; players: PlayersFile }) {
+function Awards({ season, players, teams }: { season: SummaryFile; players: PlayersFile; teams: Team[] }) {
   const awards = season.awards ?? [];
   const all = season.allFba;
   const hasAllFba = !!all && (all.team1.length > 0 || all.team2.length > 0);
   if (awards.length === 0 && !hasAllFba) return <p className="muted">No awards recorded</p>;
   return (
-    <div>
+    <div className="stack">
       {awards.length > 0 && (
-        <ul className="award-winners">
+        <ul className="winner-list card headed">
           {awards.map(a => (
             <li key={a.award}>
               {AWARD_LABEL[a.award]}: <PlayerLink id={a.playerId} players={players} />
-              {a.teamId !== '?' && ` (${a.teamId})`}
+              {a.teamId !== '?' && <TeamAbbr teams={teams} teamId={a.teamId} season={season.season} />}
             </li>
           ))}
         </ul>
       )}
       {all && hasAllFba && (
-        <>
-          <AllFbaTable title="All-FBA Team 1" slots={all.team1} players={players} />
-          <AllFbaTable title="All-FBA Team 2" slots={all.team2} players={players} />
-        </>
+        <div className="grid-2">
+          <AllFbaTable title="All-FBA Team 1" slots={all.team1} players={players} teams={teams} season={season.season} />
+          <AllFbaTable title="All-FBA Team 2" slots={all.team2} players={players} teams={teams} season={season.season} />
+        </div>
       )}
     </div>
   );
@@ -167,7 +174,7 @@ function AllStar({ season, players }: { season: SummaryFile; players: PlayersFil
     if (st.youngStars.length > 0) rows.push({ key: 'young', node: <>Young Stars: <PlayerList ids={st.youngStars} players={players} /></> });
   }
   if (rows.length === 0) return <p className="muted">No All-Star results recorded</p>;
-  return <div>{rows.map(r => <p key={r.key}>{r.node}</p>)}</div>;
+  return <div className="card headed">{rows.map(r => <p key={r.key}>{r.node}</p>)}</div>;
 }
 
 export function SeasonHistoryPage() {
@@ -186,9 +193,27 @@ export function SeasonHistoryPage() {
   if (!season) return <p className="muted">Not found</p>;
   const teams = [...fbaTeams.data.teams, ...d2Teams.data.teams];
   const ordered = [...seasons].sort((a, b) => b.season - a.season);
+  const champion = season.champions.find(c => c.title === 'FBA Champion');
+  const champTeam = champion ? findTeam(fbaTeams.data.teams, champion.teamId, champion.champion) : undefined;
+  const champRow = champTeam ? season.standings?.find(r => r.teamId === champTeam.teamId) : undefined;
+  const mvp = season.awards?.find(a => a.award === 'MVP');
+  const roster = players.data.players;
+  const name = (id: string | null | undefined) => (id ? roster[id]?.name : undefined);
+  const heroStats: { label: string; value: string }[] = [];
+  if (champRow) heroStats.push({ label: 'Record', value: `${champRow.w}-${champRow.l}` });
+  if (name(champion?.finalsMvp)) heroStats.push({ label: 'Finals MVP', value: name(champion?.finalsMvp) as string });
+  if (name(mvp?.playerId)) heroStats.push({ label: 'MVP', value: name(mvp?.playerId) as string });
   return (
-    <section>
-      <h1>S{season.season} FBA season</h1>
+    <section className="stack">
+      <Hero
+        kicker={`Season ${season.season}`}
+        title={champion ? champion.champion : `S${season.season} FBA season`}
+        theme={champTeam ? teamTheme(champTeam, 'fba') : undefined}
+        logo={champTeam ? <TeamMark team={champTeam} season={season.season} size={72} /> : undefined}
+        stats={heroStats}
+      >
+        {champion && <Badge kind="champion">FBA Champions</Badge>}
+      </Hero>
       <SkippedWarning errors={errors} />
       <label>
         Season{' '}
@@ -196,15 +221,13 @@ export function SeasonHistoryPage() {
           {ordered.map(s => <option key={s.season} value={s.season}>S{s.season}</option>)}
         </select>
       </label>
-      <div className="tabs" role="tablist">
-        {TABS.map(t => (
-          <button key={t.id} type="button" role="tab" aria-selected={tab === t.id} className={`tab${tab === t.id ? ' on' : ''}`} onClick={() => setTab(t.id)}>{t.label}</button>
-        ))}
+      <SubNav label="Season sections" items={TABS.map(t => ({ label: t.label, id: t.id }))} active={tab} onSelect={id => setTab(id as Tab)} />
+      <div className="stack" id={`panel-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
+        {tab === 'standings' && <Standings season={season} teams={teams} />}
+        {tab === 'playoffs' && <Playoffs season={season} teams={teams} players={players.data} />}
+        {tab === 'awards' && <Awards season={season} players={players.data} teams={teams} />}
+        {tab === 'allstar' && <AllStar season={season} players={players.data} />}
       </div>
-      {tab === 'standings' && <Standings season={season} />}
-      {tab === 'playoffs' && <Playoffs season={season} teams={teams} players={players.data} />}
-      {tab === 'awards' && <Awards season={season} players={players.data} />}
-      {tab === 'allstar' && <AllStar season={season} players={players.data} />}
     </section>
   );
 }

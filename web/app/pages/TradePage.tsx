@@ -5,6 +5,9 @@ import { makeTrade, type TradeAsset } from '../../engine/roster/trade';
 import { lockProblem } from '../../engine/season/locks';
 import type { PickCondition, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
+import { PageHeader } from '../components/PageHeader';
+import { teamTheme, teamVars } from '../components/teamColors';
+import { TeamName } from '../components/TeamName';
 import { commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
 import { useSeasonPhase } from '../season/useSeasonPhase';
@@ -45,6 +48,7 @@ export function TradePage() {
   const rosterFileLocked = rosters.locked;
   const locked = rosterFileLocked || tradeLock !== null;
   const nameOfTeam = (t: string) => teams.teams.find(x => x.teamId === t)?.name ?? t;
+  const fromTeam = (t: string) => teams.teams.find(x => x.teamId === t);
   const defaultTo = (from: string) => teamIds.find(t => t !== from) ?? from;
   const pickKey = (from: string, season: number) => `${from}-${season}`;
 
@@ -82,10 +86,10 @@ export function TradePage() {
 
   return (
     <section>
-      <h1>{lg === 'fba' ? 'FBA' : 'FBAD2'} trade</h1>
+      <PageHeader kicker={lg === 'fba' ? 'FBA' : 'FBAD2'} title={`${lg === 'fba' ? 'FBA' : 'FBAD2'} trade`} />
       {rosterFileLocked && <p className="muted">S{state.season} rosters are final; trades are closed.</p>}
       {!rosterFileLocked && tradeLock && tradeLock !== 'Loading…' && <p className="muted">{tradeLock}</p>}
-      <div className="form-row">
+      <div className="form-row card trade-setup">
         <label>Add team
           <select value="" onChange={e => e.target.value && setTeamIds(ids => [...ids, e.target.value])}>
             <option value="">Choose…</option>
@@ -106,8 +110,8 @@ export function TradePage() {
 
       <div className="trade-cols">
         {teamIds.map(from => (
-          <section key={from} className="card" aria-label={nameOfTeam(from)}>
-            <h3>{nameOfTeam(from)}</h3>
+          <section key={from} className="card headed" style={fromTeam(from) ? teamVars(teamTheme(fromTeam(from)!, lg)) : undefined} aria-label={nameOfTeam(from)}>
+            <h3>{fromTeam(from) ? <TeamName team={fromTeam(from)!} season={state.season} /> : nameOfTeam(from)}</h3>
             {(rosters.teams[from] ?? []).filter(e => e.playerId).map(e => {
               const i = assets.findIndex(a => a.kind === 'player' && a.playerId === e.playerId);
               const name = state.players.players[e.playerId!]?.name ?? 'Unnamed';
@@ -186,7 +190,7 @@ export function TradePage() {
         ))}
       </div>
 
-      <div className="card">
+      <div className="card headed trade-summary">
         <h3>Summary</h3>
         {lines.length > 0 && <ul className="tx-list">{lines.map(l => <li key={l}>{l}</li>)}</ul>}
         {preview && !preview.ok && <ul className="problems">{preview.problems.map(p => <li key={p}>{p}</li>)}</ul>}

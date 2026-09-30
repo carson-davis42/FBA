@@ -6,10 +6,11 @@ import {
 import { calendarProblem, type WritesResult } from '../../engine/season/moves';
 import type { CalendarFile, HallOfFameFile, HofCard, MetaFile, PlayerBiosFile, PlayersFile, TransactionsFile } from '../../engine/shared/types';
 import { useDoc, useHistory, useSaving } from '../api';
+import { PageHeader } from '../components/PageHeader';
 import { SkippedWarning } from '../history/PlayerLink';
 import { commitDocs, newBatchId } from '../roster/commit';
-import '../pages/league.css';
 import '../pages/roster.css';
+import './offseason.css';
 
 type Tab = 'hall' | 'nominees';
 
@@ -55,7 +56,7 @@ export function HallOfFamePage() {
   const err = meta.error ?? calendar.error ?? players.error ?? tx.error ?? (hof.missing ? undefined : hof.error) ?? (bios.missing ? undefined : bios.error) ?? history.error;
   if (err) return <p className="error">Couldn't load the Hall of Fame: {err.message}</p>;
   if (hof.missing) {
-    return <section><h1>Hall of Fame</h1><p>Import the Hall of Fame first: run "npm run import -- --hall-of-fame" in web/.</p></section>;
+    return <section className="stack"><PageHeader kicker="FBA" title="Hall of Fame" /><div className="card"><p>Import the Hall of Fame first: run "npm run import -- --hall-of-fame" in web/.</p></div></section>;
   }
   if (n === undefined || !calendar.data || !players.data || !hof.data || !tx.data || (!bios.data && !bios.missing) || !history.seasons) return <p className="muted">Loading…</p>;
   const doc = hof.data;
@@ -65,7 +66,7 @@ export function HallOfFamePage() {
   const asked = params.get('tab');
   const tab: Tab = asked === 'hall' ? 'hall' : 'nominees';
   const tabLink = (id: Tab, label: string) => (
-    <Link role="tab" aria-selected={tab === id} className={`tab${tab === id ? ' on' : ''}`} to={`/league/fba/hall-of-fame?tab=${id}`}>{label}</Link>
+    <Link role="tab" aria-selected={tab === id} className={tab === id ? 'active' : ''} to={`/league/fba/hall-of-fame?tab=${id}`}>{label}</Link>
   );
 
   const versions = { [HOF_PATH]: hof.version, [txPath!]: tx.version, 'calendar.json': calendar.version };
@@ -85,7 +86,7 @@ export function HallOfFamePage() {
   };
   const settle = () => { setPicked([]); setInductees([]); };
 
-  const hall = <p><Link to="/history/fba/hall-of-fame">See the Hall of Fame in History</Link></p>;
+  const hall = <div className="card"><p><Link to="/history/fba/hall-of-fame">See the Hall of Fame in History</Link></p></div>;
 
   const toggle = <T,>(items: T[], set: (v: T[]) => void, item: T) =>
     set(items.includes(item) ? items.filter(x => x !== item) : [...items, item]);
@@ -93,7 +94,8 @@ export function HallOfFamePage() {
   const need = Math.min(CLASS_SIZE, doc.nominees.length);
 
   const nominees = (
-    <div>
+    <div className="stack">
+      <div className="card headed">
       <h2>Nominees</h2>
       <p>{doc.nominees.length} of {NOMINEE_CAP}</p>
       {doc.nominees.length === 0 && <p className="muted">The class needs nominees: add one (from the candidates or by name) before inducting.</p>}
@@ -130,18 +132,20 @@ export function HallOfFamePage() {
         {' '}<span className="muted">Tick {need} {need === 1 ? 'nominee' : 'nominees'}, then induct them as the S{n} class.</span>
       </p>
       {problem && <p className="muted">{problem}</p>}
+      </div>
 
+      <div className="card">
       <h2>Candidates</h2>
       {list.length === 0 ? <p className="muted">No retired players are waiting to be nominated.</p> : (
         <>
-          <ul aria-label="Candidates">
+          <ul className="plain-list" aria-label="Candidates">
             {list.map(c => {
               const card = prefillCard(c, summaries, bioOf(c.playerId), doc);
               return (
                 <li key={c.playerId}>
                   <label><input type="checkbox" aria-label={`Select ${c.name}`} checked={picked.includes(c.playerId)} onChange={() => toggle(picked, setPicked, c.playerId)} /> <strong>{c.name}</strong></label>{' '}
                   <span className="muted">Retired {card.retiredSeason}</span>
-                  <ul>{card.lines.map((l, j) => <li key={j}>{l}</li>)}</ul>
+                  <ul className="plain-list">{card.lines.map((l, j) => <li key={j}>{l}</li>)}</ul>
                 </li>
               );
             })}
@@ -154,7 +158,9 @@ export function HallOfFamePage() {
           </p>
         </>
       )}
+      </div>
 
+      <div className="card">
       <h2>Add by name</h2>
       <div className="hof-form">
         <label>Name<br /><input value={name} onChange={e => setName(e.target.value)} /></label>
@@ -163,13 +169,14 @@ export function HallOfFamePage() {
           void run(addNominees(doc, [freeNameCard(name, retiredSeason)])).then(ok => { if (ok) { setName(''); setRetiredSeason(''); settle(); } });
         }}>Add nominee</button>
       </div>
+      </div>
     </div>
   );
 
   return (
-    <section>
-      <h1>Hall of Fame</h1>
-      <div className="tabs" role="tablist">{tabLink('hall', 'Hall')}{tabLink('nominees', 'Nominees')}</div>
+    <section className="stack">
+      <PageHeader kicker="FBA" title="Hall of Fame" />
+      <div className="subnav" role="tablist">{tabLink('hall', 'Hall')}{tabLink('nominees', 'Nominees')}</div>
       <SkippedWarning errors={history.errors} />
       {actionError && <p className="error">{actionError}</p>}
       {tab === 'hall' ? hall : nominees}

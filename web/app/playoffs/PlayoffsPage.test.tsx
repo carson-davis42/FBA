@@ -28,7 +28,7 @@ describe('PlayoffsPage', () => {
     stubApi(seasonDocs(fullFbaState()));
     renderAt('/league/fba/playoffs');
     expect(await screen.findByText('Playoffs start after game 1290. Projected seeds from the current standings:')).toBeTruthy();
-    expect(screen.getAllByRole('listitem').length).toBeGreaterThanOrEqual(16);
+    expect(screen.getAllByRole('row').length).toBeGreaterThanOrEqual(16);
     expect(screen.queryByRole('button', { name: 'Lock seeds' })).toBeNull();
   });
 
@@ -64,7 +64,10 @@ describe('PlayoffsPage', () => {
     const done = playPlayoffs(ok(lockSeeds(regularSeasonDone(fullFbaState()))).state, 5);
     stubApi(seasonDocs(done));
     renderAt('/league/fba/playoffs');
-    expect(await screen.findByText(/^S79 FBA Champions: /)).toBeTruthy();
+    expect(await screen.findByText('S79 Champions')).toBeTruthy();
+    const champ = done.playoffs!.outcome!.champions[0];
+    expect(screen.getByRole('heading', { level: 2, name: done.teams.teams.find(t => t.teamId === champ.teamId)!.name })).toBeTruthy();
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
     expect(screen.queryByRole('link', { name: 'Watch ▸' })).toBeNull();
   });
 
@@ -72,8 +75,12 @@ describe('PlayoffsPage', () => {
     const done = playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
     stubApi(seasonDocs(done));
     renderAt('/league/fbad2/playoffs');
-    expect(await screen.findByText(/^S79 Premier League Champions: /)).toBeTruthy();
-    expect(screen.getByText(/^S79 International League Champions: /)).toBeTruthy();
+    expect(await screen.findByText('S79 Premier League Champions')).toBeTruthy();
+    expect(screen.getByText('S79 International League Champions')).toBeTruthy();
+    for (const c of done.playoffs!.outcome!.champions) {
+      expect(screen.getByRole('heading', { level: 2, name: done.teams.teams.find(t => t.teamId === c.teamId)!.name })).toBeTruthy();
+    }
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
     expect(screen.getByText(/^World League: promoted /)).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'IL' }));
     expect(screen.getAllByRole('button', { name: /IL0\d/ }).length).toBeGreaterThan(0);

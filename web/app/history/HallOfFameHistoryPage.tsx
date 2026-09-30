@@ -1,18 +1,21 @@
 import { Link } from 'react-router-dom';
 import type { HofCard, HallOfFameFile, PlayersFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
+import { Badge } from '../components/Badge';
+import { PageHeader } from '../components/PageHeader';
 import { PlayerLink, SkippedWarning } from './PlayerLink';
-import '../pages/league.css';
+import './history.css';
 
 /** A stored career line: "TEAM: S64", "TEAM: S65-S76" (FFL or pres. allowed) or a multi-part "TEAM: S16-S18;S48". Everything else is an honour. */
 const CAREER_LINE = /^[^:]+: (S\d+|FFL)(-(S\d+|FFL|pres\.))?(;(S\d+|FFL)(-(S\d+|FFL|pres\.))?)*$/;
 
-function Card({ card, players }: { card: HofCard; players: PlayersFile }) {
+function Card({ card, players, inducted }: { card: HofCard; players: PlayersFile; inducted: string }) {
   const career = card.lines.filter(l => CAREER_LINE.test(l));
   const honours = card.lines.filter(l => !CAREER_LINE.test(l));
   return (
-    <div className="hof-card">
-      <h3>{card.playerId ? <PlayerLink id={card.playerId} players={players} /> : card.name}</h3>
+    <div className="card headed plaque hof-card">
+      <h3 className="plaque-name">{card.playerId ? <PlayerLink id={card.playerId} players={players} /> : card.name}</h3>
+      <div><Badge kind="hof">Class of {inducted}</Badge></div>
       <div className="muted">Retired {card.retiredSeason}</div>
       {career.length > 0 && (
         <>
@@ -41,14 +44,14 @@ export function HallOfFameHistoryPage() {
   if (!players.data || (!hof.data && !hof.missing)) return <p className="muted">Loading…</p>;
   const classes = hof.data ? [...hof.data.classes].reverse() : [];
   return (
-    <section>
-      <h1>Hall of Fame</h1>
+    <section className="stack">
+      <PageHeader kicker="FBA history" title="Hall of Fame" />
       <SkippedWarning errors={errors} />
       {classes.map(c => (
         <div key={c.season}>
-          <h2>{c.season}</h2>
-          <div className="hof-grid">
-            {c.inductees.map((card, i) => <Card key={`${card.name}${i}`} card={card} players={players.data!} />)}
+          <h2 className="section-title">{c.season}</h2>
+          <div className="card-grid">
+            {c.inductees.map((card, i) => <Card key={`${card.name}${i}`} card={card} players={players.data!} inducted={c.season} />)}
           </div>
         </div>
       ))}

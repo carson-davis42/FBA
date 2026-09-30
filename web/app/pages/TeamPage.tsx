@@ -12,7 +12,11 @@ import { PayrollBar } from '../components/PayrollBar';
 import { RosterTable } from '../components/RosterTable';
 import { teamRating } from '../components/rosterColumns';
 import { SignPanel } from '../components/SignPanel';
+import { Hero } from '../components/Hero';
+import { SubNav } from '../components/SubNav';
+import { teamTheme } from '../components/teamColors';
 import { TeamMark } from '../components/TeamMark';
+import { TeamName } from '../components/TeamName';
 import { commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
 import { useSeasonPhase } from '../season/useSeasonPhase';
@@ -38,6 +42,7 @@ export function TeamPage() {
   const [editing, setEditing] = useState<string | null>(null);
   const [resigning, setResigning] = useState<string | null>(null);
   const [error, setError] = useState('');
+  const [tab, setTab] = useState('roster');
   const saving = useSaving();
 
   if (!valid) return <p className="error">Unknown league "{league}".</p>;
@@ -46,8 +51,8 @@ export function TeamPage() {
   if (!team) return <p className="error">No team "{teamId}" in {LEAGUE_LABEL[league]}.</p>;
   const entries = rosters.teams[team.teamId] ?? [];
   const lg = league === 'fbad2' ? 'fbad2' : 'fba';
-  const stats = playerSeasonStats(results ?? null);
-  const ppg = new Map([...stats].map(([id, s]) => [id, s.games ? s.pts / s.games : 0]));
+  const pStats = playerSeasonStats(results ?? null);
+  const ppg = new Map([...pStats].map(([id, s]) => [id, s.games ? s.pts / s.games : 0]));
   const myGames = schedule ? schedule.games.filter(g => g.home === team.teamId || g.away === team.teamId) : [];
 
   const release = async (playerId: string, kind: 'released' | 'cut') => {
@@ -94,46 +99,65 @@ export function TeamPage() {
     );
   };
 
+  const theme = teamTheme(team, league);
+  const teamBy = (id: string) => teams.teams.find(t => t.teamId === id);
+  const opponent = (id: string) => { const o = teamBy(id); return o ? <TeamName team={o} season={season} variant="abbr" size={18} to={`/league/${league}/team/${id}`} /> : id; };
+  const stats = [
+    { label: 'Rating', value: teamRating(entries) ?? '—' },
+    { label: 'Players', value: entries.filter(e => e.playerId !== null).length },
+    ...(lg === 'fba' && editable ? [{ label: 'Payroll', value: `$${payroll(entries, season)}` }] : []),
+  ];
+  const sections = [{ id: 'roster', label: 'Roster' }, ...(myGames.length > 0 ? [{ id: 'schedule', label: 'Schedule' }] : [])];
+  const shown = sections.some(x => x.id === tab) ? tab : 'roster';
+
   return (
     <section>
       <p><Link to={`/league/${league}`} className="muted">← {LEAGUE_LABEL[league]}</Link></p>
-      <div className="team-hero">
-        <TeamMark team={team} season={season} size={72} />
-        <div>
-          <h1>{team.name}</h1>
-          <div className="muted">{groupLabel(league, team.group)} · S{season} · Team rating {teamRating(entries) ?? '—'}</div>
-          {editable && <Link className="btn" to={`/trade/${league}?team=${teamId}`}>Trade…</Link>}
-        </div>
-      </div>
+      <Hero
+        theme={theme}
+        logo={<TeamMark team={team} season={season} size={96} />}
+        kicker={`${LEAGUE_LABEL[league]} · ${groupLabel(league, team.group)} · S${season}`}
+        title={team.name}
+        stats={stats}
+      >
+        {editable && <Link className="btn" to={`/trade/${league}?team=${teamId}`}>Trade…</Link>}
+      </Hero>
       {lg === 'fba' && editable && <PayrollBar total={payroll(entries, season)} />}
       {error && <p className="error">{error}</p>}
       {editing && state && <EditDialog key={editing} state={state} league={lg} teamId={teamId} playerId={editing} onClose={() => setEditing(null)} versions={versions} phase={phase} />}
       {resigning && state && fbaTeams && <SignPanel key={resigning} state={state} teams={fbaTeams} playerId={resigning} defaultTeam={teamId} onClose={() => setResigning(null)} versions={versions} phase={phase} />}
       {editable && phase && lockProblem(phase, lg, 'release') && <p className="muted">{lockProblem(phase, lg, 'release')}</p>}
-      <div className="table-wrap">
-        <RosterTable league={league} entries={entries} players={players.players} ppg={results ? ppg : undefined} extraLabel={editable ? 'Actions' : undefined} renderExtra={editable && state ? actions : undefined} />
-      </div>
-      {myGames.length > 0 && (
-        <div className="table-wrap">
-          <h2>S{season} schedule &amp; results</h2>
-          <table className="roster" aria-label="Schedule & results">
-            <thead><tr><th>#</th><th>Opponent</th><th>Result</th></tr></thead>
-            <tbody>
-              {myGames.map(g => {
-                const r = results?.games[g.gameNo - 1];
-                const home = g.home === team.teamId;
-                const mine = r ? (home ? r.homePts : r.awayPts) : 0;
-                const theirs = r ? (home ? r.awayPts : r.homePts) : 0;
-                return (
-                  <tr key={g.gameNo}>
-                    <td>{g.gameNo}</td>
-                    <td>{home ? 'vs ' : '@ '}{home ? g.away : g.home}</td>
-                    <td>{r ? `${mine > theirs ? 'W' : 'L'} ${mine}-${theirs}` : '—'}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      {sections.length > 1 && <SubNav label="Team sections" items={sections} active={shown} onSelect={setTab} />}
+      {shown === 'roster' && (
+        <div className="tab-panel" id="panel-roster" role={sections.length > 1 ? 'tabpanel' : undefined} aria-labelledby={sections.length > 1 ? 'tab-roster' : undefined}>
+          <div className="table-wrap">
+            <RosterTable league={league} entries={entries} players={players.players} ppg={results ? ppg : undefined} extraLabel={editable ? 'Actions' : undefined} renderExtra={editable && state ? actions : undefined} />
+          </div>
+        </div>
+      )}
+      {shown === 'schedule' && (
+        <div className="tab-panel" id="panel-schedule" role={sections.length > 1 ? 'tabpanel' : undefined} aria-labelledby={sections.length > 1 ? 'tab-schedule' : undefined}>
+          <h2 className="section-title">S{season} schedule &amp; results</h2>
+          <div className="table-wrap tall">
+            <table className="stat-table roster" aria-label="Schedule & results">
+              <thead><tr><th>#</th><th>Opponent</th><th>Result</th></tr></thead>
+              <tbody>
+                {myGames.map(g => {
+                  const r = results?.games[g.gameNo - 1];
+                  const home = g.home === team.teamId;
+                  const mine = r ? (home ? r.homePts : r.awayPts) : 0;
+                  const theirs = r ? (home ? r.awayPts : r.homePts) : 0;
+                  return (
+                    <tr key={g.gameNo}>
+                      <td>{g.gameNo}</td>
+                      <td>{home ? 'vs ' : '@ '}{opponent(home ? g.away : g.home)}</td>
+                      <td>{r ? `${mine > theirs ? 'W' : 'L'} ${mine}-${theirs}` : '—'}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </section>

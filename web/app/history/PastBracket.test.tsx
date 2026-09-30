@@ -51,12 +51,11 @@ describe('PastBracket', () => {
     expect(sides[1].querySelector('.wins')!.textContent).toBe('');
   });
 
-  it('renders a team mark for a current team name, and a plain logo slot otherwise', () => {
+  it('renders a team mark for a current team name, and plain text otherwise', () => {
     const { container } = render(<PastBracket bracket={tree} teams={teams} season={5} />);
     expect(screen.getAllByRole('img').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('ALP Alpha').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('ALP').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Beta').length).toBeGreaterThan(0);
-    expect(container.querySelectorAll('span.logo').length).toBeGreaterThan(0);
   });
 });
 
