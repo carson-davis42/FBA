@@ -2,7 +2,7 @@
 
 Part 3 is split into three parts:
 
-- **3a (this spec):** season history and the player directory.
+- **3a (this spec):** season history and the player directory, plus the Finals MVP, D2 Series MVP and YSG MVP picks in the app.
 - **3b:** career stat totals, award counts by player, the HOF page restyle and nominee career lines rebuilt from full history.
 - **3c:** team trophy cases with era logos, draft history, transactions and events.
 
@@ -21,7 +21,9 @@ The brackets PDF also holds 42 D2 pages and 52 FBAJC pages; those wait for parts
 | H7 | The FBA "Elite Tournament" pages in the brackets PDF are transcribed once into a committed source file, `web/importers/history/fbaBrackets.json`. The importer copies each season into `summary.pastBracket`. |
 | H8 | Transcribed brackets render with the same series-box look as app brackets: the top half is on the left, the final is in the centre, and the bottom half is mirrored on the right. |
 | H9 | All-FBA teams from before the current format keep their own slot labels. |
-| H10 | App-played seasons have no Finals MVP (the app doesn't pick one), so it shows as `—`. |
+| H10 | The app now picks a Finals MVP for the FBA and a Series MVP for each D2 league final. The commissioner chooses it on a card that lists the champion's players with their Finals points per game (see "Picking in the app"). The World Cup "Tournament MVP" and the FBAJC "C-Ship MVP" wait for parts 5 and 6. Seasons played before this part show `—`. |
+| H11 | The YSG MVP is picked automatically: the player on the tournament-winning team with the most points across the whole tournament (semi and final). A tie goes to a dice roll-off. |
+| H12 | Wrap-up now also saves the ASG winner and losing team, the YSG winner and the YSG MVP into `summary.allStar`, in the same text form as imported seasons. |
 
 ## Sources
 
@@ -90,6 +92,39 @@ New document `leagues/fba/playerBios.json`, with a strict schema and a registry 
 ```
 
 `bios` is unique by `playerId`.
+
+## Picking in the app
+
+New schema fields are optional, so saved docs stay valid.
+
+```ts
+PlayoffsFile.outcome.champions[] += { finalsMvp?: playerId | null }   // null or absent = not picked yet
+AllStarFile.ysg += { mvp?: playerId, mvpRollOff?: RollOff | null }
+```
+
+**Finals MVP (FBA) and Series MVP (each D2 league)**
+
+- Once `outcome` is set, the Playoffs page shows one card per champion: "Finals MVP" for the FBA, "<League> Series MVP" for the D2.
+- The card lists every champion-team player who has a box line in that final's games (`FINALS` for the FBA, `<group>-F` for the D2). Columns are Player, GP and PPG (one decimal). Rows are sorted by PPG, highest first, then by name.
+- Each row has a Pick button. The engine move `pickFinalsMvp(playoffs, group, playerId)` saves the pick through `commitDocs`.
+  - It fails if there's no outcome, if the season is locked, or if the player isn't one of the listed players.
+  - Picking again replaces the earlier pick.
+- The Finish-season card is blocked with "Pick the Finals MVP first" (or "Pick every Series MVP first" for the D2) until each champion has a pick.
+- Wrap-up copies the pick to `summary.champions[].finalsMvp`.
+
+**YSG MVP**
+
+- `runYoungStar` adds up each player's dice points over `semis` and `final`, keeping only players on the `champion` team.
+- It sets `ysg.mvp` to the top scorer. A tie is settled with `rollOff`, using the injected `Rng`, and recorded in `mvpRollOff`.
+- The All-Star page shows "YSG MVP: <name>".
+- A doc whose YSG ran before this part has no `mvp` and shows `—`.
+
+**Wrap-up (`seasonRecord`) additions to `summary.allStar`**
+
+- `asgWinner` and `asgLoser` are `"Team <captain name>"` for the winning and losing ASG teams, from `selections.captains` by team index.
+- `ysgWinner` is `"Team <captain name>"` for `ysg.champion`, from `selections.youngCaptains`.
+- `ysgMvp` is `ysg.mvp ?? null`.
+- Each of these is null when its event hasn't run.
 
 ## Import (`npm run import -- --history`, run by the user)
 
@@ -160,4 +195,8 @@ These replace the `/history` placeholder.
 - **Importer:** merging into S78 keeps its existing fields; S79 is left untouched; rerunning gives identical output.
 - **jsdom tests for each page:** the empty, imported and app-season variants; search; the not-found routes.
 - `fbaBrackets.json` passes the schema, and a test checks each final against a fixture of the Championships rows.
+- **Picks:**
+  - `pickFinalsMvp` accepts a listed player; rejects an unlisted player, a missing outcome and a locked season; a second pick replaces the first; and the Finish-season card stays blocked until every champion has a pick.
+  - The YSG MVP rule works across semi and final, with a tie roll-off under a seeded `Rng`.
+  - Wrap-up writes `finalsMvp` and the four new `allStar` fields.
 - The committed `web/data` doesn't change. The browser check runs the importer on the scratch copy.
