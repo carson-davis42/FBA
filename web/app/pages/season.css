@@ -70,7 +70,7 @@
 .step-bar button.done { color: var(--good); }
 .step-bar button.on { background: var(--accent); color: var(--masthead-text); border-color: var(--accent); }
 .asg-team { border-top-color: var(--team); }
-.asg-team h3 { color: var(--team); }
+.asg-team h3 { color: var(--text); }
 .asg-team.on-clock { box-shadow: 0 0 0 2px var(--team); }
 .asg-team ul { margin: 0; padding-left: var(--s4); }
 .dice { display: inline-block; min-width: 22px; border: 1.5px solid var(--text); border-radius: var(--r-sm); background: var(--surface); text-align: center; font-weight: 800; font-variant-numeric: tabular-nums; margin-right: 2px; animation: dice-pop var(--dur) var(--ease) both; }

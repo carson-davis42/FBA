@@ -18,7 +18,7 @@ function TabNav({ label, items, active, onSelect }: { label: string; items: SubN
   return (
     <div ref={ref} className="subnav" role="tablist" aria-label={label}>
       {items.map(it => 'id' in it && (
-        <button key={it.id} type="button" role="tab" aria-selected={active === it.id} className={active === it.id ? 'active' : ''} onClick={() => onSelect?.(it.id)}>{it.label}</button>
+        <button key={it.id} id={`tab-${it.id}`} aria-controls={`panel-${it.id}`} type="button" role="tab" aria-selected={active === it.id} className={active === it.id ? 'active' : ''} onClick={() => onSelect?.(it.id)}>{it.label}</button>
       ))}
     </div>
   );

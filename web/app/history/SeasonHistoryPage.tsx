@@ -222,10 +222,12 @@ export function SeasonHistoryPage() {
         </select>
       </label>
       <SubNav label="Season sections" items={TABS.map(t => ({ label: t.label, id: t.id }))} active={tab} onSelect={id => setTab(id as Tab)} />
-      {tab === 'standings' && <Standings season={season} teams={teams} />}
-      {tab === 'playoffs' && <Playoffs season={season} teams={teams} players={players.data} />}
-      {tab === 'awards' && <Awards season={season} players={players.data} teams={teams} />}
-      {tab === 'allstar' && <AllStar season={season} players={players.data} />}
+      <div className="stack" id={`panel-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
+        {tab === 'standings' && <Standings season={season} teams={teams} />}
+        {tab === 'playoffs' && <Playoffs season={season} teams={teams} players={players.data} />}
+        {tab === 'awards' && <Awards season={season} players={players.data} teams={teams} />}
+        {tab === 'allstar' && <AllStar season={season} players={players.data} />}
+      </div>
     </section>
   );
 }

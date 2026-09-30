@@ -200,7 +200,7 @@ export function ScoresPage() {
             <div key={n} className={`card game-card${isNext ? ' next' : ''}`}>
               <div className="game-head">
                 <div className="game-status">Game {n} · {status}</div>
-                {r ? <Badge kind="final">final</Badge> : isNext ? <Badge kind="live">live</Badge> : null}
+                {r ? <Badge kind="final">final</Badge> : isNext ? <Badge kind="current">next</Badge> : null}
               </div>
               <TeamLine team={away} rec={rec(away.teamId)} pts={r ? r.awayPts : null} won={!!r && r.awayPts > r.homePts} season={state.season} />
               <TeamLine team={home} rec={rec(home.teamId)} pts={r ? r.homePts : null} won={!!r && r.homePts > r.awayPts} season={state.season} />

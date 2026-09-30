@@ -46,7 +46,7 @@ export function TopBar({ league }: { league: LeagueId }) {
   };
   return (
     <header className="masthead">
-      <Link to="/" className="brand"><img src="/logos/FBA/1" alt="" /><span className="brand-text">FBA Universe</span></Link>
+      <Link to="/" className="brand" aria-label="FBA Universe home"><img src="/logos/FBA/1" alt="" /><span className="brand-text">FBA Universe</span></Link>
       <nav className="league-switch" aria-label="Leagues">
         {LEAGUES.map(lg => (
           <Link key={lg} to={`/league/${lg}`} className={lg === league ? 'active' : ''} title={LEAGUE_LABEL[lg]}>{SHORT_LABEL[lg]}</Link>

@@ -33,7 +33,7 @@ export function PlayersHistoryPage() {
     const played = new Map<string, Set<number>>();
     for (const s of seasons) {
       if (s.season < 79) continue;
-      for (const l of s.players ?? []) played.set(l.playerId, (played.get(l.playerId) ?? new Set<number>()).add(s.season));
+      for (const l of s.players ?? []) if (l.teamId !== null && l.stint !== null) played.set(l.playerId, (played.get(l.playerId) ?? new Set<number>()).add(s.season));
     }
     return playerIndex(seasons, biosData, players.data).map(p => ({ ...p, seasons: played.get(p.playerId)?.size ?? 0, pts: totals.get(p.playerId)?.pts ?? 0 }));
   }, [seasons, players.data, biosData]);
@@ -60,8 +60,8 @@ export function PlayersHistoryPage() {
           <thead>
             <tr>
               <SortTh label="Player" {...sortProps('name', 'asc')} />
-              <SortTh label="Seasons" className="n" {...sortProps('seasons')} />
-              <SortTh label="PTS" className="n" {...sortProps('pts')} />
+              <SortTh label="Seasons (S79+)" className="n" {...sortProps('seasons')} />
+              <SortTh label="PTS (S79+)" className="n" {...sortProps('pts')} />
             </tr>
           </thead>
           <tbody>

@@ -129,14 +129,14 @@ export function TeamPage() {
       {editable && phase && lockProblem(phase, lg, 'release') && <p className="muted">{lockProblem(phase, lg, 'release')}</p>}
       {sections.length > 1 && <SubNav label="Team sections" items={sections} active={shown} onSelect={setTab} />}
       {shown === 'roster' && (
-        <div className="tab-panel">
+        <div className="tab-panel" id="panel-roster" role={sections.length > 1 ? 'tabpanel' : undefined} aria-labelledby={sections.length > 1 ? 'tab-roster' : undefined}>
           <div className="table-wrap">
             <RosterTable league={league} entries={entries} players={players.players} ppg={results ? ppg : undefined} extraLabel={editable ? 'Actions' : undefined} renderExtra={editable && state ? actions : undefined} />
           </div>
         </div>
       )}
       {shown === 'schedule' && (
-        <div className="tab-panel">
+        <div className="tab-panel" id="panel-schedule" role={sections.length > 1 ? 'tabpanel' : undefined} aria-labelledby={sections.length > 1 ? 'tab-schedule' : undefined}>
           <h2 className="section-title">S{season} schedule &amp; results</h2>
           <div className="table-wrap tall">
             <table className="stat-table roster" aria-label="Schedule & results">

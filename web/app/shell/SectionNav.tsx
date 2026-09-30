@@ -20,10 +20,11 @@ export function SectionNav({ league }: { league: LeagueId }) {
     nav.current?.querySelector<HTMLElement>('a.active')?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
   }, [pathname]);
   const historyActive = pathname.startsWith('/history') && !pathname.startsWith(HOF);
+  const teamPage = pathname.startsWith(`/league/${league}/team/`) || pathname === `/league/${league}/free-agency`;
   return (
     <nav ref={nav} className="section-nav" aria-label="Site sections">
       {leagueSections(league).map(([path, label]) => (
-        <NavLink key={label} end to={path ? `/league/${league}/${path}` : `/league/${league}`}>{label}</NavLink>
+        <NavLink key={label} end to={path ? `/league/${league}/${path}` : `/league/${league}`} className={label === 'Teams' && teamPage ? 'active' : undefined}>{label}</NavLink>
       ))}
       <span className="divider" aria-hidden="true" />
       <NavLink to="/calendar">Calendar</NavLink>

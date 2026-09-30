@@ -42,7 +42,7 @@ button.series-box:hover { border-color: var(--muted); box-shadow: var(--shadow-2
 .series-games li { padding: 4px 0; border-bottom: 1px solid var(--border); }
 
 /* awards */
-.race-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: var(--s3); }
+.race-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: var(--s3); }
 .race-grid > * { min-width: 0; }
 .spotlight { display: grid; gap: 2px; margin-bottom: var(--s3); }
 .spotlight .who { font-family: var(--font-head); font-size: var(--fs-xl); font-weight: 800; line-height: 1; text-transform: uppercase; }

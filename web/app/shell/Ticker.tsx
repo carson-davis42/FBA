@@ -43,7 +43,7 @@ export function Ticker({ league }: { league: LeagueId }) {
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
   }, [t.items.length]);
-  const scroll = (dx: number) => row.current?.scrollBy?.({ left: dx, behavior: 'smooth' });
+  const scroll = (dx: number) => row.current?.scrollBy?.({ left: dx, behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   const teams = state?.teams.teams ?? [];
   const season = state?.season ?? calendar?.season ?? 1;
   return (

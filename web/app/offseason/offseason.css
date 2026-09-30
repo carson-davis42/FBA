@@ -21,7 +21,6 @@
 .rating-input { width: 56px; font: inherit; font-weight: 800; text-align: right; border: 1px solid var(--border); border-radius: var(--r-sm); padding: 3px 6px; background: var(--surface); color: var(--text); }
 .rating-input:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
 .rating-input.changed { border-color: var(--accent); background: var(--accent-soft); }
-.ratings-table tr.edited td { background: var(--accent-soft); }
 .ratings-table tr.edited .rating-input { border-color: var(--accent); background: var(--accent-soft); }
 .card input[type='search'], .card input[type='number'], .card input:not([type]), .card input[type='text'], .card textarea, .card select {
   font: inherit; padding: 5px 8px; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); color: var(--text); max-width: 100%;
@@ -39,12 +38,12 @@
 .plain-list { margin: 0; padding-left: var(--s4); display: grid; gap: var(--s1); }
 .plain-list.tight { list-style: none; padding-left: 0; }
 .plain-list li .btn { margin-left: var(--s1); }
-.stat-table tr.now td { background: var(--accent-soft); font-weight: 700; }
+.stat-table tr.now td { font-weight: 700; }
 .stat-table tr.now td:first-child { box-shadow: inset 4px 0 0 var(--accent); }
 
 /* D2 pool and draft boards */
 .subnav.inline { position: static; top: auto; border-bottom: 0; background: none; padding: 0; overflow-x: auto; max-width: 100%; }
-.pool-list.card { padding: var(--s2); }
+.pool-list.card { padding: var(--s2); overflow-x: auto; }
 .pool-list li.tie { background: var(--accent-soft); }
 .pool-list li.bumped { box-shadow: inset 3px 0 0 var(--accent); }
 .pool-list li[draggable='true'] { cursor: grab; }

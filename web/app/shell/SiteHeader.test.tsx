@@ -37,6 +37,31 @@ describe('SiteHeader', () => {
     expect(screen.getByRole('link', { name: 'D2' }).className).toContain('active');
   });
 
+  it('lists only Teams for the WC and Teams/Recruiting for the JC, with league hrefs', () => {
+    const hrefs = () => Array.from(screen.getByRole('navigation', { name: 'Site sections' }).querySelectorAll('a')).map(a => a.getAttribute('href')).slice(0, -4);
+    const wc = render(<MemoryRouter initialEntries={['/league/fbawc']}><SiteHeader /></MemoryRouter>);
+    expect(hrefs()).toEqual(['/league/fbawc']);
+    wc.unmount();
+    render(<MemoryRouter initialEntries={['/league/fbajc/recruiting']}><SiteHeader /></MemoryRouter>);
+    expect(hrefs()).toEqual(['/league/fbajc', '/league/fbajc/recruiting']);
+  });
+
+  it('scrolls the active link into view and keeps Teams active on team pages', () => {
+    const spy = vi.fn();
+    const orig = Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView = spy;
+    try {
+      render(<MemoryRouter initialEntries={['/league/fba/team/5']}><SiteHeader /></MemoryRouter>);
+    } finally { Element.prototype.scrollIntoView = orig; }
+    expect(screen.getByRole('link', { name: 'Teams' }).className).toContain('active');
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('names the brand link for phone widths', () => {
+    render(<MemoryRouter initialEntries={['/']}><SiteHeader /></MemoryRouter>);
+    expect(screen.getByRole('link', { name: 'FBA Universe home' })).toBeTruthy();
+  });
+
   it('remembers the last league on pages without one', () => {
     const { unmount } = render(<MemoryRouter initialEntries={['/league/fbajc']}><SiteHeader /></MemoryRouter>);
     unmount();
