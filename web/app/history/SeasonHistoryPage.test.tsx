@@ -114,12 +114,17 @@ describe('SeasonHistoryPage', () => {
     expect(container.querySelectorAll('.bracket button')).toHaveLength(0);
   });
 
-  it('falls back to the champions line without a bracket', async () => {
-    stub([{ ...s72, pastBracket: null }]);
-    renderAt('/history/fba/season/72');
+  it('shows a Finals card without a bracket', async () => {
+    stub([{ ...s72, pastBracket: null, confChampions: { E: 'Boston', W: 'Utah' } }]);
+    const { container } = renderAt('/history/fba/season/72');
     await screen.findByRole('heading', { name: 'Utah' });
     fireEvent.click(screen.getByRole('tab', { name: 'Playoffs' }));
-    expect(screen.getByText('Finals: Utah def. Boston, 4–3')).toBeTruthy();
+    const won = container.querySelector('.finals-only .series-side.won');
+    expect(won?.textContent).toContain('Utah');
+    expect(won?.querySelector('.wins')?.textContent).toBe('4');
+    expect(container.querySelector('.finals-only .series-side:not(.won) .wins')?.textContent).toBe('3');
+    expect(screen.getByText("The full bracket for S72 wasn't recorded.")).toBeTruthy();
+    expect(screen.getByText(/Finals MVP:/)).toBeTruthy();
   });
 
   it('the picker navigates to the chosen season', async () => {

@@ -1,7 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AWARD_LABEL } from '../../engine/awards/races';
-import { formatScore } from '../../engine/history/format';
 import { resolveHistoryTeam } from '../../engine/shared/franchises';
 import type { FranchisesFile, PastAllFbaSlot, PlayersFile, SummaryFile, SummaryStanding, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
@@ -11,6 +10,7 @@ import { SubNav } from '../components/SubNav';
 import { TeamMark } from '../components/TeamMark';
 import { teamTheme } from '../components/teamColors';
 import { Bracket } from '../playoffs/Bracket';
+import { FinalsCard } from './FinalsCard';
 import { PastBracket } from './PastBracket';
 import { PlayerLink, SkippedWarning } from './PlayerLink';
 import { TeamAbbr, TeamFull } from './useTeams';
@@ -92,7 +92,7 @@ function Playoffs({ season, teams, players, franchises }: { season: SummaryFile;
       ) : season.pastBracket ? (
         <PastBracket bracket={season.pastBracket} teams={teams} season={season.season} franchises={franchises} />
       ) : champion ? (
-        <p>Finals: {champion.champion} def. {champion.runnerUp ?? '—'}, {formatScore(champion.score)}</p>
+        <FinalsCard champion={champion} conf={season.confChampions ?? null} teams={teams} franchises={franchises} season={season.season} />
       ) : (
         <p className="muted">No playoffs recorded</p>
       )}

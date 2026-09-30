@@ -27,3 +27,7 @@
 .plaque ul { margin: 0; padding-left: var(--s4); }
 
 .badge-row { display: flex; flex-wrap: wrap; gap: var(--s1); }
+
+/* The Finals box on its own, for seasons without a recorded bracket. */
+.finals-only { display: flex; justify-content: center; padding-top: var(--s4); }
+.finals-only .series-box { width: min(360px, 100%); }

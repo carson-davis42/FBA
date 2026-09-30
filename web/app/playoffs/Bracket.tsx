@@ -18,7 +18,7 @@ interface Props {
 }
 
 /** One side of a series box; shared with the history bracket. `name` is a team name with its logo, or plain text. */
-export function SideRow({ seed, name, wins, won }: { seed: number | null; name: ReactNode; wins: number | null; won: boolean }) {
+export function SideRow({ seed, name, wins, won }: { seed: ReactNode; name: ReactNode; wins: number | null; won: boolean }) {
   return (
     <span className={`series-side${won ? ' won' : ''}`}>
       <span className="seed">{seed ?? ''}</span>
