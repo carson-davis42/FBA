@@ -37,6 +37,12 @@ const renderAt = (path: string) => render(
 );
 
 describe('team page actions', () => {
+  it('links the FBA team page to the franchise history', async () => {
+    renderAt('/league/fba/team/MON');
+    const link = await screen.findByRole('link', { name: 'Franchise history' });
+    expect(link.getAttribute('href')).toBe('/history/fba/teams/MON');
+  });
+
   it('shows payroll and contract tags', async () => {
     renderAt('/league/fba/team/MON');
     expect(await screen.findByText('Payroll $6 / $25')).toBeTruthy();
