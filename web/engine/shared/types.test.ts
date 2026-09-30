@@ -544,6 +544,13 @@ describe('Part 3a history schemas', () => {
     it('rejects a missing series', () => {
       expect(PastBracket.safeParse(tweak(b => { b.series = b.series.filter(s => s.id !== 'R2-1'); })).success).toBe(false);
     });
+    it('accepts W-L and W-L-T records and rejects others', () => {
+      const withRecord = (record: string) => tweak(b => { b.series[0].home = side('St.Louis', record, 1); });
+      expect(PastBracket.safeParse(withRecord('5-1-1')).success).toBe(true);
+      expect(PastBracket.safeParse(withRecord('6-1')).success).toBe(true);
+      expect(PastBracket.safeParse(withRecord('5-1-1-1')).success).toBe(false);
+      expect(PastBracket.safeParse(withRecord('5')).success).toBe(false);
+    });
     it('rejects a winner with fewer wins', () => {
       expect(PastBracket.safeParse(tweak(b => { b.series[0].homeWins = 0; b.series[0].awayWins = 2; })).success).toBe(false);
     });

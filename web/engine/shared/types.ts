@@ -628,7 +628,7 @@ export const PastAllFbaTeams = z.object({ team1: z.array(PastAllFbaSlot), team2:
   }, 'Both All-FBA teams must follow the same known slot order');
 export type PastAllFbaTeams = z.infer<typeof PastAllFbaTeams>;
 
-export const PastSide = z.object({ name: z.string().min(1), record: z.string().regex(/^\d+-\d+$/).nullable(), seed: int.min(1).max(16).nullable() }).strict();
+export const PastSide = z.object({ name: z.string().min(1), record: z.string().regex(/^\d+-\d+(-\d+)?$/).nullable(), seed: int.min(1).max(16).nullable() }).strict();
 export type PastSide = z.infer<typeof PastSide>;
 export const PastSeries = z.object({
   id: z.string().regex(/^R\d-\d+$/),
