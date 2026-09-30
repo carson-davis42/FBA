@@ -1,17 +1,23 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { CalendarFile, Franchise, FranchisesFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
+import type { CalendarFile, Franchise, FranchisesFile, HallOfFameFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
+import { buildDraftHistory } from './draftHistory';
+import { buildPastTransactions } from './pastTransactions';
 import { planHistoryImport } from './historyRun';
 import { buildLogoManifest, diffLogoManifests } from './logoManifest';
 import { Report } from './report';
 import { assembleRefresh } from './refresh';
 import { applyNameFixes, planNameFixes } from './fixNames';
 import { buildClassImport, previousImportProblem } from './recruitingClassImport';
+import { draftTabKind } from './sheets/drafts';
+import { buildEvents, parseEventsTab } from './sheets/events';
 import { parseFranchiseTab } from './sheets/franchises';
 import { parseHallOfFameTab } from './sheets/hallOfFame';
+import { parseTeamTabCounts } from './sheets/teamTabs';
+import { TROPHY_AWARDS, trophyCase } from '../engine/history/trophies';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
 import { parsePlayersTab } from './sheets/playersTab';
 import { parseClassSection } from './sheets/recruitingClass';
@@ -46,6 +52,36 @@ function dataDir(): string {
     process.exit(1);
   }
   return r.dir;
+}
+
+/** The folder given with --data <dir>; exits when absent. Import modes that write history need an explicit folder. */
+function requireDataDir(flag: string): string {
+  const r = parseDataArg(process.argv, '');
+  if ('error' in r || !r.dir) {
+    console.error(`${flag} needs --data <dir>: the data folder to read and write (use a scratch copy first).`);
+    process.exit(1);
+  }
+  return r.dir;
+}
+const readDataJson = <T>(dir: string, rel: string): T | null => {
+  const file = path.join(dir, ...rel.split('/'));
+  return existsSync(file) ? (JSON.parse(readFileSync(file, 'utf8')) as T) : null;
+};
+/** Validates `doc` against its path's schema, then writes it; exits without writing on a schema failure. */
+function writeDoc(dir: string, rel: string, doc: unknown): void {
+  const checked = schemaForPath(rel)?.safeParse(doc);
+  if (!checked?.success) {
+    console.error(`The built ${rel} fails its schema; nothing was written.${checked && !checked.success ? `\n${checked.error.issues.slice(0, 5).map(i => `${i.path.join('.')}: ${i.message}`).join('\n')}` : ''}`);
+    process.exit(1);
+  }
+  const file = path.join(dir, ...rel.split('/'));
+  mkdirSync(path.dirname(file), { recursive: true });
+  writeFileSync(file, JSON.stringify(doc, null, 2) + '\n');
+  console.log(`Wrote ${file}.`);
+}
+/** Prints a report's warnings and errors to the console (3c imports write no report file). */
+function printReport(report: Report): void {
+  for (const e of report.entries.filter(x => x.level !== 'info')) console.warn(`${e.level}: [${e.topic}] ${e.message}`);
 }
 
 async function refreshRosters(): Promise<void> {
@@ -313,7 +349,102 @@ async function importFranchises(): Promise<void> {
   console.log(`Wrote ${file}: ${franchises.length} franchises, ${eraCount} name eras.`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history'];
+/** Reads the draft sheet's S49–S79 FBA and expansion drafts into leagues/fba/draftHistory.json. Writes nothing else. */
+async function importDraftHistory(): Promise<void> {
+  const dir = requireDataDir('--drafts');
+  const players = readDataJson<PlayersFile>(dir, 'players.json');
+  const franchises = readDataJson<FranchisesFile>(dir, 'leagues/fba/franchises.json');
+  if (!players || !franchises) {
+    console.error('--drafts needs players.json and leagues/fba/franchises.json in the data folder (run --franchises first).');
+    process.exit(1);
+  }
+  rmSync(path.join(CACHE, `${SHEETS.draft}.xlsx`), { force: true });
+  console.log('Downloading the draft history sheet...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.draft, CACHE), n => { const k = draftTabKind(n); return !!k && k.season <= 79; });
+  const report = new Report();
+  const doc = buildDraftHistory(tabs, { players, franchises, lastSeason: 79 }, report);
+  printReport(report);
+  for (const d of doc.drafts) console.log(`S${d.season} ${d.kind}: ${d.picks.filter(p => p.pick !== null).length} picks, ${d.picks.filter(p => p.pick === null).length} undrafted`);
+  writeDoc(dir, 'leagues/fba/draftHistory.json', doc);
+}
+
+/** Reads the main sheet's Transactions tab into leagues/fba/pastTransactions.json. Writes nothing else. */
+async function importPastTransactions(): Promise<void> {
+  const dir = requireDataDir('--transactions');
+  const players = readDataJson<PlayersFile>(dir, 'players.json');
+  const franchises = readDataJson<FranchisesFile>(dir, 'leagues/fba/franchises.json');
+  if (!players || !franchises) {
+    console.error('--transactions needs players.json and leagues/fba/franchises.json in the data folder (run --franchises first).');
+    process.exit(1);
+  }
+  rmSync(path.join(CACHE, `${SHEETS.main}.xlsx`), { force: true });
+  console.log('Downloading the main history sheet...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.main, CACHE), ['Transactions']);
+  const report = new Report();
+  const doc = buildPastTransactions(tabs['Transactions'] ?? [], { players, franchises }, report);
+  printReport(report);
+  for (const s of doc.seasons) console.log(`S${s.season}: ${s.entries.length} entries`);
+  console.log(`${doc.seasons.length} seasons, ${doc.seasons.reduce((n, s) => n + s.entries.length, 0)} entries.`);
+  writeDoc(dir, 'leagues/fba/pastTransactions.json', doc);
+}
+
+/** Reads the main sheet's Events tab plus importers/history/ruleChanges.json into leagues/fba/events.json. Writes nothing else. */
+async function importEvents(): Promise<void> {
+  const dir = requireDataDir('--events');
+  rmSync(path.join(CACHE, `${SHEETS.main}.xlsx`), { force: true });
+  console.log('Downloading the main history sheet...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.main, CACHE), ['Events']);
+  const rules = JSON.parse(readFileSync(path.join(WEB, 'importers', 'history', 'ruleChanges.json'), 'utf8')) as { season: number; lines: string[] }[];
+  const doc = buildEvents(parseEventsTab(tabs['Events'] ?? []), rules);
+  console.log(`${doc.before.length} pre-FBA notes, ${doc.seasons.length} seasons with notes or rules.`);
+  writeDoc(dir, 'leagues/fba/events.json', doc);
+}
+
+/** Compares each team tab's trophy counts on the team history sheet with the counts derived from the app's data. Read-only. */
+async function checkTrophies(): Promise<void> {
+  const dir = requireDataDir('--check-trophies');
+  const teams = readDataJson<TeamsFile>(dir, 'leagues/fba/teams.json');
+  if (!teams) {
+    console.error('--check-trophies needs leagues/fba/teams.json in the data folder.');
+    process.exit(1);
+  }
+  const fbaDir = path.join(dir, 'leagues', 'fba');
+  const summaries = readdirSync(fbaDir, { withFileTypes: true })
+    .filter(e => e.isDirectory() && /^S\d+$/.test(e.name) && existsSync(path.join(fbaDir, e.name, 'summary.json')))
+    .map(e => JSON.parse(readFileSync(path.join(fbaDir, e.name, 'summary.json'), 'utf8')) as SummaryFile);
+  const input = {
+    summaries,
+    teams: teams.teams,
+    franchises: readDataJson<FranchisesFile>(dir, 'leagues/fba/franchises.json'),
+    hallOfFame: readDataJson<HallOfFameFile>(dir, 'leagues/fba/hallOfFame.json'),
+  };
+  rmSync(path.join(CACHE, `${SHEETS.teamHistory}.xlsx`), { force: true });
+  console.log('Downloading the team history sheet (about 75 MB)...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.teamHistory, CACHE), n => /^[A-Z]+$/.test(n));
+  let mismatches = 0;
+  for (const id of Object.keys(tabs)) {
+    const sheet = parseTeamTabCounts(tabs[id]);
+    if (!sheet) {
+      console.warn(`warning: ${id} has no trophy header row`);
+      continue;
+    }
+    const c = trophyCase(id, input);
+    const app: Record<string, number> = {
+      championships: c.championships.length, finals: c.finals.length, confTitles: c.confTitles.length, tournaments: c.tournaments.length,
+      hallOfFamers: c.hallOfFamers.length,
+      ...Object.fromEntries(TROPHY_AWARDS.map(a => [a, c.awards.filter(x => x.award === a).length])),
+    };
+    for (const key of Object.keys(sheet)) {
+      if (sheet[key] !== app[key]) {
+        console.log(`${id} ${key}: sheet ${sheet[key]}, app ${app[key]}`);
+        mismatches++;
+      }
+    }
+  }
+  console.log(`${mismatches} mismatches across ${Object.keys(tabs).length} team tabs.`);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -328,6 +459,10 @@ async function main(): Promise<void> {
   if (process.argv.includes('--fix-names')) return fixNames();
   if (process.argv.includes('--recruiting-class')) return importRecruitingClass();
   if (process.argv.includes('--history')) return importHistory();
+  if (process.argv.includes('--drafts')) return importDraftHistory();
+  if (process.argv.includes('--transactions')) return importPastTransactions();
+  if (process.argv.includes('--events')) return importEvents();
+  if (process.argv.includes('--check-trophies')) return checkTrophies();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');
     process.exit(1);

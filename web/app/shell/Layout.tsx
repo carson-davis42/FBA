@@ -39,7 +39,13 @@ import { HistoryHome } from '../history/HistoryHome';
 import { LeadersPage } from '../history/LeadersPage';
 import { PlayerHistoryPage } from '../history/PlayerHistoryPage';
 import { PlayersHistoryPage } from '../history/PlayersHistoryPage';
+import { DraftSeasonPage } from '../history/DraftSeasonPage';
+import { PastTransactionsPage } from '../history/PastTransactionsPage';
+import { TimelinePage } from '../history/TimelinePage';
+import { DraftsPage } from '../history/DraftsPage';
+import { FranchisePage } from '../history/FranchisePage';
 import { SeasonHistoryPage } from '../history/SeasonHistoryPage';
+import { TeamsHistoryPage } from '../history/TeamsHistoryPage';
 import { SiteHeader } from './SiteHeader';
 
 /** Built once, so the page wrapper can key on the matched route pattern. */
@@ -83,6 +89,12 @@ const ROUTES = createRoutesFromElements(
   <Route path="/history/fba/hall-of-fame" element={<HallOfFameHistoryPage />} />
   <Route path="/history/fba/leaders" element={<LeadersPage />} />
   <Route path="/history/fba/season/:season" element={<SeasonHistoryPage />} />
+  <Route path="/history/fba/teams" element={<TeamsHistoryPage />} />
+  <Route path="/history/fba/teams/:teamId" element={<FranchisePage />} />
+  <Route path="/history/fba/drafts" element={<DraftsPage />} />
+  <Route path="/history/fba/drafts/:season" element={<DraftSeasonPage />} />
+  <Route path="/history/fba/transactions" element={<PastTransactionsPage />} />
+  <Route path="/history/fba/events" element={<TimelinePage />} />
   <Route path="/history/fba/players" element={<PlayersHistoryPage />} />
   <Route path="/history/fba/players/:playerId" element={<PlayerHistoryPage />} />
   <Route path="*" element={<Placeholder title="Not found" note="That page doesn't exist." />} />

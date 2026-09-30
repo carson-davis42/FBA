@@ -121,6 +121,7 @@ export function TeamPage() {
         stats={stats}
       >
         {editable && <Link className="btn" to={`/trade/${league}?team=${teamId}`}>Trade…</Link>}
+        {lg === 'fba' && <Link className="btn" to={`/history/fba/teams/${teamId}`}>Franchise history</Link>}
       </Hero>
       {lg === 'fba' && editable && <PayrollBar total={payroll(entries, season)} />}
       {error && <p className="error">{error}</p>}

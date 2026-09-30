@@ -31,3 +31,10 @@
 /* The Finals box on its own, for seasons without a recorded bracket. */
 .finals-only { display: flex; justify-content: center; padding-top: var(--s4); }
 .finals-only .series-box { width: min(360px, 100%); }
+
+.era-strip { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--s3); }
+.era-tile { display: grid; gap: 4px; justify-items: start; padding: var(--s3); background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); min-width: 0; }
+.era-logos { display: flex; gap: var(--s2); flex-wrap: wrap; }
+
+.tx-trade { display: grid; gap: 4px; padding: var(--s3) var(--s4); }
+.tx-trade-head { display: flex; gap: var(--s2); align-items: center; flex-wrap: wrap; }
