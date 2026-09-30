@@ -20,6 +20,7 @@ Part 3 is split into 3a (season history, done), **3b (this spec)** and 3c (troph
 | K7 | **Nominee prefill** uses `careerLines(liveCareer(...))`, replacing the 7b `<team>: …-S<n>` stub. |
 | K8 | **App-era stints are FBA only.** In 3b, careers from S79 on come from FBA summaries only. D2, World Cup and college stints from S79 on wait for parts 4–6. |
 | K9 | **Duplicate players are merged.** When exactly one Players-tab row matches two or more `players.json` records, they are one player. `--history` merges them into one record, rewrites every reference to the kept id, and uses the Players-tab spelling (see "Duplicate players"). Known cases: Nadeem Akers (p00040 and p00150) and Jamari O’Neal (p00609 and p01913). |
+| K10 | **Apostrophes.** The importer registry (`importers/registry.ts`) folds `’` to `'` when it compares names, so rerunning the roster importers can't create another apostrophe duplicate. It stores the name as given. (The Akers duplicate came from a wrong S78 age in `FBA/FBARosters.txt`, which the user has since corrected.) |
 
 ## Sources
 
