@@ -1,7 +1,8 @@
 import { calendarFor } from '../shared/calendar';
-import type { ClassYear, DraftFile, GameResult, PickObligation, PicksFile, PlayersFile, PlayoffsFile, Position, RankingFile, RecruitingFile, RosterEntry, RostersFile, TeamsFile, TransactionsFile } from '../shared/types';
+import type { ClassYear, DraftFile, GameResult, LotteryFile, PickObligation, PicksFile, PlayersFile, PlayoffsFile, Position, RankingFile, RecruitingFile, RosterEntry, RostersFile, TeamsFile, TransactionsFile } from '../shared/types';
 import type { AdjustAgeState } from './adjustAge';
 import type { DraftBoardState } from './draftBoard';
+import type { FbaDraftState } from './fbaDraft';
 import type { ProRatingsState } from './proRatings';
 import { lotteryStepId, type LotteryState } from './lottery';
 
@@ -211,6 +212,65 @@ export const proRatingsState = (over: Partial<ProRatingsState> = {}): ProRatings
     ratings: null,
     prevRatings: null,
     pause: null,
+    tx: { league: 'fba', season: 80, entries: [] },
+    ...over,
+  };
+};
+
+
+// ---- 7d: FBA draft (S80) ----
+
+/** 30 FBA teams named "City 00" ... "City 29". */
+export const draftFbaTeams = (): TeamsFile => ({ ...teamsFile(), teams: teamsFile().teams.map((t, i) => ({ ...t, name: `City ${String(i).padStart(2, '0')}` })) });
+
+/** Twelve prospects p00040-p00051 named "Prospect A" to "Prospect L", born S61 (age 19 in S80); p00040 is a PG at t1, the rest alternate SG/C at t2/t1. */
+export const draftPlayers = (): PlayersFile => {
+  const base = agePlayers();
+  const letters = 'ABCDEFGHIJKL';
+  const extra = Array.from({ length: 12 }, (_, i) => ({ id: `p${String(40 + i).padStart(5, '0')}`, name: `Prospect ${letters[i]}`, birthSeason: 61 }));
+  return { ...base, nextId: 60, players: { ...base.players, ...Object.fromEntries(extra.map(p => [p.id, p])) } };
+};
+
+export const draftProspects = (): DraftFile['prospects'] => Array.from({ length: 12 }, (_, i) => ({
+  playerId: `p${String(40 + i).padStart(5, '0')}`,
+  position: i === 0 ? 'PG' as const : i % 2 ? 'SG' as const : 'C' as const,
+  college: i % 2 ? 't2' : 't1',
+  classYear: 'Jr' as const,
+  senior: false,
+  collegeRating: 70,
+  stars: null,
+  fbaRating: 80 - i,
+}));
+
+/** The S79 lottery: T29 picks first ... T00 picks 30th, with the picks stored out of order; slot 3 (T27's) belongs to T05. */
+export const draftLottery = (): LotteryFile => ({
+  league: 'fba', season: 79, draftSeason: 80, locked: true, odds: [], lottery: [], order: ids.slice().reverse(),
+  picks: ids.slice().reverse().map((originalTeam, i) => ({ slot: i + 1, originalTeam, owner: i === 2 ? 'T05' : originalTeam, obligationId: null, flag: null })).reverse(),
+});
+
+/** T05 already has five players (p00060-p00064). Nobody else has anyone. */
+export const draftRosters = (): RostersFile => ({
+  league: 'fba', season: 80, locked: false,
+  teams: {
+    ...Object.fromEntries(ids.map(t => [t, [] as RosterEntry[]])),
+    T05: ['p00060', 'p00061', 'p00062', 'p00063', 'p00064'].map(playerId => ({ playerId, position: 'PG' as const, rating: 60, age: 25, points: 0 })),
+  },
+});
+
+/** The pro reset is finished, the draft has 12 rated prospects, the lottery is drawn, and the draft is the current step. */
+export const fbaDraftState = (over: Partial<FbaDraftState> = {}): FbaDraftState => {
+  const cal = calendarFor(80);
+  return {
+    season: 80,
+    calendar: { ...cal, steps: cal.steps.map(s => ({ ...s, done: s.id === 'adjust-age' || s.id === 'adjust-pro-ratings-reset' })) },
+    draft: { league: 'fba', season: 80, locked: false, started: false, prospects: draftProspects(), picks: [] },
+    ratings: { league: 'fba', season: 80, kind: 'fba-reset', locked: true, rows: [], order: [], ratings: {}, curve: [] },
+    lottery: draftLottery(),
+    fba: draftRosters(),
+    freeAgents: { league: 'fba', season: 80, locked: false, players: [] },
+    players: draftPlayers(),
+    fbaTeams: draftFbaTeams(),
+    collegeTeams: ageCollegeTeams(),
     tx: { league: 'fba', season: 80, entries: [] },
     ...over,
   };
