@@ -2,6 +2,7 @@ import { calendarFor } from '../shared/calendar';
 import type { ClassYear, DraftFile, GameResult, PickObligation, PicksFile, PlayersFile, PlayoffsFile, Position, RankingFile, RecruitingFile, RosterEntry, RostersFile, TeamsFile, TransactionsFile } from '../shared/types';
 import type { AdjustAgeState } from './adjustAge';
 import type { DraftBoardState } from './draftBoard';
+import type { ProRatingsState } from './proRatings';
 import { lotteryStepId, type LotteryState } from './lottery';
 
 // A 30-team fixture: team i beats every team j > i once, so the records are distinct (T00 29-0 ... T29 0-29).
@@ -179,3 +180,38 @@ export const draftBoardState = (over: Partial<DraftBoardState> = {}): DraftBoard
   ratings: draftBoardRatings(),
   ...over,
 });
+
+
+// ---- 7d: Adjust Pro Ratings (S80) ----
+
+/**
+ * FBA S80: BOS has p00020 Pro A (PG, 70, age 21) and p00024 Pro E (SG, 65, age 30) plus a hole. S79: p00020 scored 400 for BOS and 12 for NYK.
+ * Draft: p00001 Sam Senior (t1 Sr, college 80, born unknown) and p00012 Ron Three (t2 Fr, college 68, born 62, so age 18).
+ * Calendar: Adjust Age is done, so Adjust Pro Ratings is current.
+ */
+export const proRatingsState = (over: Partial<ProRatingsState> = {}): ProRatingsState => {
+  const cal = calendarFor(80);
+  return {
+    season: 80,
+    calendar: { ...cal, steps: cal.steps.map(s => (s.id === 'adjust-age' ? { ...s, done: true } : s)) },
+    fba: ageState().fba,
+    prevFba: { league: 'fba', season: 79, locked: true, teams: {
+      BOS: [{ playerId: 'p00020', position: 'PG', rating: 68, age: 20, points: 400 }],
+      NYK: [{ playerId: 'p00020', position: 'PG', rating: 68, age: 20, points: 12 }],
+    } },
+    draft: {
+      league: 'fba', season: 80, locked: false, started: false, picks: [],
+      prospects: [
+        { playerId: 'p00001', position: 'PG', college: 't1', classYear: 'Sr', senior: true, collegeRating: 80, stars: 4, fbaRating: null },
+        { playerId: 'p00012', position: 'SF', college: 't2', classYear: 'Fr', senior: false, collegeRating: 68, stars: null, fbaRating: null },
+      ],
+    },
+    players: agePlayers(),
+    collegeTeams: ageCollegeTeams(),
+    ratings: null,
+    prevRatings: null,
+    pause: null,
+    tx: { league: 'fba', season: 80, entries: [] },
+    ...over,
+  };
+};
