@@ -87,7 +87,7 @@ TrophyCase = {
 - **Conference titles:** `confChampions` E/W names when present (regular-season titles), else the standings rows with `rank === 1` in each `group`.
 - **Tournament appearances:** standings rows with `playoff !== null`, else the team names in `pastBracket.series` sides, else `bracket.seeds` teamIds. Seasons with none of these add nothing.
 - **Awards:** summary `awards` (MVP, ROTY, PPK, LP, MC, DPOY, MIP) whose `teamId` maps through `franchiseByAbbr(teamId, season)` to this franchise.
-- **Hall of Famers:** inductees whose first line starts `CODE:` with CODE mapping to this franchise, using the class season.
+- **Hall of Famers:** inductees with a stint line (`CODE: S24-S26`, `USA/OAK: S24-S26`, `TEX: FFL-S10`) whose code maps to this franchise, using the stint's start season (FFL stints → season 1). A player counts once for every franchise he played for. College lines ("San Diego State: S1-S2") never match a code.
 - All lists are sorted ascending. Pure; unit-tested on small fixtures.
 - **`--check-trophies`** (read-only, needs `--data <dir>` to read) parses the team tabs' count row (row 2: Championships, C-Ship app., Conference Titles, FBA Tourny app., MVP's, PPK, LP, MC, DPOY's, MIP's, ROTY's, Hall of Famers) and prints a table of every franchise and column where the derived count differs. It writes nothing.
 
