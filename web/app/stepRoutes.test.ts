@@ -38,6 +38,12 @@ describe('step routes', () => {
     expect(stepTarget(step('s81-fba-draft-lottery'))).toBe('/league/fba/lottery');
   });
 
+  it('opens the FBA draft page from its calendar step', () => {
+    expect(toolTarget(step('s80-fba-draft'))).toBe('/league/fba/draft');
+    expect(stepTarget(step('s80-fba-draft'))).toBe('/league/fba/draft');
+    expect(toolTarget(step('s81-fba-draft-lottery'))).toBe('/league/fba/lottery');
+  });
+
   it('opens the retirement page from its calendar step', () => {
     expect(TOOL_STEPS.retirement).toBe('/retirement');
     expect(toolTarget(step('retirement'))).toBe('/retirement');
