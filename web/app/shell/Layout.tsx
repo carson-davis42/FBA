@@ -30,6 +30,9 @@ import { AdjustAgePage } from '../offseason/AdjustAgePage';
 import { FbaDraftPage } from '../offseason/FbaDraftPage';
 import { ProRatingsPage } from '../offseason/ProRatingsPage';
 import { RetirementPage } from '../offseason/RetirementPage';
+import { AwardsHistoryPage } from '../history/AwardsHistoryPage';
+import { ChampionshipsPage } from '../history/ChampionshipsPage';
+import { HistoryHome } from '../history/HistoryHome';
 import { Sidebar } from './Sidebar';
 import { TopBar } from './TopBar';
 
@@ -71,7 +74,9 @@ export function Layout() {
           <Route path="/league/:league/transactions" element={<TransactionsPage />} />
           <Route path="/trade/:league" element={<TradePage />} />
           <Route path="/offseason" element={<Placeholder title="Offseason tools" note="Arrives in sub-project 7. For now, mark offseason steps done on the Calendar page." />} />
-          <Route path="/history" element={<Placeholder title="History" note="League history arrives in sub-project 3." />} />
+          <Route path="/history" element={<HistoryHome />} />
+          <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
+          <Route path="/history/fba/awards" element={<AwardsHistoryPage />} />
           <Route path="*" element={<Placeholder title="Not found" note="That page doesn't exist." />} />
         </Routes>
       </main>

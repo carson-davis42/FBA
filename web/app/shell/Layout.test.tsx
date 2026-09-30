@@ -15,6 +15,7 @@ const calendar = {
 beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
     if (url === '/api/state/calendar.json') return new Response(JSON.stringify(calendar));
+    if (url === '/api/history/fba') return new Response(JSON.stringify({ seasons: [], errors: [] }));
     return new Response(JSON.stringify({ error: 'nf' }), { status: 404 });
   }));
 });
@@ -30,7 +31,7 @@ describe('Layout', () => {
     expect(screen.getByText('FBA Universe')).toBeTruthy();
     for (const label of ['FBA', 'FBAD2', 'FBAJC', 'World Cup']) expect(screen.getByRole('link', { name: new RegExp(`^${label}$`) })).toBeTruthy();
     expect(await screen.findByText('S79 · Free Agency/Offseason')).toBeTruthy();
-    expect(screen.getByRole('heading', { name: 'History' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: 'History' })).toBeTruthy();
   });
 
   it('toggles the dark theme', () => {
