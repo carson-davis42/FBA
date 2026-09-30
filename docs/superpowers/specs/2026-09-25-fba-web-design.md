@@ -208,7 +208,9 @@ This is the single up-to-date list of parts. Update it whenever a part is split,
 | 7b Offseason | Season tail: FBA draft lottery (full S80 order + pick resolution), retirement, Hall of Fame import, nominees and induction | Done, merged to main 2026-09-29 (824 tests, browser-checked) | [spec](2026-09-29-offseason-7b-season-tail-design.md), [plan](../plans/2026-09-29-offseason-7b.md) |
 | 7c Offseason | Class timeline fix, S79 class import, name check, S79 transfer portal, Rank Class (R + consensus), Adjust College Ratings, walk-ons | Done, merged to main 2026-09-29 (93dbc5b, 993 tests, browser-checked on scratch) | [spec](2026-09-29-offseason-7c-college-tail-design.md), [plan](../plans/2026-09-29-offseason-7c.md) |
 | 7d Offseason | Adjust Age (pros and college: leavers, declare, portal), Adjust Pro Ratings with draft prospects, FBA draft; replace the 7a college setup panel's `rosterSeason.fbajc === n − 1` condition, which holds again after the S80 rollover | Done, merged to main 2026-09-29 (e1cdc86, 1132 tests, browser-checked on scratch); draftees without a birth season get one from their class year | [spec](2026-09-29-offseason-7d-pro-tail-design.md), [plan](../plans/2026-09-29-offseason-7d.md) |
-| 3 FBA history | Import and views for champions, awards, All-FBA, HOF (restyle the 7b page; regenerate nominee career lines from full history), team trophy cases with era logos, draft history, player career timelines, transactions, events | Next (not started) | — |
+| 3a FBA history | Season history: import S1–S78 champions, awards, All-FBA, All-Star, S71–S78 standings and transcribed brackets into summaries; Championships, Awards and Season pages; player directory and player pages; en-dash scores; history endpoint validation | Spec written 2026-09-30 | [spec](2026-09-30-fba-history-3a-design.md) |
+| 3b FBA history | Career stat totals, award counts by player, HOF page restyle and nominee career lines from full history | Not started | — |
+| 3c FBA history | Team trophy cases with era logos, draft history, transactions, events | Not started | — |
 | 4 FBAD2 | D2 history and anything left after 2b (season play, playoffs and promotion were built in 2b) | Not started | — |
 | 5 FBAWC | Host nation, group/bracket play, flags, World Cup history. Even seasons only | Not started | — |
 | 6 FBAJC | 216 teams / 18 conferences, preseason tournaments, conference challenge, rankings, conference tournaments, March Madness, NIT, recruiting and transfer history, school history pages | Not started | — |
@@ -227,7 +229,7 @@ The original descriptions of the remaining parts:
 
 Part 7 was split into 7a–7d on 2026-09-28 (rules and decisions D1–D21 in `.superpowers/sdd/progress.md`; 7d added E1–E5 in its spec). All four are done as of 2026-09-29, so every offseason calendar step now has its own tool page.
 
-**Carried into part 3:** season summaries store scores with an en dash ("4–1"), but the imported S78 ones use a hyphen, so normalise them. `GET /api/history/<lg>` doesn't validate summaries, and one corrupt file returns a 500 for the whole list. The 7b Hall of Fame page is to be restyled, and nominee career lines regenerated from full history.
+**Carried into part 3 (now in 3a, except the HOF items, which are in 3b):** season summaries store scores with an en dash ("4–1"), but the imported S78 ones use a hyphen, so normalise them. `GET /api/history/<lg>` doesn't validate summaries, and one corrupt file returns a 500 for the whole list. The 7b Hall of Fame page is to be restyled, and nominee career lines regenerated from full history.
 
 ## 11. Sub-project 1: Foundation (detailed scope)
 
