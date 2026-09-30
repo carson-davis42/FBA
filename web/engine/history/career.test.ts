@@ -69,6 +69,8 @@ describe('parseBio', () => {
     expect(parseBio({ born: 'Born-S1', entries: ['D2(Milan)-S53-S56'] }).stints[0].kind).toBe('d2');
     expect(parseBio({ born: 'Born-S1', entries: ['FP/MON-S6-S25'] }).stints[0].kind).toBe('fba');
     expect(parseBio({ born: 'Born-S1', entries: ['?-S19-S34'] }).stints[0].kind).toBe('fba');
+    for (const college of ['Duke-S60', 'UCLA-S60', 'BYU-S60', 'UConn-S60-S61'])
+      expect(parseBio({ born: 'Born-S1', entries: [college] }).stints[0].kind).toBe('college');
   });
 
   it('keeps unmatched entries and orphan honours under other', () => {

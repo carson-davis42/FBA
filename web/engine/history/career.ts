@@ -6,12 +6,14 @@ export interface Stint { kind: StintKind; team: string; range: string; from: num
 export interface Career { stints: Stint[]; hof: string | null; other: string[] }
 
 const STINT = /^(.+?)\s*-\s*((?:S\d+|FFL|pres\.)(?:\s*-\s*(?:S\d+|FFL|pres\.))?(?:\s*;\s*(?:S\d+|FFL)(?:\s*-\s*(?:S\d+|FFL|pres\.))?)*)$/;
-const FBA_PART = /^(\?|[A-Z][A-Za-z0-9.]{0,4})$/;
+// Every FBA team code in the Players-tab bios. A shape rule can't be used: colleges such as Duke, UCLA and BYU look like team codes.
+const FBA_TEAMS = new Set(['?', 'ATL', 'BOS', 'CAR', 'CGG', 'CHA', 'CHI', 'CIN', 'CP', 'CT', 'DCB', 'DEN', 'DET', 'FLO', 'FP', 'HON', 'LA',
+  'MAN', 'MEM', 'MIL', 'MON', 'MW', 'NO', 'NY', 'OAK', 'OV', 'PHX', 'SAS', 'SEA', 'SOX', 'STL', 'TEX', 'TOR', 'USA', 'VAN', 'VEG']);
 
 function kindOf(team: string): StintKind {
   if (team.startsWith('WC(')) return 'wc';
   if (team.startsWith('D2(')) return 'd2';
-  if (team.split('/').every(p => FBA_PART.test(p))) return 'fba';
+  if (team.split('/').every(p => FBA_TEAMS.has(p))) return 'fba';
   return 'college';
 }
 
