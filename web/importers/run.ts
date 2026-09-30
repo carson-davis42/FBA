@@ -1,15 +1,17 @@
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { CalendarFile, MetaFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
+import type { CalendarFile, MetaFile, PlayersFile, RecruitingFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
+import { buildHistory } from './history';
 import { buildLogoManifest } from './logoManifest';
 import { Report } from './report';
 import { assembleRefresh } from './refresh';
 import { applyNameFixes, planNameFixes } from './fixNames';
 import { buildClassImport, previousImportProblem } from './recruitingClassImport';
 import { parseHallOfFameTab } from './sheets/hallOfFame';
+import { parseAllFba, parseAwards, parseBios, parseChampionships, parsePastStandings } from './sheets/history';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
 import { parsePlayersTab } from './sheets/playersTab';
 import { parseClassSection } from './sheets/recruitingClass';
@@ -27,6 +29,7 @@ const SHEETS = {
   main: '1p5oLB9lJvsVKIyaiEOOg9luPxGBdY3yy5SOGq7edMUM',
   draft: '1e3YJEurdTk5y2XKHQcgttCbknZZsJOB8RhR10_gG1W4',
   collegeHistory: '1jgB8AI5dMjSXuSNQm3szoeRF5rIYcgmPXin-idAgE84',
+  pastStandings: '1FuPd67Vj8L4Zy4J53Z2jZzw_oqEa-1S5Lzztwq-NDpI',
 };
 
 const read = (rel: string) => readFileSync(path.join(REPO, rel), 'utf8');
@@ -184,11 +187,68 @@ async function importRecruitingClass(): Promise<void> {
   console.log(`Wrote ${files.length} documents for the S${n} class: ${rows.length} recruits (${report.count('warn')} warnings). Report: web/importers/recruiting-class-report.md`);
 }
 
+async function importHistory(): Promise<void> {
+  const i = process.argv.indexOf('--data');
+  const dirArg = i >= 0 ? process.argv[i + 1] : undefined;
+  if (!dirArg || dirArg.startsWith('--')) {
+    console.error('--history needs --data <dir>: the data folder to read and write (use a scratch copy first).');
+    process.exit(1);
+  }
+  const dir = path.resolve(dirArg);
+  const readDir = <T>(rel: string): T => JSON.parse(readFileSync(path.join(dir, ...rel.split('/')), 'utf8')) as T;
+  const report = new Report();
+  rmSync(path.join(CACHE, `${SHEETS.main}.xlsx`), { force: true });
+  rmSync(path.join(CACHE, `${SHEETS.pastStandings}.xlsx`), { force: true });
+  console.log('Downloading the main sheet and the past standings sheet...');
+  const seasons = Array.from({ length: 8 }, (_, k) => 71 + k);
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.main, CACHE), ['Championships', 'Awards, Conference Titles, & AS', 'All-FBA Teams', 'Players']);
+  const standingTabs = await readTabs(await downloadWorkbook(SHEETS.pastStandings, CACHE), seasons.map(s => `S${s}`));
+
+  const existing = new Map<number, SummaryFile>();
+  for (let n = 1; n <= 78; n++) {
+    const rel = `leagues/fba/S${n}/summary.json`;
+    if (existsSync(path.join(dir, ...rel.split('/')))) existing.set(n, readDir<SummaryFile>(rel));
+  }
+  const players = readDir<PlayersFile>('players.json');
+  const out = buildHistory({
+    players,
+    teams: [...readDir<TeamsFile>('leagues/fba/teams.json').teams, ...readDir<TeamsFile>('leagues/fbad2/teams.json').teams],
+    existing,
+    champs: parseChampionships(tabs['Championships']),
+    awards: parseAwards(tabs['Awards, Conference Titles, & AS']),
+    allFba: parseAllFba(tabs['All-FBA Teams']),
+    standings: new Map(seasons.map(s => [s, parsePastStandings(standingTabs[`S${s}`])])),
+    bios: parseBios(tabs['Players']),
+    brackets: JSON.parse(readFileSync(path.join(WEB, 'importers', 'history', 'fbaBrackets.json'), 'utf8')),
+  }, report);
+  report.info('players', `Added ${Object.keys(out.players.players).length - Object.keys(players.players).length} players`);
+  const playersCheck = schemaForPath('players.json')!.safeParse(out.players);
+  if (!playersCheck.success) report.error('schema', `players.json: ${playersCheck.error.issues.slice(0, 3).map(x => `${x.path.join('.')} ${x.message}`).join('; ')}`);
+
+  writeFileSync(path.join(WEB, 'importers', 'history-report.md'), report.toMarkdown('History import report'));
+  if (report.hasErrors) {
+    console.error(`The history import found ${report.count('error')} error(s); nothing was written. See web/importers/history-report.md`);
+    process.exit(1);
+  }
+  const files: [string, unknown][] = [
+    ['players.json', out.players],
+    ['leagues/fba/playerBios.json', out.bios],
+    ...out.summaries.map((s): [string, unknown] => [`leagues/fba/S${s.season}/summary.json`, s]),
+  ];
+  for (const [rel, doc] of files) {
+    const file = path.join(dir, ...rel.split('/'));
+    mkdirSync(path.dirname(file), { recursive: true });
+    writeFileSync(file, JSON.stringify(doc, null, 2) + '\n');
+  }
+  console.log(`Wrote ${out.summaries.length} summaries and ${out.bios.bios.length} bios to ${dir} (${report.count('warn')} warnings). Report: web/importers/history-report.md`);
+}
+
 async function main(): Promise<void> {
   if (process.argv.includes('--refresh-rosters')) return refreshRosters();
   if (process.argv.includes('--hall-of-fame')) return importHallOfFame();
   if (process.argv.includes('--fix-names')) return fixNames();
   if (process.argv.includes('--recruiting-class')) return importRecruitingClass();
+  if (process.argv.includes('--history')) return importHistory();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');
     process.exit(1);
