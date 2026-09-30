@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { MARK_EVERY, movement, rankingAt, rankingMarks } from '../../engine/awards/rankingsTimeline';
 import { GROUP_ORDER } from '../../engine/season/standings';
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
-import { LeagueTabs } from '../components/LeagueTabs';
 import { TeamMark } from '../components/TeamMark';
 import { useSeasonState } from '../season/useSeasonState';
 import '../pages/season.css';
@@ -21,7 +20,6 @@ export function RankingsPage() {
   const header = (
     <>
       <h1>{LEAGUE_LABEL[lg]} power rankings · S{state.season}</h1>
-      <LeagueTabs league={lg} />
     </>
   );
   if (!state.schedule || !state.results) return <section>{header}<p className="muted">No schedule yet.</p></section>;

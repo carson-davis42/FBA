@@ -49,25 +49,3 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); outline
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0s !important; scroll-behavior: auto !important; }
 }
-
-/* shell (moves to ui.css in Task 2) */
-.app { display: grid; grid-template-columns: 220px 1fr; grid-template-rows: 56px 1fr; min-height: 100vh; }
-.topbar { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; padding: 0 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
-.topbar .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; }
-.topbar .brand img { width: 32px; height: 32px; object-fit: contain; }
-.topbar .spacer { flex: 1; }
-
-.sidebar { background: var(--surface); border-right: 1px solid var(--border); padding: 12px; }
-.sidebar .section { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin: 14px 8px 6px; }
-.sidebar a { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 6px; font-weight: 600; }
-.sidebar a:hover { background: var(--surface-2); }
-.sidebar a.active { background: var(--accent-soft); color: var(--accent); }
-.main { padding: 20px; min-width: 0; }
-
-@media (max-width: 760px) {
-  .app { grid-template-columns: 1fr; grid-template-rows: 56px auto 1fr; }
-  .sidebar { border-right: 0; border-bottom: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 4px; padding: 8px; }
-  .sidebar .section { display: none; }
-  .main { padding: 16px; }
-  .topbar .brand span { display: none; }
-}

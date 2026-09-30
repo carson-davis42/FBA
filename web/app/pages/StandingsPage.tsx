@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { PLAYOFF_SEEDS, standings, type StandingRow } from '../../engine/season/standings';
 import { groupLabel, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { Team } from '../../engine/shared/types';
-import { LeagueTabs } from '../components/LeagueTabs';
 import { TeamMark } from '../components/TeamMark';
 import { useSeasonState } from '../season/useSeasonState';
 import './season.css';
@@ -56,7 +55,6 @@ export function StandingsPage() {
   return (
     <section>
       <h1>{LEAGUE_LABEL[lg]} standings · S{state.season}</h1>
-      <LeagueTabs league={lg} />
       <p className="muted">
         {lg === 'fba'
           ? '* clinched the #1 seed · x clinched a playoff spot · n eliminated · C conference champion · 🏆 FBA champion'

@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { AllStarPage } from '../allstar/AllStarPage';
 import { CalendarPage } from '../pages/CalendarPage';
 import { D2DraftPage } from '../pages/D2DraftPage';
@@ -39,15 +39,15 @@ import { LeadersPage } from '../history/LeadersPage';
 import { PlayerHistoryPage } from '../history/PlayerHistoryPage';
 import { PlayersHistoryPage } from '../history/PlayersHistoryPage';
 import { SeasonHistoryPage } from '../history/SeasonHistoryPage';
-import { Sidebar } from './Sidebar';
-import { TopBar } from './TopBar';
+import { SiteHeader } from './SiteHeader';
 
 export function Layout() {
+  const { pathname } = useLocation();
   return (
     <div className="app">
-      <TopBar />
-      <Sidebar />
+      <SiteHeader />
       <main className="main">
+        <div key={pathname} className="page-in">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/calendar" element={<CalendarPage />} />
@@ -91,6 +91,7 @@ export function Layout() {
           <Route path="/history/fba/players/:playerId" element={<PlayerHistoryPage />} />
           <Route path="*" element={<Placeholder title="Not found" note="That page doesn't exist." />} />
         </Routes>
+        </div>
       </main>
     </div>
   );

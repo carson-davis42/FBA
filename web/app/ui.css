@@ -102,3 +102,50 @@ button.chip:hover, a.chip:hover { background: var(--row-hover); }
   .hero-logo img, .hero-logo .team-badge { width: 56px !important; height: 56px !important; }
   .hero-stats { grid-column: 1 / -1; flex-wrap: wrap; }
 }
+
+/* shell */
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.masthead { display: flex; align-items: center; gap: var(--s3); height: 48px; padding: 0 var(--s4); background: var(--masthead-bg); color: var(--masthead-text); }
+.masthead .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-head); font-weight: 800; font-size: 20px; text-transform: uppercase; letter-spacing: 0.02em; }
+.masthead .brand img { width: 30px; height: 30px; object-fit: contain; }
+.league-switch { display: flex; gap: 2px; }
+.league-switch a { font-family: var(--font-head); font-weight: 700; font-size: 15px; letter-spacing: 0.03em; padding: 3px 10px; border-radius: 999px; color: color-mix(in srgb, var(--masthead-text) 70%, transparent); transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease); }
+.league-switch a:hover { color: var(--masthead-text); background: rgba(255, 255, 255, 0.08); }
+.league-switch a.active { background: var(--accent); color: #fff; }
+.masthead .spacer { flex: 1; }
+.masthead .pill { background: rgba(255, 255, 255, 0.1); color: var(--masthead-text); }
+.masthead .btn, .masthead .icon-btn { background: transparent; color: var(--masthead-text); border-color: rgba(255, 255, 255, 0.25); }
+.masthead .btn:hover:not(:disabled) { background: rgba(255, 255, 255, 0.08); }
+.undo-msg { font-size: var(--fs-sm); opacity: 0.75; }
+
+.ticker { display: flex; align-items: stretch; height: 56px; background: var(--surface-2); border-bottom: 1px solid var(--border); }
+.ticker-label { flex: none; display: flex; align-items: center; max-width: 150px; padding: 0 var(--s4); background: var(--surface); border-right: 1px solid var(--border); font-family: var(--font-head); font-weight: 800; font-size: 14px; text-transform: uppercase; line-height: 1.05; }
+.ticker-row { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
+.ticker-row::-webkit-scrollbar { display: none; }
+.ticker-chip { flex: none; scroll-snap-align: start; display: flex; flex-direction: column; justify-content: center; gap: 1px; min-width: 128px; padding: 4px 14px; border-right: 1px solid var(--border); font-size: var(--fs-sm); transition: background var(--dur-fast) var(--ease); }
+a.ticker-chip:hover { background: var(--row-hover); }
+.ticker-chip .side { display: flex; align-items: center; gap: 6px; color: var(--muted); font-weight: 600; }
+.ticker-chip .side.won { color: var(--text); font-weight: 800; }
+.ticker-chip .val { margin-left: auto; font-variant-numeric: tabular-nums; }
+.ticker-chip .note { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+.ticker-chip .txt { white-space: nowrap; }
+.ticker-btn { flex: none; width: 28px; border: 0; background: var(--surface); color: var(--muted); border-left: 1px solid var(--border); }
+.ticker-btn:first-of-type { border-left: 0; border-right: 1px solid var(--border); }
+
+.section-nav { position: sticky; top: 0; z-index: 20; display: flex; height: var(--nav-h); overflow-x: auto; scrollbar-width: none; padding: 0 var(--s3); background: var(--surface); border-bottom: 1px solid var(--border); box-shadow: var(--shadow-1); }
+.section-nav a { flex: none; display: flex; align-items: center; padding: 0 14px; font-weight: 700; font-size: 13px; color: var(--muted); border-bottom: 3px solid transparent; white-space: nowrap; transition: color var(--dur-fast) var(--ease); }
+.section-nav a:hover { color: var(--text); }
+.section-nav a.active { color: var(--text); border-bottom-color: var(--accent); }
+.section-nav .divider { flex: none; width: 1px; margin: 10px 6px; background: var(--border); }
+
+.main { flex: 1; width: 100%; max-width: 1280px; margin: 0 auto; padding: var(--s5); min-width: 0; }
+.page-in { animation: page-in var(--dur) var(--ease) both; }
+
+@media (max-width: 760px) {
+  .masthead { gap: var(--s2); padding: 0 var(--s3); }
+  .masthead .brand-text, .undo-text, .undo-msg, .ticker-btn { display: none; }
+  .league-switch a { padding: 3px 7px; font-size: 14px; }
+  .masthead .pill { max-width: 110px; overflow: hidden; text-overflow: ellipsis; }
+  .ticker-label { max-width: 84px; padding: 0 var(--s2); font-size: 12px; }
+  .main { padding: var(--s4); }
+}

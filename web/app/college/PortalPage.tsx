@@ -6,7 +6,6 @@ import { groupLabel } from '../../engine/shared/leagues';
 import { POSITIONS } from '../../engine/roster/rules';
 import type { MetaFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
-import { LeagueTabs } from '../components/LeagueTabs';
 import { commitDocs, newBatchId } from '../roster/commit';
 import { useRecruitingState } from './useRecruitingState';
 import '../pages/league.css';
@@ -32,7 +31,6 @@ export function PortalPage() {
   const head = (
     <>
       <div className="league-head"><h1>FBAJC transfer portal</h1></div>
-      <LeagueTabs league="fbajc" />
     </>
   );
   if (meta.error) return <p className="error">Couldn't load the portal: {meta.error.message}</p>;

@@ -7,7 +7,6 @@ import { blockingPause, PAUSE_LABEL, playerName, seasonDocPath, seasonOver, type
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { AwardsFile, RostersFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
-import { LeagueTabs } from '../components/LeagueTabs';
 import { newBatchId } from '../roster/commit';
 import { commitSeason } from '../season/commitSeason';
 import { useSeasonState } from '../season/useSeasonState';
@@ -65,7 +64,6 @@ export function AwardsPage() {
   const header = (
     <>
       <h1>{LEAGUE_LABEL[lg]} awards · S{state.season}</h1>
-      <LeagueTabs league={lg} />
     </>
   );
   if (!state.schedule || !state.results) return <section>{header}<p className="muted">No schedule yet.</p></section>;

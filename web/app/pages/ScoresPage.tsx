@@ -9,7 +9,6 @@ import {
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { Team } from '../../engine/shared/types';
 import { useSaving, type Versions } from '../api';
-import { LeagueTabs } from '../components/LeagueTabs';
 import { TeamMark } from '../components/TeamMark';
 import { commitSeason } from '../season/commitSeason';
 import { useSeasonState } from '../season/useSeasonState';
@@ -54,7 +53,6 @@ export function ScoresPage() {
   const header = (
     <>
       <h1>{LEAGUE_LABEL[lg]} scores · S{state.season}</h1>
-      <LeagueTabs league={lg} />
     </>
   );
   if (!state.schedule || !state.results) {

@@ -3,7 +3,6 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { boardPath, currentClassBoardSeason, recruitingWrites, type RecruitingResult } from '../../engine/college/state';
 import type { MetaFile, RecruitingFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
-import { LeagueTabs } from '../components/LeagueTabs';
 import { commitDocs } from '../roster/commit';
 import { useAutosaveDoc } from '../useAutosaveDoc';
 import { BoardTab } from './BoardTab';
@@ -54,7 +53,6 @@ export function RecruitingPage() {
           </select>
         </label>
       </div>
-      <LeagueTabs league="fbajc" />
     </>
   );
   if (!load.state) return <section>{head}<SetupPanel season={n} setup={load.setup!} versions={load.versions} /></section>;

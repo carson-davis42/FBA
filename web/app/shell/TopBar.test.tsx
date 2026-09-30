@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { TopBar } from './TopBar';
 
@@ -22,19 +23,19 @@ afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
 describe('TopBar undo', () => {
   it('is hidden on mount when nothing is undoable', async () => {
-    render(<TopBar />);
+    render(<MemoryRouter><TopBar league="fba" /></MemoryRouter>);
     await screen.findByText(/S79/);
     expect(screen.queryByRole('button', { name: /undo last move/i })).toBeNull();
   });
 
   it('appears on mount when the server reports an available undo', async () => {
     undoAvailable = true;
-    render(<TopBar />);
+    render(<MemoryRouter><TopBar league="fba" /></MemoryRouter>);
     expect(await screen.findByRole('button', { name: /undo last move/i })).toBeTruthy();
   });
 
   it('appears after a doc-saved event and undoes it', async () => {
-    render(<TopBar />);
+    render(<MemoryRouter><TopBar league="fba" /></MemoryRouter>);
     expect(screen.queryByRole('button', { name: /undo last move/i })).toBeNull();
     undoAvailable = true;
     act(() => { window.dispatchEvent(new CustomEvent('doc-saved', { detail: 'calendar.json' })); });
@@ -53,7 +54,7 @@ describe('TopBar undo', () => {
       }
       return new Response(JSON.stringify({ season: 79, steps: [] }));
     }));
-    render(<TopBar />);
+    render(<MemoryRouter><TopBar league="fba" /></MemoryRouter>);
     const button = await screen.findByRole('button', { name: /undo last move/i }) as HTMLButtonElement;
     expect(button.disabled).toBe(true);
     expect(button.title).toBe('Can\'t undo "Start D2 pool": leagues/fbad2/S79/pool.json has changed since');
@@ -68,7 +69,7 @@ describe('TopBar undo', () => {
       }
       return new Response(JSON.stringify({ season: 79, steps: [] }));
     }));
-    render(<TopBar />);
+    render(<MemoryRouter><TopBar league="fba" /></MemoryRouter>);
     const button = await screen.findByRole('button', { name: /undo last move/i }) as HTMLButtonElement;
     expect(button.disabled).toBe(true);
     expect(button.title).toBe('"S80 Draft Lottery" is final and can\'t be undone');
@@ -76,7 +77,7 @@ describe('TopBar undo', () => {
 
   it('disables Undo while a save is in flight', async () => {
     undoAvailable = true;
-    render(<TopBar />);
+    render(<MemoryRouter><TopBar league="fba" /></MemoryRouter>);
     const button = await screen.findByRole('button', { name: /undo last move/i });
     let release!: () => void;
     const pending = new Promise<void>(r => { release = r; });

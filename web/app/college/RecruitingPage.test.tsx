@@ -61,7 +61,6 @@ describe('RecruitingPage', () => {
     await waitFor(() => expect(log.puts).toHaveLength(1));
     expect(log.puts[0]).toMatchObject({ path: 'leagues/fbajc/S79/recruiting.json', ifMatch: '"null"' });
     expect((log.puts[0].doc as RecruitingFile).classDraft).toEqual([{ name: '', position: 'PG' }]);
-    expect(screen.getByRole('link', { name: 'Recruiting' }).getAttribute('href')).toBe('/league/fbajc/recruiting');
   });
 
   it('creates the class as one batch with the loaded versions', async () => {

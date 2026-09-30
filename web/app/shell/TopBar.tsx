@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { LEAGUES, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import { currentStepIndex } from '../../engine/shared/calendar';
 import { isUndoProtected } from '../../engine/shared/schemaRegistry';
-import type { CalendarFile } from '../../engine/shared/types';
+import type { CalendarFile, LeagueId } from '../../engine/shared/types';
 import { peekUndo, undoLast, useDoc, useSaving } from '../api';
 import { useTheme } from '../useTheme';
+import { SHORT_LABEL } from './useCurrentLeague';
 
-export function TopBar() {
+export function TopBar({ league }: { league: LeagueId }) {
   const { data: cal } = useDoc<CalendarFile>('calendar.json');
   const { theme, toggle } = useTheme();
   let pill = '';
@@ -42,23 +45,26 @@ export function TopBar() {
     }
   };
   return (
-    <header className="topbar">
-      <div className="brand">
-        <img src="/logos/FBA/1" alt="" />
-        <span>FBA Universe</span>
-      </div>
+    <header className="masthead">
+      <Link to="/" className="brand"><img src="/logos/FBA/1" alt="" /><span className="brand-text">FBA Universe</span></Link>
+      <nav className="league-switch" aria-label="Leagues">
+        {LEAGUES.map(lg => (
+          <Link key={lg} to={`/league/${lg}`} className={lg === league ? 'active' : ''} title={LEAGUE_LABEL[lg]}>{SHORT_LABEL[lg]}</Link>
+        ))}
+      </nav>
       <div className="spacer" />
-      {undoMsg && <span className="muted undo-msg">{undoMsg}</span>}
+      {undoMsg && <span className="undo-msg">{undoMsg}</span>}
       {undo.available && (
         <button
           className="btn"
+          aria-label="Undo last move"
           disabled={saving || undo.blockedBy !== null}
           onClick={doUndo}
           title={undo.blockedBy && isUndoProtected(undo.blockedBy) ? `"${undo.label}" is final and can't be undone`
             : undo.blockedBy ? `Can't undo "${undo.label}": ${undo.blockedBy} has changed since` : undo.label ? `Undo: ${undo.label}` : undefined}
-        >↶ Undo last move</button>
+        >↶<span className="undo-text"> Undo last move</span></button>
       )}
-      {pill && <span className="pill">{pill}</span>}
+      {pill && <Link to="/calendar" className="pill">{pill}</Link>}
       <button className="icon-btn" onClick={toggle} aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}>
         {theme === 'light' ? '☾' : '☀'}
       </button>

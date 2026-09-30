@@ -8,7 +8,6 @@ import { blockingPause, PAUSE_LABEL, seasonOver, type SeasonState } from '../../
 import { groupLabel, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { PlayoffsFile, Team } from '../../engine/shared/types';
 import { useSaving } from '../api';
-import { LeagueTabs } from '../components/LeagueTabs';
 import { TeamMark } from '../components/TeamMark';
 import { commitSeason } from '../season/commitSeason';
 import { useSeasonState } from '../season/useSeasonState';
@@ -61,7 +60,6 @@ export function PlayoffsPage() {
   const header = (
     <>
       <h1>{LEAGUE_LABEL[lg]} playoffs · S{state.season}</h1>
-      <LeagueTabs league={lg} />
     </>
   );
   if (!state.schedule || !state.results) {
