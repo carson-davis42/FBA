@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import type { Dice } from '../../engine/shared/types';
+import { SidesBug } from '../season/GameViews';
 
 export interface RevealLine {
   group: string;
@@ -10,6 +11,16 @@ export interface RevealLine {
   value?: number;
   /** Printed without its group header, because the text already says what it is. */
   bare?: boolean;
+}
+
+/** The card every event step sits in. */
+export function StepCard({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="card headed">
+      <div className="card-head"><h3>{title}</h3></div>
+      {children}
+    </div>
+  );
 }
 
 export function DiceFaces({ dice }: { dice: Dice }) {
@@ -49,7 +60,7 @@ export function DiceReveal({ lines, sides, onFinished, busy }: { lines: RevealLi
   const totals = sides?.map((_, i) => lines.slice(0, shown).filter(l => l.side === i).reduce((a, l) => a + (l.value ?? 0), 0));
   return (
     <div>
-      {sides && totals && <div className="scorebug">{sides.map((s, i) => <span key={s}>{s} <span className="score">{totals[i]}</span></span>)}</div>}
+      {sides && totals && <SidesBug sides={sides} totals={totals} />}
       <div className="sim-controls">
         <button className="btn" disabled={done || busy} onClick={() => setShown(s => s + 1)}>Roll next</button>
         <button className="btn" disabled={done || busy} onClick={() => setShown(groupEnd())}>Roll {lines[shown]?.group ?? 'group'}</button>

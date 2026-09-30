@@ -2,7 +2,9 @@ import { useParams } from 'react-router-dom';
 import { PLAYOFF_SEEDS, standings, type StandingRow } from '../../engine/season/standings';
 import { groupLabel, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { Team } from '../../engine/shared/types';
-import { TeamMark } from '../components/TeamMark';
+import { Badge } from '../components/Badge';
+import { PageHeader } from '../components/PageHeader';
+import { TeamName } from '../components/TeamName';
 import { useSeasonState } from '../season/useSeasonState';
 import './season.css';
 
@@ -10,13 +12,13 @@ const pct = (x: number) => (x === 1 ? '1.000' : x.toFixed(3).replace(/^0/, ''));
 const gb = (x: number) => (x === 0 ? '—' : String(x));
 const signed = (x: number) => (x > 0 ? `+${x}` : String(x));
 
-function Table({ rows, teams, season, showConf, lottery }: { rows: StandingRow[]; teams: Map<string, Team>; season: number; showConf: boolean; lottery?: boolean }) {
+function Table({ rows, teams, season, league, showConf, lottery }: { rows: StandingRow[]; teams: Map<string, Team>; season: number; league: string; showConf: boolean; lottery?: boolean }) {
   return (
     <div className="table-wrap">
-      <table className="standings">
+      <table className="stat-table standings">
         <thead>
           <tr>
-            <th>{lottery ? 'Pick' : '#'}</th><th></th><th>Team</th><th className="n">W</th><th className="n">L</th><th className="n">PCT</th>
+            <th className="rank">{lottery ? 'Pick' : '#'}</th><th></th><th>Team</th><th className="n">W</th><th className="n">L</th><th className="n">PCT</th>
             {!lottery && <th className="n">GB</th>}
             {showConf && !lottery && <th className="n">CONF</th>}
             {!lottery && <><th className="n">L10</th><th className="n">STRK</th><th className="n">DIFF</th></>}
@@ -27,9 +29,13 @@ function Table({ rows, teams, season, showConf, lottery }: { rows: StandingRow[]
             const t = teams.get(r.teamId);
             return (
               <tr key={r.teamId} className={!lottery && r.seed === PLAYOFF_SEEDS ? 'playoff-line' : undefined}>
-                <td>{r.seed}</td>
-                <td className="marker">{[r.marker, r.status, r.badge].filter(Boolean).join(' ')}</td>
-                <td>{t && <TeamMark team={t} season={season} size={20} />} {t?.name ?? r.teamId}</td>
+                <td className="rank">{r.seed}</td>
+                <td className="marker">
+                  {r.marker && r.marker !== 'n' && <Badge kind="clinched">{r.marker}</Badge>}
+                  {r.marker === 'n' && <Badge kind="eliminated">n</Badge>}
+                  {[r.status, r.badge].filter(Boolean).map(m => <span key={m} className="mark-glyph">{m}</span>)}
+                </td>
+                <td>{t ? <TeamName team={t} season={season} to={`/league/${league}/team/${t.teamId}`} /> : r.teamId}</td>
                 <td className="n">{r.w}</td><td className="n">{r.l}</td><td className="n">{pct(r.pct)}</td>
                 {!lottery && <td className="n">{gb(r.gb)}</td>}
                 {showConf && !lottery && <td className="n">{r.confW}-{r.confL}</td>}
@@ -53,23 +59,23 @@ export function StandingsPage() {
   const teams = new Map(state.teams.teams.map(t => [t.teamId, t]));
   const s = standings(lg, state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group })), state.results?.games ?? [], undefined, state.playoffs);
   return (
-    <section>
-      <h1>{LEAGUE_LABEL[lg]} standings · S{state.season}</h1>
+    <section className="stack">
+      <PageHeader kicker={`${LEAGUE_LABEL[lg]} · S${state.season}`} title="Standings" />
       <p className="muted">
         {lg === 'fba'
           ? '* clinched the #1 seed · x clinched a playoff spot · n eliminated · C conference champion · 🏆 FBA champion'
           : '* clinched first place · x clinched a playoff spot · n eliminated · ▲ promoted · ▼ relegated · 🏆 league champion'}
       </p>
       {s.groups.map(g => (
-        <div key={g.group}>
+        <div key={g.group} className="stand-group">
           <h2>{groupLabel(lg, g.group)}</h2>
-          <Table rows={g.rows} teams={teams} season={state.season} showConf={lg === 'fba'} />
+          <Table rows={g.rows} teams={teams} season={state.season} league={lg} showConf={lg === 'fba'} />
         </div>
       ))}
       {lg === 'fba' && s.lottery.length > 0 && (
         <div>
           <h2>Lottery standings</h2>
-          <Table rows={s.lottery} teams={teams} season={state.season} showConf={false} lottery />
+          <Table rows={s.lottery} teams={teams} season={state.season} league={lg} showConf={false} lottery />
         </div>
       )}
     </section>

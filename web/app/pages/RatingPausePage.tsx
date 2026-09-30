@@ -5,6 +5,8 @@ import { finishRatingPause, MIN_PAUSE_GAMES, setPauseRating, startRatingPause } 
 import { blockingPause, playerName, seasonDocPath, seasonOver, type SeasonResult } from '../../engine/season/state';
 import type { Position, RatingPauseFile } from '../../engine/shared/types';
 import { useSaving } from '../api';
+import { PageHeader } from '../components/PageHeader';
+import { TeamName } from '../components/TeamName';
 import { RatingInput } from '../components/RatingInput';
 import { newBatchId } from '../roster/commit';
 import { commitSeason } from '../season/commitSeason';
@@ -29,12 +31,12 @@ export function RatingPausePage() {
 
   if (error) return <p className="error">Couldn't load the season: {error.message}</p>;
   if (!state) return <p className="muted">Loading…</p>;
-  const title = <h1>S{state.season} rating adjustments</h1>;
+  const title = <PageHeader kicker="Regular season pause" title={`S${state.season} rating adjustments`} />;
   if (!due) {
     const next = seasonOver(state)
       ? <Link to="/league/fba/playoffs">Continue to playoffs ▸</Link>
       : <Link to="/league/fba/scores">Back to scores ▸</Link>;
-    return <section>{title}<p className="muted">No rating adjustment is due right now. {next}</p></section>;
+    return <section className="stack">{title}<p className="muted">No rating adjustment is due right now. {next}</p></section>;
   }
 
   const run = async (r: SeasonResult) => {
@@ -53,28 +55,31 @@ export function RatingPausePage() {
   const doc = autosave.doc ?? current;
   if (!doc) {
     return (
-      <section>
+      <section className="stack">
         {title}
-        <p className="muted">
-          Pause after game {due.afterGame}. The app suggests changes from each player's scoring so far (players with at least {MIN_PAUSE_GAMES} games).
-        </p>
-        <button className="btn primary" disabled={saving} onClick={() => run(startRatingPause(state))}>Start rating adjustments</button>
+        <div className="card">
+          <p className="muted">
+            Pause after game {due.afterGame}. The app suggests changes from each player's scoring so far (players with at least {MIN_PAUSE_GAMES} games).
+          </p>
+          <button className="btn primary" disabled={saving} onClick={() => run(startRatingPause(state))}>Start rating adjustments</button>
+        </div>
         {message && <p className="error">{message}</p>}
       </section>
     );
   }
 
   const name = (id: string) => playerName(state, id);
+  const teamOf = (id: string) => { const t = state.teams.teams.find(x => x.teamId === id); return t ? <TeamName team={t} season={state.season} variant="abbr" size={18} /> : id; };
   const rows = doc.players
     .filter(r => tab === 'ALL' || r.position === tab)
     .sort((a, b) => b.rating - a.rating || name(a.playerId).localeCompare(name(b.playerId)));
   const changed = doc.players.filter(r => r.rating !== r.oldRating).length;
 
   return (
-    <section>
+    <section className="stack">
       {title}
       <p className="muted">Pause after game {due.afterGame} · {changed} rating(s) changed</p>
-      <div className="toolbar">
+      <div className="card toolbar">
         <div className="tabs" role="tablist">
           {(['ALL', ...POSITIONS] as Tab[]).map(t => (
             <button key={t} role="tab" aria-selected={tab === t} className={`tab${tab === t ? ' on' : ''}`} onClick={() => setTab(t)}>{t === 'ALL' ? 'All' : t}</button>
@@ -84,8 +89,8 @@ export function RatingPausePage() {
       </div>
       {autosave.error && <p className="error">{autosave.error}</p>}
       {message && <p className="error">{message}</p>}
-      <div className="table-wrap">
-        <table className="ratings-table">
+      <div className="table-wrap tall">
+        <table className="stat-table ratings-table">
           <thead>
             <tr><th>Player</th><th>Team</th><th className="n">G</th><th className="n">PPG</th><th className="n">Old</th><th className="n">Suggested</th><th className="n">New</th></tr>
           </thead>
@@ -93,7 +98,7 @@ export function RatingPausePage() {
             {rows.map(r => (
               <tr key={r.playerId} className={r.rating !== r.oldRating ? 'edited' : undefined}>
                 <td>{name(r.playerId)}{tab === 'ALL' && <span className="muted"> · {r.position}</span>}</td>
-                <td>{r.teamId}</td>
+                <td>{teamOf(r.teamId)}</td>
                 <td className="n">{r.games}</td>
                 <td className="n">{r.ppg.toFixed(1)}</td>
                 <td className="n">{r.oldRating}</td>

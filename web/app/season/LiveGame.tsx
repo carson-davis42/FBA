@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { type Possession, type SimGame, winProbability } from '../../engine/season/sim';
 import { playerName, type SeasonState } from '../../engine/season/state';
 import { useSaving } from '../api';
-import { BoxTable, LineScore, periodName } from './GameViews';
+import { BoxTable, bugSide, LineScore, periodName, ScoreBug, teamLabel } from './GameViews';
 import '../pages/season.css';
 
 const SPEED_MS = { slow: 700, normal: 250, fast: 40 } as const;
@@ -88,13 +88,13 @@ export function LiveGame({ state, sim, save, back }: LiveGameProps) {
   const points = history.map((v, i) => `${(i / Math.max(1, sim.possessions.length)) * 300},${60 - v * 60}`).join(' ');
 
   return (
-    <section>
-      <div className="scorebug">
-        <span>{sim.away.teamId}</span><span className="score">{last?.awayScore ?? 0}</span>
-        <span className="clock">{done ? `Final${sim.ot ? ` (${sim.ot > 1 ? `${sim.ot}OT` : 'OT'})` : ''}` : `${periodName(last ? last.period : 1)} · ${end - shown} possessions left`}</span>
-        <span className="score">{last?.homeScore ?? 0}</span><span>{sim.home.teamId}</span>
-      </div>
-      <div className="sim-controls">
+    <section className="stack">
+      <ScoreBug
+        away={bugSide(state, sim.away.teamId, last?.awayScore ?? 0)}
+        home={bugSide(state, sim.home.teamId, last?.homeScore ?? 0)}
+        middle={done ? `Final${sim.ot ? ` (${sim.ot > 1 ? `${sim.ot}OT` : 'OT'})` : ''}` : `${periodName(last ? last.period : 1)} · ${end - shown} possessions left`}
+      />
+      <div className="card sim-controls">
         <button className="btn" disabled={done || auto} onClick={() => setShown(s => s + 1)}>Next possession</button>
         <button className="btn" disabled={done} onClick={() => setAuto(a => !a)}>{auto ? 'Pause' : 'Auto'}</button>
         <label>Speed
@@ -109,23 +109,23 @@ export function LiveGame({ state, sim, save, back }: LiveGameProps) {
       </div>
       {message && <p className="error">{message}</p>}
       <div className="live-grid">
-        <div className="card">
-          <h3>Play-by-play</h3>
+        <div className="card headed">
+          <div className="card-head"><h3>Play-by-play</h3></div>
           <ul className="pbp">
             {sim.possessions.slice(Math.max(0, shown - 15), shown).reverse().map(p => (
-              <li key={p.i} className={p.clutch ? 'clutch' : undefined}>{periodName(p.period)} · {playText(state, sim, p)}</li>
+              <li key={p.i} className={[p.clutch ? 'clutch' : '', p.made ? 'score' : ''].filter(Boolean).join(' ') || undefined}>{periodName(p.period)} · {playText(state, sim, p)}</li>
             ))}
           </ul>
         </div>
-        <div className="card">
-          <h3>Win probability · {sim.home.teamId} {Math.round(prob * 100)}%</h3>
+        <div className="card headed stack">
+          <div className="card-head"><h3>Win probability · {sim.home.teamId} {Math.round(prob * 100)}%</h3></div>
           <svg viewBox="0 0 300 60" width="100%" height="60" role="img" aria-label="Win probability">
-            <line x1="0" y1="30" x2="300" y2="30" stroke="currentColor" strokeOpacity="0.2" />
-            <polyline fill="none" stroke="currentColor" strokeWidth="2" points={points} />
+            <line className="wp-mid" x1="0" y1="30" x2="300" y2="30" />
+            <polyline className="wp-line" fill="none" points={points} />
           </svg>
-          <LineScore home={sim.home.teamId} away={sim.away.teamId} periods={periods} />
-          <BoxTable state={state} title={sim.away.teamId} lines={lines('away')} />
-          <BoxTable state={state} title={sim.home.teamId} lines={lines('home')} />
+          <LineScore home={teamLabel(state, sim.home.teamId)} away={teamLabel(state, sim.away.teamId)} periods={periods} />
+          <BoxTable state={state} title={teamLabel(state, sim.away.teamId)} lines={lines('away')} />
+          <BoxTable state={state} title={teamLabel(state, sim.home.teamId)} lines={lines('home')} />
         </div>
       </div>
     </section>

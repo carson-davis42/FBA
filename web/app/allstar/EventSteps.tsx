@@ -6,7 +6,8 @@ import { runDunk, runFivePoint } from '../../engine/allstar/contests';
 import { total } from '../../engine/allstar/dice';
 import { runYoungStar, startYsgDraft, ysgAvailable, ysgOnClock, ysgPick, ysgTeams } from '../../engine/allstar/youngStars';
 import type { ContestResult, TeamGame } from '../../engine/shared/types';
-import { DiceReveal, type RevealLine, StaticLines } from './DiceReveal';
+import { ACCENT_SIDES } from '../season/GameViews';
+import { DiceReveal, type RevealLine, StaticLines, StepCard } from './DiceReveal';
 import type { StepProps } from './types';
 
 export function contestLines(result: ContestResult, name: (id: string) => string): RevealLine[] {
@@ -74,15 +75,17 @@ export function ContestStep(props: StepProps & { contest: '5pt' | 'dunk' }) {
   const saved = contest === '5pt' ? doc.fivePoint : doc.dunk;
   if (ev.status === 'revealing' && ev.pending) {
     const r = contest === '5pt' ? ev.pending.doc.fivePoint! : ev.pending.doc.dunk!;
-    return <DiceReveal lines={contestLines(r, name)} onFinished={ev.onFinished} busy={saving} />;
+    return <StepCard title={label}><DiceReveal lines={contestLines(r, name)} onFinished={ev.onFinished} busy={saving} /></StepCard>;
   }
-  if (saved) return <StaticLines lines={contestLines(saved, name)} />;
-  if (ev.status === 'failed') return <button className="btn primary" disabled={saving} onClick={ev.retry}>Retry save</button>;
-  if (readOnly) return <p className="muted">Not run yet.</p>;
+  if (saved) return <StepCard title={label}><StaticLines lines={contestLines(saved, name)} /></StepCard>;
+  if (ev.status === 'failed') return <StepCard title={label}><button className="btn primary" disabled={saving} onClick={ev.retry}>Retry save</button></StepCard>;
+  if (readOnly) return <StepCard title={label}><p className="muted">Not run yet.</p></StepCard>;
   return (
+    <StepCard title={label}>
     <button className="btn primary" disabled={saving} onClick={() => ev.run(contest === '5pt' ? runFivePoint(doc, Math.random) : runDunk(doc, Math.random))}>
       Run the {label}
     </button>
+    </StepCard>
   );
 }
 
@@ -91,7 +94,7 @@ export function YsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
   if (!doc?.selections) return null;
   const name = (id: string) => list.find(p => p.playerId === id)?.name ?? state.players.players[id]?.name ?? id;
   if (!doc.ysgDraft) {
-    return readOnly ? null : <button className="btn primary" disabled={saving} onClick={() => save(startYsgDraft(doc, Math.random))}>Start Young-Star draft</button>;
+    return readOnly ? null : <StepCard title="Young-Star draft"><button className="btn primary" disabled={saving} onClick={() => save(startYsgDraft(doc, Math.random))}>Start Young-Star draft</button></StepCard>;
   }
   const teams = ysgTeams(doc);
   const clock = ysgOnClock(doc);
@@ -102,16 +105,17 @@ export function YsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
     <div className="live-grid">
       <div className="grid-2">
         {teams.map((ids, t) => (
-          <div key={t} className="card">
+          <div key={t} className={`card headed asg-team${clock === t ? ' on-clock' : ''}`} style={ACCENT_SIDES[t % 2]}>
             <h3>Team {captain(t)}{clock === t ? ' · on the clock' : ''}</h3>
             <ul>{ids.map(id => <li key={id}>{name(id)} · {list.find(p => p.playerId === id)?.position}</li>)}</ul>
           </div>
         ))}
       </div>
       {clock !== null && !readOnly ? (
-        <div className="card">
+        <div className="card headed">
           <h3>Available · Team {captain(clock)}</h3>
-          <table className="market" aria-label="Available Young-Stars">
+          <div className="table-wrap tall">
+          <table className="stat-table market" aria-label="Available Young-Stars">
             <thead><tr><th>Player</th><th>Pos</th><th className="n">Rtg</th></tr></thead>
             <tbody>
               {available.map(p => (
@@ -121,6 +125,7 @@ export function YsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
               ))}
             </tbody>
           </table>
+          </div>
           {chosen && (
             <button className="btn primary" disabled={saving} onClick={async () => { if (await save(ysgPick(doc, chosen.playerId, list))) setSelected(null); }}>
               Pick {chosen.name} → Team {captain(clock)}
@@ -153,11 +158,12 @@ export function YsgStep(props: StepProps) {
   const ev = useEvent(props);
   if (!doc) return null;
   const name = (id: string) => list.find(p => p.playerId === id)?.name ?? state.players.players[id]?.name ?? id;
-  if (ev.status === 'revealing' && ev.pending) return <DiceReveal lines={ysgLines(ev.pending.doc, name)} onFinished={ev.onFinished} busy={saving} />;
-  if (doc.ysg) return <StaticLines lines={ysgLines(doc, name)} />;
-  if (ev.status === 'failed') return <button className="btn primary" disabled={saving} onClick={ev.retry}>Retry save</button>;
-  if (readOnly) return <p className="muted">Not played yet.</p>;
-  return <button className="btn primary" disabled={saving} onClick={() => ev.run(runYoungStar(doc, Math.random))}>Run the Young-Star tournament</button>;
+  const T = 'Young-Star tournament';
+  if (ev.status === 'revealing' && ev.pending) return <StepCard title={T}><DiceReveal lines={ysgLines(ev.pending.doc, name)} onFinished={ev.onFinished} busy={saving} /></StepCard>;
+  if (doc.ysg) return <StepCard title={T}><StaticLines lines={ysgLines(doc, name)} /></StepCard>;
+  if (ev.status === 'failed') return <StepCard title={T}><button className="btn primary" disabled={saving} onClick={ev.retry}>Retry save</button></StepCard>;
+  if (readOnly) return <StepCard title={T}><p className="muted">Not played yet.</p></StepCard>;
+  return <StepCard title={T}><button className="btn primary" disabled={saving} onClick={() => ev.run(runYoungStar(doc, Math.random))}>Run the Young-Star tournament</button></StepCard>;
 }
 
 function asgLines(doc: NonNullable<StepProps['doc']>, name: (id: string) => string): RevealLine[] {
@@ -173,11 +179,12 @@ export function AsgStep(props: StepProps) {
   const name = (id: string) => list.find(p => p.playerId === id)?.name ?? id;
   const teams = asgTeams(doc);
   const sides = [`Team ${name(teams[0][0])}`, `Team ${name(teams[1][0])}`];
-  if (ev.status === 'revealing' && ev.pending) return <DiceReveal lines={asgLines(ev.pending.doc, name)} sides={sides} onFinished={ev.onFinished} busy={saving} />;
-  if (doc.asg) return <StaticLines lines={asgLines(doc, name)} />;
-  if (ev.status === 'failed') return <button className="btn primary" disabled={saving} onClick={ev.retry}>Retry save</button>;
-  if (readOnly) return <p className="muted">Not played yet.</p>;
-  return <button className="btn primary" disabled={saving} onClick={() => ev.run(runAsg(doc, list, Math.random))}>Play the All-Star Game</button>;
+  const T = 'All-Star Game';
+  if (ev.status === 'revealing' && ev.pending) return <StepCard title={T}><DiceReveal lines={asgLines(ev.pending.doc, name)} sides={sides} onFinished={ev.onFinished} busy={saving} /></StepCard>;
+  if (doc.asg) return <StepCard title={T}><StaticLines lines={asgLines(doc, name)} /></StepCard>;
+  if (ev.status === 'failed') return <StepCard title={T}><button className="btn primary" disabled={saving} onClick={ev.retry}>Retry save</button></StepCard>;
+  if (readOnly) return <StepCard title={T}><p className="muted">Not played yet.</p></StepCard>;
+  return <StepCard title={T}><button className="btn primary" disabled={saving} onClick={() => ev.run(runAsg(doc, list, Math.random))}>Play the All-Star Game</button></StepCard>;
 }
 
 export function WrapUp({ state, doc, list, saving, finished, onFinish }: StepProps & { finished: boolean; onFinish: () => void }) {
@@ -186,7 +193,7 @@ export function WrapUp({ state, doc, list, saving, finished, onFinish }: StepPro
   const teams = asgTeams(doc);
   const g = doc.asg.game;
   return (
-    <div className="card">
+    <div className="card headed">
       <h3>All-Star weekend results</h3>
       <ul>
         <li>5pt contest: {name(doc.fivePoint.winner)}</li>

@@ -3,6 +3,7 @@ import { saveSelections, selectionProblems, suggestSelections } from '../../engi
 import { POSITIONS } from '../../engine/roster/rules';
 import { playerSeasonStats } from '../../engine/season/ratingPause';
 import type { AllStarSelections } from '../../engine/shared/types';
+import { teamLabel } from '../season/GameViews';
 import type { StepProps } from './types';
 
 const idFrom = (text: string) => /\((p\d{5})\)$/.exec(text.trim())?.[1] ?? '';
@@ -37,14 +38,14 @@ export function SelectionStep({ state, doc, list, readOnly, saving, save }: Step
   });
 
   const table = (label: string, key: 'allStars' | 'youngStars', rows: typeof list) => (
-    <div className="table-wrap" style={{ maxHeight: 320, overflow: 'auto' }}>
-      <table className="pick-table" aria-label={label}>
+    <div className="table-wrap tall" style={{ maxHeight: 320 }}>
+      <table className="stat-table pick-table" aria-label={label}>
         <thead><tr><th></th><th>Player</th><th>Pos</th><th>Team</th><th className="n">Rtg</th><th className="n">PPG</th></tr></thead>
         <tbody>
           {rows.map(p => (
             <tr key={p.playerId}>
               <td><input type="checkbox" aria-label={`${label}: ${p.name}`} checked={sel[key].includes(p.playerId)} disabled={readOnly} onChange={() => toggle(key, p.playerId)} /></td>
-              <td>{p.name}{p.restricted && key === 'youngStars' ? ' · rookie deal' : ''}</td><td>{p.position}</td><td>{p.teamId}</td>
+              <td>{p.name}{p.restricted && key === 'youngStars' ? ' · rookie deal' : ''}</td><td>{p.position}</td><td>{teamLabel(state, p.teamId)}</td>
               <td className="n">{p.rating}</td><td className="n">{(ppg.get(p.playerId) ?? 0).toFixed(1)}</td>
             </tr>
           ))}
@@ -54,8 +55,8 @@ export function SelectionStep({ state, doc, list, readOnly, saving, save }: Step
   );
 
   return (
-    <div>
-      <div className="card">
+    <div className="stack">
+      <div className="card headed">
         <h3>All-Stars · {sel.allStars.length}/28 · {counts(sel.allStars)} (4–11 per position)</h3>
         {[0, 1].map(i => (
           <label key={i}>ASG captain {i + 1}{' '}
@@ -67,7 +68,7 @@ export function SelectionStep({ state, doc, list, readOnly, saving, save }: Step
         ))}
         {table('All-Stars', 'allStars', best)}
       </div>
-      <div className="card">
+      <div className="card headed">
         <h3>Young-Stars · {sel.youngStars.length}/20 · {counts(sel.youngStars)} (2–7 per position)</h3>
         {table('Young-Stars', 'youngStars', youngFirst)}
         <datalist id="registry-players">
