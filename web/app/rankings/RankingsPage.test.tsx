@@ -27,7 +27,7 @@ describe('RankingsPage', () => {
     renderAt('/league/fba/rankings');
     const picker = (await screen.findByRole('combobox', { name: 'Mark' })) as HTMLSelectElement;
     expect(picker.value).toBe('1290');
-    expect(screen.getAllByRole('row')).toHaveLength(31);
+    expect(screen.getAllByRole('listitem')).toHaveLength(30);
     expect(screen.getAllByText(/^[▲▼]\d+$|^—$|^NEW$/).length).toBeGreaterThan(0);
     fireEvent.change(picker, { target: { value: '20' } });
     expect(picker.value).toBe('20');
@@ -37,7 +37,7 @@ describe('RankingsPage', () => {
     stubApi(seasonDocs(regularSeasonDone(fullD2State())));
     renderAt('/league/fbad2/rankings');
     await screen.findByRole('combobox', { name: 'Mark' });
-    expect(screen.getAllByRole('row')).toHaveLength(17);
+    expect(screen.getAllByRole('listitem')).toHaveLength(16);
     fireEvent.click(screen.getByRole('button', { name: 'IL' }));
     expect(screen.getAllByText(/IL\d\d/).length).toBeGreaterThan(0);
   });

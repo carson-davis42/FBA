@@ -1,0 +1,74 @@
+/* postseason: brackets, seeds, champion, awards, rankings */
+.tie-notes { margin: var(--s2) 0 0; padding-left: var(--s4); font-size: var(--fs-sm); }
+.next-game { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; justify-content: space-between; border-color: var(--accent); }
+.league-pick { margin: 0; }
+.champ-line { display: inline-flex; align-items: center; gap: var(--s2); font-weight: 700; }
+.outcome-notes p { margin: 0 0 var(--s1); }
+.rank-toolbar { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; margin: 0 0 var(--s3); }
+
+/* seeds */
+.seed-table .rank { width: 1%; }
+.seed-table .rec { color: var(--muted); }
+
+/* bracket: scrolls sideways inside its own box */
+.bracket { display: flex; gap: 28px; overflow-x: auto; padding: var(--s1) var(--s1) var(--s3); }
+.bracket-col { display: flex; flex-direction: column; justify-content: space-around; gap: var(--s3); min-width: 200px; flex: none; }
+.bracket-col.mid { min-width: 240px; justify-content: center; }
+.series-box { position: relative; display: grid; gap: 0; text-align: left; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--r); padding: 0; overflow: visible; box-shadow: var(--shadow-1); font: inherit; }
+button.series-box { cursor: pointer; transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease); }
+button.series-box:hover { border-color: var(--muted); box-shadow: var(--shadow-2); }
+.series-box.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.series-box .series-side:first-of-type { border-radius: var(--r) var(--r) 0 0; }
+.series-box .series-side:last-of-type { border-radius: 0 0 var(--r) var(--r); }
+.series-side + .series-side { border-top: 1px solid var(--border); }
+/* connectors to the next round */
+.bracket-col.l .series-box::after, .bracket-col.mid .series-box::after, .bracket-col.r .series-box::before, .bracket-col.mid .series-box::before { content: ''; position: absolute; top: 50%; width: 14px; height: 1px; background: var(--border); }
+.bracket-col.l .series-box::after, .bracket-col.mid .series-box::after { left: 100%; }
+.bracket-col.r .series-box::before, .bracket-col.mid .series-box::before { right: 100%; }
+.series-side { display: grid; grid-template-columns: 20px minmax(0, 1fr) 22px; gap: var(--s2); align-items: center; padding: 6px 10px 6px 8px; font-size: 13px; border-left: 3px solid transparent; }
+.series-side .seed { text-align: right; color: var(--muted); font-size: var(--fs-sm); font-weight: 700; }
+.series-side .name { min-width: 0; overflow: hidden; }
+.series-side .name .team-name { max-width: 100%; }
+.series-side .wins { text-align: right; font-family: var(--font-head); font-size: var(--fs-md); font-weight: 700; font-variant-numeric: tabular-nums; }
+.series-box.decided .series-side:not(.won) { color: var(--muted); }
+.series-side.won { font-weight: 800; border-left-color: var(--accent); }
+.series-side.won .seed { color: var(--text); }
+/* the Finals card */
+.series-box.finals { border-width: 2px; }
+.series-box.finals .series-side { padding-top: 10px; padding-bottom: 10px; font-size: var(--fs-md); }
+.series-box.finals .champ-badge { display: flex; justify-content: center; padding: 4px; background: var(--row-alt); border-bottom: 1px solid var(--border); border-radius: var(--r) var(--r) 0 0; }
+.series-box.finals .champ-badge + .series-side { border-radius: 0; }
+.series-games { list-style: none; padding: 0; margin: 0; }
+.series-games li { padding: 4px 0; border-bottom: 1px solid var(--border); }
+
+/* awards */
+.race-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: var(--s3); }
+.race-grid > * { min-width: 0; }
+.spotlight { display: grid; gap: 2px; margin-bottom: var(--s3); }
+.spotlight .who { font-family: var(--font-head); font-size: var(--fs-xl); font-weight: 800; line-height: 1; text-transform: uppercase; }
+.spotlight .stat { color: var(--muted); font-size: var(--fs-sm); }
+.spotlight .badges { display: flex; flex-wrap: wrap; gap: var(--s1); align-items: center; }
+.race-table .why { font-size: var(--fs-xs); font-weight: 400; white-space: normal; min-width: 180px; }
+.odds-cell { min-width: 96px; }
+.odds-bar { height: 6px; border-radius: 999px; background: var(--surface-2); overflow: hidden; margin-top: 3px; }
+.odds-bar > div { height: 100%; background: var(--accent); }
+.award-picks { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--s2); }
+.award-picks label { display: flex; flex-direction: column; gap: 4px; font-weight: 700; }
+.award-picks select, .all-fba select { max-width: 100%; }
+.all-fba td:first-child { font-weight: 700; width: 60px; }
+.winner-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.winner-list li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); }
+.all-fba-slot { display: flex; align-items: center; gap: var(--s2); }
+
+/* power rankings */
+.rank-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.rank-row { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto auto; gap: var(--s3); align-items: center; padding: var(--s2) var(--s3); background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); box-shadow: var(--shadow-1); }
+.rank-num { font-family: var(--font-head); font-size: var(--fs-xl); font-weight: 800; line-height: 1; text-align: center; font-variant-numeric: tabular-nums; }
+.rank-rec { color: var(--muted); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+.move { min-width: 44px; text-align: right; font-weight: 800; font-size: var(--fs-sm); font-variant-numeric: tabular-nums; color: var(--muted); }
+.move.up { color: var(--good); }
+.move.down { color: var(--accent); }
+@media (max-width: 560px) {
+  .rank-row { grid-template-columns: 40px minmax(0, 1fr) auto; }
+  .rank-row .rank-rec { display: none; }
+}

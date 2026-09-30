@@ -3,7 +3,10 @@ import { finalsMvpCandidates, pickFinalsMvp } from '../../engine/playoffs/moves'
 import { playerName, type SeasonState } from '../../engine/season/state';
 import { groupLabel } from '../../engine/shared/leagues';
 import { useSaving, type Versions } from '../api';
+import { Badge } from '../components/Badge';
+import { teamTheme, teamVars } from '../components/teamColors';
 import { commitSeason } from '../season/commitSeason';
+import './playoffs.css';
 
 /** Pick (or change) one champion's Finals MVP (FBA) or Series MVP (D2). After wrap-up it only reports the pick. */
 export function FinalsMvpCard({ state, versions, group }: { state: SeasonState; versions: Versions; group: string | null }) {
@@ -15,7 +18,10 @@ export function FinalsMvpCard({ state, versions, group }: { state: SeasonState; 
   const champion = state.playoffs?.outcome?.champions.find(c => c.group === group);
   const picked = champion?.finalsMvp ?? null;
 
-  if (state.summary) return picked ? <p>{title}: {playerName(state, picked)}</p> : null;
+  const champTeam = champion ? state.teams.teams.find(t => t.teamId === champion.teamId) : undefined;
+  const style = champTeam ? teamVars(teamTheme(champTeam, state.league)) : undefined;
+
+  if (state.summary) return picked ? <div className="card headed" style={style}><p>{title}: {playerName(state, picked)}</p></div> : null;
 
   const pick = async (playerId: string) => {
     // A ref, not state: the save must never start twice (useSaving re-renders as it starts).
@@ -39,21 +45,23 @@ export function FinalsMvpCard({ state, versions, group }: { state: SeasonState; 
 
   const rows = finalsMvpCandidates(state, group);
   return (
-    <div className="finals-mvp">
-      <h3>{title}</h3>
-      <table className="board-table" aria-label={title}>
-        <thead><tr><th>Player</th><th>GP</th><th>PPG</th><th /></tr></thead>
-        <tbody>
-          {rows.map(c => (
-            <tr key={c.playerId}>
-              <td>{c.name}</td>
-              <td>{c.gp}</td>
-              <td>{c.ppg.toFixed(1)}</td>
-              <td>{c.playerId === picked ? <b>{title === 'Finals MVP' ? 'Finals MVP' : 'Series MVP'}</b> : <button className="btn" disabled={saving} onClick={() => pick(c.playerId)}>Pick</button>}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="card headed finals-mvp" style={style}>
+      <div className="card-head"><h3>{title}</h3></div>
+      <div className="table-wrap">
+        <table className="stat-table" aria-label={title}>
+          <thead><tr><th>Player</th><th className="n">GP</th><th className="n">PPG</th><th /></tr></thead>
+          <tbody>
+            {rows.map(c => (
+              <tr key={c.playerId}>
+                <td>{c.name}</td>
+                <td className="n">{c.gp}</td>
+                <td className="n">{c.ppg.toFixed(1)}</td>
+                <td>{c.playerId === picked ? <Badge kind="finals-mvp">{title === 'Finals MVP' ? 'Finals MVP' : 'Series MVP'}</Badge> : <button className="btn" disabled={saving} onClick={() => pick(c.playerId)}>Pick</button>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       {problems.length > 0 && <p className="error">{problems.join('; ')}</p>}
       {saveError && <p className="error">Save failed: {saveError}</p>}
     </div>

@@ -9,6 +9,7 @@ import { FinalView } from '../season/GameViews';
 import { LiveGame } from '../season/LiveGame';
 import { useSeasonState } from '../season/useSeasonState';
 import '../pages/season.css';
+import './playoffs.css';
 
 /** Keyed on the game number, so changing the URL starts fresh instead of keeping another game's live sim. */
 export function PlayoffGamePage() {
@@ -46,20 +47,20 @@ function PlayoffGame() {
   if (stored && !sim) {
     const storedSeries = state.playoffs!.series.find(s => s.id === stored.seriesId);
     return (
-      <>
+      <div className="stack">
         {storedSeries && (
-          <p className="muted">Playoff game {gameNo} · {roundName(lg, storedSeries)}, game {stored.gameInSeries}</p>
+          <p className="page-kicker">Playoff game {gameNo} · {roundName(lg, storedSeries)}, game {stored.gameInSeries}</p>
         )}
         <FinalView state={state} r={stored} />
-        <Link to={`/league/${lg}/playoffs`}>Back to the playoffs ▸</Link>
-      </>
+        <p><Link className="btn" to={`/league/${lg}/playoffs`}>Back to the playoffs ▸</Link></p>
+      </div>
     );
   }
   if (!sim) {
     return (
-      <section>
+      <section className="stack">
         <p className="muted">{message || stepProblem || "This isn't the next playoff game."}</p>
-        <Link to={`/league/${lg}/playoffs`}>Back to the playoffs ▸</Link>
+        <p><Link className="btn" to={`/league/${lg}/playoffs`}>Back to the playoffs ▸</Link></p>
       </section>
     );
   }
@@ -76,9 +77,9 @@ function PlayoffGame() {
     await commitSeason(r, versions);
   };
   return (
-    <>
-      {series && <p className="muted">Playoff game {sim.gameNo} · {roundName(lg, series)}, game {gameInSeries}</p>}
+    <div className="stack">
+      {series && <p className="page-kicker">Playoff game {sim.gameNo} · {roundName(lg, series)}, game {gameInSeries}</p>}
       <LiveGame state={state} sim={sim} save={save} back={{ to: `/league/${lg}/playoffs`, label: 'back to the playoffs ▸' }} />
-    </>
+    </div>
   );
 }
