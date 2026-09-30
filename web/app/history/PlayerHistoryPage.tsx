@@ -1,21 +1,26 @@
 import { useParams } from 'react-router-dom';
-import { playerHonours, playerLines } from '../../engine/history/honours';
-import type { PlayerBiosFile, PlayersFile, SeasonTotals } from '../../engine/shared/types';
+import { awardTotals, careerStats, liveCareer } from '../../engine/history/career';
+import { playerHonours } from '../../engine/history/honours';
+import type { AwardCountsFile, HallOfFameFile, PlayerBiosFile, PlayersFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
+import { CareerSection, hasCareer } from './CareerSection';
 import { SkippedWarning } from './PlayerLink';
 
-const ppg = (t: SeasonTotals | null) => (t && t.g > 0 ? (t.pts / t.g).toFixed(1) : '—');
-const games = (t: SeasonTotals | null) => (t ? String(t.g) : '—');
-const points = (t: SeasonTotals | null) => (t ? String(t.pts) : '—');
+const dash = (n: number | null) => (n === null ? '—' : String(n));
 
 export function PlayerHistoryPage() {
   const { playerId = '' } = useParams();
   const { seasons, errors, error } = useHistory('fba');
   const players = useDoc<PlayersFile>('players.json');
   const bios = useDoc<PlayerBiosFile>('leagues/fba/playerBios.json');
-  const failure = error ?? players.error ?? (bios.missing ? undefined : bios.error);
+  const counts = useDoc<AwardCountsFile>('leagues/fba/awardCounts.json');
+  const hall = useDoc<HallOfFameFile>('leagues/fba/hallOfFame.json');
+  const failure = error ?? players.error ?? (bios.missing ? undefined : bios.error)
+    ?? (counts.missing ? undefined : counts.error) ?? (hall.missing ? undefined : hall.error);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
-  if (!seasons || !players.data || (!bios.data && !bios.missing)) return <p className="muted">Loading…</p>;
+  if (!seasons || !players.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing) || (!hall.data && !hall.missing)) {
+    return <p className="muted">Loading…</p>;
+  }
   const player = players.data.players[playerId];
   if (!player) return <p className="muted">Not found</p>;
 
@@ -23,19 +28,18 @@ export function PlayerHistoryPage() {
   const honours = playerHonours(seasons, playerId);
   const bySeason = new Map<number, string[]>();
   for (const h of honours) bySeason.set(h.season, [...(bySeason.get(h.season) ?? []), h.text]);
-  const lines = playerLines([...seasons].sort((a, b) => a.season - b.season), playerId);
+  const career = liveCareer(bio, playerId, seasons, hall.data ?? null);
+  const totals = awardTotals(playerId, counts.data ?? null, seasons);
+  const stats = careerStats(playerId, seasons);
+  const hasAwards = Object.values(totals).some(n => n > 0);
+  const played = stats.rows.some(r => r.gp !== null);
 
   return (
     <section>
       <h1>{player.name}</h1>
       <SkippedWarning errors={errors} />
-      {!bio && honours.length === 0 && lines.length === 0 && <p className="muted">No history recorded</p>}
-      {bio && (
-        <div>
-          <p>Born: {bio.born.replace(/^Born-/, '')}</p>
-          <ul>{bio.entries.map((e, k) => <li key={k}>{e}</li>)}</ul>
-        </div>
-      )}
+      {!bio && !hasCareer(career) && !hasAwards && honours.length === 0 && stats.rows.length === 0 && <p className="muted">No history recorded</p>}
+      <CareerSection career={career} born={bio ? bio.born : null} totals={totals} />
       {honours.length > 0 && (
         <div>
           <h2>Honours</h2>
@@ -44,7 +48,7 @@ export function PlayerHistoryPage() {
           </ul>
         </div>
       )}
-      {lines.length > 0 && (
+      {stats.rows.length > 0 && (
         <div>
           <h2>Seasons</h2>
           <div className="table-wrap">
@@ -56,18 +60,30 @@ export function PlayerHistoryPage() {
                 </tr>
               </thead>
               <tbody>
-                {lines.map(({ season, line }, k) => (
+                {stats.rows.map((r, k) => (
                   <tr key={k}>
-                    <td>S{season}</td>
-                    <td>{line.teamId ?? 'Total'}</td>
-                    <td className="n">{line.rs.g}</td>
-                    <td className="n">{line.rs.pts}</td>
-                    <td className="n">{ppg(line.rs)}</td>
-                    <td className="n">{games(line.po)}</td>
-                    <td className="n">{points(line.po)}</td>
-                    <td className="n">{ppg(line.po)}</td>
+                    <td>S{r.season}</td>
+                    <td>{r.teamId ?? '—'}</td>
+                    <td className="n">{dash(r.gp)}</td>
+                    <td className="n">{dash(r.pts)}</td>
+                    <td className="n">{r.ppg.toFixed(1)}</td>
+                    <td className="n">{r.po ? r.po.gp : '—'}</td>
+                    <td className="n">{r.po ? r.po.pts : '—'}</td>
+                    <td className="n">{r.po ? r.po.ppg.toFixed(1) : '—'}</td>
                   </tr>
                 ))}
+                {played && (
+                  <tr>
+                    <td>Career (since S79)</td>
+                    <td />
+                    <td className="n">{stats.total.gp}</td>
+                    <td className="n">{stats.total.pts}</td>
+                    <td className="n">{stats.total.ppg.toFixed(1)}</td>
+                    <td />
+                    <td />
+                    <td />
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
