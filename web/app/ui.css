@@ -28,6 +28,7 @@
 .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--s3); }
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--s3); }
 .stack { display: grid; gap: var(--s4); }
+.stack > *, .card-grid > *, .grid-2 > * { min-width: 0; }
 
 /* hero */
 .hero { --hero-a: var(--team, var(--hero-from)); --hero-b: var(--team-2, var(--hero-to)); position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--s5); padding: var(--s5); margin-bottom: var(--s4); border-radius: var(--r-lg); color: var(--team-ink, #fff); background: linear-gradient(115deg, var(--hero-a) 0%, var(--hero-a) 58%, var(--hero-b) 150%); box-shadow: var(--shadow-1); }
