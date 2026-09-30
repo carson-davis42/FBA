@@ -15,8 +15,8 @@ const ALLOWED_MISMATCH: number[] = [];
 
 describe('fbaBrackets.json', () => {
   it('has the transcribed pages', () => {
-    // Part 1: 23 pages, 12 of them skipped (FBA D2 Tournament / D2 World Cup).
-    expect(entries.length).toBeGreaterThanOrEqual(11);
+    // 46 pages, 19 of them skipped (FBA D2 Tournament / D2 World Cup): 12 in part 1, 7 in part 2.
+    expect(entries.length).toBeGreaterThanOrEqual(27);
   });
 
   it('each entry passes PastBracket', () => {
