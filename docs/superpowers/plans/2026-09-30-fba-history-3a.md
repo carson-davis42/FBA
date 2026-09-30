@@ -151,7 +151,7 @@ export const PlayerBiosFile = z.object({ league: z.literal('fba'), bios: z.array
 
 ### Task 2: YSG MVP (H11)
 
-**Files:** modify `web/engine/allstar/youngStars.ts`, `web/app/allstar/EventSteps.tsx` and their tests (`engine/allstar/part2.test.ts`, `app/allstar/EventSteps.test.tsx`).
+**Files:** modify `web/engine/allstar/youngStars.ts`, `web/app/allstar/EventSteps.tsx` and their tests (the YSG tests are likely in `engine/allstar/part2.test.ts`; grep `runYoungStar` to confirm; and `app/allstar/EventSteps.test.tsx`).
 
 **Produces:** `ysgMvp(ysg: { semis: TeamGame[]; final: TeamGame; champion: number }, rng: Rng): { mvp: string; mvpRollOff: RollOff | null }`. `runYoungStar` stores its result in `ysg`.
 
@@ -355,6 +355,7 @@ export const normName: (s: string) => string   // trim, ’→', NFD minus \p{M}
   - `resolve(name)` returns the one match in the updated index, or null after `report.warn('names', 'Unmatched: <name> (S<n> <field>)')` or the ambiguous warning. A null result skips the line or leaves the field null.
 - **Seasons 1–78:** start from `existing.get(n)` or `{ league: 'fba', season: n, locked: true, host: null, champions: [] }`. Seasons of 79 or more are never produced.
 - **Owned fields:**
+  - A season with no Championships row gets no FBA Champion entry, and an existing one is kept as it is. A season with no Awards row gets `awards: []`, `confChampions: null` and `allStar: null`.
   - The FBA Champion entry: `{ title: 'FBA Champion', champion, runnerUp, score: decodeScore → en dash, finalsMvp }`, plus `teamId` and `runnerUpId` when the name exactly matches a current team name. Any other `champions` entries are kept.
   - `confChampions: { E: east, W: west }`.
   - `awards`: `[{ award, playerId, teamId: team ?? '?' }]`, in the fixed order MVP, ROTY, PPK, LP, MC, DPOY, MIP.
@@ -371,6 +372,7 @@ export const normName: (s: string) => string   // trim, ’→', NFD minus \p{M}
 - **`run.ts`:** `--history --data <dir>`. `--data` is required for this flag, and the importer exits with a message without it.
   - It downloads the main sheet and `pastStandings: '1FuPd67Vj8L4Zy4J53Z2jZzw_oqEa-1S5Lzztwq-NDpI'`, reading tabs `Championships`, `Awards, Conference Titles, & AS`, `All-FBA Teams`, `Players` and `S71`–`S78`.
   - It reads the players, teams and summaries from `<dir>`, and `fbaBrackets.json` from `importers/history/`.
+  - The report also gets `report.info('players', 'Added <n> players')`.
   - It writes `importers/history-report.md`.
   - On errors it writes nothing and exits 1. Otherwise it writes `players.json`, `leagues/fba/playerBios.json` and each `leagues/fba/S<n>/summary.json`, then logs the counts.
 
@@ -528,6 +530,8 @@ export function playerLines(seasons: SummaryFile[], playerId: string): { season:
 - `/history/fba/awards` has `<h1>FBA Awards</h1>` and a table with Season, MVP, ROTY, PPK, LP, MC, DPOY and MIP. Each cell is `<PlayerLink> (<teamId>)`, or `—`.
 - The Season column links to `/history/fba/season/<n>`.
 
+**Award cells:** an award `teamId` of `?` (no team on the sheet) is shown without the `(…)`.
+
 **Components and states:**
 - **`PlayerLink({ id, players })`** is `<Link to={/history/fba/players/${id}}>` with the name, or `—` for null.
 - **Errors:** when `errors.length > 0`, each page shows `<p className="warning">Some seasons couldn't be read: S10, S11</p>`.
@@ -550,6 +554,7 @@ export function playerLines(seasons: SummaryFile[], playerId: string): { season:
 **Files:** create `web/app/history/SeasonHistoryPage.tsx` and `web/app/history/SeasonHistoryPage.test.tsx`; modify `Layout.tsx` (`/history/fba/season/:season`).
 
 **Page:**
+- **Data:** it loads `useHistory('fba')`, `players.json`, and both `leagues/fba/teams.json` and `leagues/fbad2/teams.json`. The teams list for `PastBracket` and `Bracket` is both leagues' teams.
 - **Heading and picker:** `<h1>S<n> FBA season</h1>`, a `<select aria-label="Season">` over every season in history (it navigates on change), and tab buttons `Standings | Playoffs | Awards & All-FBA | All-Star` (state, with Standings as the default).
 - **Standings:**
   - Two tables, `Eastern Conference` (`group === 'E'`) and `Western Conference`, sorted by `rank`.
