@@ -1,16 +1,21 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { awardTotalsAll } from '../../engine/history/career';
 import { playerIndex } from '../../engine/history/views';
 import { AWARD_KEYS, type AwardCountsFile, type AwardKey, type PlayerBiosFile, type PlayersFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
+import { PageHeader } from '../components/PageHeader';
+import { SortTh } from '../components/SortTh';
+import { useSort, type SortValue } from '../components/useSort';
 import { AWARD_LABELS } from './CareerSection';
 import { PlayerLink, SkippedWarning } from './PlayerLink';
-import '../pages/season.css';
+import './history.css';
 
 const COLUMNS = AWARD_KEYS.filter(k => k !== 'CSHIP_APP' && k !== 'CONF_CHAMPION');
 
+type Row = { playerId: string; name: string; totals: Record<AwardKey, number> };
+const sortValue = (r: Row, key: string): SortValue => (key === 'name' ? r.name : r.totals[key as AwardKey]);
+
 export function AwardsByPlayerPage() {
-  const [sort, setSort] = useState<AwardKey>('MVP');
   const { seasons, errors, error } = useHistory('fba');
   const players = useDoc<PlayersFile>('players.json');
   const bios = useDoc<PlayerBiosFile>('leagues/fba/playerBios.json');
@@ -31,30 +36,25 @@ export function AwardsByPlayerPage() {
       .map(p => ({ ...p, totals: totals.get(p.playerId) as Record<AwardKey, number> }))
       .filter(r => r.totals && COLUMNS.some(k => r.totals[k] > 0));
   }, [seasons, players.data, biosData, baseline]);
-  const sorted = useMemo(
-    () => [...rows].sort((a, b) => b.totals[sort] - a.totals[sort] || a.name.localeCompare(b.name) || a.playerId.localeCompare(b.playerId)),
-    [rows, sort],
-  );
+  // Name order is the tie-break: useSort keeps ties in the given order.
+  const byName = useMemo(() => [...rows].sort((a, b) => a.name.localeCompare(b.name) || a.playerId.localeCompare(b.playerId)), [rows]);
+  const { rows: sorted, sortProps } = useSort<Row>(byName, sortValue, 'MVP', 'desc');
   const failure = error ?? players.error ?? (bios.missing ? undefined : bios.error) ?? (counts.missing ? undefined : counts.error);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
   if (!seasons || !players.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing)) {
     return <p className="muted">Loading…</p>;
   }
   return (
-    <section>
-      <h1>Awards by player</h1>
+    <section className="stack">
+      <PageHeader kicker="FBA history" title="Awards by player" />
       <SkippedWarning errors={errors} />
       {baseline === null && <p className="warning">Award counts before S79 haven't been imported</p>}
-      <div className="table-wrap">
-        <table className="standings">
+      <div className="table-wrap tall">
+        <table className="stat-table">
           <thead>
             <tr>
-              <th>Player</th>
-              {COLUMNS.map(k => (
-                <th key={k} className="n" aria-sort={sort === k ? 'descending' : undefined}>
-                  <button type="button" onClick={() => setSort(k)}>{AWARD_LABELS[k]}{sort === k ? ' ▼' : ''}</button>
-                </th>
-              ))}
+              <SortTh label="Player" {...sortProps('name', 'asc')} />
+              {COLUMNS.map(k => <SortTh key={k} label={AWARD_LABELS[k]} className="n" {...sortProps(k)} />)}
             </tr>
           </thead>
           <tbody>

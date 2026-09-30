@@ -84,14 +84,14 @@ describe('SeasonHistoryPage', () => {
   it('imported S72: no standings, a PastBracket with a won box, the OUT slot label', async () => {
     stub();
     const { container } = renderAt('/history/fba/season/72');
-    expect(await screen.findByRole('heading', { name: 'S72 FBA season' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: 'Utah' })).toBeTruthy();
     expect(screen.getByText('No standings recorded')).toBeTruthy();
     fireEvent.click(screen.getByRole('tab', { name: 'Playoffs' }));
     expect(container.querySelectorAll('.bracket .series-side.won').length).toBeGreaterThan(0);
     expect(container.querySelectorAll('.bracket button')).toHaveLength(0);
     expect(screen.getByText('Finals MVP:')).toBeTruthy();
     expect(screen.getByRole('link', { name: 'Ray Allen' }).getAttribute('href')).toBe('/history/fba/players/p00002');
-    fireEvent.click(screen.getByRole('tab', { name: 'Awards & All-FBA' }));
+    fireEvent.click(screen.getByRole('tab', { name: 'Awards' }));
     expect(screen.getAllByText('OUT')).toHaveLength(2);
     expect(screen.getByRole('link', { name: 'Cameron Lučić' })).toBeTruthy();
     expect(screen.getByText(/MVP:/)).toBeTruthy();
@@ -102,7 +102,7 @@ describe('SeasonHistoryPage', () => {
   it('app S79: the standings show Conf, and the playoffs render the app Bracket with no buttons', async () => {
     stub();
     const { container } = renderAt('/history/fba/season/79');
-    expect(await screen.findByRole('heading', { name: 'S79 FBA season' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: 'Boston' })).toBeTruthy();
     expect(screen.getAllByRole('columnheader', { name: 'Conf' })).toHaveLength(2);
     expect(screen.getByText('30-22')).toBeTruthy();
     expect(screen.getByText('0.610')).toBeTruthy();
@@ -117,7 +117,7 @@ describe('SeasonHistoryPage', () => {
   it('falls back to the champions line without a bracket', async () => {
     stub([{ ...s72, pastBracket: null }]);
     renderAt('/history/fba/season/72');
-    await screen.findByRole('heading', { name: 'S72 FBA season' });
+    await screen.findByRole('heading', { name: 'Utah' });
     fireEvent.click(screen.getByRole('tab', { name: 'Playoffs' }));
     expect(screen.getByText('Finals: Utah def. Boston, 4–3')).toBeTruthy();
   });
@@ -129,7 +129,7 @@ describe('SeasonHistoryPage', () => {
     expect(within(select).getAllByRole('option').map(o => o.textContent)).toEqual(['S79', 'S72']);
     fireEvent.change(select, { target: { value: '79' } });
     expect(screen.getByTestId('where').textContent).toBe('/history/fba/season/79');
-    expect(await screen.findByRole('heading', { name: 'S79 FBA season' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: 'Boston' })).toBeTruthy();
   });
 
   it('shows Not found for an unknown season', async () => {

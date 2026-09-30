@@ -2,40 +2,43 @@ import { Link } from 'react-router-dom';
 import { championshipRows } from '../../engine/history/views';
 import type { PlayersFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
+import { Badge } from '../components/Badge';
+import { PageHeader } from '../components/PageHeader';
 import { PlayerLink, SkippedWarning } from './PlayerLink';
-import '../pages/season.css';
+import { TeamFull, useFbaTeams } from './useTeams';
+import './history.css';
 
 export function ChampionshipsPage() {
   const { seasons, errors, error } = useHistory('fba');
   const players = useDoc<PlayersFile>('players.json');
+  const { settled, teams } = useFbaTeams();
   const failure = error ?? players.error;
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
-  if (!seasons || !players.data) return <p className="muted">Loading…</p>;
+  if (!seasons || !players.data || !settled) return <p className="muted">Loading…</p>;
   const rows = championshipRows(seasons);
+  const champion = (season: number) => seasons.find(s => s.season === season)?.champions.find(c => c.title === 'FBA Champion');
   return (
-    <section>
-      <h1>FBA Championships</h1>
+    <section className="stack">
+      <PageHeader kicker="FBA history" title="FBA Championships" />
       <SkippedWarning errors={errors} />
-      <div className="table-wrap">
-        <table className="standings">
-          <thead>
-            <tr><th>Season</th><th>Champion</th><th>Runner-up</th><th>Score</th><th>Finals MVP</th><th>West</th><th>East</th></tr>
-          </thead>
-          <tbody>
-            {rows.map(r => (
-              <tr key={r.season}>
-                <td><Link to={`/history/fba/season/${r.season}`}>S{r.season}</Link></td>
-                <td>{r.champion}</td>
-                <td>{r.runnerUp ?? '—'}</td>
-                <td>{r.score}</td>
-                <td><PlayerLink id={r.finalsMvp} players={players.data!} /></td>
-                <td>{r.west ?? '—'}</td>
-                <td>{r.east ?? '—'}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <ol className="timeline">
+        {rows.map(r => {
+          const c = champion(r.season);
+          return (
+            <li key={r.season} className="timeline-row">
+              <Link className="timeline-season" to={`/history/fba/season/${r.season}`}>S{r.season}</Link>
+              <div className="timeline-body">
+                <div className="timeline-champ"><TeamFull teams={teams} teamId={c?.teamId} name={r.champion} season={r.season} /></div>
+                <div className="muted">
+                  {r.score} over {r.runnerUp ? <TeamFull teams={teams} teamId={c?.runnerUpId} name={r.runnerUp} season={r.season} /> : '—'}
+                </div>
+                {(r.west || r.east) && <div className="muted">West: {r.west ?? '—'} · East: {r.east ?? '—'}</div>}
+              </div>
+              {r.finalsMvp && <Badge kind="finals-mvp">Finals MVP <PlayerLink id={r.finalsMvp} players={players.data!} /></Badge>}
+            </li>
+          );
+        })}
+      </ol>
     </section>
   );
 }

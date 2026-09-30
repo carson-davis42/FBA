@@ -38,7 +38,7 @@ export function CareerSection({ career, born, totals }: { career: Career; born: 
           {college.length > 0 && <p>College: {college.map(s => `${s.team} (${s.range})`).join(' · ')}</p>}
           {pro.length > 0 && (
             <div className="table-wrap">
-              <table className="standings">
+              <table className="stat-table">
                 <thead><tr><th>League</th><th>Team</th><th>Seasons</th><th>Honours</th></tr></thead>
                 <tbody>
                   {pro.map((s, k) => (
