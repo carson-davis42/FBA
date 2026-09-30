@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { CalendarFile, Franchise, FranchisesFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
+import type { CalendarFile, Franchise, FranchisesFile, HallOfFameFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
 import { buildDraftHistory } from './draftHistory';
@@ -16,6 +16,8 @@ import { draftTabKind } from './sheets/drafts';
 import { buildEvents, parseEventsTab } from './sheets/events';
 import { parseFranchiseTab } from './sheets/franchises';
 import { parseHallOfFameTab } from './sheets/hallOfFame';
+import { parseTeamTabCounts } from './sheets/teamTabs';
+import { TROPHY_AWARDS, trophyCase } from '../engine/history/trophies';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
 import { parsePlayersTab } from './sheets/playersTab';
 import { parseClassSection } from './sheets/recruitingClass';
@@ -397,7 +399,51 @@ async function importEvents(): Promise<void> {
   writeDoc(dir, 'leagues/fba/events.json', doc);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events'];
+/** Compares each team tab's trophy counts on the team history sheet with the counts derived from the app's data. Read-only. */
+async function checkTrophies(): Promise<void> {
+  const dir = requireDataDir('--check-trophies');
+  const teams = readDataJson<TeamsFile>(dir, 'leagues/fba/teams.json');
+  if (!teams) {
+    console.error('--check-trophies needs leagues/fba/teams.json in the data folder.');
+    process.exit(1);
+  }
+  const fbaDir = path.join(dir, 'leagues', 'fba');
+  const summaries = readdirSync(fbaDir, { withFileTypes: true })
+    .filter(e => e.isDirectory() && /^S\d+$/.test(e.name) && existsSync(path.join(fbaDir, e.name, 'summary.json')))
+    .map(e => JSON.parse(readFileSync(path.join(fbaDir, e.name, 'summary.json'), 'utf8')) as SummaryFile);
+  const input = {
+    summaries,
+    teams: teams.teams,
+    franchises: readDataJson<FranchisesFile>(dir, 'leagues/fba/franchises.json'),
+    hallOfFame: readDataJson<HallOfFameFile>(dir, 'leagues/fba/hallOfFame.json'),
+  };
+  rmSync(path.join(CACHE, `${SHEETS.teamHistory}.xlsx`), { force: true });
+  console.log('Downloading the team history sheet (about 75 MB)...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.teamHistory, CACHE), n => /^[A-Z]+$/.test(n));
+  let mismatches = 0;
+  for (const id of Object.keys(tabs)) {
+    const sheet = parseTeamTabCounts(tabs[id]);
+    if (!sheet) {
+      console.warn(`warning: ${id} has no trophy header row`);
+      continue;
+    }
+    const c = trophyCase(id, input);
+    const app: Record<string, number> = {
+      championships: c.championships.length, finals: c.finals.length, confTitles: c.confTitles.length, tournaments: c.tournaments.length,
+      hallOfFamers: c.hallOfFamers.length,
+      ...Object.fromEntries(TROPHY_AWARDS.map(a => [a, c.awards.filter(x => x.award === a).length])),
+    };
+    for (const key of Object.keys(sheet)) {
+      if (sheet[key] !== app[key]) {
+        console.log(`${id} ${key}: sheet ${sheet[key]}, app ${app[key]}`);
+        mismatches++;
+      }
+    }
+  }
+  console.log(`${mismatches} mismatches across ${Object.keys(tabs).length} team tabs.`);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -415,6 +461,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--drafts')) return importDraftHistory();
   if (process.argv.includes('--transactions')) return importPastTransactions();
   if (process.argv.includes('--events')) return importEvents();
+  if (process.argv.includes('--check-trophies')) return checkTrophies();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');
     process.exit(1);
