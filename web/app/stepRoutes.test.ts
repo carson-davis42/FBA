@@ -50,6 +50,12 @@ describe('step routes', () => {
     expect(stepTarget(step('adjust-age'))).toBe('/offseason/adjust-age');
   });
 
+  it('opens Adjust Pro Ratings on the pro ratings page', () => {
+    expect(TOOL_STEPS['adjust-pro-ratings-reset']).toBe('/league/fba/ratings');
+    expect(toolTarget(step('adjust-pro-ratings-reset'))).toBe('/league/fba/ratings');
+    expect(stepTarget(step('adjust-pro-ratings-reset'))).toBe('/league/fba/ratings');
+  });
+
   it('opens the Hall of Fame nominees tab from its calendar step', () => {
     expect(TOOL_STEPS['hall-of-fame-induction']).toBe('/league/fba/hall-of-fame?tab=nominees');
     expect(stepTarget(step('hall-of-fame-induction'))).toBe('/league/fba/hall-of-fame?tab=nominees');
