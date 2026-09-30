@@ -1,14 +1,13 @@
-import type { PastBracket as PastBracketDoc, PastSeries, PastSide, Team } from '../../engine/shared/types';
-import { TeamName } from '../components/TeamName';
+import type { FranchisesFile, PastBracket as PastBracketDoc, PastSeries, PastSide, Team } from '../../engine/shared/types';
 import { ChampBadge, SideRow } from '../playoffs/Bracket';
+import { TeamFull } from './useTeams';
 
-function Side({ side, wins, won, teams, season }: { side: PastSide | null; wins: number; won: boolean; teams: Team[]; season: number }) {
+function Side({ side, wins, won, teams, franchises, season }: { side: PastSide | null; wins: number; won: boolean; teams: Team[]; franchises: FranchisesFile | null; season: number }) {
   if (!side) return <SideRow seed={null} name="BYE" wins={null} won={false} />;
-  const t = teams.find(x => x.name === side.name);
   return (
     <SideRow
       seed={side.seed}
-      name={t ? <TeamName team={t} season={season} variant="abbr" size={20} /> : side.name}
+      name={<TeamFull teams={teams} franchises={franchises} name={side.name} season={season} variant="abbr" size={20} />}
       wins={wins}
       won={won}
     />
@@ -16,7 +15,7 @@ function Side({ side, wins, won, teams, season }: { side: PastSide | null; wins:
 }
 
 /** A transcribed historical bracket in the app bracket's style: left half, the final, mirrored right half. */
-export function PastBracket({ bracket, teams, season }: { bracket: PastBracketDoc; teams: Team[]; season: number }) {
+export function PastBracket({ bracket, teams, season, franchises = null }: { bracket: PastBracketDoc; teams: Team[]; season: number; franchises?: FranchisesFile | null }) {
   const R = bracket.rounds;
   const byId = new Map(bracket.series.map(s => [s.id, s]));
   const pick = (r: number, half: 'left' | 'right'): PastSeries[] => {
@@ -43,8 +42,8 @@ export function PastBracket({ bracket, teams, season }: { bracket: PastBracketDo
           {col.map(s => (
             <div key={s.id} className={`series-box${dir === 'mid' ? ' finals' : ''}${s.winner ? ' decided' : ''}`}>
               {dir === 'mid' && s.winner && <ChampBadge />}
-              <Side side={s.home} wins={s.homeWins} won={s.winner === 'home'} teams={teams} season={season} />
-              <Side side={s.away} wins={s.awayWins} won={s.winner === 'away'} teams={teams} season={season} />
+              <Side side={s.home} wins={s.homeWins} won={s.winner === 'home'} teams={teams} franchises={franchises} season={season} />
+              <Side side={s.away} wins={s.awayWins} won={s.winner === 'away'} teams={teams} franchises={franchises} season={season} />
             </div>
           ))}
         </div>

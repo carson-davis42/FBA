@@ -2,7 +2,7 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { Bracket } from '../playoffs/Bracket';
-import type { PastBracket as PastBracketDoc, PastSeries, PlayoffSeries, Team } from '../../engine/shared/types';
+import type { FranchisesFile, PastBracket as PastBracketDoc, PastSeries, PlayoffSeries, Team } from '../../engine/shared/types';
 import { PastBracket } from './PastBracket';
 
 afterEach(cleanup);
@@ -67,5 +67,22 @@ describe('Bracket without onOpen', () => {
     const { container } = render(<Bracket league="fba" series={series} teams={new Map(teams.map(t => [t.teamId, t]))} season={5} group={null} open={null} />);
     expect(screen.queryAllByRole('button')).toHaveLength(0);
     expect(container.querySelectorAll('div.series-box')).toHaveLength(1);
+  });
+});
+
+describe('PastBracket with franchises', () => {
+  const mon: Team = { teamId: 'MON', name: 'Montreal Chevaliers', abbr: 'MON', group: null, logoFolder: null, badge: { bg: '#000', fg: '#fff' } };
+  const franchises: FranchisesFile = { franchises: [{ teamId: 'MON', eras: [{ name: 'Montreal', abbr: 'MTL', city: 'Montreal', from: 12, to: 56 }] }] };
+  const bracket: PastBracketDoc = { rounds: 1, series: [{ id: 'R1-1', round: 1, home: { name: 'Montreal', record: null, seed: 1 }, away: { name: 'Gamma', record: null, seed: 2 }, homeWins: 4, awayWins: 1, winner: 'home' }] };
+  it('marks an old name with its franchise and era abbreviation', () => {
+    const { container } = render(<PastBracket bracket={bracket} teams={[mon]} season={30} franchises={franchises} />);
+    expect(container.querySelectorAll('.series-side .team-name')).toHaveLength(1);
+    expect(screen.getByText('MTL')).toBeTruthy();
+    expect(screen.getByText('Gamma')).toBeTruthy();
+  });
+  it('keeps plain text without franchises', () => {
+    const { container } = render(<PastBracket bracket={bracket} teams={[mon]} season={30} />);
+    expect(container.querySelectorAll('.series-side .team-name')).toHaveLength(0);
+    expect(screen.getByText('Montreal')).toBeTruthy();
   });
 });

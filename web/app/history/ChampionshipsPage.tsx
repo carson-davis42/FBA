@@ -11,7 +11,7 @@ import './history.css';
 export function ChampionshipsPage() {
   const { seasons, errors, error } = useHistory('fba');
   const players = useDoc<PlayersFile>('players.json');
-  const { settled, teams } = useFbaTeams();
+  const { settled, teams, franchises } = useFbaTeams();
   const failure = error ?? players.error;
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
   if (!seasons || !players.data || !settled) return <p className="muted">Loading…</p>;
@@ -28,9 +28,9 @@ export function ChampionshipsPage() {
             <li key={r.season} className="timeline-row">
               <Link className="timeline-season" to={`/history/fba/season/${r.season}`}>S{r.season}</Link>
               <div className="timeline-body">
-                <div className="timeline-champ"><TeamFull teams={teams} teamId={c?.teamId} name={r.champion} season={r.season} /></div>
+                <div className="timeline-champ"><TeamFull teams={teams} franchises={franchises} teamId={c?.teamId} name={r.champion} season={r.season} /></div>
                 <div className="muted">
-                  {r.score} over {r.runnerUp ? <TeamFull teams={teams} teamId={c?.runnerUpId} name={r.runnerUp} season={r.season} /> : '—'}
+                  {r.score} over {r.runnerUp ? <TeamFull teams={teams} franchises={franchises} teamId={c?.runnerUpId} name={r.runnerUp} season={r.season} /> : '—'}
                 </div>
                 {(r.west || r.east) && <div className="muted">West: {r.west ?? '—'} · East: {r.east ?? '—'}</div>}
               </div>
