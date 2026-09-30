@@ -13,6 +13,7 @@ export interface CollegeSetupInput {
   /** Last season's college rosters; null if missing. */
   prev: RostersFile | null;
   proIds: Set<string>;
+  calendar: CalendarFile;
 }
 
 /**
@@ -58,7 +59,7 @@ export function useRecruitingState(boardSeason: number | undefined): { season?: 
   const optional: DocState<unknown>[] = [recruiting, classRanking, rosters, tx, prev, freeAgents, reserves];
   const error = meta.error ?? required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
   if (n === undefined || boardSeason === undefined || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { season: n, versions, error };
-  if (!rosters.data) return { season: n, versions, error, setup: { meta: meta.data!, prev: prev.data ?? null, proIds } };
+  if (!rosters.data) return { season: n, versions, error, setup: { meta: meta.data!, prev: prev.data ?? null, proIds, calendar: calendar.data! } };
   return {
     season: n,
     versions,

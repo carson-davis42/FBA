@@ -6,6 +6,8 @@ export const TOOL_STEPS: Record<string, string> = {
   'fbad2-ratings-reset': '/league/fbad2/ratings',
   'fbad2-draft': '/league/fbad2/draft',
   retirement: '/retirement',
+  'adjust-age': '/offseason/adjust-age',
+  'adjust-pro-ratings-reset': '/league/fba/ratings',
   'adjust-college-ratings': '/league/fbajc/ratings',
   'hall-of-fame-induction': '/league/fba/hall-of-fame?tab=nominees',
 };
@@ -14,6 +16,7 @@ export const TOOL_STEPS: Record<string, string> = {
 export function toolTarget(step: CalendarStep): string | null {
   if (TOOL_STEPS[step.id]) return TOOL_STEPS[step.id];
   if (/^make-s\d+-schedules$/.test(step.id)) return '/schedules';
+  if (/^s\d+-fba-draft$/.test(step.id)) return '/league/fba/draft';
   if (/^s\d+-fba-draft-lottery$/.test(step.id)) return '/league/fba/lottery';
   const create = /^create-s(\d+)-class$/.exec(step.id);
   if (create) return `/league/fbajc/recruiting?class=${create[1]}&tab=class`;

@@ -132,6 +132,13 @@ describe('takeOutOfPortal', () => {
     expect(problems(takeOutOfPortal(closed, 'p00510', ctx))).toEqual(['The S79 transfer portal is closed']);
   });
 
+  it('works before Make Schedules is done (a player returned from Adjust Age)', () => {
+    const s = entered();
+    const early = { ...s, calendar: { ...s.calendar, steps: s.calendar.steps.map(x => (x.id === 'make-s79-schedules' ? { ...x, done: false } : x)) } };
+    const r = ok(takeOutOfPortal(early, 'p00510', ctx));
+    expect(r.state.recruiting.portal.map(p => p.playerId)).not.toContain('p00510');
+  });
+
   it('refuses on a next-class board', () => {
     const s = entered();
     const next = { ...s, recruiting: { ...s.recruiting, season: 79, classOf: 80 } };

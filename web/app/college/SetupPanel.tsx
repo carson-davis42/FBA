@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { collegeSetupDocs, setupSummary } from '../../engine/college/setup';
 import { useSaving, type Versions } from '../api';
 import { commitDocs, newBatchId } from '../roster/commit';
@@ -10,6 +11,15 @@ export function SetupPanel({ season, setup, versions }: { season: number; setup:
   const started = useRef(false);
   const [error, setError] = useState('');
   if (setup.meta.rosterSeason.fbajc !== season - 1) return <p className="muted">The S{season} college rosters don't exist yet.</p>;
+  // Adjust Age builds the S{n} college rosters; until it has run, there is nothing to set up here.
+  if (setup.calendar.steps.find(s => s.id === 'adjust-age')?.done === false) {
+    return (
+      <div className="card">
+        <p>Run Adjust Age to build the S{season} college rosters.</p>
+        <Link to="/offseason/adjust-age">Adjust Age</Link>
+      </div>
+    );
+  }
   if (!setup.prev) return <p className="error">The S{season - 1} college rosters are missing.</p>;
   const prev = setup.prev;
   const input = { meta: setup.meta, prev, proIds: setup.proIds, rostersExist: false };

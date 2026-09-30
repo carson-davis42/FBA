@@ -116,7 +116,8 @@ describe('CalendarPage FBAJC gate', () => {
     current = atFbajc;
     extra['leagues/fbajc/S78/recruiting.json'] = board('DUKE');
     const hole = { playerId: null, position: 'PF', rating: null, age: null, points: 0, stars: null, classYear: null };
-    extra['leagues/fbajc/S79/rosters.json'] = { league: 'fbajc', season: 79, locked: false, teams: { DUKE: [hole, hole], UNC: [hole] } };
+    const placed = { playerId: 'p01914', position: 'PG', rating: null, age: null, points: 0, stars: null, classYear: 'Fr' };
+    extra['leagues/fbajc/S79/rosters.json'] = { league: 'fbajc', season: 79, locked: false, teams: { DUKE: [placed, hole, hole], UNC: [hole] } };
     render(<MemoryRouter><CalendarPage /></MemoryRouter>);
     expect(await screen.findByText('3 open spots need walk-ons')).toBeTruthy();
     expect((await markDone()).disabled).toBe(true);

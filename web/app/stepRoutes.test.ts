@@ -38,10 +38,28 @@ describe('step routes', () => {
     expect(stepTarget(step('s81-fba-draft-lottery'))).toBe('/league/fba/lottery');
   });
 
+  it('opens the FBA draft page from its calendar step', () => {
+    expect(toolTarget(step('s80-fba-draft'))).toBe('/league/fba/draft');
+    expect(stepTarget(step('s80-fba-draft'))).toBe('/league/fba/draft');
+    expect(toolTarget(step('s81-fba-draft-lottery'))).toBe('/league/fba/lottery');
+  });
+
   it('opens the retirement page from its calendar step', () => {
     expect(TOOL_STEPS.retirement).toBe('/retirement');
     expect(toolTarget(step('retirement'))).toBe('/retirement');
     expect(stepTarget(step('retirement'))).toBe('/retirement');
+  });
+
+  it('opens the Adjust Age page from its calendar step', () => {
+    expect(TOOL_STEPS['adjust-age']).toBe('/offseason/adjust-age');
+    expect(toolTarget(step('adjust-age'))).toBe('/offseason/adjust-age');
+    expect(stepTarget(step('adjust-age'))).toBe('/offseason/adjust-age');
+  });
+
+  it('opens Adjust Pro Ratings on the pro ratings page', () => {
+    expect(TOOL_STEPS['adjust-pro-ratings-reset']).toBe('/league/fba/ratings');
+    expect(toolTarget(step('adjust-pro-ratings-reset'))).toBe('/league/fba/ratings');
+    expect(stepTarget(step('adjust-pro-ratings-reset'))).toBe('/league/fba/ratings');
   });
 
   it('opens the Hall of Fame nominees tab from its calendar step', () => {

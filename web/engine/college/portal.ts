@@ -87,8 +87,8 @@ export function enterPortal(state: RecruitingState, playerIds: string[], ctx: Mo
 export function takeOutOfPortal(state: RecruitingState, playerId: string, ctx: MoveContext): RecruitingResult {
   const board = boardProblem(state);
   if (board) return recruitingFail([board]);
-  const closed = portalProblem(state.calendar);
-  if (closed) return recruitingFail([closed]);
+  // Open from Adjust Age on (unlike entering the portal), so a player Adjust Age sent to the portal can be taken back.
+  if (state.calendar.steps.find(x => x.id === 'fbajc')?.done) return recruitingFail([`The S${state.calendar.season} transfer portal is closed`]);
   const p = state.recruiting.portal.find(x => x.playerId === playerId);
   if (!p) return recruitingFail([`${playerId} isn't in the transfer portal`]);
   const name = collegeName(state.players, playerId);

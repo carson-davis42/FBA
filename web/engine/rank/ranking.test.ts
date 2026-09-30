@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { RankingFile } from '../shared/types';
 import {
-  applyAllSuggestions, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, take, takeRest,
+  applyAllSuggestions, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
 } from './ranking';
 import { rankingDoc, rankName } from './testFixtures';
 
@@ -95,5 +95,38 @@ describe('rankingBlockers and outOfOrder', () => {
     expect(rankingBlockers(doc, rankName)).toEqual([]);
     expect(outOfOrder(doc).size).toBe(0);
     expect(RankingFile.safeParse({ ...doc, locked: true }).success).toBe(true);
+  });
+});
+
+describe('syncRows', () => {
+  it('keeps rows in step with membership: removes missing, adds new, preserves old row objects', () => {
+    const rowA = { playerId: 'A', position: 'PG' as const, age: 25, team: 'AMS', prevRating: 80, otherRating: null, stat: '300 pts' };
+    const rowB = { playerId: 'B', position: 'SG' as const, age: 25, team: 'AMS', prevRating: 70, otherRating: null, stat: '250 pts' };
+    const rowC = { playerId: 'C', position: 'PG' as const, age: 25, team: 'AMS', prevRating: 60, otherRating: null, stat: '200 pts' };
+    const doc = rankingDoc({
+      rows: [rowA, rowB, rowC],
+      order: ['A', 'B'],
+      ratings: { A: 80, B: 70, C: 60 },
+    });
+    const newRowD = { playerId: 'D', position: 'C' as const, age: 25, team: null, prevRating: null, otherRating: null, stat: null };
+    const result = syncRows(doc, [rowA, rowC, newRowD]);
+    expect(result.rows.length).toBe(3);
+    expect(result.rows[0]).toBe(rowA);
+    expect(result.rows[1]).toBe(rowC);
+    expect(result.rows[2]).toBe(newRowD);
+    expect(result.order).toEqual(['A']);
+    expect(result.ratings).toEqual({ A: 80, C: 60 });
+  });
+
+  it('returns a locked doc unchanged', () => {
+    const doc = rankingDoc({ locked: true });
+    const result = syncRows(doc, []);
+    expect(result).toBe(doc);
+  });
+
+  it('returns the same object when membership hasn\'t changed', () => {
+    const doc = rankingDoc();
+    const result = syncRows(doc, doc.rows);
+    expect(result).toEqual(doc);
   });
 });

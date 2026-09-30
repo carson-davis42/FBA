@@ -26,6 +26,9 @@ import { PortalPage } from '../college/PortalPage';
 import { RecruitingPage } from '../college/RecruitingPage';
 import { HallOfFamePage } from '../offseason/HallOfFamePage';
 import { LotteryPage } from '../offseason/LotteryPage';
+import { AdjustAgePage } from '../offseason/AdjustAgePage';
+import { FbaDraftPage } from '../offseason/FbaDraftPage';
+import { ProRatingsPage } from '../offseason/ProRatingsPage';
 import { RetirementPage } from '../offseason/RetirementPage';
 import { Sidebar } from './Sidebar';
 import { TopBar } from './TopBar';
@@ -49,6 +52,9 @@ export function Layout() {
           <Route path="/league/fbajc/ratings" element={<CollegeRatingsPage />} />
           <Route path="/league/fba/lottery" element={<LotteryPage />} />
           <Route path="/retirement" element={<RetirementPage />} />
+          <Route path="/offseason/adjust-age" element={<AdjustAgePage />} />
+          <Route path="/league/fba/ratings" element={<ProRatingsPage />} />
+          <Route path="/league/fba/draft" element={<FbaDraftPage />} />
           <Route path="/league/fba/hall-of-fame" element={<HallOfFamePage />} />
           <Route path="/league/fba/ratings-pause" element={<RatingPausePage />} />
           <Route path="/league/fba/all-star" element={<AllStarPage />} />

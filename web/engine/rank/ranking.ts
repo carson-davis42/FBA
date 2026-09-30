@@ -117,3 +117,37 @@ export function rankingBlockers(doc: RankingFile, name: NameOf): string[] {
 export function suggestionsTaken(doc: RankingFile): number {
   return doc.order.filter((id, i) => doc.ratings[id] !== undefined && doc.ratings[id] === suggestion(doc, i + 1)).length;
 }
+
+/** Brings the rows in line with who should be listed: new players are added (unranked), missing ones are removed from rows, order and ratings. A locked doc is returned unchanged. */
+export function syncRows(doc: RankingFile, rows: RankingRow[]): RankingFile {
+  if (doc.locked) return doc;
+
+  // Build a map of new rows by playerId
+  const newRowMap = new Map(rows.map(r => [r.playerId, r]));
+
+  // Check if membership has changed
+  const oldPlayerIds = new Set(doc.rows.map(r => r.playerId));
+  const newPlayerIds = new Set(newRowMap.keys());
+
+  if (oldPlayerIds.size === newPlayerIds.size && [...oldPlayerIds].every(id => newPlayerIds.has(id))) {
+    // Membership hasn't changed, return the same object
+    return doc;
+  }
+
+  // Build new rows array, preserving old row objects where possible
+  const newRows = rows.map(r => {
+    const oldRow = doc.rows.find(old => old.playerId === r.playerId);
+    return oldRow || r;
+  });
+
+  // Filter order and ratings to only include players in the new rows
+  const order = doc.order.filter(id => newPlayerIds.has(id));
+  const ratings: Record<string, number> = {};
+  for (const id of Object.keys(doc.ratings)) {
+    if (newPlayerIds.has(id)) {
+      ratings[id] = doc.ratings[id];
+    }
+  }
+
+  return { ...doc, rows: newRows, order, ratings };
+}

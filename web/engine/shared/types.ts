@@ -205,7 +205,7 @@ export const PicksFile = z.object({ league: z.literal('fba'), obligations: z.arr
 export type PicksFile = z.infer<typeof PicksFile>;
 
 export const TransactionType = z.enum([
-  'signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards', 'season', 'class', 'commit', 'portal', 'lottery', 'retired', 'hall-of-fame', 'walk-on', 'college-ratings',
+  'signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards', 'season', 'class', 'commit', 'portal', 'lottery', 'retired', 'hall-of-fame', 'walk-on', 'college-ratings', 'adjust-age', 'declare', 'fba-ratings',
 ]);
 export type TransactionType = z.infer<typeof TransactionType>;
 
@@ -252,7 +252,7 @@ export const D2DraftFile = z.object({
 }).strict();
 export type D2DraftFile = z.infer<typeof D2DraftFile>;
 
-export const RankingKind = z.enum(['d2-reset', 'college-class', 'college-reset']);
+export const RankingKind = z.enum(['d2-reset', 'college-class', 'college-reset', 'fba-reset']);
 export type RankingKind = z.infer<typeof RankingKind>;
 
 export const RankingRow = z.object({
@@ -701,6 +701,48 @@ export const LotteryFile = z.object({
   picks: z.array(LotteryPick),
 }).strict();
 export type LotteryFile = z.infer<typeof LotteryFile>;
+
+export const DraftProspect = z.object({
+  playerId,
+  position: Position,
+  /** The college (fbajc team id) he left. */
+  college: z.string().min(1),
+  classYear: ClassYear,
+  /** Seniors enter at Adjust Age and can't go back to school or to the portal. */
+  senior: z.boolean(),
+  collegeRating: int.nullable(),
+  stars: int.nullable(),
+  /** Set by the pro reset, or typed on the board for a late entrant. */
+  fbaRating: int.min(1).max(99).nullable(),
+}).strict();
+export type DraftProspect = z.infer<typeof DraftProspect>;
+
+export const DraftPick = z.object({ slot: int.positive(), owner: z.string().min(1), originalTeam: z.string().min(1), playerId: playerId.nullable() }).strict();
+export type DraftPick = z.infer<typeof DraftPick>;
+
+/** leagues/fba/S{n}/draft.json: the S{n} draft board (prospects) and, once started, its picks. */
+export const DraftFile = z.object({
+  league: z.literal('fba'),
+  season: int,
+  locked: z.boolean(),
+  started: z.boolean(),
+  prospects: z.array(DraftProspect),
+  picks: z.array(DraftPick),
+}).strict().superRefine((doc, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  const ids = new Set(doc.prospects.map(p => p.playerId));
+  if (ids.size !== doc.prospects.length) issue('A prospect is listed twice');
+  const picked = new Set<string>();
+  for (const p of doc.picks) {
+    if (p.playerId === null) continue;
+    if (!ids.has(p.playerId)) issue(`${p.playerId} is picked but isn't a prospect`);
+    if (picked.has(p.playerId)) issue(`${p.playerId} is picked twice`);
+    picked.add(p.playerId);
+  }
+  if (!doc.started && doc.picks.length) issue('An unstarted draft has no picks');
+  if (doc.locked && !doc.started) issue('A finished draft must have started');
+});
+export type DraftFile = z.infer<typeof DraftFile>;
 
 export const HofCard = z.object({
   name: z.string().min(1),

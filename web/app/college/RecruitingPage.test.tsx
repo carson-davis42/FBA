@@ -42,6 +42,18 @@ describe('RecruitingPage', () => {
     expect(screen.queryByRole('button', { name: 'Set up S79 college rosters' })).toBeNull();
   });
 
+  it('points to Adjust Age while it is not done, and shows the setup card once it is', async () => {
+    stubApi(setupDocs(78, { adjustAge: false }));
+    renderAt('/league/fbajc/recruiting');
+    expect(await screen.findByText('Run Adjust Age to build the S79 college rosters.')).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Adjust Age' }).getAttribute('href')).toBe('/offseason/adjust-age');
+    expect(screen.queryByRole('button', { name: 'Set up S79 college rosters' })).toBeNull();
+    cleanup();
+    stubApi(setupDocs(78, { adjustAge: true }));
+    renderAt('/league/fbajc/recruiting');
+    expect(await enabled('Set up S79 college rosters')).toBeTruthy();
+  });
+
   it('opens on the Class tab before the class exists, and the first draft edit creates the recruiting doc', async () => {
     const log = stubApi(recruitingDocs(collegeBaseState(), { recruiting: false }));
     renderAt('/league/fbajc/recruiting');

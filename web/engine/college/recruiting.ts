@@ -199,10 +199,10 @@ export function formatShares(p: Prospect, abbr: (teamId: string) => string): str
   return projectionShares(p).map(s => `${s.pct}% ${abbr(s.teamId)}`).join(' · ');
 }
 
-type Slot = { ok: true; index: number; displaced: RosterEntry | null; unnamed?: true } | { ok: false; problem: string };
+export type Slot = { ok: true; index: number; displaced: RosterEntry | null; unnamed?: true } | { ok: false; problem: string };
 
 /** The slot at the player's position on that school's roster, and who would have to leave it. */
-function slotFor(state: RecruitingState, p: Prospect, teamId: string, school: string): Slot {
+export function slotFor(state: RecruitingState, p: Prospect, teamId: string, school: string): Slot {
   const entries = state.rosters.teams[teamId];
   if (!entries) return { ok: false, problem: `${school} has no roster` };
   const index = entries.findIndex(e => e.position === p.position);
@@ -323,6 +323,19 @@ export function uncommitted(doc: RecruitingFile): { recruits: Prospect[]; portal
   return { recruits: doc.recruits.filter(p => !p.committedTo), portal: doc.portal.filter(p => !p.committedTo) };
 }
 
+/** Ids of committed board players who aren't on rosters.teams[committedTo]. */
+export function unplacedCommits(board: RecruitingFile, rosters: RostersFile): string[] {
+  return [...board.recruits, ...board.portal]
+    .filter(p => p.committedTo && !rosters.teams[p.committedTo]?.some(e => e.playerId === p.playerId))
+    .map(p => p.playerId);
+}
+
+/** "1 committed player isn't on the rosters yet", or null when every commit is placed. */
+export function unplacedCommitsProblem(board: RecruitingFile, rosters: RostersFile): string | null {
+  const n = unplacedCommits(board, rosters).length;
+  return n ? `${n} committed ${n === 1 ? "player isn't" : "players aren't"} on the rosters yet` : null;
+}
+
 /** Why the FBAJC step can't be marked done yet, or null (a missing board or roster doc adds no problem). */
 export function fbajcGateProblem(board: RecruitingFile | null, rosters: RostersFile | null): string | null {
   const parts: string[] = [];
@@ -331,6 +344,10 @@ export function fbajcGateProblem(board: RecruitingFile | null, rosters: RostersF
     const r = open.recruits.length;
     const m = open.portal.length;
     if (r || m) parts.push(`${r} ${r === 1 ? 'recruit' : 'recruits'} and ${m} ${m === 1 ? 'portal player' : 'portal players'} haven't committed yet`);
+  }
+  if (board && rosters) {
+    const unplaced = unplacedCommitsProblem(board, rosters);
+    if (unplaced) parts.push(unplaced);
   }
   if (rosters) {
     const h = Object.values(rosters.teams).reduce((n, entries) => n + entries.filter(e => e.playerId === null).length, 0);

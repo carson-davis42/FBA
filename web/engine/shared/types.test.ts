@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, D2PoolFile, FreeAgentsFile, GameResult, HallOfFameFile, LogoManifest, LotteryFile, MetaFile, PickObligation, PicksFile, Player, PlayoffsFile, Prospect, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
+import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, DraftFile, D2PoolFile, FreeAgentsFile, GameResult, HallOfFameFile, LogoManifest, LotteryFile, MetaFile, PickObligation, PicksFile, Player, PlayoffsFile, Prospect, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -331,7 +331,7 @@ describe('Part 7a schemas', () => {
     expect(ok({ curve: [100] })).toBe(false);
     expect(ok({ ratings: { p00001: 100 } })).toBe(false);
     expect(ok({ ratings: { p00001: 0 } })).toBe(false);
-    expect(ok({ kind: 'fba-reset' })).toBe(false);
+    expect(ok({ kind: 'bogus' })).toBe(false);
   });
 
   it('only locks a ranking that ranks and rates everyone', () => {
@@ -448,5 +448,54 @@ describe('Part 7c schemas', () => {
 
   it('knows the new transaction types', () => {
     for (const t of ['walk-on', 'college-ratings']) expect(TransactionType.safeParse(t).success).toBe(true);
+  });
+});
+
+describe('Part 7d schemas', () => {
+  const prospect = (playerId: string) => ({ playerId, position: 'PG', college: 'TEX', classYear: 'Jr', senior: false, collegeRating: 80, stars: 4, fbaRating: null });
+  const draft = {
+    league: 'fba', season: 80, locked: false, started: false,
+    prospects: [prospect('p00001'), prospect('p00002')],
+    picks: [],
+  };
+  const okDraft = (patch: object) => DraftFile.safeParse({ ...draft, ...patch });
+  const messages = (patch: object) => {
+    const r = okDraft(patch);
+    return r.success ? [] : r.error.issues.map(i => i.message);
+  };
+  const started = {
+    started: true,
+    picks: [
+      { slot: 1, owner: 't1', originalTeam: 't1', playerId: 'p00001' },
+      { slot: 2, owner: 't2', originalTeam: 't3', playerId: null },
+    ],
+  };
+
+  it('accepts an unstarted draft and a started one with an open pick', () => {
+    expect(okDraft({}).success).toBe(true);
+    expect(okDraft(started).success).toBe(true);
+  });
+
+  it('rejects a duplicate prospect, a pick that is not a prospect, a repeated pick, picks before the start and a finished draft that never started', () => {
+    expect(messages({ prospects: [prospect('p00001'), prospect('p00001')] })).toContain('A prospect is listed twice');
+    expect(messages({ ...started, picks: [{ slot: 1, owner: 't1', originalTeam: 't1', playerId: 'p00009' }] })).toContain("p00009 is picked but isn't a prospect");
+    expect(messages({ ...started, picks: [
+      { slot: 1, owner: 't1', originalTeam: 't1', playerId: 'p00001' },
+      { slot: 2, owner: 't2', originalTeam: 't2', playerId: 'p00001' },
+    ] })).toContain('p00001 is picked twice');
+    expect(messages({ picks: started.picks })).toContain('An unstarted draft has no picks');
+    expect(messages({ locked: true, started: false })).toContain('A finished draft must have started');
+  });
+
+  it('rejects an FBA rating of 0', () => {
+    expect(okDraft({ prospects: [{ ...prospect('p00001'), fbaRating: 0 }] }).success).toBe(false);
+    expect(okDraft({ prospects: [{ ...prospect('p00001'), fbaRating: 74 }] }).success).toBe(true);
+  });
+
+  it('accepts an fba-reset ranking and the new transaction types', () => {
+    const row = { playerId: 'p00001', position: 'PG', age: 21, team: null, prevRating: null, otherRating: 80, stat: null };
+    const ranking = { league: 'fba', season: 80, kind: 'fba-reset', locked: false, rows: [row], order: ['p00001'], ratings: { p00001: 70 }, curve: [80] };
+    expect(RankingFile.safeParse(ranking).success).toBe(true);
+    for (const t of ['adjust-age', 'declare', 'fba-ratings']) expect(TransactionType.safeParse(t).success).toBe(true);
   });
 });
