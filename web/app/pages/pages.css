@@ -1,8 +1,3 @@
-.hero { display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: 10px; color: #fff; background: linear-gradient(120deg, var(--hero-from), var(--hero-to)); margin-bottom: 16px; }
-.hero img { width: 64px; height: 64px; object-fit: contain; }
-.hero .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; opacity: 0.7; text-transform: uppercase; }
-.hero .title { font-family: var(--font-head); font-size: 22px; font-weight: 800; text-transform: var(--head-transform); }
-.hero .btn.primary { margin-left: auto; }
 .champ-row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--border); }
 .champ-row:last-child { border-bottom: 0; }
 .champ-row b { text-align: right; }
