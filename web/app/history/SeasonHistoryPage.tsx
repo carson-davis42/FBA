@@ -1,8 +1,8 @@
 import { useState, type ReactNode } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AWARD_LABEL } from '../../engine/awards/races';
-import { formatScore } from '../../engine/history/format';
-import type { PastAllFbaSlot, PlayersFile, SummaryFile, SummaryStanding, Team, TeamsFile } from '../../engine/shared/types';
+import { resolveHistoryTeam } from '../../engine/shared/franchises';
+import type { FranchisesFile, PastAllFbaSlot, PlayersFile, SummaryFile, SummaryStanding, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
 import { Badge } from '../components/Badge';
 import { Hero } from '../components/Hero';
@@ -10,9 +10,10 @@ import { SubNav } from '../components/SubNav';
 import { TeamMark } from '../components/TeamMark';
 import { teamTheme } from '../components/teamColors';
 import { Bracket } from '../playoffs/Bracket';
+import { FinalsCard } from './FinalsCard';
 import { PastBracket } from './PastBracket';
 import { PlayerLink, SkippedWarning } from './PlayerLink';
-import { findTeam, TeamAbbr, TeamFull } from './useTeams';
+import { TeamAbbr, TeamFull } from './useTeams';
 import './history.css';
 import '../pages/season.css';
 
@@ -82,16 +83,16 @@ function Standings({ season, teams }: { season: SummaryFile; teams: Team[] }) {
   );
 }
 
-function Playoffs({ season, teams, players }: { season: SummaryFile; teams: Team[]; players: PlayersFile }) {
+function Playoffs({ season, teams, players, franchises }: { season: SummaryFile; teams: Team[]; players: PlayersFile; franchises: FranchisesFile | null }) {
   const champion = season.champions.find(c => c.title === 'FBA Champion');
   return (
     <div className="stack">
       {season.bracket ? (
         <Bracket league="fba" series={season.bracket.series} teams={new Map(teams.map(t => [t.teamId, t]))} season={season.season} group={null} open={null} />
       ) : season.pastBracket ? (
-        <PastBracket bracket={season.pastBracket} teams={teams} season={season.season} />
+        <PastBracket bracket={season.pastBracket} teams={teams} season={season.season} franchises={franchises} />
       ) : champion ? (
-        <p>Finals: {champion.champion} def. {champion.runnerUp ?? '—'}, {formatScore(champion.score)}</p>
+        <FinalsCard champion={champion} teams={teams} franchises={franchises} season={season.season} />
       ) : (
         <p className="muted">No playoffs recorded</p>
       )}
@@ -185,16 +186,18 @@ export function SeasonHistoryPage() {
   const players = useDoc<PlayersFile>('players.json');
   const fbaTeams = useDoc<TeamsFile>('leagues/fba/teams.json');
   const d2Teams = useDoc<TeamsFile>('leagues/fbad2/teams.json');
+  const franchises = useDoc<FranchisesFile>('leagues/fba/franchises.json');
   const failure = error ?? players.error ?? fbaTeams.error ?? d2Teams.error;
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
-  if (!seasons || !players.data || !fbaTeams.data || !d2Teams.data) return <p className="muted">Loading…</p>;
+  if (!seasons || !players.data || !fbaTeams.data || !d2Teams.data || !(franchises.data || franchises.missing || franchises.error)) return <p className="muted">Loading…</p>;
   const n = /^\d+$/.test(param) ? Number(param) : NaN;
   const season = seasons.find(s => s.season === n);
   if (!season) return <p className="muted">Not found</p>;
   const teams = [...fbaTeams.data.teams, ...d2Teams.data.teams];
   const ordered = [...seasons].sort((a, b) => b.season - a.season);
   const champion = season.champions.find(c => c.title === 'FBA Champion');
-  const champTeam = champion ? findTeam(fbaTeams.data.teams, champion.teamId, champion.champion) : undefined;
+  const fr = franchises.data ?? null;
+  const champTeam = champion ? resolveHistoryTeam(fbaTeams.data.teams, fr, champion.champion, season.season, champion.teamId)?.team : undefined;
   const champRow = champTeam ? season.standings?.find(r => r.teamId === champTeam.teamId) : undefined;
   const mvp = season.awards?.find(a => a.award === 'MVP');
   const roster = players.data.players;
@@ -224,7 +227,7 @@ export function SeasonHistoryPage() {
       <SubNav label="Season sections" items={TABS.map(t => ({ label: t.label, id: t.id }))} active={tab} onSelect={id => setTab(id as Tab)} />
       <div className="stack" id={`panel-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
         {tab === 'standings' && <Standings season={season} teams={teams} />}
-        {tab === 'playoffs' && <Playoffs season={season} teams={teams} players={players.data} />}
+        {tab === 'playoffs' && <Playoffs season={season} teams={fbaTeams.data.teams} players={players.data} franchises={fr} />}
         {tab === 'awards' && <Awards season={season} players={players.data} teams={teams} />}
         {tab === 'allstar' && <AllStar season={season} players={players.data} />}
       </div>

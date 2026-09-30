@@ -1,6 +1,7 @@
 import type { Team } from '../../engine/shared/types';
 
-export function TeamMark({ team, season, size = 32 }: { team: Team; season: number; size?: number }) {
+/** `label` overrides the name in the alt text (history pages show the name a team used that season). */
+export function TeamMark({ team, season, size = 32, label }: { team: Team; season: number; size?: number; label?: string }) {
   if (team.logoFolder) {
     return (
       <img
@@ -8,7 +9,7 @@ export function TeamMark({ team, season, size = 32 }: { team: Team; season: numb
         src={`/logos/${encodeURIComponent(team.logoFolder)}/${season}`}
         width={size}
         height={size}
-        alt={`${team.name} logo`}
+        alt={`${label ?? team.name} logo`}
       />
     );
   }

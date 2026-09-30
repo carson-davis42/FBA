@@ -23,4 +23,10 @@ describe('TeamName', () => {
     render(<MemoryRouter><TeamName team={venom} season={79} to="/league/fba/team/ATL" /></MemoryRouter>);
     expect(screen.getByRole('link', { name: /Atlanta Venom/ }).getAttribute('href')).toBe('/league/fba/team/ATL');
   });
+  it('shows name and abbreviation overrides', () => {
+    render(<><TeamName team={venom} season={30} name="Former Pirates" abbr="FP" /><TeamName team={venom} season={30} variant="abbr" name="Former Pirates" abbr="FP" /></>);
+    expect(screen.getByText('Former Pirates')).toBeTruthy();
+    expect(screen.getByText('FP').closest('.team-name')!.getAttribute('title')).toBe('Former Pirates');
+    expect(screen.getAllByRole('img', { name: 'Former Pirates logo' })).toHaveLength(2);
+  });
 });
