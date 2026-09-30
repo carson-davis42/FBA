@@ -33,6 +33,8 @@ import { RetirementPage } from '../offseason/RetirementPage';
 import { AwardsHistoryPage } from '../history/AwardsHistoryPage';
 import { ChampionshipsPage } from '../history/ChampionshipsPage';
 import { HistoryHome } from '../history/HistoryHome';
+import { PlayerHistoryPage } from '../history/PlayerHistoryPage';
+import { PlayersHistoryPage } from '../history/PlayersHistoryPage';
 import { SeasonHistoryPage } from '../history/SeasonHistoryPage';
 import { Sidebar } from './Sidebar';
 import { TopBar } from './TopBar';
@@ -79,6 +81,8 @@ export function Layout() {
           <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
           <Route path="/history/fba/awards" element={<AwardsHistoryPage />} />
           <Route path="/history/fba/season/:season" element={<SeasonHistoryPage />} />
+          <Route path="/history/fba/players" element={<PlayersHistoryPage />} />
+          <Route path="/history/fba/players/:playerId" element={<PlayerHistoryPage />} />
           <Route path="*" element={<Placeholder title="Not found" note="That page doesn't exist." />} />
         </Routes>
       </main>
