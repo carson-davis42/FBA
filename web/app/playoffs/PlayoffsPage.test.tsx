@@ -2,12 +2,13 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { lockSeeds } from '../../engine/playoffs/moves';
+import { finalsMvpCandidates, lockSeeds, pickFinalsMvp } from '../../engine/playoffs/moves';
 import { fullD2State, fullFbaState, pickAllFinalsMvps, playPlayoffs, regularSeasonDone } from '../../engine/playoffs/testFixtures';
 import type { SeasonResult } from '../../engine/season/state';
 import { finishSeason } from '../../engine/season/wrapUp';
 import { stubApi } from '../d2/testDocs';
 import { seasonDocs } from '../season/testDocs';
+import { groupLabel } from '../../engine/shared/leagues';
 import { PlayoffsPage } from './PlayoffsPage';
 
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
@@ -139,5 +140,71 @@ describe('PlayoffsPage', () => {
     renderAt('/league/fbad2/playoffs');
     expect(await screen.findByText('The S79 D2 season is finished.')).toBeTruthy();
     expect(screen.queryByRole('button', { name: /^Finish S79/ })).toBeNull();
+  });
+});
+
+describe('Finals MVP card', () => {
+  const fbaDone = () => playPlayoffs(ok(lockSeeds(regularSeasonDone(fullFbaState()))).state, 5);
+
+  it('lists the champion players by PPG and posts one batch per pick, even on a double click', async () => {
+    const state = fbaDone();
+    const cands = finalsMvpCandidates(state, null);
+    const log = stubApi(seasonDocs(state));
+    renderAt('/league/fba/playoffs');
+    expect(await screen.findByRole('heading', { name: 'Finals MVP' })).toBeTruthy();
+    const rows = screen.getAllByRole('row').slice(1);
+    expect(rows).toHaveLength(cands.length);
+    expect(rows[0].textContent).toContain(cands[0].name);
+    expect(rows[0].textContent).toContain(cands[0].ppg.toFixed(1));
+    const picks = screen.getAllByRole('button', { name: 'Pick' });
+    expect(picks).toHaveLength(cands.length);
+    fireEvent.click(picks[1]);
+    fireEvent.click(picks[1]);
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    expect(log.batches[0].label).toBe('Pick the Finals MVP');
+    expect(log.batches[0].writes.map(w => w.path)).toEqual(['leagues/fba/S79/playoffs.json']);
+    const saved = log.batches[0].writes[0].doc as { outcome: { champions: { finalsMvp?: string }[] } };
+    expect(saved.outcome.champions[0].finalsMvp).toBe(cands[1].playerId);
+    await waitFor(() => expect(screen.getAllByRole('button', { name: 'Pick' })).toHaveLength(cands.length - 1));
+    expect(screen.getAllByText('Finals MVP').length).toBeGreaterThan(1);
+    expect(log.batches).toHaveLength(1);
+  });
+
+  it('refuses Finish without a pick', async () => {
+    stubApi(seasonDocs(fbaDone()));
+    renderAt('/league/fba/playoffs');
+    fireEvent.click(await screen.findByRole('button', { name: 'Finish S79 FBA season ▸' }));
+    expect(await screen.findByText('Pick the Finals MVP first')).toBeTruthy();
+  });
+
+  it('shows one Series MVP card per D2 league champion', async () => {
+    const state = playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
+    stubApi(seasonDocs(state));
+    renderAt('/league/fbad2/playoffs');
+    for (const c of state.playoffs!.outcome!.champions) {
+      expect(await screen.findByRole('heading', { name: `${groupLabel('fbad2', c.group!)} Series MVP` })).toBeTruthy();
+    }
+    expect(screen.getAllByRole('heading', { name: /Series MVP$/ })).toHaveLength(4);
+    expect(screen.getByRole('heading', { name: 'Premier League Series MVP' })).toBeTruthy();
+  });
+
+  it('shows only the MVP line once the season is finished', async () => {
+    const picked = pickAllFinalsMvps(fbaDone());
+    const name = picked.players.players[picked.playoffs!.outcome!.champions[0].finalsMvp!]?.name ?? 'Unnamed';
+    stubApi(seasonDocs(ok(finishSeason(picked, [], { batchId: 't' })).state));
+    renderAt('/league/fba/playoffs');
+    expect(await screen.findByText(`Finals MVP: ${name}`)).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Pick' })).toBeNull();
+    expect(screen.queryByRole('table')).toBeNull();
+  });
+
+  it('shows nothing after wrap-up when there was no pick', async () => {
+    const picked = ok(pickFinalsMvp(fbaDone(), null, finalsMvpCandidates(fbaDone(), null)[0].playerId)).state;
+    const finished = ok(finishSeason(picked, [], { batchId: 't' })).state;
+    const bare = { ...finished, playoffs: { ...finished.playoffs!, outcome: { ...finished.playoffs!.outcome!, champions: finished.playoffs!.outcome!.champions.map(c => ({ ...c, finalsMvp: undefined })) } } };
+    stubApi(seasonDocs(bare));
+    renderAt('/league/fba/playoffs');
+    expect(await screen.findByText('The S79 FBA season is finished.')).toBeTruthy();
+    expect(screen.queryByText(/Finals MVP/)).toBeNull();
   });
 });

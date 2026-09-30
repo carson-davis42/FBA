@@ -13,6 +13,7 @@ import { TeamMark } from '../components/TeamMark';
 import { commitSeason } from '../season/commitSeason';
 import { useSeasonState } from '../season/useSeasonState';
 import { Bracket } from './Bracket';
+import { FinalsMvpCard } from './FinalsMvpCard';
 import { FinishSeasonCard } from './FinishSeasonCard';
 import '../pages/season.css';
 
@@ -139,6 +140,7 @@ export function PlayoffsPage() {
               {' · '}{p.relegated.length ? `relegated ${p.relegated.map(name).join(', ')}` : 'no relegation'}
             </p>
           ))}
+          {pf.outcome.champions.map(c => <FinalsMvpCard key={c.group ?? 'fba'} state={state} versions={versions} group={c.group} />)}
           <FinishSeasonCard state={state} versions={versions} />
         </div>
       )}
