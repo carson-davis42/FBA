@@ -23,7 +23,7 @@ export function PlayersHistoryPage() {
       <h1>FBA Players</h1>
       <SkippedWarning errors={errors} />
       <input type="search" aria-label="Search players" placeholder="Search players" value={q} onChange={e => setQ(e.target.value)} />
-      <p className="muted">{shown.length} players</p>
+      <p className="muted">{shown.length} {shown.length === 1 ? 'player' : 'players'}</p>
       <ul>
         {shown.map(p => <li key={p.playerId}><PlayerLink id={p.playerId} players={players.data as PlayersFile} /></li>)}
       </ul>

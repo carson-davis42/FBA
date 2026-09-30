@@ -544,6 +544,16 @@ describe('Part 3a history schemas', () => {
     it('rejects a missing series', () => {
       expect(PastBracket.safeParse(tweak(b => { b.series = b.series.filter(s => s.id !== 'R2-1'); })).success).toBe(false);
     });
+    it('rejects series outside the tree (a round beyond rounds, or a number beyond the round)', () => {
+      const extraRound = tweak(b => { b.series.push(ser('R4-1', side('St.Louis', null, 1), side('Denver', null, 2), 4, 3, 'home')); });
+      const r = PastBracket.safeParse(extraRound);
+      expect(r.success).toBe(false);
+      expect(r.success ? [] : r.error.issues.map(i => i.message)).toContain('R4-1: round 4 is beyond the 3-round bracket');
+      const extraNumber = tweak(b => { b.series.push(ser('R1-9', side('St.Louis', null, 1), side('Denver', null, 2), 2, 0, 'home')); });
+      const r2 = PastBracket.safeParse(extraNumber);
+      expect(r2.success).toBe(false);
+      expect(r2.success ? [] : r2.error.issues.map(i => i.message)).toContain('R1-9: series number is out of range');
+    });
     it('accepts W-L and W-L-T records and rejects others', () => {
       const withRecord = (record: string) => tweak(b => { b.series[0].home = side('St.Louis', record, 1); });
       expect(PastBracket.safeParse(withRecord('5-1-1')).success).toBe(true);

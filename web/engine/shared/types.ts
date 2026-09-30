@@ -651,6 +651,8 @@ export const PastBracket = z.object({ rounds: int.min(1).max(5), series: z.array
   if (byId.size !== b.series.length) issue('Series ids must be unique');
   for (const s of b.series) {
     if (Number(s.id[1]) !== s.round) issue(`${s.id}: round doesn't match its id`);
+    if (s.round > b.rounds) issue(`${s.id}: round ${s.round} is beyond the ${b.rounds}-round bracket`);
+    else if (Number(s.id.split('-')[1]) > 2 ** (b.rounds - s.round)) issue(`${s.id}: series number is out of range`);
     const win = s[s.winner];
     const lose = s[s.winner === 'home' ? 'away' : 'home'];
     if (!win) { issue(`${s.id}: the winner can't be a BYE`); continue; }

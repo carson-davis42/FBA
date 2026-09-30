@@ -252,7 +252,7 @@ export class Storage {
       if (parsed.success) out.push(doc);
       else {
         const issue = parsed.error.issues[0];
-        errors.push({ season: n, message: `${issue.path.join('.')}: ${issue.message}` });
+        errors.push({ season: n, message: issue.path.length ? `${issue.path.join('.')}: ${issue.message}` : issue.message });
       }
     }
     return { seasons: out, errors };

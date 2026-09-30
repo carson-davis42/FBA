@@ -75,7 +75,7 @@ PastSeries = {
   homeWins: int 0..4, awayWins: int 0..4,
   winner: 'home' | 'away',
 }
-PastSide = { name: string, record: string | null /* "56-24" */, seed: int 1..16 | null }
+PastSide = { name: string, record: string | null /* "56-24", or "W-L-T" such as "5-1-1"; regex ^\d+-\d+(-\d+)?$ */, seed: int 1..16 | null }
 ```
 
 `PastBracket` rules, checked by the schema:

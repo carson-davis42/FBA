@@ -6,6 +6,7 @@ import {
 import { calendarProblem, type WritesResult } from '../../engine/season/moves';
 import type { CalendarFile, HallOfFameFile, HofCard, MetaFile, PlayersFile, TransactionsFile } from '../../engine/shared/types';
 import { useDoc, useHistory, useSaving } from '../api';
+import { SkippedWarning } from '../history/PlayerLink';
 import { commitDocs, newBatchId } from '../roster/commit';
 import '../pages/league.css';
 import '../pages/roster.css';
@@ -180,6 +181,7 @@ export function HallOfFamePage() {
     <section>
       <h1>Hall of Fame</h1>
       <div className="tabs" role="tablist">{tabLink('hall', 'Hall')}{tabLink('nominees', 'Nominees')}</div>
+      <SkippedWarning errors={history.errors} />
       {actionError && <p className="error">{actionError}</p>}
       {tab === 'hall' ? hall : nominees}
     </section>

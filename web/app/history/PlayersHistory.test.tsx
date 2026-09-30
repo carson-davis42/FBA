@@ -74,7 +74,7 @@ describe('PlayersHistoryPage', () => {
     expect(await screen.findByText('2 players')).toBeTruthy();
     expect(screen.getByRole('link', { name: 'Ray Allen' })).toBeTruthy();
     fireEvent.change(screen.getByLabelText('Search players'), { target: { value: 'lucic' } });
-    expect(screen.getByText('1 players')).toBeTruthy();
+    expect(screen.getByText('1 player')).toBeTruthy();
     expect(screen.queryByRole('link', { name: 'Ray Allen' })).toBeNull();
     fireEvent.click(screen.getByRole('link', { name: 'Cameron Lučić' }));
     expect(screen.getByTestId('where').textContent).toBe('/history/fba/players/p00001');
@@ -105,6 +105,15 @@ describe('PlayerHistoryPage', () => {
       ['S71', 'UTA', '20', '300', '15.0', '—', '—', '—'],
       ['S71', 'Total', '60', '1100', '18.3', '10', '250', '25.0'],
     ]);
+  });
+
+  it('shows a real bio value without the Born- prefix', async () => {
+    stub({ bios: { league: 'fba', bios: [{ playerId: 'p00001', born: 'Born-S51', entries: [] }, { playerId: 'p00002', born: 'Born-FFL S1(-53)', entries: [] }] } });
+    renderAt('/history/fba/players/p00001');
+    expect(await screen.findByText('Born: S51')).toBeTruthy();
+    cleanup();
+    renderAt('/history/fba/players/p00002');
+    expect(await screen.findByText('Born: FFL S1(-53)')).toBeTruthy();
   });
 
   it('shows Not found for an unknown id', async () => {

@@ -87,6 +87,15 @@ describe('players', () => {
     expect(p).toEqual(players());
   });
 
+  it('renames a matched player to the Players-tab spelling and reports it', () => {
+    const r = run(input({ bios: [{ name: 'Jose Alvarez', born: 'Born-S52', entries: [] }] }));
+    expect(r.players.players.p00002.name).toBe('Jose Alvarez');
+    expect(r.report.entries.filter(e => e.level === 'info' && e.topic === 'names').map(e => e.message)).toEqual(['Renamed: José Álvarez → Jose Alvarez']);
+    const again = run(input({ players: r.players, bios: [{ name: 'Jose Alvarez', born: 'Born-S52', entries: [] }] }));
+    expect(again.report.entries.filter(e => e.topic === 'names')).toEqual([]);
+    expect(again.players).toEqual(r.players);
+  });
+
   it('reports an ambiguous name and writes no bio', () => {
     const p = players();
     p.players.p00003 = { id: 'p00003', name: 'Reagan  Butler'.replace('  ', ' '), birthSeason: 60 };
@@ -180,6 +189,21 @@ describe('awards and All-FBA', () => {
     expect(warnings(r.report, 'names')).toEqual(['Unmatched: Nobody Here (S9 ROTY)']);
   });
 
+  it('looks up the whole cell first, so a hyphenated surname is not read as a team', () => {
+    const p = players();
+    p.players.p00003 = { id: 'p00003', name: 'Paulo Pierre-Kent', birthSeason: 60 };
+    p.nextId = 4;
+    const r = run(input({ players: p, awards: [emptyAwards(9, { awards: { ROTY: { name: 'Paulo Pierre', team: 'Kent' } } })] }));
+    expect((r.summaries[8].awards ?? []).map(a => a.playerId)).toEqual(['p00003']);
+    expect(warnings(r.report, 'names')).toEqual([]);
+  });
+
+  it('resolves a Finals MVP written as Name-TEAM', () => {
+    const r = run(input({ champs: [champ(9, { finalsMvp: 'Reagan Butler-HON' })] }));
+    expect(r.summaries[8].champions[0].finalsMvp).toBe('p00001');
+    expect(warnings(r.report, 'names')).toEqual([]);
+  });
+
   it('resolves All-FBA lines and keeps the slot order when a name is unknown', () => {
     const allFba: AllFbaSeason = {
       season: 58,
@@ -228,7 +252,48 @@ describe('standings and brackets', () => {
     expect(by['Boston Bucks']).toEqual({ round: 4, champion: true });
     expect(by['Memphis Blues']).toEqual({ round: 4, champion: false });
     expect(by['Utah Nobody']).toBeNull();
-    expect(r.summaries[77].pastBracket).toBeUndefined();
+    expect(r.summaries[77].pastBracket).toBeNull();
+  });
+
+  it('clears a stale bracket when the season no longer has one', () => {
+    const first = run(input({ champs: [champ(78)], brackets: [bracket2()] }));
+    expect(first.summaries[77].pastBracket).not.toBeNull();
+    const second = run(input({ champs: [champ(78)], existing: new Map(first.summaries.map(s => [s.season, s])) }));
+    expect(second.summaries[77].pastBracket).toBeNull();
+  });
+
+  it('reports a bracket side that matches no standings row, and resolves the Denver Height alias', () => {
+    const rows: StandingRow[] = [
+      { group: 'E', rank: 1, name: 'Boston Bucks', w: 60, l: 26 },
+      { group: 'W', rank: 1, name: 'Denver Heights', w: 40, l: 46 },
+    ];
+    const b = {
+      season: 78, rounds: 2,
+      series: [
+        series('R1-1', 1, 'Boston Bucks', 'Denver Height', 4, 2),
+        series('R1-2', 1, 'Memphis Blues', 'Ghost Town', 4, 0),
+        series('R2-1', 2, 'Boston Bucks', 'Memphis Blues', 4, 1),
+      ],
+    };
+    const r = run(input({ champs: [champ(78)], standings: new Map([[78, rows]]), brackets: [b] }));
+    const by = Object.fromEntries((r.summaries[77].standings ?? []).map(x => [x.name, x.playoff]));
+    expect(by['Denver Heights']).toEqual({ round: 1, champion: false });
+    expect(warnings(r.report, 'brackets')).toEqual([
+      'S78: bracket team "Memphis Blues" is not in the standings',
+      'S78: bracket team "Ghost Town" is not in the standings',
+    ]);
+  });
+
+  it('sets empty standings and warns for S71-S78 when the sheet has no rows', () => {
+    const existing: SummaryFile = {
+      league: 'fba', season: 75, locked: true, host: null, champions: [],
+      standings: [{ teamId: 'BOS', name: 'Boston Bucks', group: 'E', rank: 1, w: 1, l: 1, confW: null, confL: null, diff: null, marker: null, seed: null, playoff: null }],
+    };
+    const r = run(input({ existing: new Map([[75, existing]]) }));
+    expect(r.summaries[74].standings).toEqual([]);
+    expect(r.summaries[0].standings).toBeUndefined();
+    expect(warnings(r.report, 'standings')).toHaveLength(8);
+    expect(warnings(r.report, 'standings')[0]).toBe('S71: no standings rows in the sheet');
   });
 
   it('reports a final that disagrees with the sheet and still writes the bracket', () => {

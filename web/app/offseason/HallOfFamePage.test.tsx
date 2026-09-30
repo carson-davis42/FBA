@@ -58,6 +58,12 @@ describe('HallOfFamePage', () => {
     expect(await screen.findByText('Import the Hall of Fame first: run "npm run import -- --hall-of-fame" in web/.')).toBeTruthy();
   });
 
+  it('warns about seasons that could not be read', async () => {
+    stubApi({ ...docs(hof()), '/api/history/fba': { seasons: summaries, errors: [{ season: 12, message: 'bad' }, { season: 40, message: 'bad' }] } });
+    renderPage();
+    expect(await screen.findByText("Some seasons couldn't be read: S12, S40")).toBeTruthy();
+  });
+
   it('shows the classes newest first with their cards', async () => {
     stubApi(docs(hof({
       classes: [

@@ -377,6 +377,29 @@ describe('history and resetUndo routes', () => {
     expect((await fetch(`${base}/api/history/fbajc`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })).status).toBe(405);
   });
 
+  it('answers 200 with errors for a corrupt summary and still returns the good seasons', async () => {
+    const dataDir = mkdtempSync(path.join(tmpdir(), 'fba-http-history-'));
+    const good = { league: 'fba', season: 9, locked: true, host: null, champions: [] };
+    mkdirSync(path.join(dataDir, 'leagues', 'fba', 'S9'), { recursive: true });
+    writeFileSync(path.join(dataDir, 'leagues', 'fba', 'S9', 'summary.json'), JSON.stringify(good));
+    mkdirSync(path.join(dataDir, 'leagues', 'fba', 'S10'), { recursive: true });
+    writeFileSync(path.join(dataDir, 'leagues', 'fba', 'S10', 'summary.json'), '{');
+    mkdirSync(path.join(dataDir, 'leagues', 'fba', 'S11'), { recursive: true });
+    writeFileSync(path.join(dataDir, 'leagues', 'fba', 'S11', 'summary.json'), JSON.stringify({ ...good, season: 'x' }));
+    const srv = http.createServer(createHandler(new Storage(dataDir), mkdtempSync(path.join(tmpdir(), 'fba-logos-history-'))));
+    await new Promise<void>(r => srv.listen(0, '127.0.0.1', r));
+    try {
+      const res = await fetch(`http://127.0.0.1:${(srv.address() as AddressInfo).port}/api/history/fba`);
+      expect(res.status).toBe(200);
+      const body = (await res.json()) as { seasons: unknown[]; errors: { season: number; message: string }[] };
+      expect(body.seasons).toEqual([good]);
+      expect(body.errors.map(e => e.season)).toEqual([10, 11]);
+      expect(body.errors[0].message).toBe('bad JSON');
+    } finally {
+      await new Promise<void>(r => srv.close(() => r()));
+    }
+  });
+
   it('clears Undo after a resetUndo batch, and rejects a non-boolean resetUndo', async () => {
     const tag1 = await ifMatch(base, 'calendar.json');
     expect((await post({ label: 'Mark R', writes: [{ path: 'calendar.json', doc: cal(true), baseVersion: unquote(tag1) }] })).status).toBe(200);

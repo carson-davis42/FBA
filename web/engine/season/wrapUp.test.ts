@@ -198,6 +198,13 @@ describe('finishSeason', () => {
     expect(finishSeason(d2Done(), [], ctx).ok).toBe(true);
   });
 
+  it('does not require an MVP pick when the champion has no box scores to choose from', () => {
+    const s = fbaPlayed();
+    const noBox = { ...s, playoffs: { ...s.playoffs!, games: s.playoffs!.games.map(g => ({ ...g, box: undefined })) } };
+    expect(finalsMvpCandidates(noBox, null)).toEqual([]);
+    expect(finishSeason(noBox, [], ctx).ok).toBe(true);
+  });
+
   it('refuses before the last final, with unlocked awards, twice, off-step, or with an unfinished rating pause', () => {
     const s = d2Done();
     const problems = (x: SeasonState, pauses: RatingPauseFile[] = []) => {

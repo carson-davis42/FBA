@@ -90,7 +90,7 @@ export const PastAllFbaTeams = z.object({ team1: z.array(PastAllFbaSlot), team2:
     return key(t.team1) === key(t.team2) && PAST_ALL_FBA_ORDERS.some(o => o.join(',') === key(t.team1));
   }, 'Both All-FBA teams must follow the same known slot order');
 
-export const PastSide = z.object({ name: z.string().min(1), record: z.string().regex(/^\d+-\d+$/).nullable(), seed: int.min(1).max(16).nullable() }).strict();
+export const PastSide = z.object({ name: z.string().min(1), record: z.string().regex(/^\d+-\d+(-\d+)?$/).nullable(), seed: int.min(1).max(16).nullable() }).strict();
 export const PastSeries = z.object({
   id: z.string().regex(/^R\d-\d+$/),
   round: int.min(1).max(5),
@@ -400,7 +400,7 @@ export const normName: (s: string) => string   // trim, ’→', NFD minus \p{M}
 **How to read a page** (open each with the Read tool):
 - **Title:** it must say `FBA Elite Tournament`, and the season is the `S<n>` under it. Any other title: skip the page and list it in the report.
 - **First-round slots:** read the far-left column top to bottom, pairing slots 1–2, 3–4 and so on. Series `R1-k` has the upper slot as `home` and the lower as `away`.
-  - `name` is the text before `(`, as printed. `record` is the `W-L` in the brackets, or null.
+  - `name` is the text before `(`, as printed. `record` is the `W-L` (or `W-L-T`) in the brackets, or null.
   - `seed` is the grey number at the far left of the slot line, or null when none is printed. The grey `(n)` next to a join is a game number; ignore it.
   - A `BYE` slot is null.
 - **Later rounds:** the name on the next column's line is the winner, and the number below it is `winnerWins - loserWins`.
@@ -433,7 +433,7 @@ export const normName: (s: string) => string   // trim, ’→', NFD minus \p{M}
 Follow the same reading rules as Task 8; they are copied here so this task stands alone:
 - **Title:** it must say `FBA Elite Tournament`, and the season is the `S<n>` under it. Any other title: skip the page and report it.
 - **First-round slots:** read the far-left column top to bottom, pairing 1–2, 3–4 and so on. `R1-k` has the upper slot as `home` and the lower as `away`.
-  - `name` is the text before `(`. `record` is the `W-L` in the brackets, or null.
+  - `name` is the text before `(`. `record` is the `W-L` (or `W-L-T`) in the brackets, or null.
   - `seed` is the grey far-left number, or null. The grey `(n)` next to a join is a game number; ignore it.
   - A `BYE` slot is null.
 - **Later rounds:** the next column's line shows the winner, with `winnerWins - loserWins` below it. A later-round side carries its first-round `seed` and `record`.

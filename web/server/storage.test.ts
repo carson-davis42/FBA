@@ -359,4 +359,15 @@ describe('Storage history', () => {
     expect(out.errors[1].season).toBe(11);
     expect(out.errors[1].message).toMatch(/^season: /);
   });
+
+  it('gives a root-level schema issue (a document that is not an object) without a leading colon', async () => {
+    const { dir, storage } = fresh();
+    mkdirSync(path.join(dir, 'leagues', 'fba', 'S9'), { recursive: true });
+    writeFileSync(path.join(dir, 'leagues', 'fba', 'S9', 'summary.json'), '[]');
+    const out = await storage.history('fba');
+    expect(out.errors).toHaveLength(1);
+    expect(out.errors[0].season).toBe(9);
+    expect(out.errors[0].message.length).toBeGreaterThan(0);
+    expect(out.errors[0].message.startsWith(':')).toBe(false);
+  });
 });

@@ -31,11 +31,11 @@ const s48: SummaryFile = {
   confChampions: { E: 'Boston', W: 'Utah' },
 };
 
-function stub(errors: { season: number; message: string }[] = [], fail = false) {
+function stub(errors: { season: number; message: string }[] = [], fail = false, seasons: SummaryFile[] = [s47, s48]) {
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
     if (url === '/api/history/fba') {
       if (fail) return new Response('nope', { status: 500 });
-      return new Response(JSON.stringify({ seasons: [s47, s48], errors }));
+      return new Response(JSON.stringify({ seasons, errors }));
     }
     if (url === '/api/state/players.json') return new Response(JSON.stringify(players), { headers: { ETag: '"0000000000000001"' } });
     return new Response('{}', { status: 404 });
@@ -81,6 +81,17 @@ describe('History pages', () => {
     expect(rows[1].textContent).toContain('Ray Allen');
     expect(rows[1].textContent).not.toContain('(?)');
     expect(rows[1].textContent).not.toContain('Ray Allen (');
+  });
+
+  it('renders the Championships and Awards pages with no seasons', async () => {
+    stub([], false, []);
+    renderAt(<ChampionshipsPage />);
+    expect(await screen.findByRole('heading', { name: 'FBA Championships' })).toBeTruthy();
+    expect(screen.queryAllByRole('row').slice(1)).toHaveLength(0);
+    cleanup();
+    renderAt(<AwardsHistoryPage />);
+    expect(await screen.findByRole('heading', { name: 'FBA Awards' })).toBeTruthy();
+    expect(screen.queryAllByRole('row').slice(1)).toHaveLength(0);
   });
 
   it('warns about seasons that could not be read', async () => {

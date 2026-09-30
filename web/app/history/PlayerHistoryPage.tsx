@@ -32,7 +32,7 @@ export function PlayerHistoryPage() {
       {!bio && honours.length === 0 && lines.length === 0 && <p className="muted">No history recorded</p>}
       {bio && (
         <div>
-          <p>Born: {bio.born}</p>
+          <p>Born: {bio.born.replace(/^Born-/, '')}</p>
           <ul>{bio.entries.map((e, k) => <li key={k}>{e}</li>)}</ul>
         </div>
       )}

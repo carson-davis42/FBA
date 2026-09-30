@@ -1,4 +1,4 @@
-import { seasonStandings } from '../playoffs/moves';
+import { finalsMvpCandidates, seasonStandings } from '../playoffs/moves';
 import { POSITIONS } from '../roster/rules';
 import { groupLabel } from '../shared/leagues';
 import type { BoxLine, GameResult, Position, RatingPauseFile, RostersFile, SeasonTotals, SummaryFile, SummaryPlayerLine } from '../shared/types';
@@ -155,8 +155,10 @@ export function finishSeason(state: SeasonState, pauses: RatingPauseFile[], ctx:
   if (!state.awards?.locked) problems.push(`Lock the S${state.season} awards first`);
   if (state.summary) problems.push(`The S${state.season} ${name} season is already finished`);
   const champs = state.playoffs?.outcome?.champions ?? [];
-  if (state.league === 'fba' && champs.some(c => !c.finalsMvp)) problems.push('Pick the Finals MVP first');
-  if (state.league === 'fbad2' && champs.some(c => !c.finalsMvp)) problems.push('Pick every Series MVP first');
+  // A pick is only required when the champion has candidates (box scores in the final) to choose from.
+  const needsPick = champs.some(c => !c.finalsMvp && finalsMvpCandidates(state, c.group).length > 0);
+  if (state.league === 'fba' && needsPick) problems.push('Pick the Finals MVP first');
+  if (state.league === 'fbad2' && needsPick) problems.push('Pick every Series MVP first');
   for (const p of pauses) if (!p.locked) problems.push(`Finish the rating adjustments after game ${p.afterGame} first`);
   if (problems.length) return seasonFail(problems);
 

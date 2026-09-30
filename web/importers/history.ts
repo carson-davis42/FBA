@@ -26,6 +26,13 @@ export interface HistoryOutput { players: PlayersFile; bios: PlayerBiosFile; sum
 export const normName = (s: string): string => s.trim().replace(/’/g, "'").normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 
 const LAST_SEASON = 78;
+const FIRST_STANDINGS_SEASON = 71;
+/** Bracket spellings kept as printed, mapped to the standings spelling; used only for standings matching. */
+const STANDINGS_ALIAS: Record<string, string> = { [normName('Denver Height')]: normName('Denver Heights') };
+const standingsKey = (name: string): string => {
+  const n = normName(name);
+  return STANDINGS_ALIAS[n] ?? n;
+};
 const AWARD_ORDER: AwardKey[] = ['MVP', 'ROTY', 'PPK', 'LP', 'MC', 'DPOY', 'MIP'];
 
 const finalOf = (b: { rounds: number; series: PastSeries[] }): PastSeries | undefined => b.series.find(s => s.round === b.rounds);
@@ -52,15 +59,15 @@ function checkFinal(season: number, b: { rounds: number; series: PastSeries[] },
 
 /** The last round a team played in a transcribed bracket, and whether it won the final. */
 function playoffFromBracket(name: string, b: { rounds: number; series: PastSeries[] }): SummaryStanding['playoff'] {
-  const n = normName(name);
+  const n = standingsKey(name);
   let round = 0;
   for (const s of b.series) {
-    if ((s.home && normName(s.home.name) === n) || (s.away && normName(s.away.name) === n)) round = Math.max(round, s.round);
+    if ((s.home && standingsKey(s.home.name) === n) || (s.away && standingsKey(s.away.name) === n)) round = Math.max(round, s.round);
   }
   if (round === 0) return null;
   const final = finalOf(b);
   const win = final?.[final.winner];
-  return { round, champion: !!win && normName(win.name) === n };
+  return { round, champion: !!win && standingsKey(win.name) === n };
 }
 
 export function buildHistory(input: HistoryInput, report: Report): HistoryOutput {
@@ -86,6 +93,11 @@ export function buildHistory(input: HistoryInput, report: Report): HistoryOutput
       indexPlayer(id, b.name);
     } else if (matches.length === 1) {
       id = matches[0];
+      const stored = playersOut.players[id];
+      if (stored.name !== b.name) {
+        report.info('names', `Renamed: ${stored.name} → ${b.name}`);
+        playersOut.players[id] = { ...stored, name: b.name };
+      }
     } else {
       report.warn('names', `Ambiguous: ${b.name}`);
       continue;
@@ -109,7 +121,12 @@ export function buildHistory(input: HistoryInput, report: Report): HistoryOutput
     report.warn('names', `${m.length === 0 ? 'Unmatched' : 'Ambiguous'}: ${name} (S${season} ${field})`);
     return null;
   };
-  const resolveNT = (nt: NameTeam | null, season: number, field: string): string | null => (nt ? resolve(nt.name, season, field) : null);
+  /** Tries the whole cell text first (a hyphenated surname), then the split name. */
+  const resolveNT = (nt: NameTeam | null, season: number, field: string): string | null => {
+    if (!nt) return null;
+    const whole = nt.team === null ? nt.name : `${nt.name}-${nt.team}`;
+    return resolve(lookup(whole).length > 0 ? whole : nt.name, season, field);
+  };
   /** The Finals MVP cell may carry a "-TEAM" suffix; try the whole text first. */
   const resolveFinalsMvp = (cellText: string, season: number): string | null => {
     if (lookup(cellText).length > 0) return resolve(cellText, season, 'finalsMvp');
@@ -198,11 +215,23 @@ export function buildHistory(input: HistoryInput, report: Report): HistoryOutput
       out.pastBracket = pb;
       if (champ) checkFinal(n, bracket, champ, report);
     } else {
+      out.pastBracket = null;
       report.info('brackets', `No bracket: S${n}`);
     }
 
     const rows = input.standings.get(n);
     if (rows && rows.length > 0) {
+      if (bracket) {
+        const known = new Set(rows.map(r => standingsKey(r.name)));
+        const seen = new Set<string>();
+        for (const s of bracket.series) {
+          for (const side of [s.home, s.away]) {
+            if (!side || seen.has(standingsKey(side.name))) continue;
+            seen.add(standingsKey(side.name));
+            if (!known.has(standingsKey(side.name))) report.warn('brackets', `S${n}: bracket team "${side.name}" is not in the standings`);
+          }
+        }
+      }
       out.standings = rows.map((r): SummaryStanding => {
         let playoff: SummaryStanding['playoff'] = null;
         if (bracket) playoff = playoffFromBracket(r.name, bracket);
@@ -223,6 +252,9 @@ export function buildHistory(input: HistoryInput, report: Report): HistoryOutput
           playoff,
         };
       });
+    } else if (n >= FIRST_STANDINGS_SEASON) {
+      out.standings = [];
+      report.warn('standings', `S${n}: no standings rows in the sheet`);
     }
 
     const check = SummaryFile.safeParse(out);
