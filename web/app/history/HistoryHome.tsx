@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useHistory } from '../api';
 import { PageHeader } from '../components/PageHeader';
+import { HistoryLeagueSwitch } from './d2/HistoryLeagueSwitch';
 import { SkippedWarning } from './PlayerLink';
 import './history.css';
 
@@ -29,6 +30,7 @@ export function HistoryHome() {
   return (
     <section className="stack">
       <PageHeader kicker="FBA" title="History" />
+      <HistoryLeagueSwitch />
       <SkippedWarning errors={errors} />
       <div className="card-grid">
         {cards.map(c => (

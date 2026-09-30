@@ -42,6 +42,14 @@ import { PlayersHistoryPage } from '../history/PlayersHistoryPage';
 import { DraftSeasonPage } from '../history/DraftSeasonPage';
 import { PastTransactionsPage } from '../history/PastTransactionsPage';
 import { TimelinePage } from '../history/TimelinePage';
+import { D2AwardsPage } from '../history/d2/D2AwardsPage';
+import { D2ChampionshipsPage } from '../history/d2/D2ChampionshipsPage';
+import { D2DraftSeasonPage } from '../history/d2/D2DraftSeasonPage';
+import { D2DraftsPage } from '../history/d2/D2DraftsPage';
+import { D2HistoryHome } from '../history/d2/D2HistoryHome';
+import { D2SeasonPage } from '../history/d2/D2SeasonPage';
+import { D2TeamPage } from '../history/d2/D2TeamPage';
+import { D2TeamsPage } from '../history/d2/D2TeamsPage';
 import { DraftsPage } from '../history/DraftsPage';
 import { FranchisePage } from '../history/FranchisePage';
 import { SeasonHistoryPage } from '../history/SeasonHistoryPage';
@@ -83,6 +91,14 @@ const ROUTES = createRoutesFromElements(
   <Route path="/trade/:league" element={<TradePage />} />
   <Route path="/offseason" element={<OffseasonHub />} />
   <Route path="/history" element={<HistoryHome />} />
+  <Route path="/history/fbad2" element={<D2HistoryHome />} />
+  <Route path="/history/fbad2/championships" element={<D2ChampionshipsPage />} />
+  <Route path="/history/fbad2/awards" element={<D2AwardsPage />} />
+  <Route path="/history/fbad2/season/:season" element={<D2SeasonPage />} />
+  <Route path="/history/fbad2/teams" element={<D2TeamsPage />} />
+  <Route path="/history/fbad2/teams/:teamId" element={<D2TeamPage />} />
+  <Route path="/history/fbad2/drafts" element={<D2DraftsPage />} />
+  <Route path="/history/fbad2/drafts/:season" element={<D2DraftSeasonPage />} />
   <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
   <Route path="/history/fba/awards" element={<AwardsHistoryPage />} />
   <Route path="/history/fba/awards/players" element={<AwardsByPlayerPage />} />
