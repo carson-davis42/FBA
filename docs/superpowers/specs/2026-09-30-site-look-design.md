@@ -92,7 +92,7 @@ Existing class names (`card`, `btn`, `n`, `num`, `muted`, `table-wrap`, `chips`,
 
 ## 2. Site shell (built in Task 1)
 
-`Sidebar.tsx` is deleted. `TopBar.tsx` becomes `SiteHeader.tsx`, with three rows:
+`Sidebar.tsx` is deleted. `TopBar.tsx` becomes the masthead row, and a new `SiteHeader.tsx` renders the three rows as siblings (so the sticky nav can stick for the whole page):
 
 1. **Masthead** (48px, `--masthead-bg`, scrolls away):
    - the FBA logo and "FBA Universe" (the text hides below 760px);
