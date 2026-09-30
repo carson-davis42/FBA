@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AWARD_LABEL } from '../../../engine/awards/races';
 import { d2Mvps, d2TitleRows, rsChampionsOf } from '../../../engine/history/d2';
 import { formatScore } from '../../../engine/history/format';
@@ -32,6 +32,9 @@ export function D2SeasonPage() {
   const rs = rsChampionsOf(season);
   const mvps = d2Mvps(season);
   const standings = season.standings;
+  const idx = ordered.findIndex(s => s.season === n);
+  const next = idx > 0 ? ordered[idx - 1].season : undefined;
+  const prev = idx >= 0 && idx < ordered.length - 1 ? ordered[idx + 1].season : undefined;
   const teamMap = new Map(teams.map(t => [t.teamId, t]));
   const nameOf = (ref: string) => teams.find(t => t.teamId === ref)?.name ?? ref;
   return (
@@ -45,6 +48,10 @@ export function D2SeasonPage() {
           {ordered.map(s => <option key={s.season} value={s.season}>S{s.season}</option>)}
         </select>
       </label>
+      <div className="chips">
+        {prev !== undefined && <Link to={`/history/fbad2/season/${prev}`}>← S{prev}</Link>}
+        {next !== undefined && <Link to={`/history/fbad2/season/${next}`}>S{next} →</Link>}
+      </div>
       {titles.length > 0 && (
         <div>
           <h2 className="section-title">Titles</h2>
@@ -72,7 +79,7 @@ export function D2SeasonPage() {
         <div>
           <h2 className="section-title">MVPs</h2>
           <ul className="plain-list">
-            {mvps.map((a, i) => <li key={i}>{AWARD_LABEL[a.award]}: <PlayerLink id={a.playerId} players={roster} /> ({a.teamId})</li>)}
+            {mvps.map((a, i) => <li key={i}>{AWARD_LABEL[a.award]}: <PlayerLink id={a.playerId} players={roster} /> (<D2Team teams={teams} teamId={a.teamId} name={a.teamId} season={n} size={16} />)</li>)}
           </ul>
         </div>
       )}

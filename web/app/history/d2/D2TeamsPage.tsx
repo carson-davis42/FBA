@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { d2TitleRows } from '../../../engine/history/d2';
 import { groupLabel } from '../../../engine/shared/leagues';
-import { useHistory } from '../../api';
+import type { MetaFile } from '../../../engine/shared/types';
+import { docFailure, docSettled, useDoc, useHistory } from '../../api';
 import { PageHeader } from '../../components/PageHeader';
 import { TeamName } from '../../components/TeamName';
 import '../history.css';
@@ -12,12 +13,14 @@ const GROUPS = ['PL', 'WL', 'UL', 'IL'];
 
 export function D2TeamsPage() {
   const { seasons, error } = useHistory('fbad2');
+  const meta = useDoc<MetaFile>('meta.json');
   const { settled, teams } = useD2Teams();
-  if (error) return <p className="error">Couldn't load the history: {error.message}</p>;
-  if (!seasons || !settled) return <p className="muted">Loading…</p>;
+  const failure = error ?? docFailure(meta);
+  if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
+  if (!seasons || !settled || !docSettled(meta)) return <p className="muted">Loading…</p>;
   const rows = d2TitleRows(seasons);
   const titles = (t: { teamId: string; name: string }) => rows.filter(r => r.teamId === t.teamId || r.champion === t.name).length;
-  const latest = seasons.reduce((m, s) => Math.max(m, s.season), 79);
+  const latest = meta.data?.currentSeason ?? 79;
   return (
     <section className="stack">
       <PageHeader kicker="FBAD2 history" title="Teams" />

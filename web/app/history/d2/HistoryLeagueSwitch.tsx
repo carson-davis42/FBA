@@ -6,8 +6,8 @@ export function HistoryLeagueSwitch() {
   return (
     <nav aria-label="History league">
       <ul className="chips">
-        <li><Link className={onD2 ? 'chip' : 'chip active'} to="/history">FBA</Link></li>
-        <li><Link className={onD2 ? 'chip active' : 'chip'} to="/history/fbad2">D2</Link></li>
+        <li><Link aria-current={onD2 ? undefined : 'page'} className={onD2 ? 'chip' : 'chip active'} to="/history">FBA</Link></li>
+        <li><Link aria-current={onD2 ? 'page' : undefined} className={onD2 ? 'chip active' : 'chip'} to="/history/fbad2">D2</Link></li>
       </ul>
     </nav>
   );

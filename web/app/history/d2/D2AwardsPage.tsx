@@ -8,13 +8,15 @@ import { PageHeader } from '../../components/PageHeader';
 import { PlayerLink, SkippedWarning } from '../PlayerLink';
 import '../history.css';
 import { HistoryLeagueSwitch } from './HistoryLeagueSwitch';
+import { D2Team, useD2Teams } from './useD2';
 
 export function D2AwardsPage() {
   const { seasons, errors, error } = useHistory('fbad2');
   const players = useDoc<PlayersFile>('players.json');
+  const { settled, teams } = useD2Teams();
   const failure = error ?? players.error;
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
-  if (!seasons || !players.data) return <p className="muted">Loading…</p>;
+  if (!seasons || !players.data || !settled) return <p className="muted">Loading…</p>;
   const ordered = [...seasons].sort((a, b) => b.season - a.season);
   const top = d2MvpCounts(seasons).slice(0, 10);
   return (
@@ -22,6 +24,7 @@ export function D2AwardsPage() {
       <PageHeader kicker="FBAD2 history" title="D2 Awards" />
       <HistoryLeagueSwitch />
       <SkippedWarning errors={errors} />
+      <div className="table-wrap">
       <table className="stat-table">
         <thead><tr><th>Season</th><th>MVPs</th><th>Regular-season champions</th></tr></thead>
         <tbody>
@@ -30,7 +33,7 @@ export function D2AwardsPage() {
               <td><Link to={`/history/fbad2/season/${s.season}`}>S{s.season}</Link></td>
               <td>
                 {d2Mvps(s).map((a, i) => (
-                  <span key={i}>{i > 0 && <br />}{AWARD_LABEL[a.award]}: <PlayerLink id={a.playerId} players={players.data!} /> ({a.teamId})</span>
+                  <span key={i}>{i > 0 && <br />}{AWARD_LABEL[a.award]}: <PlayerLink id={a.playerId} players={players.data!} /> (<D2Team teams={teams} teamId={a.teamId} name={a.teamId} season={s.season} size={16} />)</span>
                 ))}
               </td>
               <td>
@@ -42,6 +45,7 @@ export function D2AwardsPage() {
           ))}
         </tbody>
       </table>
+      </div>
       <div>
         <h2 className="section-title">Most MVPs</h2>
         <ol>

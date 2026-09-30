@@ -35,9 +35,6 @@
 .hof-card textarea { width: 100%; box-sizing: border-box; }
 .hof-form { display: flex; flex-wrap: wrap; gap: var(--s3); align-items: flex-end; }
 .hof-form label { font-size: var(--fs-sm); font-weight: 600; color: var(--muted); }
-.plain-list { margin: 0; padding-left: var(--s4); display: grid; gap: var(--s1); }
-.plain-list.tight { list-style: none; padding-left: 0; }
-.plain-list li .btn { margin-left: var(--s1); }
 .stat-table tr.now td { font-weight: 700; }
 .stat-table tr.now td:first-child { box-shadow: inset 4px 0 0 var(--accent); }
 

@@ -39,7 +39,7 @@ const drafts: D2DraftHistoryFile = {
   drafts: [{ season: 70, picks: [{ pick: 1, teamId: 'LIS', teamName: 'Lisbon', name: 'Ray Allen', playerId: 'p00002', pos: 'G', age: 19, rating: null }] }],
 };
 
-function stub() {
+function stub(opts: { withHistory?: boolean } = {}) {
   const docs: Record<string, unknown> = {
     '/api/state/players.json': players,
     '/api/state/leagues/fbad2/teams.json': teams,
@@ -47,6 +47,7 @@ function stub() {
     '/api/state/leagues/fbad2/draftHistory.json': drafts,
     '/api/state/meta.json': { currentSeason: 79 },
   };
+  if (opts.withHistory === false) delete docs['/api/state/leagues/fbad2/leagueHistory.json'];
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
     if (url === '/api/history/fbad2') return new Response(JSON.stringify({ seasons: [s69, s80], errors: [] }));
     if (url in docs) return new Response(JSON.stringify(docs[url]), { headers: { ETag: '"0000000000000001"' } });
@@ -113,6 +114,19 @@ describe('D2 season, teams and team pages', () => {
     expect(within(titlesList).getByText('S69 Premier League Champion')).toBeTruthy();
     const pick = screen.getByRole('heading', { name: 'Draft picks' }).parentElement as HTMLElement;
     expect(within(pick).getByRole('link', { name: 'S70' }).getAttribute('href')).toBe('/history/fbad2/drafts/70');
+  });
+
+  it('a team page hints at the import when there is no league history', async () => {
+    stub({ withHistory: false });
+    at('/history/fbad2/teams/LIS');
+    expect(await screen.findByText(/No D2 league history yet/)).toBeTruthy();
+  });
+
+  it('the season page links to the previous and next seasons', async () => {
+    stub();
+    at('/history/fbad2/season/69');
+    expect((await screen.findByRole('link', { name: /S80/ })).getAttribute('href')).toBe('/history/fbad2/season/80');
+    expect(screen.queryByRole('link', { name: /← S/ })).toBeNull();
   });
 
   it('an unknown team is not found', async () => {

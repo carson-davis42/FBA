@@ -9,7 +9,10 @@ import { teamTheme } from '../../components/teamColors';
 import { TeamMark } from '../../components/TeamMark';
 import { PlayerLink } from '../PlayerLink';
 import '../history.css';
+import { HistoryLeagueSwitch } from './HistoryLeagueSwitch';
 import { useD2Teams } from './useD2';
+
+const finalOf = (title: string) => title.replace(/^(.*) Champion( \(.+\))?$/, '$1 final$2');
 
 export function D2TeamPage() {
   const { teamId = '' } = useParams();
@@ -42,6 +45,7 @@ export function D2TeamPage() {
           { label: 'RS titles', value: c.rsTitles.length },
         ]}
       />
+      <HistoryLeagueSwitch />
       <div>
         <h2 className="section-title">League path</h2>
         {!history.data && <p className="muted">No D2 league history yet. Run npm run import -- --d2-history --data data.</p>}
@@ -63,7 +67,7 @@ export function D2TeamPage() {
         <div>
           <h2 className="section-title">Finals lost</h2>
           <ul className="plain-list">
-            {c.finalsLost.map((t, i) => <li key={i}>{`S${t.season} ${t.title}`}</li>)}
+            {c.finalsLost.map((t, i) => <li key={i}>{`S${t.season} ${finalOf(t.title)}`}</li>)}
           </ul>
         </div>
       )}
@@ -87,7 +91,7 @@ export function D2TeamPage() {
         <div>
           <h2 className="section-title">Series MVPs</h2>
           <ul className="plain-list">
-            {c.seriesMvps.map((m, i) => <li key={i}>S{m.season} {m.title} <PlayerLink id={m.playerId} players={roster} /></li>)}
+            {c.seriesMvps.map((m, i) => <li key={i}>S{m.season} {finalOf(m.title)} <PlayerLink id={m.playerId} players={roster} /></li>)}
           </ul>
         </div>
       )}

@@ -95,6 +95,13 @@ describe('D2 draft pages', () => {
     expect(screen.queryByRole('link', { name: /S71/ })).toBeNull();
   });
 
+  it('the earlier season links forward to the next one', async () => {
+    stub();
+    at('/history/fbad2/drafts/68');
+    expect(await screen.findByRole('link', { name: /S70/ })).toBeTruthy();
+    expect(screen.getByRole('link', { name: /S70/ }).getAttribute('href')).toBe('/history/fbad2/drafts/70');
+  });
+
   it('an unknown season is not found', async () => {
     stub();
     at('/history/fbad2/drafts/5');

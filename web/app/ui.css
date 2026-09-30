@@ -79,6 +79,10 @@ a.team-name:hover .team-name-text { text-decoration: underline; }
 
 /* chips and badges */
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 10px; }
+ul.chips, ol.chips { list-style: none; padding: 0; }
+.plain-list { margin: 0; padding-left: var(--s4); display: grid; gap: var(--s1); }
+.plain-list.tight { list-style: none; padding-left: 0; }
+.plain-list li .btn { margin-left: var(--s1); }
 .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: var(--fs-sm); font-weight: 700; transition: background var(--dur-fast) var(--ease); }
 button.chip:hover, a.chip:hover { background: var(--row-hover); }
 .chip.active, .chip.on, .chip[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }

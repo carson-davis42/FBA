@@ -16,7 +16,7 @@ const LEAGUES = ['PL', 'WL', 'UL', 'IL'];
 
 /** Sheet misspellings of D2 team names. */
 const SHEET_TEAM_ALIASES: Record<string, string> = { Luxemboug: 'Luxembourg' };
-/** Names shared by two players: Nadeem Akers (Osaka) was drafted at 22 in S72, so he is the one born in S50. */
+/** Names shared by two players: every D2 sheet mention of Nadeem Akers (S72 draft, S74 IL Series MVP, S75 UL MVP and Series MVP, all Osaka) is the S50-born one. */
 const PLAYER_OVERRIDES: Record<string, string> = { 'Nadeem Akers': 'p00040' };
 
 function teamIdLookup(teams: TeamsFile, report: Report): (name: string) => string | undefined {
@@ -57,22 +57,23 @@ export function buildLeagueHistory(rows: string[][], teams: TeamsFile, report: R
   return { teams: out };
 }
 
+/** The sheet wins for seasons it covers: it overwrites group, teamId, runnerUpId, finalsMvp, awards and rsChampions; the existing champion, runnerUp and score text is kept. */
 function mergeSummary(built: SummaryFile, existing: SummaryFile | undefined): SummaryFile {
   if (!existing) return built;
   const champions: Champion[] = existing.champions.map(c => {
     const b = built.champions.find(x => x.title === c.title);
     if (!b) return c;
     const merged: Champion = { ...c };
-    if (merged.group === undefined && b.group !== undefined) merged.group = b.group;
-    if (merged.teamId === undefined && b.teamId !== undefined) merged.teamId = b.teamId;
-    if (merged.runnerUpId === undefined && b.runnerUpId !== undefined) merged.runnerUpId = b.runnerUpId;
-    if (merged.finalsMvp === undefined && b.finalsMvp !== undefined) merged.finalsMvp = b.finalsMvp;
+    if (b.group !== undefined) merged.group = b.group;
+    if (b.teamId !== undefined) merged.teamId = b.teamId;
+    if (b.runnerUpId !== undefined) merged.runnerUpId = b.runnerUpId;
+    if (b.finalsMvp !== undefined) merged.finalsMvp = b.finalsMvp;
     return merged;
   });
   for (const b of built.champions) if (!existing.champions.some(c => c.title === b.title)) champions.push(b);
   const out: SummaryFile = { ...existing, champions };
-  if (out.awards === undefined && built.awards !== undefined) out.awards = built.awards;
-  if (out.rsChampions === undefined && built.rsChampions !== undefined) out.rsChampions = built.rsChampions;
+  if (built.awards !== undefined) out.awards = built.awards; else delete out.awards;
+  if (built.rsChampions !== undefined) out.rsChampions = built.rsChampions; else delete out.rsChampions;
   return out;
 }
 
@@ -114,11 +115,11 @@ export function buildD2History(
       for (const m of row.mvps) {
         const playerId = resolve(m.cell.name, `S${season} ${m.award}`);
         if (playerId === null) continue;
-        awards.push({ award: m.award, playerId, teamId: teamId(m.cell.team) ?? m.cell.team });
+        awards.push({ award: m.award, playerId, teamId: teamId(m.cell.team) ?? (SHEET_TEAM_ALIASES[m.cell.team] ?? m.cell.team) });
       }
       for (const r of row.rsChampions) {
         const list = rs.get(r.group) ?? [];
-        for (const t of r.teams) if (!list.includes(t)) list.push(t);
+        for (const raw of r.teams) { const t = SHEET_TEAM_ALIASES[raw] ?? raw; if (!list.includes(t)) list.push(t); }
         rs.set(r.group, list);
       }
     }

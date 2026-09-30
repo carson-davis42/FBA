@@ -76,6 +76,15 @@ describe('buildD2History', () => {
     expect(summaries[1].awards).toHaveLength(1);
   });
 
+  it('a rebuild over its own output takes the sheet corrections but keeps the score text', () => {
+    const first = build().summaries;
+    const existing = new Map(first.map(s => [s.season, { ...s, champions: s.champions.map(c => ({ ...c, score: '4-0' })) }]));
+    const fixed = { ...tabs, [D2_TABS.league]: [tabs[D2_TABS.league][0], ['S69', 'Hawks', 'Bears', 'Cy Cole', 'Owls', 'Toronto', 'Cy Cole']] };
+    const rebuilt = buildD2History(fixed, {}, { players, teams, existing }, new Report()).summaries.find(s => s.season === 69)!;
+    expect(rebuilt.champions[0].finalsMvp).toBe('p00003');
+    expect(rebuilt.champions[0].score).toBe('4-0');
+  });
+
   it('passes the schemas', () => {
     const { summaries, leagueHistory, drafts } = buildD2History(
       { ...tabs, [D2_TABS.leagues]: [['Hawks', 'Est: S50', 'PL: S50-pres.'], ['Owls', 'UL: S50-pres.'], ['Bears', 'PL: S50-pres.']] },
@@ -122,6 +131,18 @@ describe('d2LeagueMoves', () => {
   it('flags a league that would not have 16 teams', () => {
     const r = d2LeagueMoves(big, hist(i => (i === 16 ? 'PL' : groups[Math.floor(i / 16)])));
     expect(r.problems.length).toBeGreaterThan(0);
+  });
+
+  it('flags a history team that is not in teams.json', () => {
+    const h = hist(i => groups[Math.floor(i / 16)]);
+    h.teams.push({ teamId: 'zzz', founded: null, spells: [{ group: 'PL', from: 68, to: null }] });
+    expect(d2LeagueMoves(big, h).problems.some(p => p.includes('not in teams.json'))).toBe(true);
+  });
+
+  it('flags a team with no open PL/WL/UL/IL spell', () => {
+    const h = hist(i => groups[Math.floor(i / 16)]);
+    h.teams[0].spells = [{ group: 'PL', from: 68, to: 75 }];
+    expect(d2LeagueMoves(big, h).problems.some(p => p.includes('no open'))).toBe(true);
   });
 
   it('flags a missing team', () => {

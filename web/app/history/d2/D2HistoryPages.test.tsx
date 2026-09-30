@@ -89,6 +89,8 @@ describe('D2 history pages', () => {
     const row = (await screen.findByRole('link', { name: 'S69' })).closest('tr') as HTMLElement;
     expect(row.textContent).toContain('Premier League MVP');
     expect(row.textContent).toContain('Premier League: Munich / Rome');
+    expect(row.textContent).toContain('Lisbon)');
+    expect(row.textContent).not.toContain('(LIS)');
     const most = (await screen.findByRole('heading', { name: 'Most MVPs' })).parentElement!.querySelector('ol') as HTMLElement;
     expect(within(most).getAllByRole('listitem')[0].textContent).toContain('Cameron Lučić');
     expect(within(most).getAllByRole('listitem')[0].textContent).toContain('×2');

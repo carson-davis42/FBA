@@ -397,9 +397,26 @@ async function importD2History(): Promise<void> {
     console.error(`Found ${report.count('error')} error(s); nothing was written.`);
     process.exit(1);
   }
-  for (const s of out.summaries) writeDoc(dir, `leagues/fbad2/S${s.season}/summary.json`, s);
-  writeDoc(dir, 'leagues/fbad2/leagueHistory.json', out.leagueHistory);
-  writeDoc(dir, 'leagues/fbad2/draftHistory.json', out.drafts);
+  const docs: [string, unknown][] = [
+    ...out.summaries.map((s): [string, unknown] => [`leagues/fbad2/S${s.season}/summary.json`, s]),
+    ['leagues/fbad2/leagueHistory.json', out.leagueHistory],
+    ['leagues/fbad2/draftHistory.json', out.drafts],
+  ];
+  // Validate everything before the first write, so a bad doc never leaves the others half-written.
+  const bad = docs.flatMap(([rel, doc]) => {
+    const r = schemaForPath(rel)?.safeParse(doc);
+    return r?.success ? [] : [`${rel}: ${r ? r.error.issues.slice(0, 5).map(i => `${i.path.join('.')}: ${i.message}`).join('; ') : 'no schema'}`];
+  });
+  if (bad.length) {
+    console.error(`Some built docs fail their schema; nothing was written.\n${bad.join('\n')}`);
+    process.exit(1);
+  }
+  const apart = out.leagueHistory.teams.filter(h => {
+    const open = h.spells.find(sp => sp.to === null);
+    return open && teams.teams.some(t => t.teamId === h.teamId && t.group !== open.group);
+  }).length;
+  if (apart > 0) console.warn(`warning: ${apart} team(s) have a teams.json group that differs from their open league spell; run --d2-leagues first.`);
+  for (const [rel, doc] of docs) writeDoc(dir, rel, doc);
   const seasons = out.summaries.map(s => s.season);
   console.log(`Wrote ${out.summaries.length} summaries (S${Math.min(...seasons)}–S${Math.max(...seasons)}), ${out.leagueHistory.teams.length} team league histories, ${out.drafts.drafts.length} drafts (${out.drafts.drafts.reduce((n, d) => n + d.picks.length, 0)} picks).`);
 }
