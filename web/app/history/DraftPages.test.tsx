@@ -129,4 +129,29 @@ describe('draftLine', () => {
     expect(draftLine(history, 'p09999')).toBeNull();
     expect(draftLine(null, 'p00001')).toBeNull();
   });
+
+});
+
+describe('draftLine details', () => {
+  it('prefers a real pick over an earlier undrafted row and names the era team', () => {
+    const h: DraftHistoryFile = {
+      drafts: [
+        { season: 30, kind: 'draft', picks: [pick(null, 'Ray Allen', 'p00001')] },
+        { season: 31, kind: 'draft', picks: [pick(3, 'Ray Allen', 'p00001', { teamId: 'SEA', teamName: 'DCB' })] },
+      ],
+    };
+    const teams = [{ teamId: 'SEA', name: 'Seattle', abbr: 'SEA', group: null, logoFolder: null, badge: { bg: '#000', fg: '#fff' } }];
+    const fr = { franchises: [{ teamId: 'SEA', eras: [{ name: 'Seattle Old', abbr: 'OLD', city: 'Seattle', from: 1, to: 40 }] }] };
+    expect(draftLine(h, 'p00001', teams, fr)).toBe('Drafted S31, #3 by Seattle Old');
+    expect(draftLine(h, 'p00001')).toBe('Drafted S31, #3 by DCB');
+  });
+
+  it('shows an error, not "No draft on record", when the draft history fails to load', async () => {
+    stub();
+    const ok = globalThis.fetch;
+    vi.stubGlobal('fetch', vi.fn(async (url: string) =>
+      url === '/api/state/leagues/fba/draftHistory.json' ? new Response('boom', { status: 500 }) : ok(url)));
+    renderSeason(78);
+    expect((await screen.findByText(/Couldn't load the draft/)).className).toBe('error');
+  });
 });

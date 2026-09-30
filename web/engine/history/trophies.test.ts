@@ -58,4 +58,34 @@ describe('trophyCase', () => {
     const s = { ...s20, awards: [{ award: 'MVP', playerId: 'p00003', teamId: 'MON' }] } as SummaryFile;
     expect(trophyCase('MON', { ...input, summaries: [s] }).awards).toEqual([{ award: 'MVP', playerId: 'p00003', season: 20 }]);
   });
+
+  it('counts a tournament from bracket seeds when there are no standings or past bracket', () => {
+    const s = { ...base, season: 70, champions: [], bracket: { seeds: [{ seed: 1, teams: ['MON'] }], series: [] } } as unknown as SummaryFile;
+    expect(trophyCase('MON', { ...input, summaries: [s] }).tournaments).toEqual([70]);
+    expect(trophyCase('SAS', { ...input, summaries: [s] }).tournaments).toEqual([]);
+  });
+
+  it('ignores a rank-1 standing when conference champions are recorded', () => {
+    const s = {
+      ...s79, season: 71, confChampions: { E: 'Montreal Chevaliers', W: 'Montreal Chevaliers' },
+    } as SummaryFile;
+    expect(trophyCase('SAS', { ...input, summaries: [s] }).confTitles).toEqual([]);
+    expect(trophyCase('MON', { ...input, summaries: [s] }).confTitles).toEqual([71]);
+  });
+
+  it('reads an FFL stint from season 1 and does not match a college line', () => {
+    const fr: FranchisesFile = { franchises: [{ teamId: 'MON', eras: [
+      { name: 'Montreal', abbr: 'MON', city: 'Montreal', from: 4, to: null },
+      { name: 'Montreal Old', abbr: 'CT', city: 'Montreal', from: 1, to: 3 },
+    ] }] };
+    const hof: HallOfFameFile = {
+      league: 'fba', nominees: [], removed: [],
+      classes: [{ season: 'S40', inductees: [
+        { name: 'Ffl Guy', playerId: null, retiredSeason: 'S39', lines: ['CT: FFL-S6'] },
+        { name: 'College Guy', playerId: null, retiredSeason: 'S39', lines: ['San Diego State: S1-S2'] },
+      ] }],
+    };
+    const c = trophyCase('MON', { summaries: [], teams, franchises: fr, hallOfFame: hof });
+    expect(c.hallOfFamers.map(h => h.name)).toEqual(['Ffl Guy']);
+  });
 });

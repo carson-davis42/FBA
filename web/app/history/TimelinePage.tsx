@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { buildTimeline } from '../../engine/history/timeline';
-import type { EventsFile } from '../../engine/shared/types';
-import { useDoc, useHistory } from '../api';
+import type { EventsFile, MetaFile } from '../../engine/shared/types';
+import { docFailure, docSettled, useDoc, useHistory } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { SkippedWarning } from './PlayerLink';
 import { TeamFull, useFbaTeams } from './useTeams';
@@ -10,10 +10,13 @@ import './history.css';
 export function TimelinePage() {
   const { seasons, errors, error } = useHistory('fba');
   const events = useDoc<EventsFile>('leagues/fba/events.json');
+  const meta = useDoc<MetaFile>('meta.json');
   const { settled, teams, franchises } = useFbaTeams();
-  if (error) return <p className="error">Couldn't load the history: {error.message}</p>;
-  if (!seasons || !settled || !(events.data || events.missing || events.error)) return <p className="muted">Loading…</p>;
-  const rows = buildTimeline(seasons, franchises, events.data ?? null);
+  const failure = error ?? docFailure(events);
+  if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
+  if (!seasons || !settled || !docSettled(events) || !docSettled(meta)) return <p className="muted">Loading…</p>;
+  const through = meta.data?.currentSeason ?? Infinity;
+  const rows = buildTimeline(seasons, franchises, events.data ?? null).filter(r => r.season <= through);
   const hasSummary = new Set(seasons.map(s => s.season));
   return (
     <section className="stack">

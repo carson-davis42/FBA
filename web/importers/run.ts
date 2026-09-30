@@ -383,6 +383,7 @@ async function importPastTransactions(): Promise<void> {
   const report = new Report();
   const doc = buildPastTransactions(tabs['Transactions'] ?? [], { players, franchises }, report);
   printReport(report);
+  for (const s of doc.seasons) console.log(`S${s.season}: ${s.entries.length} entries`);
   console.log(`${doc.seasons.length} seasons, ${doc.seasons.reduce((n, s) => n + s.entries.length, 0)} entries.`);
   writeDoc(dir, 'leagues/fba/pastTransactions.json', doc);
 }

@@ -24,7 +24,7 @@ export function PlayerHistoryPage() {
   const counts = useDoc<AwardCountsFile>('leagues/fba/awardCounts.json');
   const hall = useDoc<HallOfFameFile>('leagues/fba/hallOfFame.json');
   const drafts = useDoc<DraftHistoryFile>('leagues/fba/draftHistory.json');
-  const { settled, teams } = useFbaTeams();
+  const { settled, teams, franchises } = useFbaTeams();
   const failure = error ?? players.error ?? (bios.missing ? undefined : bios.error)
     ?? (counts.missing ? undefined : counts.error) ?? (hall.missing ? undefined : hall.error);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
@@ -34,7 +34,7 @@ export function PlayerHistoryPage() {
   const player = players.data.players[playerId];
   if (!player) return <p className="muted">Not found</p>;
 
-  const drafted = draftLine(drafts.data ?? null, playerId);
+  const drafted = draftLine(drafts.data ?? null, playerId, teams, franchises);
   const bio = bios.data?.bios.find(b => b.playerId === playerId) ?? null;
   const honours = playerHonours(seasons, playerId);
   const bySeason = new Map<number, string[]>();

@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { trophyCase, TROPHY_AWARDS } from '../../engine/history/trophies';
 import type { DraftHistoryFile, Franchise, HallOfFameFile, LogoManifest, PlayersFile } from '../../engine/shared/types';
-import { useDoc, useHistory } from '../api';
+import { docFailure, docSettled, useDoc, useHistory } from '../api';
 import { Hero } from '../components/Hero';
 import { teamTheme } from '../components/teamColors';
 import { TeamMark } from '../components/TeamMark';
@@ -9,8 +9,6 @@ import { EraStrip } from './EraStrip';
 import { PlayerLink } from './PlayerLink';
 import { useFbaTeams } from './useTeams';
 import './history.css';
-
-const settledDoc = (d: { data?: unknown; missing: boolean; error?: unknown }) => !!d.data || d.missing || !!d.error;
 
 export function FranchisePage() {
   const { teamId = '' } = useParams();
@@ -20,13 +18,15 @@ export function FranchisePage() {
   const drafts = useDoc<DraftHistoryFile>('leagues/fba/draftHistory.json');
   const manifest = useDoc<LogoManifest>('logos/manifest.json');
   const { settled, teams, franchises } = useFbaTeams();
-  const failure = error ?? players.error;
+  const failure = error ?? players.error ?? docFailure(hof) ?? docFailure(drafts) ?? docFailure(manifest);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
-  if (!seasons || !players.data || !settled || !settledDoc(hof) || !settledDoc(drafts) || !settledDoc(manifest)) return <p className="muted">Loading…</p>;
+  if (!seasons || !players.data || !settled || !docSettled(hof) || !docSettled(drafts) || !docSettled(manifest)) return <p className="muted">Loading…</p>;
+
+  if (!franchises) return <p className="muted">No franchise history yet. Run npm run import -- --franchises.</p>;
 
   const playerDoc: PlayersFile = players.data;
   const team = teams.find(t => t.teamId === teamId);
-  const franchise: Franchise | undefined = franchises?.franchises.find(f => f.teamId === teamId)
+  const franchise: Franchise | undefined = franchises.franchises.find(f => f.teamId === teamId)
     ?? (team ? { teamId, eras: [{ name: team.name, abbr: team.abbr, city: '', from: 1, to: null }] } : undefined);
   if (!franchise) return <p className="error">Unknown franchise "{teamId}".</p>;
 

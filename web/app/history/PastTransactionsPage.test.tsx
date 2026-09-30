@@ -31,7 +31,7 @@ const appTx: TransactionsFile = {
   ],
 };
 
-function stub(opts: { past?: boolean; app?: boolean } = {}) {
+function stub(opts: { past?: boolean; app?: boolean; franchises?: boolean; pastFail?: boolean } = {}) {
   const docs: Record<string, unknown> = {
     '/api/state/players.json': players,
     '/api/state/meta.json': { currentSeason: 79 },
@@ -39,7 +39,9 @@ function stub(opts: { past?: boolean; app?: boolean } = {}) {
   };
   if (opts.past !== false) docs['/api/state/leagues/fba/pastTransactions.json'] = past;
   if (opts.app) docs['/api/state/leagues/fba/S79/transactions.json'] = appTx;
+  if (opts.franchises) docs['/api/state/leagues/fba/franchises.json'] = { franchises: [{ teamId: 'CIN', eras: [{ name: 'Cincinnati', abbr: 'OCI', city: 'Cincinnati', from: 1, to: null }] }] };
   vi.stubGlobal('fetch', vi.fn(async (url: string) =>
+    opts.pastFail && url === '/api/state/leagues/fba/pastTransactions.json' ? new Response('boom', { status: 500 }) :
     url in docs ? new Response(JSON.stringify(docs[url]), { headers: { ETag: '"0000000000000001"' } }) : new Response('{}', { status: 404 })));
 }
 
@@ -90,5 +92,26 @@ describe('PastTransactionsPage', () => {
     stub({ past: false });
     renderAt('');
     expect(await screen.findByText('No past transactions yet. Run npm run import -- --transactions --data data.')).toBeTruthy();
+  });
+
+  it('uses the era code on every line of a trade card', async () => {
+    stub({ franchises: true });
+    renderAt('?season=33');
+    const card = (await screen.findByText('Before Week 7')).closest('article') as HTMLElement;
+    expect(card.textContent).toMatch(/→ [A-Z]*OCI:/);
+    expect(card.textContent).not.toContain('CINCIN');
+  });
+
+  it('keeps the season select in step with an unlisted ?season=', async () => {
+    stub();
+    renderAt('?season=12');
+    await screen.findByText('No transactions on record for S12.');
+    expect((screen.getByLabelText('Season') as HTMLSelectElement).value).toBe('12');
+  });
+
+  it('shows an error when the past transactions fail to load', async () => {
+    stub({ pastFail: true });
+    renderAt('');
+    expect((await screen.findByText(/Couldn't load the transactions/)).className).toBe('error');
   });
 });

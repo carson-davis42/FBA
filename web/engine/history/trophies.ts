@@ -14,7 +14,7 @@ const idOf = (input: TrophyInput, name: string | null | undefined, season: numbe
   name ? resolveHistoryTeam(input.teams, input.franchises, name, season, hint)?.team.teamId ?? hint ?? null : hint ?? null;
 
 const uniqueAscending = (xs: number[]): number[] => [...new Set(xs)].sort((a, b) => a - b);
-const HOF_LINE = /^([A-Z]{2,4}(?:\/[A-Z]{2,4})*):\s*(?:FFL-)?S?(\d+)?/;
+const HOF_LINE = /^([A-Z]{2,4}(?:\/[A-Z]{2,4})*):\s*(?:(FFL)|S(\d+))/;
 
 /** What a franchise has won, derived from the season summaries, the Hall of Fame and the franchise eras. */
 export function trophyCase(teamId: string, input: TrophyInput): TrophyCase {
@@ -65,7 +65,7 @@ export function trophyCase(teamId: string, input: TrophyInput): TrophyCase {
       const mine = p.lines.some(line => {
         const m = HOF_LINE.exec(line);
         if (!m) return false;
-        const start = m[2] ? Number(m[2]) : 1;
+        const start = m[2] ? 1 : Number(m[3]);
         return m[1].split('/').some(code => franchiseByAbbr(input.franchises, code, start)?.teamId === teamId);
       });
       if (mine) hallOfFamers.push({ name: p.name, playerId: p.playerId, season: cls.season });

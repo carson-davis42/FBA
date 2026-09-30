@@ -1,13 +1,12 @@
 import { Fragment } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import type { MetaFile, PastAsset, PastTransactionsFile, PlayersFile, TransactionsFile } from '../../engine/shared/types';
-import { useDoc } from '../api';
+import { docFailure, docSettled, useDoc } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { PlayerLink } from './PlayerLink';
 import { findTeam, TeamAbbr, TeamFull, useFbaTeams } from './useTeams';
 import './history.css';
 
-const settledDoc = (d: { data?: unknown; missing: boolean; error?: unknown }) => !!d.data || d.missing || !!d.error;
 const APP_FIRST_SEASON = 79;
 const APP_TYPES = new Set(['signed', 'resigned', 'released', 'cut', 'trade', 'drafted']);
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -31,13 +30,16 @@ export function PastTransactionsPage() {
   const season = Number.isInteger(seasonParam) && seasonParam > 0 ? seasonParam : defaultSeason;
   const team = params.get('team') ?? '';
 
-  const settled = settledDoc(meta) && settledDoc(past) && settledDoc(players) && fb.settled;
+  const settled = docSettled(meta) && docSettled(past) && docSettled(players) && fb.settled;
   const entries = past.data?.seasons.find(s => s.season === season)?.entries ?? [];
   const appDoc = useDoc<TransactionsFile>(settled && season !== null && season >= APP_FIRST_SEASON ? `leagues/fba/S${season}/transactions.json` : null);
 
-  if (!settled || (season !== null && season >= APP_FIRST_SEASON && !settledDoc(appDoc))) return <p className="muted">Loading…</p>;
+  const failure = docFailure(meta) ?? docFailure(past) ?? docFailure(players) ?? (appDoc.data ? undefined : docFailure(appDoc));
+  if (failure && settled) return <p className="error">Couldn't load the transactions: {failure.message}</p>;
+  if (!settled || (season !== null && season >= APP_FIRST_SEASON && !docSettled(appDoc))) return <p className="muted">Loading…</p>;
 
   const seasons = new Set<number>(imported);
+  if (season !== null) seasons.add(season);
   if (current !== null) {
     seasons.add(current);
     for (let s = APP_FIRST_SEASON; s <= current; s++) seasons.add(s);
@@ -86,7 +88,6 @@ export function PastTransactionsPage() {
   const teamFull = (id: string) => (
     <TeamFull teams={fb.teams} franchises={fb.franchises} teamId={id} name={findTeam(fb.teams, id)?.name ?? id} season={season ?? 0} variant="abbr" />
   );
-  const abbrOf = (id: string) => findTeam(fb.teams, id)?.abbr ?? id;
   const trades = entries.flatMap(e => e.kind === 'trade' && (!team || e.teamIds.includes(team)) ? [e] : []);
   const moves = entries.flatMap(e => e.kind !== 'trade' && (!team || e.teamId === team) ? [e] : []);
 
@@ -103,7 +104,7 @@ export function PastTransactionsPage() {
             </div>
             {receivers.map(to => (
               <div key={to}>
-                → {abbrOf(to)}:{' '}
+                → {teamFull(to)}:{' '}
                 {t.moves.filter(m => m.to === to).map((m, k) => (
                   <Fragment key={k}>{k > 0 && ', '}<Asset asset={m.asset} players={playerDoc} /></Fragment>
                 ))}

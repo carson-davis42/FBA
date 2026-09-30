@@ -42,7 +42,7 @@ const drafts: DraftHistoryFile = {
   }],
 };
 
-function stub(opts: { drafts?: boolean; manifest?: LogoManifest; logoFolder?: string } = {}) {
+function stub(opts: { drafts?: boolean; manifest?: LogoManifest; logoFolder?: string; noFranchises?: boolean; draftsFail?: boolean } = {}) {
   const docs: Record<string, unknown> = {
     '/api/history/fba': { seasons: [s20], errors: [] },
     '/api/state/players.json': players,
@@ -52,7 +52,9 @@ function stub(opts: { drafts?: boolean; manifest?: LogoManifest; logoFolder?: st
   };
   if (opts.drafts !== false) docs['/api/state/leagues/fba/draftHistory.json'] = drafts;
   if (opts.manifest) docs['/api/state/logos/manifest.json'] = opts.manifest;
+  if (opts.noFranchises) delete docs['/api/state/leagues/fba/franchises.json'];
   vi.stubGlobal('fetch', vi.fn(async (url: string) =>
+    opts.draftsFail && url === '/api/state/leagues/fba/draftHistory.json' ? new Response('boom', { status: 500 }) :
     url in docs ? new Response(JSON.stringify(docs[url]), { headers: { ETag: '"0000000000000001"' } }) : new Response('{}', { status: 404 })));
 }
 
@@ -68,7 +70,8 @@ describe('Franchise pages', () => {
     render(<MemoryRouter><TeamsHistoryPage /></MemoryRouter>);
     const cards = await screen.findAllByRole('link');
     const sas = cards.find(a => a.getAttribute('href') === '/history/fba/teams/SAS')!;
-    expect(sas.textContent).toContain('1 titles');
+    expect(sas.textContent).toContain('1 title ·');
+    expect(sas.textContent).toContain('1 Finals appearance ·');
     expect(sas.textContent).toContain('San Antonio Spirits');
   });
 
@@ -122,5 +125,18 @@ describe('Franchise pages', () => {
     stub();
     renderFranchise('ZZZ');
     expect((await screen.findByText('Unknown franchise "ZZZ".')).className).toBe('error');
+  });
+
+  it('shows the import hint, not a franchise, when franchises.json is missing', async () => {
+    stub({ noFranchises: true });
+    renderFranchise();
+    expect(await screen.findByText(/No franchise history yet/)).toBeTruthy();
+    expect(screen.queryByRole('heading', { level: 1 })).toBeNull();
+  });
+
+  it('shows an error, not an empty state, when the draft history fails to load', async () => {
+    stub({ draftsFail: true });
+    renderFranchise();
+    expect((await screen.findByText(/Couldn't load the history/)).className).toBe('error');
   });
 });

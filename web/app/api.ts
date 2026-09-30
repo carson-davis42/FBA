@@ -103,6 +103,12 @@ export interface DocState<T> {
   reload: () => void;
 }
 
+/** True once a doc has loaded, is missing, or failed. */
+export const docSettled = (d: { data?: unknown; missing: boolean; error?: unknown }): boolean => !!d.data || d.missing || !!d.error;
+
+/** A real load failure (a missing doc is not one), else undefined. */
+export const docFailure = (d: { missing: boolean; error?: Error }): Error | undefined => (d.missing ? undefined : d.error);
+
 export function useDoc<T>(rel: string | null): DocState<T> {
   const [state, setState] = useState<{ rel?: string; data?: T; version?: Version; missing?: boolean; error?: Error }>({});
   const [tick, setTick] = useState(0);

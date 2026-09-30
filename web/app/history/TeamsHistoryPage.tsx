@@ -6,6 +6,8 @@ import { TeamName } from '../components/TeamName';
 import { useFbaTeams } from './useTeams';
 import './history.css';
 
+const count = (k: number, one: string, many: string) => `${k} ${k === 1 ? one : many}`;
+
 export function TeamsHistoryPage() {
   const { seasons, error } = useHistory('fba');
   const { settled, teams, franchises } = useFbaTeams();
@@ -29,7 +31,7 @@ export function TeamsHistoryPage() {
             return (
               <Link key={f.teamId} className="card link" to={`/history/fba/teams/${f.teamId}`}>
                 {team ? <TeamName team={team} season={latest} size={40} /> : <b>{f.eras[0].name}</b>}
-                <span className="muted">{c.championships.length} titles · {c.finals.length} Finals · {c.confTitles.length} conference titles</span>
+                <span className="muted">{count(c.championships.length, 'title', 'titles')} · {count(c.finals.length, 'Finals appearance', 'Finals appearances')} · {count(c.confTitles.length, 'conference title', 'conference titles')}</span>
               </Link>
             );
           })}

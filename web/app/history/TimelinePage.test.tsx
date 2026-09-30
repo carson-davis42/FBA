@@ -10,7 +10,7 @@ afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 const team = (teamId: string, name: string, abbr: string): Team => ({ teamId, name, abbr, group: null, logoFolder: null, badge: { bg: '#000', fg: '#fff' } });
 const teams = { league: 'fba', teams: [team('SEA', 'Seattle Shock', 'SEA')] };
 const era = (name: string, from: number) => ({ name, abbr: 'SEA', city: 'Seattle', from, to: null });
-const franchises: FranchisesFile = { franchises: [{ teamId: 'SEA', eras: [era('Seattle Shock', 59)] }] };
+const franchises: FranchisesFile = { franchises: [{ teamId: 'SEA', eras: [era('Seattle Shock', 59)] }, { teamId: 'LAL', eras: [era('Los Angeles', 80)] }] };
 const summaries = [{ league: 'fba', season: 59, locked: true, host: null, champions: [{ title: 'FBA Champion', champion: 'Seattle Shock', teamId: 'SEA' }] }] as unknown as SummaryFile[];
 const events: EventsFile = { before: [{ label: 'Founding', notes: ['The league began'] }], seasons: [{ season: 59, notes: [], rules: ['Draft every season'] }] };
 
@@ -18,6 +18,7 @@ function stub(withEvents: boolean) {
   const docs: Record<string, unknown> = {
     '/api/state/leagues/fba/teams.json': teams,
     '/api/state/leagues/fba/franchises.json': franchises,
+    '/api/state/meta.json': { currentSeason: 79 },
     '/api/history/fba': { seasons: summaries, errors: [] },
   };
   if (withEvents) docs['/api/state/leagues/fba/events.json'] = events;
@@ -46,5 +47,22 @@ describe('TimelinePage', () => {
     renderPage();
     expect(await screen.findByText('Run npm run import -- --events --data data for league notes and rule changes.')).toBeTruthy();
     expect(screen.getByText('New: Seattle Shock')).toBeTruthy();
+  });
+
+  it('does not show a season that has not started yet', async () => {
+    stub(true);
+    renderPage();
+    await screen.findByText('Draft every season');
+    expect(screen.queryByText('S80')).toBeNull();
+    expect(screen.queryByText('New: Los Angeles')).toBeNull();
+  });
+
+  it('shows an error when the events doc fails to load', async () => {
+    stub(true);
+    const ok = globalThis.fetch;
+    vi.stubGlobal('fetch', vi.fn(async (url: string) =>
+      url === '/api/state/leagues/fba/events.json' ? new Response('boom', { status: 500 }) : ok(url)));
+    renderPage();
+    expect((await screen.findByText(/Couldn't load the history/)).className).toBe('error');
   });
 });

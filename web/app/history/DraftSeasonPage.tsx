@@ -1,24 +1,27 @@
 import { Link, useParams } from 'react-router-dom';
 import type { DraftFile, DraftHistoryDraft, DraftHistoryFile, PlayersFile } from '../../engine/shared/types';
-import { useDoc } from '../api';
+import { resolveHistoryTeam } from '../../engine/shared/franchises';
+import type { FranchisesFile, Team } from '../../engine/shared/types';
+import { docFailure, docSettled, useDoc } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { PlayerLink } from './PlayerLink';
 import { findTeam, TeamFull, useFbaTeams } from './useTeams';
 import './history.css';
 
-const settledDoc = (d: { data?: unknown; missing: boolean; error?: unknown }) => !!d.data || d.missing || !!d.error;
-
-/** The player's first imported draft entry as a line for the player page, or null. */
-export function draftLine(history: DraftHistoryFile | null, playerId: string): string | null {
+/** The player's draft entry as a line for the player page, or null. A real pick beats an undrafted row. */
+export function draftLine(history: DraftHistoryFile | null, playerId: string, teams: Team[] = [], franchises: FranchisesFile | null = null): string | null {
   if (!history) return null;
   const drafts = [...history.drafts].sort((a, b) => a.season - b.season || (a.kind === b.kind ? 0 : a.kind === 'draft' ? -1 : 1));
+  let undrafted: number | null = null;
   for (const d of drafts) {
     const p = d.picks.find(x => x.playerId === playerId);
     if (!p) continue;
-    if (p.pick === null) return `Undrafted, S${d.season}`;
-    return `${d.kind === 'expansion' ? 'Expansion draft' : 'Drafted'} S${d.season}, #${p.pick} by ${p.teamName ?? p.teamId ?? 'unknown'}`;
+    if (p.pick === null) { undrafted ??= d.season; continue; }
+    const era = p.teamId ? franchises?.franchises.find(f => f.teamId === p.teamId)?.eras.find(e => e.from <= d.season && (e.to === null || d.season <= e.to)) : undefined;
+    const team = era?.name ?? (p.teamName ? resolveHistoryTeam(teams, franchises, p.teamName, d.season, p.teamId)?.name ?? p.teamName : p.teamId);
+    return `${d.kind === 'expansion' ? 'Expansion draft' : 'Drafted'} S${d.season}, #${p.pick} by ${team ?? 'unknown'}`;
   }
-  return null;
+  return undrafted === null ? null : `Undrafted, S${undrafted}`;
 }
 
 type Teams = ReturnType<typeof useFbaTeams>;
@@ -93,11 +96,12 @@ export function DraftSeasonPage() {
   const history = useDoc<DraftHistoryFile>('leagues/fba/draftHistory.json');
   const fb = useFbaTeams();
   const imported = (history.data?.drafts ?? []).filter(d => d.season === season);
-  const historySettled = settledDoc(history);
+  const historySettled = docSettled(history);
   const app = useDoc<DraftFile>(historySettled && imported.length === 0 && Number.isInteger(season) ? `leagues/fba/S${season}/draft.json` : null);
-  if (players.error) return <p className="error">Couldn't load the draft: {players.error.message}</p>;
+  const failure = players.error ?? docFailure(history) ?? (imported.length === 0 ? docFailure(app) : undefined);
+  if (failure) return <p className="error">Couldn't load the draft: {failure.message}</p>;
   if (!players.data || !historySettled || !fb.settled) return <p className="muted">Loading…</p>;
-  if (imported.length === 0 && Number.isInteger(season) && !settledDoc(app)) return <p className="muted">Loading…</p>;
+  if (imported.length === 0 && Number.isInteger(season) && !docSettled(app)) return <p className="muted">Loading…</p>;
 
   const header = <PageHeader title={`S${season} Draft`} actions={<Link to="/history/fba/drafts">← Drafts</Link>} />;
   const main = imported.find(d => d.kind === 'draft');
