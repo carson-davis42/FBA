@@ -33,7 +33,7 @@ This part sits between 3b and 3c. It restyles the whole web app so that it reads
 
 `TEAM_COLORS: Record<teamId, { primary: string; secondary: string }>` for the FBA. `teamTheme(team)` returns `{ primary, secondary, ink }`. The fallback is `primary = secondary = team.badge.bg`. `ink` is `#fff` or `#111` by the WCAG relative luminance of `primary` (white when luminance ≤ 0.45). Pages set the colours as inline CSS variables `--team`, `--team-2` and `--team-ink` on the hero or page wrapper.
 
-Picks (sampled from each `… pres.` logo; **?** marks a guess because no current-era logo file exists):
+Picks (sampled from each team's present-era logo):
 
 | teamId (name) | primary | secondary |
 |---|---|---|
@@ -43,7 +43,7 @@ Picks (sampled from each `… pres.` logo; **?** marks a guess because no curren
 | CHI Chicago Spartans | `#173552` | `#6FB2D8` |
 | CIN Cincinnati Blue Stripes | `#16207A` | `#F07A1A` |
 | CP Columbus Pirates | `#3A1638` | `#8E4A6E` |
-| CGG Cypress Green Guns **?** | `#2F5A32` | `#E8CF8F` |
+| CGG Cypress Green Guns | `#1E4D2B` | `#5A9A72` |
 | DCB | `#E01818` | `#111111` |
 | DEN Denver Heights | `#3A1A12` | `#B07232` |
 | DET Detroit Motors | `#16203E` | `#F04A30` |
@@ -55,7 +55,7 @@ Picks (sampled from each `… pres.` logo; **?** marks a guess because no curren
 | MEM Memphis Blues | `#173A58` | `#4FB2F0` |
 | MIL Milwaukee Warriors | `#123A38` | `#F2B430` |
 | MON Montreal Chevaliers | `#173552` | `#1A92F0` |
-| NO New Orleans Seminoles **?** | `#111111` | `#F2B416` |
+| NO New Orleans Seminoles | `#121A3A` | `#B8965A` |
 | NY New York Icons | `#2F6FD6` | `#333333` |
 | OAK Oakland All-Stars | `#3F7F3F` | `#F2B416` |
 | OV Ohio Valley Sharks | `#7A1A34` | `#8FB0D0` |
@@ -65,7 +65,7 @@ Picks (sampled from each `… pres.` logo; **?** marks a guess because no curren
 | STL St.Louis Kings | `#D81834` | `#333333` |
 | TEX Texas Outlaws | `#8E1616` | `#EFEFD0` |
 | TOR Toronto Wolves | `#F07A16` | `#111111` |
-| VAN Vancouver Orcas **?** | `#1A1A1A` | `#903030` |
+| VAN Vancouver Orcas | `#125494` | `#1A92D6` |
 | VEG Vegas Volts | `#E0661A` | `#111111` |
 
 The table is keyed by `teamId` (as in `web/data/leagues/fba/teams.json`; the user changes any pick later by editing this one file). The expansion teams (Philly Phantoms `#173C74`/`#D23434`, Los Angeles Labradors `#3A3A12`/`#F0D2B0`) are added when the expansion part creates their teams, not now.
