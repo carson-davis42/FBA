@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import type { CalendarFile, Franchise, FranchisesFile, HallOfFameFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
+import { buildD2History, buildLeagueHistory, d2LeagueMoves, D2_TABS } from './d2History';
 import { buildDraftHistory } from './draftHistory';
 import { buildPastTransactions } from './pastTransactions';
 import { planHistoryImport } from './historyRun';
@@ -12,6 +13,7 @@ import { Report } from './report';
 import { assembleRefresh } from './refresh';
 import { applyNameFixes, planNameFixes } from './fixNames';
 import { buildClassImport, previousImportProblem } from './recruitingClassImport';
+import { d2DraftTabSeason } from './sheets/d2History';
 import { draftTabKind } from './sheets/drafts';
 import { buildEvents, parseEventsTab } from './sheets/events';
 import { parseFranchiseTab } from './sheets/franchises';
@@ -38,6 +40,7 @@ const SHEETS = {
   collegeHistory: '1jgB8AI5dMjSXuSNQm3szoeRF5rIYcgmPXin-idAgE84',
   pastStandings: '1FuPd67Vj8L4Zy4J53Z2jZzw_oqEa-1S5Lzztwq-NDpI',
   teamHistory: '1_oz7ULZMsaFInj-ncqs8qUm_5UBBNffJM_x9_ZOvQFU',
+  d2: '16oZgCRFdQLF4NVOecz5lhS_xJXI4YTh-NDDM7gQCXAc',
 };
 
 const read = (rel: string) => readFileSync(path.join(REPO, rel), 'utf8');
@@ -368,6 +371,67 @@ async function importDraftHistory(): Promise<void> {
   writeDoc(dir, 'leagues/fba/draftHistory.json', doc);
 }
 
+/** Reads the D2 history sheet and the draft sheet's D2 tabs into the D2 season summaries, leagueHistory.json and draftHistory.json. */
+async function importD2History(): Promise<void> {
+  const dir = requireDataDir('--d2-history');
+  const players = readDataJson<PlayersFile>(dir, 'players.json');
+  const teams = readDataJson<TeamsFile>(dir, 'leagues/fbad2/teams.json');
+  if (!players || !teams) {
+    console.error('--d2-history needs players.json and leagues/fbad2/teams.json in the data folder.');
+    process.exit(1);
+  }
+  rmSync(path.join(CACHE, `${SHEETS.d2}.xlsx`), { force: true });
+  rmSync(path.join(CACHE, `${SHEETS.draft}.xlsx`), { force: true });
+  console.log('Downloading the D2 history and draft sheets...');
+  const d2Tabs = await readTabs(await downloadWorkbook(SHEETS.d2, CACHE), Object.values(D2_TABS));
+  const draftTabs = await readTabs(await downloadWorkbook(SHEETS.draft, CACHE), n => d2DraftTabSeason(n) !== null);
+  const existing = new Map<number, SummaryFile>();
+  for (let n = 1; n <= 200; n++) {
+    const s = readDataJson<SummaryFile>(dir, `leagues/fbad2/S${n}/summary.json`);
+    if (s) existing.set(n, s);
+  }
+  const report = new Report();
+  const out = buildD2History(d2Tabs, draftTabs, { players, teams, existing }, report);
+  printReport(report);
+  if (report.count('error') > 0) {
+    console.error(`Found ${report.count('error')} error(s); nothing was written.`);
+    process.exit(1);
+  }
+  for (const s of out.summaries) writeDoc(dir, `leagues/fbad2/S${s.season}/summary.json`, s);
+  writeDoc(dir, 'leagues/fbad2/leagueHistory.json', out.leagueHistory);
+  writeDoc(dir, 'leagues/fbad2/draftHistory.json', out.drafts);
+  const seasons = out.summaries.map(s => s.season);
+  console.log(`Wrote ${out.summaries.length} summaries (S${Math.min(...seasons)}–S${Math.max(...seasons)}), ${out.leagueHistory.teams.length} team league histories, ${out.drafts.drafts.length} drafts (${out.drafts.drafts.reduce((n, d) => n + d.picks.length, 0)} picks).`);
+}
+
+/** Moves each D2 team's group in teams.json to the league its open Team League History spell names. */
+async function importD2Leagues(): Promise<void> {
+  const dir = requireDataDir('--d2-leagues');
+  const teams = readDataJson<TeamsFile>(dir, 'leagues/fbad2/teams.json');
+  if (!teams) {
+    console.error('--d2-leagues needs leagues/fbad2/teams.json in the data folder.');
+    process.exit(1);
+  }
+  rmSync(path.join(CACHE, `${SHEETS.d2}.xlsx`), { force: true });
+  console.log('Downloading the D2 history sheet...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.d2, CACHE), [D2_TABS.leagues]);
+  const report = new Report();
+  const history = buildLeagueHistory(tabs[D2_TABS.leagues] ?? [], teams, report);
+  const { next, moves, problems } = d2LeagueMoves(teams, history);
+  printReport(report);
+  if (report.count('error') > 0 || problems.length) {
+    for (const p of problems) console.error(p);
+    console.error('Nothing was written.');
+    process.exit(1);
+  }
+  if (!moves.length) {
+    console.log('No league changes.');
+    return;
+  }
+  for (const m of moves) console.log(`${m.name}: ${m.from} → ${m.to}`);
+  writeDoc(dir, 'leagues/fbad2/teams.json', next);
+}
+
 /** Reads the main sheet's Transactions tab into leagues/fba/pastTransactions.json. Writes nothing else. */
 async function importPastTransactions(): Promise<void> {
   const dir = requireDataDir('--transactions');
@@ -444,7 +508,7 @@ async function checkTrophies(): Promise<void> {
   console.log(`${mismatches} mismatches across ${Object.keys(tabs).length} team tabs.`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--check-trophies'];
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--d2-leagues', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -462,6 +526,8 @@ async function main(): Promise<void> {
   if (process.argv.includes('--drafts')) return importDraftHistory();
   if (process.argv.includes('--transactions')) return importPastTransactions();
   if (process.argv.includes('--events')) return importEvents();
+  if (process.argv.includes('--d2-history')) return importD2History();
+  if (process.argv.includes('--d2-leagues')) return importD2Leagues();
   if (process.argv.includes('--check-trophies')) return checkTrophies();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');
