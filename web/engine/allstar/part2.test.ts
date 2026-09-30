@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32, type Rng } from '../d2/random';
+import type { Dice, TeamGame } from '../shared/types';
 import type { SeasonState } from '../season/state';
 import { fbaSeasonState } from '../season/testFixtures';
 import { ASG_PICKS, asgAvailable, asgPick, asgTeams, startAsgDraft } from './asgDraft';
@@ -10,7 +11,7 @@ import { cutField, runContest, runDunk, runFivePoint } from './contests';
 import { saveSelections, suggestSelections } from './selection';
 import { allStarStep, finishAllStar } from './steps';
 import { allStarRosters } from './testFixtures';
-import { runYoungStar, startYsgDraft, teamGame, ysgAvailable, ysgPick, ysgTeamOf, ysgTeams } from './youngStars';
+import { runYoungStar, startYsgDraft, teamGame, ysgAvailable, ysgMvp, ysgPick, ysgTeamOf, ysgTeams } from './youngStars';
 
 const seq = (...xs: number[]): Rng => { let k = 0; return () => xs[k++ % xs.length]; };
 const ok = (r: AllStarResult) => {
@@ -93,6 +94,43 @@ describe('Young-Star tournament', () => {
     expect(g.scores).toEqual([2, 2]);
     expect(g.winner).toBe(0);
     expect(g.rollOff!.rounds).toEqual([{ 0: [6, 6], 1: [1, 1] }]);
+  });
+});
+
+describe('Young-Star MVP', () => {
+  const game = (teams: [number, number], rolls: [number, string, Dice][]): TeamGame => ({
+    teams, rolls: [rolls.map(([team, playerId, dice]) => ({ team, playerId, dice }))], scores: [0, 0], rollOff: null, winner: teams[0],
+  });
+  const semi0 = game([2, 3], [[2, 'P1', [3, 4]], [3, 'X1', [6, 6]]]);
+  const semi1 = game([0, 1], [[0, 'Z1', [6, 6]]]);
+
+  it('gives the MVP to the top scorer on the champion team', () => {
+    const final = game([2, 0], [[2, 'P1', [4, 5]], [2, 'P2', [6, 6]], [0, 'Z1', [6, 6]]]);
+    const res = ysgMvp({ semis: [semi0, semi1], final, champion: 2 }, seq(0.5));
+    expect(res).toEqual({ mvp: 'P1', mvpRollOff: null });
+  });
+
+  it('ignores players on other teams', () => {
+    const final = game([2, 0], [[2, 'P2', [1, 1]], [0, 'Z1', [6, 6]], [0, 'Z1', [6, 6]]]);
+    const res = ysgMvp({ semis: [semi0, semi1], final, champion: 2 }, seq(0.5));
+    expect(res.mvp).toBe('P1');
+    expect(res.mvpRollOff).toBeNull();
+  });
+
+  it('breaks a tie with a roll-off', () => {
+    const final = game([2, 0], [[2, 'P1', [2, 3]], [2, 'P2', [6, 6]]]);
+    const s0 = game([2, 3], [[2, 'P1', [5, 4]], [2, 'P2', [1, 1]]]);
+    const s1 = game([0, 1], [[0, 'Z1', [6, 6]]]);
+    const res = ysgMvp({ semis: [s0, s1], final, champion: 2 }, seq(0, 0, 0.99, 0.99));
+    expect(res.mvpRollOff).not.toBeNull();
+    expect(res.mvp).toBe('P2');
+    expect(res.mvpRollOff!.ids.sort()).toEqual(['P1', 'P2']);
+  });
+
+  it('is set by runYoungStar to a champion-team member', () => {
+    const doc = throughStep('asg');
+    const played = ok(runYoungStar(doc, mulberry32(9)));
+    expect(ysgTeams(doc)[played.ysg!.champion]).toContain(played.ysg!.mvp);
   });
 });
 

@@ -144,6 +144,7 @@ export function ysgLines(doc: NonNullable<StepProps['doc']>, name: (id: string) 
       bare: l.group === 'Final' || undefined,
     }))),
     { group: 'Champions', text: `Champions: ${label(ysg.champion)}`, bare: true },
+    ...(ysg.mvp ? [{ group: 'MVP', text: `YSG MVP: ${name(ysg.mvp)}`, bare: true }] : []),
   ];
 }
 
@@ -190,7 +191,7 @@ export function WrapUp({ state, doc, list, saving, finished, onFinish }: StepPro
       <ul>
         <li>5pt contest: {name(doc.fivePoint.winner)}</li>
         <li>Dunk contest: {name(doc.dunk.winner)}</li>
-        <li>Young-Star champions: Team {name(doc.selections!.youngCaptains[doc.ysg.champion])}</li>
+        <li>Young-Star champions: Team {name(doc.selections!.youngCaptains[doc.ysg.champion])}{doc.ysg.mvp ? ` · MVP ${name(doc.ysg.mvp)}` : ''}</li>
         <li>All-Star Game: {gameResultText(g, t => `Team ${name(teams[t][0])}`)} · MVP {name(doc.asg.mvp)}</li>
       </ul>
       {finished ? <p className="muted">The All-Star weekend is finished.</p> : (

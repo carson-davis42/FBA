@@ -116,6 +116,24 @@ describe('All-Star events', () => {
     expect(text).toContain('Champions: Team ');
   });
 
+  it('shows the Young-Star MVP in the step lines and the weekend results', async () => {
+    const doc = allStarSeasonState('complete').allstar!;
+    expect(doc.ysg!.mvp).toBeTruthy();
+    const { container } = render(<StaticLines lines={ysgLines(doc, id => `N-${id}`)} />);
+    expect(container.textContent).toContain(`YSG MVP: N-${doc.ysg!.mvp}`);
+    cleanup();
+    open('complete');
+    const results = await screen.findByText(/Young-Star champions: Team /);
+    expect(results.textContent).toMatch(/ \u00b7 MVP \S/);
+  });
+
+  it('shows no MVP text for a Young-Star doc without an MVP', () => {
+    const doc = allStarSeasonState('complete').allstar!;
+    const { mvp: _m, mvpRollOff: _r, ...ysg } = doc.ysg!;
+    const { container } = render(<StaticLines lines={ysgLines({ ...doc, ysg }, id => id)} />);
+    expect(container.textContent).not.toContain('MVP');
+  });
+
   it('says when a roll-off decided a game (B7)', () => {
     const game: TeamGame = { teams: [0, 1], rolls: [], scores: [144, 144], rollOff: { ids: ['0', '1'], rounds: [] }, winner: 1 };
     expect(gameResultText(game, t => `Team ${t + 1}`)).toBe('Team 2 144–144, won the roll-off');

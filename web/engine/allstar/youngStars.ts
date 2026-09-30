@@ -1,6 +1,6 @@
 import { shuffle, type Rng } from '../d2/random';
 import { POSITIONS } from '../roster/rules';
-import type { AllStarFile, DiceRoll, TeamGame } from '../shared/types';
+import type { AllStarFile, DiceRoll, RollOff, TeamGame } from '../shared/types';
 import { allStarFail, type AllStarResult, type FbaPlayer } from './common';
 import { roll, rollOff, total } from './dice';
 
@@ -75,6 +75,23 @@ export function teamGame(teams: [number, number], members: string[][], periods: 
   return { teams, rolls, scores, rollOff: r.rollOff, winner: Number(r.order[0]) };
 }
 
+/** Young-Star MVP: the champion-team player with the most dice points across both semis and the final; a tie goes to a roll-off. */
+export function ysgMvp(ysg: { semis: TeamGame[]; final: TeamGame; champion: number }, rng: Rng): { mvp: string; mvpRollOff: RollOff | null } {
+  const points = new Map<string, number>();
+  for (const g of [ysg.semis[0], ysg.semis[1], ysg.final]) {
+    for (const period of g.rolls) {
+      for (const r of period) {
+        if (r.team === ysg.champion) points.set(r.playerId, (points.get(r.playerId) ?? 0) + total(r.dice));
+      }
+    }
+  }
+  const best = Math.max(...points.values());
+  const tied = [...points.entries()].filter(([, v]) => v === best).map(([id]) => id);
+  if (tied.length === 1) return { mvp: tied[0], mvpRollOff: null };
+  const r = rollOff(tied, rng);
+  return { mvp: r.order[0], mvpRollOff: r.rollOff };
+}
+
 export function runYoungStar(doc: AllStarFile, rng: Rng): AllStarResult {
   if (!doc.ysgDraft || doc.ysgDraft.picks.length < YSG_PICKS) return allStarFail(['Finish the Young-Star draft first']);
   if (doc.ysg) return allStarFail(['The Young-Star tournament has already been played']);
@@ -82,5 +99,6 @@ export function runYoungStar(doc: AllStarFile, rng: Rng): AllStarResult {
   const [a, b, c, d] = shuffle([0, 1, 2, 3], rng);
   const semis = [teamGame([a, b], members, 2, 2, rng), teamGame([c, d], members, 2, 2, rng)];
   const final = teamGame([semis[0].winner, semis[1].winner], members, 2, 2, rng);
-  return { ok: true, doc: { ...doc, ysg: { semis, final, champion: final.winner } }, label: 'Run the Young-Star tournament' };
+  const ysg = { semis, final, champion: final.winner };
+  return { ok: true, doc: { ...doc, ysg: { ...ysg, ...ysgMvp(ysg, rng) } }, label: 'Run the Young-Star tournament' };
 }
