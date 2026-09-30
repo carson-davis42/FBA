@@ -1,6 +1,7 @@
 import { calendarFor } from '../shared/calendar';
-import type { ClassYear, GameResult, PickObligation, PicksFile, PlayersFile, PlayoffsFile, Position, RecruitingFile, RosterEntry, RostersFile, TeamsFile, TransactionsFile } from '../shared/types';
+import type { ClassYear, DraftFile, GameResult, PickObligation, PicksFile, PlayersFile, PlayoffsFile, Position, RankingFile, RecruitingFile, RosterEntry, RostersFile, TeamsFile, TransactionsFile } from '../shared/types';
 import type { AdjustAgeState } from './adjustAge';
+import type { DraftBoardState } from './draftBoard';
 import { lotteryStepId, type LotteryState } from './lottery';
 
 // A 30-team fixture: team i beats every team j > i once, so the records are distinct (T00 29-0 ... T29 0-29).
@@ -113,5 +114,68 @@ export const ageState = (over: Partial<AdjustAgeState> = {}): AdjustAgeState => 
   fbaTx: { league: 'fba', season: 80, entries: [] },
   collegeTx: { league: 'fbajc', season: 80, entries: [] },
   draftExists: false,
+  ...over,
+});
+
+
+// ---- 7d: Draft board (S80) ----
+
+/**
+ * S80 college: t1 PG Rick One (Fr, committed recruit) · SG Sophie So (So 70) · SF X (Jr 66) · PF open · C Cal Center (Jr 74, 3 stars);
+ * t2 PG X (Fr) · SG Fred Fresh (Fr 66) · SF Sid Soph (So 61) · PF Pat Portal (Jr 72, committed portal player) · C open.
+ * Draft: Sam Senior (t1 PG, Sr, pro-rated 60) · Dan Draftee (t1 PF, Jr 70, pro-rated 65) · Eve Early (t2 C, So 68) · Tim Taken (t1 SG, Jr 72; Sophie holds his slot).
+ * Pro reset (locked): rows Sam and Dan, order [Dan, Sam].
+ */
+export const draftBoardPlayers = (): PlayersFile => {
+  const base = agePlayers();
+  const extra = [
+    ['p00030', 'Pat Portal'], ['p00031', 'Sophie So'], ['p00032', 'Fred Fresh'], ['p00033', 'Sid Soph'],
+    ['p00034', 'Dan Draftee'], ['p00035', 'Eve Early'], ['p00036', 'Tim Taken'],
+  ] as const;
+  return { ...base, nextId: 37, players: { ...base.players, ...Object.fromEntries(extra.map(([id, name]) => [id, { id, name, birthSeason: null }])) } };
+};
+
+const dj = (playerId: string | null, position: Position, classYear: ClassYear | null, rating: number | null, stars: number | null = null): RosterEntry =>
+  ({ playerId, position, rating, age: null, points: 0, stars, classYear });
+
+export const draftBoardRosters = (): RostersFile => ({
+  league: 'fbajc', season: 80, locked: false,
+  teams: {
+    t1: [dj('p00010', 'PG', 'Fr', 70, 3), dj('p00031', 'SG', 'So', 70), dj('p00002', 'SF', 'Jr', 66), dj(null, 'PF', null, null), dj('p00003', 'C', 'Jr', 74, 3)],
+    t2: [dj('p00005', 'PG', 'Fr', 60), dj('p00032', 'SG', 'Fr', 66), dj('p00033', 'SF', 'So', 61), dj('p00030', 'PF', 'Jr', 72, 4), dj(null, 'C', null, null)],
+  },
+});
+
+export const draftBoardBoard = (): RecruitingFile => ({
+  ...ageBoard(), season: 79, classOf: 80,
+  recruits: [{ playerId: 'p00010', position: 'PG', classYear: 'Fr', rating: 70, stars: 3, projections: {}, committedTo: 't1' }],
+  portal: [{ playerId: 'p00030', position: 'PF', classYear: 'Jr', rating: 72, stars: 4, projections: {}, committedTo: 't2', fromTeam: 't1' }],
+});
+
+export const draftBoardDraft = (): DraftFile => ({
+  league: 'fba', season: 80, locked: false, started: false, picks: [],
+  prospects: [
+    { playerId: 'p00001', position: 'PG', college: 't1', classYear: 'Sr', senior: true, collegeRating: 80, stars: 4, fbaRating: 60 },
+    { playerId: 'p00034', position: 'PF', college: 't1', classYear: 'Jr', senior: false, collegeRating: 70, stars: 3, fbaRating: 65 },
+    { playerId: 'p00035', position: 'C', college: 't2', classYear: 'So', senior: false, collegeRating: 68, stars: null, fbaRating: null },
+    { playerId: 'p00036', position: 'SG', college: 't1', classYear: 'Jr', senior: false, collegeRating: 72, stars: 3, fbaRating: null },
+  ],
+});
+
+export const draftBoardRatings = (): RankingFile => ({
+  league: 'fba', season: 80, kind: 'fba-reset', locked: true,
+  rows: ['p00001', 'p00034'].map(playerId => ({ playerId, position: 'PG' as Position, age: null, team: null, prevRating: null, otherRating: null, stat: null })),
+  order: ['p00034', 'p00001'], ratings: { p00034: 65, p00001: 60 }, curve: [65, 60],
+});
+
+export const draftBoardState = (over: Partial<DraftBoardState> = {}): DraftBoardState => ({
+  season: 80,
+  draft: draftBoardDraft(),
+  rosters: draftBoardRosters(),
+  board: draftBoardBoard(),
+  collegeTeams: ageCollegeTeams(),
+  players: draftBoardPlayers(),
+  collegeTx: { league: 'fbajc', season: 80, entries: [] },
+  ratings: draftBoardRatings(),
   ...over,
 });
