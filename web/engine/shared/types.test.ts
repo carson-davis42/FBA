@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AwardCountsFile, AWARD_KEYS, PastAllFbaTeams, PastBracket, PlayerBiosFile, AllStarFile, AwardsFile, BoxLine, D2DraftFile, DraftFile, D2PoolFile, FreeAgentsFile, GameResult, HallOfFameFile, LogoManifest, LotteryFile, MetaFile, PickObligation, PicksFile, Player, PlayoffsFile, Prospect, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
+import { DraftHistoryFile, EventsFile, PastTransactionsFile, AwardCountsFile, AWARD_KEYS, PastAllFbaTeams, PastBracket, PlayerBiosFile, AllStarFile, AwardsFile, BoxLine, D2DraftFile, DraftFile, D2PoolFile, FreeAgentsFile, GameResult, HallOfFameFile, LogoManifest, LotteryFile, MetaFile, PickObligation, PicksFile, Player, PlayoffsFile, Prospect, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -644,5 +644,29 @@ describe('Part 3a history schemas', () => {
       expect(SummaryFile.safeParse({ ...base, legacyPpg: [{ playerId: 'p00001', teamId: 'BOS', ppg: 21.4 }, { playerId: 'p00002', teamId: null, ppg: 0 }] }).success).toBe(true);
       expect(SummaryFile.safeParse({ ...base, legacyPpg: [{ playerId: 'p00001', teamId: 'BOS', ppg: -1 }] }).success).toBe(false);
     });
+  });
+});
+
+describe('3c history docs', () => {
+  const pick = { pick: 1, teamId: 'SEA', teamName: 'Seattle', viaTeamId: 'OV', name: 'Soren Lindberg', playerId: null, pos: 'PG', detail: 'Freshman', college: 'Arizona' };
+  it('accepts a draft history and numbers drafted picks 1..n', () => {
+    const ok = { drafts: [{ season: 78, kind: 'draft', picks: [pick, { ...pick, pick: null, teamId: null, teamName: null, viaTeamId: null }] }] };
+    expect(DraftHistoryFile.safeParse(ok).success).toBe(true);
+    expect(DraftHistoryFile.safeParse({ drafts: [{ season: 78, kind: 'draft', picks: [{ ...pick, pick: 2 }] }] }).success).toBe(false);
+    expect(DraftHistoryFile.safeParse({ drafts: [ok.drafts[0], ok.drafts[0]] }).success).toBe(false);
+  });
+  it('accepts past transactions of both kinds', () => {
+    const asset = { text: 'OUT-Clay Peterson', pos: 'OUT', name: 'Clay Peterson', playerId: null };
+    const doc = { seasons: [{ season: 33, entries: [
+      { kind: 'trade', teamIds: ['CGG', 'SAS'], when: 'Before Week 7', notes: [], moves: [{ to: 'CGG', asset }] },
+      { kind: 'cut', teamId: 'CIN', when: null, asset },
+    ] }] };
+    expect(PastTransactionsFile.safeParse(doc).success).toBe(true);
+    expect(PastTransactionsFile.safeParse({ seasons: [{ season: 33, entries: [{ kind: 'waived', teamId: 'CIN', when: null, asset }] }] }).success).toBe(false);
+  });
+  it('accepts events with ascending unique seasons', () => {
+    const doc = { before: [{ label: 'FFL S20', notes: ['FFL Basketball Begins'] }], seasons: [{ season: 1, notes: ['FBA Begins'], rules: [] }, { season: 59, notes: [], rules: ['Draft every season'] }] };
+    expect(EventsFile.safeParse(doc).success).toBe(true);
+    expect(EventsFile.safeParse({ ...doc, seasons: [...doc.seasons].reverse() }).success).toBe(false);
   });
 });

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { franchiseAt, resolveHistoryTeam } from './franchises';
+import { franchiseAt, franchiseByAbbr, resolveHistoryTeam } from './franchises';
 import { FranchisesFile, type Team } from './types';
 
 const file: FranchisesFile = {
@@ -72,5 +72,27 @@ describe('FranchisesFile schema', () => {
     const bad = { franchises: [{ teamId: 'X', eras: [{ name: 'X', abbr: 'X', city: 'Y', from: 10, to: 5 }] }] };
     expect(FranchisesFile.safeParse(bad).success).toBe(false);
     expect(FranchisesFile.safeParse(file).success).toBe(true);
+  });
+});
+
+describe('franchiseByAbbr', () => {
+  const file: FranchisesFile = { franchises: [
+    { teamId: 'SAS', eras: [
+      { name: 'San Antonio Spirits', abbr: 'SAS', city: 'San Antonio, Texas', from: 57, to: null },
+      { name: 'San Antonio', abbr: 'USA', city: 'San Antonio, Texas', from: 1, to: 56 },
+    ] },
+    { teamId: 'CAR', eras: [{ name: 'Cal Tech Knights', abbr: 'CT', city: 'x', from: 41, to: 67 }] },
+  ] };
+  it('maps an era abbreviation to the franchise in that season', () => {
+    expect(franchiseByAbbr(file, 'USA', 20)?.teamId).toBe('SAS');
+    expect(franchiseByAbbr(file, 'CT', 60)?.teamId).toBe('CAR');
+  });
+  it('uses the nearest era outside its range, then a current team id', () => {
+    expect(franchiseByAbbr(file, 'CT', 70)?.teamId).toBe('CAR');
+    expect(franchiseByAbbr({ franchises: [{ teamId: 'MW', eras: [{ name: 'Maine Wildcats', abbr: 'MNE', city: 'x', from: 1, to: null }] }] }, 'MW', 5)).toEqual({ teamId: 'MW', era: null });
+  });
+  it('gives null for an unknown code or no file', () => {
+    expect(franchiseByAbbr(file, 'ZZZ', 5)).toBeNull();
+    expect(franchiseByAbbr(null, 'USA', 5)).toBeNull();
   });
 });

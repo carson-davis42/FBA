@@ -864,3 +864,48 @@ export const HallOfFameFile = z.object({
   removed: z.array(z.object({ name: z.string().min(1), playerId: z.string().regex(/^p\d{5}$/).nullable() }).strict()),
 }).strict();
 export type HallOfFameFile = z.infer<typeof HallOfFameFile>;
+
+/** leagues/fba/draftHistory.json: the sheet's past drafts (imported, 3c). */
+export const DraftHistoryPick = z.object({
+  /** Order among the drafted rows; null = undrafted. */
+  pick: int.positive().nullable(),
+  teamId: z.string().min(1).nullable(),
+  /** The sheet's team text, e.g. "Cypress G"; null when undrafted. */
+  teamName: z.string().min(1).nullable(),
+  viaTeamId: z.string().min(1).nullable(),
+  name: z.string().min(1),
+  playerId: playerId.nullable(),
+  pos: z.string().min(1),
+  /** Class ("Freshman", "2xSenior", "S39", "X") or, for expansion drafts, age. */
+  detail: z.string().min(1).nullable(),
+  college: z.string().min(1).nullable(),
+}).strict();
+export type DraftHistoryPick = z.infer<typeof DraftHistoryPick>;
+export const DraftHistoryDraft = z.object({ season: int.min(1), kind: z.enum(['draft', 'expansion']), picks: z.array(DraftHistoryPick) }).strict()
+  .refine(d => d.picks.filter(p => p.pick !== null).every((p, i) => p.pick === i + 1), 'Drafted picks must be numbered 1..n in order');
+export type DraftHistoryDraft = z.infer<typeof DraftHistoryDraft>;
+export const DraftHistoryFile = z.object({ drafts: z.array(DraftHistoryDraft) }).strict()
+  .refine(f => new Set(f.drafts.map(d => `${d.season}:${d.kind}`)).size === f.drafts.length, 'One draft of each kind per season');
+export type DraftHistoryFile = z.infer<typeof DraftHistoryFile>;
+
+export const PastAsset = z.object({ text: z.string().min(1), pos: z.string().min(1).nullable(), name: z.string().min(1).nullable(), playerId: playerId.nullable() }).strict();
+export type PastAsset = z.infer<typeof PastAsset>;
+export const PastMove = z.object({ to: z.string().min(1), asset: PastAsset }).strict();
+export type PastMove = z.infer<typeof PastMove>;
+const PastTrade = z.object({
+  kind: z.literal('trade'), teamIds: z.array(z.string().min(1)).min(2), when: z.string().min(1).nullable(), notes: z.array(z.string().min(1)), moves: z.array(PastMove),
+}).strict();
+const PastTeamMove = z.object({ kind: z.enum(['cut', 'released', 'signed', 'acquired']), teamId: z.string().min(1), when: z.string().min(1).nullable(), asset: PastAsset }).strict();
+export const PastTransaction = z.union([PastTrade, PastTeamMove]);
+export type PastTransaction = z.infer<typeof PastTransaction>;
+/** leagues/fba/pastTransactions.json: the sheet's Transactions tab (imported, 3c). */
+export const PastTransactionsFile = z.object({ seasons: z.array(z.object({ season: int.min(1), entries: z.array(PastTransaction) }).strict()) }).strict()
+  .refine(f => f.seasons.every((s, i) => i === 0 || s.season > f.seasons[i - 1].season), 'Seasons ascend without repeats');
+export type PastTransactionsFile = z.infer<typeof PastTransactionsFile>;
+
+/** leagues/fba/events.json: Events-tab notes and curated rule changes (imported, 3c). */
+export const EventsFile = z.object({
+  before: z.array(z.object({ label: z.string().min(1), notes: z.array(z.string().min(1)).min(1) }).strict()),
+  seasons: z.array(z.object({ season: int.min(1), notes: z.array(z.string().min(1)), rules: z.array(z.string().min(1)) }).strict()),
+}).strict().refine(f => f.seasons.every((s, i) => i === 0 || s.season > f.seasons[i - 1].season), 'Seasons ascend without repeats');
+export type EventsFile = z.infer<typeof EventsFile>;
