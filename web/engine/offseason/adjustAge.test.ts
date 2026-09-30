@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { collegeHole } from '../college/setup';
 import { calendarProblem } from '../season/moves';
 import { markStepDone } from '../shared/calendar';
-import type { CalendarFile, DraftFile, FreeAgentsFile, MetaFile, RecruitingFile, ReservesFile, RostersFile, TransactionsFile } from '../shared/types';
+import type { CalendarFile, DraftFile, FreeAgentsFile, MetaFile, PlayersFile, RecruitingFile, ReservesFile, RostersFile, TransactionsFile } from '../shared/types';
 import { ADJUST_AGE_STEP, adjustAge, adjustAgePreview, ageEntry, draftPath } from './adjustAge';
 import { ageBoard, ageCollegeTeams, agePlayers, ageState } from './testFixtures';
 
@@ -103,12 +103,28 @@ describe('adjustAge', () => {
       'leagues/fbad2/S80/reserves.json',
       'leagues/fbajc/S80/rosters.json',
       'leagues/fbajc/S79/recruiting.json',
+      'players.json',
       'leagues/fba/S80/draft.json',
       'meta.json',
       'calendar.json',
       'leagues/fba/S80/transactions.json',
       'leagues/fbajc/S80/transactions.json',
     ]);
+  });
+
+  it('gives a draft-bound named Senior with no birth season n − 22 in players.json, and touches no one else', () => {
+    const { doc } = run();
+    const before = agePlayers();
+    const after = doc<PlayersFile>('players.json');
+    expect(after.players.p00001).toEqual({ ...before.players.p00001, birthSeason: 58 });
+    expect(after.players).toEqual({ ...before.players, p00001: after.players.p00001 });
+  });
+
+  it('keeps an existing birth season and writes no players.json when nothing needs filling', () => {
+    const players = agePlayers();
+    players.players.p00001 = { ...players.players.p00001, birthSeason: 57 };
+    const { paths } = run(ageState({ players }));
+    expect(paths).not.toContain('players.json');
   });
 
   it('skips missing free agents and reserves, and writes no board when nothing is placed', () => {

@@ -93,6 +93,7 @@ export function AdjustAgePage() {
     [`leagues/fbajc/S${n}/rosters.json`]: null,
     [boardPath(n - 1)]: board.version,
     [draftPath(n)]: draft.version,
+    'players.json': players.version,
     'meta.json': meta.version,
     'calendar.json': calendar.version,
     [docPath('fbaTx', n)]: fbaTx.version,

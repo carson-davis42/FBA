@@ -123,6 +123,7 @@ describe('FbaDraftPage', () => {
       [draftPath(80), '0000000000000001'],
       ['leagues/fbajc/S80/rosters.json', '0000000000000001'],
       ['leagues/fbajc/S80/transactions.json', null],
+      ['players.json', '0000000000000001'],
     ].sort());
     expect(log.batches).toHaveLength(1);
     expect(await screen.findByText('Sophie So', { selector: 'td' })).toBeTruthy();

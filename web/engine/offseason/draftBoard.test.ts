@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { DraftFile, RecruitingFile, RostersFile, TransactionsFile } from '../shared/types';
+import type { DraftFile, PlayersFile, RecruitingFile, RostersFile, TransactionsFile } from '../shared/types';
 import { backToSchool, boardOrder, declare, declareCandidates, draftBoardProblem, draftToPortal, setProspectRating } from './draftBoard';
 import { draftBoardBoard, draftBoardDraft, draftBoardRatings, draftBoardState } from './testFixtures';
 
@@ -34,7 +34,7 @@ describe('declareCandidates', () => {
 describe('declare', () => {
   it('opens his slot, adds the prospect and logs a declare', () => {
     const r = ok(declare(draftBoardState(), 'p00003', ctx));
-    expect(r.writes.map(w => w.path)).toEqual([paths.draft, paths.rosters, paths.tx]);
+    expect(r.writes.map(w => w.path)).toEqual([paths.draft, paths.rosters, paths.tx, 'players.json']);
     expect(r.label).toBe('Cal Center declares for the draft');
     expect(doc<DraftFile>(r, paths.draft).prospects.at(-1)).toEqual({
       playerId: 'p00003', position: 'C', college: 't1', classYear: 'Jr', senior: false, collegeRating: 74, stars: 3, fbaRating: null,
@@ -43,6 +43,18 @@ describe('declare', () => {
     expect(doc<TransactionsFile>(r, paths.tx).entries).toEqual([
       { seq: 1, batchId: 'b1', type: 'declare', teams: ['t1'], lines: ['Cal Center (Jr C, School One) declares for the S80 draft'] },
     ]);
+  });
+  it('fills a missing birth season from his class year (So 19, Jr 20), and keeps an existing one', () => {
+    const jr = ok(declare(draftBoardState(), 'p00003', ctx));
+    expect(doc<PlayersFile>(jr, 'players.json').players.p00003.birthSeason).toBe(60);
+    const so = ok(declare(draftBoardState(), 'p00031', ctx));
+    expect(doc<PlayersFile>(so, 'players.json').players.p00031.birthSeason).toBe(61);
+    expect(Object.keys(doc<PlayersFile>(so, 'players.json').players)).toEqual(Object.keys(draftBoardState().players.players));
+
+    const players = draftBoardState().players;
+    players.players.p00003 = { ...players.players.p00003, birthSeason: 55 };
+    const kept = ok(declare(draftBoardState({ players }), 'p00003', ctx));
+    expect(kept.writes.map(w => w.path)).toEqual([paths.draft, paths.rosters, paths.tx]);
   });
   it('keeps the pro-reset rating of a player who left the board and declares again', () => {
     const back = ok(backToSchool(draftBoardState(), 'p00034', ctx));

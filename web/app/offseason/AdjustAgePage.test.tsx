@@ -70,11 +70,13 @@ describe('AdjustAgePage', () => {
       'leagues/fbajc/S80/rosters.json',
       'leagues/fbajc/S80/transactions.json',
       'meta.json',
+      'players.json',
     ].sort());
     // Loaded documents carry their version; documents that don't exist yet are written without one.
     expect(byPath.get(docPath('fba', 80))!.baseVersion).toBe('0000000000000001');
     expect(byPath.get('calendar.json')!.baseVersion).toBe('0000000000000001');
     expect(byPath.get(boardPath(79))!.baseVersion).toBe('0000000000000001');
+    expect(byPath.get('players.json')!.baseVersion).toBe('0000000000000001');
     expect(byPath.get(draftPath(80))!.baseVersion).toBeNull();
     expect(byPath.get('leagues/fbajc/S80/rosters.json')!.baseVersion).toBeNull();
     expect(byPath.get('leagues/fbajc/S80/transactions.json')!.baseVersion).toBeNull();

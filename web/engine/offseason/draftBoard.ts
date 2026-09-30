@@ -48,6 +48,8 @@ export function declareCandidates(state: DraftBoardState): { playerId: string; t
   return out.sort((a, b) => school(state, a.teamId).localeCompare(school(state, b.teamId)) || POSITIONS.indexOf(a.position) - POSITIONS.indexOf(b.position));
 }
 
+const EARLY_AGE: Record<ClassYear, number> = { Fr: 18, So: 19, Jr: 20, Sr: 21 };
+
 export function declare(state: DraftBoardState, playerId: string, ctx: MoveContext): WritesResult {
   const started = draftBoardProblem(state.draft);
   if (started) return fail(started);
@@ -63,6 +65,11 @@ export function declare(state: DraftBoardState, playerId: string, ctx: MoveConte
     collegeRating: c.rating, stars: entries[index].stars ?? null, fbaRating: locked ?? null,
   };
   const rosters = withTeam(state.rosters, c.teamId, entries.map((e, i) => (i === index ? collegeHole(e.position) : e)));
+  // An early entrant with no birth season is dated from his class year: So 19, Jr 20, Sr 21 in the draft year.
+  const person = state.players.players[playerId];
+  const players: PlayersFile | null = person.birthSeason === null
+    ? { ...state.players, players: { ...state.players.players, [playerId]: { ...person, birthSeason: state.season - EARLY_AGE[c.classYear] } } }
+    : null;
   const tx = appendTx(state.collegeTx, ctx, 'declare', [c.teamId], [`${name} (${c.classYear} ${c.position}, ${school(state, c.teamId)}) declares for the S${state.season} draft`]);
   return {
     ok: true,
@@ -70,6 +77,7 @@ export function declare(state: DraftBoardState, playerId: string, ctx: MoveConte
       { path: draftPath(state.season), doc: { ...state.draft, prospects: [...state.draft.prospects, prospect] } },
       { path: rostersPath(state.season), doc: rosters },
       { path: collegeTxPath(state.season), doc: tx },
+      ...(players ? [{ path: 'players.json', doc: players }] : []),
     ],
     label: `${name} declares for the draft`,
   };

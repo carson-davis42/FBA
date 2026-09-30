@@ -111,6 +111,7 @@ export function FbaDraftPage() {
     [fbaPath]: fba.version,
     [faPath]: freeAgents.version,
     [fbaTxPath]: fbaTx.version,
+    'players.json': players.version,
     'calendar.json': calendar.version,
   };
 

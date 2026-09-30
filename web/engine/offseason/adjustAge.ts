@@ -5,7 +5,7 @@ import { appendTx, docPath, withTeam, type MoveContext } from '../roster/state';
 import { calendarProblem, type WritesResult } from '../season/moves';
 import { markStepDone } from '../shared/calendar';
 import type {
-  CalendarFile, ClassYear, DraftFile, DraftProspect, FreeAgentsFile, MetaFile, PlayersFile, PortalPlayer, Position,
+  CalendarFile, ClassYear, DraftFile, DraftProspect, FreeAgentsFile, MetaFile, Player, PlayersFile, PortalPlayer, Position,
   RecruitingFile, ReservesFile, RosterEntry, RostersFile, TeamsFile, TransactionsFile,
 } from '../shared/types';
 
@@ -45,6 +45,8 @@ interface Built {
   preview: AdjustAgePreview;
   fba: RostersFile; freeAgents: FreeAgentsFile | null; d2: RostersFile; reserves: ReservesFile | null;
   rosters: RostersFile; board: RecruitingFile | null; draft: DraftFile;
+  /** players.json with birth seasons filled in for draft-bound Seniors; null when nothing changed. */
+  players: PlayersFile | null;
   portalLines: { teamId: string; line: string }[];
 }
 
@@ -76,6 +78,7 @@ function build(state: AdjustAgeState): { ok: true; built: Built } | { ok: false;
   const setup = setupCollegeRosters({ season: n, prev: state.prevCollege, proIds: new Set() });
   if (!setup.ok) return setup;
   const prospects: DraftProspect[] = [];
+  const filled: Record<string, Player> = {};
   let xSeniors = 0;
   for (const [teamId, entries] of Object.entries(state.prevCollege.teams)) {
     for (const e of entries) {
@@ -84,6 +87,9 @@ function build(state: AdjustAgeState): { ok: true; built: Built } | { ok: false;
         xSeniors++;
         continue;
       }
+      const named = players.players[e.playerId];
+      // A Senior with no birth season is taken to be 22 in the draft year.
+      if (named.birthSeason === null) filled[e.playerId] = { ...named, birthSeason: n - 22 };
       prospects.push({
         playerId: e.playerId, position: e.position, college: teamId, classYear: 'Sr', senior: true,
         collegeRating: e.rating, stars: e.stars ?? null, fbaRating: null,
@@ -139,6 +145,7 @@ function build(state: AdjustAgeState): { ok: true; built: Built } | { ok: false;
     built: {
       preview: { aged, seniors: prospects.length, xSeniors, placed, displaced },
       fba, freeAgents, d2, reserves, rosters, board, portalLines,
+      players: Object.keys(filled).length ? { ...players, players: { ...players.players, ...filled } } : null,
       draft: { league: 'fba', season: n, locked: false, started: false, prospects, picks: [] },
     },
   };
@@ -174,6 +181,7 @@ export function adjustAge(state: AdjustAgeState, ctx: MoveContext): WritesResult
   if (b.reserves) writes.push({ path: docPath('reserves', n), doc: b.reserves });
   writes.push({ path: `leagues/fbajc/S${n}/rosters.json`, doc: b.rosters });
   if (b.board && placed > 0) writes.push({ path: boardPath(n - 1), doc: b.board });
+  if (b.players) writes.push({ path: 'players.json', doc: b.players });
   writes.push(
     { path: draftPath(n), doc: b.draft },
     { path: 'meta.json', doc: meta },
