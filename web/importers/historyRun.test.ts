@@ -34,7 +34,7 @@ const sources = (over: Partial<HistorySources> = {}): HistorySources => ({
     'Awards, Conference Titles, & AS': [awardsHeader, awardsRow],
     'All-FBA Teams': [],
     'Players': [['Nadeem Akers', 'Born-S50', 'BOS-S49-S60', '1x MVP'], ['Harper Holland', 'Born-S60', 'BOS-S78-S78']],
-    'FBA Awards won by Player': [['MVP(S1)', ''], ['Nadeem Akers', '1']],
+    'FBA Awards Won By Player': [['MVP(S1)', ''], ['Nadeem Akers', '1']],
   },
   standingTabs: {},
   ppgText: ['S78 League PPG', '1. Harper Holland(98)(BOS): 43.4', '2. Nadeem Akers(80)(BOS): 30.1'].join('\n'),

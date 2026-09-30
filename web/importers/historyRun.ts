@@ -9,7 +9,7 @@ import { parseAllFba, parseAwards, parseBios, parseChampionships, parsePastStand
 export interface HistorySources {
   /** Every `*.json` under the data folder, by path relative to it. */
   docs: Map<string, unknown>;
-  /** Main-sheet tabs by name: Championships, Awards, All-FBA Teams, Players and FBA Awards won by Player. */
+  /** Main-sheet tabs by name: Championships, Awards, All-FBA Teams, Players and FBA Awards Won By Player. */
   tabs: Record<string, string[][]>;
   /** Past-standings tabs by name (`S71`...). */
   standingTabs: Record<string, string[][]>;
@@ -19,7 +19,7 @@ export interface HistorySources {
 }
 
 const AWARDS_TAB = 'Awards, Conference Titles, & AS';
-const TAB11 = 'FBA Awards won by Player';
+const TAB11 = 'FBA Awards Won By Player';
 const summaryPath = (n: number): string => `leagues/fba/S${n}/summary.json`;
 
 /** The history import as a pure plan: the files to write, in order (a later write of a path replaces an earlier one), or [] on errors. */

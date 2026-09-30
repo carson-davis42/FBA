@@ -214,7 +214,7 @@ async function importHistory(): Promise<void> {
   rmSync(path.join(CACHE, `${SHEETS.pastStandings}.xlsx`), { force: true });
   console.log('Downloading the main sheet and the past standings sheet...');
   const seasons = Array.from({ length: 8 }, (_, k) => 71 + k);
-  const tabs = await readTabs(await downloadWorkbook(SHEETS.main, CACHE), ['Championships', 'Awards, Conference Titles, & AS', 'All-FBA Teams', 'Players', 'FBA Awards won by Player']);
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.main, CACHE), ['Championships', 'Awards, Conference Titles, & AS', 'All-FBA Teams', 'Players', 'FBA Awards Won By Player']);
   const standingTabs = await readTabs(await downloadWorkbook(SHEETS.pastStandings, CACHE), seasons.map(s => `S${s}`));
 
   const files = planHistoryImport({
