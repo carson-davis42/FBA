@@ -5,7 +5,7 @@ import type { BoxLine, GameResult, Position, RatingPauseFile, RostersFile, Seaso
 import { appendTx, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
 import { leagueStepProblem } from './moves';
-import { CALENDAR_STEP, seasonFail, type SeasonDocKey, type SeasonResult, type SeasonState } from './state';
+import { CALENDAR_STEP, playerName, seasonFail, type SeasonDocKey, type SeasonResult, type SeasonState } from './state';
 
 const zero = (): SeasonTotals => ({ g: 0, pts: 0, def: 0, stops: 0, allowed: 0, exp: 0 });
 
@@ -84,6 +84,7 @@ export function seasonRecord(state: SeasonState, pauses: RatingPauseFile[]): Sum
     teamId: c.teamId,
     runnerUpId: c.runnerUp,
     group: c.group,
+    finalsMvp: c.finalsMvp ?? null,
   }));
   const seedOf = new Map((pf?.seeds ?? []).flatMap(s => s.teams.map((t, i) => [t, i + 1] as const)));
   const lastRound = new Map<string, number>();
@@ -107,7 +108,17 @@ export function seasonRecord(state: SeasonState, pauses: RatingPauseFile[]): Sum
   })));
   const a = state.allstar;
   const allStar = state.league === 'fba' && a?.selections
-    ? { allStars: a.selections.allStars, youngStars: a.selections.youngStars, asgMvp: a.asg?.mvp ?? null, fivePoint: a.fivePoint?.winner ?? null, dunk: a.dunk?.winner ?? null }
+    ? {
+      allStars: a.selections.allStars,
+      youngStars: a.selections.youngStars,
+      asgMvp: a.asg?.mvp ?? null,
+      fivePoint: a.fivePoint?.winner ?? null,
+      dunk: a.dunk?.winner ?? null,
+      asgWinner: a.asg ? `Team ${playerName(state, a.selections.captains[a.asg.game.winner])}` : null,
+      asgLoser: a.asg ? `Team ${playerName(state, a.selections.captains[1 - a.asg.game.winner])}` : null,
+      ysgWinner: a.ysg ? `Team ${playerName(state, a.selections.youngCaptains[a.ysg.champion])}` : null,
+      ysgMvp: a.ysg?.mvp ?? null,
+    }
     : null;
   return {
     league: state.league,
@@ -143,6 +154,9 @@ export function finishSeason(state: SeasonState, pauses: RatingPauseFile[], ctx:
   if (!state.playoffs?.outcome) problems.push('Finish the playoffs first');
   if (!state.awards?.locked) problems.push(`Lock the S${state.season} awards first`);
   if (state.summary) problems.push(`The S${state.season} ${name} season is already finished`);
+  const champs = state.playoffs?.outcome?.champions ?? [];
+  if (state.league === 'fba' && champs.some(c => !c.finalsMvp)) problems.push('Pick the Finals MVP first');
+  if (state.league === 'fbad2' && champs.some(c => !c.finalsMvp)) problems.push('Pick every Series MVP first');
   for (const p of pauses) if (!p.locked) problems.push(`Finish the rating adjustments after game ${p.afterGame} first`);
   if (problems.length) return seasonFail(problems);
 

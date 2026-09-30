@@ -5,7 +5,7 @@ import { simGame } from '../season/sim';
 import { GROUP_ORDER } from '../season/standings';
 import type { SeasonState } from '../season/state';
 import { seasonStateFor } from '../season/testFixtures';
-import { nextPlayoffGame, recordPlayoffGame } from './moves';
+import { finalsMvpCandidates, nextPlayoffGame, pickFinalsMvp, recordPlayoffGame } from './moves';
 
 function teamsFor(league: SeasonLeague, perGroup: number): [string, string][] {
   return GROUP_ORDER[league].flatMap(g => Array.from({ length: perGroup }, (_, k): [string, string] => [`${g}${String(k + 1).padStart(2, '0')}`, g]));
@@ -56,6 +56,18 @@ export function playPlayoffs(state: SeasonState, seed = 5, maxGames = Infinity):
     const away = lineup(s, next.away);
     if (typeof home === 'string' || typeof away === 'string') throw new Error(`${String(home)} / ${String(away)}`);
     const r = recordPlayoffGame(s, simGame(next.gameNo, home, away, rng));
+    if (!r.ok) throw new Error(r.problems.join('; '));
+    s = r.state;
+  }
+  return s;
+}
+
+/** Picks the top scorer of every champion's final as its Finals / Series MVP. */
+export function pickAllFinalsMvps(state: SeasonState): SeasonState {
+  let s = state;
+  for (const c of state.playoffs!.outcome!.champions) {
+    const top = finalsMvpCandidates(s, c.group)[0];
+    const r = pickFinalsMvp(s, c.group, top.playerId);
     if (!r.ok) throw new Error(r.problems.join('; '));
     s = r.state;
   }

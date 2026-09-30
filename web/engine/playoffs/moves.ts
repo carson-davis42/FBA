@@ -2,9 +2,10 @@ import { leagueRefRating } from '../awards/defense';
 import { leagueStepProblem, toGameResult } from '../season/moves';
 import type { SimGame } from '../season/sim';
 import { PLAYOFF_SEEDS, records, SEASON_LENGTH, standings, type Standings } from '../season/standings';
-import { PAUSE_LABEL, seasonFail, seasonOver, type SeasonResult, type SeasonState } from '../season/state';
+import { PAUSE_LABEL, playerName, seasonFail, seasonOver, type SeasonResult, type SeasonState } from '../season/state';
 import type { PlayoffGame, PlayoffsFile } from '../shared/types';
 import { advance, buildBracket, finalId, FINALS, hostOf } from './bracket';
+import { groupLabel } from '../shared/leagues';
 import { promotion } from './promotion';
 import { powerRankings } from './ranker';
 import { betterAcross } from './tiebreak';
@@ -107,4 +108,50 @@ export function recordPlayoffGame(state: SeasonState, sim: SimGame): SeasonResul
     changed: ['playoffs'],
     label: `Playoff game ${game.gameNo}: ${game.away} ${game.awayPts} @ ${game.home} ${game.homePts}`,
   };
+}
+
+export interface FinalsMvpCandidate { playerId: string; name: string; gp: number; ppg: number }
+
+const round1 = (x: number) => Math.round(x * 10) / 10;
+const mvpTitle = (group: string | null) => (group === null ? 'Finals MVP' : `${groupLabel('fbad2', group)} Series MVP`);
+
+/** The champion entry for a group (null for the FBA), or null before the outcome. */
+function championOf(state: SeasonState, group: string | null) {
+  return state.playoffs?.outcome?.champions.find(c => c.group === group) ?? null;
+}
+
+/** The champion's players who played in the final, by points per game (then name). */
+export function finalsMvpCandidates(state: SeasonState, group: string | null): FinalsMvpCandidate[] {
+  const champ = championOf(state, group);
+  if (!champ || !state.playoffs) return [];
+  const seriesId = group === null ? FINALS : finalId('fbad2', group);
+  const totals = new Map<string, { gp: number; pts: number }>();
+  for (const g of state.playoffs.games) {
+    if (g.seriesId !== seriesId) continue;
+    const side = g.home === champ.teamId ? 'home' : g.away === champ.teamId ? 'away' : null;
+    if (!side) continue;
+    for (const line of g.box?.[side] ?? []) {
+      const t = totals.get(line.playerId) ?? { gp: 0, pts: 0 };
+      t.gp++;
+      t.pts += line.pts;
+      totals.set(line.playerId, t);
+    }
+  }
+  return [...totals].map(([playerId, t]) => ({ playerId, name: playerName(state, playerId), gp: t.gp, ppg: round1(t.pts / t.gp) }))
+    .sort((a, b) => b.ppg - a.ppg || a.name.localeCompare(b.name));
+}
+
+/** Picks (or re-picks) the Finals MVP, or a D2 league's Series MVP, from the champion's players in the final. */
+export function pickFinalsMvp(state: SeasonState, group: string | null, playerId: string): SeasonResult {
+  const champ = championOf(state, group);
+  if (!champ || !state.playoffs) return seasonFail(['No champion yet']);
+  if (state.summary) return seasonFail(['The season is finished']);
+  const cand = finalsMvpCandidates(state, group).find(c => c.playerId === playerId);
+  if (!cand) return seasonFail([`${playerName(state, playerId)} didn't play in the final`]);
+  const outcome = state.playoffs.outcome!;
+  const playoffs: PlayoffsFile = {
+    ...state.playoffs,
+    outcome: { ...outcome, champions: outcome.champions.map(c => (c.group === group ? { ...c, finalsMvp: playerId } : c)) },
+  };
+  return { ok: true, state: { ...state, playoffs }, changed: ['playoffs'], label: `Pick the ${mvpTitle(group)}` };
 }

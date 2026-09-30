@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/re
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { lockSeeds } from '../../engine/playoffs/moves';
-import { fullD2State, fullFbaState, playPlayoffs, regularSeasonDone } from '../../engine/playoffs/testFixtures';
+import { fullD2State, fullFbaState, pickAllFinalsMvps, playPlayoffs, regularSeasonDone } from '../../engine/playoffs/testFixtures';
 import type { SeasonResult } from '../../engine/season/state';
 import { finishSeason } from '../../engine/season/wrapUp';
 import { stubApi } from '../d2/testDocs';
@@ -86,7 +86,7 @@ describe('PlayoffsPage', () => {
   });
 
   it('finishes the D2 season as one batch that clears Undo, then says so', async () => {
-    const done = playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
+    const done = pickAllFinalsMvps(playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6));
     const log = stubApi(seasonDocs(done));
     renderAt('/league/fbad2/playoffs');
     fireEvent.click(await screen.findByRole('button', { name: 'Finish S79 D2 season ▸' }));
@@ -115,7 +115,7 @@ describe('PlayoffsPage', () => {
   });
 
   it('shows a failed save with Retry, and Retry saves', async () => {
-    const done = playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
+    const done = pickAllFinalsMvps(playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6));
     const log = stubApi(seasonDocs(done));
     const inner = globalThis.fetch;
     let failNext = true;
@@ -134,7 +134,7 @@ describe('PlayoffsPage', () => {
   });
 
   it('shows a finished season as finished, with no Finish button', async () => {
-    const done = playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
+    const done = pickAllFinalsMvps(playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6));
     stubApi(seasonDocs(ok(finishSeason(done, [], { batchId: 't' })).state));
     renderAt('/league/fbad2/playoffs');
     expect(await screen.findByText('The S79 D2 season is finished.')).toBeTruthy();

@@ -11,7 +11,7 @@ import { pathAgreementProblem, schemaForPath } from '../shared/schemaRegistry';
 import { PlayoffsFile, SummaryFile, type RostersFile } from '../shared/types';
 import type { CalendarFile, MetaFile } from '../shared/types';
 import { lockSeeds } from './moves';
-import { fullD2State, fullFbaState, playPlayoffs } from './testFixtures';
+import { fullD2State, fullFbaState, pickAllFinalsMvps, playPlayoffs } from './testFixtures';
 
 const ok = (r: SeasonResult) => {
   if (!r.ok) throw new Error(r.problems.join('; '));
@@ -80,7 +80,7 @@ describe('a whole S79 in the engine: D2, finish, FBA, finish, the tail, then S80
     expect(d2pf.games.slice(0, 4).map(g => g.seriesId)).toEqual(['PL-R1-1', 'WL-R1-1', 'UL-R1-1', 'IL-R1-1']);
     expect(d2pf.outcome!.champions).toHaveLength(4);
     expect(d2.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(false);
-    d2 = ok(finishSeason(d2, [], ctx)).state;
+    d2 = ok(finishSeason(pickAllFinalsMvps(d2), [], ctx)).state;
     expect(d2.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(true);
     expect(SummaryFile.safeParse(d2.summary).success).toBe(true);
     expect(d2.summary!.promotion).toEqual(d2pf.outcome!.promotion);
@@ -102,7 +102,7 @@ describe('a whole S79 in the engine: D2, finish, FBA, finish, the tail, then S80
     expect(pf.outcome!.champions).toHaveLength(1);
     expect(fba.rosters).toBe(pointsBefore);
     expect(fba.calendar.steps.find(x => x.id === 'fba')!.done).toBe(false);
-    fba = ok(finishSeason(fba, [fba.ratingPause!], ctx)).state;
+    fba = ok(finishSeason(pickAllFinalsMvps(fba), [fba.ratingPause!], ctx)).state;
     expect(SummaryFile.safeParse(fba.summary).success).toBe(true);
     expect(fba.summary!.players!.length).toBeGreaterThanOrEqual(150);
     const paused = fba.ratingPause!.players[0];

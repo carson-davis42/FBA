@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { seasonDefense } from '../awards/defense';
 import { mulberry32 } from '../d2/random';
 import { FINALS } from '../playoffs/bracket';
-import { lockSeeds } from '../playoffs/moves';
-import { fullD2State, fullFbaState, playPlayoffs, regularSeasonDone } from '../playoffs/testFixtures';
+import { finalsMvpCandidates, lockSeeds, pickFinalsMvp } from '../playoffs/moves';
+import { pickAllFinalsMvps, fullD2State, fullFbaState, playPlayoffs, regularSeasonDone } from '../playoffs/testFixtures';
 import { SummaryFile, type AllStarFile, type GameResult, type RatingPauseFile, type RostersFile } from '../shared/types';
 import { recordGames, simNextGames } from './moves';
 import { seasonWrites, type SeasonResult, type SeasonState } from './state';
@@ -29,8 +29,10 @@ const allStarDoc = (locked: boolean): AllStarFile => ({
   ysgDraft: null, ysg: null, asg: null,
 });
 
-const fbaDone = () => playPlayoffs(ok(lockSeeds(regularSeasonDone(fullFbaState()))).state, 5);
-const d2Done = () => playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
+const fbaPlayed = () => playPlayoffs(ok(lockSeeds(regularSeasonDone(fullFbaState()))).state, 5);
+const d2Played = () => playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
+const fbaDone = () => pickAllFinalsMvps(fbaPlayed());
+const d2Done = () => pickAllFinalsMvps(d2Played());
 
 describe('playerLines', () => {
   const D = { def: 10, stops: 4, allowed: 12, exp: 1500 };
@@ -88,7 +90,7 @@ describe('seasonRecord', () => {
     expect(rec).toMatchObject({ league: 'fba', season: 79, locked: true, host: null, awards: [], allFba: null, allStar: null, promotion: null });
     expect(rec.champions).toEqual([{
       title: 'FBA Champion', champion: `${fin.winner} Club`, runnerUp: `${loser} Club`, score: pf.outcome!.champions[0].score,
-      teamId: fin.winner, runnerUpId: loser, group: null,
+      teamId: fin.winner, runnerUpId: loser, group: null, finalsMvp: pf.outcome!.champions[0].finalsMvp,
     }]);
     expect(rec.bracket).toEqual({ seeds: pf.seeds, series: pf.series });
     expect(rec.standings!.map(r => r.group)).toEqual([...Array(15).fill('E'), ...Array(15).fill('W')]);
@@ -108,7 +110,33 @@ describe('seasonRecord', () => {
 
   it('copies the All-Star results (FBA)', () => {
     const rec = seasonRecord({ ...fbaDone(), allstar: allStarDoc(true) }, []);
-    expect(rec.allStar).toEqual({ allStars: ['p00001'], youngStars: ['p00002'], asgMvp: null, fivePoint: 'p00003', dunk: 'p00004' });
+    expect(rec.allStar).toEqual({
+      allStars: ['p00001'], youngStars: ['p00002'], asgMvp: null, fivePoint: 'p00003', dunk: 'p00004',
+      asgWinner: null, asgLoser: null, ysgWinner: null, ysgMvp: null,
+    });
+  });
+
+  it('records the Finals MVP and the All-Star game and Young-Star winners, losers and MVP', () => {
+    const s = fbaDone();
+    const doc: AllStarFile = {
+      ...allStarDoc(true),
+      selections: { allStars: ['p00001'], captains: ['p00010', 'p00011'], youngStars: ['p00002'], youngCaptains: ['p00020', 'p00021'] },
+      asg: { game: { teams: [0, 1], rolls: [], scores: [40, 50], rollOff: null, winner: 1 }, mvp: 'p00011', mvpRollOff: null },
+      ysg: {
+        semis: [], final: { teams: [0, 1], rolls: [], scores: [30, 20], rollOff: null, winner: 0 }, champion: 0, mvp: 'p00020', mvpRollOff: null,
+      } as AllStarFile['ysg'],
+    };
+    const name = (id: string) => s.players.players[id]?.name ?? 'Unnamed';
+    const rec = seasonRecord({ ...s, allstar: doc }, []);
+    expect(rec.champions[0].finalsMvp).toBe(s.playoffs!.outcome!.champions[0].finalsMvp);
+    expect(rec.champions[0].finalsMvp).toMatch(/^p\d{5}$/);
+    expect(rec.allStar).toMatchObject({
+      asgMvp: 'p00011', asgWinner: `Team ${name('p00011')}`, asgLoser: `Team ${name('p00010')}`, ysgWinner: `Team ${name('p00020')}`, ysgMvp: 'p00020',
+    });
+  });
+
+  it('records a null Finals MVP when none was picked', () => {
+    expect(seasonRecord(fbaPlayed(), []).champions[0].finalsMvp).toBeNull();
   });
 
   it('records the four D2 champions, the league snapshot and promotion', () => {
@@ -154,6 +182,20 @@ describe('finishSeason', () => {
     expect(r.state.allstar!.locked).toBe(true);
     expect(r.state.tx.entries.at(-1)!.lines).toEqual(['S79 FBA season finished']);
     expect(ok(finishSeason({ ...s, allstar: allStarDoc(true) }, [], ctx)).changed).not.toContain('allstar');
+  });
+
+  it('refuses until each champion has a Finals or Series MVP pick', () => {
+    const problems = (x: SeasonState) => {
+      const r = finishSeason(x, [], ctx);
+      return r.ok ? [] : r.problems;
+    };
+    expect(problems(fbaPlayed())).toEqual(['Pick the Finals MVP first']);
+    expect(problems(d2Played())).toEqual(['Pick every Series MVP first']);
+    const d2 = d2Played();
+    const one = ok(pickFinalsMvp(d2, 'PL', finalsMvpCandidates(d2, 'PL')[0].playerId)).state;
+    expect(problems(one)).toEqual(['Pick every Series MVP first']);
+    expect(finishSeason(fbaDone(), [], ctx).ok).toBe(true);
+    expect(finishSeason(d2Done(), [], ctx).ok).toBe(true);
   });
 
   it('refuses before the last final, with unlocked awards, twice, off-step, or with an unfinished rating pause', () => {

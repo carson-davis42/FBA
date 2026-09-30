@@ -7,7 +7,7 @@ import type { SeasonResult, SeasonState } from '../season/state';
 import { fbaSeasonState } from '../season/testFixtures';
 import { PlayoffsFile } from '../shared/types';
 import { FINALS } from './bracket';
-import { lockSeeds, nextPlayoffGame, recordPlayoffGame, seedPreview } from './moves';
+import { finalsMvpCandidates, lockSeeds, nextPlayoffGame, pickFinalsMvp, recordPlayoffGame, seedPreview } from './moves';
 import { fullD2State, fullFbaState, playPlayoffs, regularSeasonDone } from './testFixtures';
 
 const ok = (r: SeasonResult) => {
@@ -126,5 +126,86 @@ describe('recordPlayoffGame', () => {
     expect(out.promotion!.map(p => [p.league, p.promoted.length, p.relegated.length])).toEqual([['PL', 0, 2], ['WL', 2, 2], ['UL', 2, 2], ['IL', 2, 0]]);
     expect(s.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(false);
     expect(PlayoffsFile.safeParse(s.playoffs).success).toBe(true);
+  });
+});
+
+describe('finalsMvpCandidates and pickFinalsMvp', () => {
+  const fbaPlayed = () => playPlayoffs(ok(lockSeeds(regularSeasonDone(fullFbaState()))).state, 5);
+  const d2Played = () => playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
+
+  it('lists only the champion players who played in the final, with games and points per game, best first', () => {
+    const s = fbaPlayed();
+    const pf = s.playoffs!;
+    const champ = pf.outcome!.champions[0].teamId;
+    const finals = pf.games.filter(g => g.seriesId === FINALS);
+    const roster = new Set(finals.flatMap(g => (g.home === champ ? g.box!.home : g.box!.away).map(l => l.playerId)));
+    const cands = finalsMvpCandidates(s, null);
+    expect(new Set(cands.map(c => c.playerId))).toEqual(roster);
+    for (const c of cands) {
+      const lines = finals.flatMap(g => (g.home === champ ? g.box!.home : g.box!.away).filter(l => l.playerId === c.playerId));
+      expect(c.gp).toBe(lines.length);
+      expect(c.ppg).toBe(Math.round(lines.reduce((n, l) => n + l.pts, 0) / lines.length * 10) / 10);
+    }
+    const sorted = [...cands].sort((a, b) => b.ppg - a.ppg || a.name.localeCompare(b.name));
+    expect(cands).toEqual(sorted);
+  });
+
+  it('rounds points per game to one decimal (3 games, 61 points is 20.3)', () => {
+    const s = fbaPlayed();
+    const pf = s.playoffs!;
+    const champ = pf.outcome!.champions[0].teamId;
+    const target = finalsMvpCandidates(s, null)[0].playerId;
+    // Rewrite the final so the target has exactly 3 lines of 20, 20 and 21 points.
+    const games = pf.games.filter(g => g.seriesId === FINALS).slice(0, 3).map(g => ({ ...g }));
+    const others = pf.games.filter(g => g.seriesId !== FINALS);
+    const fake = games.map((g, i) => {
+      const side = g.home === champ ? 'home' : 'away';
+      return { ...g, box: { ...g.box!, [side]: [{ playerId: target, pts: [20, 20, 21][i] }] } };
+    });
+    expect(fake).toHaveLength(3);
+    const rigged = { ...s, playoffs: { ...pf, games: [...others, ...fake] } };
+    expect(finalsMvpCandidates(rigged, null)).toEqual([expect.objectContaining({ playerId: target, gp: 3, ppg: 20.3 })]);
+  });
+
+  it('returns nothing with no outcome or no champion for that group', () => {
+    const seeded = ok(lockSeeds(regularSeasonDone(fullFbaState()))).state;
+    expect(finalsMvpCandidates(seeded, null)).toEqual([]);
+    expect(finalsMvpCandidates(fbaPlayed(), 'E')).toEqual([]);
+  });
+
+  it('picks, and picking again replaces the pick', () => {
+    const s = fbaPlayed();
+    const [a, b] = finalsMvpCandidates(s, null);
+    const r1 = ok(pickFinalsMvp(s, null, a.playerId));
+    expect(r1.label).toBe('Pick the Finals MVP');
+    expect(r1.changed).toEqual(['playoffs']);
+    expect(r1.state.playoffs!.outcome!.champions[0].finalsMvp).toBe(a.playerId);
+    expect(PlayoffsFile.safeParse(r1.state.playoffs).success).toBe(true);
+    const r2 = ok(pickFinalsMvp(r1.state, null, b.playerId));
+    expect(r2.state.playoffs!.outcome!.champions[0].finalsMvp).toBe(b.playerId);
+  });
+
+  it('refuses with no champion, a finished season, or a player who did not play in the final', () => {
+    const seeded = ok(lockSeeds(regularSeasonDone(fullFbaState()))).state;
+    const fail = (r: SeasonResult) => (r.ok ? [] : r.problems);
+    expect(fail(pickFinalsMvp(seeded, null, 'p00001'))).toEqual(['No champion yet']);
+    const s = fbaPlayed();
+    const cand = finalsMvpCandidates(s, null)[0];
+    expect(fail(pickFinalsMvp({ ...s, summary: {} as never }, null, cand.playerId))).toEqual(['The season is finished']);
+    const outsider = Object.keys(s.players.players).find(id => !finalsMvpCandidates(s, null).some(c => c.playerId === id))!;
+    expect(fail(pickFinalsMvp(s, null, outsider))).toEqual([`${s.players.players[outsider]?.name ?? 'Unnamed'} didn't play in the final`]);
+  });
+
+  it('picks a D2 Series MVP only for that league, with the league in the label', () => {
+    const s = d2Played();
+    const wl = finalsMvpCandidates(s, 'WL');
+    expect(wl.length).toBeGreaterThan(0);
+    const r = ok(pickFinalsMvp(s, 'WL', wl[0].playerId));
+    expect(r.label).toBe('Pick the World League Series MVP');
+    const champs = r.state.playoffs!.outcome!.champions;
+    expect(champs.map(c => [c.group, c.finalsMvp ?? null])).toEqual([['PL', null], ['WL', wl[0].playerId], ['UL', null], ['IL', null]]);
+    const pl = finalsMvpCandidates(s, 'PL');
+    expect(pl.some(c => c.playerId === wl[0].playerId)).toBe(false);
+    expect(pickFinalsMvp(s, 'PL', wl[0].playerId).ok).toBe(false);
   });
 });
