@@ -202,9 +202,10 @@ describe('resetUndo passthrough and history', () => {
 
   it('loads a league history', async () => {
     vi.stubGlobal('fetch', vi.fn(async (url: string) => (url === '/api/history/fba'
-      ? new Response(JSON.stringify({ league: 'fba', seasons: [{ season: 78 }] }))
+      ? new Response(JSON.stringify({ league: 'fba', seasons: [{ season: 78 }], errors: [{ season: 5, message: 'bad JSON' }] }))
       : new Response('{}', { status: 404 }))));
     const { result } = renderHook(() => useHistory('fba'));
     await waitFor(() => expect(result.current.seasons).toEqual([{ season: 78 }]));
+    expect(result.current.errors).toEqual([{ season: 5, message: 'bad JSON' }]);
   });
 });

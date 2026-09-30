@@ -158,7 +158,8 @@ export function createHandler(
         if (req.method !== 'GET') return sendJson(res, 405, { error: 'Method not allowed' });
         const league = history[1];
         if (!isLeagueId(league)) return sendJson(res, 404, { error: `Unknown league: ${league}` });
-        return sendJson(res, 200, { league, seasons: await storage.history(league) });
+        const { seasons, errors } = await storage.history(league);
+        return sendJson(res, 200, { league, seasons, errors });
       }
 
       const logo = pathname.match(/^\/logos\/([^/]+)\/(\d+)$/);

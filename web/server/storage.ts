@@ -2,6 +2,7 @@ import { mkdir, readdir, readFile, rename, rm, unlink, writeFile } from 'node:fs
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { isUndoProtected, pathAgreementProblem, schemaForPath } from '../engine/shared/schemaRegistry';
+import { SummaryFile } from '../engine/shared/types';
 
 export type Version = string | null;
 
@@ -221,13 +222,13 @@ export class Storage {
     });
   }
 
-  /** Every leagues/<league>/S<n>/summary.json, ordered by n. */
-  async history(league: string): Promise<unknown[]> {
+  /** Every valid leagues/<league>/S<n>/summary.json, ordered by n. A file that is bad JSON or fails the schema is skipped and listed in `errors`. */
+  async history(league: string): Promise<{ seasons: unknown[]; errors: { season: number; message: string }[] }> {
     let names: string[];
     try {
       names = await readdir(path.join(this.dataDir, 'leagues', league));
     } catch (e) {
-      if (isMissing(e)) return [];
+      if (isMissing(e)) return { seasons: [], errors: [] };
       throw e;
     }
     const seasons = names
@@ -236,11 +237,25 @@ export class Storage {
       .map(m => Number(m[1]))
       .sort((a, b) => a - b);
     const out: unknown[] = [];
+    const errors: { season: number; message: string }[] = [];
     for (const n of seasons) {
       const text = await this.readRaw(this.fullPath(`leagues/${league}/S${n}/summary.json`));
-      if (text !== null) out.push(JSON.parse(text));
+      if (text === null) continue;
+      let doc: unknown;
+      try {
+        doc = JSON.parse(text);
+      } catch {
+        errors.push({ season: n, message: 'bad JSON' });
+        continue;
+      }
+      const parsed = SummaryFile.safeParse(doc);
+      if (parsed.success) out.push(doc);
+      else {
+        const issue = parsed.error.issues[0];
+        errors.push({ season: n, message: `${issue.path.join('.')}: ${issue.message}` });
+      }
     }
-    return out;
+    return { seasons: out, errors };
   }
 
   /** Deletes the Undo journal and the backups. A failure is logged, not thrown: the batch itself has already been saved. */

@@ -190,20 +190,20 @@ export async function peekUndo(): Promise<{ available: boolean; label: string | 
   return { available: body.available, label: body.label, blockedBy: body.blockedBy ?? null };
 }
 
-/** Every saved season record of a league, oldest first (`GET /api/history/<league>`). */
-export function useHistory(league: string | null): { seasons?: SummaryFile[]; error?: Error } {
-  const [state, setState] = useState<{ league?: string; seasons?: SummaryFile[]; error?: Error }>({});
+/** Every valid saved season record of a league, oldest first, plus the ones the server skipped (`GET /api/history/<league>`). */
+export function useHistory(league: string | null): { seasons?: SummaryFile[]; errors?: { season: number; message: string }[]; error?: Error } {
+  const [state, setState] = useState<{ league?: string; seasons?: SummaryFile[]; errors?: { season: number; message: string }[]; error?: Error }>({});
   useEffect(() => {
     if (!league) return;
     let live = true;
     fetch(`/api/history/${league}`)
       .then(check)
-      .then(res => res.json() as Promise<{ seasons: SummaryFile[] }>)
+      .then(res => res.json() as Promise<{ seasons: SummaryFile[]; errors?: { season: number; message: string }[] }>)
       .then(
-        body => { if (live) setState({ league, seasons: body.seasons }); },
+        body => { if (live) setState({ league, seasons: body.seasons, errors: body.errors ?? [] }); },
         (error: unknown) => { if (live) setState({ league, error: error as Error }); },
       );
     return () => { live = false; };
   }, [league]);
-  return league !== null && state.league === league ? { seasons: state.seasons, error: state.error } : {};
+  return league !== null && state.league === league ? { seasons: state.seasons, errors: state.errors, error: state.error } : {};
 }

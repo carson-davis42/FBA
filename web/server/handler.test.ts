@@ -372,7 +372,7 @@ describe('history and resetUndo routes', () => {
       const put = await fetch(`${base}/api/state/leagues/fbajc/S${s}/summary.json`, { method: 'PUT', headers: { 'If-Match': tag }, body: JSON.stringify(sum(s)) });
       expect(put.status).toBe(200);
     }
-    expect(await (await fetch(`${base}/api/history/fbajc`)).json()).toEqual({ league: 'fbajc', seasons: [sum(3), sum(12)] });
+    expect(await (await fetch(`${base}/api/history/fbajc`)).json()).toEqual({ league: 'fbajc', seasons: [sum(3), sum(12)], errors: [] });
     expect((await fetch(`${base}/api/history/nba`)).status).toBe(404);
     expect((await fetch(`${base}/api/history/fbajc`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })).status).toBe(405);
   });

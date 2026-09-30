@@ -1,4 +1,4 @@
-import { existsSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
@@ -340,7 +340,23 @@ describe('Storage history', () => {
     const sum = (season: number) => ({ league: 'fba', season, locked: true, host: null, champions: [] });
     for (const s of [79, 9, 78]) await storage.write(`leagues/fba/S${s}/summary.json`, sum(s));
     await storage.write('leagues/fba/S80/rosters.json', { league: 'fba', season: 80, locked: false, teams: {} });
-    expect(await storage.history('fba')).toEqual([sum(9), sum(78), sum(79)]);
-    expect(await storage.history('fbad2')).toEqual([]);
+    expect(await storage.history('fba')).toEqual({ seasons: [sum(9), sum(78), sum(79)], errors: [] });
+    expect(await storage.history('fbad2')).toEqual({ seasons: [], errors: [] });
+  });
+
+  it('skips a summary that is bad JSON or fails the schema, and reports it in errors', async () => {
+    const { dir, storage } = fresh();
+    const good = { league: 'fba', season: 9, locked: true, host: null, champions: [] };
+    await storage.write('leagues/fba/S9/summary.json', good);
+    mkdirSync(path.join(dir, 'leagues', 'fba', 'S10'), { recursive: true });
+    writeFileSync(path.join(dir, 'leagues', 'fba', 'S10', 'summary.json'), '{');
+    mkdirSync(path.join(dir, 'leagues', 'fba', 'S11'), { recursive: true });
+    writeFileSync(path.join(dir, 'leagues', 'fba', 'S11', 'summary.json'), JSON.stringify({ ...good, season: 'x' }));
+    const out = await storage.history('fba');
+    expect(out.seasons).toEqual([good]);
+    expect(out.errors).toHaveLength(2);
+    expect(out.errors[0]).toEqual({ season: 10, message: 'bad JSON' });
+    expect(out.errors[1].season).toBe(11);
+    expect(out.errors[1].message).toMatch(/^season: /);
   });
 });
