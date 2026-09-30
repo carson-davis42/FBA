@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { MemoryRouter, useNavigate, type NavigateFunction } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Layout } from './Layout';
 
@@ -47,5 +47,18 @@ describe('Layout', () => {
     expect(document.documentElement.dataset.theme).toBe('light');
     fireEvent.click(screen.getByRole('button', { name: /dark mode/i }));
     expect(document.documentElement.dataset.theme).toBe('dark');
+  });
+});
+
+describe('Layout page wrapper', () => {
+  it('keeps the page mounted across a param-only change and remounts it for another page', () => {
+    let go: NavigateFunction = () => {};
+    function Grab() { go = useNavigate(); return null; }
+    const { container } = render(<MemoryRouter initialEntries={['/history/fba/season/78']}><Grab /><Layout /></MemoryRouter>);
+    const first = container.querySelector('.page-in');
+    act(() => go('/history/fba/season/77'));
+    expect(container.querySelector('.page-in')).toBe(first);
+    act(() => go('/calendar'));
+    expect(container.querySelector('.page-in')).not.toBe(first);
   });
 });

@@ -86,7 +86,7 @@ button.chip:hover, a.chip:hover { background: var(--row-hover); }
 .badge-champion { background: var(--gold); color: var(--on-gold); border-color: transparent; }
 .badge-mvp, .badge-finals-mvp, .badge-live { background: var(--accent); color: var(--on-accent); border-color: transparent; }
 .badge-all-star { background: var(--info-bg); color: var(--on-accent); border-color: transparent; }
-.badge-all-fba { background: var(--silver); color: var(--on-accent); border-color: transparent; }
+.badge-all-fba { background: var(--silver); color: var(--on-silver); border-color: transparent; }
 .badge-hof { background: var(--hof-bg); color: var(--gold); border-color: var(--gold); }
 .badge-clinched, .badge-done { background: var(--good-soft); color: var(--good); border-color: transparent; }
 .badge-final { background: var(--text); color: var(--surface); border-color: transparent; }

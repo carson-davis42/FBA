@@ -7,7 +7,7 @@
   --masthead-bg: #121417; --masthead-text: #f5f6f8;
   --hero-from: #0b1020; --hero-to: #1c2a5a;
   --gold: #c9971c; --silver: #8a94a6; --bronze: #a0612b;
-  --on-accent: #fff; --on-gold: #1a1300;
+  --on-accent: #fff; --on-gold: #1a1300; --on-silver: #0f1115;
   --info: #1d4ed8; --info-bg: #1d4ed8; --warn: #92400e; --warn-2: #b45309; --hof-bg: #111;
   --masthead-hover: rgba(255, 255, 255, 0.08); --masthead-line: rgba(255, 255, 255, 0.25);
   --focus: var(--accent);

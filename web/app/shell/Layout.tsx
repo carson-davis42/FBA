@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { createRoutesFromElements, matchRoutes, Route, useLocation, useRoutes } from 'react-router-dom';
 import { AllStarPage } from '../allstar/AllStarPage';
 import { CalendarPage } from '../pages/CalendarPage';
 import { D2DraftPage } from '../pages/D2DraftPage';
@@ -42,57 +42,64 @@ import { PlayersHistoryPage } from '../history/PlayersHistoryPage';
 import { SeasonHistoryPage } from '../history/SeasonHistoryPage';
 import { SiteHeader } from './SiteHeader';
 
+/** Built once, so the page wrapper can key on the matched route pattern. */
+const ROUTES = createRoutesFromElements(
+  <>
+  <Route path="/" element={<Home />} />
+  <Route path="/calendar" element={<CalendarPage />} />
+  <Route path="/next-season" element={<NextSeasonPage />} />
+  <Route path="/schedules" element={<SchedulesPage />} />
+  <Route path="/league/fbad2/ratings" element={<D2RatingsPage />} />
+  <Route path="/league/fbad2/draft" element={<D2DraftPage />} />
+  <Route path="/league/fbajc/recruiting" element={<RecruitingPage />} />
+  <Route path="/league/fbajc/portal" element={<PortalPage />} />
+  <Route path="/league/fbajc/class-ranking" element={<ClassRankingPage />} />
+  <Route path="/league/fbajc/ratings" element={<CollegeRatingsPage />} />
+  <Route path="/league/fba/lottery" element={<LotteryPage />} />
+  <Route path="/retirement" element={<RetirementPage />} />
+  <Route path="/offseason/adjust-age" element={<AdjustAgePage />} />
+  <Route path="/league/fba/ratings" element={<ProRatingsPage />} />
+  <Route path="/league/fba/draft" element={<FbaDraftPage />} />
+  <Route path="/league/fba/hall-of-fame" element={<HallOfFamePage />} />
+  <Route path="/league/fba/ratings-pause" element={<RatingPausePage />} />
+  <Route path="/league/fba/all-star" element={<AllStarPage />} />
+  <Route path="/league/:league/scores" element={<ScoresPage />} />
+  <Route path="/league/:league/game/:gameNo" element={<GamePage />} />
+  <Route path="/league/:league/playoffs/game/:n" element={<PlayoffGamePage />} />
+  <Route path="/league/:league/standings" element={<StandingsPage />} />
+  <Route path="/league/:league/playoffs" element={<PlayoffsPage />} />
+  <Route path="/league/:league/awards" element={<AwardsPage />} />
+  <Route path="/league/:league/rankings" element={<RankingsPage />} />
+  <Route path="/league/:league" element={<LeaguePage />} />
+  <Route path="/league/:league/free-agency" element={<FreeAgencyPage />} />
+  <Route path="/league/:league/team/:teamId" element={<TeamPage />} />
+  <Route path="/league/:league/transactions" element={<TransactionsPage />} />
+  <Route path="/trade/:league" element={<TradePage />} />
+  <Route path="/offseason" element={<OffseasonHub />} />
+  <Route path="/history" element={<HistoryHome />} />
+  <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
+  <Route path="/history/fba/awards" element={<AwardsHistoryPage />} />
+  <Route path="/history/fba/awards/players" element={<AwardsByPlayerPage />} />
+  <Route path="/history/fba/hall-of-fame" element={<HallOfFameHistoryPage />} />
+  <Route path="/history/fba/leaders" element={<LeadersPage />} />
+  <Route path="/history/fba/season/:season" element={<SeasonHistoryPage />} />
+  <Route path="/history/fba/players" element={<PlayersHistoryPage />} />
+  <Route path="/history/fba/players/:playerId" element={<PlayerHistoryPage />} />
+  <Route path="*" element={<Placeholder title="Not found" note="That page doesn't exist." />} />
+  </>,
+);
+
 export function Layout() {
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const page = useRoutes(ROUTES, location);
+  // Key on the route pattern, not the pathname: the page fades in when you move to another page,
+  // but a param-only change (another season, team or game) keeps the page mounted and its state.
+  const key = matchRoutes(ROUTES, location)?.map(m => m.route.path).join('|') ?? location.pathname;
   return (
     <div className="app">
       <SiteHeader />
       <main className="main">
-        <div key={pathname} className="page-in">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/calendar" element={<CalendarPage />} />
-          <Route path="/next-season" element={<NextSeasonPage />} />
-          <Route path="/schedules" element={<SchedulesPage />} />
-          <Route path="/league/fbad2/ratings" element={<D2RatingsPage />} />
-          <Route path="/league/fbad2/draft" element={<D2DraftPage />} />
-          <Route path="/league/fbajc/recruiting" element={<RecruitingPage />} />
-          <Route path="/league/fbajc/portal" element={<PortalPage />} />
-          <Route path="/league/fbajc/class-ranking" element={<ClassRankingPage />} />
-          <Route path="/league/fbajc/ratings" element={<CollegeRatingsPage />} />
-          <Route path="/league/fba/lottery" element={<LotteryPage />} />
-          <Route path="/retirement" element={<RetirementPage />} />
-          <Route path="/offseason/adjust-age" element={<AdjustAgePage />} />
-          <Route path="/league/fba/ratings" element={<ProRatingsPage />} />
-          <Route path="/league/fba/draft" element={<FbaDraftPage />} />
-          <Route path="/league/fba/hall-of-fame" element={<HallOfFamePage />} />
-          <Route path="/league/fba/ratings-pause" element={<RatingPausePage />} />
-          <Route path="/league/fba/all-star" element={<AllStarPage />} />
-          <Route path="/league/:league/scores" element={<ScoresPage />} />
-          <Route path="/league/:league/game/:gameNo" element={<GamePage />} />
-          <Route path="/league/:league/playoffs/game/:n" element={<PlayoffGamePage />} />
-          <Route path="/league/:league/standings" element={<StandingsPage />} />
-          <Route path="/league/:league/playoffs" element={<PlayoffsPage />} />
-          <Route path="/league/:league/awards" element={<AwardsPage />} />
-          <Route path="/league/:league/rankings" element={<RankingsPage />} />
-          <Route path="/league/:league" element={<LeaguePage />} />
-          <Route path="/league/:league/free-agency" element={<FreeAgencyPage />} />
-          <Route path="/league/:league/team/:teamId" element={<TeamPage />} />
-          <Route path="/league/:league/transactions" element={<TransactionsPage />} />
-          <Route path="/trade/:league" element={<TradePage />} />
-          <Route path="/offseason" element={<OffseasonHub />} />
-          <Route path="/history" element={<HistoryHome />} />
-          <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
-          <Route path="/history/fba/awards" element={<AwardsHistoryPage />} />
-          <Route path="/history/fba/awards/players" element={<AwardsByPlayerPage />} />
-          <Route path="/history/fba/hall-of-fame" element={<HallOfFameHistoryPage />} />
-          <Route path="/history/fba/leaders" element={<LeadersPage />} />
-          <Route path="/history/fba/season/:season" element={<SeasonHistoryPage />} />
-          <Route path="/history/fba/players" element={<PlayersHistoryPage />} />
-          <Route path="/history/fba/players/:playerId" element={<PlayerHistoryPage />} />
-          <Route path="*" element={<Placeholder title="Not found" note="That page doesn't exist." />} />
-        </Routes>
-        </div>
+        <div key={key} className="page-in">{page}</div>
       </main>
     </div>
   );
