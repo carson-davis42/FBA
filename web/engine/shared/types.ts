@@ -87,6 +87,21 @@ export const Champion = z.object({
 }).strict();
 export type Champion = z.infer<typeof Champion>;
 
+/** One name a franchise played under, from the team history sheet. `to` is null for the current era. */
+export const FranchiseEra = z.object({
+  name: z.string().min(1),
+  abbr: z.string().min(1),
+  city: z.string().min(1),
+  from: int.min(1),
+  to: int.min(1).nullable(),
+}).strict().refine(e => e.to === null || e.to >= e.from, { message: 'to must be null or at least from' });
+export type FranchiseEra = z.infer<typeof FranchiseEra>;
+export const Franchise = z.object({ teamId: z.string().min(1), eras: z.array(FranchiseEra).min(1) }).strict();
+export type Franchise = z.infer<typeof Franchise>;
+/** leagues/fba/franchises.json: each franchise's name eras, newest first. */
+export const FranchisesFile = z.object({ franchises: z.array(Franchise) }).strict();
+export type FranchisesFile = z.infer<typeof FranchisesFile>;
+
 const pts = int.nonnegative();
 
 /** Points per player; games saved from 2b-2b on also carry defensive stats for that player as the defender. */
