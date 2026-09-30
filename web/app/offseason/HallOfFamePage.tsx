@@ -4,7 +4,7 @@ import {
   addNominees, candidates, CLASS_SIZE, editNominee, freeNameCard, HOF_PATH, HOF_STEP, induct, NOMINEE_CAP, prefillCard, removeNominee,
 } from '../../engine/offseason/hallOfFame';
 import { calendarProblem, type WritesResult } from '../../engine/season/moves';
-import type { CalendarFile, HallOfFameFile, HofCard, MetaFile, PlayersFile, TransactionsFile } from '../../engine/shared/types';
+import type { CalendarFile, HallOfFameFile, HofCard, MetaFile, PlayerBiosFile, PlayersFile, TransactionsFile } from '../../engine/shared/types';
 import { useDoc, useHistory, useSaving } from '../api';
 import { SkippedWarning } from '../history/PlayerLink';
 import { commitDocs, newBatchId } from '../roster/commit';
@@ -38,6 +38,7 @@ export function HallOfFamePage() {
   const hof = useDoc<HallOfFameFile>(n === undefined ? null : HOF_PATH);
   const txPath = n === undefined ? null : `leagues/fba/S${n}/transactions.json`;
   const tx = useDoc<TransactionsFile>(txPath);
+  const bios = useDoc<PlayerBiosFile>('leagues/fba/playerBios.json');
   const history = useHistory('fba');
   const saving = useSaving();
   const [picked, setPicked] = useState<string[]>([]);
@@ -48,15 +49,16 @@ export function HallOfFamePage() {
 
   const list = useMemo(() => (hof.data && players.data ? candidates(hof.data, players.data) : []), [hof.data, players.data]);
 
-  const err = meta.error ?? calendar.error ?? players.error ?? tx.error ?? (hof.missing ? undefined : hof.error) ?? history.error;
+  const err = meta.error ?? calendar.error ?? players.error ?? tx.error ?? (hof.missing ? undefined : hof.error) ?? (bios.missing ? undefined : bios.error) ?? history.error;
   if (err) return <p className="error">Couldn't load the Hall of Fame: {err.message}</p>;
   if (hof.missing) {
     return <section><h1>Hall of Fame</h1><p>Import the Hall of Fame first: run "npm run import -- --hall-of-fame" in web/.</p></section>;
   }
-  if (n === undefined || !calendar.data || !players.data || !hof.data || !tx.data || !history.seasons) return <p className="muted">Loading…</p>;
+  if (n === undefined || !calendar.data || !players.data || !hof.data || !tx.data || (!bios.data && !bios.missing) || !history.seasons) return <p className="muted">Loading…</p>;
   const doc = hof.data;
   const cal = calendar.data;
   const summaries = history.seasons;
+  const bioOf = (id: string) => bios.data?.bios.find(b => b.playerId === id) ?? null;
   const asked = params.get('tab');
   const tab: Tab = asked === 'nominees' ? 'nominees' : 'hall';
   const tabLink = (id: Tab, label: string) => (
@@ -80,23 +82,7 @@ export function HallOfFamePage() {
   };
   const settle = () => { setPicked([]); setInductees([]); };
 
-  const hall = (
-    <div>
-      {[...doc.classes].reverse().map(c => (
-        <div key={c.season}>
-          <h2>{c.season}</h2>
-          <div className="hof-grid">
-            {c.inductees.map((card, i) => (
-              <Card key={`${card.name}${i}`} card={card}>
-                <ul>{card.lines.map((l, j) => <li key={j}>{l}</li>)}</ul>
-              </Card>
-            ))}
-          </div>
-        </div>
-      ))}
-      {doc.classes.length === 0 && <p className="muted">No one has been inducted yet.</p>}
-    </div>
-  );
+  const hall = <p><Link to="/history/fba/hall-of-fame">See the Hall of Fame in History</Link></p>;
 
   const toggle = <T,>(items: T[], set: (v: T[]) => void, item: T) =>
     set(items.includes(item) ? items.filter(x => x !== item) : [...items, item]);
@@ -147,7 +133,7 @@ export function HallOfFamePage() {
         <>
           <ul aria-label="Candidates">
             {list.map(c => {
-              const card = prefillCard(c, summaries);
+              const card = prefillCard(c, summaries, bioOf(c.playerId), doc);
               return (
                 <li key={c.playerId}>
                   <label><input type="checkbox" aria-label={`Select ${c.name}`} checked={picked.includes(c.playerId)} onChange={() => toggle(picked, setPicked, c.playerId)} /> <strong>{c.name}</strong></label>{' '}
@@ -159,7 +145,7 @@ export function HallOfFamePage() {
           </ul>
           <p>
             <button className="btn" disabled={saving || picked.length === 0} onClick={() => {
-              const cards = list.filter(c => picked.includes(c.playerId)).map(c => prefillCard(c, summaries));
+              const cards = list.filter(c => picked.includes(c.playerId)).map(c => prefillCard(c, summaries, bioOf(c.playerId), doc));
               void run(addNominees(doc, cards)).then(ok => { if (ok) settle(); });
             }}>Add selected</button>
           </p>

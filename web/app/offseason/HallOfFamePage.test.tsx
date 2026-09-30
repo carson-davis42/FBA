@@ -33,6 +33,13 @@ const hof = (over: Partial<HallOfFameFile> = {}): HallOfFameFile => ({ league: '
 const summaries = [{
   league: 'fba', season: 78, locked: true, host: null, champions: [],
   awards: [{ award: 'MVP', playerId: pid(2), teamId: 'BOS' }],
+}, {
+  league: 'fba', season: 79, locked: true, host: null, champions: [],
+  awards: [{ award: 'MVP', playerId: pid(2), teamId: 'BOS' }],
+  players: [{
+    playerId: pid(2), teamId: 'BOS', stint: 1, position: 'PG', ratingStart: 70, ratingEnd: 72,
+    rs: { g: 60, pts: 1200, def: 0, stops: 0, allowed: 0, exp: 0 }, po: null,
+  }],
 }] as unknown as SummaryFile[];
 
 function docs(h: HallOfFameFile | null, calendar: CalendarFile = calendarAt(HOF_STEP)): Record<string, unknown> {
@@ -64,21 +71,12 @@ describe('HallOfFamePage', () => {
     expect(await screen.findByText("Some seasons couldn't be read: S12, S40")).toBeTruthy();
   });
 
-  it('shows the classes newest first with their cards', async () => {
-    stubApi(docs(hof({
-      classes: [
-        { season: 'S8', inductees: [card('Old Timer', ['BOS: S1-S9'], 'S9')] },
-        { season: 'S64', inductees: [card('Newer Guy', ['CAR: S50-S64', 'S60 MVP'], 'S64')] },
-      ],
-    })));
+  it('points the Hall tab at the Hall of Fame in History', async () => {
+    stubApi(docs(hof({ classes: [{ season: 'S64', inductees: [card('Newer Guy', ['CAR: S50-S64'], 'S64')] }] })));
     renderPage();
-    await screen.findByText('Newer Guy');
-    const heads = screen.getAllByRole('heading', { level: 2 });
-    expect(heads.map(h => h.textContent)).toEqual(['S64', 'S8']);
-    const c = screen.getByText('Newer Guy').closest('.hof-card') as HTMLElement;
-    expect(c.textContent).toContain('Retired S64');
-    expect(within(c).getByText('S60 MVP')).toBeTruthy();
-    expect(within(c).getByText('CAR: S50-S64')).toBeTruthy();
+    const link = await screen.findByRole('link', { name: 'See the Hall of Fame in History' });
+    expect(link.getAttribute('href')).toBe('/history/fba/hall-of-fame');
+    expect(screen.queryByText('Newer Guy')).toBeNull();
   });
 
   it('shows the nominee count and saves edited lines on blur', async () => {
@@ -132,7 +130,7 @@ describe('HallOfFamePage', () => {
       expect.stringContaining('Zed Zephyr'),
       expect.stringContaining('Al Able'),
     ]);
-    expect(within(list).getByText('S78 MVP')).toBeTruthy();
+    expect(within(list).getByText('1x MVP')).toBeTruthy();
     fireEvent.click(screen.getByLabelText('Select Zed Zephyr'));
     fireEvent.click(screen.getByLabelText('Select Al Able'));
     fireEvent.click(screen.getByRole('button', { name: 'Add selected' }));
@@ -140,7 +138,7 @@ describe('HallOfFamePage', () => {
     expect(log.batches[0].writes.map(w => w.path)).toEqual([HOF_PATH]);
     const doc = log.batches[0].writes[0].doc as HallOfFameFile;
     expect(doc.nominees.map(n => n.name)).toEqual(['Zed Zephyr', 'Al Able']);
-    expect(doc.nominees[1].lines).toContain('S78 MVP');
+    expect(doc.nominees[1].lines).toContain('1x MVP');
   });
 
   it('shows the cap problem and posts nothing past the cap', async () => {

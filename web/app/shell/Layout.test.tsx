@@ -15,6 +15,7 @@ const calendar = {
 beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
     if (url === '/api/state/calendar.json') return new Response(JSON.stringify(calendar));
+    if (url === '/api/state/players.json') return new Response(JSON.stringify({ nextId: 1, players: {} }));
     if (url === '/api/history/fba') return new Response(JSON.stringify({ seasons: [], errors: [] }));
     return new Response(JSON.stringify({ error: 'nf' }), { status: 404 });
   }));
@@ -32,6 +33,12 @@ describe('Layout', () => {
     for (const label of ['FBA', 'FBAD2', 'FBAJC', 'World Cup']) expect(screen.getByRole('link', { name: new RegExp(`^${label}$`) })).toBeTruthy();
     expect(await screen.findByText('S79 · Free Agency/Offseason')).toBeTruthy();
     expect(await screen.findByRole('heading', { name: 'History' })).toBeTruthy();
+  });
+
+  it('links the sidebar Hall of Fame to History and serves that route', async () => {
+    render(<MemoryRouter initialEntries={['/history/fba/hall-of-fame']}><Layout /></MemoryRouter>);
+    expect(screen.getByRole('link', { name: 'Hall of Fame' }).getAttribute('href')).toBe('/history/fba/hall-of-fame');
+    expect(await screen.findByRole('heading', { name: 'Hall of Fame' })).toBeTruthy();
   });
 
   it('toggles the dark theme', () => {

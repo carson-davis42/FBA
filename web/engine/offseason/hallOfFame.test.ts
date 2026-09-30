@@ -67,7 +67,7 @@ describe('candidates', () => {
     });
     const list = candidates(h, players());
     expect(list.map(c => c.playerId)).toEqual([pid(4), pid(5), pid(6)]);
-    for (const c of list) expect(addNominees(h, [prefillCard(c, [])]).ok).toBe(true);
+    for (const c of list) expect(addNominees(h, [prefillCard(c, [], null, null)]).ok).toBe(true);
   });
   it('carries the name and retired info, and skips unnamed and unretired players', () => {
     const list = candidates(hof(), players());
@@ -79,33 +79,54 @@ describe('candidates', () => {
 describe('prefillCard', () => {
   const c = (id: number) => candidates(hof(), players()).find(x => x.playerId === pid(id))!;
   it('starts with the FBA team line and the retirement season', () => {
-    expect(prefillCard(c(1), [])).toEqual({ name: 'Zed Zephyr', playerId: pid(1), retiredSeason: 'S79', lines: ['DCB: …-S79'] });
+    expect(prefillCard(c(1), [], null, null)).toEqual({ name: 'Zed Zephyr', playerId: pid(1), retiredSeason: 'S79', lines: ['DCB: …-S79'] });
   });
   it('uses D2 <team> and D2 Reserves for D2 retirees', () => {
-    expect(prefillCard(c(2), []).lines[0]).toBe('D2 AMS: …-S79');
-    const b = prefillCard(c(3), []);
+    expect(prefillCard(c(2), [], null, null).lines[0]).toBe('D2 AMS: …-S79');
+    const b = prefillCard(c(3), [], null, null);
     expect(b.retiredSeason).toBe('S78');
     expect(b.lines[0]).toBe('D2 Reserves: …-S78');
   });
-  it('adds award and All-FBA lines, oldest summary first', () => {
-    const s78 = summary(78, { awards: [{ award: 'MVP', playerId: pid(1), teamId: 'DCB' }, { award: 'ROTY', playerId: pid(4), teamId: 'DCB' }] });
-    const s79 = summary(79, {
-      awards: [{ award: 'DPOY', playerId: pid(1), teamId: 'DCB' }],
-      allFba: { team1: fiveOf(pid(1)), team2: fiveOf(pid(4)) },
+  it('builds the lines from the seasons played in the app, in place of the award lines', () => {
+    const line = (playerId: string) => ({
+      playerId, teamId: 'DCB', stint: 1, position: 'SF' as const, ratingStart: 70, ratingEnd: 72,
+      rs: { g: 60, pts: 1200, def: 0, stops: 0, allowed: 0, exp: 0 }, po: null,
     });
-    const lines = prefillCard(c(1), [s79, s78]).lines;
-    expect(lines).toEqual(['DCB: …-S79', 'S78 MVP', 'S79 DPOY', 'S79 All-FBA T1']);
-    expect(prefillCard(c(4), [s78, s79]).lines).toEqual(['DCB: …-S79', 'S78 ROTY', 'S79 All-FBA T2']);
+    const s79 = summary(79, { awards: [{ award: 'MVP', playerId: pid(1), teamId: 'DCB' }], players: [line(pid(1)), line(pid(4))] });
+    const lines = prefillCard(c(1), [s79], null, null).lines;
+    expect(lines[0]).toBe('DCB: S79');
+    expect(lines).toContain('1x MVP');
+    expect(prefillCard(c(4), [s79], null, null).lines).toEqual(['DCB: S79']);
   });
   it('tolerates summaries with no awards or All-FBA teams', () => {
-    expect(prefillCard(c(1), [summary(78), summary(79, { allFba: null })]).lines).toEqual(['DCB: …-S79']);
+    expect(prefillCard(c(1), [summary(78), summary(79, { allFba: null })], null, null).lines).toEqual(['DCB: …-S79']);
+  });
+});
+
+describe('prefillCard with a bio', () => {
+  const atkinsonBio = {
+    playerId: pid(1), born: 'Born-S46',
+    entries: ['Alabama-S64', '1x NC app.', '1x All-American', '1x DH Award', '1x SEC RS Champion', '1x SEC TOUR Champion',
+      'FLO-S65-S76', '12x All-Star', '2x Young-Star', '6x FBA C-Ship app.', '2x FBA Champion', '4x WC Champion', '1x MC Award', '1x All-FBA T1', '5x All-FBA T2',
+      'NO-S77-S78', '2x All-Star', 'HOF-S78'],
+  };
+  const c1 = () => candidates(hof(), players()).find(x => x.playerId === pid(1))!;
+  it('uses the full career lines', () => {
+    expect(prefillCard(c1(), [], atkinsonBio, null)).toEqual({
+      name: 'Zed Zephyr', playerId: pid(1), retiredSeason: 'S79',
+      lines: ['Alabama: S64', 'FLO: S65-S76', 'NO: S77-S78', '14x All-Star', '2x Young-Star', '6x FBA C-Ship app.',
+        '2x FBA Champion', '4x Conference Champion', '1x MC Award', '1x All-FBA T1', '5x All-FBA T2'],
+    });
+  });
+  it('keeps the stub line with no bio and no lines', () => {
+    expect(prefillCard(c1(), [], null, null).lines).toEqual(['DCB: …-S79']);
   });
 });
 
 describe('prefillCard with a null FBA team', () => {
   it('uses a question mark instead of null', () => {
     const c = { playerId: pid(1), name: 'Zed Zephyr', retired: retired(79, 'fba', null) };
-    expect(prefillCard(c, []).lines[0]).toBe('?: …-S79');
+    expect(prefillCard(c, [], null, null).lines[0]).toBe('?: …-S79');
   });
 });
 

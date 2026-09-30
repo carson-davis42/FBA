@@ -33,6 +33,7 @@ import { RetirementPage } from '../offseason/RetirementPage';
 import { AwardsByPlayerPage } from '../history/AwardsByPlayerPage';
 import { AwardsHistoryPage } from '../history/AwardsHistoryPage';
 import { ChampionshipsPage } from '../history/ChampionshipsPage';
+import { HallOfFameHistoryPage } from '../history/HallOfFameHistoryPage';
 import { HistoryHome } from '../history/HistoryHome';
 import { LeadersPage } from '../history/LeadersPage';
 import { PlayerHistoryPage } from '../history/PlayerHistoryPage';
@@ -83,6 +84,7 @@ export function Layout() {
           <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
           <Route path="/history/fba/awards" element={<AwardsHistoryPage />} />
           <Route path="/history/fba/awards/players" element={<AwardsByPlayerPage />} />
+          <Route path="/history/fba/hall-of-fame" element={<HallOfFameHistoryPage />} />
           <Route path="/history/fba/leaders" element={<LeadersPage />} />
           <Route path="/history/fba/season/:season" element={<SeasonHistoryPage />} />
           <Route path="/history/fba/players" element={<PlayersHistoryPage />} />

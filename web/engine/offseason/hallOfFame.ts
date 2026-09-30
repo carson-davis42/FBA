@@ -1,7 +1,8 @@
+import { careerLines, liveCareer } from '../history/career';
 import { appendTx, type MoveContext } from '../roster/state';
 import { calendarProblem, type WritesResult } from '../season/moves';
 import { markStepDone } from '../shared/calendar';
-import type { CalendarFile, HallOfFameFile, HofCard, PlayersFile, RetiredInfo, SummaryFile, TransactionsFile } from '../shared/types';
+import type { CalendarFile, HallOfFameFile, HofCard, PlayerBio, PlayersFile, RetiredInfo, SummaryFile, TransactionsFile } from '../shared/types';
 
 /** D17: the nominee list never holds more than this. */
 export const NOMINEE_CAP = 15;
@@ -34,18 +35,15 @@ export function candidates(hof: HallOfFameFile, players: PlayersFile): Candidate
 }
 
 /**
- * A card for a retiree: the last team as "TEAM: …-S79" (the start is left for the commissioner to fill in), then an
- * "S78 MVP" line per award and an "S79 All-FBA T1/T2" line per All-FBA team, oldest summary first.
+ * A card for a retiree: their full career lines (the imported bio plus the seasons played in the app, as in the History
+ * Hall of Fame). With no career on record it falls back to the last team as "TEAM: …-S79", the start left for the
+ * commissioner to fill in.
  */
-export function prefillCard(c: Candidate, summaries: SummaryFile[]): HofCard {
+export function prefillCard(c: Candidate, summaries: SummaryFile[], bio: PlayerBio | null, hof: HallOfFameFile | null): HofCard {
   const { retired } = c;
   const team = retired.league === 'fba' ? retired.teamId ?? '?' : `D2 ${retired.teamId ?? 'Reserves'}`;
-  const lines = [`${team}: …-S${retired.season}`];
-  for (const s of [...summaries].sort((a, b) => a.season - b.season)) {
-    for (const a of s.awards ?? []) if (a.playerId === c.playerId) lines.push(`S${s.season} ${a.award}`);
-    if (s.allFba?.team1.some(x => x.playerId === c.playerId)) lines.push(`S${s.season} All-FBA T1`);
-    if (s.allFba?.team2.some(x => x.playerId === c.playerId)) lines.push(`S${s.season} All-FBA T2`);
-  }
+  const lines = careerLines(liveCareer(bio, c.playerId, summaries, hof));
+  if (lines.length === 0) lines.push(`${team}: …-S${retired.season}`);
   return { name: c.name, playerId: c.playerId, retiredSeason: `S${retired.season}`, lines };
 }
 
