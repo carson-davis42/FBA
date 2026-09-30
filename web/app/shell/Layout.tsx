@@ -30,9 +30,11 @@ import { AdjustAgePage } from '../offseason/AdjustAgePage';
 import { FbaDraftPage } from '../offseason/FbaDraftPage';
 import { ProRatingsPage } from '../offseason/ProRatingsPage';
 import { RetirementPage } from '../offseason/RetirementPage';
+import { AwardsByPlayerPage } from '../history/AwardsByPlayerPage';
 import { AwardsHistoryPage } from '../history/AwardsHistoryPage';
 import { ChampionshipsPage } from '../history/ChampionshipsPage';
 import { HistoryHome } from '../history/HistoryHome';
+import { LeadersPage } from '../history/LeadersPage';
 import { PlayerHistoryPage } from '../history/PlayerHistoryPage';
 import { PlayersHistoryPage } from '../history/PlayersHistoryPage';
 import { SeasonHistoryPage } from '../history/SeasonHistoryPage';
@@ -80,6 +82,8 @@ export function Layout() {
           <Route path="/history" element={<HistoryHome />} />
           <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
           <Route path="/history/fba/awards" element={<AwardsHistoryPage />} />
+          <Route path="/history/fba/awards/players" element={<AwardsByPlayerPage />} />
+          <Route path="/history/fba/leaders" element={<LeadersPage />} />
           <Route path="/history/fba/season/:season" element={<SeasonHistoryPage />} />
           <Route path="/history/fba/players" element={<PlayersHistoryPage />} />
           <Route path="/history/fba/players/:playerId" element={<PlayerHistoryPage />} />

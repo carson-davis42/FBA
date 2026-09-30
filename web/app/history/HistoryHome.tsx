@@ -16,6 +16,9 @@ export function HistoryHome() {
         <li><Link to="/history/fba/awards">Awards</Link></li>
         {latest > 0 && <li><Link to={`/history/fba/season/${latest}`}>Seasons</Link></li>}
         <li><Link to="/history/fba/players">Players</Link></li>
+        <li><Link to="/history/fba/awards/players">Awards by player</Link></li>
+        <li><Link to="/history/fba/leaders">Career leaders</Link></li>
+        <li><Link to="/history/fba/hall-of-fame">Hall of Fame</Link></li>
       </ul>
     </section>
   );

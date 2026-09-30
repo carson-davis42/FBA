@@ -18,6 +18,7 @@ export function AwardsHistoryPage() {
     <section>
       <h1>FBA Awards</h1>
       <SkippedWarning errors={errors} />
+      <p><Link to="/history/fba/awards/players">Awards by player</Link></p>
       <div className="table-wrap">
         <table className="standings">
           <thead>
