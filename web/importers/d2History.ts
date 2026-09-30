@@ -14,11 +14,16 @@ export interface D2HistoryCtx { players: PlayersFile; teams: TeamsFile; existing
 
 const LEAGUES = ['PL', 'WL', 'UL', 'IL'];
 
+/** Sheet misspellings of D2 team names. */
+const SHEET_TEAM_ALIASES: Record<string, string> = { Luxemboug: 'Luxembourg' };
+/** Names shared by two players: Nadeem Akers (Osaka) was drafted at 22 in S72, so he is the one born in S50. */
+const PLAYER_OVERRIDES: Record<string, string> = { 'Nadeem Akers': 'p00040' };
+
 function teamIdLookup(teams: TeamsFile, report: Report): (name: string) => string | undefined {
   const byName = new Map(teams.teams.map(t => [t.name, t.teamId]));
   const seen = new Set<string>();
   return name => {
-    const id = byName.get(name);
+    const id = byName.get(SHEET_TEAM_ALIASES[name] ?? name);
     if (id === undefined && !seen.has(name)) {
       seen.add(name);
       report.info('d2-teams', `No D2 team is named "${name}"`);
@@ -75,7 +80,9 @@ export function buildD2History(
   d2Tabs: Record<string, string[][]>, draftTabs: Record<string, string[][]>, ctx: D2HistoryCtx, report: Report,
 ): { summaries: SummaryFile[]; leagueHistory: D2LeagueHistoryFile; drafts: D2DraftHistoryFile } {
   const teamId = teamIdLookup(ctx.teams, report);
-  const resolve = nameResolver(ctx.players, report, 'd2-history');
+  const resolveName = nameResolver(ctx.players, report, 'd2-history');
+  const resolve = (name: string, where: string): string | null =>
+    (PLAYER_OVERRIDES[name] && ctx.players.players[PLAYER_OVERRIDES[name]] ? PLAYER_OVERRIDES[name] : resolveName(name, where));
 
   const titles: TitleRow[] = [
     ...parseIntlChampionships(d2Tabs[D2_TABS.intl] ?? []),
