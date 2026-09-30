@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AllStarFile, AwardsFile, BoxLine, D2DraftFile, DraftFile, D2PoolFile, FreeAgentsFile, GameResult, HallOfFameFile, LogoManifest, LotteryFile, MetaFile, PickObligation, PicksFile, Player, PlayoffsFile, Prospect, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
+import { PastAllFbaTeams, PastBracket, PlayerBiosFile, AllStarFile, AwardsFile, BoxLine, D2DraftFile, DraftFile, D2PoolFile, FreeAgentsFile, GameResult, HallOfFameFile, LogoManifest, LotteryFile, MetaFile, PickObligation, PicksFile, Player, PlayoffsFile, Prospect, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -497,5 +497,114 @@ describe('Part 7d schemas', () => {
     const ranking = { league: 'fba', season: 80, kind: 'fba-reset', locked: false, rows: [row], order: ['p00001'], ratings: { p00001: 70 }, curve: [80] };
     expect(RankingFile.safeParse(ranking).success).toBe(true);
     for (const t of ['adjust-age', 'declare', 'fba-ratings']) expect(TransactionType.safeParse(t).success).toBe(true);
+  });
+});
+
+describe('Part 3a history schemas', () => {
+  const side = (name: string, record: string | null, seed: number | null) => ({ name, record, seed });
+  const ser = (id: string, home: unknown, away: unknown, homeWins: number, awayWins: number, winner: 'home' | 'away') => ({
+    id, round: Number(id[1]), home, away, homeWins, awayWins, winner,
+  });
+  const s54 = () => ({
+    rounds: 3,
+    series: [
+      ser('R1-1', side('St.Louis', '6-1', 1), side('Former Pirates', '3-4', 8), 2, 0, 'home'),
+      ser('R1-2', side('Boston', '5-2', 4), side('Miami', '4-3', 5), 2, 1, 'home'),
+      ser('R1-3', side('Denver', '5-2', 2), side('Utah', '3-4', 7), 2, 0, 'home'),
+      ser('R1-4', side('Seattle', '4-3', 3), side('Dallas', '4-3', 6), 1, 2, 'away'),
+      ser('R2-1', side('St.Louis', null, 1), side('Boston', null, 4), 3, 1, 'home'),
+      ser('R2-2', side('Denver', null, 2), side('Dallas', null, 6), 3, 2, 'home'),
+      ser('R3-1', side('St.Louis', null, 1), side('Denver', null, 2), 4, 3, 'home'),
+    ],
+  });
+  const tweak = (fn: (b: ReturnType<typeof s54>) => void) => { const b = s54(); fn(b); return b; };
+
+  describe('PastBracket', () => {
+    it('parses the 8-team S54 tree', () => {
+      expect(PastBracket.safeParse(s54()).success).toBe(true);
+    });
+    it('parses a 2-round tree with a BYE', () => {
+      const b = {
+        rounds: 2,
+        series: [
+          ser('R1-1', side('NO', null, null), null, 0, 0, 'home'),
+          ser('R1-2', side('LA', null, null), side('SA', null, null), 2, 1, 'home'),
+          ser('R2-1', side('NO', null, null), side('LA', null, null), 3, 0, 'home'),
+        ],
+      };
+      expect(PastBracket.safeParse(b).success).toBe(true);
+    });
+    it('rejects a winner that does not advance', () => {
+      expect(PastBracket.safeParse(tweak(b => { b.series[4].home = side('Boston', null, 4); })).success).toBe(false);
+    });
+    it('rejects a BYE series with wins', () => {
+      const b = { rounds: 1, series: [ser('R1-1', side('NO', null, null), null, 1, 0, 'home')] };
+      expect(PastBracket.safeParse(b).success).toBe(false);
+    });
+    it('rejects a missing series', () => {
+      expect(PastBracket.safeParse(tweak(b => { b.series = b.series.filter(s => s.id !== 'R2-1'); })).success).toBe(false);
+    });
+    it('rejects a winner with fewer wins', () => {
+      expect(PastBracket.safeParse(tweak(b => { b.series[0].homeWins = 0; b.series[0].awayWins = 2; })).success).toBe(false);
+    });
+  });
+
+  describe('PastAllFbaTeams', () => {
+    const team = (slots: string[]) => slots.map(slot => ({ slot, playerId: null, teamId: null }));
+    it('accepts each of the four orders', () => {
+      for (const o of [['G', 'F', 'C', 'ANY', 'ANY'], ['G', 'G', 'F', 'F', 'C'], ['OUT', 'MID', 'M2', 'IN'], ['OUT', 'MID', 'IN', 'ANY']]) {
+        expect(PastAllFbaTeams.safeParse({ team1: team(o), team2: team(o) }).success).toBe(true);
+      }
+    });
+    it('rejects teams with different orders', () => {
+      expect(PastAllFbaTeams.safeParse({ team1: team(['G', 'F', 'C', 'ANY', 'ANY']), team2: team(['OUT', 'MID', 'IN', 'ANY']) }).success).toBe(false);
+    });
+  });
+
+  describe('SummaryFile history fields', () => {
+    const base = () => ({
+      league: 'fba', season: 54, locked: true, host: null,
+      champions: [{ title: 'FBA Champion', champion: 'St.Louis', runnerUp: 'Denver', score: '4-3', finalsMvp: 'p00001' }],
+      standings: [{ teamId: 'STL', name: 'St.Louis', group: 'E', rank: 1, w: 60, l: 26, confW: null, confL: null, diff: null, marker: null, seed: 1, playoff: null }],
+      confChampions: { E: 'St.Louis', W: null },
+      pastBracket: s54(),
+      allStar: { allStars: [], youngStars: [], asgMvp: null, fivePoint: null, dunk: null, asgWinner: 'East', asgLoser: 'West', ysgWinner: 'Team A', ysgMvp: 'p00002' },
+    });
+    it('accepts null standing fields, confChampions, pastBracket, the new allStar fields and finalsMvp', () => {
+      expect(SummaryFile.safeParse(base()).success).toBe(true);
+    });
+    it('accepts the past All-FBA shape and null history fields', () => {
+      const o = ['OUT', 'MID', 'IN', 'ANY'].map(slot => ({ slot, playerId: null, teamId: null }));
+      expect(SummaryFile.safeParse({ ...base(), allFba: { team1: o, team2: o }, confChampions: null, pastBracket: null }).success).toBe(true);
+    });
+    it('still parses the S78 shape', () => {
+      const s78 = { league: 'fba', season: 78, locked: true, host: null, champions: [{ title: 'FBA Champion', champion: 'Boston Bucks', runnerUp: 'Memphis Blues', score: '4-1' }] };
+      expect(SummaryFile.safeParse(s78).success).toBe(true);
+    });
+  });
+
+  describe('finalsMvp and ysg mvp fields', () => {
+    it('lets the playoffs outcome champion carry a finalsMvp', () => {
+      const champ = { group: null, teamId: 'BOS', runnerUp: 'MEM', score: '4-1' };
+      const shape = PlayoffsFile.innerType().shape.outcome.unwrap().shape.champions.element;
+      expect(shape.safeParse({ ...champ, finalsMvp: 'p00001' }).success).toBe(true);
+      expect(shape.safeParse({ ...champ, finalsMvp: null }).success).toBe(true);
+      expect(shape.safeParse(champ).success).toBe(true);
+    });
+    it('lets the ysg carry an mvp and a roll-off', () => {
+      const ysg = AllStarFile.shape.ysg.unwrap();
+      expect(ysg.shape.mvp.safeParse('p00001').success).toBe(true);
+      expect(ysg.shape.mvp.safeParse(undefined).success).toBe(true);
+      expect(ysg.shape.mvpRollOff.safeParse(null).success).toBe(true);
+      expect(ysg.shape.mvpRollOff.safeParse(undefined).success).toBe(true);
+    });
+  });
+
+  describe('PlayerBiosFile', () => {
+    const bio = (playerId: string) => ({ playerId, born: '1990', entries: ['a'] });
+    it('accepts distinct players and rejects a duplicate', () => {
+      expect(PlayerBiosFile.safeParse({ league: 'fba', bios: [bio('p00001'), bio('p00002')] }).success).toBe(true);
+      expect(PlayerBiosFile.safeParse({ league: 'fba', bios: [bio('p00001'), bio('p00001')] }).success).toBe(false);
+    });
   });
 });

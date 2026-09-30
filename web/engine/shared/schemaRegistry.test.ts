@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { pathAgreementProblem, schemaForPath } from './schemaRegistry';
-import { AllStarFile, AwardsFile, D2DraftFile, D2PoolFile, DraftFile, HallOfFameFile, LotteryFile, RankingFile, PlayoffsFile, RatingPauseFile, RecruitingFile, ScheduleFile } from './types';
+import { PlayerBiosFile, AllStarFile, AwardsFile, D2DraftFile, D2PoolFile, DraftFile, HallOfFameFile, LotteryFile, RankingFile, PlayoffsFile, RatingPauseFile, RecruitingFile, ScheduleFile } from './types';
 import { seasonDocPath } from '../season/state';
 
 describe('schemaForPath', () => {
@@ -128,5 +128,12 @@ describe('part 7c documents', () => {
     expect(schemaForPath('leagues/fbajc/S79/classRanking.json')).toBe(RankingFile);
     expect(schemaForPath('leagues/fbajc/S79/ratings.json')).toBe(RankingFile);
     expect(schemaForPath('leagues/fba/S79/classRanking.json')).toBeNull();
+  });
+});
+
+describe('playerBios.json', () => {
+  it('is registered for the FBA only', () => {
+    expect(schemaForPath('leagues/fba/playerBios.json')).toBe(PlayerBiosFile);
+    expect(schemaForPath('leagues/fbad2/playerBios.json')).toBeNull();
   });
 });

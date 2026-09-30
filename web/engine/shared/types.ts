@@ -71,6 +71,8 @@ export const RostersFile = z.object({
 }).strict();
 export type RostersFile = z.infer<typeof RostersFile>;
 
+const playerId = z.string().regex(/^p\d{5}$/);
+
 export const Champion = z.object({
   title: z.string(),
   champion: z.string(),
@@ -81,6 +83,7 @@ export const Champion = z.object({
   runnerUpId: z.string().min(1).optional(),
   /** The D2 league of this title; null for the FBA. */
   group: z.string().min(1).nullable().optional(),
+  finalsMvp: playerId.nullable().optional(),
 }).strict();
 export type Champion = z.infer<typeof Champion>;
 
@@ -148,7 +151,6 @@ export type LogoEntry = z.infer<typeof LogoEntry>;
 export const LogoManifest = z.object({ folders: z.record(bareName, z.array(LogoEntry)) }).strict();
 export type LogoManifest = z.infer<typeof LogoManifest>;
 
-const playerId = z.string().regex(/^p\d{5}$/);
 
 export const FreeAgent = z.object({
   playerId,
@@ -456,7 +458,7 @@ export const AllStarFile = z.object({
   dunk: ContestResult.nullable(),
   /** Snake draft over `order` (Young-Star team indexes 0–3). */
   ysgDraft: z.object({ order: z.array(int.min(0).max(3)), picks: idList }).strict().nullable(),
-  ysg: z.object({ semis: z.array(TeamGame), final: TeamGame, champion: int.min(0).max(3) }).strict().nullable(),
+  ysg: z.object({ semis: z.array(TeamGame), final: TeamGame, champion: int.min(0).max(3), mvp: playerId.optional(), mvpRollOff: RollOff.nullable().optional() }).strict().nullable(),
   asg: z.object({ game: TeamGame, mvp: playerId, mvpRollOff: RollOff.nullable() }).strict().nullable(),
 }).strict();
 export type AllStarFile = z.infer<typeof AllStarFile>;
@@ -501,7 +503,7 @@ export const PlayoffsFile = z.object({
   queue: z.array(z.string().min(1)),
   games: z.array(PlayoffGame),
   outcome: z.object({
-    champions: z.array(z.object({ group: z.string().min(1).nullable(), teamId: teamRef, runnerUp: teamRef, score: z.string().min(1) }).strict()),
+    champions: z.array(z.object({ group: z.string().min(1).nullable(), teamId: teamRef, runnerUp: teamRef, score: z.string().min(1), finalsMvp: playerId.nullable().optional() }).strict()),
     /** D2 only. */
     promotion: z.array(PromotionLine).nullable(),
   }).strict().nullable(),
@@ -609,6 +611,68 @@ export const SummaryPlayerLine = z.object({
 }).strict();
 export type SummaryPlayerLine = z.infer<typeof SummaryPlayerLine>;
 
+/** The All-FBA slot orders found in the imported history (S1-S78). */
+export const PAST_ALL_FBA_ORDERS = [
+  ['G', 'F', 'C', 'ANY', 'ANY'], ['G', 'G', 'F', 'F', 'C'], ['OUT', 'MID', 'M2', 'IN'], ['OUT', 'MID', 'IN', 'ANY'],
+] as const;
+export const PastAllFbaSlot = z.object({
+  slot: z.enum(['G', 'F', 'C', 'ANY', 'OUT', 'MID', 'M2', 'IN']),
+  playerId: z.string().min(1).nullable(),
+  teamId: z.string().min(1).nullable(),
+}).strict();
+export type PastAllFbaSlot = z.infer<typeof PastAllFbaSlot>;
+export const PastAllFbaTeams = z.object({ team1: z.array(PastAllFbaSlot), team2: z.array(PastAllFbaSlot) }).strict()
+  .refine(t => {
+    const key = (xs: { slot: string }[]) => xs.map(s => s.slot).join(',');
+    return key(t.team1) === key(t.team2) && PAST_ALL_FBA_ORDERS.some(o => o.join(',') === key(t.team1));
+  }, 'Both All-FBA teams must follow the same known slot order');
+export type PastAllFbaTeams = z.infer<typeof PastAllFbaTeams>;
+
+export const PastSide = z.object({ name: z.string().min(1), record: z.string().regex(/^\d+-\d+$/).nullable(), seed: int.min(1).max(16).nullable() }).strict();
+export type PastSide = z.infer<typeof PastSide>;
+export const PastSeries = z.object({
+  id: z.string().regex(/^R\d-\d+$/),
+  round: int.min(1).max(5),
+  home: PastSide.nullable(),
+  away: PastSide.nullable(),
+  homeWins: int.min(0).max(4),
+  awayWins: int.min(0).max(4),
+  winner: z.enum(['home', 'away']),
+}).strict();
+export type PastSeries = z.infer<typeof PastSeries>;
+/** A transcribed historical bracket: a full binary tree of series, R1-1... up to the final. */
+export const PastBracket = z.object({ rounds: int.min(1).max(5), series: z.array(PastSeries) }).strict().superRefine((b, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  const byId = new Map(b.series.map(s => [s.id, s]));
+  for (let r = 1; r <= b.rounds; r++) {
+    const n = 2 ** (b.rounds - r);
+    for (let k = 1; k <= n; k++) if (!byId.has(`R${r}-${k}`)) issue(`Missing R${r}-${k}`);
+  }
+  if (byId.size !== b.series.length) issue('Series ids must be unique');
+  for (const s of b.series) {
+    if (Number(s.id[1]) !== s.round) issue(`${s.id}: round doesn't match its id`);
+    const win = s[s.winner];
+    const lose = s[s.winner === 'home' ? 'away' : 'home'];
+    if (!win) { issue(`${s.id}: the winner can't be a BYE`); continue; }
+    if (!s.home && !s.away) issue(`${s.id}: both sides are BYEs`);
+    if (!lose && (s.homeWins || s.awayWins)) issue(`${s.id}: a BYE series has no wins`);
+    if (lose && s[`${s.winner}Wins`] <= s[s.winner === 'home' ? 'awayWins' : 'homeWins']) issue(`${s.id}: the winner needs more wins`);
+    if (s.round < b.rounds) {
+      const k = Number(s.id.split('-')[1]);
+      const next = byId.get(`R${s.round + 1}-${Math.ceil(k / 2)}`);
+      const side = next?.[k % 2 === 1 ? 'home' : 'away'];
+      if (next && side?.name !== win.name) issue(`${s.id}: ${win.name} should advance to ${next.id}`);
+    }
+  }
+});
+export type PastBracket = z.infer<typeof PastBracket>;
+
+export const PlayerBio = z.object({ playerId: z.string().regex(/^p\d{5}$/), born: z.string(), entries: z.array(z.string().min(1)) }).strict();
+export type PlayerBio = z.infer<typeof PlayerBio>;
+export const PlayerBiosFile = z.object({ league: z.literal('fba'), bios: z.array(PlayerBio) }).strict()
+  .refine(f => new Set(f.bios.map(b => b.playerId)).size === f.bios.length, 'Each player has one bio');
+export type PlayerBiosFile = z.infer<typeof PlayerBiosFile>;
+
 export const SummaryStanding = z.object({
   teamId: teamRef,
   name: z.string().min(1),
@@ -618,9 +682,9 @@ export const SummaryStanding = z.object({
   rank: int.positive(),
   w: pts,
   l: pts,
-  confW: pts,
-  confL: pts,
-  diff: int,
+  confW: pts.nullable(),
+  confL: pts.nullable(),
+  diff: int.nullable(),
   marker: z.enum(['*', 'x', 'n']).nullable(),
   seed: int.min(1).max(8).nullable(),
   /** The last round the team played; null = missed the playoffs. */
@@ -634,6 +698,10 @@ export const SummaryAllStar = z.object({
   asgMvp: playerId.nullable(),
   fivePoint: playerId.nullable(),
   dunk: playerId.nullable(),
+  asgWinner: z.string().min(1).nullable().optional(),
+  asgLoser: z.string().min(1).nullable().optional(),
+  ysgWinner: z.string().min(1).nullable().optional(),
+  ysgMvp: playerId.nullable().optional(),
 }).strict();
 export type SummaryAllStar = z.infer<typeof SummaryAllStar>;
 
@@ -646,10 +714,14 @@ export const SummaryFile = z.object({
   champions: z.array(Champion),
   awards: z.array(AwardEntry).optional(),
   /** FBA only. */
-  allFba: AllFbaTeams.nullable().optional(),
+  allFba: PastAllFbaTeams.nullable().optional(),
   /** FBA only. */
   allStar: SummaryAllStar.nullable().optional(),
   standings: z.array(SummaryStanding).optional(),
+  /** The conference champions' names (imported history). */
+  confChampions: z.object({ E: z.string().min(1).nullable(), W: z.string().min(1).nullable() }).strict().nullable().optional(),
+  /** A transcribed bracket (imported history). */
+  pastBracket: PastBracket.nullable().optional(),
   bracket: z.object({ seeds: z.array(PlayoffSeed), series: z.array(PlayoffSeries) }).strict().nullable().optional(),
   /** D2 only. */
   promotion: z.array(PromotionLine).nullable().optional(),
