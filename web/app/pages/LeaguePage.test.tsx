@@ -77,7 +77,7 @@ describe('LeaguePage with locked rosters', () => {
 
   it('hides Free agency and Trade', async () => {
     renderAt('/league/fba');
-    await screen.findByRole('heading', { name: /FBA/ });
+    await screen.findByRole('heading', { name: 'Teams' });
     expect(screen.queryByRole('link', { name: 'Trade' })).toBeNull();
     expect(screen.queryByRole('link', { name: 'Free agency' })).toBeNull();
   });

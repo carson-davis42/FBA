@@ -6,6 +6,8 @@ import type { RosterState } from '../../engine/roster/state';
 import type { SeasonPhase } from '../../engine/season/locks';
 import type { TeamsFile } from '../../engine/shared/types';
 import { useSaving, type Versions } from '../api';
+import { teamTheme, teamVars } from './teamColors';
+import { TeamName } from './TeamName';
 import { commitMove, newBatchId } from '../roster/commit';
 
 export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versions, phase }: {
@@ -24,6 +26,7 @@ export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versio
   const saving = useSaving();
   if (!row) return null;
 
+  const chosen = teams.teams.find(t => t.teamId === teamId);
   const needsRating = row.scale === 'D2' || row.rating === null;
   const input: SignInput = { playerId, teamId, years, amount, rating: rating === '' ? undefined : Number(rating), conflict };
   const preview = teamId ? signPlayer(state, input, { batchId: 'preview', phase }) : null;
@@ -46,7 +49,7 @@ export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versio
   };
 
   return (
-    <section className="card sign-panel" aria-label={`Sign ${row.name}`}>
+    <section className="card headed sign-panel" style={chosen ? teamVars(teamTheme(chosen, 'fba')) : undefined} aria-label={`Sign ${row.name}`}>
       <h3>Sign {row.name} ({row.position}, {row.rating ?? 'unrated'}{row.scale === 'D2' ? ' D2' : ''})</h3>
       <div className="form-row">
         <label>Team
@@ -55,6 +58,7 @@ export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versio
             {teams.teams.map(t => <option key={t.teamId} value={t.teamId}>{t.name} (${payroll(state.fba.teams[t.teamId] ?? [], state.season)})</option>)}
           </select>
         </label>
+        {chosen && <span className="picked-team"><TeamName team={chosen} season={state.season} /></span>}
         <label>Years <input type="number" min={1} max={5} value={years} onChange={e => setYears(Number(e.target.value))} /></label>
         <label>Amount ($) <input type="number" min={1} max={8} value={amount} onChange={e => setAmount(Number(e.target.value))} /></label>
         {needsRating && <label>FBA rating <input type="number" min={1} max={99} value={rating} onChange={e => setRating(e.target.value)} /></label>}

@@ -4,28 +4,11 @@
 .form-row fieldset label, fieldset.form-row label { flex-direction: row; align-items: center; color: var(--text); }
 .form-row input, .form-row select { font: inherit; padding: 5px 7px; border: 1px solid var(--border); border-radius: 5px; background: var(--surface); color: var(--text); min-width: 70px; }
 legend { font-weight: 700; margin-bottom: 4px; }
-.sign-panel { border: 2px solid var(--accent); margin: 12px 0; }
-.team-panel { margin-bottom: 12px; }
 .problems { color: var(--accent); margin: 6px 0; padding-left: 18px; }
 .ok { color: var(--good); font-weight: 700; }
-.market tbody tr { cursor: pointer; }
-.market tbody tr:hover, .market tr.selected { background: var(--accent-soft); }
-.payroll { margin: 6px 0 10px; }
-.payroll-label { font-size: 12px; font-weight: 700; color: var(--muted); }
-.payroll-track { height: 8px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); overflow: hidden; }
-.payroll-track i { display: block; height: 100%; background: var(--accent); }
-.payroll-track i.over { background: #7f1d1d; }
 .close-fa { margin-top: 16px; }
-.undo-msg { font-size: 12px; }
 .row-actions { display: flex; gap: 4px; flex-wrap: wrap; }
 .row-actions .btn { padding: 2px 8px; font-size: 12px; }
-.tx-list { list-style: none; padding: 0; margin: 0; }
-.tx-list li { padding: 8px 0; border-bottom: 1px solid var(--border); }
-.trade-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
-.asset { display: flex; justify-content: space-between; gap: 6px; padding: 5px 6px; border-radius: 5px; cursor: pointer; }
-.asset:hover { background: var(--surface-2); }
-.asset.sending { background: var(--accent-soft); }
-.league-links { display: flex; gap: 8px; margin: 4px 0 14px; }
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
 .tab { border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 6px; padding: 5px 11px; font-weight: 700; }
 .tab.on { background: var(--text); color: var(--surface); border-color: var(--text); }
@@ -51,3 +34,33 @@ legend { font-weight: 700; margin-bottom: 4px; }
 .pick-order li { padding: 4px 6px; border-bottom: 1px solid var(--border); }
 .pick-order li.now { background: var(--accent-soft); font-weight: 700; border-radius: 4px; }
 .pick-order li.done { color: var(--muted); }
+.sign-panel { margin: var(--s3) 0; box-shadow: var(--shadow-2); }
+.sign-panel h3, .edit-dialog h3 { font-family: var(--font-head); font-size: var(--fs-lg); color: var(--text); text-transform: none; letter-spacing: 0.02em; margin: 0 0 var(--s3); }
+.picked-team { align-self: flex-end; padding-bottom: 6px; }
+.team-panel { margin-bottom: var(--s3); }
+.team-panel h3 { display: flex; align-items: center; gap: var(--s2); flex-wrap: wrap; }
+.filters.card { padding: var(--s3); }
+.market tbody tr { cursor: pointer; }
+.market tr.selected td { background: var(--accent-soft); }
+.payroll { margin: var(--s2) 0 var(--s3); }
+.payroll-label { font-size: var(--fs-sm); font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+.payroll-track { position: relative; height: 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); overflow: hidden; }
+.payroll-track i { display: block; height: 100%; background: var(--team, var(--accent)); transition: width var(--dur) var(--ease); }
+.payroll-track i.over { background: var(--accent); }
+.payroll-tick { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--text); }
+.payroll-marks { position: relative; height: 16px; font-size: var(--fs-xs); font-weight: 700; color: var(--muted); }
+.payroll-cap { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+.trade-setup { padding: var(--s3); }
+.trade-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--s3); margin: var(--s3) 0; }
+.trade-cols .card h3:not(:first-child) { margin-top: var(--s3); }
+.trade-summary { margin-top: var(--s3); }
+.asset { display: flex; justify-content: space-between; gap: 6px; padding: 5px 6px; border-radius: var(--r-sm); cursor: pointer; }
+.asset:hover { background: var(--surface-2); }
+.asset.sending { background: var(--accent-soft); }
+.tx-list { list-style: none; padding: 0; margin: 0; }
+.tx-list li { padding: 6px 0; border-bottom: 1px solid var(--border); }
+.tx-feed { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s2); }
+.tx-row { display: grid; grid-template-columns: 56px 1fr; gap: var(--s3); padding: var(--s3) var(--s4); box-shadow: none; }
+.tx-rail { font-family: var(--font-head); font-weight: 800; font-size: var(--fs-md); color: var(--muted); border-right: 2px solid var(--border); font-variant-numeric: tabular-nums; }
+.tx-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); margin-bottom: 2px; }
+.tx-line { font-size: var(--fs-sm); }

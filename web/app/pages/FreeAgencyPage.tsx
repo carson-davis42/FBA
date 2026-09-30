@@ -4,17 +4,62 @@ import { marketRows, type MarketType, openPositions } from '../../engine/roster/
 import { closeFreeAgency, freeAgencyBlockers } from '../../engine/roster/moves';
 import { payroll, POSITIONS } from '../../engine/roster/rules';
 import { currentStepIndex, markCurrentDone } from '../../engine/shared/calendar';
-import type { CalendarFile, Position, TeamsFile } from '../../engine/shared/types';
+import type { CalendarFile, Position, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
+import { PageHeader } from '../components/PageHeader';
 import { PayrollBar } from '../components/PayrollBar';
 import { RosterTable } from '../components/RosterTable';
 import { SignPanel } from '../components/SignPanel';
+import { SortTh } from '../components/SortTh';
+import { TeamName } from '../components/TeamName';
+import { teamTheme, teamVars } from '../components/teamColors';
+import { useSort, type SortValue } from '../components/useSort';
 import { commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
 import { useSeasonPhase } from '../season/useSeasonPhase';
 import './roster.css';
 
 const TYPES: MarketType[] = ['FA', 'Rookie', 'D2', 'Expired'];
+
+type MarketRow = ReturnType<typeof marketRows>[number];
+const marketValue = (r: MarketRow, key: string): SortValue => (key === 'name' ? r.name : key === 'position' ? r.position : key === 'age' ? r.age : r.rating);
+
+function MarketTable({ rows, selected, onSelect, teams, season }: {
+  rows: MarketRow[]; selected: string | null; onSelect: (id: string) => void; teams: Team[]; season: number;
+}) {
+  const { rows: sorted, sortProps } = useSort(rows, marketValue);
+  return (
+    <div className="table-wrap tall">
+      <table className="stat-table market">
+        <thead>
+          <tr>
+            <SortTh label="Pos" {...sortProps('position', 'asc')} />
+            <SortTh label="Player" {...sortProps('name', 'asc')} />
+            <SortTh label="Age" className="num" {...sortProps('age', 'asc')} />
+            <SortTh label="Rating" className="num" {...sortProps('rating')} />
+            <th>Type</th>
+            <th>From</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sorted.map(r => {
+            const from = r.type !== 'D2' && r.from ? teams.find(t => t.teamId === r.from) : undefined;
+            return (
+              <tr key={r.playerId} className={selected === r.playerId ? 'selected' : ''} onClick={() => onSelect(r.playerId)}>
+                <td>{r.position}</td>
+                <td>{r.name}</td>
+                <td className="num">{r.age ?? '—'}</td>
+                <td className="num">{r.rating ?? '—'}{r.scale === 'D2' ? ' D2' : ''}</td>
+                <td><span className={`tag tag-${r.type.toLowerCase()}`}>{r.type}</span></td>
+                <td>{from ? <TeamName team={from} season={season} variant="abbr" size={18} /> : r.from ?? '—'}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export function FreeAgencyPage() {
   const { league = '' } = useParams();
@@ -34,6 +79,7 @@ export function FreeAgencyPage() {
   if (!state || !teams || !cal) return <p className="muted">Loading…</p>;
 
   const team = teamId ? state.fba.teams[teamId] : undefined;
+  const pickedTeam = teams.teams.find(t => t.teamId === teamId);
   const needs = team ? openPositions(team) : [];
   const rows = marketRows(state).filter(r =>
     (pos === 'ALL' || r.position === pos) && (type === 'ALL' || r.type === type) && (!team || needs.length === 0 || needs.includes(r.position)),
@@ -55,9 +101,9 @@ export function FreeAgencyPage() {
 
   return (
     <section>
-      <h1>S{state.season} free agency</h1>
+      <PageHeader kicker="FBA" title={`S${state.season} free agency`} />
       {closed && <p className="muted">Free agency is closed. Unsigned players moved to D2 Reserves.</p>}
-      <div className="form-row filters">
+      <div className="form-row filters card">
         <label>Team
           <select value={teamId} onChange={e => setTeamId(e.target.value)}>
             <option value="">All teams</option>
@@ -79,8 +125,8 @@ export function FreeAgencyPage() {
       </div>
 
       {team && (
-        <div className="card team-panel">
-          <h3>{teams.teams.find(t => t.teamId === teamId)?.name} · {needs.length ? `Open: ${needs.join(', ')}` : 'No open positions'}</h3>
+        <div className="card headed team-panel" style={pickedTeam ? teamVars(teamTheme(pickedTeam, "fba")) : undefined}>
+          <h3>{pickedTeam ? <TeamName team={pickedTeam} season={state.season} /> : null} · {needs.length ? `Open: ${needs.join(', ')}` : 'No open positions'}</h3>
           <PayrollBar total={payroll(team, state.season)} />
           <div className="table-wrap"><RosterTable league="fba" entries={team} players={state.players.players} /></div>
         </div>
@@ -90,23 +136,7 @@ export function FreeAgencyPage() {
         <SignPanel key={selected} state={state} teams={teams} playerId={selected} defaultTeam={teamId} onClose={() => setSelected(null)} versions={versions} phase={phase} />
       )}
 
-      <div className="table-wrap">
-        <table className="roster market">
-          <thead><tr><th>Pos</th><th>Player</th><th className="num">Age</th><th className="num">Rating</th><th>Type</th><th>From</th></tr></thead>
-          <tbody>
-            {rows.map(r => (
-              <tr key={r.playerId} className={selected === r.playerId ? 'selected' : ''} onClick={() => setSelected(r.playerId)}>
-                <td>{r.position}</td>
-                <td>{r.name}</td>
-                <td className="num">{r.age ?? '—'}</td>
-                <td className="num">{r.rating ?? '—'}{r.scale === 'D2' ? ' D2' : ''}</td>
-                <td><span className={`tag tag-${r.type.toLowerCase()}`}>{r.type}</span></td>
-                <td>{r.from ?? '—'}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <MarketTable rows={rows} selected={selected} onSelect={setSelected} teams={teams.teams} season={state.season} />
 
       {!closed && (
         <div className="card close-fa">

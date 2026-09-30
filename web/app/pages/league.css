@@ -1,23 +1,9 @@
 .league-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.group { margin-bottom: 20px; }
-.group h2 { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-body); }
-.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
-.team-card { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
-.team-card:hover { border-color: var(--accent); }
-.team-card .name { font-weight: 700; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.team-card .rtg { font-weight: 800; font-variant-numeric: tabular-nums; }
-.team-hero { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
-.team-hero h1 { margin: 0; }
-.roster { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-.roster th, .roster td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); }
-.roster th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); background: var(--surface-2); }
-.roster .num { text-align: right; font-variant-numeric: tabular-nums; }
-.roster tr.vacant td { color: var(--muted); font-style: italic; }
-.roster tr:last-child td { border-bottom: 0; }
-.hof-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin-bottom: 16px; }
-.hof-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
-.hof-card h3 { margin: 0 0 2px; font-size: 16px; }
-.hof-card ul { margin: 6px 0 0; padding-left: 18px; }
-.hof-card textarea { width: 100%; box-sizing: border-box; margin-top: 6px; font: inherit; }
-.hof-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; }
-.lottery-list { list-style: none; padding-left: 0; }
+.group { margin-bottom: var(--s5); }
+.group-title { font-family: var(--font-head); font-size: var(--fs-lg); letter-spacing: 0.02em; margin: 0 0 var(--s3); }
+.league-sub { margin: calc(var(--s2) * -1) 0 var(--s4); }
+.team-tile { display: flex; align-items: center; gap: var(--s3); padding: var(--s3) var(--s4); }
+.team-tile-body { display: flex; flex-direction: column; min-width: 0; }
+.team-tile .name { font-family: var(--font-head); font-size: var(--fs-lg); font-weight: 700; line-height: 1.1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.team-tile .rtg { font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+.section-title { font-family: var(--font-head); font-size: var(--fs-lg); margin: 0 0 var(--s3); }
