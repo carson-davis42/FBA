@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { parseRatingInput } from '../../engine/d2/ratings';
+import '../offseason/offseason.css';
 
 /** A rating box that saves on blur (or Enter). Blank is only accepted when allowBlank is set. */
 export function RatingInput({ value, name, disabled, allowBlank, onSave }: {
@@ -21,7 +22,7 @@ export function RatingInput({ value, name, disabled, allowBlank, onSave }: {
   return (
     <>
       <input
-        className="rating-input" inputMode="numeric" aria-label={`New rating for ${name}`} value={text} disabled={disabled}
+        className={`rating-input${text !== shown ? ' changed' : ''}`} inputMode="numeric" aria-label={`New rating for ${name}`} value={text} disabled={disabled}
         onChange={e => setText(e.target.value)} onBlur={commit}
         onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur(); }}
       />

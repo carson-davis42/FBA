@@ -7,6 +7,7 @@ import type { CalendarFile, MetaFile, PlayersFile, RankingFile, RecruitingFile, 
 import type { WritesResult } from '../../engine/season/moves';
 import { useDoc, useSaving, type Versions } from '../api';
 import { RankingTable } from '../rank/RankingTable';
+import { PageHeader } from '../components/PageHeader';
 import { commitDocs, newBatchId } from '../roster/commit';
 import { useAutosaveDoc } from '../useAutosaveDoc';
 import '../pages/roster.css';
@@ -35,7 +36,7 @@ export function ClassRankingPage() {
   const required = [players, calendar];
   const optional = [board, ranking, prev, tx];
   const loadError = meta.error ?? required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
-  const title = <h1>{boardSeason === undefined ? 'Rank Class' : `Rank S${boardSeason + 1} Class`}</h1>;
+  const title = <PageHeader kicker="FBAJC" title={boardSeason === undefined ? 'Rank Class' : `Rank S${boardSeason + 1} Class`} />;
   if (loadError) return <p className="error">Couldn't load the class ranking: {loadError.message}</p>;
   if (n === undefined || boardSeason === undefined || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) {
     return <p className="muted">Loading…</p>;
@@ -45,11 +46,13 @@ export function ClassRankingPage() {
   const boardDoc = board.data ?? emptyRecruiting(boardSeason);
   if (!boardDoc.created) {
     return (
-      <section>
+      <section className="stack">
         {title}
-        <p className="muted">
-          The S{boardDoc.classOf} class hasn't been created yet. <Link to={`/league/fbajc/recruiting?class=${boardDoc.classOf}&tab=class`}>Create the class ▸</Link>
-        </p>
+        <div className="card">
+          <p className="muted">
+            The S{boardDoc.classOf} class hasn't been created yet. <Link to={`/league/fbajc/recruiting?class=${boardDoc.classOf}&tab=class`}>Create the class ▸</Link>
+          </p>
+        </div>
       </section>
     );
   }
@@ -86,13 +89,15 @@ export function ClassRankingPage() {
 
   if (!doc) {
     return (
-      <section>
+      <section className="stack">
         {title}
-        <p className="muted">
-          Rank every recruit in the S{boardDoc.classOf} class, best first. Then give each one a rating and a consensus; the app suggests the
-          values that held the same rank in last year's class. The consensus sets the stars: 90 and up 5, 80 and up 4, 70 and up 3.
-        </p>
-        <button className="btn primary" disabled={saving} onClick={() => run(startClassRanking(state))}>Start ranking</button>
+        <div className="card">
+          <p className="muted">
+            Rank every recruit in the S{boardDoc.classOf} class, best first. Then give each one a rating and a consensus; the app suggests the
+            values that held the same rank in last year's class. The consensus sets the stars: 90 and up 5, 80 and up 4, 70 and up 3.
+          </p>
+          <button className="btn primary" disabled={saving} onClick={() => run(startClassRanking(state))}>Start ranking</button>
+        </div>
         {error && <p className="error">{error}</p>}
       </section>
     );
@@ -103,9 +108,9 @@ export function ClassRankingPage() {
   const own = new Set(rankingBlockers(doc, name));
   const extra = classBlockers(state).filter(b => !own.has(b));
   return (
-    <section>
+    <section className="stack">
       {title}
-      {doc.locked && <p className="muted">The S{boardDoc.classOf} class is ranked. <Link to={`/league/fbajc/recruiting?class=${boardDoc.classOf}&tab=board`}>Open the board ▸</Link></p>}
+      {doc.locked && <div className="card"><p className="muted">The S{boardDoc.classOf} class is ranked. <Link to={`/league/fbajc/recruiting?class=${boardDoc.classOf}&tab=board`}>Open the board ▸</Link></p></div>}
       {autosave.error && <p className="error">{autosave.error}</p>}
       {error && <p className="error">{error}</p>}
       <RankingTable

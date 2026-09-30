@@ -6,8 +6,11 @@ import { d2DocPath, d2Name, d2Writes, poolMembers, type D2State } from '../../en
 import { POSITIONS } from '../../engine/roster/rules';
 import type { D2PoolFile, Position } from '../../engine/shared/types';
 import { useSaving, type Versions } from '../api';
+import { PageHeader } from '../components/PageHeader';
 import { commitDocs, newBatchId } from '../roster/commit';
 import { useAutosaveDoc } from '../useAutosaveDoc';
+import '../pages/roster.css';
+import '../offseason/offseason.css';
 
 export function PoolBuilder({ state, versions }: { state: D2State; versions: Versions }) {
   const saving = useSaving();
@@ -43,14 +46,14 @@ export function PoolBuilder({ state, versions }: { state: D2State; versions: Ver
   };
 
   return (
-    <section>
-      <h1>S{state.season} D2 pool</h1>
+    <section className="stack">
+      <PageHeader kicker="FBAD2" title={`S${state.season} D2 pool`} />
       <p className="muted">
         The top {POOL_CUTOFF} at each position make the D2. Drag a player, use ↑/↓, or press Alt+↑ / Alt+↓ on a focused row to change the order.
         Locking the pool sends roster players below the line to Reserves and opens their spots for the draft.
       </p>
       <div className="table-wrap">
-        <table className="pool-summary">
+        <table className="stat-table pool-summary">
           <thead>
             <tr><th>Pos</th><th className="n">Pool</th><th className="n">Kept</th><th className="n">Bumped</th><th className="n">Draft pool</th><th className="n">Open slots</th></tr>
           </thead>
@@ -65,10 +68,10 @@ export function PoolBuilder({ state, versions }: { state: D2State; versions: Ver
         </table>
       </div>
       {warnings.map(w => <p key={w} className="error">{w}</p>)}
-      <div className="toolbar">
-        <div className="tabs" role="tablist">
+      <div className="card toolbar">
+        <div className="subnav inline" role="tablist">
           {POSITIONS.map(p => (
-            <button key={p} role="tab" aria-selected={tab === p} className={`tab${tab === p ? ' on' : ''}`} onClick={() => setTab(p)}>{p}</button>
+            <button key={p} role="tab" aria-selected={tab === p} className={tab === p ? 'active' : ''} onClick={() => setTab(p)}>{p}</button>
           ))}
         </div>
         <button className="btn" disabled={saving} onClick={() => autosave.update(cur => ({ ...cur, order: rankedOrder(state) }))}>Reset to ratings order</button>
@@ -77,7 +80,7 @@ export function PoolBuilder({ state, versions }: { state: D2State; versions: Ver
       {problems.length > 0 && <ul className="problems">{problems.map(p => <li key={p}>{p}</li>)}</ul>}
       {autosave.error && <p className="error">{autosave.error}</p>}
       {actionError && <p className="error">{actionError}</p>}
-      <ol className="pool-list">
+      <ol className="pool-list card">
         {list.map((id, i) => {
           const m = members.get(id);
           const name = d2Name(state, id);

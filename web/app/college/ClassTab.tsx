@@ -8,6 +8,7 @@ import type { Position, RecruitingFile } from '../../engine/shared/types';
 import { newBatchId } from '../roster/commit';
 import '../pages/roster.css';
 import './college.css';
+import '../offseason/offseason.css';
 
 interface Props {
   state: RecruitingState;
@@ -55,13 +56,14 @@ export function ClassTab({ state, saving, onDraft, onRun }: Props) {
     setPaste(parsed.bad.join('\n'));
   };
   return (
-    <div>
+    <div className="stack">
+      <div className="card">
       <p className="muted">
         Enter the S{doc.classOf} class: a name and a position for each recruit. Ratings and stars come at Rank S{doc.classOf} Class.
       </p>
       <p>{`${POSITIONS.map(p => `${p} ${counts[p]}`).join(' · ')} · ${doc.classDraft.length} total`}</p>
       <div className="table-wrap">
-        <table className="board-table" aria-label="Class draft">
+        <table className="stat-table board-table" aria-label="Class draft">
           <thead><tr><th className="n">#</th><th>Name</th><th>Pos</th><th><span className="muted">Remove</span></th></tr></thead>
           <tbody>
             {doc.classDraft.map((r, i) => (
@@ -78,6 +80,8 @@ export function ClassTab({ state, saving, onDraft, onRun }: Props) {
       <div className="toolbar">
         <button type="button" className="btn" disabled={locked} onClick={() => onDraft(cur => addDraftRow(cur, { name: '', position: 'PG' }))}>Add recruit</button>
       </div>
+      </div>
+      <div className="card">
       <h3>Paste list</h3>
       <p className="muted">One recruit per line: "Name, POS" or "Name", a tab, then "POS".</p>
       <textarea className="paste" aria-label="Paste list" value={paste} disabled={locked} onChange={e => setPaste(e.target.value)} />
@@ -90,7 +94,8 @@ export function ClassTab({ state, saving, onDraft, onRun }: Props) {
           <ul className="problems" aria-label="Lines that weren't added">{bad.map((b, i) => <li key={i}>{b}</li>)}</ul>
         </>
       )}
-      <div className="toolbar">
+      </div>
+      <div className="card toolbar">
         <button
           type="button" className="btn primary" disabled={saving || locked || doc.classDraft.length === 0}
           onClick={() => onRun(createClass(state, { batchId: newBatchId() }))}
@@ -105,13 +110,13 @@ export function ClassTab({ state, saving, onDraft, onRun }: Props) {
 function CreatedClass({ state, saving, onRun }: { state: RecruitingState; saving: boolean; onRun: (result: RecruitingResult) => void }) {
   const doc = state.recruiting;
   return (
-    <div>
+    <div className="card">
       <p className="muted">
         The S{doc.classOf} class has {doc.recruits.length} recruits. Rename a recruit or change a position while they are uncommitted; remove one only
         before any projections.
       </p>
       <div className="table-wrap">
-        <table className="board-table" aria-label="Class">
+        <table className="stat-table board-table" aria-label="Class">
           <thead><tr><th>Name</th><th>Pos</th><th>Status</th><th><span className="muted">Remove</span></th></tr></thead>
           <tbody>
             {doc.recruits.map(p => {

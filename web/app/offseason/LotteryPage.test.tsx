@@ -43,7 +43,7 @@ describe('LotteryPage', () => {
     expect(await screen.findByRole('heading', { name: 'S80 Draft Lottery' })).toBeTruthy();
     const rows = (await screen.findAllByRole('row')).slice(1);
     expect(rows).toHaveLength(14);
-    expect(within(rows[0]).getByText('T29')).toBeTruthy();
+    expect(rows[0].querySelector('.team-name-text')?.textContent).toBe('T29');
     expect(within(rows[0]).getByText('0-29')).toBeTruthy();
     expect(within(rows[0]).getByText('14.0%')).toBeTruthy();
     expect(within(rows[13]).getByText('0.5%')).toBeTruthy();

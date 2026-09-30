@@ -6,6 +6,7 @@ import type { CalendarFile, MetaFile, PlayersFile, RankingFile, RankingRow, Recr
 import type { WritesResult } from '../../engine/season/moves';
 import { useDoc, useSaving, type Versions } from '../api';
 import { RankingTable } from '../rank/RankingTable';
+import { PageHeader } from '../components/PageHeader';
 import { commitDocs, newBatchId } from '../roster/commit';
 import { useAutosaveDoc } from '../useAutosaveDoc';
 import '../pages/roster.css';
@@ -40,11 +41,11 @@ export function CollegeRatingsPage() {
   const required = [players, calendar, teams];
   const optional = [board, rosters, prevRosters, ratings, prevRatings, tx];
   const loadError = meta.error ?? required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
-  const title = <h1>{n === undefined ? 'College ratings reset' : `S${n} college ratings reset`}</h1>;
+  const title = <PageHeader kicker="FBAJC" title={n === undefined ? 'College ratings reset' : `S${n} college ratings reset`} />;
   if (loadError) return <p className="error">Couldn't load the college ratings: {loadError.message}</p>;
   if (n === undefined || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return <p className="muted">Loading…</p>;
   if (!rosters.data) {
-    return <section>{title}<p className="muted">The S{n} college rosters don't exist yet. <Link to="/league/fbajc/recruiting">Go to recruiting ▸</Link></p></section>;
+    return <section className="stack">{title}<div className="card"><p className="muted">The S{n} college rosters don't exist yet. <Link to="/league/fbajc/recruiting">Go to recruiting ▸</Link></p></div></section>;
   }
 
   const versions: Versions = {
@@ -88,23 +89,25 @@ export function CollegeRatingsPage() {
 
   if (!doc) {
     return (
-      <section>
+      <section className="stack">
         {title}
-        <p className="muted">
-          Rank every named returning player and every transfer portal player, best first, starting from their current ratings. Once everyone is
-          ranked, give each player a new rating; the app suggests the rating that held the same rank in the last college reset. This year's class
-          keeps its ratings.
-        </p>
-        <button className="btn primary" disabled={saving} onClick={() => run(startCollegeRatings(state))}>Start ratings reset</button>
+        <div className="card">
+          <p className="muted">
+            Rank every named returning player and every transfer portal player, best first, starting from their current ratings. Once everyone is
+            ranked, give each player a new rating; the app suggests the rating that held the same rank in the last college reset. This year's class
+            keeps its ratings.
+          </p>
+          <button className="btn primary" disabled={saving} onClick={() => run(startCollegeRatings(state))}>Start ratings reset</button>
+        </div>
         {error && <p className="error">{error}</p>}
       </section>
     );
   }
 
   return (
-    <section>
+    <section className="stack">
       {title}
-      {doc.locked && <p className="muted">College ratings are finished. <Link to="/league/fbajc/recruiting?tab=board">Open the board ▸</Link></p>}
+      {doc.locked && <div className="card"><p className="muted">College ratings are finished. <Link to="/league/fbajc/recruiting?tab=board">Open the board ▸</Link></p></div>}
       {autosave.error && <p className="error">{autosave.error}</p>}
       {error && <p className="error">{error}</p>}
       <RankingTable

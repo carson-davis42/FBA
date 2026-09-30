@@ -5,8 +5,12 @@ import {
 import { d2Name, d2Writes, type D2Result, type D2State } from '../../engine/d2/state';
 import type { TeamsFile } from '../../engine/shared/types';
 import { peekUndo, undoLast, useSaving, type Versions } from '../api';
+import { PageHeader } from '../components/PageHeader';
 import { TeamMark } from '../components/TeamMark';
+import { TeamName } from '../components/TeamName';
 import { commitDocs, newBatchId } from '../roster/commit';
+import '../pages/roster.css';
+import '../offseason/offseason.css';
 
 export function DraftBoard({ state, versions, teams }: { state: D2State; versions: Versions; teams: TeamsFile | undefined }) {
   const saving = useSaving();
@@ -32,6 +36,10 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
 
   const draft = state.draft!;
   const teamName = (id: string) => teams?.teams.find(t => t.teamId === id)?.name ?? id;
+  const teamCell = (id: string) => {
+    const t = teams?.teams.find(x => x.teamId === id);
+    return t ? <TeamName team={t} season={state.season} /> : id;
+  };
 
   // Clear any locally-selected player whenever the clock moves (a pick, a skip, an undo, or
   // another tab's change) — a stale selection could otherwise resurface a "Draft X → team"
@@ -72,8 +80,8 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
         const now = !draft.locked && i === draft.picks.length;
         return (
           <li key={i} className={now ? 'now' : pick ? 'done' : undefined}>
-            <span className="rank">#{i + 1}</span> {teamName(teamId)}
-            {pick && <> · {pick.playerId ? `${pick.position}-${d2Name(state, pick.playerId)}` : 'skipped'}</>}
+            <span className="rank">#{i + 1}</span> {teamCell(teamId)}
+            {pick && <> <span className="chip">{pick.playerId ? `${pick.position}-${d2Name(state, pick.playerId)}` : 'skipped'}</span></>}
             {now && <strong> ← on the clock</strong>}
           </li>
         );
@@ -83,10 +91,10 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
 
   if (draft.locked) {
     return (
-      <section>
-        <h1>S{state.season} D2 draft</h1>
+      <section className="stack">
+        <PageHeader kicker="FBAD2" title={`S${state.season} D2 draft`} />
         <p className="muted">The D2 draft is finished. Every pick is listed below and in the D2 transactions.</p>
-        {undoButton}
+        {undoButton && <div className="card toolbar">{undoButton}</div>}
         {actionError && <p className="error">{actionError}</p>}
         <div className="card">{order}</div>
       </section>
@@ -101,8 +109,8 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
   const clockTeam = teams?.teams.find(t => t.teamId === clock.teamId);
 
   return (
-    <section>
-      <h1>S{state.season} D2 draft</h1>
+    <section className="stack">
+      <PageHeader kicker="FBAD2" title={`S${state.season} D2 draft`} />
       {actionError && <p className="error">{actionError}</p>}
       <div className="draft-grid">
         <div className="card">
@@ -117,7 +125,7 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
           <h3>{clockTeam && <TeamMark team={clockTeam} season={state.season} size={24} />} On the clock: #{clock.pickNo} {teamName(clock.teamId)}</h3>
           <p className="muted">Needs: {needs.join(', ')}</p>
           <div className="table-wrap">
-            <table>
+            <table className="stat-table">
               <tbody>
                 {roster.map(e => (
                   <tr key={e.position}><td>{e.position}</td><td>{e.playerId ? d2Name(state, e.playerId) : '—'}</td><td className="n">{e.rating ?? ''}</td></tr>
@@ -133,8 +141,8 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
           ) : (
             <>
               <h3>Available · {needs.join(', ')}</h3>
-              <div className="table-wrap">
-                <table className="market">
+              <div className="table-wrap tall">
+                <table className="stat-table market">
                   <thead><tr><th>Player</th><th>Pos</th><th className="n">Age</th><th className="n">D2 rtg</th></tr></thead>
                   <tbody>
                     {available.map(p => (

@@ -5,10 +5,12 @@ import { d2DocPath, d2Name, d2Writes, type D2Result } from '../../engine/d2/stat
 import type { RankingFile } from '../../engine/shared/types';
 import { useSaving } from '../api';
 import { useD2State } from '../d2/useD2State';
+import { PageHeader } from '../components/PageHeader';
 import { RankingTable } from '../rank/RankingTable';
 import { commitDocs, newBatchId } from '../roster/commit';
 import { useAutosaveDoc } from '../useAutosaveDoc';
 import './roster.css';
+import '../offseason/offseason.css';
 
 export function D2RatingsPage() {
   const { state, versions, error } = useD2State();
@@ -19,7 +21,7 @@ export function D2RatingsPage() {
 
   if (error) return <p className="error">Couldn't load D2 data: {error.message}</p>;
   if (!state) return <p className="muted">Loading…</p>;
-  const title = <h1>S{state.season} D2 ratings reset</h1>;
+  const title = <PageHeader kicker="FBAD2" title={`S${state.season} D2 ratings reset`} />;
 
   const run = async (result: D2Result) => {
     if (!result.ok) {
@@ -35,18 +37,20 @@ export function D2RatingsPage() {
   };
 
   if (!state.freeAgencyClosed) {
-    return <section>{title}<p className="muted">Close free agency first. <Link to="/league/fba/free-agency">Go to free agency ▸</Link></p></section>;
+    return <section className="stack">{title}<div className="card"><p className="muted">Close free agency first. <Link to="/league/fba/free-agency">Go to free agency ▸</Link></p></div></section>;
   }
   const ratings = autosave.doc ?? state.ratings ?? undefined;
   if (!ratings) {
     return (
-      <section>
+      <section className="stack">
         {title}
-        <p className="muted">
-          Rank every D2 roster player and Reserve, best first, starting from last season's order. Once everyone is ranked, give each player
-          a new rating; the app suggests the rating that held the same rank last season.
-        </p>
-        <button className="btn primary" disabled={saving} onClick={() => run(startRatings(state))}>Start ratings reset</button>
+        <div className="card">
+          <p className="muted">
+            Rank every D2 roster player and Reserve, best first, starting from last season's order. Once everyone is ranked, give each player
+            a new rating; the app suggests the rating that held the same rank last season.
+          </p>
+          <button className="btn primary" disabled={saving} onClick={() => run(startRatings(state))}>Start ratings reset</button>
+        </div>
         {actionError && <p className="error">{actionError}</p>}
       </section>
     );
@@ -54,9 +58,9 @@ export function D2RatingsPage() {
 
   const live = { ...state, ratings };
   return (
-    <section>
+    <section className="stack">
       {title}
-      {ratings.locked && <p className="muted">D2 ratings are finished. <Link to="/league/fbad2/draft">Build the D2 pool ▸</Link></p>}
+      {ratings.locked && <div className="card"><p className="muted">D2 ratings are finished. <Link to="/league/fbad2/draft">Build the D2 pool ▸</Link></p></div>}
       {autosave.error && <p className="error">{autosave.error}</p>}
       {actionError && <p className="error">{actionError}</p>}
       <RankingTable

@@ -12,10 +12,12 @@ import type {
   CalendarFile, DraftFile, MetaFile, PlayersFile, RankingFile, RatingPauseFile, RostersFile, ScheduleFile, TeamsFile, TransactionsFile,
 } from '../../engine/shared/types';
 import { useDoc, useSaving, type Versions } from '../api';
+import { PageHeader } from '../components/PageHeader';
 import { RankingTable } from '../rank/RankingTable';
 import { commitDocs, newBatchId } from '../roster/commit';
 import { useAutosaveDoc } from '../useAutosaveDoc';
 import '../pages/roster.css';
+import '../offseason/offseason.css';
 
 /**
  * Adjust Pro Ratings (/league/fba/ratings): rank every FBA roster player and every draft prospect, best first, then give each a new
@@ -52,7 +54,7 @@ export function ProRatingsPage() {
   const optional = [prevFba, tx, draft, ratings, prevRatings, fbaTeams, schedule];
   const loadError = meta.error ?? required.find(d => d.error)?.error
     ?? [...optional, pauseDoc].find(d => d.error && !d.missing)?.error;
-  const title = <h1>{n === undefined ? 'FBA ratings reset' : `S${n} FBA ratings reset`}</h1>;
+  const title = <PageHeader kicker="FBA" title={n === undefined ? 'FBA ratings reset' : `S${n} FBA ratings reset`} />;
   if (loadError) return <p className="error">Couldn't load the pro ratings: {loadError.message}</p>;
   if (
     n === undefined || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)
@@ -104,13 +106,15 @@ export function ProRatingsPage() {
 
   if (!doc) {
     return (
-      <section>
+      <section className="stack">
         {title}
-        <p className="muted">
-          Rank every FBA player and every draft prospect, best first, starting from last season's ratings. Once everyone is ranked, give each
-          a new rating; the app suggests the rating that held the same rank in last season's reset.
-        </p>
-        <button className="btn primary" disabled={saving} onClick={() => run(() => startProRatings(state))}>Start the pro ratings reset</button>
+        <div className="card">
+          <p className="muted">
+            Rank every FBA player and every draft prospect, best first, starting from last season's ratings. Once everyone is ranked, give each
+            a new rating; the app suggests the rating that held the same rank in last season's reset.
+          </p>
+          <button className="btn primary" disabled={saving} onClick={() => run(() => startProRatings(state))}>Start the pro ratings reset</button>
+        </div>
         {error && <p className="error">{error}</p>}
       </section>
     );
@@ -118,13 +122,13 @@ export function ProRatingsPage() {
 
   const blockers = proMembershipBlockers(state);
   return (
-    <section>
+    <section className="stack">
       {title}
-      {doc.locked && <p className="muted">Pro ratings are finished. <Link to="/league/fba/draft">Draft board ▸</Link></p>}
+      {doc.locked && <div className="card"><p className="muted">Pro ratings are finished. <Link to="/league/fba/draft">Draft board ▸</Link></p></div>}
       {autosave.error && <p className="error">{autosave.error}</p>}
       {error && <p className="error">{error}</p>}
       {!doc.locked && blockers.length > 0 && (
-        <p><button className="btn" disabled={saving} onClick={() => run(() => syncProRatings(state))}>Sync list</button></p>
+        <div className="card toolbar"><button className="btn" disabled={saving} onClick={() => run(() => syncProRatings(state))}>Sync list</button></div>
       )}
       <RankingTable
         doc={doc}

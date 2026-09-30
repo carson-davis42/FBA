@@ -12,6 +12,7 @@ import type { PortalPlayer, Position, Prospect, Team } from '../../engine/shared
 import { newBatchId } from '../roster/commit';
 import '../pages/roster.css';
 import './college.css';
+import '../offseason/offseason.css';
 
 type Status = 'all' | 'open' | 'committed';
 type Picking = { playerId: string; mode: 'project' | 'commit' };
@@ -119,10 +120,10 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
   );
 
   return (
-    <div>
+    <div className="stack">
       <p className="muted">{`${doc.recruits.length - open.recruits.length} of ${doc.recruits.length} committed · ${open.portal.length} in the portal`}</p>
       {walkOnBlock && (
-        <div className="walk-ons">
+        <div className="walk-ons card toolbar">
           <button
             type="button" className="btn primary" disabled={saving || walkOnBlock.problem !== null}
             onClick={() => run(fillWalkOns(state, rng, { batchId: newBatchId() }))}
@@ -132,6 +133,7 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
           {walkOnBlock.problem && <p className="muted">{walkOnBlock.problem}</p>}
         </div>
       )}
+      <div className="card filters">
       <div className="chips" role="group" aria-label="Position filter">
         {(['ALL', ...POSITIONS] as ('ALL' | Position)[]).map(p => (
           <button key={p} type="button" className={`chip${pos === p ? ' on' : ''}`} aria-pressed={pos === p} onClick={() => setPos(p)}>{p === 'ALL' ? 'All' : p}</button>
@@ -143,6 +145,7 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
         ))}
         <input className="college-search" aria-label="Search names" placeholder="Search names" value={search} onChange={e => setSearch(e.target.value)} />
       </div>
+      </div>
       {picking && picked && (
         <SchoolPicker
           state={state} prospect={picked} mode={picking.mode} saving={saving} onClose={() => setPicking(null)}
@@ -151,22 +154,26 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
             : commit(state, picked.playerId, teamId, { batchId: newBatchId() }))}
         />
       )}
+      <div className="card">
       <h2>Class of S{doc.classOf} · {doc.recruits.length}</h2>
-      <div className="table-wrap">
-        <table className="board-table" aria-label={`Class of S${doc.classOf}`}>
+      <div className="table-wrap tall">
+        <table className="stat-table board-table" aria-label={`Class of S${doc.classOf}`}>
           {head(false)}
           <tbody>{doc.recruits.filter(shown).map(row)}</tbody>
         </table>
       </div>
+      </div>
+      <div className="card">
       <h2>Transfer portal · {doc.portal.length}</h2>
       {doc.portal.length === 0 ? <p className="muted">Nobody is in the portal.</p> : (
-        <div className="table-wrap">
-          <table className="board-table" aria-label="Transfer portal">
+        <div className="table-wrap tall">
+          <table className="stat-table board-table" aria-label="Transfer portal">
             {head(true)}
             <tbody>{doc.portal.filter(shown).map(row)}</tbody>
           </table>
         </div>
       )}
+      </div>
     </div>
   );
 }

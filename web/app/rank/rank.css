@@ -1,16 +1,14 @@
-.rank-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.rank-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); align-items: start; }
 @media (max-width: 760px) { .rank-cols { grid-template-columns: 1fr; } }
-.rank-col { min-width: 0; overflow-x: auto; }
-.rank-col h3 { margin: 0; }
-.rank-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.rank-table th, .rank-table td { padding: 4px 6px; border-bottom: 1px solid var(--border); text-align: left; }
-.rank-table .n { text-align: right; }
+.rank-col { min-width: 0; }
+.rank-col .table-wrap { max-height: 70vh; overflow: auto; }
+.rank-head { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; justify-content: space-between; margin-bottom: var(--s2); }
+.rank-head h3 { margin: 0; }
 .rank-table tr.rank-take { cursor: pointer; }
-.rank-table tr.rank-take:hover { background: var(--surface-2); }
 .rank-name { background: none; border: 0; padding: 0; color: inherit; font: inherit; font-weight: 700; cursor: pointer; text-align: left; }
-.rank-divider td { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); background: var(--surface-2); }
-.rank-table tr.out-of-order { background: var(--accent-soft); }
-.rank-flag { color: var(--accent); font-weight: 700; margin-left: 4px; }
+.rank-divider td { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); background: var(--surface-2) !important; }
+.rank-table tr.out-of-order td { background: var(--accent-soft) !important; }
+.rank-flag { color: var(--accent); font-weight: 700; margin-left: var(--s1); }
 .rank-rating { white-space: nowrap; }
-.suggest { margin-left: 6px; border: 1px dashed var(--border); background: transparent; color: var(--muted); border-radius: 999px; padding: 1px 8px; font-size: 11px; cursor: pointer; }
+.suggest { margin-left: 6px; border: 1px dashed var(--border); background: transparent; color: var(--muted); border-radius: 999px; padding: 1px 8px; font-size: var(--fs-xs); cursor: pointer; }
 .suggest:hover { color: var(--text); border-color: var(--text); }
