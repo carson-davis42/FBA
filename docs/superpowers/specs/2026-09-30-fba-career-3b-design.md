@@ -19,6 +19,7 @@ Part 3 is split into 3a (season history, done), **3b (this spec)** and 3c (troph
 | K6 | **Cards keep their text.** The stored `lines` of an inducted card stay the official record. The restyle only groups them (stint lines, then honours) and links the name. |
 | K7 | **Nominee prefill** uses `careerLines(liveCareer(...))`, replacing the 7b `<team>: …-S<n>` stub. |
 | K8 | **App-era stints are FBA only.** In 3b, careers from S79 on come from FBA summaries only. D2, World Cup and college stints from S79 on wait for parts 4–6. |
+| K9 | **Duplicate players are merged.** When exactly one Players-tab row matches two or more `players.json` records, they are one player. `--history` merges them into one record, rewrites every reference to the kept id, and uses the Players-tab spelling (see "Duplicate players"). Known cases: Nadeem Akers (p00040 and p00150) and Jamari O’Neal (p00609 and p01913). |
 
 ## Sources
 
@@ -86,6 +87,28 @@ A bio is `born` plus `entries[]`. Each entry is one of these:
 **The S78 summary** gains an optional `legacyPpg: { playerId, teamId, ppg }[]`.
 - It is written by `--history` from the txt file and is a field the importer owns.
 - Names are matched as in 3a; an unmatched name is a report warning and is skipped.
+
+## Duplicate players (K9)
+
+This is the first step of `--history`, before bios are matched. It is a pure function, `mergeDuplicates(docs, bios)`, tested on in-memory docs.
+
+- **Groups:** records are grouped by `normName` (3a H3). A group of two or more records whose name appears on exactly one Players-tab row is a duplicate group. When the Players tab has two or more rows with that name, the group stays ambiguous and is reported as in 3a.
+- **The kept record:**
+  1. the record whose `birthSeason` equals the bio's born season;
+  2. else the one with a non-null `birthSeason`;
+  3. else the lowest id.
+- **The merged record:**
+  - `name` is the Players-tab spelling;
+  - `birthSeason` is the bio's, or else the kept record's;
+  - every other field comes from the kept record, and a field that is null there is filled from a dropped record.
+- **References:** every JSON document under `<data>` except `players.json` is walked. Each string value, and each object key, that exactly equals a dropped id is replaced by the kept id. The dropped ids are removed from `players.json`.
+- **Safety:**
+  - Every rewritten document must still pass its registry schema.
+  - A document where the same id would now appear twice in a place that must be unique (for example, both records on one roster) fails its schema. That is a `report.error`, and nothing at all is written.
+- **Report (section `duplicates`):** `Merged <name>: p00150 → p00040 (<n> references in <m> files)` as info.
+- **Rerun:** a rerun finds no groups, so the merge step is idempotent.
+
+It runs only through the user-run `--history --data <dir>`. Tests and browser checks use scratch data.
 
 ## Cross-checks (import report, section `careers`)
 
@@ -207,6 +230,13 @@ The **History hub** gains the links Awards by player, Career leaders and Hall of
 - counts resolved per K1 with and without a bio;
 - the severity of each cross-check;
 - `legacyPpg` written and idempotent.
+- **`mergeDuplicates`:**
+  - the kept record is chosen by birth season;
+  - references are rewritten in values and in keys;
+  - the Players-tab spelling (curly apostrophe) is kept;
+  - two Players-tab rows with one name stay ambiguous;
+  - a merge that breaks a schema writes nothing;
+  - a second run changes nothing.
 
 **Pages** (in the 3a style):
 - the Awards-by-player sort and the missing-baseline note;
