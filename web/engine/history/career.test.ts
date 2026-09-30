@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { parseBio, bioAwardKey, careerAwardSums } from './career';
+import type { AwardCountsFile, HallOfFameFile, SummaryFile, SummaryPlayerLine } from '../shared/types';
+import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, careerStats } from './career';
 
 describe('parseBio', () => {
   it('parses Akeem Naylor', () => {
@@ -96,5 +97,156 @@ describe('bioAwardKey', () => {
     expect(bioAwardKey('PPK Award')).toBe('PPK');
     expect(bioAwardKey('All-American')).toBeNull();
     expect(bioAwardKey('FIVE_POINT')).toBeNull();
+  });
+});
+
+const totals = (g: number, pts: number) => ({ g, pts, def: 0, stops: 0, allowed: 0, exp: 0 });
+function line(playerId: string, teamId: string | null, stint: number | null, g: number, pts: number, po?: [number, number]): SummaryPlayerLine {
+  return { playerId, teamId, stint, position: 'SF', ratingStart: null, ratingEnd: null, rs: totals(g, pts), po: po ? totals(po[0], po[1]) : null };
+}
+function summary(season: number, extra: Partial<SummaryFile> = {}): SummaryFile {
+  return { league: 'fba', season, locked: true, host: null, champions: [], ...extra } as SummaryFile;
+}
+const series = (id: string, winner: string) => ({ id, group: null, round: 3, home: winner, away: null, homeSeed: 1, awaySeed: null, homeWins: 4, awayWins: 0, winner, next: null });
+const s79 = summary(79, {
+  awards: [{ award: 'MVP', playerId: 'p00001', teamId: 'BOS' }, { award: 'ROTY', playerId: 'p00002', teamId: 'NY' }],
+  allFba: {
+    team1: [{ slot: 'G', playerId: 'p00001', teamId: 'BOS' }, { slot: 'F', playerId: null, teamId: null }],
+    team2: [{ slot: 'G', playerId: 'p00002', teamId: 'NY' }],
+  },
+  allStar: { allStars: ['p00001', 'p00003'], youngStars: ['p00002'], asgMvp: 'p00001', fivePoint: null, dunk: 'p00002' },
+  champions: [{ title: 'FBA Champion', champion: 'Boston', runnerUp: 'New York', score: null, teamId: 'BOS', runnerUpId: 'NY', finalsMvp: 'p00001' }],
+  bracket: { seeds: [], series: [series('E-CF', 'BOS'), series('W-CF', 'LA'), series('FINALS', 'BOS')] } as unknown as SummaryFile['bracket'],
+  players: [line('p00001', 'BOS', 1, 80, 2000), line('p00002', 'NY', 1, 70, 700), line('p00003', 'LA', 1, 60, 900)],
+} as Partial<SummaryFile>);
+
+describe('summaryAwardCounts', () => {
+  it('counts each honour once, and champions, finalists and conference winners from the lines', () => {
+    const counts = summaryAwardCounts([s79], 79, 79);
+    expect(counts.get('p00001')).toEqual({
+      MVP: 1, ALL_FBA_1: 1, ALL_STAR: 1, ASG_MVP: 1, FINALS_MVP: 1, CHAMPION: 1, CSHIP_APP: 1, CONF_CHAMPION: 1,
+    });
+    expect(counts.get('p00002')).toEqual({ ROTY: 1, ALL_FBA_2: 1, YOUNG_STAR: 1, DUNK: 1, CSHIP_APP: 1 });
+    expect(counts.get('p00003')).toEqual({ ALL_STAR: 1, CONF_CHAMPION: 1 });
+  });
+
+  it('respects the season range and skips other leagues', () => {
+    expect(summaryAwardCounts([s79], 80, 9999).size).toBe(0);
+    expect(summaryAwardCounts([{ ...s79, league: 'fbad2' } as SummaryFile], 1, 9999).size).toBe(0);
+  });
+
+  it('counts no champions without player lines', () => {
+    const counts = summaryAwardCounts([{ ...s79, players: undefined }], 79, 79);
+    expect(counts.get('p00001')).toEqual({ MVP: 1, ALL_FBA_1: 1, ALL_STAR: 1, ASG_MVP: 1, FINALS_MVP: 1 });
+  });
+});
+
+const shannon = { born: 'Born-S50', entries: ['New Mexico State-S66', 'Creighton-S67', 'CP-S68-pres.', '2x Young-Star', '10x All-Star', '2x MVP'] };
+
+describe('liveCareer', () => {
+  it('extends a present stint on the same team', () => {
+    const c = liveCareer(shannon, 'p00009', [summary(79, { players: [line('p00009', 'CP', 1, 70, 1400)] })], null);
+    const cp = c.stints.filter(s => s.kind === 'fba');
+    expect(cp).toHaveLength(1);
+    expect(cp[0]).toMatchObject({ team: 'CP', from: 68, to: 79, range: 'S68-S79' });
+  });
+
+  it('closes the old stint at S78 on a team change and opens a new one', () => {
+    const c = liveCareer(shannon, 'p00009', [summary(79, { players: [line('p00009', 'BOS', 1, 70, 1400)] })], null);
+    const fba = c.stints.filter(s => s.kind === 'fba');
+    expect(fba.map(s => [s.team, s.range, s.to])).toEqual([['CP', 'S68-S78', 78], ['BOS', 'S79', 79]]);
+  });
+
+  it('gives a player without a bio only app stints', () => {
+    const c = liveCareer(null, 'p00009', [summary(79, { players: [line('p00009', 'CP', 1, 70, 1400)] }), summary(80, { players: [line('p00009', 'CP', 1, 70, 1400)] })], null);
+    expect(c.stints).toHaveLength(1);
+    expect(c.stints[0]).toMatchObject({ kind: 'fba', team: 'CP', from: 79, to: 80, range: 'S79-S80' });
+    expect(liveCareer(null, 'p00009', [], null)).toEqual({ stints: [], hof: null, other: [] });
+  });
+
+  it('adds S79 honours to the stint that held the team', () => {
+    const summaries = [summary(79, {
+      allStar: { allStars: ['p00009'], youngStars: [], asgMvp: null, fivePoint: null, dunk: null },
+      awards: [{ award: 'MIP', playerId: 'p00009', teamId: 'CP' }],
+      players: [line('p00009', 'CP', 1, 70, 1400)],
+    })];
+    const c = liveCareer(shannon, 'p00009', summaries, null);
+    const cp = c.stints[2];
+    expect(cp.honours.find(h => h.label === 'All-Star')).toEqual({ label: 'All-Star', count: 11, seasons: [] });
+    expect(cp.honours.find(h => h.label === 'MIP')).toEqual({ label: 'MIP', count: 1, seasons: [79] });
+    expect(careerLines(c)).toContain('11x All-Star');
+    expect(careerLines(c)).toContain('S79 MIP');
+  });
+
+  it('adds champion, finalist and conference labels by conference', () => {
+    const c = liveCareer(null, 'p00001', [s79], null);
+    expect(c.stints[0].honours.map(h => h.label)).toEqual([
+      'MVP', 'All-FBA T1', 'All-Star', 'ASG MVP', 'FBA C-Ship MVP', 'FBA Champion', 'FBA C-Ship app.', 'EC Champion',
+    ]);
+    expect(liveCareer(null, 'p00003', [s79], null).stints[0].honours.map(h => h.label)).toEqual(['All-Star', 'WC Champion']);
+  });
+
+  it('takes the Hall of Fame class from the Hall doc when the bio has none', () => {
+    const hof = { league: 'fba', classes: [{ season: 'S80', inductees: [{ name: 'X', playerId: 'p00009', retiredSeason: 'S79', lines: [] }] }], nominees: [], removed: [] } as HallOfFameFile;
+    expect(liveCareer(null, 'p00009', [], hof).hof).toBe('S80');
+    expect(liveCareer({ born: 'Born-S1', entries: ['CIN-S1-S2', 'HOF-S77'] }, 'p00009', [], hof).hof).toBe('S77');
+    expect(liveCareer(null, 'p00010', [], hof).hof).toBeNull();
+  });
+});
+
+describe('careerLines', () => {
+  it('matches the stored Atkinson card', () => {
+    const c = parseBio({
+      born: 'Born-S46',
+      entries: ['Alabama-S64', '1x NC app.', '1x All-American', '1x DH Award', '1x SEC RS Champion', '1x SEC TOUR Champion',
+        'FLO-S65-S76', '12x All-Star', '2x Young-Star', '6x FBA C-Ship app.', '2x FBA Champion', '4x WC Champion', '1x MC Award', '1x All-FBA T1', '5x All-FBA T2',
+        'NO-S77-S78', '2x All-Star', 'HOF-S78'],
+    });
+    expect(careerLines(c)).toEqual(['Alabama: S64', 'FLO: S65-S76', 'NO: S77-S78', '14x All-Star', '2x Young-Star', '6x FBA C-Ship app.',
+      '2x FBA Champion', '4x Conference Champion', '1x MC Award', '1x All-FBA T1', '5x All-FBA T2']);
+  });
+
+  it('prints an open stint to S78 when there are no app lines', () => {
+    expect(careerLines(parseBio(shannon))).toEqual(['New Mexico State: S66', 'Creighton: S67', 'CP: S68-S78', '2x Young-Star', '10x All-Star', '2x MVP']);
+  });
+
+  it('merges EC and WC titles, drops D2 and WC stints, and keeps single seasons', () => {
+    const c = parseBio({ born: 'Born-S1', entries: ['D2(Milan)-S53-S56', '3x All-Star', 'CIN-S60-S61', '1x EC Champion', 'S61 MIP', 'OAK-S62', '2x WC Champion'] });
+    expect(careerLines(c)).toEqual(['CIN: S60-S61', 'OAK: S62', '3x Conference Champion', 'S61 MIP']);
+  });
+});
+
+describe('awardTotals', () => {
+  const baseline: AwardCountsFile = { league: 'fba', throughSeason: 78, counts: [{ playerId: 'p00001', key: 'MVP', count: 2 }, { playerId: 'p00002', key: 'MVP', count: 5 }] };
+  const s78 = summary(78, { awards: [{ award: 'MVP', playerId: 'p00001', teamId: 'BOS' }] });
+  it('adds the summaries after the baseline season', () => {
+    const t = awardTotals('p00001', baseline, [s79, s78]);
+    expect(t.MVP).toBe(3);
+    expect(t.ALL_STAR).toBe(1);
+    expect(t.DUNK).toBe(0);
+    expect(Object.keys(t)).toHaveLength(19);
+  });
+  it('counts every season with a null baseline', () => {
+    expect(awardTotals('p00001', null, [s79, s78]).MVP).toBe(2);
+  });
+});
+
+describe('careerStats', () => {
+  it('lists the S78 PPG row, the S79+ stints and a total since S79', () => {
+    const s78 = summary(78, { legacyPpg: [{ playerId: 'p00001', teamId: 'BOS', ppg: 24.5 }, { playerId: 'p00002', teamId: 'NY', ppg: 10 }] });
+    const traded = summary(80, {
+      players: [line('p00001', 'LA', 2, 30, 300), line('p00001', 'BOS', 1, 50, 1000, [10, 250]), line('p00001', null, null, 80, 1300)],
+    });
+    const { rows, total } = careerStats('p00001', [traded, s79, s78]);
+    expect(rows).toEqual([
+      { season: 78, teamId: 'BOS', gp: null, pts: null, ppg: 24.5, po: null },
+      { season: 79, teamId: 'BOS', gp: 80, pts: 2000, ppg: 25, po: null },
+      { season: 80, teamId: 'BOS', gp: 50, pts: 1000, ppg: 20, po: { gp: 10, pts: 250, ppg: 25 } },
+      { season: 80, teamId: 'LA', gp: 30, pts: 300, ppg: 10, po: null },
+    ]);
+    expect(total).toEqual({ gp: 160, pts: 3300, ppg: 20.6 });
+  });
+  it('is empty for an unknown player', () => {
+    expect(careerStats('p99999', [s79])).toEqual({ rows: [], total: { gp: 0, pts: 0, ppg: 0 } });
   });
 });
