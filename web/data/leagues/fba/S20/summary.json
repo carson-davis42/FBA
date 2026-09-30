@@ -1,0 +1,29 @@
+{
+  "league": "fba",
+  "season": 20,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "San Antonio",
+      "runnerUp": "Former Pirates",
+      "score": "1–0",
+      "finalsMvp": "p01972"
+    }
+  ],
+  "confChampions": {
+    "E": "Montreal",
+    "W": "San Antonio"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01972",
+      "teamId": "USA"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

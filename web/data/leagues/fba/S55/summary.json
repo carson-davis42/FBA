@@ -1,0 +1,204 @@
+{
+  "league": "fba",
+  "season": 55,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Florida Panthers",
+      "runnerUp": "Cincinnati Blue Stripes",
+      "score": "2–1",
+      "finalsMvp": "p02070",
+      "teamId": "FLO",
+      "runnerUpId": "CIN"
+    }
+  ],
+  "confChampions": {
+    "E": "Florida Panthers",
+    "W": "Texas Outlaws"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02070",
+      "teamId": "FLO"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02145",
+      "teamId": "TEX"
+    }
+  ],
+  "allStar": null,
+  "allFba": {
+    "team1": [
+      {
+        "slot": "OUT",
+        "playerId": "p02070",
+        "teamId": "FLO"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02145",
+        "teamId": "TEX"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02162",
+        "teamId": "SAS"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02121",
+        "teamId": "CHI"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "OUT",
+        "playerId": "p02123",
+        "teamId": "STL"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02143",
+        "teamId": "CIN"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02130",
+        "teamId": "CGG"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02131",
+        "teamId": "SOX"
+      }
+    ]
+  },
+  "pastBracket": {
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Florida Panthers",
+          "record": "6-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Cypress Green Guns",
+          "record": "3-4",
+          "seed": 8
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Chicago Spartans",
+          "record": "5-2",
+          "seed": 5
+        },
+        "away": {
+          "name": "Cypress Black Sox",
+          "record": "5-2",
+          "seed": 4
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Cincinnati Blue Stripes",
+          "record": "6-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Montreal",
+          "record": "5-2",
+          "seed": 6
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Maine Wildcats",
+          "record": "5-2",
+          "seed": 7
+        },
+        "away": {
+          "name": "Texas Outlaws",
+          "record": "6-1",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Florida Panthers",
+          "record": "6-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Chicago Spartans",
+          "record": "5-2",
+          "seed": 5
+        },
+        "homeWins": 2,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Cincinnati Blue Stripes",
+          "record": "6-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Texas Outlaws",
+          "record": "6-1",
+          "seed": 2
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Florida Panthers",
+          "record": "6-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Cincinnati Blue Stripes",
+          "record": "6-1",
+          "seed": 3
+        },
+        "homeWins": 2,
+        "awayWins": 1,
+        "winner": "home"
+      }
+    ]
+  }
+}

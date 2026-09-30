@@ -1,0 +1,31 @@
+{
+  "league": "fba",
+  "season": 17,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Cypress Green Guns",
+      "runnerUp": "Oakland All-Stars",
+      "score": "1–0",
+      "finalsMvp": "p01955",
+      "teamId": "CGG",
+      "runnerUpId": "OAK"
+    }
+  ],
+  "confChampions": {
+    "E": "DCB",
+    "W": "Oakland All-Stars"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01948",
+      "teamId": "OAK"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

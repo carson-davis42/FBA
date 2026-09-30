@@ -1,0 +1,35 @@
+{
+  "league": "fba",
+  "season": 26,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Oakland All-Stars",
+      "runnerUp": "Montreal",
+      "score": "1–0",
+      "finalsMvp": "p01983",
+      "teamId": "OAK"
+    }
+  ],
+  "confChampions": {
+    "E": "Montreal",
+    "W": "Oakland All-Stars"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01983",
+      "teamId": "OAK"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p01983",
+      "teamId": "OAK"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

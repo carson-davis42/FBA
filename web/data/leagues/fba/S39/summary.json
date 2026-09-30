@@ -1,0 +1,35 @@
+{
+  "league": "fba",
+  "season": 39,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Milwaukee Warriors",
+      "runnerUp": "St.Louis",
+      "score": "1–0",
+      "finalsMvp": "p02015",
+      "teamId": "MIL"
+    }
+  ],
+  "confChampions": {
+    "E": "Montreal",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02020",
+      "teamId": "CGG"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02045",
+      "teamId": "OAK"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

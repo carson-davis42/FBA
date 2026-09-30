@@ -1,0 +1,35 @@
+{
+  "league": "fba",
+  "season": 30,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Montreal",
+      "runnerUp": "Oakland All-Stars",
+      "score": "1–0",
+      "finalsMvp": "p02002",
+      "runnerUpId": "OAK"
+    }
+  ],
+  "confChampions": {
+    "E": "Montreal",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01983",
+      "teamId": "OAK"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02002",
+      "teamId": "MON"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

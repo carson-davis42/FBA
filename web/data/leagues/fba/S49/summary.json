@@ -1,0 +1,91 @@
+{
+  "league": "fba",
+  "season": 49,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Cypress Green Guns",
+      "runnerUp": "Milwaukee Warriors",
+      "score": "1–0",
+      "finalsMvp": "p02020",
+      "teamId": "CGG",
+      "runnerUpId": "MIL"
+    }
+  ],
+  "confChampions": {
+    "E": "Milwaukee Warriors",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02021",
+      "teamId": "FP"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02098",
+      "teamId": "OV"
+    }
+  ],
+  "allStar": {
+    "allStars": [],
+    "youngStars": [],
+    "asgMvp": "p02020",
+    "fivePoint": null,
+    "dunk": null,
+    "asgWinner": "Western Conference",
+    "asgLoser": null,
+    "ysgWinner": null,
+    "ysgMvp": null
+  },
+  "allFba": {
+    "team1": [
+      {
+        "slot": "OUT",
+        "playerId": "p02020",
+        "teamId": "CGG"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02021",
+        "teamId": "FP"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02063",
+        "teamId": "OV"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02098",
+        "teamId": "OV"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "OUT",
+        "playerId": "p02050",
+        "teamId": "MIL"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02017",
+        "teamId": "SOX"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02082",
+        "teamId": "DCB"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02070",
+        "teamId": "FLO"
+      }
+    ]
+  },
+  "pastBracket": null
+}

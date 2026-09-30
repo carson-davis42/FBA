@@ -1,0 +1,570 @@
+{
+  "franchises": [
+    {
+      "teamId": "ATL",
+      "eras": [
+        {
+          "name": "Atlanta Venom",
+          "abbr": "ATL",
+          "city": "Atlanta, Georgia",
+          "from": 75,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "BOS",
+      "eras": [
+        {
+          "name": "Boston Bucks",
+          "abbr": "BOS",
+          "city": "Boston, Massachusetts",
+          "from": 61,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "CAR",
+      "eras": [
+        {
+          "name": "Carolina Knights",
+          "abbr": "CAR",
+          "city": "Charlotte, North Carolina",
+          "from": 73,
+          "to": null
+        },
+        {
+          "name": "Charlotte Knights",
+          "abbr": "CHA",
+          "city": "Charlotte, North Carolina",
+          "from": 68,
+          "to": 72
+        },
+        {
+          "name": "Cal Tech Golden Knights",
+          "abbr": "CT",
+          "city": "Sacramento, California",
+          "from": 57,
+          "to": 67
+        },
+        {
+          "name": "Cal Tech Knights",
+          "abbr": "CT",
+          "city": "Sacramento, California",
+          "from": 41,
+          "to": 56
+        }
+      ]
+    },
+    {
+      "teamId": "CGG",
+      "eras": [
+        {
+          "name": "Cypress Green Guns",
+          "abbr": "CGG",
+          "city": "Cypress, Texas",
+          "from": 47,
+          "to": null
+        },
+        {
+          "name": "Cypress Green Guns",
+          "abbr": "CGG",
+          "city": "Cypress, Texas",
+          "from": 22,
+          "to": 46
+        },
+        {
+          "name": "Cypress Green Guns",
+          "abbr": "CGG",
+          "city": "Cypress, Texas",
+          "from": 1,
+          "to": 21
+        }
+      ]
+    },
+    {
+      "teamId": "CHI",
+      "eras": [
+        {
+          "name": "Chicago Spartans",
+          "abbr": "CHI",
+          "city": "Chicago, Illinois",
+          "from": 49,
+          "to": null
+        },
+        {
+          "name": "Chicago Spartans",
+          "abbr": "CHI",
+          "city": "Chicago, Illinois",
+          "from": 45,
+          "to": 49
+        }
+      ]
+    },
+    {
+      "teamId": "CIN",
+      "eras": [
+        {
+          "name": "Cincinnati Blue Stripes",
+          "abbr": "CIN",
+          "city": "Cincinnati, Ohio",
+          "from": 79,
+          "to": null
+        },
+        {
+          "name": "Cincinnati Blue Stripes",
+          "abbr": "CIN",
+          "city": "Cincinnati, Ohio",
+          "from": 64,
+          "to": 78
+        },
+        {
+          "name": "Cincinnati Blue Stripes",
+          "abbr": "CIN",
+          "city": "Cincinnati, Ohio",
+          "from": 45,
+          "to": 63
+        }
+      ]
+    },
+    {
+      "teamId": "CP",
+      "eras": [
+        {
+          "name": "Columbus Pirates",
+          "abbr": "CP",
+          "city": "Columbus, Ohio",
+          "from": 57,
+          "to": null
+        },
+        {
+          "name": "Former Pirates",
+          "abbr": "FP",
+          "city": "Columbus, Ohio",
+          "from": 35,
+          "to": 56
+        },
+        {
+          "name": "Former Pirates",
+          "abbr": "FP",
+          "city": "Columbus, Ohio",
+          "from": 1,
+          "to": 34
+        }
+      ]
+    },
+    {
+      "teamId": "DCB",
+      "eras": [
+        {
+          "name": "DCB",
+          "abbr": "DCB",
+          "city": "Washington DC, USA",
+          "from": 79,
+          "to": null
+        },
+        {
+          "name": "DCB",
+          "abbr": "DCB",
+          "city": "Washington DC, USA",
+          "from": 44,
+          "to": 78
+        },
+        {
+          "name": "DCB",
+          "abbr": "DCB",
+          "city": "Washington DC, USA",
+          "from": 1,
+          "to": 43
+        }
+      ]
+    },
+    {
+      "teamId": "DEN",
+      "eras": [
+        {
+          "name": "Denver Heights",
+          "abbr": "DEN",
+          "city": "Denver, Colorado",
+          "from": 61,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "DET",
+      "eras": [
+        {
+          "name": "Detroit Motors",
+          "abbr": "DET",
+          "city": "Detroit, Michigan",
+          "from": 59,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "FLO",
+      "eras": [
+        {
+          "name": "Florida Panthers",
+          "abbr": "FLO",
+          "city": "Orlando, Florida",
+          "from": 63,
+          "to": null
+        },
+        {
+          "name": "Florida Panthers",
+          "abbr": "FLO",
+          "city": "Orlando, Florida",
+          "from": 45,
+          "to": 62
+        }
+      ]
+    },
+    {
+      "teamId": "HON",
+      "eras": [
+        {
+          "name": "Honolulu Rays",
+          "abbr": "HON",
+          "city": "Honolulu, Hawaii",
+          "from": 68,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "LA",
+      "eras": [
+        {
+          "name": "Los Angeles Hawks",
+          "abbr": "LA",
+          "city": "Los Angeles, California",
+          "from": 59,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "LAL",
+      "eras": [
+        {
+          "name": "Los Angeles Labradors",
+          "abbr": "LAL",
+          "city": "Los Angeles, California",
+          "from": 80,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "MAN",
+      "eras": [
+        {
+          "name": "Manhattan Magic",
+          "abbr": "MAN",
+          "city": "Manhattan, New York",
+          "from": 68,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "MEM",
+      "eras": [
+        {
+          "name": "Memphis Blues",
+          "abbr": "MEM",
+          "city": "Memphis, Tennessee",
+          "from": 59,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "MIL",
+      "eras": [
+        {
+          "name": "Milwaukee Warriors",
+          "abbr": "MIL",
+          "city": "Milwaukee, Wisconsin",
+          "from": 45,
+          "to": null
+        },
+        {
+          "name": "Milwaukee Warriors",
+          "abbr": "MIL",
+          "city": "Milwaukee, Wisconsin",
+          "from": 35,
+          "to": 44
+        }
+      ]
+    },
+    {
+      "teamId": "MON",
+      "eras": [
+        {
+          "name": "Montreal Chevaliers",
+          "abbr": "MON",
+          "city": "Montreal, Quebec, Canada",
+          "from": 79,
+          "to": null
+        },
+        {
+          "name": "Montreal Chevaliers",
+          "abbr": "MON",
+          "city": "Montreal, Quebec, Canada",
+          "from": 57,
+          "to": 78
+        },
+        {
+          "name": "Montreal",
+          "abbr": "MON",
+          "city": "Montreal, Quebec, Canada",
+          "from": 12,
+          "to": 56
+        },
+        {
+          "name": "Texas Outlaws",
+          "abbr": "TEX",
+          "city": "Dallas, Texas",
+          "from": 1,
+          "to": 10
+        }
+      ]
+    },
+    {
+      "teamId": "MW",
+      "eras": [
+        {
+          "name": "Maine Wildcats",
+          "abbr": "MW",
+          "city": "Portland, Maine",
+          "from": 78,
+          "to": null
+        },
+        {
+          "name": "Maine Wildcats",
+          "abbr": "MW",
+          "city": "Portland, Maine",
+          "from": 41,
+          "to": 77
+        }
+      ]
+    },
+    {
+      "teamId": "NO",
+      "eras": [
+        {
+          "name": "New Orleans Seminoles",
+          "abbr": "NO",
+          "city": "New Orleans, Louisiana",
+          "from": 57,
+          "to": null
+        },
+        {
+          "name": "Cypress Black Sox",
+          "abbr": "SOX",
+          "city": "Cypress, Texas",
+          "from": 45,
+          "to": 56
+        }
+      ]
+    },
+    {
+      "teamId": "NY",
+      "eras": [
+        {
+          "name": "New York Icons",
+          "abbr": "NY",
+          "city": "New York City, New York",
+          "from": 63,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "OAK",
+      "eras": [
+        {
+          "name": "Oakland All-Stars",
+          "abbr": "OAK",
+          "city": "Oakland, California",
+          "from": 51,
+          "to": null
+        },
+        {
+          "name": "Oakland All-Stars",
+          "abbr": "OAK",
+          "city": "Oakland, California",
+          "from": 1,
+          "to": 50
+        }
+      ]
+    },
+    {
+      "teamId": "OV",
+      "eras": [
+        {
+          "name": "Ohio Valley Sharks",
+          "abbr": "OV",
+          "city": "Indianapolis, Indiana",
+          "from": 70,
+          "to": null
+        },
+        {
+          "name": "Ohio Valley Sharks",
+          "abbr": "OV",
+          "city": "Indianapolis, Indiana",
+          "from": 41,
+          "to": 69
+        }
+      ]
+    },
+    {
+      "teamId": "PHI",
+      "eras": [
+        {
+          "name": "Philly Phantoms",
+          "abbr": "PHI",
+          "city": "Philadelphia, Pennsylvania",
+          "from": 80,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "PHX",
+      "eras": [
+        {
+          "name": "Phoenix Badgers",
+          "abbr": "PHX",
+          "city": "Phoenix, Arizona",
+          "from": 63,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "SAS",
+      "eras": [
+        {
+          "name": "San Antonio Spirits",
+          "abbr": "SAS",
+          "city": "San Antonio, Texas",
+          "from": 57,
+          "to": null
+        },
+        {
+          "name": "San Antonio",
+          "abbr": "USA",
+          "city": "San Antonio, Texas",
+          "from": 28,
+          "to": 56
+        },
+        {
+          "name": "San Antonio",
+          "abbr": "USA",
+          "city": "San Antonio, Texas",
+          "from": 1,
+          "to": 27
+        }
+      ]
+    },
+    {
+      "teamId": "SEA",
+      "eras": [
+        {
+          "name": "Seattle Shock",
+          "abbr": "SEA",
+          "city": "Seattle, Washington",
+          "from": 78,
+          "to": null
+        },
+        {
+          "name": "Seattle Shock",
+          "abbr": "SEA",
+          "city": "Seattle, Washington",
+          "from": 59,
+          "to": 76
+        }
+      ]
+    },
+    {
+      "teamId": "STL",
+      "eras": [
+        {
+          "name": "St.Louis Kings",
+          "abbr": "STL",
+          "city": "St.Louis, Missouri",
+          "from": 57,
+          "to": null
+        },
+        {
+          "name": "St.Louis",
+          "abbr": "STL",
+          "city": "St.Louis, Missouri",
+          "from": 35,
+          "to": 56
+        }
+      ]
+    },
+    {
+      "teamId": "TEX",
+      "eras": [
+        {
+          "name": "Texas Outlaws",
+          "abbr": "TEX",
+          "city": "Dallas, Texas",
+          "from": 41,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "TOR",
+      "eras": [
+        {
+          "name": "Toronto Wolves",
+          "abbr": "TOR",
+          "city": "Toronto, Ontario, Canada",
+          "from": 79,
+          "to": null
+        },
+        {
+          "name": "Toronto Wolves",
+          "abbr": "TOR",
+          "city": "Toronto, Ontario, Canada",
+          "from": 68,
+          "to": 78
+        }
+      ]
+    },
+    {
+      "teamId": "VAN",
+      "eras": [
+        {
+          "name": "Vancouver Orcas",
+          "abbr": "VAN",
+          "city": "Vancouver, BC, Canada",
+          "from": 75,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "VEG",
+      "eras": [
+        {
+          "name": "Vegas Volts",
+          "abbr": "VEG",
+          "city": "Las Vegas, Nevada",
+          "from": 68,
+          "to": null
+        }
+      ]
+    }
+  ]
+}

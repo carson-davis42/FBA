@@ -1,0 +1,213 @@
+{
+  "league": "fba",
+  "season": 53,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "St.Louis",
+      "runnerUp": "Cypress Green Guns",
+      "score": "2–0",
+      "finalsMvp": "p02123",
+      "runnerUpId": "CGG"
+    }
+  ],
+  "confChampions": {
+    "E": "Florida Panthers",
+    "W": "Oakland All-Stars"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02068",
+      "teamId": "OAK"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02139",
+      "teamId": "USA"
+    }
+  ],
+  "allStar": {
+    "allStars": [],
+    "youngStars": [],
+    "asgMvp": "p02078",
+    "fivePoint": null,
+    "dunk": null,
+    "asgWinner": "Western Conference",
+    "asgLoser": null,
+    "ysgWinner": null,
+    "ysgMvp": null
+  },
+  "allFba": {
+    "team1": [
+      {
+        "slot": "OUT",
+        "playerId": "p02068",
+        "teamId": "OAK"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02110",
+        "teamId": "FLO"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02129",
+        "teamId": "FP"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02078",
+        "teamId": "CGG"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "OUT",
+        "playerId": "p02123",
+        "teamId": "STL"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02139",
+        "teamId": "USA"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02041",
+        "teamId": "OAK"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02108",
+        "teamId": "CT"
+      }
+    ]
+  },
+  "pastBracket": {
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Florida Panthers",
+          "record": "7-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Former Pirates",
+          "record": "4-3",
+          "seed": 8
+        },
+        "homeWins": 1,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "St.Louis",
+          "record": "5-2",
+          "seed": 5
+        },
+        "away": {
+          "name": "San Antonio",
+          "record": "5-1-1",
+          "seed": 4
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Cypress Green Guns",
+          "record": "6-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Cincinnati Blue Stripes",
+          "record": "4-3",
+          "seed": 6
+        },
+        "homeWins": 2,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Montreal",
+          "record": "4-3",
+          "seed": 7
+        },
+        "away": {
+          "name": "Oakland All-Stars",
+          "record": "5-1-1",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Former Pirates",
+          "record": "4-3",
+          "seed": 8
+        },
+        "away": {
+          "name": "St.Louis",
+          "record": "5-2",
+          "seed": 5
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Cypress Green Guns",
+          "record": "6-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Oakland All-Stars",
+          "record": "5-1-1",
+          "seed": 2
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "St.Louis",
+          "record": "5-2",
+          "seed": 5
+        },
+        "away": {
+          "name": "Cypress Green Guns",
+          "record": "6-1",
+          "seed": 3
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      }
+    ]
+  }
+}

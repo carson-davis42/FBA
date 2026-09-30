@@ -1,0 +1,198 @@
+{
+  "league": "fba",
+  "season": 56,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Cincinnati Blue Stripes",
+      "runnerUp": "Cal Tech Knights",
+      "score": "2–0",
+      "finalsMvp": "p02076",
+      "teamId": "CIN"
+    }
+  ],
+  "confChampions": {
+    "E": "Ohio Valley Sharks",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02141",
+      "teamId": "OV"
+    }
+  ],
+  "allStar": null,
+  "allFba": {
+    "team1": [
+      {
+        "slot": "OUT",
+        "playerId": "p02141",
+        "teamId": "OV"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02145",
+        "teamId": "TEX"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02076",
+        "teamId": "CIN"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02121",
+        "teamId": "CHI"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "OUT",
+        "playerId": "p02108",
+        "teamId": "CT"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02143",
+        "teamId": "CIN"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02129",
+        "teamId": "FP"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02078",
+        "teamId": "CGG"
+      }
+    ]
+  },
+  "pastBracket": {
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Ohio Valley Sharks",
+          "record": "7-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Florida Panthers",
+          "record": "4-3",
+          "seed": 8
+        },
+        "homeWins": 1,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Chicago Spartans",
+          "record": "5-2",
+          "seed": 5
+        },
+        "away": {
+          "name": "Cincinnati Blue Stripes",
+          "record": "5-2",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Texas Outlaws",
+          "record": "6-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Cal Tech Knights",
+          "record": "5-2",
+          "seed": 6
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Former Pirates",
+          "record": "5-2",
+          "seed": 7
+        },
+        "away": {
+          "name": "Cypress Green Guns",
+          "record": "6-1",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Florida Panthers",
+          "record": "4-3",
+          "seed": 8
+        },
+        "away": {
+          "name": "Cincinnati Blue Stripes",
+          "record": "5-2",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Cal Tech Knights",
+          "record": "5-2",
+          "seed": 6
+        },
+        "away": {
+          "name": "Cypress Green Guns",
+          "record": "6-1",
+          "seed": 2
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Cincinnati Blue Stripes",
+          "record": "5-2",
+          "seed": 4
+        },
+        "away": {
+          "name": "Cal Tech Knights",
+          "record": "5-2",
+          "seed": 6
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      }
+    ]
+  }
+}

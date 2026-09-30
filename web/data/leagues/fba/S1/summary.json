@@ -1,0 +1,30 @@
+{
+  "league": "fba",
+  "season": 1,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Cypress Green Guns",
+      "runnerUp": "Former Pirates",
+      "score": "1–0",
+      "finalsMvp": "p01924",
+      "teamId": "CGG"
+    }
+  ],
+  "confChampions": {
+    "E": "Former Pirates",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01940",
+      "teamId": "FP"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

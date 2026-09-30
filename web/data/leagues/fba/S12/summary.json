@@ -1,0 +1,30 @@
+{
+  "league": "fba",
+  "season": 12,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Montreal",
+      "runnerUp": "Cypress Green Guns",
+      "score": "1–0",
+      "finalsMvp": "p01957",
+      "runnerUpId": "CGG"
+    }
+  ],
+  "confChampions": {
+    "E": "Montreal",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01957",
+      "teamId": "MON"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

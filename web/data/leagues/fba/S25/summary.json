@@ -1,0 +1,34 @@
+{
+  "league": "fba",
+  "season": 25,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "San Antonio",
+      "runnerUp": "Montreal",
+      "score": "1–0",
+      "finalsMvp": "p01972"
+    }
+  ],
+  "confChampions": {
+    "E": "Montreal",
+    "W": "San Antonio"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01972",
+      "teamId": "USA"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p01980",
+      "teamId": "FP"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

@@ -1,0 +1,36 @@
+{
+  "league": "fba",
+  "season": 43,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Cypress Green Guns",
+      "runnerUp": "Maine Wildcats",
+      "score": "1–0",
+      "finalsMvp": "p02020",
+      "teamId": "CGG",
+      "runnerUpId": "MW"
+    }
+  ],
+  "confChampions": {
+    "E": "Maine Wildcats",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02020",
+      "teamId": "CGG"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02062",
+      "teamId": "CT"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

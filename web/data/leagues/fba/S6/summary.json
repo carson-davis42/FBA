@@ -1,0 +1,30 @@
+{
+  "league": "fba",
+  "season": 6,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "DCB",
+      "runnerUp": "San Antonio",
+      "score": "1–0",
+      "finalsMvp": "p01935",
+      "teamId": "DCB"
+    }
+  ],
+  "confChampions": {
+    "E": "DCB",
+    "W": "San Antonio"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01948",
+      "teamId": "OAK"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

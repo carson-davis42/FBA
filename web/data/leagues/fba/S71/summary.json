@@ -1,124 +1,119 @@
 {
   "league": "fba",
-  "season": 78,
+  "season": 71,
   "locked": true,
   "host": null,
   "champions": [
     {
       "title": "FBA Champion",
-      "champion": "Boston Bucks",
-      "runnerUp": "Memphis Blues",
-      "score": "4–1",
-      "finalsMvp": "p00006",
-      "teamId": "BOS",
-      "runnerUpId": "MEM"
+      "champion": "Ohio Valley Sharks",
+      "runnerUp": "Florida Panthers",
+      "score": "4–3",
+      "finalsMvp": "p02328",
+      "teamId": "OV",
+      "runnerUpId": "FLO"
     }
   ],
   "confChampions": {
-    "E": "Carolina Knights",
-    "W": "Honolulu Rays"
+    "E": "Columbus Pirates",
+    "W": "Florida Panthers"
   },
   "awards": [
     {
       "award": "MVP",
-      "playerId": "p00055",
-      "teamId": "HON"
+      "playerId": "p02251",
+      "teamId": "DEN"
     },
     {
       "award": "ROTY",
-      "playerId": "p00117",
-      "teamId": "SEA"
+      "playerId": "p00010",
+      "teamId": "BOS"
     },
     {
       "award": "PPK",
-      "playerId": "p00055",
-      "teamId": "HON"
+      "playerId": "p02251",
+      "teamId": "DEN"
     },
     {
       "award": "LP",
-      "playerId": "p00090",
-      "teamId": "NO"
+      "playerId": "p02326",
+      "teamId": "MON"
     },
     {
       "award": "MC",
-      "playerId": "p00116",
-      "teamId": "SAS"
+      "playerId": "p02328",
+      "teamId": "OV"
     },
     {
       "award": "DPOY",
-      "playerId": "p00011",
-      "teamId": "CAR"
-    },
-    {
-      "award": "MIP",
-      "playerId": "p00068",
-      "teamId": "MAN"
+      "playerId": "p02302",
+      "teamId": "MW"
     }
   ],
   "allStar": {
     "allStars": [],
     "youngStars": [],
-    "asgMvp": "p00073",
-    "fivePoint": "p00143",
-    "dunk": "p00012",
-    "asgWinner": "Team Cameron Lucic",
-    "asgLoser": "Team Reagan Butler",
-    "ysgWinner": "Team Akeem Naylor",
-    "ysgMvp": "p00104"
+    "asgMvp": "p02301",
+    "fivePoint": "p00031",
+    "dunk": "p02329",
+    "asgWinner": "Team Keith Russell",
+    "asgLoser": "Team Kamden Pierre-Kent",
+    "ysgWinner": "Team Jarrett Oden",
+    "ysgMvp": "p00055"
   },
   "allFba": {
     "team1": [
       {
         "slot": "G",
-        "playerId": "p00055",
-        "teamId": "HON"
+        "playerId": "p02251",
+        "teamId": "DEN"
       },
       {
         "slot": "F",
-        "playerId": "p00090",
-        "teamId": "NO"
+        "playerId": "p02326",
+        "teamId": "MON"
       },
       {
         "slot": "C",
-        "playerId": "p00116",
-        "teamId": "SAS"
+        "playerId": "p02328",
+        "teamId": "OV"
       },
       {
         "slot": "ANY",
-        "playerId": "p00031",
-        "teamId": "TOR"
-      },
-      {
-        "slot": "ANY",
-        "playerId": "p00006",
-        "teamId": "BOS"
-      }
-    ],
-    "team2": [
-      {
-        "slot": "G",
-        "playerId": "p00073",
-        "teamId": "MEM"
-      },
-      {
-        "slot": "F",
-        "playerId": "p00100",
-        "teamId": "OAK"
-      },
-      {
-        "slot": "C",
-        "playerId": "p00010",
-        "teamId": "BOS"
-      },
-      {
-        "slot": "ANY",
-        "playerId": "p00046",
-        "teamId": "DET"
+        "playerId": "p02327",
+        "teamId": "MIL"
       },
       {
         "slot": "ANY",
         "playerId": "p00026",
         "teamId": "CP"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "G",
+        "playerId": "p02303",
+        "teamId": "OV"
+      },
+      {
+        "slot": "F",
+        "playerId": "p00115",
+        "teamId": "CHI"
+      },
+      {
+        "slot": "C",
+        "playerId": "p00157",
+        "teamId": "FLO"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02302",
+        "teamId": "MW"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02252",
+        "teamId": "DCB"
       }
     ]
   },
@@ -129,47 +124,30 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Carolina Knights",
-          "record": "62-24",
+          "name": "Columbus Pirates",
+          "record": "59-21",
           "seed": null
         },
         "away": {
-          "name": "Atlanta Venom",
-          "record": "45-41",
+          "name": "Detroit Motors",
+          "record": "44-36",
           "seed": null
         },
-        "homeWins": 3,
-        "awayWins": 4,
-        "winner": "away"
+        "homeWins": 4,
+        "awayWins": 0,
+        "winner": "home"
       },
       {
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Manhattan Magic",
-          "record": "54-32",
-          "seed": null
-        },
-        "away": {
-          "name": "Cincinnati Blue Stripes",
-          "record": "51-35",
-          "seed": null
-        },
-        "homeWins": 3,
-        "awayWins": 4,
-        "winner": "away"
-      },
-      {
-        "id": "R1-3",
-        "round": 1,
-        "home": {
-          "name": "Detroit Motors",
-          "record": "56-30",
+          "name": "Milwaukee Warriors",
+          "record": "52-28",
           "seed": null
         },
         "away": {
           "name": "Maine Wildcats",
-          "record": "50-36",
+          "record": "51-29",
           "seed": null
         },
         "homeWins": 2,
@@ -177,50 +155,67 @@
         "winner": "away"
       },
       {
-        "id": "R1-4",
+        "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Boston Bucks",
-          "record": "60-26",
+          "name": "Montreal Chevaliers",
+          "record": "53-27",
           "seed": null
         },
         "away": {
-          "name": "Toronto Wolves",
-          "record": "48-38",
+          "name": "Chicago Spartans",
+          "record": "45-35",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Ohio Valley Sharks",
+          "record": "59-21",
+          "seed": null
+        },
+        "away": {
+          "name": "New York Icons",
+          "record": "45-35",
           "seed": null
         },
         "homeWins": 4,
-        "awayWins": 2,
+        "awayWins": 1,
         "winner": "home"
       },
       {
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Honolulu Rays",
-          "record": "66-20",
+          "name": "Florida Panthers",
+          "record": "62-18",
           "seed": null
         },
         "away": {
-          "name": "Seattle Shock",
-          "record": "45-41",
+          "name": "Oakland All-Stars",
+          "record": "36-44",
           "seed": null
         },
         "homeWins": 4,
-        "awayWins": 3,
+        "awayWins": 1,
         "winner": "home"
       },
       {
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Cypress Green Guns",
-          "record": "59-27",
+          "name": "St.Louis Kings",
+          "record": "48-32",
           "seed": null
         },
         "away": {
-          "name": "Denver Heights",
-          "record": "58-28",
+          "name": "Los Angeles Hawks",
+          "record": "47-33",
           "seed": null
         },
         "homeWins": 4,
@@ -231,13 +226,13 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Texas Outlaws",
-          "record": "62-24",
+          "name": "Phoenix Badgers",
+          "record": "52-28",
           "seed": null
         },
         "away": {
-          "name": "Memphis Blues",
-          "record": "56-30",
+          "name": "San Antonio Spirits",
+          "record": "44-36",
           "seed": null
         },
         "homeWins": 3,
@@ -248,47 +243,47 @@
         "id": "R1-8",
         "round": 1,
         "home": {
-          "name": "New Orleans Seminoles",
-          "record": "63-23",
+          "name": "Denver Heights",
+          "record": "54-26",
           "seed": null
         },
         "away": {
-          "name": "San Antonio Spirits",
-          "record": "53-33",
+          "name": "Cypress Green Guns",
+          "record": "41-39",
           "seed": null
         },
         "homeWins": 4,
-        "awayWins": 3,
+        "awayWins": 2,
         "winner": "home"
       },
       {
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Atlanta Venom",
-          "record": "45-41",
+          "name": "Columbus Pirates",
+          "record": "59-21",
           "seed": null
         },
         "away": {
-          "name": "Cincinnati Blue Stripes",
-          "record": "51-35",
+          "name": "Maine Wildcats",
+          "record": "51-29",
           "seed": null
         },
-        "homeWins": 3,
-        "awayWins": 4,
-        "winner": "away"
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
       },
       {
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Maine Wildcats",
-          "record": "50-36",
+          "name": "Chicago Spartans",
+          "record": "45-35",
           "seed": null
         },
         "away": {
-          "name": "Boston Bucks",
-          "record": "60-26",
+          "name": "Ohio Valley Sharks",
+          "record": "59-21",
           "seed": null
         },
         "homeWins": 3,
@@ -299,50 +294,50 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Honolulu Rays",
-          "record": "66-20",
+          "name": "Florida Panthers",
+          "record": "62-18",
           "seed": null
         },
         "away": {
-          "name": "Cypress Green Guns",
-          "record": "59-27",
+          "name": "St.Louis Kings",
+          "record": "48-32",
           "seed": null
         },
         "homeWins": 4,
-        "awayWins": 2,
+        "awayWins": 0,
         "winner": "home"
       },
       {
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Memphis Blues",
-          "record": "56-30",
+          "name": "San Antonio Spirits",
+          "record": "44-36",
           "seed": null
         },
         "away": {
-          "name": "New Orleans Seminoles",
-          "record": "63-23",
+          "name": "Denver Heights",
+          "record": "54-26",
           "seed": null
         },
-        "homeWins": 4,
-        "awayWins": 2,
-        "winner": "home"
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "away"
       },
       {
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Cincinnati Blue Stripes",
-          "record": "51-35",
+          "name": "Columbus Pirates",
+          "record": "59-21",
           "seed": null
         },
         "away": {
-          "name": "Boston Bucks",
-          "record": "60-26",
+          "name": "Ohio Valley Sharks",
+          "record": "59-21",
           "seed": null
         },
-        "homeWins": 0,
+        "homeWins": 3,
         "awayWins": 4,
         "winner": "away"
       },
@@ -350,63 +345,46 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Honolulu Rays",
-          "record": "66-20",
+          "name": "Florida Panthers",
+          "record": "62-18",
           "seed": null
         },
         "away": {
-          "name": "Memphis Blues",
-          "record": "56-30",
+          "name": "Denver Heights",
+          "record": "54-26",
           "seed": null
         },
-        "homeWins": 1,
-        "awayWins": 4,
-        "winner": "away"
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
       },
       {
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Boston Bucks",
-          "record": "60-26",
+          "name": "Ohio Valley Sharks",
+          "record": "59-21",
           "seed": null
         },
         "away": {
-          "name": "Memphis Blues",
-          "record": "56-30",
+          "name": "Florida Panthers",
+          "record": "62-18",
           "seed": null
         },
         "homeWins": 4,
-        "awayWins": 1,
+        "awayWins": 3,
         "winner": "home"
       }
     ]
   },
   "standings": [
     {
-      "teamId": "CAR",
-      "name": "Carolina Knights",
+      "teamId": "CP",
+      "name": "Columbus Pirates",
       "group": "E",
       "rank": 1,
-      "w": 62,
-      "l": 24,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": {
-        "round": 1,
-        "champion": false
-      }
-    },
-    {
-      "teamId": "HON",
-      "name": "Honolulu Rays",
-      "group": "W",
-      "rank": 1,
-      "w": 66,
-      "l": 20,
+      "w": 59,
+      "l": 21,
       "confW": null,
       "confL": null,
       "diff": null,
@@ -418,12 +396,29 @@
       }
     },
     {
-      "teamId": "BOS",
-      "name": "Boston Bucks",
+      "teamId": "FLO",
+      "name": "Florida Panthers",
+      "group": "W",
+      "rank": 1,
+      "w": 62,
+      "l": 18,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": {
+        "round": 4,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "OV",
+      "name": "Ohio Valley Sharks",
       "group": "E",
       "rank": 2,
-      "w": 61,
-      "l": 25,
+      "w": 59,
+      "l": 21,
       "confW": null,
       "confL": null,
       "diff": null,
@@ -435,12 +430,80 @@
       }
     },
     {
-      "teamId": "NO",
-      "name": "New Orleans Seminoles",
+      "teamId": "DEN",
+      "name": "Denver Heights",
       "group": "W",
       "rank": 2,
-      "w": 63,
-      "l": 23,
+      "w": 54,
+      "l": 26,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": {
+        "round": 3,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "MON",
+      "name": "Montreal Chevaliers",
+      "group": "E",
+      "rank": 3,
+      "w": 53,
+      "l": 27,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": {
+        "round": 1,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "PHX",
+      "name": "Phoenix Badgers",
+      "group": "W",
+      "rank": 3,
+      "w": 52,
+      "l": 28,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": {
+        "round": 1,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "MIL",
+      "name": "Milwaukee Warriors",
+      "group": "E",
+      "rank": 4,
+      "w": 52,
+      "l": 28,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": {
+        "round": 1,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "STL",
+      "name": "St.Louis Kings",
+      "group": "W",
+      "rank": 4,
+      "w": 48,
+      "l": 32,
       "confW": null,
       "confL": null,
       "diff": null,
@@ -452,29 +515,29 @@
       }
     },
     {
-      "teamId": "DET",
-      "name": "Detroit Motors",
+      "teamId": "MW",
+      "name": "Maine Wildcats",
       "group": "E",
-      "rank": 3,
-      "w": 56,
-      "l": 30,
+      "rank": 5,
+      "w": 51,
+      "l": 29,
       "confW": null,
       "confL": null,
       "diff": null,
       "marker": null,
       "seed": null,
       "playoff": {
-        "round": 1,
+        "round": 2,
         "champion": false
       }
     },
     {
-      "teamId": "TEX",
-      "name": "Texas Outlaws",
+      "teamId": "LA",
+      "name": "Los Angeles Hawks",
       "group": "W",
-      "rank": 3,
-      "w": 62,
-      "l": 24,
+      "rank": 5,
+      "w": 47,
+      "l": 33,
       "confW": null,
       "confL": null,
       "diff": null,
@@ -486,12 +549,46 @@
       }
     },
     {
-      "teamId": "MAN",
-      "name": "Manhattan Magic",
+      "teamId": "CHI",
+      "name": "Chicago Spartans",
       "group": "E",
-      "rank": 4,
-      "w": 54,
-      "l": 32,
+      "rank": 6,
+      "w": 45,
+      "l": 35,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": {
+        "round": 2,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "SAS",
+      "name": "San Antonio Spirits",
+      "group": "W",
+      "rank": 6,
+      "w": 44,
+      "l": 36,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": {
+        "round": 2,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "NY",
+      "name": "New York Icons",
+      "group": "E",
+      "rank": 7,
+      "w": 45,
+      "l": 35,
       "confW": null,
       "confL": null,
       "diff": null,
@@ -506,43 +603,9 @@
       "teamId": "CGG",
       "name": "Cypress Green Guns",
       "group": "W",
-      "rank": 4,
-      "w": 59,
-      "l": 27,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": {
-        "round": 2,
-        "champion": false
-      }
-    },
-    {
-      "teamId": "CIN",
-      "name": "Cincinnati Blue Stripes",
-      "group": "E",
-      "rank": 5,
-      "w": 51,
-      "l": 35,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": {
-        "round": 3,
-        "champion": false
-      }
-    },
-    {
-      "teamId": "DEN",
-      "name": "Denver Heights",
-      "group": "W",
-      "rank": 5,
-      "w": 58,
-      "l": 28,
+      "rank": 7,
+      "w": 41,
+      "l": 39,
       "confW": null,
       "confL": null,
       "diff": null,
@@ -554,11 +617,11 @@
       }
     },
     {
-      "teamId": "MW",
-      "name": "Maine Wildcats",
+      "teamId": "DET",
+      "name": "Detroit Motors",
       "group": "E",
-      "rank": 6,
-      "w": 50,
+      "rank": 8,
+      "w": 44,
       "l": 36,
       "confW": null,
       "confL": null,
@@ -566,85 +629,17 @@
       "marker": null,
       "seed": null,
       "playoff": {
-        "round": 2,
-        "champion": false
-      }
-    },
-    {
-      "teamId": "MEM",
-      "name": "Memphis Blues",
-      "group": "W",
-      "rank": 6,
-      "w": 56,
-      "l": 30,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": {
-        "round": 4,
-        "champion": false
-      }
-    },
-    {
-      "teamId": "TOR",
-      "name": "Toronto Wolves",
-      "group": "E",
-      "rank": 7,
-      "w": 48,
-      "l": 38,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": {
         "round": 1,
         "champion": false
       }
     },
     {
-      "teamId": "SAS",
-      "name": "San Antonio Spirits",
-      "group": "W",
-      "rank": 7,
-      "w": 53,
-      "l": 33,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": {
-        "round": 1,
-        "champion": false
-      }
-    },
-    {
-      "teamId": "ATL",
-      "name": "Atlanta Venom",
-      "group": "E",
-      "rank": 8,
-      "w": 45,
-      "l": 41,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": {
-        "round": 2,
-        "champion": false
-      }
-    },
-    {
-      "teamId": "SEA",
-      "name": "Seattle Shock",
+      "teamId": "OAK",
+      "name": "Oakland All-Stars",
       "group": "W",
       "rank": 8,
-      "w": 45,
-      "l": 41,
+      "w": 36,
+      "l": 44,
       "confW": null,
       "confL": null,
       "diff": null,
@@ -656,12 +651,12 @@
       }
     },
     {
-      "teamId": "CP",
-      "name": "Columbus Pirates",
+      "teamId": "DCB",
+      "name": "DCB",
       "group": "E",
       "rank": 9,
-      "w": 41,
-      "l": 45,
+      "w": 43,
+      "l": 37,
       "confW": null,
       "confL": null,
       "diff": null,
@@ -670,11 +665,53 @@
       "playoff": null
     },
     {
-      "teamId": "PHX",
-      "name": "Phoenix Badgers",
+      "teamId": "TEX",
+      "name": "Texas Outlaws",
       "group": "W",
       "rank": 9,
-      "w": 42,
+      "w": 27,
+      "l": 53,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "BOS",
+      "name": "Boston Bucks",
+      "group": "E",
+      "rank": 10,
+      "w": 38,
+      "l": 42,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "MEM",
+      "name": "Memphis Blues",
+      "group": "W",
+      "rank": 10,
+      "w": 27,
+      "l": 53,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "Charlotte Knights",
+      "name": "Charlotte Knights",
+      "group": "E",
+      "rank": 11,
+      "w": 36,
       "l": 44,
       "confW": null,
       "confL": null,
@@ -684,12 +721,54 @@
       "playoff": null
     },
     {
-      "teamId": "CHI",
-      "name": "Chicago Spartans",
+      "teamId": "HON",
+      "name": "Honolulu Rays",
+      "group": "W",
+      "rank": 11,
+      "w": 27,
+      "l": 53,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "MAN",
+      "name": "Manhattan Magic",
       "group": "E",
-      "rank": 10,
-      "w": 38,
-      "l": 48,
+      "rank": 12,
+      "w": 34,
+      "l": 46,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "NO",
+      "name": "New Orleans Seminoles",
+      "group": "W",
+      "rank": 12,
+      "w": 19,
+      "l": 61,
+      "confW": null,
+      "confL": null,
+      "diff": null,
+      "marker": null,
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "TOR",
+      "name": "Toronto Wolves",
+      "group": "E",
+      "rank": 13,
+      "w": 26,
+      "l": 54,
       "confW": null,
       "confL": null,
       "diff": null,
@@ -701,79 +780,9 @@
       "teamId": "VEG",
       "name": "Vegas Volts",
       "group": "W",
-      "rank": 10,
-      "w": 40,
-      "l": 46,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": null
-    },
-    {
-      "teamId": "DCB",
-      "name": "DCB",
-      "group": "E",
-      "rank": 11,
-      "w": 35,
-      "l": 51,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": null
-    },
-    {
-      "teamId": "OAK",
-      "name": "Oakland All-Stars",
-      "group": "W",
-      "rank": 11,
-      "w": 36,
-      "l": 50,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": null
-    },
-    {
-      "teamId": "NY",
-      "name": "New York Icons",
-      "group": "E",
-      "rank": 12,
-      "w": 33,
-      "l": 53,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": null
-    },
-    {
-      "teamId": "VAN",
-      "name": "Vancouver Orcas",
-      "group": "W",
-      "rank": 12,
-      "w": 24,
-      "l": 62,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": null
-    },
-    {
-      "teamId": "MIL",
-      "name": "Milwaukee Warriors",
-      "group": "E",
       "rank": 13,
-      "w": 24,
-      "l": 62,
+      "w": 17,
+      "l": 63,
       "confW": null,
       "confL": null,
       "diff": null,
@@ -782,26 +791,12 @@
       "playoff": null
     },
     {
-      "teamId": "LA",
-      "name": "Los Angeles Hawks",
-      "group": "W",
-      "rank": 13,
-      "w": 21,
-      "l": 65,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": null
-    },
-    {
-      "teamId": "OV",
-      "name": "Ohio Valley Sharks",
+      "teamId": "CIN",
+      "name": "Cincinnati Blue Stripes",
       "group": "E",
       "rank": 14,
       "w": 18,
-      "l": 68,
+      "l": 62,
       "confW": null,
       "confL": null,
       "diff": null,
@@ -810,40 +805,12 @@
       "playoff": null
     },
     {
-      "teamId": "STL",
-      "name": "St.Louis Kings",
+      "teamId": "SEA",
+      "name": "Seattle Shock",
       "group": "W",
       "rank": 14,
-      "w": 20,
-      "l": 66,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": null
-    },
-    {
-      "teamId": "MON",
-      "name": "Montreal Chevaliers",
-      "group": "E",
-      "rank": 15,
       "w": 16,
-      "l": 70,
-      "confW": null,
-      "confL": null,
-      "diff": null,
-      "marker": null,
-      "seed": null,
-      "playoff": null
-    },
-    {
-      "teamId": "FLO",
-      "name": "Florida Panthers",
-      "group": "W",
-      "rank": 15,
-      "w": 14,
-      "l": 72,
+      "l": 64,
       "confW": null,
       "confL": null,
       "diff": null,

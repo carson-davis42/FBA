@@ -1,0 +1,35 @@
+{
+  "league": "fba",
+  "season": 41,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "San Antonio",
+      "runnerUp": "DCB",
+      "score": "1–0",
+      "finalsMvp": "p01997",
+      "runnerUpId": "DCB"
+    }
+  ],
+  "confChampions": {
+    "E": "DCB",
+    "W": "San Antonio"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01997",
+      "teamId": "USA"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02032",
+      "teamId": "MW"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

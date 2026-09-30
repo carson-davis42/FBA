@@ -1,0 +1,35 @@
+{
+  "league": "fba",
+  "season": 37,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Cypress Green Guns",
+      "runnerUp": "Montreal",
+      "score": "1–0",
+      "finalsMvp": "p02020",
+      "teamId": "CGG"
+    }
+  ],
+  "confChampions": {
+    "E": "Montreal",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02020",
+      "teamId": "CGG"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02035",
+      "teamId": "MON"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

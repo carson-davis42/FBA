@@ -1,0 +1,346 @@
+{
+  "league": "fba",
+  "season": 61,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "San Antonio Spirits",
+      "runnerUp": "New Orleans Seminoles",
+      "score": "2–0",
+      "finalsMvp": "p02123",
+      "teamId": "SAS",
+      "runnerUpId": "NO"
+    }
+  ],
+  "confChampions": {
+    "E": "Chicago Spartans",
+    "W": "San Antonio Spirits"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02121",
+      "teamId": "CHI"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02251",
+      "teamId": "DEN"
+    },
+    {
+      "award": "PPK",
+      "playerId": "p02121",
+      "teamId": "CHI"
+    },
+    {
+      "award": "LP",
+      "playerId": "p02110",
+      "teamId": "SAS"
+    },
+    {
+      "award": "MC",
+      "playerId": "p02152",
+      "teamId": "SAS"
+    },
+    {
+      "award": "DPOY",
+      "playerId": "p02220",
+      "teamId": "SEA"
+    }
+  ],
+  "allStar": {
+    "allStars": [],
+    "youngStars": [],
+    "asgMvp": "p02176",
+    "fivePoint": "p02123",
+    "dunk": "p02176",
+    "asgWinner": "Team Timothy Cole",
+    "asgLoser": "Team Jaylen Oden",
+    "ysgWinner": "Western Conference",
+    "ysgMvp": "p02233"
+  },
+  "allFba": {
+    "team1": [
+      {
+        "slot": "OUT",
+        "playerId": "p02121",
+        "teamId": "CHI"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02110",
+        "teamId": "SAS"
+      },
+      {
+        "slot": "M2",
+        "playerId": "p02123",
+        "teamId": "SAS"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02152",
+        "teamId": "SAS"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "OUT",
+        "playerId": "p02176",
+        "teamId": "NO"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02243",
+        "teamId": "MW"
+      },
+      {
+        "slot": "M2",
+        "playerId": "p02223",
+        "teamId": "DET"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02186",
+        "teamId": "MIL"
+      }
+    ]
+  },
+  "pastBracket": {
+    "rounds": 4,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "San Antonio Spirits",
+          "record": "6-1",
+          "seed": 1
+        },
+        "away": null,
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Denver Heights",
+          "record": "4-3",
+          "seed": 9
+        },
+        "away": {
+          "name": "Ohio Valley Sharks",
+          "record": "5-2",
+          "seed": 8
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Seattle Shock",
+          "record": "5-2",
+          "seed": 5
+        },
+        "away": null,
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": null,
+        "away": {
+          "name": "Maine Wildcats",
+          "record": "6-1",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away"
+      },
+      {
+        "id": "R1-5",
+        "round": 1,
+        "home": {
+          "name": "New Orleans Seminoles",
+          "record": "6-1",
+          "seed": 3
+        },
+        "away": null,
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-6",
+        "round": 1,
+        "home": null,
+        "away": {
+          "name": "Detroit Motors",
+          "record": "5-2",
+          "seed": 6
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away"
+      },
+      {
+        "id": "R1-7",
+        "round": 1,
+        "home": {
+          "name": "Texas Outlaws",
+          "record": "5-2",
+          "seed": 7
+        },
+        "away": {
+          "name": "Memphis Blues",
+          "record": "4-3",
+          "seed": 10
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-8",
+        "round": 1,
+        "home": null,
+        "away": {
+          "name": "Chicago Spartans",
+          "record": "6-1",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "San Antonio Spirits",
+          "record": "6-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Denver Heights",
+          "record": "4-3",
+          "seed": 9
+        },
+        "homeWins": 2,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Seattle Shock",
+          "record": "5-2",
+          "seed": 5
+        },
+        "away": {
+          "name": "Maine Wildcats",
+          "record": "6-1",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R2-3",
+        "round": 2,
+        "home": {
+          "name": "New Orleans Seminoles",
+          "record": "6-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Detroit Motors",
+          "record": "5-2",
+          "seed": 6
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R2-4",
+        "round": 2,
+        "home": {
+          "name": "Texas Outlaws",
+          "record": "5-2",
+          "seed": 7
+        },
+        "away": {
+          "name": "Chicago Spartans",
+          "record": "6-1",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "San Antonio Spirits",
+          "record": "6-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Maine Wildcats",
+          "record": "6-1",
+          "seed": 4
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R3-2",
+        "round": 3,
+        "home": {
+          "name": "New Orleans Seminoles",
+          "record": "6-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Chicago Spartans",
+          "record": "6-1",
+          "seed": 2
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R4-1",
+        "round": 4,
+        "home": {
+          "name": "San Antonio Spirits",
+          "record": "6-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "New Orleans Seminoles",
+          "record": "6-1",
+          "seed": 3
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      }
+    ]
+  }
+}

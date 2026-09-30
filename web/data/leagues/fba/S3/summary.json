@@ -1,0 +1,30 @@
+{
+  "league": "fba",
+  "season": 3,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Cypress Green Guns",
+      "runnerUp": "San Antonio",
+      "score": "1–0",
+      "finalsMvp": "p01924",
+      "teamId": "CGG"
+    }
+  ],
+  "confChampions": {
+    "E": "DCB",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01935",
+      "teamId": "DCB"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

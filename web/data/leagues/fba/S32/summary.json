@@ -1,0 +1,36 @@
+{
+  "league": "fba",
+  "season": 32,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "DCB",
+      "runnerUp": "Cypress Green Guns",
+      "score": "1–0",
+      "finalsMvp": "p02001",
+      "teamId": "DCB",
+      "runnerUpId": "CGG"
+    }
+  ],
+  "confChampions": {
+    "E": "DCB",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02001",
+      "teamId": "DCB"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02014",
+      "teamId": "USA"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

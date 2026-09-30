@@ -376,30 +376,24 @@
     ],
     "St.Louis Kings": [
       {
-        "file": "St.Louis Kings 2.png",
-        "from": null,
-        "to": null,
-        "variant": 2
+        "file": "St.Louis Kings S35-S56..png",
+        "from": 35,
+        "to": 56,
+        "variant": 0
       },
       {
-        "file": "St.Louis Kings 3.png",
-        "from": null,
+        "file": "St.Louis Kings S57-pres..png",
+        "from": 57,
         "to": null,
-        "variant": 3
-      },
-      {
-        "file": "St.Louis Kings.png",
-        "from": null,
-        "to": null,
-        "variant": 1
+        "variant": 0
       }
     ],
     "Texas Outlaws": [
       {
-        "file": "Texas Outlaws.png",
-        "from": null,
+        "file": "Texas Outlaws S41-pres..png",
+        "from": 41,
         "to": null,
-        "variant": 1
+        "variant": 0
       }
     ],
     "Toronto Wolves": [
@@ -418,54 +412,18 @@
     ],
     "Vancouver Orcas": [
       {
-        "file": "Vancouver Orcas 2.png",
-        "from": null,
+        "file": "Vancouver Orcas S75-pres..png",
+        "from": 75,
         "to": null,
-        "variant": 2
-      },
-      {
-        "file": "Vancouver Orcas 3.png",
-        "from": null,
-        "to": null,
-        "variant": 3
-      },
-      {
-        "file": "Vancouver Orcas 4.png",
-        "from": null,
-        "to": null,
-        "variant": 4
-      },
-      {
-        "file": "Vancouver Orcas.png",
-        "from": null,
-        "to": null,
-        "variant": 1
-      },
-      {
-        "file": "Vancouver Vikings.png",
-        "from": null,
-        "to": null,
-        "variant": 1
+        "variant": 0
       }
     ],
     "Vegas Volts": [
       {
-        "file": "Vegas Volts 3.png",
-        "from": null,
+        "file": "Vegas Volts S68-pres..png",
+        "from": 68,
         "to": null,
-        "variant": 3
-      },
-      {
-        "file": "Vegas Volts 4.png",
-        "from": null,
-        "to": null,
-        "variant": 4
-      },
-      {
-        "file": "Vegas Volts 5.png",
-        "from": null,
-        "to": null,
-        "variant": 5
+        "variant": 0
       }
     ]
   }

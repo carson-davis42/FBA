@@ -1,0 +1,233 @@
+{
+  "league": "fba",
+  "season": 57,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Cal Tech Golden Knights",
+      "runnerUp": "San Antonio Spirits",
+      "score": "2–1",
+      "finalsMvp": "p02149",
+      "runnerUpId": "SAS"
+    }
+  ],
+  "confChampions": {
+    "E": "Milwaukee Warriors",
+    "W": "San Antonio Spirits"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02110",
+      "teamId": "SAS"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02191",
+      "teamId": "DCB"
+    },
+    {
+      "award": "PPK",
+      "playerId": "p02121",
+      "teamId": "CHI"
+    },
+    {
+      "award": "LP",
+      "playerId": "p02110",
+      "teamId": "SAS"
+    },
+    {
+      "award": "MC",
+      "playerId": "p02129",
+      "teamId": "CP"
+    },
+    {
+      "award": "DPOY",
+      "playerId": "p02121",
+      "teamId": "CHI"
+    }
+  ],
+  "allStar": {
+    "allStars": [],
+    "youngStars": [],
+    "asgMvp": "p02129",
+    "fivePoint": null,
+    "dunk": null,
+    "asgWinner": "Division 1",
+    "asgLoser": null,
+    "ysgWinner": null,
+    "ysgMvp": null
+  },
+  "allFba": {
+    "team1": [
+      {
+        "slot": "OUT",
+        "playerId": "p02191",
+        "teamId": "DCB"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02110",
+        "teamId": "SAS"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02129",
+        "teamId": "CP"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02121",
+        "teamId": "CHI"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "OUT",
+        "playerId": "p02108",
+        "teamId": "CT"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02153",
+        "teamId": "CP"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02162",
+        "teamId": "SAS"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02128",
+        "teamId": "CT"
+      }
+    ]
+  },
+  "pastBracket": {
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "San Antonio Spirits",
+          "record": "7-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Columbus Pirates",
+          "record": "4-3",
+          "seed": 8
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "DCB",
+          "record": "4-2-1",
+          "seed": 5
+        },
+        "away": {
+          "name": "Chicago Spartans",
+          "record": "5-2",
+          "seed": 4
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Cal Tech Golden Knights",
+          "record": "5-1-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Maine Wildcats",
+          "record": "4-2-1",
+          "seed": 6
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Cypress Green Guns",
+          "record": "4-3",
+          "seed": 7
+        },
+        "away": {
+          "name": "Milwaukee Warriors",
+          "record": "6-1",
+          "seed": 2
+        },
+        "homeWins": 1,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "San Antonio Spirits",
+          "record": "7-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "DCB",
+          "record": "4-2-1",
+          "seed": 5
+        },
+        "homeWins": 2,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Cal Tech Golden Knights",
+          "record": "5-1-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Milwaukee Warriors",
+          "record": "6-1",
+          "seed": 2
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "San Antonio Spirits",
+          "record": "7-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Cal Tech Golden Knights",
+          "record": "5-1-1",
+          "seed": 3
+        },
+        "homeWins": 1,
+        "awayWins": 2,
+        "winner": "away"
+      }
+    ]
+  }
+}

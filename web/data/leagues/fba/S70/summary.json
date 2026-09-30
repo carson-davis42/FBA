@@ -1,0 +1,380 @@
+{
+  "league": "fba",
+  "season": 70,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Ohio Valley Sharks",
+      "runnerUp": "Florida Panthers",
+      "score": "4–2",
+      "finalsMvp": "p02328",
+      "teamId": "OV",
+      "runnerUpId": "FLO"
+    }
+  ],
+  "confChampions": {
+    "E": "Ohio Valley Sharks",
+    "W": "Los Angeles Hawks"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02327",
+      "teamId": "MIL"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p00116",
+      "teamId": "SAS"
+    },
+    {
+      "award": "PPK",
+      "playerId": "p02251",
+      "teamId": "DEN"
+    },
+    {
+      "award": "LP",
+      "playerId": "p02327",
+      "teamId": "MIL"
+    },
+    {
+      "award": "MC",
+      "playerId": "p02252",
+      "teamId": "DCB"
+    },
+    {
+      "award": "DPOY",
+      "playerId": "p00419",
+      "teamId": "DET"
+    }
+  ],
+  "allStar": {
+    "allStars": [],
+    "youngStars": [],
+    "asgMvp": "p02301",
+    "fivePoint": "p00194",
+    "dunk": "p02326",
+    "asgWinner": "Team Clyde King",
+    "asgLoser": "Team Akeem Naylor",
+    "ysgWinner": "Team Edwin Yandell",
+    "ysgMvp": "p00182"
+  },
+  "allFba": {
+    "team1": [
+      {
+        "slot": "G",
+        "playerId": "p02251",
+        "teamId": "DEN"
+      },
+      {
+        "slot": "F",
+        "playerId": "p02327",
+        "teamId": "MIL"
+      },
+      {
+        "slot": "C",
+        "playerId": "p02328",
+        "teamId": "OV"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02326",
+        "teamId": "MON"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02252",
+        "teamId": "DCB"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "G",
+        "playerId": "p02303",
+        "teamId": "OV"
+      },
+      {
+        "slot": "F",
+        "playerId": "p02209",
+        "teamId": "LA"
+      },
+      {
+        "slot": "C",
+        "playerId": "p02302",
+        "teamId": "MW"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p00157",
+        "teamId": "FLO"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02220",
+        "teamId": "SEA"
+      }
+    ]
+  },
+  "pastBracket": {
+    "rounds": 4,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Ohio Valley Sharks",
+          "record": "59-21",
+          "seed": null
+        },
+        "away": {
+          "name": "Charlotte Knights",
+          "record": "41-39",
+          "seed": null
+        },
+        "homeWins": 4,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Milwaukee Warriors",
+          "record": "49-31",
+          "seed": null
+        },
+        "away": {
+          "name": "Maine Wildcats",
+          "record": "49-31",
+          "seed": null
+        },
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "DCB",
+          "record": "52-28",
+          "seed": null
+        },
+        "away": {
+          "name": "Detroit Motors",
+          "record": "46-34",
+          "seed": null
+        },
+        "homeWins": 4,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Montreal Chevaliers",
+          "record": "55-25",
+          "seed": null
+        },
+        "away": {
+          "name": "Columbus Pirates",
+          "record": "46-34",
+          "seed": null
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      },
+      {
+        "id": "R1-5",
+        "round": 1,
+        "home": {
+          "name": "Los Angeles Hawks",
+          "record": "58-22",
+          "seed": null
+        },
+        "away": {
+          "name": "Cypress Green Guns",
+          "record": "35-45",
+          "seed": null
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R1-6",
+        "round": 1,
+        "home": {
+          "name": "St.Louis Kings",
+          "record": "53-27",
+          "seed": null
+        },
+        "away": {
+          "name": "Phoenix Badgers",
+          "record": "49-31",
+          "seed": null
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      },
+      {
+        "id": "R1-7",
+        "round": 1,
+        "home": {
+          "name": "Denver Heights",
+          "record": "53-27",
+          "seed": null
+        },
+        "away": {
+          "name": "San Antonio Spirits",
+          "record": "37-43",
+          "seed": null
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      },
+      {
+        "id": "R1-8",
+        "round": 1,
+        "home": {
+          "name": "Florida Panthers",
+          "record": "58-22",
+          "seed": null
+        },
+        "away": {
+          "name": "Memphis Blues",
+          "record": "36-44",
+          "seed": null
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Ohio Valley Sharks",
+          "record": "59-21",
+          "seed": null
+        },
+        "away": {
+          "name": "Maine Wildcats",
+          "record": "49-31",
+          "seed": null
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "DCB",
+          "record": "52-28",
+          "seed": null
+        },
+        "away": {
+          "name": "Montreal Chevaliers",
+          "record": "55-25",
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R2-3",
+        "round": 2,
+        "home": {
+          "name": "Los Angeles Hawks",
+          "record": "58-22",
+          "seed": null
+        },
+        "away": {
+          "name": "St.Louis Kings",
+          "record": "53-27",
+          "seed": null
+        },
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R2-4",
+        "round": 2,
+        "home": {
+          "name": "Denver Heights",
+          "record": "53-27",
+          "seed": null
+        },
+        "away": {
+          "name": "Florida Panthers",
+          "record": "58-22",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Ohio Valley Sharks",
+          "record": "59-21",
+          "seed": null
+        },
+        "away": {
+          "name": "Montreal Chevaliers",
+          "record": "55-25",
+          "seed": null
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      },
+      {
+        "id": "R3-2",
+        "round": 3,
+        "home": {
+          "name": "St.Louis Kings",
+          "record": "53-27",
+          "seed": null
+        },
+        "away": {
+          "name": "Florida Panthers",
+          "record": "58-22",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R4-1",
+        "round": 4,
+        "home": {
+          "name": "Ohio Valley Sharks",
+          "record": "59-21",
+          "seed": null
+        },
+        "away": {
+          "name": "Florida Panthers",
+          "record": "58-22",
+          "seed": null
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      }
+    ]
+  }
+}

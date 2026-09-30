@@ -1,0 +1,35 @@
+{
+  "league": "fba",
+  "season": 46,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Cypress Green Guns",
+      "runnerUp": "Cypress Black Sox",
+      "score": "1–0",
+      "finalsMvp": "p02020",
+      "teamId": "CGG"
+    }
+  ],
+  "confChampions": {
+    "E": "Milwaukee Warriors",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02050",
+      "teamId": "MIL"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02038",
+      "teamId": "MW"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

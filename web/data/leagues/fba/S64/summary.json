@@ -1,0 +1,370 @@
+{
+  "league": "fba",
+  "season": 64,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Boston Bucks",
+      "runnerUp": "Texas Outlaws",
+      "score": "3–0",
+      "finalsMvp": "p02252",
+      "teamId": "BOS",
+      "runnerUpId": "TEX"
+    }
+  ],
+  "confChampions": {
+    "E": "Boston Bucks",
+    "W": "New Orleans Seminoles"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02176",
+      "teamId": "NO"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p02327",
+      "teamId": "MIL"
+    },
+    {
+      "award": "PPK",
+      "playerId": "p02176",
+      "teamId": "NO"
+    },
+    {
+      "award": "LP",
+      "playerId": "p02233",
+      "teamId": "TEX"
+    },
+    {
+      "award": "MC",
+      "playerId": "p02252",
+      "teamId": "BOS"
+    },
+    {
+      "award": "DPOY",
+      "playerId": "p02301",
+      "teamId": "MON"
+    }
+  ],
+  "allStar": {
+    "allStars": [],
+    "youngStars": [],
+    "asgMvp": "p02252",
+    "fivePoint": "p02176",
+    "dunk": "p02334",
+    "asgWinner": "Team Darius Crewe",
+    "asgLoser": "Team Timothy Cole",
+    "ysgWinner": "Eastern Conference",
+    "ysgMvp": "p02327"
+  },
+  "allFba": {
+    "team1": [
+      {
+        "slot": "OUT",
+        "playerId": "p02176",
+        "teamId": "NO"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02233",
+        "teamId": "TEX"
+      },
+      {
+        "slot": "M2",
+        "playerId": "p02220",
+        "teamId": "SEA"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02252",
+        "teamId": "BOS"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "OUT",
+        "playerId": "p02251",
+        "teamId": "DEN"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02327",
+        "teamId": "MIL"
+      },
+      {
+        "slot": "M2",
+        "playerId": "p02123",
+        "teamId": "SAS"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02234",
+        "teamId": "LA"
+      }
+    ]
+  },
+  "pastBracket": {
+    "rounds": 4,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Boston Bucks",
+          "record": "42-20",
+          "seed": null
+        },
+        "away": {
+          "name": "Ohio Valley Sharks",
+          "record": "34-28",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Cincinnati Blue Stripes",
+          "record": "36-26",
+          "seed": null
+        },
+        "away": {
+          "name": "Memphis Blues",
+          "record": "36-26",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "DCB",
+          "record": "37-25",
+          "seed": null
+        },
+        "away": {
+          "name": "Chicago Spartans",
+          "record": "35-27",
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 3,
+        "winner": "away"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Montreal Chevaliers",
+          "record": "40-22",
+          "seed": null
+        },
+        "away": {
+          "name": "Milwaukee Warriors",
+          "record": "34-28",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-5",
+        "round": 1,
+        "home": {
+          "name": "New Orleans Seminoles",
+          "record": "47-15",
+          "seed": null
+        },
+        "away": {
+          "name": "St.Louis Kings",
+          "record": "32-30",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-6",
+        "round": 1,
+        "home": {
+          "name": "Texas Outlaws",
+          "record": "40-22",
+          "seed": null
+        },
+        "away": {
+          "name": "Denver Heights",
+          "record": "37-25",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R1-7",
+        "round": 1,
+        "home": {
+          "name": "Los Angeles Hawks",
+          "record": "40-22",
+          "seed": null
+        },
+        "away": {
+          "name": "San Antonio Spirits",
+          "record": "36-26",
+          "seed": null
+        },
+        "homeWins": 2,
+        "awayWins": 3,
+        "winner": "away"
+      },
+      {
+        "id": "R1-8",
+        "round": 1,
+        "home": {
+          "name": "Seattle Shock",
+          "record": "44-18",
+          "seed": null
+        },
+        "away": {
+          "name": "Cypress Green Guns",
+          "record": "33-29",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 2,
+        "winner": "home"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Boston Bucks",
+          "record": "42-20",
+          "seed": null
+        },
+        "away": {
+          "name": "Cincinnati Blue Stripes",
+          "record": "36-26",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Chicago Spartans",
+          "record": "35-27",
+          "seed": null
+        },
+        "away": {
+          "name": "Montreal Chevaliers",
+          "record": "40-22",
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 3,
+        "winner": "away"
+      },
+      {
+        "id": "R2-3",
+        "round": 2,
+        "home": {
+          "name": "New Orleans Seminoles",
+          "record": "47-15",
+          "seed": null
+        },
+        "away": {
+          "name": "Texas Outlaws",
+          "record": "40-22",
+          "seed": null
+        },
+        "homeWins": 2,
+        "awayWins": 3,
+        "winner": "away"
+      },
+      {
+        "id": "R2-4",
+        "round": 2,
+        "home": {
+          "name": "San Antonio Spirits",
+          "record": "36-26",
+          "seed": null
+        },
+        "away": {
+          "name": "Seattle Shock",
+          "record": "44-18",
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 3,
+        "winner": "away"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Boston Bucks",
+          "record": "42-20",
+          "seed": null
+        },
+        "away": {
+          "name": "Montreal Chevaliers",
+          "record": "40-22",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R3-2",
+        "round": 3,
+        "home": {
+          "name": "Texas Outlaws",
+          "record": "40-22",
+          "seed": null
+        },
+        "away": {
+          "name": "Seattle Shock",
+          "record": "44-18",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 2,
+        "winner": "home"
+      },
+      {
+        "id": "R4-1",
+        "round": 4,
+        "home": {
+          "name": "Boston Bucks",
+          "record": "42-20",
+          "seed": null
+        },
+        "away": {
+          "name": "Texas Outlaws",
+          "record": "40-22",
+          "seed": null
+        },
+        "homeWins": 3,
+        "awayWins": 0,
+        "winner": "home"
+      }
+    ]
+  }
+}

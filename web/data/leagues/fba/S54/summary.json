@@ -1,0 +1,208 @@
+{
+  "league": "fba",
+  "season": 54,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Cypress Black Sox",
+      "runnerUp": "Milwaukee Warriors",
+      "score": "2–0",
+      "finalsMvp": "p02131",
+      "runnerUpId": "MIL"
+    }
+  ],
+  "confChampions": {
+    "E": "Florida Panthers",
+    "W": "St.Louis"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02078",
+      "teamId": "CGG"
+    }
+  ],
+  "allStar": {
+    "allStars": [],
+    "youngStars": [],
+    "asgMvp": "p02132",
+    "fivePoint": null,
+    "dunk": null,
+    "asgWinner": "Eastern Conference",
+    "asgLoser": null,
+    "ysgWinner": null,
+    "ysgMvp": null
+  },
+  "allFba": {
+    "team1": [
+      {
+        "slot": "OUT",
+        "playerId": "p02123",
+        "teamId": "STL"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02078",
+        "teamId": "CGG"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02111",
+        "teamId": "STL"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02070",
+        "teamId": "FLO"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "OUT",
+        "playerId": "p02121",
+        "teamId": "CHI"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02132",
+        "teamId": "MIL"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02130",
+        "teamId": "CGG"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02131",
+        "teamId": "SOX"
+      }
+    ]
+  },
+  "pastBracket": {
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "St.Louis",
+          "record": "6-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Former Pirates",
+          "record": "3-4",
+          "seed": 8
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Chicago Spartans",
+          "record": "5-2",
+          "seed": 5
+        },
+        "away": {
+          "name": "Milwaukee Warriors",
+          "record": "6-1",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Cypress Green Guns",
+          "record": "6-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Cypress Black Sox",
+          "record": "5-2",
+          "seed": 6
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "DCB",
+          "record": "4-3",
+          "seed": 7
+        },
+        "away": {
+          "name": "Florida Panthers",
+          "record": "5-2",
+          "seed": 2
+        },
+        "homeWins": 1,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "St.Louis",
+          "record": "6-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Milwaukee Warriors",
+          "record": "6-1",
+          "seed": 4
+        },
+        "homeWins": 1,
+        "awayWins": 2,
+        "winner": "away"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Cypress Black Sox",
+          "record": "5-2",
+          "seed": 6
+        },
+        "away": {
+          "name": "Florida Panthers",
+          "record": "5-2",
+          "seed": 2
+        },
+        "homeWins": 2,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Milwaukee Warriors",
+          "record": "6-1",
+          "seed": 4
+        },
+        "away": {
+          "name": "Cypress Black Sox",
+          "record": "5-2",
+          "seed": 6
+        },
+        "homeWins": 0,
+        "awayWins": 2,
+        "winner": "away"
+      }
+    ]
+  }
+}

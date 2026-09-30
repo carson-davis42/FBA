@@ -1,0 +1,76 @@
+{
+  "league": "fba",
+  "season": 50,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Texas Outlaws",
+      "runnerUp": "Maine Wildcats",
+      "score": "1–0",
+      "finalsMvp": "p02093",
+      "teamId": "TEX",
+      "runnerUpId": "MW"
+    }
+  ],
+  "confChampions": {
+    "E": "Maine Wildcats",
+    "W": "Texas Outlaws"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02017",
+      "teamId": "SOX"
+    }
+  ],
+  "allStar": null,
+  "allFba": {
+    "team1": [
+      {
+        "slot": "OUT",
+        "playerId": "p02093",
+        "teamId": "TEX"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02017",
+        "teamId": "SOX"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02071",
+        "teamId": "MW"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02032",
+        "teamId": "MW"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "OUT",
+        "playerId": "p02020",
+        "teamId": "CGG"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02021",
+        "teamId": "FP"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02076",
+        "teamId": "CIN"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02078",
+        "teamId": "CGG"
+      }
+    ]
+  },
+  "pastBracket": null
+}

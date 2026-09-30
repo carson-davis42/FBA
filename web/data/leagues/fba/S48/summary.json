@@ -1,0 +1,85 @@
+{
+  "league": "fba",
+  "season": 48,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Milwaukee Warriors",
+      "runnerUp": "Former Pirates",
+      "score": "1–0",
+      "finalsMvp": "p02050",
+      "teamId": "MIL"
+    }
+  ],
+  "confChampions": {
+    "E": "Milwaukee Warriors",
+    "W": "Cypress Green Guns"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p02050",
+      "teamId": "MIL"
+    }
+  ],
+  "allStar": {
+    "allStars": [],
+    "youngStars": [],
+    "asgMvp": "p01997",
+    "fivePoint": null,
+    "dunk": null,
+    "asgWinner": "Western Conference",
+    "asgLoser": null,
+    "ysgWinner": null,
+    "ysgMvp": null
+  },
+  "allFba": {
+    "team1": [
+      {
+        "slot": "OUT",
+        "playerId": "p02050",
+        "teamId": "MIL"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p02021",
+        "teamId": "FP"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02056",
+        "teamId": "SOX"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02020",
+        "teamId": "CGG"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "OUT",
+        "playerId": "p02064",
+        "teamId": "CT"
+      },
+      {
+        "slot": "MID",
+        "playerId": "p01997",
+        "teamId": "USA"
+      },
+      {
+        "slot": "IN",
+        "playerId": "p02036",
+        "teamId": "MIL"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p02017",
+        "teamId": "SOX"
+      }
+    ]
+  },
+  "pastBracket": null
+}

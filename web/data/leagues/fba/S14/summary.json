@@ -1,0 +1,30 @@
+{
+  "league": "fba",
+  "season": 14,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Oakland All-Stars",
+      "runnerUp": "San Antonio",
+      "score": "1–0",
+      "finalsMvp": "p01948",
+      "teamId": "OAK"
+    }
+  ],
+  "confChampions": {
+    "E": "Montreal",
+    "W": "San Antonio"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01949",
+      "teamId": "USA"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}

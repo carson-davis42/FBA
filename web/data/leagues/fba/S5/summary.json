@@ -1,0 +1,31 @@
+{
+  "league": "fba",
+  "season": 5,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "DCB",
+      "runnerUp": "Oakland All-Stars",
+      "score": "1–0",
+      "finalsMvp": "p01935",
+      "teamId": "DCB",
+      "runnerUpId": "OAK"
+    }
+  ],
+  "confChampions": {
+    "E": "DCB",
+    "W": "Oakland All-Stars"
+  },
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p01935",
+      "teamId": "DCB"
+    }
+  ],
+  "allStar": null,
+  "allFba": null,
+  "pastBracket": null
+}
