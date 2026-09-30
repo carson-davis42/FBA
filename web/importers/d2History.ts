@@ -16,8 +16,6 @@ const LEAGUES = ['PL', 'WL', 'UL', 'IL'];
 
 /** Sheet misspellings of D2 team names. */
 const SHEET_TEAM_ALIASES: Record<string, string> = { Luxemboug: 'Luxembourg' };
-/** Names shared by two players: every D2 sheet mention of Nadeem Akers (S72 draft, S74 IL Series MVP, S75 UL MVP and Series MVP, all Osaka) is the S50-born one. */
-const PLAYER_OVERRIDES: Record<string, string> = { 'Nadeem Akers': 'p00040' };
 
 function teamIdLookup(teams: TeamsFile, report: Report): (name: string) => string | undefined {
   const byName = new Map(teams.teams.map(t => [t.name, t.teamId]));
@@ -81,9 +79,7 @@ export function buildD2History(
   d2Tabs: Record<string, string[][]>, draftTabs: Record<string, string[][]>, ctx: D2HistoryCtx, report: Report,
 ): { summaries: SummaryFile[]; leagueHistory: D2LeagueHistoryFile; drafts: D2DraftHistoryFile } {
   const teamId = teamIdLookup(ctx.teams, report);
-  const resolveName = nameResolver(ctx.players, report, 'd2-history');
-  const resolve = (name: string, where: string): string | null =>
-    (PLAYER_OVERRIDES[name] && ctx.players.players[PLAYER_OVERRIDES[name]] ? PLAYER_OVERRIDES[name] : resolveName(name, where));
+  const resolve = nameResolver(ctx.players, report, 'd2-history');
 
   const titles: TitleRow[] = [
     ...parseIntlChampionships(d2Tabs[D2_TABS.intl] ?? []),
