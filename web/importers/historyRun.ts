@@ -55,11 +55,14 @@ export function planHistoryImport(src: HistorySources, report: Report): [string,
   }, report);
   report.info('players', `Added ${Object.keys(out.players.players).length - Object.keys(players.players).length} players`);
 
+  const badCounts: string[] = [];
+  const tab11 = parseAwardsByPlayer(src.tabs[TAB11], badCounts);
+  for (const b of badCounts) report.warn('careers', `Bad count: ${b}`);
   const careers = buildCareers({
     players: out.players,
     bios: out.bios,
     summaries: out.summaries,
-    tab11: parseAwardsByPlayer(src.tabs[TAB11]),
+    tab11,
     ppg: parseLeaguePpg(src.ppgText),
   }, report);
 
@@ -68,9 +71,11 @@ export function planHistoryImport(src: HistorySources, report: Report): [string,
   if (report.hasErrors) return [];
 
   const files = new Map<string, unknown>(merged);
-  files.set('players.json', out.players);
+  // players.json goes last: if a write dies partway, the rosters already point at kept ids and no reference dangles.
+  files.delete('players.json');
   files.set('leagues/fba/playerBios.json', out.bios);
   for (const s of out.summaries) files.set(summaryPath(s.season), s.season === 78 && careers.s78 ? careers.s78 : s);
   files.set('leagues/fba/awardCounts.json', careers.awardCounts);
+  files.set('players.json', out.players);
   return [...files];
 }

@@ -7,6 +7,7 @@ import { CareerSection, hasCareer } from './CareerSection';
 import { SkippedWarning } from './PlayerLink';
 
 const dash = (n: number | null) => (n === null ? '—' : String(n));
+const fixed = (n: number | null) => (n === null ? '—' : n.toFixed(1));
 
 export function PlayerHistoryPage() {
   const { playerId = '' } = useParams();
@@ -66,10 +67,10 @@ export function PlayerHistoryPage() {
                     <td>{r.teamId ?? '—'}</td>
                     <td className="n">{dash(r.gp)}</td>
                     <td className="n">{dash(r.pts)}</td>
-                    <td className="n">{r.ppg.toFixed(1)}</td>
+                    <td className="n">{fixed(r.ppg)}</td>
                     <td className="n">{r.po ? r.po.gp : '—'}</td>
                     <td className="n">{r.po ? r.po.pts : '—'}</td>
-                    <td className="n">{r.po ? r.po.ppg.toFixed(1) : '—'}</td>
+                    <td className="n">{r.po ? fixed(r.po.ppg) : '—'}</td>
                   </tr>
                 ))}
                 {played && (
@@ -78,7 +79,7 @@ export function PlayerHistoryPage() {
                     <td />
                     <td className="n">{stats.total.gp}</td>
                     <td className="n">{stats.total.pts}</td>
-                    <td className="n">{stats.total.ppg.toFixed(1)}</td>
+                    <td className="n">{stats.total.gp > 0 ? stats.total.ppg.toFixed(1) : '—'}</td>
                     <td />
                     <td />
                     <td />

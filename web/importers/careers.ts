@@ -18,8 +18,11 @@ const SUMMARY_CHECK_KEYS: AwardKey[] = ['MVP', 'ROTY', 'PPK', 'LP', 'MC', 'DPOY'
 /** Keys a bio never gives; they come from the summaries. */
 const SUMMARY_ONLY_KEYS: AwardKey[] = ['FIVE_POINT', 'DUNK'];
 
-/** Tab 11: award columns at even indexes (`<Award>(S<n>)`), each followed by its counts column; rows are name and count pairs. */
-export function parseAwardsByPlayer(rows: string[][]): AwardsByPlayerRow[] {
+/**
+ * Tab 11: award columns at even indexes (`<Award>(S<n>)`), each followed by its counts column; rows are name and count
+ * pairs. A row whose count isn't a whole number of at least 1 is skipped and added to `bad` as "<name> (<KEY>)".
+ */
+export function parseAwardsByPlayer(rows: string[][], bad: string[] = []): AwardsByPlayerRow[] {
   const header = rows[0] ?? [];
   const columns: { col: number; key: AwardKey }[] = [];
   for (let col = 0; col < header.length; col += 2) {
@@ -34,7 +37,10 @@ export function parseAwardsByPlayer(rows: string[][]): AwardsByPlayerRow[] {
     for (const r of rows.slice(1)) {
       const name = (r[col] ?? '').trim();
       if (name === '') continue;
-      out.push({ key, name, count: Math.round(Number(r[col + 1])) });
+      const text = (r[col + 1] ?? '').trim();
+      const n = text === '' ? NaN : Math.round(Number(text));
+      if (!Number.isFinite(n) || n < 1) { bad.push(`${name} (${key})`); continue; }
+      out.push({ key, name, count: n });
     }
   }
   return out;
@@ -81,9 +87,12 @@ export function buildCareers(
   const result = new Map<string, Counts>();
   const unparsed = new Set<string>();
   const biographed = new Set<string>();
+  // A stint team that looks like a team code but isn't in FBA_TEAMS: a new or relocated team would be classed as a college.
+  const oddTeams = new Set<string>();
   for (const b of input.bios.bios) {
     biographed.add(b.playerId);
     const career = parseBio(b);
+    for (const st of career.stints) if (st.kind === 'college' && /^[A-Z]{2,4}$/.test(st.team)) oddTeams.add(st.team);
     for (const text of career.other) unparsed.add(text);
     const sums = careerAwardSums(career);
     const t11 = tab11.get(b.playerId) ?? {};
@@ -106,6 +115,7 @@ export function buildCareers(
     result.set(id, own);
   }
   for (const text of unparsed) info(`Unparsed bio entry: ${text}`);
+  for (const team of oddTeams) info(`Stint team treated as college: ${team}`);
 
   const counts: AwardCountsFile['counts'] = [];
   for (const id of [...result.keys()].sort()) {

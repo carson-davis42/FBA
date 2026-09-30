@@ -37,8 +37,23 @@ describe('mergeDuplicates', () => {
     expect(JSON.stringify(out.get('leagues/fba/S78/rosters.json'))).toContain('p00040');
     expect(JSON.stringify(out.get('leagues/fba/S78/rosters.json'))).not.toContain('p00150');
     expect([...out.keys()].sort()).toEqual(['leagues/fba/S78/rosters.json', 'players.json']);
-    expect(report.entries).toEqual([{ level: 'info', topic: 'duplicates', message: 'Merged Nadeem Akers: p00150 → p00040 (1 references in 1 files)' }]);
+    expect(report.entries).toEqual([
+      { level: 'info', topic: 'duplicates', message: 'Merged Nadeem Akers: p00150 → p00040 (1 references in 1 files)' },
+      {
+        level: 'warn', topic: 'duplicates',
+        message: 'leagues/fba/S78/rosters.json: t0 Nadeem Akers (p00040) has age 25, but born S50 makes S78 age 28; re-run the roster import to fix it',
+      },
+    ]);
     expect(docs.get('players.json')).toEqual(players());
+  });
+
+  it('gives no age warning when the roster age matches the kept birth season', () => {
+    const report = new Report();
+    const r = roster('fba', [['p00150']]);
+    r.teams.t0[0].age = 28;
+    const docs = new Map<string, unknown>([['players.json', players()], ['leagues/fba/S78/rosters.json', r]]);
+    mergeDuplicates(docs, [bios[0]], report);
+    expect(report.entries.filter(e => e.level === 'warn')).toEqual([]);
   });
 
   it('keeps the record with a known birth season and uses the Players-tab spelling', () => {

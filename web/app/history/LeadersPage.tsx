@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { careerStats } from '../../engine/history/career';
+import { careerTotalsAll } from '../../engine/history/career';
 import { playerIndex } from '../../engine/history/views';
 import type { PlayerBiosFile, PlayersFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
@@ -19,9 +19,10 @@ export function LeadersPage() {
   const rows = useMemo<Row[]>(() => {
     if (!seasons || !players.data) return [];
     const out: Row[] = [];
+    const totals = careerTotalsAll(seasons);
     for (const p of playerIndex(seasons, biosData, players.data)) {
-      const { total } = careerStats(p.playerId, seasons);
-      if (total.gp > 0) out.push({ playerId: p.playerId, name: p.name, ...total });
+      const t = totals.get(p.playerId);
+      if (t && t.gp > 0) out.push({ playerId: p.playerId, name: p.name, gp: t.gp, pts: t.pts, ppg: Math.round((t.pts / t.gp) * 10) / 10 });
     }
     return out;
   }, [seasons, players.data, biosData]);

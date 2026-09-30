@@ -37,13 +37,21 @@ export function candidates(hof: HallOfFameFile, players: PlayersFile): Candidate
 /**
  * A card for a retiree: their full career lines (the imported bio plus the seasons played in the app, as in the History
  * Hall of Fame). With no career on record it falls back to the last team as "TEAM: …-S79", the start left for the
- * commissioner to fill in.
+ * commissioner to fill in. A retiree with no bio also gets an "S<n> <award>" line per S1-S78 summary award.
  */
 export function prefillCard(c: Candidate, summaries: SummaryFile[], bio: PlayerBio | null, hof: HallOfFameFile | null): HofCard {
   const { retired } = c;
   const team = retired.league === 'fba' ? retired.teamId ?? '?' : `D2 ${retired.teamId ?? 'Reserves'}`;
   const lines = careerLines(liveCareer(bio, c.playerId, summaries, hof));
   if (lines.length === 0) lines.push(`${team}: …-S${retired.season}`);
+  if (bio === null) {
+    // No imported bio: the S1-S78 summaries give the awards, as the old prefill did (S79 on is already in the live career).
+    for (const s of [...summaries].filter(x => x.league === 'fba' && x.season < 79).sort((a, b) => a.season - b.season)) {
+      for (const a of s.awards ?? []) if (a.playerId === c.playerId) lines.push(`S${s.season} ${a.award}`);
+      if (s.allFba?.team1.some(x => x.playerId === c.playerId)) lines.push(`S${s.season} All-FBA T1`);
+      if (s.allFba?.team2.some(x => x.playerId === c.playerId)) lines.push(`S${s.season} All-FBA T2`);
+    }
+  }
   return { name: c.name, playerId: c.playerId, retiredSeason: `S${retired.season}`, lines };
 }
 

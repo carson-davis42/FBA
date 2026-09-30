@@ -71,9 +71,16 @@ describe('HallOfFamePage', () => {
     expect(await screen.findByText("Some seasons couldn't be read: S12, S40")).toBeTruthy();
   });
 
+  it('opens on the nominees by default', async () => {
+    stubApi(docs(hof()));
+    renderPage();
+    expect(await screen.findByText(/The class needs nominees/)).toBeTruthy();
+    expect(screen.queryByRole('link', { name: 'See the Hall of Fame in History' })).toBeNull();
+  });
+
   it('points the Hall tab at the Hall of Fame in History', async () => {
     stubApi(docs(hof({ classes: [{ season: 'S64', inductees: [card('Newer Guy', ['CAR: S50-S64'], 'S64')] }] })));
-    renderPage();
+    renderPage('hall');
     const link = await screen.findByRole('link', { name: 'See the Hall of Fame in History' });
     expect(link.getAttribute('href')).toBe('/history/fba/hall-of-fame');
     expect(screen.queryByText('Newer Guy')).toBeNull();

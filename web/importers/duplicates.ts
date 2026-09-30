@@ -74,6 +74,24 @@ function rosterDuplicate(doc: unknown, keptIds: Set<string>): string | null {
   return null;
 }
 
+/** Roster entries of a dropped id whose age disagrees with the kept record's birth season (age = season - birthSeason). */
+function rosterAgeNotes(rel: string, doc: unknown, map: Map<string, string>, players: Record<string, Player>): string[] {
+  const roster = doc as { season?: number; teams?: Record<string, { playerId?: string | null; age?: number | null }[]> };
+  const out: string[] = [];
+  if (typeof roster.season !== 'number') return out;
+  for (const [team, entries] of Object.entries(roster.teams ?? {})) {
+    for (const e of entries) {
+      const kept = e.playerId ? map.get(e.playerId) : undefined;
+      const born = kept ? players[kept]?.birthSeason : null;
+      if (!kept || born === null || born === undefined || e.age === null || e.age === undefined) continue;
+      if (e.age !== roster.season - born) {
+        out.push(`${rel}: ${team} ${players[kept].name ?? kept} (${kept}) has age ${e.age}, but born S${born} makes S${roster.season} age ${roster.season - born}; re-run the roster import to fix it`);
+      }
+    }
+  }
+  return out;
+}
+
 /**
  * K9: when exactly one Players-tab row matches two or more player records, they are one player. Merges them into the
  * kept record, rewrites every reference, and returns only the changed docs (players.json included). Returns an empty
@@ -110,6 +128,7 @@ export function mergeDuplicates(docs: Map<string, unknown>, bios: BioRow[], repo
   const counts = new Map<string, number>();
   const files = new Map<string, number>();
   const problems: string[] = [];
+  const ageNotes: string[] = [];
 
   const players = { ...playersDoc.players };
   for (const p of plans) {
@@ -132,6 +151,7 @@ export function mergeDuplicates(docs: Map<string, unknown>, bios: BioRow[], repo
       const dup = rosterDuplicate(w.value, keptIds);
       if (dup) problems.push(`${rel}: ${dup}`);
     }
+    if (/(^|\/)rosters\.json$/.test(rel)) ageNotes.push(...rosterAgeNotes(rel, doc, map, players));
     changed.set(rel, w.value);
   }
 
@@ -154,5 +174,6 @@ export function mergeDuplicates(docs: Map<string, unknown>, bios: BioRow[], repo
       report.info('duplicates', `Merged ${p.name}: ${d} → ${p.kept} (${counts.get(d) ?? 0} references in ${files.get(d) ?? 0} files)`);
     }
   }
+  for (const n of ageNotes) report.warn('duplicates', n);
   return changed;
 }

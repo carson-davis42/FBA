@@ -70,6 +70,12 @@ describe('planHistoryImport', () => {
     expect(files.filter(f => /summary\.json$/.test(f[0]))).toHaveLength(78);
   });
 
+  it('writes players.json last, so a partial write never leaves a dangling id', () => {
+    const { files } = plan(sources());
+    expect(files[files.length - 1][0]).toBe('players.json');
+    expect(files.filter(f => f[0] === 'players.json')).toHaveLength(1);
+  });
+
   it('returns nothing when a schema check fails', () => {
     const bad = players();
     (bad.players.p00151 as { birthSeason: unknown }).birthSeason = 'x';

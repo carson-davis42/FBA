@@ -17,6 +17,7 @@ const atkinson: HofCard = {
   lines: ['Alabama: S64', 'FLO: S65-S76', 'NO: S77-S78', '14x All-Star', '2x Young-Star', '6x FBA C-Ship app.',
     '2x FBA Champion', '4x Conference Champion', '1x MC Award', '1x All-FBA T1', '5x All-FBA T2'],
 };
+const multi: HofCard = { name: 'Multi Stint', playerId: null, retiredSeason: 'S30', lines: ['West Virginia: S16-S18;S48', 'BOS: S49-S60', '2x MVP'] };
 const old: HofCard = { name: 'Old Timer', playerId: null, retiredSeason: 'S9', lines: ['BOS: S1-S9', 'S5 MVP'] };
 const hof = (over: Partial<HallOfFameFile> = {}): HallOfFameFile => ({ league: 'fba', classes: [], nominees: [], removed: [], ...over });
 
@@ -41,6 +42,29 @@ describe('HallOfFameHistoryPage', () => {
     expect(within(career).getAllByRole('listitem').map(li => li.textContent)).toEqual(['Alabama: S64', 'FLO: S65-S76', 'NO: S77-S78']);
     expect(within(honours).getAllByRole('listitem')).toHaveLength(8);
     expect(within(honours).getAllByRole('listitem')[0].textContent).toBe('14x All-Star');
+  });
+
+  it('files a multi-part range under Career, not Honours', async () => {
+    renderPage(hof({ classes: [{ season: 'S30', inductees: [multi] }] }));
+    const card = (await screen.findByText('Multi Stint')).closest('.hof-card') as HTMLElement;
+    const career = within(card).getByRole('list', { name: 'Career' });
+    expect(within(career).getAllByRole('listitem').map(li => li.textContent)).toEqual(['West Virginia: S16-S18;S48', 'BOS: S49-S60']);
+    expect(within(within(card).getByRole('list', { name: 'Honours' })).getAllByRole('listitem').map(li => li.textContent)).toEqual(['2x MVP']);
+  });
+
+  it('links to the nominees and induction tool', async () => {
+    renderPage(hof());
+    const link = await screen.findByRole('link', { name: 'Nominees and induction' });
+    expect(link.getAttribute('href')).toBe('/league/fba/hall-of-fame?tab=nominees');
+  });
+
+  it('shows the Hall without waiting for the season history', async () => {
+    const docs: Record<string, unknown> = { 'players.json': players, 'leagues/fba/hallOfFame.json': hof({ classes: [{ season: 'S8', inductees: [old] }] }) };
+    stubApi(docs);
+    const inner = globalThis.fetch;
+    vi.stubGlobal('fetch', vi.fn((url: string, init?: RequestInit) => (url === '/api/history/fba' ? new Promise<Response>(() => {}) : inner(url, init))));
+    render(<MemoryRouter><HallOfFameHistoryPage /></MemoryRouter>);
+    expect(await screen.findByText('Old Timer')).toBeTruthy();
   });
 
   it('shows an unlinked card as plain text', async () => {

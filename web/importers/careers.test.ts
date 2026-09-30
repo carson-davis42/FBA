@@ -20,6 +20,13 @@ describe('parseAwardsByPlayer', () => {
     expect(rows).toContainEqual({ key: 'DPOY', name: 'Jaylen Oden', count: 3 });
   });
 
+  it('skips a count that is not a number of at least 1 and lists it in bad', () => {
+    const bad: string[] = [];
+    const rows = parseAwardsByPlayer([['MVP(S1)', ''], ['Ann One', ''], ['Bob Two', 'abc'], ['Cy Three', '0'], ['Milo Machado', '7.0']], bad);
+    expect(rows).toEqual([{ key: 'MVP', name: 'Milo Machado', count: 7 }]);
+    expect(bad).toEqual(['Ann One (MVP)', 'Bob Two (MVP)', 'Cy Three (MVP)']);
+  });
+
   it('skips empty names', () => {
     const rows = parseAwardsByPlayer([['MVP(S1)', ''], ['', ''], ['Milo Machado', '7.0']]);
     expect(rows).toEqual([{ key: 'MVP', name: 'Milo Machado', count: 7 }]);
@@ -117,6 +124,20 @@ describe('buildCareers', () => {
     expect(lines).toContain('warn: Unmatched: Nobody Here (tab 11 MVP)');
     expect(lines.filter(l => l === 'info: Unparsed bio entry: Mystery entry')).toHaveLength(1);
     expect(lines[lines.length - 1]).toMatch(/^info: \d+ info, \d+ warnings$/);
+  });
+
+  it('reports a stint team that looks like a team code but is classed as college, once', () => {
+    const report = new Report();
+    const odd: PlayerBiosFile = {
+      league: 'fba',
+      bios: [
+        { playerId: 'p00001', born: 'Born-S50', entries: ['XYZ-S60-S62', 'Duke-S58', 'BOS-S63'] },
+        { playerId: 'p00002', born: 'Born-S52', entries: ['XYZ-S61'] },
+      ],
+    };
+    buildCareers({ players, bios: odd, summaries: [], tab11: [], ppg: [] }, report);
+    const lines = careersLines(report).filter(l => l.includes('treated as college'));
+    expect(lines).toEqual(['info: Stint team treated as college: XYZ']);
   });
 
   it('sorts counts by player and award order, and the output passes the schema', () => {

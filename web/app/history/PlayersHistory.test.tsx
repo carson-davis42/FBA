@@ -154,6 +154,18 @@ describe('PlayerHistoryPage', () => {
     ]);
   });
 
+  it('shows a dash, not 0.0, for a line with no games played', async () => {
+    const idle: SummaryFile = {
+      league: 'fba', season: 80, locked: true, host: null, champions: [],
+      players: [line('SEA', 1, [0, 0], [0, 0])],
+    };
+    stub({ bios: naylorBio, seasons: [idle] });
+    renderAt('/history/fba/players/p00001');
+    await screen.findByRole('heading', { name: 'Seasons' });
+    const rows = screen.getAllByRole('row').map(r => Array.from(r.querySelectorAll('td')).map(td => td.textContent)).filter(r => r.length > 0);
+    expect(rows.slice(-2)).toEqual([['S80', 'SEA', '0', '0', '—', '0', '0', '—'], ['Career (since S79)', '', '0', '0', '—', '', '', '']]);
+  });
+
   it('renders without awardCounts.json', async () => {
     stub({ bios: naylorBio, seasons: [s79, s78] });
     renderAt('/history/fba/players/p00001');

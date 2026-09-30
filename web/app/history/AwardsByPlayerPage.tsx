@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { awardTotals } from '../../engine/history/career';
+import { awardTotalsAll } from '../../engine/history/career';
 import { playerIndex } from '../../engine/history/views';
 import { AWARD_KEYS, type AwardCountsFile, type AwardKey, type PlayerBiosFile, type PlayersFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
@@ -19,9 +19,17 @@ export function AwardsByPlayerPage() {
   const baseline = counts.data ?? null;
   const rows = useMemo(() => {
     if (!seasons || !players.data) return [];
-    return playerIndex(seasons, biosData, players.data)
-      .map(p => ({ ...p, totals: awardTotals(p.playerId, baseline, seasons) }))
-      .filter(r => COLUMNS.some(k => r.totals[k] > 0));
+    const totals = awardTotalsAll(baseline, seasons);
+    const named = playerIndex(seasons, biosData, players.data);
+    const known = new Set(named.map(p => p.playerId));
+    // A player whose only awards are in the baseline has no bio or summary line, so playerIndex may not list them.
+    for (const id of totals.keys()) {
+      const name = players.data.players[id]?.name;
+      if (!known.has(id) && name) named.push({ playerId: id, name });
+    }
+    return named
+      .map(p => ({ ...p, totals: totals.get(p.playerId) as Record<AwardKey, number> }))
+      .filter(r => r.totals && COLUMNS.some(k => r.totals[k] > 0));
   }, [seasons, players.data, biosData, baseline]);
   const sorted = useMemo(
     () => [...rows].sort((a, b) => b.totals[sort] - a.totals[sort] || a.name.localeCompare(b.name) || a.playerId.localeCompare(b.playerId)),
@@ -43,7 +51,9 @@ export function AwardsByPlayerPage() {
             <tr>
               <th>Player</th>
               {COLUMNS.map(k => (
-                <th key={k} className="n"><button type="button" onClick={() => setSort(k)}>{AWARD_LABELS[k]}</button></th>
+                <th key={k} className="n" aria-sort={sort === k ? 'descending' : undefined}>
+                  <button type="button" onClick={() => setSort(k)}>{AWARD_LABELS[k]}{sort === k ? ' ▼' : ''}</button>
+                </th>
               ))}
             </tr>
           </thead>

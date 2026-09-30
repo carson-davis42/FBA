@@ -244,18 +244,33 @@ export function careerLines(career: Career): string[] {
   return out;
 }
 
-export function awardTotals(playerId: string, baseline: AwardCountsFile | null, summaries: SummaryFile[]): Record<AwardKey, number> {
-  const totals = Object.fromEntries(AWARD_KEYS.map(k => [k, 0])) as Record<AwardKey, number>;
-  for (const c of baseline?.counts ?? []) if (c.playerId === playerId) totals[c.key] += c.count;
-  const live = summaryAwardCounts(summaries, (baseline?.throughSeason ?? 0) + 1, 9999).get(playerId) ?? {};
-  for (const k of AWARD_KEYS) totals[k] += live[k] ?? 0;
-  return totals;
+const emptyTotals = (): Record<AwardKey, number> => Object.fromEntries(AWARD_KEYS.map(k => [k, 0])) as Record<AwardKey, number>;
+
+/** Every player's award totals: the baseline counts plus the summaries after its season. One pass over the summaries. */
+export function awardTotalsAll(baseline: AwardCountsFile | null, summaries: SummaryFile[]): Map<string, Record<AwardKey, number>> {
+  const out = new Map<string, Record<AwardKey, number>>();
+  const of = (id: string) => {
+    let t = out.get(id);
+    if (!t) { t = emptyTotals(); out.set(id, t); }
+    return t;
+  };
+  for (const c of baseline?.counts ?? []) of(c.playerId)[c.key] += c.count;
+  for (const [id, live] of summaryAwardCounts(summaries, (baseline?.throughSeason ?? 0) + 1, 9999)) {
+    const t = of(id);
+    for (const k of AWARD_KEYS) t[k] += live[k] ?? 0;
+  }
+  return out;
 }
 
-export interface StatRow { season: number; teamId: string | null; gp: number | null; pts: number | null; ppg: number; po: { gp: number; pts: number; ppg: number } | null }
+export function awardTotals(playerId: string, baseline: AwardCountsFile | null, summaries: SummaryFile[]): Record<AwardKey, number> {
+  return awardTotalsAll(baseline, summaries).get(playerId) ?? emptyTotals();
+}
+
+/** `ppg` is null for a line with no games played. */
+export interface StatRow { season: number; teamId: string | null; gp: number | null; pts: number | null; ppg: number | null; po: { gp: number; pts: number; ppg: number | null } | null }
 
 const round1 = (x: number) => Math.round(x * 10) / 10;
-const perGame = (pts: number, gp: number) => (gp > 0 ? round1(pts / gp) : 0);
+const perGame = (pts: number, gp: number): number | null => (gp > 0 ? round1(pts / gp) : null);
 
 export function careerStats(playerId: string, summaries: SummaryFile[]): { rows: StatRow[]; total: { gp: number; pts: number; ppg: number } } {
   const rows: StatRow[] = [];
@@ -279,5 +294,21 @@ export function careerStats(playerId: string, summaries: SummaryFile[]): { rows:
       pts += l.rs.pts;
     }
   }
-  return { rows, total: { gp, pts, ppg: perGame(pts, gp) } };
+  return { rows, total: { gp, pts, ppg: perGame(pts, gp) ?? 0 } };
+}
+
+/** Games and points since S79 for every player, in one pass; the same lines `careerStats` totals. */
+export function careerTotalsAll(summaries: SummaryFile[]): Map<string, { gp: number; pts: number }> {
+  const out = new Map<string, { gp: number; pts: number }>();
+  for (const s of fbaSummaries(summaries)) {
+    if (s.season < 79) continue;
+    for (const l of s.players ?? []) {
+      if (l.teamId === null || l.stint === null) continue;
+      const t = out.get(l.playerId) ?? { gp: 0, pts: 0 };
+      t.gp += l.rs.g;
+      t.pts += l.rs.pts;
+      out.set(l.playerId, t);
+    }
+  }
+  return out;
 }

@@ -131,12 +131,9 @@ export function buildHistory(input: HistoryInput, report: Report): HistoryOutput
   if (!biosCheck.success) report.error('schema', `playerBios.json: ${biosCheck.error.issues.slice(0, 3).map(i => `${i.path.join('.')} ${i.message}`).join('; ')}`);
 
   const lookup = (name: string): string[] => index.get(normName(name)) ?? [];
-  const resolve = (name: string, season: number, field: string): string | null => {
-    const m = lookup(name);
-    if (m.length === 1) return m[0];
-    report.warn('names', `${m.length === 0 ? 'Unmatched' : 'Ambiguous'}: ${name} (S${season} ${field})`);
-    return null;
-  };
+  // The bio pass above has added every new player, so this index is complete.
+  const byName = nameResolver(playersOut, report);
+  const resolve = (name: string, season: number, field: string): string | null => byName(name, `S${season} ${field}`);
   /** Tries the whole cell text first (a hyphenated surname), then the split name. */
   const resolveNT = (nt: NameTeam | null, season: number, field: string): string | null => {
     if (!nt) return null;

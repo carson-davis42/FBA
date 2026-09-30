@@ -98,6 +98,16 @@ describe('prefillCard', () => {
     expect(lines).toContain('1x MVP');
     expect(prefillCard(c(4), [s79], null, null).lines).toEqual(['DCB: S79']);
   });
+  it('adds S<n> award lines from the S1-S78 summaries when there is no bio, and not from S79 on', () => {
+    const s60 = summary(60, {
+      awards: [{ award: 'MVP', playerId: pid(1), teamId: 'DCB' }],
+      allFba: { team1: [{ slot: 'G', playerId: pid(1), teamId: 'DCB' }], team2: [{ slot: 'G', playerId: pid(4), teamId: 'DCB' }] } as SummaryFile['allFba'],
+    });
+    const s79 = summary(79, { awards: [{ award: 'MVP', playerId: pid(1), teamId: 'DCB' }] });
+    expect(prefillCard(c(1), [s79, s60], null, null).lines).toEqual(['DCB: …-S79', 'S60 MVP', 'S60 All-FBA T1']);
+    expect(prefillCard(c(4), [s60], null, null).lines).toEqual(['DCB: …-S79', 'S60 All-FBA T2']);
+    expect(prefillCard(c(1), [s60], { playerId: pid(1), born: 'Born-S46', entries: ['DCB-S55-S60'] }, null).lines).toEqual(['DCB: S55-S60']);
+  });
   it('tolerates summaries with no awards or All-FBA teams', () => {
     expect(prefillCard(c(1), [summary(78), summary(79, { allFba: null })], null, null).lines).toEqual(['DCB: …-S79']);
   });

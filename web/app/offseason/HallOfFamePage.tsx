@@ -28,7 +28,10 @@ function Card({ card, children }: { card: HofCard; children?: React.ReactNode })
   );
 }
 
-/** The Hall of Fame (/league/fba/hall-of-fame): inducted classes, and the nominee list with candidates and induction. */
+/**
+ * The offseason Hall of Fame tool (/league/fba/hall-of-fame): the nominee list with candidates and induction. It opens on
+ * the nominees; `?tab=hall` shows only a link to the Hall of Fame in History, where the inducted classes live.
+ */
 export function HallOfFamePage() {
   const [params] = useSearchParams();
   const meta = useDoc<MetaFile>('meta.json');
@@ -60,7 +63,7 @@ export function HallOfFamePage() {
   const summaries = history.seasons;
   const bioOf = (id: string) => bios.data?.bios.find(b => b.playerId === id) ?? null;
   const asked = params.get('tab');
-  const tab: Tab = asked === 'nominees' ? 'nominees' : 'hall';
+  const tab: Tab = asked === 'hall' ? 'hall' : 'nominees';
   const tabLink = (id: Tab, label: string) => (
     <Link role="tab" aria-selected={tab === id} className={`tab${tab === id ? ' on' : ''}`} to={`/league/fba/hall-of-fame?tab=${id}`}>{label}</Link>
   );

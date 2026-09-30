@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { AwardCountsFile, HallOfFameFile, SummaryFile, SummaryPlayerLine } from '../shared/types';
-import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, careerStats } from './career';
+import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll } from './career';
 
 describe('parseBio', () => {
   it('parses Akeem Naylor', () => {
@@ -229,6 +229,15 @@ describe('awardTotals', () => {
   it('counts every season with a null baseline', () => {
     expect(awardTotals('p00001', null, [s79, s78]).MVP).toBe(2);
   });
+  it('gives every player in one map, including baseline-only players', () => {
+    const all = awardTotalsAll(baseline, [s79, s78]);
+    expect(all.get('p00001')?.MVP).toBe(3);
+    expect(all.get('p00002')?.MVP).toBe(5);
+    expect(all.get('p00002')?.ROTY).toBe(1);
+    expect(all.get('p00003')?.ALL_STAR).toBe(1);
+    expect(all.has('p99999')).toBe(false);
+    expect(awardTotals('p99999', baseline, [s79]).MVP).toBe(0);
+  });
 });
 
 describe('careerStats', () => {
@@ -248,5 +257,24 @@ describe('careerStats', () => {
   });
   it('is empty for an unknown player', () => {
     expect(careerStats('p99999', [s79])).toEqual({ rows: [], total: { gp: 0, pts: 0, ppg: 0 } });
+  });
+  it('gives a null PPG for a line with no games, in the season and the playoffs', () => {
+    const idle = summary(81, { players: [line('p00001', 'BOS', 1, 0, 0, [0, 0])] });
+    const { rows, total } = careerStats('p00001', [idle]);
+    expect(rows).toEqual([{ season: 81, teamId: 'BOS', gp: 0, pts: 0, ppg: null, po: { gp: 0, pts: 0, ppg: null } }]);
+    expect(total).toEqual({ gp: 0, pts: 0, ppg: 0 });
+  });
+});
+
+describe('careerTotalsAll', () => {
+  it('adds every S79+ stint line per player and skips total lines and earlier seasons', () => {
+    const traded = summary(80, {
+      players: [line('p00001', 'LA', 2, 30, 300), line('p00001', 'BOS', 1, 50, 1000), line('p00001', null, null, 80, 1300)],
+    });
+    const all = careerTotalsAll([traded, s79, summary(78, { players: [line('p00001', 'BOS', 1, 10, 10)] })]);
+    expect(all.get('p00001')).toEqual({ gp: 160, pts: 3300 });
+    expect(all.get('p99999')).toBeUndefined();
+    const single = careerStats('p00001', [traded, s79]).total;
+    expect(all.get('p00001')).toEqual({ gp: single.gp, pts: single.pts });
   });
 });

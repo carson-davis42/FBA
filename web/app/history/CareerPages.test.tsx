@@ -10,11 +10,12 @@ import { LeadersPage } from './LeadersPage';
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
 const players: PlayersFile = {
-  nextId: 4,
+  nextId: 5,
   players: {
     p00001: { id: 'p00001', name: 'Ann Alpha', birthSeason: 40 },
     p00002: { id: 'p00002', name: 'Bob Beta', birthSeason: 41 },
     p00003: { id: 'p00003', name: 'Cy Thirty', birthSeason: 42 },
+    p00004: { id: 'p00004', name: 'Dee Baseline', birthSeason: 43 },
   },
 };
 
@@ -26,6 +27,7 @@ const baseline: AwardCountsFile = {
     { playerId: 'p00002', key: 'MVP', count: 1 },
     { playerId: 'p00002', key: 'ALL_STAR', count: 5 },
     { playerId: 'p00003', key: 'CONF_CHAMPION', count: 4 },
+    { playerId: 'p00004', key: 'ALL_STAR', count: 3 },
   ],
 };
 
@@ -58,11 +60,29 @@ describe('AwardsByPlayerPage', () => {
     renderAt(<AwardsByPlayerPage />);
     expect(await screen.findByRole('heading', { name: 'Awards by player' })).toBeTruthy();
     expect(await screen.findByRole('link', { name: 'Ann Alpha' })).toBeTruthy();
-    expect(names()).toEqual(['Ann Alpha', 'Bob Beta']);
+    expect(names()).toEqual(['Ann Alpha', 'Bob Beta', 'Dee Baseline']);
     expect(screen.queryByRole('link', { name: 'Cy Thirty' })).toBeNull();
     expect(screen.queryByText(/haven't been imported/)).toBeNull();
     fireEvent.click(screen.getByRole('button', { name: 'ASG' }));
-    expect(names()).toEqual(['Bob Beta', 'Ann Alpha']);
+    expect(names()).toEqual(['Bob Beta', 'Dee Baseline', 'Ann Alpha']);
+  });
+
+  it('lists a player whose only awards are in the baseline, with no bio or summary line', async () => {
+    stub();
+    renderAt(<AwardsByPlayerPage />);
+    expect(await screen.findByRole('link', { name: 'Dee Baseline' })).toBeTruthy();
+    const row = screen.getByRole('link', { name: 'Dee Baseline' }).closest('tr') as HTMLElement;
+    expect(row.textContent).toContain('3');
+  });
+
+  it('marks the sorted column with aria-sort and a marker, and moves it on a click', async () => {
+    stub();
+    renderAt(<AwardsByPlayerPage />);
+    await screen.findByRole('link', { name: 'Ann Alpha' });
+    const sorted = () => screen.getAllByRole('columnheader').filter(h => h.getAttribute('aria-sort') === 'descending').map(h => h.textContent);
+    expect(sorted()).toEqual(['MVP ▼']);
+    fireEvent.click(screen.getByRole('button', { name: 'ASG' }));
+    expect(sorted()).toEqual(['ASG ▼']);
   });
 
   it('warns when the award counts baseline is missing', async () => {
