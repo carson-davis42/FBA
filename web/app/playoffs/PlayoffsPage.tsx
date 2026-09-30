@@ -143,6 +143,7 @@ export function PlayoffsPage() {
                 key={c.group ?? 'fba'}
                 kicker={c.group === null ? `S${state.season} Champions` : `S${state.season} ${groupLabel(lg, c.group)} Champions`}
                 title={name(c.teamId)}
+                level="h2"
                 logo={team ? <TeamMark team={team} season={state.season} size={96} /> : undefined}
                 theme={team ? teamTheme(team, lg) : undefined}
               >
