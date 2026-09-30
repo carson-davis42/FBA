@@ -6,6 +6,7 @@ import type {
   CalendarFile, D2DraftFile, D2PoolFile, RankingFile, FreeAgentsFile, MetaFile, RecruitingFile, ReservesFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile,
 } from '../../engine/shared/types';
 import { useDoc, useSaving, type DocState, type Versions } from '../api';
+import { PageHeader } from '../components/PageHeader';
 import { commitDocs, newBatchId } from '../roster/commit';
 import './pages.css';
 
@@ -93,7 +94,7 @@ export function NextSeasonPage() {
 
   return (
     <section>
-      <h1>Go to next season</h1>
+      <PageHeader kicker={`Season ${n}`} title="Go to next season" />
       {!preview.ok ? (
         <div className="card">
           <h3>S{n} isn't finished yet</h3>

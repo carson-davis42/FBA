@@ -1,14 +1,23 @@
-.champ-row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+.home-leagues { margin-bottom: var(--s4); }
+.home-leagues .card-head { margin-bottom: 0; }
+.home-leagues .card-head h2 { font-size: var(--fs-xl); }
+.latest-list { display: flex; flex-direction: column; }
+.latest-list .ticker-chip { border-right: 0; border-bottom: 1px solid var(--border); padding: var(--s2) 0; }
+.latest-list .ticker-chip:last-child { border-bottom: 0; }
+.champ-row { display: flex; justify-content: space-between; gap: var(--s3); padding: var(--s2) 0; border-bottom: 1px solid var(--border); }
 .champ-row:last-child { border-bottom: 0; }
 .champ-row b { text-align: right; }
 .steps { list-style: none; margin: 0; padding: 0; }
-.steps li { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-bottom: 1px solid var(--border); }
+.steps li { display: flex; align-items: center; gap: var(--s3); padding: var(--s2) var(--s3); border-bottom: 1px solid var(--border); border-left: 3px solid transparent; }
 .steps li:last-child { border-bottom: 0; }
-.steps li.sub { padding-left: 34px; font-size: 13px; }
+.steps li.sub { padding-left: var(--s6); font-size: var(--fs-sm); }
 .steps li.done { color: var(--muted); }
-.steps li.current { background: var(--accent-soft); color: var(--accent); font-weight: 700; border-radius: 6px; }
+.steps li.current { background: var(--accent-soft); color: var(--accent); font-weight: 700; border-left-color: var(--accent); }
 .steps .mark { width: 20px; text-align: center; }
-.steps .tag { margin-left: auto; font-size: 11px; font-weight: 700; border-radius: 999px; padding: 2px 8px; background: var(--surface-2); border: 1px solid var(--border); color: var(--muted); }
-.cal-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
-.banner { margin: 0 0 16px; padding: 10px 14px; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent-soft); color: var(--text); }
-.banner a { font-weight: 700; margin-left: 4px; }
+.steps .badge { margin-left: auto; }
+.cal-actions { display: flex; gap: var(--s2); flex-wrap: wrap; margin: var(--s3) 0; }
+.banner { margin: 0 0 var(--s4); padding: var(--s3) var(--s4); border: 1px solid var(--accent); border-radius: var(--r); background: var(--accent-soft); color: var(--text); }
+.banner a { font-weight: 700; margin-left: var(--s1); }
+.tool-tile .card-head { margin-bottom: var(--s1); }
+.tool-tile p { margin: 0; font-size: var(--fs-sm); }
+.hub-league { margin: var(--s5) 0 var(--s2); }

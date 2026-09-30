@@ -19,6 +19,7 @@ import { StandingsPage } from '../pages/StandingsPage';
 import { TeamPage } from '../pages/TeamPage';
 import { TradePage } from '../pages/TradePage';
 import { TransactionsPage } from '../pages/TransactionsPage';
+import { OffseasonHub } from '../pages/OffseasonHub';
 import { Placeholder } from '../components/Placeholder';
 import { CollegeRatingsPage } from '../college/CollegeRatingsPage';
 import { ClassRankingPage } from '../college/ClassRankingPage';
@@ -79,7 +80,7 @@ export function Layout() {
           <Route path="/league/:league/team/:teamId" element={<TeamPage />} />
           <Route path="/league/:league/transactions" element={<TransactionsPage />} />
           <Route path="/trade/:league" element={<TradePage />} />
-          <Route path="/offseason" element={<Placeholder title="Offseason tools" note="Arrives in sub-project 7. For now, mark offseason steps done on the Calendar page." />} />
+          <Route path="/offseason" element={<OffseasonHub />} />
           <Route path="/history" element={<HistoryHome />} />
           <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
           <Route path="/history/fba/awards" element={<AwardsHistoryPage />} />
