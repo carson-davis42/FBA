@@ -47,6 +47,13 @@ export async function readTabs(file: string, tabs: string[]): Promise<Record<str
   return out;
 }
 
+/** The workbook's tab names, in sheet order. */
+export async function tabNames(file: string): Promise<string[]> {
+  const wb = new ExcelJS.Workbook();
+  await wb.xlsx.readFile(file);
+  return wb.worksheets.map(ws => ws.name);
+}
+
 /** Cells with underlined text, keyed "<row index>:<column index>" (0-based, matching readTabs rows). */
 export async function readUnderlines(file: string, tab: string): Promise<Set<string>> {
   const wb = new ExcelJS.Workbook();

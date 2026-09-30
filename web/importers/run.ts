@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { CalendarFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
+import type { CalendarFile, Franchise, FranchisesFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
 import { planHistoryImport } from './historyRun';
@@ -10,11 +10,12 @@ import { Report } from './report';
 import { assembleRefresh } from './refresh';
 import { applyNameFixes, planNameFixes } from './fixNames';
 import { buildClassImport, previousImportProblem } from './recruitingClassImport';
+import { parseFranchiseTab } from './sheets/franchises';
 import { parseHallOfFameTab } from './sheets/hallOfFame';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
 import { parsePlayersTab } from './sheets/playersTab';
 import { parseClassSection } from './sheets/recruitingClass';
-import { downloadWorkbook, readTabs, readUnderlines } from './sheets/xlsx';
+import { downloadWorkbook, readTabs, readUnderlines, tabNames } from './sheets/xlsx';
 import { parseBracketFile, parseD2Playoffs, parseFbaPlayoffs, parseFbaResults } from './txt/archives';
 import { parseRosterTxt } from './txt/rosters';
 
@@ -29,11 +30,24 @@ const SHEETS = {
   draft: '1e3YJEurdTk5y2XKHQcgttCbknZZsJOB8RhR10_gG1W4',
   collegeHistory: '1jgB8AI5dMjSXuSNQm3szoeRF5rIYcgmPXin-idAgE84',
   pastStandings: '1FuPd67Vj8L4Zy4J53Z2jZzw_oqEa-1S5Lzztwq-NDpI',
+  teamHistory: '1_oz7ULZMsaFInj-ncqs8qUm_5UBBNffJM_x9_ZOvQFU',
 };
 
 const read = (rel: string) => readFileSync(path.join(REPO, rel), 'utf8');
 
 const readJson = <T>(rel: string): T => JSON.parse(readFileSync(path.join(DATA, ...rel.split('/')), 'utf8')) as T;
+
+/** The data folder to write: web/data, or the folder given with --data <dir> (use a scratch copy for checks). */
+function dataDir(): string {
+  const i = process.argv.indexOf('--data');
+  if (i < 0) return DATA;
+  const dirArg = process.argv[i + 1];
+  if (!dirArg || dirArg.startsWith('--')) {
+    console.error('--data needs a folder: the data folder to write.');
+    process.exit(1);
+  }
+  return path.resolve(dirArg);
+}
 
 async function refreshRosters(): Promise<void> {
   const meta = readJson<MetaFile>('meta.json');
@@ -251,8 +265,8 @@ function refreshLogos(): void {
     console.error(`The rebuilt ${rel} fails its schema; nothing was written.`);
     process.exit(1);
   }
-  const file = path.join(DATA, ...rel.split('/'));
-  const before = existsSync(file) ? readJson<LogoManifest>(rel) : null;
+  const file = path.join(dataDir(), ...rel.split('/'));
+  const before = existsSync(file) ? (JSON.parse(readFileSync(file, 'utf8')) as LogoManifest) : null;
   const { added, removed, changed } = diffLogoManifests(before, manifest);
   for (const e of report.entries.filter(x => x.level === 'warn')) console.warn(`warning: ${e.message}`);
   if (added.length + removed.length + changed.length === 0) {
@@ -264,11 +278,46 @@ function refreshLogos(): void {
   for (const [label, list] of [['Added', added], ['Removed', removed], ['Changed', changed]] as const) {
     if (list.length) console.log(`${label}: ${list.join(', ')}`);
   }
-  console.log(`Wrote ${rel}.`);
+  console.log(`Wrote ${file}.`);
+}
+
+/** Reads each franchise's name eras from the team history sheet into leagues/fba/franchises.json. Writes nothing else. */
+async function importFranchises(): Promise<void> {
+  const rel = 'leagues/fba/franchises.json';
+  const dir = dataDir();
+  rmSync(path.join(CACHE, `${SHEETS.teamHistory}.xlsx`), { force: true });
+  console.log('Downloading the team history sheet (about 75 MB)...');
+  const book = await downloadWorkbook(SHEETS.teamHistory, CACHE);
+  const ids = (await tabNames(book)).filter(n => /^[A-Z]+$/.test(n));
+  const tabs = await readTabs(book, ids);
+  const franchises: Franchise[] = [];
+  for (const id of ids) {
+    const { eras, problems } = parseFranchiseTab(tabs[id]);
+    for (const p of problems) console.warn(`warning: ${id} ${p}`);
+    if (eras.length) franchises.push({ teamId: id, eras });
+    else console.warn(`warning: ${id} has no name eras`);
+  }
+  const doc: FranchisesFile = { franchises };
+  if (!franchises.length || !schemaForPath(rel)?.safeParse(doc).success) {
+    console.error(`The parsed ${rel} is empty or fails its schema; nothing was written.`);
+    process.exit(1);
+  }
+  const teamsFile = path.join(dir, 'leagues', 'fba', 'teams.json');
+  if (existsSync(teamsFile)) {
+    const known = new Set((JSON.parse(readFileSync(teamsFile, 'utf8')) as TeamsFile).teams.map(t => t.teamId));
+    const extra = franchises.filter(f => !known.has(f.teamId)).map(f => f.teamId);
+    if (extra.length) console.log(`Not in teams.json yet: ${extra.join(', ')}`);
+  }
+  const file = path.join(dir, ...rel.split('/'));
+  mkdirSync(path.dirname(file), { recursive: true });
+  writeFileSync(file, JSON.stringify(doc, null, 2) + '\n');
+  const eraCount = franchises.reduce((n, f) => n + f.eras.length, 0);
+  console.log(`Wrote ${file}: ${franchises.length} franchises, ${eraCount} name eras.`);
 }
 
 async function main(): Promise<void> {
   if (process.argv.includes('--logos')) return refreshLogos();
+  if (process.argv.includes('--franchises')) return importFranchises();
   if (process.argv.includes('--refresh-rosters')) return refreshRosters();
   if (process.argv.includes('--hall-of-fame')) return importHallOfFame();
   if (process.argv.includes('--fix-names')) return fixNames();
