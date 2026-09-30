@@ -157,7 +157,7 @@ export function PlayoffsPage() {
           ))}
         </div>
       )}
-      <Bracket league={lg} playoffs={pf} teams={teams} season={state.season} group={lg === 'fbad2' ? pick : null} open={open} onOpen={setOpen} />
+      <Bracket league={lg} series={pf.series} teams={teams} season={state.season} group={lg === 'fbad2' ? pick : null} open={open} onOpen={setOpen} />
       {open && (
         <div className="card">
           <h3>{roundName(lg, pf.series.find(s => s.id === open)!)}</h3>
