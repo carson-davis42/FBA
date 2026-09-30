@@ -1,17 +1,16 @@
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { CalendarFile, MetaFile, PlayersFile, RecruitingFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
+import type { CalendarFile, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
-import { buildHistory } from './history';
+import { planHistoryImport } from './historyRun';
 import { buildLogoManifest } from './logoManifest';
 import { Report } from './report';
 import { assembleRefresh } from './refresh';
 import { applyNameFixes, planNameFixes } from './fixNames';
 import { buildClassImport, previousImportProblem } from './recruitingClassImport';
 import { parseHallOfFameTab } from './sheets/hallOfFame';
-import { parseAllFba, parseAwards, parseBios, parseChampionships, parsePastStandings } from './sheets/history';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
 import { parsePlayersTab } from './sheets/playersTab';
 import { parseClassSection } from './sheets/recruitingClass';
@@ -187,6 +186,21 @@ async function importRecruitingClass(): Promise<void> {
   console.log(`Wrote ${files.length} documents for the S${n} class: ${rows.length} recruits (${report.count('warn')} warnings). Report: web/importers/recruiting-class-report.md`);
 }
 
+/** Every `*.json` under `dir`, by relative path, skipping the save server's backup and journal folders. */
+function readJsonDocs(dir: string): Map<string, unknown> {
+  const docs = new Map<string, unknown>();
+  const walk = (rel: string): void => {
+    for (const e of readdirSync(path.join(dir, ...rel.split('/').filter(Boolean)), { withFileTypes: true })) {
+      if (e.name === '.backups' || e.name === '.journal') continue;
+      const child = rel ? `${rel}/${e.name}` : e.name;
+      if (e.isDirectory()) walk(child);
+      else if (e.name.endsWith('.json')) docs.set(child, JSON.parse(readFileSync(path.join(dir, ...child.split('/')), 'utf8')));
+    }
+  };
+  walk('');
+  return docs;
+}
+
 async function importHistory(): Promise<void> {
   const i = process.argv.indexOf('--data');
   const dirArg = i >= 0 ? process.argv[i + 1] : undefined;
@@ -195,52 +209,36 @@ async function importHistory(): Promise<void> {
     process.exit(1);
   }
   const dir = path.resolve(dirArg);
-  const readDir = <T>(rel: string): T => JSON.parse(readFileSync(path.join(dir, ...rel.split('/')), 'utf8')) as T;
   const report = new Report();
   rmSync(path.join(CACHE, `${SHEETS.main}.xlsx`), { force: true });
   rmSync(path.join(CACHE, `${SHEETS.pastStandings}.xlsx`), { force: true });
   console.log('Downloading the main sheet and the past standings sheet...');
   const seasons = Array.from({ length: 8 }, (_, k) => 71 + k);
-  const tabs = await readTabs(await downloadWorkbook(SHEETS.main, CACHE), ['Championships', 'Awards, Conference Titles, & AS', 'All-FBA Teams', 'Players']);
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.main, CACHE), ['Championships', 'Awards, Conference Titles, & AS', 'All-FBA Teams', 'Players', 'FBA Awards won by Player']);
   const standingTabs = await readTabs(await downloadWorkbook(SHEETS.pastStandings, CACHE), seasons.map(s => `S${s}`));
 
-  const existing = new Map<number, SummaryFile>();
-  for (let n = 1; n <= 78; n++) {
-    const rel = `leagues/fba/S${n}/summary.json`;
-    if (existsSync(path.join(dir, ...rel.split('/')))) existing.set(n, readDir<SummaryFile>(rel));
-  }
-  const players = readDir<PlayersFile>('players.json');
-  const out = buildHistory({
-    players,
-    teams: [...readDir<TeamsFile>('leagues/fba/teams.json').teams, ...readDir<TeamsFile>('leagues/fbad2/teams.json').teams],
-    existing,
-    champs: parseChampionships(tabs['Championships']),
-    awards: parseAwards(tabs['Awards, Conference Titles, & AS']),
-    allFba: parseAllFba(tabs['All-FBA Teams']),
-    standings: new Map(seasons.map(s => [s, parsePastStandings(standingTabs[`S${s}`])])),
-    bios: parseBios(tabs['Players']),
+  const files = planHistoryImport({
+    docs: readJsonDocs(dir),
+    tabs,
+    standingTabs,
+    ppgText: read('FBA/League-Points-Stats.txt'),
     brackets: JSON.parse(readFileSync(path.join(WEB, 'importers', 'history', 'fbaBrackets.json'), 'utf8')),
   }, report);
-  report.info('players', `Added ${Object.keys(out.players.players).length - Object.keys(players.players).length} players`);
-  const playersCheck = schemaForPath('players.json')!.safeParse(out.players);
-  if (!playersCheck.success) report.error('schema', `players.json: ${playersCheck.error.issues.slice(0, 3).map(x => `${x.path.join('.')} ${x.message}`).join('; ')}`);
 
   writeFileSync(path.join(WEB, 'importers', 'history-report.md'), report.toMarkdown('History import report'));
   if (report.hasErrors) {
     console.error(`The history import found ${report.count('error')} error(s); nothing was written. See web/importers/history-report.md`);
     process.exit(1);
   }
-  const files: [string, unknown][] = [
-    ['players.json', out.players],
-    ['leagues/fba/playerBios.json', out.bios],
-    ...out.summaries.map((s): [string, unknown] => [`leagues/fba/S${s.season}/summary.json`, s]),
-  ];
   for (const [rel, doc] of files) {
     const file = path.join(dir, ...rel.split('/'));
     mkdirSync(path.dirname(file), { recursive: true });
     writeFileSync(file, JSON.stringify(doc, null, 2) + '\n');
   }
-  console.log(`Wrote ${out.summaries.length} summaries and ${out.bios.bios.length} bios to ${dir} (${report.count('warn')} warnings). Report: web/importers/history-report.md`);
+  const merged = report.entries.filter(e => e.topic === 'duplicates' && e.level === 'info').length;
+  const bios = (files.find(f => f[0] === 'leagues/fba/playerBios.json')?.[1] as PlayerBiosFile).bios.length;
+  const summaries = files.filter(f => /^leagues\/fba\/S\d+\/summary\.json$/.test(f[0])).length;
+  console.log(`Merged ${merged} duplicate players; wrote ${summaries} summaries and ${bios} bios to ${dir} (${report.count('warn')} warnings). Report: web/importers/history-report.md`);
 }
 
 async function main(): Promise<void> {
