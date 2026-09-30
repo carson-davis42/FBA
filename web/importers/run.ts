@@ -13,6 +13,7 @@ import { assembleRefresh } from './refresh';
 import { applyNameFixes, planNameFixes } from './fixNames';
 import { buildClassImport, previousImportProblem } from './recruitingClassImport';
 import { draftTabKind } from './sheets/drafts';
+import { buildEvents, parseEventsTab } from './sheets/events';
 import { parseFranchiseTab } from './sheets/franchises';
 import { parseHallOfFameTab } from './sheets/hallOfFame';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
@@ -384,7 +385,19 @@ async function importPastTransactions(): Promise<void> {
   writeDoc(dir, 'leagues/fba/pastTransactions.json', doc);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions'];
+/** Reads the main sheet's Events tab plus importers/history/ruleChanges.json into leagues/fba/events.json. Writes nothing else. */
+async function importEvents(): Promise<void> {
+  const dir = requireDataDir('--events');
+  rmSync(path.join(CACHE, `${SHEETS.main}.xlsx`), { force: true });
+  console.log('Downloading the main history sheet...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.main, CACHE), ['Events']);
+  const rules = JSON.parse(readFileSync(path.join(WEB, 'importers', 'history', 'ruleChanges.json'), 'utf8')) as { season: number; lines: string[] }[];
+  const doc = buildEvents(parseEventsTab(tabs['Events'] ?? []), rules);
+  console.log(`${doc.before.length} pre-FBA notes, ${doc.seasons.length} seasons with notes or rules.`);
+  writeDoc(dir, 'leagues/fba/events.json', doc);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -401,6 +414,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--history')) return importHistory();
   if (process.argv.includes('--drafts')) return importDraftHistory();
   if (process.argv.includes('--transactions')) return importPastTransactions();
+  if (process.argv.includes('--events')) return importEvents();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');
     process.exit(1);
