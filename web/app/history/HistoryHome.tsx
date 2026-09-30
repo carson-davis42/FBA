@@ -13,6 +13,7 @@ const FEATURES: { to: string; title: string; text: string }[] = [
   { to: '/history/fba/leaders', title: 'Career leaders', text: 'Points, games and points per game.' },
   { to: '/history/fba/players', title: 'Players', text: 'Search and browse every player in the record.' },
   { to: '/history/fba/hall-of-fame', title: 'Hall of Fame', text: 'The inducted classes, newest first.' },
+  { to: '/history/fba/transactions', title: 'Transactions', text: 'Trades, signings and cuts by season.' },
 ];
 
 export function HistoryHome() {
