@@ -5,6 +5,7 @@ import type { CalendarFile, Franchise, FranchisesFile, LogoManifest, MetaFile, P
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
 import { buildDraftHistory } from './draftHistory';
+import { buildPastTransactions } from './pastTransactions';
 import { planHistoryImport } from './historyRun';
 import { buildLogoManifest, diffLogoManifests } from './logoManifest';
 import { Report } from './report';
@@ -364,7 +365,26 @@ async function importDraftHistory(): Promise<void> {
   writeDoc(dir, 'leagues/fba/draftHistory.json', doc);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts'];
+/** Reads the main sheet's Transactions tab into leagues/fba/pastTransactions.json. Writes nothing else. */
+async function importPastTransactions(): Promise<void> {
+  const dir = requireDataDir('--transactions');
+  const players = readDataJson<PlayersFile>(dir, 'players.json');
+  const franchises = readDataJson<FranchisesFile>(dir, 'leagues/fba/franchises.json');
+  if (!players || !franchises) {
+    console.error('--transactions needs players.json and leagues/fba/franchises.json in the data folder (run --franchises first).');
+    process.exit(1);
+  }
+  rmSync(path.join(CACHE, `${SHEETS.main}.xlsx`), { force: true });
+  console.log('Downloading the main history sheet...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.main, CACHE), ['Transactions']);
+  const report = new Report();
+  const doc = buildPastTransactions(tabs['Transactions'] ?? [], { players, franchises }, report);
+  printReport(report);
+  console.log(`${doc.seasons.length} seasons, ${doc.seasons.reduce((n, s) => n + s.entries.length, 0)} entries.`);
+  writeDoc(dir, 'leagues/fba/pastTransactions.json', doc);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -380,6 +400,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--recruiting-class')) return importRecruitingClass();
   if (process.argv.includes('--history')) return importHistory();
   if (process.argv.includes('--drafts')) return importDraftHistory();
+  if (process.argv.includes('--transactions')) return importPastTransactions();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');
     process.exit(1);
