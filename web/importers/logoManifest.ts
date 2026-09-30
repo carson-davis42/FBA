@@ -25,3 +25,14 @@ export function buildLogoManifest(logoRoot: string, report: Report): LogoManifes
   }
   return { folders };
 }
+
+/** The folders whose logo list differs between two manifests, by kind, each sorted by name. */
+export function diffLogoManifests(before: LogoManifest | null, after: LogoManifest): { added: string[]; removed: string[]; changed: string[] } {
+  const old = before?.folders ?? {};
+  const names = (o: Record<string, LogoEntry[]>) => Object.keys(o).sort((a, b) => a.localeCompare(b));
+  return {
+    added: names(after.folders).filter(n => !(n in old)),
+    removed: names(old).filter(n => !(n in after.folders)),
+    changed: names(after.folders).filter(n => n in old && JSON.stringify(old[n]) !== JSON.stringify(after.folders[n])),
+  };
+}

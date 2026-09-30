@@ -31,6 +31,7 @@ League data lives in `web/data/` as JSON and is committed like the old `.txt` fi
 - **Trades** (`/trade/fba`, `/trade/fbad2`): players and conditional draft picks (Top-N, Lottery, Swap, Custom). Picks that don't convey roll to the next season with protection one spot smaller.
 - Every move saves all-or-nothing and can be reverted with **↶ Undo last move**.
 - `npm run import -- --refresh-rosters` re-imports the S79 rosters, free agents, reserves, and picks from the sheets and keeps player ids. It refuses once moves have been made in the app.
+- `npm run import -- --logos` rebuilds the logo list (`web/data/logos/manifest.json`) from `FBA Logos/` after you add or rename logo files, and prints the team folders that changed. It writes nothing else.
 
 ### Offseason: the D2 cycle
 - **D2 ratings reset** (`/league/fbad2/ratings`, opened by the "FBAD2 Ratings(reset)" calendar step once free agency is closed): every D2 roster player and Reserve gets a suggested new rating (age, last season's scoring vs. rating, ±2 luck). Players with no D2 rating start blank. Each edit saves when you leave the box (or press Enter); **Finish ratings** applies them all at once.

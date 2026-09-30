@@ -1,11 +1,11 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { CalendarFile, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
+import type { CalendarFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
 import { planHistoryImport } from './historyRun';
-import { buildLogoManifest } from './logoManifest';
+import { buildLogoManifest, diffLogoManifests } from './logoManifest';
 import { Report } from './report';
 import { assembleRefresh } from './refresh';
 import { applyNameFixes, planNameFixes } from './fixNames';
@@ -241,7 +241,34 @@ async function importHistory(): Promise<void> {
   console.log(`Merged ${merged} duplicate players; wrote ${summaries} summaries and ${bios} bios to ${dir} (${report.count('warn')} warnings). Report: web/importers/history-report.md`);
 }
 
+/** Rebuilds logos/manifest.json from the FBA Logos folder, after logos are added or renamed. Writes nothing else. */
+function refreshLogos(): void {
+  const rel = 'logos/manifest.json';
+  const report = new Report();
+  const manifest = buildLogoManifest(path.join(REPO, 'FBA Logos'), report);
+  const checked = schemaForPath(rel)?.safeParse(manifest);
+  if (!checked?.success) {
+    console.error(`The rebuilt ${rel} fails its schema; nothing was written.`);
+    process.exit(1);
+  }
+  const file = path.join(DATA, ...rel.split('/'));
+  const before = existsSync(file) ? readJson<LogoManifest>(rel) : null;
+  const { added, removed, changed } = diffLogoManifests(before, manifest);
+  for (const e of report.entries.filter(x => x.level === 'warn')) console.warn(`warning: ${e.message}`);
+  if (added.length + removed.length + changed.length === 0) {
+    console.log(`${rel} is already up to date.`);
+    return;
+  }
+  mkdirSync(path.dirname(file), { recursive: true });
+  writeFileSync(file, JSON.stringify(manifest, null, 2) + '\n');
+  for (const [label, list] of [['Added', added], ['Removed', removed], ['Changed', changed]] as const) {
+    if (list.length) console.log(`${label}: ${list.join(', ')}`);
+  }
+  console.log(`Wrote ${rel}.`);
+}
+
 async function main(): Promise<void> {
+  if (process.argv.includes('--logos')) return refreshLogos();
   if (process.argv.includes('--refresh-rosters')) return refreshRosters();
   if (process.argv.includes('--hall-of-fame')) return importHallOfFame();
   if (process.argv.includes('--fix-names')) return fixNames();

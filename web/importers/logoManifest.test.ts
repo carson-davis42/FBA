@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { buildLogoManifest } from './logoManifest';
+import { buildLogoManifest, diffLogoManifests } from './logoManifest';
 import { Report } from './report';
 
 function fixture(): string {
@@ -27,5 +27,17 @@ describe('buildLogoManifest', () => {
     const report = new Report();
     buildLogoManifest(fixture(), report);
     expect(report.entries.some(x => x.level === 'warn' && x.message.includes('Texas Outlaws/Texas Outlaws.png'))).toBe(true);
+  });
+});
+
+describe('diffLogoManifests', () => {
+  const entry = (file: string) => ({ file, from: null, to: null, variant: 1 });
+  it('lists added, removed and changed folders', () => {
+    const before = { folders: { Same: [entry('a.png')], Renamed: [entry('Old.png')], Gone: [entry('g.png')] } };
+    const after = { folders: { Same: [entry('a.png')], Renamed: [entry('New S79-pres..png')], Fresh: [entry('f.png')] } };
+    expect(diffLogoManifests(before, after)).toEqual({ added: ['Fresh'], removed: ['Gone'], changed: ['Renamed'] });
+  });
+  it('treats a missing stored manifest as every folder added', () => {
+    expect(diffLogoManifests(null, { folders: { B: [], A: [] } })).toEqual({ added: ['A', 'B'], removed: [], changed: [] });
   });
 });
