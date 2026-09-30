@@ -62,7 +62,7 @@ Picks (sampled from each team's present-era logo):
 | PHX Phoenix Badgers | `#6A2FA8` | `#F07A1A` |
 | SAS San Antonio Spirits | `#111111` | `#B07232` |
 | SEA Seattle Shock | `#127A16` | `#111111` |
-| STL St.Louis Kings | `#D81834` | `#333333` |
+| STL St.Louis Kings | `#D81834` | `#141A3A` |
 | TEX Texas Outlaws | `#8E1616` | `#EFEFD0` |
 | TOR Toronto Wolves | `#F07A16` | `#111111` |
 | VAN Vancouver Orcas | `#125494` | `#1A92D6` |
