@@ -92,7 +92,7 @@ function Playoffs({ season, teams, players, franchises }: { season: SummaryFile;
       ) : season.pastBracket ? (
         <PastBracket bracket={season.pastBracket} teams={teams} season={season.season} franchises={franchises} />
       ) : champion ? (
-        <FinalsCard champion={champion} conf={season.confChampions ?? null} teams={teams} franchises={franchises} season={season.season} />
+        <FinalsCard champion={champion} teams={teams} franchises={franchises} season={season.season} />
       ) : (
         <p className="muted">No playoffs recorded</p>
       )}

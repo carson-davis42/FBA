@@ -25,21 +25,21 @@ describe('finalsWins', () => {
 
 describe('FinalsCard', () => {
   it('shows the champion and runner-up as a decided Finals box', () => {
-    const { container } = render(<FinalsCard champion={champion} conf={{ E: 'Former Pirates', W: 'San Antonio' }} teams={teams} franchises={franchises} season={20} />);
+    const { container } = render(<FinalsCard champion={champion} teams={teams} franchises={franchises} season={20} />);
     const won = container.querySelector('.series-box.finals .series-side.won');
     const lost = container.querySelector('.series-box.finals .series-side:not(.won)');
     expect(won?.textContent).toContain('San Antonio');
-    expect(won?.querySelector('.seed')?.textContent).toBe('W');
+    expect(won?.querySelector('.seed')?.textContent).toBe('');
     expect(won?.querySelector('.wins')?.textContent).toBe('1');
     expect(lost?.textContent).toContain('Former Pirates');
-    expect(lost?.querySelector('.seed')?.textContent).toBe('E');
+    expect(lost?.querySelector('.seed')?.textContent).toBe('');
     expect(lost?.querySelector('.wins')?.textContent).toBe('0');
     expect(container.querySelectorAll('.series-box.finals .team-name')).toHaveLength(2);
     expect(container.querySelector('.champ-badge')).toBeTruthy();
     expect(screen.getByText("The full bracket for S20 wasn't recorded.")).toBeTruthy();
   });
-  it('works without franchises, conference champions or a score', () => {
-    const { container } = render(<FinalsCard champion={{ ...champion, score: null }} conf={null} teams={teams} franchises={null} season={20} />);
+  it('works without franchises or a score', () => {
+    const { container } = render(<FinalsCard champion={{ ...champion, score: null }} teams={teams} franchises={null} season={20} />);
     expect(container.querySelector('.series-side.won')?.textContent).toContain('San Antonio');
     expect(container.querySelector('.series-side.won .seed')?.textContent).toBe('');
     expect(container.querySelector('.series-side.won .wins')?.textContent).toBe('');

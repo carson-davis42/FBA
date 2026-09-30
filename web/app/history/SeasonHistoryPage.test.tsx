@@ -125,6 +125,8 @@ describe('SeasonHistoryPage', () => {
     expect(container.querySelector('.finals-only .series-side:not(.won)')?.textContent).toContain('Boston');
     expect(container.querySelector('.finals-only .series-side:not(.won) .wins')?.textContent).toBe('3');
     expect(screen.getByText("The full bracket for S72 wasn't recorded.")).toBeTruthy();
+    // Conference champions are regular-season titles, so the Finals rows carry no E/W label.
+    expect([...container.querySelectorAll('.finals-only .seed')].map(s => s.textContent)).toEqual(['', '']);
     expect(screen.getByText(/Finals MVP:/)).toBeTruthy();
   });
 
