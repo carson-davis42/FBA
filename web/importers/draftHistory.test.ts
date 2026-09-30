@@ -19,6 +19,7 @@ describe('resolveSheetTeam', () => {
     expect(resolveSheetTeam(file, 'Seattle', 78)).toBe('SEA');
     expect(resolveSheetTeam(file, 'Cypress G', 49)).toBe('CGG');
     expect(resolveSheetTeam(file, 'Cal Tech', 49)).toBe('CAR');
+    expect(resolveSheetTeam(file, 'Cal Tech', 70)).toBe('CAR'); // outside every era: a unique prefix still resolves
     expect(resolveSheetTeam(file, 'Nowhere', 49)).toBeNull();
   });
 });

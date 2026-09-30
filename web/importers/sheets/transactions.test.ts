@@ -7,14 +7,14 @@ const rows = [
   ['S62'], ['BOS'], ['Cut', 'OUT-Webb Allen'], ['Signed', 'MID-Freddy King'],
   ['CT', 'Before Week 5'], ['Acquired', 'OUT-Mateo Mosley'],
   ['DCB/NY'], ['S78 Pick Swap', 'DCB GB'], ['->NY', 'PF-Morgan Meyer'],
-  ['MW'], ['Traded Away', 'PF-Jamari Odom'], ['Released', 'C-Theon Campos'],
+  ['MW'], ['Traded Away', 'PF-Jamari Odom'], ['Traded For(27/62 GP)', 'IN-Zak Byrd'], ['Released', 'C-Theon Campos'],
 ];
 
 describe('parseTransactionsTab', () => {
   it('reads seasons, trades with timing and notes, and team blocks', () => {
     const { seasons, skipped, problems } = parseTransactionsTab(rows);
     expect(problems).toEqual([]);
-    expect(skipped).toBe(1);
+    expect(skipped).toBe(2);
     expect(seasons.map(s => s.season)).toEqual([33, 62]);
     expect(seasons[0].entries).toEqual([{ kind: 'trade', codes: ['CGG', 'USA'], when: 'Before Week 7', notes: [], moves: [{ to: 'CGG', asset: 'OUT-Clay Peterson' }, { to: 'USA', asset: 'S41 Draft Pick(via MIL)' }] }]);
     expect(seasons[1].entries).toEqual([

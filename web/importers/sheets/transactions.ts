@@ -37,7 +37,7 @@ export function parseTransactionsTab(rows: string[][]): { seasons: RawTxSeason[]
       else season.entries.push({ kind, code: block.code, when: block.when, asset: b });
       continue;
     }
-    if (/^traded (away|for)$/i.test(a)) { skipped++; continue; }
+    if (/^traded (away|for)\b/i.test(a)) { skipped++; continue; }
     if (TRADE.test(a)) {
       const entry = { kind: 'trade' as const, codes: a.split('/'), when: b || null, notes: [] as string[], moves: [] as { to: string; asset: string }[] };
       season.entries.push(entry);

@@ -7,7 +7,7 @@ import { draftTabKind, parseDraftTab } from './sheets/drafts';
 /** Sheet shorthands that no era name starts with. */
 const SHEET_TEAM_ALIASES: Record<string, string> = { 'Cypress G': 'Cypress Green Guns', 'Cypress B': 'Cypress Black Sox' };
 
-/** A sheet team text in `season` → franchise id: exact era name, alias, abbreviation, then a unique era-name prefix among eras covering the season. */
+/** A sheet team text in `season` → franchise id: exact era name, alias, abbreviation, then a unique era-name prefix among eras covering the season, then among all eras (the sheet has gaps between eras). */
 export function resolveSheetTeam(file: FranchisesFile, text: string, season: number): string | null {
   const t = text.trim();
   const exact = franchiseAt(file, SHEET_TEAM_ALIASES[t] ?? t, season);
@@ -15,7 +15,10 @@ export function resolveSheetTeam(file: FranchisesFile, text: string, season: num
   const byAbbr = franchiseByAbbr(file, t, season);
   if (byAbbr) return byAbbr.teamId;
   const covering = file.franchises.filter(f => f.eras.some(e => e.from <= season && (e.to === null || season <= e.to) && e.name.startsWith(`${t} `)));
-  return covering.length === 1 ? covering[0].teamId : null;
+  if (covering.length === 1) return covering[0].teamId;
+  if (covering.length > 1) return null;
+  const any = file.franchises.filter(f => f.eras.some(e => e.name.startsWith(`${t} `)));
+  return any.length === 1 ? any[0].teamId : null;
 }
 
 export function buildDraftHistory(
