@@ -43,6 +43,8 @@ export function PortalPage() {
   const state = load.state;
   const closed = portalProblem(state.calendar);
   const off = closed !== null || saving;
+  // Taking a player out follows the engine: open from Adjust Age on, until the fbajc step is done.
+  const takeOutOff = state.calendar.steps.find(x => x.id === 'fbajc')?.done === true || saving;
   const name = (id: string) => collegeName(state.players, id);
   const group = (teamId: string) => state.teams.teams.find(t => t.teamId === teamId)?.group ?? '';
   const needle = search.trim().toLowerCase();
@@ -151,7 +153,7 @@ export function PortalPage() {
                   <td className="actions">
                     {!p.committedTo && (
                       <button
-                        type="button" className="btn" disabled={off} aria-label={`Take out ${name(p.playerId)}`}
+                        type="button" className="btn" disabled={takeOutOff} aria-label={`Take out ${name(p.playerId)}`}
                         onClick={() => run(takeOutOfPortal(state, p.playerId, { batchId: newBatchId() }))}
                       >
                         Take out

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { DraftFile, RecruitingFile, RostersFile, TransactionsFile } from '../shared/types';
 import { backToSchool, boardOrder, declare, declareCandidates, draftBoardProblem, draftToPortal, setProspectRating } from './draftBoard';
-import { draftBoardBoard, draftBoardDraft, draftBoardState } from './testFixtures';
+import { draftBoardBoard, draftBoardDraft, draftBoardRatings, draftBoardState } from './testFixtures';
 
 const ctx = { batchId: 'b1' };
 const paths = { draft: 'leagues/fba/S80/draft.json', rosters: 'leagues/fbajc/S80/rosters.json', board: 'leagues/fbajc/S79/recruiting.json', tx: 'leagues/fbajc/S80/transactions.json' };
@@ -43,6 +43,18 @@ describe('declare', () => {
     expect(doc<TransactionsFile>(r, paths.tx).entries).toEqual([
       { seq: 1, batchId: 'b1', type: 'declare', teams: ['t1'], lines: ['Cal Center (Jr C, School One) declares for the S80 draft'] },
     ]);
+  });
+  it('keeps the pro-reset rating of a player who left the board and declares again', () => {
+    const back = ok(backToSchool(draftBoardState(), 'p00034', ctx));
+    const s = draftBoardState({
+      draft: doc<DraftFile>(back, paths.draft), rosters: doc<RostersFile>(back, paths.rosters),
+    });
+    const r = ok(declare(s, 'p00034', ctx));
+    expect(doc<DraftFile>(r, paths.draft).prospects.at(-1)).toMatchObject({ playerId: 'p00034', fbaRating: 65 });
+    // Without a locked reset (or without his row) he stays unrated.
+    const open = draftBoardState({ draft: s.draft, rosters: s.rosters, ratings: { ...draftBoardRatings(), locked: false } });
+    expect(doc<DraftFile>(ok(declare(open, 'p00034', ctx)), paths.draft).prospects.at(-1)?.fbaRating).toBeNull();
+    expect(doc<DraftFile>(ok(declare({ ...s, ratings: null }, 'p00034', ctx)), paths.draft).prospects.at(-1)?.fbaRating).toBeNull();
   });
   it('refuses a non-candidate and a started draft', () => {
     expect(problems(declare(draftBoardState(), 'p00002', ctx))).toEqual(["X can't declare"]);

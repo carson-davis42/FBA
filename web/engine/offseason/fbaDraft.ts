@@ -50,6 +50,7 @@ export function startDraftProblems(state: FbaDraftState): string[] {
     if (p.fbaRating === null) out.push(`${collegeName(state.players, p.playerId)} has no FBA rating`);
   }
   if (!state.lottery?.locked) out.push(`The S${state.season - 1} draft lottery hasn't been drawn`);
+  else if (state.lottery.draftSeason !== state.season) out.push(`The S${state.season - 1} lottery is for the S${state.lottery.draftSeason} draft`);
   if (state.draft.started) out.push('The draft has already started');
   return out;
 }
@@ -81,6 +82,8 @@ export function onTheClock(draft: DraftFile): DraftPick | null {
 export function draftPick(state: FbaDraftState, playerId: string, ctx: MoveContext): WritesResult {
   const n = state.season;
   const { draft } = state;
+  const step = calendarProblem(state.calendar, draftStepId(n), 'The draft starts');
+  if (step) return { ok: false, problems: [step] };
   if (!draft.started) return { ok: false, problems: ["The draft hasn't started"] };
   if (draft.locked) return { ok: false, problems: ['The draft is finished'] };
   const prospect = draft.prospects.find(p => p.playerId === playerId);

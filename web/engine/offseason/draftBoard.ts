@@ -56,9 +56,11 @@ export function declare(state: DraftBoardState, playerId: string, ctx: MoveConte
   if (!c) return fail(`${name} can't declare`);
   const entries = state.rosters.teams[c.teamId];
   const index = entries.findIndex(e => e.playerId === playerId);
+  // After the pro reset is locked, a player who was rated in it (and left the board since) keeps that rating.
+  const locked = state.ratings?.locked && state.ratings.rows.some(r => r.playerId === playerId) ? state.ratings.ratings[playerId] : undefined;
   const prospect: DraftProspect = {
     playerId, position: c.position, college: c.teamId, classYear: c.classYear, senior: false,
-    collegeRating: c.rating, stars: entries[index].stars ?? null, fbaRating: null,
+    collegeRating: c.rating, stars: entries[index].stars ?? null, fbaRating: locked ?? null,
   };
   const rosters = withTeam(state.rosters, c.teamId, entries.map((e, i) => (i === index ? collegeHole(e.position) : e)));
   const tx = appendTx(state.collegeTx, ctx, 'declare', [c.teamId], [`${name} (${c.classYear} ${c.position}, ${school(state, c.teamId)}) declares for the S${state.season} draft`]);

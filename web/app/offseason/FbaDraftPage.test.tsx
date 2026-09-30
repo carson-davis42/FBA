@@ -27,7 +27,7 @@ const startedDraft = (rate = true): DraftFile => {
 };
 
 /** The documents the page loads. The S80 college transactions don't exist yet, and S80 is at the draft step. */
-function docs(over: { draft?: DraftFile | null; withCalendar?: boolean } = {}): Record<string, unknown> {
+function docs(over: { draft?: DraftFile | null; withCalendar?: boolean; withoutBoard?: boolean } = {}): Record<string, unknown> {
   const b = draftBoardState();
   const f = fbaDraftState();
   const out: Record<string, unknown> = {
@@ -44,6 +44,7 @@ function docs(over: { draft?: DraftFile | null; withCalendar?: boolean } = {}): 
     'leagues/fba/S80/freeAgents.json': f.freeAgents,
     'leagues/fba/S80/transactions.json': f.tx,
   };
+  if (over.withoutBoard) delete out[boardPath(79)];
   if (over.draft !== null) out[draftPath(80)] = over.draft ?? b.draft;
   return out;
 }
@@ -144,6 +145,16 @@ describe('FbaDraftPage', () => {
       // The first move created the college transactions, so the second carries the version that save returned.
       ['leagues/fbajc/S80/transactions.json', '0000000000000001'],
     ].sort());
+  });
+
+  it('still loads when the S80 board is missing, and creates it on the first move that writes it', async () => {
+    const log = stubApi(docs({ withoutBoard: true }));
+    renderPage();
+    await screen.findByRole('table', { name: 'Prospects' });
+    fireEvent.click(await enabled('Portal', rowOf('Tim Taken')));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    const w = log.batches[0].writes.find(x => x.path === boardPath(79))!;
+    expect(w.baseVersion).toBeNull();
   });
 
   it('lists what blocks the start, and disables it', async () => {

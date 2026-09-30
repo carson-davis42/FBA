@@ -107,6 +107,22 @@ describe('PortalPage', () => {
     ]);
   });
 
+  it('takes a player out before the portal opens (after Adjust Age), and not once the fbajc step is done', async () => {
+    const s0 = ok(enterPortal(openState(), ['p00503'], { batchId: 'b' }));
+    const preOpen = { ...s0, calendar: collegeCurrentClassState().calendar };
+    const log = stubApi(recruitingDocs(preOpen));
+    renderPage();
+    expect(await screen.findByText('The S79 transfer portal opens when the offseason ends (after Make S79 Schedules)')).toBeTruthy();
+    fireEvent.click(await enabled('Take out Luis Vega'));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    expect(log.batches[0].label).toBe('Luis Vega leaves the transfer portal and stays at Texas');
+    cleanup();
+    stubApi(recruitingDocs({ ...s0, calendar: stepDone(s0.calendar, 'fbajc') }));
+    renderPage();
+    const b = await screen.findByRole('button', { name: 'Take out Luis Vega' }) as HTMLButtonElement;
+    expect(b.disabled).toBe(true);
+  });
+
   it('shows who a portal player committed to, without a Take out button', async () => {
     const s0 = ok(enterPortal(openState(), ['p00485'], { batchId: 'b' }));
     const s = { ...s0, recruiting: { ...s0.recruiting, portal: s0.recruiting.portal.map(p => ({ ...p, committedTo: 'DUKE' })) } };

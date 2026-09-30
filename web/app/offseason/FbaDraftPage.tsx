@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { boardPath, collegeName } from '../../engine/college/state';
+import { boardPath, collegeName, emptyRecruiting } from '../../engine/college/state';
 import { draftPath } from '../../engine/offseason/adjustAge';
 import {
   backToSchool, boardOrder, declare, declareCandidates, draftToPortal, setProspectRating, type DraftBoardState,
@@ -50,6 +50,8 @@ export function FbaDraftPage() {
   const board = useDoc<RecruitingFile>(at(boardFile));
   const collegeTx = useDoc<TransactionsFile>(at(collegeTxPath));
   const emptyCollegeTx = useMemo<TransactionsFile | undefined>(() => (n === undefined ? undefined : { league: 'fbajc', season: n, entries: [] }), [n]);
+  // The S{n} board is only written by Back to school (slot taken) and Portal; a missing one is created by the first of those.
+  const emptyBoard = useMemo<RecruitingFile | undefined>(() => (n === undefined ? undefined : emptyRecruiting(n - 1)), [n]);
   const emptyFbaTx = useMemo<TransactionsFile | undefined>(() => (n === undefined ? undefined : { league: 'fba', season: n, entries: [] }), [n]);
   const emptyFreeAgents = useMemo<FreeAgentsFile | undefined>(() => (n === undefined ? undefined : { league: 'fba', season: n, locked: false, players: [] }), [n]);
   const saving = useSaving();
@@ -73,15 +75,15 @@ export function FbaDraftPage() {
       </section>
     );
   }
-  if (!fba.data || !jcRosters.data || !board.data) {
-    return <p className="error">Couldn't load the draft: the S{n} rosters or the S{n - 1} recruiting board are missing.</p>;
+  if (!fba.data || !jcRosters.data) {
+    return <p className="error">Couldn't load the draft: the S{n} rosters are missing.</p>;
   }
 
   const boardState: DraftBoardState = {
     season: n,
     draft: draft.data,
     rosters: jcRosters.data,
-    board: board.data,
+    board: board.data ?? emptyBoard!,
     collegeTeams: collegeTeams.data!,
     players: players.data!,
     collegeTx: collegeTx.data ?? emptyCollegeTx!,

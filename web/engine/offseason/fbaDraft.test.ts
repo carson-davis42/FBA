@@ -71,6 +71,11 @@ describe('startDraftProblems', () => {
     expect(startDraftProblems({ ...s, lottery: { ...s.lottery!, locked: false } })).toEqual(["The S79 draft lottery hasn't been drawn"]);
   });
 
+  it("refuses a lottery that is for another season's draft", () => {
+    const s = baseState();
+    expect(startDraftProblems({ ...s, lottery: { ...s.lottery!, draftSeason: 81 } })).toEqual(['The S79 lottery is for the S81 draft']);
+  });
+
   it('refuses a draft that has already started', () => {
     expect(startDraftProblems(started())).toEqual(['The draft has already started']);
   });
@@ -177,6 +182,11 @@ describe('draftPick', () => {
     expect(problems(draftPick({ ...s, draft: { ...s.draft, locked: true } }, 'p00040', ctx))).toEqual(['The draft is finished']);
     expect(problems(draftPick(pick(s, 'p00040'), 'p00040', ctx))).toEqual(['Prospect A has already been drafted']);
     expect(problems(draftPick(s, 'p00020', ctx))).toEqual(["p00020 isn't a prospect"]);
+  });
+
+  it('refuses away from the draft step', () => {
+    expect(problems(draftPick(withoutStep(started()), 'p00040', ctx)))
+      .toEqual(['The draft starts at the S80 FBA Draft step (current step: Free Agency/Offseason)']);
   });
 
   it('refuses when no pick is left', () => {
