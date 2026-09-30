@@ -4,12 +4,14 @@ import { fileURLToPath } from 'node:url';
 import type { CalendarFile, Franchise, FranchisesFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
+import { buildDraftHistory } from './draftHistory';
 import { planHistoryImport } from './historyRun';
 import { buildLogoManifest, diffLogoManifests } from './logoManifest';
 import { Report } from './report';
 import { assembleRefresh } from './refresh';
 import { applyNameFixes, planNameFixes } from './fixNames';
 import { buildClassImport, previousImportProblem } from './recruitingClassImport';
+import { draftTabKind } from './sheets/drafts';
 import { parseFranchiseTab } from './sheets/franchises';
 import { parseHallOfFameTab } from './sheets/hallOfFame';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
@@ -46,6 +48,36 @@ function dataDir(): string {
     process.exit(1);
   }
   return r.dir;
+}
+
+/** The folder given with --data <dir>; exits when absent. Import modes that write history need an explicit folder. */
+function requireDataDir(flag: string): string {
+  const r = parseDataArg(process.argv, '');
+  if ('error' in r || !r.dir) {
+    console.error(`${flag} needs --data <dir>: the data folder to read and write (use a scratch copy first).`);
+    process.exit(1);
+  }
+  return r.dir;
+}
+const readDataJson = <T>(dir: string, rel: string): T | null => {
+  const file = path.join(dir, ...rel.split('/'));
+  return existsSync(file) ? (JSON.parse(readFileSync(file, 'utf8')) as T) : null;
+};
+/** Validates `doc` against its path's schema, then writes it; exits without writing on a schema failure. */
+function writeDoc(dir: string, rel: string, doc: unknown): void {
+  const checked = schemaForPath(rel)?.safeParse(doc);
+  if (!checked?.success) {
+    console.error(`The built ${rel} fails its schema; nothing was written.${checked && !checked.success ? `\n${checked.error.issues.slice(0, 5).map(i => `${i.path.join('.')}: ${i.message}`).join('\n')}` : ''}`);
+    process.exit(1);
+  }
+  const file = path.join(dir, ...rel.split('/'));
+  mkdirSync(path.dirname(file), { recursive: true });
+  writeFileSync(file, JSON.stringify(doc, null, 2) + '\n');
+  console.log(`Wrote ${file}.`);
+}
+/** Prints a report's warnings and errors to the console (3c imports write no report file). */
+function printReport(report: Report): void {
+  for (const e of report.entries.filter(x => x.level !== 'info')) console.warn(`${e.level}: [${e.topic}] ${e.message}`);
 }
 
 async function refreshRosters(): Promise<void> {
@@ -313,7 +345,26 @@ async function importFranchises(): Promise<void> {
   console.log(`Wrote ${file}: ${franchises.length} franchises, ${eraCount} name eras.`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history'];
+/** Reads the draft sheet's S49–S79 FBA and expansion drafts into leagues/fba/draftHistory.json. Writes nothing else. */
+async function importDraftHistory(): Promise<void> {
+  const dir = requireDataDir('--drafts');
+  const players = readDataJson<PlayersFile>(dir, 'players.json');
+  const franchises = readDataJson<FranchisesFile>(dir, 'leagues/fba/franchises.json');
+  if (!players || !franchises) {
+    console.error('--drafts needs players.json and leagues/fba/franchises.json in the data folder (run --franchises first).');
+    process.exit(1);
+  }
+  rmSync(path.join(CACHE, `${SHEETS.draft}.xlsx`), { force: true });
+  console.log('Downloading the draft history sheet...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.draft, CACHE), n => { const k = draftTabKind(n); return !!k && k.season <= 79; });
+  const report = new Report();
+  const doc = buildDraftHistory(tabs, { players, franchises, lastSeason: 79 }, report);
+  printReport(report);
+  for (const d of doc.drafts) console.log(`S${d.season} ${d.kind}: ${d.picks.filter(p => p.pick !== null).length} picks, ${d.picks.filter(p => p.pick === null).length} undrafted`);
+  writeDoc(dir, 'leagues/fba/draftHistory.json', doc);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -328,6 +379,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--fix-names')) return fixNames();
   if (process.argv.includes('--recruiting-class')) return importRecruitingClass();
   if (process.argv.includes('--history')) return importHistory();
+  if (process.argv.includes('--drafts')) return importDraftHistory();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');
     process.exit(1);
