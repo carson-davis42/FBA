@@ -122,6 +122,7 @@ describe('SeasonHistoryPage', () => {
     const won = container.querySelector('.finals-only .series-side.won');
     expect(won?.textContent).toContain('Utah');
     expect(won?.querySelector('.wins')?.textContent).toBe('4');
+    expect(container.querySelector('.finals-only .series-side:not(.won)')?.textContent).toContain('Boston');
     expect(container.querySelector('.finals-only .series-side:not(.won) .wins')?.textContent).toBe('3');
     expect(screen.getByText("The full bracket for S72 wasn't recorded.")).toBeTruthy();
     expect(screen.getByText(/Finals MVP:/)).toBeTruthy();

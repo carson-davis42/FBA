@@ -23,7 +23,7 @@ export function franchiseAt(file: FranchisesFile | null | undefined, name: strin
 export interface HistoryTeam { team: Team; name: string; abbr: string }
 
 /**
- * The team behind a name recorded in `season`. A stored `teamId` wins; then the franchise lookup; then an exact
+ * The team behind a name recorded in `season`. A stored `teamId` wins when it names a current team (an unknown id falls through); then the franchise lookup; then an exact
  * match on a current name. The era's name and abbreviation are used when the era belongs to that team.
  */
 export function resolveHistoryTeam(

@@ -27,5 +27,6 @@ describe('TeamName', () => {
     render(<><TeamName team={venom} season={30} name="Former Pirates" abbr="FP" /><TeamName team={venom} season={30} variant="abbr" name="Former Pirates" abbr="FP" /></>);
     expect(screen.getByText('Former Pirates')).toBeTruthy();
     expect(screen.getByText('FP').closest('.team-name')!.getAttribute('title')).toBe('Former Pirates');
+    expect(screen.getAllByRole('img', { name: 'Former Pirates logo' })).toHaveLength(2);
   });
 });
