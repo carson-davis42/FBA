@@ -25,6 +25,22 @@ export interface HistoryOutput { players: PlayersFile; bios: PlayerBiosFile; sum
 /** Trimmed, curly apostrophe straightened, accents stripped, lowercased. */
 export const normName = (s: string): string => s.trim().replace(/’/g, "'").normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 
+/** Resolves a name to one player id; an unmatched or ambiguous name is a report warning and gives null. */
+export function nameResolver(players: PlayersFile, report: Report, topic = 'names'): (name: string, where: string) => string | null {
+  const index = new Map<string, string[]>();
+  for (const p of Object.values(players.players)) {
+    if (p.name === null) continue;
+    const key = normName(p.name);
+    index.set(key, [...(index.get(key) ?? []), p.id]);
+  }
+  return (name, where) => {
+    const m = index.get(normName(name)) ?? [];
+    if (m.length === 1) return m[0];
+    report.warn(topic, `${m.length === 0 ? 'Unmatched' : 'Ambiguous'}: ${name} (${where})`);
+    return null;
+  };
+}
+
 const LAST_SEASON = 78;
 const FIRST_STANDINGS_SEASON = 71;
 /** Bracket spellings kept as printed, mapped to the standings spelling; used only for standings matching. */
