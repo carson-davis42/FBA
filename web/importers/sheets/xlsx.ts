@@ -30,11 +30,13 @@ export async function downloadWorkbook(sheetId: string, cacheDir: string): Promi
   return file;
 }
 
-export async function readTabs(file: string, tabs: string[]): Promise<Record<string, string[][]>> {
+/** Rows of the named tabs, or of every tab whose name the predicate accepts (the workbook is parsed once). */
+export async function readTabs(file: string, tabs: string[] | ((name: string) => boolean)): Promise<Record<string, string[][]>> {
   const wb = new ExcelJS.Workbook();
   await wb.xlsx.readFile(file);
   const out: Record<string, string[][]> = {};
-  for (const name of tabs) {
+  const names = typeof tabs === 'function' ? wb.worksheets.map(ws => ws.name).filter(tabs) : tabs;
+  for (const name of names) {
     const ws = wb.getWorksheet(name);
     if (!ws) throw new Error(`Tab "${name}" not found in ${path.basename(file)}`);
     const rows: string[][] = [];

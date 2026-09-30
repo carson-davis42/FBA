@@ -15,7 +15,8 @@ import { parseHallOfFameTab } from './sheets/hallOfFame';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
 import { parsePlayersTab } from './sheets/playersTab';
 import { parseClassSection } from './sheets/recruitingClass';
-import { downloadWorkbook, readTabs, readUnderlines, tabNames } from './sheets/xlsx';
+import { parseDataArg } from './dataArg';
+import { downloadWorkbook, readTabs, readUnderlines } from './sheets/xlsx';
 import { parseBracketFile, parseD2Playoffs, parseFbaPlayoffs, parseFbaResults } from './txt/archives';
 import { parseRosterTxt } from './txt/rosters';
 
@@ -39,14 +40,12 @@ const readJson = <T>(rel: string): T => JSON.parse(readFileSync(path.join(DATA, 
 
 /** The data folder to write: web/data, or the folder given with --data <dir> (use a scratch copy for checks). */
 function dataDir(): string {
-  const i = process.argv.indexOf('--data');
-  if (i < 0) return DATA;
-  const dirArg = process.argv[i + 1];
-  if (!dirArg || dirArg.startsWith('--')) {
-    console.error('--data needs a folder: the data folder to write.');
+  const r = parseDataArg(process.argv, DATA);
+  if ('error' in r) {
+    console.error(r.error);
     process.exit(1);
   }
-  return path.resolve(dirArg);
+  return r.dir;
 }
 
 async function refreshRosters(): Promise<void> {
@@ -216,13 +215,12 @@ function readJsonDocs(dir: string): Map<string, unknown> {
 }
 
 async function importHistory(): Promise<void> {
-  const i = process.argv.indexOf('--data');
-  const dirArg = i >= 0 ? process.argv[i + 1] : undefined;
-  if (!dirArg || dirArg.startsWith('--')) {
+  const r = parseDataArg(process.argv, '');
+  if ('error' in r || !r.dir) {
     console.error('--history needs --data <dir>: the data folder to read and write (use a scratch copy first).');
     process.exit(1);
   }
-  const dir = path.resolve(dirArg);
+  const dir = r.dir;
   const report = new Report();
   rmSync(path.join(CACHE, `${SHEETS.main}.xlsx`), { force: true });
   rmSync(path.join(CACHE, `${SHEETS.pastStandings}.xlsx`), { force: true });
@@ -288,8 +286,8 @@ async function importFranchises(): Promise<void> {
   rmSync(path.join(CACHE, `${SHEETS.teamHistory}.xlsx`), { force: true });
   console.log('Downloading the team history sheet (about 75 MB)...');
   const book = await downloadWorkbook(SHEETS.teamHistory, CACHE);
-  const ids = (await tabNames(book)).filter(n => /^[A-Z]+$/.test(n));
-  const tabs = await readTabs(book, ids);
+  const tabs = await readTabs(book, n => /^[A-Z]+$/.test(n));
+  const ids = Object.keys(tabs);
   const franchises: Franchise[] = [];
   for (const id of ids) {
     const { eras, problems } = parseFranchiseTab(tabs[id]);
@@ -315,7 +313,14 @@ async function importFranchises(): Promise<void> {
   console.log(`Wrote ${file}: ${franchises.length} franchises, ${eraCount} name eras.`);
 }
 
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history'];
+
 async function main(): Promise<void> {
+  const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
+  if (modes.length > 1) {
+    console.error(`Give one mode flag at a time (got ${modes.join(', ')}).`);
+    process.exit(1);
+  }
   if (process.argv.includes('--logos')) return refreshLogos();
   if (process.argv.includes('--franchises')) return importFranchises();
   if (process.argv.includes('--refresh-rosters')) return refreshRosters();
