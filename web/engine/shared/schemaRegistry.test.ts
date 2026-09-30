@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { pathAgreementProblem, schemaForPath } from './schemaRegistry';
-import { PlayerBiosFile, AllStarFile, AwardsFile, D2DraftFile, D2PoolFile, DraftFile, HallOfFameFile, LotteryFile, RankingFile, PlayoffsFile, RatingPauseFile, RecruitingFile, ScheduleFile } from './types';
+import { AwardCountsFile, PlayerBiosFile, AllStarFile, AwardsFile, D2DraftFile, D2PoolFile, DraftFile, HallOfFameFile, LotteryFile, RankingFile, PlayoffsFile, RatingPauseFile, RecruitingFile, ScheduleFile } from './types';
 import { seasonDocPath } from '../season/state';
 
 describe('schemaForPath', () => {
@@ -135,5 +135,12 @@ describe('playerBios.json', () => {
   it('is registered for the FBA only', () => {
     expect(schemaForPath('leagues/fba/playerBios.json')).toBe(PlayerBiosFile);
     expect(schemaForPath('leagues/fbad2/playerBios.json')).toBeNull();
+  });
+});
+
+describe('awardCounts.json', () => {
+  it('maps to AwardCountsFile for the FBA only', () => {
+    expect(schemaForPath('leagues/fba/awardCounts.json')).toBe(AwardCountsFile);
+    expect(schemaForPath('leagues/fbad2/awardCounts.json')).toBeNull();
   });
 });

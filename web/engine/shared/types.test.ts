@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { PastAllFbaTeams, PastBracket, PlayerBiosFile, AllStarFile, AwardsFile, BoxLine, D2DraftFile, DraftFile, D2PoolFile, FreeAgentsFile, GameResult, HallOfFameFile, LogoManifest, LotteryFile, MetaFile, PickObligation, PicksFile, Player, PlayoffsFile, Prospect, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
+import { AwardCountsFile, AWARD_KEYS, PastAllFbaTeams, PastBracket, PlayerBiosFile, AllStarFile, AwardsFile, BoxLine, D2DraftFile, DraftFile, D2PoolFile, FreeAgentsFile, GameResult, HallOfFameFile, LogoManifest, LotteryFile, MetaFile, PickObligation, PicksFile, Player, PlayoffsFile, Prospect, RankingFile, RatingPauseFile, RecruitingFile, ReservePlayer, ResultsFile, RostersFile, ReservesFile, ScheduleFile, SummaryFile, TransactionType, TransactionsFile } from './types';
 
 describe('schemas', () => {
   it('accepts a valid roster document', () => {
@@ -622,6 +622,27 @@ describe('Part 3a history schemas', () => {
     it('accepts distinct players and rejects a duplicate', () => {
       expect(PlayerBiosFile.safeParse({ league: 'fba', bios: [bio('p00001'), bio('p00002')] }).success).toBe(true);
       expect(PlayerBiosFile.safeParse({ league: 'fba', bios: [bio('p00001'), bio('p00001')] }).success).toBe(false);
+    });
+  });
+  describe('AwardCountsFile', () => {
+    const row = (playerId: string, key: string, count = 1) => ({ playerId, key, count });
+    const file = (counts: unknown[]) => ({ league: 'fba', throughSeason: 78, counts });
+    it('accepts a valid doc', () => {
+      expect(AWARD_KEYS[0]).toBe('MVP');
+      expect(AwardCountsFile.safeParse(file([row('p00001', 'MVP', 2), row('p00001', 'DPOY'), row('p00002', 'MVP')])).success).toBe(true);
+    });
+    it('rejects a duplicate (playerId, key), a zero count and an unknown key', () => {
+      expect(AwardCountsFile.safeParse(file([row('p00001', 'MVP'), row('p00001', 'MVP', 3)])).success).toBe(false);
+      expect(AwardCountsFile.safeParse(file([row('p00001', 'MVP', 0)])).success).toBe(false);
+      expect(AwardCountsFile.safeParse(file([row('p00001', 'NOPE')])).success).toBe(false);
+    });
+  });
+
+  describe('SummaryFile legacyPpg', () => {
+    it('accepts legacyPpg lines', () => {
+      const base = { league: 'fba', season: 78, locked: true, host: null, champions: [] };
+      expect(SummaryFile.safeParse({ ...base, legacyPpg: [{ playerId: 'p00001', teamId: 'BOS', ppg: 21.4 }, { playerId: 'p00002', teamId: null, ppg: 0 }] }).success).toBe(true);
+      expect(SummaryFile.safeParse({ ...base, legacyPpg: [{ playerId: 'p00001', teamId: 'BOS', ppg: -1 }] }).success).toBe(false);
     });
   });
 });

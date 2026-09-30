@@ -26,6 +26,13 @@ describe('PlayerRegistry', () => {
     expect(reg.toFile().players[jc].birthSeason).toBe(59);
   });
 
+  it('links a curly apostrophe to a straight one (K10)', () => {
+    const reg = new PlayerRegistry(new Report());
+    const a = reg.add("Jamari O'Neal", 55, 'fba:S79');
+    expect(reg.add('Jamari O’Neal', 55, 'fba:S78')).toBe(a);
+    expect(reg.add('Jamari O’Neal', null, 'fbajc:S78')).toBe(a);
+  });
+
   it('does not link different ages', () => {
     const reg = new PlayerRegistry(new Report());
     expect(reg.add('Jalen Carter', 57, 'fba:S79')).not.toBe(reg.add('Jalen Carter', 45, 'fbad2:S79'));

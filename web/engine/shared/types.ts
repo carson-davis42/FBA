@@ -675,6 +675,17 @@ export const PlayerBiosFile = z.object({ league: z.literal('fba'), bios: z.array
   .refine(f => new Set(f.bios.map(b => b.playerId)).size === f.bios.length, 'Each player has one bio');
 export type PlayerBiosFile = z.infer<typeof PlayerBiosFile>;
 
+export const AWARD_KEYS = ['MVP', 'ROTY', 'PPK', 'LP', 'MC', 'DPOY', 'MIP', 'ALL_FBA_1', 'ALL_FBA_2', 'ALL_STAR', 'YOUNG_STAR',
+  'ASG_MVP', 'YSG_MVP', 'FINALS_MVP', 'CHAMPION', 'CSHIP_APP', 'CONF_CHAMPION', 'FIVE_POINT', 'DUNK'] as const;
+export type AwardKey = typeof AWARD_KEYS[number];
+
+export const AwardCountsFile = z.object({
+  league: z.literal('fba'),
+  throughSeason: int.min(1),
+  counts: z.array(z.object({ playerId: z.string().regex(/^p\d{5}$/), key: z.enum(AWARD_KEYS), count: int.min(1) }).strict()),
+}).strict().refine(f => new Set(f.counts.map(c => `${c.playerId}:${c.key}`)).size === f.counts.length, 'Each player and award appear once');
+export type AwardCountsFile = z.infer<typeof AwardCountsFile>;
+
 export const SummaryStanding = z.object({
   teamId: teamRef,
   name: z.string().min(1),
@@ -728,6 +739,8 @@ export const SummaryFile = z.object({
   /** D2 only. */
   promotion: z.array(PromotionLine).nullable().optional(),
   players: z.array(SummaryPlayerLine).optional(),
+  /** Imported pre-stats seasons: each player's points per game (imported history). */
+  legacyPpg: z.array(z.object({ playerId, teamId: z.string().min(1).nullable(), ppg: z.number().min(0) }).strict()).optional(),
 }).strict().superRefine((doc, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   if (doc.league !== 'fba' && (doc.allFba || doc.allStar)) issue('Only the FBA has All-FBA teams and an All-Star weekend');
