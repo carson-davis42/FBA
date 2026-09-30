@@ -41,6 +41,7 @@ import { PlayerHistoryPage } from '../history/PlayerHistoryPage';
 import { PlayersHistoryPage } from '../history/PlayersHistoryPage';
 import { DraftSeasonPage } from '../history/DraftSeasonPage';
 import { PastTransactionsPage } from '../history/PastTransactionsPage';
+import { TimelinePage } from '../history/TimelinePage';
 import { DraftsPage } from '../history/DraftsPage';
 import { FranchisePage } from '../history/FranchisePage';
 import { SeasonHistoryPage } from '../history/SeasonHistoryPage';
@@ -93,6 +94,7 @@ const ROUTES = createRoutesFromElements(
   <Route path="/history/fba/drafts" element={<DraftsPage />} />
   <Route path="/history/fba/drafts/:season" element={<DraftSeasonPage />} />
   <Route path="/history/fba/transactions" element={<PastTransactionsPage />} />
+  <Route path="/history/fba/events" element={<TimelinePage />} />
   <Route path="/history/fba/players" element={<PlayersHistoryPage />} />
   <Route path="/history/fba/players/:playerId" element={<PlayerHistoryPage />} />
   <Route path="*" element={<Placeholder title="Not found" note="That page doesn't exist." />} />

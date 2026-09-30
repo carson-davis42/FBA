@@ -14,6 +14,7 @@ const FEATURES: { to: string; title: string; text: string }[] = [
   { to: '/history/fba/players', title: 'Players', text: 'Search and browse every player in the record.' },
   { to: '/history/fba/hall-of-fame', title: 'Hall of Fame', text: 'The inducted classes, newest first.' },
   { to: '/history/fba/transactions', title: 'Transactions', text: 'Trades, signings and cuts by season.' },
+  { to: '/history/fba/events', title: 'Timeline', text: 'Milestones, name changes and rule changes by season.' },
 ];
 
 export function HistoryHome() {
