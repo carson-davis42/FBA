@@ -52,6 +52,9 @@ describe('D2RatingsPage', () => {
       'Adrian Napoletani', 'Brycen Holcomb', 'Kris Dyer', 'Myron Mason', 'Kyron Smart',
     ]);
     expect(screen.getByText('FBA 71')).toBeTruthy();
+    // Only the FBA free agent is new (Team column "New"); the other unrated Reserves were already in the pool.
+    expect(screen.getByText('Kyron Smart').closest('tr')!.textContent).toContain('New');
+    expect(screen.getAllByText('Reserves')).toHaveLength(4);
     expect(screen.getByText("13 players aren't ranked yet")).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'Rank Xavier Booker next' }));
     await waitFor(() => expect(log.puts).toHaveLength(1));

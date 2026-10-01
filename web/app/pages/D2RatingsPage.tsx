@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { isNewRow } from '../../engine/rank/ranking';
 import { finishRatings, membershipBlockers, startRatings } from '../../engine/d2/ratings';
 import { d2DocPath, d2Name, d2Writes, type D2Result } from '../../engine/d2/state';
 import type { RankingFile } from '../../engine/shared/types';
@@ -69,7 +70,7 @@ export function D2RatingsPage() {
       <RankingTable
         doc={shown}
         name={id => d2Name(state, id)}
-        teamLabel={team => team ?? 'Reserves'}
+        teamLabel={(team, row) => team ?? (row && isNewRow(shown, row) ? 'New' : 'Reserves')}
         otherLabel="FBA"
         onChange={autosave.update}
         extraBlockers={membershipBlockers(live)}
