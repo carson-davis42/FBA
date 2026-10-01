@@ -44,6 +44,17 @@ describe('D2DraftPage: pool', () => {
     expect(screen.getByLabelText('3. Milo Dean')).toBeTruthy();
   });
 
+  it('says New for players new to the league and Reserves for those already in the Reserve pool', async () => {
+    stubApi(docsFor(pooled()));
+    renderPage();
+    const row = async (label: string) => (await screen.findByLabelText(label)).textContent;
+    expect(await row('1. Kris Dyer')).toContain('Reserves');
+    fireEvent.click(screen.getByRole('tab', { name: 'SG' }));
+    const kyron = (await screen.findAllByText('Kyron Smart'))[0].closest('li')!;
+    expect(kyron.textContent).toContain('New');
+    expect(kyron.textContent).not.toContain('Reserves');
+  });
+
   it('moves a player with the arrow buttons and autosaves the order', async () => {
     const log = stubApi(docsFor(pooled()));
     renderPage();

@@ -28,6 +28,8 @@ export function PoolBuilder({ state, versions }: { state: D2State; versions: Ver
   const warnings = poolWarnings(live);
   const ties = new Set(cutoffTies(live, tab));
   const members = new Map(poolMembers(state).map(m => [m.playerId, m]));
+  // A Reserve who was an FBA free agent this offseason is new to the league; the rest were already in the Reserve pool.
+  const fromFba = new Set(state.reserves.players.filter(p => p.fromFba).map(p => p.playerId));
   const list = pool.order[tab];
   const move = (from: number, to: number) => autosave.update(cur => moveInOrder(cur, tab, from, to));
 
@@ -107,7 +109,7 @@ export function PoolBuilder({ state, versions }: { state: D2State; versions: Ver
                 <span className="pname">{name}</span>
                 <span className="muted">{m?.age ?? '—'}</span>
                 <span className="n">{m?.rating ?? '—'}</span>
-                <span>{m?.team ?? 'Reserves'}</span>
+                <span>{m?.team ?? (fromFba.has(id) ? 'New' : 'Reserves')}</span>
                 {bumped && <span className="tag tag-expired">Bumped</span>}
                 {ties.has(id) && <span className="tag tag-rookie">Tie</span>}
                 <span className="row-actions">
