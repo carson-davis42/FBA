@@ -21,6 +21,8 @@ export function toolTarget(step: CalendarStep): string | null {
   const create = /^create-s(\d+)-class$/.exec(step.id);
   if (create) return `/league/fbajc/recruiting?class=${create[1]}&tab=class`;
   if (/^rank-s\d+-class$/.test(step.id)) return '/league/fbajc/class-ranking';
+  if (/^s\d+-qualifying$/.test(step.id)) return '/league/fbawc/qualifying';
+  if (/^s\d+-world-cup$/.test(step.id)) return '/league/fbawc/worldcup';
   if (step.kind === 'league' && (step.league === 'fba' || step.league === 'fbad2')) return `/league/${step.league}/scores`;
   return null;
 }

@@ -55,6 +55,8 @@ import { DraftsPage } from '../history/DraftsPage';
 import { FranchisePage } from '../history/FranchisePage';
 import { SeasonHistoryPage } from '../history/SeasonHistoryPage';
 import { TeamsHistoryPage } from '../history/TeamsHistoryPage';
+import { QualifyingPage } from '../wc/QualifyingPage';
+import { WorldCupPage } from '../wc/WorldCupPage';
 import { SiteHeader } from './SiteHeader';
 
 /** Built once, so the page wrapper can key on the matched route pattern. */
@@ -78,6 +80,8 @@ const ROUTES = createRoutesFromElements(
   <Route path="/league/fba/hall-of-fame" element={<HallOfFamePage />} />
   <Route path="/league/fba/ratings-pause" element={<RatingPausePage />} />
   <Route path="/league/fba/all-star" element={<AllStarPage />} />
+  <Route path="/league/fbawc/qualifying" element={<QualifyingPage />} />
+  <Route path="/league/fbawc/worldcup" element={<WorldCupPage />} />
   <Route path="/league/:league/scores" element={<ScoresPage />} />
   <Route path="/league/:league/game/:gameNo" element={<GamePage />} />
   <Route path="/league/:league/playoffs/game/:n" element={<PlayoffGamePage />} />

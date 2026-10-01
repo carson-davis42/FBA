@@ -66,4 +66,10 @@ describe('step routes', () => {
     expect(TOOL_STEPS['hall-of-fame-induction']).toBe('/league/fba/hall-of-fame?tab=nominees');
     expect(stepTarget(step('hall-of-fame-induction'))).toBe('/league/fba/hall-of-fame?tab=nominees');
   });
+
+  it('opens the World Cup qualifying and finals pages as tool steps', () => {
+    expect(toolTarget(step('s79-qualifying', 'league', null))).toBe('/league/fbawc/qualifying');
+    expect(toolTarget(step('s80-world-cup', 'league', null))).toBe('/league/fbawc/worldcup');
+    expect(stepTarget(step('s80-world-cup'))).toBe('/league/fbawc/worldcup');
+  });
 });

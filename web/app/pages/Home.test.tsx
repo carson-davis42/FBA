@@ -31,6 +31,18 @@ describe('Home', () => {
     expect(screen.getByRole('link', { name: /continue/i }).getAttribute('href')).toBe('/league/fbad2/scores');
   });
 
+  it('titles the qualifying step and continues to the qualifying page', async () => {
+    const cal = docs['calendar.json'];
+    docs['calendar.json'] = { season: 79, steps: [{ id: 's79-qualifying', label: 'WC Qualifying', kind: 'league', league: 'fbawc', sub: false, done: false }] };
+    try {
+      render(<MemoryRouter><Home /></MemoryRouter>);
+      expect(await screen.findByText('World Cup qualifying S79')).toBeTruthy();
+      expect(screen.getByRole('link', { name: /continue/i }).getAttribute('href')).toBe('/league/fbawc/qualifying');
+    } finally {
+      docs['calendar.json'] = cal;
+    }
+  });
+
   it('lists last champions for every league', async () => {
     render(<MemoryRouter><Home /></MemoryRouter>);
     expect(await screen.findByText('Boston Bucks')).toBeTruthy();
