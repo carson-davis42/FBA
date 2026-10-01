@@ -105,7 +105,7 @@ New `leagues/fbajc/schoolHistory.json` (strict zod `JcSchoolHistoryFile`, path r
 
 - Season lists are sorted and unique; each deeper list is a subset of the one before (`champion` ⊆ `titleGame` ⊆ `final4` ⊆ `elite8` ⊆ `sweet16` ⊆ `app`), checked by `superRefine`.
 - `conf` is the conference code of the school's conference that season when the sheet's suffix names another (mapped to the `teams.json` group code); null otherwise.
-- `mmWins` comes from the "Total MM Wins All-Time" tab; the importer compares it with the rounds and reports a disagreement rather than choosing.
+- `mmWins` is in the schema but is not imported (the all-time wins tab is not read); it is always `null` and the pages ignore it.
 - National and NIT titles, runner-ups and awards stay derived from the summaries (single source of truth); this doc holds what only the school sheet knows. The importer also cross-checks its `champion` lists against the national champions in the FBAJC workbook and reports differences.
 - Appearances after S78 are derived from the app's own summaries and brackets, so the doc stops at S78. Because every season's round per school is known, the doc can also fill a "March Madness field" for seasons whose bracket is not transcribed.
 
@@ -113,16 +113,16 @@ New `leagues/fbajc/schoolHistory.json` (strict zod `JcSchoolHistoryFile`, path r
 
 `importers/run.ts` gains, all requiring `--data <dir>` (never `web/data` in tests; fixtures only):
 
-- `--jc-history`: the FBAJC workbook tabs to season summaries (section 3.1), merging into any existing summary (S78 keeps its champion fields), never writing S79 or later. Reports: unresolved school names (an alias map like `SHEET_TEAM_ALIASES`, for example "Stephen F Austin", "Abeliene Christian", "Texas A&M"), unresolved players (kept as text), co-champion rows, seasons without any data.
+- `--jc-history`: the FBAJC workbook tabs to season summaries (section 3.1), merging into any existing summary (S78 keeps its champion fields), never writing S79 or later. Reports: unresolved school names (`SHEET_SCHOOL_ALIASES` holds the one spelling that differs from `teams.json`, "Abilene Christian" → "Abeline Christian"; `SHEET_PLAYER_ALIASES` holds two player spellings, "Eliott Miller" and "Kojo Battoe"). Teams are recorded by team id in the `jc` block and champion rows (as the app does from S79) and fall back to the sheet's name when a school does not resolve; players link by id only when exactly one player matches, unresolved players (kept as text), co-champion rows, seasons without any data.
 - `--jc-schools`: the school history workbook (and the `Total MM Wins All-Time` tab) to `schoolHistory.json`; schools are matched by the full name in row 1 of each tab (the `School-<count>` header gives the check count).
-- `--jc-brackets`: reads the committed `importers/history/jcBrackets.json` (transcribed from the PDF) into `pastBracket`, via the existing `runBracketImport` with `league: 'fbajc'`; seasons without a summary are listed, not created.
+- `--jc-brackets`: reads the committed `importers/history/jcBrackets.json` (transcribed from the PDF: 39 March Madness pages and 7 NIT pages, S72–S78) into `pastBracket` (March Madness) and `jc.nitBracket` (NIT), via the existing `runBracketImport` with `league: 'fbajc'`; seasons without a summary are listed, not created. Bracket sides keep the page's school name as text (team-file spelling, abbreviations such as "SDSU" and "FAU" written out), so no alias map is needed when merging.
 
 Each mode validates every doc through `schemaForPath` first and writes nothing on failure (as `--wc-history` does). Pure builders live in `importers/jcHistory.ts` and `importers/sheets/jcHistory.ts` (parsers) with tests on small in-memory fixtures.
 
 ## 5. Bracket transcription
 
 - Page inventory first (page → type, season, field size), reported to the user.
-- Transcript format of `convertBrackets.ts` extended for 64 slots. Single-game scores are `Name 48-46`; the "OT" suffix needs a deliberate schema change: `PastSeries.score` currently matches `^\d+[–-]\d+$`; it becomes `^\d+[–-]\d+( \d?OT)?$` and the renderer prints it as is.
+- Transcript format of `convertBrackets.ts` extended for 64 slots, `K:NIT` pages, and two page shapes beyond the 64-slot one: S11–S13, S16–S18 and S48–S53 and every NIT page are 32 slots (5 rounds), and S14 and S15 are 64-slot pages that are mostly BYEs. A pair of BYE slots is an empty series (both sides null, `BYE` as its result); the schema allows it and nothing is carried to the next round. Scores are printed on every game from S16, some from S12, none on S11, S72–S77 NIT pages and a few games elsewhere (unscored). Single-game scores are `Name 48-46`; the "OT" suffix needs a deliberate schema change: `PastSeries.score` currently matches `^\d+[–-]\d+$`; it becomes `^\d+[–-]\d+( \d?OT)?$` and the renderer prints it as is.
 - BYEs are `null` sides, as today. The renderer already uses `bracket.rounds`; 6 rounds (64 slots) is verified in a test and, in the browser check, at 375px.
 - Transcripts in `importers/history/transcripts/jc-*.txt`, converted to `jcBrackets.json`, guarded by a test like `fbaBrackets.test.ts`: schema-valid, one per season, champion and runner-up match the summary. Transcription is by Sonnet implementers in page batches (read downscaled page images), the controller reviews each batch.
 
