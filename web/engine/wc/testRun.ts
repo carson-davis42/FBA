@@ -1,4 +1,6 @@
 import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { mulberry32 } from '../d2/random';
 import { calendarFor } from '../shared/calendar';
 import type { CalendarFile, RosterEntry, RostersFile } from '../shared/types';
@@ -7,7 +9,7 @@ import { finishQualifying, playQualifyingGame, startQualifying, type QualifyingS
 import { finishGroups, playGroupGame, playKnockoutGame, startWorldCup, type WorldCupState } from './worldcup';
 
 const POS = ['PG', 'SG', 'SF', 'PF', 'C'] as const;
-const countries: string[] = JSON.parse(readFileSync(new URL('../../data/leagues/fbawc/teams.json', import.meta.url), 'utf8')).teams.map(
+const countries: string[] = JSON.parse(readFileSync(join(dirname(fileURLToPath(import.meta.url)), '../../data/leagues/fbawc/teams.json'), 'utf8')).teams.map(
   (t: { teamId: string }) => t.teamId,
 );
 

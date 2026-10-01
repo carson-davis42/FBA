@@ -1,2 +1,11 @@
 /* World Cup pages (qualifying and finals). Filled in as the pages are built. */
 .wc-page { display: grid; gap: 16px; }
+.wc-actions { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.wc-auto { display: flex; flex-wrap: wrap; gap: var(--s2); list-style: none; margin: 0; padding: 0; }
+.wc-auto li { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); }
+.wc-auto li.wc-host { border-color: var(--accent); }
+.wc-host-tag { color: var(--accent); font-weight: 700; font-size: var(--fs-sm); }
+tr.wc-cut td { border-bottom: 2px dashed var(--muted); }
+.wc-ties { margin: var(--s2) 0 0; padding-left: 18px; font-size: var(--fs-sm); }
+.wc-games { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 2px; font-variant-numeric: tabular-nums; }
+.wc-games li.wc-unplayed { color: var(--muted); opacity: 0.6; }
