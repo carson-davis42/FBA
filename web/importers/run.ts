@@ -8,6 +8,7 @@ import { buildD2History, buildLeagueHistory, d2LeagueMoves, D2_TABS } from './d2
 import { buildDraftHistory } from './draftHistory';
 import { buildPastTransactions } from './pastTransactions';
 import { planHistoryImport } from './historyRun';
+import { buildWcHistory, WC_SHEET_TAB } from './wcHistory';
 import { buildLogoManifest, diffLogoManifests } from './logoManifest';
 import { Report } from './report';
 import { assembleRefresh } from './refresh';
@@ -525,7 +526,48 @@ async function checkTrophies(): Promise<void> {
   console.log(`${mismatches} mismatches across ${Object.keys(tabs).length} team tabs.`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--d2-leagues', '--check-trophies'];
+/** Reads the D2 history sheet's "D2 World Cups" tab into fbawc season summaries, hosts.json and the flags on teams.json. */
+async function importWcHistory(): Promise<void> {
+  const dir = requireDataDir('--wc-history');
+  const players = readDataJson<PlayersFile>(dir, 'players.json');
+  const teams = readDataJson<TeamsFile>(dir, 'leagues/fbawc/teams.json');
+  if (!players || !teams) {
+    console.error('--wc-history needs players.json and leagues/fbawc/teams.json in the data folder.');
+    process.exit(1);
+  }
+  rmSync(path.join(CACHE, `${SHEETS.d2}.xlsx`), { force: true });
+  console.log('Downloading the D2 history sheet...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.d2, CACHE), [WC_SHEET_TAB]);
+  const existing = new Map<number, SummaryFile>();
+  for (let n = 1; n <= 200; n++) {
+    const s = readDataJson<SummaryFile>(dir, `leagues/fbawc/S${n}/summary.json`);
+    if (s) existing.set(n, s);
+  }
+  const report = new Report();
+  const out = buildWcHistory(tabs[WC_SHEET_TAB] ?? [], { players, teams, existing }, report);
+  printReport(report);
+  if (report.count('error') > 0) {
+    console.error(`Found ${report.count('error')} error(s); nothing was written.`);
+    process.exit(1);
+  }
+  const docs: [string, unknown][] = [
+    ...out.summaries.map((s): [string, unknown] => [`leagues/fbawc/S${s.season}/summary.json`, s]),
+    ['leagues/fbawc/hosts.json', out.hosts],
+    ['leagues/fbawc/teams.json', out.teams],
+  ];
+  const bad = docs.flatMap(([rel, doc]) => {
+    const r = schemaForPath(rel)?.safeParse(doc);
+    return r?.success ? [] : [`${rel}: ${r ? r.error.issues.slice(0, 5).map(i => `${i.path.join('.')}: ${i.message}`).join('; ') : 'no schema'}`];
+  });
+  if (bad.length) {
+    console.error(`Some built docs fail their schema; nothing was written.\n${bad.join('\n')}`);
+    process.exit(1);
+  }
+  for (const [rel, doc] of docs) writeDoc(dir, rel, doc);
+  console.log(`Wrote ${out.summaries.length} summaries, ${out.hosts.hosts.length} hosts and flags for ${out.teams.teams.filter(t => t.flag).length} teams.`);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--d2-leagues', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -544,6 +586,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--transactions')) return importPastTransactions();
   if (process.argv.includes('--events')) return importEvents();
   if (process.argv.includes('--d2-history')) return importD2History();
+  if (process.argv.includes('--wc-history')) return importWcHistory();
   if (process.argv.includes('--d2-leagues')) return importD2Leagues();
   if (process.argv.includes('--check-trophies')) return checkTrophies();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
