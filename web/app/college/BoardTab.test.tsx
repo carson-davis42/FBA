@@ -32,6 +32,11 @@ const ranks = (table: string) => within(screen.getByRole('table', { name: table 
   .map(r => (r as HTMLTableRowElement).cells[0].textContent);
 
 describe('BoardTab', () => {
+  it('links to the transfer portal page', () => {
+    render(<Harness initial={collegeCurrentClassState()} runs={[]} />);
+    expect(screen.getByRole('link', { name: /Open the transfer portal page/ }).getAttribute('href')).toBe('/league/fbajc/portal');
+  });
+
   it('numbers the class and the portal 1, 2, 3 in their own order, and keeps a player\'s rank when the list is filtered', () => {
     const s = collegeCurrentClassState();
     render(<Harness initial={s} runs={[]} />);

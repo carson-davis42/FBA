@@ -170,6 +170,7 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
       </div>
       <div className="card">
       <h2>Transfer portal · {doc.portal.length}</h2>
+      <p><Link to="/league/fbajc/portal">Open the transfer portal page ▸</Link></p>
       {doc.portal.length === 0 ? <p className="muted">Nobody is in the portal.</p> : (
         <div className="table-wrap tall">
           <table className="stat-table board-table" aria-label="Transfer portal">
