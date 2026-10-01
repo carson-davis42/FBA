@@ -26,3 +26,11 @@ describe('teamTheme', () => {
     expect(inkFor('#EFEFD0')).toBe('#111');
   });
 });
+
+describe('teamTheme for a team without hand-picked colours', () => {
+  it('uses the badge accent as the second colour', () => {
+    const team = { teamId: 'DUKE', name: 'Duke', abbr: 'DUKE', group: 'ACC', logoFolder: null, badge: { bg: '#0A3FA6', fg: '#fff', accent: '#C8102E' } };
+    expect(teamTheme(team, 'fbajc')).toEqual({ primary: '#0A3FA6', secondary: '#C8102E', ink: '#fff' });
+    expect(teamTheme({ ...team, badge: { bg: '#0A3FA6', fg: '#fff' } }, 'fbajc').secondary).toBe('#0A3FA6');
+  });
+});

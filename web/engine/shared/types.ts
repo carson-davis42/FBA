@@ -33,7 +33,8 @@ export type Player = z.infer<typeof Player>;
 export const PlayersFile = z.object({ nextId: int.positive(), players: z.record(z.string(), Player) }).strict();
 export type PlayersFile = z.infer<typeof PlayersFile>;
 
-export const Badge = z.object({ bg: z.string(), fg: z.string() }).strict();
+/** `accent` is a second colour (the college teams take both from their logo); the theme uses it where a team has no hand-picked pair. */
+export const Badge = z.object({ bg: z.string(), fg: z.string(), accent: z.string().optional() }).strict();
 export type Badge = z.infer<typeof Badge>;
 
 export const Team = z.object({
