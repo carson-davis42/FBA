@@ -7,7 +7,7 @@ export interface Column {
 }
 
 export function playerLabel(e: RosterEntry, players: Record<string, Player>): string {
-  if (e.playerId === null) return 'Vacant';
+  if (e.playerId === null) return e.rating === null ? 'Vacant' : 'Generated';
   return players[e.playerId]?.name ?? 'Unnamed';
 }
 

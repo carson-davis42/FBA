@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { groupLabel, isLeagueId, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { MetaFile, RostersFile, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
+import { useWcRosters } from '../wc/useWcRosters';
 import { PageHeader } from '../components/PageHeader';
 import { teamRating } from '../components/rosterColumns';
 import { teamTheme, teamVars } from '../components/teamColors';
@@ -14,8 +15,11 @@ export function LeaguePage() {
   const valid = isLeagueId(league);
   const { data: meta } = useDoc<MetaFile>(valid ? 'meta.json' : null);
   const { data: teams, error } = useDoc<TeamsFile>(valid ? `leagues/${league}/teams.json` : null);
-  const season = valid && meta ? meta.rosterSeason[league] : undefined;
-  const { data: rosters } = useDoc<RostersFile>(season === undefined ? null : `leagues/${league}/S${season}/rosters.json`);
+  const wc = useWcRosters();
+  const isWc = league === 'fbawc';
+  const season = valid && meta ? (isWc ? wc.season : meta.rosterSeason[league]) : undefined;
+  const { data: plainRosters } = useDoc<RostersFile>(season === undefined || isWc ? null : `leagues/${league}/S${season}/rosters.json`);
+  const rosters = isWc ? wc.rosters ?? undefined : plainRosters;
 
   if (!valid) return <p className="error">Unknown league "{league}".</p>;
   if (error) return <p className="error">Couldn't load teams: {error.message}</p>;

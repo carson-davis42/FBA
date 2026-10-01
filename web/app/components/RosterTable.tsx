@@ -10,7 +10,7 @@ const SORT_KEY: Record<string, string> = { Pos: 'position', Player: 'name', Age:
 type Row = { e: RosterEntry; name: string };
 
 const sortValue = (r: Row, key: string): SortValue => {
-  if (key === 'name') return r.e.playerId === null ? null : r.name;
+  if (key === 'name') return r.e.playerId === null && r.e.rating === null ? null : r.name;
   if (key === 'position') return r.e.position;
   if (key === 'age') return r.e.age;
   if (key === 'rating') return r.e.rating;
@@ -48,8 +48,8 @@ export function RosterTable({ league, entries, players, ppg, extraLabel, renderE
       </thead>
       <tbody>
         {list.map(({ e, name }, i) => (
-          <tr key={`${e.position}-${e.playerId ?? i}`} className={e.playerId === null ? 'vacant' : ''}>
-            {columns.map(c => <td key={c.label} className={c.numeric ? 'num' : ''}>{c.value(e, name)}</td>)}
+          <tr key={`${e.position}-${e.playerId ?? i}`} className={e.playerId === null && e.rating === null ? 'vacant' : ''}>
+            {columns.map(c => <td key={c.label} className={[c.numeric ? 'num' : '', c.label === 'Player' && e.playerId === null && e.rating !== null ? 'muted' : ''].filter(Boolean).join(' ')}>{c.value(e, name)}</td>)}
             {ppg && <td className="num">{e.playerId && ppg.has(e.playerId) ? ppg.get(e.playerId)!.toFixed(1) : '—'}</td>}
             {renderExtra && <td>{renderExtra(e)}</td>}
           </tr>

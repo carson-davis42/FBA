@@ -8,7 +8,8 @@ describe('roster helpers', () => {
   it('labels players, vacancies, and unnamed players', () => {
     const players = { p00001: { id: 'p00001', name: 'Gabriel Greenwood', birthSeason: 51 }, p00002: { id: 'p00002', name: null, birthSeason: null } };
     expect(playerLabel(e({}), players)).toBe('Gabriel Greenwood');
-    expect(playerLabel(e({ playerId: null }), players)).toBe('Vacant');
+    expect(playerLabel(e({ playerId: null, rating: null }), players)).toBe('Vacant');
+    expect(playerLabel(e({ playerId: null }), players)).toBe('Generated');
     expect(playerLabel(e({ playerId: 'p00002' }), players)).toBe('Unnamed');
   });
   it('formats contracts and stars', () => {
