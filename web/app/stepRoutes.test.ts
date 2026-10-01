@@ -13,8 +13,7 @@ describe('step routes', () => {
     expect(toolTarget(step('make-s79-schedules'))).toBe('/schedules');
     expect(toolTarget(step('fba-d2', 'league', 'fbad2'))).toBe('/league/fbad2/scores');
     expect(toolTarget(step('fba', 'league', 'fba'))).toBe('/league/fba/scores');
-    expect(stepTarget(step('fbajc', 'league', 'fbajc'))).toBe('/league/fbajc');
-  });
+      });
 
   it('opens Create Class on the recruiting page for that class', () => {
     expect(toolTarget(step('create-s80-class'))).toBe('/league/fbajc/recruiting?class=80&tab=class');
@@ -71,5 +70,10 @@ describe('step routes', () => {
     expect(toolTarget(step('s79-qualifying', 'league', null))).toBe('/league/fbawc/qualifying');
     expect(toolTarget(step('s80-world-cup', 'league', null))).toBe('/league/fbawc/worldcup');
     expect(stepTarget(step('s80-world-cup'))).toBe('/league/fbawc/worldcup');
+  });
+
+  it('opens the JC scores page from its league step', () => {
+    expect(toolTarget(step('fbajc', 'league', 'fbajc'))).toBe('/league/fbajc/scores');
+    expect(stepTarget(step('fbajc', 'league', 'fbajc'))).toBe('/league/fbajc/scores');
   });
 });

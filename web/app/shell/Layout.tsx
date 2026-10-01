@@ -56,6 +56,11 @@ import { DraftsPage } from '../history/DraftsPage';
 import { FranchisePage } from '../history/FranchisePage';
 import { SeasonHistoryPage } from '../history/SeasonHistoryPage';
 import { TeamsHistoryPage } from '../history/TeamsHistoryPage';
+import { LeadersPage as JcLeadersPage } from '../jc/LeadersPage';
+import { RankingsPage as JcRankingsPage } from '../jc/RankingsPage';
+import { ScoresPage as JcScoresPage } from '../jc/ScoresPage';
+import { StandingsPage as JcStandingsPage } from '../jc/StandingsPage';
+import { TournamentsPage as JcTournamentsPage } from '../jc/TournamentsPage';
 import { QualifyingPage } from '../wc/QualifyingPage';
 import { WorldCupPage } from '../wc/WorldCupPage';
 import { SiteHeader } from './SiteHeader';
@@ -81,6 +86,11 @@ const ROUTES = createRoutesFromElements(
   <Route path="/league/fba/hall-of-fame" element={<HallOfFamePage />} />
   <Route path="/league/fba/ratings-pause" element={<RatingPausePage />} />
   <Route path="/league/fba/all-star" element={<AllStarPage />} />
+  <Route path="/league/fbajc/scores" element={<JcScoresPage />} />
+  <Route path="/league/fbajc/standings" element={<JcStandingsPage />} />
+  <Route path="/league/fbajc/rankings" element={<JcRankingsPage />} />
+  <Route path="/league/fbajc/tournaments" element={<JcTournamentsPage />} />
+  <Route path="/league/fbajc/leaders" element={<JcLeadersPage />} />
   <Route path="/league/fbawc/qualifying" element={<QualifyingPage />} />
   <Route path="/league/fbawc/worldcup" element={<WorldCupPage />} />
   <Route path="/league/:league/scores" element={<ScoresPage />} />

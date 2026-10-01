@@ -37,13 +37,13 @@ describe('SiteHeader', () => {
     expect(screen.getByRole('link', { name: 'D2' }).className).toContain('active');
   });
 
-  it('lists Qualifying, World Cup and Teams for the WC and Teams/Recruiting for the JC, with league hrefs', () => {
+  it('lists Qualifying, World Cup and Teams for the WC and the JC sections, with league hrefs', () => {
     const hrefs = () => Array.from(screen.getByRole('navigation', { name: 'Site sections' }).querySelectorAll('a')).map(a => a.getAttribute('href')).slice(0, -4);
     const wc = render(<MemoryRouter initialEntries={['/league/fbawc']}><SiteHeader /></MemoryRouter>);
     expect(hrefs()).toEqual(['/league/fbawc/qualifying', '/league/fbawc/worldcup', '/league/fbawc']);
     wc.unmount();
     render(<MemoryRouter initialEntries={['/league/fbajc/recruiting']}><SiteHeader /></MemoryRouter>);
-    expect(hrefs()).toEqual(['/league/fbajc', '/league/fbajc/recruiting']);
+    expect(hrefs()).toEqual(['/league/fbajc/scores', '/league/fbajc/standings', '/league/fbajc/rankings', '/league/fbajc/tournaments', '/league/fbajc/leaders', '/league/fbajc', '/league/fbajc/recruiting']);
   });
 
   it('scrolls the active link into view and keeps Teams active on team pages', () => {
@@ -67,7 +67,7 @@ describe('SiteHeader', () => {
     unmount();
     render(<MemoryRouter initialEntries={['/calendar']}><SiteHeader /></MemoryRouter>);
     const nav = screen.getByRole('navigation', { name: 'Site sections' });
-    expect(Array.from(nav.querySelectorAll('a')).slice(0, 2).map(a => a.textContent)).toEqual(['Teams', 'Recruiting']);
+    expect(Array.from(nav.querySelectorAll('a')).slice(0, 2).map(a => a.textContent)).toEqual(['Scores', 'Standings']);
   });
 
   it('defaults to the FBA', () => {

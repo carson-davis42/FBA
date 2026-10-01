@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { mulberry32, type Rng } from '../d2/random';
 import { POSITIONS } from '../roster/rules';
 import {
-  defenderWeights, isClutch, makeChance, periodOf, pickDefender, pickHandler, REGULATION, shotPoints, simGame, type SimTeam, winProbability,
+  defenderWeights, FBA_PROFILE, isClutch, JC_PROFILE, makeChance, periodOf, pickDefender, pickHandler, REGULATION, shotPoints, simGame, type SimTeam, winProbability,
 } from './sim';
 
 const team = (id: string, ratings: number[]): SimTeam => ({
@@ -116,5 +116,41 @@ describe('winProbability', () => {
     const p = winProbability(g, 0, mulberry32(9), 400);
     expect(p).toBeGreaterThan(0.3);
     expect(p).toBeLessThan(0.7);
+  });
+});
+
+describe('FBAJC profile', () => {
+  it('pickHandler: a 55-rated player gets the ball with (rating - 40) weights', () => {
+    const t = team('J', [90, 80, 70, 65, 55]); // weights 50, 40, 30, 25, 15 -> total 160 (sum 360 - 200)
+    expect(pickHandler(t, seq(144.5 / 160), JC_PROFILE)).toBe(3);
+    expect(pickHandler(t, seq(159.5 / 160), JC_PROFILE)).toBe(4);
+    // the FBA weighting never reaches the 55 (and a 65 gets almost nothing)
+    expect(pickHandler(t, seq(0.999999))).not.toBe(4);
+  });
+  it('a 55-rated player scores in simulated JC games and never in FBA games', () => {
+    const rng = mulberry32(5);
+    let jc = 0;
+    let fba = 0;
+    for (let i = 0; i < 20; i++) {
+      jc += simGame(i, team('A', [90, 80, 70, 65, 55]), team('B', [85, 75, 72, 60, 58]), rng, JC_PROFILE).box.home[4];
+      fba += simGame(i, team('A', [90, 80, 70, 65, 55]), team('B', [85, 75, 72, 60, 58]), rng).box.home[4];
+    }
+    expect(jc).toBeGreaterThan(0);
+    expect(fba).toBe(0);
+  });
+  it('rolls 0..99 for the JC (odds 65 makes roll 65) and 1..100 for the FBA (roll 66 misses)', () => {
+    const hi = team('H', [99, 99, 99, 99, 99]);
+    const lo = team('L', [40, 40, 40, 40, 40]);
+    const r = (): Rng => { const rest = mulberry32(9); const first = [0, 0, 0.65]; let k = 0; return () => (k < 3 ? first[k++] : rest()); };
+    expect(simGame(1, hi, lo, r(), JC_PROFILE).possessions[0].made).toBe(true);
+    expect(simGame(1, hi, lo, r()).possessions[0].made).toBe(false);
+  });
+  it('FBA results are unchanged by the profile parameter', () => {
+    const t = (id: string, r: number[]) => team(id, r);
+    const g = simGame(1, t('A', [90, 80, 70, 65, 58]), t('B', [85, 75, 72, 60, 55]), mulberry32(42));
+    expect([g.homePts, g.awayPts, g.possessions.length]).toEqual([100, 73, 120]);
+    expect(g.box).toEqual({ home: [63, 27, 8, 2, 0], away: [42, 14, 17, 0, 0] });
+    const e = simGame(1, t('A', [90, 80, 70, 65, 58]), t('B', [85, 75, 72, 60, 55]), mulberry32(42), FBA_PROFILE);
+    expect(e).toEqual(g);
   });
 });

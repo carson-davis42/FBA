@@ -453,6 +453,43 @@ export const ScheduleFile = z.object({
 }).strict();
 export type ScheduleFile = z.infer<typeof ScheduleFile>;
 
+export const JcScheduleFile = z.object({
+  league: z.literal('fbajc'),
+  season: int,
+  locked: z.boolean(),
+  tournaments: z.array(z.object({
+    id: z.string().min(1),
+    name: z.string().min(1),
+    teams: z.array(z.string().min(1)).length(8),
+  }).strict().superRefine((t, ctx) => {
+    if (new Set(t.teams).size !== t.teams.length) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'tournament teams must be distinct' });
+  })),
+  days: z.array(z.object({
+    day: int.min(1).max(29),
+    kind: z.enum(['tournament', 'challenge', 'conference']),
+    games: z.array(z.object({
+      gameNo: int.positive(),
+      home: z.string().min(1),
+      away: z.string().min(1),
+      tournament: z.string().min(1).optional(),
+    }).strict()),
+  }).strict()),
+  /** Stored tiebreak draw per team. */
+  drawKeys: z.record(z.string(), z.number()),
+}).strict().superRefine((d, ctx) => {
+  if (new Set(d.days.map(x => x.day)).size !== d.days.length) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'day numbers must be unique' });
+});
+export type JcScheduleFile = z.infer<typeof JcScheduleFile>;
+
+export const JcRankingsFile = z.object({
+  league: z.literal('fbajc'),
+  season: int,
+  locked: z.boolean(),
+  /** afterDay 0 = preseason; order lists every team, best first. */
+  snapshots: z.array(z.object({ afterDay: int.min(0).max(29), order: z.array(z.string().min(1)) }).strict()),
+}).strict();
+export type JcRankingsFile = z.infer<typeof JcRankingsFile>;
+
 export const RatingPauseRow = z.object({
   playerId,
   teamId: z.string().min(1),

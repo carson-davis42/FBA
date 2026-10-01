@@ -167,6 +167,7 @@ a.ticker-chip:hover { background: var(--row-hover); }
   --clinch-promoted: #16a34a; --clinch-qualified: #16a34a; --clinch-advanced: #16a34a; --clinch-relegated: #dc2626; --clinch-eliminated: #9ca3af;
 }
 .clinch-conference { --clinch-color: var(--clinch-conference); }
+.clinch-champion { --clinch-color: var(--clinch-conference); }
 .clinch-first { --clinch-color: var(--clinch-first); }
 .clinch-playoff { --clinch-color: var(--clinch-playoff); }
 .clinch-promoted { --clinch-color: var(--clinch-promoted); }

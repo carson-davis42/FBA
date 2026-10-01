@@ -64,6 +64,18 @@ describe('Home', () => {
     }
   });
 
+  it('titles the FBAJC step like the other league steps and continues to its scores page', async () => {
+    const cal = docs['calendar.json'];
+    docs['calendar.json'] = { season: 79, steps: [{ id: 'fbajc', label: 'FBAJC', kind: 'league', league: 'fbajc', sub: false, done: false }] };
+    try {
+      render(<MemoryRouter><Home /></MemoryRouter>);
+      expect(await screen.findByText('Play FBAJC S79')).toBeTruthy();
+      expect(screen.getByRole('link', { name: /continue/i }).getAttribute('href')).toBe('/league/fbajc/scores');
+    } finally {
+      docs['calendar.json'] = cal;
+    }
+  });
+
   it('continues to the next season once every step is done', async () => {
     const cal = docs['calendar.json'];
     docs['calendar.json'] = { season: 79, steps: [{ id: 'fbajc', label: 'FBAJC', kind: 'league', league: 'fbajc', sub: false, done: true }] };
