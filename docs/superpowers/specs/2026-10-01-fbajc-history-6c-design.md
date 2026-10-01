@@ -31,10 +31,16 @@ Both are Google Sheets read by the importer from an xlsx export cached in `web/i
 | Conference Regular Season Champions | Per conference: `School(W-L)` on the season's first row, extra rows for co-champions (with or without a record) | S53 on |
 | Conference Tournament Champions | One school per conference per season | S54 on (S52, S53 are all `X`) |
 | Preseason Tournament Champions | One column per event; events are added over time (6 events in S64, 21 in S72) | S64 on |
-| Total MM Wins All-Time | `rank, school, wins` | all-time |
+| Total MM Wins All-Time | `rank, school, wins` | all-time (cross-checked against the school workbook) |
 | Recruiting, Transfer Portal | Already imported by the recruiting/portal work; not touched here | |
 
-**"FBA JC School History"** (`1T1gR1wQBVLfzL0o6cO2QKMTDsLDMIo03OJrF4t0CZZ8`): 18 conference tabs. Per school: name, `MM App.` (`Baylor-28`, the total) and the list of seasons it made March Madness. **No season records exist in the sheet.** The school pages therefore show titles and appearances, not season-by-season records (assumed; the user is asked to confirm, section 8).
+**"FBA JC School History"** (`1T1gR1wQBVLfzL0o6cO2QKMTDsLDMIo03OJrF4t0CZZ8`; the user uploaded the full xlsx 2026-10-01): 18 tabs, one per current conference, 12 schools per tab (columns B–M, 216 in all). Each tab stacks nine sections down the columns, all with the same labels in column A: `MM App.`, `Sweet 16`, `Elite 8`, `Final Four`, `NC app.` (title-game appearances), `National Champions`, `Conf RS Champions`, `Conf TOUR Champions`. The section header cell reads `School-<count>` (`Baylor-28`) and the cells below list `(S<n>)` seasons; every one of the 1,728 counts matches its list. Cell suffixes:
+
+- `*` alone: a season S1–S10 (the JC era; the sheet's own marker).
+- `*A10`, `*AAC`, `*PAT`, `*HOR`, `*COL`, `*B10`, `*SOCON`: for conference championships, the conference the school was in that season when it differs from its current tab.
+- One typo in the source: `(S56*B10` (Nevada, conference tournament, missing the closing parenthesis). The parser accepts it and reports it.
+
+There are still **no season win-loss records** in the sheet, but each school's round reached in every March Madness is known. The school pages therefore show titles, the season-by-season March Madness round, and conference titles, not season records.
 
 **Bracket PDF:** the user confirms it holds both the March Madness and the NIT brackets. The 3a spec counted 52 FBAJC pages among 140, the user estimated about 70; the page inventory settles it. They are single-elimination March Madness pages titled "March Madness <roman numeral>" with "FBAJC S<n>" (older seasons print "FBA Junior Colleges S<n>"): 64 slots, `seed.Name(record)`, BYEs, single-game scores that can end in "OT". NIT pages (16 to 32 slots) are found during the page inventory (task 1 of the plan), which reports page, kind, season and field size before transcription starts.
 
@@ -70,14 +76,22 @@ One `leagues/fbajc/S<n>/summary.json` per season (S78's exists with only the cha
 
 ### 3.3 School history document
 
-New `leagues/fbajc/schoolHistory.json` (strict zod `JcSchoolHistoryFile`, path rule in `schemaRegistry.ts`): per team id, `{ mmAppearances: number[], mmAppearancesTotal: number, mmWins: number }`. Titles, runner-ups, conference and NIT results are derived at read time from the summaries (single source of truth); the school doc holds only what the sheet alone knows. Appearances after S78 are derived from the app's own summaries/brackets, so the doc is S1–S78 only.
+New `leagues/fbajc/schoolHistory.json` (strict zod `JcSchoolHistoryFile`, path rule in `schemaRegistry.ts`), `throughSeason: 78`, one entry per team id:
+
+`{ teamId, mm: { app, sweet16, elite8, final4, titleGame, champion: int[] }, rsChampion: [{ season, conf: string|null }], confTournament: [{ season, conf: string|null }], mmWins: int|null }`
+
+- Season lists are sorted and unique; each deeper list is a subset of the one before (`champion` ⊆ `titleGame` ⊆ `final4` ⊆ `elite8` ⊆ `sweet16` ⊆ `app`), checked by `superRefine`.
+- `conf` is the conference code of the school's conference that season when the sheet's suffix names another (mapped to the `teams.json` group code); null otherwise.
+- `mmWins` comes from the "Total MM Wins All-Time" tab; the importer compares it with the rounds and reports a disagreement rather than choosing.
+- National and NIT titles, runner-ups and awards stay derived from the summaries (single source of truth); this doc holds what only the school sheet knows. The importer also cross-checks its `champion` lists against the national champions in the FBAJC workbook and reports differences.
+- Appearances after S78 are derived from the app's own summaries and brackets, so the doc stops at S78. Because every season's round per school is known, the doc can also fill a "March Madness field" for seasons whose bracket is not transcribed.
 
 ## 4. Importers
 
 `importers/run.ts` gains, all requiring `--data <dir>` (never `web/data` in tests; fixtures only):
 
 - `--jc-history`: the FBAJC workbook tabs to season summaries (section 3.1), merging into any existing summary (S78 keeps its champion fields), never writing S79 or later. Reports: unresolved school names (an alias map like `SHEET_TEAM_ALIASES`, for example "Stephen F Austin", "Abeliene Christian", "Texas A&M"), unresolved players (kept as text), co-champion rows, seasons without any data.
-- `--jc-schools`: the school history workbook to `schoolHistory.json`; duplicate tabs/columns such as `Oklahoma`/`Oklahom…` are matched by the position's full name read from the sheet, not truncated headers.
+- `--jc-schools`: the school history workbook (and the `Total MM Wins All-Time` tab) to `schoolHistory.json`; schools are matched by the full name in row 1 of each tab (the `School-<count>` header gives the check count).
 - `--jc-brackets`: reads the committed `importers/history/jcBrackets.json` (transcribed from the PDF) into `pastBracket`, via the existing `runBracketImport` with `league: 'fbajc'`; seasons without a summary are listed, not created.
 
 Each mode validates every doc through `schemaForPath` first and writes nothing on failure (as `--wc-history` does). Pure builders live in `importers/jcHistory.ts` and `importers/sheets/jcHistory.ts` (parsers) with tests on small in-memory fixtures.
@@ -96,7 +110,7 @@ Each mode validates every doc through `schemaForPath` first and writes nothing o
 - `/history/fbajc/championships`: National Champion, runner-up and C-Ship MVP per season (S1 on), NIT S72 on, and title counts per school.
 - `/history/fbajc/season/:season`: champion, runner-up, MVPs, national awards, All-Americans (legacy eras as written), conference champions (regular season with co-champions, tournament), preseason tournaments, the March Madness bracket (`PastBracket`) or "No bracket recorded".
 - `/history/fbajc/awards`: national and conference awards by season.
-- `/history/fbajc/schools` and `/history/fbajc/school/:teamId`: titles (national, NIT, conference regular season and tournament, preseason), runner-ups, March Madness appearances and wins, awards by their players.
+- `/history/fbajc/schools` and `/history/fbajc/school/:teamId`: titles (national, NIT, conference regular season and tournament, preseason), runner-ups, the March Madness round reached each season (appearance, Sweet 16, Elite 8, Final Four, title game, champion), March Madness wins, awards by their players.
 - Season labels from S79 are written by the app, so the pages read `jc` and `bracket` as they are (6b data); the history list shows both eras.
 - Tables stay in `.table-wrap`, theme tokens, no horizontal page scroll at 375px, dark mode via tokens. Pages for a season whose data doesn't exist don't title themselves with the current season.
 
@@ -111,7 +125,7 @@ Each mode validates every doc through `schemaForPath` first and writes nothing o
 
 - School logos for FBAJC schools (the user is considering them).
 - PHI (Philly Phantoms, logo already in `FBA Logos/`) and Team 32 (T32, no logo) must be added before the S80 rollover.
-- Season-by-season school records before S79 (not in the sheets). Assumed; confirm.
+- Season win-loss records for schools before S79 (not in the sheets; the user confirmed the school workbook is the source).
 - Anything under `FBA/`, `FBAD2/`, `FBAJC/`, `FBAWC/`, `FBA Logos/` and `web/data/**` is not modified by this part.
 
 ## 9. Tests and checks
