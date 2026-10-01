@@ -86,3 +86,12 @@ describe('PastBracket with franchises', () => {
     expect(screen.getByText('Montreal')).toBeTruthy();
   });
 });
+
+describe('PastBracket scored series', () => {
+  it('shows the game score instead of the win counts', () => {
+    const one: PastBracketDoc = { rounds: 1, series: [{ ...ps('R1-1', 'Japan', 'Korea', 1, 0), score: '97–75' }] };
+    const { container } = render(<PastBracket bracket={one} teams={teams} season={5} />);
+    const wins = [...container.querySelectorAll('.series-side .wins')].map(e => e.textContent);
+    expect(wins).toEqual(['97', '75']);
+  });
+});
