@@ -23,7 +23,7 @@ export function rankingDoc(patch: Partial<RankingFile> = {}): RankingFile {
     locked: false,
     rows: [
       row('p00001', 80, null, 'PG'), row('p00002', 85, null, 'SG'), row('p00003', 80, null, 'PG'),
-      row('p00004', null, 70, 'PG'), row('p00005', null, null, 'PG'), row('p00006', null, 75, 'C'),
+      row('p00004', null, 70, 'PG'), row('p00005', null, 60, 'PG'), row('p00006', null, 75, 'C'),
     ],
     order: [],
     ratings: {},

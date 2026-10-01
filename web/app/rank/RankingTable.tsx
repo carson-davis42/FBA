@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import { applyClassSuggestions, consensusSuggestion, parseConsensusInput, starsFor } from '../../engine/college/classRanking';
 import {
-  applyAllSuggestions, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, take, takeRest, type NameOf,
+  applyAllSuggestions, isNewRow, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, take, takeRest, type NameOf,
 } from '../../engine/rank/ranking';
 import { POSITIONS } from '../../engine/roster/rules';
 import type { Position, RankingFile, RankingRow } from '../../engine/shared/types';
@@ -74,8 +74,8 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   const flagged = outOfOrder(doc);
   const blockers = [...rankingBlockers(doc, name), ...extraBlockers];
   const prev = (r: RankingRow) => r.prevRating ?? (r.otherRating !== null ? <span className="muted">{otherLabel} {r.otherRating}</span> : '—');
-  const existing = left.filter(r => r.prevRating !== null);
-  const fresh = left.filter(r => r.prevRating === null);
+  const existing = left.filter(r => !isNewRow(doc, r));
+  const fresh = left.filter(r => isNewRow(doc, r));
   const [split, setSplit] = useState(false);
   // Offered while both groups exist; once switched on it stays on, even if a list empties.
   const canSplit = split || (existing.length > 0 && fresh.length > 0);
@@ -90,7 +90,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
         <tbody>
           {rows.map((r, i) => {
             if (!shown(r)) return null;
-            const divider = divide && r.prevRating === null && !dividerShown;
+            const divider = divide && isNewRow(doc, r) && !dividerShown;
             if (divider) dividerShown = true;
             return (
               <Fragment key={r.playerId}>
@@ -138,11 +138,11 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
         {split ? (
           <>
             <div className="rank-col card">
-              {leftHead('Already in the league', existing, r => r.prevRating !== null)}
+              {leftHead('Already in the league', existing, r => !isNewRow(doc, r))}
               {leftTable(existing, 'Already in the league', false)}
             </div>
             <div className="rank-col card">
-              {leftHead('New players', fresh, r => r.prevRating === null)}
+              {leftHead('New players', fresh, r => isNewRow(doc, r))}
               {leftTable(fresh, 'New players', false)}
             </div>
           </>

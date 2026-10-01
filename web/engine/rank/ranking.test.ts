@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { RankingFile } from '../shared/types';
 import {
-  applyAllSuggestions, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
+  applyAllSuggestions, isNewRow, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
 } from './ranking';
 import { rankingDoc, rankName } from './testFixtures';
 
@@ -16,6 +16,23 @@ describe('leftRows', () => {
   it('breaks full ties on id and leaves out ranked players', () => {
     expect(ids(leftRows(rankingDoc(), () => 'Same')).slice(0, 3)).toEqual(['p00002', 'p00001', 'p00003']);
     expect(ids(leftRows(rankingDoc({ order: ['p00002', 'p00006'] }), rankName))).toEqual(['p00001', 'p00003', 'p00004', 'p00005']);
+  });
+});
+
+describe('D2 Reserves already in the pool', () => {
+  const row = (playerId: string, prevRating: number | null, otherRating: number | null) => ({ playerId, position: 'PG' as const, age: 25, team: null, prevRating, otherRating, stat: null });
+  const doc = (kind: 'd2-reset' | 'fba-reset') => ({ ...rankingDoc(), kind, rows: [row('p00001', 70, null), row('p00002', null, null), row('p00003', null, 80)] }) as RankingFile;
+
+  it('counts a rating-less Reserve with no FBA rating as existing, after the rated players, before the New group', () => {
+    const d = doc('d2-reset');
+    expect(isNewRow(d, d.rows[1])).toBe(false);
+    expect(isNewRow(d, d.rows[2])).toBe(true);
+    expect(ids(leftRows(d, rankName))).toEqual(['p00001', 'p00002', 'p00003']);
+  });
+
+  it('leaves other ranking kinds alone', () => {
+    const d = doc('fba-reset');
+    expect(isNewRow(d, d.rows[1])).toBe(true);
   });
 });
 
