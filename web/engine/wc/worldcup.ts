@@ -2,10 +2,10 @@ import { shuffle, type Rng } from '../d2/random';
 import { markStepDone } from '../shared/calendar';
 import type { CalendarFile, GameResult, KnockoutGame, KnockoutRound, QualifyingFile, RostersFile, ScheduleGame, WorldCupFile } from '../shared/types';
 import { calendarProblem, toGameResult } from '../season/moves';
-import { simGame } from '../season/sim';
+import { type SimGame } from '../season/sim';
 import { countryRating } from './rating';
 import { deriveRosters } from './roster';
-import { simTeam, wcFail, winnerOf, worldCupStepId, type WcResult } from './state';
+import { simMismatch, simWcGame, wcFail, winnerOf, worldCupStepId, type NextWcGame, type WcResult } from './state';
 import { rankTable, type WcTable } from './tiebreak';
 
 export interface WorldCupState { calendar: CalendarFile; rosters: RostersFile; worldCup: WorldCupFile | null }
@@ -69,28 +69,42 @@ export function startWorldCup(
   };
 }
 
-function simNext(state: WorldCupState, gameNo: number, homeId: string, awayId: string, rng: Rng): GameResult | string {
-  const home = state.rosters.teams[homeId];
-  const away = state.rosters.teams[awayId];
-  if (!home || !away) return `${homeId} or ${awayId} has no roster`;
-  return toGameResult(simGame(gameNo, simTeam(homeId, home), simTeam(awayId, away), rng));
+function worldCupProblem(state: WorldCupState): string | null {
+  const wc = state.worldCup;
+  if (!wc) return 'The World Cup has not been started';
+  return calendarProblem(state.calendar, worldCupStepId(wc.season), 'World Cup games are played');
 }
 
-export function playGroupGame(state: WorldCupState, rng: Rng): WcResult<WorldCupState> {
-  const wc = state.worldCup;
-  if (!wc) return wcFail(['The World Cup has not been started']);
-  const problem = calendarProblem(state.calendar, worldCupStepId(wc.season), 'World Cup games are played');
-  if (problem) return wcFail([problem]);
+/** The next group game, or why there isn't one. */
+export function nextGroupGame(state: WorldCupState): NextWcGame | string {
+  const problem = worldCupProblem(state);
+  if (problem) return problem;
+  const wc = state.worldCup!;
   const next = wc.schedule[wc.groupGames.length];
-  if (!next) return wcFail(['Every group game has been played']);
-  const game = simNext(state, next.gameNo, next.home, next.away, rng);
-  if (typeof game === 'string') return wcFail([game]);
+  return next ? { gameNo: next.gameNo, home: next.home, away: next.away } : 'Every group game has been played';
+}
+
+export function recordGroupGame(state: WorldCupState, sim: SimGame): WcResult<WorldCupState> {
+  const next = nextGroupGame(state);
+  if (typeof next === 'string') return wcFail([next]);
+  const mismatch = simMismatch(next, sim);
+  if (mismatch) return wcFail([mismatch]);
+  const wc = state.worldCup!;
+  const game = toGameResult(sim);
   return {
     ok: true,
     state: { ...state, worldCup: { ...wc, groupGames: [...wc.groupGames, game] } },
     changed: ['worldcup'],
     label: `Group game ${next.gameNo}: ${next.home} ${game.homePts}-${game.awayPts} ${next.away}`,
   };
+}
+
+export function playGroupGame(state: WorldCupState, rng: Rng): WcResult<WorldCupState> {
+  const next = nextGroupGame(state);
+  if (typeof next === 'string') return wcFail([next]);
+  const sim = simWcGame(state.rosters, next, rng);
+  if (typeof sim === 'string') return wcFail([sim]);
+  return recordGroupGame(state, sim);
 }
 
 export function groupTable(wc: WorldCupFile, group: string): WcTable {
@@ -129,21 +143,30 @@ export function finishGroups(state: WorldCupState): WcResult<WorldCupState> {
   };
 }
 
-export function playKnockoutGame(state: WorldCupState, rng: Rng): WcResult<WorldCupState> {
-  const wc = state.worldCup;
-  if (!wc) return wcFail(['The World Cup has not been started']);
-  const problem = calendarProblem(state.calendar, worldCupStepId(wc.season), 'World Cup games are played');
-  if (problem) return wcFail([problem]);
+/** The next knockout game (both teams known, not played), or why there isn't one. */
+export function nextKnockoutGame(state: WorldCupState): (NextWcGame & { slotIndex: number }) | string {
+  const problem = worldCupProblem(state);
+  if (problem) return problem;
+  const wc = state.worldCup!;
   const idx = wc.knockout.findIndex(g => g.home !== null && g.away !== null && g.game === null);
-  if (idx < 0) return wcFail(['No knockout game is ready to play']);
+  if (idx < 0) return 'No knockout game is ready to play';
   const slot = wc.knockout[idx];
   const gameNo = wc.groupGames.length + wc.knockout.filter(g => g.game !== null).length + 1;
-  const game = simNext(state, gameNo, slot.home!, slot.away!, rng);
-  if (typeof game === 'string') return wcFail([game]);
+  return { gameNo, home: slot.home!, away: slot.away!, slotIndex: idx };
+}
+
+export function recordKnockoutGame(state: WorldCupState, sim: SimGame): WcResult<WorldCupState> {
+  const next = nextKnockoutGame(state);
+  if (typeof next === 'string') return wcFail([next]);
+  const mismatch = simMismatch(next, sim);
+  if (mismatch) return wcFail([mismatch]);
+  const wc = state.worldCup!;
+  const slot = wc.knockout[next.slotIndex];
+  const game = toGameResult(sim);
   const winner = winnerOf(game);
   const loser = winner === game.home ? game.away : game.home;
   const knockout = wc.knockout.map(g => ({ ...g }));
-  knockout[idx].game = game;
+  knockout[next.slotIndex].game = game;
   let champion = wc.champion;
   let runnerUp = wc.runnerUp;
   if (slot.round === 'F') {
@@ -151,8 +174,8 @@ export function playKnockoutGame(state: WorldCupState, rng: Rng): WcResult<World
     runnerUp = loser;
   } else {
     const [round, n] = slot.id.split('-');
-    const next = ROUNDS[ROUNDS.findIndex(r => r[0] === round) + 1][0];
-    const nextSlot = knockout.find(g => g.id === `${next}-${Math.ceil(Number(n) / 2)}`)!;
+    const nextRound = ROUNDS[ROUNDS.findIndex(r => r[0] === round) + 1][0];
+    const nextSlot = knockout.find(g => g.id === `${nextRound}-${Math.ceil(Number(n) / 2)}`)!;
     if (Number(n) % 2 === 1) nextSlot.home = winner; else nextSlot.away = winner;
   }
   return {
@@ -161,6 +184,14 @@ export function playKnockoutGame(state: WorldCupState, rng: Rng): WcResult<World
     changed: ['worldcup'],
     label: `${slot.id}: ${game.home} ${game.homePts}-${game.awayPts} ${game.away}`,
   };
+}
+
+export function playKnockoutGame(state: WorldCupState, rng: Rng): WcResult<WorldCupState> {
+  const next = nextKnockoutGame(state);
+  if (typeof next === 'string') return wcFail([next]);
+  const sim = simWcGame(state.rosters, next, rng);
+  if (typeof sim === 'string') return wcFail([sim]);
+  return recordKnockoutGame(state, sim);
 }
 
 export function finishWorldCup(state: WorldCupState): WcResult<WorldCupState> {

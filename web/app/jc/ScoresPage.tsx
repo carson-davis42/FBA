@@ -4,6 +4,7 @@ import { mulberry32 } from '../../engine/d2/random';
 import { fbajcGateProblem } from '../../engine/college/recruiting';
 import { openSpots } from '../../engine/college/walkOns';
 import { playDay, playToEnd, regularSeasonOver } from '../../engine/jc/play';
+import { nextJcGame } from '../../engine/jc/watch';
 import { namesNeeded, redrawFields, startSeason } from '../../engine/jc/start';
 import { DAYS, dayPlayed, type JcState } from '../../engine/jc/state';
 import { calendarProblem } from '../../engine/season/moves';
@@ -78,6 +79,8 @@ export function ScoresPage() {
   const playReason = stepProblem ?? (over ? 'The regular season is over' : null);
   const blocked = saving || playing || !!playReason;
   const needed = namesNeeded(state);
+  const nextGame = nextJcGame(state);
+  const nextNo = typeof nextGame === 'string' || stepProblem ? null : nextGame.gameNo;
   const notStarted = (state.results?.games.length ?? 0) === 0;
 
   return (
@@ -107,10 +110,14 @@ export function ScoresPage() {
         <button className="btn" disabled={day >= DAYS} onClick={() => setPicked(day + 1)}>Next</button>
       </div>
       <div className="jc-actions">
-        <button className="btn primary" disabled={blocked} title={playReason ?? undefined} onClick={() => void run(() => playDay(state, newRng()))}>Play day</button>
+        {nextNo !== null && !saving && !playing
+          ? <Link className="btn primary" to={`/league/fbajc/game/${nextNo}`}>Watch next game</Link>
+          : <button className="btn primary" disabled title={playReason ?? undefined}>Watch next game</button>}
+        <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => void run(() => playDay(state, newRng()))}>Play day</button>
         <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => { setPlaying(true); setTimeout(() => { void run(() => playToEnd(state, newRng())).finally(() => setPlaying(false)); }, 0); }}>{playing ? 'Playing...' : 'Play to end of regular season'}</button>
       </div>
       {playReason && <p className="muted">{playReason}</p>}
+      {over && <p><Link to="/league/fbajc/postseason">The regular season is over: on to the postseason</Link></p>}
       {error && <p className="error">{error}</p>}
       {dayDoc && dayDoc.games.length === 0 ? (
         <p className="muted">The games for this day are drawn when the day before is played.</p>
@@ -123,8 +130,9 @@ export function ScoresPage() {
             return (
               <li key={g.gameNo} className={`jc-game${r ? '' : ' jc-unplayed'}`}>
                 <span className={awayWon ? 'jc-winner' : undefined}>{teamCell(g.away)}</span>
-                <span className="jc-score">{r ? `${r.awayPts}–${r.homePts}` : 'vs'}</span>
+                <span className="jc-score">{r ? <Link to={`/league/fbajc/game/${r.gameNo}`} title="Box score">{r.awayPts}–{r.homePts}</Link> : 'vs'}</span>
                 <span className={homeWon ? 'jc-winner' : undefined}>{teamCell(g.home)}</span>
+                {!r && g.gameNo === nextNo && <Link className="jc-blink" to={`/league/fbajc/game/${g.gameNo}`}>Watch</Link>}
               </li>
             );
           })}

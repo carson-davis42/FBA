@@ -43,7 +43,7 @@ describe('SiteHeader', () => {
     expect(hrefs()).toEqual(['/league/fbawc/qualifying', '/league/fbawc/worldcup', '/league/fbawc']);
     wc.unmount();
     render(<MemoryRouter initialEntries={['/league/fbajc/recruiting']}><SiteHeader /></MemoryRouter>);
-    expect(hrefs()).toEqual(['/league/fbajc/scores', '/league/fbajc/standings', '/league/fbajc/rankings', '/league/fbajc/tournaments', '/league/fbajc/leaders', '/league/fbajc', '/league/fbajc/recruiting']);
+    expect(hrefs()).toEqual(['/league/fbajc/scores', '/league/fbajc/standings', '/league/fbajc/rankings', '/league/fbajc/tournaments', '/league/fbajc/postseason', '/league/fbajc/awards', '/league/fbajc/leaders', '/league/fbajc', '/league/fbajc/recruiting', '/league/fbajc/portal']);
   });
 
   it('scrolls the active link into view and keeps Teams active on team pages', () => {

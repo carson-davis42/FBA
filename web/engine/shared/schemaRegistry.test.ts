@@ -102,10 +102,11 @@ describe('playoffs.json', () => {
 });
 
 describe('awards.json', () => {
-  it('is registered for the FBA and D2 only, with a season doc path', () => {
+  it('is registered for the FBA and D2, with the college awards on their own schema, and a season doc path', () => {
     expect(schemaForPath('leagues/fba/S79/awards.json')).toBe(AwardsFile);
     expect(schemaForPath('leagues/fbad2/S79/awards.json')).toBe(AwardsFile);
-    expect(schemaForPath('leagues/fbajc/S79/awards.json')).toBeNull();
+    expect(schemaForPath('leagues/fbajc/S79/awards.json')).not.toBe(AwardsFile);
+    expect(schemaForPath('leagues/fbajc/S79/awards.json')).not.toBeNull();
     expect(seasonDocPath('awards', 'fba', 79)).toBe('leagues/fba/S79/awards.json');
   });
 });

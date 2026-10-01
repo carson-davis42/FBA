@@ -124,7 +124,14 @@ export function QualifyingPage() {
           <ol className="wc-games">
             {[...q.schedule].reverse().map(g => {
               const r = q.games[g.gameNo - 1];
-              return <li key={g.gameNo} className={r ? undefined : 'wc-unplayed'}>{`G${g.gameNo} ${label(g.home)} ${r ? `${r.homePts}–${r.awayPts}` : 'vs'} ${label(g.away)}`}</li>;
+              const watch = !r && !finished && !stepProblem && g.gameNo === played + 1;
+              return (
+                <li key={g.gameNo} className={r ? undefined : 'wc-unplayed'}>
+                  {`G${g.gameNo} ${label(g.home)} ${r ? `${r.homePts}–${r.awayPts}` : 'vs'} ${label(g.away)}`}
+                  {r && <>{' '}<Link to={`/league/fbawc/game/${g.gameNo}`}>Box score</Link></>}
+                  {watch && <>{' '}<Link to={`/league/fbawc/game/${g.gameNo}`}>Watch</Link></>}
+                </li>
+              );
             })}
           </ol>
         </section>
@@ -143,7 +150,10 @@ export function QualifyingPage() {
             <button className="btn primary" disabled={blocked} title={stepProblem ?? undefined} onClick={() => void run(start)}>Start qualifying</button>
           ) : (
             <>
-              <button className="btn primary" disabled={blocked || played >= GAMES} title={stepProblem ?? undefined} onClick={() => void run(next)}>Play next</button>
+              {played < GAMES && !stepProblem
+                ? <Link className="btn primary" to={`/league/fbawc/game/${played + 1}`}>Watch next</Link>
+                : <button className="btn primary" disabled title={stepProblem ?? undefined}>Watch next</button>}
+              <button className="btn" disabled={blocked || played >= GAMES} title={stepProblem ?? undefined} onClick={() => void run(next)}>Play next</button>
               <button className="btn" disabled={blocked || played >= GAMES} title={stepProblem ?? undefined} onClick={() => void run(all)}>Play all</button>
               <button className="btn" disabled={blocked || played < GAMES} title={stepProblem ?? undefined} onClick={() => void run(finish)}>Finish</button>
             </>

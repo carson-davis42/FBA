@@ -1,13 +1,13 @@
 import { randInt, type Rng } from '../d2/random';
+import { leagueRefRating } from '../awards/defense';
 import { calendarProblem, toGameResult } from '../season/moves';
-import { JC_PROFILE, simGame, type SimTeam } from '../season/sim';
+import { JC_PROFILE, simGame, type SimGame, type SimTeam } from '../season/sim';
 import { POSITIONS } from '../roster/rules';
 import type { GameResult, JcScheduleFile, RosterEntry } from '../shared/types';
 import { blendRankings, teamRating } from './rankings';
-import { DAYS, TEAMS_PER_DAY, dayPlayed, jcFail, type JcKey, type JcResult, type JcState } from './state';
+import { DAYS, TEAMS_PER_DAY, TOTAL_GAMES, dayPlayed, jcFail, type JcKey, type JcResult, type JcState } from './state';
 import { dayGames } from './tournaments';
 
-const TOTAL_GAMES = DAYS * TEAMS_PER_DAY;
 
 export const regularSeasonOver = (state: JcState): boolean => dayPlayed(state) >= DAYS;
 
@@ -39,7 +39,7 @@ export function progressRatings(
   });
 }
 
-function lineupOf(roster: RosterEntry[] | undefined, teamId: string): SimTeam | string {
+export function lineupOf(roster: RosterEntry[] | undefined, teamId: string): SimTeam | string {
   if (!roster) return `${teamId} has no roster`;
   const players = [];
   for (const pos of POSITIONS) {
@@ -48,6 +48,71 @@ function lineupOf(roster: RosterEntry[] | undefined, teamId: string): SimTeam | 
     players.push({ playerId: e.playerId!, position: pos, rating: e.rating });
   }
   return { teamId, players };
+}
+
+
+/** Rosters and team ratings kept in step while games are simmed in memory. */
+export interface Book {
+  rosters: Record<string, RosterEntry[]>;
+  ratings: Record<string, number>;
+  total: number;
+  teamIds: string[];
+}
+
+export function newBook(state: JcState): Book {
+  const rosters: Record<string, RosterEntry[]> = { ...state.rosters.teams };
+  const ratings: Record<string, number> = {};
+  let total = 0;
+  const teamIds = state.teams.teams.map(t => t.teamId);
+  for (const id of teamIds) {
+    ratings[id] = teamRating(rosters[id] ?? []);
+    total += ratings[id];
+  }
+  return { rosters, ratings, total, teamIds };
+}
+
+
+function setBookRoster(book: Book, id: string, r: RosterEntry[]): void {
+  book.rosters[id] = r;
+  const nr = teamRating(r);
+  book.total += nr - book.ratings[id];
+  book.ratings[id] = nr;
+}
+
+/** Adds one game's box points to both teams' roster entries on the book and returns points by player id. */
+export function addBoxPoints(book: Book, sim: SimGame): Record<string, number> {
+  const pts: Record<string, number> = {};
+  for (const side of ['home', 'away'] as const) sim[side].players.forEach((p, k) => { pts[p.playerId] = sim.box[side][k]; });
+  for (const id of [sim.home.teamId, sim.away.teamId]) {
+    setBookRoster(book, id, book.rosters[id].map(e => (e.playerId !== null && pts[e.playerId] !== undefined ? { ...e, points: e.points + pts[e.playerId] } : e)));
+  }
+  return pts;
+}
+
+/**
+ * Sims one game on the book: adds the box points to both rosters and, when `progress` is set, lets every starter's rating rise
+ * (team ratings and the league average are recomputed after each game, as the Java does). Returns the result, or a problem.
+ */
+export function playOne(book: Book, gameNo: number, homeId: string, awayId: string, rng: Rng, refRating: number, progress: boolean): GameResult | string {
+  const home = lineupOf(book.rosters[homeId], homeId);
+  const away = lineupOf(book.rosters[awayId], awayId);
+  if (typeof home === 'string') return home;
+  if (typeof away === 'string') return away;
+  return applySim(book, simGame(gameNo, home, away, rng, JC_PROFILE), rng, refRating, progress);
+}
+
+/** Applies an already simmed (or watched) game to the book, as `playOne` does after the sim. */
+export function applySim(book: Book, sim: SimGame, rng: Rng, refRating: number, progress: boolean): GameResult {
+  const homeId = sim.home.teamId;
+  const awayId = sim.away.teamId;
+  const pts = addBoxPoints(book, sim);
+  if (progress) {
+    const homeWon = sim.homePts > sim.awayPts;
+    const avg = book.total / book.teamIds.length;
+    setBookRoster(book, homeId, progressRatings(book.rosters[homeId], pts, homeWon, book.ratings[awayId], avg, rng));
+    setBookRoster(book, awayId, progressRatings(book.rosters[awayId], pts, !homeWon, book.ratings[homeId], avg, rng));
+  }
+  return toGameResult(sim, refRating);
 }
 
 type Step = { state: JcState; filledSchedule: boolean } | { problems: string[] };
@@ -83,41 +148,34 @@ function step(state: JcState, rng: Rng): Step {
     }
   }
 
-  const rosters: Record<string, RosterEntry[]> = { ...state.rosters.teams };
-  const ratings: Record<string, number> = {};
-  let total = 0;
-  const teamIds = state.teams.teams.map(t => t.teamId);
-  for (const id of teamIds) {
-    ratings[id] = teamRating(rosters[id] ?? []);
-    total += ratings[id];
-  }
-  const setRoster = (id: string, r: RosterEntry[]): void => {
-    rosters[id] = r;
-    const nr = teamRating(r);
-    total += nr - ratings[id];
-    ratings[id] = nr;
-  };
+  const book = newBook(state);
+  const refRating = leagueRefRating(state.rosters);
   const results: GameResult[] = [];
-  for (const g of games) {
-    const home = lineupOf(rosters[g.home], g.home);
-    const away = lineupOf(rosters[g.away], g.away);
-    if (typeof home === 'string') return { problems: [home] };
-    if (typeof away === 'string') return { problems: [away] };
-    const sim = simGame(g.gameNo, home, away, rng, JC_PROFILE);
-    results.push(toGameResult(sim));
-    const pts: Record<string, number> = {};
-    for (const side of ['home', 'away'] as const) sim[side].players.forEach((p, k) => { pts[p.playerId] = sim.box[side][k]; });
-    for (const id of [g.home, g.away]) {
-      setRoster(id, rosters[id].map(e => (e.playerId !== null && pts[e.playerId] !== undefined ? { ...e, points: e.points + pts[e.playerId] } : e)));
-    }
-    const homeWon = sim.homePts > sim.awayPts;
-    setRoster(g.home, progressRatings(rosters[g.home], pts, homeWon, ratings[g.away], total / teamIds.length, rng));
-    setRoster(g.away, progressRatings(rosters[g.away], pts, !homeWon, ratings[g.home], total / teamIds.length, rng));
+  const done = new Set((state.results?.games ?? []).map(g => g.gameNo));
+  for (const g of games.filter(x => !done.has(x.gameNo))) {
+    const r = playOne(book, g.gameNo, g.home, g.away, rng, refRating, true);
+    if (typeof r === 'string') return { problems: [r] };
+    results.push(r);
   }
+  const { rosters, ratings } = book;
+  const teamIds = book.teamIds;
 
   const allGames = [...(state.results?.games ?? []), ...results];
   const order = blendRankings({ teams: teamIds, ratings, games: allGames, totalGames: TOTAL_GAMES }, rng);
   const rankings = state.rankings ?? { league: 'fbajc' as const, season: state.season, locked: false, snapshots: [] };
+  // Tournament days 2 and 3 are drawn from the day before, so draw the next one as soon as this day is finished.
+  const after = day + 1;
+  const afterDay = schedule.days.find(d => d.day === after);
+  if (afterDay && afterDay.games.length === 0 && (after === 2 || after === 3)) {
+    try {
+      const built = dayGames(after, schedule.tournaments, allGames, (after - 1) * TEAMS_PER_DAY + 1, rng)
+        .map(g => ({ gameNo: g.gameNo, home: g.home, away: g.away, tournament: g.tournament }));
+      schedule = { ...schedule, days: schedule.days.map(d => (d.day === after ? { ...d, games: built } : d)) };
+      filledSchedule = true;
+    } catch (e) {
+      return { problems: [(e as Error).message] };
+    }
+  }
   const next: JcState = {
     ...state,
     schedule,

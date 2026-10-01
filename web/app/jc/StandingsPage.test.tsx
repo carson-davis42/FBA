@@ -18,6 +18,7 @@ function mount(s: JcState) {
   if (s.schedule) docs[`${p}/schedule.json`] = s.schedule;
   if (s.results) docs[`${p}/results.json`] = s.results;
   if (s.rankings) docs[`${p}/rankings.json`] = s.rankings;
+  if (s.postseason) docs[`${p}/postseason.json`] = s.postseason;
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
     const doc = docs[url.replace('/api/state/', '')];
     return doc ? new Response(JSON.stringify(doc), { headers: { ETag: '"v1"' } }) : new Response('{}', { status: 404 });
@@ -60,6 +61,19 @@ describe('StandingsPage', () => {
     await screen.findByRole('combobox');
     expect(document.querySelectorAll('td.clinch-champion').length).toBe(1);
     expect(screen.getByText('Clinched conference title')).toBeTruthy();
+  });
+
+  it('after the fields are set, March Madness and NIT teams show bid bars and the key says so', async () => {
+    const s = jcStateFixture();
+    sweep(s);
+    s.postseason = { field: { mm: { teams: ['C00T05'] }, nit: { teams: ['C00T06'] } } } as unknown as JcState['postseason'];
+    mount(s);
+    await screen.findByRole('combobox');
+    expect(document.querySelectorAll('td.clinch-marchmadness').length).toBe(1);
+    expect(document.querySelectorAll('td.clinch-nit').length).toBe(1);
+    expect(screen.getByText('March Madness bid')).toBeTruthy();
+    expect(screen.getByText('NIT bid')).toBeTruthy();
+    expect(document.querySelectorAll('td.clinch-champion').length).toBe(1);
   });
 
   it('All conferences shows 18 tables', async () => {

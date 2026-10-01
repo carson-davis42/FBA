@@ -2,10 +2,10 @@ import { randInt, shuffle, type Rng } from '../d2/random';
 import { markStepDone } from '../shared/calendar';
 import type { CalendarFile, QualifyingFile, RostersFile, ScheduleGame } from '../shared/types';
 import { calendarProblem, toGameResult } from '../season/moves';
-import { simGame } from '../season/sim';
+import { simGame, type SimGame } from '../season/sim';
 import { countryRating } from './rating';
 import { deriveRosters } from './roster';
-import { qualifyingStepId, simTeam, wcFail, type WcResult } from './state';
+import { qualifyingStepId, simMismatch, simTeam, simWcGame, wcFail, type NextWcGame, type WcResult } from './state';
 import { rankTable, type WcTable } from './tiebreak';
 
 export interface QualifyingState { calendar: CalendarFile; rosters: RostersFile; qualifying: QualifyingFile | null }
@@ -90,23 +90,38 @@ export function startQualifying(
   };
 }
 
-export function playQualifyingGame(state: QualifyingState, rng: Rng): WcResult<QualifyingState> {
+/** The next qualifying game, or why there isn't one. */
+export function nextQualifyingGame(state: QualifyingState): NextWcGame | string {
   const q = state.qualifying;
-  if (!q) return wcFail(['Qualifying has not been started']);
+  if (!q) return 'Qualifying has not been started';
   const problem = calendarProblem(state.calendar, qualifyingStepId(q.season), 'Qualifying is played');
-  if (problem) return wcFail([problem]);
+  if (problem) return problem;
   const next = q.schedule[q.games.length];
-  if (!next) return wcFail(['Every qualifying game has been played']);
-  const home = state.rosters.teams[next.home];
-  const away = state.rosters.teams[next.away];
-  if (!home || !away) return wcFail([`${next.home} or ${next.away} has no roster`]);
-  const game = toGameResult(simGame(next.gameNo, simTeam(next.home, home), simTeam(next.away, away), rng));
+  return next ? { gameNo: next.gameNo, home: next.home, away: next.away } : 'Every qualifying game has been played';
+}
+
+/** Records a simmed (or watched) game, which must be the next one. */
+export function recordQualifyingGame(state: QualifyingState, sim: SimGame): WcResult<QualifyingState> {
+  const next = nextQualifyingGame(state);
+  if (typeof next === 'string') return wcFail([next]);
+  const mismatch = simMismatch(next, sim);
+  if (mismatch) return wcFail([mismatch]);
+  const q = state.qualifying!;
+  const game = toGameResult(sim);
   return {
     ok: true,
     state: { ...state, qualifying: { ...q, games: [...q.games, game] } },
     changed: ['qualifying'],
     label: `Qualifying game ${next.gameNo}: ${next.home} ${game.homePts}-${game.awayPts} ${next.away}`,
   };
+}
+
+export function playQualifyingGame(state: QualifyingState, rng: Rng): WcResult<QualifyingState> {
+  const next = nextQualifyingGame(state);
+  if (typeof next === 'string') return wcFail([next]);
+  const sim = simWcGame(state.rosters, next, rng);
+  if (typeof sim === 'string') return wcFail([sim]);
+  return recordQualifyingGame(state, sim);
 }
 
 export function qualifyingTable(q: QualifyingFile): WcTable {

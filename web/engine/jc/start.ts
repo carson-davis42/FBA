@@ -4,11 +4,10 @@ import { openSpots } from '../college/walkOns';
 import { calendarProblem } from '../season/moves';
 import type { JcScheduleFile } from '../shared/types';
 import { challengeSets, conferenceDays } from './schedule';
-import { DAYS, TEAMS_PER_DAY, jcFail, type JcResult, type JcState } from './state';
+import { TEAMS_PER_DAY, TOTAL_GAMES, jcFail, type JcResult, type JcState } from './state';
 import { blendRankings, teamRating } from './rankings';
 import { dayGames, makeFields, type Field } from './tournaments';
 
-const TOTAL_GAMES = DAYS * TEAMS_PER_DAY;
 
 function conferences(state: JcState): Record<string, string[]> {
   const confs: Record<string, string[]> = {};

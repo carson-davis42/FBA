@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { KnockoutGame, KnockoutRound, PlayersFile, SummaryFile, Team, WorldCupFile } from '../../engine/shared/types';
 import type { WorldCupState } from '../../engine/wc/worldcup';
 import { TeamName } from '../components/TeamName';
@@ -12,7 +13,9 @@ const ROUNDS: { id: KnockoutRound; label: string }[] = [
   { id: 'F', label: 'Final' },
 ];
 
-export function KnockoutTab({ wc, byId, season, state, players, summary, blocked, run }: {
+export function KnockoutTab({ wc, byId, season, state, players, summary, blocked, run, next = null }: {
+  /** The knockout game that is up next, for its Watch link. */
+  next?: { slotId: string; gameNo: number } | null;
   wc: WorldCupFile;
   byId: Map<string, Team>;
   season: number;
@@ -55,6 +58,8 @@ export function KnockoutTab({ wc, byId, season, state, players, summary, blocked
                 <div key={g.id} className="card wc-match" aria-label={g.id}>
                   {side(g, 'home')}
                   {side(g, 'away')}
+                  {g.game && <Link className="wc-glink" to={`/league/fbawc/game/${g.game.gameNo}`}>Box score</Link>}
+                  {!g.game && next?.slotId === g.id && <Link className="wc-glink" to={`/league/fbawc/game/${next.gameNo}`}>Watch</Link>}
                 </div>
               ))}
             </div>

@@ -14,7 +14,7 @@ const teams = { league: 'fbajc', teams: [{ teamId: 'a', name: 'A', abbr: 'A', gr
 const make = (games: number[]): JcState => ({
   season: 79, teams,
   rosters: {} as JcState['rosters'], players: {} as JcState['players'], calendar: {} as JcState['calendar'],
-  schedule, rankings: null, summary: null, board: null,
+  schedule, rankings: null, postseason: null, awards: null, summary: null, board: null,
   results: { league: 'fbajc', season: 79, locked: false, games: games.map(game) } as ResultsFile,
 });
 
@@ -34,6 +34,12 @@ describe('jc state helpers', () => {
     const w = jcWrites({ ok: true, state: { ...state, rankings: { league: 'fbajc', season: 79, locked: false, snapshots: [] } }, changed: ['rankings', 'results'], label: 'x' });
     expect(w.map(x => x.path)).toEqual(['leagues/fbajc/S79/rankings.json', 'leagues/fbajc/S79/results.json']);
     expect(w[1].doc).toBe(state.results);
+  });
+
+  it('builds the postseason, awards and summary paths', () => {
+    expect(jcDocPath('postseason', 79)).toBe('leagues/fbajc/S79/postseason.json');
+    expect(jcDocPath('awards', 79)).toBe('leagues/fbajc/S79/awards.json');
+    expect(jcDocPath('summary', 79)).toBe('leagues/fbajc/S79/summary.json');
   });
 
   it('counts played days', () => {

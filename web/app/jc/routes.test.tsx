@@ -10,7 +10,7 @@ beforeEach(() => {
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
 describe('jc routes', () => {
-  for (const [path, title] of [['scores', 'Scores'], ['standings', 'Standings'], ['rankings', 'Rankings'], ['tournaments', 'Tournaments'], ['leaders', 'Leaders']]) {
+  for (const [path, title] of [['scores', 'Scores'], ['standings', 'Standings'], ['rankings', 'Rankings'], ['tournaments', 'Tournaments'], ['leaders', 'Leaders'], ['postseason', 'Postseason'], ['awards', 'Awards']]) {
     it(`serves the ${title} page`, async () => {
       render(<MemoryRouter initialEntries={[`/league/fbajc/${path}`]}><Layout /></MemoryRouter>);
       expect(await screen.findByRole('heading', { name: title })).toBeTruthy();

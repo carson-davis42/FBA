@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import type { Team, WorldCupFile } from '../../engine/shared/types';
 import { groupClinch } from '../../engine/wc/clinch';
 import { groupTable } from '../../engine/wc/worldcup';
 import { ClinchLegend, RankCell } from '../components/Clinch';
 import { TeamName } from '../components/TeamName';
 
-export function GroupsTab({ wc, byId, season }: { wc: WorldCupFile; byId: Map<string, Team>; season: number }) {
+export function GroupsTab({ wc, byId, season, nextGameNo = null }: { wc: WorldCupFile; byId: Map<string, Team>; season: number; nextGameNo?: number | null }) {
   const label = (id: string) => byId.get(id)?.name ?? id;
   const clinches = Object.fromEntries(Object.keys(wc.groups).map(g => [g, groupClinch(wc, g)]));
   const kinds = Object.values(clinches).flatMap(c => Object.values(c));
@@ -40,7 +41,13 @@ export function GroupsTab({ wc, byId, season }: { wc: WorldCupFile; byId: Map<st
               <ol className="wc-games">
                 {games.map(s => {
                   const r = wc.groupGames[s.gameNo - 1];
-                  return <li key={s.gameNo} className={r ? undefined : 'wc-unplayed'}>{`G${s.gameNo} ${label(s.home)} ${r ? `${r.homePts}–${r.awayPts}` : 'vs'} ${label(s.away)}`}</li>;
+                  return (
+                    <li key={s.gameNo} className={r ? undefined : 'wc-unplayed'}>
+                      {`G${s.gameNo} ${label(s.home)} ${r ? `${r.homePts}–${r.awayPts}` : 'vs'} ${label(s.away)}`}
+                      {r && <>{' '}<Link to={`/league/fbawc/game/${s.gameNo}`}>Box score</Link></>}
+                      {!r && s.gameNo === nextGameNo && <>{' '}<Link to={`/league/fbawc/game/${s.gameNo}`}>Watch</Link></>}
+                    </li>
+                  );
                 })}
               </ol>
             </section>

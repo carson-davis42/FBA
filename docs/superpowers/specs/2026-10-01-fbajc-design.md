@@ -37,8 +37,8 @@ Per conference. Tiebreaks: conference games back, fewer conference games played,
 
 ### Postseason (6b)
 - **Conference tournaments:** 18 conferences, 12 teams seeded by standings, 11 games (round 1: 8v9, 5v12, 6v11, 7v10; seeds 1–4 have byes; quarters 1 vs 8/9, 4 vs 5/12, 3 vs 6/11, 2 vs 7/10; semis; final). Winner = conference champion. Ratings progress in these games.
-- **March Madness field (clean rule, replaces the Java's slot-52 logic):** the 18 conference champions get in; the best 46 others by ranking get at-large bids. The 64 are seeded by ranking into 16 seed lines of 4 and placed with the Java's snake into 4 regions (seed 1s to regions 1–4, seed 2s reversed; seeds 3–16 via `addToRegions`, keeping same-conference teams apart in early rounds). The commissioner can adjust the field before it starts. 63 games: R64, R32, Sweet 16, Elite 8, Final Four, Championship; no byes.
-- **NIT:** the next 32 teams by ranking; 2 regions of 16 seeds; starts at the Round of 32 (31 games).
+- **March Madness field (decision 2026-10-01: the Java logic stays):** the 18 conference tournament champions are guaranteed a bid; the 64 are picked by `MarchMadness.java`'s loop (major-conference champion guarantee, slot-52 rule, at-large skips of major-conference teams from slot 51) and seeded by ranking into 16 seed lines of 4, placed with the Java's snake into 4 regions (seed 1s to regions 1–4, seed 2s reversed; seeds 3–16 via `addToRegions`, keeping same-conference teams apart in early rounds). The commissioner can adjust the field before it starts. See `2026-10-01-fbajc-6b-design.md`. 63 games: R64, R32, Sweet 16, Elite 8, Final Four, Championship; no byes.
+- **NIT:** every regular-season conference champion (ties share) that missed March Madness, then the next best teams by ranking, 32 in all; 2 regions of 16 seeds; starts at the Round of 32 (31 games).
 - **C-Ship MVP:** a new award (not in the Java). After the title game the commissioner picks from the **champion's roster**, listed by March Madness points per game; X players allowed. Stored as `mvpName` in `S<n>/summary.json`.
 - **Awards:** same pattern as the FBA awards page. Live races use the Java's score (0.40 × scaled PPG + 0.35 × scaled rating + 0.25 × team success; softmax temperature 8 over the top 8, shown as American odds) for Trae York POY, Angelo Farrell Freshman, Rhett Blackwell Guard, Jacob Peters Forward, Dustin Holloway Center and a POY per conference (18). Picked at season end; winners stored in the summary.
 - The season summary (champion, runner-up, C-Ship MVP, awards, conference champions, bracket as `pastBracket`) finishes the `fbajc` calendar step.
@@ -65,5 +65,5 @@ Importers from the "FBAJC history" and "FBAJC school history" sheets (ids in the
 
 ## 4. Open items for the plans
 - Exact tier-to-rating table for X players (Java `Main.java`) and the `updatePlayerRatings` constants: the 6a plan copies them from the Java.
-- Circle-method conference rounds vs the Java's random game order: only the day layout is fixed here.
+- Circle-method conference rounds: decided 2026-10-01 (used).
 - Conference-champion clinch kinds and the "bid" kinds for 6b.

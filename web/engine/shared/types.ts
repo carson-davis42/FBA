@@ -500,9 +500,157 @@ export const JcRankingsFile = z.object({
   season: int,
   locked: z.boolean(),
   /** afterDay 0 = preseason; order lists every team, best first. */
-  snapshots: z.array(z.object({ afterDay: int.min(0).max(29), order: z.array(z.string().min(1)) }).strict()),
+  snapshots: z.array(z.object({ afterDay: int.min(0).max(33), order: z.array(z.string().min(1)) }).strict()),
 }).strict();
 export type JcRankingsFile = z.infer<typeof JcRankingsFile>;
+
+/** One game of a postseason bracket. `home` is the first-listed team (no home advantage). */
+export const BracketGame = z.object({
+  id: z.string().min(1),
+  round: int.min(1).max(6),
+  /** 0-3 for the March Madness and NIT regions; 0 elsewhere. */
+  region: int.min(0).max(3),
+  home: z.string().min(1).nullable(),
+  away: z.string().min(1).nullable(),
+  homeSeed: int.min(1).max(16).nullable(),
+  awaySeed: int.min(1).max(16).nullable(),
+  /** Where the winner goes; null for the final. */
+  next: z.object({ id: z.string().min(1), side: z.enum(['home', 'away']) }).strict().nullable(),
+  result: GameResult.nullable(),
+}).strict();
+export type BracketGame = z.infer<typeof BracketGame>;
+
+export const Bracket = z.object({
+  id: z.string().min(1),
+  kind: z.enum(['conf', 'mm', 'nit']),
+  name: z.string().min(1),
+  games: z.array(BracketGame),
+  champion: z.string().min(1).nullable(),
+}).strict().superRefine((b, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  const byId = new Map(b.games.map(g => [g.id, g]));
+  if (byId.size !== b.games.length) issue(`${b.id}: game ids must be unique`);
+  const fed = new Set<string>();
+  const teams = new Set<string>();
+  for (const g of b.games) {
+    if (g.next) {
+      if (!byId.has(g.next.id)) issue(`${b.id}/${g.id}: next game ${g.next.id} doesn't exist`);
+      const slot = `${g.next.id}|${g.next.side}`;
+      if (fed.has(slot)) issue(`${b.id}/${g.id}: two games feed ${slot}`);
+      fed.add(slot);
+    }
+    for (const t of [g.home, g.away]) if (t) teams.add(t);
+    if (g.result) {
+      if (g.home === null || g.away === null) issue(`${b.id}/${g.id}: a game with a result needs both teams`);
+      else if (g.result.home !== g.home || g.result.away !== g.away) issue(`${b.id}/${g.id}: the result's teams don't match the game`);
+      if (g.result.homePts === g.result.awayPts) issue(`${b.id}/${g.id}: a game can't end tied`);
+    }
+  }
+  if (b.champion !== null && !teams.has(b.champion)) issue(`${b.id}: the champion isn't in the bracket`);
+  const finals = b.games.filter(g => g.next === null);
+  if (finals.length !== 1) issue(`${b.id}: a bracket has exactly one final`);
+  else if ((b.champion !== null) !== (finals[0].result !== null)) issue(`${b.id}: the champion is set exactly when the final is played`);
+});
+export type Bracket = z.infer<typeof Bracket>;
+
+/** Postseason games are numbered from 3133 (after the 3132 regular-season games). */
+export const JC_FIRST_POST_GAME = 3133;
+
+export const JcPostseasonFile = z.object({
+  league: z.literal('fbajc'),
+  season: int,
+  locked: z.boolean(),
+  nextGameNo: int.min(JC_FIRST_POST_GAME),
+  /** One bracket per conference, id = the conference code. */
+  conf: z.array(Bracket),
+  /** Each conference's regular-season champions (every team tied for the best conference record). */
+  rsChampions: z.record(z.string(), z.array(z.string().min(1)).min(1)),
+  field: z.object({
+    mm: z.object({
+      /** The 64 teams in the order the Java picked them. */
+      teams: z.array(z.string().min(1)),
+      seeds: z.record(z.string(), int.min(1).max(16)),
+      /** Four regions of 16 in the Java's slot order. */
+      regions: z.array(z.array(z.string().min(1))),
+    }).strict(),
+    /** The 32 NIT teams, best seed first. */
+    nit: z.object({ teams: z.array(z.string().min(1)) }).strict(),
+    warnings: z.array(z.string()),
+  }).strict().nullable(),
+  nit: Bracket.nullable(),
+  mm: Bracket.nullable(),
+}).strict().superRefine((d, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  if (d.conf.length !== 18) issue('There are 18 conference tournaments');
+  if (new Set(d.conf.map(b => b.id)).size !== d.conf.length) issue('A conference tournament is listed twice');
+  for (const b of d.conf) if (b.kind !== 'conf') issue(`${b.id}: a conference tournament has kind conf`);
+  if (d.mm && d.mm.kind !== 'mm') issue('The March Madness bracket has kind mm');
+  if (d.nit && d.nit.kind !== 'nit') issue('The NIT bracket has kind nit');
+  if ((d.field === null) !== (d.mm === null) || (d.field === null) !== (d.nit === null)) issue('The field, the March Madness bracket and the NIT bracket exist together');
+  if (d.field) {
+    const mm = d.field.mm.teams;
+    const nit = d.field.nit.teams;
+    if (mm.length !== 64 || new Set(mm).size !== 64) issue('March Madness has 64 distinct teams');
+    if (nit.length !== 32 || new Set(nit).size !== 32) issue('The NIT has 32 distinct teams');
+    if (nit.some(t => mm.includes(t))) issue('A team is in both March Madness and the NIT');
+    const regions = d.field.mm.regions;
+    if (regions.length !== 4 || regions.some(r => r.length !== 16)) issue('March Madness has four regions of 16');
+    else if (new Set(regions.flat()).size !== 64 || regions.flat().some(t => !mm.includes(t))) issue('The regions must hold exactly the 64 teams');
+  }
+});
+export type JcPostseasonFile = z.infer<typeof JcPostseasonFile>;
+
+export const JcNationalAward = z.enum(['POY', 'FOY', 'GOY', 'FWD', 'COY', 'DPOY']);
+export type JcNationalAward = z.infer<typeof JcNationalAward>;
+export const JC_NATIONAL_AWARDS: JcNationalAward[] = ['POY', 'FOY', 'GOY', 'FWD', 'COY', 'DPOY'];
+/** Slot order of every FBAJC All-American team (rule change S71). */
+export const JC_ALL_AMERICAN_SLOTS = ['G', 'F', 'C', 'ANY', 'ANY'] as const;
+
+export const JcAllAmericanTeam = z.object({
+  team: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+  slots: z.array(z.object({ slot: z.enum(['G', 'F', 'C', 'ANY']), playerId: playerId.nullable() }).strict()),
+}).strict();
+export type JcAllAmericanTeam = z.infer<typeof JcAllAmericanTeam>;
+
+export const JcAwardsFile = z.object({
+  league: z.literal('fbajc'),
+  season: int,
+  locked: z.boolean(),
+  national: z.array(z.object({ award: JcNationalAward, playerId: playerId.nullable() }).strict()),
+  conference: z.array(z.object({ conf: z.string().min(1), playerId: playerId.nullable() }).strict()),
+  allAmerican: z.array(JcAllAmericanTeam).nullable(),
+  mvp: z.object({ mm: playerId.nullable(), nit: playerId.nullable() }).strict(),
+}).strict().superRefine((d, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  if (d.national.length !== 6 || new Set(d.national.map(a => a.award)).size !== 6) issue('There are six national awards, each once');
+  if (d.conference.length !== 18 || new Set(d.conference.map(a => a.conf)).size !== 18) issue('There are 18 conference awards, one per conference');
+  if (d.allAmerican) {
+    if (d.allAmerican.length !== 3 || d.allAmerican.some((t, k) => t.team !== k + 1)) issue('There are three All-American teams, in order');
+    const seen = new Set<string>();
+    for (const t of d.allAmerican) {
+      if (t.slots.length !== 5 || t.slots.some((s, k) => s.slot !== JC_ALL_AMERICAN_SLOTS[k])) issue(`All-American team ${t.team} must follow G, F, C, ANY, ANY`);
+      for (const sl of t.slots) {
+        if (!sl.playerId) continue;
+        if (seen.has(sl.playerId)) issue(`${sl.playerId} is on the All-American teams twice`);
+        seen.add(sl.playerId);
+      }
+    }
+  }
+});
+export type JcAwardsFile = z.infer<typeof JcAwardsFile>;
+
+export const JcSummary = z.object({
+  confChampions: z.array(z.object({ conf: z.string().min(1), tournament: z.string().min(1).nullable(), regularSeason: z.array(z.string().min(1)) }).strict()),
+  national: z.array(z.object({ award: JcNationalAward, playerId: playerId.nullable(), teamId: z.string().min(1).nullable() }).strict()),
+  conference: z.array(z.object({ conf: z.string().min(1), playerId: playerId.nullable(), teamId: z.string().min(1).nullable() }).strict()),
+  allAmerican: z.array(z.object({
+    team: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+    slots: z.array(z.object({ slot: z.enum(['G', 'F', 'C', 'ANY']), playerId: playerId.nullable(), teamId: z.string().min(1).nullable() }).strict()),
+  }).strict()).nullable(),
+  mvp: z.object({ mm: playerId.nullable(), nit: playerId.nullable() }).strict(),
+  nit: z.object({ champion: z.string().min(1), runnerUp: z.string().min(1) }).strict().nullable(),
+}).strict();
+export type JcSummary = z.infer<typeof JcSummary>;
 
 export const RatingPauseRow = z.object({
   playerId,
@@ -884,6 +1032,8 @@ export const SummaryFile = z.object({
   promotion: z.array(PromotionLine).nullable().optional(),
   /** D2 only: the regular-season (or, before S68, division) champions by group; co-champions share a group (imported history). */
   rsChampions: z.array(z.object({ group: z.string().min(1), teams: z.array(z.string().min(1)).min(1) }).strict()).optional(),
+  /** FBAJC only: conference champions, awards, All-American teams, MVPs and the NIT. */
+  jc: JcSummary.optional(),
   players: z.array(SummaryPlayerLine).optional(),
   /** Imported pre-stats seasons: each player's points per game (imported history). */
   legacyPpg: z.array(z.object({ playerId, teamId: z.string().min(1).nullable(), ppg: z.number().min(0) }).strict()).optional(),
@@ -892,6 +1042,7 @@ export const SummaryFile = z.object({
   if (doc.league !== 'fba' && (doc.allFba || doc.allStar)) issue('Only the FBA has All-FBA teams and an All-Star weekend');
   if (doc.league !== 'fbad2' && doc.promotion) issue('Only the D2 has promotion and relegation');
   if (doc.league !== 'fbad2' && doc.rsChampions) issue('Only the D2 has regular-season league champions');
+  if (doc.league !== 'fbajc' && doc.jc) issue('Only the FBAJC has a college postseason record');
   if (doc.pastBrackets?.length) {
     if (doc.pastBracket) issue('A summary has pastBracket or pastBrackets, not both');
     if (doc.league !== 'fbad2') issue('Only the D2 has one bracket per league');

@@ -57,12 +57,14 @@ export function RecruitingPage() {
       )}
     />
   );
-  if (!load.state) return <section className="stack">{head}<SetupPanel season={n} setup={load.setup!} versions={load.versions} /></section>;
-
-  const recruiting = autosave.doc ?? load.state.recruiting;
-  const state = { ...load.state, recruiting };
+  // Before the season's college rosters exist the board is still shown, read-only, under the setup card.
+  const readOnly = !load.state;
+  const base = load.state ?? load.preview!;
+  const recruiting = readOnly ? base.recruiting : autosave.doc ?? base.recruiting;
+  const state = { ...base, recruiting };
   const versions = { ...load.versions, [path]: autosave.version };
   const run = async (result: RecruitingResult) => {
+    if (readOnly) return;
     if (!result.ok) {
       setActionError(result.problems.join('; '));
       return;
@@ -85,13 +87,17 @@ export function RecruitingPage() {
   return (
     <section className="stack">
       {head}
+      {readOnly && <SetupPanel season={n} setup={load.setup!} versions={load.versions} />}
+      {readOnly && <p className="muted">This board is read-only until the S{n} college rosters are set up.</p>}
       <div className="subnav" role="tablist">{tabLink('board', 'Board')}{!boardOnly && tabLink('class', 'Class')}</div>
       {recruiting.locked && <p className="muted">Recruiting for this class is finished.</p>}
       {autosave.error && <p className="error">{autosave.error}</p>}
       {actionError && <p className="error">{actionError}</p>}
-      {tab === 'class'
-        ? <ClassTab state={state} saving={saving} onDraft={autosave.update} onRun={run} />
-        : <BoardTab state={state} saving={saving} onRun={run} rng={Math.random} />}
+      <fieldset className="readonly" disabled={readOnly}>
+        {tab === 'class'
+          ? <ClassTab state={state} saving={saving} onDraft={readOnly ? () => undefined : autosave.update} onRun={run} />
+          : <BoardTab state={state} saving={saving} onRun={run} rng={Math.random} />}
+      </fieldset>
     </section>
   );
 }
