@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 
 /** What a standings row has clinched, shown as a coloured bar on the rank cell (FotMob style) with a legend below. */
-export type ClinchKind = 'promoted' | 'relegated' | 'conference' | 'first' | 'playoff' | 'eliminated' | 'qualified' | 'advanced';
-type ClinchLeague = 'fba' | 'fbad2' | 'fbawc';
+export type ClinchKind = 'promoted' | 'relegated' | 'conference' | 'first' | 'playoff' | 'eliminated' | 'qualified' | 'advanced' | 'champion';
+type ClinchLeague = 'fba' | 'fbad2' | 'fbawc' | 'fbajc';
 
 /** Legend order. */
-const ORDER: ClinchKind[] = ['qualified', 'advanced', 'conference', 'first', 'playoff', 'promoted', 'relegated', 'eliminated'];
+const ORDER: ClinchKind[] = ['qualified', 'advanced', 'champion', 'conference', 'first', 'playoff', 'promoted', 'relegated', 'eliminated'];
 
 export function clinchLabel(kind: ClinchKind, league: ClinchLeague): string {
   switch (kind) {
@@ -13,6 +13,7 @@ export function clinchLabel(kind: ClinchKind, league: ClinchLeague): string {
     case 'advanced': return 'Advanced to knockouts';
     case 'promoted': return 'Promoted';
     case 'relegated': return 'Relegated';
+    case 'champion': return 'Clinched conference title';
     case 'conference': return 'Conference champion';
     case 'first': return league === 'fba' ? 'Clinched the #1 seed' : 'Clinched first place';
     case 'playoff': return 'Clinched a playoff spot';

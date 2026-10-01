@@ -11,3 +11,5 @@
 .jc-game.jc-unplayed { color: var(--muted); }
 .jc-winner { font-weight: 700; }
 .jc-score { text-align: center; }
+.jc-conf-pick { display: flex; align-items: center; gap: var(--s2); }
+.jc-ties { margin: 6px 0 0; padding-left: 18px; font-size: var(--fs-sm); color: var(--muted); }
