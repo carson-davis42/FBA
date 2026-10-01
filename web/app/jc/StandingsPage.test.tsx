@@ -85,4 +85,11 @@ describe('StandingsPage', () => {
     const sorted = [...rows].sort((a, b) => a.localeCompare(b));
     expect(rows).toEqual(sorted);
   });
+
+  it('before the schedule exists the title is neutral', async () => {
+    mount(jcUnstartedFixture());
+    await screen.findByText('No games yet');
+    expect(screen.queryByText(/S79 FBAJC/)).toBeNull();
+    expect(screen.getByRole('heading', { level: 1, name: 'Standings' })).toBeTruthy();
+  });
 });

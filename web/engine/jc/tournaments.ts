@@ -94,7 +94,7 @@ export function makeFields(
         add(cur, ru);
       }
     }
-    while (cur.length < 4 && nRanked < 4) {
+    while (nRanked < 4) {
       const id = pickRanked(cur);
       if (id === null) break;
       add(cur, id);

@@ -4,6 +4,7 @@ import type { CalendarFile, Team } from '../../engine/shared/types';
 import { useDoc } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
+import { jcGate } from './JcGate';
 import { useJcDocs } from './useJcDocs';
 import './jc.css';
 
@@ -16,10 +17,10 @@ export function TournamentsPage() {
   const kicker = 'Junior College';
 
   if (season === null) return <section className="jc-page"><PageHeader kicker={kicker} title="Tournaments" /></section>;
-  const title = `S${season} FBAJC Tournaments`;
-  if (docs.error) return <section className="jc-page"><PageHeader kicker={kicker} title={title} /><p className="error">{docs.error}</p></section>;
-  const state = docs.state;
-  if (!state) return <section className="jc-page"><PageHeader kicker={kicker} title={title} /><p className="muted">Loading...</p></section>;
+  const gate = jcGate(docs, kicker, 'Tournaments');
+  if (gate) return <>{gate}</>;
+  const state = docs.state!;
+  const title = state.schedule ? `S${season} FBAJC Tournaments` : 'Tournaments';
   if (!state.schedule) return <section className="jc-page"><PageHeader kicker={kicker} title={title} /><p className="muted">The season has not started.</p></section>;
 
   const byId = new Map<string, Team>(state.teams.teams.map(t => [t.teamId, t]));

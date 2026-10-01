@@ -15,6 +15,18 @@ const started = (): JcState => {
 };
 
 describe('startSeason', () => {
+  it('refuses while the recruiting board has an uncommitted recruit or portal player', () => {
+    const s = jcUnstartedFixture();
+    const open = { playerId: 'p99999', position: 'PG' as const, classYear: 'Fr' as const, rating: null, stars: null, projections: {}, committedTo: null };
+    s.board = { league: 'fbajc', season: 78, classOf: 79, locked: false, classDraft: [], created: true, recruits: [open], portal: [] };
+    const r = startSeason(s, mulberry32(1), none);
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.problems.join(' ')).toMatch(/1 recruit and 0 portal players haven't committed yet/);
+    s.board = { ...s.board, recruits: [], portal: [{ ...open, fromTeam: 'C00T00' }] };
+    expect(startSeason(s, mulberry32(1), none).ok).toBe(false);
+    s.board = { ...s.board, portal: [] };
+    expect(startSeason(s, mulberry32(1), none).ok).toBe(true);
+  });
   it('refuses with open spots', () => {
     const s = jcUnstartedFixture();
     const id = Object.keys(s.rosters.teams)[0];

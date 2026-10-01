@@ -14,7 +14,7 @@ const teams = { league: 'fbajc', teams: [{ teamId: 'a', name: 'A', abbr: 'A', gr
 const make = (games: number[]): JcState => ({
   season: 79, teams,
   rosters: {} as JcState['rosters'], players: {} as JcState['players'], calendar: {} as JcState['calendar'],
-  schedule, rankings: null, summary: null,
+  schedule, rankings: null, summary: null, board: null,
   results: { league: 'fbajc', season: 79, locked: false, games: games.map(game) } as ResultsFile,
 });
 

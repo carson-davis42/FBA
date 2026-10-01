@@ -7,6 +7,7 @@ import { useDoc } from '../api';
 import { ClinchLegend, RankCell } from '../components/Clinch';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
+import { jcGate } from './JcGate';
 import { useJcDocs } from './useJcDocs';
 import './jc.css';
 
@@ -20,10 +21,10 @@ export function StandingsPage() {
   const kicker = 'Junior College';
 
   if (season === null) return <section className="jc-page"><PageHeader kicker={kicker} title="Standings" /></section>;
-  const title = `S${season} FBAJC`;
-  if (docs.error) return <section className="jc-page"><PageHeader kicker={kicker} title={title} /><p className="error">{docs.error}</p></section>;
-  const state = docs.state;
-  if (!state) return <section className="jc-page"><PageHeader kicker={kicker} title={title} /><p className="muted">Loading...</p></section>;
+  const gate = jcGate(docs, kicker, 'Standings');
+  if (gate) return <>{gate}</>;
+  const state = docs.state!;
+  const title = state.schedule ? `S${season} FBAJC` : 'Standings';
 
   const teams = state.teams.teams;
   const byId = new Map<string, Team>(teams.map(t => [t.teamId, t]));

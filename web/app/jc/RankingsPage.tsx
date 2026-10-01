@@ -4,6 +4,7 @@ import type { CalendarFile, Team } from '../../engine/shared/types';
 import { useDoc } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
+import { jcGate } from './JcGate';
 import { useJcDocs } from './useJcDocs';
 import './jc.css';
 
@@ -16,10 +17,10 @@ export function RankingsPage() {
   const kicker = 'Junior College';
 
   if (season === null) return <section className="jc-page"><PageHeader kicker={kicker} title="Rankings" /></section>;
-  const title = `S${season} FBAJC`;
-  if (docs.error) return <section className="jc-page"><PageHeader kicker={kicker} title={title} /><p className="error">{docs.error}</p></section>;
-  const state = docs.state;
-  if (!state) return <section className="jc-page"><PageHeader kicker={kicker} title={title} /><p className="muted">Loading...</p></section>;
+  const gate = jcGate(docs, kicker, 'Rankings');
+  if (gate) return <>{gate}</>;
+  const state = docs.state!;
+  const title = state.schedule ? `S${season} FBAJC` : 'Rankings';
 
   const snaps = state.rankings?.snapshots ?? [];
   if (snaps.length === 0) return <section className="jc-page"><PageHeader kicker={kicker} title={title} /><p className="muted">No rankings yet</p></section>;

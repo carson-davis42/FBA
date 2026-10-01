@@ -1,4 +1,5 @@
 import type { Rng } from '../d2/random';
+import { fbajcGateProblem } from '../college/recruiting';
 import { openSpots } from '../college/walkOns';
 import { calendarProblem } from '../season/moves';
 import type { JcScheduleFile } from '../shared/types';
@@ -23,6 +24,8 @@ export function startSeason(state: JcState, rng: Rng, last: { champion: string |
   if (step) return jcFail([step]);
   if (state.schedule) return jcFail(['The season has already started']);
   if (openSpots(state.rosters) > 0) return jcFail(['Fill the open roster spots with walk-ons first']);
+  const gate = fbajcGateProblem(state.board, state.rosters);
+  if (gate) return jcFail([gate]);
 
   const teamIds = state.teams.teams.map(t => t.teamId);
   const confs = conferences(state);

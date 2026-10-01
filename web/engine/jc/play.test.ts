@@ -6,6 +6,18 @@ import { jcStateFixture } from './testFixtures';
 
 const entry = (rating: number, id = 'p00001'): RosterEntry => ({ playerId: id, position: 'PG', rating, age: null, points: 0 });
 
+describe('playDay uses the FBAJC sim', () => {
+  it('a 55-rated starter scores over a day of games (the FBA weighting gives him nothing)', () => {
+    const s = jcStateFixture();
+    const teams = { ...s.rosters.teams };
+    for (const id of Object.keys(teams)) teams[id] = teams[id].map((e, i) => (i === 4 ? { ...e, rating: 55 } : { ...e, rating: Math.max(e.rating!, 70) }));
+    const r = playDay({ ...s, rosters: { ...s.rosters, teams } }, mulberry32(4));
+    if (!r.ok) throw new Error(r.problems.join());
+    const pts = Object.values(r.state.rosters.teams).filter(es => es[4].points > 0).length;
+    expect(pts).toBeGreaterThan(50);
+  });
+});
+
 describe('progressRatings', () => {
   it('never exceeds 99 or lowers a rating, and 99 stays 99', () => {
     const rng = mulberry32(3);

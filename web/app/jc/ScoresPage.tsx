@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { mulberry32 } from '../../engine/d2/random';
+import { fbajcGateProblem } from '../../engine/college/recruiting';
 import { openSpots } from '../../engine/college/walkOns';
 import { playDay, playToEnd, regularSeasonOver } from '../../engine/jc/play';
 import { namesNeeded, redrawFields, startSeason } from '../../engine/jc/start';
@@ -10,6 +11,7 @@ import type { CalendarFile, SummaryFile, Team } from '../../engine/shared/types'
 import { useDoc } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
+import { jcGate } from './JcGate';
 import { useJcDocs } from './useJcDocs';
 import { useJcRun } from './useJcRun';
 import './jc.css';
@@ -22,7 +24,7 @@ function lastFinalists(state: JcState, last: SummaryFile | null): { champion: st
   const c = last?.champions[0];
   const find = (name: string | null | undefined): string | null =>
     name ? state.teams.teams.find(t => t.name === name)?.teamId ?? null : null;
-  return { champion: c?.teamId ?? find(c?.champion), runnerUp: find(c?.runnerUp) };
+  return { champion: c?.teamId ?? find(c?.champion), runnerUp: c?.runnerUpId ?? find(c?.runnerUp) };
 }
 
 export function ScoresPage() {
@@ -31,13 +33,14 @@ export function ScoresPage() {
   const docs = useJcDocs(season);
   const { saving, error, run } = useJcRun(docs.versions, docs.reload);
   const [picked, setPicked] = useState<number | null>(null);
+  const [playing, setPlaying] = useState(false);
   const kicker = 'Junior College';
 
   if (season === null) return <section className="jc-page"><PageHeader kicker={kicker} title="Scores" /></section>;
   const title = `S${season} FBAJC`;
-  if (docs.error) return <section className="jc-page"><PageHeader kicker={kicker} title={title} /><p className="error">{docs.error}</p></section>;
-  const state = docs.state;
-  if (!state) return <section className="jc-page"><PageHeader kicker={kicker} title={title} /><p className="muted">Loading...</p></section>;
+  const gate = jcGate(docs, kicker, 'Scores');
+  if (gate) return <>{gate}</>;
+  const state = docs.state!;
 
   const byId = new Map<string, Team>(state.teams.teams.map(t => [t.teamId, t]));
   const name = (id: string) => byId.get(id)?.name ?? id;
@@ -51,7 +54,7 @@ export function ScoresPage() {
 
   if (!state.schedule) {
     const spots = openSpots(state.rosters);
-    const reason = stepProblem ?? (spots > 0 ? 'Fill the open roster spots with walk-ons first' : null);
+    const reason = stepProblem ?? (spots > 0 ? 'Fill the open roster spots with walk-ons first' : fbajcGateProblem(state.board, state.rosters));
     return (
       <section className="jc-page">
         <PageHeader kicker={kicker} title={title} />
@@ -73,7 +76,7 @@ export function ScoresPage() {
   const results = new Map((state.results?.games ?? []).map(g => [g.gameNo, g]));
   const over = regularSeasonOver(state);
   const playReason = stepProblem ?? (over ? 'The regular season is over' : null);
-  const blocked = saving || !!playReason;
+  const blocked = saving || playing || !!playReason;
   const needed = namesNeeded(state);
   const notStarted = (state.results?.games.length ?? 0) === 0;
 
@@ -105,7 +108,7 @@ export function ScoresPage() {
       </div>
       <div className="jc-actions">
         <button className="btn primary" disabled={blocked} title={playReason ?? undefined} onClick={() => void run(() => playDay(state, newRng()))}>Play day</button>
-        <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => void run(() => playToEnd(state, newRng()))}>Play to end of regular season</button>
+        <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => { setPlaying(true); setTimeout(() => { void run(() => playToEnd(state, newRng())).finally(() => setPlaying(false)); }, 0); }}>{playing ? 'Playing...' : 'Play to end of regular season'}</button>
       </div>
       {playReason && <p className="muted">{playReason}</p>}
       {error && <p className="error">{error}</p>}

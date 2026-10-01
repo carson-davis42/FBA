@@ -1,6 +1,6 @@
 import { randInt, type Rng } from '../d2/random';
 import { calendarProblem, toGameResult } from '../season/moves';
-import { simGame, type SimTeam } from '../season/sim';
+import { JC_PROFILE, simGame, type SimTeam } from '../season/sim';
 import { POSITIONS } from '../roster/rules';
 import type { GameResult, JcScheduleFile, RosterEntry } from '../shared/types';
 import { blendRankings, teamRating } from './rankings';
@@ -103,7 +103,7 @@ function step(state: JcState, rng: Rng): Step {
     const away = lineupOf(rosters[g.away], g.away);
     if (typeof home === 'string') return { problems: [home] };
     if (typeof away === 'string') return { problems: [away] };
-    const sim = simGame(g.gameNo, home, away, rng);
+    const sim = simGame(g.gameNo, home, away, rng, JC_PROFILE);
     results.push(toGameResult(sim));
     const pts: Record<string, number> = {};
     for (const side of ['home', 'away'] as const) sim[side].players.forEach((p, k) => { pts[p.playerId] = sim.box[side][k]; });

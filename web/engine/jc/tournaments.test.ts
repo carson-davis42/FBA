@@ -21,6 +21,11 @@ describe('makeFields', () => {
     expect(fields[0].teams).toContain('C0T5');
     expect(fields[0].teams).toContain('C1T5');
   });
+  it('adds ranked teams up to 4 ranked (as the Java) when finalists are unranked', () => {
+    expect(fields[0].teams.filter(t => top25.includes(t))).toHaveLength(4);
+    const ranked = makeFields({ ...input, lastChampion: 'C0T0', lastRunnerUp: 'C1T0' }, mulberry32(7));
+    expect(ranked[0].teams.filter(t => top25.includes(t))).toHaveLength(4);
+  });
   it('skips the runner-up from the same conference', () => {
     const f = makeFields({ ...input, lastRunnerUp: 'C0T6' }, mulberry32(7));
     expect(f[0].teams).toContain('C0T5');

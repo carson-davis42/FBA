@@ -16,15 +16,17 @@ function docsOf(s: JcState): Record<string, unknown> {
     'leagues/fbajc/teams.json': s.teams,
     [`${p}/rosters.json`]: s.rosters,
   };
+  if (s.board) docs[`leagues/fbajc/S${s.season - 1}/recruiting.json`] = s.board;
   if (s.schedule) docs[`${p}/schedule.json`] = s.schedule;
   if (s.results) docs[`${p}/results.json`] = s.results;
   if (s.rankings) docs[`${p}/rankings.json`] = s.rankings;
   return docs;
 }
 
-function mount(s: JcState) {
+function mount(s: JcState, drop: string[] = []) {
   batches = [];
   const docs = docsOf(s);
+  for (const d of drop) delete docs[d];
   vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
     if (url === '/api/batch') {
       batches.push(JSON.parse(String(init?.body)));
@@ -47,6 +49,21 @@ describe('ScoresPage', () => {
     expect((screen.getByRole('button', { name: 'Start season' }) as HTMLButtonElement).disabled).toBe(true);
     expect(screen.getByRole('link', { name: /recruiting/i }).getAttribute('href')).toBe('/league/fbajc/recruiting');
     expect(screen.getByText(/S79 FBAJC/)).toBeTruthy();
+  });
+
+  it('a missing season rosters doc shows a message, not Loading and not the season title', async () => {
+    mount(jcUnstartedFixture(), ['leagues/fbajc/S79/rosters.json']);
+    expect(await screen.findByText(/S79 college rosters don't exist yet/)).toBeTruthy();
+    expect(screen.queryByText('Loading...')).toBeNull();
+    expect(screen.queryByText(/S79 FBAJC/)).toBeNull();
+  });
+
+  it('Start season is disabled while recruits are uncommitted', async () => {
+    const s = jcUnstartedFixture();
+    s.board = { league: 'fbajc', season: 78, classOf: 79, locked: false, classDraft: [], created: true, recruits: [{ playerId: 'p99999', position: 'PG', classYear: 'Fr', rating: null, stars: null, projections: {}, committedTo: null }], portal: [] };
+    mount(s);
+    expect((await screen.findByRole('button', { name: 'Start season' }) as HTMLButtonElement).disabled).toBe(true);
+    expect(screen.getByText(/haven't committed yet/)).toBeTruthy();
   });
 
   it('a started season at day 0 shows the 27 fields and a re-draw button', async () => {

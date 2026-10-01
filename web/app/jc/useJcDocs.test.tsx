@@ -48,6 +48,33 @@ describe('useJcDocs', () => {
   });
 });
 
+describe('useJcDocs missing docs', () => {
+  it('names the missing season rosters instead of loading forever', async () => {
+    const saved = docs['leagues/fbajc/S79/rosters.json'];
+    delete docs['leagues/fbajc/S79/rosters.json'];
+    try {
+      const { result } = renderHook(() => useJcDocs(79));
+      await waitFor(() => expect(result.current.loading).toBe(false));
+      expect(result.current.state).toBeNull();
+      expect(result.current.missing).toMatch(/S79 college rosters don't exist yet/);
+      expect(result.current.missing).toContain('leagues/fbajc/S79/rosters.json');
+    } finally {
+      docs['leagues/fbajc/S79/rosters.json'] = saved;
+    }
+  });
+  it('loads the previous class board into the state', async () => {
+    docs['leagues/fbajc/S78/recruiting.json'] = { marker: 'board' };
+    try {
+      const { result } = renderHook(() => useJcDocs(79));
+      await waitFor(() => expect(result.current.loading).toBe(false));
+      expect(result.current.state?.board).toEqual({ marker: 'board' });
+      expect(requested).toContain('leagues/fbajc/S78/recruiting.json');
+    } finally {
+      delete docs['leagues/fbajc/S78/recruiting.json'];
+    }
+  });
+});
+
 describe('useJcRun', () => {
   it('saves once when run twice quickly, with baseVersions', async () => {
     const { result } = renderHook(() => ({ d: useJcDocs(79) }));

@@ -55,6 +55,7 @@ export function jcStateFixture(seed = 7, season = 79): JcState {
     results: { league: 'fbajc', season, locked: false, games: [] },
     rankings: { league: 'fbajc', season, locked: false, snapshots: [] },
     summary: null,
+    board: null,
   };
 }
 
