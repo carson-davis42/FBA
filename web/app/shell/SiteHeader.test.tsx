@@ -37,10 +37,10 @@ describe('SiteHeader', () => {
     expect(screen.getByRole('link', { name: 'D2' }).className).toContain('active');
   });
 
-  it('lists only Teams for the WC and Teams/Recruiting for the JC, with league hrefs', () => {
+  it('lists Qualifying, World Cup and Teams for the WC and Teams/Recruiting for the JC, with league hrefs', () => {
     const hrefs = () => Array.from(screen.getByRole('navigation', { name: 'Site sections' }).querySelectorAll('a')).map(a => a.getAttribute('href')).slice(0, -4);
     const wc = render(<MemoryRouter initialEntries={['/league/fbawc']}><SiteHeader /></MemoryRouter>);
-    expect(hrefs()).toEqual(['/league/fbawc']);
+    expect(hrefs()).toEqual(['/league/fbawc/qualifying', '/league/fbawc/worldcup', '/league/fbawc']);
     wc.unmount();
     render(<MemoryRouter initialEntries={['/league/fbajc/recruiting']}><SiteHeader /></MemoryRouter>);
     expect(hrefs()).toEqual(['/league/fbajc', '/league/fbajc/recruiting']);
