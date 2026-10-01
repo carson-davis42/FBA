@@ -1,0 +1,72 @@
+# p089 March Madness S60
+S60
+1|Arizona|23-0
+BYE
+|USC|13-9
+|ETSU|20-3
+17|Arizona State|17-6
+|Xavier|12-9
+|Wichita State|12-9
+16|Memphis|17-6
+9|Oklahoma|17-5
+|UC Irvine|13-9
+|St.Joseph's|16-7
+24|UConn|17-5
+25|Vermont|22-1
+|Saint Mary's|17-4
+BYE
+8|Florida State|16-6
+4|Wisconsin|23-0
+BYE
+|Auburn|13-9
+|VCU|18-4
+20|Illinois|23-0
+|Wofford|15-8
+|Stephen F Austin|14-9
+13|Nevada|20-3
+12|Villanova|20-3
+|Ohio State|11-10
+|NC State|12-9
+21|Kentucky|15-7
+|Butler|14-8
+|Gonzaga|12-9
+BYE
+5|Baylor|20-3
+2|Kansas|21-2
+BYE
+|Seton Hall|14-8
+|Penn State|20-2
+18|North Carolina|15-8
+|LSU|11-10
+|Harvard|15-7
+15|DePaul|22-1
+10|Mississippi State|20-3
+|Liberty|13-8
+|Boston U|16-7
+23|UCLA|15-7
+|Dayton|18-4
+|Texas|11-10
+BYE
+7|Louisville|20-3
+3|Wake Forest|23-0
+BYE
+|Yale|21-2
+|Texas A&M|13-8
+19|Michigan|16-6
+|Virginia|11-10
+|Utah State|14-8
+14|Georgia|19-4
+11|Creighton|21-2
+|Northern Kentucky|13-9
+|Princeton|16-7
+22|Texas Tech|13-9
+|San Diego State|17-5
+|Michigan State|13-9
+BYE
+6|Duke|19-3
+=Arizona BYE|USC 53-30|Arizona State 53-28|Memphis 60-30|Oklahoma 51-27|UConn 50-36|Vermont 41-36|Florida State BYE|Wisconsin BYE|Auburn 52-50|Illinois 42-24|Nevada 50-18|Villanova 61-26|NC State 48-37|Butler 39-37|Baylor BYE|Kansas BYE|Penn State 40-34|North Carolina 85-84 2OT|DePaul 44-11|Mississippi State 52-40|Boston U 41-40|Dayton 53-27|Louisville BYE|Wake Forest BYE|Yale 42-39|Virginia 56-46|Georgia 59-25|Creighton 64-26|Texas Tech 44-30|San Diego State 38-33|Duke BYE
+=Arizona 52-30|Arizona State 54-47 OT|Oklahoma 41-39|Florida State 50-43|Wisconsin 46-30|Illinois 41-33|Villanova 44-37|Baylor 44-25|Kansas 45-29|North Carolina 46-42|Mississippi State 46-29|Louisville 59-49|Wake Forest 47-45|Georgia 43-32|Texas Tech 43-41|Duke 41-34
+=Arizona 48-36|Oklahoma 45-42|Illinois 78-70 2OT|Baylor 47-46|Kansas 48-37|Louisville 52-47|Wake Forest 50-36|Duke 45-27
+=Oklahoma 84-78 3OT|Baylor 43-31|Louisville 63-60 OT|Wake Forest 49-43
+=Oklahoma 56-53|Wake Forest 50-48
+=Wake Forest 74-72 OT

@@ -1,0 +1,72 @@
+# p070 March Madness S54
+S54
+1|Michigan State|20-2
+BYE
+|Belmont|17-5
+|Villanova|13-8
+17|Syracuse|13-7
+|Oklahoma|10-10
+BYE
+16|Buffalo|22-0
+9|Indiana|16-5
+BYE
+|New Mexico State|15-7
+24|Arizona|15-6
+25|UCF|17-5
+|Maryland|11-9
+BYE
+8|Tennessee|18-4
+4|Gonzaga|19-2
+BYE
+|Auburn|12-8
+|Nevada|13-8
+20|Marquette|17-5
+|Harvard|13-7
+BYE
+13|Michigan|17-5
+12|Texas Tech|18-4
+BYE
+|Arizona State|11-9
+21|Mississippi State|15-6
+|Washington|17-5
+|Penn|21-1
+BYE
+5|Florida State|17-4
+2|Xavier|21-1
+BYE
+|Louisville|12-9
+|Florida|12-9
+18|Kansas State|16-6
+|North Carolina|9-11
+BYE
+15|LSU|15-5
+10|Virginia|19-3
+BYE
+|Murray State|14-7
+23|Wichita State|16-5
+|Houston|16-5
+|UConn|13-7
+BYE
+7|Kansas|16-4
+3|Duke|18-4
+BYE
+|Baylor|12-8
+|Cincinnati|16-6
+19|Stanford|15-5
+|East Carolina|14-7
+BYE
+14|Iowa State|16-5
+11|Oregon|19-3
+BYE
+|Seton Hall|11-9
+22|Georgetown|16-5
+|Purdue|12-8
+|Wofford|17-5
+BYE
+6|Kentucky|19-3
+=Michigan State BYE|Belmont 53-32|Syracuse 61-22|Buffalo BYE|Indiana BYE|Arizona 41-36|UCF 62-29|Tennessee BYE|Gonzaga BYE|Nevada 42-33|Marquette 47-23|Michigan BYE|Texas Tech BYE|Mississippi State 52-29|Penn 44-37|Florida State BYE|Xavier BYE|Florida 45-31|Kansas State 53-25|LSU BYE|Virginia BYE|Wichita State 51-37|Houston 38-33|Kansas BYE|Duke BYE|Baylor 38-37|Stanford 35-33|Iowa State BYE|Oregon BYE|Seton Hall 33-29|Wofford 35-34|Kentucky BYE
+=Michigan State 70-69 2OT|Buffalo 45-43|Arizona 37-35|Tennessee 52-50 OT|Gonzaga 43-30|Michigan 42-31|Texas Tech 40-38|Florida State 55-36|Xavier 44-29|LSU 33-28|Wichita State 50-48|Kansas 50-32|Duke 67-18|Stanford 39-32|Oregon 52-32|Kentucky 70-41
+=Michigan State 62-32|Arizona 44-40|Michigan 80-69 3OT|Florida State 48-30|Xavier 48-39|Wichita State 45-43|Duke 57-25|Kentucky 46-45
+=Michigan State 50-36|Florida State 56-55|Wichita State 52-36|Duke 49-48
+=Michigan State 50-47|Wichita State 97-94 3OT
+=Michigan State 41-40
