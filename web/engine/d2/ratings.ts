@@ -1,7 +1,8 @@
-import { rankingBlockers, suggestionsTaken } from '../rank/ranking';
+import { rankingBlockers, reserveBound, suggestionsTaken } from '../rank/ranking';
 import { appendTx, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
 import type { RankingFile, RankingRow } from '../shared/types';
+import { POOL_CUTOFF } from './pool';
 import { d2Fail, d2Name, poolMembers, type D2Result, type D2State } from './state';
 
 export const MAX_RATING = 99;
@@ -78,22 +79,25 @@ export function membershipBlockers(state: D2State): string[] {
   return out;
 }
 
-export function ratingsBlockers(state: D2State): string[] {
+export function ratingsBlockers(state: D2State, cutoff = POOL_CUTOFF): string[] {
   if (!state.ratings) return ['Start the ratings reset first'];
   if (state.ratings.locked) return ['D2 ratings are already finished'];
-  return [...rankingBlockers(state.ratings, id => d2Name(state, id)), ...membershipBlockers(state)];
+  return [...rankingBlockers(state.ratings, id => d2Name(state, id), reserveBound(state.ratings, cutoff)), ...membershipBlockers(state)];
 }
 
-export function finishRatings(state: D2State, ctx: MoveContext): D2Result {
-  const blockers = ratingsBlockers(state);
+export function finishRatings(state: D2State, ctx: MoveContext, cutoff = POOL_CUTOFF): D2Result {
+  const blockers = ratingsBlockers(state, cutoff);
   if (blockers.length) return d2Fail(blockers);
   const ratings = state.ratings!;
-  const next = new Map(Object.entries(ratings.ratings));
+  // Players ranked past their position's spots go to the Reserve pool unrated.
+  const reserve = reserveBound(ratings, cutoff);
+  const next = new Map(Object.entries(ratings.ratings).filter(([id]) => !reserve.has(id)));
+  const rated = (id: string | null, current: number | null) => (id !== null && reserve.has(id) ? null : id !== null && next.has(id) ? next.get(id)! : current);
   const teams = Object.fromEntries(Object.entries(state.d2.teams).map(([t, entries]) => [
-    t, entries.map(e => (e.playerId !== null && next.has(e.playerId) ? { ...e, rating: next.get(e.playerId)! } : e)),
+    t, entries.map(e => ({ ...e, rating: rated(e.playerId, e.rating) })),
   ]));
-  const reserves = { ...state.reserves, players: state.reserves.players.map(p => ({ ...p, rating: next.get(p.playerId) ?? p.rating })) };
-  const line = `D2 ratings reset: ${ratings.rows.length} players ranked, ${suggestionsTaken(ratings)} took the suggestion`;
+  const reserves = { ...state.reserves, players: state.reserves.players.map(p => ({ ...p, rating: rated(p.playerId, p.rating) })) };
+  const line = `D2 ratings reset: ${ratings.rows.length} players ranked, ${suggestionsTaken(ratings, reserve)} took the suggestion`;
   const d2Tx = appendTx(state.d2Tx, ctx, 'd2-ratings', [], [line]);
   return {
     ok: true,

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { applyAllSuggestions, setRating, takeRest } from '../rank/ranking';
+import { applyAllSuggestions, reserveBound, setRating, takeRest } from '../rank/ranking';
 import { RankingFile } from '../shared/types';
 import { buildRankingRows, d2Curve, finishRatings, stretchCurve, membershipBlockers, parseRatingInput, ratingsBlockers, startRatings } from './ratings';
 import { d2Name, type D2Result, type D2State } from './state';
@@ -73,6 +73,28 @@ describe('stretchCurve', () => {
     expect(stretchCurve([90, 80, 70], 2)).toEqual([90, 80, 70]);
     expect(stretchCurve([90], 5)).toEqual([90]);
     expect(stretchCurve([], 5)).toEqual([]);
+  });
+});
+
+describe('Reserve-bound players', () => {
+  it('need no rating, and finish leaves them unrated', () => {
+    const s = started();
+    const doc = takeRest(s.ratings!, id => d2Name(s, id));
+    // Two spots per position: of the 5 PGs, the 3 ranked last go to the Reserve pool.
+    const spots = 2;
+    const skip = reserveBound(doc, spots);
+    expect(skip.size).toBeGreaterThan(0);
+    let rated = applyAllSuggestions(doc, skip);
+    for (const id of doc.order) if (!skip.has(id) && rated.ratings[id] === undefined) rated = setRating(rated, id, 66);
+    const state = { ...s, ratings: rated };
+    expect(ratingsBlockers(state, spots)).toEqual([]);
+    const r = ok(finishRatings(state, ctx, spots));
+    const everyRating = new Map([
+      ...Object.values(r.state.d2.teams).flat().map(e => [e.playerId, e.rating] as const),
+      ...r.state.reserves.players.map(p => [p.playerId, p.rating] as const),
+    ]);
+    for (const id of skip) expect(everyRating.get(id)).toBeNull();
+    for (const id of doc.order) if (!skip.has(id)) expect(everyRating.get(id)).not.toBeNull();
   });
 });
 
