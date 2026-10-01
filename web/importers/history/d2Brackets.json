@@ -3892,6 +3892,64 @@
     ]
   },
   {
+    "season": 68,
+    "group": "UL",
+    "rounds": 2,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Glasgow",
+          "record": "13-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Barcelona",
+          "record": "8-6",
+          "seed": 4
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Vancouver",
+          "record": "8-6",
+          "seed": 3
+        },
+        "away": {
+          "name": "Zurich",
+          "record": "10-4",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Glasgow",
+          "record": "13-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Zurich",
+          "record": "10-4",
+          "seed": 2
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      }
+    ]
+  },
+  {
     "season": 69,
     "group": "PL",
     "rounds": 3,
@@ -4378,6 +4436,124 @@
     ]
   },
   {
+    "season": 70,
+    "group": "UL",
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Tokyo",
+          "record": "20-2",
+          "seed": 1
+        },
+        "away": null,
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Buenos Aires",
+          "record": "13-9",
+          "seed": 5
+        },
+        "away": {
+          "name": "Lyon",
+          "record": "14-8",
+          "seed": 4
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Copenhagen",
+          "record": "14-8",
+          "seed": 3
+        },
+        "away": {
+          "name": "Lagos",
+          "record": "12-10",
+          "seed": 6
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": null,
+        "away": {
+          "name": "Shanghai",
+          "record": "17-5",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Tokyo",
+          "record": "20-2",
+          "seed": 1
+        },
+        "away": {
+          "name": "Buenos Aires",
+          "record": "13-9",
+          "seed": 5
+        },
+        "homeWins": 4,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Copenhagen",
+          "record": "14-8",
+          "seed": 3
+        },
+        "away": {
+          "name": "Shanghai",
+          "record": "17-5",
+          "seed": 2
+        },
+        "homeWins": 3,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Tokyo",
+          "record": "20-2",
+          "seed": 1
+        },
+        "away": {
+          "name": "Shanghai",
+          "record": "17-5",
+          "seed": 2
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      }
+    ]
+  },
+  {
     "season": 71,
     "group": "PL",
     "rounds": 3,
@@ -4740,6 +4916,132 @@
           "name": "Buenos Aires",
           "record": "19-3",
           "seed": 2
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      }
+    ]
+  },
+  {
+    "season": 72,
+    "group": "PL",
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Tokyo",
+          "record": "25-5",
+          "seed": 1
+        },
+        "away": {
+          "name": "Salzburg",
+          "record": "18-12",
+          "seed": 8
+        },
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Rome",
+          "record": "20-10",
+          "seed": 5
+        },
+        "away": {
+          "name": "Munich",
+          "record": "20-10",
+          "seed": 4
+        },
+        "homeWins": 1,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Lisbon",
+          "record": "21-9",
+          "seed": 3
+        },
+        "away": {
+          "name": "Austin",
+          "record": "19-11",
+          "seed": 6
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Ottawa",
+          "record": "18-12",
+          "seed": 7
+        },
+        "away": {
+          "name": "Milan",
+          "record": "24-6",
+          "seed": 2
+        },
+        "homeWins": 3,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Salzburg",
+          "record": "18-12",
+          "seed": 8
+        },
+        "away": {
+          "name": "Munich",
+          "record": "20-10",
+          "seed": 4
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Lisbon",
+          "record": "21-9",
+          "seed": 3
+        },
+        "away": {
+          "name": "Milan",
+          "record": "24-6",
+          "seed": 2
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Salzburg",
+          "record": "18-12",
+          "seed": 8
+        },
+        "away": {
+          "name": "Lisbon",
+          "record": "21-9",
+          "seed": 3
         },
         "homeWins": 4,
         "awayWins": 2,
@@ -5379,6 +5681,132 @@
   },
   {
     "season": 73,
+    "group": "UL",
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Sao Paolo",
+          "record": "28-2",
+          "seed": 1
+        },
+        "away": {
+          "name": "Johannesburg",
+          "record": "17-13",
+          "seed": 8
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Beijing",
+          "record": "18-12",
+          "seed": 5
+        },
+        "away": {
+          "name": "Sydney",
+          "record": "20-10",
+          "seed": 4
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Stockholm",
+          "record": "20-10",
+          "seed": 3
+        },
+        "away": {
+          "name": "Rio De Janeiro",
+          "record": "17-13",
+          "seed": 6
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Miami",
+          "record": "17-13",
+          "seed": 7
+        },
+        "away": {
+          "name": "Budapest",
+          "record": "22-8",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Sao Paolo",
+          "record": "28-2",
+          "seed": 1
+        },
+        "away": {
+          "name": "Beijing",
+          "record": "18-12",
+          "seed": 5
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Stockholm",
+          "record": "20-10",
+          "seed": 3
+        },
+        "away": {
+          "name": "Budapest",
+          "record": "22-8",
+          "seed": 2
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Sao Paolo",
+          "record": "28-2",
+          "seed": 1
+        },
+        "away": {
+          "name": "Stockholm",
+          "record": "20-10",
+          "seed": 3
+        },
+        "homeWins": 4,
+        "awayWins": 0,
+        "winner": "home"
+      }
+    ]
+  },
+  {
+    "season": 73,
     "group": "IL",
     "rounds": 3,
     "series": [
@@ -5625,6 +6053,132 @@
         },
         "homeWins": 4,
         "awayWins": 0,
+        "winner": "home"
+      }
+    ]
+  },
+  {
+    "season": 74,
+    "group": "WL",
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Madrid",
+          "record": "29-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Shanghai",
+          "record": "16-14",
+          "seed": 8
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Guadalajara",
+          "record": "22-8",
+          "seed": 5
+        },
+        "away": {
+          "name": "Recife",
+          "record": "23-7",
+          "seed": 4
+        },
+        "homeWins": 3,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Sao Paolo",
+          "record": "24-6",
+          "seed": 3
+        },
+        "away": {
+          "name": "Liverpool",
+          "record": "22-8",
+          "seed": 6
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Amsterdam",
+          "record": "18-12",
+          "seed": 7
+        },
+        "away": {
+          "name": "Budapest",
+          "record": "24-6",
+          "seed": 2
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Madrid",
+          "record": "29-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Recife",
+          "record": "23-7",
+          "seed": 4
+        },
+        "homeWins": 4,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Sao Paolo",
+          "record": "24-6",
+          "seed": 3
+        },
+        "away": {
+          "name": "Amsterdam",
+          "record": "18-12",
+          "seed": 7
+        },
+        "homeWins": 1,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Madrid",
+          "record": "29-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Amsterdam",
+          "record": "18-12",
+          "seed": 7
+        },
+        "homeWins": 4,
+        "awayWins": 2,
         "winner": "home"
       }
     ]
@@ -6135,6 +6689,132 @@
   },
   {
     "season": 75,
+    "group": "UL",
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Osaka",
+          "record": "29-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Moscow",
+          "record": "16-14",
+          "seed": 8
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Casablanca",
+          "record": "20-10",
+          "seed": 5
+        },
+        "away": {
+          "name": "Beijing",
+          "record": "21-9",
+          "seed": 4
+        },
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Saint Petersburg",
+          "record": "27-3",
+          "seed": 3
+        },
+        "away": {
+          "name": "Johannesburg",
+          "record": "17-13",
+          "seed": 6
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Paris",
+          "record": "16-14",
+          "seed": 7
+        },
+        "away": {
+          "name": "Dhaka",
+          "record": "28-2",
+          "seed": 2
+        },
+        "homeWins": 1,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Osaka",
+          "record": "29-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Beijing",
+          "record": "21-9",
+          "seed": 4
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Saint Petersburg",
+          "record": "27-3",
+          "seed": 3
+        },
+        "away": {
+          "name": "Dhaka",
+          "record": "28-2",
+          "seed": 2
+        },
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Osaka",
+          "record": "29-1",
+          "seed": 1
+        },
+        "away": {
+          "name": "Dhaka",
+          "record": "28-2",
+          "seed": 2
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      }
+    ]
+  },
+  {
+    "season": 75,
     "group": "IL",
     "rounds": 3,
     "series": [
@@ -6638,6 +7318,132 @@
     ]
   },
   {
+    "season": 76,
+    "group": "IL",
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Kiev",
+          "record": "25-5",
+          "seed": 1
+        },
+        "away": {
+          "name": "Naples",
+          "record": "16-14",
+          "seed": 8
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Belfast",
+          "record": "18-12",
+          "seed": 5
+        },
+        "away": {
+          "name": "Barcelona",
+          "record": "19-11",
+          "seed": 4
+        },
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Warsaw",
+          "record": "19-11",
+          "seed": 3
+        },
+        "away": {
+          "name": "Dublin",
+          "record": "18-12",
+          "seed": 6
+        },
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "home"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Auckland",
+          "record": "18-12",
+          "seed": 7
+        },
+        "away": {
+          "name": "Rotterdam",
+          "record": "19-11",
+          "seed": 2
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Kiev",
+          "record": "25-5",
+          "seed": 1
+        },
+        "away": {
+          "name": "Barcelona",
+          "record": "19-11",
+          "seed": 4
+        },
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Warsaw",
+          "record": "19-11",
+          "seed": 3
+        },
+        "away": {
+          "name": "Auckland",
+          "record": "18-12",
+          "seed": 7
+        },
+        "homeWins": 4,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Barcelona",
+          "record": "19-11",
+          "seed": 4
+        },
+        "away": {
+          "name": "Warsaw",
+          "record": "19-11",
+          "seed": 3
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      }
+    ]
+  },
+  {
     "season": 77,
     "group": "PL",
     "rounds": 3,
@@ -7134,6 +7940,132 @@
           "name": "Naples",
           "record": "19-11",
           "seed": 6
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      }
+    ]
+  },
+  {
+    "season": 78,
+    "group": "PL",
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Salzburg",
+          "record": "23-7",
+          "seed": 1
+        },
+        "away": {
+          "name": "Buenos Aires",
+          "record": "15-15",
+          "seed": 8
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "London",
+          "record": "19-11",
+          "seed": 5
+        },
+        "away": {
+          "name": "Miami",
+          "record": "19-11",
+          "seed": 4
+        },
+        "homeWins": 4,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Austin",
+          "record": "20-10",
+          "seed": 3
+        },
+        "away": {
+          "name": "Milan",
+          "record": "18-12",
+          "seed": 6
+        },
+        "homeWins": 1,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Zurich",
+          "record": "16-14",
+          "seed": 7
+        },
+        "away": {
+          "name": "Lisbon",
+          "record": "21-9",
+          "seed": 2
+        },
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "home"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Salzburg",
+          "record": "23-7",
+          "seed": 1
+        },
+        "away": {
+          "name": "London",
+          "record": "19-11",
+          "seed": 5
+        },
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "home"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Milan",
+          "record": "18-12",
+          "seed": 6
+        },
+        "away": {
+          "name": "Zurich",
+          "record": "16-14",
+          "seed": 7
+        },
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "away"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Salzburg",
+          "record": "23-7",
+          "seed": 1
+        },
+        "away": {
+          "name": "Zurich",
+          "record": "16-14",
+          "seed": 7
         },
         "homeWins": 4,
         "awayWins": 1,

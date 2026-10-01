@@ -13,12 +13,14 @@ const ALLOWED_MISMATCH: string[] = [];
 const NO_SUMMARY: string[] = ['S54'];
 /** Old pages print team nicknames ("San Jose Express"); summaries use the city. */
 const sameTeam = (page: string, city: string) => normName(page) === normName(city) || normName(page).startsWith(normName(city) + ' ');
+/** League champions (season + group) in summaries whose bracket page is not among the scanned pages. */
+const NO_PAGE: string[] = [];
 const ORDER = ['PL', 'WL', 'UL', 'IL'];
 const key = (e: Entry) => `S${e.season}${e.group ? ' ' + e.group : ''}`;
 
 describe('d2Brackets.json', () => {
-  it('has at least 39 entries', () => {
-    expect(entries.length).toBeGreaterThanOrEqual(47);
+  it('has at least 55 entries', () => {
+    expect(entries.length).toBeGreaterThanOrEqual(55);
   });
 
   it('each entry passes PastBracket', () => {
@@ -55,5 +57,22 @@ describe('d2Brackets.json', () => {
       if (!ok) bad.push(`${key(e)}: ${win.name} over ${lose?.name ?? 'BYE'} vs summary ${cands.map(c => `${c.champion} over ${c.runnerUp ?? '?'}`).join(' / ')}`);
     }
     expect(bad).toEqual([]);
+  });
+
+  it('covers S68-S78 league tournaments with no repeats and every summary league champion', () => {
+    const seen = new Set<string>();
+    for (const e of entries) {
+      if (!e.group) continue;
+      expect(seen.has(key(e))).toBe(false);
+      seen.add(key(e));
+    }
+    const missing: string[] = [];
+    for (let s = 68; s <= 78; s++) {
+      const sum = JSON.parse(readFileSync(new URL(`../../data/leagues/fbad2/S${s}/summary.json`, import.meta.url), 'utf8'));
+      for (const c of sum.champions as { group?: string | null }[]) {
+        if (c.group && !seen.has(`S${s} ${c.group}`) && !NO_PAGE.includes(`S${s} ${c.group}`)) missing.push(`S${s} ${c.group}`);
+      }
+    }
+    expect(missing).toEqual([]);
   });
 });
