@@ -44,6 +44,15 @@ describe('take, sendBack and takeRest', () => {
     expect(doc.order).toEqual(['p00006', 'p00002', 'p00001', 'p00003', 'p00004', 'p00005']);
     expect(takeRest(doc, rankName)).toBe(doc);
   });
+
+  it('takes only the matching rest, keeping their order', () => {
+    const fresh = takeRest(rankingDoc(), rankName, r => r.prevRating === null);
+    expect(fresh.order.every(id => rankingDoc().rows.find(r => r.playerId === id)!.prevRating === null)).toBe(true);
+    expect(fresh.order).toHaveLength(3);
+    const known = takeRest(fresh, rankName, r => r.prevRating !== null);
+    expect(known.order.slice(3)).toEqual(['p00002', 'p00001', 'p00003']);
+    expect(takeRest(known, rankName, () => true)).toBe(known);
+  });
 });
 
 describe('suggestions and ratings', () => {

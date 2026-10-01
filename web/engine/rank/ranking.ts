@@ -40,10 +40,10 @@ export function sendBack(doc: RankingFile, playerId: string): RankingFile {
   return { ...doc, order: doc.order.filter(id => id !== playerId) };
 }
 
-/** Ranks everyone left, in `leftRows` order. */
-export function takeRest(doc: RankingFile, name: NameOf): RankingFile {
+/** Ranks everyone left, in `leftRows` order. With `only`, ranks just the left rows it accepts (order kept). */
+export function takeRest(doc: RankingFile, name: NameOf, only?: (row: RankingRow) => boolean): RankingFile {
   if (doc.locked) return doc;
-  const rest = leftRows(doc, name);
+  const rest = leftRows(doc, name).filter(r => !only || only(r));
   return rest.length ? { ...doc, order: [...doc.order, ...rest.map(r => r.playerId)] } : doc;
 }
 

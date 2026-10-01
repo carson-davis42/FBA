@@ -1,5 +1,7 @@
 .rank-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); align-items: start; }
 @media (max-width: 760px) { .rank-cols { grid-template-columns: 1fr; } }
+.rank-cols.split { grid-template-columns: 1fr 1fr 1.4fr; }
+@media (max-width: 900px) { .rank-cols.split { grid-template-columns: 1fr; } }
 .rank-col { min-width: 0; }
 .rank-col .table-wrap { max-height: 70vh; overflow: auto; }
 .rank-head { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; justify-content: space-between; margin-bottom: var(--s2); }
