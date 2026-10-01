@@ -72,6 +72,15 @@ describe('startRatings', () => {
   });
 });
 
+describe('buildRankingRows', () => {
+  it('flags Reserves already in the pool as inLeague, not the FBA free agent', () => {
+    const rows = ok(startRatings(d2BaseState())).state.ratings!.rows;
+    const flag = (id: string) => rows.find(r => r.playerId === id)!.inLeague;
+    expect(['p00040', 'p00042', 'p00043', 'p00044'].map(flag)).toEqual([true, true, true, true]);
+    expect(flag('p00041')).toBeUndefined();
+  });
+});
+
 describe('ratingsBlockers', () => {
   it('asks for a full ranking, then a rating for everyone, then the right order', () => {
     const s = started();

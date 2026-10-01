@@ -13,13 +13,9 @@ const tieBreak = (name: NameOf) => (a: RankingRow, b: RankingRow) =>
  * The rows not ranked yet, in last season's order: players with a previous rating (high to low), then the
  * "New" group by the other league's rating (high to low, none last). Ties break on name, then id.
  */
-/**
- * True for a player new to the league being ranked. A D2 Reserve with no rating and no FBA rating was already in the pool,
- * so it counts as existing (it sorts after the rated players).
- */
-export function isNewRow(doc: RankingFile, r: RankingRow): boolean {
-  if (r.prevRating !== null) return false;
-  return !(doc.kind === 'd2-reset' && r.team === null && r.otherRating === null);
+/** True for a player new to the league being ranked. An unrated D2 Reserve already in the pool (`inLeague`) counts as existing and sorts after the rated players. */
+export function isNewRow(_doc: RankingFile, r: RankingRow): boolean {
+  return r.prevRating === null && r.inLeague !== true;
 }
 
 export function leftRows(doc: RankingFile, name: NameOf): RankingRow[] {

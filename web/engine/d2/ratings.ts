@@ -21,12 +21,14 @@ export function buildRankingRows(state: D2State): RankingRow[] {
     if (e.playerId) points.set(e.playerId, (points.get(e.playerId) ?? 0) + e.points);
   }
   const fbaRating = new Map(state.reserves.players.flatMap(p => (p.fbaRating === undefined ? [] : [[p.playerId, p.fbaRating] as const])));
+  const inPool = new Set(state.reserves.players.filter(p => !p.fromFba).map(p => p.playerId));
   return poolMembers(state).map(m => ({
     playerId: m.playerId,
     position: m.position,
     age: m.age,
     team: m.team,
     prevRating: m.rating,
+    ...(m.team === null && inPool.has(m.playerId) ? { inLeague: true } : {}),
     otherRating: fbaRating.get(m.playerId) ?? null,
     stat: points.has(m.playerId) ? `${points.get(m.playerId)} pts` : null,
   }));
