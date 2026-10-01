@@ -4,22 +4,29 @@ import { schemaForPath } from '../../engine/shared/schemaRegistry';
 import type { PastBracket, SummaryFile } from '../../engine/shared/types';
 import type { BracketEntry } from './convertBrackets';
 
-export interface MergeReport { set: number; unchanged: number; missingSummary: string[] }
+export interface MergeReport { set: number; unchanged: number; missingSummary: string[]; replaced: string[] }
 const GROUP_ORDER = ['PL', 'WL', 'UL', 'IL'];
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
 
 /** Pure: puts transcribed brackets onto the matching season summaries. Returns only the summaries that changed. */
 export function mergeBrackets(league: 'fbawc' | 'fbad2', entries: BracketEntry[], summaries: Map<number, SummaryFile>): { summaries: SummaryFile[]; report: MergeReport } {
+  if (league === 'fbawc') {
+    const g = entries.find(e => e.group);
+    if (g) throw new Error(`S${g.season}: a World Cup bracket cannot carry a group (${g.group})`);
+  }
   if (league === 'fbad2') {
     const bySeason = new Map<number, BracketEntry[]>();
     for (const e of entries) bySeason.set(e.season, [...(bySeason.get(e.season) ?? []), e]);
     for (const [season, list] of bySeason) {
       if (list.some(e => e.group) && list.some(e => !e.group)) throw new Error(`S${season}: mixes a grouped and a group-less bracket`);
+      const have = summaries.get(season);
+      if (have?.pastBracket && list.some(e => e.group)) throw new Error(`S${season}: the summary already has a single pastBracket, so grouped brackets cannot be added`);
+      if (have?.pastBrackets?.length && list.some(e => !e.group)) throw new Error(`S${season}: the summary already has grouped pastBrackets, so a group-less bracket cannot be added`);
     }
   }
   const next = new Map<number, SummaryFile>();
   const touched = new Set<number>();
-  const report: MergeReport = { set: 0, unchanged: 0, missingSummary: [] };
+  const report: MergeReport = { set: 0, unchanged: 0, missingSummary: [], replaced: [] };
   for (const e of entries) {
     const base = next.get(e.season) ?? summaries.get(e.season);
     if (!base) { report.missingSummary.push(`S${e.season}${e.group ? ` ${e.group}` : ''}`); continue; }
@@ -28,11 +35,15 @@ export function mergeBrackets(league: 'fbawc' | 'fbad2', entries: BracketEntry[]
     if (league === 'fbad2' && e.group) {
       const have = base.pastBrackets ?? [];
       if (same(have.find(p => p.group === e.group)?.bracket, bracket)) { report.unchanged++; continue; }
+      const old = have.find(p => p.group === e.group);
+      if (old) report.replaced.push(`S${e.season} ${e.group}`);
       const list = [...have.filter(p => p.group !== e.group), { group: e.group, bracket }]
         .sort((a, b) => GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group));
+      if (base.pastBracket) report.replaced.push(`S${e.season}`);
       updated = { ...base, pastBrackets: list };
     } else {
       if (same(base.pastBracket, bracket)) { report.unchanged++; continue; }
+      if (base.pastBracket) report.replaced.push(`S${e.season}`);
       updated = { ...base, pastBracket: bracket };
     }
     next.set(e.season, updated);

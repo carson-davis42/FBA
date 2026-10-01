@@ -26,6 +26,7 @@ button.series-box:hover { border-color: var(--muted); box-shadow: var(--shadow-2
 .bracket-col.l .series-box::after, .bracket-col.mid .series-box::after { left: 100%; }
 .bracket-col.r .series-box::before, .bracket-col.mid .series-box::before { right: 100%; }
 .series-side { display: grid; grid-template-columns: 20px minmax(0, 1fr) 22px; gap: var(--s2); align-items: center; padding: 6px 10px 6px 8px; font-size: 13px; border-left: 3px solid transparent; }
+.series-box.past .series-side { grid-template-columns: 20px minmax(0, 1fr) minmax(22px, auto); }
 .series-side .seed { text-align: right; color: var(--muted); font-size: var(--fs-sm); font-weight: 700; }
 .series-side .name { min-width: 0; overflow: hidden; }
 .series-side .name .team-name { max-width: 100%; }

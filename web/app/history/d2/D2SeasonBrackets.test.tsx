@@ -19,7 +19,7 @@ const seasons: SummaryFile[] = [
   { ...base(60), pastBracket: one('Oldtown', 'Oldville') },
   // out of group order on purpose
   { ...base(70), pastBrackets: [{ group: 'WL', bracket: one('Wlteam', 'Wlrival') }, { group: 'PL', bracket: one('Plteam', 'Plrival') }] },
-  { ...base(80), bracket: { series: [] } as unknown as SummaryFile['bracket'], pastBracket: one('Hidden', 'Hidden2') },
+  { ...base(80), bracket: { seeds: [], series: [{ id: 'PL-F', group: 'PL', round: 4, home: 'a', away: 'b', homeSeed: 1, awaySeed: 2, homeWins: 0, awayWins: 0, winner: null, next: null }] }, pastBracket: one('Hidden', 'Hidden2') },
   base(90),
 ];
 

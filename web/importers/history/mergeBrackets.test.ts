@@ -16,7 +16,7 @@ describe('mergeBrackets', () => {
   it('sets pastBracket for a World Cup entry', () => {
     const r = mergeBrackets('fbawc', [entry(10)], maps(summary('fbawc', 10)));
     expect(r.summaries[0].pastBracket).toEqual({ rounds: 1, series: [final] });
-    expect(r.report).toEqual({ set: 1, unchanged: 0, missingSummary: [] });
+    expect(r.report).toEqual({ set: 1, unchanged: 0, missingSummary: [], replaced: [] });
   });
   it('adds grouped D2 entries to pastBrackets in group order', () => {
     const r = mergeBrackets('fbad2', [entry(76, 'PL'), entry(76, 'WL')], maps(summary('fbad2', 76, { pastBrackets: [{ group: 'WL', bracket: { rounds: 1, series: [] } }] })));
@@ -30,7 +30,7 @@ describe('mergeBrackets', () => {
   it('counts a re-run as unchanged', () => {
     const first = mergeBrackets('fbad2', [entry(76, 'PL'), entry(60)], maps(summary('fbad2', 76), summary('fbad2', 60)));
     const again = mergeBrackets('fbad2', [entry(76, 'PL'), entry(60)], maps(...first.summaries));
-    expect(again.report).toEqual({ set: 0, unchanged: 2, missingSummary: [] });
+    expect(again.report).toEqual({ set: 0, unchanged: 2, missingSummary: [], replaced: [] });
     expect(again.summaries).toEqual([]);
   });
   it('lists a missing season and never creates it', () => {
@@ -40,6 +40,20 @@ describe('mergeBrackets', () => {
   });
   it('throws when one D2 season mixes grouped and group-less entries', () => {
     expect(() => mergeBrackets('fbad2', [entry(76, 'PL'), entry(76)], maps(summary('fbad2', 76)))).toThrow(/S76/);
+  });
+  it('throws, naming the season, when an existing summary mixes with the incoming shape', () => {
+    const b = { rounds: 1, series: [final] };
+    expect(() => mergeBrackets('fbad2', [entry(76, 'PL')], maps(summary('fbad2', 76, { pastBracket: b })))).toThrow(/S76/);
+    expect(() => mergeBrackets('fbad2', [entry(60)], maps(summary('fbad2', 60, { pastBrackets: [{ group: 'PL', bracket: b }] })))).toThrow(/S60/);
+  });
+  it('throws for a World Cup entry that carries a group', () => {
+    expect(() => mergeBrackets('fbawc', [entry(10, 'PL')], maps(summary('fbawc', 10)))).toThrow(/S10/);
+  });
+  it('overwrites a different bracket and lists it as replaced', () => {
+    const old = { rounds: 1, series: [{ ...final, homeWins: 4, awayWins: 3 }] };
+    const r = mergeBrackets('fbawc', [entry(10)], maps(summary('fbawc', 10, { pastBracket: old })));
+    expect(r.summaries[0].pastBracket?.series).toEqual([final]);
+    expect(r.report).toEqual({ set: 1, unchanged: 0, missingSummary: [], replaced: ['S10'] });
   });
   it('keeps a live bracket', () => {
     const live = { seeds: [], series: [] };
@@ -60,7 +74,7 @@ describe('runBracketImport', () => {
     }
     const r1 = runBracketImport('fbawc', [entry(10), entry(12)], dir);
     expect(r1.problems).toEqual([]);
-    expect(r1.report).toEqual({ set: 1, unchanged: 0, missingSummary: ['S12'] });
+    expect(r1.report).toEqual({ set: 1, unchanged: 0, missingSummary: ['S12'], replaced: [] });
     const s10 = JSON.parse(readFileSync(path.join(dir, 'leagues/fbawc/S10/summary.json'), 'utf8'));
     expect(s10.pastBracket.rounds).toBe(1);
     expect(JSON.parse(readFileSync(path.join(dir, 'leagues/fbawc/S11/summary.json'), 'utf8')).pastBracket).toBeUndefined();

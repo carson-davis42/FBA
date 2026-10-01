@@ -579,7 +579,7 @@ function importBrackets(flag: string, league: 'fbawc' | 'fbad2', file: string): 
     console.error(`Some built docs fail their schema; nothing was written.\n${problems.join('\n')}`);
     process.exit(1);
   }
-  console.log(`Brackets: ${report.set} set, ${report.unchanged} unchanged, ${report.missingSummary.length} without a summary${report.missingSummary.length ? ` (${report.missingSummary.join(', ')})` : ''}.`);
+  console.log(`Brackets: ${report.set} set, ${report.unchanged} unchanged, ${report.missingSummary.length} without a summary${report.missingSummary.length ? ` (${report.missingSummary.join(', ')})` : ''}, ${report.replaced.length} replaced${report.replaced.length ? ` (${report.replaced.join(', ')})` : ''}.`);
 }
 
 /** Adds the odd season's qualifying step to calendar.json in the --data folder; writes only when it changed. */
