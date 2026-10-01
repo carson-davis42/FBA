@@ -15,3 +15,11 @@ tr.wc-cut td { border-bottom: 2px dashed var(--muted); }
 .wc-teams { list-style: none; margin: 0; padding: 0; }
 .wc-team { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); }
 .wc-team-rating { font-variant-numeric: tabular-nums; font-weight: 700; }
+.wc-bracket { display: flex; gap: var(--s3, 16px); align-items: stretch; }
+.wc-round { display: flex; flex-direction: column; justify-content: space-around; gap: var(--s2); min-width: 150px; }
+.wc-round h4 { margin: 0; font-size: var(--fs-sm); color: var(--muted); }
+.wc-match { padding: 6px 8px; display: grid; gap: 2px; }
+.wc-side { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); }
+.wc-side.wc-winner { font-weight: 700; }
+.wc-score { font-variant-numeric: tabular-nums; }
+.wc-champion { display: flex; align-items: center; gap: var(--s2); font-weight: 700; }

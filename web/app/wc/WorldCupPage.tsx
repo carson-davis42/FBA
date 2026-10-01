@@ -133,7 +133,7 @@ export function WorldCupPage() {
           <SubNav label="World Cup sections" items={TABS} active={tab} onSelect={id => setParams({ tab: id }, { replace: true })} />
           <div className="tab-panel" id={`panel-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
             {tab === 'groups' && <GroupsTab wc={wc} byId={byId} season={season} />}
-            {tab === 'knockout' && <KnockoutTab />}
+            {tab === 'knockout' && <KnockoutTab wc={wc} byId={byId} season={season} state={state} players={docs.players} summary={docs.summary} blocked={blocked} run={run} />}
             {tab === 'teams' && <TeamsTab wc={wc} rosters={rosters} byId={byId} season={season} />}
           </div>
         </>
