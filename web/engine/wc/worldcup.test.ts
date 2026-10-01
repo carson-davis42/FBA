@@ -21,7 +21,7 @@ const d2: RostersFile = { league: 'fbad2', season: 80, locked: false, teams: {} 
 
 const qualifying = (advancedCount = 49): QualifyingFile => ({
   league: 'fbawc',
-  season: 80,
+  season: 79,
   host: HOST,
   auto: countries.slice(70, 85),
   field: countries.slice(0, 70),
@@ -116,6 +116,16 @@ describe('startWorldCup', () => {
   it('is deterministic per seed', () => {
     expect(started(5).worldCup).toEqual(started(5).worldCup);
     expect(started(5).worldCup).not.toEqual(started(6).worldCup);
+  });
+
+  it('refuses an existing World Cup, a wrong qualifying/previous season, or a host outside the field', () => {
+    const existing = started().worldCup!;
+    const base = { season: 80, calendar: calendar(), d2Rosters: d2, countries, qualifying: qualifying(), previous: previous() };
+    expect(startWorldCup({ ...base, existing }, mulberry32(1)).ok).toBe(false);
+    expect(startWorldCup({ ...base, existing: null }, mulberry32(1)).ok).toBe(true);
+    expect(startWorldCup({ ...base, qualifying: { ...qualifying(), season: 80 } }, mulberry32(1)).ok).toBe(false);
+    expect(startWorldCup({ ...base, previous: { ...previous(), season: 78 } }, mulberry32(1)).ok).toBe(false);
+    expect(startWorldCup({ ...base, qualifying: { ...qualifying(), host: countries[60] } }, mulberry32(1)).ok).toBe(false);
   });
 
   it('refuses when the step is not current or qualifying is unfinished', () => {

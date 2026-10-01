@@ -60,6 +60,12 @@ describe('sixRegularPairs', () => {
   });
 });
 
+describe('sixRegularPairs guard', () => {
+  it('throws for fewer than 7 teams', () => {
+    expect(() => sixRegularPairs(['A', 'B', 'C', 'D', 'E', 'F'], mulberry32(1))).toThrow();
+  });
+});
+
 describe('startQualifying', () => {
   it('keeps a host inside the top 15', () => {
     const q = started('C39').qualifying!;
@@ -89,6 +95,19 @@ describe('startQualifying', () => {
     for (const t of Object.values(s.rosters.teams)) expect(t).toHaveLength(5);
     expect(s.rosters.locked).toBe(true);
     expect(s.rosters.league).toBe('fbawc');
+  });
+
+  it('stores a rating tie-break key for all 85 countries', () => {
+    const q = started('C84').qualifying!;
+    expect(Object.keys(q.keys).sort()).toEqual([...countries].sort());
+  });
+
+  it('refuses an existing qualifying document and a wrong country count', () => {
+    const existing = started().qualifying!;
+    const input = { season: 80, calendar: calendar(), d2Rosters: d2(), countries, host: 'C39', previousWc: null };
+    expect(startQualifying({ ...input, existing }, mulberry32(1)).ok).toBe(false);
+    expect(startQualifying({ ...input, existing: null }, mulberry32(1)).ok).toBe(true);
+    expect(startQualifying({ ...input, countries: countries.slice(0, 84) }, mulberry32(1)).ok).toBe(false);
   });
 
   it('refuses when qualifying is not the current step', () => {

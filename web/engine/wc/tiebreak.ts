@@ -50,7 +50,7 @@ export function rankTable(teams: string[], games: GameResult[], keys: Record<str
     for (let k = 0; k + 1 < run.length; k++) {
       const x = run[k]; const y = run[k + 1];
       if (useH2h && h2hScore.get(x.teamId) !== h2hScore.get(y.teamId)) {
-        ties.push(`${x.teamId} over ${y.teamId}: head-to-head ${wins(x.teamId, y.teamId)}–${wins(y.teamId, x.teamId)}`);
+        ties.push(`${x.teamId} over ${y.teamId}: head-to-head ${h2hScore.get(x.teamId)}–${h2hScore.get(y.teamId)}`);
       } else if (diff(x) !== diff(y)) {
         ties.push(`${x.teamId} over ${y.teamId}: point differential ${signed(diff(x))} vs ${signed(diff(y))}`);
       } else {

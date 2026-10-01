@@ -14,6 +14,7 @@ const pairKey = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`);
 
 /** A random 6-regular graph on `ids` as distinct pairs (n = 70 gives 210). */
 export function sixRegularPairs(ids: string[], rng: Rng): [string, string][] {
+  if (ids.length < 7) throw new RangeError('A 6-regular graph needs at least 7 teams');
   const order = shuffle(ids, rng);
   const n = order.length;
   const edges: [string, string][] = [];
@@ -55,11 +56,13 @@ function inRounds(pairs: [string, string][]): [string, string][] {
 }
 
 export function startQualifying(
-  input: { season: number; calendar: CalendarFile; d2Rosters: RostersFile; countries: string[]; host: string; previousWc: RostersFile | null },
+  input: { season: number; calendar: CalendarFile; d2Rosters: RostersFile; countries: string[]; host: string; previousWc: RostersFile | null; existing?: QualifyingFile | null },
   rng: Rng,
 ): WcResult<QualifyingState> {
   const problem = calendarProblem(input.calendar, qualifyingStepId(input.season), 'Qualifying is started');
   if (problem) return wcFail([problem]);
+  if (input.existing) return wcFail(['Qualifying has already been started']);
+  if (input.countries.length !== 85) return wcFail([`Qualifying needs 85 countries, got ${input.countries.length}`]);
   if (!input.countries.includes(input.host)) return wcFail([`Host ${input.host} is not a country`]);
   const teams = deriveRosters({ countries: input.countries, d2Rosters: input.d2Rosters, mode: 'qualifying', previous: input.previousWc }, rng);
   const rating = (id: string) => countryRating(teams[id]);
@@ -75,7 +78,7 @@ export function startQualifying(
   }
   const field = [...rest].sort();
   const keys: Record<string, number> = {};
-  for (const id of field) keys[id] = rng();
+  for (const id of [...input.countries].sort()) keys[id] = draw[id];
   const schedule: ScheduleGame[] = inRounds(sixRegularPairs(field, rng)).map(([home, away], i) => ({ gameNo: i + 1, home, away }));
   const qualifying: QualifyingFile = { league: 'fbawc', season: input.season, host: input.host, auto, field, schedule, keys, games: [], advanced: [] };
   const rosters: RostersFile = { league: 'fbawc', season: input.season, locked: true, teams };

@@ -23,15 +23,19 @@ function doubleRoundRobin(t: string[]): [string, string][][] {
 }
 
 export function startWorldCup(
-  input: { season: number; calendar: CalendarFile; d2Rosters: RostersFile; countries: string[]; qualifying: QualifyingFile; previous: RostersFile },
+  input: { season: number; calendar: CalendarFile; d2Rosters: RostersFile; countries: string[]; qualifying: QualifyingFile; previous: RostersFile; existing?: WorldCupFile | null },
   rng: Rng,
 ): WcResult<WorldCupState> {
   const problem = calendarProblem(input.calendar, worldCupStepId(input.season), 'The World Cup is started');
   if (problem) return wcFail([problem]);
+  if (input.existing) return wcFail(['The World Cup has already been started']);
   const q = input.qualifying;
+  if (q.season !== input.season - 1) return wcFail([`Qualifying is from S${q.season}, expected S${input.season - 1}`]);
+  if (input.previous.season !== input.season - 1) return wcFail([`Previous rosters are from S${input.previous.season}, expected S${input.season - 1}`]);
   if (q.advanced.length !== 49) return wcFail([`Qualifying must be finished first (${q.advanced.length} of 49 teams advanced)`]);
   const field = [...q.auto, ...q.advanced];
   if (new Set(field).size !== 64) return wcFail(['The World Cup field must be 64 distinct teams']);
+  if (!field.includes(q.host)) return wcFail([`Host ${q.host} is not in the World Cup field`]);
   const teams = deriveRosters({ countries: input.countries, d2Rosters: input.d2Rosters, mode: 'worldcup', previous: input.previous }, rng);
   const rating = (id: string) => countryRating(teams[id]);
   const keys: Record<string, number> = {};

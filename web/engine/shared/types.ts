@@ -397,7 +397,7 @@ export const QualifyingFile = z.object({
   /** The 70 teams that play qualifying. */
   field: z.array(z.string().min(1)).length(70),
   schedule: z.array(ScheduleGame),
-  /** Random tiebreak key per field team, drawn once. */
+  /** Random tiebreak key per country (all 85: rating ties for the top 15, then qualifying ties), drawn once. */
   keys: z.record(z.string(), z.number()),
   games: z.array(GameResult),
   /** The 49 advancing teams; empty until finished. */
@@ -405,6 +405,7 @@ export const QualifyingFile = z.object({
 }).strict().superRefine((d, ctx) => {
   if (d.advanced.length !== 0 && d.advanced.length !== 49) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'advanced must be empty or 49 teams' });
   if (new Set([...d.auto, ...d.field]).size !== 85) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'auto and field must be 85 distinct teams' });
+  if ([...d.auto, ...d.field].some(id => typeof d.keys[id] !== 'number')) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'keys must cover all 85 teams' });
 });
 export type QualifyingFile = z.infer<typeof QualifyingFile>;
 
@@ -435,7 +436,9 @@ export const WorldCupFile = z.object({
   knockout: z.array(KnockoutGame),
   champion: z.string().min(1).nullable(),
   runnerUp: z.string().min(1).nullable(),
-}).strict();
+}).strict().superRefine((d, ctx) => {
+  if ((d.champion === null) !== (d.runnerUp === null)) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'champion and runnerUp must be both null or both set' });
+});
 export type WorldCupFile = z.infer<typeof WorldCupFile>;
 
 export const ScheduleFile = z.object({
