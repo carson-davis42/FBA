@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { roundName } from '../../engine/jc/bracket';
 import { lineupOf } from '../../engine/jc/play';
-import { nextPostGame, postseasonStage, recordPostGame, tournamentProblem, type PostTournament } from '../../engine/jc/postseason';
-import { jcWrites, type JcState } from '../../engine/jc/state';
+import { nextPostGame, postseasonStage, recordPostGame, tournamentProblem } from '../../engine/jc/postseason';
+import { nextConfGame, nextJcGame, recordConfGame, recordJcGame } from '../../engine/jc/watch';
+import { jcWrites, type JcResult, type JcState } from '../../engine/jc/state';
 import type { SeasonLeague } from '../../engine/season/schedule';
 import { JC_PROFILE, simGame, type SimGame } from '../../engine/season/sim';
 import type { SeasonState } from '../../engine/season/state';
@@ -34,12 +35,23 @@ export function findGame(state: JcState, gameNo: number): GameInfo | null {
   return null;
 }
 
-/** The tournament whose next game this number is, if it can be played live right now. */
-export function liveTournament(state: JcState, gameNo: number): PostTournament | null {
+export interface LiveGameInfo { next: { gameNo: number; home: string; away: string }; record: (sim: SimGame) => JcResult }
+
+/** What can be watched live right now under this game number: the next game of the current stage, if it is this one. */
+export function liveGame(state: JcState, gameNo: number): LiveGameInfo | null {
   const stage = postseasonStage(state);
-  const which: PostTournament | null = stage === 'nit' ? 'nit' : stage === 'mm' ? 'mm' : null;
+  if (stage === 'regular') {
+    const next = nextJcGame(state);
+    return typeof next !== 'string' && next.gameNo === gameNo ? { next, record: sim => recordJcGame(state, sim, Math.random) } : null;
+  }
+  if (stage === 'conf') {
+    const next = nextConfGame(state);
+    return typeof next !== 'string' && next.gameNo === gameNo ? { next, record: sim => recordConfGame(state, sim, Math.random) } : null;
+  }
+  const which = stage === 'nit' ? 'nit' : stage === 'mm' ? 'mm' : null;
   if (!which || tournamentProblem(state, which) || state.postseason?.nextGameNo !== gameNo) return null;
-  return nextPostGame(state, which) ? which : null;
+  const next = nextPostGame(state, which);
+  return next ? { next: { gameNo, home: next.home!, away: next.away! }, record: sim => recordPostGame(state, which, sim) } : null;
 }
 
 export function JcGamePage() {
@@ -54,11 +66,11 @@ function JcGame() {
   const [sim, setSim] = useState<SimGame | null>(null);
   const [message, setMessage] = useState('');
   const state = docs.state;
-  const which = state ? liveTournament(state, n) : null;
+  const live = state ? liveGame(state, n) : null;
 
   useEffect(() => {
-    if (!state || sim || !which) return;
-    const next = nextPostGame(state, which)!;
+    if (!state || sim || !live) return;
+    const next = live.next;
     const home = lineupOf(state.rosters.teams[next.home!], next.home!);
     const away = lineupOf(state.rosters.teams[next.away!], next.away!);
     if (typeof home === 'string' || typeof away === 'string') {
@@ -66,13 +78,14 @@ function JcGame() {
       return;
     }
     setSim(simGame(n, home, away, Math.random, JC_PROFILE));
-  }, [state, sim, which, n]);
+  }, [state, sim, !!live, n]);
 
   if (season === null || docs.error) return <p className={docs.error ? 'error' : 'muted'}>{docs.error || 'Loading…'}</p>;
   if (docs.missing) return <p className="muted">{docs.missing}</p>;
   if (!state) return <p className="muted">Loading…</p>;
   const view = viewState(state);
-  const back = { to: '/league/fbajc/postseason', label: 'back to the postseason ▸' };
+  const regular = n >= 1 && n <= 3132;
+  const back = regular ? { to: '/league/fbajc/scores', label: 'back to scores ▸' } : { to: '/league/fbajc/postseason', label: 'back to the postseason ▸' };
   const found = findGame(state, n);
 
   if (found && !sim) {
@@ -81,7 +94,7 @@ function JcGame() {
       <div className="stack">
         {bracket && game && <p className="page-kicker">{bracket.kind === 'conf' ? `${bracket.id} tournament` : bracket.name} · {roundName(bracket.kind, game.round)}</p>}
         <FinalView state={view} r={found.result} />
-        <p><Link className="btn" to={bracket ? back.to : '/league/fbajc/scores'}>{bracket ? 'Back to the postseason ▸' : 'Back to scores ▸'}</Link></p>
+        <p><Link className="btn" to={back.to}>{back.label.replace('back', 'Back')}</Link></p>
       </div>
     );
   }
@@ -90,12 +103,13 @@ function JcGame() {
       <section className="stack">
         <PageHeader kicker="FBAJC" title={`Game ${gameNo}`} />
         <p className="muted">{message || (n > 0 ? "This game hasn't been played, and it isn't up next." : 'There is no such game.')}</p>
-        <p><Link className="btn" to={back.to}>Back to the postseason ▸</Link></p>
+        <p><Link className="btn" to={back.to}>{back.label.replace('back', 'Back')}</Link></p>
       </section>
     );
   }
   const save = async () => {
-    const r = recordPostGame(state, which!, sim);
+    const r = live ? live.record(sim) : null;
+    if (!r) throw new Error("This isn't the next game any more");
     if (!r.ok) throw new Error(r.problems.join('; '));
     await commitDocs(r.label, jcWrites(r), docs.versions);
   };

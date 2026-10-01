@@ -66,6 +66,14 @@ describe('ScoresPage', () => {
     expect(screen.getByText(/haven't committed yet/)).toBeTruthy();
   });
 
+  it('offers Watch next game for game 1, a Watch link on it, and box-score links on played scores', async () => {
+    mount(jcStateFixture());
+    const watch = await screen.findByRole('link', { name: 'Watch next game' });
+    expect(watch.getAttribute('href')).toBe('/league/fbajc/game/1');
+    expect(screen.getAllByRole('link', { name: 'Watch' }).length).toBe(1);
+    expect(screen.getByRole('link', { name: 'Watch' }).getAttribute('href')).toBe('/league/fbajc/game/1');
+  });
+
   it('a started season at day 0 shows the 27 fields and a re-draw button', async () => {
     mount(jcStateFixture());
     expect(await screen.findByRole('button', { name: 'Re-draw tournament fields' })).toBeTruthy();

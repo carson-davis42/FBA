@@ -4,7 +4,8 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { mulberry32 } from '../../engine/d2/random';
 import { playPostRound } from '../../engine/jc/postseason';
-import { jcReadyForNit } from '../../engine/jc/testFixtures';
+import { startConfTournaments } from '../../engine/jc/confTourney';
+import { jcPlayedFixture, jcReadyForNit, jcStateFixture } from '../../engine/jc/testFixtures';
 import type { JcState } from '../../engine/jc/state';
 import { JcGamePage } from './JcGamePage';
 import { docsOf } from './postseasonTestDocs';
@@ -12,12 +13,16 @@ import { docsOf } from './postseasonTestDocs';
 let batches: { writes: { path: string }[] }[] = [];
 let ready: JcState;
 let oneRound: JcState;
+let confStarted: JcState;
 beforeAll(() => {
   ready = jcReadyForNit();
   const r = playPostRound(ready, 'nit', mulberry32(4));
   if (!r.ok) throw new Error(r.problems.join());
   oneRound = r.state;
-}, 240000);
+  const c = startConfTournaments(jcPlayedFixture());
+  if (!c.ok) throw new Error(c.problems.join());
+  confStarted = c.state;
+}, 300000);
 
 function mount(s: JcState, gameNo: number) {
   batches = [];
@@ -79,5 +84,26 @@ describe('JcGamePage', () => {
     const noAwards = { ...ready, awards: { ...ready.awards!, mvp: ready.awards!.mvp, national: ready.awards!.national.map((a, i) => (i === 0 ? { ...a, playerId: null } : a)) } };
     mount(noAwards, noAwards.postseason!.nextGameNo);
     expect(await screen.findByText(/hasn't been played, and it isn't up next/)).toBeTruthy();
+  });
+
+  it('watches the next regular-season game live, saves results and rosters, and links back to the scores', async () => {
+    mount(jcStateFixture(), 1);
+    fireEvent.click(await screen.findByRole('button', { name: 'Sim to end' }));
+    await waitFor(() => expect(batches).toHaveLength(1));
+    expect(batches[0].writes.map(w => w.path).sort()).toEqual(['leagues/fbajc/S79/results.json', 'leagues/fbajc/S79/rosters.json']);
+    const saved = await screen.findByRole('link', { name: /Saved/ });
+    expect(saved.getAttribute('href')).toBe('/league/fbajc/scores');
+  });
+
+  it("does not let a later regular-season game be watched before the one before it", async () => {
+    mount(jcStateFixture(), 2);
+    expect(await screen.findByText(/hasn't been played, and it isn't up next/)).toBeTruthy();
+  });
+
+  it('watches the next conference tournament game live', async () => {
+    mount(confStarted, 3133);
+    fireEvent.click(await screen.findByRole('button', { name: 'Sim to end' }));
+    await waitFor(() => expect(batches).toHaveLength(1));
+    expect(batches[0].writes.map(w => w.path).sort()).toEqual(['leagues/fbajc/S79/postseason.json', 'leagues/fbajc/S79/rosters.json']);
   });
 });

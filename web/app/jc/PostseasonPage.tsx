@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { confDone, playAllConf, playConfRound, startConfTournaments } from '../../engine/jc/confTourney';
 import { setFields, swapField } from '../../engine/jc/fieldMoves';
 import { lineupOf } from '../../engine/jc/play';
+import { nextConfGame } from '../../engine/jc/watch';
 import { nextPostGame, playPostRound, playPostToEnd, postseasonStage, recordPostGame, tournamentProblem, type PostStage, type PostTournament } from '../../engine/jc/postseason';
 import type { JcState } from '../../engine/jc/state';
 import { JC_PROFILE, simGame } from '../../engine/season/sim';
@@ -58,6 +59,7 @@ export function PostseasonPage() {
     setTimeout(() => { void run(move).finally(() => setPlaying(false)); }, 0);
   };
   const busy = saving || playing;
+  const nextConf = ps && !stepProblem && !confDone(state) ? nextConfGame(state) : null;
 
   return (
     <section className="jc-page">
@@ -80,7 +82,10 @@ export function PostseasonPage() {
                 onClick={() => void run(() => startConfTournaments(state))}>Start conference tournaments</button>
             ) : (
               <>
-                <button className="btn primary" disabled={busy || confDone(state) || !!stepProblem} onClick={() => void run(() => playConfRound(state, newRng()))}>Play round</button>
+                {nextConf && typeof nextConf !== 'string' && !busy
+                  ? <Link className="btn primary" to={`/league/fbajc/game/${nextConf.gameNo}`}>Watch next game</Link>
+                  : <button className="btn primary" disabled>Watch next game</button>}
+                <button className="btn" disabled={busy || confDone(state) || !!stepProblem} onClick={() => void run(() => playConfRound(state, newRng()))}>Play round</button>
                 <button className="btn" disabled={busy || confDone(state) || !!stepProblem} onClick={() => slow(() => playAllConf(state, newRng()))}>{playing ? 'Playing...' : 'Play all conference tournaments'}</button>
               </>
             )}
@@ -99,7 +104,8 @@ export function PostseasonPage() {
                   <>
                     <p>Regular-season champion{rs.length > 1 ? 's' : ''}: {rs.map((id, i) => <span key={id}>{i > 0 && ', '}{teamCell(id)}</span>)}</p>
                     {b.champion && <p className="jc-banner">Tournament champion: {teamCell(b.champion)}</p>}
-                    <BracketView bracket={b} teamCell={teamCell} hrefFor={g => (g.result ? { label: 'Box score', to: `/league/fbajc/game/${g.result.gameNo}` } : null)} />
+                    <BracketView bracket={b} teamCell={teamCell} hrefFor={g => (g.result ? { label: 'Box score', to: `/league/fbajc/game/${g.result.gameNo}` }
+                      : nextConf && typeof nextConf !== 'string' && nextConf.bracketId === b.id && nextConf.gameId === g.id ? { label: 'Watch', to: `/league/fbajc/game/${nextConf.gameNo}` } : null)} />
                   </>
                 );
               })()}
