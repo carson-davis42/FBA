@@ -11,7 +11,7 @@ Decisions from the user (2026-10-01):
 | Question | Answer |
 |---|---|
 | Bracket PDF | Committed at `Past Brackets/brackets.pdf` (140 pages, the PDF used for FBA, D2 and WC). |
-| How far back | Everything each sheet has. A season shows whatever its sheets cover; no empty placeholders. |
+| How far back | Everything each sheet has. A season shows whatever its sheets cover; no empty placeholders. **The sheets have no data for S19–S47** (champions run S1–S18 then S48–S78; awards S11–S18 then S48–S78; the school workbook the same), so those seasons get no summary and the pages say "No record" for them rather than listing empty rows. |
 | Older All-American eras | Stored in their original slot layout (like the FBA's `PastAllFbaTeams`), shown as written. |
 | Player references | Names as text; a link to a player page only when exactly one existing player matches. |
 | School logos | Out of scope (deferred, with PHI and T32, see section 8). |
@@ -24,14 +24,14 @@ Both are Google Sheets read by the importer from an xlsx export cached in `web/i
 
 | Tab | Content | Seasons |
 |---|---|---|
-| National Championship History | `Year, Champion, Runner-Up, Score, C-Ship MVP, Date`. Score and Date are `X` (unknown) in the sampled rows; a "JC Era" header row precedes S1. | S1–S78 |
-| NIT Championship History | `Year, Champion, Runner-Up, C-Ship MVP, Date` | S72–S78 |
-| FBAJC National Awards History | Six national awards (POY, Freshman, Guard, Forward, Center, DPOY from S57), then an "All-Americans" block: season header (`S53`), then rows `slot, player, school` (section 3.2 lists the eras). | S11 on |
+| National Championship History | `Year, Champion, Runner-Up, Score, C-Ship MVP, Date`; a "JC Era" row precedes S1. `Score` is `X` for most of S1–S11 and S73 and is filled (`81-62`) for 33 seasons (it goes into `Champion.score`); `Date` is `X` or a real date (not imported). | S1–S18, S48–S78 (49 seasons) |
+| NIT Championship History | `Year, Champion, Runner-Up, C-Ship MVP, Date` (a real date) | S72–S78 |
+| FBAJC National Awards History | One tab, stacked blocks. Each of the six award blocks opens with a header row (column C = the award title; column B on that row is not a winner) followed by rows `S<n> \| player \| school`: Player of the Year S11–S18 and S48–S78 (39), Freshman of the Year S16–S78 (34), Guard, Forward, Center and Defensive POY S57–S78 (22 each). Then a row `All-Americans`, and per season a row `S<n>`, an optional `Team n` row (in column B), and rows `slot \| player \| school` with the slot in column A (section 3.2 lists the eras). All-Americans cover S53–S55 and S57–S78. | S11 on |
 | Conference Awards History | Pairs of columns per conference (player, school); `X` = none | S52 on, conferences join over time |
 | Conference Regular Season Champions | Per conference: `School(W-L)` on the season's first row, extra rows for co-champions (with or without a record) | S53 on |
-| Conference Tournament Champions | One school per conference per season | S54 on (S52, S53 are all `X`) |
+| Conference Tournament Champions | One school per conference per season | rows from S52 (S52 and S53 are all `X`), real data from S54 |
 | Preseason Tournament Champions | One column per event; events are added over time (6 events in S64, 21 in S72) | S64 on |
-| Total MM Wins All-Time | `rank, school, wins` | all-time (cross-checked against the school workbook) |
+| Total MM Wins All-Time | `rank, school, wins`; the first cells are an array formula, so the reader must take cached values; about 384 filled rows (blank rows after) | all-time (cross-checked against the school workbook) |
 | Recruiting, Transfer Portal | Already imported by the recruiting/portal work; not touched here | |
 
 **"FBA JC School History"** (`1T1gR1wQBVLfzL0o6cO2QKMTDsLDMIo03OJrF4t0CZZ8`; the user uploaded the full xlsx 2026-10-01): 18 tabs, one per current conference, 12 schools per tab (columns B–M, 216 in all). Each tab stacks nine sections down the columns, all with the same labels in column A: `MM App.`, `Sweet 16`, `Elite 8`, `Final Four`, `NC app.` (title-game appearances), `National Champions`, `Conf RS Champions`, `Conf TOUR Champions`. The section header cell reads `School-<count>` (`Baylor-28`) and the cells below list `(S<n>)` seasons; every one of the 1,728 counts matches its list. Cell suffixes:
