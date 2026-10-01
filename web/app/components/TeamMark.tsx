@@ -1,7 +1,12 @@
 import type { Team } from '../../engine/shared/types';
+import { flagUrl } from './flags';
 
 /** `label` overrides the name in the alt text (history pages show the name a team used that season). */
 export function TeamMark({ team, season, size = 32, label }: { team: Team; season: number; size?: number; label?: string }) {
+  const flag = team.flag ? flagUrl(team.flag) : null;
+  if (flag) {
+    return <img className="team-flag" src={flag} width={Math.round(size * 4 / 3)} height={size} alt={`${label ?? team.name} flag`} />;
+  }
   if (team.logoFolder) {
     return (
       <img

@@ -43,11 +43,19 @@ export const Team = z.object({
   group: z.string().nullable(),
   logoFolder: z.string().nullable(),
   badge: Badge,
+  /** ISO 3166 code (or gb-eng/gb-sct/gb-nir) for a flag; World Cup countries only. */
+  flag: z.string().min(2).optional(),
 }).strict();
 export type Team = z.infer<typeof Team>;
 
 export const TeamsFile = z.object({ league: LeagueId, teams: z.array(Team) }).strict();
 export type TeamsFile = z.infer<typeof TeamsFile>;
+
+/** leagues/fbawc/hosts.json: the World Cup host city and country by season (imported, part 5a). */
+export const WcHostsFile = z.object({
+  hosts: z.array(z.object({ season: int.min(1), city: z.string().min(1), country: z.string().min(1) }).strict()),
+}).strict().refine(f => new Set(f.hosts.map(h => h.season)).size === f.hosts.length, 'Each season appears once');
+export type WcHostsFile = z.infer<typeof WcHostsFile>;
 
 export const RosterEntry = z.object({
   playerId: z.string().nullable(),
