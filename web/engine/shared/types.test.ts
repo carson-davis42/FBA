@@ -305,6 +305,29 @@ describe('TransactionsFile lock and season entries', () => {
   });
 });
 
+describe('a finished D2 reset', () => {
+  // 66 PGs ranked in order; the 64 in the D2 are rated, the last two go to the Reserve pool.
+  const ids = Array.from({ length: 66 }, (_, i) => `p${String(i + 1).padStart(5, '0')}`);
+  const doc = (kind: string, rated: number, locked = true) => ({
+    league: 'fbad2', season: 79, kind, locked,
+    rows: ids.map(playerId => ({ playerId, position: 'PG', age: 25, team: 'AMS', prevRating: 70, otherRating: null, stat: null })),
+    order: ids,
+    ratings: Object.fromEntries(ids.slice(0, rated).map(id => [id, 70])),
+    curve: [90],
+  });
+
+  it('may leave the players past the 64 spots at a position unrated', () => {
+    expect(RankingFile.safeParse(doc('d2-reset', 64)).success).toBe(true);
+    expect(RankingFile.safeParse(doc('d2-reset', 66)).success).toBe(true);
+  });
+
+  it('must rate everyone within the 64 spots, and every player of other reset kinds', () => {
+    expect(RankingFile.safeParse(doc('d2-reset', 63)).success).toBe(false);
+    expect(RankingFile.safeParse(doc('fba-reset', 64)).success).toBe(false);
+    expect(RankingFile.safeParse(doc('d2-reset', 63, false)).success).toBe(true);
+  });
+});
+
 describe('Part 7a schemas', () => {
   const row = (playerId: string, prevRating: number | null) =>
     ({ playerId, position: 'PG', age: 25, team: 'AMS', prevRating, otherRating: null, stat: null });
