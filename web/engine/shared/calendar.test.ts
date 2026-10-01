@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calendarFor, currentStepIndex, markCurrentDone, markStepDone, reopenLast, reopenProblem } from './calendar';
+import { calendarFor, currentStepIndex, markCurrentDone, markStepDone, reopenLast, reopenProblem, withQualifyingStep } from './calendar';
 import { CalendarFile } from './types';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -42,7 +42,8 @@ describe('calendar helpers', () => {
 describe('calendarFor', () => {
   it('matches the committed calendar for its season (golden)', () => {
     const committed = JSON.parse(readFileSync(path.join(__dirname, '..', '..', 'data', 'calendar.json'), 'utf8')) as CalendarFile;
-    expect(calendarFor(committed.season)).toEqual({ ...committed, steps: committed.steps.map(s => ({ ...s, done: false })) });
+    // The committed S79 calendar predates the qualifying step (the user will migrate it), so compare after adding the step.
+    expect(calendarFor(committed.season)).toEqual(withQualifyingStep({ ...committed, steps: committed.steps.map(s => ({ ...s, done: false })) }));
     expect(committed.season).toBeGreaterThanOrEqual(79);
   });
 
@@ -56,6 +57,39 @@ describe('calendarFor', () => {
     expect(ids).toContain('make-s80-schedules');
     expect(CalendarFile.safeParse(s80).success).toBe(true);
     expect(calendarFor(81).steps.some(s => s.id.includes('world-cup'))).toBe(false);
+  });
+});
+
+describe('qualifying step', () => {
+  const qStep = { id: 's81-qualifying', label: 'S81 Qualifying', kind: 'league', league: 'fbawc', sub: false, done: false };
+
+  it('odd seasons get the qualifying step where even seasons have the World Cup', () => {
+    const s81 = calendarFor(81);
+    const ids = s81.steps.map(s => s.id);
+    expect(ids.slice(ids.indexOf('s82-fba-draft-lottery'), ids.indexOf('retirement') + 1)).toEqual(['s82-fba-draft-lottery', 's81-qualifying', 'retirement']);
+    expect(s81.steps.find(s => s.id === 's81-qualifying')).toEqual(qStep);
+    expect(CalendarFile.safeParse(s81).success).toBe(true);
+  });
+
+  it('even seasons have no qualifying step', () => {
+    expect(calendarFor(80).steps.some(s => s.id.includes('qualifying'))).toBe(false);
+  });
+
+  it('withQualifyingStep inserts once, before retirement, keeping done flags', () => {
+    const base = calendarFor(79);
+    const old = { ...base, steps: base.steps.filter(s => !s.id.includes('qualifying')).map((s, i) => ({ ...s, done: i < 3 })) };
+    const once = withQualifyingStep(old);
+    const ids = once.steps.map(s => s.id);
+    expect(ids.indexOf('s79-qualifying')).toBe(ids.indexOf('retirement') - 1);
+    expect(once.steps.find(s => s.id === 's79-qualifying')?.done).toBe(false);
+    expect(once.steps.filter(s => s.id !== 's79-qualifying').map(s => s.done)).toEqual(old.steps.map(s => s.done));
+    expect(withQualifyingStep(once)).toEqual(once);
+    expect(once.steps).toHaveLength(old.steps.length + 1);
+  });
+
+  it('withQualifyingStep leaves even seasons alone', () => {
+    const c = calendarFor(80);
+    expect(withQualifyingStep(c)).toBe(c);
   });
 });
 

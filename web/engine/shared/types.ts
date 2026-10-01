@@ -388,6 +388,59 @@ export type SchedulePause = z.infer<typeof SchedulePause>;
 export const ScheduleGame = z.object({ gameNo: int.positive(), home: z.string().min(1), away: z.string().min(1) }).strict();
 export type ScheduleGame = z.infer<typeof ScheduleGame>;
 
+export const QualifyingFile = z.object({
+  league: z.literal('fbawc'),
+  season: int,
+  /** Host country's fbawc teamId (the S{season+1} host). */
+  host: z.string().min(1),
+  auto: z.array(z.string().min(1)).length(15),
+  /** The 70 teams that play qualifying. */
+  field: z.array(z.string().min(1)).length(70),
+  schedule: z.array(ScheduleGame),
+  /** Random tiebreak key per country (all 85: rating ties for the top 15, then qualifying ties), drawn once. */
+  keys: z.record(z.string(), z.number()),
+  games: z.array(GameResult),
+  /** The 49 advancing teams; empty until finished. */
+  advanced: z.array(z.string().min(1)),
+}).strict().superRefine((d, ctx) => {
+  if (d.advanced.length !== 0 && d.advanced.length !== 49) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'advanced must be empty or 49 teams' });
+  if (new Set([...d.auto, ...d.field]).size !== 85) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'auto and field must be 85 distinct teams' });
+  if ([...d.auto, ...d.field].some(id => typeof d.keys[id] !== 'number')) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'keys must cover all 85 teams' });
+});
+export type QualifyingFile = z.infer<typeof QualifyingFile>;
+
+export const KnockoutRound = z.enum(['R32', 'R16', 'QF', 'SF', 'F']);
+export type KnockoutRound = z.infer<typeof KnockoutRound>;
+export const KnockoutGame = z.object({
+  id: z.string().min(1),           // e.g. 'R32-1' .. 'R32-16', 'R16-1' .. 'F-1'
+  round: KnockoutRound,
+  home: z.string().min(1).nullable(),
+  away: z.string().min(1).nullable(),
+  game: GameResult.nullable(),
+}).strict();
+export type KnockoutGame = z.infer<typeof KnockoutGame>;
+
+export const WorldCupFile = z.object({
+  league: z.literal('fbawc'),
+  season: int,
+  host: z.string().min(1),
+  field: z.array(z.string().min(1)).length(64),
+  /** Four pots of 16, best rating first within each. */
+  pots: z.array(z.array(z.string().min(1)).length(16)).length(4),
+  /** Groups 'A'..'P', four teams each. */
+  groups: z.record(z.string().regex(/^[A-P]$/), z.array(z.string().min(1)).length(4)),
+  keys: z.record(z.string(), z.number()),
+  schedule: z.array(ScheduleGame),
+  groupGames: z.array(GameResult),
+  /** Empty until the group stage is finished. */
+  knockout: z.array(KnockoutGame),
+  champion: z.string().min(1).nullable(),
+  runnerUp: z.string().min(1).nullable(),
+}).strict().superRefine((d, ctx) => {
+  if ((d.champion === null) !== (d.runnerUp === null)) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'champion and runnerUp must be both null or both set' });
+});
+export type WorldCupFile = z.infer<typeof WorldCupFile>;
+
 export const ScheduleFile = z.object({
   league: seasonLeague,
   season: int,

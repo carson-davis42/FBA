@@ -23,7 +23,7 @@ export function markStepDone(cal: CalendarFile, id: string): CalendarFile {
   return { ...cal, steps: cal.steps.map(s => (s.id === id ? { ...s, done: true } : s)) };
 }
 
-/** A fresh calendar for season n, every step not done. Labels and flags follow the committed S79 calendar; even seasons add the World Cup. */
+/** A fresh calendar for season n, every step not done. Labels and flags follow the committed S79 calendar; even seasons add the World Cup, odd seasons World Cup qualifying. */
 export function calendarFor(n: number): CalendarFile {
   const step = (id: string, label: string, sub = false, league: LeagueId | null = null): CalendarStep => ({
     id, label, kind: league ? 'league' : 'offseason', league, sub, done: false,
@@ -42,7 +42,7 @@ export function calendarFor(n: number): CalendarFile {
       step('fba-d2', 'FBA D2', false, 'fbad2'),
       step('fba', 'FBA', false, 'fba'),
       step(`s${n + 1}-fba-draft-lottery`, `S${n + 1} FBA Draft Lottery`),
-      ...(n % 2 === 0 ? [step(`s${n}-world-cup`, `S${n} World Cup`, false, 'fbawc')] : []),
+      step(n % 2 === 0 ? `s${n}-world-cup` : `s${n}-qualifying`, n % 2 === 0 ? `S${n} World Cup` : `S${n} Qualifying`, false, 'fbawc'),
       step('retirement', 'Retirement'),
       step('hall-of-fame-induction', 'Hall of Fame Induction'),
       step(`rank-s${n + 1}-class`, `Rank S${n + 1} Class`),
@@ -50,6 +50,16 @@ export function calendarFor(n: number): CalendarFile {
       step('fbajc', 'FBAJC', false, 'fbajc'),
     ],
   };
+}
+
+/** Adds the qualifying step (before retirement) to an odd-season calendar that lacks it; even seasons and calendars that have it are returned unchanged. */
+export function withQualifyingStep(cal: CalendarFile): CalendarFile {
+  const id = `s${cal.season}-qualifying`;
+  if (cal.season % 2 === 0 || cal.steps.some(s => s.id === id)) return cal;
+  const at = cal.steps.findIndex(s => s.id === 'retirement');
+  const added: CalendarStep = { id, label: `S${cal.season} Qualifying`, kind: 'league', league: 'fbawc', sub: false, done: false };
+  const steps = at < 0 ? [...cal.steps, added] : [...cal.steps.slice(0, at), added, ...cal.steps.slice(at)];
+  return { ...cal, steps };
 }
 
 const FINISHED_NAME: Record<string, string> = { fba: 'FBA', 'fba-d2': 'D2' };
