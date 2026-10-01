@@ -34,6 +34,7 @@ export function runFullWorldCup(seed: number) {
   );
   if (!q0.ok) throw new Error(q0.problems.join());
   let q: QualifyingState = q0.state;
+  const qStart = q0.state;
   for (let i = 0; i < 210; i++) {
     const r = playQualifyingGame(q, rng);
     if (!r.ok) throw new Error(r.problems.join());
@@ -48,6 +49,7 @@ export function runFullWorldCup(seed: number) {
   const w0 = startWorldCup({ season: 80, calendar, d2Rosters: d2Fixture(), countries, qualifying: q.qualifying!, previous: q.rosters }, rng);
   if (!w0.ok) throw new Error(w0.problems.join());
   let w: WorldCupState = w0.state;
+  const wStart = w0.state;
   for (let i = 0; i < 192; i++) {
     const r = playGroupGame(w, rng);
     if (!r.ok) throw new Error(r.problems.join());
@@ -56,10 +58,11 @@ export function runFullWorldCup(seed: number) {
   const gf = finishGroups(w);
   if (!gf.ok) throw new Error(gf.problems.join());
   w = gf.state;
+  const wKnockoutStart = gf.state;
   for (let i = 0; i < 31; i++) {
     const r = playKnockoutGame(w, rng);
     if (!r.ok) throw new Error(r.problems.join());
     w = r.state;
   }
-  return { q, w };
+  return { q, w, stages: { qStart, wStart, wKnockoutStart } };
 }

@@ -1,6 +1,7 @@
 import type { GameResult, RosterEntry } from '../shared/types';
 import { POSITIONS } from '../roster/rules';
-import type { SimTeam } from '../season/sim';
+import { simGame, type SimGame, type SimTeam } from '../season/sim';
+import type { Rng } from '../d2/random';
 
 export const qualifyingStepId = (season: number) => `s${season}-qualifying`;
 export const worldCupStepId = (season: number) => `s${season}-world-cup`;
@@ -20,4 +21,19 @@ export function simTeam(teamId: string, roster: RosterEntry[]): SimTeam {
 
 export function winnerOf(g: GameResult): string {
   return g.homePts > g.awayPts ? g.home : g.away;
+}
+
+export interface NextWcGame { gameNo: number; home: string; away: string }
+
+/** Sims `next` with the countries' lineups, or a problem when a roster is missing. */
+export function simWcGame(rosters: { teams: Record<string, RosterEntry[]> }, next: NextWcGame, rng: Rng): SimGame | string {
+  const home = rosters.teams[next.home];
+  const away = rosters.teams[next.away];
+  if (!home || !away) return `${next.home} or ${next.away} has no roster`;
+  return simGame(next.gameNo, simTeam(next.home, home), simTeam(next.away, away), rng);
+}
+
+/** A problem when a (live) sim isn't the game that is up next. */
+export function simMismatch(next: NextWcGame, sim: SimGame): string | null {
+  return sim.gameNo === next.gameNo && sim.home.teamId === next.home && sim.away.teamId === next.away ? null : 'That game is not the next one';
 }
