@@ -42,8 +42,8 @@ const RULES: [RegExp, z.ZodTypeAny][] = [
   [new RegExp(`^leagues/(fba|fbad2)/${S}/schedule\\.json$`), ScheduleFile],
   [new RegExp(`^leagues/(fba|fbad2)/${S}/playoffs\\.json$`), PlayoffsFile],
   [new RegExp(`^leagues/(fba|fbad2)/${S}/awards\\.json$`), AwardsFile],
-  [new RegExp(`^leagues/fbawc/${S}/qualifying\.json$`), QualifyingFile],
-  [new RegExp(`^leagues/fbawc/${S}/worldcup\.json$`), WorldCupFile],
+  [new RegExp(`^leagues/fbawc/${S}/qualifying\\.json$`), QualifyingFile],
+  [new RegExp(`^leagues/fbawc/${S}/worldcup\\.json$`), WorldCupFile],
   [new RegExp(`^leagues/fba/${S}/ratingPause-[1-9]\\d*\\.json$`), RatingPauseFile],
   [new RegExp(`^leagues/fba/${S}/allstar\\.json$`), AllStarFile],
 ];
