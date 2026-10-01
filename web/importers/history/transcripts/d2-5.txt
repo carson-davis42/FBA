@@ -1,0 +1,114 @@
+# p067 FBA D2 International League Tournament
+S74
+G:IL
+1|Dhaka|28-2
+8|Frankfurt|13-17
+5|Florence|23-7
+4|Belfast|24-6
+3|Mumbai|24-6
+6|Edinburgh|19-11
+7|Kiev|17-13
+2|Osaka|26-4
+= Dhaka 4-3 | Belfast 4-3 | Mumbai 4-1 | Osaka 4-2
+= Belfast 4-2 | Osaka 4-3
+= Osaka 4-0
+
+# p074 FBA D2 Premier League Tournament
+S70
+G:PL
+1|Hamburg|24-6
+8|Glasgow|16-14
+5|Milan|20-10
+4|Toronto|21-9
+3|Munich|21-9
+6|Salzburg|19-11
+7|Lisbon|19-11
+2|Rome|23-7
+= Hamburg 4-3 | Toronto 4-1 | Salzburg 4-3 | Rome 4-3
+= Toronto 4-2 | Rome 4-2
+= Rome 4-1
+
+# p076 FBA D2 World League Tournament
+S75
+G:WL
+1|Guadalajara|28-2
+8|Shanghai|16-14
+5|Liverpool|22-8
+4|Miami|22-8
+3|Sao Paolo|26-4
+6|Amsterdam|21-9
+7|Hamburg|18-12
+2|Recife|26-4
+= Guadalajara 4-0 | Miami 4-2 | Amsterdam 4-2 | Recife 4-0
+= Guadalajara 4-1 | Recife 4-1
+= Recife 4-2
+
+# p077 FBA D2 United League Tournament
+S77
+G:UL
+1|Mumbai|26-4
+8|Johannesburg|13-17
+5|Paris|22-8
+4|Moscow|23-7
+3|Kiev|24-6
+6|Brussels|19-11
+7|Manchester|14-16
+2|Copenhagen|25-5
+= Mumbai 4-3 | Paris 4-1 | Brussels 4-1 | Copenhagen 4-1
+= Mumbai 4-2 | Copenhagen 4-0
+= Mumbai 4-2
+
+# p082 FBA D2 Premier League Tournament
+S68
+G:PL
+1|Rome|25-5
+8|Hamburg|18-12
+5|Berlin|20-10
+4|Manchester|22-8
+3|Salzburg|23-7
+6|Tampa|19-11
+7|Lisbon|18-12
+2|Toronto|24-6
+= Rome 4-1 | Manchester 4-3 | Tampa 4-2 | Toronto 4-1
+= Rome 4-1 | Toronto 4-3
+= Toronto 4-3
+
+# p083 FBA D2 World League Tournament
+S71
+G:WL
+1|Austin|28-2
+8|Kiev|14-16
+5|Mexico City|20-10
+4|London|20-10
+3|Vienna|21-9
+6|Paris|19-11
+7|Copenhagen|15-15
+2|Tokyo|24-6
+= Austin 4-0 | London 4-3 | Vienna 4-2 | Tokyo 4-1
+= Austin 4-1 | Tokyo 4-0
+= Austin 4-3
+
+# p091 FBA D2 World League Tournament
+S69
+G:WL
+1|Glasgow|11-3
+4|Austin|8-6
+3|Zurich|9-5
+2|Istanbul|10-4
+= Glasgow 4-1 | Zurich 4-2
+= Glasgow 4-0
+
+# p092 FBA D2 World League Tournament
+S72
+G:WL
+1|Mexico City|25-5
+8|Lyon|18-12
+5|Copenhagen|20-10
+4|London|21-9
+3|Shanghai|21-9
+6|Vienna|20-10
+7|Guadalajara|18-12
+2|Buenos Aires|23-7
+= Lyon 4-2 | London 4-3 | Shanghai 4-1 | Buenos Aires 4-2
+= London 4-3 | Buenos Aires 4-2
+= Buenos Aires 4-2
