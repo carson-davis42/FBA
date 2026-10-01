@@ -7,7 +7,7 @@ export function leagueSections(league: LeagueId): [string, string][] {
     ? [['scores', 'Scores'], ['standings', 'Standings'], ['playoffs', 'Playoffs'], ['awards', 'Awards'], ['rankings', 'Rankings'], ['', 'Teams'], ['transactions', 'Transactions']]
     : league === 'fbajc'
       ? [['', 'Teams'], ['recruiting', 'Recruiting']]
-      : [['', 'Teams']];
+      : [['qualifying', 'Qualifying'], ['worldcup', 'World Cup'], ['', 'Teams']];
 }
 
 const HOF = '/history/fba/hall-of-fame';
