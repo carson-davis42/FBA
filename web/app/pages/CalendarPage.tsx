@@ -29,6 +29,7 @@ export function CalendarPage() {
   const { data: cal, version, error } = useDoc<CalendarFile>('calendar.json');
   const fbaSummary = useDoc<SummaryFile>(cal ? `leagues/fba/S${cal.season}/summary.json` : null);
   const d2Summary = useDoc<SummaryFile>(cal ? `leagues/fbad2/S${cal.season}/summary.json` : null);
+  const jcSummary = useDoc<SummaryFile>(cal ? `leagues/fbajc/S${cal.season}/summary.json` : null);
   const recruiting = useDoc<RecruitingFile>(cal ? boardPath(cal.season - 1) : null);
   const collegeRosters = useDoc<RostersFile>(cal ? `leagues/fbajc/S${cal.season}/rosters.json` : null);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -51,9 +52,10 @@ export function CalendarPage() {
   const finished = new Set<string>();
   if (fbaSummary.data?.locked) finished.add(CALENDAR_STEP.fba);
   if (d2Summary.data?.locked) finished.add(CALENDAR_STEP.fbad2);
+  if (jcSummary.data?.locked) finished.add('fbajc');
   const reopenWhy = reopenProblem(cal, finished);
-  // Reopen stays off until both summaries are known (loaded, or confirmed missing with a 404).
-  const summaries = [fbaSummary, d2Summary];
+  // Reopen stays off until the three summaries are known (loaded, or confirmed missing with a 404).
+  const summaries = [fbaSummary, d2Summary, jcSummary];
   const summariesKnown = summaries.every(d => d.data || d.missing);
   const summaryError = summaries.find(d => d.error && !d.missing)?.error;
   const save = async (next: CalendarFile) => {

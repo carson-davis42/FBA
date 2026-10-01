@@ -4,7 +4,7 @@ import { teamRating } from '../../engine/jc/rankings';
 import { jcStandings } from '../../engine/jc/standings';
 import type { CalendarFile, Team } from '../../engine/shared/types';
 import { useDoc } from '../api';
-import { ClinchLegend, RankCell } from '../components/Clinch';
+import { ClinchLegend, RankCell, type ClinchKind } from '../components/Clinch';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import { jcGate } from './JcGate';
@@ -81,7 +81,10 @@ export function StandingsPage() {
       {shown.map(({ conference, rows, ties }) => {
         const clinch = jcClinch(rows);
         const top = Math.max(...rows.map(r => r.confW));
-        const kinds = rows.map(r => clinch[r.teamId]);
+        const mm = new Set(state.postseason?.field?.mm.teams ?? []);
+        const nit = new Set(state.postseason?.field?.nit.teams ?? []);
+        const kindOf = (id: string): ClinchKind | null => clinch[id] ?? (mm.has(id) ? 'marchmadness' : nit.has(id) ? 'nit' : null);
+        const kinds = rows.map(r => kindOf(r.teamId));
         return (
           <section key={conference} className="card">
             <h2>{conference}</h2>
@@ -94,7 +97,7 @@ export function StandingsPage() {
                     const gb = ((top - r.confW) + (r.confL - Math.min(...rows.map(o => o.confL)))) / 2;
                     return (
                       <tr key={r.teamId}>
-                        <RankCell kind={clinch[r.teamId]} league="fbajc">{i + 1}</RankCell>
+                        <RankCell kind={kindOf(r.teamId)} league="fbajc">{i + 1}</RankCell>
                         <td>{r.rank ?? '–'}</td>
                         <td>{teamCell(r.teamId)}</td>
                         <td>{r.w}-{r.l}</td>
