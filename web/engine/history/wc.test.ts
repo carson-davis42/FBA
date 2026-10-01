@@ -10,6 +10,11 @@ describe('World Cup history rows', () => {
     expect(rows.map(r => r.season)).toEqual([78, 66, 58]);
     expect(rows[0]).toMatchObject({ host: 'Croatia', champion: 'Germany', championId: 'GER', runnerUp: 'Italy', mvp: 'p1' });
   });
+  it('carries a generated MVP name', () => {
+    const g: SummaryFile = { league: 'fbawc', season: 80, locked: true, host: 'India', champions: [{ title: 'World Cup Champion', champion: 'Italy', runnerUp: 'Spain', score: null, finalsMvp: null, mvpName: 'Italy PG' }] };
+    expect(wcTitleRows([g])[0]).toMatchObject({ mvp: null, mvpName: 'Italy PG' });
+    expect(rows[0].mvpName).toBeNull();
+  });
   it('counts titles by country', () => {
     expect(titlesByCountry(rows)).toEqual([
       { country: 'Germany', teamId: 'GER', titles: 2, seasons: [66, 78] },

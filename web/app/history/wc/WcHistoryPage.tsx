@@ -41,7 +41,7 @@ export function WcHistoryPage() {
                 <td>{hostText(r.season, r.host)}</td>
                 <td><WcTeam teams={teams} teamId={r.championId} name={r.champion} season={r.season} /></td>
                 <td>{r.runnerUp ? <WcTeam teams={teams} teamId={r.runnerUpId} name={r.runnerUp} season={r.season} /> : '—'}</td>
-                <td>{r.mvp ? <Badge kind="finals-mvp"><PlayerLink id={r.mvp} players={players.data!} /></Badge> : '—'}</td>
+                <td>{r.mvp ? <Badge kind="finals-mvp"><PlayerLink id={r.mvp} players={players.data!} /></Badge> : r.mvpName ?? '—'}</td>
               </tr>
             ))}
           </tbody>

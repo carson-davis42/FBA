@@ -1,13 +1,13 @@
 import type { SummaryFile } from '../shared/types';
 
-export interface WcTitleRow { season: number; host: string | null; champion: string; championId?: string; runnerUp: string | null; runnerUpId?: string; mvp: string | null }
+export interface WcTitleRow { season: number; host: string | null; champion: string; championId?: string; runnerUp: string | null; runnerUpId?: string; mvp: string | null; mvpName: string | null }
 const TITLE = 'World Cup Champion';
 
 export function wcTitleRows(seasons: SummaryFile[]): WcTitleRow[] {
   const rows: WcTitleRow[] = [];
   for (const s of seasons) {
     const c = s.champions.find(x => x.title === TITLE);
-    if (c) rows.push({ season: s.season, host: s.host, champion: c.champion, championId: c.teamId, runnerUp: c.runnerUp, runnerUpId: c.runnerUpId, mvp: c.finalsMvp ?? null });
+    if (c) rows.push({ season: s.season, host: s.host, champion: c.champion, championId: c.teamId, runnerUp: c.runnerUp, runnerUpId: c.runnerUpId, mvp: c.finalsMvp ?? null, mvpName: c.mvpName ?? null });
   }
   return rows.sort((a, b) => b.season - a.season);
 }
