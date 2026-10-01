@@ -1,4 +1,5 @@
 import { randInt, type Rng } from '../d2/random';
+import { leagueRefRating } from '../awards/defense';
 import { calendarProblem, toGameResult } from '../season/moves';
 import { JC_PROFILE, simGame, type SimTeam } from '../season/sim';
 import { POSITIONS } from '../roster/rules';
@@ -97,6 +98,7 @@ function step(state: JcState, rng: Rng): Step {
     total += nr - ratings[id];
     ratings[id] = nr;
   };
+  const refRating = leagueRefRating(state.rosters);
   const results: GameResult[] = [];
   for (const g of games) {
     const home = lineupOf(rosters[g.home], g.home);
@@ -104,7 +106,7 @@ function step(state: JcState, rng: Rng): Step {
     if (typeof home === 'string') return { problems: [home] };
     if (typeof away === 'string') return { problems: [away] };
     const sim = simGame(g.gameNo, home, away, rng, JC_PROFILE);
-    results.push(toGameResult(sim));
+    results.push(toGameResult(sim, refRating));
     const pts: Record<string, number> = {};
     for (const side of ['home', 'away'] as const) sim[side].players.forEach((p, k) => { pts[p.playerId] = sim.box[side][k]; });
     for (const id of [g.home, g.away]) {

@@ -18,6 +18,22 @@ describe('playDay uses the FBAJC sim', () => {
   });
 });
 
+describe('defensive stats', () => {
+  it('every box line of a day carries the defense fields, measured against one reference rating', () => {
+    const r = playDay(jcStateFixture(), mulberry32(5));
+    if (!r.ok) throw new Error(r.problems.join());
+    for (const g of r.state.results!.games) {
+      for (const line of [...g.box!.home, ...g.box!.away]) {
+        expect(typeof line.def).toBe('number');
+        expect(typeof line.stops).toBe('number');
+        expect(typeof line.allowed).toBe('number');
+        expect(typeof line.exp).toBe('number');
+      }
+    }
+    expect(r.state.results!.games[0].box!.home[0].def).toBeGreaterThan(0);
+  });
+});
+
 describe('progressRatings', () => {
   it('never exceeds 99 or lowers a rating, and 99 stays 99', () => {
     const rng = mulberry32(3);
