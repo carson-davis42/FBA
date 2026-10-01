@@ -1,0 +1,119 @@
+# p004 FBA D2 World League Tournament
+S76
+G:WL
+1|Rome|25-5
+8|Liverpool|15-15
+5|Hamburg|19-11
+4|Sydney|20-10
+3|Sao Paolo|23-7
+6|Zurich|16-14
+7|Dhaka|16-14
+2|Vancouver|24-6
+= Rome 4-0 | Sydney 4-3 | Sao Paolo 4-0 | Vancouver 4-0
+= Rome 4-0 | Vancouver 4-3
+= Vancouver 4-2
+
+# p005 FBA D2 Premier League Tournament
+S74
+G:PL
+1|San Jose|24-6
+8|Vancouver|17-13
+5|Salzburg|21-9
+4|Tokyo|21-9
+3|Berlin|23-7
+6|Ottawa|20-10
+7|Milan|20-10
+2|Austin|23-7
+= San Jose 4-0 | Salzburg 4-2 | Berlin 4-1 | Austin 4-1
+= San Jose 4-2 | Austin 4-2
+= San Jose 4-0
+
+# p007 FBA D2 World League Tournament
+S78
+G:WL
+1|Mumbai|28-2
+8|Zagreb|16-14
+5|Dhaka|18-12
+4|Copenhagen|20-10
+3|Sao Paolo|20-10
+6|Munich|17-13
+7|Casablanca|17-13
+2|Hamburg|23-7
+= Mumbai 4-2 | Dhaka 4-1 | Sao Paolo 4-1 | Hamburg 4-3
+= Mumbai 4-2 | Hamburg 4-0
+= Mumbai 4-2
+
+# p023 FBA D2 World League Tournament
+S73
+G:WL
+1|Vienna|23-7
+8|Guadalajara|15-15
+5|Zurich|17-13
+4|Lyon|18-12
+3|Liverpool|21-9
+6|Shanghai|17-13
+7|Madrid|16-14
+2|London|22-8
+= Vienna 4-3 | Lyon 4-1 | Liverpool 4-0 | London 4-1
+= Vienna 4-3 | London 4-2
+= Vienna 4-2
+
+# p024 FBA D2 International League Tournament
+S75
+G:IL
+1|Dubai|29-1
+8|Glasgow|15-15
+5|Florence|21-9
+4|Belfast|25-5
+3|Rotterdam|27-3
+6|Naples|17-13
+7|Edinburgh|16-14
+2|Mumbai|27-3
+= Dubai 4-0 | Florence 4-2 | Rotterdam 4-0 | Mumbai 4-1
+= Dubai 4-0 | Mumbai 4-3
+= Mumbai 4-3
+
+# p025 FBA D2 Premier League Tournament
+S77
+G:PL
+1|Austin|23-7
+8|Rome|17-13
+5|London|17-13
+4|Mexico City|19-11
+3|Guadalajara|19-11
+6|Lisbon|17-13
+7|Buenos Aires|17-13
+2|Salzburg|22-8
+= Austin 4-1 | London 4-1 | Guadalajara 4-2 | Salzburg 4-0
+= Austin 4-3 | Salzburg 4-0
+= Salzburg 4-3
+
+# p033 FBA D2 Premier League Tournament
+S76
+G:PL
+1|Austin|27-3
+8|Guadalajara|16-14
+5|Lisbon|16-14
+4|London|19-11
+3|Budapest|20-10
+6|Recife|16-14
+7|Milan|16-14
+2|Berlin|22-8
+= Guadalajara 4-3 | London 4-3 | Budapest 4-3 | Berlin 4-3
+= London 4-1 | Budapest 4-1
+= Budapest 4-0
+
+# p034 FBA D2 United League Tournament
+S78
+G:UL
+1|Moscow|23-7
+8|Beijing|16-14
+5|Paris|18-12
+4|Dublin|19-11
+3|Dubai|20-10
+6|Belfast|18-12
+7|Johannesburg|17-13
+2|Kiev|21-9
+= Moscow 4-0 | Dublin 4-3 | Dubai 4-3 | Johannesburg 4-2
+= Dublin 4-2 | Johannesburg 4-0
+= Dublin 4-0

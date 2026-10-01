@@ -9,6 +9,8 @@ import { buildD2History, buildLeagueHistory, d2LeagueMoves, D2_TABS } from './d2
 import { buildDraftHistory } from './draftHistory';
 import { buildPastTransactions } from './pastTransactions';
 import { planHistoryImport } from './historyRun';
+import { runBracketImport } from './history/mergeBrackets';
+import type { BracketEntry } from './history/convertBrackets';
 import { buildWcHistory, WC_SHEET_TAB } from './wcHistory';
 import { buildLogoManifest, diffLogoManifests } from './logoManifest';
 import { Report } from './report';
@@ -568,6 +570,18 @@ async function importWcHistory(): Promise<void> {
   console.log(`Wrote ${out.summaries.length} summaries, ${out.hosts.hosts.length} hosts and flags for ${out.teams.teams.filter(t => t.flag).length} teams.`);
 }
 
+/** Puts the transcribed past brackets (importers/history/<kind>Brackets.json) onto the league's season summaries in the --data folder. */
+function importBrackets(flag: string, league: 'fbawc' | 'fbad2', file: string): void {
+  const dir = requireDataDir(flag);
+  const entries = JSON.parse(readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), 'history', file), 'utf8')) as BracketEntry[];
+  const { report, problems } = runBracketImport(league, entries, dir);
+  if (problems.length) {
+    console.error(`Some built docs fail their schema; nothing was written.\n${problems.join('\n')}`);
+    process.exit(1);
+  }
+  console.log(`Brackets: ${report.set} set, ${report.unchanged} unchanged, ${report.missingSummary.length} without a summary${report.missingSummary.length ? ` (${report.missingSummary.join(', ')})` : ''}, ${report.replaced.length} replaced${report.replaced.length ? ` (${report.replaced.join(', ')})` : ''}.`);
+}
+
 /** Adds the odd season's qualifying step to calendar.json in the --data folder; writes only when it changed. */
 export async function importWcQualifyingStep(): Promise<void> {
   const dir = requireDataDir('--wc-qualifying-step');
@@ -585,7 +599,7 @@ export async function importWcQualifyingStep(): Promise<void> {
   console.log(`Added s${cal.season}-qualifying`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -605,6 +619,8 @@ async function main(): Promise<void> {
   if (process.argv.includes('--events')) return importEvents();
   if (process.argv.includes('--d2-history')) return importD2History();
   if (process.argv.includes('--wc-history')) return importWcHistory();
+  if (process.argv.includes('--wc-brackets')) return importBrackets('--wc-brackets', 'fbawc', 'wcBrackets.json');
+  if (process.argv.includes('--d2-brackets')) return importBrackets('--d2-brackets', 'fbad2', 'd2Brackets.json');
   if (process.argv.includes('--d2-leagues')) return importD2Leagues();
   if (process.argv.includes('--wc-qualifying-step')) return importWcQualifyingStep();
   if (process.argv.includes('--check-trophies')) return checkTrophies();

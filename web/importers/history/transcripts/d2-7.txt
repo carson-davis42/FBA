@@ -1,0 +1,114 @@
+# p118 FBA D2 Premier League Tournament
+S72
+G:PL
+1|Tokyo|25-5
+8|Salzburg|18-12
+5|Rome|20-10
+4|Munich|20-10
+3|Lisbon|21-9
+6|Austin|19-11
+7|Ottawa|18-12
+2|Milan|24-6
+= Salzburg 4-2 | Munich 4-1 | Lisbon 4-2 | Milan 4-3
+= Salzburg 4-3 | Lisbon 4-2
+= Salzburg 4-2
+
+# p119 FBA D2 International League Tournament
+S76
+G:IL
+1|Kiev|25-5
+8|Naples|16-14
+5|Belfast|18-12
+4|Barcelona|19-11
+3|Warsaw|19-11
+6|Dublin|18-12
+7|Auckland|18-12
+2|Rotterdam|19-11
+= Kiev 4-1 | Barcelona 4-2 | Warsaw 4-3 | Auckland 4-1
+= Barcelona 4-2 | Warsaw 4-0
+= Barcelona 4-1
+
+# p120 FBA D2 World League Tournament
+S74
+G:WL
+1|Madrid|29-1
+8|Shanghai|16-14
+5|Guadalajara|22-8
+4|Recife|23-7
+3|Sao Paolo|24-6
+6|Liverpool|22-8
+7|Amsterdam|18-12
+2|Budapest|24-6
+= Madrid 4-1 | Recife 4-3 | Sao Paolo 4-1 | Amsterdam 4-2
+= Madrid 4-0 | Amsterdam 4-1
+= Madrid 4-2
+
+# p121 FBA D2 Premier League Tournament
+S78
+G:PL
+1|Salzburg|23-7
+8|Buenos Aires|15-15
+5|London|19-11
+4|Miami|19-11
+3|Austin|20-10
+6|Milan|18-12
+7|Zurich|16-14
+2|Lisbon|21-9
+= Salzburg 4-2 | London 4-0 | Milan 4-1 | Zurich 4-1
+= Salzburg 4-2 | Zurich 4-2
+= Salzburg 4-1
+
+# p126 FBA D2 United League Tournament
+S70
+G:UL
+1|Tokyo|20-2
+BYE
+5|Buenos Aires|13-9
+4|Lyon|14-8
+3|Copenhagen|14-8
+6|Lagos|12-10
+BYE
+2|Shanghai|17-5
+= Tokyo BYE | Buenos Aires 4-3 | Copenhagen 4-3 | Shanghai BYE
+= Tokyo 4-0 | Shanghai 4-3
+= Tokyo 4-1
+
+# p134 FBA D2 United League Tournament
+S68
+G:UL
+1|Glasgow|13-1
+4|Barcelona|8-6
+3|Vancouver|8-6
+2|Zurich|10-4
+= Glasgow 4-3 | Zurich 4-0
+= Glasgow 4-3
+
+# p136 FBA D2 United League Tournament
+S73
+G:UL
+1|Sao Paolo|28-2
+8|Johannesburg|17-13
+5|Beijing|18-12
+4|Sydney|20-10
+3|Stockholm|20-10
+6|Rio De Janeiro|17-13
+7|Miami|17-13
+2|Budapest|22-8
+= Sao Paolo 4-1 | Beijing 4-2 | Stockholm 4-3 | Budapest 4-0
+= Sao Paolo 4-1 | Stockholm 4-3
+= Sao Paolo 4-0
+
+# p137 FBA D2 United League Tournament
+S75
+G:UL
+1|Osaka|29-1
+8|Moscow|16-14
+5|Casablanca|20-10
+4|Beijing|21-9
+3|Saint Petersburg|27-3
+6|Johannesburg|17-13
+7|Paris|16-14
+2|Dhaka|28-2
+= Osaka 4-2 | Beijing 4-2 | Saint Petersburg 4-3 | Dhaka 4-1
+= Osaka 4-2 | Dhaka 4-2
+= Osaka 4-2

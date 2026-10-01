@@ -86,3 +86,39 @@ describe('PastBracket with franchises', () => {
     expect(screen.getByText('Montreal')).toBeTruthy();
   });
 });
+
+describe('PastBracket scored series', () => {
+  it('shows the game score instead of the win counts', () => {
+    const one: PastBracketDoc = { rounds: 1, series: [{ ...ps('R1-1', 'Japan', 'Korea', 1, 0), score: '97–75' }] };
+    const { container } = render(<PastBracket bracket={one} teams={teams} season={5} />);
+    const wins = [...container.querySelectorAll('.series-side .wins')].map(e => e.textContent);
+    expect(wins).toEqual(['97', '75']);
+  });
+});
+
+describe('PastBracket unscored series', () => {
+  it('shows no numbers but still marks the winner', () => {
+    const one: PastBracketDoc = { rounds: 1, series: [{ ...ps('R1-1', 'Japan', 'Korea', 0, 0), unscored: true }] };
+    const { container } = render(<PastBracket bracket={one} teams={teams} season={5} />);
+    const wins = [...container.querySelectorAll('.series-side .wins')].map(e => e.textContent);
+    expect(wins).toEqual(['', '']);
+    expect(container.querySelector('.series-box')!.textContent).not.toMatch(/\d\d|0/);
+    expect(container.querySelectorAll('.series-side')[0].className).toContain('won');
+  });
+});
+
+describe('PastBracket 6 rounds', () => {
+  it('renders 63 series boxes in 11 columns', () => {
+    const series: PastSeries[] = [];
+    for (let r = 1; r <= 6; r++) {
+      const n = 2 ** (6 - r), span = 2 ** r;
+      for (let k = 1; k <= n; k++) {
+        const lo = (k - 1) * span + 1;
+        series.push(ps(`R${r}-${k}`, `T${lo}`, `T${lo + span / 2}`, 4, 1));
+      }
+    }
+    const { container } = render(<PastBracket bracket={{ rounds: 6, series }} teams={[]} season={5} />);
+    expect(container.querySelectorAll('.series-box')).toHaveLength(63);
+    expect(container.querySelectorAll('.bracket > .bracket-col')).toHaveLength(11);
+  });
+});

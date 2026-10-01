@@ -8,6 +8,7 @@ import { useDoc, useHistory } from '../../api';
 import { Hero } from '../../components/Hero';
 import { clinchKind, ClinchLegend, RankCell } from '../../components/Clinch';
 import { Bracket } from '../../playoffs/Bracket';
+import { PastBracket } from '../PastBracket';
 import { PlayerLink, SkippedWarning } from '../PlayerLink';
 import '../history.css';
 import { HistoryLeagueSwitch } from './HistoryLeagueSwitch';
@@ -129,6 +130,21 @@ export function D2SeasonPage() {
               <Bracket league="fbad2" series={season.bracket!.series.filter(s => s.group === g)} teams={teamMap} season={n} group={g} open={null} />
             </div>
           ))}
+        </div>
+      )}
+      {!season.bracket && (
+        <div className="stack">
+          <h2 className="section-title">Tournament</h2>
+          {season.pastBrackets?.length
+            ? GROUPS.map(g => season.pastBrackets!.find(p => p.group === g)).filter(p => !!p).map(p => (
+              <div key={p.group}>
+                <h3>{groupLabel('fbad2', p.group)}</h3>
+                <PastBracket bracket={p.bracket} teams={teams} season={n} />
+              </div>
+            ))
+            : season.pastBracket
+              ? <PastBracket bracket={season.pastBracket} teams={teams} season={n} />
+              : <p className="muted">No bracket recorded</p>}
         </div>
       )}
       {season.promotion && season.promotion.length > 0 && (

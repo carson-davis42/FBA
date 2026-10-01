@@ -46,6 +46,7 @@ describe('World Cup history page', () => {
     expect(within(body[1]).getAllByRole('cell')[4].textContent).toBe('Italy PG');
     expect(within(body[1]).queryAllByRole('link', { name: 'Italy PG' })).toHaveLength(0);
     const row = body[0];
+    expect(within(row).getByRole('link', { name: 'S78' }).getAttribute('href')).toBe('/history/fbawc/season/78');
     expect(row.textContent).toContain('Zagreb, Croatia');
     expect(row.textContent).toContain('Germany');
     expect(row.textContent).toContain('Rowan Hawthorne');

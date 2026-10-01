@@ -1,0 +1,245 @@
+# p069 FBA D2 World Cup S78
+S78
+|Japan|
+|UAE|
+|Poland|
+|Mongolia|
+|Egypt|
+|Romania|
+|England|
+|Dominican Republic|
+|Russia|
+|Senegal|
+|Iceland|
+|Taiwan|
+|Saudi Arabia|
+|Canada|
+|Ethiopia|
+|South Africa|
+|Brazil|
+|Venezuela|
+|Tunisia|
+|Portugal|
+|El Salvador|
+|France|
+|Italy|
+|Northern Ireland|
+|Ukraine|
+|Peru|
+|Nigeria|
+|Morocco|
+|Ireland|
+|Hungary|
+|Czechia|
+|Bangladesh|
+|India|
+|South Korea|
+|Argentina|
+|Finland|
+|Georgia|
+|Switzerland|
+|Netherlands|
+|Norway|
+|Australia|
+|Chile|
+|Scotland|
+|Luxembourg|
+|Germany|
+|Austria|
+|Cuba|
+|Denmark|
+|Croatia|
+|Sri Lanka|
+|Belgium|
+|USA|
+|Greece|
+|Mexico|
+|Turkey|
+|Serbia|
+|China|
+|Sweden|
+|Israel|
+|Spain|
+|Philippines|
+|New Zealand|
+|Ivory Coast|
+|Angola|
+= Japan 97-75 | Poland 76-52 | Egypt 73-58 | England 95-56 | Russia 95-62 | Iceland 82-76 | Canada 92-63 | South Africa 74-68 | Brazil 90-55 | Portugal 80-58 | France 98-56 | Italy 105-77 | Ukraine 100-65 | Nigeria 93-92 | Ireland 99-87 | Bangladesh 77-58 | India 94-60 | Argentina 105-54 | Switzerland 91-66 | Netherlands 86-73 | Australia 87-63 | Scotland 92-60 | Germany 101-84 | Denmark 82-55 | Croatia 90-71 | USA 96-69 | Mexico 111-72 | Turkey 80-73 | China 85-84 | Spain 91-49 | New Zealand 84-83 | Angola 76-44
+= Japan 94-75 | England 99-74 | Russia 104-59 | Canada 103-64 | Portugal 88-82 | Italy 81-78 | Ukraine 73-71 | Ireland 85-75 | India 89-73 | Netherlands 89-79 | Scotland 85-78 | Germany 94-61 | USA 91-58 | Mexico 98-53 | Spain 101-70 | Angola 86-72
+= England 82-80 | Canada 92-79 | Italy 99-76 | Ireland 92-75 | India 88-69 | Germany 96-67 | USA 93-79 | Spain 105-62
+= England 100-79 | Italy 108-90 | Germany 99-93 | USA 87-73
+= Italy 93-79 | Germany 102-81
+= Germany 88-81
+
+# p072 FBA D2 World Cup S62
+S62
+BYE
+|England|
+|Spain|
+BYE
+|Ireland|
+BYE
+|Italy|
+BYE
+|Turkey|
+BYE
+BYE
+|Germany|
+|Belgium|
+BYE
+|Greece|
+BYE
+|France|
+BYE
+|Switzerland|
+BYE
+|Mexico|
+BYE
+|Russia|
+BYE
+|USA|
+|Austria|
+|Canada|
+|Portugal|
+BYE
+|Scotland|
+|Netherlands|
+|Ukraine|
+= England BYE | Spain BYE | Ireland BYE | Italy BYE | Turkey BYE | Germany BYE | Belgium BYE | Greece BYE | France BYE | Switzerland BYE | Mexico BYE | Russia BYE | USA 43-33 | Portugal 45-44 | Scotland BYE | Ukraine 42-29
+= Spain 40-25 | Italy 46-31 | Germany 36-21 | Greece 35-34 | France 48-39 | Mexico 47-18 | USA 40-33 | Ukraine 45-30
+= Italy 50-31 | Germany 43-18 | Mexico 57-53 | USA 63-60
+= Germany 53-32 | Mexico 36-35
+= Mexico 40-38
+
+# p097 FBA D2 World Cup S58
+S58
+|Belgium|
+|USA|
+|Netherlands|
+|Austria|
+|Spain|
+|Russia|
+|Greece|
+|Ukraine|
+|Turkey|
+|Italy|
+|Germany|
+|Canada|
+|France|
+|England|
+|Ireland|
+|Switzerland|
+= USA 43-9 | Austria 48-32 | Spain 36-4 | Greece 44-41 | Italy 40-12 | Canada 51-22 | France 41-38 | Switzerland 37-28
+= Austria 49-40 | Greece 41-31 | Canada 54-46 | France 44-32
+= Austria 48-47 | Canada 42-15
+= Canada 47-44
+
+# p115 FBA D2 World Cup S60
+S60
+|Austria|
+|USA|
+|Ireland|
+|Germany|
+|Spain|
+|France|
+|Canada|
+|Greece|
+|Switzerland|
+|England|
+|Turkey|
+|Ukraine|
+|Russia|
+|Italy|
+|Belgium|
+|Netherlands|
+= USA 46-28 | Germany 50-15 | France 46-30 | Canada 48-31 | England 59-18 | Ukraine 60-42 | Italy 56-52 | Netherlands 51-34
+= USA 53-39 | France 60-47 | England 50-25 | Netherlands 51-47
+= USA 61-48 | England 50-29
+= USA 58-56
+
+# p123 FBA D2 World Cup S56
+S56
+|USA|
+|Turkey|
+|France|
+|Ireland|
+|Austria|
+|Germany|
+|Italy|
+|England|
+= Turkey 51-50 | France 80-28 | Germany 42-41 | Italy 59-50
+= Turkey 50-40 | Italy 54-53
+= Italy 54-52
+
+# p127 FBA D2 World Cup S72
+S72
+|Netherlands|
+|Egypt|
+|Algeria|
+|Dominican Republic|
+|France|
+|Saudi Arabia|
+|Canada|
+|Bangladesh|
+|Portugal|
+|Kenya|
+|Ukraine|
+|Slovenia|
+|Germany|
+|Guatemala|
+|Scotland|
+|Morocco|
+|Australia|
+|Chile|
+|Vietnam|
+|England|
+|Switzerland|
+|UAE|
+|Venezuela|
+|Russia|
+|Indonesia|
+|Qatar|
+|Poland|
+|Denmark|
+|Nepal|
+|New Zealand|
+|Japan|
+|Norway|
+|Austria|
+|Croatia|
+|Mexico|
+|Spain|
+|Turkey|
+|Philippines|
+|Taiwan|
+|Pakistan|
+|Hungary|
+|Peru|
+|South Africa|
+|Northern Ireland|
+|South Korea|
+|Italy|
+|Colombia|
+|Sweden|
+|Romania|
+|Argentina|
+|USA|
+|Greece|
+|Cuba|
+|Brazil|
+|Ireland|
+|Belgium|
+|Luxembourg|
+|Costa Rica|
+|Finland|
+|Nigeria|
+|China|
+|India|
+|Thailand|
+|Slovakia|
+= Netherlands 2-0 | Algeria 2-1 | France 2-0 | Canada 2-1 | Portugal 2-1 | Ukraine 2-1 | Germany 2-0 | Morocco 2-1 | Australia 2-0 | England 2-0 | Switzerland 2-0 | Russia 2-0 | Qatar 2-0 | Denmark 2-0 | New Zealand 2-0 | Japan 2-0 | Austria 2-0 | Spain 2-1 | Turkey 2-0 | Taiwan 2-1 | Hungary 2-0 | Northern Ireland 2-0 | Italy 2-1 | Sweden 2-1 | Argentina 2-0 | USA 2-0 | Brazil 2-0 | Belgium 2-1 | Luxembourg 2-0 | Nigeria 2-0 | China 2-1 | Slovakia 2-1
+= Netherlands 2-0 | Canada 2-0 | Portugal 2-0 | Germany 2-0 | England 2-1 | Switzerland 2-1 | Denmark 2-0 | Japan 2-0 | Austria 2-1 | Turkey 2-0 | Hungary 2-0 | Italy 2-0 | USA 2-0 | Brazil 2-0 | Nigeria 2-0 | China 2-1
+= Netherlands 2-1 | Germany 2-1 | Switzerland 2-1 | Japan 2-1 | Austria 2-0 | Italy 2-1 | USA 2-0 | China 2-0
+= Netherlands 2-0 | Japan 2-0 | Austria 2-0 | USA 2-1
+= Japan 2-0 | USA 2-0
+= Japan 2-1

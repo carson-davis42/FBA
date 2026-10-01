@@ -1,0 +1,119 @@
+# p040 FBA D2 International League Tournament
+S72
+G:IL
+1|Budapest|30-0
+8|Saint Petersburg|18-12
+5|Auckland|19-11
+4|Rotterdam|19-11
+3|Osaka|22-8
+6|Casablanca|19-11
+7|Dhaka|18-12
+2|Sao Paolo|23-7
+= Budapest 4-0 | Auckland 4-2 | Osaka 4-3 | Sao Paolo 4-3
+= Budapest 4-0 | Sao Paolo 4-3
+= Budapest 4-0
+
+# p049 FBA D2 Premier League Tournament
+S73
+G:PL
+1|Ottawa|23-7
+8|Austin|17-13
+5|Rome|17-13
+4|Salzburg|19-11
+3|Tokyo|21-9
+6|Berlin|17-13
+7|Milan|17-13
+2|Lisbon|21-9
+= Austin 4-2 | Rome 4-0 | Berlin 4-2 | Lisbon 4-2
+= Rome 4-0 | Lisbon 4-3
+= Rome 4-2
+
+# p050 FBA D2 Premier League Tournament
+S75
+G:PL
+1|Berlin|25-5
+8|Austin|16-14
+5|Lisbon|20-10
+4|Budapest|20-10
+3|Tokyo|22-8
+6|Ottawa|19-11
+7|Milan|17-13
+2|San Jose|22-8
+= Austin 4-2 | Budapest 4-2 | Tokyo 4-3 | Milan 4-1
+= Budapest 4-1 | Tokyo 4-2
+= Tokyo 4-1
+
+# p052 FBA D2 International League Tournament
+S77
+G:IL
+1|Dublin|30-0
+8|Auckland|16-14
+5|Barcelona|20-10
+4|Warsaw|21-9
+3|Florence|21-9
+6|Naples|19-11
+7|Oslo|18-12
+2|Belfast|22-8
+= Dublin 4-0 | Barcelona 4-1 | Naples 4-3 | Belfast 4-0
+= Dublin 4-1 | Naples 4-3
+= Dublin 4-1
+
+# p057 FBA D2 United League Tournament
+S71
+G:UL
+1|Zagreb|20-2
+BYE
+5|Johannesburg|12-10
+4|Recife|14-8
+3|Liverpool|15-7
+6|Sydney|12-10
+BYE
+2|Buenos Aires|19-3
+= Zagreb BYE | Recife 4-2 | Sydney 4-2 | Buenos Aires BYE
+= Zagreb 4-2 | Buenos Aires 4-1
+= Zagreb 4-2
+
+# p061 FBA D2 International League Tournament
+S78
+G:IL
+1|Naples|24-6
+8|Warsaw|16-14
+5|Athens|17-13
+4|Oslo|18-12
+3|Barcelona|22-8
+6|Rio De Janeiro|17-13
+7|Edinburgh|16-14
+2|Florence|24-6
+= Naples 4-2 | Athens 4-2 | Barcelona 4-1 | Florence 4-0
+= Naples 4-0 | Barcelona 4-2
+= Barcelona 4-3
+
+# p064 FBA D2 Premier League Tournament
+S69
+G:PL
+1|Rome|23-7
+8|Berlin|18-12
+5|Toronto|21-9
+4|Amsterdam|22-8
+3|Lisbon|22-8
+6|Salzburg|20-10
+7|Hamburg|19-11
+2|Munich|23-7
+= Rome 4-0 | Amsterdam 4-2 | Lisbon 4-3 | Munich 4-1
+= Rome 4-3 | Lisbon 4-2
+= Lisbon 4-2
+
+# p066 FBA D2 United League Tournament
+S72
+G:UL
+1|Liverpool|25-5
+8|Manchester|16-14
+5|Rio De Janeiro|21-9
+4|Johannesburg|22-8
+3|Sydney|24-6
+6|Stockholm|18-12
+7|Lagos|16-14
+2|Recife|24-6
+= Liverpool 4-3 | Johannesburg 4-0 | Sydney 4-0 | Recife 4-1
+= Liverpool 4-2 | Recife 4-2
+= Recife 4-1

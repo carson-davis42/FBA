@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { titlesByCountry, wcTitleRows } from '../../../engine/history/wc';
 import type { PlayersFile, WcHostsFile } from '../../../engine/shared/types';
 import { useDoc, useHistory } from '../../api';
@@ -37,7 +38,7 @@ export function WcHistoryPage() {
           <tbody>
             {rows.map(r => (
               <tr key={r.season}>
-                <td>S{r.season}</td>
+                <td><Link to={`/history/fbawc/season/${r.season}`}>S{r.season}</Link></td>
                 <td>{hostText(r.season, r.host)}</td>
                 <td><WcTeam teams={teams} teamId={r.championId} name={r.champion} season={r.season} /></td>
                 <td>{r.runnerUp ? <WcTeam teams={teams} teamId={r.runnerUpId} name={r.runnerUp} season={r.season} /> : '—'}</td>

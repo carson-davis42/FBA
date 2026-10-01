@@ -710,16 +710,20 @@ export const PastSide = z.object({ name: z.string().min(1), record: z.string().r
 export type PastSide = z.infer<typeof PastSide>;
 export const PastSeries = z.object({
   id: z.string().regex(/^R\d-\d+$/),
-  round: int.min(1).max(5),
+  round: int.min(1).max(6),
   home: PastSide.nullable(),
   away: PastSide.nullable(),
   homeWins: int.min(0).max(4),
   awayWins: int.min(0).max(4),
   winner: z.enum(['home', 'away']),
+  /** A single game's points, winner first (for example 97–75); the wins are then 1-0. */
+  score: z.string().regex(/^\d+[–-]\d+$/).optional(),
+  /** A series whose page prints only the winner (no scores): 0-0 in wins, no score, a real loser. */
+  unscored: z.literal(true).optional(),
 }).strict();
 export type PastSeries = z.infer<typeof PastSeries>;
 /** A transcribed historical bracket: a full binary tree of series, R1-1... up to the final. */
-export const PastBracket = z.object({ rounds: int.min(1).max(5), series: z.array(PastSeries) }).strict().superRefine((b, ctx) => {
+export const PastBracket = z.object({ rounds: int.min(1).max(6), series: z.array(PastSeries) }).strict().superRefine((b, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const byId = new Map(b.series.map(s => [s.id, s]));
   for (let r = 1; r <= b.rounds; r++) {
@@ -736,7 +740,16 @@ export const PastBracket = z.object({ rounds: int.min(1).max(5), series: z.array
     if (!win) { issue(`${s.id}: the winner can't be a BYE`); continue; }
     if (!s.home && !s.away) issue(`${s.id}: both sides are BYEs`);
     if (!lose && (s.homeWins || s.awayWins)) issue(`${s.id}: a BYE series has no wins`);
-    if (lose && s[`${s.winner}Wins`] <= s[s.winner === 'home' ? 'awayWins' : 'homeWins']) issue(`${s.id}: the winner needs more wins`);
+    if (s.unscored) {
+      if (!lose) issue(`${s.id}: an unscored series needs a loser`);
+      if (s.homeWins || s.awayWins) issue(`${s.id}: an unscored series has no wins`);
+      if (s.score) issue(`${s.id}: an unscored series has no score`);
+    } else if (lose && s[`${s.winner}Wins`] <= s[s.winner === 'home' ? 'awayWins' : 'homeWins']) issue(`${s.id}: the winner needs more wins`);
+    if (s.score) {
+      const [a, c] = s.score.split(/[–-]/).map(Number);
+      if (s[`${s.winner}Wins`] !== 1 || s[s.winner === 'home' ? 'awayWins' : 'homeWins'] !== 0) issue(`${s.id}: a scored game is 1-0 in wins`);
+      if (!(a > c)) issue(`${s.id}: the winner's points must be larger`);
+    }
     if (s.round < b.rounds) {
       const k = Number(s.id.split('-')[1]);
       const next = byId.get(`R${s.round + 1}-${Math.ceil(k / 2)}`);
@@ -813,6 +826,8 @@ export const SummaryFile = z.object({
   confChampions: z.object({ E: z.string().min(1).nullable(), W: z.string().min(1).nullable() }).strict().nullable().optional(),
   /** A transcribed bracket (imported history). */
   pastBracket: PastBracket.nullable().optional(),
+  /** D2 only: one bracket per league tournament (imported history). */
+  pastBrackets: z.array(z.object({ group: z.enum(['PL', 'WL', 'UL', 'IL']), bracket: PastBracket }).strict()).optional(),
   bracket: z.object({ seeds: z.array(PlayoffSeed), series: z.array(PlayoffSeries) }).strict().nullable().optional(),
   /** D2 only. */
   promotion: z.array(PromotionLine).nullable().optional(),
@@ -826,6 +841,12 @@ export const SummaryFile = z.object({
   if (doc.league !== 'fba' && (doc.allFba || doc.allStar)) issue('Only the FBA has All-FBA teams and an All-Star weekend');
   if (doc.league !== 'fbad2' && doc.promotion) issue('Only the D2 has promotion and relegation');
   if (doc.league !== 'fbad2' && doc.rsChampions) issue('Only the D2 has regular-season league champions');
+  if (doc.pastBrackets?.length) {
+    if (doc.pastBracket) issue('A summary has pastBracket or pastBrackets, not both');
+    if (doc.league !== 'fbad2') issue('Only the D2 has one bracket per league');
+    const groups = doc.pastBrackets.map(p => p.group);
+    if (new Set(groups).size !== groups.length) issue('A league tournament bracket is listed twice');
+  }
   const keys = new Set<string>();
   const stints = new Map<string, number>();
   const totals = new Set<string>();
