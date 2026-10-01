@@ -19,11 +19,11 @@ export interface JcState {
   board: RecruitingFile | null;
 }
 
-export type JcKey = 'rosters' | 'schedule' | 'results' | 'rankings' | 'postseason' | 'awards' | 'summary';
+export type JcKey = 'rosters' | 'schedule' | 'results' | 'rankings' | 'postseason' | 'awards' | 'summary' | 'calendar';
 export type JcResult = { ok: true; state: JcState; changed: JcKey[]; label: string } | { ok: false; problems: string[] };
 export const jcFail = (problems: string[]): { ok: false; problems: string[] } => ({ ok: false, problems });
 
-export const jcDocPath = (key: JcKey, season: number): string => `leagues/fbajc/S${season}/${key}.json`;
+export const jcDocPath = (key: JcKey, season: number): string => (key === 'calendar' ? 'calendar.json' : `leagues/fbajc/S${season}/${key}.json`);
 
 export function jcWrites(r: Extract<JcResult, { ok: true }>): { path: string; doc: unknown }[] {
   return r.changed.map(key => ({ path: jcDocPath(key, r.state.season), doc: r.state[key] }));

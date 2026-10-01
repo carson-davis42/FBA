@@ -2,7 +2,9 @@ import type { Rng } from '../d2/random';
 import { leagueRefRating } from '../awards/defense';
 import { calendarProblem, toGameResult } from '../season/moves';
 import type { SimGame } from '../season/sim';
-import type { Bracket, BracketGame, JcPostseasonFile } from '../shared/types';
+import { fbajcGateProblem } from '../college/recruiting';
+import { markStepDone } from '../shared/calendar';
+import type { Bracket, BracketGame, JcPostseasonFile, SummaryFile } from '../shared/types';
 import { awardsComplete } from './awards';
 import { playableGames, recordResult } from './bracket';
 import { confDone } from './confTourney';
@@ -118,4 +120,107 @@ export function recordPostGame(state: JcState, which: PostTournament, sim: SimGa
     return jcFail([(e as Error).message]);
   }
   return { ok: true, state: withBracket(state, which, bracket, sim.gameNo + 1, book.rosters), changed: ['postseason', 'rosters'], label: `${LABEL[which]} game` };
+}
+
+const scoreText = (winner: number, loser: number): string => `${winner}–${loser}`;
+
+/** The March Madness bracket as a transcribed-style `PastBracket` (a full binary tree R1-1 … R6-1, home feeder first). */
+export function pastBracketOf(b: Bracket, nameOf: (teamId: string) => string): NonNullable<SummaryFile['pastBracket']> {
+  const final = b.games.find(g => g.next === null)!;
+  const feeders = (g: BracketGame): BracketGame[] =>
+    b.games.filter(x => x.next?.id === g.id).sort((x, y) => (x.next!.side === 'home' ? -1 : 1) - (y.next!.side === 'home' ? -1 : 1));
+  const levels: BracketGame[][] = [[final]];
+  for (;;) {
+    const up = levels[levels.length - 1].flatMap(feeders);
+    if (!up.length) break;
+    levels.push(up);
+  }
+  const rounds = levels.length;
+  const series = levels.flatMap((games, depth) => games.map((g, i) => {
+    const homeWon = g.result!.homePts > g.result!.awayPts;
+    const side = (team: string | null, seed: number | null) => ({ name: nameOf(team!), record: null, seed });
+    return {
+      id: `R${rounds - depth}-${i + 1}`,
+      round: rounds - depth,
+      home: side(g.home, g.homeSeed),
+      away: side(g.away, g.awaySeed),
+      homeWins: homeWon ? 1 : 0,
+      awayWins: homeWon ? 0 : 1,
+      winner: homeWon ? 'home' as const : 'away' as const,
+      score: scoreText(Math.max(g.result!.homePts, g.result!.awayPts), Math.min(g.result!.homePts, g.result!.awayPts)),
+    };
+  }));
+  return { rounds, series };
+}
+
+/** The finished season's record: champions, conference champions, awards, All-Americans, MVPs and the March Madness bracket. */
+export function buildJcSummary(state: JcState): SummaryFile {
+  const ps = state.postseason!;
+  const aw = state.awards!;
+  const name = (id: string): string => state.teams.teams.find(t => t.teamId === id)?.name ?? id;
+  const teamOf = (playerId: string | null): string | null => {
+    if (!playerId) return null;
+    for (const [teamId, entries] of Object.entries(state.rosters.teams)) if (entries.some(e => e.playerId === playerId)) return teamId;
+    return null;
+  };
+  const finalOf = (b: Bracket, title: string, mvp: string | null) => {
+    const f = b.games.find(g => g.next === null)!;
+    const r = f.result!;
+    const champion = b.champion!;
+    const runnerUp = champion === f.home ? f.away! : f.home!;
+    return {
+      title, champion: name(champion), runnerUp: name(runnerUp),
+      score: scoreText(Math.max(r.homePts, r.awayPts), Math.min(r.homePts, r.awayPts)),
+      teamId: champion, runnerUpId: runnerUp, group: null, finalsMvp: mvp,
+    };
+  };
+  const mm = ps.mm!;
+  const nit = ps.nit!;
+  const nitFinal = nit.games.find(g => g.next === null)!;
+  return {
+    league: 'fbajc',
+    season: state.season,
+    locked: true,
+    host: null,
+    champions: [finalOf(mm, 'FBAJC National Champion', aw.mvp.mm), finalOf(nit, 'NIT Champion', aw.mvp.nit)],
+    pastBracket: pastBracketOf(mm, name),
+    jc: {
+      confChampions: ps.conf.map(b => ({ conf: b.id, tournament: b.champion, regularSeason: ps.rsChampions[b.id] ?? [] })),
+      national: aw.national.map(a => ({ award: a.award, playerId: a.playerId, teamId: teamOf(a.playerId) })),
+      conference: aw.conference.map(a => ({ conf: a.conf, playerId: a.playerId, teamId: teamOf(a.playerId) })),
+      allAmerican: aw.allAmerican?.map(t => ({ team: t.team, slots: t.slots.map(s => ({ slot: s.slot, playerId: s.playerId, teamId: teamOf(s.playerId) })) })) ?? null,
+      mvp: aw.mvp,
+      nit: { champion: nit.champion!, runnerUp: nit.champion === nitFinal.home ? nitFinal.away! : nitFinal.home! },
+    },
+  };
+}
+
+const lock = <T extends { locked: boolean }>(d: T | null): T | null => (d && !d.locked ? { ...d, locked: true } : d);
+
+/** "Finish the season": writes the locked summary, locks the season's docs and marks the `fbajc` calendar step done. */
+export function finishJcSeason(state: JcState): JcResult {
+  const problems: string[] = [];
+  const step = calendarProblem(state.calendar, 'fbajc', 'The season is played');
+  if (step) problems.push(step);
+  const stage = postseasonStage(state);
+  if (stage === 'done') problems.push(`The S${state.season} FBAJC season is already finished`);
+  else if (stage !== 'finish') problems.push('Finish the awards, tournaments, All-American teams and MVP picks first');
+  const gate = fbajcGateProblem(state.board, state.rosters);
+  if (gate) problems.push(gate);
+  if (problems.length) return jcFail(problems);
+  return {
+    ok: true,
+    state: {
+      ...state,
+      summary: buildJcSummary(state),
+      postseason: lock(state.postseason),
+      awards: lock(state.awards),
+      results: lock(state.results),
+      rankings: lock(state.rankings),
+      schedule: lock(state.schedule),
+      calendar: markStepDone(state.calendar, 'fbajc'),
+    },
+    changed: ['summary', 'postseason', 'awards', 'results', 'rankings', 'schedule', 'calendar'],
+    label: `Finish S${state.season} FBAJC season`,
+  };
 }

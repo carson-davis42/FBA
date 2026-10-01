@@ -44,6 +44,7 @@ export function useJcDocs(season: number | null): JcDocs {
     versions[jcDocPath('postseason', s)] = postseason.version;
     versions[jcDocPath('awards', s)] = awards.version;
     versions[jcDocPath('summary', s)] = summary.version;
+    versions[jcDocPath('calendar', s)] = calendar.version;
   }
 
   const failed = all.find(d => d.error && !d.missing)?.error;
