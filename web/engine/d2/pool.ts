@@ -1,12 +1,12 @@
 import { POSITIONS, vacantEntry } from '../roster/rules';
 import { appendTx, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
-import type { D2DraftFile, D2PoolFile, Position, RosterEntry } from '../shared/types';
+import { D2_POSITION_SPOTS, type D2DraftFile, type D2PoolFile, type Position, type RosterEntry } from '../shared/types';
 import { shuffle, type Rng } from './random';
 import { d2Fail, d2Name, poolMembers, type D2Result, type D2State } from './state';
 
 /** The top this many at each position make the D2. */
-export const POOL_CUTOFF = 64;
+export const POOL_CUTOFF = D2_POSITION_SPOTS;
 
 export type PoolOrder = D2PoolFile['order'];
 

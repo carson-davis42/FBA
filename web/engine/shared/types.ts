@@ -251,6 +251,9 @@ export type TransactionsFile = z.infer<typeof TransactionsFile>;
 
 const d2Rating = int.min(1).max(99);
 
+/** The top this many at each position make the D2; players ranked past it in the D2 reset go unrated to the Reserve pool. */
+export const D2_POSITION_SPOTS = 64;
+
 const consensus = z.number().min(70).max(100);
 
 const idList = z.array(playerId);
@@ -323,7 +326,16 @@ export const RankingFile = z.object({
   if (doc.curve.some((v, k) => k > 0 && v > doc.curve[k - 1])) issue('The curve must run from high to low');
   if (doc.locked) {
     if (doc.order.length !== doc.rows.length) issue('A finished ranking must rank every player');
-    if (doc.order.some(id => doc.ratings[id] === undefined)) issue('A finished ranking must rate every player');
+    // A D2 reset leaves the players ranked past their position's spots unrated: they go to the Reserve pool.
+    const byId = new Map(doc.rows.map(r => [r.playerId, r.position]));
+    const seen = new Map<string, number>();
+    const unrated = doc.order.filter(id => {
+      const pos = byId.get(id) ?? '';
+      const n = (seen.get(pos) ?? 0) + 1;
+      seen.set(pos, n);
+      return doc.ratings[id] === undefined && !(doc.kind === 'd2-reset' && n > D2_POSITION_SPOTS);
+    });
+    if (unrated.length) issue('A finished ranking must rate every player');
   }
   if (doc.kind !== 'college-class' && (doc.consensus || doc.consensusCurve)) issue('Only a class ranking has consensus');
   for (const id of Object.keys(doc.consensus ?? {})) if (!ids.has(id)) issue(`${id} has a consensus but isn't in the rows`);
