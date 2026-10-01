@@ -164,12 +164,14 @@ a.ticker-chip:hover { background: var(--row-hover); }
 /* Standings clinch bars (FotMob style): a coloured strip on the rank cell plus a key below the tables. */
 :root {
   --clinch-conference: #8b5cf6; --clinch-first: #0d9488; --clinch-playoff: #2563eb;
-  --clinch-promoted: #16a34a; --clinch-relegated: #dc2626; --clinch-eliminated: #9ca3af;
+  --clinch-promoted: #16a34a; --clinch-qualified: #16a34a; --clinch-advanced: #16a34a; --clinch-relegated: #dc2626; --clinch-eliminated: #9ca3af;
 }
 .clinch-conference { --clinch-color: var(--clinch-conference); }
 .clinch-first { --clinch-color: var(--clinch-first); }
 .clinch-playoff { --clinch-color: var(--clinch-playoff); }
 .clinch-promoted { --clinch-color: var(--clinch-promoted); }
+.clinch-qualified { --clinch-color: var(--clinch-qualified); }
+.clinch-advanced { --clinch-color: var(--clinch-advanced); }
 .clinch-relegated { --clinch-color: var(--clinch-relegated); }
 .clinch-eliminated { --clinch-color: var(--clinch-eliminated); }
 td.rank.clinch { position: relative; }
