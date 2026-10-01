@@ -12,12 +12,12 @@ afterEach(cleanup);
 const ALL = ['p00002', 'p00001', 'p00003', 'p00006', 'p00004', 'p00005'];
 const IN_ORDER = { p00002: 85, p00001: 85, p00003: 80, p00006: 75, p00004: 70, p00005: 65 };
 
-function Harness({ initial, extra = [], onFinish = () => {}, withConsensus = false, leftLabel }: { initial: RankingFile; extra?: string[]; onFinish?: () => void; withConsensus?: boolean; leftLabel?: string }) {
+function Harness({ initial, extra = [], onFinish = () => {}, withConsensus = false, leftLabel, positionCap }: { positionCap?: { spots: number; label: string }; initial: RankingFile; extra?: string[]; onFinish?: () => void; withConsensus?: boolean; leftLabel?: string }) {
   const [doc, setDoc] = useState(initial);
   return (
     <RankingTable
       doc={doc} name={rankName} teamLabel={t => t ?? 'Reserves'} otherLabel="FBA" onChange={change => setDoc(change)}
-      leftLabel={leftLabel} extraBlockers={extra} finishLabel="Finish ratings" onFinish={onFinish} busy={false}
+      leftLabel={leftLabel} positionCap={positionCap} extraBlockers={extra} finishLabel="Finish ratings" onFinish={onFinish} busy={false}
       consensus={withConsensus ? { onSet: (id, v) => setDoc(cur => setConsensus(cur, id, v)) } : undefined}
     />
   );
@@ -135,6 +135,26 @@ describe('RankingTable', () => {
     expect(screen.queryByRole('button', { name: /^Use suggested/ })).toBeNull();
     expect(box('Ben Cole').disabled).toBe(true);
     expect(box('Ben Cole').value).toBe('85');
+  });
+
+  describe('position spots', () => {
+    const cap = { spots: 2, label: 'D2 spots left per position' };
+    it('is absent without a cap', () => {
+      render(<Harness initial={rankingDoc()} />);
+      expect(screen.queryByRole('group', { name: 'D2 spots left per position' })).toBeNull();
+    });
+
+    it('counts spots left per position as players are ranked and flags going over', () => {
+      render(<Harness initial={rankingDoc()} positionCap={cap} />);
+      const spots = (pos: string) => within(screen.getByRole('group', { name: cap.label })).getByText(new RegExp(`^${pos} `)).textContent;
+      expect(spots('PG')).toBe('PG 2');
+      fireEvent.click(screen.getByRole('button', { name: 'Rank Ada Stone next' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Rank Cal Reyes next' }));
+      expect(spots('PG')).toBe('PG 0');
+      expect(spots('SG')).toBe('SG 2');
+      fireEvent.click(screen.getByRole('button', { name: 'Rank Dev Hart next' }));
+      expect(spots('PG')).toBe('PG 0 (1 over)');
+    });
   });
 
   describe('split view', () => {
