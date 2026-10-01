@@ -11,10 +11,31 @@ Decisions from the user (2026-10-01):
 | Question | Answer |
 |---|---|
 | Bracket PDF | Committed at `Past Brackets/brackets.pdf` (140 pages, the PDF used for FBA, D2 and WC). |
-| How far back | Everything each sheet has. A season shows whatever its sheets cover; no empty placeholders. **The sheets have no data for S19–S47** (champions run S1–S18 then S48–S78; awards S11–S18 then S48–S78; the school workbook the same), so those seasons get no summary and the pages say "No record" for them rather than listing empty rows. |
+| How far back | Everything each sheet has. A season shows whatever its sheets cover; no empty placeholders. The sheets run S1–S18 then S48–S78 because of how the college league was numbered (section 1a); there are no seasons S19–S47. |
 | Older All-American eras | Stored in their original slot layout (like the FBA's `PastAllFbaTeams`), shown as written. |
 | Player references | Names as text; a link to a player page only when exactly one existing player matches. |
 | School logos | Out of scope (deferred, with PHI and T32, see section 8). |
+
+## 1a. Season numbering (user-supplied, 2026-10-01)
+
+The college league kept its own season numbers until it joined the shared calendar. The FBA events tab (`web/data/leagues/fba/events.json`) records when each of them happened:
+
+| JC season | Happened at |
+|---|---|
+| S1, S2 | FFL S46, FFL S47 (before the FBA began) |
+| S3 | FBA S11 |
+| S4, S5 | FBA S28, S29 |
+| S6–S18 | FBA S32–S44 (one per season: S6 = S32 … S18 = S44) |
+| (none) | FBA S45–S47: no college season |
+| S48 on | "FBA adds JC": the college league takes the shared season number, S48–S78 |
+
+Consequences:
+
+- **No gap to fill:** JC S19–S47 do not exist, so there are no summaries for them and no "missing" report. The two number ranges never collide, so summaries sit at `leagues/fbajc/S<n>/` with the sheet's own number, as for S48 on.
+- **Labels:** the pages label S1–S18 as "S<n>" with the equivalent in small text (for example "S11 · FBA S37", "S1 · FFL S46"), and say in a note on the championships page that the college league used its own numbers until S48. A season page for S1–S18 must not be linked from, or assume the same year as, the FBA/D2/WC season with the same number.
+- **Table:** `JC_EARLY_SEASONS` in `engine/history/jc.ts` (JC season → `{ era: 'FFL' | 'FBA', season }`), with a test that reads `events.json` and checks each "FBA JC S<n>" note sits on the season in the table (the FFL S46/S47 entries come from the `before` list).
+- **School workbook:** its S1–S18 are the college league's own seasons, and the bare `*` it puts on S1–S10 marks the early format (keep as a flag on the season, not a conference).
+- **Statistics across eras:** title counts, appearance counts and the school pages treat S1–S18 and S48–S78 as one continuous list in the order JC S1…S18, S48…S78.
 
 ## 2. Sources
 
@@ -126,6 +147,7 @@ Each mode validates every doc through `schemaForPath` first and writes nothing o
 - School logos for FBAJC schools (the user is considering them).
 - PHI (Philly Phantoms, logo already in `FBA Logos/`) and Team 32 (T32, no logo) must be added before the S80 rollover.
 - Season win-loss records for schools before S79 (not in the sheets; the user confirmed the school workbook is the source).
+- JC S45–S47-equivalent seasons (FBA S45–S47) have no college season; nothing to import.
 - Anything under `FBA/`, `FBAD2/`, `FBAJC/`, `FBAWC/`, `FBA Logos/` and `web/data/**` is not modified by this part.
 
 ## 9. Tests and checks
