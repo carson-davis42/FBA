@@ -6,11 +6,11 @@ Status: rules agreed with the user 2026-10-01. Part 6 is split into 6a, 6b and 6
 
 ### Structure
 - 216 teams, 18 conferences of 12 (`leagues/fbajc/teams.json`, `group` = conference). Teams play 5 starters; team rating = average of the 5 starters' current rating.
-- Empty roster slots become generated "X" freshmen when the season starts, rated 55–72 by conference tier (Java `Main.java`). Shown as "X (Team)". When an X reaches 76 (Fr), 78 (So) or 80 (Jr) it goes on a **Names needed** list on the FBAJC page so the commissioner can rename the player.
+- Empty roster slots are already filled by the part 7c walk-ons tool (unnamed freshmen rated 55–72 by conference tier, as the Java does); starting the season requires no open spots. Shown as "X (Team)". When an X reaches 76 (Fr), 78 (So) or 80 (Jr) it goes on a **Names needed** list on the FBAJC page so the commissioner can rename the player.
 - Regular season: 29 games per team = 3 preseason tournament + 4 conference challenge + 22 conference (home and away vs each of 11 mates). 3132 games. Home has no advantage.
 
 ### Season start (Decision: at the FBAJC step)
-A "Start season" button on the FBAJC page, after the Adjust College Ratings step, builds in one move: placeholder players, preseason ranking (top 25 by team rating, ties shuffled), the 27 preseason tournament fields, and the 29-day schedule. The commissioner can see the fields and re-draw them before play.
+A "Start season" button on the FBAJC page, after the Adjust College Ratings step, builds in one move: preseason ranking (top 25 by team rating, ties shuffled), the 27 preseason tournament fields, and the 29-day schedule. The commissioner can see the fields and re-draw them before play.
 
 ### Calendar: 29 days, one game per team per day (108 games a day)
 | Days | Content |
