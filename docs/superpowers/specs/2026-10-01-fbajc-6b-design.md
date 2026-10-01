@@ -56,11 +56,11 @@ A regular-season champion that is already in March Madness is in March Madness (
 - Single game live (the 6a live page pattern), "Play round", and "Play all of March Madness / NIT" (in-memory, one save).
 - **Order (changed from the Java):** the NIT is played first, then March Madness. March Madness cannot start until the NIT has a champion, and the NIT cannot start until the awards are picked (2.7). The step finishes when both have a champion, the All-American teams are picked and the summary is saved.
 
-### 2.6 C-Ship MVP
-After the title game the commissioner picks the C-Ship MVP from the **champion's roster**, listed by March Madness points per game; X (unnamed) players are allowed, so the pick may be stored as a name (`mvpName`, like the World Cup Tournament MVP).
+### 2.6 C-Ship MVPs
+The history sheet shows an MVP for the NIT final as well as the national title ("NIT Championship History", S72–S78), so there are two. After each title game the commissioner picks the MVP from **that champion's roster**, listed by that tournament's points per game; X (unnamed) players are allowed, so the pick may be stored as a name (`mvpName`, like the World Cup Tournament MVP; the NIT's is `nitMvpName`).
 
 ### 2.7 Awards
-Same pattern as the FBA awards page. Live races with the Java's score (0.40 × scaled PPG + 0.35 × scaled rating + 0.25 × team success; softmax temperature 8 over the top 8; American odds): Trae York POY, Angelo Farrell Freshman, Rhett Blackwell Guard, Jacob Peters Forward, Dustin Holloway Center and one POY per conference (18).
+Same pattern as the FBA awards page. Live races with the Java's score (0.40 × scaled PPG + 0.35 × scaled rating + 0.25 × team success; softmax temperature 8 over the top 8; American odds): Trae York POY, Angelo Farrell Freshman, Rhett Blackwell Guard, Jacob Peters Forward, Dustin Holloway Center, **Dawson Chudnovsky Defensive POY** (in the history sheet since S57; not in the Java) and one POY per conference (18).
 
 - **When:** picked after the conference tournaments and the field review, **before the NIT and March Madness**. The races count the regular season and the conference tournaments only; no NIT or March Madness games exist yet.
 - The commissioner picks each winner (races and odds are shown); X players may win. Winners are stored in the summary.
@@ -69,7 +69,7 @@ Same pattern as the FBA awards page. Live races with the Java's score (0.40 × s
 ### 2.8 All-American teams
 **Changed (new):** picked after the NIT and March Madness. Format G/F/C/ANY/ANY (rule change S71): each team has one guard, one forward, one center and two players of any position. Candidates are listed by season points per game, rating and position, with March Madness or NIT points shown. X players may be picked.
 
-The number of teams (first team only, or first, second and third) is not in the Java or the rule history: see §6.
+**Three teams of five** (confirmed 2026-10-01; the history sheet's "FBAJC National Awards History" tab lists Team 1, 2 and 3 in this format from S75 on).
 
 ## 3. Data
 
@@ -105,6 +105,12 @@ Confirmed by the user on 2026-10-01:
 3. The NIT is played before March Madness.
 4. Awards are picked right before the NIT and March Madness; All-American teams are picked after both.
 
+Added after reading the user's FBAJC history sheet (id `1jgB8AI5dMjSXuSNQm3szoeRF5rIYcgmPXin-idAgE84`; tabs: Recruiting, Transfer Portal, National Championship History, NIT Championship History, National Awards History, Conference Awards History, Conference Regular Season Champions, Conference Tournament Champions, Preseason Tournament Champions, Total MM Wins):
+5. All-American teams are three teams of five, G/F/C/ANY/ANY.
+6. The NIT also has a C-Ship MVP.
+7. Defensive POY is an FBAJC national award (S57 on) and is added to the awards list.
+8. Regular-season co-champions are listed in the sheet (several teams in a conference-year), which matches the shared-title rule.
+
 Open:
-- How many All-American teams (first team only, or first, second and third)? Default: three teams of five, G/F/C/ANY/ANY.
-- Does the S78 summary hold All-American history to match? The 6c importer will fill past seasons; 6b stores only from S79 on.
+- Does the FBAJC box score carry the defensive stats the FBA Defensive POY uses (`engine/awards/defense.ts`)? If yes, the DPOY race shows them; if no, the race shows scoring and rating only. The plan checks this first.
+- 6b stores awards, All-Americans and champions from S79 on. Past seasons (S1–S78) come from this sheet in 6c: awards, 3-team All-Americans (older eras used OUT/MID/IN and PG/PF/C layouts), conference awards by player, regular-season and tournament champions, preseason tournament champions, NIT results.
