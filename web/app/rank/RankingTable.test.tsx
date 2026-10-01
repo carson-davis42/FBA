@@ -332,6 +332,30 @@ describe('RankingTable', () => {
     });
   });
 
+  describe('clear ratings', () => {
+    const rated = () => rankingDoc({ order: ALL, ratings: IN_ORDER });
+
+    it('clears every rating, and Use all suggestions refills them', () => {
+      render(<Harness initial={rated()} />);
+      expect(box('Ada Stone').value).toBe('85');
+      fireEvent.click(screen.getByRole('button', { name: 'Clear ratings' }));
+      expect(box('Ada Stone').value).toBe('');
+      expect(box('Finn Lowe').value).toBe('');
+      expect(rightNames()).toHaveLength(6);
+      expect(screen.queryByRole('button', { name: 'Clear ratings' })).toBeNull();
+      fireEvent.click(screen.getByRole('button', { name: 'Use all suggestions' }));
+      expect(box('Ben Cole').value).toBe('90');
+    });
+
+    it('is offered only to unlocked rankings that have ratings', () => {
+      render(<Harness initial={rankingDoc({ order: ALL })} />);
+      expect(screen.queryByRole('button', { name: 'Clear ratings' })).toBeNull();
+      cleanup();
+      render(<Harness initial={rankingDoc({ order: ALL, ratings: IN_ORDER, locked: true })} />);
+      expect(screen.queryByRole('button', { name: 'Clear ratings' })).toBeNull();
+    });
+  });
+
   describe('Reserve-bound players', () => {
     const cap = { spots: 2, label: 'D2 spots left per position' };
     const ranked = () => {
