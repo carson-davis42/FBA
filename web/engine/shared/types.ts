@@ -92,6 +92,8 @@ export const Champion = z.object({
   /** The D2 league of this title; null for the FBA. */
   group: z.string().min(1).nullable().optional(),
   finalsMvp: playerId.nullable().optional(),
+  /** A generated player's name when `finalsMvp` is null (World Cup). */
+  mvpName: z.string().min(1).optional(),
 }).strict();
 export type Champion = z.infer<typeof Champion>;
 
