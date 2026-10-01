@@ -22,7 +22,7 @@ const started = (): D2State => {
 /** Everyone ranked in last season's order and rated in order, so the reset can be finished. */
 const complete = (s: D2State): D2State => {
   let doc = applyAllSuggestions(takeRest(s.ratings!, id => d2Name(s, id)));
-  for (const [id, v] of [['p00041', 66], ['p00043', 64], ['p00044', 62], ['p00040', 60], ['p00042', 58]] as const) doc = setRating(doc, id, v);
+  doc.order.slice(-5).forEach((id, k) => { doc = setRating(doc, id, 66 - 2 * k); });
   return { ...s, ratings: doc };
 };
 
@@ -43,13 +43,13 @@ describe('D2RatingsPage', () => {
     expect((log.batches[0].writes[0].doc as RankingFile).kind).toBe('d2-reset');
   });
 
-  it("lists last season's order with the FBA free agent first among new players, and autosaves a click", async () => {
+  it("lists last season's order, unrated Reserves after the rated players, then the FBA free agent as the only new player, and autosaves a click", async () => {
     const log = stubApi(docsFor(started()));
     renderPage();
     await screen.findByRole('button', { name: 'Rank Maddox Dean next' });
     expect(screen.getAllByRole('button', { name: /^Rank .* next$/ }).map(b => b.textContent)).toEqual([
       'Maddox Dean', 'Xavier Booker', 'Jalil Grant', 'Ben Montgomery', 'Jamal Edwards', 'Brooks Burrows', 'Milo Dean', 'Adrian Grant',
-      'Kyron Smart', 'Adrian Napoletani', 'Brycen Holcomb', 'Kris Dyer', 'Myron Mason',
+      'Adrian Napoletani', 'Brycen Holcomb', 'Kris Dyer', 'Myron Mason', 'Kyron Smart',
     ]);
     expect(screen.getByText('FBA 71')).toBeTruthy();
     expect(screen.getByText("13 players aren't ranked yet")).toBeTruthy();
