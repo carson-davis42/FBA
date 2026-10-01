@@ -38,24 +38,29 @@ describe('World Cup history page', () => {
     stub(true);
     renderPage();
     expect(await screen.findByRole('heading', { name: 'World Cup History' })).toBeTruthy();
-    const row = (await screen.findAllByText('S78'))[0].closest('tr') as HTMLElement;
+    const table = (await screen.findByRole('columnheader', { name: 'Tournament MVP' })).closest('table') as HTMLElement;
+    const body = within(table).getAllByRole('row').slice(1);
+    expect(body.map(r => within(r).getAllByRole('cell')[0].textContent)).toEqual(['S78', 'S76']);
+    expect(within(body[1]).getAllByRole('cell')[4].textContent).toBe('—');
+    const row = body[0];
     expect(row.textContent).toContain('Zagreb, Croatia');
     expect(row.textContent).toContain('Germany');
     expect(row.textContent).toContain('Rowan Hawthorne');
-    expect(within(row).getAllByAltText('Germany flag').length).toBeGreaterThan(0);
+    expect(row.querySelectorAll('img.team-flag[src*="de"]').length).toBeGreaterThan(0);
     const upcoming = (await screen.findByRole('heading', { name: 'Upcoming' })).parentElement as HTMLElement;
     expect(upcoming.textContent).toContain('S80');
     expect(upcoming.textContent).toContain('Mumbai, India');
     const titles = (await screen.findByRole('heading', { name: 'Titles' })).parentElement as HTMLElement;
     const ger = within(titles).getByText('Germany').closest('tr') as HTMLElement;
-    expect(ger.textContent).toContain('1');
+    expect(within(ger).getAllByRole('cell')[1].textContent).toBe('1');
     expect(screen.getByRole('link', { name: 'World Cup' }).getAttribute('href')).toBe('/history/fbawc');
   });
 
   it('falls back to the summary host when hosts.json is missing', async () => {
     stub(false);
     renderPage();
-    const row = (await screen.findAllByText('S78'))[0].closest('tr') as HTMLElement;
+    const table = (await screen.findByRole('columnheader', { name: 'Tournament MVP' })).closest('table') as HTMLElement;
+    const row = within(table).getByRole('cell', { name: 'S78' }).closest('tr') as HTMLElement;
     expect(row.textContent).toContain('Croatia');
     expect(row.textContent).not.toContain('Zagreb');
     expect(screen.queryByRole('heading', { name: 'Upcoming' })).toBeNull();

@@ -44,7 +44,7 @@ export const Team = z.object({
   logoFolder: z.string().nullable(),
   badge: Badge,
   /** ISO 3166 code (or gb-eng/gb-sct/gb-nir) for a flag; World Cup countries only. */
-  flag: z.string().min(2).optional(),
+  flag: z.string().regex(/^[a-z]{2}(-[a-z]{3})?$/).optional(),
 }).strict();
 export type Team = z.infer<typeof Team>;
 

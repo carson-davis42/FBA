@@ -35,4 +35,19 @@ describe('buildWcHistory', () => {
     buildWcHistory([rows[0], ['S62', 'Rome', 'Italy', 'Narnia', 'Italy', 'X', 'X']], { players, teams, existing: new Map() }, report);
     expect(report.count('error')).toBe(1);
   });
+
+  it('takes champion and runner-up names from the sheet, keeping only the existing score', () => {
+    const existing = new Map<number, SummaryFile>([[78, { league: 'fbawc', season: 78, locked: true, host: 'Croatia', champions: [{ title: 'World Cup Champion', champion: 'Italy', runnerUp: 'Turkey', score: '80-70', finalsMvp: 'p1' }, { title: 'Other', champion: 'X', runnerUp: null, score: null }] }]]);
+    const out = buildWcHistory(rows, { players, teams, existing }, new Report());
+    expect(out.summaries[1].champions[0]).toMatchObject({ champion: 'Germany', runnerUp: 'Italy', teamId: 'GER', runnerUpId: 'ITA', score: '80-70' });
+    expect(out.summaries[1].champions.map(c => c.title)).toEqual(['World Cup Champion', 'Other']);
+  });
+
+  it('keeps an existing MVP when the sheet name does not resolve, and still warns', () => {
+    const existing = new Map<number, SummaryFile>([[60, { league: 'fbawc', season: 60, locked: true, host: 'England', champions: [{ title: 'World Cup Champion', champion: 'USA', runnerUp: 'England', score: null, finalsMvp: 'p1' }] }]]);
+    const report = new Report();
+    const out = buildWcHistory(rows, { players, teams, existing }, report);
+    expect(out.summaries[0].champions[0].finalsMvp).toBe('p1');
+    expect(report.entries.some(e => e.level === 'warn' && e.message.includes('Winston Holden'))).toBe(true);
+  });
 });

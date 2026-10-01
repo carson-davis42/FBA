@@ -17,4 +17,9 @@ describe('TeamMark', () => {
     expect(screen.queryByAltText('Germany flag')).toBeNull();
     expect(screen.getByText('GER')).toBeTruthy();
   });
+  it('can be decorative (empty alt) when the name is shown beside it', () => {
+    const { container } = render(<TeamMark team={{ ...base, flag: 'de' }} season={78} decorative />);
+    expect(screen.queryByAltText('Germany flag')).toBeNull();
+    expect(container.querySelector('img.team-flag')?.getAttribute('alt')).toBe('');
+  });
 });

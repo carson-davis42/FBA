@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { Report } from '../report';
 import { parseWorldCups } from './wcHistory';
 
 describe('parseWorldCups', () => {
@@ -15,5 +16,11 @@ describe('parseWorldCups', () => {
       { season: 80, city: 'Mumbai', country: 'India', champion: null, runnerUp: null, mvp: null },
       { season: 82, city: 'London', country: 'England', champion: null, runnerUp: null, mvp: null },
     ]);
+  });
+
+  it('reports a row with a blank host instead of dropping it silently', () => {
+    const report = new Report();
+    expect(parseWorldCups([['S60', 'X', '', 'Italy', 'Turkey']], report)).toEqual([]);
+    expect(report.entries.some(e => e.level === 'warn' && e.message.includes('S60'))).toBe(true);
   });
 });
