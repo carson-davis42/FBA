@@ -6,7 +6,7 @@ export function leagueSections(league: LeagueId): [string, string][] {
   return league === 'fba' || league === 'fbad2'
     ? [['scores', 'Scores'], ['standings', 'Standings'], ['playoffs', 'Playoffs'], ['awards', 'Awards'], ['rankings', 'Rankings'], ['', 'Teams'], ['transactions', 'Transactions']]
     : league === 'fbajc'
-      ? [['scores', 'Scores'], ['standings', 'Standings'], ['rankings', 'Rankings'], ['tournaments', 'Tournaments'], ['leaders', 'Leaders'], ['', 'Teams'], ['recruiting', 'Recruiting']]
+      ? [['scores', 'Scores'], ['standings', 'Standings'], ['rankings', 'Rankings'], ['tournaments', 'Tournaments'], ['postseason', 'Postseason'], ['awards', 'Awards'], ['leaders', 'Leaders'], ['', 'Teams'], ['recruiting', 'Recruiting']]
       : [['qualifying', 'Qualifying'], ['worldcup', 'World Cup'], ['', 'Teams']];
 }
 

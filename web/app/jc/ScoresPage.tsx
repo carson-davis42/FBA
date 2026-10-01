@@ -111,6 +111,7 @@ export function ScoresPage() {
         <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => { setPlaying(true); setTimeout(() => { void run(() => playToEnd(state, newRng())).finally(() => setPlaying(false)); }, 0); }}>{playing ? 'Playing...' : 'Play to end of regular season'}</button>
       </div>
       {playReason && <p className="muted">{playReason}</p>}
+      {over && <p><Link to="/league/fbajc/postseason">The regular season is over: on to the postseason</Link></p>}
       {error && <p className="error">{error}</p>}
       {dayDoc && dayDoc.games.length === 0 ? (
         <p className="muted">The games for this day are drawn when the day before is played.</p>

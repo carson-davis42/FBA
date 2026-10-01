@@ -39,7 +39,7 @@ export function nextPostGame(state: JcState, which: PostTournament): BracketGame
   return b ? (playableGames(b)[0] ?? null) : null;
 }
 
-function stageProblem(state: JcState, which: PostTournament): string | null {
+export function tournamentProblem(state: JcState, which: PostTournament): string | null {
   const problem = calendarProblem(state.calendar, 'fbajc', 'The season is played');
   if (problem) return problem;
   const stage = postseasonStage(state);
@@ -64,7 +64,7 @@ function withBracket(state: JcState, which: PostTournament, bracket: Bracket, ne
 }
 
 function playRound(state: JcState, which: PostTournament, rng: Rng): JcState | string {
-  const problem = stageProblem(state, which);
+  const problem = tournamentProblem(state, which);
   if (problem) return problem;
   let bracket = bracketOf(state.postseason!, which)!;
   const games = playableGames(bracket);
@@ -105,7 +105,7 @@ export function playPostToEnd(state: JcState, which: PostTournament, rng: Rng): 
 
 /** Records one live game: it must be the tournament's next game. */
 export function recordPostGame(state: JcState, which: PostTournament, sim: SimGame): JcResult {
-  const problem = stageProblem(state, which);
+  const problem = tournamentProblem(state, which);
   if (problem) return jcFail([problem]);
   const next = nextPostGame(state, which);
   if (!next) return jcFail(['There is no game to play']);
