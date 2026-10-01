@@ -103,6 +103,16 @@ describe('playConfRound', () => {
   });
 });
 
+describe('conference tables after the tournaments', () => {
+  it('keep their order: ties are still broken by the last regular-season ranking', () => {
+    const before = confTables(played).map(t => t.order);
+    const r = playAllConf(started(), mulberry32(9));
+    if (!r.ok) throw new Error(r.problems.join());
+    expect(r.state.rankings!.snapshots.length).toBeGreaterThan(played.rankings!.snapshots.length);
+    expect(confTables(r.state).map(t => t.order)).toEqual(before);
+  });
+});
+
 describe('playAllConf', () => {
   it('ends with 18 champions, deterministic for a seed', () => {
     const a = playAllConf(started(), mulberry32(9));

@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { bracketResults } from '../../engine/jc/bracket';
 import { confDone, playAllConf, playConfRound, startConfTournaments } from '../../engine/jc/confTourney';
 import { setFields, swapField } from '../../engine/jc/fieldMoves';
 import { lineupOf } from '../../engine/jc/play';
@@ -114,7 +115,7 @@ export function PostseasonPage() {
         </section>
       )}
 
-      {tab === 'field' && <FieldPanel state={state} teamCell={teamCell} busy={busy} stepProblem={stepProblem} stage={stage} run={run} />}
+      {tab === 'field' && <FieldPanel state={state} teamCell={teamCell} busy={busy} stepProblem={stepProblem} run={run} />}
 
       {(tab === 'nit' || tab === 'mm') && (
         <TournamentPanel which={tab} state={state} teamCell={teamCell} busy={busy} stage={stage} run={run} slow={slow} />
@@ -123,14 +124,14 @@ export function PostseasonPage() {
   );
 }
 
-function FieldPanel({ state, teamCell, busy, stepProblem, stage, run }: {
-  state: JcState; teamCell: (id: string) => ReactNode; busy: boolean; stepProblem: string | null; stage: PostStage; run: (b: () => ReturnType<typeof setFields>) => Promise<void>;
+function FieldPanel({ state, teamCell, busy, stepProblem, run }: {
+  state: JcState; teamCell: (id: string) => ReactNode; busy: boolean; stepProblem: string | null; run: (b: () => ReturnType<typeof setFields>) => Promise<void>;
 }) {
   const [which, setWhich] = useState<'mm' | 'nit'>('mm');
   const [out, setOut] = useState('');
   const [into, setInto] = useState('');
   const field = state.postseason?.field ?? null;
-  const locked = !!state.postseason && ['nit', 'mm', 'allAmerican', 'mvp', 'finish', 'done'].includes(stage);
+  const locked = bracketResults(state.postseason?.nit ?? null).length + bracketResults(state.postseason?.mm ?? null).length > 0;
   const ready = !!state.postseason && confDone(state);
   const rs = new Set(Object.values(state.postseason?.rsChampions ?? {}).flat());
   const champs = new Set((state.postseason?.conf ?? []).map(b => b.champion));
@@ -185,7 +186,7 @@ function FieldPanel({ state, teamCell, busy, stepProblem, stage, run }: {
               <button className="btn" disabled={busy || !out || !into} onClick={() => void run(() => swapField(state, which, out, into))}>Swap</button>
             </div>
           )}
-          {locked && <p className="muted">A tournament game has been played or the awards are locked in: the fields are final.</p>}
+          {locked && <p className="muted">A tournament game has been played: the fields are final.</p>}
         </>
       )}
     </section>

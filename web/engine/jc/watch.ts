@@ -7,10 +7,8 @@ import { playableGames, recordResult } from './bracket';
 import { postseasonGames } from './confTourney';
 import { applySim, newBook, regularSeasonOver } from './play';
 import { blendRankings } from './rankings';
-import { DAYS, TEAMS_PER_DAY, jcFail, type JcKey, type JcResult, type JcState } from './state';
+import { TEAMS_PER_DAY, TOTAL_GAMES, jcFail, type JcKey, type JcResult, type JcState } from './state';
 import { dayGames } from './tournaments';
-
-const TOTAL_GAMES = DAYS * TEAMS_PER_DAY;
 
 export interface NextJcGame { gameNo: number; home: string; away: string; day: number }
 
@@ -98,7 +96,12 @@ export function recordConfGame(state: JcState, sim: SimGame, rng: Rng): JcResult
   const ps = state.postseason!;
   const book = newBook(state);
   const result = applySim(book, sim, rng, leagueRefRating(state.rosters), true);
-  const conf = ps.conf.map(b => (b.id === next.bracketId ? recordResult(b, next.gameId, result) : b));
+  let conf: JcPostseasonFile['conf'];
+  try {
+    conf = ps.conf.map(b => (b.id === next.bracketId ? recordResult(b, next.gameId, result) : b));
+  } catch (e) {
+    return jcFail([(e as Error).message]);
+  }
   const postseason: JcPostseasonFile = { ...ps, conf, nextGameNo: next.gameNo + 1 };
   const changed: JcKey[] = ['postseason', 'rosters'];
   let rankings = state.rankings ?? { league: 'fbajc' as const, season: state.season, locked: false, snapshots: [] };

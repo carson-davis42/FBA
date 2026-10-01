@@ -63,7 +63,8 @@ describe('playDay', () => {
     const r = playDay(s0, mulberry32(7));
     if (!r.ok) throw new Error(r.problems.join());
     expect(r.state.results!.games).toHaveLength(108);
-    expect(r.changed).toEqual(['results', 'rosters', 'rankings']);
+    expect(r.changed).toEqual(['schedule', 'results', 'rosters', 'rankings']);
+    expect(r.state.schedule!.days.find(d => d.day === 2)!.games).toHaveLength(108);
     expect(r.state.rankings!.snapshots).toHaveLength(1);
     expect(r.state.rankings!.snapshots[0].afterDay).toBe(1);
     expect(new Set(r.state.rankings!.snapshots[0].order).size).toBe(216);
@@ -77,6 +78,7 @@ describe('playDay', () => {
     const r2 = playDay(r.state, mulberry32(8));
     if (!r2.ok) throw new Error(r2.problems.join());
     expect(r2.changed).toContain('schedule');
+    expect(r2.state.schedule!.days.find(d => d.day === 3)!.games).toHaveLength(108);
     expect(r2.state.schedule!.days.find(d => d.day === 2)!.games).toHaveLength(108);
     expect(r2.state.results!.games[108].gameNo).toBe(109);
   });

@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  allAmericanCandidates, awardsComplete, jcRaces, mvpCandidates, NATIONAL_LABEL, pickAllAmerican, pickConference, pickMvp, pickNational,
-  startAwards, suggestAllAmerican, type JcRace,
+  allAmericanCandidates, awardsComplete, jcRaces, mvpCandidates, pickAllAmerican, pickConference, pickMvp, pickNational,
+  racePicksLocked, startAwards, suggestAllAmerican, type JcRace,
 } from '../../engine/jc/awards';
 import { finishJcSeason, postseasonStage } from '../../engine/jc/postseason';
 import type { JcState } from '../../engine/jc/state';
@@ -19,6 +19,9 @@ export function JcAwardsPage() {
   const { season, docs, saving, error, run } = usePostseasonDocs();
   const [open, setOpen] = useState(false);
   const races = useMemo(() => (docs.state?.awards ? jcRaces(docs.state) : []), [docs.state]);
+  const afterTournaments = !!docs.state && ['allAmerican', 'mvp', 'finish', 'done'].includes(postseasonStage(docs.state));
+  const candidates = useMemo(() => (docs.state && afterTournaments ? allAmericanCandidates(docs.state) : []), [docs.state, afterTournaments]);
+  const mvps = useMemo(() => (docs.state && afterTournaments ? { mm: mvpCandidates(docs.state, 'mm'), nit: mvpCandidates(docs.state, 'nit') } : { mm: [], nit: [] }), [docs.state, afterTournaments]);
   const kicker = 'Junior College';
   if (season === null) return <section className="jc-page"><PageHeader kicker={kicker} title="Awards" /></section>;
   const gate = jcGate(docs, kicker, 'Awards');
@@ -33,7 +36,8 @@ export function JcAwardsPage() {
     return `${state.players.players[playerId]?.name ?? 'X'} (${abbr(tid)})`;
   };
   const awards = state.awards;
-  const tournamentsDone = stage === 'allAmerican' || stage === 'mvp' || stage === 'finish' || stage === 'done';
+  const tournamentsDone = afterTournaments;
+  const picksLocked = racePicksLocked(state);
   const finished = stage === 'done';
 
   const raceBlock = (race: JcRace) => {
@@ -46,7 +50,7 @@ export function JcAwardsPage() {
     return (
       <section key={`${race.kind}-${race.id}`} className="card jc-race" aria-label={race.label}>
         <h3>{race.label}</h3>
-        <p>Winner: <strong>{who(winner)}</strong>{winner && !finished && <>{' '}<button className="btn" disabled={saving} onClick={pick(null)}>Clear</button></>}</p>
+        <p>Winner: <strong>{who(winner)}</strong>{winner && !finished && !picksLocked && <>{' '}<button className="btn" disabled={saving} onClick={pick(null)}>Clear</button></>}</p>
         <div className="table-wrap">
           <table>
             <thead><tr><th>#</th><th>Player</th><th>Pos</th><th>PPG</th><th>Rtg</th>{race.id === 'DPOY' && <th>Saved/G</th>}<th>Odds</th><th /></tr></thead>
@@ -60,7 +64,7 @@ export function JcAwardsPage() {
                   <td>{r.rating}</td>
                   {race.id === 'DPOY' && <td>{r.defense?.saved.toFixed(2)}</td>}
                   <td>{r.odds}</td>
-                  <td><button className="btn" disabled={saving || finished || r.playerId === winner} onClick={pick(r.playerId)}>Pick</button></td>
+                  <td><button className="btn" disabled={saving || finished || picksLocked || r.playerId === winner} onClick={pick(r.playerId)}>Pick</button></td>
                 </tr>
               ))}
             </tbody>
@@ -70,7 +74,6 @@ export function JcAwardsPage() {
     );
   };
 
-  const candidates = tournamentsDone ? allAmericanCandidates(state) : [];
   return (
     <section className="jc-page">
       <PageHeader kicker={kicker} title={`S${season} FBAJC Awards`} />
@@ -109,7 +112,8 @@ export function JcAwardsPage() {
                           <select aria-label={`Team ${team} ${slot} ${k + 1}`} value={current} disabled={saving || finished}
                             onChange={e => void run(() => pickAllAmerican(state, team, k, e.target.value || null))}>
                             <option value="">Not picked</option>
-                            {candidates.filter(c => SLOT_POSITIONS[slot].includes(c.position) || c.playerId === current).slice(0, 80).map(c => (
+                            {current && !candidates.some(c => c.playerId === current) && <option value={current}>{who(current)}</option>}
+                            {[...candidates.filter(c => c.playerId === current), ...candidates.filter(c => c.playerId !== current && SLOT_POSITIONS[slot].includes(c.position)).slice(0, 80)].map(c => (
                               <option key={c.playerId} value={c.playerId}>{who(c.playerId, c.teamId)} {c.position} {c.ppg.toFixed(1)} ppg{c.tournamentPpg ? ` / ${c.tournamentPpg.toFixed(1)} postseason` : ''}</option>
                             ))}
                           </select>
@@ -124,7 +128,7 @@ export function JcAwardsPage() {
 
           <h2>Tournament MVPs</h2>
           {(['mm', 'nit'] as const).map(which => {
-            const list = mvpCandidates(state, which);
+            const list = mvps[which];
             const label = which === 'mm' ? 'March Madness' : 'NIT';
             return (
               <label key={which} className="jc-conf-pick">{label} MVP{' '}
@@ -147,7 +151,7 @@ export function JcAwardsPage() {
 
 function FinishBar({ state, saving, run }: { state: JcState; saving: boolean; run: (b: () => ReturnType<typeof finishJcSeason>) => Promise<void> }) {
   const stage = postseasonStage(state);
-  const check = stage === 'finish' ? finishJcSeason(state) : null;
+  const check = useMemo(() => (stage === 'finish' ? finishJcSeason(state) : null), [state, stage]);
   const why = stage === 'done' ? 'The season is finished.' : check && !check.ok ? check.problems.join(' ') : stage !== 'finish' ? 'Finish the awards, tournaments, All-American teams and MVP picks first.' : null;
   return (
     <div className="jc-actions">

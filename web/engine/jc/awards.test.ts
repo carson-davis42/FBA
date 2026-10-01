@@ -3,11 +3,13 @@ import { mulberry32 } from '../d2/random';
 import { awardsComplete, jcAwardScore, jcOdds, jcRaces, pickConference, pickNational, startAwards, teamSuccess } from './awards';
 import { playAllConf, startConfTournaments } from './confTourney';
 import { setFields } from './fieldMoves';
-import { jcPlayedFixture } from './testFixtures';
+import { playPostRound } from './postseason';
+import { jcPlayedFixture, jcReadyForNit } from './testFixtures';
 import { conferenceOf, type JcState } from './state';
 
 let withFields: JcState;
 let afterConf: JcState;
+let ready: JcState;
 beforeAll(() => {
   const s = startConfTournaments(jcPlayedFixture());
   if (!s.ok) throw new Error(s.problems.join());
@@ -17,7 +19,8 @@ beforeAll(() => {
   const f = setFields(afterConf);
   if (!f.ok) throw new Error(f.problems.join());
   withFields = f.state;
-}, 120000);
+  ready = jcReadyForNit();
+}, 240000);
 
 const started = (): JcState => {
   const r = startAwards(withFields);
@@ -136,5 +139,21 @@ describe('startAwards and picks', () => {
       s = r.state;
     }
     expect(awardsComplete(s.awards)).toBe(true);
+  });
+});
+
+describe('after the NIT has started', () => {
+  it('the races no longer change and the picks are locked', () => {
+    const nit = playPostRound(ready, 'nit', mulberry32(9));
+    if (!nit.ok) throw new Error(nit.problems.join());
+    const before = jcRaces(ready)[0].rows.map(r => [r.playerId, r.games, r.ppg]);
+    const after = jcRaces(nit.state)[0].rows.map(r => [r.playerId, r.games, r.ppg]);
+    expect(after).toEqual(before);
+    const poy = nit.state.awards!.national[0].playerId!;
+    expect(pickNational(nit.state, 'POY', poy).ok).toBe(false);
+    expect(pickNational(nit.state, 'POY', null).ok).toBe(false);
+    const conf = nit.state.awards!.conference[0];
+    expect(pickConference(nit.state, conf.conf, null).ok).toBe(false);
+    expect(pickNational(ready, 'POY', poy).ok).toBe(true);
   });
 });

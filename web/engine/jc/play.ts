@@ -5,10 +5,9 @@ import { JC_PROFILE, simGame, type SimGame, type SimTeam } from '../season/sim';
 import { POSITIONS } from '../roster/rules';
 import type { GameResult, JcScheduleFile, RosterEntry } from '../shared/types';
 import { blendRankings, teamRating } from './rankings';
-import { DAYS, TEAMS_PER_DAY, dayPlayed, jcFail, type JcKey, type JcResult, type JcState } from './state';
+import { DAYS, TEAMS_PER_DAY, TOTAL_GAMES, dayPlayed, jcFail, type JcKey, type JcResult, type JcState } from './state';
 import { dayGames } from './tournaments';
 
-const TOTAL_GAMES = DAYS * TEAMS_PER_DAY;
 
 export const regularSeasonOver = (state: JcState): boolean => dayPlayed(state) >= DAYS;
 
@@ -164,6 +163,19 @@ function step(state: JcState, rng: Rng): Step {
   const allGames = [...(state.results?.games ?? []), ...results];
   const order = blendRankings({ teams: teamIds, ratings, games: allGames, totalGames: TOTAL_GAMES }, rng);
   const rankings = state.rankings ?? { league: 'fbajc' as const, season: state.season, locked: false, snapshots: [] };
+  // Tournament days 2 and 3 are drawn from the day before, so draw the next one as soon as this day is finished.
+  const after = day + 1;
+  const afterDay = schedule.days.find(d => d.day === after);
+  if (afterDay && afterDay.games.length === 0 && (after === 2 || after === 3)) {
+    try {
+      const built = dayGames(after, schedule.tournaments, allGames, (after - 1) * TEAMS_PER_DAY + 1, rng)
+        .map(g => ({ gameNo: g.gameNo, home: g.home, away: g.away, tournament: g.tournament }));
+      schedule = { ...schedule, days: schedule.days.map(d => (d.day === after ? { ...d, games: built } : d)) };
+      filledSchedule = true;
+    } catch (e) {
+      return { problems: [(e as Error).message] };
+    }
+  }
   const next: JcState = {
     ...state,
     schedule,

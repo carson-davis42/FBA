@@ -5,10 +5,8 @@ import { JC_FIRST_POST_GAME, type Bracket, type GameResult, type JcPostseasonFil
 import { buildBracket, bracketResults, playableGames, recordResult, type NewGame } from './bracket';
 import { blendRankings } from './rankings';
 import { newBook, playOne, regularSeasonOver } from './play';
-import { jcFail, type JcResult, type JcState } from './state';
+import { TOTAL_GAMES, jcFail, type JcResult, type JcState } from './state';
 import { jcStandings } from './standings';
-
-const TOTAL_GAMES = 3132;
 
 /** Every postseason game played so far, in game-number order. */
 export function postseasonGames(ps: JcPostseasonFile | null): GameResult[] {
@@ -19,9 +17,13 @@ export function postseasonGames(ps: JcPostseasonFile | null): GameResult[] {
 /** The latest blended ranking, best first, or null before the first snapshot. */
 export const latestRanking = (state: JcState): string[] | null => state.rankings?.snapshots.at(-1)?.order ?? null;
 
+/** The ranking after the last regular-season day (the one that breaks conference ties); conference tournament snapshots come after it. */
+export const regularRanking = (state: JcState): string[] | null =>
+  [...(state.rankings?.snapshots ?? [])].filter(s => s.afterDay <= 29).sort((a, b) => a.afterDay - b.afterDay).at(-1)?.order ?? null;
+
 /** Each conference's standings after the 22 games: the 12 teams in table order, and the teams sharing the best conference record. */
 export function confTables(state: JcState): { conference: string; order: string[]; champions: string[] }[] {
-  const tables = jcStandings({ teams: state.teams, games: state.results?.games ?? [], ranking: latestRanking(state), drawKeys: state.schedule?.drawKeys ?? {} });
+  const tables = jcStandings({ teams: state.teams, games: state.results?.games ?? [], ranking: regularRanking(state), drawKeys: state.schedule?.drawKeys ?? {} });
   return tables.map(t => {
     const best = Math.max(...t.rows.map(r => r.confW));
     return { conference: t.conference, order: t.rows.map(r => r.teamId), champions: t.rows.filter(r => r.confW === best).map(r => r.teamId) };

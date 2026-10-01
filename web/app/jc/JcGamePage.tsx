@@ -4,7 +4,7 @@ import { roundName } from '../../engine/jc/bracket';
 import { lineupOf } from '../../engine/jc/play';
 import { nextPostGame, postseasonStage, recordPostGame, tournamentProblem } from '../../engine/jc/postseason';
 import { nextConfGame, nextJcGame, recordConfGame, recordJcGame } from '../../engine/jc/watch';
-import { jcWrites, type JcResult, type JcState } from '../../engine/jc/state';
+import { TOTAL_GAMES, jcWrites, type JcResult, type JcState } from '../../engine/jc/state';
 import type { SeasonLeague } from '../../engine/season/schedule';
 import { JC_PROFILE, simGame, type SimGame } from '../../engine/season/sim';
 import type { SeasonState } from '../../engine/season/state';
@@ -84,7 +84,7 @@ function JcGame() {
   if (docs.missing) return <p className="muted">{docs.missing}</p>;
   if (!state) return <p className="muted">Loading…</p>;
   const view = viewState(state);
-  const regular = n >= 1 && n <= 3132;
+  const regular = n >= 1 && n <= TOTAL_GAMES;
   const back = regular ? { to: '/league/fbajc/scores', label: 'back to scores ▸' } : { to: '/league/fbajc/postseason', label: 'back to the postseason ▸' };
   const found = findGame(state, n);
 

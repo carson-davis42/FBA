@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { jcClinch } from '../../engine/jc/clinch';
+import { regularRanking } from '../../engine/jc/confTourney';
 import { teamRating } from '../../engine/jc/rankings';
 import { jcStandings } from '../../engine/jc/standings';
 import type { CalendarFile, Team } from '../../engine/shared/types';
@@ -69,8 +70,7 @@ export function StandingsPage() {
     );
   }
 
-  const snaps = state.rankings?.snapshots ?? [];
-  const ranking = snaps.length > 0 ? snaps[snaps.length - 1].order : null;
+  const ranking = regularRanking(state);
   const tables = jcStandings({ teams: state.teams, games, ranking, drawKeys: state.schedule.drawKeys });
   const shown = current === ALL ? tables : tables.filter(t => t.conference === current);
 

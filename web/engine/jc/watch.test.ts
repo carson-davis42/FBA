@@ -70,6 +70,13 @@ describe('watching regular-season games', () => {
     expect(r.rankings!.snapshots).toHaveLength(1);
   });
 
+  it('after "play day" finished day 1, the next watchable game is on day 2', () => {
+    const s = must(playDay(jcStateFixture(), mulberry32(3)));
+    const next = nextJcGame(s);
+    expect(typeof next !== 'string' && next.day).toBe(2);
+    expect(typeof next !== 'string' && next.gameNo).toBe(109);
+  });
+
   it('refuses when the step is not current', () => {
     const s = jcStateFixture();
     const done = { ...s, calendar: { ...s.calendar, steps: s.calendar.steps.map(x => ({ ...x, done: true })) } };

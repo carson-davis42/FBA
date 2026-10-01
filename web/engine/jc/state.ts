@@ -2,6 +2,8 @@ import type { CalendarFile, JcAwardsFile, JcPostseasonFile, JcRankingsFile, JcSc
 
 export const DAYS = 29;
 export const TEAMS_PER_DAY = 108;
+/** Every regular-season game of an FBAJC season. */
+export const TOTAL_GAMES = DAYS * TEAMS_PER_DAY;
 
 export interface JcState {
   season: number;

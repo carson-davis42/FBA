@@ -81,14 +81,15 @@ interface Cand {
   def: DefenseTotals | undefined;
 }
 
-/** The games the races count: the regular season and the conference tournaments. */
-function raceResults(state: JcState): ResultsFile | null {
+/** The games the races count: the regular season and the conference tournaments (plus the NIT and March Madness when `all` is set, for the All-American teams). */
+function raceResults(state: JcState, all: boolean): ResultsFile | null {
   if (!state.results) return null;
-  return { ...state.results, games: [...state.results.games, ...postseasonGames(state.postseason)] };
+  const post = all ? postseasonGames(state.postseason) : (state.postseason?.conf ?? []).flatMap(bracketResults).sort((a, b) => a.gameNo - b.gameNo);
+  return { ...state.results, games: [...state.results.games, ...post] };
 }
 
-function candidates(state: JcState): Cand[] {
-  const results = raceResults(state);
+function candidates(state: JcState, all = false): Cand[] {
+  const results = raceResults(state, all);
   const stats = playerSeasonStats(results);
   const def = seasonDefense(results);
   const out: Cand[] = [];
@@ -107,8 +108,8 @@ const bySort = (a: JcRaceRow, b: JcRaceRow): number =>
   b.score - a.score || b.ppg - a.ppg || b.rating - a.rating || (a.playerId < b.playerId ? -1 : a.playerId > b.playerId ? 1 : 0);
 
 /** Every award race: the six national ones, then one per conference, from the regular season and the conference tournaments. */
-export function jcRaces(state: JcState): JcRace[] {
-  const cands = candidates(state);
+export function jcRaces(state: JcState, all = false): JcRace[] {
+  const cands = candidates(state, all);
   const ranking = latestRanking(state);
   const rankOf = new Map((ranking ?? []).map((t, i) => [t, i + 1]));
   const ratings = new Map(Object.entries(state.rosters.teams).map(([id, r]) => [id, teamRating(r)]));
@@ -184,10 +185,15 @@ function awardsProblem(state: JcState): string | null {
   return null;
 }
 
-/** Picks (or, with null, clears) a national award winner. Only the NIT's start locks the picks. */
+/** The race picks (national and conference) are final once an NIT or March Madness game has been played. */
+export const racePicksLocked = (state: JcState): boolean =>
+  bracketResults(state.postseason?.nit ?? null).length + bracketResults(state.postseason?.mm ?? null).length > 0;
+
+/** Picks (or, with null, clears) a national award winner. The picks lock when the first NIT or March Madness game is played. */
 export function pickNational(state: JcState, award: JcNationalAward, playerId: string | null): JcResult {
   const problem = awardsProblem(state);
   if (problem) return jcFail([problem]);
+  if (racePicksLocked(state)) return jcFail(['The award picks are final once the NIT has started']);
   if (playerId !== null) {
     const e = rosterEntry(state, playerId);
     if (!e) return jcFail(['That player is not on a college roster']);
@@ -202,6 +208,7 @@ export function pickNational(state: JcState, award: JcNationalAward, playerId: s
 export function pickConference(state: JcState, conf: string, playerId: string | null): JcResult {
   const problem = awardsProblem(state);
   if (problem) return jcFail([problem]);
+  if (racePicksLocked(state)) return jcFail(['The award picks are final once the NIT has started']);
   if (!state.awards!.conference.some(a => a.conf === conf)) return jcFail([`${conf} isn't a conference`]);
   if (playerId !== null) {
     const e = rosterEntry(state, playerId);
@@ -241,7 +248,7 @@ function tournamentStats(...brackets: (Bracket | null)[]): Map<string, { games: 
 /** Everyone with enough games, best season PPG first (then rating). */
 export function allAmericanCandidates(state: JcState): AllAmericanCandidate[] {
   const tour = tournamentStats(state.postseason?.nit ?? null, state.postseason?.mm ?? null);
-  return candidates(state)
+  return candidates(state, true)
     .map(c => {
       const t = tour.get(c.playerId);
       return { playerId: c.playerId, teamId: c.teamId, position: c.position, rating: c.rating, games: c.games, ppg: c.ppg, tournamentPpg: t ? t.pts / t.games : 0 };
@@ -283,7 +290,7 @@ export function pickAllAmerican(state: JcState, team: 1 | 2 | 3, slotIndex: numb
 export function suggestAllAmerican(state: JcState): JcResult {
   const problem = tournamentsDone(state);
   if (problem) return jcFail([problem]);
-  const rows = jcRaces(state)[0].rows;
+  const rows = jcRaces(state, true)[0].rows;
   const used = new Set<string>();
   const allAmerican = ([1, 2, 3] as const).map(team => ({
     team,
