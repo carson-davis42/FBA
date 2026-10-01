@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 import {
-  AllStarFile, AwardCountsFile, AwardsFile, CalendarFile, D2DraftFile, D2DraftHistoryFile, D2LeagueHistoryFile, D2PoolFile, DraftFile, DraftHistoryFile, EventsFile, FranchisesFile, FreeAgentsFile, HallOfFameFile, JcRankingsFile, JcScheduleFile, LogoManifest, LotteryFile, MetaFile, PicksFile, PlayerBiosFile, PlayersFile, PastTransactionsFile, PlayoffsFile, QualifyingFile, RankingFile, RatingPauseFile, RecruitingFile, ReservesFile, ResultsFile,
+  AllStarFile, AwardCountsFile, AwardsFile, CalendarFile, D2DraftFile, D2DraftHistoryFile, D2LeagueHistoryFile, D2PoolFile, DraftFile, DraftHistoryFile, EventsFile, FranchisesFile, FreeAgentsFile, HallOfFameFile, JcAwardsFile, JcPostseasonFile, JcRankingsFile, JcScheduleFile, LogoManifest, LotteryFile, MetaFile, PicksFile, PlayerBiosFile, PlayersFile, PastTransactionsFile, PlayoffsFile, QualifyingFile, RankingFile, RatingPauseFile, RecruitingFile, ReservesFile, ResultsFile,
   RostersFile, ScheduleFile, SummaryFile, TeamsFile, TransactionsFile, WcHostsFile, WorldCupFile,
 } from './types';
 
@@ -41,6 +41,8 @@ const RULES: [RegExp, z.ZodTypeAny][] = [
   [new RegExp(`^leagues/fbajc/${S}/ratings\\.json$`), RankingFile],
   [new RegExp(`^leagues/fbajc/${S}/schedule\\.json$`), JcScheduleFile],
   [new RegExp(`^leagues/fbajc/${S}/rankings\\.json$`), JcRankingsFile],
+  [new RegExp(`^leagues/fbajc/${S}/postseason\\.json$`), JcPostseasonFile],
+  [new RegExp(`^leagues/fbajc/${S}/awards\\.json$`), JcAwardsFile],
   [new RegExp(`^leagues/(fba|fbad2)/${S}/schedule\\.json$`), ScheduleFile],
   [new RegExp(`^leagues/(fba|fbad2)/${S}/playoffs\\.json$`), PlayoffsFile],
   [new RegExp(`^leagues/(fba|fbad2)/${S}/awards\\.json$`), AwardsFile],
