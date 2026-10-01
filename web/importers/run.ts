@@ -14,6 +14,7 @@ import type { BracketEntry } from './history/convertBrackets';
 import { buildWcHistory, WC_SHEET_TAB } from './wcHistory';
 import { JC_HISTORY_TABS, planJcHistory } from './jcHistoryRun';
 import { JC_LAST_SEASON } from './jcHistory';
+import { JC_LOGO_FOLDER, wireJcLogos } from './jcLogos';
 import { planJcSchools } from './jcSchools';
 import { parseNationalChampions } from './sheets/jcHistory';
 import { buildLogoManifest, diffLogoManifests } from './logoManifest';
@@ -630,6 +631,21 @@ async function importJcSchools(): Promise<void> {
   console.log(`Wrote ${docs[0]?.[0]} (${report.count('warn')} warnings) to ${dir}.`);
 }
 
+/** Points every college team in leagues/fbajc/teams.json at its file in FBA Logos/FBAJC_Final. Writes only that doc. */
+function importJcLogos(): void {
+  const dir = requireDataDir('--jc-logos');
+  const teams = readDataJson<TeamsFile>(dir, 'leagues/fbajc/teams.json');
+  if (!teams) {
+    console.error('--jc-logos needs leagues/fbajc/teams.json in the data folder.');
+    process.exit(1);
+  }
+  const report = new Report();
+  const wired = wireJcLogos(teams, readdirSync(path.join(REPO, 'FBA Logos', JC_LOGO_FOLDER)), report);
+  printReport(report);
+  if (JSON.stringify(wired) === JSON.stringify(teams)) { console.log('leagues/fbajc/teams.json is already wired.'); return; }
+  writeDoc(dir, 'leagues/fbajc/teams.json', wired);
+}
+
 /** Puts the transcribed past brackets (importers/history/<kind>Brackets.json) onto the league's season summaries in the --data folder. */
 function importBrackets(flag: string, league: 'fbawc' | 'fbad2' | 'fbajc', file: string): void {
   const dir = requireDataDir(flag);
@@ -659,7 +675,7 @@ export async function importWcQualifyingStep(): Promise<void> {
   console.log(`Added s${cal.season}-qualifying`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-brackets', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-brackets', '--jc-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -668,6 +684,7 @@ async function main(): Promise<void> {
     process.exit(1);
   }
   if (process.argv.includes('--logos')) return refreshLogos();
+  if (process.argv.includes('--jc-logos')) return importJcLogos();
   if (process.argv.includes('--franchises')) return importFranchises();
   if (process.argv.includes('--refresh-rosters')) return refreshRosters();
   if (process.argv.includes('--hall-of-fame')) return importHallOfFame();

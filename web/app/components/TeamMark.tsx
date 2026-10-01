@@ -11,7 +11,7 @@ export function TeamMark({ team, season, size = 32, label, decorative = false }:
     return (
       <img
         className="team-mark"
-        src={`/logos/${encodeURIComponent(team.logoFolder)}/${season}`}
+        src={`/logos/${encodeURIComponent(team.logoFolder)}/${season}${team.logoFile ? `?file=${encodeURIComponent(team.logoFile)}` : ''}`}
         width={size}
         height={size}
         alt={`${label ?? team.name} logo`}
