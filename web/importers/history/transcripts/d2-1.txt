@@ -135,3 +135,40 @@ S58
 = Vienna 39-16 | Milan 53-36 | Athens 52-49 | Toronto 28-27
 = Milan 63-53 | Athens 36-34
 = Milan 49-37
+
+# p055 FBA D2 Tournament
+S53
+1|San Jose Express|6-0
+8|Santa Fe Heat|2-4
+5|Atlanta Empire|4-2
+4|New York Hawks|5-1
+3|Pearland Flames|6-0
+6|Maine Dolphins|4-2
+7|Fort Worth Sabers|4-2
+2|Orlando Hornets|6-0
+= San Jose Express - | Atlanta Empire - | Maine Dolphins - | Orlando Hornets -
+= San Jose Express - | Orlando Hornets -
+= San Jose Express -
+
+# p027 FBA D2 Tournament
+S54
+1|San Jose Express|6-0
+16|West Vermont Rattlers|0-6
+9|Santa Fe Heat|3-3
+8|New York Hawks|3-3
+5|Orlando Hornets|5-1
+12|Atlanta Empire|2-4
+13|Cypress White Sox|0-6
+4|Fort Worth Sabers|5-1
+3|Tampa Suns|5-1
+14|Cal State Tigers|0-6
+11|Maine Dolphins|3-3
+6|Pearland Flames|4-2
+7|Arizona Copper|3-3
+10|Texas Trojans|3-3
+15|Miami Mustangs|0-6
+2|Syracuse Speeders|6-0
+= San Jose Express - | Santa Fe Heat - | Atlanta Empire - | Fort Worth Sabers - | Tampa Suns - | Pearland Flames - | Texas Trojans - | Syracuse Speeders -
+= San Jose Express - | Fort Worth Sabers - | Tampa Suns - | Syracuse Speeders -
+= San Jose Express - | Syracuse Speeders -
+= Syracuse Speeders -
