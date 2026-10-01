@@ -49,7 +49,7 @@ export function KnockoutTab({ wc, byId, season, state, players, summary, blocked
       <div className="table-wrap">
         <div className="wc-bracket">
           {ROUNDS.map(r => (
-            <div key={r.id} className="wc-round">
+            <div key={r.id} className={`wc-round${r.id === 'F' ? ' wc-round-final' : ''}`}>
               <h4>{r.label}</h4>
               {wc.knockout.filter(k => k.round === r.id).map(g => (
                 <div key={g.id} className="card wc-match" aria-label={g.id}>

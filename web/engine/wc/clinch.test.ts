@@ -53,6 +53,16 @@ describe('qualifyingClinch', () => {
     expect(c[id(85)]).toBe('eliminated');
   });
 
+  it('clinches and eliminates mid-way while games remain', () => {
+    const f = qualifyingFixture(195);
+    const c = qualifyingClinch(f);
+    const left = f.schedule.length - f.games.length;
+    expect(left).toBeGreaterThan(0);
+    expect(c[id(16)]).toBe('qualified');
+    expect(c[id(85)]).toBe('eliminated');
+    expect(Object.values(c).filter(x => x === null).length).toBeGreaterThan(0);
+  });
+
   it('uses the final order once qualifying is finished', () => {
     const f = qualifyingFixture(210);
     f.advanced = f.field.slice(0, 49);

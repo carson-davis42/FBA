@@ -37,7 +37,7 @@ export function MvpCard({ wc, state, players, byId, season, summary, blocked, ru
   return (
     <div className="card wc-mvp">
       <h3>Tournament MVP</h3>
-      <div className="table-wrap">
+      <div className="table-wrap tall">
         <table className="stat-table" aria-label="Tournament MVP">
           <thead><tr><th>Player</th><th>Team</th><th className="n">GP</th><th className="n">PPG</th><th /></tr></thead>
           <tbody>

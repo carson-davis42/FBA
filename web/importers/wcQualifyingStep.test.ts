@@ -1,15 +1,16 @@
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
+import { calendarFor } from '../engine/shared/calendar';
 
 const WEB = path.resolve(__dirname, '..');
 const REAL = path.join(WEB, 'data');
 const dirs: string[] = [];
 
 function run(dir: string) {
-  return spawnSync('npx', ['tsx', 'importers/run.ts', '--wc-qualifying-step', '--data', dir], { cwd: WEB, encoding: 'utf8', shell: true });
+  return spawnSync('npx', ['tsx', 'importers/run.ts', '--wc-qualifying-step', '--data', dir], { cwd: WEB, encoding: 'utf8', shell: process.platform === 'win32' });
 }
 function scratch(): string {
   const dir = mkdtempSync(path.join(os.tmpdir(), 'wcq-'));
@@ -25,7 +26,8 @@ afterEach(() => {
 describe('--wc-qualifying-step', () => {
   it('adds s79-qualifying before retirement, leaves other steps, and is idempotent', () => {
     const dir = scratch();
-    copyFileSync(path.join(REAL, 'calendar.json'), path.join(dir, 'calendar.json'));
+    const cal = calendarFor(79);
+    writeFileSync(path.join(dir, 'calendar.json'), JSON.stringify({ ...cal, steps: cal.steps.filter(s => s.id !== 's79-qualifying') }, null, 2));
     const before = JSON.parse(readFileSync(path.join(dir, 'calendar.json'), 'utf8'));
     const first = run(dir);
     expect(first.status).toBe(0);

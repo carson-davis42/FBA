@@ -116,7 +116,7 @@ export function QualifyingPage() {
               </tbody>
             </table>
           </div>
-          {table.ties.length > 0 && <ul className="wc-ties muted">{table.ties.map(n => <li key={n}>{n}</li>)}</ul>}
+          {q.games.length > 0 && table.ties.length > 0 && <ul className="wc-ties muted">{table.ties.map(n => <li key={n}>{n}</li>)}</ul>}
           <ClinchLegend kinds={rows.map(r => clinch[r.teamId] ?? null)} league="fbawc" />
         </section>
         <section>

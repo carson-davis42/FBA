@@ -27,11 +27,11 @@ import './roster.css';
 export function TeamPage() {
   const { league = '', teamId = '' } = useParams();
   const valid = isLeagueId(league);
+  const isWc = league === 'fbawc';
   const { data: meta } = useDoc<MetaFile>(valid ? 'meta.json' : null);
   const { data: teams } = useDoc<TeamsFile>(valid ? `leagues/${league}/teams.json` : null);
   const { data: players } = useDoc<PlayersFile>(valid ? 'players.json' : null);
-  const wc = useWcRosters();
-  const isWc = league === 'fbawc';
+  const wc = useWcRosters(isWc);
   const season = valid && meta ? (isWc ? wc.season : meta.rosterSeason[league]) : undefined;
   const { data: plainRosters } = useDoc<RostersFile>(season === undefined || isWc ? null : `leagues/${league}/S${season}/rosters.json`);
   const rosters = isWc ? wc.rosters ?? undefined : plainRosters;
@@ -50,6 +50,7 @@ export function TeamPage() {
   const saving = useSaving();
 
   if (!valid) return <p className="error">Unknown league "{league}".</p>;
+  if (isWc && wc.settled && wc.rosters === null) return <p className="muted">No World Cup rosters yet. Start qualifying to generate them.</p>;
   if (!teams || !players || !rosters || season === undefined) return <p className="muted">Loading…</p>;
   const team = teams.teams.find(t => t.teamId === teamId);
   if (!team) return <p className="error">No team "{teamId}" in {LEAGUE_LABEL[league]}.</p>;
@@ -108,7 +109,7 @@ export function TeamPage() {
   const opponent = (id: string) => { const o = teamBy(id); return o ? <TeamName team={o} season={season} variant="abbr" size={18} to={`/league/${league}/team/${id}`} /> : id; };
   const stats = [
     { label: 'Rating', value: teamRating(entries) ?? '—' },
-    { label: 'Players', value: entries.filter(e => e.playerId !== null).length },
+    { label: 'Players', value: entries.filter(e => e.playerId !== null || (isWc && e.rating !== null)).length },
     ...(lg === 'fba' && editable ? [{ label: 'Payroll', value: `$${payroll(entries, season)}` }] : []),
   ];
   const sections = [{ id: 'roster', label: 'Roster' }, ...(myGames.length > 0 ? [{ id: 'schedule', label: 'Schedule' }] : [])];

@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { MemoryRouter } from 'react-router-dom';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mulberry32 } from '../../engine/d2/random';
 import { calendarFor } from '../../engine/shared/calendar';
 import type { CalendarFile, QualifyingFile, RostersFile, TeamsFile } from '../../engine/shared/types';
@@ -67,7 +67,6 @@ function base(cal: CalendarFile, s?: QualifyingState): Record<string, unknown> {
   return docs;
 }
 
-beforeEach(() => undefined);
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
 describe('QualifyingPage', () => {

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterAll, describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
 import { SummaryFile, type CalendarFile, type QualifyingFile, type RosterEntry, type RostersFile } from '../shared/types';
 import { CITY_COUNTRY } from './countries';
@@ -8,6 +8,8 @@ import { wcWrites } from './writes';
 import { startWorldCup } from './worldcup';
 
 const countries = Array.from({ length: 85 }, (_, i) => `C${String(i).padStart(2, '0')}`);
+const addedCities: string[] = [];
+afterAll(() => { for (const c of addedCities) delete CITY_COUNTRY[c]; });
 const POS = ['PG', 'SG', 'SF', 'PF', 'C'] as const;
 
 function d2(season: number): RostersFile {
@@ -15,6 +17,7 @@ function d2(season: number): RostersFile {
   countries.slice(0, 40).forEach((c, i) => {
     const city = `CITY${i}`;
     CITY_COUNTRY[city] = c;
+    addedCities.push(city);
     teams[city] = POS.map((position, k) => ({ playerId: `p${String(i * 5 + k + 1).padStart(5, '0')}`, position, rating: 60 + i + k, age: 25, points: 0 }));
   });
   return { league: 'fbad2', season, locked: false, teams };
