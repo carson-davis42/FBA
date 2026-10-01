@@ -1,0 +1,277 @@
+{
+  "league": "fbad2",
+  "season": 79,
+  "locked": true,
+  "tickets": [
+    "ROME",
+    "SHAN",
+    "TAM",
+    "EDM",
+    "ZAG",
+    "PAR",
+    "MAN",
+    "MAN",
+    "BEL",
+    "ZUR",
+    "GLAS",
+    "SYD",
+    "LIS",
+    "TAM",
+    "IST",
+    "SALZ",
+    "OTT",
+    "SHAN",
+    "STP",
+    "LON",
+    "JOH",
+    "MC",
+    "MOS",
+    "NAP",
+    "MUM",
+    "ROME",
+    "BARC",
+    "OMA",
+    "BEI",
+    "MAN",
+    "FRAN",
+    "ACK",
+    "BRUS",
+    "MUN",
+    "LIS",
+    "HAM",
+    "IST",
+    "EDI"
+  ],
+  "pool": [
+    "p00872",
+    "p00553",
+    "p00857",
+    "p00646",
+    "p01386",
+    "p00737",
+    "p00862",
+    "p00666",
+    "p00147",
+    "p00152",
+    "p00156",
+    "p00690",
+    "p00718",
+    "p00588",
+    "p00738",
+    "p00833",
+    "p00699",
+    "p00686",
+    "p00653",
+    "p00628",
+    "p00874",
+    "p00663",
+    "p01840",
+    "p00502",
+    "p00575",
+    "p00720",
+    "p00649",
+    "p00590",
+    "p00531",
+    "p00770",
+    "p00161",
+    "p00151",
+    "p00746",
+    "p00841",
+    "p00517",
+    "p00693",
+    "p00610",
+    "p00630"
+  ],
+  "picks": [
+    {
+      "teamId": "ROME",
+      "playerId": "p00147",
+      "position": "SG"
+    },
+    {
+      "teamId": "SHAN",
+      "playerId": "p00686",
+      "position": "SF"
+    },
+    {
+      "teamId": "TAM",
+      "playerId": "p00872",
+      "position": "PG"
+    },
+    {
+      "teamId": "EDM",
+      "playerId": "p00502",
+      "position": "PF"
+    },
+    {
+      "teamId": "ZAG",
+      "playerId": "p00151",
+      "position": "C"
+    },
+    {
+      "teamId": "PAR",
+      "playerId": "p00161",
+      "position": "C"
+    },
+    {
+      "teamId": "MAN",
+      "playerId": "p00156",
+      "position": "SG"
+    },
+    {
+      "teamId": "MAN",
+      "playerId": "p00575",
+      "position": "PF"
+    },
+    {
+      "teamId": "BEL",
+      "playerId": "p00152",
+      "position": "SG"
+    },
+    {
+      "teamId": "ZUR",
+      "playerId": "p00746",
+      "position": "C"
+    },
+    {
+      "teamId": "GLAS",
+      "playerId": "p00841",
+      "position": "C"
+    },
+    {
+      "teamId": "SYD",
+      "playerId": "p00720",
+      "position": "PF"
+    },
+    {
+      "teamId": "LIS",
+      "playerId": "p00690",
+      "position": "SG"
+    },
+    {
+      "teamId": "TAM",
+      "playerId": "p00653",
+      "position": "SF"
+    },
+    {
+      "teamId": "IST",
+      "playerId": "p00628",
+      "position": "SF"
+    },
+    {
+      "teamId": "SALZ",
+      "playerId": "p00517",
+      "position": "C"
+    },
+    {
+      "teamId": "OTT",
+      "playerId": "p00553",
+      "position": "PG"
+    },
+    {
+      "teamId": "SHAN",
+      "playerId": "p00718",
+      "position": "SG"
+    },
+    {
+      "teamId": "STP",
+      "playerId": "p00857",
+      "position": "PG"
+    },
+    {
+      "teamId": "LON",
+      "playerId": "p01386",
+      "position": "PG"
+    },
+    {
+      "teamId": "JOH",
+      "playerId": "p00588",
+      "position": "SG"
+    },
+    {
+      "teamId": "MC",
+      "playerId": "p00649",
+      "position": "PF"
+    },
+    {
+      "teamId": "MOS",
+      "playerId": "p00738",
+      "position": "SG"
+    },
+    {
+      "teamId": "NAP",
+      "playerId": "p00874",
+      "position": "SF"
+    },
+    {
+      "teamId": "MUM",
+      "playerId": "p00646",
+      "position": "PG"
+    },
+    {
+      "teamId": "ROME",
+      "playerId": "p00693",
+      "position": "C"
+    },
+    {
+      "teamId": "BARC",
+      "playerId": "p00833",
+      "position": "SG"
+    },
+    {
+      "teamId": "OMA",
+      "playerId": "p00610",
+      "position": "C"
+    },
+    {
+      "teamId": "BEI",
+      "playerId": "p00630",
+      "position": "C"
+    },
+    {
+      "teamId": "MAN",
+      "playerId": "p00737",
+      "position": "PG"
+    },
+    {
+      "teamId": "FRAN",
+      "playerId": "p00590",
+      "position": "PF"
+    },
+    {
+      "teamId": "ACK",
+      "playerId": "p00862",
+      "position": "PG"
+    },
+    {
+      "teamId": "BRUS",
+      "playerId": "p00663",
+      "position": "SF"
+    },
+    {
+      "teamId": "MUN",
+      "playerId": "p00531",
+      "position": "PF"
+    },
+    {
+      "teamId": "LIS",
+      "playerId": "p00770",
+      "position": "PF"
+    },
+    {
+      "teamId": "HAM",
+      "playerId": "p01840",
+      "position": "SF"
+    },
+    {
+      "teamId": "IST",
+      "playerId": "p00666",
+      "position": "PG"
+    },
+    {
+      "teamId": "EDI",
+      "playerId": "p00699",
+      "position": "SG"
+    }
+  ]
+}

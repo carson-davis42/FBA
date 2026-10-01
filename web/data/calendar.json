@@ -39,7 +39,7 @@
       "kind": "offseason",
       "league": null,
       "sub": true,
-      "done": false
+      "done": true
     },
     {
       "id": "fbad2-draft",
@@ -47,7 +47,7 @@
       "kind": "offseason",
       "league": null,
       "sub": true,
-      "done": false
+      "done": true
     },
     {
       "id": "create-s80-class",
