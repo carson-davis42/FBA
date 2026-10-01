@@ -1,7 +1,10 @@
 import { mulberry32, type Rng } from '../d2/random';
-import type { JcScheduleFile, RosterEntry } from '../shared/types';
+import type { JcNationalAward, JcScheduleFile, RosterEntry } from '../shared/types';
 import { challengeSets, conferenceDays } from './schedule';
-import type { JcState } from './state';
+import { jcRaces, pickConference, pickNational, startAwards } from './awards';
+import { playAllConf, startConfTournaments } from './confTourney';
+import { setFields } from './fieldMoves';
+import type { JcResult, JcState } from './state';
 import { playToEnd } from './play';
 import { dayGames, makeFields } from './tournaments';
 
@@ -75,4 +78,20 @@ export function jcPlayedFixture(seed = 7, season = 79): JcState {
   const r = playToEnd(jcStateFixture(seed, season), mulberry32(seed + 100));
   if (!r.ok) throw new Error(r.problems.join());
   return r.state;
+}
+
+/** A season past its conference tournaments, with the fields set and every award picked: the NIT can start. Slow (about 15 seconds). */
+export function jcReadyForNit(seed = 7): JcState {
+  const must = (r: JcResult): JcState => {
+    if (!r.ok) throw new Error(r.problems.join());
+    return r.state;
+  };
+  let s = must(startConfTournaments(jcPlayedFixture(seed)));
+  s = must(playAllConf(s, mulberry32(seed + 1)));
+  s = must(setFields(s));
+  s = must(startAwards(s));
+  for (const race of jcRaces(s)) {
+    s = must(race.kind === 'national' ? pickNational(s, race.id as JcNationalAward, race.rows[0].playerId) : pickConference(s, race.id, race.rows[0].playerId));
+  }
+  return s;
 }
