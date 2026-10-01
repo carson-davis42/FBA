@@ -1,6 +1,6 @@
 # Part 6c: FBAJC history (design)
 
-Status: draft 2026-10-01 after the user's answers (below); awaiting the user's review. Branch `claude/kind-brahmagupta-fnq164` from `main` at 54d2812. Builds on 6a/6b (`JcSummary`, `PastBracket`) and copies the shape of part 4 (D2 history) and the past-brackets design.
+Status: draft 2026-10-01, revised after the user supplied the All-American layout and confirmed that NIT brackets are in the PDF; awaiting the user's review. Branch `claude/kind-brahmagupta-fnq164` from `main` at 54d2812. Builds on 6a/6b (`JcSummary`, `PastBracket`) and copies the shape of part 4 (D2 history) and the past-brackets design.
 
 ## 1. Goal and decisions
 
@@ -26,7 +26,7 @@ Both are Google Sheets read by the importer from an xlsx export cached in `web/i
 |---|---|---|
 | National Championship History | `Year, Champion, Runner-Up, Score, C-Ship MVP, Date`. Score and Date are `X` (unknown) in the sampled rows; a "JC Era" header row precedes S1. | S1–S78 |
 | NIT Championship History | `Year, Champion, Runner-Up, C-Ship MVP, Date` | S72–S78 |
-| FBAJC National Awards History | Six national awards (POY, Freshman, Guard, Forward, Center, DPOY from S57), then All-American teams in several eras. **Layout to be inspected before the plan** (see section 7). | S11 on |
+| FBAJC National Awards History | Six national awards (POY, Freshman, Guard, Forward, Center, DPOY from S57), then an "All-Americans" block: season header (`S53`), then rows `slot, player, school` (section 3.2 lists the eras). | S11 on |
 | Conference Awards History | Pairs of columns per conference (player, school); `X` = none | S52 on, conferences join over time |
 | Conference Regular Season Champions | Per conference: `School(W-L)` on the season's first row, extra rows for co-champions (with or without a record) | S53 on |
 | Conference Tournament Champions | One school per conference per season | S54 on (S52, S53 are all `X`) |
@@ -36,7 +36,7 @@ Both are Google Sheets read by the importer from an xlsx export cached in `web/i
 
 **"FBA JC School History"** (`1T1gR1wQBVLfzL0o6cO2QKMTDsLDMIo03OJrF4t0CZZ8`): 18 conference tabs. Per school: name, `MM App.` (`Baylor-28`, the total) and the list of seasons it made March Madness. **No season records exist in the sheet.** The school pages therefore show titles and appearances, not season-by-season records (assumed; the user is asked to confirm, section 8).
 
-**Bracket PDF:** about 50 FBAJC pages (the 3a spec counted 52) among 140. They are single-elimination March Madness pages titled "March Madness <roman numeral>" with "FBAJC S<n>" (older seasons print "FBA Junior Colleges S<n>"): 64 slots, `seed.Name(record)`, BYEs, single-game scores that can end in "OT". NIT pages and smaller fields are found during the page inventory (task 1 of the plan) and reported before transcription.
+**Bracket PDF:** the user confirms it holds both the March Madness and the NIT brackets. The 3a spec counted 52 FBAJC pages among 140, the user estimated about 70; the page inventory settles it. They are single-elimination March Madness pages titled "March Madness <roman numeral>" with "FBAJC S<n>" (older seasons print "FBA Junior Colleges S<n>"): 64 slots, `seed.Name(record)`, BYEs, single-game scores that can end in "OT". NIT pages (16 to 32 slots) are found during the page inventory (task 1 of the plan), which reports page, kind, season and field size before transcription starts.
 
 ## 3. Data
 
@@ -48,7 +48,7 @@ One `leagues/fbajc/S<n>/summary.json` per season (S78's exists with only the cha
 
 - `champions`: `National Champion` (champion, runner-up, `teamId`/`runnerUpId` resolved, `finalsMvp` as in other leagues when the MVP resolves) and, S72 on, `NIT Champion` (`jc.nit` repeats it for the existing 6b readers).
 - `jc` (extended, section 3.2).
-- `pastBracket`: the March Madness bracket (section 5); the NIT bracket if the PDF has them (`pastBrackets` is D2-only today; an NIT bracket needs a deliberate extension, decided after the page inventory).
+- `pastBracket`: the March Madness bracket (section 5). The NIT bracket goes in a new optional `jc.nitBracket: PastBracket.nullable()` (decided: `pastBrackets` stays D2-only; the NIT is a separate tournament of the same season, and `jc` is already FBAJC-only).
 
 ### 3.2 `JcSummary` extension (deliberate)
 
@@ -57,7 +57,13 @@ One `leagues/fbajc/S<n>/summary.json` per season (S78's exists with only the cha
 - **Names beside ids.** Each player slot may carry `name` and `school` (text) when `playerId` is null; `playerId` is set only when exactly one player in `players.json` matches (the existing `nameResolver` in `importers/history.ts` with its report). The pages render a `PlayerLink` when there is an id, plain text otherwise.
 - **`confChampions[].regularSeason`** becomes `string[]` of school names as today, plus an optional parallel `regularSeasonRecords` (`"12-3"` strings or null) for co-champions.
 - **`preseason`**: `[{ event: string, champion: string }]` (S64 on).
-- **`allAmericanLegacy`**: `{ era: string, teams: [{ team: number, slots: [{ slot: string, name, school, playerId }] }] }[]`: the older eras keep the sheet's slot labels (OUT/MID/IN, PG/PF/C, …) exactly as written. The current G/F/C/ANY/ANY shape stays in `allAmerican` (S75 on). A summary has `allAmerican` or `allAmericanLegacy`, not both (`superRefine`). The era list and slot labels are fixed after inspecting the tab (section 7).
+- **`allAmericanLegacy`**: `{ teams: [{ team: number, slots: [{ slot: string, name, school, playerId }] }] }`. Slot labels are kept exactly as the sheet writes them. The eras, read from the user's paste of the All-Americans block:
+  - **S53–S58** (no S56): one team of 7: OUT, OUT, OUT (S59: two), MID, MID, IN, IN (S59 adds one ANY). S59 is 2 OUT, 2 MID, 2 IN, 1 ANY.
+  - **S60–S66**: one team of 9: 3 OUT, 3 MID, 3 IN.
+  - **S67**: one team of 9: 3 G, 3 F, 2 C, 1 ANY.
+  - **S68–S70**: three teams of PG, SG, SF, PF, C.
+  - **S71–S78**: three teams of G, F, C, ANY, ANY. This is the shape `allAmerican` already has, so these seasons use `allAmerican` (with names and schools), not the legacy block.
+  A summary has `allAmerican` or `allAmericanLegacy`, not both (`superRefine`). Slots are an open string list, with no fixed per-era counts in the schema; the importer reads whatever rows sit under a season header (and a `Team n` sub-header when present) and reports any season with no rows.
 - **`mvp`** keeps `mm` and `nit` as ids; names go in a sibling `mvpNames: { mm: string|null, nit: string|null }` for unresolved players.
 
 `superRefine` rules from 6b (unique All-American players, six national awards) stay for app-written data; imported rows are allowed to be incomplete, so the strict counts apply only when `playerId`-based data is present. (The plan states exactly which refinements relax, with tests.)
@@ -96,8 +102,8 @@ Each mode validates every doc through `schemaForPath` first and writes nothing o
 
 ## 7. Open items resolved in the plan
 
-- The National Awards tab's All-American layout and eras: inspected from the xlsx (the connector shows only a sample).
-- Whether the PDF has NIT brackets, and their field sizes, from the page inventory.
+- The National Awards tab's six award columns (the connector shows only a sample; the All-American block is known from the user's paste).
+- NIT page field sizes, from the page inventory.
 - Exact `superRefine` relaxations (section 3.2).
 - Real-data runs are the user's: the importers are run by the user on `web/data`; tests and browser checks use scratch copies.
 
