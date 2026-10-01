@@ -620,7 +620,7 @@ async function importJcSchools(): Promise<void> {
   const champs = await readTabs(await downloadWorkbook(SHEETS.collegeHistory, CACHE), [JC_HISTORY_TABS.champions]);
   const report = new Report();
   const nationalChampions = parseNationalChampions(champs[JC_HISTORY_TABS.champions] ?? [], report);
-  const { docs, problems } = planJcSchools({ teams, tabs, nationalChampions }, report);
+  const { docs, problems } = planJcSchools({ teams, tabs, nationalChampions, brackets: JSON.parse(readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), 'history', 'jcBrackets.json'), 'utf8')) }, report);
   printReport(report);
   if (report.count('error') > 0 || problems.length) {
     console.error(`${report.count('error') + problems.length} error(s); nothing was written.${problems.length ? `\n${problems.join('\n')}` : ''}`);

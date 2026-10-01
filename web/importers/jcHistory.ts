@@ -30,7 +30,7 @@ const CONF_BY_NAME = new Map(JC_CONF_CODES.map(([name, code]) => [normName(name)
 const CONF_ORDER = JC_CONF_CODES.map(([, code]) => code);
 
 /** Sheet school spellings mapped to the `teams.json` spelling (keys and values compared with `normName`). */
-export const SHEET_SCHOOL_ALIASES: Record<string, string> = { 'Abilene Christian': 'Abeline Christian' };
+export const SHEET_SCHOOL_ALIASES: Record<string, string> = {};
 /** Sheet player spellings mapped to the `players.json` spelling (case is ignored by the matching itself). */
 export const SHEET_PLAYER_ALIASES: Record<string, string> = { 'Eliott Miller': 'Elliott Miller', 'Kojo Battoe': 'Kojo Baffoe' };
 

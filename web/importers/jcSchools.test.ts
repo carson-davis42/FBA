@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import type { JcSchoolHistoryFile, TeamsFile } from '../engine/shared/types';
-import { buildSchoolHistory, planJcSchools } from './jcSchools';
+import type { JcSchoolHistoryFile, PastSeries, TeamsFile } from '../engine/shared/types';
+import { applyBracketRounds, buildSchoolHistory, planJcSchools, type JcBracketPage } from './jcSchools';
 import { Report } from './report';
 
 const team = (teamId: string, name: string, group: string) => ({ teamId, name, abbr: teamId, group, logoFolder: null, badge: { bg: 'hsl(1 50% 36%)', fg: '#ffffff' } });
@@ -32,6 +32,14 @@ describe('buildSchoolHistory', () => {
       rsChampion: [{ season: 60, conf: null }], confTournament: [], mmWins: null,
     });
     expect(file.schools[1].rsChampion).toEqual([{ season: 62, conf: 'A10' }]);
+    expect(report.hasErrors).toBe(false);
+  });
+  it('reads the sheet spelling "Abeline Christian" as Abilene Christian', () => {
+    const t = { ...teams, teams: [...teams.teams, team('ACU', 'Abilene Christian', 'SOCON')] } as TeamsFile;
+    const southern: string[][] = [['School', 'Abeline Christian'], ['MM App.', 'Abeline Christian-0'], ['', ''], ['Sweet 16', 'Abeline Christian-0'], ['', ''], ['Elite 8', 'Abeline Christian-0'], ['', ''], ['Final Four', 'Abeline Christian-0'], ['', ''], ['NC app.', 'Abeline Christian-0'], ['', ''], ['National Champions', 'Abeline Christian-0'], ['', ''], ['Conf RS Champions', 'Abeline Christian-0'], ['', ''], ['Conf TOUR Champions', 'Abeline Christian-0'], ['', '']];
+    const report = new Report();
+    const file = buildSchoolHistory({ Southern: southern }, t, null, report);
+    expect(file.schools.map(x => x.teamId)).toEqual(['ACU']);
     expect(report.hasErrors).toBe(false);
   });
   it('reads the sheet spelling "Deleware State" as Delaware State', () => {
@@ -99,5 +107,72 @@ describe('planJcSchools', () => {
     const t = big12(); t[1][1] = 'Baylor-5';
     const { docs } = planJcSchools({ teams, tabs: { 'Big 12': t }, nationalChampions: null }, new Report());
     expect(docs).toEqual([]);
+  });
+});
+
+describe('applyBracketRounds', () => {
+  const names = Array.from({ length: 64 }, (_, i) => `T${i + 1}`);
+  const bigTeams = { league: 'fbajc', teams: [...names, 'Outsider'].map((n, i) => team(`ID${i + 1}`, n, 'B12')) } as TeamsFile;
+  /** A 64-slot page where the lower slot number always wins: T1 wins it all, T33 loses the final, T17 the semifinal, T9 round 4, T5 round 3, T3 and T2 early. */
+  const page = (season: number, rounds = 6): JcBracketPage => {
+    const series: PastSeries[] = [];
+    const side = (n: number) => ({ name: `T${n}`, record: null, seed: null });
+    for (let r = 1; r <= rounds; r++) {
+      const count = 2 ** (rounds - r), span = 2 ** r;
+      for (let k = 1; k <= count; k++) {
+        const lo = (k - 1) * span + 1;
+        series.push({ id: `R${r}-${k}`, round: r, home: side(lo), away: side(lo + span / 2), homeWins: 0, awayWins: 0, winner: 'home', unscored: true });
+      }
+    }
+    return { season, rounds, series };
+  };
+  const entry = (teamId: string, mm: Partial<JcSchoolHistoryFile['schools'][number]['mm']>) => ({
+    teamId, mm: { app: [], sweet16: [], elite8: [], final4: [], titleGame: [], champion: [], ...mm }, rsChampion: [], confTournament: [], mmWins: null,
+  });
+  const base = (schools: ReturnType<typeof entry>[]): JcSchoolHistoryFile => ({ league: 'fbajc', throughSeason: 78, schools });
+
+  it('adds, deepens and removes seasons so each school matches the 64-slot page', () => {
+    const file = base([
+      entry('ID1', {}),                                                                       // champion missing everywhere
+      entry('ID33', { app: [60], sweet16: [60], elite8: [60], final4: [60], titleGame: [60], champion: [60] }), // sheet says champion, page says title game
+      entry('ID2', { app: [59] }),                                                            // lost round 1 but missing season 60
+      entry('ID65', { app: [60] }),                                                           // on the sheet, not on the page
+    ]);
+    const report = new Report();
+    const out = applyBracketRounds(file, [page(60)], bigTeams, report);
+    const by = (id: string) => out.schools.find(s => s.teamId === id)!.mm;
+    expect(by('ID1')).toEqual({ app: [60], sweet16: [60], elite8: [60], final4: [60], titleGame: [60], champion: [60] });
+    expect(by('ID33').champion).toEqual([]);
+    expect(by('ID33').titleGame).toEqual([60]);
+    expect(by('ID2')).toMatchObject({ app: [59, 60], sweet16: [] });
+    expect(by('ID65').app).toEqual([]);
+    expect(report.entries.filter(e => e.topic === 'jc-schools' && e.level === 'info').length).toBeGreaterThan(5);
+  });
+
+  it('leaves the other seasons and the input alone, and is a no-op when everything already agrees', () => {
+    const file = base([entry('ID1', { app: [11, 60], sweet16: [60], elite8: [60], final4: [60], titleGame: [60], champion: [60] })]);
+    const out = applyBracketRounds(file, [page(60)], bigTeams, new Report());
+    expect(out.schools[0].mm.app).toEqual([11, 60]);
+    expect(file.schools[0].mm.champion).toEqual([60]);
+  });
+
+  it('only adds appearances for a page with fewer rounds and never removes', () => {
+    const file = base([entry('ID1', { app: [], sweet16: [12] }), entry('ID65', { app: [12] })]);
+    const out = applyBracketRounds(file, [page(12, 5)], bigTeams, new Report());
+    expect(out.schools[0].mm.app).toEqual([12]);
+    expect(out.schools[0].mm.sweet16).toEqual([12]);
+    expect(out.schools[1].mm.app).toEqual([12]);
+  });
+
+  it('ignores NIT pages and warns about a team with no school entry', () => {
+    const report = new Report();
+    const out = applyBracketRounds(base([entry('ID1', {})]), [{ ...page(72, 5), kind: 'NIT' }, page(60)], bigTeams, report);
+    expect(out.schools[0].mm.app).toEqual([60]);
+    expect(report.entries.some(e => e.level === 'warn' && e.message.includes('no school history entry'))).toBe(true);
+  });
+
+  it('planJcSchools applies the pages when it is given them', () => {
+    const { docs } = planJcSchools({ teams, tabs, nationalChampions: null, brackets: [] }, new Report());
+    expect(docs).toHaveLength(1);
   });
 });

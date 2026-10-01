@@ -9,7 +9,7 @@ const teams: TeamsFile = {
   league: 'fbajc',
   teams: [
     team('DUKE', 'Duke', 'ACC'), team('UVA', 'Virginia', 'ACC'), team('TCU', 'TCU', 'B12'), team('KU', 'Kansas', 'B12'),
-    team('KSU', 'Kansas State', 'B12'), team('ACU', 'Abeline Christian', 'SOCON'), team('SHU', 'Seton Hall', 'BE'),
+    team('KSU', 'Kansas State', 'B12'), team('ACU', 'Abilene Christian', 'SOCON'), team('SHU', 'Seton Hall', 'BE'),
     team('PUR', 'Purdue', 'B10'), team('FSU', 'Florida State', 'ACC'), team('SYR', 'Syracuse', 'ACC'), team('UNC', 'North Carolina', 'ACC'),
   ],
 } as TeamsFile;
