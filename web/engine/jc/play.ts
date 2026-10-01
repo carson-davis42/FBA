@@ -99,7 +99,13 @@ export function playOne(book: Book, gameNo: number, homeId: string, awayId: stri
   const away = lineupOf(book.rosters[awayId], awayId);
   if (typeof home === 'string') return home;
   if (typeof away === 'string') return away;
-  const sim = simGame(gameNo, home, away, rng, JC_PROFILE);
+  return applySim(book, simGame(gameNo, home, away, rng, JC_PROFILE), rng, refRating, progress);
+}
+
+/** Applies an already simmed (or watched) game to the book, as `playOne` does after the sim. */
+export function applySim(book: Book, sim: SimGame, rng: Rng, refRating: number, progress: boolean): GameResult {
+  const homeId = sim.home.teamId;
+  const awayId = sim.away.teamId;
   const pts = addBoxPoints(book, sim);
   if (progress) {
     const homeWon = sim.homePts > sim.awayPts;
@@ -146,7 +152,8 @@ function step(state: JcState, rng: Rng): Step {
   const book = newBook(state);
   const refRating = leagueRefRating(state.rosters);
   const results: GameResult[] = [];
-  for (const g of games) {
+  const done = new Set((state.results?.games ?? []).map(g => g.gameNo));
+  for (const g of games.filter(x => !done.has(x.gameNo))) {
     const r = playOne(book, g.gameNo, g.home, g.away, rng, refRating, true);
     if (typeof r === 'string') return { problems: [r] };
     results.push(r);
