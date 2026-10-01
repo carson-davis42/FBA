@@ -14,3 +14,4 @@
 .rank-rating { white-space: nowrap; }
 .suggest { margin-left: 6px; border: 1px dashed var(--border); background: transparent; color: var(--muted); border-radius: 999px; padding: 1px 8px; font-size: var(--fs-xs); cursor: pointer; }
 .suggest:hover { color: var(--text); border-color: var(--text); }
+.rank-spots.full { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }

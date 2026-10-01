@@ -30,6 +30,8 @@ export interface RankingTableProps {
   /** True while a save is running: Finish is disabled. */
   busy: boolean;
   /** Class ranking only: shows a Consensus box (with stars and a suggestion chip) next to Rating; "Use all suggestions" fills consensus too. */
+  /** D2 reset: roster spots per position (the pool cutoff). Shows how many are left as players are ranked; ranking past it puts a player in the Reserve pool. */
+  positionCap?: { spots: number; label: string };
   consensus?: { onSet: (playerId: string, value: number | null) => void };
 }
 
@@ -65,7 +67,7 @@ function ConsensusInput({ value, name, disabled, onSave }: { value: number | nul
  * the league). Right: the new ranking. Rating boxes appear once everyone is ranked; each starts empty, with the
  * suggestion as a separate chip. The position filter is for reading only.
  */
-export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "Last season's order", onChange, extraBlockers, finishLabel, onFinish, busy, consensus }: RankingTableProps) {
+export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "Last season's order", onChange, extraBlockers, finishLabel, onFinish, busy, consensus, positionCap }: RankingTableProps) {
   const [filter, setFilter] = useState<Filter>('ALL');
   const locked = doc.locked;
   const shown = (r: RankingRow) => filter === 'ALL' || r.position === filter;
@@ -134,6 +136,20 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
           <button type="button" className={`chip${split ? ' on' : ''}`} aria-pressed={split} onClick={() => setSplit(v => !v)}>Split view</button>
         )}
       </div>
+      {positionCap && (
+        <div className="chips card" role="group" aria-label={positionCap.label}>
+          <span className="muted">{positionCap.label}</span>
+          {POSITIONS.map(pos => {
+            const taken = rankedRows(doc).filter(r => r.position === pos).length;
+            const left = positionCap.spots - taken;
+            return (
+              <span key={pos} className={`chip rank-spots${left <= 0 ? ' full' : ''}`}>
+                {pos} {Math.max(0, left)}{left < 0 ? ` (${-left} over)` : ''}
+              </span>
+            );
+          })}
+        </div>
+      )}
       <div className={`rank-cols${split ? ' split' : ''}`}>
         {split ? (
           <>

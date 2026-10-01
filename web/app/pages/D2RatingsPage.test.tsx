@@ -51,6 +51,7 @@ describe('D2RatingsPage', () => {
       'Maddox Dean', 'Xavier Booker', 'Jalil Grant', 'Ben Montgomery', 'Jamal Edwards', 'Brooks Burrows', 'Milo Dean', 'Adrian Grant',
       'Adrian Napoletani', 'Brycen Holcomb', 'Kris Dyer', 'Myron Mason', 'Kyron Smart',
     ]);
+    expect(screen.getByRole('group', { name: 'D2 spots left per position' }).textContent).toContain('PG 64');
     expect(screen.getByText('FBA 71')).toBeTruthy();
     // Only the FBA free agent is new (Team column "New"); the other unrated Reserves were already in the pool.
     expect(screen.getByText('Kyron Smart').closest('tr')!.textContent).toContain('New');
