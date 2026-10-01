@@ -1,0 +1,47 @@
+{
+  "league": "fbad2",
+  "season": 55,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "D2 International Champion (1)",
+      "champion": "Syracuse",
+      "runnerUp": "San Jose",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02135",
+      "runnerUpId": "SJ"
+    },
+    {
+      "title": "D2 International Champion (2)",
+      "champion": "Tampa",
+      "runnerUp": "Atlanta",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02114",
+      "teamId": "TAM"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-D2",
+      "playerId": "p02135",
+      "teamId": "Syracuse"
+    },
+    {
+      "award": "MVP-D2",
+      "playerId": "p02085",
+      "teamId": "SJ"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "AM",
+      "teams": [
+        "Syracuse",
+        "Tampa"
+      ]
+    }
+  ]
+}

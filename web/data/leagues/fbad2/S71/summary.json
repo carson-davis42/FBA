@@ -1,0 +1,75 @@
+{
+  "league": "fbad2",
+  "season": 71,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "Premier League Champion",
+      "champion": "Hamburg",
+      "runnerUp": "Madrid",
+      "score": null,
+      "group": "PL",
+      "finalsMvp": "p02283",
+      "teamId": "HAM",
+      "runnerUpId": "MAD"
+    },
+    {
+      "title": "World League Champion",
+      "champion": "Austin",
+      "runnerUp": "Tokyo",
+      "score": null,
+      "group": "WL",
+      "finalsMvp": "p00161",
+      "teamId": "AUS",
+      "runnerUpId": "TOK"
+    },
+    {
+      "title": "United League Champion",
+      "champion": "Zagreb",
+      "runnerUp": "Buenos Aires",
+      "score": null,
+      "group": "UL",
+      "finalsMvp": "p02208",
+      "teamId": "ZAG",
+      "runnerUpId": "BA"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-PL",
+      "playerId": "p02215",
+      "teamId": "MAD"
+    },
+    {
+      "award": "MVP-WL",
+      "playerId": "p00161",
+      "teamId": "AUS"
+    },
+    {
+      "award": "MVP-UL",
+      "playerId": "p00146",
+      "teamId": "REC"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "PL",
+      "teams": [
+        "Hamburg"
+      ]
+    },
+    {
+      "group": "WL",
+      "teams": [
+        "Austin"
+      ]
+    },
+    {
+      "group": "UL",
+      "teams": [
+        "Zagreb"
+      ]
+    }
+  ]
+}

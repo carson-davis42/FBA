@@ -1,0 +1,1448 @@
+{
+  "teams": [
+    {
+      "teamId": "ACK",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "AMS",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EW",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "WL",
+          "from": 68,
+          "to": 68
+        },
+        {
+          "group": "PL",
+          "from": 69,
+          "to": 73
+        },
+        {
+          "group": "WL",
+          "from": 74,
+          "to": 77
+        },
+        {
+          "group": "UL",
+          "from": 78,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "ATH",
+      "founded": null,
+      "spells": [
+        {
+          "group": "ES",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": 68
+        },
+        {
+          "group": "WL",
+          "from": 69,
+          "to": 72
+        },
+        {
+          "group": "UL",
+          "from": 73,
+          "to": 74
+        },
+        {
+          "group": "IL",
+          "from": 75,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "AUS",
+      "founded": null,
+      "spells": [
+        {
+          "group": "AM",
+          "from": 53,
+          "to": 67
+        },
+        {
+          "group": "WL",
+          "from": 68,
+          "to": 71
+        },
+        {
+          "group": "PL",
+          "from": 72,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "BA",
+      "founded": 70,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 70,
+          "to": 71
+        },
+        {
+          "group": "WL",
+          "from": 71,
+          "to": 72
+        },
+        {
+          "group": "PL",
+          "from": 73,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "BARC",
+      "founded": null,
+      "spells": [
+        {
+          "group": "ES",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "UL",
+          "from": 68,
+          "to": 69
+        },
+        {
+          "group": "WL",
+          "from": 70,
+          "to": 74
+        },
+        {
+          "group": "UL",
+          "from": 75,
+          "to": 75
+        },
+        {
+          "group": "IL",
+          "from": 76,
+          "to": 78
+        },
+        {
+          "group": "UL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "BEI",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 72,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "BEL",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": 77
+        },
+        {
+          "group": "UL",
+          "from": 78,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "BER",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EE",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "BRUS",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EW",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": 71
+        },
+        {
+          "group": "WL",
+          "from": 71,
+          "to": 75
+        },
+        {
+          "group": "UL",
+          "from": 76,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "BUD",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": 72
+        },
+        {
+          "group": "UL",
+          "from": 73,
+          "to": 73
+        },
+        {
+          "group": "WL",
+          "from": 74,
+          "to": 74
+        },
+        {
+          "group": "PL",
+          "from": 75,
+          "to": 78
+        },
+        {
+          "group": "WL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "CAI",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "CAS",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": 73
+        },
+        {
+          "group": "UL",
+          "from": 74,
+          "to": 76
+        },
+        {
+          "group": "WL",
+          "from": 77,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "COP",
+      "founded": 70,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 70,
+          "to": 70
+        },
+        {
+          "group": "WL",
+          "from": 71,
+          "to": 75
+        },
+        {
+          "group": "UL",
+          "from": 76,
+          "to": 77
+        },
+        {
+          "group": "WL",
+          "from": 78,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "DBA",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": 75
+        },
+        {
+          "group": "UL",
+          "from": 76,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "DHA",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": 74
+        },
+        {
+          "group": "UL",
+          "from": 75,
+          "to": 75
+        },
+        {
+          "group": "WL",
+          "from": 76,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "DUB",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EW",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": 70
+        },
+        {
+          "group": "WL",
+          "from": 71,
+          "to": 71
+        },
+        {
+          "group": "UL",
+          "from": 72,
+          "to": 75
+        },
+        {
+          "group": "IL",
+          "from": 76,
+          "to": 77
+        },
+        {
+          "group": "UL",
+          "from": 78,
+          "to": 78
+        },
+        {
+          "group": "WL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "EDI",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "EDM",
+      "founded": null,
+      "spells": [
+        {
+          "group": "AM",
+          "from": 53,
+          "to": 67
+        },
+        {
+          "group": "UL",
+          "from": 68,
+          "to": 69
+        },
+        {
+          "group": "WL",
+          "from": 70,
+          "to": 70
+        },
+        {
+          "group": "PL",
+          "from": 71,
+          "to": 75
+        },
+        {
+          "group": "WL",
+          "from": 76,
+          "to": 76
+        },
+        {
+          "group": "PL",
+          "from": 77,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "FLO",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 72,
+          "to": 72
+        },
+        {
+          "group": "IL",
+          "from": 73,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "FRAN",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EE",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "UL",
+          "from": 68,
+          "to": 73
+        },
+        {
+          "group": "IL",
+          "from": 74,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "GLAS",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EW",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "UL",
+          "from": 68,
+          "to": 68
+        },
+        {
+          "group": "WL",
+          "from": 69,
+          "to": 69
+        },
+        {
+          "group": "PL",
+          "from": 70,
+          "to": 72
+        },
+        {
+          "group": "WL",
+          "from": 73,
+          "to": 73
+        },
+        {
+          "group": "UL",
+          "from": 74,
+          "to": 74
+        },
+        {
+          "group": "IL",
+          "from": 75,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "GUAD",
+      "founded": null,
+      "spells": [
+        {
+          "group": "AM",
+          "from": 53,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": 69
+        },
+        {
+          "group": "WL",
+          "from": 70,
+          "to": 75
+        },
+        {
+          "group": "PL",
+          "from": 76,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "HAM",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EE",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": 74
+        },
+        {
+          "group": "WL",
+          "from": 75,
+          "to": 78
+        },
+        {
+          "group": "PL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "IST",
+      "founded": null,
+      "spells": [
+        {
+          "group": "ES",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "WL",
+          "from": 68,
+          "to": 69
+        },
+        {
+          "group": "PL",
+          "from": 70,
+          "to": 73
+        },
+        {
+          "group": "WL",
+          "from": 74,
+          "to": 76
+        },
+        {
+          "group": "UL",
+          "from": 77,
+          "to": 77
+        },
+        {
+          "group": "IL",
+          "from": 78,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "JOH",
+      "founded": 71,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 71,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "KIEV",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EE",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "WL",
+          "from": 68,
+          "to": 72
+        },
+        {
+          "group": "UL",
+          "from": 73,
+          "to": 73
+        },
+        {
+          "group": "IL",
+          "from": 74,
+          "to": 76
+        },
+        {
+          "group": "UL",
+          "from": 77,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "LAG",
+      "founded": 70,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 70,
+          "to": 78
+        },
+        {
+          "group": "IL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "LIS",
+      "founded": null,
+      "spells": [
+        {
+          "group": "ES",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "LIV",
+      "founded": 70,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 70,
+          "to": 72
+        },
+        {
+          "group": "WL",
+          "from": 73,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "LON",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EW",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": 68
+        },
+        {
+          "group": "WL",
+          "from": 69,
+          "to": 73
+        },
+        {
+          "group": "PL",
+          "from": 74,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "LUX",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 72,
+          "to": 72
+        },
+        {
+          "group": "IL",
+          "from": 73,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "LYON",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EW",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "UL",
+          "from": 68,
+          "to": 70
+        },
+        {
+          "group": "WL",
+          "from": 71,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "MAD",
+      "founded": null,
+      "spells": [
+        {
+          "group": "ES",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "WL",
+          "from": 68,
+          "to": 68
+        },
+        {
+          "group": "UL",
+          "from": 69,
+          "to": 69
+        },
+        {
+          "group": "WL",
+          "from": 70,
+          "to": 70
+        },
+        {
+          "group": "PL",
+          "from": 71,
+          "to": 72
+        },
+        {
+          "group": "WL",
+          "from": 73,
+          "to": 74
+        },
+        {
+          "group": "PL",
+          "from": 75,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "MAN",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EW",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": 69
+        },
+        {
+          "group": "WL",
+          "from": 70,
+          "to": 71
+        },
+        {
+          "group": "UL",
+          "from": 72,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "MC",
+      "founded": null,
+      "spells": [
+        {
+          "group": "AM",
+          "from": 53,
+          "to": 67
+        },
+        {
+          "group": "WL",
+          "from": 68,
+          "to": 68
+        },
+        {
+          "group": "UL",
+          "from": 69,
+          "to": 69
+        },
+        {
+          "group": "WL",
+          "from": 70,
+          "to": 72
+        },
+        {
+          "group": "PL",
+          "from": 73,
+          "to": 78
+        },
+        {
+          "group": "WL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "MIA",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 72,
+          "to": 74
+        },
+        {
+          "group": "WL",
+          "from": 75,
+          "to": 77
+        },
+        {
+          "group": "PL",
+          "from": 78,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "MIL",
+      "founded": null,
+      "spells": [
+        {
+          "group": "ES",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "MOS",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EE",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "UL",
+          "from": 68,
+          "to": 78
+        },
+        {
+          "group": "WL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "MUM",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": 75
+        },
+        {
+          "group": "UL",
+          "from": 76,
+          "to": 77
+        },
+        {
+          "group": "WL",
+          "from": 78,
+          "to": 78
+        },
+        {
+          "group": "PL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "MUN",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EE",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "WL",
+          "from": 68,
+          "to": 68
+        },
+        {
+          "group": "PL",
+          "from": 69,
+          "to": 74
+        },
+        {
+          "group": "WL",
+          "from": 75,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "NAP",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": 78
+        },
+        {
+          "group": "UL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "OMA",
+      "founded": null,
+      "spells": [
+        {
+          "group": "AM",
+          "from": 53,
+          "to": 67
+        },
+        {
+          "group": "UL",
+          "from": 68,
+          "to": 78
+        },
+        {
+          "group": "IL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "OSA",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": 74
+        },
+        {
+          "group": "UL",
+          "from": 75,
+          "to": 75
+        },
+        {
+          "group": "WL",
+          "from": 76,
+          "to": 77
+        },
+        {
+          "group": "UL",
+          "from": 78,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "OSL",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "OTT",
+      "founded": null,
+      "spells": [
+        {
+          "group": "AM",
+          "from": 53,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "PAR",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EW",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "WL",
+          "from": 68,
+          "to": 74
+        },
+        {
+          "group": "UL",
+          "from": 75,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "REC",
+      "founded": 71,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 71,
+          "to": 72
+        },
+        {
+          "group": "WL",
+          "from": 73,
+          "to": 75
+        },
+        {
+          "group": "PL",
+          "from": 76,
+          "to": 77
+        },
+        {
+          "group": "WL",
+          "from": 78,
+          "to": 78
+        },
+        {
+          "group": "UL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "RIO",
+      "founded": 70,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 70,
+          "to": 77
+        },
+        {
+          "group": "IL",
+          "from": 78,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "ROME",
+      "founded": null,
+      "spells": [
+        {
+          "group": "ES",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": 75
+        },
+        {
+          "group": "WL",
+          "from": 76,
+          "to": 76
+        },
+        {
+          "group": "PL",
+          "from": 77,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "ROT",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": 76
+        },
+        {
+          "group": "UL",
+          "from": 77,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "SALZ",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EE",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "SHAN",
+      "founded": 70,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 70,
+          "to": 70
+        },
+        {
+          "group": "WL",
+          "from": 71,
+          "to": 76
+        },
+        {
+          "group": "UL",
+          "from": 77,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "SJ",
+      "founded": null,
+      "spells": [
+        {
+          "group": "AM",
+          "from": 53,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": 76
+        },
+        {
+          "group": "WL",
+          "from": 77,
+          "to": 78
+        },
+        {
+          "group": "UL",
+          "from": 79,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "SP",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": 72
+        },
+        {
+          "group": "UL",
+          "from": 73,
+          "to": 73
+        },
+        {
+          "group": "WL",
+          "from": 74,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "STO",
+      "founded": 70,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 70,
+          "to": 76
+        },
+        {
+          "group": "IL",
+          "from": 77,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "STP",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": 73
+        },
+        {
+          "group": "UL",
+          "from": 74,
+          "to": 76
+        },
+        {
+          "group": "WL",
+          "from": 77,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "SYD",
+      "founded": 71,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 71,
+          "to": 74
+        },
+        {
+          "group": "WL",
+          "from": 75,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "TAM",
+      "founded": null,
+      "spells": [
+        {
+          "group": "AM",
+          "from": 53,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": 71
+        },
+        {
+          "group": "WL",
+          "from": 71,
+          "to": 73
+        },
+        {
+          "group": "UL",
+          "from": 74,
+          "to": 76
+        },
+        {
+          "group": "IL",
+          "from": 77,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "TOK",
+      "founded": 70,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 70,
+          "to": 70
+        },
+        {
+          "group": "WL",
+          "from": 71,
+          "to": 71
+        },
+        {
+          "group": "PL",
+          "from": 72,
+          "to": 77
+        },
+        {
+          "group": "WL",
+          "from": 78,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "VIE",
+      "founded": null,
+      "spells": [
+        {
+          "group": "EE",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "PL",
+          "from": 68,
+          "to": 70
+        },
+        {
+          "group": "WL",
+          "from": 71,
+          "to": 73
+        },
+        {
+          "group": "PL",
+          "from": 74,
+          "to": 76
+        },
+        {
+          "group": "WL",
+          "from": 77,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "WAR",
+      "founded": 72,
+      "spells": [
+        {
+          "group": "IL",
+          "from": 72,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "ZAG",
+      "founded": 71,
+      "spells": [
+        {
+          "group": "UL",
+          "from": 71,
+          "to": 71
+        },
+        {
+          "group": "WL",
+          "from": 71,
+          "to": null
+        }
+      ]
+    },
+    {
+      "teamId": "ZUR",
+      "founded": null,
+      "spells": [
+        {
+          "group": "ES",
+          "from": 56,
+          "to": 67
+        },
+        {
+          "group": "UL",
+          "from": 68,
+          "to": 68
+        },
+        {
+          "group": "WL",
+          "from": 69,
+          "to": 77
+        },
+        {
+          "group": "PL",
+          "from": 78,
+          "to": null
+        }
+      ]
+    }
+  ]
+}

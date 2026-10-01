@@ -1,0 +1,97 @@
+{
+  "league": "fbad2",
+  "season": 73,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "Premier League Champion",
+      "champion": "Rome",
+      "runnerUp": "Lisbon",
+      "score": null,
+      "group": "PL",
+      "finalsMvp": "p02235",
+      "teamId": "ROME",
+      "runnerUpId": "LIS"
+    },
+    {
+      "title": "World League Champion",
+      "champion": "Vienna",
+      "runnerUp": "London",
+      "score": null,
+      "group": "WL",
+      "finalsMvp": "p00444",
+      "teamId": "VIE",
+      "runnerUpId": "LON"
+    },
+    {
+      "title": "United League Champion",
+      "champion": "Sao Paolo",
+      "runnerUp": "Stockholm",
+      "score": null,
+      "group": "UL",
+      "finalsMvp": "p02342",
+      "teamId": "SP",
+      "runnerUpId": "STO"
+    },
+    {
+      "title": "International League Champion",
+      "champion": "Rotterdam",
+      "runnerUp": "Luxembourg",
+      "score": null,
+      "group": "IL",
+      "finalsMvp": "p00396",
+      "teamId": "ROT",
+      "runnerUpId": "LUX"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-PL",
+      "playerId": "p02235",
+      "teamId": "ROME"
+    },
+    {
+      "award": "MVP-WL",
+      "playerId": "p00409",
+      "teamId": "LON"
+    },
+    {
+      "award": "MVP-UL",
+      "playerId": "p02342",
+      "teamId": "SP"
+    },
+    {
+      "award": "MVP-IL",
+      "playerId": "p00135",
+      "teamId": "LUX"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "PL",
+      "teams": [
+        "Ottawa"
+      ]
+    },
+    {
+      "group": "WL",
+      "teams": [
+        "Vienna"
+      ]
+    },
+    {
+      "group": "UL",
+      "teams": [
+        "Sao Paolo"
+      ]
+    },
+    {
+      "group": "IL",
+      "teams": [
+        "Casablanca",
+        "Saint Petersburg"
+      ]
+    }
+  ]
+}

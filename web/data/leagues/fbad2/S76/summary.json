@@ -1,95 +1,94 @@
 {
   "league": "fbad2",
-  "season": 78,
+  "season": 76,
   "locked": true,
   "host": null,
   "champions": [
     {
       "title": "Premier League Champion",
-      "champion": "Salzburg",
-      "runnerUp": "Zurich",
-      "score": "4-1",
+      "champion": "Budapest",
+      "runnerUp": "London",
+      "score": null,
       "group": "PL",
-      "teamId": "SALZ",
-      "runnerUpId": "ZUR",
-      "finalsMvp": "p00408"
+      "finalsMvp": "p02332",
+      "teamId": "BUD",
+      "runnerUpId": "LON"
     },
     {
       "title": "World League Champion",
-      "champion": "Mumbai",
-      "runnerUp": "Hamburg",
-      "score": "4-2",
+      "champion": "Vancouver",
+      "runnerUp": "Rome",
+      "score": null,
       "group": "WL",
-      "teamId": "MUM",
-      "runnerUpId": "HAM",
-      "finalsMvp": "p00471"
+      "finalsMvp": "p02329",
+      "runnerUpId": "ROME"
     },
     {
       "title": "United League Champion",
-      "champion": "Dublin",
-      "runnerUp": "Johannesburg",
-      "score": "4-0",
+      "champion": "Casablanca",
+      "runnerUp": "Moscow",
+      "score": null,
       "group": "UL",
-      "teamId": "DUB",
-      "runnerUpId": "JOH",
-      "finalsMvp": "p00242"
+      "finalsMvp": "p02308",
+      "teamId": "CAS",
+      "runnerUpId": "MOS"
     },
     {
       "title": "International League Champion",
       "champion": "Barcelona",
-      "runnerUp": "Naples",
-      "score": "4-3",
+      "runnerUp": "Warsaw",
+      "score": null,
       "group": "IL",
+      "finalsMvp": "p00185",
       "teamId": "BARC",
-      "runnerUpId": "NAP",
-      "finalsMvp": "p00185"
+      "runnerUpId": "WAR"
     }
   ],
   "awards": [
     {
       "award": "MVP-PL",
-      "playerId": "p00334",
-      "teamId": "MIA"
+      "playerId": "p00146",
+      "teamId": "REC"
     },
     {
       "award": "MVP-WL",
-      "playerId": "p00419",
-      "teamId": "SP"
+      "playerId": "p02349",
+      "teamId": "ROME"
     },
     {
       "award": "MVP-UL",
-      "playerId": "p00382",
-      "teamId": "PAR"
+      "playerId": "p00124",
+      "teamId": "MOS"
     },
     {
       "award": "MVP-IL",
-      "playerId": "p00473",
-      "teamId": "NAP"
+      "playerId": "p00151",
+      "teamId": "KIEV"
     }
   ],
   "rsChampions": [
     {
       "group": "PL",
       "teams": [
-        "Salzburg"
+        "Austin"
       ]
     },
     {
       "group": "WL",
       "teams": [
-        "Mumbai"
+        "Rome"
       ]
     },
     {
       "group": "UL",
       "teams": [
-        "Moscow"
+        "Casablanca"
       ]
     },
     {
       "group": "IL",
       "teams": [
-        "Naples"
+        "Kiev"
       ]
     }
   ]

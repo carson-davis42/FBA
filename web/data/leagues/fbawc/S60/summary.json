@@ -1,0 +1,17 @@
+{
+  "league": "fbawc",
+  "season": 60,
+  "locked": true,
+  "host": "England",
+  "champions": [
+    {
+      "title": "World Cup Champion",
+      "champion": "USA",
+      "runnerUp": "England",
+      "score": null,
+      "finalsMvp": "p02077",
+      "teamId": "USA",
+      "runnerUpId": "ENG"
+    }
+  ]
+}

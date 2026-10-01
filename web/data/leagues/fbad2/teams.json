@@ -60,7 +60,7 @@
       "teamId": "BARC",
       "name": "Barcelona",
       "abbr": "BARC",
-      "group": "IL",
+      "group": "UL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(67 55% 36%)",
@@ -115,7 +115,7 @@
       "teamId": "BUD",
       "name": "Budapest",
       "abbr": "BUD",
-      "group": "PL",
+      "group": "WL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(302 55% 36%)",
@@ -181,7 +181,7 @@
       "teamId": "DUB",
       "name": "Dublin",
       "abbr": "DUB",
-      "group": "UL",
+      "group": "WL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(96 55% 36%)",
@@ -258,7 +258,7 @@
       "teamId": "HAM",
       "name": "Hamburg",
       "abbr": "HAM",
-      "group": "WL",
+      "group": "PL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(20 55% 36%)",
@@ -302,7 +302,7 @@
       "teamId": "LAG",
       "name": "Lagos",
       "abbr": "LAG",
-      "group": "UL",
+      "group": "IL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(142 55% 36%)",
@@ -390,7 +390,7 @@
       "teamId": "MC",
       "name": "Mexico City",
       "abbr": "MC",
-      "group": "PL",
+      "group": "WL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(222 55% 36%)",
@@ -423,7 +423,7 @@
       "teamId": "MOS",
       "name": "Moscow",
       "abbr": "MOS",
-      "group": "UL",
+      "group": "WL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(122 55% 36%)",
@@ -434,7 +434,7 @@
       "teamId": "MUM",
       "name": "Mumbai",
       "abbr": "MUM",
-      "group": "WL",
+      "group": "PL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(333 55% 36%)",
@@ -456,7 +456,7 @@
       "teamId": "NAP",
       "name": "Naples",
       "abbr": "NAP",
-      "group": "IL",
+      "group": "UL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(341 55% 36%)",
@@ -467,7 +467,7 @@
       "teamId": "OMA",
       "name": "Omaha",
       "abbr": "OMA",
-      "group": "UL",
+      "group": "IL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(276 55% 36%)",
@@ -522,7 +522,7 @@
       "teamId": "REC",
       "name": "Recife",
       "abbr": "REC",
-      "group": "WL",
+      "group": "UL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(80 55% 36%)",
@@ -588,7 +588,7 @@
       "teamId": "SJ",
       "name": "San Jose",
       "abbr": "SJ",
-      "group": "WL",
+      "group": "UL",
       "logoFolder": null,
       "badge": {
         "bg": "hsl(351 55% 36%)",

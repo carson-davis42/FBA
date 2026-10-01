@@ -1,0 +1,71 @@
+{
+  "league": "fbad2",
+  "season": 63,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "D2 International Champion",
+      "champion": "Rome",
+      "runnerUp": "Paris",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02235",
+      "teamId": "ROME",
+      "runnerUpId": "PAR"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-D2",
+      "playerId": "p02116",
+      "teamId": "KIEV"
+    },
+    {
+      "award": "MVP-AM",
+      "playerId": "p02224",
+      "teamId": "Maine"
+    },
+    {
+      "award": "MVP-EW",
+      "playerId": "p02163",
+      "teamId": "AMS"
+    },
+    {
+      "award": "MVP-EE",
+      "playerId": "p02116",
+      "teamId": "KIEV"
+    },
+    {
+      "award": "MVP-ES",
+      "playerId": "p02215",
+      "teamId": "IST"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "AM",
+      "teams": [
+        "Maine"
+      ]
+    },
+    {
+      "group": "EW",
+      "teams": [
+        "Paris"
+      ]
+    },
+    {
+      "group": "EE",
+      "teams": [
+        "Kiev"
+      ]
+    },
+    {
+      "group": "ES",
+      "teams": [
+        "Rome"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "league": "fbad2",
+  "season": 68,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "Premier League Champion",
+      "champion": "Toronto",
+      "runnerUp": "Rome",
+      "score": null,
+      "group": "PL",
+      "finalsMvp": "p02193",
+      "runnerUpId": "ROME"
+    },
+    {
+      "title": "World League Champion",
+      "champion": "Amsterdam",
+      "runnerUp": "Munich",
+      "score": null,
+      "group": "WL",
+      "finalsMvp": "p02163",
+      "teamId": "AMS",
+      "runnerUpId": "MUN"
+    },
+    {
+      "title": "United League Champion",
+      "champion": "Glasgow",
+      "runnerUp": "Zurich",
+      "score": null,
+      "group": "UL",
+      "finalsMvp": "p02166",
+      "teamId": "GLAS",
+      "runnerUpId": "ZUR"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-PL",
+      "playerId": "p02193",
+      "teamId": "Toronto"
+    },
+    {
+      "award": "MVP-WL",
+      "playerId": "p02351",
+      "teamId": "MUN"
+    },
+    {
+      "award": "MVP-UL",
+      "playerId": "p02166",
+      "teamId": "GLAS"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "PL",
+      "teams": [
+        "Rome"
+      ]
+    },
+    {
+      "group": "WL",
+      "teams": [
+        "Amsterdam"
+      ]
+    },
+    {
+      "group": "UL",
+      "teams": [
+        "Glasgow"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "league": "fbad2",
+  "season": 58,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "D2 International Champion",
+      "champion": "Milan",
+      "runnerUp": "Athens",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02159",
+      "teamId": "MIL",
+      "runnerUpId": "ATH"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-D2",
+      "playerId": "p02147",
+      "teamId": "VIE"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "AM",
+      "teams": [
+        "Toronto"
+      ]
+    },
+    {
+      "group": "EW",
+      "teams": [
+        "Glasgow"
+      ]
+    },
+    {
+      "group": "EE",
+      "teams": [
+        "Vienna"
+      ]
+    },
+    {
+      "group": "ES",
+      "teams": [
+        "Athens"
+      ]
+    }
+  ]
+}

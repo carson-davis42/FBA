@@ -1,0 +1,51 @@
+{
+  "league": "fbad2",
+  "season": 56,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "D2 International Champion",
+      "champion": "Istanbul",
+      "runnerUp": "Rome",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02105",
+      "teamId": "IST",
+      "runnerUpId": "ROME"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-D2",
+      "playerId": "p02191",
+      "teamId": "ROME"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "AM",
+      "teams": [
+        "San Jose"
+      ]
+    },
+    {
+      "group": "EW",
+      "teams": [
+        "Lyon"
+      ]
+    },
+    {
+      "group": "EE",
+      "teams": [
+        "Kiev"
+      ]
+    },
+    {
+      "group": "ES",
+      "teams": [
+        "Rome"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "league": "fbad2",
+  "season": 70,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "Premier League Champion",
+      "champion": "Rome",
+      "runnerUp": "Toronto",
+      "score": null,
+      "group": "PL",
+      "finalsMvp": "p02235",
+      "teamId": "ROME"
+    },
+    {
+      "title": "World League Champion",
+      "champion": "Paris",
+      "runnerUp": "Austin",
+      "score": null,
+      "group": "WL",
+      "finalsMvp": "p00077",
+      "teamId": "PAR",
+      "runnerUpId": "AUS"
+    },
+    {
+      "title": "United League Champion",
+      "champion": "Tokyo",
+      "runnerUp": "Shanghai",
+      "score": null,
+      "group": "UL",
+      "finalsMvp": "p00439",
+      "teamId": "TOK",
+      "runnerUpId": "SHAN"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-PL",
+      "playerId": "p02283",
+      "teamId": "HAM"
+    },
+    {
+      "award": "MVP-WL",
+      "playerId": "p02215",
+      "teamId": "MAD"
+    },
+    {
+      "award": "MVP-UL",
+      "playerId": "p02336",
+      "teamId": "TOK"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "PL",
+      "teams": [
+        "Hamburg"
+      ]
+    },
+    {
+      "group": "WL",
+      "teams": [
+        "Madrid"
+      ]
+    },
+    {
+      "group": "UL",
+      "teams": [
+        "Tokyo"
+      ]
+    }
+  ]
+}

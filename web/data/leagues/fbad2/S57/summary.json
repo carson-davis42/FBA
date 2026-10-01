@@ -1,0 +1,53 @@
+{
+  "league": "fbad2",
+  "season": 57,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "D2 International Champion",
+      "champion": "Vienna",
+      "runnerUp": "Frankfurt",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02147",
+      "teamId": "VIE",
+      "runnerUpId": "FRAN"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-D2",
+      "playerId": "p02135",
+      "teamId": "ROME"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "AM",
+      "teams": [
+        "Toronto",
+        "San Jose"
+      ]
+    },
+    {
+      "group": "EW",
+      "teams": [
+        "Lyon",
+        "London"
+      ]
+    },
+    {
+      "group": "EE",
+      "teams": [
+        "Vienna"
+      ]
+    },
+    {
+      "group": "ES",
+      "teams": [
+        "Rome"
+      ]
+    }
+  ]
+}

@@ -1,17 +1,17 @@
 {
   "league": "fbawc",
-  "season": 78,
+  "season": 68,
   "locked": true,
-  "host": "Croatia",
+  "host": "Belgium",
   "champions": [
     {
       "title": "World Cup Champion",
       "champion": "Germany",
-      "runnerUp": "Italy",
+      "runnerUp": "USA",
       "score": null,
+      "finalsMvp": "p02283",
       "teamId": "GER",
-      "runnerUpId": "ITA",
-      "finalsMvp": "p00277"
+      "runnerUpId": "USA"
     }
   ]
 }

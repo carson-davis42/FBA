@@ -1,0 +1,84 @@
+{
+  "hosts": [
+    {
+      "season": 56,
+      "city": "San Jose",
+      "country": "USA"
+    },
+    {
+      "season": 58,
+      "city": "Hamburg",
+      "country": "Germany"
+    },
+    {
+      "season": 60,
+      "city": "Manchester",
+      "country": "England"
+    },
+    {
+      "season": 62,
+      "city": "Rome",
+      "country": "Italy"
+    },
+    {
+      "season": 64,
+      "city": "Guadalajara",
+      "country": "Mexico"
+    },
+    {
+      "season": 66,
+      "city": "Moscow",
+      "country": "Russia"
+    },
+    {
+      "season": 68,
+      "city": "Brussels",
+      "country": "Belgium"
+    },
+    {
+      "season": 70,
+      "city": "Istanbul",
+      "country": "Turkey"
+    },
+    {
+      "season": 72,
+      "city": "Omaha",
+      "country": "USA"
+    },
+    {
+      "season": 74,
+      "city": "Munich",
+      "country": "Germany"
+    },
+    {
+      "season": 76,
+      "city": "Athens",
+      "country": "Greece"
+    },
+    {
+      "season": 78,
+      "city": "Zagreb",
+      "country": "Croatia"
+    },
+    {
+      "season": 80,
+      "city": "Mumbai",
+      "country": "India"
+    },
+    {
+      "season": 82,
+      "city": "London",
+      "country": "England"
+    },
+    {
+      "season": 84,
+      "city": "Glasgow",
+      "country": "Scotland"
+    },
+    {
+      "season": 86,
+      "city": "Ottawa",
+      "country": "Canada"
+    }
+  ]
+}

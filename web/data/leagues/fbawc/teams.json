@@ -10,7 +10,8 @@
       "badge": {
         "bg": "hsl(289 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "dz"
     },
     {
       "teamId": "ANG",
@@ -21,7 +22,8 @@
       "badge": {
         "bg": "hsl(234 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ao"
     },
     {
       "teamId": "ARA",
@@ -32,7 +34,8 @@
       "badge": {
         "bg": "hsl(325 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "at"
     },
     {
       "teamId": "ARG",
@@ -43,7 +46,8 @@
       "badge": {
         "bg": "hsl(87 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ar"
     },
     {
       "teamId": "AUS",
@@ -54,7 +58,8 @@
       "badge": {
         "bg": "hsl(288 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "au"
     },
     {
       "teamId": "BANG",
@@ -65,7 +70,8 @@
       "badge": {
         "bg": "hsl(75 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "bd"
     },
     {
       "teamId": "BEL",
@@ -76,7 +82,8 @@
       "badge": {
         "bg": "hsl(35 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "be"
     },
     {
       "teamId": "BIH",
@@ -87,7 +94,8 @@
       "badge": {
         "bg": "hsl(293 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ba"
     },
     {
       "teamId": "BRA",
@@ -98,7 +106,8 @@
       "badge": {
         "bg": "hsl(12 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "br"
     },
     {
       "teamId": "CAN",
@@ -109,7 +118,8 @@
       "badge": {
         "bg": "hsl(118 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ca"
     },
     {
       "teamId": "CHI",
@@ -120,7 +130,8 @@
       "badge": {
         "bg": "hsl(303 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "cn"
     },
     {
       "teamId": "CHIL",
@@ -131,7 +142,8 @@
       "badge": {
         "bg": "hsl(245 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "cl"
     },
     {
       "teamId": "CMR",
@@ -142,7 +154,8 @@
       "badge": {
         "bg": "hsl(146 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "cm"
     },
     {
       "teamId": "COL",
@@ -153,7 +166,8 @@
       "badge": {
         "bg": "hsl(84 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "co"
     },
     {
       "teamId": "CRO",
@@ -164,7 +178,8 @@
       "badge": {
         "bg": "hsl(123 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "hr"
     },
     {
       "teamId": "CUBA",
@@ -175,7 +190,8 @@
       "badge": {
         "bg": "hsl(169 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "cu"
     },
     {
       "teamId": "CZE",
@@ -186,7 +202,8 @@
       "badge": {
         "bg": "hsl(291 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "cz"
     },
     {
       "teamId": "DEN",
@@ -197,7 +214,8 @@
       "badge": {
         "bg": "hsl(242 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "dk"
     },
     {
       "teamId": "DOM",
@@ -208,7 +226,8 @@
       "badge": {
         "bg": "hsl(6 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "do"
     },
     {
       "teamId": "EGY",
@@ -219,7 +238,8 @@
       "badge": {
         "bg": "hsl(251 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "eg"
     },
     {
       "teamId": "ENG",
@@ -230,7 +250,8 @@
       "badge": {
         "bg": "hsl(97 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "gb-eng"
     },
     {
       "teamId": "EPA",
@@ -241,7 +262,8 @@
       "badge": {
         "bg": "hsl(233 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "et"
     },
     {
       "teamId": "EST",
@@ -252,7 +274,8 @@
       "badge": {
         "bg": "hsl(93 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ee"
     },
     {
       "teamId": "FIN",
@@ -263,7 +286,8 @@
       "badge": {
         "bg": "hsl(190 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "fi"
     },
     {
       "teamId": "FRA",
@@ -274,7 +298,8 @@
       "badge": {
         "bg": "hsl(51 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "fr"
     },
     {
       "teamId": "GEO",
@@ -285,7 +310,8 @@
       "badge": {
         "bg": "hsl(102 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ge"
     },
     {
       "teamId": "GER",
@@ -296,7 +322,8 @@
       "badge": {
         "bg": "hsl(3 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "de"
     },
     {
       "teamId": "GRE",
@@ -307,7 +334,8 @@
       "badge": {
         "bg": "hsl(197 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "gr"
     },
     {
       "teamId": "HUN",
@@ -318,7 +346,8 @@
       "badge": {
         "bg": "hsl(74 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "hu"
     },
     {
       "teamId": "ICE",
@@ -329,7 +358,8 @@
       "badge": {
         "bg": "hsl(358 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "is"
     },
     {
       "teamId": "IND",
@@ -340,7 +370,8 @@
       "badge": {
         "bg": "hsl(215 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "in"
     },
     {
       "teamId": "INDO",
@@ -351,7 +382,8 @@
       "badge": {
         "bg": "hsl(340 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "id"
     },
     {
       "teamId": "IRE",
@@ -362,7 +394,8 @@
       "badge": {
         "bg": "hsl(103 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ie"
     },
     {
       "teamId": "ISR",
@@ -373,7 +406,8 @@
       "badge": {
         "bg": "hsl(8 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "il"
     },
     {
       "teamId": "ITA",
@@ -384,7 +418,8 @@
       "badge": {
         "bg": "hsl(155 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "it"
     },
     {
       "teamId": "IVO",
@@ -395,7 +430,8 @@
       "badge": {
         "bg": "hsl(71 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ci"
     },
     {
       "teamId": "JAM",
@@ -406,7 +442,8 @@
       "badge": {
         "bg": "hsl(348 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "jm"
     },
     {
       "teamId": "JAP",
@@ -417,7 +454,8 @@
       "badge": {
         "bg": "hsl(190 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "jp"
     },
     {
       "teamId": "KAZ",
@@ -428,7 +466,8 @@
       "badge": {
         "bg": "hsl(104 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "kz"
     },
     {
       "teamId": "KEN",
@@ -439,7 +478,8 @@
       "badge": {
         "bg": "hsl(204 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ke"
     },
     {
       "teamId": "LAT",
@@ -450,7 +490,8 @@
       "badge": {
         "bg": "hsl(39 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "lv"
     },
     {
       "teamId": "LITH",
@@ -461,7 +502,8 @@
       "badge": {
         "bg": "hsl(153 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "lt"
     },
     {
       "teamId": "LUX",
@@ -472,7 +514,8 @@
       "badge": {
         "bg": "hsl(110 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "lu"
     },
     {
       "teamId": "MAL",
@@ -483,7 +526,8 @@
       "badge": {
         "bg": "hsl(243 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "my"
     },
     {
       "teamId": "MEX",
@@ -494,7 +538,8 @@
       "badge": {
         "bg": "hsl(253 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "mx"
     },
     {
       "teamId": "MON",
@@ -505,7 +550,8 @@
       "badge": {
         "bg": "hsl(336 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "mn"
     },
     {
       "teamId": "MOR",
@@ -516,7 +562,8 @@
       "badge": {
         "bg": "hsl(136 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ma"
     },
     {
       "teamId": "NEP",
@@ -527,7 +574,8 @@
       "badge": {
         "bg": "hsl(316 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "np"
     },
     {
       "teamId": "NET",
@@ -538,7 +586,8 @@
       "badge": {
         "bg": "hsl(88 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "nl"
     },
     {
       "teamId": "NI",
@@ -549,7 +598,8 @@
       "badge": {
         "bg": "hsl(155 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "gb-nir"
     },
     {
       "teamId": "NIG",
@@ -560,7 +610,8 @@
       "badge": {
         "bg": "hsl(57 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ng"
     },
     {
       "teamId": "NOR",
@@ -571,7 +622,8 @@
       "badge": {
         "bg": "hsl(70 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "no"
     },
     {
       "teamId": "NZ",
@@ -582,7 +634,8 @@
       "badge": {
         "bg": "hsl(145 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "nz"
     },
     {
       "teamId": "PAK",
@@ -593,7 +646,8 @@
       "badge": {
         "bg": "hsl(69 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "pk"
     },
     {
       "teamId": "PERU",
@@ -604,7 +658,8 @@
       "badge": {
         "bg": "hsl(352 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "pe"
     },
     {
       "teamId": "PHIL",
@@ -615,7 +670,8 @@
       "badge": {
         "bg": "hsl(177 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ph"
     },
     {
       "teamId": "POL",
@@ -626,7 +682,8 @@
       "badge": {
         "bg": "hsl(306 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "pl"
     },
     {
       "teamId": "PORT",
@@ -637,7 +694,8 @@
       "badge": {
         "bg": "hsl(190 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "pt"
     },
     {
       "teamId": "PRI",
@@ -648,7 +706,8 @@
       "badge": {
         "bg": "hsl(134 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "pr"
     },
     {
       "teamId": "QAT",
@@ -659,7 +718,8 @@
       "badge": {
         "bg": "hsl(205 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "qa"
     },
     {
       "teamId": "ROM",
@@ -670,7 +730,8 @@
       "badge": {
         "bg": "hsl(109 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ro"
     },
     {
       "teamId": "RUS",
@@ -681,7 +742,8 @@
       "badge": {
         "bg": "hsl(211 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ru"
     },
     {
       "teamId": "SA",
@@ -692,7 +754,8 @@
       "badge": {
         "bg": "hsl(173 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "za"
     },
     {
       "teamId": "SALV",
@@ -703,7 +766,8 @@
       "badge": {
         "bg": "hsl(191 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "sv"
     },
     {
       "teamId": "SAU",
@@ -714,7 +778,8 @@
       "badge": {
         "bg": "hsl(118 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "sa"
     },
     {
       "teamId": "SCOT",
@@ -725,7 +790,8 @@
       "badge": {
         "bg": "hsl(152 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "gb-sct"
     },
     {
       "teamId": "SEN",
@@ -736,7 +802,8 @@
       "badge": {
         "bg": "hsl(41 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "sn"
     },
     {
       "teamId": "SING",
@@ -747,7 +814,8 @@
       "badge": {
         "bg": "hsl(348 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "sg"
     },
     {
       "teamId": "SK",
@@ -758,7 +826,8 @@
       "badge": {
         "bg": "hsl(127 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "kr"
     },
     {
       "teamId": "SLK",
@@ -769,7 +838,8 @@
       "badge": {
         "bg": "hsl(177 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "lk"
     },
     {
       "teamId": "SLOV",
@@ -780,7 +850,8 @@
       "badge": {
         "bg": "hsl(249 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "si"
     },
     {
       "teamId": "SPA",
@@ -791,7 +862,8 @@
       "badge": {
         "bg": "hsl(177 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "es"
     },
     {
       "teamId": "SRB",
@@ -802,7 +874,8 @@
       "badge": {
         "bg": "hsl(178 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "rs"
     },
     {
       "teamId": "SWE",
@@ -813,7 +886,8 @@
       "badge": {
         "bg": "hsl(284 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "se"
     },
     {
       "teamId": "SWIS",
@@ -824,7 +898,8 @@
       "badge": {
         "bg": "hsl(187 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ch"
     },
     {
       "teamId": "THAI",
@@ -835,7 +910,8 @@
       "badge": {
         "bg": "hsl(95 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "th"
     },
     {
       "teamId": "TUN",
@@ -846,7 +922,8 @@
       "badge": {
         "bg": "hsl(295 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "tn"
     },
     {
       "teamId": "TUR",
@@ -857,7 +934,8 @@
       "badge": {
         "bg": "hsl(14 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "tr"
     },
     {
       "teamId": "TWN",
@@ -868,7 +946,8 @@
       "badge": {
         "bg": "hsl(72 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "tw"
     },
     {
       "teamId": "UAE",
@@ -879,7 +958,8 @@
       "badge": {
         "bg": "hsl(249 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ae"
     },
     {
       "teamId": "UKR",
@@ -890,7 +970,8 @@
       "badge": {
         "bg": "hsl(251 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ua"
     },
     {
       "teamId": "URU",
@@ -901,7 +982,8 @@
       "badge": {
         "bg": "hsl(46 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "uy"
     },
     {
       "teamId": "USA",
@@ -912,7 +994,8 @@
       "badge": {
         "bg": "hsl(83 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "us"
     },
     {
       "teamId": "VEN",
@@ -923,7 +1006,8 @@
       "badge": {
         "bg": "hsl(145 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "ve"
     },
     {
       "teamId": "VNM",
@@ -934,7 +1018,8 @@
       "badge": {
         "bg": "hsl(16 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "flag": "vn"
     }
   ]
 }

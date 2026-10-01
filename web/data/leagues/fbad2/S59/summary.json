@@ -1,0 +1,50 @@
+{
+  "league": "fbad2",
+  "season": 59,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "D2 International Champion",
+      "champion": "Pearland",
+      "runnerUp": "San Jose",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02127",
+      "runnerUpId": "SJ"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-D2",
+      "playerId": "p02135",
+      "teamId": "ROME"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "AM",
+      "teams": [
+        "San Jose"
+      ]
+    },
+    {
+      "group": "EW",
+      "teams": [
+        "Amsterdam"
+      ]
+    },
+    {
+      "group": "EE",
+      "teams": [
+        "Kiev"
+      ]
+    },
+    {
+      "group": "ES",
+      "teams": [
+        "Rome"
+      ]
+    }
+  ]
+}

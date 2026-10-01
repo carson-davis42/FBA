@@ -1,0 +1,17 @@
+{
+  "league": "fbawc",
+  "season": 62,
+  "locked": true,
+  "host": "Italy",
+  "champions": [
+    {
+      "title": "World Cup Champion",
+      "champion": "Mexico",
+      "runnerUp": "Germany",
+      "score": null,
+      "finalsMvp": "p02134",
+      "teamId": "MEX",
+      "runnerUpId": "GER"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "league": "fbawc",
+  "season": 56,
+  "locked": true,
+  "host": "USA",
+  "champions": [
+    {
+      "title": "World Cup Champion",
+      "champion": "Italy",
+      "runnerUp": "Turkey",
+      "score": null,
+      "finalsMvp": "p02191",
+      "teamId": "ITA",
+      "runnerUpId": "TUR"
+    }
+  ]
+}

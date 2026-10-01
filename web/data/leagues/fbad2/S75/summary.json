@@ -1,0 +1,96 @@
+{
+  "league": "fbad2",
+  "season": 75,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "Premier League Champion",
+      "champion": "Tokyo",
+      "runnerUp": "Budapest",
+      "score": null,
+      "group": "PL",
+      "finalsMvp": "p02307",
+      "teamId": "TOK",
+      "runnerUpId": "BUD"
+    },
+    {
+      "title": "World League Champion",
+      "champion": "Recife",
+      "runnerUp": "Guadalajara",
+      "score": null,
+      "group": "WL",
+      "finalsMvp": "p00146",
+      "teamId": "REC",
+      "runnerUpId": "GUAD"
+    },
+    {
+      "title": "United League Champion",
+      "champion": "Osaka",
+      "runnerUp": "Dhaka",
+      "score": null,
+      "group": "UL",
+      "finalsMvp": "p00040",
+      "teamId": "OSA",
+      "runnerUpId": "DHA"
+    },
+    {
+      "title": "International League Champion",
+      "champion": "Mumbai",
+      "runnerUp": "Dubai",
+      "score": null,
+      "group": "IL",
+      "finalsMvp": "p00350",
+      "teamId": "MUM",
+      "runnerUpId": "DBA"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-PL",
+      "playerId": "p02313",
+      "teamId": "BER"
+    },
+    {
+      "award": "MVP-WL",
+      "playerId": "p00146",
+      "teamId": "REC"
+    },
+    {
+      "award": "MVP-UL",
+      "playerId": "p00040",
+      "teamId": "OSA"
+    },
+    {
+      "award": "MVP-IL",
+      "playerId": "p00396",
+      "teamId": "ROT"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "PL",
+      "teams": [
+        "Berlin"
+      ]
+    },
+    {
+      "group": "WL",
+      "teams": [
+        "Guadalajara"
+      ]
+    },
+    {
+      "group": "UL",
+      "teams": [
+        "Osaka"
+      ]
+    },
+    {
+      "group": "IL",
+      "teams": [
+        "Dubai"
+      ]
+    }
+  ]
+}

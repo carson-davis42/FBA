@@ -1,0 +1,17 @@
+{
+  "league": "fbawc",
+  "season": 58,
+  "locked": true,
+  "host": "Germany",
+  "champions": [
+    {
+      "title": "World Cup Champion",
+      "champion": "Canada",
+      "runnerUp": "Austria",
+      "score": null,
+      "finalsMvp": "p02079",
+      "teamId": "CAN",
+      "runnerUpId": "ARA"
+    }
+  ]
+}

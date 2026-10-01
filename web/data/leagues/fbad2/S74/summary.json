@@ -1,0 +1,96 @@
+{
+  "league": "fbad2",
+  "season": 74,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "Premier League Champion",
+      "champion": "San Jose",
+      "runnerUp": "Austin",
+      "score": null,
+      "group": "PL",
+      "finalsMvp": "p02280",
+      "teamId": "SJ",
+      "runnerUpId": "AUS"
+    },
+    {
+      "title": "World League Champion",
+      "champion": "Madrid",
+      "runnerUp": "Amsterdam",
+      "score": null,
+      "group": "WL",
+      "finalsMvp": "p00395",
+      "teamId": "MAD",
+      "runnerUpId": "AMS"
+    },
+    {
+      "title": "United League Champion",
+      "champion": "Miami",
+      "runnerUp": "Sydney",
+      "score": null,
+      "group": "UL",
+      "finalsMvp": "p02254",
+      "teamId": "MIA",
+      "runnerUpId": "SYD"
+    },
+    {
+      "title": "International League Champion",
+      "champion": "Osaka",
+      "runnerUp": "Belfast",
+      "score": null,
+      "group": "IL",
+      "finalsMvp": "p00040",
+      "teamId": "OSA",
+      "runnerUpId": "BEL"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-PL",
+      "playerId": "p02280",
+      "teamId": "SJ"
+    },
+    {
+      "award": "MVP-WL",
+      "playerId": "p00418",
+      "teamId": "SP"
+    },
+    {
+      "award": "MVP-UL",
+      "playerId": "p02308",
+      "teamId": "CAS"
+    },
+    {
+      "award": "MVP-IL",
+      "playerId": "p02273",
+      "teamId": "DHA"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "PL",
+      "teams": [
+        "San Jose"
+      ]
+    },
+    {
+      "group": "WL",
+      "teams": [
+        "Madrid"
+      ]
+    },
+    {
+      "group": "UL",
+      "teams": [
+        "Miami"
+      ]
+    },
+    {
+      "group": "IL",
+      "teams": [
+        "Dhaka"
+      ]
+    }
+  ]
+}

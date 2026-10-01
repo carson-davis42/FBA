@@ -1,0 +1,4539 @@
+{
+  "drafts": [
+    {
+      "season": 68,
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "BRUS",
+          "teamName": "Brussels",
+          "name": "Jonathan Rudd",
+          "playerId": "p02298",
+          "pos": "SG",
+          "age": 25,
+          "rating": null
+        },
+        {
+          "pick": 2,
+          "teamId": "ZUR",
+          "teamName": "Zurich",
+          "name": "Iman Solis",
+          "playerId": "p00484",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 3,
+          "teamId": "AMS",
+          "teamName": "Amsterdam",
+          "name": "Malcom Currier",
+          "playerId": "p02353",
+          "pos": "PF",
+          "age": 23,
+          "rating": null
+        },
+        {
+          "pick": 4,
+          "teamId": "MIL",
+          "teamName": "Milan",
+          "name": "Mica Reed",
+          "playerId": "p02350",
+          "pos": "PF",
+          "age": 23,
+          "rating": null
+        },
+        {
+          "pick": 5,
+          "teamId": "MAN",
+          "teamName": "Manchester",
+          "name": "JJ Wiley",
+          "playerId": "p00469",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 6,
+          "teamId": "HAM",
+          "teamName": "Hamburg",
+          "name": "Clyde Irving",
+          "playerId": "p00463",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 7,
+          "teamId": "TAM",
+          "teamName": "Tampa",
+          "name": "Morgan McBride",
+          "playerId": "p00481",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 8,
+          "teamId": "BARC",
+          "teamName": "Barcelona",
+          "name": "Tyler-Jay Park",
+          "playerId": "p00459",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 9,
+          "teamId": "TAM",
+          "teamName": "Tampa",
+          "name": "Dennis Bell",
+          "playerId": "p00482",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 10,
+          "teamId": "IST",
+          "teamName": "Istanbul",
+          "name": "Emmanuel Sykes",
+          "playerId": "p00464",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 11,
+          "teamId": "ROME",
+          "teamName": "Rome",
+          "name": "Kodi Mclellan",
+          "playerId": "p00476",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 12,
+          "teamId": "ROME",
+          "teamName": "Rome",
+          "name": "Franco Hoffman",
+          "playerId": "p00477",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 13,
+          "teamId": "GLAS",
+          "teamName": "Glasgow",
+          "name": "Morris Cook",
+          "playerId": "p00462",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 14,
+          "teamId": "BRUS",
+          "teamName": "Brussels",
+          "name": "Baxter Michael",
+          "playerId": "p00460",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 15,
+          "teamId": "MUN",
+          "teamName": "Munich",
+          "name": "Scott Downs",
+          "playerId": "p00472",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 16,
+          "teamId": "ZUR",
+          "teamName": "Zurich",
+          "name": "Fabian Gordon",
+          "playerId": "p00465",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 17,
+          "teamId": "MOS",
+          "teamName": "Moscow",
+          "name": "Cai Scott",
+          "playerId": "p00470",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 18,
+          "teamId": "SJ",
+          "teamName": "San Jose",
+          "name": "Kallum Hodges",
+          "playerId": "p02356",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 19,
+          "teamId": "ATH",
+          "teamName": "Athens",
+          "name": "Buddy West",
+          "playerId": "p02354",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 20,
+          "teamId": "GUAD",
+          "teamName": "Guadalajara",
+          "name": "Greyson Martin",
+          "playerId": "p02355",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        }
+      ]
+    },
+    {
+      "season": 69,
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "GLAS",
+          "teamName": "Glasgow",
+          "name": "Dennis Holloway",
+          "playerId": "p02349",
+          "pos": "PG",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 2,
+          "teamId": "LYON",
+          "teamName": "Lyon",
+          "name": "Kylan Cline",
+          "playerId": "p02316",
+          "pos": "PF",
+          "age": 25,
+          "rating": null
+        },
+        {
+          "pick": 3,
+          "teamId": "MAD",
+          "teamName": "Madrid",
+          "name": "Jaydon Cantrell",
+          "playerId": "p02215",
+          "pos": "PG",
+          "age": 30,
+          "rating": null
+        },
+        {
+          "pick": 4,
+          "teamId": "GLAS",
+          "teamName": "Glasgow",
+          "name": "Orlando Riley",
+          "playerId": "p02247",
+          "pos": "SG",
+          "age": 28,
+          "rating": null
+        },
+        {
+          "pick": 5,
+          "teamId": "AMS",
+          "teamName": "Amsterdam",
+          "name": "Adam Moore",
+          "playerId": "p02249",
+          "pos": "C",
+          "age": 28,
+          "rating": null
+        },
+        {
+          "pick": 6,
+          "teamId": "SJ",
+          "teamName": "San Jose",
+          "name": "Ridley Blue",
+          "playerId": "p02256",
+          "pos": "C",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 7,
+          "teamId": "PAR",
+          "teamName": "Paris",
+          "name": "Roman Christie",
+          "playerId": "p00380",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 8,
+          "teamId": "AMS",
+          "teamName": "Amsterdam",
+          "name": "Alonso Gray",
+          "playerId": "p02238",
+          "pos": "SF",
+          "age": 28,
+          "rating": null
+        },
+        {
+          "pick": 9,
+          "teamId": null,
+          "teamName": "Vancouver",
+          "name": "Dominykas Hubbard",
+          "playerId": "p00255",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 10,
+          "teamId": "HAM",
+          "teamName": "Hamburg",
+          "name": "Tobias Major",
+          "playerId": "p02352",
+          "pos": "PF",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 11,
+          "teamId": null,
+          "teamName": "Toronto",
+          "name": "Jayson Cunningham",
+          "playerId": "p00475",
+          "pos": "PG",
+          "age": 23,
+          "rating": null
+        },
+        {
+          "pick": 12,
+          "teamId": "AUS",
+          "teamName": "Austin",
+          "name": "Bobbie Allen",
+          "playerId": "p00161",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 13,
+          "teamId": "MUN",
+          "teamName": "Munich",
+          "name": "Colby Clements",
+          "playerId": "p00354",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 14,
+          "teamId": "MAD",
+          "teamName": "Madrid",
+          "name": "Jett Kitchens",
+          "playerId": "p02257",
+          "pos": "SF",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 15,
+          "teamId": "GUAD",
+          "teamName": "Guadalajara",
+          "name": "Tyreke Frost",
+          "playerId": "p02321",
+          "pos": "PF",
+          "age": 25,
+          "rating": null
+        },
+        {
+          "pick": 16,
+          "teamId": "MC",
+          "teamName": "Mexico City",
+          "name": "Omari Hayes",
+          "playerId": "p00200",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 17,
+          "teamId": "LIS",
+          "teamName": "Lisbon",
+          "name": "TJ Wade",
+          "playerId": "p00466",
+          "pos": "SG",
+          "age": 23,
+          "rating": null
+        },
+        {
+          "pick": 18,
+          "teamId": "BARC",
+          "teamName": "Barcelona",
+          "name": "Kye Kenny",
+          "playerId": "p00471",
+          "pos": "PG",
+          "age": 23,
+          "rating": null
+        },
+        {
+          "pick": 19,
+          "teamId": null,
+          "teamName": "Toronto",
+          "name": "Miles Brook",
+          "playerId": "p00374",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 20,
+          "teamId": "BARC",
+          "teamName": "Barcelona",
+          "name": "Zac Baker",
+          "playerId": "p00186",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 21,
+          "teamId": "ATH",
+          "teamName": "Athens",
+          "name": "Jamal Battle",
+          "playerId": "p00170",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 22,
+          "teamId": "PAR",
+          "teamName": "Paris",
+          "name": "Kobie McKay",
+          "playerId": "p00378",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 23,
+          "teamId": "ZUR",
+          "teamName": "Zurich",
+          "name": "Malik Fisher",
+          "playerId": "p00457",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 24,
+          "teamId": "ATH",
+          "teamName": "Athens",
+          "name": "Rui Evans",
+          "playerId": "p00171",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 25,
+          "teamId": "FRAN",
+          "teamName": "Frankfurt",
+          "name": "Mylo Silva",
+          "playerId": "p00265",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 26,
+          "teamId": "BER",
+          "teamName": "Berlin",
+          "name": "Cory Connors",
+          "playerId": "p00196",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 27,
+          "teamId": "BRUS",
+          "teamName": "Brussels",
+          "name": "Jaydan Oakley",
+          "playerId": "p00202",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 28,
+          "teamId": "DUB",
+          "teamName": "Dublin",
+          "name": "Jace Calhoun",
+          "playerId": "p00243",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 29,
+          "teamId": "VIE",
+          "teamName": "Vienna",
+          "name": "Jevan Jones",
+          "playerId": "p00441",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 30,
+          "teamId": "IST",
+          "teamName": "Istanbul",
+          "name": "Bruno Mitchell",
+          "playerId": "p00280",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 31,
+          "teamId": "ROME",
+          "teamName": "Rome",
+          "name": "Alec Guy",
+          "playerId": "p01828",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 32,
+          "teamId": "TAM",
+          "teamName": "Tampa",
+          "name": "Kody Fenton",
+          "playerId": "p01880",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 33,
+          "teamId": "DUB",
+          "teamName": "Dublin",
+          "name": "Paolo Ritter",
+          "playerId": "p01796",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 34,
+          "teamId": "SALZ",
+          "teamName": "Salzburg",
+          "name": "Joni Fox",
+          "playerId": "p00407",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 35,
+          "teamId": null,
+          "teamName": "Maine",
+          "name": "Quentin Kaufman",
+          "playerId": "p00361",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 36,
+          "teamId": "BRUS",
+          "teamName": "Brussels",
+          "name": "Graham Santiago",
+          "playerId": "p00325",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 37,
+          "teamId": "TAM",
+          "teamName": "Tampa",
+          "name": "Killian Crawford",
+          "playerId": "p00433",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 38,
+          "teamId": "MIL",
+          "teamName": "Milan",
+          "name": "Joel Rubio",
+          "playerId": "p01806",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 39,
+          "teamId": "MOS",
+          "teamName": "Moscow",
+          "name": "Tate Foster",
+          "playerId": "p00343",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        }
+      ]
+    },
+    {
+      "season": 70,
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "MAN",
+          "teamName": "Manchester",
+          "name": "Kirk Bridges",
+          "playerId": "p00468",
+          "pos": "SG",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 2,
+          "teamId": "STO",
+          "teamName": "Stockholm",
+          "name": "Cillian Leblanc",
+          "playerId": "p02300",
+          "pos": "PF",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 3,
+          "teamId": null,
+          "teamName": "Toronto",
+          "name": "Andrei Kay",
+          "playerId": "p00376",
+          "pos": "PF",
+          "age": 21,
+          "rating": null
+        },
+        {
+          "pick": 4,
+          "teamId": "COP",
+          "teamName": "Copenhagen",
+          "name": "Jadon-Lee Davidson",
+          "playerId": "p00226",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 5,
+          "teamId": "TOK",
+          "teamName": "Tokyo",
+          "name": "Kian Koch",
+          "playerId": "p00439",
+          "pos": "PF",
+          "age": 23,
+          "rating": null
+        },
+        {
+          "pick": 6,
+          "teamId": "TOK",
+          "teamName": "Tokyo",
+          "name": "Aiden Emmett",
+          "playerId": "p00436",
+          "pos": "PG",
+          "age": 20,
+          "rating": null
+        },
+        {
+          "pick": 7,
+          "teamId": "TOK",
+          "teamName": "Tokyo",
+          "name": "Mitchell Singleton",
+          "playerId": "p02307",
+          "pos": "C",
+          "age": 26,
+          "rating": null
+        },
+        {
+          "pick": 8,
+          "teamId": "COP",
+          "teamName": "Copenhagen",
+          "name": "Pierre Barker",
+          "playerId": "p02271",
+          "pos": "SG",
+          "age": 28,
+          "rating": null
+        },
+        {
+          "pick": 9,
+          "teamId": "SHAN",
+          "teamName": "Shanghai",
+          "name": "Ian Griffin",
+          "playerId": "p00479",
+          "pos": "SF",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 10,
+          "teamId": "TOK",
+          "teamName": "Tokyo",
+          "name": "Skye Clay",
+          "playerId": "p02336",
+          "pos": "SG",
+          "age": 25,
+          "rating": null
+        },
+        {
+          "pick": 11,
+          "teamId": "LIV",
+          "teamName": "Liverpool",
+          "name": "Montel Day",
+          "playerId": "p02335",
+          "pos": "C",
+          "age": 25,
+          "rating": null
+        },
+        {
+          "pick": 12,
+          "teamId": "VIE",
+          "teamName": "Vienna",
+          "name": "Zaydan Hart",
+          "playerId": "p00445",
+          "pos": "C",
+          "age": 23,
+          "rating": null
+        },
+        {
+          "pick": 13,
+          "teamId": "BA",
+          "teamName": "Buenos Aires",
+          "name": "Keagan Shannon",
+          "playerId": "p00213",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 14,
+          "teamId": "BA",
+          "teamName": "Buenos Aires",
+          "name": "Killian Hull",
+          "playerId": "p00215",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 15,
+          "teamId": "LIV",
+          "teamName": "Liverpool",
+          "name": "Shakil Hartman",
+          "playerId": "p00303",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 16,
+          "teamId": "LAG",
+          "teamName": "Lagos",
+          "name": "Erik Waller",
+          "playerId": "p00296",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 17,
+          "teamId": "COP",
+          "teamName": "Copenhagen",
+          "name": "Tariq Goodwin",
+          "playerId": "p00229",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 18,
+          "teamId": "SHAN",
+          "teamName": "Shanghai",
+          "name": "Rafael Hurst",
+          "playerId": "p00423",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 19,
+          "teamId": "LAG",
+          "teamName": "Lagos",
+          "name": "Naeem Thomson",
+          "playerId": "p00295",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 20,
+          "teamId": "GUAD",
+          "teamName": "Guadalajara",
+          "name": "RJ Hagan",
+          "playerId": "p00272",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 21,
+          "teamId": "RIO",
+          "teamName": "Rio De Janeiro",
+          "name": "Kylan Cooper",
+          "playerId": "p00389",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 22,
+          "teamId": "RIO",
+          "teamName": "Rio De Janeiro",
+          "name": "Kylo Walker",
+          "playerId": "p00388",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 23,
+          "teamId": "LIV",
+          "teamName": "Liverpool",
+          "name": "Harlee English",
+          "playerId": "p00301",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 24,
+          "teamId": "LYON",
+          "teamName": "Lyon",
+          "name": "Elijah Hampton",
+          "playerId": "p00317",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 25,
+          "teamId": "BA",
+          "teamName": "Buenos Aires",
+          "name": "Yannis Morales",
+          "playerId": "p00214",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 26,
+          "teamId": "SHAN",
+          "teamName": "Shanghai",
+          "name": "Cade Poole",
+          "playerId": "p01823",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 27,
+          "teamId": "COP",
+          "teamName": "Copenhagen",
+          "name": "Tyreese Shaw",
+          "playerId": "p01906",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 28,
+          "teamId": "SHAN",
+          "teamName": "Shanghai",
+          "name": "Cole Brewer",
+          "playerId": "p01802",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 29,
+          "teamId": "LIV",
+          "teamName": "Liverpool",
+          "name": "Jamie Glass",
+          "playerId": "p00304",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 30,
+          "teamId": "RIO",
+          "teamName": "Rio De Janeiro",
+          "name": "Forest Bentley",
+          "playerId": "p01854",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 31,
+          "teamId": "STO",
+          "teamName": "Stockholm",
+          "name": "Zakir Knox",
+          "playerId": "p01797",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 32,
+          "teamId": "TOK",
+          "teamName": "Tokyo",
+          "name": "Jimmie Childs",
+          "playerId": "p00438",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 33,
+          "teamId": "BA",
+          "teamName": "Buenos Aires",
+          "name": "Jordie Lindsay",
+          "playerId": "p00365",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 34,
+          "teamId": "LAG",
+          "teamName": "Lagos",
+          "name": "Phoenix McKenzie",
+          "playerId": "p00293",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 35,
+          "teamId": "STO",
+          "teamName": "Stockholm",
+          "name": "Ian Garza",
+          "playerId": "p00428",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 36,
+          "teamId": "SHAN",
+          "teamName": "Shanghai",
+          "name": "Mikhail Santos",
+          "playerId": "p00422",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 37,
+          "teamId": "LAG",
+          "teamName": "Lagos",
+          "name": "Dani Whitehouse",
+          "playerId": "p00292",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 38,
+          "teamId": "COP",
+          "teamName": "Copenhagen",
+          "name": "Robyn Snider",
+          "playerId": "p01822",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 39,
+          "teamId": "RIO",
+          "teamName": "Rio De Janeiro",
+          "name": "Corbin Kemp",
+          "playerId": "p01879",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 40,
+          "teamId": "STO",
+          "teamName": "Stockholm",
+          "name": "Darren Gale",
+          "playerId": "p01809",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        }
+      ]
+    },
+    {
+      "season": 71,
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "SYD",
+          "teamName": "Sydney",
+          "name": "Abraham Burke",
+          "playerId": "p02285",
+          "pos": "PF",
+          "age": 28,
+          "rating": null
+        },
+        {
+          "pick": 2,
+          "teamId": "REC",
+          "teamName": "Recife",
+          "name": "Kyron Smart",
+          "playerId": "p00146",
+          "pos": "PG",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 3,
+          "teamId": "REC",
+          "teamName": "Recife",
+          "name": "Isaac Middleton",
+          "playerId": "p02315",
+          "pos": "PF",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 4,
+          "teamId": "LON",
+          "teamName": "London",
+          "name": "Raife Schmitt",
+          "playerId": "p00467",
+          "pos": "PG",
+          "age": 25,
+          "rating": null
+        },
+        {
+          "pick": 5,
+          "teamId": "LYON",
+          "teamName": "Lyon",
+          "name": "Emmett Waters",
+          "playerId": "p00315",
+          "pos": "PG",
+          "age": 20,
+          "rating": null
+        },
+        {
+          "pick": 6,
+          "teamId": "ZAG",
+          "teamName": "Zagreb",
+          "name": "Milo Blanchard",
+          "playerId": "p02208",
+          "pos": "PG",
+          "age": 32,
+          "rating": null
+        },
+        {
+          "pick": 7,
+          "teamId": "MC",
+          "teamName": "Mexico City",
+          "name": "Amir Kane",
+          "playerId": "p00329",
+          "pos": "SG",
+          "age": 23,
+          "rating": null
+        },
+        {
+          "pick": 8,
+          "teamId": "BER",
+          "teamName": "Berlin",
+          "name": "Forest Thomas",
+          "playerId": "p02253",
+          "pos": "SF",
+          "age": 29,
+          "rating": null
+        },
+        {
+          "pick": 9,
+          "teamId": "ZAG",
+          "teamName": "Zagreb",
+          "name": "Zak Byrd",
+          "playerId": "p02334",
+          "pos": "PF",
+          "age": 26,
+          "rating": null
+        },
+        {
+          "pick": 10,
+          "teamId": "MUN",
+          "teamName": "Munich",
+          "name": "Julian Rose",
+          "playerId": "p02306",
+          "pos": "SG",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 11,
+          "teamId": "ZAG",
+          "teamName": "Zagreb",
+          "name": "AJ Story",
+          "playerId": "p00453",
+          "pos": "SF",
+          "age": 23,
+          "rating": null
+        },
+        {
+          "pick": 12,
+          "teamId": "LON",
+          "teamName": "London",
+          "name": "Darien Shepherd",
+          "playerId": "p00409",
+          "pos": "PF",
+          "age": 23,
+          "rating": null
+        },
+        {
+          "pick": 13,
+          "teamId": "LIS",
+          "teamName": "Lisbon",
+          "name": "Simon Sparks",
+          "playerId": "p00320",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 14,
+          "teamId": "MC",
+          "teamName": "Mexico City",
+          "name": "Teddy Soto",
+          "playerId": "p00332",
+          "pos": "C",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 15,
+          "teamId": "JOH",
+          "teamName": "Johannesburg",
+          "name": "Johan Wood",
+          "playerId": "p00284",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 16,
+          "teamId": "JOH",
+          "teamName": "Johannesburg",
+          "name": "Malaki Krause",
+          "playerId": "p00285",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 17,
+          "teamId": "AUS",
+          "teamName": "Austin",
+          "name": "Franciszek Mazur",
+          "playerId": "p00395",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 18,
+          "teamId": "BA",
+          "teamName": "Buenos Aires",
+          "name": "Isac Payton",
+          "playerId": "p00212",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 19,
+          "teamId": "SJ",
+          "teamName": "San Jose",
+          "name": "Colin Yukimura",
+          "playerId": "p00413",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 20,
+          "teamId": "REC",
+          "teamName": "Recife",
+          "name": "Demetrius Bradley",
+          "playerId": "p00385",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 21,
+          "teamId": "JOH",
+          "teamName": "Johannesburg",
+          "name": "Arman Shaw",
+          "playerId": "p00286",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 22,
+          "teamId": "SYD",
+          "teamName": "Sydney",
+          "name": "Jaime Tyler",
+          "playerId": "p00429",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 23,
+          "teamId": "RIO",
+          "teamName": "Rio De Janeiro",
+          "name": "Tyron Kumar",
+          "playerId": "p00392",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 24,
+          "teamId": "FRAN",
+          "teamName": "Frankfurt",
+          "name": "Caleb Black",
+          "playerId": "p00263",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 25,
+          "teamId": null,
+          "teamName": "Toronto",
+          "name": "Jensen Williams",
+          "playerId": "p00391",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 26,
+          "teamId": "LIV",
+          "teamName": "Liverpool",
+          "name": "Jace Hayward",
+          "playerId": "p00302",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 27,
+          "teamId": null,
+          "teamName": "Maine",
+          "name": "Danilo Denzel",
+          "playerId": "p00363",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 28,
+          "teamId": "SYD",
+          "teamName": "Sydney",
+          "name": "Courtney Bray",
+          "playerId": "p00430",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 29,
+          "teamId": "VIE",
+          "teamName": "Vienna",
+          "name": "Rhys Thomson",
+          "playerId": "p00444",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 30,
+          "teamId": "SALZ",
+          "teamName": "Salzburg",
+          "name": "Edwin Bell",
+          "playerId": "p01884",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 31,
+          "teamId": "ZAG",
+          "teamName": "Zagreb",
+          "name": "Kobi Harris",
+          "playerId": "p00452",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 32,
+          "teamId": "GLAS",
+          "teamName": "Glasgow",
+          "name": "Jean-Luc Harding",
+          "playerId": "p00266",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 33,
+          "teamId": "REC",
+          "teamName": "Recife",
+          "name": "Dylon Harmon",
+          "playerId": "p00384",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 34,
+          "teamId": "JOH",
+          "teamName": "Johannesburg",
+          "name": "Kris Dyer",
+          "playerId": "p01780",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 35,
+          "teamId": "SYD",
+          "teamName": "Sydney",
+          "name": "Eric Moody",
+          "playerId": "p00431",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 36,
+          "teamId": "SYD",
+          "teamName": "Sydney",
+          "name": "Tamar Brown",
+          "playerId": "p00432",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 37,
+          "teamId": "BARC",
+          "teamName": "Barcelona",
+          "name": "Finn Clarkson",
+          "playerId": "p00184",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 38,
+          "teamId": "JOH",
+          "teamName": "Johannesburg",
+          "name": "Rami Frost",
+          "playerId": "p00283",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 39,
+          "teamId": "TOK",
+          "teamName": "Tokyo",
+          "name": "Jasper Sommer",
+          "playerId": "p00437",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 40,
+          "teamId": "IST",
+          "teamName": "Istanbul",
+          "name": "Hilario Dragic",
+          "playerId": "p01908",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 41,
+          "teamId": "ZAG",
+          "teamName": "Zagreb",
+          "name": "Eddie Easton",
+          "playerId": "p00219",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 42,
+          "teamId": "DUB",
+          "teamName": "Dublin",
+          "name": "Nigel Swift",
+          "playerId": "p01803",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 43,
+          "teamId": "ATH",
+          "teamName": "Athens",
+          "name": "Owen Dotson",
+          "playerId": "p01835",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 44,
+          "teamId": "KIEV",
+          "teamName": "Kiev",
+          "name": "Kellen Olsen",
+          "playerId": "p00290",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 45,
+          "teamId": "STO",
+          "teamName": "Stockholm",
+          "name": "Alan Herbert",
+          "playerId": "p00427",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 46,
+          "teamId": "AMS",
+          "teamName": "Amsterdam",
+          "name": "Ben Montgomery",
+          "playerId": "p00163",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 47,
+          "teamId": "IST",
+          "teamName": "Istanbul",
+          "name": "Georgie Houston",
+          "playerId": "p01798",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        }
+      ]
+    },
+    {
+      "season": 72,
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "ROT",
+          "teamName": "Rotterdam",
+          "name": "Griffin Correa",
+          "playerId": "p00032",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 2,
+          "teamId": "BUD",
+          "teamName": "Budapest",
+          "name": "Angelo Serrano",
+          "playerId": "p02332",
+          "pos": "C",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 3,
+          "teamId": "BUD",
+          "teamName": "Budapest",
+          "name": "Kayson Michael",
+          "playerId": "p02312",
+          "pos": "SF",
+          "age": 28,
+          "rating": null
+        },
+        {
+          "pick": 4,
+          "teamId": "SP",
+          "teamName": "Sao Paolo",
+          "name": "Keelan Greene",
+          "playerId": "p02344",
+          "pos": "SF",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 5,
+          "teamId": "BUD",
+          "teamName": "Budapest",
+          "name": "Mason Edmonds",
+          "playerId": "p00206",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 6,
+          "teamId": "CAS",
+          "teamName": "Casablanca",
+          "name": "Ritchie Knight",
+          "playerId": "p02308",
+          "pos": "PG",
+          "age": 28,
+          "rating": null
+        },
+        {
+          "pick": 7,
+          "teamId": "MUM",
+          "teamName": "Mumbai",
+          "name": "Derrick Donald",
+          "playerId": "p00350",
+          "pos": "C",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 8,
+          "teamId": "SP",
+          "teamName": "Sao Paolo",
+          "name": "Adam Moore",
+          "playerId": "p02249",
+          "pos": "C",
+          "age": 31,
+          "rating": null
+        },
+        {
+          "pick": 9,
+          "teamId": "MIA",
+          "teamName": "Miami",
+          "name": "Billie Alvey",
+          "playerId": "p02254",
+          "pos": "PG",
+          "age": 30,
+          "rating": null
+        },
+        {
+          "pick": 10,
+          "teamId": "STP",
+          "teamName": "Saint Petersburg",
+          "name": "Whittaker Ware",
+          "playerId": "p02258",
+          "pos": "SG",
+          "age": 30,
+          "rating": null
+        },
+        {
+          "pick": 11,
+          "teamId": "DHA",
+          "teamName": "Dhaka",
+          "name": "Jordan-Lee Davidson",
+          "playerId": "p02273",
+          "pos": "SG",
+          "age": 30,
+          "rating": null
+        },
+        {
+          "pick": 12,
+          "teamId": "BEI",
+          "teamName": "Beijing",
+          "name": "Shepherd Beckett",
+          "playerId": "p00227",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 13,
+          "teamId": "CAS",
+          "teamName": "Casablanca",
+          "name": "Kenny Roy",
+          "playerId": "p00224",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 14,
+          "teamId": "ACK",
+          "teamName": "Auckland",
+          "name": "Wesley Wilder",
+          "playerId": "p02333",
+          "pos": "SG",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 15,
+          "teamId": "OSA",
+          "teamName": "Osaka",
+          "name": "Nadeem Akers",
+          "playerId": "p00040",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 16,
+          "teamId": "BEL",
+          "teamName": "Belfast",
+          "name": "Dominique Hayward",
+          "playerId": "p00189",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 17,
+          "teamId": "DBA",
+          "teamName": "Dubai",
+          "name": "Dimitri Quickley",
+          "playerId": "p00236",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 18,
+          "teamId": "DBA",
+          "teamName": "Dubai",
+          "name": "Navaeh Sharpe",
+          "playerId": "p00240",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 19,
+          "teamId": "OSL",
+          "teamName": "Oslo",
+          "name": "Ezra Banes",
+          "playerId": "p00369",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 20,
+          "teamId": "DHA",
+          "teamName": "Dhaka",
+          "name": "Haydar Teke",
+          "playerId": "p00235",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 21,
+          "teamId": "NAP",
+          "teamName": "Naples",
+          "name": "Zuberi Adebayo",
+          "playerId": "p00356",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 22,
+          "teamId": "LUX",
+          "teamName": "Luxembourg",
+          "name": "Donovan Myers",
+          "playerId": "p00312",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 23,
+          "teamId": "OSA",
+          "teamName": "Osaka",
+          "name": "Bruno Lebedev",
+          "playerId": "p00367",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 24,
+          "teamId": "BEL",
+          "teamName": "Belfast",
+          "name": "Corey Bell",
+          "playerId": "p00188",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 25,
+          "teamId": "MUM",
+          "teamName": "Mumbai",
+          "name": "Brook England",
+          "playerId": "p01840",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 26,
+          "teamId": "BEI",
+          "teamName": "Beijing",
+          "name": "Lamar Jung",
+          "playerId": "p00199",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 27,
+          "teamId": "DBA",
+          "teamName": "Dubai",
+          "name": "Sadiq Suero",
+          "playerId": "p00238",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 28,
+          "teamId": "CAI",
+          "teamName": "Cairo",
+          "name": "Adrian Napoletani",
+          "playerId": "p01782",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 29,
+          "teamId": "FLO",
+          "teamName": "Florence",
+          "name": "Adrien Moraeu",
+          "playerId": "p00461",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 30,
+          "teamId": "STP",
+          "teamName": "Saint Petersburg",
+          "name": "Vlad Faulkner",
+          "playerId": "p00405",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 31,
+          "teamId": "ROT",
+          "teamName": "Rotterdam",
+          "name": "Dannie Fischer",
+          "playerId": "p00400",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 32,
+          "teamId": "EDI",
+          "teamName": "Edinburgh",
+          "name": "Maverick Mayer",
+          "playerId": "p00248",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 33,
+          "teamId": "CAI",
+          "teamName": "Cairo",
+          "name": "Dustin Greer",
+          "playerId": "p01875",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 34,
+          "teamId": "LUX",
+          "teamName": "Luxembourg",
+          "name": "Rikki Nicholls",
+          "playerId": "p01821",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 35,
+          "teamId": "WAR",
+          "teamName": "Warsaw",
+          "name": "Wesley Zimmerman",
+          "playerId": "p01827",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 36,
+          "teamId": "ACK",
+          "teamName": "Auckland",
+          "name": "Omar Lupo",
+          "playerId": "p00176",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 37,
+          "teamId": "BEI",
+          "teamName": "Beijing",
+          "name": "Camden Buchanan",
+          "playerId": "p01876",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 38,
+          "teamId": "NAP",
+          "teamName": "Naples",
+          "name": "Willi Tyree",
+          "playerId": "p00357",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 39,
+          "teamId": "MIA",
+          "teamName": "Miami",
+          "name": "Pat Yokota",
+          "playerId": "p00337",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 40,
+          "teamId": "FLO",
+          "teamName": "Florence",
+          "name": "Otto Poole",
+          "playerId": "p00257",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 41,
+          "teamId": "EDI",
+          "teamName": "Edinburgh",
+          "name": "Max McCaffrey",
+          "playerId": "p01791",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 42,
+          "teamId": "OSL",
+          "teamName": "Oslo",
+          "name": "Thornton Porter",
+          "playerId": "p01909",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 43,
+          "teamId": "ACK",
+          "teamName": "Auckland",
+          "name": "Payton Gadsby",
+          "playerId": "p00175",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 44,
+          "teamId": "WAR",
+          "teamName": "Warsaw",
+          "name": "Braxton Booth",
+          "playerId": "p00450",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 45,
+          "teamId": "WAR",
+          "teamName": "Warsaw",
+          "name": "Grayson Myles",
+          "playerId": "p00179",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        }
+      ]
+    },
+    {
+      "season": 73,
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "LIS",
+          "teamName": "Lisbon",
+          "name": "Ayomide King",
+          "playerId": "p00300",
+          "pos": "C",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 2,
+          "teamId": "BEL",
+          "teamName": "Belfast",
+          "name": "Uchenna Okonkwu",
+          "playerId": "p00190",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 3,
+          "teamId": "STP",
+          "teamName": "Saint Petersburg",
+          "name": "Shae Valentine",
+          "playerId": "p00403",
+          "pos": "SF",
+          "age": 26,
+          "rating": null
+        },
+        {
+          "pick": 4,
+          "teamId": "MAD",
+          "teamName": "Madrid",
+          "name": "Franciszek Mazur",
+          "playerId": "p00395",
+          "pos": "PF",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 5,
+          "teamId": "SP",
+          "teamName": "Sao Paolo",
+          "name": "Kam Curtis",
+          "playerId": "p02342",
+          "pos": "SG",
+          "age": 28,
+          "rating": null
+        },
+        {
+          "pick": 6,
+          "teamId": "LUX",
+          "teamName": "Luxemboug",
+          "name": "Kenneth Nkuna",
+          "playerId": "p00135",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 7,
+          "teamId": "MIA",
+          "teamName": "Miami",
+          "name": "Brooks Braun",
+          "playerId": "p00335",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 8,
+          "teamId": "ROT",
+          "teamName": "Rotterdam",
+          "name": "Kieran Lacey",
+          "playerId": "p00396",
+          "pos": "PG",
+          "age": 26,
+          "rating": null
+        },
+        {
+          "pick": 9,
+          "teamId": "CAI",
+          "teamName": "Cairo",
+          "name": "Jaden Martin",
+          "playerId": "p00217",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 10,
+          "teamId": "VIE",
+          "teamName": "Vienna",
+          "name": "Josiah Hill",
+          "playerId": "p00443",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 11,
+          "teamId": "NAP",
+          "teamName": "Naples",
+          "name": "Tre French",
+          "playerId": "p00355",
+          "pos": "PG",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 12,
+          "teamId": "EDI",
+          "teamName": "Edinburgh",
+          "name": "Matej Novak",
+          "playerId": "p00249",
+          "pos": "PF",
+          "age": 20,
+          "rating": null
+        },
+        {
+          "pick": 13,
+          "teamId": "CAS",
+          "teamName": "Casablanca",
+          "name": "Artyom Kovalchuk",
+          "playerId": "p00101",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 14,
+          "teamId": "MUM",
+          "teamName": "Mumbai",
+          "name": "Damian Roberts",
+          "playerId": "p00349",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 15,
+          "teamId": "ROT",
+          "teamName": "Rotterdam",
+          "name": "Armani Mitchell",
+          "playerId": "p00399",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 16,
+          "teamId": "DHA",
+          "teamName": "Dhaka",
+          "name": "Tomas Arias",
+          "playerId": "p00234",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 17,
+          "teamId": "BEL",
+          "teamName": "Belfast",
+          "name": "Jalil Grant",
+          "playerId": "p00187",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 18,
+          "teamId": "SP",
+          "teamName": "Sao Paolo",
+          "name": "D'Angelo Rose",
+          "playerId": "p00415",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 19,
+          "teamId": "BEI",
+          "teamName": "Beijing",
+          "name": "Philip Horne",
+          "playerId": "p00201",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 20,
+          "teamId": "DBA",
+          "teamName": "Dubai",
+          "name": "Damon Moss",
+          "playerId": "p01830",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 21,
+          "teamId": "LUX",
+          "teamName": "Luxembourg",
+          "name": "Ameer Woodward",
+          "playerId": "p00313",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 22,
+          "teamId": "OSL",
+          "teamName": "Oslo",
+          "name": "Keith Campbell",
+          "playerId": "p00371",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 23,
+          "teamId": "OSA",
+          "teamName": "Osaka",
+          "name": "Christopher Odeke",
+          "playerId": "p00366",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 24,
+          "teamId": "OSA",
+          "teamName": "Osaka",
+          "name": "Angelo Torres",
+          "playerId": "p01799",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 25,
+          "teamId": "ROT",
+          "teamName": "Rotterdam",
+          "name": "Gabriel Uccello",
+          "playerId": "p00397",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 26,
+          "teamId": "MUM",
+          "teamName": "Mumbai",
+          "name": "Wade Woods",
+          "playerId": "p00347",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 27,
+          "teamId": "EDI",
+          "teamName": "Edinburgh",
+          "name": "Sampson Kane",
+          "playerId": "p01902",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 28,
+          "teamId": "DHA",
+          "teamName": "Dhaka",
+          "name": "Eric Carr",
+          "playerId": "p00231",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 29,
+          "teamId": "WAR",
+          "teamName": "Warsaw",
+          "name": "Obi Robert",
+          "playerId": "p00449",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 30,
+          "teamId": "MAN",
+          "teamName": "Manchester",
+          "name": "Kobe Reed",
+          "playerId": "p00327",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 31,
+          "teamId": "BUD",
+          "teamName": "Budapest",
+          "name": "Régulo Whittemore",
+          "playerId": "p00207",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 32,
+          "teamId": "CAI",
+          "teamName": "Cairo",
+          "name": "Kiran Bishop",
+          "playerId": "p00220",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 33,
+          "teamId": "CAS",
+          "teamName": "Casablanca",
+          "name": "Paskal Granville",
+          "playerId": "p01855",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 34,
+          "teamId": "MIA",
+          "teamName": "Miami",
+          "name": "Nikolai Nelson",
+          "playerId": "p01881",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 35,
+          "teamId": "FLO",
+          "teamName": "Florence",
+          "name": "Willis Burke",
+          "playerId": "p01911",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 36,
+          "teamId": "STP",
+          "teamName": "Saint Petersburg",
+          "name": "Myron Mason",
+          "playerId": "p01781",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 37,
+          "teamId": "FLO",
+          "teamName": "Florence",
+          "name": "Dominic Rye",
+          "playerId": "p01856",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 38,
+          "teamId": "OSL",
+          "teamName": "Oslo",
+          "name": "Seth Holland",
+          "playerId": "p00370",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 39,
+          "teamId": "NAP",
+          "teamName": "Naples",
+          "name": "Ada Caldwell",
+          "playerId": "p01853",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 40,
+          "teamId": "ACK",
+          "teamName": "Auckland",
+          "name": "Rickie Carver",
+          "playerId": "p00173",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        }
+      ]
+    },
+    {
+      "season": 74,
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "AUS",
+          "teamName": "Austin",
+          "name": "AJ Walker",
+          "playerId": "p00182",
+          "pos": "C",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 2,
+          "teamId": "MIA",
+          "teamName": "Miami",
+          "name": "Toni Turner",
+          "playerId": "p02341",
+          "pos": "SG",
+          "age": 29,
+          "rating": null
+        },
+        {
+          "pick": 3,
+          "teamId": "AMS",
+          "teamName": "Amsterdam",
+          "name": "Tomas Hall",
+          "playerId": "p02278",
+          "pos": "C",
+          "age": 31,
+          "rating": null
+        },
+        {
+          "pick": 4,
+          "teamId": "SJ",
+          "teamName": "San Jose",
+          "name": "Kenneth Murphy",
+          "playerId": "p02280",
+          "pos": "PG",
+          "age": 31,
+          "rating": null
+        },
+        {
+          "pick": 5,
+          "teamId": "AUS",
+          "teamName": "Austin",
+          "name": "Xavier Booker",
+          "playerId": "p00178",
+          "pos": "PG",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 6,
+          "teamId": "GUAD",
+          "teamName": "Guadalajara",
+          "name": "Enoch Fisher",
+          "playerId": "p00274",
+          "pos": "C",
+          "age": 26,
+          "rating": null
+        },
+        {
+          "pick": 7,
+          "teamId": "HAM",
+          "teamName": "Hamburg",
+          "name": "Hakeem Bishop",
+          "playerId": "p02276",
+          "pos": "SG",
+          "age": 32,
+          "rating": null
+        },
+        {
+          "pick": 8,
+          "teamId": "SJ",
+          "teamName": "San Jose",
+          "name": "Griffin Correa",
+          "playerId": "p00032",
+          "pos": "SF",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 9,
+          "teamId": "SP",
+          "teamName": "Sao Paolo",
+          "name": "Tyrese Weber",
+          "playerId": "p00418",
+          "pos": "PF",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 10,
+          "teamId": "MOS",
+          "teamName": "Moscow",
+          "name": "Xavier Rose",
+          "playerId": "p00124",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 11,
+          "teamId": "REC",
+          "teamName": "Recife",
+          "name": "Kyson Hart",
+          "playerId": "p00387",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 12,
+          "teamId": "BER",
+          "teamName": "Berlin",
+          "name": "Ezio Stanek",
+          "playerId": "p00147",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 13,
+          "teamId": "BUD",
+          "teamName": "Budapest",
+          "name": "Jai Jackson",
+          "playerId": "p02309",
+          "pos": "PF",
+          "age": 30,
+          "rating": null
+        },
+        {
+          "pick": 14,
+          "teamId": "KIEV",
+          "teamName": "Kiev",
+          "name": "Jalen Foster",
+          "playerId": "p00289",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 15,
+          "teamId": "EDI",
+          "teamName": "Edinburgh",
+          "name": "Kofi Onyeama",
+          "playerId": "p00247",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 16,
+          "teamId": "DHA",
+          "teamName": "Dhaka",
+          "name": "David Mitchell",
+          "playerId": "p00233",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 17,
+          "teamId": "MAN",
+          "teamName": "Manchester",
+          "name": "Kaleb Henderson",
+          "playerId": "p00326",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 18,
+          "teamId": "AUS",
+          "teamName": "Austin",
+          "name": "Andre Robinson",
+          "playerId": "p00081",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 19,
+          "teamId": "MAD",
+          "teamName": "Madrid",
+          "name": "Bobby Irving",
+          "playerId": "p02331",
+          "pos": "PG",
+          "age": 29,
+          "rating": null
+        },
+        {
+          "pick": 20,
+          "teamId": "AMS",
+          "teamName": "Amsterdam",
+          "name": "Jamal Edwards",
+          "playerId": "p00165",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 21,
+          "teamId": "TAM",
+          "teamName": "Tampa",
+          "name": "Samar Kumar",
+          "playerId": "p00435",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 22,
+          "teamId": "LON",
+          "teamName": "London",
+          "name": "Dwight Lindsey",
+          "playerId": "p00308",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 23,
+          "teamId": "GLAS",
+          "teamName": "Glasgow",
+          "name": "Tristan Peck",
+          "playerId": "p00267",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 24,
+          "teamId": "SP",
+          "teamName": "Sao Paolo",
+          "name": "Tyler Thomas",
+          "playerId": "p01885",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 25,
+          "teamId": "BEL",
+          "teamName": "Belfast",
+          "name": "Amadou Diop",
+          "playerId": "p00191",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 26,
+          "teamId": "LIS",
+          "teamName": "Lisbon",
+          "name": "Roman Westbrook",
+          "playerId": "p02255",
+          "pos": "PG",
+          "age": 32,
+          "rating": null
+        },
+        {
+          "pick": 27,
+          "teamId": "LUX",
+          "teamName": "Luxembourg",
+          "name": "Kaleb Davis",
+          "playerId": "p00310",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 28,
+          "teamId": null,
+          "teamName": "Vancouver",
+          "name": "Raphael Watanabe",
+          "playerId": "p00251",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 29,
+          "teamId": "FLO",
+          "teamName": "Florence",
+          "name": "Damir Markovic",
+          "playerId": "p00259",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 30,
+          "teamId": "ROME",
+          "teamName": "Rome",
+          "name": "Kian Butler",
+          "playerId": "p00394",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 31,
+          "teamId": "LUX",
+          "teamName": "Luxembourg",
+          "name": "Espen Cabello",
+          "playerId": "p01903",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 32,
+          "teamId": "MUM",
+          "teamName": "Mumbai",
+          "name": "Mason Cross",
+          "playerId": "p01794",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 33,
+          "teamId": "MAD",
+          "teamName": "Madrid",
+          "name": "Jordan Coleman",
+          "playerId": "p00321",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 34,
+          "teamId": "OSA",
+          "teamName": "Osaka",
+          "name": "Junior Strickland",
+          "playerId": "p02275",
+          "pos": "PF",
+          "age": 32,
+          "rating": null
+        },
+        {
+          "pick": 35,
+          "teamId": "MUN",
+          "teamName": "Munich",
+          "name": "Stefan Dimitrov",
+          "playerId": "p01808",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 36,
+          "teamId": "BARC",
+          "teamName": "Barcelona",
+          "name": "Nasir Young",
+          "playerId": "p00185",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 37,
+          "teamId": "AUS",
+          "teamName": "Austin",
+          "name": "Niko Ivanov",
+          "playerId": "p01834",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 38,
+          "teamId": "PAR",
+          "teamName": "Paris",
+          "name": "Deodato Durant",
+          "playerId": "p00381",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 39,
+          "teamId": null,
+          "teamName": "Vancouver",
+          "name": "Jabari Amadi",
+          "playerId": "p00254",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        }
+      ]
+    },
+    {
+      "season": 75,
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "DBA",
+          "teamName": "Dubai",
+          "name": "Elliott Miller",
+          "playerId": "p00239",
+          "pos": "PF",
+          "age": 25,
+          "rating": null
+        },
+        {
+          "pick": 2,
+          "teamId": "BER",
+          "teamName": "Berlin",
+          "name": "Amari Chase",
+          "playerId": "p00193",
+          "pos": "SG",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 3,
+          "teamId": "OSA",
+          "teamName": "Osaka",
+          "name": "Royce Willingham",
+          "playerId": "p00368",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 4,
+          "teamId": "STP",
+          "teamName": "Saint Petersburg",
+          "name": "Skye Clay",
+          "playerId": "p02336",
+          "pos": "SG",
+          "age": 30,
+          "rating": null
+        },
+        {
+          "pick": 5,
+          "teamId": "PAR",
+          "teamName": "Paris",
+          "name": "Ignacio Cain",
+          "playerId": "p00382",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 6,
+          "teamId": "HAM",
+          "teamName": "Hamburg",
+          "name": "Rashad Garland",
+          "playerId": "p02351",
+          "pos": "PG",
+          "age": 30,
+          "rating": null
+        },
+        {
+          "pick": 7,
+          "teamId": "ACK",
+          "teamName": "Auckland",
+          "name": "Elijah Dixon",
+          "playerId": "p00177",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 8,
+          "teamId": "BER",
+          "teamName": "Berlin",
+          "name": "Folarin Adebayo",
+          "playerId": "p00195",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 9,
+          "teamId": null,
+          "teamName": "Vancouver",
+          "name": "Zion Dalby",
+          "playerId": "p02329",
+          "pos": "SF",
+          "age": 30,
+          "rating": null
+        },
+        {
+          "pick": 10,
+          "teamId": "MAD",
+          "teamName": "Madrid",
+          "name": "Malik Kamau",
+          "playerId": "p00323",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 11,
+          "teamId": "BEI",
+          "teamName": "Beijing",
+          "name": "Jamie Fleming",
+          "playerId": "p00198",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 12,
+          "teamId": "CAI",
+          "teamName": "Cairo",
+          "name": "Clay Walton",
+          "playerId": "p00218",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 13,
+          "teamId": "DHA",
+          "teamName": "Dhaka",
+          "name": "Sam Bussey",
+          "playerId": "p00156",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 14,
+          "teamId": "BER",
+          "teamName": "Berlin",
+          "name": "Jordan Bell",
+          "playerId": "p01839",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 15,
+          "teamId": "MAD",
+          "teamName": "Madrid",
+          "name": "Julian Wright",
+          "playerId": "p01857",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 16,
+          "teamId": "LAG",
+          "teamName": "Lagos",
+          "name": "Louis Baker",
+          "playerId": "p01843",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 17,
+          "teamId": "LON",
+          "teamName": "London",
+          "name": "Viktor Vasiliev",
+          "playerId": "p00309",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 18,
+          "teamId": "DUB",
+          "teamName": "Dublin",
+          "name": "Lukas Richter",
+          "playerId": "p01907",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 19,
+          "teamId": "NAP",
+          "teamName": "Naples",
+          "name": "DeMarcus Harris",
+          "playerId": "p00358",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 20,
+          "teamId": "STP",
+          "teamName": "Saint Petersburg",
+          "name": "Edwin Russell",
+          "playerId": "p00404",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 21,
+          "teamId": "VIE",
+          "teamName": "Vienna",
+          "name": "Fabio Moretti",
+          "playerId": "p00442",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 22,
+          "teamId": "LIS",
+          "teamName": "Lisbon",
+          "name": "Miles Davis",
+          "playerId": "p00297",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 23,
+          "teamId": "GLAS",
+          "teamName": "Glasgow",
+          "name": "KJ Knight",
+          "playerId": "p00268",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 24,
+          "teamId": "MIA",
+          "teamName": "Miami",
+          "name": "Ayo Ajayi",
+          "playerId": "p00333",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 25,
+          "teamId": "OMA",
+          "teamName": "Omaha",
+          "name": "Marquis Smith",
+          "playerId": "p00362",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 26,
+          "teamId": "HAM",
+          "teamName": "Hamburg",
+          "name": "Javier Morales",
+          "playerId": "p00276",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 27,
+          "teamId": "WAR",
+          "teamName": "Warsaw",
+          "name": "Jermaine Turner",
+          "playerId": "p01858",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 28,
+          "teamId": "SJ",
+          "teamName": "San Jose",
+          "name": "Darryl Henry",
+          "playerId": "p01912",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 29,
+          "teamId": "FRAN",
+          "teamName": "Frankfurt",
+          "name": "Heath Nunn",
+          "playerId": "p00261",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 30,
+          "teamId": "LIS",
+          "teamName": "Lisbon",
+          "name": "Isaiah Wright",
+          "playerId": "p00299",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 31,
+          "teamId": "BEI",
+          "teamName": "Beijing",
+          "name": "Adrian Grant",
+          "playerId": "p00197",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 32,
+          "teamId": "KIEV",
+          "teamName": "Kiev",
+          "name": "Amara Adisa",
+          "playerId": "p00287",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 33,
+          "teamId": "ROT",
+          "teamName": "Rotterdam",
+          "name": "Marcus Foster",
+          "playerId": "p01841",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 34,
+          "teamId": "AUS",
+          "teamName": "Austin",
+          "name": "Keenan Ward",
+          "playerId": "p01870",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 35,
+          "teamId": "MC",
+          "teamName": "Mexico City",
+          "name": "Ibrahim Hassan",
+          "playerId": "p00328",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 36,
+          "teamId": "AMS",
+          "teamName": "Amsterdam",
+          "name": "Brooks Burrows",
+          "playerId": "p00164",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 37,
+          "teamId": "OSL",
+          "teamName": "Oslo",
+          "name": "Keenan Cromer",
+          "playerId": "p01873",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 38,
+          "teamId": "ZAG",
+          "teamName": "Zagreb",
+          "name": "Theo Moore",
+          "playerId": "p01807",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        }
+      ]
+    },
+    {
+      "season": 76,
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "KIEV",
+          "teamName": "Kiev",
+          "name": "Roman Findlay",
+          "playerId": "p00151",
+          "pos": "C",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 2,
+          "teamId": "OMA",
+          "teamName": "Omaha",
+          "name": "Kaylen Green",
+          "playerId": "p00360",
+          "pos": "SG",
+          "age": 29,
+          "rating": null
+        },
+        {
+          "pick": 3,
+          "teamId": "DUB",
+          "teamName": "Dublin",
+          "name": "Kip Jensen",
+          "playerId": "p00242",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 4,
+          "teamId": "MIL",
+          "teamName": "Milan",
+          "name": "Dennis Lofton",
+          "playerId": "p00342",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 5,
+          "teamId": "ROME",
+          "teamName": "Rome",
+          "name": "Dennis Holloway",
+          "playerId": "p02349",
+          "pos": "PG",
+          "age": 31,
+          "rating": null
+        },
+        {
+          "pick": 6,
+          "teamId": null,
+          "teamName": "Vancouver",
+          "name": "Louka Morel",
+          "playerId": "p02325",
+          "pos": "SG",
+          "age": 31,
+          "rating": null
+        },
+        {
+          "pick": 7,
+          "teamId": "LIS",
+          "teamName": "Lisbon",
+          "name": "Harrison Reiter",
+          "playerId": "p00298",
+          "pos": "SF",
+          "age": 24,
+          "rating": null
+        },
+        {
+          "pick": 8,
+          "teamId": "HAM",
+          "teamName": "Hamburg",
+          "name": "Robert Bryant",
+          "playerId": "p00278",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 9,
+          "teamId": "WAR",
+          "teamName": "Warsaw",
+          "name": "Haiden Mercado",
+          "playerId": "p00446",
+          "pos": "PG",
+          "age": 29,
+          "rating": null
+        },
+        {
+          "pick": 10,
+          "teamId": "STO",
+          "teamName": "Stockholm",
+          "name": "Asher Wainwright",
+          "playerId": "p00426",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 11,
+          "teamId": "AUS",
+          "teamName": "Austin",
+          "name": "Charles Petty",
+          "playerId": "p02323",
+          "pos": "SF",
+          "age": 32,
+          "rating": null
+        },
+        {
+          "pick": 12,
+          "teamId": "MOS",
+          "teamName": "Moscow",
+          "name": "Walker Livingston",
+          "playerId": "p00346",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 13,
+          "teamId": "SALZ",
+          "teamName": "Salzburg",
+          "name": "Darien Shepherd",
+          "playerId": "p00409",
+          "pos": "PF",
+          "age": 28,
+          "rating": null
+        },
+        {
+          "pick": 14,
+          "teamId": "OTT",
+          "teamName": "Ottawa",
+          "name": "Todd Moody",
+          "playerId": "p00375",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 15,
+          "teamId": "DUB",
+          "teamName": "Dublin",
+          "name": "Bruno Da Silva",
+          "playerId": "p00244",
+          "pos": "PF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 16,
+          "teamId": "LON",
+          "teamName": "London",
+          "name": "Keke Carter",
+          "playerId": "p00306",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 17,
+          "teamId": "CAS",
+          "teamName": "Casablanca",
+          "name": "Kaan Black",
+          "playerId": "p00222",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 18,
+          "teamId": "BRUS",
+          "teamName": "Brussels",
+          "name": "Matthias Schmitt",
+          "playerId": "p00205",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 19,
+          "teamId": "COP",
+          "teamName": "Copenhagen",
+          "name": "Cade Flynn",
+          "playerId": "p00228",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 20,
+          "teamId": "SJ",
+          "teamName": "San Jose",
+          "name": "Silas Weaver",
+          "playerId": "p00410",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 21,
+          "teamId": "STO",
+          "teamName": "Stockholm",
+          "name": "D'Marius Blake",
+          "playerId": "p00425",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 22,
+          "teamId": "OSA",
+          "teamName": "Osaka",
+          "name": "Jordie Lindsay",
+          "playerId": "p00365",
+          "pos": "SG",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 23,
+          "teamId": "SALZ",
+          "teamName": "Salzburg",
+          "name": "Kyran Walker",
+          "playerId": "p00406",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 24,
+          "teamId": "MAD",
+          "teamName": "Madrid",
+          "name": "Garrick Thorne",
+          "playerId": "p00324",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 25,
+          "teamId": "BARC",
+          "teamName": "Barcelona",
+          "name": "Dallas Park",
+          "playerId": "p00183",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 26,
+          "teamId": "OTT",
+          "teamName": "Ottawa",
+          "name": "Isaiah Massey",
+          "playerId": "p00377",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 27,
+          "teamId": "LYON",
+          "teamName": "Lyon",
+          "name": "Andre Dubois",
+          "playerId": "p01831",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 28,
+          "teamId": "MAN",
+          "teamName": "Manchester",
+          "name": "Graham Santiago",
+          "playerId": "p00325",
+          "pos": "PG",
+          "age": 29,
+          "rating": null
+        },
+        {
+          "pick": 29,
+          "teamId": "LON",
+          "teamName": "London",
+          "name": "Reese Knox",
+          "playerId": "p00307",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 30,
+          "teamId": "BRUS",
+          "teamName": "Brussels",
+          "name": "Finn Hayes",
+          "playerId": "p01832",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 31,
+          "teamId": "ROME",
+          "teamName": "Rome",
+          "name": "Franciszek Mazur",
+          "playerId": "p00395",
+          "pos": "PF",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 32,
+          "teamId": "MIL",
+          "teamName": "Milan",
+          "name": "Omar Huffman",
+          "playerId": "p00340",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 33,
+          "teamId": "AMS",
+          "teamName": "Amsterdam",
+          "name": "Rick King",
+          "playerId": "p00167",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 34,
+          "teamId": "MC",
+          "teamName": "Mexico City",
+          "name": "Ayden Chase",
+          "playerId": "p00330",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 35,
+          "teamId": "SYD",
+          "teamName": "Sydney",
+          "name": "Timothy Branch",
+          "playerId": "p02305",
+          "pos": "PF",
+          "age": 32,
+          "rating": null
+        },
+        {
+          "pick": 36,
+          "teamId": "LYON",
+          "teamName": "Lyon",
+          "name": "Ewan Warner",
+          "playerId": "p00319",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 37,
+          "teamId": "OMA",
+          "teamName": "Omaha",
+          "name": "Zhao Wei",
+          "playerId": "p00359",
+          "pos": "PG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 38,
+          "teamId": "IST",
+          "teamName": "Istanbul",
+          "name": "Aiden Bell",
+          "playerId": "p01860",
+          "pos": "SF",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 39,
+          "teamId": "BA",
+          "teamName": "Buenos Aires",
+          "name": "Nigel Swift",
+          "playerId": "p01803",
+          "pos": "PG",
+          "age": 27,
+          "rating": null
+        },
+        {
+          "pick": 40,
+          "teamId": "IST",
+          "teamName": "Istanbul",
+          "name": "Alec Guy",
+          "playerId": "p01828",
+          "pos": "SG",
+          "age": 29,
+          "rating": null
+        },
+        {
+          "pick": 41,
+          "teamId": "PAR",
+          "teamName": "Paris",
+          "name": "Henrik Larsen",
+          "playerId": "p00379",
+          "pos": "SG",
+          "age": 22,
+          "rating": null
+        },
+        {
+          "pick": 42,
+          "teamId": "ATH",
+          "teamName": "Athens",
+          "name": "Dru Clark",
+          "playerId": "p00172",
+          "pos": "C",
+          "age": 22,
+          "rating": null
+        }
+      ]
+    },
+    {
+      "season": 77,
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "SALZ",
+          "teamName": "Salzburg",
+          "name": "Jalen Flowers",
+          "playerId": "p00408",
+          "pos": "SF",
+          "age": 29,
+          "rating": 97
+        },
+        {
+          "pick": 2,
+          "teamId": "ZUR",
+          "teamName": "Zurich",
+          "name": "Markus Edmonds",
+          "playerId": "p00455",
+          "pos": "PG",
+          "age": 29,
+          "rating": 98
+        },
+        {
+          "pick": 3,
+          "teamId": "NAP",
+          "teamName": "Naples",
+          "name": "Hendrix Parks",
+          "playerId": "p00473",
+          "pos": "SF",
+          "age": 31,
+          "rating": 95
+        },
+        {
+          "pick": 4,
+          "teamId": "MC",
+          "teamName": "Mexico City",
+          "name": "Ethan Leitner",
+          "playerId": "p00153",
+          "pos": "PF",
+          "age": 22,
+          "rating": 97
+        },
+        {
+          "pick": 5,
+          "teamId": "ZAG",
+          "teamName": "Zagreb",
+          "name": "Mack Orazio",
+          "playerId": "p00483",
+          "pos": "C",
+          "age": 31,
+          "rating": 97
+        },
+        {
+          "pick": 6,
+          "teamId": "MUM",
+          "teamName": "Mumbai",
+          "name": "Kye Kenny",
+          "playerId": "p00471",
+          "pos": "PG",
+          "age": 31,
+          "rating": 99
+        },
+        {
+          "pick": 7,
+          "teamId": "LYON",
+          "teamName": "Lyon",
+          "name": "Sidney Malone",
+          "playerId": "p00318",
+          "pos": "PF",
+          "age": 24,
+          "rating": 96
+        },
+        {
+          "pick": 8,
+          "teamId": "MOS",
+          "teamName": "Moscow",
+          "name": "Haruki Nakamura",
+          "playerId": "p00345",
+          "pos": "PF",
+          "age": 22,
+          "rating": 94
+        },
+        {
+          "pick": 9,
+          "teamId": "GUAD",
+          "teamName": "Guadalajara",
+          "name": "Kerry Khan",
+          "playerId": "p00270",
+          "pos": "PG",
+          "age": 22,
+          "rating": 94
+        },
+        {
+          "pick": 10,
+          "teamId": "SYD",
+          "teamName": "Sydney",
+          "name": "Yusuf Porter",
+          "playerId": "p00480",
+          "pos": "PF",
+          "age": 31,
+          "rating": 92
+        },
+        {
+          "pick": 11,
+          "teamId": "MOS",
+          "teamName": "Moscow",
+          "name": "Kayden Kelley",
+          "playerId": "p00344",
+          "pos": "SF",
+          "age": 22,
+          "rating": 91
+        },
+        {
+          "pick": 12,
+          "teamId": "COP",
+          "teamName": "Copenhagen",
+          "name": "Shepherd Beckett",
+          "playerId": "p00227",
+          "pos": "SG",
+          "age": 27,
+          "rating": 93
+        },
+        {
+          "pick": 13,
+          "teamId": "ZUR",
+          "teamName": "Zurich",
+          "name": "Kealan Jansen",
+          "playerId": "p00456",
+          "pos": "SG",
+          "age": 30,
+          "rating": 93
+        },
+        {
+          "pick": 14,
+          "teamId": "AUS",
+          "teamName": "Austin",
+          "name": "Alonso Bennett",
+          "playerId": "p00180",
+          "pos": "SF",
+          "age": 22,
+          "rating": 83
+        },
+        {
+          "pick": 15,
+          "teamId": "BRUS",
+          "teamName": "Brussels",
+          "name": "Fritz Mcintosh",
+          "playerId": "p00203",
+          "pos": "SG",
+          "age": 22,
+          "rating": 86
+        },
+        {
+          "pick": 16,
+          "teamId": "FLO",
+          "teamName": "Florence",
+          "name": "JJ Meadows",
+          "playerId": "p00260",
+          "pos": "C",
+          "age": 22,
+          "rating": 89
+        },
+        {
+          "pick": 17,
+          "teamId": "DUB",
+          "teamName": "Dublin",
+          "name": "Kris Petty",
+          "playerId": "p00241",
+          "pos": "PG",
+          "age": 30,
+          "rating": 97
+        },
+        {
+          "pick": 18,
+          "teamId": "MAD",
+          "teamName": "Madrid",
+          "name": "Tristan Hayes",
+          "playerId": "p00322",
+          "pos": "SF",
+          "age": 22,
+          "rating": 80
+        },
+        {
+          "pick": 19,
+          "teamId": "OSL",
+          "teamName": "Oslo",
+          "name": "Dean Mays",
+          "playerId": "p00373",
+          "pos": "C",
+          "age": 22,
+          "rating": 85
+        },
+        {
+          "pick": 20,
+          "teamId": "MUN",
+          "teamName": "Munich",
+          "name": "Royce Watkins",
+          "playerId": "p00351",
+          "pos": "PG",
+          "age": 29,
+          "rating": 95
+        },
+        {
+          "pick": 21,
+          "teamId": "FLO",
+          "teamName": "Florence",
+          "name": "Claude Dailey",
+          "playerId": "p00258",
+          "pos": "SF",
+          "age": 22,
+          "rating": 76
+        },
+        {
+          "pick": 22,
+          "teamId": "KIEV",
+          "teamName": "Kiev",
+          "name": "Julius Boyd",
+          "playerId": "p00288",
+          "pos": "SG",
+          "age": 22,
+          "rating": 82
+        },
+        {
+          "pick": 23,
+          "teamId": "CAS",
+          "teamName": "Casablanca",
+          "name": "Arturo Howell",
+          "playerId": "p00221",
+          "pos": "PG",
+          "age": 22,
+          "rating": 87
+        },
+        {
+          "pick": 24,
+          "teamId": "AUS",
+          "teamName": "Austin",
+          "name": "Kendrick Ramos",
+          "playerId": "p00181",
+          "pos": "PF",
+          "age": 22,
+          "rating": 78
+        },
+        {
+          "pick": 25,
+          "teamId": "REC",
+          "teamName": "Recife",
+          "name": "Quintin Nguyen",
+          "playerId": "p00383",
+          "pos": "PG",
+          "age": 22,
+          "rating": 82
+        },
+        {
+          "pick": 26,
+          "teamId": "SJ",
+          "teamName": "San Jose",
+          "name": "Keneth Friedman",
+          "playerId": "p00414",
+          "pos": "C",
+          "age": 22,
+          "rating": 79
+        },
+        {
+          "pick": 27,
+          "teamId": "MUN",
+          "teamName": "Munich",
+          "name": "Ellis Monroe",
+          "playerId": "p00352",
+          "pos": "SG",
+          "age": 22,
+          "rating": 77
+        },
+        {
+          "pick": 28,
+          "teamId": "ATH",
+          "teamName": "Athens",
+          "name": "Barrett Cline",
+          "playerId": "p00168",
+          "pos": "PG",
+          "age": 22,
+          "rating": 79
+        },
+        {
+          "pick": 29,
+          "teamId": "BER",
+          "teamName": "Berlin",
+          "name": "Milo Dean",
+          "playerId": "p00192",
+          "pos": "PG",
+          "age": 22,
+          "rating": 77
+        },
+        {
+          "pick": 30,
+          "teamId": "EDI",
+          "teamName": "Edinburgh",
+          "name": "Bo Boone",
+          "playerId": "p00246",
+          "pos": "PG",
+          "age": 22,
+          "rating": 76
+        },
+        {
+          "pick": 31,
+          "teamId": "OSA",
+          "teamName": "Osaka",
+          "name": "Ki-Hoon Park",
+          "playerId": "p00364",
+          "pos": "PG",
+          "age": 22,
+          "rating": 73
+        },
+        {
+          "pick": 32,
+          "teamId": "COP",
+          "teamName": "Copenhagen",
+          "name": "Adam Campo",
+          "playerId": "p00230",
+          "pos": "C",
+          "age": 22,
+          "rating": 71
+        },
+        {
+          "pick": 33,
+          "teamId": "GUAD",
+          "teamName": "Guadalajara",
+          "name": "Callum Kent",
+          "playerId": "p00273",
+          "pos": "PF",
+          "age": 22,
+          "rating": 70
+        },
+        {
+          "pick": 34,
+          "teamId": "FRAN",
+          "teamName": "Frankfurt",
+          "name": "Lou House",
+          "playerId": "p00262",
+          "pos": "SG",
+          "age": 22,
+          "rating": 75
+        },
+        {
+          "pick": 35,
+          "teamId": "BUD",
+          "teamName": "Budapest",
+          "name": "Calvin Rhodes",
+          "playerId": "p00208",
+          "pos": "SF",
+          "age": 22,
+          "rating": 75
+        },
+        {
+          "pick": 36,
+          "teamId": "WAR",
+          "teamName": "Warsaw",
+          "name": "Fabio Bianchi",
+          "playerId": "p00447",
+          "pos": "SG",
+          "age": 22,
+          "rating": 73
+        },
+        {
+          "pick": 37,
+          "teamId": "STO",
+          "teamName": "Stockholm",
+          "name": "Bryson Curtis",
+          "playerId": "p00424",
+          "pos": "PG",
+          "age": 22,
+          "rating": 71
+        },
+        {
+          "pick": 38,
+          "teamId": "REC",
+          "teamName": "Recife",
+          "name": "Ian Reid",
+          "playerId": "p00386",
+          "pos": "PF",
+          "age": 22,
+          "rating": 69
+        },
+        {
+          "pick": 39,
+          "teamId": "LUX",
+          "teamName": "Luxembourg",
+          "name": "Austin Rose",
+          "playerId": "p00311",
+          "pos": "SG",
+          "age": 22,
+          "rating": 73
+        },
+        {
+          "pick": 40,
+          "teamId": "RIO",
+          "teamName": "Rio De Janeiro",
+          "name": "Ronnie Knapp",
+          "playerId": "p00390",
+          "pos": "SF",
+          "age": 22,
+          "rating": 71
+        },
+        {
+          "pick": 41,
+          "teamId": "ZUR",
+          "teamName": "Zurich",
+          "name": "Thaddeus Mueller",
+          "playerId": "p00458",
+          "pos": "PF",
+          "age": 22,
+          "rating": 69
+        },
+        {
+          "pick": 42,
+          "teamId": "OSL",
+          "teamName": "Oslo",
+          "name": "Robin Gay",
+          "playerId": "p01862",
+          "pos": "PF",
+          "age": 22,
+          "rating": 67
+        },
+        {
+          "pick": 43,
+          "teamId": "TOK",
+          "teamName": "Tokyo",
+          "name": "Erdal Karakaya",
+          "playerId": "p00440",
+          "pos": "C",
+          "age": 22,
+          "rating": 71
+        },
+        {
+          "pick": 44,
+          "teamId": "WAR",
+          "teamName": "Warsaw",
+          "name": "Benito Montiel",
+          "playerId": "p00448",
+          "pos": "SF",
+          "age": 22,
+          "rating": 70
+        },
+        {
+          "pick": 45,
+          "teamId": "DBA",
+          "teamName": "Dubai",
+          "name": "Daquan Robinson",
+          "playerId": "p00237",
+          "pos": "SG",
+          "age": 22,
+          "rating": 72
+        },
+        {
+          "pick": 46,
+          "teamId": "LYON",
+          "teamName": "Lyon",
+          "name": "Jonah Ellis",
+          "playerId": "p00316",
+          "pos": "SG",
+          "age": 22,
+          "rating": 72
+        },
+        {
+          "pick": 47,
+          "teamId": "BA",
+          "teamName": "Buenos Aires",
+          "name": "Benjamin Gould",
+          "playerId": "p00211",
+          "pos": "PG",
+          "age": 22,
+          "rating": 69
+        },
+        {
+          "pick": 48,
+          "teamId": "IST",
+          "teamName": "Istanbul",
+          "name": "Khalil Burton",
+          "playerId": "p00279",
+          "pos": "SG",
+          "age": 22,
+          "rating": 70
+        },
+        {
+          "pick": 49,
+          "teamId": "FRAN",
+          "teamName": "Frankfurt",
+          "name": "Lachlan Blake",
+          "playerId": "p00264",
+          "pos": "PF",
+          "age": 22,
+          "rating": 66
+        },
+        {
+          "pick": 50,
+          "teamId": "DUB",
+          "teamName": "Dublin",
+          "name": "Ezekiel York",
+          "playerId": "p00245",
+          "pos": "C",
+          "age": 22,
+          "rating": 70
+        },
+        {
+          "pick": 51,
+          "teamId": "SJ",
+          "teamName": "San Jose",
+          "name": "Micah Beck",
+          "playerId": "p00411",
+          "pos": "SG",
+          "age": 22,
+          "rating": 69
+        },
+        {
+          "pick": 52,
+          "teamId": "LUX",
+          "teamName": "Luxembourg",
+          "name": "Idris Bah",
+          "playerId": "p00314",
+          "pos": "C",
+          "age": 22,
+          "rating": 68
+        },
+        {
+          "pick": 53,
+          "teamId": "IST",
+          "teamName": "Istanbul",
+          "name": "Deangelo Rice",
+          "playerId": "p01888",
+          "pos": "C",
+          "age": 22,
+          "rating": 65
+        },
+        {
+          "pick": 54,
+          "teamId": "SHAN",
+          "teamName": "Shanghai",
+          "name": "Chandler Rice",
+          "playerId": "p01812",
+          "pos": "SG",
+          "age": 22,
+          "rating": 68
+        },
+        {
+          "pick": 55,
+          "teamId": "BUD",
+          "teamName": "Budapest",
+          "name": "Noah Harris",
+          "playerId": "p01861",
+          "pos": "PF",
+          "age": 22,
+          "rating": 65
+        },
+        {
+          "pick": 56,
+          "teamId": "EDI",
+          "teamName": "Edinburgh",
+          "name": "Griffin Hale",
+          "playerId": "p01887",
+          "pos": "C",
+          "age": 22,
+          "rating": 64
+        },
+        {
+          "pick": 57,
+          "teamId": "CAS",
+          "teamName": "Casablanca",
+          "name": "Tyreek Garner",
+          "playerId": "p00223",
+          "pos": "SF",
+          "age": 22,
+          "rating": 69
+        },
+        {
+          "pick": 58,
+          "teamId": "SHAN",
+          "teamName": "Shanghai",
+          "name": "Ty Perry",
+          "playerId": "p00420",
+          "pos": "PG",
+          "age": 22,
+          "rating": 66
+        }
+      ]
+    },
+    {
+      "season": 78,
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "BER",
+          "teamName": "Berlin",
+          "name": "Jaden Samuels",
+          "playerId": "p00194",
+          "pos": "SF",
+          "age": 29,
+          "rating": 97
+        },
+        {
+          "pick": 2,
+          "teamId": "HAM",
+          "teamName": "Hamburg",
+          "name": "Rowan Hawthorne",
+          "playerId": "p00277",
+          "pos": "PF",
+          "age": 23,
+          "rating": 98
+        },
+        {
+          "pick": 3,
+          "teamId": "MIA",
+          "teamName": "Miami",
+          "name": "Jasper Monroe",
+          "playerId": "p00334",
+          "pos": "SG",
+          "age": 23,
+          "rating": 97
+        },
+        {
+          "pick": 4,
+          "teamId": "MAD",
+          "teamName": "Madrid",
+          "name": "Simon Sparks",
+          "playerId": "p00320",
+          "pos": "PG",
+          "age": 29,
+          "rating": 99
+        },
+        {
+          "pick": 5,
+          "teamId": "SP",
+          "teamName": "Sao Paolo",
+          "name": "Derek King",
+          "playerId": "p00419",
+          "pos": "C",
+          "age": 31,
+          "rating": 99
+        },
+        {
+          "pick": 6,
+          "teamId": "LAG",
+          "teamName": "Lagos",
+          "name": "Andre Evans",
+          "playerId": "p00294",
+          "pos": "SF",
+          "age": 22,
+          "rating": 88
+        },
+        {
+          "pick": 7,
+          "teamId": "ROT",
+          "teamName": "Rotterdam",
+          "name": "Zaccai Janson",
+          "playerId": "p00398",
+          "pos": "SF",
+          "age": 22,
+          "rating": 82
+        },
+        {
+          "pick": 8,
+          "teamId": "DHA",
+          "teamName": "Dhaka",
+          "name": "Antoine Maddox",
+          "playerId": "p00232",
+          "pos": "SG",
+          "age": 31,
+          "rating": 99
+        },
+        {
+          "pick": 9,
+          "teamId": "SALZ",
+          "teamName": "Salzburg",
+          "name": "Theon Campos",
+          "playerId": "p00478",
+          "pos": "C",
+          "age": 32,
+          "rating": 98
+        },
+        {
+          "pick": 10,
+          "teamId": null,
+          "teamName": "Vancouver",
+          "name": "Hugh Frazier",
+          "playerId": "p00252",
+          "pos": "SG",
+          "age": 22,
+          "rating": 90
+        },
+        {
+          "pick": 11,
+          "teamId": "EDI",
+          "teamName": "Edinburgh",
+          "name": "Arvidsson Olsen",
+          "playerId": "p00250",
+          "pos": "C",
+          "age": 22,
+          "rating": 85
+        },
+        {
+          "pick": 12,
+          "teamId": "MIL",
+          "teamName": "Milan",
+          "name": "Hiroshi Tanaka",
+          "playerId": "p00341",
+          "pos": "PF",
+          "age": 26,
+          "rating": 96
+        },
+        {
+          "pick": 13,
+          "teamId": "ROME",
+          "teamName": "Rome",
+          "name": "Logan Cohen",
+          "playerId": "p00393",
+          "pos": "PG",
+          "age": 22,
+          "rating": 86
+        },
+        {
+          "pick": 14,
+          "teamId": "MIL",
+          "teamName": "Milan",
+          "name": "Simeon Estrada",
+          "playerId": "p00339",
+          "pos": "SG",
+          "age": 22,
+          "rating": 87
+        },
+        {
+          "pick": 15,
+          "teamId": "MIL",
+          "teamName": "Milan",
+          "name": "Dillon Stevens",
+          "playerId": "p00338",
+          "pos": "PG",
+          "age": 22,
+          "rating": 84
+        },
+        {
+          "pick": 16,
+          "teamId": null,
+          "teamName": "Vancouver",
+          "name": "Sam Jordan",
+          "playerId": "p00253",
+          "pos": "SF",
+          "age": 22,
+          "rating": 78
+        },
+        {
+          "pick": 17,
+          "teamId": "ACK",
+          "teamName": "Auckland",
+          "name": "Kellen Brewer",
+          "playerId": "p00174",
+          "pos": "SG",
+          "age": 22,
+          "rating": 75
+        },
+        {
+          "pick": 18,
+          "teamId": "AMS",
+          "teamName": "Amsterdam",
+          "name": "Maddox Dean",
+          "playerId": "p00166",
+          "pos": "PF",
+          "age": 21,
+          "rating": 94
+        },
+        {
+          "pick": 19,
+          "teamId": "BUD",
+          "teamName": "Budapest",
+          "name": "PJ Tate",
+          "playerId": "p00209",
+          "pos": "PF",
+          "age": 22,
+          "rating": 91
+        },
+        {
+          "pick": 20,
+          "teamId": "KIEV",
+          "teamName": "Kiev",
+          "name": "Torin Jones",
+          "playerId": "p00291",
+          "pos": "C",
+          "age": 22,
+          "rating": 80
+        },
+        {
+          "pick": 21,
+          "teamId": "LIV",
+          "teamName": "Liverpool",
+          "name": "Peyton McBride",
+          "playerId": "p00305",
+          "pos": "C",
+          "age": 22,
+          "rating": 77
+        },
+        {
+          "pick": 22,
+          "teamId": "GLAS",
+          "teamName": "Glasgow",
+          "name": "Elliott Kane",
+          "playerId": "p00269",
+          "pos": "PF",
+          "age": 22,
+          "rating": 79
+        },
+        {
+          "pick": 23,
+          "teamId": "JOH",
+          "teamName": "Johannesburg",
+          "name": "Omari Bridges",
+          "playerId": "p00282",
+          "pos": "PG",
+          "age": 22,
+          "rating": 75
+        },
+        {
+          "pick": 24,
+          "teamId": "MUM",
+          "teamName": "Mumbai",
+          "name": "Kai Miller",
+          "playerId": "p00348",
+          "pos": "SF",
+          "age": 22,
+          "rating": 77
+        },
+        {
+          "pick": 25,
+          "teamId": "BUD",
+          "teamName": "Budapest",
+          "name": "Vaughn Jennings",
+          "playerId": "p00210",
+          "pos": "C",
+          "age": 22,
+          "rating": 73
+        },
+        {
+          "pick": 26,
+          "teamId": "HAM",
+          "teamName": "Hamburg",
+          "name": "Kam Randle",
+          "playerId": "p00275",
+          "pos": "PG",
+          "age": 22,
+          "rating": 80
+        },
+        {
+          "pick": 27,
+          "teamId": "MUN",
+          "teamName": "Munich",
+          "name": "Jackson Cole",
+          "playerId": "p00353",
+          "pos": "SF",
+          "age": 22,
+          "rating": 73
+        },
+        {
+          "pick": 28,
+          "teamId": "SP",
+          "teamName": "Sao Paolo",
+          "name": "Jesse Boyd",
+          "playerId": "p00417",
+          "pos": "SF",
+          "age": 22,
+          "rating": 73
+        },
+        {
+          "pick": 29,
+          "teamId": "SP",
+          "teamName": "Sao Paolo",
+          "name": "Wyatt Wright",
+          "playerId": "p00416",
+          "pos": "SG",
+          "age": 22,
+          "rating": 71
+        },
+        {
+          "pick": 30,
+          "teamId": "ZAG",
+          "teamName": "Zagreb",
+          "name": "Brody Fox",
+          "playerId": "p00454",
+          "pos": "PF",
+          "age": 22,
+          "rating": 76
+        },
+        {
+          "pick": 31,
+          "teamId": "STP",
+          "teamName": "Saint Petersburg",
+          "name": "Fletcher Reed",
+          "playerId": "p00402",
+          "pos": "SG",
+          "age": 22,
+          "rating": 68
+        },
+        {
+          "pick": 32,
+          "teamId": "BRUS",
+          "teamName": "Brussels",
+          "name": "KJ Hanson",
+          "playerId": "p00204",
+          "pos": "PF",
+          "age": 22,
+          "rating": 72
+        },
+        {
+          "pick": 33,
+          "teamId": "STP",
+          "teamName": "Saint Petersburg",
+          "name": "Xavien Turner",
+          "playerId": "p00401",
+          "pos": "PG",
+          "age": 22,
+          "rating": 68
+        },
+        {
+          "pick": 34,
+          "teamId": "OSL",
+          "teamName": "Oslo",
+          "name": "Pierce Williams",
+          "playerId": "p00372",
+          "pos": "PF",
+          "age": 22,
+          "rating": 68
+        },
+        {
+          "pick": 35,
+          "teamId": "IST",
+          "teamName": "Istanbul",
+          "name": "Darnell Stone",
+          "playerId": "p00281",
+          "pos": "C",
+          "age": 22,
+          "rating": 70
+        },
+        {
+          "pick": 36,
+          "teamId": "CAS",
+          "teamName": "Casablanca",
+          "name": "Kairo Holloway",
+          "playerId": "p00225",
+          "pos": "C",
+          "age": 22,
+          "rating": 68
+        },
+        {
+          "pick": 37,
+          "teamId": "SJ",
+          "teamName": "San Jose",
+          "name": "Axel Bennington",
+          "playerId": "p00412",
+          "pos": "SF",
+          "age": 22,
+          "rating": 67
+        },
+        {
+          "pick": 38,
+          "teamId": "MC",
+          "teamName": "Mexico City",
+          "name": "Karl Jenkins",
+          "playerId": "p00331",
+          "pos": "PF",
+          "age": 22,
+          "rating": 67
+        },
+        {
+          "pick": 39,
+          "teamId": "SHAN",
+          "teamName": "Shanghai",
+          "name": "Kyree Fields",
+          "playerId": "p00421",
+          "pos": "SG",
+          "age": 22,
+          "rating": 65
+        },
+        {
+          "pick": 40,
+          "teamId": "CAI",
+          "teamName": "Cairo",
+          "name": "Sterling Dupree",
+          "playerId": "p00216",
+          "pos": "PG",
+          "age": 22,
+          "rating": 65
+        }
+      ]
+    }
+  ]
+}

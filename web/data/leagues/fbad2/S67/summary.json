@@ -1,0 +1,72 @@
+{
+  "league": "fbad2",
+  "season": 67,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "D2 International Champion",
+      "champion": "Rome",
+      "runnerUp": "Salzburg",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02235",
+      "teamId": "ROME",
+      "runnerUpId": "SALZ"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-D2",
+      "playerId": "p02235",
+      "teamId": "ROME"
+    },
+    {
+      "award": "MVP-AM",
+      "playerId": "p02193",
+      "teamId": "Toronto"
+    },
+    {
+      "award": "MVP-EW",
+      "playerId": "p02284",
+      "teamId": "MAN"
+    },
+    {
+      "award": "MVP-EE",
+      "playerId": "p02281",
+      "teamId": "SALZ"
+    },
+    {
+      "award": "MVP-ES",
+      "playerId": "p02235",
+      "teamId": "ROME"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "AM",
+      "teams": [
+        "Guadalajara",
+        "Tampa"
+      ]
+    },
+    {
+      "group": "EW",
+      "teams": [
+        "Dublin"
+      ]
+    },
+    {
+      "group": "EE",
+      "teams": [
+        "Salzburg"
+      ]
+    },
+    {
+      "group": "ES",
+      "teams": [
+        "Rome"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "league": "fbad2",
+  "season": 69,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "Premier League Champion",
+      "champion": "Lisbon",
+      "runnerUp": "Rome",
+      "score": null,
+      "group": "PL",
+      "finalsMvp": "p02178",
+      "teamId": "LIS",
+      "runnerUpId": "ROME"
+    },
+    {
+      "title": "World League Champion",
+      "champion": "Glasgow",
+      "runnerUp": "Zurich",
+      "score": null,
+      "group": "WL",
+      "finalsMvp": "p02349",
+      "teamId": "GLAS",
+      "runnerUpId": "ZUR"
+    },
+    {
+      "title": "United League Champion",
+      "champion": "Vancouver",
+      "runnerUp": "Mexico City",
+      "score": null,
+      "group": "UL",
+      "finalsMvp": "p02269",
+      "runnerUpId": "MC"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-PL",
+      "playerId": "p02235",
+      "teamId": "ROME"
+    },
+    {
+      "award": "MVP-WL",
+      "playerId": "p02349",
+      "teamId": "GLAS"
+    },
+    {
+      "award": "MVP-UL",
+      "playerId": "p02215",
+      "teamId": "MAD"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "PL",
+      "teams": [
+        "Munich",
+        "Rome"
+      ]
+    },
+    {
+      "group": "WL",
+      "teams": [
+        "Glasgow"
+      ]
+    },
+    {
+      "group": "UL",
+      "teams": [
+        "Madrid",
+        "Vancouver"
+      ]
+    }
+  ]
+}

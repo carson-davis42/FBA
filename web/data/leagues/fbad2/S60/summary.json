@@ -1,0 +1,51 @@
+{
+  "league": "fbad2",
+  "season": 60,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "D2 International Champion",
+      "champion": "Rome",
+      "runnerUp": "Hamburg",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02135",
+      "teamId": "ROME",
+      "runnerUpId": "HAM"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-D2",
+      "playerId": "p02105",
+      "teamId": "MOS"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "AM",
+      "teams": [
+        "San Jose"
+      ]
+    },
+    {
+      "group": "EW",
+      "teams": [
+        "Manchester"
+      ]
+    },
+    {
+      "group": "EE",
+      "teams": [
+        "Hamburg"
+      ]
+    },
+    {
+      "group": "ES",
+      "teams": [
+        "Milan"
+      ]
+    }
+  ]
+}

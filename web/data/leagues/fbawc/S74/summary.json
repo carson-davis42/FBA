@@ -1,0 +1,17 @@
+{
+  "league": "fbawc",
+  "season": 74,
+  "locked": true,
+  "host": "Germany",
+  "champions": [
+    {
+      "title": "World Cup Champion",
+      "champion": "USA",
+      "runnerUp": "Germany",
+      "score": null,
+      "finalsMvp": "p02280",
+      "teamId": "USA",
+      "runnerUpId": "GER"
+    }
+  ]
+}

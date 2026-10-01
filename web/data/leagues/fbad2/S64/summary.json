@@ -1,0 +1,72 @@
+{
+  "league": "fbad2",
+  "season": 64,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "D2 International Champion",
+      "champion": "Munich",
+      "runnerUp": "Lisbon",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02142",
+      "teamId": "MUN",
+      "runnerUpId": "LIS"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-D2",
+      "playerId": "p02151",
+      "teamId": "HAM"
+    },
+    {
+      "award": "MVP-AM",
+      "playerId": "p02134",
+      "teamId": "GUAD"
+    },
+    {
+      "award": "MVP-EW",
+      "playerId": "p02163",
+      "teamId": "AMS"
+    },
+    {
+      "award": "MVP-EE",
+      "playerId": "p02151",
+      "teamId": "HAM"
+    },
+    {
+      "award": "MVP-ES",
+      "playerId": "p02235",
+      "teamId": "ROME"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "AM",
+      "teams": [
+        "Guadalajara"
+      ]
+    },
+    {
+      "group": "EW",
+      "teams": [
+        "Amsterdam"
+      ]
+    },
+    {
+      "group": "EE",
+      "teams": [
+        "Kiev",
+        "Munich"
+      ]
+    },
+    {
+      "group": "ES",
+      "teams": [
+        "Rome"
+      ]
+    }
+  ]
+}

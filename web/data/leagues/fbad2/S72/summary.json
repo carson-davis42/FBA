@@ -1,0 +1,96 @@
+{
+  "league": "fbad2",
+  "season": 72,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "Premier League Champion",
+      "champion": "Salzburg",
+      "runnerUp": "Lisbon",
+      "score": null,
+      "group": "PL",
+      "finalsMvp": "p02281",
+      "teamId": "SALZ",
+      "runnerUpId": "LIS"
+    },
+    {
+      "title": "World League Champion",
+      "champion": "Buenos Aires",
+      "runnerUp": "London",
+      "score": null,
+      "group": "WL",
+      "finalsMvp": "p00213",
+      "teamId": "BA",
+      "runnerUpId": "LON"
+    },
+    {
+      "title": "United League Champion",
+      "champion": "Recife",
+      "runnerUp": "Liverpool",
+      "score": null,
+      "group": "UL",
+      "finalsMvp": "p00146",
+      "teamId": "REC",
+      "runnerUpId": "LIV"
+    },
+    {
+      "title": "International League Champion",
+      "champion": "Budapest",
+      "runnerUp": "Sao Paolo",
+      "score": null,
+      "group": "IL",
+      "finalsMvp": "p02312",
+      "teamId": "BUD",
+      "runnerUpId": "SP"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-PL",
+      "playerId": "p00320",
+      "teamId": "LIS"
+    },
+    {
+      "award": "MVP-WL",
+      "playerId": "p00409",
+      "teamId": "LON"
+    },
+    {
+      "award": "MVP-UL",
+      "playerId": "p00146",
+      "teamId": "REC"
+    },
+    {
+      "award": "MVP-IL",
+      "playerId": "p02312",
+      "teamId": "BUD"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "PL",
+      "teams": [
+        "Tokyo"
+      ]
+    },
+    {
+      "group": "WL",
+      "teams": [
+        "Mexico City"
+      ]
+    },
+    {
+      "group": "UL",
+      "teams": [
+        "Liverpool"
+      ]
+    },
+    {
+      "group": "IL",
+      "teams": [
+        "Budapest"
+      ]
+    }
+  ]
+}

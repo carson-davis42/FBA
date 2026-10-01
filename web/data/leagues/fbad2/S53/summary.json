@@ -1,0 +1,32 @@
+{
+  "league": "fbad2",
+  "season": 53,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "D2 International Champion",
+      "champion": "San Jose",
+      "runnerUp": "Orlando",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02115",
+      "teamId": "SJ"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-D2",
+      "playerId": "p02115",
+      "teamId": "SJ"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "AM",
+      "teams": [
+        "San Jose"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "league": "fbad2",
+  "season": 61,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "D2 International Champion",
+      "champion": "Austin",
+      "runnerUp": "Hamburg",
+      "score": null,
+      "group": "D2",
+      "finalsMvp": "p02127",
+      "teamId": "AUS",
+      "runnerUpId": "HAM"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP-D2",
+      "playerId": "p02163",
+      "teamId": "AMS"
+    }
+  ],
+  "rsChampions": [
+    {
+      "group": "AM",
+      "teams": [
+        "Maine"
+      ]
+    },
+    {
+      "group": "EW",
+      "teams": [
+        "Amsterdam"
+      ]
+    },
+    {
+      "group": "EE",
+      "teams": [
+        "Hamburg"
+      ]
+    },
+    {
+      "group": "ES",
+      "teams": [
+        "Rome",
+        "Madrid"
+      ]
+    }
+  ]
+}

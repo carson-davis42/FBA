@@ -1,0 +1,17 @@
+{
+  "league": "fbawc",
+  "season": 72,
+  "locked": true,
+  "host": "USA",
+  "champions": [
+    {
+      "title": "World Cup Champion",
+      "champion": "Japan",
+      "runnerUp": "USA",
+      "score": null,
+      "finalsMvp": "p00439",
+      "teamId": "JAP",
+      "runnerUpId": "USA"
+    }
+  ]
+}
