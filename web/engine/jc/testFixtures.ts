@@ -57,3 +57,11 @@ export function jcStateFixture(seed = 7, season = 79): JcState {
     summary: null,
   };
 }
+
+/** An unstarted FBAJC season: full rosters, no schedule, results or rankings; every player is unnamed (`name: null`). */
+export function jcUnstartedFixture(seed = 7, season = 79): JcState {
+  const s = jcStateFixture(seed, season);
+  const players: JcState['players']['players'] = {};
+  for (const [id, p] of Object.entries(s.players.players)) players[id] = { ...p, name: null };
+  return { ...s, players: { ...s.players, players }, schedule: null, results: null, rankings: null };
+}
