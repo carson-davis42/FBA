@@ -25,10 +25,26 @@ const ok = (r: RecruitingResult) => {
   return r.state;
 };
 const names = (table: string) => within(screen.getByRole('table', { name: table })).queryAllByRole('row').slice(1)
-  .map(r => (r as HTMLTableRowElement).cells[0].textContent);
+  .map(r => (r as HTMLTableRowElement).cells[1].textContent);
 const button = (name: string) => screen.getByRole('button', { name }) as HTMLButtonElement;
 
+const ranks = (table: string) => within(screen.getByRole('table', { name: table })).queryAllByRole('row').slice(1)
+  .map(r => (r as HTMLTableRowElement).cells[0].textContent);
+
 describe('BoardTab', () => {
+  it('numbers the class and the portal 1, 2, 3 in their own order, and keeps a player\'s rank when the list is filtered', () => {
+    const s = collegeCurrentClassState();
+    render(<Harness initial={s} runs={[]} />);
+    const classRanks = ranks(`Class of S${s.recruiting.classOf}`);
+    expect(classRanks).toEqual(s.recruiting.recruits.map((_, i) => String(i + 1)));
+    if (s.recruiting.portal.length) expect(ranks('Transfer portal')).toEqual(s.recruiting.portal.map((_, i) => String(i + 1)));
+    const last = s.recruiting.recruits.at(-1)!;
+    fireEvent.change(screen.getByLabelText('Search names'), { target: { value: names(`Class of S${s.recruiting.classOf}`).at(-1)! } });
+    const shown = within(screen.getByRole('table', { name: `Class of S${s.recruiting.classOf}` })).queryAllByRole('row').slice(1);
+    expect(shown.length).toBeGreaterThan(0);
+    expect((shown[0] as HTMLTableRowElement).cells[0].textContent).toBe(String(s.recruiting.recruits.indexOf(last) + 1));
+  });
+
   it('asks for the class first', () => {
     render(<Harness initial={collegeBaseState()} runs={[]} />);
     expect(screen.getByText(/Create the S80 class first/)).toBeTruthy();

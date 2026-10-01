@@ -64,8 +64,13 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
     : null;
   const picked = picking ? [...doc.recruits, ...doc.portal].find(p => p.playerId === picking.playerId) ?? null : null;
 
+  // A player's rank is his place in his group (the class or the portal), so it stays the same while the filters narrow the list.
+  const rankOf = new Map<string, number>([...doc.recruits, ...doc.portal].map(p => [p.playerId, 0]));
+  doc.recruits.forEach((p, i) => rankOf.set(p.playerId, i + 1));
+  doc.portal.forEach((p, i) => rankOf.set(p.playerId, i + 1));
   const row = (p: Prospect | PortalPlayer) => (
     <tr key={p.playerId}>
+      <td className="n">{rankOf.get(p.playerId)}</td>
       <td>{name(p.playerId)}</td>
       <td>{p.position}</td>
       <td>{p.classYear}</td>
@@ -113,7 +118,7 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
   const head = (portal: boolean) => (
     <thead>
       <tr>
-        <th>Name</th><th>Pos</th><th>Yr</th><th>Stars</th><th className="n">Rtg</th>{portal && <th>From</th>}<th>Projections</th>
+        <th className="n">#</th><th>Name</th><th>Pos</th><th>Yr</th><th>Stars</th><th className="n">Rtg</th>{portal && <th>From</th>}<th>Projections</th>
         <th><span className="muted">Actions</span></th>
       </tr>
     </thead>
