@@ -36,6 +36,26 @@ export function bestNewByPosition(doc: RankingFile, name: NameOf): Partial<Recor
   return best;
 }
 
+const NO_SKIP: ReadonlySet<string> = new Set();
+
+/**
+ * D2 reset: the ranked players past `spots` at their position. They go to the Reserve pool and get no rating, so the rating
+ * checks and suggestions skip them.
+ */
+export function reserveBound(doc: RankingFile, spots: number): Set<string> {
+  const byId = new Map(doc.rows.map(r => [r.playerId, r]));
+  const taken = new Map<Position, number>();
+  const out = new Set<string>();
+  for (const id of doc.order) {
+    const pos = byId.get(id)?.position;
+    if (!pos) continue;
+    const n = (taken.get(pos) ?? 0) + 1;
+    taken.set(pos, n);
+    if (n > spots) out.add(id);
+  }
+  return out;
+}
+
 /** The ranked rows, best first. */
 export function rankedRows(doc: RankingFile): RankingRow[] {
   const byId = new Map(doc.rows.map(r => [r.playerId, r]));
@@ -79,13 +99,13 @@ export function setRating(doc: RankingFile, playerId: string, value: number | nu
 }
 
 /** Gives every ranked player without a rating their rank's suggestion. Never overwrites a typed rating. */
-export function applyAllSuggestions(doc: RankingFile): RankingFile {
+export function applyAllSuggestions(doc: RankingFile, skip: ReadonlySet<string> = NO_SKIP): RankingFile {
   if (doc.locked) return doc;
   const ratings = { ...doc.ratings };
   let changed = false;
   doc.order.forEach((id, i) => {
     const s = suggestion(doc, i + 1);
-    if (ratings[id] === undefined && s !== null) {
+    if (ratings[id] === undefined && s !== null && !skip.has(id)) {
       ratings[id] = s;
       changed = true;
     }
@@ -96,12 +116,12 @@ export function applyAllSuggestions(doc: RankingFile): RankingFile {
 export interface RankedRating { id: string; rank: number; rating: number }
 
 /** Each rated player whose rating is higher than the lowest rating ranked above them, paired with that player. */
-export function outOfOrderPairs(doc: RankingFile): { above: RankedRating; below: RankedRating }[] {
+export function outOfOrderPairs(doc: RankingFile, skip: ReadonlySet<string> = NO_SKIP): { above: RankedRating; below: RankedRating }[] {
   const out: { above: RankedRating; below: RankedRating }[] = [];
   let lowest: RankedRating | null = null;
   doc.order.forEach((id, i) => {
     const rating = doc.ratings[id];
-    if (rating === undefined) return;
+    if (rating === undefined || skip.has(id)) return;
     const cur = { id, rank: i + 1, rating };
     if (lowest && rating > lowest.rating) out.push({ above: lowest, below: cur });
     else lowest = cur;
@@ -110,26 +130,26 @@ export function outOfOrderPairs(doc: RankingFile): { above: RankedRating; below:
 }
 
 /** The ids to flag on screen: players rated above someone ranked higher. */
-export function outOfOrder(doc: RankingFile): Set<string> {
-  return new Set(outOfOrderPairs(doc).map(p => p.below.id));
+export function outOfOrder(doc: RankingFile, skip: ReadonlySet<string> = NO_SKIP): Set<string> {
+  return new Set(outOfOrderPairs(doc, skip).map(p => p.below.id));
 }
 
 /** Why the ranking can't be finished yet; empty when it can. */
-export function rankingBlockers(doc: RankingFile, name: NameOf): string[] {
+export function rankingBlockers(doc: RankingFile, name: NameOf, skip: ReadonlySet<string> = NO_SKIP): string[] {
   const out: string[] = [];
   const left = doc.rows.length - doc.order.length;
   if (left) out.push(left === 1 ? "1 player isn't ranked yet" : `${left} players aren't ranked yet`);
-  const unrated = doc.order.filter(id => doc.ratings[id] === undefined).length;
+  const unrated = doc.order.filter(id => doc.ratings[id] === undefined && !skip.has(id)).length;
   if (unrated) out.push(unrated === 1 ? '1 player still needs a rating' : `${unrated} players still need a rating`);
-  for (const { above, below } of outOfOrderPairs(doc)) {
+  for (const { above, below } of outOfOrderPairs(doc, skip)) {
     out.push(`#${below.rank} ${name(below.id)} (${below.rating}) is rated above #${above.rank} ${name(above.id)} (${above.rating})`);
   }
   return out;
 }
 
 /** How many ranked players have exactly their rank's suggestion. */
-export function suggestionsTaken(doc: RankingFile): number {
-  return doc.order.filter((id, i) => doc.ratings[id] !== undefined && doc.ratings[id] === suggestion(doc, i + 1)).length;
+export function suggestionsTaken(doc: RankingFile, skip: ReadonlySet<string> = NO_SKIP): number {
+  return doc.order.filter((id, i) => !skip.has(id) && doc.ratings[id] !== undefined && doc.ratings[id] === suggestion(doc, i + 1)).length;
 }
 
 /** Brings the rows in line with who should be listed: new players are added (unranked), missing ones are removed from rows, order and ratings. A locked doc is returned unchanged. */

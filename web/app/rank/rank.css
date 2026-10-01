@@ -18,3 +18,4 @@
 .rank-best { margin-bottom: var(--s3); }
 .rank-best h4 { margin: 0 0 var(--s1); font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
 .rank-col .rank-best .table-wrap { max-height: none; overflow: visible; }
+.reserve-x { font-weight: 700; color: var(--muted); }

@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import { applyClassSuggestions, consensusSuggestion, parseConsensusInput, starsFor } from '../../engine/college/classRanking';
 import {
-  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, take, takeRest, type NameOf,
+  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, outOfOrder, rankedRows, rankingBlockers, reserveBound, sendBack, setRating, suggestion, take, takeRest, type NameOf,
 } from '../../engine/rank/ranking';
 import { POSITIONS } from '../../engine/roster/rules';
 import type { Position, RankingFile, RankingRow } from '../../engine/shared/types';
@@ -76,8 +76,10 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   const shownLeft = (r: RankingRow) => shown(r) && !fullPositions.has(r.position);
   const left = leftRows(doc, name);
   const allPlaced = left.length === 0;
-  const flagged = outOfOrder(doc);
-  const blockers = [...rankingBlockers(doc, name), ...extraBlockers];
+  // D2 reset: players ranked past their position's spots go to the Reserve pool; they show an X and need no rating.
+  const reserve = positionCap ? reserveBound(doc, positionCap.spots) : new Set<string>();
+  const flagged = outOfOrder(doc, reserve);
+  const blockers = [...rankingBlockers(doc, name, reserve), ...extraBlockers];
   const prev = (r: RankingRow) => r.prevRating ?? (r.otherRating !== null ? <span className="muted">{otherLabel} {r.otherRating}</span> : '—');
   const existing = left.filter(r => !isNewRow(doc, r));
   const fresh = left.filter(r => isNewRow(doc, r));
@@ -199,7 +201,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
           <div className="toolbar rank-head">
             <h3>New ranking · {doc.order.length}</h3>
             {!locked && allPlaced && (
-              <button type="button" className="btn" onClick={() => onChange(consensus ? applyClassSuggestions : applyAllSuggestions)}>Use all suggestions</button>
+              <button type="button" className="btn" onClick={() => onChange(consensus ? applyClassSuggestions : cur => applyAllSuggestions(cur, positionCap ? reserveBound(cur, positionCap.spots) : undefined))}>Use all suggestions</button>
             )}
           </div>
           {!locked && !allPlaced && doc.order.length > 0 && <p className="muted">Rating boxes appear once every player is ranked.</p>}
@@ -230,7 +232,10 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
                       <td className="n">{r.age ?? '—'}</td>
                       <td>{teamLabel(r.team, r)}</td>
                       <td className="n">{prev(r)}</td>
-                      {allPlaced && (
+                      {allPlaced && reserve.has(r.playerId) && (
+                        <td className="rank-rating"><span className="reserve-x" title="Goes to the Reserve pool, so no rating">X</span></td>
+                      )}
+                      {allPlaced && !reserve.has(r.playerId) && (
                         <td className="rank-rating">
                           <RatingInput
                             value={doc.ratings[r.playerId] ?? null} name={name(r.playerId)} disabled={locked} allowBlank

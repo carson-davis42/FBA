@@ -332,6 +332,38 @@ describe('RankingTable', () => {
     });
   });
 
+  describe('Reserve-bound players', () => {
+    const cap = { spots: 2, label: 'D2 spots left per position' };
+    const ranked = () => {
+      render(<Harness initial={rankingDoc({ curve: [90, 85, 80, 75, 70, 65] })} positionCap={cap} />);
+      fireEvent.click(screen.getByRole('button', { name: 'Take the rest in order' }));
+    };
+    const ratingCell = (name: string) => (within(screen.getByRole('table', { name: 'New ranking' })).getByText(name).closest('tr') as HTMLTableRowElement).cells[6];
+
+    it('show an X instead of a rating box, and are not asked for a rating', () => {
+      ranked();
+      // PG order: Ada, Cal, Dev, Eli: with 2 spots, Dev and Eli go to the Reserve pool.
+      expect(ratingCell('Dev Hart').textContent).toBe('X');
+      expect(ratingCell('Eli Park').textContent).toBe('X');
+      expect(screen.queryByLabelText('New rating for Dev Hart')).toBeNull();
+      expect(screen.getByLabelText('New rating for Ada Stone')).toBeTruthy();
+      expect(screen.getByText('4 players still need a rating')).toBeTruthy();
+    });
+
+    it('get no suggestion from "Use all suggestions", and the rest can be finished', () => {
+      ranked();
+      fireEvent.click(screen.getByRole('button', { name: 'Use all suggestions' }));
+      expect(screen.queryByText(/still need a rating/)).toBeNull();
+      expect((screen.getByRole('button', { name: 'Finish ratings' }) as HTMLButtonElement).disabled).toBe(false);
+    });
+
+    it('show no X without a cap', () => {
+      render(<Harness initial={rankingDoc()} />);
+      fireEvent.click(screen.getByRole('button', { name: 'Take the rest in order' }));
+      expect(screen.queryByText('X')).toBeNull();
+    });
+  });
+
   describe('best new at each position', () => {
     const strip = () => screen.queryByRole('table', { name: 'Best new at each position' });
 

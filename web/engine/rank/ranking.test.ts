@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { RankingFile } from '../shared/types';
 import {
-  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
+  applyAllSuggestions, bestNewByPosition, isNewRow, reserveBound, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
 } from './ranking';
 import { rankingDoc, rankName } from './testFixtures';
 
@@ -161,6 +161,33 @@ describe('syncRows', () => {
     const doc = rankingDoc();
     const result = syncRows(doc, doc.rows);
     expect(result).toEqual(doc);
+  });
+});
+
+describe('reserveBound', () => {
+  // PG ranking order: Ada, Cal, Dev, Eli (four PGs); Ben is the only SG, Finn the only C.
+  const everyone = () => rankingDoc({ order: ['p00001', 'p00003', 'p00004', 'p00005', 'p00002', 'p00006'] });
+
+  it('is the players ranked past the spots at their position', () => {
+    expect([...reserveBound(everyone(), 2)].sort()).toEqual(['p00004', 'p00005']);
+    expect([...reserveBound(everyone(), 4)]).toEqual([]);
+    expect([...reserveBound(rankingDoc({ order: ['p00001', 'p00003', 'p00004'] }), 2)]).toEqual(['p00004']);
+  });
+
+  it('are not asked for a rating, not flagged out of order, and get no suggestion', () => {
+    const skip = reserveBound(everyone(), 2);
+    let doc = everyone();
+    for (const [id, v] of [['p00001', 80], ['p00003', 78], ['p00002', 70], ['p00006', 60]] as const) doc = setRating(doc, id, v);
+    expect(rankingBlockers(doc, rankName)).toEqual(['2 players still need a rating']);
+    expect(rankingBlockers(doc, rankName, skip)).toEqual([]);
+    doc = setRating(doc, 'p00004', 99);
+    expect(rankingBlockers(doc, rankName, skip)).toEqual([]);
+    expect([...outOfOrder(doc, skip)]).toEqual([]);
+    expect([...outOfOrder(doc)]).toEqual(['p00004']);
+    const filled = applyAllSuggestions(everyone(), skip);
+    // The fixture's curve has 3 rungs: ranks 1-3 are Ada, Cal and Dev; Dev is Reserve-bound, so he gets none.
+    expect(Object.keys(filled.ratings).sort()).toEqual(['p00001', 'p00003']);
+    expect(suggestionsTaken(filled, skip)).toBe(2);
   });
 });
 

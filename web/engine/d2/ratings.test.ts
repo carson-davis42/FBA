@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { applyAllSuggestions, setRating, takeRest } from '../rank/ranking';
+import { applyAllSuggestions, reserveBound, setRating, takeRest } from '../rank/ranking';
 import { RankingFile } from '../shared/types';
-import { buildRankingRows, d2Curve, finishRatings, membershipBlockers, parseRatingInput, ratingsBlockers, startRatings } from './ratings';
+import { buildRankingRows, d2Curve, finishRatings, stretchCurve, membershipBlockers, parseRatingInput, ratingsBlockers, startRatings } from './ratings';
 import { d2Name, type D2Result, type D2State } from './state';
 import { d2BaseState, d2RatedState } from './testFixtures';
 
@@ -11,7 +11,7 @@ const ok = (r: D2Result) => {
   return r;
 };
 const started = (s: D2State = d2BaseState()): D2State => ok(startRatings(s)).state;
-/** Everyone ranked in last season's order; the 8 with a suggestion take it; the last 5 in rank order are rated 66, 64, 62, 60, 58. */
+/** Everyone ranked in last season's order; the 10 with a suggestion take it; the last 5 in rank order (which overrides ranks 9 and 10) are rated 66, 64, 62, 60, 58. */
 const ranked = (s: D2State): D2State => {
   let doc = applyAllSuggestions(takeRest(s.ratings!, id => d2Name(s, id)));
   // The 4 unrated Reserves rank with the existing players, then the FBA free agent; rate the last 5 in rank order.
@@ -53,6 +53,51 @@ describe('d2Curve', () => {
   });
 });
 
+describe('stretchCurve', () => {
+  it('stretches a short ladder to the slot count, keeping the top and bottom', () => {
+    const long = Array.from({ length: 295 }, (_, i) => Math.round(99 - (i * 34) / 294));
+    const out = stretchCurve(long, 320);
+    expect(out).toHaveLength(320);
+    expect(out[0]).toBe(99);
+    expect(out[319]).toBe(65);
+    for (let i = 1; i < out.length; i++) expect(out[i]).toBeLessThanOrEqual(out[i - 1]);
+  });
+
+  it('interpolates between rungs', () => {
+    expect(stretchCurve([90, 80], 5)).toEqual([90, 88, 85, 83, 80]);
+    expect(stretchCurve([99, 97, 95], 5)).toEqual([99, 98, 97, 96, 95]);
+  });
+
+  it('leaves a ladder that is already long enough, or too short to stretch, alone', () => {
+    expect(stretchCurve([90, 80, 70], 3)).toEqual([90, 80, 70]);
+    expect(stretchCurve([90, 80, 70], 2)).toEqual([90, 80, 70]);
+    expect(stretchCurve([90], 5)).toEqual([90]);
+    expect(stretchCurve([], 5)).toEqual([]);
+  });
+});
+
+describe('Reserve-bound players', () => {
+  it('need no rating, and finish leaves them unrated', () => {
+    const s = started();
+    const doc = takeRest(s.ratings!, id => d2Name(s, id));
+    // Two spots per position: of the 5 PGs, the 3 ranked last go to the Reserve pool.
+    const spots = 2;
+    const skip = reserveBound(doc, spots);
+    expect(skip.size).toBeGreaterThan(0);
+    let rated = applyAllSuggestions(doc, skip);
+    for (const id of doc.order) if (!skip.has(id) && rated.ratings[id] === undefined) rated = setRating(rated, id, 66);
+    const state = { ...s, ratings: rated };
+    expect(ratingsBlockers(state, spots)).toEqual([]);
+    const r = ok(finishRatings(state, ctx, spots));
+    const everyRating = new Map([
+      ...Object.values(r.state.d2.teams).flat().map(e => [e.playerId, e.rating] as const),
+      ...r.state.reserves.players.map(p => [p.playerId, p.rating] as const),
+    ]);
+    for (const id of skip) expect(everyRating.get(id)).toBeNull();
+    for (const id of doc.order) if (!skip.has(id)) expect(everyRating.get(id)).not.toBeNull();
+  });
+});
+
 describe('startRatings', () => {
   it('builds an empty ranking with the curve once free agency is closed', () => {
     const r = ok(startRatings(d2BaseState()));
@@ -60,10 +105,11 @@ describe('startRatings', () => {
     expect(r.label).toBe('Start D2 ratings reset');
     expect(r.state.ratings).toMatchObject({ league: 'fbad2', season: 79, kind: 'd2-reset', locked: false, order: [], ratings: {} });
     expect(r.state.ratings!.rows).toHaveLength(13);
-    expect(r.state.ratings!.curve).toEqual([94, 85, 80, 75, 75, 72, 70, 68]);
+    // The 8-rung ladder is stretched to the fixture's 10 roster slots.
+    expect(r.state.ratings!.curve).toEqual([94, 87, 82, 78, 75, 75, 73, 71, 70, 68]);
     expect(RankingFile.safeParse(r.state.ratings).success).toBe(true);
     const withPrev = ok(startRatings({ ...d2BaseState(), prevRatings: prevFile({ p00001: 88, p00002: 90 }) }));
-    expect(withPrev.state.ratings!.curve).toEqual([90, 88]);
+    expect(withPrev.state.ratings!.curve).toEqual(stretchCurve([90, 88], 10));
   });
 
   it('refuses before free agency closes, or twice', () => {
@@ -110,8 +156,8 @@ describe('finishRatings', () => {
     const r = ok(finishRatings(ranked(started()), ctx));
     expect(r.label).toBe('Finish D2 ratings');
     expect(r.changed).toEqual(['d2', 'reserves', 'ratings', 'd2Tx', 'calendar']);
-    expect(r.state.d2.teams.AMS.map(e => e.rating)).toEqual([75, 72, 75, 94, null]);
-    expect(r.state.d2.teams.BER.map(e => e.rating)).toEqual([70, null, 80, 68, 85]);
+    expect(r.state.d2.teams.AMS.map(e => e.rating)).toEqual([78, 75, 75, 94, null]);
+    expect(r.state.d2.teams.BER.map(e => e.rating)).toEqual([73, null, 82, 71, 87]);
     expect(r.state.reserves.players.map(p => p.rating)).toEqual([62, 58, 60, 66, 64]);
     expect(r.state.reserves.players[1]).toMatchObject({ fromFba: true, fbaRating: 71 });
     expect(r.state.ratings!.locked).toBe(true);
