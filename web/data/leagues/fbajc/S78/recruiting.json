@@ -1,0 +1,342 @@
+{
+  "league": "fbajc",
+  "season": 78,
+  "classOf": 79,
+  "locked": false,
+  "classDraft": [],
+  "created": true,
+  "recruits": [
+    {
+      "playerId": "p02392",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": 94,
+      "stars": 5,
+      "consensus": 98.8,
+      "projections": {
+        "UNC": 1
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02393",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": 94,
+      "stars": 5,
+      "consensus": 98.7,
+      "projections": {
+        "UK": 1,
+        "ARIZ": 1,
+        "GU": 1
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02394",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": 93,
+      "stars": 5,
+      "consensus": 98.3,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02395",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": 91,
+      "stars": 5,
+      "consensus": 96.9,
+      "projections": {
+        "VIL": 1,
+        "XU": 1,
+        "UCON": 1
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02396",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": 90,
+      "stars": 5,
+      "consensus": 96.2,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02397",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": 88,
+      "stars": 5,
+      "consensus": 94.5,
+      "projections": {
+        "FSU": 1,
+        "FLO": 1
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02398",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": 87,
+      "stars": 5,
+      "consensus": 93,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02399",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": 87,
+      "stars": 5,
+      "consensus": 92.7,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02400",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": 87,
+      "stars": 5,
+      "consensus": 92.2,
+      "projections": {},
+      "committedTo": "GU"
+    },
+    {
+      "playerId": "p02401",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": 86,
+      "stars": 5,
+      "consensus": 91.7,
+      "projections": {
+        "NEV": 1
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02402",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": 86,
+      "stars": 5,
+      "consensus": 90.4,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02403",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": 85,
+      "stars": 5,
+      "consensus": 90,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02404",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": 85,
+      "stars": 4,
+      "consensus": 89.9,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02405",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": 85,
+      "stars": 4,
+      "consensus": 89.2,
+      "projections": {
+        "UM": 2
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02406",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": 84,
+      "stars": 4,
+      "consensus": 88.4,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02407",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": 84,
+      "stars": 4,
+      "consensus": 88,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02408",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": 84,
+      "stars": 4,
+      "consensus": 87.6,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02409",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": 83,
+      "stars": 4,
+      "consensus": 87.1,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02410",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": 82,
+      "stars": 4,
+      "consensus": 85.8,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02411",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": 81,
+      "stars": 4,
+      "consensus": 84.9,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02412",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": 81,
+      "stars": 4,
+      "consensus": 84.6,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02413",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": 81,
+      "stars": 4,
+      "consensus": 84.2,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02414",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": 80,
+      "stars": 4,
+      "consensus": 83.2,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02415",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": 80,
+      "stars": 4,
+      "consensus": 83.1,
+      "projections": {},
+      "committedTo": "WICH"
+    },
+    {
+      "playerId": "p02416",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": 79,
+      "stars": 4,
+      "consensus": 82.3,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02417",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": 78,
+      "stars": 4,
+      "consensus": 81.4,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02418",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": 77,
+      "stars": 4,
+      "consensus": 80.3,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02419",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": 76,
+      "stars": 3,
+      "consensus": 79.8,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02420",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": 76,
+      "stars": 3,
+      "consensus": 79.6,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02421",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": 75,
+      "stars": 3,
+      "consensus": 78.5,
+      "projections": {},
+      "committedTo": null
+    }
+  ],
+  "portal": [
+    {
+      "playerId": "p00854",
+      "position": "SF",
+      "classYear": "So",
+      "rating": 87,
+      "stars": 4,
+      "projections": {
+        "ORE": 1,
+        "TAMU": 1
+      },
+      "committedTo": null,
+      "fromTeam": "GU"
+    }
+  ]
+}
