@@ -40,7 +40,7 @@ export function progressRatings(
   });
 }
 
-function lineupOf(roster: RosterEntry[] | undefined, teamId: string): SimTeam | string {
+export function lineupOf(roster: RosterEntry[] | undefined, teamId: string): SimTeam | string {
   if (!roster) return `${teamId} has no roster`;
   const players = [];
   for (const pos of POSITIONS) {
@@ -49,6 +49,57 @@ function lineupOf(roster: RosterEntry[] | undefined, teamId: string): SimTeam | 
     players.push({ playerId: e.playerId!, position: pos, rating: e.rating });
   }
   return { teamId, players };
+}
+
+
+/** Rosters and team ratings kept in step while games are simmed in memory. */
+export interface Book {
+  rosters: Record<string, RosterEntry[]>;
+  ratings: Record<string, number>;
+  total: number;
+  teamIds: string[];
+}
+
+export function newBook(state: JcState): Book {
+  const rosters: Record<string, RosterEntry[]> = { ...state.rosters.teams };
+  const ratings: Record<string, number> = {};
+  let total = 0;
+  const teamIds = state.teams.teams.map(t => t.teamId);
+  for (const id of teamIds) {
+    ratings[id] = teamRating(rosters[id] ?? []);
+    total += ratings[id];
+  }
+  return { rosters, ratings, total, teamIds };
+}
+
+/**
+ * Sims one game on the book: adds the box points to both rosters and, when `progress` is set, lets every starter's rating rise
+ * (team ratings and the league average are recomputed after each game, as the Java does). Returns the result, or a problem.
+ */
+export function playOne(book: Book, gameNo: number, homeId: string, awayId: string, rng: Rng, refRating: number, progress: boolean): GameResult | string {
+  const home = lineupOf(book.rosters[homeId], homeId);
+  const away = lineupOf(book.rosters[awayId], awayId);
+  if (typeof home === 'string') return home;
+  if (typeof away === 'string') return away;
+  const setRoster = (id: string, r: RosterEntry[]): void => {
+    book.rosters[id] = r;
+    const nr = teamRating(r);
+    book.total += nr - book.ratings[id];
+    book.ratings[id] = nr;
+  };
+  const sim = simGame(gameNo, home, away, rng, JC_PROFILE);
+  const pts: Record<string, number> = {};
+  for (const side of ['home', 'away'] as const) sim[side].players.forEach((p, k) => { pts[p.playerId] = sim.box[side][k]; });
+  for (const id of [homeId, awayId]) {
+    setRoster(id, book.rosters[id].map(e => (e.playerId !== null && pts[e.playerId] !== undefined ? { ...e, points: e.points + pts[e.playerId] } : e)));
+  }
+  if (progress) {
+    const homeWon = sim.homePts > sim.awayPts;
+    const avg = book.total / book.teamIds.length;
+    setRoster(homeId, progressRatings(book.rosters[homeId], pts, homeWon, book.ratings[awayId], avg, rng));
+    setRoster(awayId, progressRatings(book.rosters[awayId], pts, !homeWon, book.ratings[homeId], avg, rng));
+  }
+  return toGameResult(sim, refRating);
 }
 
 type Step = { state: JcState; filledSchedule: boolean } | { problems: string[] };
@@ -84,38 +135,16 @@ function step(state: JcState, rng: Rng): Step {
     }
   }
 
-  const rosters: Record<string, RosterEntry[]> = { ...state.rosters.teams };
-  const ratings: Record<string, number> = {};
-  let total = 0;
-  const teamIds = state.teams.teams.map(t => t.teamId);
-  for (const id of teamIds) {
-    ratings[id] = teamRating(rosters[id] ?? []);
-    total += ratings[id];
-  }
-  const setRoster = (id: string, r: RosterEntry[]): void => {
-    rosters[id] = r;
-    const nr = teamRating(r);
-    total += nr - ratings[id];
-    ratings[id] = nr;
-  };
+  const book = newBook(state);
   const refRating = leagueRefRating(state.rosters);
   const results: GameResult[] = [];
   for (const g of games) {
-    const home = lineupOf(rosters[g.home], g.home);
-    const away = lineupOf(rosters[g.away], g.away);
-    if (typeof home === 'string') return { problems: [home] };
-    if (typeof away === 'string') return { problems: [away] };
-    const sim = simGame(g.gameNo, home, away, rng, JC_PROFILE);
-    results.push(toGameResult(sim, refRating));
-    const pts: Record<string, number> = {};
-    for (const side of ['home', 'away'] as const) sim[side].players.forEach((p, k) => { pts[p.playerId] = sim.box[side][k]; });
-    for (const id of [g.home, g.away]) {
-      setRoster(id, rosters[id].map(e => (e.playerId !== null && pts[e.playerId] !== undefined ? { ...e, points: e.points + pts[e.playerId] } : e)));
-    }
-    const homeWon = sim.homePts > sim.awayPts;
-    setRoster(g.home, progressRatings(rosters[g.home], pts, homeWon, ratings[g.away], total / teamIds.length, rng));
-    setRoster(g.away, progressRatings(rosters[g.away], pts, !homeWon, ratings[g.home], total / teamIds.length, rng));
+    const r = playOne(book, g.gameNo, g.home, g.away, rng, refRating, true);
+    if (typeof r === 'string') return { problems: [r] };
+    results.push(r);
   }
+  const { rosters, ratings } = book;
+  const teamIds = book.teamIds;
 
   const allGames = [...(state.results?.games ?? []), ...results];
   const order = blendRankings({ teams: teamIds, ratings, games: allGames, totalGames: TOTAL_GAMES }, rng);

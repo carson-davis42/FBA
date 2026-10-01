@@ -48,3 +48,6 @@ const NAMES: Record<BracketKind, string[]> = {
 };
 
 export const roundName = (kind: BracketKind, round: number): string => NAMES[kind][round - 1] ?? `Round ${round}`;
+
+export const bracketResults = (b: Bracket | null): GameResult[] =>
+  (b?.games ?? []).flatMap(g => (g.result ? [g.result] : []));
