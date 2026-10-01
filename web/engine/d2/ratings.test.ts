@@ -11,10 +11,11 @@ const ok = (r: D2Result) => {
   return r;
 };
 const started = (s: D2State = d2BaseState()): D2State => ok(startRatings(s)).state;
-/** Everyone ranked in last season's order; the 8 with a suggestion take it; the 5 new players are rated 66, 64, 62, 60, 58. */
+/** Everyone ranked in last season's order; the 8 with a suggestion take it; the last 5 in rank order are rated 66, 64, 62, 60, 58. */
 const ranked = (s: D2State): D2State => {
   let doc = applyAllSuggestions(takeRest(s.ratings!, id => d2Name(s, id)));
-  for (const [id, v] of [['p00041', 66], ['p00043', 64], ['p00044', 62], ['p00040', 60], ['p00042', 58]] as const) doc = setRating(doc, id, v);
+  // The 4 unrated Reserves rank with the existing players, then the FBA free agent; rate the last 5 in rank order.
+  doc.order.slice(-5).forEach((id, k) => { doc = setRating(doc, id, 66 - 2 * k); });
   return { ...s, ratings: doc };
 };
 const prevFile = (ratings: Record<string, number>, locked = true): RankingFile => ({
@@ -71,6 +72,15 @@ describe('startRatings', () => {
   });
 });
 
+describe('buildRankingRows', () => {
+  it('flags Reserves already in the pool as inLeague, not the FBA free agent', () => {
+    const rows = ok(startRatings(d2BaseState())).state.ratings!.rows;
+    const flag = (id: string) => rows.find(r => r.playerId === id)!.inLeague;
+    expect(['p00040', 'p00042', 'p00043', 'p00044'].map(flag)).toEqual([true, true, true, true]);
+    expect(flag('p00041')).toBeUndefined();
+  });
+});
+
 describe('ratingsBlockers', () => {
   it('asks for a full ranking, then a rating for everyone, then the right order', () => {
     const s = started();
@@ -78,7 +88,7 @@ describe('ratingsBlockers', () => {
     expect(ratingsBlockers({ ...s, ratings: takeRest(s.ratings!, id => d2Name(s, id)) })).toEqual(['13 players still need a rating']);
     const r = ranked(s);
     expect(ratingsBlockers(r)).toEqual([]);
-    expect(ratingsBlockers({ ...r, ratings: setRating(r.ratings!, 'p00041', 99) })).toEqual(['#9 Kyron Smart (99) is rated above #8 Adrian Grant (68)']);
+    expect(ratingsBlockers({ ...r, ratings: setRating(r.ratings!, 'p00041', 99) })).toEqual(['#13 Kyron Smart (99) is rated above #12 Myron Mason (60)']);
   });
 
   it('flags players missing from, or no longer in, the list', () => {
@@ -102,7 +112,7 @@ describe('finishRatings', () => {
     expect(r.changed).toEqual(['d2', 'reserves', 'ratings', 'd2Tx', 'calendar']);
     expect(r.state.d2.teams.AMS.map(e => e.rating)).toEqual([75, 72, 75, 94, null]);
     expect(r.state.d2.teams.BER.map(e => e.rating)).toEqual([70, null, 80, 68, 85]);
-    expect(r.state.reserves.players.map(p => p.rating)).toEqual([60, 66, 58, 64, 62]);
+    expect(r.state.reserves.players.map(p => p.rating)).toEqual([62, 58, 60, 66, 64]);
     expect(r.state.reserves.players[1]).toMatchObject({ fromFba: true, fbaRating: 71 });
     expect(r.state.ratings!.locked).toBe(true);
     expect(RankingFile.safeParse(r.state.ratings).success).toBe(true);

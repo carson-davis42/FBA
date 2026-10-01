@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { isNewRow } from '../../engine/rank/ranking';
 import { finishRatings, membershipBlockers, startRatings } from '../../engine/d2/ratings';
 import { d2DocPath, d2Name, d2Writes, type D2Result } from '../../engine/d2/state';
 import type { RankingFile } from '../../engine/shared/types';
@@ -56,6 +57,9 @@ export function D2RatingsPage() {
     );
   }
 
+  // Docs started before `inLeague` existed: Reserves who weren't FBA free agents were already in the pool.
+  const inPool = new Set(state.reserves.players.filter(p => !p.fromFba).map(p => p.playerId));
+  const shown: RankingFile = { ...ratings, rows: ratings.rows.map(r => (r.team === null && r.prevRating === null && inPool.has(r.playerId) ? { ...r, inLeague: true } : r)) };
   const live = { ...state, ratings };
   return (
     <section className="stack">
@@ -64,9 +68,9 @@ export function D2RatingsPage() {
       {autosave.error && <p className="error">{autosave.error}</p>}
       {actionError && <p className="error">{actionError}</p>}
       <RankingTable
-        doc={ratings}
+        doc={shown}
         name={id => d2Name(state, id)}
-        teamLabel={team => team ?? 'Reserves'}
+        teamLabel={(team, row) => team ?? (row && isNewRow(shown, row) ? 'New' : 'Reserves')}
         otherLabel="FBA"
         onChange={autosave.update}
         extraBlockers={membershipBlockers(live)}

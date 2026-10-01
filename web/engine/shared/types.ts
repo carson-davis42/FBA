@@ -290,6 +290,8 @@ export const RankingRow = z.object({
   team: z.string().min(1).nullable(),
   /** Last season's base rating in this league; null = new to this league. */
   prevRating: int.nullable(),
+  /** True for a D2 Reserve who was already in the pool (not a rookie or FBA free agent): ranked with the existing players. */
+  inLeague: z.boolean().optional(),
   /** A rating from another league, used only to order the "New" group. */
   otherRating: int.nullable(),
   /** One line of context, e.g. "412 pts". */

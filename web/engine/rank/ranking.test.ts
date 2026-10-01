@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { RankingFile } from '../shared/types';
 import {
-  applyAllSuggestions, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
+  applyAllSuggestions, isNewRow, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
 } from './ranking';
 import { rankingDoc, rankName } from './testFixtures';
 
@@ -16,6 +16,22 @@ describe('leftRows', () => {
   it('breaks full ties on id and leaves out ranked players', () => {
     expect(ids(leftRows(rankingDoc(), () => 'Same')).slice(0, 3)).toEqual(['p00002', 'p00001', 'p00003']);
     expect(ids(leftRows(rankingDoc({ order: ['p00002', 'p00006'] }), rankName))).toEqual(['p00001', 'p00003', 'p00004', 'p00005']);
+  });
+});
+
+describe('D2 Reserves already in the pool', () => {
+  const row = (playerId: string, prevRating: number | null, otherRating: number | null, inLeague?: true) =>
+    ({ playerId, position: 'PG' as const, age: 25, team: null, prevRating, otherRating, stat: null, ...(inLeague ? { inLeague } : {}) });
+  const doc = { ...rankingDoc(), rows: [row('p00001', 70, null), row('p00002', null, null, true), row('p00003', null, 80)] } as RankingFile;
+
+  it('counts a Reserve flagged inLeague as existing, after the rated players, before the New group', () => {
+    expect(isNewRow(doc, doc.rows[1])).toBe(false);
+    expect(isNewRow(doc, doc.rows[2])).toBe(true);
+    expect(ids(leftRows(doc, rankName))).toEqual(['p00001', 'p00002', 'p00003']);
+  });
+
+  it('keeps an unflagged unrated player in the New group', () => {
+    expect(isNewRow(doc, row('p00009', null, null))).toBe(true);
   });
 });
 
