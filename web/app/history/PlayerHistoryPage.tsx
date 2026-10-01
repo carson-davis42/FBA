@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { awardTotals, careerStats, liveCareer } from '../../engine/history/career';
+import { d2PlayerHonours } from '../../engine/history/d2';
 import { playerHonours } from '../../engine/history/honours';
-import type { AwardCountsFile, DraftHistoryFile, HallOfFameFile, PlayerBiosFile, PlayersFile } from '../../engine/shared/types';
+import type { AwardCountsFile, D2DraftHistoryFile, DraftHistoryFile, HallOfFameFile, PlayerBiosFile, PlayersFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
 import { Badge } from '../components/Badge';
 import { Hero } from '../components/Hero';
@@ -10,6 +11,7 @@ import { teamTheme } from '../components/teamColors';
 import { CareerSection, hasCareer } from './CareerSection';
 import { draftLine } from './DraftSeasonPage';
 import { SkippedWarning } from './PlayerLink';
+import { useD2Teams } from './d2/useD2';
 import { findTeam, TeamAbbr, useFbaTeams } from './useTeams';
 import './history.css';
 
@@ -25,16 +27,22 @@ export function PlayerHistoryPage() {
   const hall = useDoc<HallOfFameFile>('leagues/fba/hallOfFame.json');
   const drafts = useDoc<DraftHistoryFile>('leagues/fba/draftHistory.json');
   const { settled, teams, franchises } = useFbaTeams();
+  // The D2 history is decoration: an error or a missing doc just means no D2 block.
+  const d2 = useHistory('fbad2');
+  const d2Drafts = useDoc<D2DraftHistoryFile>('leagues/fbad2/draftHistory.json');
+  const d2Teams = useD2Teams();
   const failure = error ?? players.error ?? (bios.missing ? undefined : bios.error)
     ?? (counts.missing ? undefined : counts.error) ?? (hall.missing ? undefined : hall.error);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
-  if (!seasons || !players.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing) || (!hall.data && !hall.missing) || (!drafts.data && !drafts.missing && !drafts.error) || !settled) {
+  if (!seasons || !players.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing) || (!hall.data && !hall.missing) || (!drafts.data && !drafts.missing && !drafts.error) || !settled
+    || (!d2.seasons && !d2.error) || (!d2Drafts.data && !d2Drafts.missing && !d2Drafts.error) || !d2Teams.settled) {
     return <p className="muted">Loading…</p>;
   }
   const player = players.data.players[playerId];
   if (!player) return <p className="muted">Not found</p>;
 
   const drafted = draftLine(drafts.data ?? null, playerId, teams, franchises);
+  const d2Honours = d2PlayerHonours(playerId, d2.seasons ?? [], d2Drafts.data ?? null, d2Teams.teams);
   const bio = bios.data?.bios.find(b => b.playerId === playerId) ?? null;
   const honours = playerHonours(seasons, playerId);
   const bySeason = new Map<number, string[]>();
@@ -81,13 +89,21 @@ export function PlayerHistoryPage() {
       </Hero>
       {drafted && <p className="muted">{drafted}</p>}
       <SkippedWarning errors={errors} />
-      {!bio && !hasCareer(career) && !hasAwards && honours.length === 0 && stats.rows.length === 0 && <p className="muted">No history recorded</p>}
+      {!bio && !hasCareer(career) && !hasAwards && honours.length === 0 && d2Honours.length === 0 && stats.rows.length === 0 && <p className="muted">No history recorded</p>}
       <CareerSection career={career} born={bio ? bio.born : null} totals={totals} />
       {honours.length > 0 && (
         <div>
           <h2>Honours</h2>
           <ul>
             {[...bySeason].map(([season, texts]) => <li key={season}>S{season}: {texts.join(', ')}</li>)}
+          </ul>
+        </div>
+      )}
+      {d2Honours.length > 0 && (
+        <div>
+          <h2>D2 honours</h2>
+          <ul>
+            {d2Honours.map((h, i) => <li key={i}>S{h.season}: {h.text}</li>)}
           </ul>
         </div>
       )}

@@ -79,6 +79,10 @@ a.team-name:hover .team-name-text { text-decoration: underline; }
 
 /* chips and badges */
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 10px; }
+ul.chips, ol.chips { list-style: none; padding: 0; }
+.plain-list { margin: 0; padding-left: var(--s4); display: grid; gap: var(--s1); }
+.plain-list.tight { list-style: none; padding-left: 0; }
+.plain-list li .btn { margin-left: var(--s1); }
 .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: var(--fs-sm); font-weight: 700; transition: background var(--dur-fast) var(--ease); }
 button.chip:hover, a.chip:hover { background: var(--row-hover); }
 .chip.active, .chip.on, .chip[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
@@ -155,3 +159,21 @@ a.ticker-chip:hover { background: var(--row-hover); }
 }
 
 .section-title { font-family: var(--font-head); font-size: var(--fs-lg); margin: 0 0 var(--s3); }
+
+/* Standings clinch bars (FotMob style): a coloured strip on the rank cell plus a key below the tables. */
+:root {
+  --clinch-conference: #8b5cf6; --clinch-first: #0d9488; --clinch-playoff: #2563eb;
+  --clinch-promoted: #16a34a; --clinch-relegated: #dc2626; --clinch-eliminated: #9ca3af;
+}
+.clinch-conference { --clinch-color: var(--clinch-conference); }
+.clinch-first { --clinch-color: var(--clinch-first); }
+.clinch-playoff { --clinch-color: var(--clinch-playoff); }
+.clinch-promoted { --clinch-color: var(--clinch-promoted); }
+.clinch-relegated { --clinch-color: var(--clinch-relegated); }
+.clinch-eliminated { --clinch-color: var(--clinch-eliminated); }
+td.rank.clinch { position: relative; }
+.clinch-bar { position: absolute; left: 0; top: 4px; bottom: 4px; width: 4px; border-radius: 2px; background: var(--clinch-color); }
+.clinch-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; padding: 0; margin: 8px 0 0; font-size: var(--fs-sm); color: var(--muted); }
+.clinch-legend li { display: flex; align-items: center; gap: 8px; }
+.clinch-swatch { width: 4px; height: 14px; border-radius: 2px; background: var(--clinch-color); }
+.standings .champ-glyph { margin-left: 6px; }

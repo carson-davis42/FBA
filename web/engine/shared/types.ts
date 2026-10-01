@@ -560,7 +560,7 @@ export const PlayoffsFile = z.object({
 });
 export type PlayoffsFile = z.infer<typeof PlayoffsFile>;
 
-export const AwardId = z.enum(['MVP', 'ROTY', 'PPK', 'LP', 'MC', 'DPOY', 'MIP', 'MVP-PL', 'MVP-WL', 'MVP-UL', 'MVP-IL']);
+export const AwardId = z.enum(['MVP', 'ROTY', 'PPK', 'LP', 'MC', 'DPOY', 'MIP', 'MVP-PL', 'MVP-WL', 'MVP-UL', 'MVP-IL', 'MVP-D2', 'MVP-AM', 'MVP-EW', 'MVP-EE', 'MVP-ES']);
 export type AwardId = z.infer<typeof AwardId>;
 
 const FBA_AWARD_IDS: AwardId[] = ['MVP', 'ROTY', 'PPK', 'LP', 'MC', 'DPOY', 'MIP'];
@@ -753,6 +753,8 @@ export const SummaryFile = z.object({
   bracket: z.object({ seeds: z.array(PlayoffSeed), series: z.array(PlayoffSeries) }).strict().nullable().optional(),
   /** D2 only. */
   promotion: z.array(PromotionLine).nullable().optional(),
+  /** D2 only: the regular-season (or, before S68, division) champions by group; co-champions share a group (imported history). */
+  rsChampions: z.array(z.object({ group: z.string().min(1), teams: z.array(z.string().min(1)).min(1) }).strict()).optional(),
   players: z.array(SummaryPlayerLine).optional(),
   /** Imported pre-stats seasons: each player's points per game (imported history). */
   legacyPpg: z.array(z.object({ playerId, teamId: z.string().min(1).nullable(), ppg: z.number().min(0) }).strict()).optional(),
@@ -760,6 +762,7 @@ export const SummaryFile = z.object({
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   if (doc.league !== 'fba' && (doc.allFba || doc.allStar)) issue('Only the FBA has All-FBA teams and an All-Star weekend');
   if (doc.league !== 'fbad2' && doc.promotion) issue('Only the D2 has promotion and relegation');
+  if (doc.league !== 'fbad2' && doc.rsChampions) issue('Only the D2 has regular-season league champions');
   const keys = new Set<string>();
   const stints = new Map<string, number>();
   const totals = new Set<string>();
@@ -909,3 +912,36 @@ export const EventsFile = z.object({
   seasons: z.array(z.object({ season: int.min(1), notes: z.array(z.string().min(1)), rules: z.array(z.string().min(1)) }).strict()),
 }).strict().refine(f => f.seasons.every((s, i) => i === 0 || s.season > f.seasons[i - 1].season), 'Seasons ascend without repeats');
 export type EventsFile = z.infer<typeof EventsFile>;
+
+/** D2 groups before the S68 league split, then the four leagues. */
+export const D2_PAST_GROUPS = ['AM', 'EW', 'EE', 'ES', 'PL', 'WL', 'UL', 'IL'] as const;
+export const D2Spell = z.object({ group: z.enum(D2_PAST_GROUPS), from: int.min(1), to: int.min(1).nullable() }).strict()
+  .refine(s => s.to === null || s.to >= s.from, 'A spell ends on or after it starts');
+export type D2Spell = z.infer<typeof D2Spell>;
+export const D2TeamLeagueHistory = z.object({ teamId: z.string().min(1), founded: int.min(1).nullable(), spells: z.array(D2Spell).min(1) }).strict()
+  .refine(t => t.spells.every((s, i) => s.to !== null || i === t.spells.length - 1), 'Only the last spell can be open (pres.)');
+export type D2TeamLeagueHistory = z.infer<typeof D2TeamLeagueHistory>;
+/** leagues/fbad2/leagueHistory.json: each D2 team's leagues by season (imported, part 4). */
+export const D2LeagueHistoryFile = z.object({ teams: z.array(D2TeamLeagueHistory) }).strict()
+  .refine(f => new Set(f.teams.map(t => t.teamId)).size === f.teams.length, 'Each team appears once');
+export type D2LeagueHistoryFile = z.infer<typeof D2LeagueHistoryFile>;
+
+export const D2DraftPick = z.object({
+  pick: int.positive(),
+  teamId: z.string().min(1).nullable(),
+  teamName: z.string().min(1),
+  name: z.string().min(1),
+  playerId: playerId.nullable(),
+  pos: z.string().min(1),
+  age: int.positive().nullable(),
+  /** From S77 on; the earlier tabs have no rating column. */
+  rating: int.min(0).max(150).nullable(),
+}).strict();
+export type D2DraftPick = z.infer<typeof D2DraftPick>;
+export const D2DraftDraft = z.object({ season: int.min(1), picks: z.array(D2DraftPick) }).strict()
+  .refine(d => d.picks.every((p, i) => p.pick === i + 1), 'Picks must be numbered 1..n in order');
+export type D2DraftDraft = z.infer<typeof D2DraftDraft>;
+/** leagues/fbad2/draftHistory.json: the draft sheet's "S68 D2"…"S78 D2" tabs (imported, part 4). */
+export const D2DraftHistoryFile = z.object({ drafts: z.array(D2DraftDraft) }).strict()
+  .refine(f => new Set(f.drafts.map(d => d.season)).size === f.drafts.length, 'One draft per season');
+export type D2DraftHistoryFile = z.infer<typeof D2DraftHistoryFile>;

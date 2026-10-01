@@ -5,6 +5,7 @@ import { resolveHistoryTeam } from '../../engine/shared/franchises';
 import type { FranchisesFile, PastAllFbaSlot, PlayersFile, SummaryFile, SummaryStanding, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
 import { Badge } from '../components/Badge';
+import { clinchKind, ClinchLegend, RankCell } from '../components/Clinch';
 import { Hero } from '../components/Hero';
 import { SubNav } from '../components/SubNav';
 import { TeamMark } from '../components/TeamMark';
@@ -27,9 +28,9 @@ const TABS: { id: Tab; label: string }[] = [
 
 const signed = (x: number) => (x > 0 ? `+${x}` : String(x));
 
-interface Columns { showConf: boolean; showDiff: boolean; showMarker: boolean; showSeed: boolean }
+interface Columns { showConf: boolean; showDiff: boolean; showSeed: boolean }
 
-function StandingsTable({ rows, teams, season, showConf, showDiff, showMarker, showSeed }: { rows: SummaryStanding[]; teams: Team[]; season: number } & Columns) {
+function StandingsTable({ rows, teams, season, showConf, showDiff, showSeed }: { rows: SummaryStanding[]; teams: Team[]; season: number } & Columns) {
   return (
     <div className="table-wrap">
       <table className="stat-table standings">
@@ -38,21 +39,22 @@ function StandingsTable({ rows, teams, season, showConf, showDiff, showMarker, s
             <th className="rank">Rank</th><th>Team</th><th className="n">W</th><th className="n">L</th><th className="n">W%</th>
             {showConf && <th className="n">Conf</th>}
             {showDiff && <th className="n">Diff</th>}
-            {showMarker && <th></th>}
             {showSeed && <th className="n">Seed</th>}
           </tr>
         </thead>
         <tbody>
           {rows.map(r => (
             <tr key={r.teamId}>
-              <td className="rank">{r.rank}</td>
-              <td><TeamFull teams={teams} teamId={r.teamId} name={r.name} season={season} /></td>
+              <RankCell kind={clinchKind(r)} league="fba">{r.rank}</RankCell>
+              <td>
+                <TeamFull teams={teams} teamId={r.teamId} name={r.name} season={season} />
+                {r.playoff?.champion && <span className="champ-glyph" role="img" aria-label="FBA champion">🏆</span>}
+              </td>
               <td className="n">{r.w}</td>
               <td className="n">{r.l}</td>
               <td className="n">{r.w + r.l === 0 ? '—' : (r.w / (r.w + r.l)).toFixed(3)}</td>
               {showConf && <td className="n">{r.confW !== null && r.confL !== null ? `${r.confW}-${r.confL}` : ''}</td>}
               {showDiff && <td className="n">{r.diff === null ? '' : signed(r.diff)}</td>}
-              {showMarker && <td className="marker">{r.marker ?? ''}</td>}
               {showSeed && <td className="n">{r.seed ?? ''}</td>}
             </tr>
           ))}
@@ -69,7 +71,6 @@ function Standings({ season, teams }: { season: SummaryFile; teams: Team[] }) {
   const flags: Columns = {
     showConf: some(r => r.confW !== null && r.confL !== null),
     showDiff: some(r => r.diff !== null),
-    showMarker: some(r => r.marker !== null),
     showSeed: some(r => r.seed !== null),
   };
   const byRank = (group: string) => rows.filter(r => r.group === group).sort((a, b) => a.rank - b.rank);
@@ -79,6 +80,7 @@ function Standings({ season, teams }: { season: SummaryFile; teams: Team[] }) {
       <StandingsTable rows={byRank('E')} teams={teams} season={season.season} {...flags} />
       <h2 className="section-title">Western Conference</h2>
       <StandingsTable rows={byRank('W')} teams={teams} season={season.season} {...flags} />
+      <ClinchLegend kinds={rows.map(r => clinchKind(r))} league="fba" />
     </div>
   );
 }

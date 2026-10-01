@@ -11,7 +11,7 @@ export const LEAGUE_LABEL: Record<LeagueId, string> = {
 
 const GROUP_LABEL: Record<LeagueId, Record<string, string>> = {
   fba: { E: 'Eastern Conference', W: 'Western Conference' },
-  fbad2: { PL: 'Premier League', WL: 'World League', UL: 'United League', IL: 'International League' },
+  fbad2: { PL: 'Premier League', WL: 'World League', UL: 'United League', IL: 'International League', D2: 'D2 International', AM: 'D2-America', EW: 'Euro-West', EE: 'Euro-East', ES: 'Euro-South' },
   fbajc: {
     B12: 'Big 12', ACC: 'ACC', BE: 'Big East', SEC: 'SEC', B10: 'Big Ten', AAC: 'American',
     P12: 'PAC-12', A10: 'Atlantic 10', PAT: 'Patriot', COL: 'Colonial', HOR: 'Horizon', IVY: 'Ivy',

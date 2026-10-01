@@ -11,6 +11,7 @@ export const D2_AWARDS: AwardId[] = ['MVP-PL', 'MVP-WL', 'MVP-UL', 'MVP-IL'];
 export const AWARD_LABEL: Record<AwardId, string> = {
   MVP: 'MVP', ROTY: 'ROTY', PPK: 'PPK Award', LP: 'LP Award', MC: 'MC Award', DPOY: 'DPOY', MIP: 'MIP',
   'MVP-PL': 'Premier League MVP', 'MVP-WL': 'World League MVP', 'MVP-UL': 'United League MVP', 'MVP-IL': 'International League MVP',
+  'MVP-D2': 'D2 MVP', 'MVP-AM': 'D2-America MVP', 'MVP-EW': 'Euro-West MVP', 'MVP-EE': 'Euro-East MVP', 'MVP-ES': 'Euro-South MVP',
 };
 export const ALL_FBA_SLOTS = ['G', 'F', 'C', 'ANY', 'ANY'] as const;
 export const SLOT_POSITIONS: Record<'G' | 'F' | 'C' | 'ANY', Position[]> = {

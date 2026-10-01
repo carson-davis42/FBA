@@ -53,9 +53,6 @@
 /* standings */
 .stand-group { display: grid; gap: var(--s2); }
 .stand-group h2 { margin: 0; }
-.standings td.marker { width: 1%; white-space: nowrap; }
-.standings .mark-glyph { font-weight: 800; color: var(--accent); margin-left: 4px; }
-.standings .badge + .mark-glyph { margin-left: 6px; }
 .standings .team-name { font-weight: 700; }
 .standings tr.playoff-line td { border-bottom: 2px solid var(--accent); }
 
