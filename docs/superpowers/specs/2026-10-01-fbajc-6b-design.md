@@ -57,7 +57,7 @@ A regular-season champion that is already in March Madness is in March Madness (
 - **Order (changed from the Java):** the NIT is played first, then March Madness. March Madness cannot start until the NIT has a champion, and the NIT cannot start until the awards are picked (2.7). The step finishes when both have a champion, the All-American teams are picked and the summary is saved.
 
 ### 2.6 C-Ship MVPs
-The history sheet shows an MVP for the NIT final as well as the national title ("NIT Championship History", S72–S78), so there are two. After each title game the commissioner picks the MVP from **that champion's roster**, listed by that tournament's points per game; X (unnamed) players are allowed, so the pick may be stored as a name (`mvpName`, like the World Cup Tournament MVP; the NIT's is `nitMvpName`).
+The history sheet shows an MVP for the NIT final as well as the national title ("NIT Championship History", S72–S78), so there are two. After each title game the commissioner picks the MVP from **that champion's roster**, listed by that tournament's points per game; X (unnamed) players are allowed, so the pick may be stored as a name (a player id: X players (walk-ons) have registry ids, so `mvpName` is not needed).
 
 ### 2.7 Awards
 Same pattern as the FBA awards page. Live races with the Java's score (0.40 × scaled PPG + 0.35 × scaled rating + 0.25 × team success; softmax temperature 8 over the top 8; American odds): Trae York POY, Angelo Farrell Freshman, Rhett Blackwell Guard, Jacob Peters Forward, Dustin Holloway Center, **Dawson Chudnovsky Defensive POY** (in the history sheet since S57; not in the Java) and one POY per conference (18).
@@ -114,3 +114,9 @@ Added after reading the user's FBAJC history sheet (id `1jgB8AI5dMjSXuSNQm3szoeR
 Open:
 - Does the FBAJC box score carry the defensive stats the FBA Defensive POY uses (`engine/awards/defense.ts`)? If yes, the DPOY race shows them; if no, the race shows scoring and rating only. The plan checks this first.
 - 6b stores awards, All-Americans and champions from S79 on. Past seasons (S1–S78) come from this sheet in 6c: awards, 3-team All-Americans (older eras used OUT/MID/IN and PG/PF/C layouts), conference awards by player, regular-season and tournament champions, preseason tournament champions, NIT results.
+
+## 7. As built (2026-10-01)
+
+- Pages: one **Postseason** page with tabs (Conference tournaments, Field, NIT, March Madness) and one **Awards** page (national and conference races, All-American picker, both MVPs, Finish), instead of five separate routes.
+- Not built: the live single-game page for NIT and March Madness (a quick-sim "Play next game" button records one game instead); the browser check on scratch data (the scratch tooling is not in the cloud checkout).
+- Finishing also applies `fbajcGateProblem` and locks results, rankings, schedule, postseason and awards.
