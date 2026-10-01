@@ -1,5 +1,5 @@
 {
-  "nextId": 2392,
+  "nextId": 2422,
   "players": {
     "p00001": {
       "id": "p00001",
@@ -11950,6 +11950,156 @@
       "id": "p02391",
       "name": "Through: S78-M12",
       "birthSeason": null
+    },
+    "p02392": {
+      "id": "p02392",
+      "name": "Kylan Whitemore",
+      "birthSeason": 61
+    },
+    "p02393": {
+      "id": "p02393",
+      "name": "Zain Moxy",
+      "birthSeason": 61
+    },
+    "p02394": {
+      "id": "p02394",
+      "name": "Kylor Ashbourne",
+      "birthSeason": 61
+    },
+    "p02395": {
+      "id": "p02395",
+      "name": "Rylee Werner",
+      "birthSeason": 61
+    },
+    "p02396": {
+      "id": "p02396",
+      "name": "Aziel Vandenberg",
+      "birthSeason": 61
+    },
+    "p02397": {
+      "id": "p02397",
+      "name": "Julius Snow",
+      "birthSeason": 61
+    },
+    "p02398": {
+      "id": "p02398",
+      "name": "Zyon Merrick",
+      "birthSeason": 61
+    },
+    "p02399": {
+      "id": "p02399",
+      "name": "Moussa Faye",
+      "birthSeason": 61
+    },
+    "p02400": {
+      "id": "p02400",
+      "name": "JJ Clarke",
+      "birthSeason": 61
+    },
+    "p02401": {
+      "id": "p02401",
+      "name": "Jonas Lindholm",
+      "birthSeason": 61
+    },
+    "p02402": {
+      "id": "p02402",
+      "name": "Kenzo Mori",
+      "birthSeason": 61
+    },
+    "p02403": {
+      "id": "p02403",
+      "name": "Kwesi Badu",
+      "birthSeason": 61
+    },
+    "p02404": {
+      "id": "p02404",
+      "name": "Mateo Quintero",
+      "birthSeason": 61
+    },
+    "p02405": {
+      "id": "p02405",
+      "name": "Archie Foster Jr",
+      "birthSeason": 61
+    },
+    "p02406": {
+      "id": "p02406",
+      "name": "Jamar Hollowell",
+      "birthSeason": 61
+    },
+    "p02407": {
+      "id": "p02407",
+      "name": "Grant Blevins",
+      "birthSeason": 61
+    },
+    "p02408": {
+      "id": "p02408",
+      "name": "Jayce Drexel",
+      "birthSeason": 61
+    },
+    "p02409": {
+      "id": "p02409",
+      "name": "Siphesihle Dlamini",
+      "birthSeason": 61
+    },
+    "p02410": {
+      "id": "p02410",
+      "name": "Bryson Hollowbrook",
+      "birthSeason": 61
+    },
+    "p02411": {
+      "id": "p02411",
+      "name": "Zaire Lockridge",
+      "birthSeason": 61
+    },
+    "p02412": {
+      "id": "p02412",
+      "name": "Ron Jerrick",
+      "birthSeason": 61
+    },
+    "p02413": {
+      "id": "p02413",
+      "name": "Trill Kody",
+      "birthSeason": 61
+    },
+    "p02414": {
+      "id": "p02414",
+      "name": "Tyler Maddox",
+      "birthSeason": 61
+    },
+    "p02415": {
+      "id": "p02415",
+      "name": "Don Goldyn",
+      "birthSeason": 61
+    },
+    "p02416": {
+      "id": "p02416",
+      "name": "Paulie Gregory",
+      "birthSeason": 61
+    },
+    "p02417": {
+      "id": "p02417",
+      "name": "DJ Carmichael",
+      "birthSeason": 61
+    },
+    "p02418": {
+      "id": "p02418",
+      "name": "Cash White",
+      "birthSeason": 61
+    },
+    "p02419": {
+      "id": "p02419",
+      "name": "Connor Haskins",
+      "birthSeason": 61
+    },
+    "p02420": {
+      "id": "p02420",
+      "name": "Peter Blanton",
+      "birthSeason": 61
+    },
+    "p02421": {
+      "id": "p02421",
+      "name": "Jean Diarra",
+      "birthSeason": 61
     }
   }
 }

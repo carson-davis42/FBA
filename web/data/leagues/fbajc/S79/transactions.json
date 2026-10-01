@@ -1,0 +1,48 @@
+{
+  "league": "fbajc",
+  "season": 79,
+  "entries": [
+    {
+      "seq": 1,
+      "batchId": "bmupzr037kth54",
+      "type": "season",
+      "teams": [],
+      "lines": [
+        "S79 college rosters set up from S78"
+      ]
+    },
+    {
+      "seq": 2,
+      "batchId": "import-s79-class",
+      "type": "portal",
+      "teams": [
+        "GU"
+      ],
+      "lines": [
+        "Isaiah Montclair (So SF, 87) enters the transfer portal from Gonzaga"
+      ]
+    },
+    {
+      "seq": 3,
+      "batchId": "import-s79-class",
+      "type": "commit",
+      "teams": [
+        "GU"
+      ],
+      "lines": [
+        "JJ Clarke (5★ SF) commits to Gonzaga"
+      ]
+    },
+    {
+      "seq": 4,
+      "batchId": "import-s79-class",
+      "type": "commit",
+      "teams": [
+        "WICH"
+      ],
+      "lines": [
+        "Don Goldyn (4★ SG) commits to Wichita State"
+      ]
+    }
+  ]
+}
