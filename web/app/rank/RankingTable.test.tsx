@@ -298,4 +298,42 @@ describe('RankingTable', () => {
       expect(screen.queryByRole('button', { name: /^Use suggested consensus/ })).toBeNull();
     });
   });
+
+  describe('best new at each position', () => {
+    const strip = () => screen.queryByRole('table', { name: 'Best new at each position' });
+
+    it('lists the top new player per position and ranks one on click', () => {
+      render(<Harness initial={rankingDoc()} />);
+      const g = within(strip()!);
+      expect(g.getByRole('button', { name: 'Rank Dev Hart next (best new PG)' })).toBeTruthy();
+      expect(g.getByRole('button', { name: 'Rank Finn Lowe next (best new C)' })).toBeTruthy();
+      expect(g.queryByRole('button', { name: /best new SG/ })).toBeNull();
+      fireEvent.click(g.getByRole('button', { name: 'Rank Dev Hart next (best new PG)' }));
+      expect(rightNames()).toEqual(['Dev Hart']);
+      expect(within(strip()!).getByRole('button', { name: 'Rank Eli Park next (best new PG)' })).toBeTruthy();
+    });
+
+    it('has the same columns as the list and shows each player in the same format', () => {
+      render(<Harness initial={rankingDoc()} />);
+      const t = strip()!;
+      const head = (tb: HTMLElement) => within(tb).getAllByRole('columnheader').map(h => h.textContent);
+      expect(head(t)).toEqual(head(screen.getByRole('table', { name: "Last season's order" })));
+      expect(within(t).getAllByRole('row').slice(1).map(r => (r as HTMLTableRowElement).cells[1].textContent)).toEqual(['Dev Hart', 'Finn Lowe']);
+      expect(within(t).getByText('FBA 70')).toBeTruthy();
+    });
+
+    it('is hidden with no new players left, or when locked', () => {
+      render(<Harness initial={rankingDoc({ locked: true })} />);
+      expect(strip()).toBeNull();
+      cleanup();
+      render(<Harness initial={rankingDoc({ order: ['p00004', 'p00005', 'p00006'] })} />);
+      expect(strip()).toBeNull();
+    });
+
+    it('stays when the position filter is on', () => {
+      render(<Harness initial={rankingDoc()} />);
+      fireEvent.click(screen.getByRole('button', { name: 'SG' }));
+      expect(within(strip()!).getByRole('button', { name: 'Rank Finn Lowe next (best new C)' })).toBeTruthy();
+    });
+  });
 });

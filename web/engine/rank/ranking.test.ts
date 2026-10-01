@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { RankingFile } from '../shared/types';
 import {
-  applyAllSuggestions, isNewRow, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
+  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
 } from './ranking';
 import { rankingDoc, rankName } from './testFixtures';
 
@@ -161,5 +161,24 @@ describe('syncRows', () => {
     const doc = rankingDoc();
     const result = syncRows(doc, doc.rows);
     expect(result).toEqual(doc);
+  });
+});
+
+describe('bestNewByPosition', () => {
+  it('gives the first unranked new player at each position, in list order', () => {
+    const best = bestNewByPosition(rankingDoc(), rankName);
+    expect(best.PG?.playerId).toBe('p00004');
+    expect(best.C?.playerId).toBe('p00006');
+    expect(best.SG).toBeUndefined();
+    expect(best.SF).toBeUndefined();
+  });
+
+  it('moves to the next player at a position once the best is ranked', () => {
+    const best = bestNewByPosition(rankingDoc({ order: ['p00004'] }), rankName);
+    expect(best.PG?.playerId).toBe('p00005');
+  });
+
+  it('ignores players who are not new', () => {
+    expect(bestNewByPosition(rankingDoc({ order: ['p00004', 'p00005', 'p00006'] }), rankName)).toEqual({});
   });
 });

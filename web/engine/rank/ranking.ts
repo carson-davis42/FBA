@@ -1,4 +1,4 @@
-import type { RankingFile, RankingRow } from '../shared/types';
+import type { Position, RankingFile, RankingRow } from '../shared/types';
 
 /** The display name for a player id. */
 export type NameOf = (playerId: string) => string;
@@ -27,6 +27,13 @@ export function leftRows(doc: RankingFile, name: NameOf): RankingRow[] {
   const at = new Map(doc.rows.map((r, i) => [r.playerId, i]));
   const fresh = left.filter(r => isNewRow(doc, r)).sort((a, b) => (b.otherRating ?? -1) - (a.otherRating ?? -1) || at.get(a.playerId)! - at.get(b.playerId)!);
   return [...known, ...fresh];
+}
+
+/** The first unranked new player at each position, in the new players' list order. Positions with none left are absent. */
+export function bestNewByPosition(doc: RankingFile, name: NameOf): Partial<Record<Position, RankingRow>> {
+  const best: Partial<Record<Position, RankingRow>> = {};
+  for (const r of leftRows(doc, name)) if (isNewRow(doc, r) && !best[r.position]) best[r.position] = r;
+  return best;
 }
 
 /** The ranked rows, best first. */

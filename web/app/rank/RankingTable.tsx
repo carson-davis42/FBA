@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import { applyClassSuggestions, consensusSuggestion, parseConsensusInput, starsFor } from '../../engine/college/classRanking';
 import {
-  applyAllSuggestions, isNewRow, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, take, takeRest, type NameOf,
+  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, take, takeRest, type NameOf,
 } from '../../engine/rank/ranking';
 import { POSITIONS } from '../../engine/roster/rules';
 import type { Position, RankingFile, RankingRow } from '../../engine/shared/types';
@@ -83,12 +83,25 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   const canSplit = split || (existing.length > 0 && fresh.length > 0);
   let dividerShown = false;
 
+  const leftHeadRow = <tr><th className="rank">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th><th>Stat</th></tr>;
+  const leftRow = (r: RankingRow, i: number, buttonLabel = `Rank ${name(r.playerId)} next`) => (
+    <tr key={r.playerId} className={locked ? undefined : 'rank-take'} onClick={locked ? undefined : () => onChange(cur => take(cur, r.playerId))}>
+      <td className="rank">{i + 1}</td>
+      <td>
+        <button type="button" className="rank-name" disabled={locked} aria-label={buttonLabel}>{name(r.playerId)}</button>
+      </td>
+      <td>{r.position}</td>
+      <td className="n">{r.age ?? '—'}</td>
+      <td>{teamLabel(r.team, r)}</td>
+      <td className="n">{prev(r)}</td>
+      <td>{r.stat ?? ''}</td>
+    </tr>
+  );
+
   const leftTable = (rows: RankingRow[], label: string, divide: boolean) => (
     <div className="table-wrap">
       <table className="stat-table rank-table" aria-label={label}>
-        <thead>
-          <tr><th className="rank">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th><th>Stat</th></tr>
-        </thead>
+        <thead>{leftHeadRow}</thead>
         <tbody>
           {rows.map((r, i) => {
             if (!shown(r)) return null;
@@ -97,22 +110,26 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
             return (
               <Fragment key={r.playerId}>
                 {divider && <tr className="rank-divider"><td colSpan={7}>New</td></tr>}
-                <tr className={locked ? undefined : 'rank-take'} onClick={locked ? undefined : () => onChange(cur => take(cur, r.playerId))}>
-                  <td className="rank">{i + 1}</td>
-                  <td>
-                    <button type="button" className="rank-name" disabled={locked} aria-label={`Rank ${name(r.playerId)} next`}>{name(r.playerId)}</button>
-                  </td>
-                  <td>{r.position}</td>
-                  <td className="n">{r.age ?? '—'}</td>
-                  <td>{teamLabel(r.team, r)}</td>
-                  <td className="n">{prev(r)}</td>
-                  <td>{r.stat ?? ''}</td>
-                </tr>
+                {leftRow(r, i)}
               </Fragment>
             );
           })}
         </tbody>
       </table>
+    </div>
+  );
+  const bestNew = bestNewByPosition(doc, name);
+  const bestNewList = POSITIONS.map(pos => bestNew[pos]).filter((r): r is RankingRow => r !== undefined);
+  // A mini copy of the list above its scrolling table, so the best new player at each position stays in view however far the list is scrolled.
+  const bestStrip = !locked && bestNewList.length > 0 && (
+    <div className="rank-best">
+      <h4>Best new at each position</h4>
+      <div className="table-wrap">
+        <table className="stat-table rank-table" aria-label="Best new at each position">
+          <thead>{leftHeadRow}</thead>
+          <tbody>{bestNewList.map((r, i) => leftRow(r, i, `Rank ${name(r.playerId)} next (best new ${r.position})`))}</tbody>
+        </table>
+      </div>
     </div>
   );
   const leftHead = (title: string, rows: RankingRow[], only?: (r: RankingRow) => boolean) => (
@@ -159,12 +176,14 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
             </div>
             <div className="rank-col card">
               {leftHead('New players', fresh, r => isNewRow(doc, r))}
+              {bestStrip}
               {leftTable(fresh, 'New players', false)}
             </div>
           </>
         ) : (
           <div className="rank-col card">
             {leftHead(leftLabel, left)}
+            {bestStrip}
             {leftTable(left, leftLabel, true)}
           </div>
         )}

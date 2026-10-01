@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { collegeName } from '../../engine/college/state';
@@ -94,10 +94,11 @@ describe('ProRatingsPage', () => {
     renderPage();
     await screen.findByRole('button', { name: 'Rank Pro A next' });
     expect(screen.getAllByRole('button', { name: /^Rank .* next$/ }).map(b => b.textContent).sort()).toEqual(['Pro A', 'Pro E', 'Ron Three', 'Sam Senior']);
-    expect(screen.getAllByText('Boston')).toHaveLength(2);
-    expect(screen.getAllByText('Prospect')).toHaveLength(2);
+    const list = within(screen.getByRole('table', { name: "Last season's order" }));
+    expect(list.getAllByText('Boston')).toHaveLength(2);
+    expect(list.getAllByText('Prospect')).toHaveLength(2);
     expect(screen.getByText('S79: 412 pts')).toBeTruthy();
-    expect(screen.getByText(/College 80/)).toBeTruthy();
+    expect(list.getByText(/College 80/)).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Sync list' })).toBeNull();
   });
 
