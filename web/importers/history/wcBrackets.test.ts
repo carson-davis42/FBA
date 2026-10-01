@@ -11,8 +11,9 @@ const entries = data as unknown as Entry[];
 const ALLOWED_MISMATCH: number[] = [];
 
 describe('wcBrackets.json', () => {
-  it('has the transcribed pages', () => {
-    expect(entries.length).toBeGreaterThanOrEqual(6);
+  it('has all 12 World Cups', () => {
+    expect(entries.length).toBe(12);
+    expect(entries.map(e => e.season)).toEqual([56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78]);
   });
 
   it('each entry passes PastBracket', () => {
