@@ -23,7 +23,7 @@ export function toolTarget(step: CalendarStep): string | null {
   if (/^rank-s\d+-class$/.test(step.id)) return '/league/fbajc/class-ranking';
   if (/^s\d+-qualifying$/.test(step.id)) return '/league/fbawc/qualifying';
   if (/^s\d+-world-cup$/.test(step.id)) return '/league/fbawc/worldcup';
-  if (step.kind === 'league' && (step.league === 'fba' || step.league === 'fbad2')) return `/league/${step.league}/scores`;
+  if (step.kind === 'league' && (step.league === 'fba' || step.league === 'fbad2' || step.league === 'fbajc')) return `/league/${step.league}/scores`;
   return null;
 }
 
