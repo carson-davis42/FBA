@@ -19,6 +19,14 @@ describe('leftRows', () => {
   });
 });
 
+describe('New group order', () => {
+  it('lists new players with equal or no other rating in the doc row order, not by name', () => {
+    const row = (playerId: string, otherRating: number | null) => ({ playerId, position: 'PG' as const, age: 22, team: null, prevRating: null, otherRating, stat: null });
+    const doc = { ...rankingDoc(), rows: [row('p00006', null), row('p00005', null), row('p00004', 70)] } as RankingFile;
+    expect(ids(leftRows(doc, rankName))).toEqual(['p00004', 'p00006', 'p00005']);
+  });
+});
+
 describe('D2 Reserves already in the pool', () => {
   const row = (playerId: string, prevRating: number | null, otherRating: number | null, inLeague?: true) =>
     ({ playerId, position: 'PG' as const, age: 25, team: null, prevRating, otherRating, stat: null, ...(inLeague ? { inLeague } : {}) });

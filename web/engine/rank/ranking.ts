@@ -23,7 +23,9 @@ export function leftRows(doc: RankingFile, name: NameOf): RankingRow[] {
   const left = doc.rows.filter(r => !ranked.has(r.playerId));
   const tie = tieBreak(name);
   const known = left.filter(r => !isNewRow(doc, r)).sort((a, b) => (b.prevRating ?? -1) - (a.prevRating ?? -1) || tie(a, b));
-  const fresh = left.filter(r => isNewRow(doc, r)).sort((a, b) => (b.otherRating ?? -1) - (a.otherRating ?? -1) || tie(a, b));
+  // Equal (or missing) other ratings keep the doc's row order, which for unrated D2 rookies is the free-agent list order (the draft order).
+  const at = new Map(doc.rows.map((r, i) => [r.playerId, i]));
+  const fresh = left.filter(r => isNewRow(doc, r)).sort((a, b) => (b.otherRating ?? -1) - (a.otherRating ?? -1) || at.get(a.playerId)! - at.get(b.playerId)!);
   return [...known, ...fresh];
 }
 
