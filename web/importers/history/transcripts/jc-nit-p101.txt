@@ -1,0 +1,40 @@
+# p101 NIT S72 (32 slots; the page prints no scores; prefix numbers are absent, records are printed)
+S72
+K:NIT
+|Cincinnati|16-13
+|Iona|15-14
+|Jackson State|18-11
+|Western Kentucky|18-10
+|Georgetown|15-15
+|New Mexico State|18-12
+|Morehead State|17-11
+|Army|17-11
+|Delaware|18-11
+|Cal|18-12
+|Belmont|18-12
+|TCU|15-14
+|Navy|19-11
+|Middle Tennessee|18-13
+|South Dakota State|15-13
+|Seton Hall|16-13
+|Arizona State|16-13
+|James Madison|16-13
+|Winthrop|17-12
+|Auburn|16-14
+|St.Joseph's|16-13
+|Oregon State|13-16
+|Arkansas|14-14
+|VCU|16-12
+|Purdue|17-12
+|Oral Roberts|16-14
+|Princeton|17-12
+|ETSU|19-10
+|North Dakota State|18-11
+|Yale|17-11
+|Missouri|13-16
+|Iowa State|16-13
+=Cincinnati -|Western Kentucky -|New Mexico State -|Morehead State -|Cal -|TCU -|Navy -|Seton Hall -|Arizona State -|Auburn -|St.Joseph's -|VCU -|Purdue -|ETSU -|Yale -|Missouri -
+=Cincinnati -|Morehead State -|TCU -|Seton Hall -|Arizona State -|St.Joseph's -|Purdue -|Missouri -
+=Cincinnati -|Seton Hall -|St.Joseph's -|Purdue -
+=Seton Hall -|Purdue -
+=Seton Hall -
