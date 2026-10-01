@@ -1,0 +1,72 @@
+# p045 March Madness S55
+S55
+1|North Carolina|21-1
+BYE
+|Xavier|13-9
+|Buffalo|16-6
+17|Kansas|16-6
+|Loyola-Chicago|10-10
+BYE
+16|Marquette|18-4
+9|Villanova|18-3
+BYE
+|Belmont|12-9
+24|Penn|21-1
+25|Purdue|14-7
+|Indiana|11-9
+BYE
+8|Kentucky|19-3
+4|Nevada|22-0
+BYE
+|Murray State|16-6
+|East Carolina|17-5
+20|UConn|16-5
+|Utah State|11-9
+BYE
+13|Duke|13-7
+12|Michigan State|18-4
+BYE
+|Wake Forest|11-9
+21|Arizona State|15-6
+|San Diego State|16-6
+|Florida|12-8
+BYE
+5|Gonzaga|21-1
+2|Arizona|22-0
+BYE
+|Seton Hall|13-7
+|Louisville|11-10
+18|Texas Tech|15-6
+|Mississippi State|9-11
+BYE
+15|Michigan|15-6
+10|UCF|20-1
+BYE
+|Ohio State|11-9
+23|Georgetown|16-5
+|Texas A&M|14-7
+|Wofford|15-6
+BYE
+7|Florida State|18-3
+3|Tennessee|21-1
+BYE
+|Syracuse|10-10
+|Stanford|15-6
+19|Wichita State|17-5
+|Texas|9-11
+BYE
+14|Oregon|17-5
+11|Virginia|15-7
+BYE
+|LSU|11-10
+22|Iowa State|13-7
+|Baylor|14-7
+|New Mexico State|15-6
+BYE
+6|Kansas State|22-0
+=North Carolina BYE|Buffalo 44-35|Kansas 52-28|Marquette BYE|Villanova BYE|Penn 52-29|Purdue 49-32|Kentucky BYE|Nevada BYE|East Carolina 55-37|UConn 45-35|Duke BYE|Michigan State BYE|Wake Forest 50-48 OT|San Diego State 56-54 OT|Gonzaga BYE|Arizona BYE|Louisville 51-41 OT|Texas Tech 73-71 2OT|Michigan BYE|UCF BYE|Ohio State 51-48 OT|Texas A&M 37-36|Florida State BYE|Tennessee BYE|Stanford 54-44 OT|Wichita State 70-18|Oregon BYE|Virginia BYE|Iowa State 55-24|Baylor 55-27|Kansas State BYE
+=North Carolina 46-29|Marquette 42-37|Villanova 46-45|Kentucky 60-30|Nevada 60-33|UConn 47-43|Michigan State 56-48 OT|San Diego State 57-55|Arizona 56-21|Michigan 53-50|UCF 94-28|Florida State 75-23|Tennessee 73-32|Wichita State 67-63|Virginia 61-30|Kansas State 91-82 2OT
+=North Carolina 62-27|Kentucky 58-52|Nevada 58-39|Michigan State 59-55|Arizona 95-93 2OT|UCF 57-55|Wichita State 59-57|Kansas State 57-47
+=North Carolina 60-58|Nevada 57-53|UCF 60-55|Kansas State 65-51
+=North Carolina 66-64 OT|UCF 53-51
+=North Carolina 115-113 4OT

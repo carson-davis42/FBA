@@ -1,0 +1,72 @@
+# p032 March Madness S73
+S73
+|Nevada|32-0
+|Furman|16-17
+|UCF|22-8
+|Seton Hall|24-9
+|Kentucky|25-5
+|Cal|28-4
+|Purdue|20-11
+|Kansas|26-6
+|San Diego State|27-5
+|Illinois|21-11
+|Belmont|24-7
+|Memphis|25-7
+|East Carolina|24-7
+|Georgia|21-10
+|Tennessee|20-10
+|Duke|27-5
+|Washington|28-4
+|Samford|25-7
+|Longwood|26-6
+|Texas Tech|23-9
+|Marquette|23-7
+|Missouri|22-11
+|New Mexico|21-10
+|Florida State|26-5
+|Michigan|26-5
+|Butler|20-11
+|Tulane|20-10
+|Texas|23-7
+|Utah State|23-8
+|Wake Forest|21-10
+|Indiana|19-11
+|Arizona|27-4
+|Ohio State|29-3
+|Saint Mary's|22-10
+|South Florida|23-7
+|Dayton|23-8
+|Baylor|23-7
+|Winthrop|23-8
+|Wichita State|22-10
+|Creighton|26-5
+|Houston|26-6
+|USC|20-11
+|Pitt|21-10
+|Texas A&M|24-7
+|Xavier|23-8
+|James Madison|25-7
+|UNLV|19-12
+|Michigan State|27-5
+|UConn|29-3
+|Northeastern|22-10
+|Alabama|23-9
+|Gonzaga|22-10
+|Loyola-Chicago|27-5
+|Drake|24-7
+|Toledo|20-10
+|North Carolina|23-7
+|Clemson|26-5
+|Iowa State|20-12
+|Cornell|25-7
+|Oregon|23-8
+|VCU|24-8
+|Villanova|22-9
+|Santa Clara|26-6
+|FAU|29-3
+=Nevada -|Seton Hall -|Kentucky -|Kansas -|Illinois -|Memphis -|Georgia -|Duke -|Washington -|Texas Tech -|Missouri -|Florida State -|Michigan -|Texas -|Utah State -|Indiana -|Ohio State -|South Florida -|Baylor -|Creighton -|Houston -|Texas A&M -|Xavier -|Michigan State -|UConn -|Gonzaga -|Drake -|North Carolina -|Clemson -|Cornell -|Villanova -|FAU -
+=Nevada -|Kentucky -|Memphis -|Duke -|Washington -|Florida State -|Michigan -|Indiana -|Ohio State -|Creighton -|Houston -|Michigan State -|UConn -|Drake -|Clemson -|FAU -
+=Nevada -|Duke -|Florida State -|Michigan -|Ohio State -|Michigan State -|UConn -|Clemson -
+=Nevada -|Michigan -|Ohio State -|Clemson -
+=Michigan -|Ohio State -
+=Ohio State -

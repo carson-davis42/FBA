@@ -1,0 +1,40 @@
+# p058 NIT S73 (32 slots; the page prints no scores; records are printed)
+S73
+K:NIT
+|Arizona State|18-13
+|Middle Tennessee|17-14
+|UNC Asheville|19-12
+|North Dakota State|20-10
+|Florida|18-14
+|Liberty|18-14
+|Kennesaw State|17-13
+|San Francisco|22-9
+|Arkansas|19-12
+|Vanderbilt|15-16
+|Columbia|19-12
+|Oregon State|17-14
+|Colgate|21-10
+|Colorado|15-15
+|Georgia State|16-14
+|Virginia|19-12
+|South Dakota State|24-8
+|Delaware|17-14
+|Iowa|17-14
+|Stetson|19-11
+|Indiana State|20-13
+|Rhode Island|17-13
+|Kansas State|15-15
+|SMU|20-12
+|UCLA|18-12
+|New Mexico State|15-16
+|Texas State|19-12
+|Miami|19-14
+|Oklahoma State|17-14
+|North Texas|20-12
+|Abilene Christian|17-13
+|Evansville|21-11
+=Arizona State -|UNC Asheville -|Florida -|San Francisco -|Arkansas -|Oregon State -|Colgate -|Virginia -|South Dakota State -|Stetson -|Indiana State -|Kansas State -|UCLA -|Miami -|Oklahoma State -|Evansville -
+=Arizona State -|San Francisco -|Arkansas -|Virginia -|South Dakota State -|Kansas State -|Miami -|Oklahoma State -
+=Arizona State -|Arkansas -|South Dakota State -|Oklahoma State -
+=Arkansas -|Oklahoma State -
+=Oklahoma State -

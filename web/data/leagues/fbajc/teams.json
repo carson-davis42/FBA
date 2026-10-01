@@ -6,2376 +6,2592 @@
       "name": "Baylor",
       "abbr": "BAY",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(197 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Baylor.png"
     },
     {
       "teamId": "BYU",
       "name": "BYU",
       "abbr": "BYU",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(30 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "BYU.png"
     },
     {
       "teamId": "UH",
       "name": "Houston",
       "abbr": "UH",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(182 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Houston.png"
     },
     {
       "teamId": "ISU",
       "name": "Iowa State",
       "abbr": "ISU",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(201 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Iowa State.png"
     },
     {
       "teamId": "KU",
       "name": "Kansas",
       "abbr": "KU",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(189 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Kansas.png"
     },
     {
       "teamId": "KSU",
       "name": "Kansas State",
       "abbr": "KSU",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(286 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Kansas State.png"
     },
     {
       "teamId": "OU",
       "name": "Oklahoma",
       "abbr": "OU",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(284 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Oklahoma.png"
     },
     {
       "teamId": "OSU",
       "name": "Oklahoma State",
       "abbr": "OSU",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(285 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Oklahoma State.png"
     },
     {
       "teamId": "TCU",
       "name": "TCU",
       "abbr": "TCU",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(86 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "TCU.png"
     },
     {
       "teamId": "UT",
       "name": "Texas",
       "abbr": "UT",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(97 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Texas.png"
     },
     {
       "teamId": "TTU",
       "name": "Texas Tech",
       "abbr": "TTU",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(261 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Texas Tech.png"
     },
     {
       "teamId": "WVU",
       "name": "West Virginia",
       "abbr": "WVU",
       "group": "B12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(326 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "West Virginia.png"
     },
     {
       "teamId": "CLEM",
       "name": "Clemson",
       "abbr": "CLEM",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(137 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Clemson.png"
     },
     {
       "teamId": "DUKE",
       "name": "Duke",
       "abbr": "DUKE",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(3 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Duke.png"
     },
     {
       "teamId": "FSU",
       "name": "Florida State",
       "abbr": "FSU",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(22 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Florida State.png"
     },
     {
       "teamId": "LOU",
       "name": "Louisville",
       "abbr": "LOU",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(238 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Louisville.png"
     },
     {
       "teamId": "MIA",
       "name": "Miami",
       "abbr": "MIA",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(193 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Miami.png"
     },
     {
       "teamId": "NCS",
       "name": "NC State",
       "abbr": "NCS",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(342 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "NC State.png"
     },
     {
       "teamId": "UNC",
       "name": "North Carolina",
       "abbr": "UNC",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(14 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "North Carolina.png"
     },
     {
       "teamId": "ND",
       "name": "Notre Dame",
       "abbr": "ND",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(303 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Notre Dame.png"
     },
     {
       "teamId": "SYR",
       "name": "Syracuse",
       "abbr": "SYR",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(305 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Syracuse.png"
     },
     {
       "teamId": "UVA",
       "name": "Virginia",
       "abbr": "UVA",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(237 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Virginia.png"
     },
     {
       "teamId": "VATECH",
       "name": "Virginia Tech",
       "abbr": "VATECH",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(137 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Virginia Tech.png"
     },
     {
       "teamId": "WF",
       "name": "Wake Forest",
       "abbr": "WF",
       "group": "ACC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(313 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Wake Forest.png"
     },
     {
       "teamId": "UB",
       "name": "Butler",
       "abbr": "UB",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(232 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Butler.png"
     },
     {
       "teamId": "CTN",
       "name": "Creighton",
       "abbr": "CTN",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(15 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Creighton.png"
     },
     {
       "teamId": "DSN",
       "name": "Davidson",
       "abbr": "DSN",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(278 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Davidson.png"
     },
     {
       "teamId": "DEP",
       "name": "DePaul",
       "abbr": "DEP",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(1 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "DePaul.png"
     },
     {
       "teamId": "GTWN",
       "name": "Georgetown",
       "abbr": "GTWN",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(33 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Georgetown.png"
     },
     {
       "teamId": "MQ",
       "name": "Marquette",
       "abbr": "MQ",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(226 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Marquette.png"
     },
     {
       "teamId": "PROV",
       "name": "Providence",
       "abbr": "PROV",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(319 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Providence.png"
     },
     {
       "teamId": "SH",
       "name": "Seton Hall",
       "abbr": "SH",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(216 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Seton Hall.png"
     },
     {
       "teamId": "STJOHNS",
       "name": "St.John's",
       "abbr": "STJOHNS",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(228 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "St.John's.png"
     },
     {
       "teamId": "UCON",
       "name": "UConn",
       "abbr": "UCON",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(33 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UConn.png"
     },
     {
       "teamId": "VIL",
       "name": "Villanova",
       "abbr": "VIL",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(282 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Villanova.png"
     },
     {
       "teamId": "XU",
       "name": "Xavier",
       "abbr": "XU",
       "group": "BE",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(233 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Xavier.png"
     },
     {
       "teamId": "ALA",
       "name": "Alabama",
       "abbr": "ALA",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(177 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Alabama.png"
     },
     {
       "teamId": "ARK",
       "name": "Arkansas",
       "abbr": "ARK",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(350 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Arkansas.png"
     },
     {
       "teamId": "AUB",
       "name": "Auburn",
       "abbr": "AUB",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(291 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Auburn.png"
     },
     {
       "teamId": "FLO",
       "name": "Florida",
       "abbr": "FLO",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(45 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Florida.png"
     },
     {
       "teamId": "UGA",
       "name": "Georgia",
       "abbr": "UGA",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(102 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Georgia.png"
     },
     {
       "teamId": "UK",
       "name": "Kentucky",
       "abbr": "UK",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(284 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Kentucky.png"
     },
     {
       "teamId": "LSU",
       "name": "LSU",
       "abbr": "LSU",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(94 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "LSU.png"
     },
     {
       "teamId": "MISSST",
       "name": "Mississippi State",
       "abbr": "MISSST",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(326 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Mississippi State.png"
     },
     {
       "teamId": "MIZZ",
       "name": "Missouri",
       "abbr": "MIZZ",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(209 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Missouri.png"
     },
     {
       "teamId": "MISS",
       "name": "Ole Miss",
       "abbr": "MISS",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(188 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Ole Miss.png"
     },
     {
       "teamId": "TENN",
       "name": "Tennessee",
       "abbr": "TENN",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(132 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Tennessee.png"
     },
     {
       "teamId": "TAMU",
       "name": "Texas A&M",
       "abbr": "TAMU",
       "group": "SEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(281 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Texas A&M.png"
     },
     {
       "teamId": "ILL",
       "name": "Illinois",
       "abbr": "ILL",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(75 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Illinois.png"
     },
     {
       "teamId": "IU",
       "name": "Indiana",
       "abbr": "IU",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(2 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Indiana.png"
     },
     {
       "teamId": "IOWA",
       "name": "Iowa",
       "abbr": "IOWA",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(280 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Iowa.png"
     },
     {
       "teamId": "MD",
       "name": "Maryland",
       "abbr": "MD",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(310 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Maryland.png"
     },
     {
       "teamId": "UM",
       "name": "Michigan",
       "abbr": "UM",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(300 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Michigan.png"
     },
     {
       "teamId": "MSU",
       "name": "Michigan State",
       "abbr": "MSU",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(69 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Michigan State.png"
     },
     {
       "teamId": "MIN",
       "name": "Minnesota",
       "abbr": "MIN",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(106 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Minnesota.png"
     },
     {
       "teamId": "NW",
       "name": "Northwestern",
       "abbr": "NW",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(197 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Northwestern.png"
     },
     {
       "teamId": "OHSU",
       "name": "Ohio State",
       "abbr": "OHSU",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(336 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Ohio State.png"
     },
     {
       "teamId": "PSU",
       "name": "Penn State",
       "abbr": "PSU",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(206 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Penn State.png"
     },
     {
       "teamId": "PUR",
       "name": "Purdue",
       "abbr": "PUR",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(359 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Purdue.png"
     },
     {
       "teamId": "WIS",
       "name": "Wisconsin",
       "abbr": "WIS",
       "group": "B10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(279 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Wisconsin.png"
     },
     {
       "teamId": "AKR",
       "name": "Akron",
       "abbr": "AKR",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(207 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Akron.png"
     },
     {
       "teamId": "CIN",
       "name": "Cincinnati",
       "abbr": "CIN",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(184 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Cincinnati.png"
     },
     {
       "teamId": "FAU",
       "name": "FAU",
       "abbr": "FAU",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(250 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "FAU.png"
     },
     {
       "teamId": "GT",
       "name": "Georgia Tech",
       "abbr": "GT",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(0 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Georgia Tech.png"
     },
     {
       "teamId": "MEM",
       "name": "Memphis",
       "abbr": "MEM",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(47 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Memphis.png"
     },
     {
       "teamId": "RICE",
       "name": "Rice",
       "abbr": "RICE",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(297 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Rice.png"
     },
     {
       "teamId": "SMU",
       "name": "SMU",
       "abbr": "SMU",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(155 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "SMU.png"
     },
     {
       "teamId": "TOL",
       "name": "Toledo",
       "abbr": "TOL",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(135 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Toledo.png"
     },
     {
       "teamId": "TUL",
       "name": "Tulane",
       "abbr": "TUL",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(197 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Tulane.png"
     },
     {
       "teamId": "UAB",
       "name": "UAB",
       "abbr": "UAB",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(246 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UAB.png"
     },
     {
       "teamId": "UCF",
       "name": "UCF",
       "abbr": "UCF",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(312 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UCF.png"
     },
     {
       "teamId": "WICH",
       "name": "Wichita State",
       "abbr": "WICH",
       "group": "AAC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(48 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Wichita State.png"
     },
     {
       "teamId": "ARIZ",
       "name": "Arizona",
       "abbr": "ARIZ",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(80 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Arizona.png"
     },
     {
       "teamId": "ASU",
       "name": "Arizona State",
       "abbr": "ASU",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(113 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Arizona State.png"
     },
     {
       "teamId": "COLO",
       "name": "Colorado",
       "abbr": "COLO",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(337 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Colorado.png"
     },
     {
       "teamId": "GU",
       "name": "Gonzaga",
       "abbr": "GU",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(351 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Gonzaga.png"
     },
     {
       "teamId": "ORE",
       "name": "Oregon",
       "abbr": "ORE",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(108 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Oregon.png"
     },
     {
       "teamId": "ORST",
       "name": "Oregon State",
       "abbr": "ORST",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(317 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Oregon State.png"
     },
     {
       "teamId": "STAN",
       "name": "Stanford",
       "abbr": "STAN",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(337 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Stanford.png"
     },
     {
       "teamId": "UCLA",
       "name": "UCLA",
       "abbr": "UCLA",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(203 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UCLA.png"
     },
     {
       "teamId": "USC",
       "name": "USC",
       "abbr": "USC",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(85 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "USC.png"
     },
     {
       "teamId": "UTAH",
       "name": "Utah",
       "abbr": "UTAH",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(102 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Utah.png"
     },
     {
       "teamId": "WASH",
       "name": "Washington",
       "abbr": "WASH",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(64 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Washington.png"
     },
     {
       "teamId": "WSU",
       "name": "Washington State",
       "abbr": "WSU",
       "group": "P12",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(129 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Washington State.png"
     },
     {
       "teamId": "BC",
       "name": "Boston College",
       "abbr": "BC",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(148 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Boston College.png"
     },
     {
       "teamId": "BUF",
       "name": "Buffalo",
       "abbr": "BUF",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(329 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Buffalo.png"
     },
     {
       "teamId": "DAY",
       "name": "Dayton",
       "abbr": "DAY",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(263 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Dayton.png"
     },
     {
       "teamId": "ECU",
       "name": "East Carolina",
       "abbr": "ECU",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(342 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "East Carolina.png"
     },
     {
       "teamId": "LUC",
       "name": "Loyola-Chicago",
       "abbr": "LUC",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(331 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Loyola-Chicago.png"
     },
     {
       "teamId": "NEB",
       "name": "Nebraska",
       "abbr": "NEB",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(151 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Nebraska.png"
     },
     {
       "teamId": "PITT",
       "name": "Pitt",
       "abbr": "PITT",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(297 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Pitt.png"
     },
     {
       "teamId": "RUT",
       "name": "Rutgers",
       "abbr": "RUT",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(176 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Rutgers.png"
     },
     {
       "teamId": "SC",
       "name": "South Carolina",
       "abbr": "SC",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(286 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "South Carolina.png"
     },
     {
       "teamId": "STJ",
       "name": "St.Joseph's",
       "abbr": "STJ",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(48 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "St.Joseph's.png"
     },
     {
       "teamId": "VAN",
       "name": "Vanderbilt",
       "abbr": "VAN",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(125 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Vanderbilt.png"
     },
     {
       "teamId": "VCU",
       "name": "VCU",
       "abbr": "VCU",
       "group": "A10",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(208 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "VCU.png"
     },
     {
       "teamId": "ARMY",
       "name": "Army",
       "abbr": "ARMY",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(349 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Army.png"
     },
     {
       "teamId": "BEL",
       "name": "Belmont",
       "abbr": "BEL",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(17 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Belmont.png"
     },
     {
       "teamId": "COLG",
       "name": "Colgate",
       "abbr": "COLG",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(299 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Colgate.png"
     },
     {
       "teamId": "HOW",
       "name": "Howard",
       "abbr": "HOW",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(43 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Howard.png"
     },
     {
       "teamId": "LEH",
       "name": "Lehigh",
       "abbr": "LEH",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(203 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Lehigh.png"
     },
     {
       "teamId": "LIB",
       "name": "Liberty",
       "abbr": "LIB",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(175 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Liberty.png"
     },
     {
       "teamId": "MURRST",
       "name": "Murray State",
       "abbr": "MURRST",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(145 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Murray State.png"
     },
     {
       "teamId": "NAVY",
       "name": "Navy",
       "abbr": "NAVY",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(54 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Navy.png"
     },
     {
       "teamId": "FOLK",
       "name": "Norfolk State",
       "abbr": "FOLK",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(66 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Norfolk State.png"
     },
     {
       "teamId": "STM",
       "name": "Saint Mary's",
       "abbr": "STM",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(94 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Saint Mary's.png"
     },
     {
       "teamId": "STP",
       "name": "Saint Peter's",
       "abbr": "STP",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(241 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Saint Peter's.png"
     },
     {
       "teamId": "VT",
       "name": "Vermont",
       "abbr": "VT",
       "group": "PAT",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(99 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Vermont.png"
     },
     {
       "teamId": "BU",
       "name": "Boston U",
       "abbr": "BU",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(90 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Boston U.png"
     },
     {
       "teamId": "DEL",
       "name": "Delaware",
       "abbr": "DEL",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(243 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Delaware.png"
     },
     {
       "teamId": "DSU",
       "name": "Delaware State",
       "abbr": "DSU",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(124 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Delaware State.png"
     },
     {
       "teamId": "DRA",
       "name": "Drake",
       "abbr": "DRA",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(37 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Drake.png"
     },
     {
       "teamId": "GW",
       "name": "George Washington",
       "abbr": "GW",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(105 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "George Washington.png"
     },
     {
       "teamId": "INST",
       "name": "Indiana State",
       "abbr": "INST",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(115 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Indiana State.png"
     },
     {
       "teamId": "MTU",
       "name": "Middle Tennessee",
       "abbr": "MTU",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(113 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Middle Tennessee.png"
     },
     {
       "teamId": "NE",
       "name": "Northeastern",
       "abbr": "NE",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(239 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Northeastern.png"
     },
     {
       "teamId": "URI",
       "name": "Rhode Island",
       "abbr": "URI",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(163 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Rhode Island.png"
     },
     {
       "teamId": "RICH",
       "name": "Richmond",
       "abbr": "RICH",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(348 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Richmond.png"
     },
     {
       "teamId": "UMBC",
       "name": "UMBC",
       "abbr": "UMBC",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(145 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UMBC.png"
     },
     {
       "teamId": "WIN",
       "name": "Winthrop",
       "abbr": "WIN",
       "group": "COL",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(235 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Winthrop.png"
     },
     {
       "teamId": "CLST",
       "name": "Cleveland State",
       "abbr": "CLST",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(199 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Cleveland State.png"
     },
     {
       "teamId": "IONA",
       "name": "Iona",
       "abbr": "IONA",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(1 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Iona.png"
     },
     {
       "teamId": "IUP",
       "name": "IUPUI",
       "abbr": "IUP",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(216 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "IUPUI.png"
     },
     {
       "teamId": "NDSU",
       "name": "North Dakota State",
       "abbr": "NDSU",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(202 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "North Dakota State.png"
     },
     {
       "teamId": "NKU",
       "name": "Northern Kentucky",
       "abbr": "NKU",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(136 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Northern Kentucky.png"
     },
     {
       "teamId": "OAK",
       "name": "Oakland",
       "abbr": "OAK",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(172 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Oakland.png"
     },
     {
       "teamId": "SAN",
       "name": "Santa Clara",
       "abbr": "SAN",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(164 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Santa Clara.png"
     },
     {
       "teamId": "SDST",
       "name": "South Dakota State",
       "abbr": "SDST",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(242 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "South Dakota State.png"
     },
     {
       "teamId": "STB",
       "name": "St.Bonaventure",
       "abbr": "STB",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(86 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "St.Bonaventure.png"
     },
     {
       "teamId": "UCI",
       "name": "UC Irvine",
       "abbr": "UCI",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(245 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UC Irvine.png"
     },
     {
       "teamId": "WOF",
       "name": "Wofford",
       "abbr": "WOF",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(169 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Wofford.png"
     },
     {
       "teamId": "WRIG",
       "name": "Wright State",
       "abbr": "WRIG",
       "group": "HOR",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(126 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Wright State.png"
     },
     {
       "teamId": "BRN",
       "name": "Brown",
       "abbr": "BRN",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(310 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Brown.png"
     },
     {
       "teamId": "CAL",
       "name": "Cal",
       "abbr": "CAL",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(182 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Cal.png"
     },
     {
       "teamId": "CHI",
       "name": "Chicago",
       "abbr": "CHI",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(282 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Chicago.png"
     },
     {
       "teamId": "COL",
       "name": "Columbia",
       "abbr": "COL",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(90 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Columbia.png"
     },
     {
       "teamId": "CORN",
       "name": "Cornell",
       "abbr": "CORN",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(45 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Cornell.png"
     },
     {
       "teamId": "DART",
       "name": "Dartmouth",
       "abbr": "DART",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(48 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Dartmouth.png"
     },
     {
       "teamId": "HAR",
       "name": "Harvard",
       "abbr": "HAR",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(142 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Harvard.png"
     },
     {
       "teamId": "MIT",
       "name": "MIT",
       "abbr": "MIT",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(24 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "MIT.png"
     },
     {
       "teamId": "PENN",
       "name": "Penn",
       "abbr": "PENN",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(221 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Penn.png"
     },
     {
       "teamId": "PRIN",
       "name": "Princeton",
       "abbr": "PRIN",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(162 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Princeton.png"
     },
     {
       "teamId": "UCSB",
       "name": "UCSB",
       "abbr": "UCSB",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(61 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UCSB.png"
     },
     {
       "teamId": "YALE",
       "name": "Yale",
       "abbr": "YALE",
       "group": "IVY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(185 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Yale.png"
     },
     {
       "teamId": "ACU",
-      "name": "Abeline Christian",
+      "name": "Abilene Christian",
       "abbr": "ACU",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(73 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Abilene Christian.png"
     },
     {
       "teamId": "MCN",
       "name": "McNeese State",
       "abbr": "MCN",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(323 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "McNeese State.png"
     },
     {
       "teamId": "UNT",
       "name": "North Texas",
       "abbr": "UNT",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(6 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "North Texas.png"
     },
     {
       "teamId": "ORU",
       "name": "Oral Roberts",
       "abbr": "ORU",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(103 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Oral Roberts.png"
     },
     {
       "teamId": "SHSU",
       "name": "Sam Houston State",
       "abbr": "SHSU",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(350 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Sam Houston State.png"
     },
     {
       "teamId": "SAM",
       "name": "Samford",
       "abbr": "SAM",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(234 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Samford.png"
     },
     {
       "teamId": "SOU",
       "name": "Southern",
       "abbr": "SOU",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(316 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Southern.png"
     },
     {
       "teamId": "SFA",
       "name": "Stephen F Austin",
       "abbr": "SFA",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(191 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Stephen F Austin.png"
     },
     {
       "teamId": "AMCC",
       "name": "Texas A&M CC",
       "abbr": "AMCC",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(47 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Texas A&M CC.png"
     },
     {
       "teamId": "TXSO",
       "name": "Texas Southern",
       "abbr": "TXSO",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(3 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Texas Southern.png"
     },
     {
       "teamId": "TXST",
       "name": "Texas State",
       "abbr": "TXST",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(306 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Texas State.png"
     },
     {
       "teamId": "UTSA",
       "name": "UTSA",
       "abbr": "UTSA",
       "group": "SOCON",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(197 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UTSA.png"
     },
     {
       "teamId": "ALST",
       "name": "Alabama State",
       "abbr": "ALST",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(98 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Alabama State.png"
     },
     {
       "teamId": "APB",
       "name": "Arkansas Pine Bluff",
       "abbr": "APB",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(245 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Arkansas Pine Bluff.png"
     },
     {
       "teamId": "ARST",
       "name": "Arkansas State",
       "abbr": "ARST",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(215 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Arkansas State.png"
     },
     {
       "teamId": "CHAT",
       "name": "Chattanooga",
       "abbr": "CHAT",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(243 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Chattanooga.png"
     },
     {
       "teamId": "ETSU",
       "name": "ETSU",
       "abbr": "ETSU",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(201 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "ETSU.png"
     },
     {
       "teamId": "FUR",
       "name": "Furman",
       "abbr": "FUR",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(47 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Furman.png"
     },
     {
       "teamId": "GAST",
       "name": "Georgia State",
       "abbr": "GAST",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(215 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Georgia State.png"
     },
     {
       "teamId": "GRAM",
       "name": "Grambling State",
       "abbr": "GRAM",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(178 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Grambling State.png"
     },
     {
       "teamId": "JSU",
       "name": "Jackson State",
       "abbr": "JSU",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(348 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Jackson State.png"
     },
     {
       "teamId": "JMU",
       "name": "James Madison",
       "abbr": "JMU",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(221 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "James Madison.png"
     },
     {
       "teamId": "USF",
       "name": "South Florida",
       "abbr": "USF",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(66 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "South Florida.png"
     },
     {
       "teamId": "WKU",
       "name": "Western Kentucky",
       "abbr": "WKU",
       "group": "SUN",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(274 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Western Kentucky.png"
     },
     {
       "teamId": "EWU",
       "name": "Eastern Washington",
       "abbr": "EWU",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(28 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Eastern Washington.png"
     },
     {
       "teamId": "EVA",
       "name": "Evansville",
       "abbr": "EVA",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(261 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Evansville.png"
     },
     {
       "teamId": "HPU",
       "name": "High Point",
       "abbr": "HPU",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(322 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "High Point.png"
     },
     {
       "teamId": "KENN",
       "name": "Kennesaw State",
       "abbr": "KENN",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(135 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Kennesaw State.png"
     },
     {
       "teamId": "LONG",
       "name": "Longwood",
       "abbr": "LONG",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(241 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Longwood.png"
     },
     {
       "teamId": "MON",
       "name": "Montana",
       "abbr": "MON",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(132 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Montana.png"
     },
     {
       "teamId": "MOST",
       "name": "Montana State",
       "abbr": "MOST",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(261 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Montana State.png"
     },
     {
       "teamId": "PTST",
       "name": "Portland State",
       "abbr": "PTST",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(237 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Portland State.png"
     },
     {
       "teamId": "SF",
       "name": "San Francisco",
       "abbr": "SF",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(216 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "San Francisco.png"
     },
     {
       "teamId": "STET",
       "name": "Stetson",
       "abbr": "STET",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(330 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Stetson.png"
     },
     {
       "teamId": "UCSD",
       "name": "UC San Diego",
       "abbr": "UCSD",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(38 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UC San Diego.png"
     },
     {
       "teamId": "WEB",
       "name": "Weber State",
       "abbr": "WEB",
       "group": "SKY",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(210 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Weber State.png"
     },
     {
       "teamId": "AF",
       "name": "Air Force",
       "abbr": "AF",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(197 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Air Force.png"
     },
     {
       "teamId": "BSU",
       "name": "Boise State",
       "abbr": "BSU",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(207 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Boise State.png"
     },
     {
       "teamId": "CSU",
       "name": "Colorado State",
       "abbr": "CSU",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(282 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Colorado State.png"
     },
     {
       "teamId": "FRES",
       "name": "Fresno State",
       "abbr": "FRES",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(196 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Fresno State.png"
     },
     {
       "teamId": "NEV",
       "name": "Nevada",
       "abbr": "NEV",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(111 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Nevada.png"
     },
     {
       "teamId": "NMU",
       "name": "New Mexico",
       "abbr": "NMU",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(293 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "New Mexico.png"
     },
     {
       "teamId": "NMSU",
       "name": "New Mexico State",
       "abbr": "NMSU",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(126 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "New Mexico State.png"
     },
     {
       "teamId": "SDSU",
       "name": "San Diego State",
       "abbr": "SDSU",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(241 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "San Diego State.png"
     },
     {
       "teamId": "SJSU",
       "name": "San Jose State",
       "abbr": "SJSU",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(0 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "San Jose State.png"
     },
     {
       "teamId": "UNLV",
       "name": "UNLV",
       "abbr": "UNLV",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(355 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UNLV.png"
     },
     {
       "teamId": "USU",
       "name": "Utah State",
       "abbr": "USU",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(103 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Utah State.png"
     },
     {
       "teamId": "WYO",
       "name": "Wyoming",
       "abbr": "WYO",
       "group": "MWC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(218 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Wyoming.png"
     },
     {
       "teamId": "APP",
       "name": "Appalachian State",
       "abbr": "APP",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(13 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Appalachian State.png"
     },
     {
       "teamId": "ALR",
       "name": "Arkansas Little Rock",
       "abbr": "ALR",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(205 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Arkansas Little Rock.png"
     },
     {
       "teamId": "GCU",
       "name": "Grand Canyon",
       "abbr": "GCU",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(60 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Grand Canyon.png"
     },
     {
       "teamId": "KENT",
       "name": "Kent State",
       "abbr": "KENT",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(41 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Kent State.png"
     },
     {
       "teamId": "MORE",
       "name": "Morehead State",
       "abbr": "MORE",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(310 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Morehead State.png"
     },
     {
       "teamId": "NIU",
       "name": "Northern Illinois",
       "abbr": "NIU",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(31 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Northern Illinois.png"
     },
     {
       "teamId": "OHIO",
       "name": "Ohio",
       "abbr": "OHIO",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(159 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Ohio.png"
     },
     {
       "teamId": "OMA",
       "name": "Omaha",
       "abbr": "OMA",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(276 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Omaha.png"
     },
     {
       "teamId": "STL",
       "name": "Saint Louis",
       "abbr": "STL",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(325 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Saint Louis.png"
     },
     {
       "teamId": "SIUE",
       "name": "SIU Edwardsville",
       "abbr": "SIUE",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(307 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "SIU Edwardsville.png"
     },
     {
       "teamId": "SEMO",
       "name": "Southeastern Missouri State",
       "abbr": "SEMO",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(99 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Southeastern Missouri State.png"
     },
     {
       "teamId": "TROY",
       "name": "Troy",
       "abbr": "TROY",
       "group": "OVC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(160 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Troy.png"
     },
     {
       "teamId": "BRY",
       "name": "Bryant",
       "abbr": "BRY",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(294 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Bryant.png"
     },
     {
       "teamId": "DUQ",
       "name": "Duquesne",
       "abbr": "DUQ",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(202 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Duquesne.png"
     },
     {
       "teamId": "FDU",
       "name": "Fairleigh Dickinson",
       "abbr": "FDU",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(357 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Fairleigh Dickinson.png"
     },
     {
       "teamId": "GMU",
       "name": "George Mason",
       "abbr": "GMU",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(277 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "George Mason.png"
     },
     {
       "teamId": "LIP",
       "name": "Lipscomb",
       "abbr": "LIP",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(1 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Lipscomb.png"
     },
     {
       "teamId": "LIU",
       "name": "Long Island",
       "abbr": "LIU",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(1 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Long Island.png"
     },
     {
       "teamId": "MAR",
       "name": "Marist",
       "abbr": "MAR",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(84 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Marist.png"
     },
     {
       "teamId": "QUIN",
       "name": "Quinnipiac",
       "abbr": "QUIN",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(239 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Quinnipiac.png"
     },
     {
       "teamId": "RMU",
       "name": "Robert Morris",
       "abbr": "RMU",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(186 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "Robert Morris.png"
     },
     {
       "teamId": "UMAS",
       "name": "UMass",
       "abbr": "UMAS",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(249 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UMass.png"
     },
     {
       "teamId": "UNCA",
       "name": "UNC Asheville",
       "abbr": "UNCA",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(141 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UNC Asheville.png"
     },
     {
       "teamId": "UNCW",
       "name": "UNC Wilmington",
       "abbr": "UNCW",
       "group": "NEC",
-      "logoFolder": null,
+      "logoFolder": "FBAJC_Final",
       "badge": {
         "bg": "hsl(306 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "logoFile": "UNC Wilmington.png"
     }
   ]
 }

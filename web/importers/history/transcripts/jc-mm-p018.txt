@@ -1,0 +1,72 @@
+# p018 March Madness S56
+S56
+1|Nevada|22-0
+BYE
+|UConn|12-8
+|Wisconsin|13-8
+17|Syracuse|13-8
+|Mississippi State|9-11
+BYE
+16|Texas|18-4
+9|Villanova|20-2
+BYE
+|Ole Miss|10-10
+24|Wichita State|14-7
+25|Florida|15-6
+|Xavier|11-9
+BYE
+8|Tennessee|19-3
+4|Florida State|17-5
+BYE
+|West Virginia|11-9
+|East Carolina|18-4
+20|Marquette|19-3
+|Wofford|12-9
+BYE
+13|Wake Forest|17-4
+12|Virginia|14-6
+BYE
+|St.Joseph's|13-8
+21|Michigan|15-7
+|Georgetown|16-5
+|Penn|19-3
+BYE
+5|Arizona|20-2
+2|North Carolina|20-2
+BYE
+|Purdue|12-8
+|Murray State|16-6
+18|Kansas|16-5
+|Stanford|10-11
+BYE
+15|Kansas State|17-5
+10|Louisville|14-7
+BYE
+|Davidson|11-10
+23|Texas Tech|15-6
+|Texas A&M|15-6
+|Iowa State|10-10
+BYE
+7|UCF|19-3
+3|Kentucky|20-2
+BYE
+|Utah State|15-6
+|UCLA|15-6
+19|Duke|12-8
+|Yale|15-7
+BYE
+14|Gonzaga|19-2
+11|Memphis|18-4
+BYE
+|New Mexico State|13-9
+22|Oregon|18-4
+|Buffalo|20-2
+|Washington|13-7
+BYE
+6|Michigan State|18-3
+=Nevada BYE|Wisconsin 50-47|Syracuse 56-32|Texas BYE|Villanova BYE|Wichita State 61-26|Florida 47-32|Tennessee BYE|Florida State BYE|East Carolina 43-41|Marquette 53-23|Wake Forest BYE|Virginia BYE|Michigan 57-25|Georgetown 56-53 OT|Arizona BYE|North Carolina BYE|Purdue 48-37|Kansas 50-36|Kansas State BYE|Louisville BYE|Texas Tech 44-36|Texas A&M 38-33|UCF BYE|Kentucky BYE|UCLA 71-22|Duke 57-15|Gonzaga BYE|Memphis BYE|Oregon 50-0|Buffalo 48-33|Michigan State BYE
+=Nevada 60-29|Texas 62-61 OT|Villanova 76-72 OT|Tennessee 49-35|Florida State 53-24|Wake Forest 50-37|Michigan 59-57|Arizona 71-23|North Carolina 95-27|Kansas State 62-31|Louisville 54-34|UCF 56-37|Kentucky 112-110 5OT|Gonzaga 43-42|Memphis 80-32|Buffalo 48-47
+=Nevada 64-43|Tennessee 50-36|Wake Forest 48-33|Michigan 135-132 4OT|North Carolina 50-42|UCF 63-60 OT|Kentucky 71-67 OT|Buffalo 71-68 OT
+=Nevada 56-48|Wake Forest 62-59|North Carolina 82-81 OT|Kentucky 50-32
+=Nevada 81-46|Kentucky 56-55
+=Nevada 82-81 2OT

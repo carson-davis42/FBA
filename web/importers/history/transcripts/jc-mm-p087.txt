@@ -1,0 +1,39 @@
+# p087 March Madness S48 (32 slots, no byes; prefix numbers are national ranks)
+S48
+1|Kansas|
+|Arkansas|
+17|Wisconsin|
+16|Texas Tech|
+9|West Virginia|
+|Louisville|
+|Texas A&M|
+8|Nevada|
+5|Villanova|
+|NC State|
+|Florida|
+12|Xavier|
+13|Georgetown|
+20|Houston|
+|Butler|
+4|Duke|
+2|Wichita State|
+|Purdue|
+18|Michigan|
+15|North Carolina|
+10|Arizona|
+|Oklahoma|
+|Utah|
+7|Michigan State|
+6|Virginia|
+|TCU|
+|Stanford|
+11|Gonzaga|
+14|Providence|
+19|Loyola-Chicago|
+|USC|
+3|Kentucky|
+=Kansas 22-20|Texas Tech 23-17|West Virginia 22-16|Nevada 20-11|Villanova 25-8|Florida 23-21|Georgetown 17-14|Duke 25-4|Wichita State 22-4|Michigan 20-19|Oklahoma 21-19|Utah 21-16 OT|Virginia 17-16|Stanford 17-14|Providence 23-13|Kentucky 23-13
+=Kansas 35-30|West Virginia 34-27|Villanova 42-38 2OT|Duke 41-10|Wichita State 36-13|Oklahoma 36-21|Stanford 30-19|Kentucky 39-30
+=Kansas 29-26|Duke 38-30|Wichita State 37-15|Stanford 27-21
+=Kansas 52-42|Wichita State 51-42
+=Kansas 47-45

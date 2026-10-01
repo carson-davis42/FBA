@@ -1,0 +1,39 @@
+# p017 March Madness S11 (32 slots; the page prints no scores or records; "ECU" written out in full)
+S11
+|Villanova|
+BYE
+|Miami|
+|East Carolina|
+|Oklahoma|
+BYE
+BYE
+|Purdue|
+|Memphis|
+BYE
+BYE
+|Kansas|
+|Arizona State|
+|Auburn|
+BYE
+|Duke|
+|TCU|
+BYE
+|Michigan State|
+|Florida|
+|South Carolina|
+BYE
+BYE
+|Texas Tech|
+|Virginia|
+BYE
+BYE
+|Baylor|
+|North Carolina|
+|Iowa State|
+BYE
+|West Virginia|
+=Villanova BYE|Miami -|Oklahoma BYE|Purdue BYE|Memphis BYE|Kansas BYE|Arizona State -|Duke BYE|TCU BYE|Michigan State -|South Carolina BYE|Texas Tech BYE|Virginia BYE|Baylor BYE|Iowa State -|West Virginia BYE
+=Villanova -|Oklahoma -|Memphis -|Duke -|TCU -|Texas Tech -|Baylor -|West Virginia -
+=Villanova -|Duke -|TCU -|Baylor -
+=Duke -|TCU -
+=TCU -

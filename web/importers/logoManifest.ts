@@ -4,6 +4,9 @@ import { parseLogoFilename } from '../engine/shared/logos';
 import type { LogoEntry, LogoManifest } from '../engine/shared/types';
 import type { Report } from './report';
 
+/** Folders whose files are one undated logo per team, so no era is expected in the names. */
+const SHARED_FOLDERS = new Set(['FBA', 'FBAJC', 'FBAJC_Final']);
+
 export function buildLogoManifest(logoRoot: string, report: Report): LogoManifest {
   const folders: Record<string, LogoEntry[]> = {};
   for (const dir of readdirSync(logoRoot, { withFileTypes: true })) {
@@ -16,7 +19,7 @@ export function buildLogoManifest(logoRoot: string, report: Report): LogoManifes
         report.info('logos', `Skipped non-PNG file ${dir.name}/${f.name}`);
         continue;
       }
-      if (parsed.from === null && dir.name !== 'FBA') {
+      if (parsed.from === null && !SHARED_FOLDERS.has(dir.name)) {
         report.warn('logos', `Undated logo ${dir.name}/${f.name}: add an era such as "S60-S70" or "S79-pres." to the filename for season-accurate logos`);
       }
       entries.push(parsed);

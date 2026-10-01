@@ -1,14 +1,16 @@
 /*
- * Transcript format: `S<n>`, optional `G:<code>`, slot lines `seed|name|record`, then one `=` line per round
- * listing each series winner as `Name W-L`, `Name PTS-PTS` (a single game; any number above 4), or `Name BYE`.
+ * Transcript format: `S<n>`, optional `G:<code>` (D2) or `K:NIT` (FBAJC), slot lines `seed|name|record`, then one `=` line per round
+ * listing each series winner as `Name W-L`, `Name PTS-PTS` (a single game; any number above 4, optionally followed by ` OT`, ` 2OT`...), or `Name BYE`.
  * `Name -` (a single dash instead of the score) is an unscored series: the page printed only the winner.
  */
 import { PastBracket, type PastSeries, type PastSide } from '../../engine/shared/types';
 
 export type BracketGroup = 'PL' | 'WL' | 'UL' | 'IL';
-export interface BracketEntry { season: number; group?: BracketGroup; rounds: number; series: PastSeries[] }
+/** FBAJC only: a page is a March Madness bracket (the default) or an NIT bracket (`K:NIT`). */
+export type BracketKind = 'NIT';
+export interface BracketEntry { season: number; group?: BracketGroup; kind?: BracketKind; rounds: number; series: PastSeries[] }
 
-interface Page { season: number; group?: BracketGroup; slots: (PastSide | null)[]; results: string[][] }
+interface Page { season: number; group?: BracketGroup; kind?: BracketKind; slots: (PastSide | null)[]; results: string[][] }
 
 const GROUPS: readonly string[] = ['PL', 'WL', 'UL', 'IL'];
 
@@ -22,6 +24,12 @@ export function convertTranscript(text: string): { entries: BracketEntry[]; warn
     if (!line || line.startsWith('#')) continue;
     if (/^S\d+$/.test(line)) { cur = { season: Number(line.slice(1)), slots: [], results: [] }; pages.push(cur); continue; }
     if (!cur) throw new Error(`Line before any season: "${line}"`);
+    if (line.startsWith('K:')) {
+      const k = line.slice(2).trim();
+      if (k !== 'NIT') throw new Error(`S${cur.season}: unknown page kind "${k}" (only NIT)`);
+      cur.kind = k;
+      continue;
+    }
     if (line.startsWith('G:')) {
       const g = line.slice(2).trim();
       if (!GROUPS.includes(g)) throw new Error(`S${cur.season}: unknown group "${g}"`);
@@ -39,8 +47,8 @@ export function convertTranscript(text: string): { entries: BracketEntry[]; warn
 
   const seen = new Set<string>();
   const entries: BracketEntry[] = pages.map(p => {
-    const key = `${p.season}${p.group ?? ''}`;
-    if (seen.has(key)) throw new Error(`Duplicate bracket for S${p.season}${p.group ? ` ${p.group}` : ''}`);
+    const key = `${p.season}${p.group ?? ''}${p.kind ?? ''}`;
+    if (seen.has(key)) throw new Error(`Duplicate bracket for S${p.season}${p.group ? ` ${p.group}` : ''}${p.kind ? ` ${p.kind}` : ''}`);
     seen.add(key);
     const rounds = Math.log2(p.slots.length);
     if (!Number.isInteger(rounds) || rounds < 1 || p.results.length !== rounds) throw new Error(`S${p.season}: bad shape (${p.slots.length} slots, ${p.results.length} result lines)`);
@@ -52,7 +60,13 @@ export function convertTranscript(text: string): { entries: BracketEntry[]; warn
       const next: (PastSide | null)[] = [];
       res.forEach((txt, i) => {
         const home = sides[2 * i], away = sides[2 * i + 1];
-        const m = /^(.*) (BYE|-|(\d+)-(\d+))$/.exec(txt);
+        if (!home && !away) {
+          if (txt !== 'BYE') throw new Error(`S${p.season} R${r}-${i + 1}: two BYE slots need the result "BYE"`);
+          series.push({ id: `R${r}-${i + 1}`, round: r, home: null, away: null, homeWins: 0, awayWins: 0, winner: 'home' });
+          next.push(null);
+          return;
+        }
+        const m = /^(.*) (BYE|-|(\d+)-(\d+)( \d?OT)?)$/.exec(txt);
         if (!m) throw new Error(`S${p.season} R${r}-${i + 1}: can't parse "${txt}"`);
         const wname = m[1];
         const winner = home?.name === wname ? 'home' : away?.name === wname ? 'away' : null;
@@ -69,15 +83,15 @@ export function convertTranscript(text: string): { entries: BracketEntry[]; warn
           winner,
         };
         if (unscored) s.unscored = true;
-        if (single) s.score = `${w}–${l}`;
+        if (single) s.score = `${w}–${l}${m[5] ?? ''}`;
         series.push(s);
         next.push(winner === 'home' ? home : away);
       });
       sides = next;
     }
-    const entry: BracketEntry = { season: p.season, ...(p.group ? { group: p.group } : {}), rounds, series };
+    const entry: BracketEntry = { season: p.season, ...(p.group ? { group: p.group } : {}), ...(p.kind ? { kind: p.kind } : {}), rounds, series };
     const parsed = PastBracket.safeParse({ rounds, series });
-    if (!parsed.success) throw new Error(`S${p.season}${p.group ? ` ${p.group}` : ''}: ${parsed.error.issues.map(i => i.message).join('; ')}`);
+    if (!parsed.success) throw new Error(`S${p.season}${p.group ? ` ${p.group}` : ''}${p.kind ? ` ${p.kind}` : ''}: ${parsed.error.issues.map(i => i.message).join('; ')}`);
     return entry;
   });
   return { entries, warnings };

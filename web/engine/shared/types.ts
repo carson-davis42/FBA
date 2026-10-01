@@ -42,6 +42,8 @@ export const Team = z.object({
   abbr: z.string().min(1),
   group: z.string().nullable(),
   logoFolder: z.string().nullable(),
+  /** A file inside a folder that many teams share (the college logos, `FBAJC_Final/Duke.png`); without it the folder's logo for the season is used. */
+  logoFile: z.string().min(1).optional(),
   badge: Badge,
   /** ISO 3166 code (or gb-eng/gb-sct/gb-nir) for a flag; World Cup countries only. */
   flag: z.string().regex(/^[a-z]{2}(-[a-z]{3})?$/).optional(),
@@ -639,18 +641,133 @@ export const JcAwardsFile = z.object({
 });
 export type JcAwardsFile = z.infer<typeof JcAwardsFile>;
 
+export const PastSide = z.object({ name: z.string().min(1), record: z.string().regex(/^\d+-\d+(-\d+)?$/).nullable(), /** Up to 64: the college brackets print seeds beyond 16 (a 32-team NIT, older March Madness pages). */
+  seed: int.min(1).max(64).nullable() }).strict();
+export type PastSide = z.infer<typeof PastSide>;
+export const PastSeries = z.object({
+  id: z.string().regex(/^R\d-\d+$/),
+  round: int.min(1).max(6),
+  home: PastSide.nullable(),
+  away: PastSide.nullable(),
+  homeWins: int.min(0).max(4),
+  awayWins: int.min(0).max(4),
+  winner: z.enum(['home', 'away']),
+  /** A single game's points, winner first (for example 97–75, or 48-46 OT, 91-88 2OT); the wins are then 1-0. */
+  score: z.string().regex(/^\d+[–-]\d+( \d?OT)?$/).optional(),
+  /** A series whose page prints only the winner (no scores): 0-0 in wins, no score, a real loser. */
+  unscored: z.literal(true).optional(),
+}).strict();
+export type PastSeries = z.infer<typeof PastSeries>;
+/** A transcribed historical bracket: a full binary tree of series, R1-1... up to the final. */
+export const PastBracket = z.object({ rounds: int.min(1).max(6), series: z.array(PastSeries) }).strict().superRefine((b, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  const byId = new Map(b.series.map(s => [s.id, s]));
+  for (let r = 1; r <= b.rounds; r++) {
+    const n = 2 ** (b.rounds - r);
+    for (let k = 1; k <= n; k++) if (!byId.has(`R${r}-${k}`)) issue(`Missing R${r}-${k}`);
+  }
+  if (byId.size !== b.series.length) issue('Series ids must be unique');
+  for (const s of b.series) {
+    if (Number(s.id[1]) !== s.round) issue(`${s.id}: round doesn't match its id`);
+    if (s.round > b.rounds) issue(`${s.id}: round ${s.round} is beyond the ${b.rounds}-round bracket`);
+    else if (Number(s.id.split('-')[1]) > 2 ** (b.rounds - s.round)) issue(`${s.id}: series number is out of range`);
+    const win = s[s.winner];
+    const lose = s[s.winner === 'home' ? 'away' : 'home'];
+    if (!s.home && !s.away) {
+      // Early sparse brackets: two BYE slots meet and nothing is played; the empty slot carries on to the next round.
+      if (s.winner !== 'home' || s.homeWins || s.awayWins || s.score || s.unscored) issue(`${s.id}: an empty series (two BYEs) has no winner, wins or score`);
+      if (s.round < b.rounds) {
+        const next = byId.get(`R${s.round + 1}-${Math.ceil(Number(s.id.split('-')[1]) / 2)}`);
+        if (next?.[Number(s.id.split('-')[1]) % 2 === 1 ? 'home' : 'away']) issue(`${s.id}: an empty series can't feed a team into ${next!.id}`);
+      }
+      continue;
+    }
+    if (!win) { issue(`${s.id}: the winner can't be a BYE`); continue; }
+    if (!lose && (s.homeWins || s.awayWins)) issue(`${s.id}: a BYE series has no wins`);
+    if (s.unscored) {
+      if (!lose) issue(`${s.id}: an unscored series needs a loser`);
+      if (s.homeWins || s.awayWins) issue(`${s.id}: an unscored series has no wins`);
+      if (s.score) issue(`${s.id}: an unscored series has no score`);
+    } else if (lose && s[`${s.winner}Wins`] <= s[s.winner === 'home' ? 'awayWins' : 'homeWins']) issue(`${s.id}: the winner needs more wins`);
+    if (s.score) {
+      const [a, c] = s.score.replace(/ \d?OT$/, '').split(/[–-]/).map(Number);
+      if (s[`${s.winner}Wins`] !== 1 || s[s.winner === 'home' ? 'awayWins' : 'homeWins'] !== 0) issue(`${s.id}: a scored game is 1-0 in wins`);
+      if (!(a > c)) issue(`${s.id}: the winner's points must be larger`);
+    }
+    if (s.round < b.rounds) {
+      const k = Number(s.id.split('-')[1]);
+      const next = byId.get(`R${s.round + 1}-${Math.ceil(k / 2)}`);
+      const side = next?.[k % 2 === 1 ? 'home' : 'away'];
+      if (next && side?.name !== win.name) issue(`${s.id}: ${win.name} should advance to ${next.id}`);
+    }
+  }
+});
+export type PastBracket = z.infer<typeof PastBracket>;
+
+/** A player slot of an imported season carries the sheet's name and school as text; `playerId`/`teamId` are set when exactly one match exists. */
+const importedWho = { name: z.string().min(1).optional(), school: z.string().min(1).optional() };
 export const JcSummary = z.object({
-  confChampions: z.array(z.object({ conf: z.string().min(1), tournament: z.string().min(1).nullable(), regularSeason: z.array(z.string().min(1)) }).strict()),
-  national: z.array(z.object({ award: JcNationalAward, playerId: playerId.nullable(), teamId: z.string().min(1).nullable() }).strict()),
-  conference: z.array(z.object({ conf: z.string().min(1), playerId: playerId.nullable(), teamId: z.string().min(1).nullable() }).strict()),
+  confChampions: z.array(z.object({
+    conf: z.string().min(1),
+    tournament: z.string().min(1).nullable(),
+    regularSeason: z.array(z.string().min(1)),
+    /** Imported history: each regular-season champion's conference record ("12-3"), null when the sheet gives none. */
+    regularSeasonRecords: z.array(z.string().regex(/^\d+-\d+$/).nullable()).optional(),
+  }).strict().refine(c => !c.regularSeasonRecords || c.regularSeasonRecords.length === c.regularSeason.length, 'One record (or null) per regular-season champion')),
+  national: z.array(z.object({ award: JcNationalAward, playerId: playerId.nullable(), teamId: z.string().min(1).nullable(), ...importedWho }).strict()),
+  conference: z.array(z.object({ conf: z.string().min(1), playerId: playerId.nullable(), teamId: z.string().min(1).nullable(), ...importedWho }).strict()),
   allAmerican: z.array(z.object({
     team: z.union([z.literal(1), z.literal(2), z.literal(3)]),
-    slots: z.array(z.object({ slot: z.enum(['G', 'F', 'C', 'ANY']), playerId: playerId.nullable(), teamId: z.string().min(1).nullable() }).strict()),
+    slots: z.array(z.object({ slot: z.enum(['G', 'F', 'C', 'ANY']), playerId: playerId.nullable(), teamId: z.string().min(1).nullable(), ...importedWho }).strict()),
   }).strict()).nullable(),
   mvp: z.object({ mm: playerId.nullable(), nit: playerId.nullable() }).strict(),
   nit: z.object({ champion: z.string().min(1), runnerUp: z.string().min(1) }).strict().nullable(),
-}).strict();
+  /** Imported history: the MVPs' names when no player matched. */
+  mvpNames: z.object({ mm: z.string().min(1).nullable(), nit: z.string().min(1).nullable() }).strict().optional(),
+  /** Imported history (S64 on): each preseason tournament's champion. */
+  preseason: z.array(z.object({ event: z.string().min(1), champion: z.string().min(1), teamId: z.string().min(1).nullable().optional() }).strict()).optional(),
+  /** Imported history, S53–S70: All-American teams in the sheet's own slot labels (OUT/MID/IN, G/F/C/ANY, PG/SG/SF/PF/C). From S71 the `allAmerican` shape is used. */
+  allAmericanLegacy: z.object({
+    teams: z.array(z.object({
+      team: int.min(1),
+      slots: z.array(z.object({ slot: z.string().min(1), name: z.string().min(1), school: z.string().min(1).nullable(), playerId: playerId.nullable(), teamId: z.string().min(1).nullable().optional() }).strict()).min(1),
+    }).strict()).min(1),
+  }).strict().optional(),
+  /** Imported history: the transcribed NIT bracket. */
+  nitBracket: PastBracket.nullable().optional(),
+}).strict().superRefine((d, ctx) => {
+  if (d.allAmerican && d.allAmericanLegacy) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'A season has allAmerican or allAmericanLegacy, not both' });
+});
 export type JcSummary = z.infer<typeof JcSummary>;
+
+/** The college league's own first ten seasons (S1-S10), before March Madness appearances were listed. */
+export const JC_EARLY_ERA_LAST_SEASON = 10;
+const seasonList = z.array(int.min(1)).superRefine((l, ctx) => {
+  if (l.some((v, i) => i > 0 && v <= l[i - 1])) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'Seasons must be sorted and unique' });
+});
+const confTitles = z.array(z.object({ season: int.min(1), /** The school's conference that season when the sheet names another one; null = its current conference. */ conf: z.string().min(1).nullable() }).strict());
+
+/** Each FBAJC school's March Madness rounds and conference titles through S78 (imported from the school history sheet). */
+export const JcSchoolHistoryFile = z.object({
+  league: z.literal('fbajc'),
+  throughSeason: int.min(1),
+  schools: z.array(z.object({
+    teamId: z.string().min(1),
+    mm: z.object({ app: seasonList, sweet16: seasonList, elite8: seasonList, final4: seasonList, titleGame: seasonList, champion: seasonList }).strict(),
+    rsChampion: confTitles,
+    confTournament: confTitles,
+    /** Total March Madness wins all-time; null when the sheet has none. */
+    mmWins: int.min(0).nullable(),
+  }).strict().superRefine((sc, ctx) => {
+    const order = ['app', 'sweet16', 'elite8', 'final4', 'titleGame', 'champion'] as const;
+    for (let i = 1; i < order.length; i++) {
+      const outer = new Set(sc.mm[order[i - 1]]);
+      // The college league's first ten seasons (the sheet marks them with a star) list rounds without a matching "MM App." entry.
+      for (const season of sc.mm[order[i]]) if (season > JC_EARLY_ERA_LAST_SEASON && !outer.has(season)) ctx.addIssue({ code: z.ZodIssueCode.custom, message: `${sc.teamId}: S${season} is in ${order[i]} but not ${order[i - 1]}` });
+    }
+  })),
+}).strict().refine(f => new Set(f.schools.map(sc => sc.teamId)).size === f.schools.length, 'A school is listed twice');
+export type JcSchoolHistoryFile = z.infer<typeof JcSchoolHistoryFile>;
 
 export const RatingPauseRow = z.object({
   playerId,
@@ -905,59 +1022,6 @@ export const PastAllFbaTeams = z.object({ team1: z.array(PastAllFbaSlot), team2:
   }, 'Both All-FBA teams must follow the same known slot order');
 export type PastAllFbaTeams = z.infer<typeof PastAllFbaTeams>;
 
-export const PastSide = z.object({ name: z.string().min(1), record: z.string().regex(/^\d+-\d+(-\d+)?$/).nullable(), seed: int.min(1).max(16).nullable() }).strict();
-export type PastSide = z.infer<typeof PastSide>;
-export const PastSeries = z.object({
-  id: z.string().regex(/^R\d-\d+$/),
-  round: int.min(1).max(6),
-  home: PastSide.nullable(),
-  away: PastSide.nullable(),
-  homeWins: int.min(0).max(4),
-  awayWins: int.min(0).max(4),
-  winner: z.enum(['home', 'away']),
-  /** A single game's points, winner first (for example 97–75); the wins are then 1-0. */
-  score: z.string().regex(/^\d+[–-]\d+$/).optional(),
-  /** A series whose page prints only the winner (no scores): 0-0 in wins, no score, a real loser. */
-  unscored: z.literal(true).optional(),
-}).strict();
-export type PastSeries = z.infer<typeof PastSeries>;
-/** A transcribed historical bracket: a full binary tree of series, R1-1... up to the final. */
-export const PastBracket = z.object({ rounds: int.min(1).max(6), series: z.array(PastSeries) }).strict().superRefine((b, ctx) => {
-  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
-  const byId = new Map(b.series.map(s => [s.id, s]));
-  for (let r = 1; r <= b.rounds; r++) {
-    const n = 2 ** (b.rounds - r);
-    for (let k = 1; k <= n; k++) if (!byId.has(`R${r}-${k}`)) issue(`Missing R${r}-${k}`);
-  }
-  if (byId.size !== b.series.length) issue('Series ids must be unique');
-  for (const s of b.series) {
-    if (Number(s.id[1]) !== s.round) issue(`${s.id}: round doesn't match its id`);
-    if (s.round > b.rounds) issue(`${s.id}: round ${s.round} is beyond the ${b.rounds}-round bracket`);
-    else if (Number(s.id.split('-')[1]) > 2 ** (b.rounds - s.round)) issue(`${s.id}: series number is out of range`);
-    const win = s[s.winner];
-    const lose = s[s.winner === 'home' ? 'away' : 'home'];
-    if (!win) { issue(`${s.id}: the winner can't be a BYE`); continue; }
-    if (!s.home && !s.away) issue(`${s.id}: both sides are BYEs`);
-    if (!lose && (s.homeWins || s.awayWins)) issue(`${s.id}: a BYE series has no wins`);
-    if (s.unscored) {
-      if (!lose) issue(`${s.id}: an unscored series needs a loser`);
-      if (s.homeWins || s.awayWins) issue(`${s.id}: an unscored series has no wins`);
-      if (s.score) issue(`${s.id}: an unscored series has no score`);
-    } else if (lose && s[`${s.winner}Wins`] <= s[s.winner === 'home' ? 'awayWins' : 'homeWins']) issue(`${s.id}: the winner needs more wins`);
-    if (s.score) {
-      const [a, c] = s.score.split(/[–-]/).map(Number);
-      if (s[`${s.winner}Wins`] !== 1 || s[s.winner === 'home' ? 'awayWins' : 'homeWins'] !== 0) issue(`${s.id}: a scored game is 1-0 in wins`);
-      if (!(a > c)) issue(`${s.id}: the winner's points must be larger`);
-    }
-    if (s.round < b.rounds) {
-      const k = Number(s.id.split('-')[1]);
-      const next = byId.get(`R${s.round + 1}-${Math.ceil(k / 2)}`);
-      const side = next?.[k % 2 === 1 ? 'home' : 'away'];
-      if (next && side?.name !== win.name) issue(`${s.id}: ${win.name} should advance to ${next.id}`);
-    }
-  }
-});
-export type PastBracket = z.infer<typeof PastBracket>;
 
 export const PlayerBio = z.object({ playerId: z.string().regex(/^p\d{5}$/), born: z.string(), entries: z.array(z.string().min(1)) }).strict();
 export type PlayerBio = z.infer<typeof PlayerBio>;

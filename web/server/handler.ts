@@ -170,7 +170,9 @@ export function createHandler(
         if (!parsed.success) return sendJson(res, 500, { error: 'Stored logo manifest is invalid' });
         const manifest = parsed.data;
         const entries = Object.hasOwn(manifest.folders, folder) ? manifest.folders[folder] : undefined;
-        const file = entries ? resolveLogo(entries, folder, Number(season)) : null;
+        // A folder shared by many teams (the college logos) names the wanted file: /logos/<folder>/<season>?file=Duke.png
+        const wanted = new URL(req.url ?? '/', 'http://localhost').searchParams.get('file');
+        const file = !entries ? null : wanted !== null ? (entries.some(e => e.file === wanted) ? wanted : null) : resolveLogo(entries, folder, Number(season));
         if (!file || !isBareName(folder) || !isBareName(file)) return sendJson(res, 404, { error: `No logo for ${folder}` });
         let data: Buffer;
         try {

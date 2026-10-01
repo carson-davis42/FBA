@@ -1,0 +1,72 @@
+# p022 March Madness S67
+S67
+1|UCLA|25-2
+|Brown|15-11
+|Memphis|15-11
+|Florida State|16-9
+17|Alabama|20-6
+|Marquette|13-12
+|Miami|14-11
+16|Illinois|20-6
+9|Duke|22-5
+|Belmont|21-5
+|Rutgers|16-10
+22|Oklahoma|18-8
+|Georgetown|16-9
+|Arizona|13-12
+|Delaware|19-8
+8|Houston|24-3
+4|Creighton|26-1
+|Dartmouth|16-11
+|Notre Dame|15-10
+|Michigan State|17-9
+19|TCU|20-7
+|Wofford|22-5
+|Penn State|13-12
+13|Tennessee|22-5
+12|Michigan|22-5
+|Seton Hall|13-13
+|SMU|13-12
+21|Texas Tech|20-7
+|Virginia Tech|17-9
+|Iona|24-3
+|Stephen F Austin|16-10
+5|Gonzaga|22-4
+2|Arkansas|26-1
+|Rhode Island|16-10
+|Butler|16-10
+|Texas|15-10
+20|Purdue|18-7
+|Winthrop|24-3
+|Columbia|21-5
+15|Auburn|21-6
+10|Wake Forest|21-5
+|Murray State|20-7
+|Texas A&M|14-11
+24|Oregon|17-9
+25|Ohio State|15-10
+|Xavier|15-11
+|Northern Kentucky|14-11
+7|North Carolina|23-4
+3|Arizona State|25-2
+|Loyola-Chicago|15-11
+|LSU|15-10
+|BYU|19-7
+18|Kentucky|18-8
+|New Mexico State|22-5
+|Baylor|13-13
+14|UConn|22-5
+11|Villanova|23-4
+|Cornell|20-7
+|Virginia|15-11
+23|Maryland|18-9
+|VCU|19-8
+|UCF|15-10
+|Providence|18-8
+6|Kansas|23-3
+=UCLA -|Memphis -|Alabama -|Illinois -|Duke -|Oklahoma -|Arizona -|Houston -|Creighton -|Notre Dame -|TCU -|Tennessee -|Michigan -|SMU -|Iona -|Gonzaga -|Arkansas -|Texas -|Winthrop -|Auburn -|Wake Forest -|Oregon -|Ohio State -|North Carolina -|Arizona State -|LSU -|New Mexico State -|UConn -|Villanova -|Maryland -|VCU -|Kansas -
+=UCLA -|Alabama -|Oklahoma -|Houston -|Creighton -|Tennessee -|Michigan -|Gonzaga -|Arkansas -|Auburn -|Oregon -|North Carolina -|Arizona State -|UConn -|Villanova -|Kansas -
+=UCLA -|Oklahoma -|Tennessee -|Gonzaga -|Arkansas -|North Carolina -|Arizona State -|Villanova -
+=UCLA -|Gonzaga -|Arkansas -|Arizona State -
+=Gonzaga -|Arizona State -
+=Arizona State -

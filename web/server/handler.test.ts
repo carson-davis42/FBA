@@ -13,10 +13,12 @@ let base: string;
 beforeAll(async () => {
   const dataDir = mkdtempSync(path.join(tmpdir(), 'fba-http-'));
   const logoDir = mkdtempSync(path.join(tmpdir(), 'fba-logos-'));
+  mkdirSync(path.join(logoDir, 'Shared'));
+  writeFileSync(path.join(logoDir, 'Shared', 'Duke.png'), Buffer.from([0x89, 0x50, 0x4e, 0x47]));
   mkdirSync(path.join(logoDir, 'Boston Bucks'));
   writeFileSync(path.join(logoDir, 'Boston Bucks', 'Boston Bucks S61-pres..png'), Buffer.from([0x89, 0x50, 0x4e, 0x47]));
   const storage = new Storage(dataDir);
-  await storage.write('logos/manifest.json', { folders: { 'Boston Bucks': [{ file: 'Boston Bucks S61-pres..png', from: 61, to: null, variant: 0 }] } });
+  await storage.write('logos/manifest.json', { folders: { Shared: [{ file: 'Duke.png', from: null, to: null, variant: 1 }, { file: 'Kansas.png', from: null, to: null, variant: 1 }], 'Boston Bucks': [{ file: 'Boston Bucks S61-pres..png', from: 61, to: null, variant: 0 }] } });
   server = http.createServer(createHandler(storage, logoDir));
   await new Promise<void>(r => server.listen(0, '127.0.0.1', r));
   base = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
@@ -64,6 +66,13 @@ describe('HTTP handler', () => {
     const res = await fetch(`${base}/logos/Boston%20Bucks/79`);
     expect(res.status).toBe(200);
     expect(res.headers.get('content-type')).toBe('image/png');
+  });
+
+  it('serves a named file from a shared folder, and 404s a file the manifest does not list or that is missing', async () => {
+    expect((await fetch(`${base}/logos/Shared/78?file=Duke.png`)).status).toBe(200);
+    expect((await fetch(`${base}/logos/Shared/78?file=Nope.png`)).status).toBe(404);
+    expect((await fetch(`${base}/logos/Shared/78?file=Kansas.png`)).status).toBe(404);
+    expect((await fetch(`${base}/logos/Shared/78?file=..%2Fsecret.png`)).status).toBe(404);
   });
 
   it('404s unknown logo folders and traversal attempts', async () => {

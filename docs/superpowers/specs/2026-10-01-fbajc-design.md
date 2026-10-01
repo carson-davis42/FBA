@@ -52,7 +52,7 @@ Importers from the "FBAJC history" and "FBAJC school history" sheets (ids in the
 |---|---|
 | 6a | Engine (`engine/jc/`): season start, schedule, tournaments, sim with progression, rankings, standings. Schemas and path rules. Pages Scores, Standings, Rankings, Tournaments, Leaders; Start season panel; Names needed list; calendar wiring (`stepRoutes.ts`, `Home.tsx` titles, `SectionNav` `leagueSections`). |
 | 6b | Conference tournaments, March Madness, NIT, C-Ship MVP pick, awards, season summary, finishing the calendar step. |
-| 6c | History importers, `--jc-brackets`, school pages, history switcher. |
+| 6c | History importers, `--jc-brackets`, school pages, history switcher. Built 2026-10-01 ([spec](2026-10-01-fbajc-history-6c-design.md)). |
 
 ## 3. Design notes
 

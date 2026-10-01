@@ -1,0 +1,72 @@
+# p006 March Madness S68
+S68
+1|UCLA|25-2
+|Buffalo|14-13
+|Texas A&M|16-10
+|Virginia|16-9
+18|Oklahoma|19-7
+|Penn State|17-10
+|San Diego State|14-12
+15|Xavier|20-5
+9|Kansas|22-5
+|Dartmouth|19-7
+|Maryland|13-12
+23|Louisville|18-8
+|Arizona State|17-9
+|Winthrop|22-5
+|Stephen F Austin|19-7
+8|Kentucky|23-4
+4|North Carolina|24-3
+|Harvard|14-12
+|Arkansas|19-7
+|Memphis|16-9
+17|Georgetown|19-7
+|Northern Kentucky|22-5
+|Saint Mary's|21-6
+13|Michigan|22-5
+12|Arizona|21-5
+|Delaware|20-6
+|TCU|13-12
+21|Florida State|20-7
+|Purdue|16-9
+|VCU|18-7
+|Brown|19-8
+5|Tennessee|23-4
+2|Creighton|25-2
+|Loyola-Chicago|13-12
+|Oregon|15-10
+|Alabama|18-8
+19|Duke|18-8
+|Wisconsin|13-13
+|Miami|14-11
+16|Wake Forest|18-7
+10|Gonzaga|21-6
+|Rhode Island|20-7
+|LSU|14-11
+22|Ohio State|17-9
+25|Baylor|18-9
+|Cornell|25-2
+|Wofford|19-7
+7|UConn|24-3
+3|Texas|23-3
+|Murray State|14-11
+|Virginia Tech|14-11
+|BYU|22-5
+20|Michigan State|19-7
+|UCF|13-13
+|Iona|21-5
+14|Villanova|20-7
+11|Illinois|21-6
+|Northwestern|14-12
+|New Mexico State|20-7
+24|Texas Tech|16-9
+|Auburn|17-8
+|Marquette|14-11
+|Boston College|15-11
+6|Houston|22-5
+=UCLA -|Texas A&M -|Oklahoma -|Xavier -|Kansas -|Louisville -|Arizona State -|Kentucky -|North Carolina -|Memphis -|Northern Kentucky -|Michigan -|Arizona -|TCU -|Purdue -|Tennessee -|Creighton -|Alabama -|Duke -|Wake Forest -|Gonzaga -|Ohio State -|Cornell -|UConn -|Texas -|BYU -|Michigan State -|Iona -|Illinois -|Texas Tech -|Marquette -|Houston -
+=UCLA -|Xavier -|Kansas -|Kentucky -|Memphis -|Michigan -|Arizona -|Tennessee -|Creighton -|Wake Forest -|Gonzaga -|UConn -|Texas -|Michigan State -|Illinois -|Houston -
+=UCLA 41-40|Kansas 44-38|Memphis 49-40|Tennessee 40-39|Creighton 44-34|UConn 46-41|Texas 51-31|Houston 46-35
+=UCLA 52-32|Tennessee 62-59 OT|Creighton 47-39|Texas 45-39
+=UCLA 51-40|Creighton 47-39
+=Creighton 66-58 OT

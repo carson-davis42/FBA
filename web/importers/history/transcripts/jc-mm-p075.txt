@@ -1,0 +1,72 @@
+# p075 March Madness S72
+S72
+|Arizona|27-2
+|Cornell|22-8
+|East Carolina|21-7
+|Texas A&M|23-7
+|San Diego State|23-7
+|Notre Dame|18-11
+|Portland State|21-8
+|UNLV|28-2
+|Villanova|24-5
+|Loyola-Chicago|18-11
+|Utah State|23-7
+|Kansas|22-8
+|Clemson|19-10
+|Michigan|21-10
+|LSU|18-12
+|Gonzaga|24-5
+|Houston|26-3
+|Indiana State|18-10
+|Michigan State|21-8
+|Florida State|19-10
+|Pitt|25-5
+|Georgia Tech|18-11
+|Butler|16-13
+|Tennessee|25-5
+|Wake Forest|24-6
+|Colgate|20-8
+|Memphis|18-11
+|Kentucky|22-6
+|Iowa|21-8
+|Colorado State|24-6
+|Xavier|16-13
+|UConn|24-4
+|Washington|27-3
+|UCLA|16-13
+|Dayton|22-7
+|UCF|20-9
+|Indiana|25-5
+|Miami|18-11
+|Grand Canyon|23-7
+|Baylor|23-6
+|Creighton|24-6
+|Vermont|22-8
+|Alabama|18-10
+|Illinois|21-7
+|Texas|21-9
+|North Carolina|19-10
+|Furman|22-8
+|Nevada|28-2
+|Virginia|26-4
+|South Florida|21-8
+|Wichita State|20-10
+|Colorado|20-11
+|Nebraska|24-6
+|Montana|20-8
+|Oklahoma State|17-11
+|Ohio State|23-6
+|Duke|23-6
+|Wofford|21-9
+|Texas Tech|19-10
+|FAU|20-8
+|Drake|27-3
+|Oregon|18-10
+|Ole Miss|17-12
+|Marquette|25-5
+=Arizona -|Texas A&M -|San Diego State -|UNLV -|Villanova -|Kansas -|Clemson -|Gonzaga -|Houston -|Michigan State -|Pitt -|Butler -|Wake Forest -|Kentucky -|Iowa -|UConn -|Washington -|Dayton -|Indiana -|Baylor -|Vermont -|Illinois -|North Carolina -|Nevada -|Virginia -|Colorado -|Montana -|Ohio State -|Duke -|Texas Tech -|Drake -|Marquette -
+=Arizona -|San Diego State -|Kansas -|Gonzaga -|Houston -|Butler -|Wake Forest -|UConn -|Washington -|Baylor -|Illinois -|North Carolina -|Virginia -|Ohio State -|Duke -|Marquette -
+=Arizona -|Gonzaga -|Houston -|UConn -|Washington -|Illinois -|Ohio State -|Marquette -
+=Arizona -|Houston -|Illinois -|Marquette -
+=Arizona -|Marquette -
+=Marquette -
