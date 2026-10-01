@@ -8,7 +8,7 @@ export function TeamName({ team, season, variant = 'full', to, size = 20, name =
 }) {
   const label = variant === 'abbr' ? abbr : variant === 'short' ? name.split(' ').slice(-1)[0] : name;
   const title = variant === 'full' ? undefined : name;
-  const body = <><TeamMark team={team} season={season} size={size} label={name} /><span className="team-name-text">{label}</span></>;
+  const body = <><TeamMark team={team} season={season} size={size} label={name} decorative={variant === 'full'} /><span className="team-name-text">{label}</span></>;
   return to
     ? <Link className="team-name" to={to} title={title}>{body}</Link>
     : <span className="team-name" title={title}>{body}</span>;

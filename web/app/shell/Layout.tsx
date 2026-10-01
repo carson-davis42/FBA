@@ -50,6 +50,7 @@ import { D2HistoryHome } from '../history/d2/D2HistoryHome';
 import { D2SeasonPage } from '../history/d2/D2SeasonPage';
 import { D2TeamPage } from '../history/d2/D2TeamPage';
 import { D2TeamsPage } from '../history/d2/D2TeamsPage';
+import { WcHistoryPage } from '../history/wc/WcHistoryPage';
 import { DraftsPage } from '../history/DraftsPage';
 import { FranchisePage } from '../history/FranchisePage';
 import { SeasonHistoryPage } from '../history/SeasonHistoryPage';
@@ -99,6 +100,7 @@ const ROUTES = createRoutesFromElements(
   <Route path="/history/fbad2/teams/:teamId" element={<D2TeamPage />} />
   <Route path="/history/fbad2/drafts" element={<D2DraftsPage />} />
   <Route path="/history/fbad2/drafts/:season" element={<D2DraftSeasonPage />} />
+  <Route path="/history/fbawc" element={<WcHistoryPage />} />
   <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
   <Route path="/history/fba/awards" element={<AwardsHistoryPage />} />
   <Route path="/history/fba/awards/players" element={<AwardsByPlayerPage />} />
