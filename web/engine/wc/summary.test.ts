@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { SummaryFile } from '../shared/types';
+import { PastBracket, SummaryFile } from '../shared/types';
 import type { MvpNames } from './mvp';
 import { tournamentMvpCandidates } from './mvp';
 import { buildWcSummary, finishWorldCupWithMvp } from './summary';
@@ -26,6 +26,36 @@ describe('buildWcSummary', () => {
     expect(s.champions[0]).toMatchObject({ finalsMvp: null, mvpName: 'Team ITA PG' });
     expect(s.champions.map(c => c.title)).toEqual(['World Cup Champion', 'Other']);
     expect(s.awards).toEqual([]);
+  });
+});
+
+describe('buildWcSummary pastBracket', () => {
+  const mvp = { key: 'p00001', name: 'Name p00001', teamId: 'ITA', generated: false, gp: 5, ppg: 20 };
+  it('stores the knockout as a 31-series bracket', () => {
+    const s = buildWcSummary(wc, names, mvp, null);
+    expect(SummaryFile.safeParse(s).success).toBe(true);
+    const b = s.pastBracket!;
+    expect(PastBracket.safeParse(b).success).toBe(true);
+    expect(b.rounds).toBe(5);
+    expect(b.series).toHaveLength(31);
+    const f = b.series.find(x => x.id === 'R5-1')!;
+    expect(f[f.winner]!.name).toBe(`Team ${wc.champion}`);
+    expect(f[f.winner === 'home' ? 'away' : 'home']!.name).toBe(`Team ${wc.runnerUp}`);
+    const rm: Record<string, number> = { R32: 1, R16: 2, QF: 3, SF: 4, F: 5 };
+    for (const k of wc.knockout) {
+      const s1 = b.series.find(x => x.id === `R${rm[k.round]}-${k.id.split('-')[1]}`)!;
+      expect(s1.score!.split('–')[0]).toBe(String(Math.max(k.game!.homePts, k.game!.awayPts)));
+    }
+  });
+  it('replaces an existing pastBracket', () => {
+    const old = { rounds: 1, series: [] };
+    const s = buildWcSummary(wc, names, mvp, { league: 'fbawc', season: 80, locked: false, host: null, champions: [], pastBracket: old } as never);
+    expect(s.pastBracket!.series).toHaveLength(31);
+  });
+  it('gives no pastBracket for an unfinished knockout', () => {
+    const part = { ...wc, knockout: wc.knockout.map((k, i) => (i === 0 ? { ...k, game: null } : k)) } as typeof wc;
+    expect(buildWcSummary(part, names, mvp, null).pastBracket).toBeUndefined();
+    expect(buildWcSummary({ ...wc, knockout: [] }, names, mvp, null).pastBracket).toBeUndefined();
   });
 });
 

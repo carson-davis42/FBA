@@ -3,6 +3,8 @@ import { cleanup, render, screen, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { PlayersFile, SummaryFile, TeamsFile, WcHostsFile } from '../../../engine/shared/types';
+import { buildWcSummary } from '../../../engine/wc/summary';
+import { runFullWorldCup } from '../../../engine/wc/testRun';
 import { WcSeasonPage } from './WcSeasonPage';
 
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
@@ -59,6 +61,18 @@ describe('World Cup season page', () => {
     expect(await screen.findByText('Italy PG')).toBeTruthy();
     expect(screen.queryAllByRole('link', { name: 'Italy PG' })).toHaveLength(0);
     expect(screen.getByText('No bracket recorded')).toBeTruthy();
+  });
+
+  it('renders the bracket of a summary built from a finished World Cup', async () => {
+    const wc = runFullWorldCup(79).w.worldCup!;
+    const built = buildWcSummary(wc, { player: id => id, team: id => id }, { key: 'p1', name: 'Rowan Hawthorne', teamId: wc.champion!, generated: false, gp: 5, ppg: 20 }, null);
+    seasons.push({ ...built, season: 79 });
+    stub();
+    renderAt('79');
+    await screen.findByRole('heading', { name: 'S79 World Cup' });
+    await screen.findByText('Tournament MVP');
+    expect(document.querySelectorAll('.bracket .series-box')).toHaveLength(31);
+    seasons.pop();
   });
 
   it('says Not found for an unknown season', async () => {

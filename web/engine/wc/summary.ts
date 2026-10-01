@@ -1,10 +1,36 @@
 import type { WritesResult } from '../season/moves';
-import type { Champion, SummaryFile, WorldCupFile } from '../shared/types';
-import { SummaryFile as SummarySchema } from '../shared/types';
+import type { Champion, PastSeries, SummaryFile, WorldCupFile } from '../shared/types';
+import { PastBracket, SummaryFile as SummarySchema } from '../shared/types';
 import { tournamentMvpCandidates, type MvpCandidate, type MvpNames } from './mvp';
 import { finishWorldCup, type WorldCupState } from './worldcup';
 
 const TITLE = 'World Cup Champion';
+
+const ROUND_NO: Record<string, number> = { R32: 1, R16: 2, QF: 3, SF: 4, F: 5 };
+
+function knockoutBracket(wc: WorldCupFile, names: MvpNames): PastBracket | null {
+  if (wc.knockout.length === 0) return null;
+  const series: PastSeries[] = [];
+  for (const k of wc.knockout) {
+    const r = ROUND_NO[k.round];
+    if (!k.game || !r || !k.home || !k.away) return null;
+    const homeWon = k.game.homePts > k.game.awayPts;
+    const hi = Math.max(k.game.homePts, k.game.awayPts);
+    const lo = Math.min(k.game.homePts, k.game.awayPts);
+    series.push({
+      id: `R${r}-${k.id.split('-')[1]}`,
+      round: r,
+      home: { name: names.team(k.home), record: null, seed: null },
+      away: { name: names.team(k.away), record: null, seed: null },
+      homeWins: homeWon ? 1 : 0,
+      awayWins: homeWon ? 0 : 1,
+      winner: homeWon ? 'home' : 'away',
+      score: `${hi}–${lo}`,
+    });
+  }
+  const parsed = PastBracket.safeParse({ rounds: 5, series });
+  return parsed.success ? parsed.data : null;
+}
 
 export function buildWcSummary(wc: WorldCupFile, names: MvpNames, mvp: MvpCandidate, existing: SummaryFile | null): SummaryFile {
   const final = wc.knockout.find(k => k.round === 'F')?.game ?? null;
@@ -19,8 +45,10 @@ export function buildWcSummary(wc: WorldCupFile, names: MvpNames, mvp: MvpCandid
     finalsMvp: mvp.generated ? null : mvp.key,
     ...(mvp.generated ? { mvpName: mvp.name.replace(/ \(Generated\)$/, '') } : {}),
   };
+  const bracket = knockoutBracket(wc, names);
   return {
     ...(existing ?? {}),
+    ...(bracket ? { pastBracket: bracket } : {}),
     league: 'fbawc',
     season: wc.season,
     locked: true,

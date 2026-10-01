@@ -103,6 +103,7 @@ describe('KnockoutTab', () => {
     expect(batches[0].writes.find(x => x.path.endsWith('summary.json'))!.baseVersion).toBeNull();
     const champ = (batches[0].writes.find(x => x.path.endsWith('summary.json'))!.doc as { champions: { finalsMvp: string | null }[] }).champions[0];
     expect(champ.finalsMvp).toBe('p00001');
+    expect((batches[0].writes.find(x => x.path.endsWith('summary.json'))!.doc as { pastBracket?: { series: unknown[] } }).pastBracket?.series).toHaveLength(31);
   });
 
   it('a generated pick stores finalsMvp null and mvpName', async () => {
