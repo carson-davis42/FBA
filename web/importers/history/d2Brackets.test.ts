@@ -18,7 +18,7 @@ const key = (e: Entry) => `S${e.season}${e.group ? ' ' + e.group : ''}`;
 
 describe('d2Brackets.json', () => {
   it('has at least 39 entries', () => {
-    expect(entries.length).toBeGreaterThanOrEqual(39);
+    expect(entries.length).toBeGreaterThanOrEqual(47);
   });
 
   it('each entry passes PastBracket', () => {

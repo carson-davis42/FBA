@@ -1,0 +1,109 @@
+# p093 FBA D2 United League Tournament
+S74
+G:UL
+1|Miami|30-0
+8|Johannesburg|16-14
+5|Manchester|21-9
+4|Moscow|21-9
+3|Casablanca|25-5
+6|Saint Petersburg|16-14
+7|Beijing|16-14
+2|Sydney|25-5
+= Miami 4-0 | Manchester 4-0 | Casablanca 4-3 | Sydney 4-3
+= Miami 4-1 | Sydney 4-3
+= Miami 4-3
+
+# p094 FBA D2 United League Tournament
+S76
+G:UL
+1|Casablanca|24-6
+8|Manchester|14-16
+5|Brussels|18-12
+4|Paris|18-12
+3|Moscow|21-9
+6|Dubai|17-13
+7|Copenhagen|17-13
+2|Saint Petersburg|22-8
+= Casablanca 4-0 | Paris 4-3 | Moscow 4-1 | Saint Petersburg 4-0
+= Casablanca 4-1 | Moscow 4-0
+= Casablanca 4-2
+
+# p100 FBA D2 World League Tournament
+S70
+G:WL
+1|Madrid|18-4
+BYE
+5|Austin|12-10
+4|Zurich|15-7
+3|Paris|17-5
+6|Athens|12-10
+BYE
+2|Vancouver|17-5
+= Madrid BYE | Austin 4-2 | Paris 4-1 | Vancouver BYE
+= Austin 4-3 | Paris 4-1
+= Paris 4-1
+
+# p103 FBA D2 World League Tournament
+S77
+G:WL
+1|Zurich|24-6
+8|Lyon|17-13
+5|Sao Paolo|20-10
+4|Zagreb|20-10
+3|Casablanca|20-10
+6|Dhaka|18-12
+7|Hamburg|18-12
+2|Miami|21-9
+= Zurich 4-1 | Sao Paolo 4-2 | Casablanca 4-3 | Miami 4-0
+= Sao Paolo 4-1 | Casablanca 4-2
+= Sao Paolo 4-0
+
+# p108 FBA D2 World League Tournament
+S68
+G:WL
+1|Amsterdam|12-2
+4|Paris|7-7
+3|Istanbul|8-6
+2|Munich|11-3
+= Amsterdam 4-0 | Munich 4-0
+= Amsterdam 4-2
+
+# p109 FBA D2 Premier League Tournament
+S71
+G:PL
+1|Hamburg|23-7
+8|Milan|18-12
+5|Lisbon|20-10
+4|Rome|21-9
+3|San Jose|22-8
+6|Vancouver|19-11
+7|Toronto|19-11
+2|Madrid|22-8
+= Hamburg 4-2 | Lisbon 4-3 | San Jose 4-1 | Madrid 4-1
+= Hamburg 4-3 | Madrid 4-3
+= Hamburg 4-1
+
+# p110 FBA D2 International League Tournament
+S73
+G:IL
+1|Casablanca|22-8
+8|Belfast|15-15
+5|Dubai|20-10
+4|Luxembourg|20-10
+3|Mumbai|20-10
+6|Rotterdam|18-12
+7|Dhaka|17-13
+2|Saint Petersburg|22-8
+= Casablanca 4-1 | Luxembourg 4-1 | Rotterdam 4-2 | Dhaka 4-0
+= Luxembourg 4-1 | Rotterdam 4-3
+= Rotterdam 4-2
+
+# p117 FBA D2 United League Tournament
+S69
+G:UL
+1|Madrid|12-2
+4|Mexico City|8-6
+3|Barcelona|10-4
+2|Vancouver|12-2
+= Mexico City 4-2 | Vancouver 4-1
+= Vancouver 4-2
