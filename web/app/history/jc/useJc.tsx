@@ -1,4 +1,5 @@
-import type { JcSchoolHistoryFile, Team, TeamsFile } from '../../../engine/shared/types';
+import { Link } from 'react-router-dom';
+import type { JcSchoolHistoryFile, PlayersFile, Team, TeamsFile } from '../../../engine/shared/types';
 import { useDoc } from '../../api';
 import { TeamName } from '../../components/TeamName';
 import { findTeam } from '../useTeams';
@@ -23,4 +24,10 @@ export function JcTeam({ teams, teamId, name, season, size }: {
   return team
     ? <TeamName team={team} season={season} size={size ?? 20} to={`/history/fbajc/schools/${team.teamId}`} />
     : <>{name}</>;
+}
+
+/** A player as the college history records him: linked to his history page when matched to a player, else the sheet's name as text. */
+export function JcPerson({ id, name, players }: { id: string | null | undefined; name?: string | null; players: PlayersFile }) {
+  if (id) return <Link to={`/history/fba/players/${id}`}>{players.players[id]?.name ?? name ?? id}</Link>;
+  return <>{name ?? '—'}</>;
 }

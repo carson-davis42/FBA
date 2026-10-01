@@ -50,7 +50,9 @@ import { D2HistoryHome } from '../history/d2/D2HistoryHome';
 import { D2SeasonPage } from '../history/d2/D2SeasonPage';
 import { D2TeamPage } from '../history/d2/D2TeamPage';
 import { D2TeamsPage } from '../history/d2/D2TeamsPage';
+import { JcChampionshipsPage } from '../history/jc/JcChampionshipsPage';
 import { JcHistoryHome } from '../history/jc/JcHistoryHome';
+import { JcSeasonPage } from '../history/jc/JcSeasonPage';
 import { WcHistoryPage } from '../history/wc/WcHistoryPage';
 import { WcSeasonPage } from '../history/wc/WcSeasonPage';
 import { DraftsPage } from '../history/DraftsPage';
@@ -125,6 +127,8 @@ const ROUTES = createRoutesFromElements(
   <Route path="/history/fbad2/drafts" element={<D2DraftsPage />} />
   <Route path="/history/fbad2/drafts/:season" element={<D2DraftSeasonPage />} />
   <Route path="/history/fbajc" element={<JcHistoryHome />} />
+  <Route path="/history/fbajc/championships" element={<JcChampionshipsPage />} />
+  <Route path="/history/fbajc/season/:season" element={<JcSeasonPage />} />
   <Route path="/history/fbawc" element={<WcHistoryPage />} />
   <Route path="/history/fbawc/season/:season" element={<WcSeasonPage />} />
   <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
