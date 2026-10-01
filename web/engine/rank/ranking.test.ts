@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { RankingFile } from '../shared/types';
 import {
-  applyAllSuggestions, bestNewByPosition, isNewRow, reserveBound, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
+  applyAllSuggestions, bestNewByPosition, clearRatings, isNewRow, reserveBound, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
 } from './ranking';
 import { rankingDoc, rankName } from './testFixtures';
 
@@ -161,6 +161,22 @@ describe('syncRows', () => {
     const doc = rankingDoc();
     const result = syncRows(doc, doc.rows);
     expect(result).toEqual(doc);
+  });
+});
+
+describe('clearRatings', () => {
+  it('removes every entered rating but keeps the ranking', () => {
+    const doc = setRating(setRating(rankingDoc({ order: ['p00001', 'p00002'] }), 'p00001', 80), 'p00002', 70);
+    const out = clearRatings(doc);
+    expect(out.ratings).toEqual({});
+    expect(out.order).toEqual(['p00001', 'p00002']);
+  });
+
+  it('leaves a doc with no ratings, or a locked one, as is', () => {
+    const empty = rankingDoc();
+    expect(clearRatings(empty)).toBe(empty);
+    const locked = rankingDoc({ locked: true, ratings: { p00001: 80 } });
+    expect(clearRatings(locked)).toBe(locked);
   });
 });
 

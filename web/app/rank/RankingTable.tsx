@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import { applyClassSuggestions, consensusSuggestion, parseConsensusInput, starsFor } from '../../engine/college/classRanking';
 import {
-  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, outOfOrder, rankedRows, rankingBlockers, reserveBound, sendBack, setRating, suggestion, take, takeRest, type NameOf,
+  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, clearRatings, outOfOrder, rankedRows, rankingBlockers, reserveBound, sendBack, setRating, suggestion, take, takeRest, type NameOf,
 } from '../../engine/rank/ranking';
 import { POSITIONS } from '../../engine/roster/rules';
 import type { Position, RankingFile, RankingRow } from '../../engine/shared/types';
@@ -201,7 +201,10 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
           <div className="toolbar rank-head">
             <h3>New ranking · {doc.order.length}</h3>
             {!locked && allPlaced && (
-              <button type="button" className="btn" onClick={() => onChange(consensus ? applyClassSuggestions : cur => applyAllSuggestions(cur, positionCap ? reserveBound(cur, positionCap.spots) : undefined))}>Use all suggestions</button>
+              <div className="rank-actions">
+                {Object.keys(doc.ratings).length > 0 && <button type="button" className="btn" onClick={() => onChange(clearRatings)}>Clear ratings</button>}
+                <button type="button" className="btn" onClick={() => onChange(consensus ? applyClassSuggestions : cur => applyAllSuggestions(cur, positionCap ? reserveBound(cur, positionCap.spots) : undefined))}>Use all suggestions</button>
+              </div>
             )}
           </div>
           {!locked && !allPlaced && doc.order.length > 0 && <p className="muted">Rating boxes appear once every player is ranked.</p>}

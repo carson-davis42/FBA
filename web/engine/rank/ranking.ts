@@ -98,6 +98,12 @@ export function setRating(doc: RankingFile, playerId: string, value: number | nu
   return { ...doc, ratings: { ...doc.ratings, [playerId]: value } };
 }
 
+/** Removes every entered rating (the ranking stays). A locked doc, or one with no ratings, is returned unchanged. */
+export function clearRatings(doc: RankingFile): RankingFile {
+  if (doc.locked || Object.keys(doc.ratings).length === 0) return doc;
+  return { ...doc, ratings: {} };
+}
+
 /** Gives every ranked player without a rating their rank's suggestion. Never overwrites a typed rating. */
 export function applyAllSuggestions(doc: RankingFile, skip: ReadonlySet<string> = NO_SKIP): RankingFile {
   if (doc.locked) return doc;
