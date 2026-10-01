@@ -28,6 +28,18 @@ function transcript(season: number, slots: number, opts: { kind?: 'NIT'; ot?: bo
 }
 
 describe('convertTranscript for college pages', () => {
+  it('keeps a pair of BYE slots as an empty series that carries nothing forward', () => {
+    const slots = ['|A|', 'BYE', 'BYE', 'BYE', '|C|', '|D|', '|E|', '|F|'];
+    const text = ['S14', ...slots, '=A BYE|BYE|C 30-20|E 30-20', '=A BYE|C 31-22', '=A 40-30'].join('\n');
+    const { entries } = convertTranscript(text);
+    const empty = entries[0].series.find(s => s.id === 'R1-2')!;
+    expect(empty).toMatchObject({ home: null, away: null, homeWins: 0, awayWins: 0 });
+    expect(PastBracketSchema.safeParse({ rounds: entries[0].rounds, series: entries[0].series }).success).toBe(true);
+  });
+  it('rejects a BYE-versus-BYE result that names a team', () => {
+    const text = ['S14', '|A|', 'BYE', 'BYE', 'BYE', '=A BYE|A 30-20', '=A 40-30'].join('\n');
+    expect(() => convertTranscript(text)).toThrow();
+  });
   it('converts a 64-slot March Madness page into a six-round bracket of single games', () => {
     const { entries } = convertTranscript(transcript(64, 64));
     expect(entries).toHaveLength(1);

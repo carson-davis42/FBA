@@ -671,8 +671,16 @@ export const PastBracket = z.object({ rounds: int.min(1).max(6), series: z.array
     else if (Number(s.id.split('-')[1]) > 2 ** (b.rounds - s.round)) issue(`${s.id}: series number is out of range`);
     const win = s[s.winner];
     const lose = s[s.winner === 'home' ? 'away' : 'home'];
+    if (!s.home && !s.away) {
+      // Early sparse brackets: two BYE slots meet and nothing is played; the empty slot carries on to the next round.
+      if (s.winner !== 'home' || s.homeWins || s.awayWins || s.score || s.unscored) issue(`${s.id}: an empty series (two BYEs) has no winner, wins or score`);
+      if (s.round < b.rounds) {
+        const next = byId.get(`R${s.round + 1}-${Math.ceil(Number(s.id.split('-')[1]) / 2)}`);
+        if (next?.[Number(s.id.split('-')[1]) % 2 === 1 ? 'home' : 'away']) issue(`${s.id}: an empty series can't feed a team into ${next!.id}`);
+      }
+      continue;
+    }
     if (!win) { issue(`${s.id}: the winner can't be a BYE`); continue; }
-    if (!s.home && !s.away) issue(`${s.id}: both sides are BYEs`);
     if (!lose && (s.homeWins || s.awayWins)) issue(`${s.id}: a BYE series has no wins`);
     if (s.unscored) {
       if (!lose) issue(`${s.id}: an unscored series needs a loser`);

@@ -60,6 +60,12 @@ export function convertTranscript(text: string): { entries: BracketEntry[]; warn
       const next: (PastSide | null)[] = [];
       res.forEach((txt, i) => {
         const home = sides[2 * i], away = sides[2 * i + 1];
+        if (!home && !away) {
+          if (txt !== 'BYE') throw new Error(`S${p.season} R${r}-${i + 1}: two BYE slots need the result "BYE"`);
+          series.push({ id: `R${r}-${i + 1}`, round: r, home: null, away: null, homeWins: 0, awayWins: 0, winner: 'home' });
+          next.push(null);
+          return;
+        }
         const m = /^(.*) (BYE|-|(\d+)-(\d+)( \d?OT)?)$/.exec(txt);
         if (!m) throw new Error(`S${p.season} R${r}-${i + 1}: can't parse "${txt}"`);
         const wname = m[1];
