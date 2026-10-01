@@ -729,6 +729,8 @@ export const JcSummary = z.object({
 });
 export type JcSummary = z.infer<typeof JcSummary>;
 
+/** The college league's own first ten seasons (S1-S10), before March Madness appearances were listed. */
+export const JC_EARLY_ERA_LAST_SEASON = 10;
 const seasonList = z.array(int.min(1)).superRefine((l, ctx) => {
   if (l.some((v, i) => i > 0 && v <= l[i - 1])) ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'Seasons must be sorted and unique' });
 });
@@ -749,7 +751,8 @@ export const JcSchoolHistoryFile = z.object({
     const order = ['app', 'sweet16', 'elite8', 'final4', 'titleGame', 'champion'] as const;
     for (let i = 1; i < order.length; i++) {
       const outer = new Set(sc.mm[order[i - 1]]);
-      for (const season of sc.mm[order[i]]) if (!outer.has(season)) ctx.addIssue({ code: z.ZodIssueCode.custom, message: `${sc.teamId}: S${season} is in ${order[i]} but not ${order[i - 1]}` });
+      // The college league's first ten seasons (the sheet marks them with a star) list rounds without a matching "MM App." entry.
+      for (const season of sc.mm[order[i]]) if (season > JC_EARLY_ERA_LAST_SEASON && !outer.has(season)) ctx.addIssue({ code: z.ZodIssueCode.custom, message: `${sc.teamId}: S${season} is in ${order[i]} but not ${order[i - 1]}` });
     }
   })),
 }).strict().refine(f => new Set(f.schools.map(sc => sc.teamId)).size === f.schools.length, 'A school is listed twice');

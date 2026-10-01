@@ -107,6 +107,14 @@ describe('JcSchoolHistoryFile', () => {
     const bad = school({ mm: { ...school().mm, elite8: [] } });
     expect(JcSchoolHistoryFile.safeParse(file([bad])).success).toBe(false);
   });
+  it('does not require the nested lists for the early era (S1-S10)', () => {
+    const early = school({ mm: { app: [11], sweet16: [4, 10], elite8: [4], final4: [4], titleGame: [4], champion: [10] } });
+    expect(JcSchoolHistoryFile.safeParse(file([early])).success).toBe(true);
+  });
+  it('still requires them from S11 on', () => {
+    const late = school({ mm: { app: [11], sweet16: [11, 12], elite8: [], final4: [], titleGame: [], champion: [] } });
+    expect(JcSchoolHistoryFile.safeParse(file([late])).success).toBe(false);
+  });
   it('allows an unknown mmWins and no titles', () => {
     const none = school({ mm: { app: [], sweet16: [], elite8: [], final4: [], titleGame: [], champion: [] }, rsChampion: [], confTournament: [], mmWins: null });
     expect(JcSchoolHistoryFile.safeParse(file([none])).success).toBe(true);
