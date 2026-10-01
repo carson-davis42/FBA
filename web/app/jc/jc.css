@@ -13,3 +13,8 @@
 .jc-score { text-align: center; }
 .jc-conf-pick { display: flex; align-items: center; gap: var(--s2); }
 .jc-ties { margin: 6px 0 0; padding-left: 18px; font-size: var(--fs-sm); color: var(--muted); }
+.jc-tournaments { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--s2); }
+.jc-tournament h3 { margin: var(--s2) 0 4px; font-size: var(--fs-sm); }
+.jc-seeds { margin: 0; padding-left: 22px; font-size: var(--fs-sm); }
+.jc-tournament .jc-games { grid-template-columns: minmax(0, 1fr); }
+tr.jc-champion td { font-weight: 700; }
