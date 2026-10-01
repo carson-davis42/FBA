@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { PLAYOFF_SEEDS, standings, type StandingRow } from '../../engine/season/standings';
 import { groupLabel, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { Team } from '../../engine/shared/types';
-import { Badge } from '../components/Badge';
+import { clinchKind, ClinchLegend, RankCell } from '../components/Clinch';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import { useSeasonState } from '../season/useSeasonState';
@@ -12,13 +12,15 @@ const pct = (x: number) => (x === 1 ? '1.000' : x.toFixed(3).replace(/^0/, ''));
 const gb = (x: number) => (x === 0 ? '—' : String(x));
 const signed = (x: number) => (x > 0 ? `+${x}` : String(x));
 
-function Table({ rows, teams, season, league, showConf, lottery }: { rows: StandingRow[]; teams: Map<string, Team>; season: number; league: string; showConf: boolean; lottery?: boolean }) {
+const rowKind = (r: StandingRow) => clinchKind({ marker: r.marker, status: r.status, conference: r.badge === 'C' });
+
+function Table({ rows, teams, season, league, showConf, lottery }: { rows: StandingRow[]; teams: Map<string, Team>; season: number; league: 'fba' | 'fbad2'; showConf: boolean; lottery?: boolean }) {
   return (
     <div className="table-wrap">
       <table className="stat-table standings">
         <thead>
           <tr>
-            <th className="rank">{lottery ? 'Pick' : '#'}</th><th></th><th>Team</th><th className="n">W</th><th className="n">L</th><th className="n">PCT</th>
+            <th className="rank">{lottery ? 'Pick' : '#'}</th><th>Team</th><th className="n">W</th><th className="n">L</th><th className="n">PCT</th>
             {!lottery && <th className="n">GB</th>}
             {showConf && !lottery && <th className="n">CONF</th>}
             {!lottery && <><th className="n">L10</th><th className="n">STRK</th><th className="n">DIFF</th></>}
@@ -29,13 +31,11 @@ function Table({ rows, teams, season, league, showConf, lottery }: { rows: Stand
             const t = teams.get(r.teamId);
             return (
               <tr key={r.teamId} className={!lottery && r.seed === PLAYOFF_SEEDS ? 'playoff-line' : undefined}>
-                <td className="rank">{r.seed}</td>
-                <td className="marker">
-                  {r.marker && r.marker !== 'n' && <Badge kind="clinched">{r.marker}</Badge>}
-                  {r.marker === 'n' && <Badge kind="eliminated">n</Badge>}
-                  {[r.status, r.badge].filter(Boolean).map(m => <span key={m} className="mark-glyph">{m}</span>)}
+                <RankCell kind={lottery ? null : rowKind(r)} league={league}>{r.seed}</RankCell>
+                <td>
+                  {t ? <TeamName team={t} season={season} to={`/league/${league}/team/${t.teamId}`} /> : r.teamId}
+                  {r.badge === '🏆' && <span className="champ-glyph" role="img" aria-label={league === 'fba' ? 'FBA champion' : 'League champion'}>🏆</span>}
                 </td>
-                <td>{t ? <TeamName team={t} season={season} to={`/league/${league}/team/${t.teamId}`} /> : r.teamId}</td>
                 <td className="n">{r.w}</td><td className="n">{r.l}</td><td className="n">{pct(r.pct)}</td>
                 {!lottery && <td className="n">{gb(r.gb)}</td>}
                 {showConf && !lottery && <td className="n">{r.confW}-{r.confL}</td>}
@@ -61,17 +61,13 @@ export function StandingsPage() {
   return (
     <section className="stack">
       <PageHeader kicker={`${LEAGUE_LABEL[lg]} · S${state.season}`} title="Standings" />
-      <p className="muted">
-        {lg === 'fba'
-          ? '* clinched the #1 seed · x clinched a playoff spot · n eliminated · C conference champion · 🏆 FBA champion'
-          : '* clinched first place · x clinched a playoff spot · n eliminated · ▲ promoted · ▼ relegated · 🏆 league champion'}
-      </p>
       {s.groups.map(g => (
         <div key={g.group} className="stand-group">
           <h2>{groupLabel(lg, g.group)}</h2>
           <Table rows={g.rows} teams={teams} season={state.season} league={lg} showConf={lg === 'fba'} />
         </div>
       ))}
+      <ClinchLegend kinds={s.groups.flatMap(g => g.rows.map(rowKind))} league={lg} />
       {lg === 'fba' && s.lottery.length > 0 && (
         <div>
           <h2>Lottery standings</h2>

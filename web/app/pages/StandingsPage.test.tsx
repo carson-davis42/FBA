@@ -38,11 +38,13 @@ describe('StandingsPage', () => {
     expect((await screen.findAllByRole('table'))).toHaveLength(2);
   });
 
-  it('shows the D2 legend and promotion/relegation markers', async () => {
+  it('shows promotion/relegation as clinch bars with a key, not letter markers', async () => {
     const s = regularSeasonDone(fullD2State());
     stubApi(seasonDocs(s));
     renderAt('/league/fbad2/standings');
-    expect(await screen.findByText(/▲ promoted · ▼ relegated/)).toBeTruthy();
-    expect(screen.getAllByText(/▼/).length).toBeGreaterThanOrEqual(6);
+    const key = await screen.findByRole('list', { name: 'Standings key' });
+    expect(key.textContent).toContain('Relegated');
+    expect(screen.getAllByRole('img', { name: 'Relegated' }).length).toBeGreaterThanOrEqual(6);
+    expect(screen.queryByText(/▼/)).toBeNull();
   });
 });

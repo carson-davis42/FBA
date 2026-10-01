@@ -6,6 +6,7 @@ import { groupLabel } from '../../../engine/shared/leagues';
 import type { PlayersFile } from '../../../engine/shared/types';
 import { useDoc, useHistory } from '../../api';
 import { Hero } from '../../components/Hero';
+import { clinchKind, ClinchLegend, RankCell } from '../../components/Clinch';
 import { Bracket } from '../../playoffs/Bracket';
 import { PlayerLink, SkippedWarning } from '../PlayerLink';
 import '../history.css';
@@ -83,7 +84,12 @@ export function D2SeasonPage() {
           </ul>
         </div>
       )}
-      {standings && (
+      {standings && (() => {
+        const promoted = new Set((season.promotion ?? []).flatMap(p => p.promoted));
+        const relegated = new Set((season.promotion ?? []).flatMap(p => p.relegated));
+        const kindOf = (r: { teamId: string; marker: '*' | 'x' | 'n' | null }) =>
+          clinchKind({ marker: r.marker, status: promoted.has(r.teamId) ? '▲' : relegated.has(r.teamId) ? '▼' : null });
+        return (
         <div className="stack">
           <h2 className="section-title">Standings</h2>
           {GROUPS.filter(g => standings.some(r => r.group === g)).map(g => (
@@ -95,8 +101,11 @@ export function D2SeasonPage() {
                   <tbody>
                     {standings.filter(r => r.group === g).sort((a, b) => a.rank - b.rank).map(r => (
                       <tr key={r.teamId}>
-                        <td className="rank">{r.rank}</td>
-                        <td><D2Team teams={teams} teamId={r.teamId} name={r.name} season={n} /></td>
+                        <RankCell kind={kindOf(r)} league="fbad2">{r.rank}</RankCell>
+                        <td>
+                          <D2Team teams={teams} teamId={r.teamId} name={r.name} season={n} />
+                          {r.playoff?.champion && <span className="champ-glyph" role="img" aria-label="League champion">🏆</span>}
+                        </td>
                         <td className="n">{r.w}</td>
                         <td className="n">{r.l}</td>
                         <td className="n">{r.w + r.l === 0 ? '—' : (r.w / (r.w + r.l)).toFixed(3)}</td>
@@ -107,8 +116,10 @@ export function D2SeasonPage() {
               </div>
             </div>
           ))}
+          <ClinchLegend kinds={standings.map(kindOf)} league="fbad2" />
         </div>
-      )}
+        );
+      })()}
       {season.bracket && (
         <div className="stack">
           <h2 className="section-title">Playoffs</h2>
