@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { CalendarFile, Franchise, FranchisesFile, HallOfFameFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
+import { withQualifyingStep } from '../engine/shared/calendar';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
 import { buildD2History, buildLeagueHistory, d2LeagueMoves, D2_TABS } from './d2History';
@@ -567,7 +568,24 @@ async function importWcHistory(): Promise<void> {
   console.log(`Wrote ${out.summaries.length} summaries, ${out.hosts.hosts.length} hosts and flags for ${out.teams.teams.filter(t => t.flag).length} teams.`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--d2-leagues', '--check-trophies'];
+/** Adds the odd season's qualifying step to calendar.json in the --data folder; writes only when it changed. */
+export async function importWcQualifyingStep(): Promise<void> {
+  const dir = requireDataDir('--wc-qualifying-step');
+  const cal = readDataJson<CalendarFile>(dir, 'calendar.json');
+  if (!cal) {
+    console.error('--wc-qualifying-step needs calendar.json in the data folder.');
+    process.exit(1);
+  }
+  const next = withQualifyingStep(cal);
+  if (next === cal) {
+    console.log('Already has the qualifying step');
+    return;
+  }
+  writeDoc(dir, 'calendar.json', next);
+  console.log(`Added s${cal.season}-qualifying`);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -588,6 +606,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--d2-history')) return importD2History();
   if (process.argv.includes('--wc-history')) return importWcHistory();
   if (process.argv.includes('--d2-leagues')) return importD2Leagues();
+  if (process.argv.includes('--wc-qualifying-step')) return importWcQualifyingStep();
   if (process.argv.includes('--check-trophies')) return checkTrophies();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');
