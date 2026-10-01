@@ -38,3 +38,9 @@
 
 .tx-trade { display: grid; gap: 4px; padding: var(--s3) var(--s4); }
 .tx-trade-head { display: flex; gap: var(--s2); align-items: center; flex-wrap: wrap; }
+
+/* Past brackets of the college pages: records, an overtime tag, and the invisible spacer for two BYE slots. */
+.series-side .rec { margin-left: 6px; color: var(--muted); font-size: 11px; font-weight: 400; font-variant-numeric: tabular-nums; }
+.series-box .series-ot { padding: 1px 10px 3px; text-align: right; font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.04em; }
+.series-box.empty { visibility: hidden; min-height: 64px; box-shadow: none; }
+.bracket-col.l .series-box.empty::after, .bracket-col.r .series-box.empty::before { display: none; }

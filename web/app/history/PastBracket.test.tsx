@@ -122,3 +122,60 @@ describe('PastBracket 6 rounds', () => {
     expect(container.querySelectorAll('.bracket > .bracket-col')).toHaveLength(11);
   });
 });
+
+describe('PastBracket college pages', () => {
+  const sd = (name: string, record: string | null, seed: number | null = null) => ({ name, record, seed });
+
+  it('shows an overtime score with the points beside each team and an OT tag', () => {
+    const one: PastBracketDoc = { rounds: 1, series: [{ id: 'R1-1', round: 1, home: sd('Kansas', '22-1', 1), away: sd('Texas', '13-9'), homeWins: 1, awayWins: 0, winner: 'home', score: '53–51 2OT' }] };
+    const { container } = render(<PastBracket bracket={one} teams={[]} season={63} />);
+    expect([...container.querySelectorAll('.series-side .wins')].map(e => e.textContent)).toEqual(['53', '51']);
+    expect(container.querySelector('.series-ot')!.textContent).toBe('2OT');
+  });
+
+  it('has no OT tag for a regulation score', () => {
+    const one: PastBracketDoc = { rounds: 1, series: [{ id: 'R1-1', round: 1, home: sd('Kansas', null), away: sd('Texas', null), homeWins: 1, awayWins: 0, winner: 'home', score: '29-27' }] };
+    const { container } = render(<PastBracket bracket={one} teams={[]} season={63} />);
+    expect(container.querySelector('.series-ot')).toBeNull();
+  });
+
+  it('prints records only when asked', () => {
+    const one: PastBracketDoc = { rounds: 1, series: [{ id: 'R1-1', round: 1, home: sd('Kansas', '22-1', 1), away: sd('Texas', '13-9'), homeWins: 1, awayWins: 0, winner: 'home', score: '29-27' }] };
+    const off = render(<PastBracket bracket={one} teams={[]} season={63} />);
+    expect(off.container.querySelectorAll('.rec')).toHaveLength(0);
+    cleanup();
+    const on = render(<PastBracket bracket={one} teams={[]} season={63} showRecords />);
+    expect([...on.container.querySelectorAll('.series-side .rec')].map(e => e.textContent)).toEqual(['22-1', '13-9']);
+  });
+
+  it('draws two BYE slots as an invisible spacer and a lone BYE as a BYE row', () => {
+    const b: PastBracketDoc = {
+      rounds: 2,
+      series: [
+        { id: 'R1-1', round: 1, home: sd('Kansas', null), away: null, homeWins: 0, awayWins: 0, winner: 'home' },
+        { id: 'R1-2', round: 1, home: null, away: null, homeWins: 0, awayWins: 0, winner: 'home' },
+        { id: 'R2-1', round: 2, home: sd('Kansas', null), away: null, homeWins: 0, awayWins: 0, winner: 'home' },
+      ],
+    };
+    const { container } = render(<PastBracket bracket={b} teams={[]} season={14} />);
+    const empty = container.querySelectorAll('.series-box.empty');
+    expect(empty).toHaveLength(1);
+    expect(empty[0].getAttribute('aria-hidden')).toBe('true');
+    expect(empty[0].textContent).toBe('');
+    expect(screen.getAllByText('BYE').length).toBeGreaterThan(0);
+  });
+
+  it('draws a 5-round (32-team) page in 9 columns', () => {
+    const series: PastSeries[] = [];
+    for (let r = 1; r <= 5; r++) {
+      const n = 2 ** (5 - r), span = 2 ** r;
+      for (let k = 1; k <= n; k++) {
+        const lo = (k - 1) * span + 1;
+        series.push({ ...ps(`R${r}-${k}`, `T${lo}`, `T${lo + span / 2}`, 0, 0), unscored: true });
+      }
+    }
+    const { container } = render(<PastBracket bracket={{ rounds: 5, series }} teams={[]} season={11} />);
+    expect(container.querySelectorAll('.series-box')).toHaveLength(31);
+    expect(container.querySelectorAll('.bracket > .bracket-col')).toHaveLength(9);
+  });
+});
