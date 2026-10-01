@@ -28,5 +28,136 @@
         "San Jose"
       ]
     }
-  ]
+  ],
+  "pastBracket": {
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "San Jose Express",
+          "record": "6-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Santa Fe Heat",
+          "record": "2-4",
+          "seed": 8
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home",
+        "unscored": true
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Atlanta Empire",
+          "record": "4-2",
+          "seed": 5
+        },
+        "away": {
+          "name": "New York Hawks",
+          "record": "5-1",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home",
+        "unscored": true
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Pearland Flames",
+          "record": "6-0",
+          "seed": 3
+        },
+        "away": {
+          "name": "Maine Dolphins",
+          "record": "4-2",
+          "seed": 6
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away",
+        "unscored": true
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Fort Worth Sabers",
+          "record": "4-2",
+          "seed": 7
+        },
+        "away": {
+          "name": "Orlando Hornets",
+          "record": "6-0",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away",
+        "unscored": true
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "San Jose Express",
+          "record": "6-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Atlanta Empire",
+          "record": "4-2",
+          "seed": 5
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home",
+        "unscored": true
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Maine Dolphins",
+          "record": "4-2",
+          "seed": 6
+        },
+        "away": {
+          "name": "Orlando Hornets",
+          "record": "6-0",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away",
+        "unscored": true
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "San Jose Express",
+          "record": "6-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Orlando Hornets",
+          "record": "6-0",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home",
+        "unscored": true
+      }
+    ]
+  }
 }

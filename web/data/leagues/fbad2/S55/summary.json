@@ -43,5 +43,280 @@
         "Tampa"
       ]
     }
-  ]
+  ],
+  "pastBracket": {
+    "rounds": 4,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "San Jose Express",
+          "record": "6-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Cal State Tigers",
+          "record": "0-6",
+          "seed": 16
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home",
+        "unscored": true
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Texas Trojans",
+          "record": "3-3",
+          "seed": 9
+        },
+        "away": {
+          "name": "Fort Worth Sabers",
+          "record": "3-3",
+          "seed": 8
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away",
+        "unscored": true
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Atlanta Empire",
+          "record": "5-1",
+          "seed": 5
+        },
+        "away": {
+          "name": "Pearland Flames",
+          "record": "1-5",
+          "seed": 12
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home",
+        "unscored": true
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Syracuse Speeders",
+          "record": "1-5",
+          "seed": 13
+        },
+        "away": {
+          "name": "Cypress White Sox",
+          "record": "5-1",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away",
+        "unscored": true
+      },
+      {
+        "id": "R1-5",
+        "round": 1,
+        "home": {
+          "name": "Tampa Suns",
+          "record": "5-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "West Vermont Rattlers",
+          "record": "1-5",
+          "seed": 14
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home",
+        "unscored": true
+      },
+      {
+        "id": "R1-6",
+        "round": 1,
+        "home": {
+          "name": "Arizona Copper",
+          "record": "2-4",
+          "seed": 11
+        },
+        "away": {
+          "name": "Maine Dolphins",
+          "record": "4-2",
+          "seed": 6
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away",
+        "unscored": true
+      },
+      {
+        "id": "R1-7",
+        "round": 1,
+        "home": {
+          "name": "Santa Fe Heat",
+          "record": "4-2",
+          "seed": 7
+        },
+        "away": {
+          "name": "Orlando Hornets",
+          "record": "2-4",
+          "seed": 10
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away",
+        "unscored": true
+      },
+      {
+        "id": "R1-8",
+        "round": 1,
+        "home": {
+          "name": "Miami Mustangs",
+          "record": "0-6",
+          "seed": 15
+        },
+        "away": {
+          "name": "New York Hawks",
+          "record": "6-0",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away",
+        "unscored": true
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "San Jose Express",
+          "record": "6-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Fort Worth Sabers",
+          "record": "3-3",
+          "seed": 8
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home",
+        "unscored": true
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Atlanta Empire",
+          "record": "5-1",
+          "seed": 5
+        },
+        "away": {
+          "name": "Cypress White Sox",
+          "record": "5-1",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home",
+        "unscored": true
+      },
+      {
+        "id": "R2-3",
+        "round": 2,
+        "home": {
+          "name": "Tampa Suns",
+          "record": "5-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Maine Dolphins",
+          "record": "4-2",
+          "seed": 6
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home",
+        "unscored": true
+      },
+      {
+        "id": "R2-4",
+        "round": 2,
+        "home": {
+          "name": "Orlando Hornets",
+          "record": "2-4",
+          "seed": 10
+        },
+        "away": {
+          "name": "New York Hawks",
+          "record": "6-0",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away",
+        "unscored": true
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "San Jose Express",
+          "record": "6-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Atlanta Empire",
+          "record": "5-1",
+          "seed": 5
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away",
+        "unscored": true
+      },
+      {
+        "id": "R3-2",
+        "round": 3,
+        "home": {
+          "name": "Tampa Suns",
+          "record": "5-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "New York Hawks",
+          "record": "6-0",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home",
+        "unscored": true
+      },
+      {
+        "id": "R4-1",
+        "round": 4,
+        "home": {
+          "name": "Atlanta Empire",
+          "record": "5-1",
+          "seed": 5
+        },
+        "away": {
+          "name": "Tampa Suns",
+          "record": "5-1",
+          "seed": 3
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away",
+        "unscored": true
+      }
+    ]
+  }
 }

@@ -13,5 +13,1144 @@
       "teamId": "AUS",
       "runnerUpId": "ITA"
     }
-  ]
+  ],
+  "pastBracket": {
+    "rounds": 6,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Austria",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "UAE",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "95–89"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Switzerland",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Hungary",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "98–75"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Saudi Arabia",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "South Korea",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "82–76"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Kenya",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "USA",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "98–53"
+      },
+      {
+        "id": "R1-5",
+        "round": 1,
+        "home": {
+          "name": "Nigeria",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Sweden",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "104–69"
+      },
+      {
+        "id": "R1-6",
+        "round": 1,
+        "home": {
+          "name": "Cuba",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Thailand",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "84–66"
+      },
+      {
+        "id": "R1-7",
+        "round": 1,
+        "home": {
+          "name": "Chile",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Italy",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "82–58"
+      },
+      {
+        "id": "R1-8",
+        "round": 1,
+        "home": {
+          "name": "France",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Finland",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "98–49"
+      },
+      {
+        "id": "R1-9",
+        "round": 1,
+        "home": {
+          "name": "Indonesia",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Vietnam",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "68–63"
+      },
+      {
+        "id": "R1-10",
+        "round": 1,
+        "home": {
+          "name": "Greece",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Brazil",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "88–60"
+      },
+      {
+        "id": "R1-11",
+        "round": 1,
+        "home": {
+          "name": "El Salvador",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Philippines",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "73–63"
+      },
+      {
+        "id": "R1-12",
+        "round": 1,
+        "home": {
+          "name": "Bangladesh",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Denmark",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "92–85"
+      },
+      {
+        "id": "R1-13",
+        "round": 1,
+        "home": {
+          "name": "Iceland",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Morocco",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "79–63"
+      },
+      {
+        "id": "R1-14",
+        "round": 1,
+        "home": {
+          "name": "China",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "England",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "87–72"
+      },
+      {
+        "id": "R1-15",
+        "round": 1,
+        "home": {
+          "name": "Pakistan",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Spain",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "97–46"
+      },
+      {
+        "id": "R1-16",
+        "round": 1,
+        "home": {
+          "name": "Lithuania",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "New Zealand",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "76–64"
+      },
+      {
+        "id": "R1-17",
+        "round": 1,
+        "home": {
+          "name": "Algeria",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Taiwan",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "65–59"
+      },
+      {
+        "id": "R1-18",
+        "round": 1,
+        "home": {
+          "name": "Norway",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Belgium",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "83–79"
+      },
+      {
+        "id": "R1-19",
+        "round": 1,
+        "home": {
+          "name": "Australia",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Nepal",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "110–60"
+      },
+      {
+        "id": "R1-20",
+        "round": 1,
+        "home": {
+          "name": "Czechia",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Slovenia",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "85–66"
+      },
+      {
+        "id": "R1-21",
+        "round": 1,
+        "home": {
+          "name": "Peru",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Ireland",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "74–58"
+      },
+      {
+        "id": "R1-22",
+        "round": 1,
+        "home": {
+          "name": "Portugal",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Mexico",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "97–86"
+      },
+      {
+        "id": "R1-23",
+        "round": 1,
+        "home": {
+          "name": "Scotland",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "India",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "86–82"
+      },
+      {
+        "id": "R1-24",
+        "round": 1,
+        "home": {
+          "name": "Turkey",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Argentina",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "88–73"
+      },
+      {
+        "id": "R1-25",
+        "round": 1,
+        "home": {
+          "name": "Ukraine",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Japan",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "93–81"
+      },
+      {
+        "id": "R1-26",
+        "round": 1,
+        "home": {
+          "name": "Singapore",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Northern Ireland",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "80–70"
+      },
+      {
+        "id": "R1-27",
+        "round": 1,
+        "home": {
+          "name": "Croatia",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Netherlands",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "84–67"
+      },
+      {
+        "id": "R1-28",
+        "round": 1,
+        "home": {
+          "name": "Luxembourg",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Qatar",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "79–78"
+      },
+      {
+        "id": "R1-29",
+        "round": 1,
+        "home": {
+          "name": "Canada",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Colombia",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "87–58"
+      },
+      {
+        "id": "R1-30",
+        "round": 1,
+        "home": {
+          "name": "Germany",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Egypt",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "95–88"
+      },
+      {
+        "id": "R1-31",
+        "round": 1,
+        "home": {
+          "name": "Romania",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "South Africa",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "78–38"
+      },
+      {
+        "id": "R1-32",
+        "round": 1,
+        "home": {
+          "name": "Poland",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Russia",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "81–78"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "UAE",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Hungary",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "94–87"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Saudi Arabia",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "USA",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "100–76"
+      },
+      {
+        "id": "R2-3",
+        "round": 2,
+        "home": {
+          "name": "Sweden",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Thailand",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "78–60"
+      },
+      {
+        "id": "R2-4",
+        "round": 2,
+        "home": {
+          "name": "Italy",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "France",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "98–86"
+      },
+      {
+        "id": "R2-5",
+        "round": 2,
+        "home": {
+          "name": "Indonesia",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Brazil",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "89–56"
+      },
+      {
+        "id": "R2-6",
+        "round": 2,
+        "home": {
+          "name": "El Salvador",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Bangladesh",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "101–68"
+      },
+      {
+        "id": "R2-7",
+        "round": 2,
+        "home": {
+          "name": "Morocco",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "China",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "93–73"
+      },
+      {
+        "id": "R2-8",
+        "round": 2,
+        "home": {
+          "name": "Spain",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "New Zealand",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "82–77"
+      },
+      {
+        "id": "R2-9",
+        "round": 2,
+        "home": {
+          "name": "Algeria",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Norway",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "103–60"
+      },
+      {
+        "id": "R2-10",
+        "round": 2,
+        "home": {
+          "name": "Australia",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Slovenia",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "101–72"
+      },
+      {
+        "id": "R2-11",
+        "round": 2,
+        "home": {
+          "name": "Ireland",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Portugal",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "91–86"
+      },
+      {
+        "id": "R2-12",
+        "round": 2,
+        "home": {
+          "name": "Scotland",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Turkey",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "107–75"
+      },
+      {
+        "id": "R2-13",
+        "round": 2,
+        "home": {
+          "name": "Ukraine",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Northern Ireland",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "87–68"
+      },
+      {
+        "id": "R2-14",
+        "round": 2,
+        "home": {
+          "name": "Netherlands",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Qatar",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "93–72"
+      },
+      {
+        "id": "R2-15",
+        "round": 2,
+        "home": {
+          "name": "Canada",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Germany",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "80–79"
+      },
+      {
+        "id": "R2-16",
+        "round": 2,
+        "home": {
+          "name": "South Africa",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Russia",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "92–79"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "UAE",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "USA",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "75–73"
+      },
+      {
+        "id": "R3-2",
+        "round": 3,
+        "home": {
+          "name": "Sweden",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Italy",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "93–64"
+      },
+      {
+        "id": "R3-3",
+        "round": 3,
+        "home": {
+          "name": "Brazil",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Bangladesh",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "84–74"
+      },
+      {
+        "id": "R3-4",
+        "round": 3,
+        "home": {
+          "name": "Morocco",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Spain",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "86–78"
+      },
+      {
+        "id": "R3-5",
+        "round": 3,
+        "home": {
+          "name": "Norway",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Australia",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "90–75"
+      },
+      {
+        "id": "R3-6",
+        "round": 3,
+        "home": {
+          "name": "Portugal",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Scotland",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "87–62"
+      },
+      {
+        "id": "R3-7",
+        "round": 3,
+        "home": {
+          "name": "Northern Ireland",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Netherlands",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "87–83"
+      },
+      {
+        "id": "R3-8",
+        "round": 3,
+        "home": {
+          "name": "Canada",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Russia",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "95–78"
+      },
+      {
+        "id": "R4-1",
+        "round": 4,
+        "home": {
+          "name": "UAE",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Italy",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "98–83"
+      },
+      {
+        "id": "R4-2",
+        "round": 4,
+        "home": {
+          "name": "Brazil",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Spain",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "91–76"
+      },
+      {
+        "id": "R4-3",
+        "round": 4,
+        "home": {
+          "name": "Australia",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Portugal",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "99–88"
+      },
+      {
+        "id": "R4-4",
+        "round": 4,
+        "home": {
+          "name": "Northern Ireland",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Canada",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "92–85"
+      },
+      {
+        "id": "R5-1",
+        "round": 5,
+        "home": {
+          "name": "Italy",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Brazil",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "88–81"
+      },
+      {
+        "id": "R5-2",
+        "round": 5,
+        "home": {
+          "name": "Australia",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Northern Ireland",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "88–86"
+      },
+      {
+        "id": "R6-1",
+        "round": 6,
+        "home": {
+          "name": "Italy",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Australia",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "84–70"
+      }
+    ]
+  }
 }

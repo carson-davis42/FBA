@@ -47,5 +47,280 @@
         "Athens"
       ]
     }
-  ]
+  ],
+  "pastBracket": {
+    "rounds": 4,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Vienna",
+          "record": "10-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Paris",
+          "record": "6-4",
+          "seed": 16
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "43–31"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "Rome",
+          "record": "8-2",
+          "seed": 9
+        },
+        "away": {
+          "name": "Orlando",
+          "record": "8-2",
+          "seed": 8
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "34–33"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Milan",
+          "record": "8-2",
+          "seed": 5
+        },
+        "away": {
+          "name": "San Jose",
+          "record": "8-2",
+          "seed": 12
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "40–39"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Kiev",
+          "record": "6-4",
+          "seed": 13
+        },
+        "away": {
+          "name": "Glasgow",
+          "record": "9-1",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "55–54"
+      },
+      {
+        "id": "R1-5",
+        "round": 1,
+        "home": {
+          "name": "Athens",
+          "record": "9-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Maine",
+          "record": "6-4",
+          "seed": 14
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "39–20"
+      },
+      {
+        "id": "R1-6",
+        "round": 1,
+        "home": {
+          "name": "Manchester",
+          "record": "7-3",
+          "seed": 11
+        },
+        "away": {
+          "name": "Hamburg",
+          "record": "8-2",
+          "seed": 6
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "40–38"
+      },
+      {
+        "id": "R1-7",
+        "round": 1,
+        "home": {
+          "name": "London",
+          "record": "8-2",
+          "seed": 7
+        },
+        "away": {
+          "name": "Frankfurt",
+          "record": "7-3",
+          "seed": 10
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "26–19"
+      },
+      {
+        "id": "R1-8",
+        "round": 1,
+        "home": {
+          "name": "Istanbul",
+          "record": "6-4",
+          "seed": 15
+        },
+        "away": {
+          "name": "Toronto",
+          "record": "9-1",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "50–19"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Vienna",
+          "record": "10-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Orlando",
+          "record": "8-2",
+          "seed": 8
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "39–16"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Milan",
+          "record": "8-2",
+          "seed": 5
+        },
+        "away": {
+          "name": "Glasgow",
+          "record": "9-1",
+          "seed": 4
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "53–36"
+      },
+      {
+        "id": "R2-3",
+        "round": 2,
+        "home": {
+          "name": "Athens",
+          "record": "9-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Manchester",
+          "record": "7-3",
+          "seed": 11
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "52–49"
+      },
+      {
+        "id": "R2-4",
+        "round": 2,
+        "home": {
+          "name": "Frankfurt",
+          "record": "7-3",
+          "seed": 10
+        },
+        "away": {
+          "name": "Toronto",
+          "record": "9-1",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "28–27"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Vienna",
+          "record": "10-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Milan",
+          "record": "8-2",
+          "seed": 5
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "63–53"
+      },
+      {
+        "id": "R3-2",
+        "round": 3,
+        "home": {
+          "name": "Athens",
+          "record": "9-1",
+          "seed": 3
+        },
+        "away": {
+          "name": "Toronto",
+          "record": "9-1",
+          "seed": 2
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "36–34"
+      },
+      {
+        "id": "R4-1",
+        "round": 4,
+        "home": {
+          "name": "Milan",
+          "record": "8-2",
+          "seed": 5
+        },
+        "away": {
+          "name": "Athens",
+          "record": "9-1",
+          "seed": 3
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "49–37"
+      }
+    ]
+  }
 }

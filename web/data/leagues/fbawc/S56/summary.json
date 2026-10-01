@@ -13,5 +13,136 @@
       "teamId": "ITA",
       "runnerUpId": "TUR"
     }
-  ]
+  ],
+  "pastBracket": {
+    "rounds": 3,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "USA",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Turkey",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "51–50"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "France",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Ireland",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "80–28"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Austria",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Germany",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "42–41"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Italy",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "England",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "59–50"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Turkey",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "France",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "50–40"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Germany",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Italy",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "54–53"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Turkey",
+          "record": null,
+          "seed": null
+        },
+        "away": {
+          "name": "Italy",
+          "record": null,
+          "seed": null
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "54–52"
+      }
+    ]
+  }
 }

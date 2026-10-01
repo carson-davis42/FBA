@@ -1735,10 +1735,10 @@
         "points": 0
       },
       {
-        "playerId": "p00382",
+        "playerId": null,
         "position": "C",
-        "rating": 97,
-        "age": 26,
+        "rating": null,
+        "age": null,
         "points": 0
       }
     ],

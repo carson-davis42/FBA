@@ -1,0 +1,5220 @@
+{
+  "league": "fbad2",
+  "season": 79,
+  "kind": "d2-reset",
+  "locked": false,
+  "rows": [
+    {
+      "playerId": "p00163",
+      "position": "PG",
+      "age": 30,
+      "team": "AMS",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "379 pts"
+    },
+    {
+      "playerId": "p00164",
+      "position": "SG",
+      "age": 26,
+      "team": "AMS",
+      "prevRating": 72,
+      "otherRating": null,
+      "stat": "233 pts"
+    },
+    {
+      "playerId": "p00165",
+      "position": "SF",
+      "age": 27,
+      "team": "AMS",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "349 pts"
+    },
+    {
+      "playerId": "p00166",
+      "position": "PF",
+      "age": 22,
+      "team": "AMS",
+      "prevRating": 94,
+      "otherRating": null,
+      "stat": "1058 pts"
+    },
+    {
+      "playerId": "p00167",
+      "position": "C",
+      "age": 25,
+      "team": "AMS",
+      "prevRating": 79,
+      "otherRating": null,
+      "stat": "496 pts"
+    },
+    {
+      "playerId": "p00168",
+      "position": "PG",
+      "age": 24,
+      "team": "ATH",
+      "prevRating": 81,
+      "otherRating": null,
+      "stat": "670 pts"
+    },
+    {
+      "playerId": "p00169",
+      "position": "SG",
+      "age": 25,
+      "team": "ATH",
+      "prevRating": 69,
+      "otherRating": null,
+      "stat": "181 pts"
+    },
+    {
+      "playerId": "p00170",
+      "position": "SF",
+      "age": 32,
+      "team": "ATH",
+      "prevRating": 80,
+      "otherRating": null,
+      "stat": "646 pts"
+    },
+    {
+      "playerId": "p00171",
+      "position": "PF",
+      "age": 32,
+      "team": "ATH",
+      "prevRating": 84,
+      "otherRating": null,
+      "stat": "845 pts"
+    },
+    {
+      "playerId": "p00172",
+      "position": "C",
+      "age": 25,
+      "team": "ATH",
+      "prevRating": 67,
+      "otherRating": null,
+      "stat": "125 pts"
+    },
+    {
+      "playerId": "p00173",
+      "position": "PG",
+      "age": 28,
+      "team": "ACK",
+      "prevRating": 66,
+      "otherRating": null,
+      "stat": "158 pts"
+    },
+    {
+      "playerId": "p00174",
+      "position": "SG",
+      "age": 23,
+      "team": "ACK",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "552 pts"
+    },
+    {
+      "playerId": "p00175",
+      "position": "SF",
+      "age": 29,
+      "team": "ACK",
+      "prevRating": 70,
+      "otherRating": null,
+      "stat": "329 pts"
+    },
+    {
+      "playerId": "p00176",
+      "position": "PF",
+      "age": 29,
+      "team": "ACK",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "656 pts"
+    },
+    {
+      "playerId": "p00177",
+      "position": "C",
+      "age": 26,
+      "team": "ACK",
+      "prevRating": 74,
+      "otherRating": null,
+      "stat": "473 pts"
+    },
+    {
+      "playerId": "p00178",
+      "position": "PG",
+      "age": 29,
+      "team": "AUS",
+      "prevRating": 95,
+      "otherRating": null,
+      "stat": "764 pts"
+    },
+    {
+      "playerId": "p00179",
+      "position": "SG",
+      "age": 29,
+      "team": "AUS",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "190 pts"
+    },
+    {
+      "playerId": "p00180",
+      "position": "SF",
+      "age": 24,
+      "team": "AUS",
+      "prevRating": 89,
+      "otherRating": null,
+      "stat": "656 pts"
+    },
+    {
+      "playerId": "p00181",
+      "position": "PF",
+      "age": 24,
+      "team": "AUS",
+      "prevRating": 78,
+      "otherRating": null,
+      "stat": "286 pts"
+    },
+    {
+      "playerId": "p00182",
+      "position": "C",
+      "age": 29,
+      "team": "AUS",
+      "prevRating": 95,
+      "otherRating": null,
+      "stat": "765 pts"
+    },
+    {
+      "playerId": "p00183",
+      "position": "PG",
+      "age": 25,
+      "team": "BARC",
+      "prevRating": 81,
+      "otherRating": null,
+      "stat": "493 pts"
+    },
+    {
+      "playerId": "p00184",
+      "position": "SF",
+      "age": 30,
+      "team": "BARC",
+      "prevRating": 78,
+      "otherRating": null,
+      "stat": "404 pts"
+    },
+    {
+      "playerId": "p00185",
+      "position": "PF",
+      "age": 27,
+      "team": "BARC",
+      "prevRating": 88,
+      "otherRating": null,
+      "stat": "740 pts"
+    },
+    {
+      "playerId": "p00186",
+      "position": "C",
+      "age": 32,
+      "team": "BARC",
+      "prevRating": 78,
+      "otherRating": null,
+      "stat": "398 pts"
+    },
+    {
+      "playerId": "p00187",
+      "position": "PG",
+      "age": 28,
+      "team": "BEL",
+      "prevRating": 87,
+      "otherRating": null,
+      "stat": "842 pts"
+    },
+    {
+      "playerId": "p00188",
+      "position": "SG",
+      "age": 29,
+      "team": "BEL",
+      "prevRating": 66,
+      "otherRating": null,
+      "stat": "136 pts"
+    },
+    {
+      "playerId": "p00189",
+      "position": "SF",
+      "age": 29,
+      "team": "BEL",
+      "prevRating": 74,
+      "otherRating": null,
+      "stat": "324 pts"
+    },
+    {
+      "playerId": "p00190",
+      "position": "PF",
+      "age": 28,
+      "team": "BEL",
+      "prevRating": 89,
+      "otherRating": null,
+      "stat": "899 pts"
+    },
+    {
+      "playerId": "p00191",
+      "position": "C",
+      "age": 27,
+      "team": "BEL",
+      "prevRating": 74,
+      "otherRating": null,
+      "stat": "358 pts"
+    },
+    {
+      "playerId": "p00192",
+      "position": "PG",
+      "age": 24,
+      "team": "BER",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "202 pts"
+    },
+    {
+      "playerId": "p00193",
+      "position": "SG",
+      "age": 31,
+      "team": "BER",
+      "prevRating": 96,
+      "otherRating": null,
+      "stat": "834 pts"
+    },
+    {
+      "playerId": "p00194",
+      "position": "SF",
+      "age": 30,
+      "team": "BER",
+      "prevRating": 97,
+      "otherRating": null,
+      "stat": "868 pts"
+    },
+    {
+      "playerId": "p00195",
+      "position": "PF",
+      "age": 26,
+      "team": "BER",
+      "prevRating": 86,
+      "otherRating": null,
+      "stat": "578 pts"
+    },
+    {
+      "playerId": "p00196",
+      "position": "C",
+      "age": 32,
+      "team": "BER",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "188 pts"
+    },
+    {
+      "playerId": "p00197",
+      "position": "PG",
+      "age": 26,
+      "team": "BEI",
+      "prevRating": 67,
+      "otherRating": null,
+      "stat": "128 pts"
+    },
+    {
+      "playerId": "p00198",
+      "position": "SG",
+      "age": 26,
+      "team": "BEI",
+      "prevRating": 94,
+      "otherRating": null,
+      "stat": "1208 pts"
+    },
+    {
+      "playerId": "p00199",
+      "position": "SF",
+      "age": 29,
+      "team": "BEI",
+      "prevRating": 81,
+      "otherRating": null,
+      "stat": "568 pts"
+    },
+    {
+      "playerId": "p00200",
+      "position": "PF",
+      "age": 32,
+      "team": "BEI",
+      "prevRating": 78,
+      "otherRating": null,
+      "stat": "508 pts"
+    },
+    {
+      "playerId": "p00201",
+      "position": "C",
+      "age": 28,
+      "team": "BEI",
+      "prevRating": 66,
+      "otherRating": null,
+      "stat": "130 pts"
+    },
+    {
+      "playerId": "p00202",
+      "position": "PG",
+      "age": 32,
+      "team": "BRUS",
+      "prevRating": 79,
+      "otherRating": null,
+      "stat": "506 pts"
+    },
+    {
+      "playerId": "p00203",
+      "position": "SG",
+      "age": 24,
+      "team": "BRUS",
+      "prevRating": 91,
+      "otherRating": null,
+      "stat": "978 pts"
+    },
+    {
+      "playerId": "p00204",
+      "position": "PF",
+      "age": 23,
+      "team": "BRUS",
+      "prevRating": 72,
+      "otherRating": null,
+      "stat": "247 pts"
+    },
+    {
+      "playerId": "p00205",
+      "position": "C",
+      "age": 25,
+      "team": "BRUS",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "327 pts"
+    },
+    {
+      "playerId": "p00206",
+      "position": "PG",
+      "age": 29,
+      "team": "BUD",
+      "prevRating": 90,
+      "otherRating": null,
+      "stat": "798 pts"
+    },
+    {
+      "playerId": "p00207",
+      "position": "SG",
+      "age": 28,
+      "team": "BUD",
+      "prevRating": 71,
+      "otherRating": null,
+      "stat": "187 pts"
+    },
+    {
+      "playerId": "p00208",
+      "position": "SF",
+      "age": 24,
+      "team": "BUD",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "367 pts"
+    },
+    {
+      "playerId": "p00209",
+      "position": "PF",
+      "age": 23,
+      "team": "BUD",
+      "prevRating": 91,
+      "otherRating": null,
+      "stat": "852 pts"
+    },
+    {
+      "playerId": "p00210",
+      "position": "C",
+      "age": 23,
+      "team": "BUD",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "257 pts"
+    },
+    {
+      "playerId": "p00211",
+      "position": "PG",
+      "age": 24,
+      "team": "BA",
+      "prevRating": 70,
+      "otherRating": null,
+      "stat": "144 pts"
+    },
+    {
+      "playerId": "p00212",
+      "position": "SG",
+      "age": 30,
+      "team": "BA",
+      "prevRating": 86,
+      "otherRating": null,
+      "stat": "592 pts"
+    },
+    {
+      "playerId": "p00213",
+      "position": "SF",
+      "age": 31,
+      "team": "BA",
+      "prevRating": 95,
+      "otherRating": null,
+      "stat": "971 pts"
+    },
+    {
+      "playerId": "p00214",
+      "position": "PF",
+      "age": 31,
+      "team": "BA",
+      "prevRating": 78,
+      "otherRating": null,
+      "stat": "347 pts"
+    },
+    {
+      "playerId": "p00215",
+      "position": "C",
+      "age": 31,
+      "team": "BA",
+      "prevRating": 87,
+      "otherRating": null,
+      "stat": "646 pts"
+    },
+    {
+      "playerId": "p00216",
+      "position": "PG",
+      "age": 23,
+      "team": "CAI",
+      "prevRating": 65,
+      "otherRating": null,
+      "stat": "151 pts"
+    },
+    {
+      "playerId": "p00217",
+      "position": "SG",
+      "age": 28,
+      "team": "CAI",
+      "prevRating": 87,
+      "otherRating": null,
+      "stat": "1144 pts"
+    },
+    {
+      "playerId": "p00218",
+      "position": "SF",
+      "age": 26,
+      "team": "CAI",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "535 pts"
+    },
+    {
+      "playerId": "p00219",
+      "position": "PF",
+      "age": 30,
+      "team": "CAI",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "200 pts"
+    },
+    {
+      "playerId": "p00220",
+      "position": "C",
+      "age": 28,
+      "team": "CAI",
+      "prevRating": 72,
+      "otherRating": null,
+      "stat": "395 pts"
+    },
+    {
+      "playerId": "p00221",
+      "position": "PG",
+      "age": 24,
+      "team": "CAS",
+      "prevRating": 86,
+      "otherRating": null,
+      "stat": "704 pts"
+    },
+    {
+      "playerId": "p00222",
+      "position": "SG",
+      "age": 25,
+      "team": "CAS",
+      "prevRating": 88,
+      "otherRating": null,
+      "stat": "842 pts"
+    },
+    {
+      "playerId": "p00223",
+      "position": "SF",
+      "age": 24,
+      "team": "CAS",
+      "prevRating": 72,
+      "otherRating": null,
+      "stat": "204 pts"
+    },
+    {
+      "playerId": "p00224",
+      "position": "PF",
+      "age": 29,
+      "team": "CAS",
+      "prevRating": 86,
+      "otherRating": null,
+      "stat": "706 pts"
+    },
+    {
+      "playerId": "p00225",
+      "position": "C",
+      "age": 23,
+      "team": "CAS",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "176 pts"
+    },
+    {
+      "playerId": "p00226",
+      "position": "PG",
+      "age": 31,
+      "team": "COP",
+      "prevRating": 85,
+      "otherRating": null,
+      "stat": "535 pts"
+    },
+    {
+      "playerId": "p00227",
+      "position": "SG",
+      "age": 29,
+      "team": "COP",
+      "prevRating": 96,
+      "otherRating": null,
+      "stat": "969 pts"
+    },
+    {
+      "playerId": "p00228",
+      "position": "SF",
+      "age": 25,
+      "team": "COP",
+      "prevRating": 88,
+      "otherRating": null,
+      "stat": "659 pts"
+    },
+    {
+      "playerId": "p00229",
+      "position": "PF",
+      "age": 31,
+      "team": "COP",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "236 pts"
+    },
+    {
+      "playerId": "p00230",
+      "position": "C",
+      "age": 24,
+      "team": "COP",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "256 pts"
+    },
+    {
+      "playerId": "p00231",
+      "position": "PG",
+      "age": 28,
+      "team": "DHA",
+      "prevRating": 74,
+      "otherRating": null,
+      "stat": "228 pts"
+    },
+    {
+      "playerId": "p00232",
+      "position": "SG",
+      "age": 32,
+      "team": "DHA",
+      "prevRating": 99,
+      "otherRating": null,
+      "stat": "1079 pts"
+    },
+    {
+      "playerId": "p00233",
+      "position": "SF",
+      "age": 27,
+      "team": "DHA",
+      "prevRating": 87,
+      "otherRating": null,
+      "stat": "598 pts"
+    },
+    {
+      "playerId": "p00234",
+      "position": "PF",
+      "age": 28,
+      "team": "DHA",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "313 pts"
+    },
+    {
+      "playerId": "p00235",
+      "position": "C",
+      "age": 29,
+      "team": "DHA",
+      "prevRating": 82,
+      "otherRating": null,
+      "stat": "427 pts"
+    },
+    {
+      "playerId": "p00236",
+      "position": "PG",
+      "age": 29,
+      "team": "DBA",
+      "prevRating": 84,
+      "otherRating": null,
+      "stat": "647 pts"
+    },
+    {
+      "playerId": "p00237",
+      "position": "SG",
+      "age": 24,
+      "team": "DBA",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "381 pts"
+    },
+    {
+      "playerId": "p00238",
+      "position": "SF",
+      "age": 29,
+      "team": "DBA",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "158 pts"
+    },
+    {
+      "playerId": "p00239",
+      "position": "PF",
+      "age": 29,
+      "team": "DBA",
+      "prevRating": 85,
+      "otherRating": null,
+      "stat": "755 pts"
+    },
+    {
+      "playerId": "p00240",
+      "position": "C",
+      "age": 29,
+      "team": "DBA",
+      "prevRating": 85,
+      "otherRating": null,
+      "stat": "669 pts"
+    },
+    {
+      "playerId": "p00241",
+      "position": "PG",
+      "age": 32,
+      "team": "DUB",
+      "prevRating": 92,
+      "otherRating": null,
+      "stat": "799 pts"
+    },
+    {
+      "playerId": "p00242",
+      "position": "SG",
+      "age": 25,
+      "team": "DUB",
+      "prevRating": 95,
+      "otherRating": null,
+      "stat": "921 pts"
+    },
+    {
+      "playerId": "p00243",
+      "position": "SF",
+      "age": 32,
+      "team": "DUB",
+      "prevRating": 71,
+      "otherRating": null,
+      "stat": "172 pts"
+    },
+    {
+      "playerId": "p00244",
+      "position": "PF",
+      "age": 25,
+      "team": "DUB",
+      "prevRating": 87,
+      "otherRating": null,
+      "stat": "693 pts"
+    },
+    {
+      "playerId": "p00245",
+      "position": "C",
+      "age": 24,
+      "team": "DUB",
+      "prevRating": 71,
+      "otherRating": null,
+      "stat": "136 pts"
+    },
+    {
+      "playerId": "p00246",
+      "position": "PG",
+      "age": 24,
+      "team": "EDI",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "465 pts"
+    },
+    {
+      "playerId": "p00247",
+      "position": "SG",
+      "age": 27,
+      "team": "EDI",
+      "prevRating": 66,
+      "otherRating": null,
+      "stat": "151 pts"
+    },
+    {
+      "playerId": "p00248",
+      "position": "SF",
+      "age": 29,
+      "team": "EDI",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "148 pts"
+    },
+    {
+      "playerId": "p00249",
+      "position": "PF",
+      "age": 26,
+      "team": "EDI",
+      "prevRating": 82,
+      "otherRating": null,
+      "stat": "738 pts"
+    },
+    {
+      "playerId": "p00250",
+      "position": "C",
+      "age": 23,
+      "team": "EDI",
+      "prevRating": 85,
+      "otherRating": null,
+      "stat": "971 pts"
+    },
+    {
+      "playerId": "p00251",
+      "position": "PG",
+      "age": 27,
+      "team": "EDM",
+      "prevRating": 70,
+      "otherRating": null,
+      "stat": "239 pts"
+    },
+    {
+      "playerId": "p00252",
+      "position": "SG",
+      "age": 23,
+      "team": "EDM",
+      "prevRating": 90,
+      "otherRating": null,
+      "stat": "963 pts"
+    },
+    {
+      "playerId": "p00253",
+      "position": "SF",
+      "age": 23,
+      "team": "EDM",
+      "prevRating": 78,
+      "otherRating": null,
+      "stat": "389 pts"
+    },
+    {
+      "playerId": "p00254",
+      "position": "PF",
+      "age": 27,
+      "team": "EDM",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "191 pts"
+    },
+    {
+      "playerId": "p00255",
+      "position": "C",
+      "age": 32,
+      "team": "EDM",
+      "prevRating": 83,
+      "otherRating": null,
+      "stat": "670 pts"
+    },
+    {
+      "playerId": "p00256",
+      "position": "PG",
+      "age": 29,
+      "team": "FLO",
+      "prevRating": 69,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00257",
+      "position": "SG",
+      "age": 29,
+      "team": "FLO",
+      "prevRating": 78,
+      "otherRating": null,
+      "stat": "397 pts"
+    },
+    {
+      "playerId": "p00258",
+      "position": "SF",
+      "age": 24,
+      "team": "FLO",
+      "prevRating": 81,
+      "otherRating": null,
+      "stat": "472 pts"
+    },
+    {
+      "playerId": "p00259",
+      "position": "PF",
+      "age": 27,
+      "team": "FLO",
+      "prevRating": 92,
+      "otherRating": null,
+      "stat": "831 pts"
+    },
+    {
+      "playerId": "p00260",
+      "position": "C",
+      "age": 24,
+      "team": "FLO",
+      "prevRating": 91,
+      "otherRating": null,
+      "stat": "894 pts"
+    },
+    {
+      "playerId": "p00261",
+      "position": "PG",
+      "age": 26,
+      "team": "FRAN",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "404 pts"
+    },
+    {
+      "playerId": "p00262",
+      "position": "SG",
+      "age": 24,
+      "team": "FRAN",
+      "prevRating": 83,
+      "otherRating": null,
+      "stat": "886 pts"
+    },
+    {
+      "playerId": "p00263",
+      "position": "SF",
+      "age": 30,
+      "team": "FRAN",
+      "prevRating": 79,
+      "otherRating": null,
+      "stat": "580 pts"
+    },
+    {
+      "playerId": "p00264",
+      "position": "PF",
+      "age": 24,
+      "team": "FRAN",
+      "prevRating": 65,
+      "otherRating": null,
+      "stat": "168 pts"
+    },
+    {
+      "playerId": "p00265",
+      "position": "C",
+      "age": 32,
+      "team": "FRAN",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "223 pts"
+    },
+    {
+      "playerId": "p00266",
+      "position": "PG",
+      "age": 30,
+      "team": "GLAS",
+      "prevRating": 79,
+      "otherRating": null,
+      "stat": "608 pts"
+    },
+    {
+      "playerId": "p00267",
+      "position": "SG",
+      "age": 27,
+      "team": "GLAS",
+      "prevRating": 79,
+      "otherRating": null,
+      "stat": "466 pts"
+    },
+    {
+      "playerId": "p00268",
+      "position": "SF",
+      "age": 26,
+      "team": "GLAS",
+      "prevRating": 85,
+      "otherRating": null,
+      "stat": "744 pts"
+    },
+    {
+      "playerId": "p00269",
+      "position": "PF",
+      "age": 23,
+      "team": "GLAS",
+      "prevRating": 79,
+      "otherRating": null,
+      "stat": "528 pts"
+    },
+    {
+      "playerId": "p00270",
+      "position": "PG",
+      "age": 24,
+      "team": "GUAD",
+      "prevRating": 95,
+      "otherRating": null,
+      "stat": "783 pts"
+    },
+    {
+      "playerId": "p00271",
+      "position": "SG",
+      "age": 24,
+      "team": "GUAD",
+      "prevRating": 84,
+      "otherRating": null,
+      "stat": "488 pts"
+    },
+    {
+      "playerId": "p00272",
+      "position": "SF",
+      "age": 31,
+      "team": "GUAD",
+      "prevRating": 85,
+      "otherRating": null,
+      "stat": "475 pts"
+    },
+    {
+      "playerId": "p00273",
+      "position": "PF",
+      "age": 24,
+      "team": "GUAD",
+      "prevRating": 69,
+      "otherRating": null,
+      "stat": "123 pts"
+    },
+    {
+      "playerId": "p00274",
+      "position": "C",
+      "age": 31,
+      "team": "GUAD",
+      "prevRating": 92,
+      "otherRating": null,
+      "stat": "685 pts"
+    },
+    {
+      "playerId": "p00275",
+      "position": "PG",
+      "age": 23,
+      "team": "HAM",
+      "prevRating": 80,
+      "otherRating": null,
+      "stat": "416 pts"
+    },
+    {
+      "playerId": "p00276",
+      "position": "SG",
+      "age": 26,
+      "team": "HAM",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "351 pts"
+    },
+    {
+      "playerId": "p00277",
+      "position": "PF",
+      "age": 24,
+      "team": "HAM",
+      "prevRating": 98,
+      "otherRating": null,
+      "stat": "916 pts"
+    },
+    {
+      "playerId": "p00278",
+      "position": "C",
+      "age": 25,
+      "team": "HAM",
+      "prevRating": 89,
+      "otherRating": null,
+      "stat": "708 pts"
+    },
+    {
+      "playerId": "p00279",
+      "position": "SG",
+      "age": 24,
+      "team": "IST",
+      "prevRating": 72,
+      "otherRating": null,
+      "stat": "471 pts"
+    },
+    {
+      "playerId": "p00280",
+      "position": "PF",
+      "age": 32,
+      "team": "IST",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "613 pts"
+    },
+    {
+      "playerId": "p00281",
+      "position": "C",
+      "age": 23,
+      "team": "IST",
+      "prevRating": 70,
+      "otherRating": null,
+      "stat": "363 pts"
+    },
+    {
+      "playerId": "p00282",
+      "position": "PG",
+      "age": 23,
+      "team": "JOH",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "394 pts"
+    },
+    {
+      "playerId": "p00283",
+      "position": "SG",
+      "age": 30,
+      "team": "JOH",
+      "prevRating": 65,
+      "otherRating": null,
+      "stat": "72 pts"
+    },
+    {
+      "playerId": "p00284",
+      "position": "SF",
+      "age": 30,
+      "team": "JOH",
+      "prevRating": 89,
+      "otherRating": null,
+      "stat": "1017 pts"
+    },
+    {
+      "playerId": "p00285",
+      "position": "PF",
+      "age": 30,
+      "team": "JOH",
+      "prevRating": 88,
+      "otherRating": null,
+      "stat": "856 pts"
+    },
+    {
+      "playerId": "p00286",
+      "position": "C",
+      "age": 30,
+      "team": "JOH",
+      "prevRating": 71,
+      "otherRating": null,
+      "stat": "274 pts"
+    },
+    {
+      "playerId": "p00287",
+      "position": "PG",
+      "age": 26,
+      "team": "KIEV",
+      "prevRating": 74,
+      "otherRating": null,
+      "stat": "315 pts"
+    },
+    {
+      "playerId": "p00288",
+      "position": "SG",
+      "age": 24,
+      "team": "KIEV",
+      "prevRating": 86,
+      "otherRating": null,
+      "stat": "740 pts"
+    },
+    {
+      "playerId": "p00289",
+      "position": "SF",
+      "age": 27,
+      "team": "KIEV",
+      "prevRating": 90,
+      "otherRating": null,
+      "stat": "865 pts"
+    },
+    {
+      "playerId": "p00290",
+      "position": "PF",
+      "age": 30,
+      "team": "KIEV",
+      "prevRating": 71,
+      "otherRating": null,
+      "stat": "244 pts"
+    },
+    {
+      "playerId": "p00291",
+      "position": "C",
+      "age": 23,
+      "team": "KIEV",
+      "prevRating": 80,
+      "otherRating": null,
+      "stat": "483 pts"
+    },
+    {
+      "playerId": "p00292",
+      "position": "PG",
+      "age": 31,
+      "team": "LAG",
+      "prevRating": 67,
+      "otherRating": null,
+      "stat": "156 pts"
+    },
+    {
+      "playerId": "p00293",
+      "position": "SG",
+      "age": 31,
+      "team": "LAG",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "351 pts"
+    },
+    {
+      "playerId": "p00294",
+      "position": "SF",
+      "age": 23,
+      "team": "LAG",
+      "prevRating": 88,
+      "otherRating": null,
+      "stat": "846 pts"
+    },
+    {
+      "playerId": "p00295",
+      "position": "PF",
+      "age": 31,
+      "team": "LAG",
+      "prevRating": 83,
+      "otherRating": null,
+      "stat": "642 pts"
+    },
+    {
+      "playerId": "p00296",
+      "position": "C",
+      "age": 31,
+      "team": "LAG",
+      "prevRating": 79,
+      "otherRating": null,
+      "stat": "444 pts"
+    },
+    {
+      "playerId": "p00297",
+      "position": "PG",
+      "age": 26,
+      "team": "LIS",
+      "prevRating": 84,
+      "otherRating": null,
+      "stat": "505 pts"
+    },
+    {
+      "playerId": "p00298",
+      "position": "SF",
+      "age": 27,
+      "team": "LIS",
+      "prevRating": 96,
+      "otherRating": null,
+      "stat": "890 pts"
+    },
+    {
+      "playerId": "p00299",
+      "position": "PF",
+      "age": 26,
+      "team": "LIS",
+      "prevRating": 67,
+      "otherRating": null,
+      "stat": "109 pts"
+    },
+    {
+      "playerId": "p00300",
+      "position": "C",
+      "age": 30,
+      "team": "LIS",
+      "prevRating": 92,
+      "otherRating": null,
+      "stat": "704 pts"
+    },
+    {
+      "playerId": "p00301",
+      "position": "PG",
+      "age": 31,
+      "team": "LIV",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "406 pts"
+    },
+    {
+      "playerId": "p00302",
+      "position": "SG",
+      "age": 30,
+      "team": "LIV",
+      "prevRating": 84,
+      "otherRating": null,
+      "stat": "747 pts"
+    },
+    {
+      "playerId": "p00303",
+      "position": "SF",
+      "age": 31,
+      "team": "LIV",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "316 pts"
+    },
+    {
+      "playerId": "p00304",
+      "position": "PF",
+      "age": 31,
+      "team": "LIV",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "384 pts"
+    },
+    {
+      "playerId": "p00305",
+      "position": "C",
+      "age": 23,
+      "team": "LIV",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "448 pts"
+    },
+    {
+      "playerId": "p00306",
+      "position": "SG",
+      "age": 25,
+      "team": "LON",
+      "prevRating": 89,
+      "otherRating": null,
+      "stat": "625 pts"
+    },
+    {
+      "playerId": "p00307",
+      "position": "SF",
+      "age": 25,
+      "team": "LON",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "268 pts"
+    },
+    {
+      "playerId": "p00308",
+      "position": "PF",
+      "age": 27,
+      "team": "LON",
+      "prevRating": 93,
+      "otherRating": null,
+      "stat": "717 pts"
+    },
+    {
+      "playerId": "p00309",
+      "position": "C",
+      "age": 26,
+      "team": "LON",
+      "prevRating": 82,
+      "otherRating": null,
+      "stat": "411 pts"
+    },
+    {
+      "playerId": "p00310",
+      "position": "PG",
+      "age": 27,
+      "team": "LUX",
+      "prevRating": 74,
+      "otherRating": null,
+      "stat": "499 pts"
+    },
+    {
+      "playerId": "p00311",
+      "position": "SG",
+      "age": 24,
+      "team": "LUX",
+      "prevRating": 79,
+      "otherRating": null,
+      "stat": "646 pts"
+    },
+    {
+      "playerId": "p00312",
+      "position": "SF",
+      "age": 29,
+      "team": "LUX",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "532 pts"
+    },
+    {
+      "playerId": "p00313",
+      "position": "PF",
+      "age": 28,
+      "team": "LUX",
+      "prevRating": 69,
+      "otherRating": null,
+      "stat": "271 pts"
+    },
+    {
+      "playerId": "p00314",
+      "position": "C",
+      "age": 24,
+      "team": "LUX",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "334 pts"
+    },
+    {
+      "playerId": "p00315",
+      "position": "PG",
+      "age": 28,
+      "team": "LYON",
+      "prevRating": 83,
+      "otherRating": null,
+      "stat": "670 pts"
+    },
+    {
+      "playerId": "p00316",
+      "position": "SG",
+      "age": 24,
+      "team": "LYON",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "395 pts"
+    },
+    {
+      "playerId": "p00317",
+      "position": "SF",
+      "age": 31,
+      "team": "LYON",
+      "prevRating": 66,
+      "otherRating": null,
+      "stat": "108 pts"
+    },
+    {
+      "playerId": "p00318",
+      "position": "PF",
+      "age": 26,
+      "team": "LYON",
+      "prevRating": 94,
+      "otherRating": null,
+      "stat": "1214 pts"
+    },
+    {
+      "playerId": "p00319",
+      "position": "C",
+      "age": 25,
+      "team": "LYON",
+      "prevRating": 67,
+      "otherRating": null,
+      "stat": "145 pts"
+    },
+    {
+      "playerId": "p00320",
+      "position": "PG",
+      "age": 30,
+      "team": "MAD",
+      "prevRating": 99,
+      "otherRating": null,
+      "stat": "994 pts"
+    },
+    {
+      "playerId": "p00321",
+      "position": "SG",
+      "age": 27,
+      "team": "MAD",
+      "prevRating": 69,
+      "otherRating": null,
+      "stat": "118 pts"
+    },
+    {
+      "playerId": "p00322",
+      "position": "SF",
+      "age": 24,
+      "team": "MAD",
+      "prevRating": 83,
+      "otherRating": null,
+      "stat": "450 pts"
+    },
+    {
+      "playerId": "p00323",
+      "position": "PF",
+      "age": 26,
+      "team": "MAD",
+      "prevRating": 86,
+      "otherRating": null,
+      "stat": "537 pts"
+    },
+    {
+      "playerId": "p00324",
+      "position": "C",
+      "age": 25,
+      "team": "MAD",
+      "prevRating": 83,
+      "otherRating": null,
+      "stat": "469 pts"
+    },
+    {
+      "playerId": "p00325",
+      "position": "PG",
+      "age": 32,
+      "team": "MAN",
+      "prevRating": 65,
+      "otherRating": null,
+      "stat": "90 pts"
+    },
+    {
+      "playerId": "p00326",
+      "position": "SF",
+      "age": 27,
+      "team": "MAN",
+      "prevRating": 66,
+      "otherRating": null,
+      "stat": "103 pts"
+    },
+    {
+      "playerId": "p00327",
+      "position": "C",
+      "age": 28,
+      "team": "MAN",
+      "prevRating": 84,
+      "otherRating": null,
+      "stat": "800 pts"
+    },
+    {
+      "playerId": "p00328",
+      "position": "PG",
+      "age": 26,
+      "team": "MC",
+      "prevRating": 71,
+      "otherRating": null,
+      "stat": "273 pts"
+    },
+    {
+      "playerId": "p00329",
+      "position": "SG",
+      "age": 31,
+      "team": "MC",
+      "prevRating": 88,
+      "otherRating": null,
+      "stat": "862 pts"
+    },
+    {
+      "playerId": "p00330",
+      "position": "SF",
+      "age": 25,
+      "team": "MC",
+      "prevRating": 69,
+      "otherRating": null,
+      "stat": "192 pts"
+    },
+    {
+      "playerId": "p00331",
+      "position": "PF",
+      "age": 23,
+      "team": "MC",
+      "prevRating": 67,
+      "otherRating": null,
+      "stat": "120 pts"
+    },
+    {
+      "playerId": "p00332",
+      "position": "C",
+      "age": 32,
+      "team": "MC",
+      "prevRating": 90,
+      "otherRating": null,
+      "stat": "1000 pts"
+    },
+    {
+      "playerId": "p00333",
+      "position": "PG",
+      "age": 26,
+      "team": "MIA",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "300 pts"
+    },
+    {
+      "playerId": "p00334",
+      "position": "SG",
+      "age": 24,
+      "team": "MIA",
+      "prevRating": 97,
+      "otherRating": null,
+      "stat": "886 pts"
+    },
+    {
+      "playerId": "p00335",
+      "position": "SF",
+      "age": 28,
+      "team": "MIA",
+      "prevRating": 90,
+      "otherRating": null,
+      "stat": "783 pts"
+    },
+    {
+      "playerId": "p00336",
+      "position": "PF",
+      "age": 25,
+      "team": "MIA",
+      "prevRating": 82,
+      "otherRating": null,
+      "stat": "426 pts"
+    },
+    {
+      "playerId": "p00337",
+      "position": "C",
+      "age": 29,
+      "team": "MIA",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "285 pts"
+    },
+    {
+      "playerId": "p00338",
+      "position": "PG",
+      "age": 23,
+      "team": "MIL",
+      "prevRating": 84,
+      "otherRating": null,
+      "stat": "410 pts"
+    },
+    {
+      "playerId": "p00339",
+      "position": "SG",
+      "age": 23,
+      "team": "MIL",
+      "prevRating": 87,
+      "otherRating": null,
+      "stat": "505 pts"
+    },
+    {
+      "playerId": "p00340",
+      "position": "SF",
+      "age": 25,
+      "team": "MIL",
+      "prevRating": 79,
+      "otherRating": null,
+      "stat": "282 pts"
+    },
+    {
+      "playerId": "p00341",
+      "position": "PF",
+      "age": 27,
+      "team": "MIL",
+      "prevRating": 96,
+      "otherRating": null,
+      "stat": "720 pts"
+    },
+    {
+      "playerId": "p00342",
+      "position": "C",
+      "age": 25,
+      "team": "MIL",
+      "prevRating": 96,
+      "otherRating": null,
+      "stat": "766 pts"
+    },
+    {
+      "playerId": "p00343",
+      "position": "PG",
+      "age": 32,
+      "team": "MOS",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "228 pts"
+    },
+    {
+      "playerId": "p00344",
+      "position": "SF",
+      "age": 24,
+      "team": "MOS",
+      "prevRating": 94,
+      "otherRating": null,
+      "stat": "902 pts"
+    },
+    {
+      "playerId": "p00345",
+      "position": "PF",
+      "age": 24,
+      "team": "MOS",
+      "prevRating": 92,
+      "otherRating": null,
+      "stat": "872 pts"
+    },
+    {
+      "playerId": "p00346",
+      "position": "C",
+      "age": 25,
+      "team": "MOS",
+      "prevRating": 87,
+      "otherRating": null,
+      "stat": "615 pts"
+    },
+    {
+      "playerId": "p00347",
+      "position": "SG",
+      "age": 28,
+      "team": "MUM",
+      "prevRating": 81,
+      "otherRating": null,
+      "stat": "381 pts"
+    },
+    {
+      "playerId": "p00348",
+      "position": "SF",
+      "age": 23,
+      "team": "MUM",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "288 pts"
+    },
+    {
+      "playerId": "p00349",
+      "position": "PF",
+      "age": 28,
+      "team": "MUM",
+      "prevRating": 86,
+      "otherRating": null,
+      "stat": "576 pts"
+    },
+    {
+      "playerId": "p00350",
+      "position": "C",
+      "age": 31,
+      "team": "MUM",
+      "prevRating": 88,
+      "otherRating": null,
+      "stat": "671 pts"
+    },
+    {
+      "playerId": "p00351",
+      "position": "PG",
+      "age": 31,
+      "team": "MUN",
+      "prevRating": 90,
+      "otherRating": null,
+      "stat": "780 pts"
+    },
+    {
+      "playerId": "p00352",
+      "position": "SG",
+      "age": 24,
+      "team": "MUN",
+      "prevRating": 84,
+      "otherRating": null,
+      "stat": "618 pts"
+    },
+    {
+      "playerId": "p00353",
+      "position": "SF",
+      "age": 23,
+      "team": "MUN",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "237 pts"
+    },
+    {
+      "playerId": "p00354",
+      "position": "C",
+      "age": 32,
+      "team": "MUN",
+      "prevRating": 82,
+      "otherRating": null,
+      "stat": "615 pts"
+    },
+    {
+      "playerId": "p00355",
+      "position": "PG",
+      "age": 30,
+      "team": "NAP",
+      "prevRating": 87,
+      "otherRating": null,
+      "stat": "796 pts"
+    },
+    {
+      "playerId": "p00356",
+      "position": "SG",
+      "age": 29,
+      "team": "NAP",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "428 pts"
+    },
+    {
+      "playerId": "p00357",
+      "position": "PF",
+      "age": 29,
+      "team": "NAP",
+      "prevRating": 72,
+      "otherRating": null,
+      "stat": "222 pts"
+    },
+    {
+      "playerId": "p00358",
+      "position": "C",
+      "age": 26,
+      "team": "NAP",
+      "prevRating": 69,
+      "otherRating": null,
+      "stat": "181 pts"
+    },
+    {
+      "playerId": "p00359",
+      "position": "PG",
+      "age": 25,
+      "team": "OMA",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "366 pts"
+    },
+    {
+      "playerId": "p00360",
+      "position": "SG",
+      "age": 32,
+      "team": "OMA",
+      "prevRating": 92,
+      "otherRating": null,
+      "stat": "1177 pts"
+    },
+    {
+      "playerId": "p00361",
+      "position": "SF",
+      "age": 32,
+      "team": "OMA",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00362",
+      "position": "PF",
+      "age": 26,
+      "team": "OMA",
+      "prevRating": 72,
+      "otherRating": null,
+      "stat": "291 pts"
+    },
+    {
+      "playerId": "p00363",
+      "position": "C",
+      "age": 30,
+      "team": "OMA",
+      "prevRating": 66,
+      "otherRating": null,
+      "stat": "139 pts"
+    },
+    {
+      "playerId": "p00364",
+      "position": "PG",
+      "age": 24,
+      "team": "OSA",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "369 pts"
+    },
+    {
+      "playerId": "p00365",
+      "position": "SG",
+      "age": 30,
+      "team": "OSA",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "354 pts"
+    },
+    {
+      "playerId": "p00366",
+      "position": "SF",
+      "age": 28,
+      "team": "OSA",
+      "prevRating": 78,
+      "otherRating": null,
+      "stat": "423 pts"
+    },
+    {
+      "playerId": "p00367",
+      "position": "PF",
+      "age": 29,
+      "team": "OSA",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "382 pts"
+    },
+    {
+      "playerId": "p00368",
+      "position": "C",
+      "age": 26,
+      "team": "OSA",
+      "prevRating": 90,
+      "otherRating": null,
+      "stat": "974 pts"
+    },
+    {
+      "playerId": "p00369",
+      "position": "PG",
+      "age": 29,
+      "team": "OSL",
+      "prevRating": 82,
+      "otherRating": null,
+      "stat": "777 pts"
+    },
+    {
+      "playerId": "p00370",
+      "position": "SG",
+      "age": 28,
+      "team": "OSL",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "186 pts"
+    },
+    {
+      "playerId": "p00371",
+      "position": "SF",
+      "age": 28,
+      "team": "OSL",
+      "prevRating": 70,
+      "otherRating": null,
+      "stat": "287 pts"
+    },
+    {
+      "playerId": "p00372",
+      "position": "PF",
+      "age": 23,
+      "team": "OSL",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "201 pts"
+    },
+    {
+      "playerId": "p00373",
+      "position": "C",
+      "age": 24,
+      "team": "OSL",
+      "prevRating": 89,
+      "otherRating": null,
+      "stat": "1066 pts"
+    },
+    {
+      "playerId": "p00374",
+      "position": "SG",
+      "age": 32,
+      "team": "OTT",
+      "prevRating": 85,
+      "otherRating": null,
+      "stat": "500 pts"
+    },
+    {
+      "playerId": "p00375",
+      "position": "SF",
+      "age": 25,
+      "team": "OTT",
+      "prevRating": 91,
+      "otherRating": null,
+      "stat": "734 pts"
+    },
+    {
+      "playerId": "p00376",
+      "position": "PF",
+      "age": 30,
+      "team": "OTT",
+      "prevRating": 82,
+      "otherRating": null,
+      "stat": "461 pts"
+    },
+    {
+      "playerId": "p00377",
+      "position": "C",
+      "age": 25,
+      "team": "OTT",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "293 pts"
+    },
+    {
+      "playerId": "p00378",
+      "position": "PG",
+      "age": 32,
+      "team": "PAR",
+      "prevRating": 81,
+      "otherRating": null,
+      "stat": "405 pts"
+    },
+    {
+      "playerId": "p00379",
+      "position": "SG",
+      "age": 25,
+      "team": "PAR",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "296 pts"
+    },
+    {
+      "playerId": "p00380",
+      "position": "SF",
+      "age": 32,
+      "team": "PAR",
+      "prevRating": 84,
+      "otherRating": null,
+      "stat": "600 pts"
+    },
+    {
+      "playerId": "p00381",
+      "position": "PF",
+      "age": 27,
+      "team": "PAR",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "249 pts"
+    },
+    {
+      "playerId": "p00383",
+      "position": "PG",
+      "age": 24,
+      "team": "REC",
+      "prevRating": 82,
+      "otherRating": null,
+      "stat": "690 pts"
+    },
+    {
+      "playerId": "p00384",
+      "position": "SG",
+      "age": 30,
+      "team": "REC",
+      "prevRating": 78,
+      "otherRating": null,
+      "stat": "573 pts"
+    },
+    {
+      "playerId": "p00385",
+      "position": "SF",
+      "age": 30,
+      "team": "REC",
+      "prevRating": 71,
+      "otherRating": null,
+      "stat": "270 pts"
+    },
+    {
+      "playerId": "p00386",
+      "position": "PF",
+      "age": 24,
+      "team": "REC",
+      "prevRating": 70,
+      "otherRating": null,
+      "stat": "259 pts"
+    },
+    {
+      "playerId": "p00387",
+      "position": "C",
+      "age": 27,
+      "team": "REC",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "465 pts"
+    },
+    {
+      "playerId": "p00388",
+      "position": "PG",
+      "age": 31,
+      "team": "RIO",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "327 pts"
+    },
+    {
+      "playerId": "p00389",
+      "position": "SG",
+      "age": 31,
+      "team": "RIO",
+      "prevRating": 82,
+      "otherRating": null,
+      "stat": "655 pts"
+    },
+    {
+      "playerId": "p00390",
+      "position": "SF",
+      "age": 24,
+      "team": "RIO",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "308 pts"
+    },
+    {
+      "playerId": "p00391",
+      "position": "PF",
+      "age": 30,
+      "team": "RIO",
+      "prevRating": 80,
+      "otherRating": null,
+      "stat": "649 pts"
+    },
+    {
+      "playerId": "p00392",
+      "position": "C",
+      "age": 30,
+      "team": "RIO",
+      "prevRating": 79,
+      "otherRating": null,
+      "stat": "462 pts"
+    },
+    {
+      "playerId": "p00393",
+      "position": "PG",
+      "age": 23,
+      "team": "ROME",
+      "prevRating": 86,
+      "otherRating": null,
+      "stat": "595 pts"
+    },
+    {
+      "playerId": "p00394",
+      "position": "SF",
+      "age": 27,
+      "team": "ROME",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "264 pts"
+    },
+    {
+      "playerId": "p00395",
+      "position": "PF",
+      "age": 30,
+      "team": "ROME",
+      "prevRating": 96,
+      "otherRating": null,
+      "stat": "1046 pts"
+    },
+    {
+      "playerId": "p00396",
+      "position": "PG",
+      "age": 32,
+      "team": "ROT",
+      "prevRating": 93,
+      "otherRating": null,
+      "stat": "1002 pts"
+    },
+    {
+      "playerId": "p00397",
+      "position": "SG",
+      "age": 28,
+      "team": "ROT",
+      "prevRating": 74,
+      "otherRating": null,
+      "stat": "350 pts"
+    },
+    {
+      "playerId": "p00398",
+      "position": "SF",
+      "age": 23,
+      "team": "ROT",
+      "prevRating": 82,
+      "otherRating": null,
+      "stat": "535 pts"
+    },
+    {
+      "playerId": "p00399",
+      "position": "PF",
+      "age": 28,
+      "team": "ROT",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "313 pts"
+    },
+    {
+      "playerId": "p00400",
+      "position": "C",
+      "age": 29,
+      "team": "ROT",
+      "prevRating": 72,
+      "otherRating": null,
+      "stat": "254 pts"
+    },
+    {
+      "playerId": "p00401",
+      "position": "PG",
+      "age": 23,
+      "team": "STP",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "213 pts"
+    },
+    {
+      "playerId": "p00402",
+      "position": "SG",
+      "age": 23,
+      "team": "STP",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "198 pts"
+    },
+    {
+      "playerId": "p00403",
+      "position": "SF",
+      "age": 32,
+      "team": "STP",
+      "prevRating": 91,
+      "otherRating": null,
+      "stat": "1171 pts"
+    },
+    {
+      "playerId": "p00404",
+      "position": "PF",
+      "age": 26,
+      "team": "STP",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "202 pts"
+    },
+    {
+      "playerId": "p00405",
+      "position": "C",
+      "age": 29,
+      "team": "STP",
+      "prevRating": 81,
+      "otherRating": null,
+      "stat": "674 pts"
+    },
+    {
+      "playerId": "p00406",
+      "position": "PG",
+      "age": 25,
+      "team": "SALZ",
+      "prevRating": 89,
+      "otherRating": null,
+      "stat": "502 pts"
+    },
+    {
+      "playerId": "p00407",
+      "position": "SG",
+      "age": 32,
+      "team": "SALZ",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "259 pts"
+    },
+    {
+      "playerId": "p00408",
+      "position": "SF",
+      "age": 31,
+      "team": "SALZ",
+      "prevRating": 97,
+      "otherRating": null,
+      "stat": "746 pts"
+    },
+    {
+      "playerId": "p00409",
+      "position": "PF",
+      "age": 31,
+      "team": "SALZ",
+      "prevRating": 96,
+      "otherRating": null,
+      "stat": "675 pts"
+    },
+    {
+      "playerId": "p00410",
+      "position": "PG",
+      "age": 25,
+      "team": "SJ",
+      "prevRating": 89,
+      "otherRating": null,
+      "stat": "1063 pts"
+    },
+    {
+      "playerId": "p00411",
+      "position": "SG",
+      "age": 24,
+      "team": "SJ",
+      "prevRating": 67,
+      "otherRating": null,
+      "stat": "150 pts"
+    },
+    {
+      "playerId": "p00412",
+      "position": "SF",
+      "age": 23,
+      "team": "SJ",
+      "prevRating": 67,
+      "otherRating": null,
+      "stat": "154 pts"
+    },
+    {
+      "playerId": "p00413",
+      "position": "PF",
+      "age": 30,
+      "team": "SJ",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "486 pts"
+    },
+    {
+      "playerId": "p00414",
+      "position": "C",
+      "age": 24,
+      "team": "SJ",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "479 pts"
+    },
+    {
+      "playerId": "p00415",
+      "position": "PG",
+      "age": 28,
+      "team": "SP",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "393 pts"
+    },
+    {
+      "playerId": "p00416",
+      "position": "SG",
+      "age": 23,
+      "team": "SP",
+      "prevRating": 71,
+      "otherRating": null,
+      "stat": "173 pts"
+    },
+    {
+      "playerId": "p00417",
+      "position": "SF",
+      "age": 23,
+      "team": "SP",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "284 pts"
+    },
+    {
+      "playerId": "p00418",
+      "position": "PF",
+      "age": 32,
+      "team": "SP",
+      "prevRating": 88,
+      "otherRating": null,
+      "stat": "749 pts"
+    },
+    {
+      "playerId": "p00419",
+      "position": "C",
+      "age": 32,
+      "team": "SP",
+      "prevRating": 99,
+      "otherRating": null,
+      "stat": "999 pts"
+    },
+    {
+      "playerId": "p00420",
+      "position": "PG",
+      "age": 24,
+      "team": "SHAN",
+      "prevRating": 68,
+      "otherRating": null,
+      "stat": "167 pts"
+    },
+    {
+      "playerId": "p00421",
+      "position": "SG",
+      "age": 23,
+      "team": "SHAN",
+      "prevRating": 65,
+      "otherRating": null,
+      "stat": "121 pts"
+    },
+    {
+      "playerId": "p00422",
+      "position": "PF",
+      "age": 31,
+      "team": "SHAN",
+      "prevRating": 74,
+      "otherRating": null,
+      "stat": "488 pts"
+    },
+    {
+      "playerId": "p00423",
+      "position": "C",
+      "age": 31,
+      "team": "SHAN",
+      "prevRating": 85,
+      "otherRating": null,
+      "stat": "856 pts"
+    },
+    {
+      "playerId": "p00424",
+      "position": "PG",
+      "age": 24,
+      "team": "STO",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "348 pts"
+    },
+    {
+      "playerId": "p00425",
+      "position": "SG",
+      "age": 25,
+      "team": "STO",
+      "prevRating": 81,
+      "otherRating": null,
+      "stat": "575 pts"
+    },
+    {
+      "playerId": "p00426",
+      "position": "SF",
+      "age": 25,
+      "team": "STO",
+      "prevRating": 93,
+      "otherRating": null,
+      "stat": "1036 pts"
+    },
+    {
+      "playerId": "p00427",
+      "position": "PF",
+      "age": 30,
+      "team": "STO",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "317 pts"
+    },
+    {
+      "playerId": "p00428",
+      "position": "C",
+      "age": 31,
+      "team": "STO",
+      "prevRating": 69,
+      "otherRating": null,
+      "stat": "180 pts"
+    },
+    {
+      "playerId": "p00429",
+      "position": "PG",
+      "age": 30,
+      "team": "SYD",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "448 pts"
+    },
+    {
+      "playerId": "p00430",
+      "position": "SG",
+      "age": 30,
+      "team": "SYD",
+      "prevRating": 74,
+      "otherRating": null,
+      "stat": "308 pts"
+    },
+    {
+      "playerId": "p00431",
+      "position": "SF",
+      "age": 30,
+      "team": "SYD",
+      "prevRating": 85,
+      "otherRating": null,
+      "stat": "671 pts"
+    },
+    {
+      "playerId": "p00432",
+      "position": "C",
+      "age": 30,
+      "team": "SYD",
+      "prevRating": 72,
+      "otherRating": null,
+      "stat": "227 pts"
+    },
+    {
+      "playerId": "p00433",
+      "position": "SG",
+      "age": 32,
+      "team": "TAM",
+      "prevRating": 72,
+      "otherRating": null,
+      "stat": "365 pts"
+    },
+    {
+      "playerId": "p00434",
+      "position": "PF",
+      "age": 25,
+      "team": "TAM",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "596 pts"
+    },
+    {
+      "playerId": "p00435",
+      "position": "C",
+      "age": 27,
+      "team": "TAM",
+      "prevRating": 70,
+      "otherRating": null,
+      "stat": "337 pts"
+    },
+    {
+      "playerId": "p00436",
+      "position": "PG",
+      "age": 29,
+      "team": "TOK",
+      "prevRating": 85,
+      "otherRating": null,
+      "stat": "751 pts"
+    },
+    {
+      "playerId": "p00437",
+      "position": "SG",
+      "age": 30,
+      "team": "TOK",
+      "prevRating": 72,
+      "otherRating": null,
+      "stat": "249 pts"
+    },
+    {
+      "playerId": "p00438",
+      "position": "SF",
+      "age": 31,
+      "team": "TOK",
+      "prevRating": 69,
+      "otherRating": null,
+      "stat": "234 pts"
+    },
+    {
+      "playerId": "p00439",
+      "position": "PF",
+      "age": 32,
+      "team": "TOK",
+      "prevRating": 88,
+      "otherRating": null,
+      "stat": "851 pts"
+    },
+    {
+      "playerId": "p00440",
+      "position": "C",
+      "age": 24,
+      "team": "TOK",
+      "prevRating": 75,
+      "otherRating": null,
+      "stat": "345 pts"
+    },
+    {
+      "playerId": "p00441",
+      "position": "PG",
+      "age": 32,
+      "team": "VIE",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "371 pts"
+    },
+    {
+      "playerId": "p00442",
+      "position": "SG",
+      "age": 26,
+      "team": "VIE",
+      "prevRating": 70,
+      "otherRating": null,
+      "stat": "196 pts"
+    },
+    {
+      "playerId": "p00443",
+      "position": "SF",
+      "age": 28,
+      "team": "VIE",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "479 pts"
+    },
+    {
+      "playerId": "p00444",
+      "position": "PF",
+      "age": 30,
+      "team": "VIE",
+      "prevRating": 87,
+      "otherRating": null,
+      "stat": "756 pts"
+    },
+    {
+      "playerId": "p00445",
+      "position": "C",
+      "age": 32,
+      "team": "VIE",
+      "prevRating": 86,
+      "otherRating": null,
+      "stat": "660 pts"
+    },
+    {
+      "playerId": "p00446",
+      "position": "PG",
+      "age": 32,
+      "team": "WAR",
+      "prevRating": 96,
+      "otherRating": null,
+      "stat": "1102 pts"
+    },
+    {
+      "playerId": "p00447",
+      "position": "SG",
+      "age": 24,
+      "team": "WAR",
+      "prevRating": 73,
+      "otherRating": null,
+      "stat": "228 pts"
+    },
+    {
+      "playerId": "p00448",
+      "position": "SF",
+      "age": 24,
+      "team": "WAR",
+      "prevRating": 71,
+      "otherRating": null,
+      "stat": "246 pts"
+    },
+    {
+      "playerId": "p00449",
+      "position": "PF",
+      "age": 28,
+      "team": "WAR",
+      "prevRating": 78,
+      "otherRating": null,
+      "stat": "466 pts"
+    },
+    {
+      "playerId": "p00450",
+      "position": "C",
+      "age": 29,
+      "team": "WAR",
+      "prevRating": 77,
+      "otherRating": null,
+      "stat": "371 pts"
+    },
+    {
+      "playerId": "p00451",
+      "position": "PG",
+      "age": 25,
+      "team": "ZAG",
+      "prevRating": 69,
+      "otherRating": null,
+      "stat": "165 pts"
+    },
+    {
+      "playerId": "p00452",
+      "position": "SG",
+      "age": 30,
+      "team": "ZAG",
+      "prevRating": 79,
+      "otherRating": null,
+      "stat": "443 pts"
+    },
+    {
+      "playerId": "p00453",
+      "position": "SF",
+      "age": 31,
+      "team": "ZAG",
+      "prevRating": 86,
+      "otherRating": null,
+      "stat": "680 pts"
+    },
+    {
+      "playerId": "p00454",
+      "position": "PF",
+      "age": 23,
+      "team": "ZAG",
+      "prevRating": 76,
+      "otherRating": null,
+      "stat": "342 pts"
+    },
+    {
+      "playerId": "p00455",
+      "position": "PG",
+      "age": 31,
+      "team": "ZUR",
+      "prevRating": 98,
+      "otherRating": null,
+      "stat": "898 pts"
+    },
+    {
+      "playerId": "p00456",
+      "position": "SG",
+      "age": 32,
+      "team": "ZUR",
+      "prevRating": 92,
+      "otherRating": null,
+      "stat": "759 pts"
+    },
+    {
+      "playerId": "p00457",
+      "position": "SF",
+      "age": 32,
+      "team": "ZUR",
+      "prevRating": 83,
+      "otherRating": null,
+      "stat": "406 pts"
+    },
+    {
+      "playerId": "p00458",
+      "position": "PF",
+      "age": 24,
+      "team": "ZUR",
+      "prevRating": 69,
+      "otherRating": null,
+      "stat": "104 pts"
+    },
+    {
+      "playerId": "p01780",
+      "position": "PG",
+      "age": 30,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01781",
+      "position": "PG",
+      "age": 28,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01782",
+      "position": "PG",
+      "age": 29,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01783",
+      "position": "PG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01784",
+      "position": "PG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01785",
+      "position": "PG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01786",
+      "position": "PG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01787",
+      "position": "PG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01788",
+      "position": "PG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01789",
+      "position": "PG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01790",
+      "position": "PG",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01791",
+      "position": "PG",
+      "age": 29,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01792",
+      "position": "PG",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01793",
+      "position": "PG",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01794",
+      "position": "PG",
+      "age": 27,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01795",
+      "position": "PG",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01796",
+      "position": "PG",
+      "age": 32,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01797",
+      "position": "PG",
+      "age": 31,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01798",
+      "position": "PG",
+      "age": 30,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01799",
+      "position": "PG",
+      "age": 28,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01800",
+      "position": "PG",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01801",
+      "position": "PG",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01802",
+      "position": "PG",
+      "age": 31,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01803",
+      "position": "PG",
+      "age": 30,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01804",
+      "position": "PG",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01805",
+      "position": "PG",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01806",
+      "position": "PG",
+      "age": 32,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01807",
+      "position": "PG",
+      "age": 26,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01808",
+      "position": "PG",
+      "age": 27,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01809",
+      "position": "PG",
+      "age": 31,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01810",
+      "position": "PG",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01811",
+      "position": "SG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01812",
+      "position": "SG",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01813",
+      "position": "SG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01814",
+      "position": "SG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01815",
+      "position": "SG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01816",
+      "position": "SG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01817",
+      "position": "SG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01818",
+      "position": "SG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01819",
+      "position": "SG",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01820",
+      "position": "SG",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01821",
+      "position": "SG",
+      "age": 29,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01822",
+      "position": "SG",
+      "age": 31,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01823",
+      "position": "SG",
+      "age": 31,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01824",
+      "position": "SG",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01825",
+      "position": "SG",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01826",
+      "position": "SG",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01827",
+      "position": "SG",
+      "age": 29,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01828",
+      "position": "SG",
+      "age": 32,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01829",
+      "position": "SG",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01830",
+      "position": "SG",
+      "age": 28,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01831",
+      "position": "SG",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01832",
+      "position": "SG",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01833",
+      "position": "SG",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01834",
+      "position": "SG",
+      "age": 27,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01835",
+      "position": "SG",
+      "age": 30,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01836",
+      "position": "SG",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01837",
+      "position": "SG",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01838",
+      "position": "SG",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01839",
+      "position": "SF",
+      "age": 26,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01840",
+      "position": "SF",
+      "age": 29,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01841",
+      "position": "SF",
+      "age": 26,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01842",
+      "position": "SF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01843",
+      "position": "SF",
+      "age": 26,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01844",
+      "position": "SF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01845",
+      "position": "SF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01846",
+      "position": "SF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01847",
+      "position": "SF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01848",
+      "position": "SF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01849",
+      "position": "SF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01850",
+      "position": "SF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01851",
+      "position": "SF",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01852",
+      "position": "SF",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01853",
+      "position": "SF",
+      "age": 28,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01854",
+      "position": "SF",
+      "age": 31,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01855",
+      "position": "SF",
+      "age": 28,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01856",
+      "position": "SF",
+      "age": 28,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01857",
+      "position": "SF",
+      "age": 26,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01858",
+      "position": "SF",
+      "age": 26,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01859",
+      "position": "SF",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01860",
+      "position": "SF",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01861",
+      "position": "PF",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01862",
+      "position": "PF",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01863",
+      "position": "PF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01864",
+      "position": "PF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01865",
+      "position": "PF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01866",
+      "position": "PF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01867",
+      "position": "PF",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01868",
+      "position": "PF",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01869",
+      "position": "PF",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01870",
+      "position": "PF",
+      "age": 26,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01871",
+      "position": "PF",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01872",
+      "position": "PF",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01873",
+      "position": "PF",
+      "age": 26,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01874",
+      "position": "PF",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01875",
+      "position": "PF",
+      "age": 29,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01876",
+      "position": "PF",
+      "age": 29,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01877",
+      "position": "PF",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01878",
+      "position": "PF",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01879",
+      "position": "PF",
+      "age": 31,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01880",
+      "position": "PF",
+      "age": 32,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01881",
+      "position": "PF",
+      "age": 28,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01882",
+      "position": "PF",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01883",
+      "position": "PF",
+      "age": 25,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01884",
+      "position": "C",
+      "age": 30,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01885",
+      "position": "C",
+      "age": 27,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01886",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01887",
+      "position": "C",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01888",
+      "position": "C",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01889",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01890",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01891",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01892",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01893",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01894",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01895",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01896",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01897",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01898",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01899",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01900",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01901",
+      "position": "C",
+      "age": 23,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01902",
+      "position": "C",
+      "age": 28,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01903",
+      "position": "C",
+      "age": 27,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01904",
+      "position": "C",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01905",
+      "position": "C",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01906",
+      "position": "C",
+      "age": 31,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01907",
+      "position": "C",
+      "age": 26,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01908",
+      "position": "C",
+      "age": 30,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01909",
+      "position": "C",
+      "age": 29,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01910",
+      "position": "C",
+      "age": 24,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01911",
+      "position": "C",
+      "age": 28,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01912",
+      "position": "C",
+      "age": 26,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00161",
+      "position": "C",
+      "age": 32,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 68,
+      "stat": null
+    },
+    {
+      "playerId": "p00147",
+      "position": "SG",
+      "age": 27,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 68,
+      "stat": null
+    },
+    {
+      "playerId": "p00152",
+      "position": "SG",
+      "age": 32,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 67,
+      "stat": null
+    },
+    {
+      "playerId": "p00151",
+      "position": "C",
+      "age": 30,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 66,
+      "stat": null
+    },
+    {
+      "playerId": "p00502",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 66,
+      "stat": null
+    },
+    {
+      "playerId": "p00156",
+      "position": "SG",
+      "age": 26,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 65,
+      "stat": null
+    },
+    {
+      "playerId": "p00686",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 65,
+      "stat": null
+    },
+    {
+      "playerId": "p00575",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 63,
+      "stat": null
+    },
+    {
+      "playerId": "p00720",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 63,
+      "stat": null
+    },
+    {
+      "playerId": "p00690",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 61,
+      "stat": null
+    },
+    {
+      "playerId": "p00872",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 60,
+      "stat": null
+    },
+    {
+      "playerId": "p00718",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 58,
+      "stat": null
+    },
+    {
+      "playerId": "p00653",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 56,
+      "stat": null
+    },
+    {
+      "playerId": "p00588",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 55,
+      "stat": null
+    },
+    {
+      "playerId": "p00553",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 55,
+      "stat": null
+    },
+    {
+      "playerId": "p00628",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": 55,
+      "stat": null
+    },
+    {
+      "playerId": "p00649",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00857",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00590",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00874",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00737",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00746",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00862",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00646",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00666",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01386",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00582",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00752",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00817",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00717",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00926",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00757",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00548",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00842",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00946",
+      "position": "PG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00738",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00833",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00699",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00695",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00505",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00667",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00753",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00863",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00529",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00627",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00652",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00677",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00873",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00657",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00917",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00947",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00496",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00647",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00892",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01430",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00768",
+      "position": "SG",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00663",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00501",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00978",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00530",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00555",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00603",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00709",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00759",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01411",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00724",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00859",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00799",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01253",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01093",
+      "position": "SF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00531",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00770",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00585",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00865",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00785",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00825",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00541",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00755",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01432",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01913",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00855",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00889",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01517",
+      "position": "PF",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00841",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00693",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00517",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00610",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00630",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00591",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00679",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00522",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00716",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00876",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01175",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p00751",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    },
+    {
+      "playerId": "p01350",
+      "position": "C",
+      "age": 22,
+      "team": null,
+      "prevRating": null,
+      "otherRating": null,
+      "stat": null
+    }
+  ],
+  "order": [
+    "p00161",
+    "p00152",
+    "p00147",
+    "p00151",
+    "p00320",
+    "p00156",
+    "p00686",
+    "p00419",
+    "p00232",
+    "p00502",
+    "p00334",
+    "p00277",
+    "p00342",
+    "p00455",
+    "p00409",
+    "p00194",
+    "p00341",
+    "p00227",
+    "p00270",
+    "p00242",
+    "p00408",
+    "p00395",
+    "p00193",
+    "p00298",
+    "p00213",
+    "p00198",
+    "p00344",
+    "p00318",
+    "p00166",
+    "p00426",
+    "p00308",
+    "p00446",
+    "p00178",
+    "p00345",
+    "p00259",
+    "p00182",
+    "p00300",
+    "p00396",
+    "p00203",
+    "p00260",
+    "p00360",
+    "p00274",
+    "p00456",
+    "p00209",
+    "p00375",
+    "p00289",
+    "p00241",
+    "p00252",
+    "p00206",
+    "p00368",
+    "p00373",
+    "p00180",
+    "p00403",
+    "p00410",
+    "p00278",
+    "p00306",
+    "p00406",
+    "p00294",
+    "p00228",
+    "p00350",
+    "p00335",
+    "p00351",
+    "p00222",
+    "p00185",
+    "p00418",
+    "p00244",
+    "p00575",
+    "p00284",
+    "p00190",
+    "p00332",
+    "p00329",
+    "p00439",
+    "p00233",
+    "p00285",
+    "p00720",
+    "p00187",
+    "p00444",
+    "p00217",
+    "p00339",
+    "p00355",
+    "p00346",
+    "p00221",
+    "p00349",
+    "p00215",
+    "p00453",
+    "p00224",
+    "p00393",
+    "p00436",
+    "p00323",
+    "p00226",
+    "p00268",
+    "p00374",
+    "p00195",
+    "p00239",
+    "p00250",
+    "p00288",
+    "p00352",
+    "p00236",
+    "p00338",
+    "p00271",
+    "p00690",
+    "p00872",
+    "p00171",
+    "p00315",
+    "p00324",
+    "p00212",
+    "p00431",
+    "p00297",
+    "p00262",
+    "p00327",
+    "p00718",
+    "p00445",
+    "p00272",
+    "p00423",
+    "p00354",
+    "p00376",
+    "p00322",
+    "p00369",
+    "p00235",
+    "p00240",
+    "p00302",
+    "p00653",
+    "p00588",
+    "p00457",
+    "p00380",
+    "p00295",
+    "p00249",
+    "p00383",
+    "p00168",
+    "p00183",
+    "p00425",
+    "p00378",
+    "p00255",
+    "p00389",
+    "p00336",
+    "p00391",
+    "p00291",
+    "p00275",
+    "p00269",
+    "p00398",
+    "p00347",
+    "p00405",
+    "p00309",
+    "p00258",
+    "p00266",
+    "p00452",
+    "p00553",
+    "p00628",
+    "p00340",
+    "p00167",
+    "p00296",
+    "p00263",
+    "p00311",
+    "p00199",
+    "p00170",
+    "p00202",
+    "p00267",
+    "p00649",
+    "p00253",
+    "p00384",
+    "p00874",
+    "p00746",
+    "p00449",
+    "p00184",
+    "p00366",
+    "p00392",
+    "p00246",
+    "p00257",
+    "p00186",
+    "p00415",
+    "p00237",
+    "p00181",
+    "p00200",
+    "p00429",
+    "p00348",
+    "p00857",
+    "p00413",
+    "p00450",
+    "p00214",
+    "p00312",
+    "p00377",
+    "p00305",
+    "p00307",
+    "p00414",
+    "p00387",
+    "p00276",
+    "p00646",
+    "p01386",
+    "p00356",
+    "p00454",
+    "p00434",
+    "p00316",
+    "p00441",
+    "p00234",
+    "p00590",
+    "p00208"
+  ],
+  "ratings": {},
+  "curve": [
+    99,
+    99,
+    99,
+    98,
+    98,
+    97,
+    97,
+    97,
+    96,
+    96,
+    96,
+    96,
+    96,
+    96,
+    96,
+    96,
+    95,
+    95,
+    95,
+    95,
+    95,
+    94,
+    94,
+    94,
+    94,
+    93,
+    93,
+    93,
+    92,
+    92,
+    92,
+    92,
+    92,
+    92,
+    92,
+    91,
+    91,
+    91,
+    91,
+    91,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    89,
+    89,
+    89,
+    89,
+    89,
+    89,
+    89,
+    89,
+    88,
+    88,
+    88,
+    88,
+    88,
+    88,
+    88,
+    88,
+    88,
+    87,
+    87,
+    87,
+    87,
+    87,
+    87,
+    87,
+    87,
+    87,
+    86,
+    86,
+    86,
+    86,
+    86,
+    86,
+    86,
+    86,
+    86,
+    86,
+    85,
+    85,
+    85,
+    85,
+    85,
+    85,
+    85,
+    85,
+    85,
+    85,
+    84,
+    84,
+    84,
+    84,
+    84,
+    84,
+    84,
+    84,
+    84,
+    83,
+    83,
+    83,
+    83,
+    83,
+    83,
+    83,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    82,
+    81,
+    81,
+    81,
+    81,
+    81,
+    81,
+    81,
+    81,
+    80,
+    80,
+    80,
+    80,
+    79,
+    79,
+    79,
+    79,
+    79,
+    79,
+    79,
+    79,
+    79,
+    79,
+    79,
+    78,
+    78,
+    78,
+    78,
+    78,
+    78,
+    78,
+    78,
+    78,
+    78,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    77,
+    76,
+    76,
+    76,
+    76,
+    76,
+    76,
+    76,
+    76,
+    76,
+    76,
+    76,
+    76,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    75,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    74,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    73,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    72,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    71,
+    70,
+    70,
+    70,
+    70,
+    70,
+    70,
+    70,
+    70,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    69,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    68,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    67,
+    66,
+    66,
+    66,
+    66,
+    66,
+    66,
+    66,
+    65,
+    65,
+    65,
+    65,
+    65
+  ]
+}

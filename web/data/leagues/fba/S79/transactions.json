@@ -1,5 +1,192 @@
 {
   "league": "fba",
   "season": 79,
-  "entries": []
+  "entries": [
+    {
+      "seq": 1,
+      "batchId": "bmup5nnexvne9i",
+      "type": "resigned",
+      "teams": [
+        "CP"
+      ],
+      "lines": [
+        "Re-signed SF-Akeel Moody (1/$2, thru S79)"
+      ]
+    },
+    {
+      "seq": 2,
+      "batchId": "bmup5q0a5vvt90",
+      "type": "resigned",
+      "teams": [
+        "SAS"
+      ],
+      "lines": [
+        "Re-signed PG-Jimmy Joyce (1/$1, thru S79)"
+      ]
+    },
+    {
+      "seq": 3,
+      "batchId": "bmup5rcuah75wm",
+      "type": "signed",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Signed PG-Kyron Smart (1/$1, thru S79)"
+      ]
+    },
+    {
+      "seq": 4,
+      "batchId": "bmup5syaydg8ur",
+      "type": "signed",
+      "teams": [
+        "VEG"
+      ],
+      "lines": [
+        "Signed PF-Ethan Leitner (2/$2, thru S80)"
+      ]
+    },
+    {
+      "seq": 5,
+      "batchId": "bmup5u6rk0hj8p",
+      "type": "resigned",
+      "teams": [
+        "OAK"
+      ],
+      "lines": [
+        "Re-signed C-Artyom Kovalchuk (2/$2, thru S80)"
+      ]
+    },
+    {
+      "seq": 6,
+      "batchId": "bmup5w3thwidkw",
+      "type": "signed",
+      "teams": [
+        "NO"
+      ],
+      "lines": [
+        "Signed C-Damion Bradley (2/$2, thru S80)"
+      ]
+    },
+    {
+      "seq": 7,
+      "batchId": "bmup5y4osik87r",
+      "type": "signed",
+      "teams": [
+        "CAR"
+      ],
+      "lines": [
+        "Signed C-Azubuike Okoro (2/$2, thru S80)"
+      ]
+    },
+    {
+      "seq": 8,
+      "batchId": "bmup5ykea00o57",
+      "type": "resigned",
+      "teams": [
+        "HON"
+      ],
+      "lines": [
+        "Re-signed C-Jai Li (1/$1, thru S79)"
+      ]
+    },
+    {
+      "seq": 9,
+      "batchId": "bmup5ysnkkiaiq",
+      "type": "signed",
+      "teams": [
+        "CGG"
+      ],
+      "lines": [
+        "Signed C-Ignacio Cain (1/$1, thru S79)"
+      ]
+    },
+    {
+      "seq": 10,
+      "batchId": "bmup60zhk51yt8",
+      "type": "signed",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Signed SF-Mubiru Okeke (1/$1, thru S79)",
+        "Released SF-Koa'e Keano"
+      ]
+    },
+    {
+      "seq": 11,
+      "batchId": "bmup63ag89qyqy",
+      "type": "resigned",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Re-signed SF-Kobe Crawford (1/$1, thru S79)"
+      ]
+    },
+    {
+      "seq": 12,
+      "batchId": "bmup63m1fgtpgz",
+      "type": "resigned",
+      "teams": [
+        "CGG"
+      ],
+      "lines": [
+        "Re-signed SF-Griffin Correa (1/$1, thru S79)"
+      ]
+    },
+    {
+      "seq": 13,
+      "batchId": "bmup63tgnusyj5",
+      "type": "resigned",
+      "teams": [
+        "SAS"
+      ],
+      "lines": [
+        "Re-signed SF-Duke Simons (1/$1, thru S79)"
+      ]
+    },
+    {
+      "seq": 14,
+      "batchId": "bmup63yb8dg27a",
+      "type": "signed",
+      "teams": [
+        "TEX"
+      ],
+      "lines": [
+        "Signed SF-Koa'e Keano (1/$1, thru S79)"
+      ]
+    },
+    {
+      "seq": 15,
+      "batchId": "bmup64b9xgy3t4",
+      "type": "resigned",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Re-signed PF-Callan Schwangau (1/$1, thru S79)"
+      ]
+    },
+    {
+      "seq": 16,
+      "batchId": "bmup64gfdj6xah",
+      "type": "resigned",
+      "teams": [
+        "DET"
+      ],
+      "lines": [
+        "Re-signed PF-Jimi Jackson (1/$1, thru S79)"
+      ]
+    },
+    {
+      "seq": 17,
+      "batchId": "bmup65q1ecq748",
+      "type": "fa-closed",
+      "teams": [],
+      "lines": [
+        "Free agency closed: 96 unsigned players moved to D2 Reserves"
+      ]
+    }
+  ]
 }
