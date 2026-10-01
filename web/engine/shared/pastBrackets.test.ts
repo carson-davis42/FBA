@@ -44,3 +44,35 @@ describe('SummaryFile pastBrackets', () => {
     expect(SummaryFile.safeParse(summary('fbad2', { pastBracket: null, pastBrackets: [pb('PL')] })).success).toBe(true);
   });
 });
+
+/** A full tree of `rounds` rounds; team T<n> wins every series for the lower slot. */
+function fullTree(rounds: number) {
+  const series: Record<string, unknown>[] = [];
+  const slots = 2 ** rounds;
+  for (let r = 1; r <= rounds; r++) {
+    const n = 2 ** (rounds - r);
+    const span = 2 ** r;
+    for (let k = 1; k <= n; k++) {
+      const lo = (k - 1) * span + 1;
+      const hi = lo + span / 2;
+      series.push({
+        id: `R${r}-${k}`, round: r,
+        home: { name: `T${lo}`, record: null, seed: null }, away: { name: `T${hi}`, record: null, seed: null },
+        homeWins: 4, awayWins: 1, winner: 'home',
+      });
+    }
+  }
+  return { rounds, series, slots };
+}
+
+describe('PastBracket rounds cap', () => {
+  it('accepts a 6-round, 64-slot bracket', () => {
+    const { rounds, series } = fullTree(6);
+    expect(series).toHaveLength(63);
+    expect(PastBracket.safeParse({ rounds, series }).success).toBe(true);
+  });
+  it('rejects a 7-round bracket', () => {
+    const { rounds, series } = fullTree(7);
+    expect(PastBracket.safeParse({ rounds, series }).success).toBe(false);
+  });
+});

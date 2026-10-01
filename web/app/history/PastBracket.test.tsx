@@ -95,3 +95,19 @@ describe('PastBracket scored series', () => {
     expect(wins).toEqual(['97', '75']);
   });
 });
+
+describe('PastBracket 6 rounds', () => {
+  it('renders 63 series boxes in 11 columns', () => {
+    const series: PastSeries[] = [];
+    for (let r = 1; r <= 6; r++) {
+      const n = 2 ** (6 - r), span = 2 ** r;
+      for (let k = 1; k <= n; k++) {
+        const lo = (k - 1) * span + 1;
+        series.push(ps(`R${r}-${k}`, `T${lo}`, `T${lo + span / 2}`, 4, 1));
+      }
+    }
+    const { container } = render(<PastBracket bracket={{ rounds: 6, series }} teams={[]} season={5} />);
+    expect(container.querySelectorAll('.series-box')).toHaveLength(63);
+    expect(container.querySelectorAll('.bracket > .bracket-col')).toHaveLength(11);
+  });
+});

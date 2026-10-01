@@ -710,7 +710,7 @@ export const PastSide = z.object({ name: z.string().min(1), record: z.string().r
 export type PastSide = z.infer<typeof PastSide>;
 export const PastSeries = z.object({
   id: z.string().regex(/^R\d-\d+$/),
-  round: int.min(1).max(5),
+  round: int.min(1).max(6),
   home: PastSide.nullable(),
   away: PastSide.nullable(),
   homeWins: int.min(0).max(4),
@@ -721,7 +721,7 @@ export const PastSeries = z.object({
 }).strict();
 export type PastSeries = z.infer<typeof PastSeries>;
 /** A transcribed historical bracket: a full binary tree of series, R1-1... up to the final. */
-export const PastBracket = z.object({ rounds: int.min(1).max(5), series: z.array(PastSeries) }).strict().superRefine((b, ctx) => {
+export const PastBracket = z.object({ rounds: int.min(1).max(6), series: z.array(PastSeries) }).strict().superRefine((b, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const byId = new Map(b.series.map(s => [s.id, s]));
   for (let r = 1; r <= b.rounds; r++) {

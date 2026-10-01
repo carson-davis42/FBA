@@ -11,7 +11,7 @@
 .seed-table .rec { color: var(--muted); }
 
 /* bracket: scrolls sideways inside its own box */
-.bracket { display: flex; gap: 28px; overflow-x: auto; padding: var(--s1) var(--s1) var(--s3); }
+.bracket { display: flex; gap: 28px; overflow-x: auto; max-width: 100%; padding: var(--s1) var(--s1) var(--s3); }
 .bracket-col { display: flex; flex-direction: column; justify-content: space-around; gap: var(--s3); min-width: 200px; flex: none; }
 .bracket-col.mid { min-width: 240px; justify-content: center; }
 .series-box { position: relative; display: grid; gap: 0; text-align: left; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--r); padding: 0; overflow: visible; box-shadow: var(--shadow-1); font: inherit; }
