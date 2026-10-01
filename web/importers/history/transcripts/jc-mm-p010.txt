@@ -1,0 +1,39 @@
+# p010 March Madness S51 (32 slots, no byes; prefix numbers are national ranks)
+S51
+1|Xavier|
+|Georgetown|
+17|Auburn|
+16|Oklahoma|
+9|Syracuse|
+24|St.Bonaventure|
+25|Butler|
+8|Texas Tech|
+5|Kansas|
+|Texas A&M|
+21|Memphis|
+12|Arizona State|
+13|Texas|
+20|Wisconsin|
+|Michigan State|
+4|Gonzaga|
+2|Duke|
+|NC State|
+18|Virginia|
+15|Stanford|
+10|Iowa State|
+23|Houston|
+|Virginia Tech|
+7|North Carolina|
+6|Arizona|
+|Oregon|
+22|Kentucky|
+11|Michigan|
+14|West Virginia|
+19|Wichita State|
+|Alabama|
+3|Villanova|
+=Xavier 19-4|Auburn 45-42 3OT|Syracuse 23-16|Texas Tech 22-7|Texas A&M 21-19|Arizona State 23-13|Wisconsin 28-21|Gonzaga 31-11|Duke 32-10|Stanford 30-14|Iowa State 32-22|North Carolina 21-16|Arizona 23-15|Michigan 27-14|Wichita State 19-17|Villanova 21-6
+=Auburn 38-34 2OT|Texas Tech 28-21|Arizona State 29-14|Gonzaga 33-30|Duke 25-24|Iowa State 20-19|Arizona 23-21|Villanova 20-15
+=Texas Tech 33-32|Gonzaga 41-27|Duke 49-48 OT|Villanova 44-22
+=Texas Tech 52-48|Duke 55-51
+=Duke 48-47
