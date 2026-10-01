@@ -541,6 +541,19 @@ describe('Part 3a history schemas', () => {
       const b = { rounds: 1, series: [ser('R1-1', side('NO', null, null), null, 1, 0, 'home')] };
       expect(PastBracket.safeParse(b).success).toBe(false);
     });
+    it('accepts an unscored series and rejects unscored with wins or a score', () => {
+      const un = (fn: (s: Record<string, unknown>) => void = () => {}) => {
+        const b = { rounds: 1, series: [{ ...ser('R1-1', side('Rome', null, null), side('Oslo', null, null), 0, 0, 'home'), unscored: true }] };
+        fn(b.series[0] as Record<string, unknown>);
+        return b;
+      };
+      expect(PastBracket.safeParse(un()).success).toBe(true);
+      expect(PastBracket.safeParse(un(s => { s.homeWins = 1; })).success).toBe(false);
+      expect(PastBracket.safeParse(un(s => { s.awayWins = 1; })).success).toBe(false);
+      expect(PastBracket.safeParse(un(s => { s.score = '97–75'; })).success).toBe(false);
+      expect(PastBracket.safeParse(un(s => { s.away = null; })).success).toBe(false);
+      expect(PastBracket.safeParse(un(s => { s.unscored = false; })).success).toBe(false);
+    });
     it('rejects a missing series', () => {
       expect(PastBracket.safeParse(tweak(b => { b.series = b.series.filter(s => s.id !== 'R2-1'); })).success).toBe(false);
     });

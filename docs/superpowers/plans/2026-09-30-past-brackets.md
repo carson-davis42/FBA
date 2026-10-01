@@ -45,6 +45,7 @@ G:WL
   - `# pNNN <page title>` is a comment line. `S<n>` is the season printed on the page. `G:<code>` appears only on D2 league-tournament pages: `PL` Premier League, `WL` World League, `UL` United League, `IL` International League; it is omitted for the old "FBA D2 Tournament" pages and the World Cup.
   - Slot lines are `seed|name|record`, in the order the first round is drawn. One-sided pages (league tournaments, old D2 tournament): top to bottom. Two-sided pages (the World Cup): the whole left half top to bottom, then the whole right half top to bottom. Seed and record are empty when the page prints none (`|Greece|`). Records are `W-L` or `W-L-T` with no parentheses; a team's name has no record or seed attached. Use the name exactly as printed (city names for D2, country names for the World Cup, no flag).
   - One `=` line per round, listing each series winner in the same order as the slots, as `Name W-L` (series wins, winner first, for example `Rome 4-0`) or `Name PTS-PTS` for a single game (winner's points first, for example `Japan 97-75`). A series or aggregate score never exceeds 4 wins; any number above 4 is read as a single-game score. A BYE is written `Name BYE`.
+  - `Name -` (a single dash instead of the score) is an unscored series (some old D2 pages print only the winner): it gets `unscored: true`, 0-0 wins and no `score`; its loser must not be a BYE.
 
 ## File structure
 

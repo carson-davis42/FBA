@@ -40,13 +40,14 @@ export function PastBracket({ bracket, teams, season, franchises = null }: { bra
       {columns.map(({ col, dir }, k) => (
         <div key={k} className={`bracket-col ${dir}`}>
           {col.map(s => {
+            const none = s.unscored ? '' : null;
             const pts = s.score ? s.score.split(/[–-]/) : null;
             const winHome = s.winner === 'home';
             return (
             <div key={s.id} className={`series-box${dir === 'mid' ? ' finals' : ''}${s.winner ? ' decided' : ''}`}>
               {dir === 'mid' && s.winner && <ChampBadge />}
-              <Side side={s.home} wins={pts ? pts[winHome ? 0 : 1] : s.homeWins} won={s.winner === 'home'} teams={teams} franchises={franchises} season={season} />
-              <Side side={s.away} wins={pts ? pts[winHome ? 1 : 0] : s.awayWins} won={s.winner === 'away'} teams={teams} franchises={franchises} season={season} />
+              <Side side={s.home} wins={none ?? (pts ? pts[winHome ? 0 : 1] : s.homeWins)} won={s.winner === 'home'} teams={teams} franchises={franchises} season={season} />
+              <Side side={s.away} wins={none ?? (pts ? pts[winHome ? 1 : 0] : s.awayWins)} won={s.winner === 'away'} teams={teams} franchises={franchises} season={season} />
             </div>
             );
           })}

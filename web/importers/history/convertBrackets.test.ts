@@ -45,6 +45,22 @@ describe('convertTranscript', () => {
     expect(s.home?.record).toBeNull();
   });
 
+  it('reads a dash instead of a score as an unscored series', () => {
+    const { entries } = convertTranscript('S53\n1|Rome|\n2|Oslo|\n= Rome -\n');
+    const s = entries[0].series[0];
+    expect(s.unscored).toBe(true);
+    expect([s.homeWins, s.awayWins]).toEqual([0, 0]);
+    expect(s.score).toBeUndefined();
+    expect(s.winner).toBe('home');
+  });
+
+  it('still rejects other malformed results and an unscored BYE', () => {
+    expect(() => convertTranscript('S53\n1|Rome|\n2|Oslo|\n= Rome --\n')).toThrow();
+    expect(() => convertTranscript('S53\n1|Rome|\n2|Oslo|\n= Rome 4-\n')).toThrow();
+    expect(() => convertTranscript('S53\n1|Rome|\n2|Oslo|\n= Rome\n')).toThrow();
+    expect(() => convertTranscript('S53\n1|Rome|\nBYE\n= Rome -\n')).toThrow();
+  });
+
   it('puts the loser first for an away winner in a single game', () => {
     const { entries } = convertTranscript('S60\n|Japan|\n|Brazil|\n= Brazil 80-70\n');
     const s = entries[0].series[0];

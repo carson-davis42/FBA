@@ -96,6 +96,17 @@ describe('PastBracket scored series', () => {
   });
 });
 
+describe('PastBracket unscored series', () => {
+  it('shows no numbers but still marks the winner', () => {
+    const one: PastBracketDoc = { rounds: 1, series: [{ ...ps('R1-1', 'Japan', 'Korea', 0, 0), unscored: true }] };
+    const { container } = render(<PastBracket bracket={one} teams={teams} season={5} />);
+    const wins = [...container.querySelectorAll('.series-side .wins')].map(e => e.textContent);
+    expect(wins).toEqual(['', '']);
+    expect(container.querySelector('.series-box')!.textContent).not.toMatch(/\d\d|0/);
+    expect(container.querySelectorAll('.series-side')[0].className).toContain('won');
+  });
+});
+
 describe('PastBracket 6 rounds', () => {
   it('renders 63 series boxes in 11 columns', () => {
     const series: PastSeries[] = [];

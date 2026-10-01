@@ -1,3 +1,8 @@
+/*
+ * Transcript format: `S<n>`, optional `G:<code>`, slot lines `seed|name|record`, then one `=` line per round
+ * listing each series winner as `Name W-L`, `Name PTS-PTS` (a single game; any number above 4), or `Name BYE`.
+ * `Name -` (a single dash instead of the score) is an unscored series: the page printed only the winner.
+ */
 import { PastBracket, type PastSeries, type PastSide } from '../../engine/shared/types';
 
 export type BracketGroup = 'PL' | 'WL' | 'UL' | 'IL';
@@ -47,14 +52,15 @@ export function convertTranscript(text: string): { entries: BracketEntry[]; warn
       const next: (PastSide | null)[] = [];
       res.forEach((txt, i) => {
         const home = sides[2 * i], away = sides[2 * i + 1];
-        const m = /^(.*) (BYE|(\d+)-(\d+))$/.exec(txt);
+        const m = /^(.*) (BYE|-|(\d+)-(\d+))$/.exec(txt);
         if (!m) throw new Error(`S${p.season} R${r}-${i + 1}: can't parse "${txt}"`);
         const wname = m[1];
         const winner = home?.name === wname ? 'home' : away?.name === wname ? 'away' : null;
         if (!winner) throw new Error(`S${p.season} R${r}-${i + 1}: winner ${wname} not in series`);
         const bye = m[2] === 'BYE';
         if (bye !== (!home || !away)) throw new Error(`S${p.season} R${r}-${i + 1}: BYE mismatch`);
-        const w = bye ? 0 : Number(m[3]), l = bye ? 0 : Number(m[4]);
+        const unscored = m[2] === '-';
+        const w = bye || unscored ? 0 : Number(m[3]), l = bye || unscored ? 0 : Number(m[4]);
         const single = w > 4 || l > 4;
         const s: PastSeries = {
           id: `R${r}-${i + 1}`, round: r, home, away,
@@ -62,6 +68,7 @@ export function convertTranscript(text: string): { entries: BracketEntry[]; warn
           awayWins: single ? (winner === 'home' ? 0 : 1) : winner === 'home' ? l : w,
           winner,
         };
+        if (unscored) s.unscored = true;
         if (single) s.score = `${w}–${l}`;
         series.push(s);
         next.push(winner === 'home' ? home : away);

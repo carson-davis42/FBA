@@ -718,6 +718,8 @@ export const PastSeries = z.object({
   winner: z.enum(['home', 'away']),
   /** A single game's points, winner first (for example 97–75); the wins are then 1-0. */
   score: z.string().regex(/^\d+[–-]\d+$/).optional(),
+  /** A series whose page prints only the winner (no scores): 0-0 in wins, no score, a real loser. */
+  unscored: z.literal(true).optional(),
 }).strict();
 export type PastSeries = z.infer<typeof PastSeries>;
 /** A transcribed historical bracket: a full binary tree of series, R1-1... up to the final. */
@@ -738,7 +740,11 @@ export const PastBracket = z.object({ rounds: int.min(1).max(6), series: z.array
     if (!win) { issue(`${s.id}: the winner can't be a BYE`); continue; }
     if (!s.home && !s.away) issue(`${s.id}: both sides are BYEs`);
     if (!lose && (s.homeWins || s.awayWins)) issue(`${s.id}: a BYE series has no wins`);
-    if (lose && s[`${s.winner}Wins`] <= s[s.winner === 'home' ? 'awayWins' : 'homeWins']) issue(`${s.id}: the winner needs more wins`);
+    if (s.unscored) {
+      if (!lose) issue(`${s.id}: an unscored series needs a loser`);
+      if (s.homeWins || s.awayWins) issue(`${s.id}: an unscored series has no wins`);
+      if (s.score) issue(`${s.id}: an unscored series has no score`);
+    } else if (lose && s[`${s.winner}Wins`] <= s[s.winner === 'home' ? 'awayWins' : 'homeWins']) issue(`${s.id}: the winner needs more wins`);
     if (s.score) {
       const [a, c] = s.score.split(/[–-]/).map(Number);
       if (s[`${s.winner}Wins`] !== 1 || s[s.winner === 'home' ? 'awayWins' : 'homeWins'] !== 0) issue(`${s.id}: a scored game is 1-0 in wins`);
