@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { isNewRow } from '../../engine/rank/ranking';
 import { POOL_CUTOFF } from '../../engine/d2/pool';
-import { finishRatings, membershipBlockers, startRatings } from '../../engine/d2/ratings';
+import { finishRatings, membershipBlockers, startRatings, stretchedRatings } from '../../engine/d2/ratings';
 import { d2DocPath, d2Name, d2Writes, type D2Result } from '../../engine/d2/state';
 import type { RankingFile } from '../../engine/shared/types';
 import { useSaving } from '../api';
@@ -41,7 +41,9 @@ export function D2RatingsPage() {
   if (!state.freeAgencyClosed) {
     return <section className="stack">{title}<div className="card"><p className="muted">Close free agency first. <Link to="/league/fba/free-agency">Go to free agency ▸</Link></p></div></section>;
   }
-  const ratings = autosave.doc ?? state.ratings ?? undefined;
+  const loaded = autosave.doc ?? state.ratings ?? undefined;
+  // A reset started before the suggestion ladder was stretched to the roster slots gets the stretch on load (and when it is next saved).
+  const ratings = loaded && stretchedRatings(state.d2, loaded);
   if (!ratings) {
     return (
       <section className="stack">
@@ -74,7 +76,7 @@ export function D2RatingsPage() {
         name={id => d2Name(state, id)}
         teamLabel={(team, row) => team ?? (row && isNewRow(shown, row) ? 'New' : 'Reserves')}
         otherLabel="FBA"
-        onChange={autosave.update}
+        onChange={change => autosave.update(cur => change(stretchedRatings(state.d2, cur)))}
         extraBlockers={membershipBlockers(live)}
         finishLabel="Finish ratings"
         onFinish={() => run(finishRatings(live, { batchId: newBatchId() }))}
