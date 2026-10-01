@@ -2,7 +2,8 @@ import { americanOdds, raceOdds } from '../awards/score';
 import { pointsSavedPerGame, seasonDefense, type DefenseTotals } from '../awards/defense';
 import { playerSeasonStats } from '../season/ratingPause';
 import { calendarProblem } from '../season/moves';
-import { JC_NATIONAL_AWARDS, type JcAwardsFile, type JcNationalAward, type Position, type ResultsFile } from '../shared/types';
+import { JC_ALL_AMERICAN_SLOTS, JC_NATIONAL_AWARDS, type Bracket, type JcAwardsFile, type JcNationalAward, type Position, type ResultsFile } from '../shared/types';
+import { bracketResults } from './bracket';
 import { confTables, latestRanking, postseasonGames } from './confTourney';
 import { jcFail, type JcResult, type JcState } from './state';
 import { teamRating } from './rankings';
@@ -209,4 +210,114 @@ export function pickConference(state: JcState, conf: string, playerId: string | 
   }
   const awards: JcAwardsFile = { ...state.awards!, conference: state.awards!.conference.map(a => (a.conf === conf ? { ...a, playerId } : a)) };
   return { ok: true, state: { ...state, awards }, changed: ['awards'], label: `Pick the ${conf} Player of the Year` };
+}
+
+export interface AllAmericanCandidate {
+  playerId: string;
+  teamId: string;
+  position: Position;
+  rating: number;
+  games: number;
+  ppg: number;
+  /** Points per game in the NIT and March Madness (0 when the team didn't play in them). */
+  tournamentPpg: number;
+}
+
+function tournamentStats(...brackets: (Bracket | null)[]): Map<string, { games: number; pts: number }> {
+  const out = new Map<string, { games: number; pts: number }>();
+  for (const b of brackets) {
+    for (const g of bracketResults(b)) {
+      for (const line of [...(g.box?.home ?? []), ...(g.box?.away ?? [])]) {
+        const s = out.get(line.playerId) ?? { games: 0, pts: 0 };
+        s.games++;
+        s.pts += line.pts;
+        out.set(line.playerId, s);
+      }
+    }
+  }
+  return out;
+}
+
+/** Everyone with enough games, best season PPG first (then rating). */
+export function allAmericanCandidates(state: JcState): AllAmericanCandidate[] {
+  const tour = tournamentStats(state.postseason?.nit ?? null, state.postseason?.mm ?? null);
+  return candidates(state)
+    .map(c => {
+      const t = tour.get(c.playerId);
+      return { playerId: c.playerId, teamId: c.teamId, position: c.position, rating: c.rating, games: c.games, ppg: c.ppg, tournamentPpg: t ? t.pts / t.games : 0 };
+    })
+    .sort((a, b) => b.ppg - a.ppg || b.rating - a.rating || (a.playerId < b.playerId ? -1 : 1));
+}
+
+const SLOT_POSITIONS: Record<'G' | 'F' | 'C' | 'ANY', Position[]> = { G: ['PG', 'SG'], F: ['SF', 'PF'], C: ['C'], ANY: ['PG', 'SG', 'SF', 'PF', 'C'] };
+
+const emptyAllAmerican = (): NonNullable<JcAwardsFile['allAmerican']> =>
+  ([1, 2, 3] as const).map(team => ({ team, slots: JC_ALL_AMERICAN_SLOTS.map(slot => ({ slot, playerId: null })) }));
+
+function tournamentsDone(state: JcState): string | null {
+  const problem = awardsProblem(state);
+  if (problem) return problem;
+  if (!state.postseason?.nit?.champion || !state.postseason.mm?.champion) return 'Finish the NIT and March Madness first';
+  return null;
+}
+
+/** Puts a player in (or clears) one All-American slot: G is a guard, F a forward, C a center, ANY anyone; nobody is on two teams. */
+export function pickAllAmerican(state: JcState, team: 1 | 2 | 3, slotIndex: number, playerId: string | null): JcResult {
+  const problem = tournamentsDone(state);
+  if (problem) return jcFail([problem]);
+  const current = state.awards!.allAmerican ?? emptyAllAmerican();
+  const slot = current.find(t => t.team === team)?.slots[slotIndex];
+  if (!slot) return jcFail(['That slot does not exist']);
+  if (playerId !== null) {
+    const e = rosterEntry(state, playerId);
+    if (!e) return jcFail(['That player is not on a college roster']);
+    if (!SLOT_POSITIONS[slot.slot].includes(e.position)) return jcFail([`The ${slot.slot} slot takes a ${SLOT_POSITIONS[slot.slot].join(' or ')}`]);
+    const used = current.some(t => t.slots.some((s, k) => s.playerId === playerId && !(t.team === team && k === slotIndex)));
+    if (used) return jcFail(['That player is already on an All-American team']);
+  }
+  const allAmerican = current.map(t => (t.team === team ? { ...t, slots: t.slots.map((s, k) => (k === slotIndex ? { ...s, playerId } : s)) } : t));
+  return { ok: true, state: { ...state, awards: { ...state.awards!, allAmerican } }, changed: ['awards'], label: 'Pick an All-American' };
+}
+
+/** Fills all three teams from the best award scores: the best G, F and C first, then the two best left. */
+export function suggestAllAmerican(state: JcState): JcResult {
+  const problem = tournamentsDone(state);
+  if (problem) return jcFail([problem]);
+  const rows = jcRaces(state)[0].rows;
+  const used = new Set<string>();
+  const allAmerican = ([1, 2, 3] as const).map(team => ({
+    team,
+    slots: JC_ALL_AMERICAN_SLOTS.map(slot => {
+      const row = rows.find(r => !used.has(r.playerId) && SLOT_POSITIONS[slot].includes(r.position));
+      if (row) used.add(row.playerId);
+      return { slot, playerId: row?.playerId ?? null };
+    }),
+  }));
+  return { ok: true, state: { ...state, awards: { ...state.awards!, allAmerican } }, changed: ['awards'], label: 'Suggest All-American teams' };
+}
+
+export interface MvpCandidate { playerId: string; position: Position; rating: number; games: number; ppg: number }
+
+/** The champion's roster by points per game in that tournament. */
+export function mvpCandidates(state: JcState, which: 'mm' | 'nit'): MvpCandidate[] {
+  const b = state.postseason?.[which] ?? null;
+  if (!b?.champion) return [];
+  const stats = tournamentStats(b);
+  return (state.rosters.teams[b.champion] ?? [])
+    .filter(e => e.playerId !== null && e.rating !== null)
+    .map(e => {
+      const s = stats.get(e.playerId!);
+      return { playerId: e.playerId!, position: e.position, rating: e.rating!, games: s?.games ?? 0, ppg: s ? s.pts / s.games : 0 };
+    })
+    .sort((a, c) => c.ppg - a.ppg || c.rating - a.rating);
+}
+
+/** The MVP must be on the tournament champion's roster. */
+export function pickMvp(state: JcState, which: 'mm' | 'nit', playerId: string | null): JcResult {
+  const problem = awardsProblem(state);
+  if (problem) return jcFail([problem]);
+  const champion = state.postseason?.[which]?.champion;
+  if (!champion) return jcFail([`The ${which === 'mm' ? 'March Madness' : 'NIT'} has no champion yet`]);
+  if (playerId !== null && !(state.rosters.teams[champion] ?? []).some(e => e.playerId === playerId)) return jcFail(["The MVP must come from the champion's roster"]);
+  return { ok: true, state: { ...state, awards: { ...state.awards!, mvp: { ...state.awards!.mvp, [which]: playerId } } }, changed: ['awards'], label: `Pick the ${which === 'mm' ? 'March Madness' : 'NIT'} MVP` };
 }
