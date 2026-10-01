@@ -63,6 +63,8 @@ Both are Google Sheets read by the importer from an xlsx export cached in `web/i
 
 There are still **no season win-loss records** in the sheet, but each school's round reached in every March Madness is known. The school pages therefore show titles, the season-by-season March Madness round, and conference titles, not season records.
 
+**"FBA - Players"** (the registry sheet, already imported into `players.json`: 2,420 players with id, name, birth season; the user's most important sheet, every player one row, with college stints such as `San Diego State-S58-S59` and honour counts such as `1x National Champion`, `1x NC MVP`, `1x All-American(1st)`). 6c does not re-import it. It matters in two ways: names in the college workbook are checked against it (checked 2026-10-01: of 414 distinct player names in the FBAJC workbook, 411 match exactly one player and none is ambiguous; the other three are spelling variants: "Deshawn Randall" = "DeShawn Randall", "Eliott Miller" = "Elliott Miller", "Kojo Battoe" = "Kojo Baffoe"), and its per-player honour counts give a cross-check on the imported awards (spec section 9). The text-name fallback is therefore a safety net, not the normal case.
+
 **Bracket PDF:** the user confirms it holds both the March Madness and the NIT brackets. The 3a spec counted 52 FBAJC pages among 140, the user estimated about 70; the page inventory settles it. They are single-elimination March Madness pages titled "March Madness <roman numeral>" with "FBAJC S<n>" (older seasons print "FBA Junior Colleges S<n>"): 64 slots, `seed.Name(record)`, BYEs, single-game scores that can end in "OT". NIT pages (16 to 32 slots) are found during the page inventory (task 1 of the plan), which reports page, kind, season and field size before transcription starts.
 
 ## 3. Data
@@ -151,6 +153,8 @@ Each mode validates every doc through `schemaForPath` first and writes nothing o
 - Anything under `FBA/`, `FBAD2/`, `FBAJC/`, `FBAWC/`, `FBA Logos/` and `web/data/**` is not modified by this part.
 
 ## 9. Tests and checks
+
+- Name matching: the importer reports linked / text-only / ambiguous counts; with the real data the expected result is 411 of 414 linked before aliases and 414 after (three aliases above).
 
 - RED first, `cleanup()` in `afterEach` for jsdom tests; schema tests (extended `JcSummary`, `JcSchoolHistoryFile`, `score` with OT); parser and builder tests on fixtures; importer tests on a temp copy (never `web/data`); JSON guard tests; page tests (home, championships, season with and without bracket, school page, switcher).
 - `npx tsc --noEmit` prints nothing and `npx vitest run` passes; `web/data.test.ts` stays green.
