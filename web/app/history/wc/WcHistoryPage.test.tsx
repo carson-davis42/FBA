@@ -19,6 +19,7 @@ const teams: TeamsFile = {
 const hosts: WcHostsFile = { hosts: [{ season: 78, city: 'Zagreb', country: 'Croatia' }, { season: 80, city: 'Mumbai', country: 'India' }] };
 const seasons: SummaryFile[] = [
   { league: 'fbawc', season: 78, locked: true, host: 'Croatia', champions: [{ title: 'World Cup Champion', champion: 'Germany', runnerUp: 'Italy', score: null, teamId: 'GER', runnerUpId: 'ITA', finalsMvp: 'p1' }] },
+  { league: 'fbawc', season: 77, locked: true, host: 'India', champions: [{ title: 'World Cup Champion', champion: 'Italy', runnerUp: 'Germany', score: null, teamId: 'ITA', runnerUpId: 'GER', finalsMvp: null, mvpName: 'Italy PG' }] },
   { league: 'fbawc', season: 76, locked: true, host: 'Spain', champions: [{ title: 'World Cup Champion', champion: 'Australia', runnerUp: 'Italy', score: null, teamId: 'AUS', runnerUpId: 'ITA' }] },
 ];
 
@@ -40,8 +41,10 @@ describe('World Cup history page', () => {
     expect(await screen.findByRole('heading', { name: 'World Cup History' })).toBeTruthy();
     const table = (await screen.findByRole('columnheader', { name: 'Tournament MVP' })).closest('table') as HTMLElement;
     const body = within(table).getAllByRole('row').slice(1);
-    expect(body.map(r => within(r).getAllByRole('cell')[0].textContent)).toEqual(['S78', 'S76']);
-    expect(within(body[1]).getAllByRole('cell')[4].textContent).toBe('—');
+    expect(body.map(r => within(r).getAllByRole('cell')[0].textContent)).toEqual(['S78', 'S77', 'S76']);
+    expect(within(body[2]).getAllByRole('cell')[4].textContent).toBe('—');
+    expect(within(body[1]).getAllByRole('cell')[4].textContent).toBe('Italy PG');
+    expect(within(body[1]).queryAllByRole('link', { name: 'Italy PG' })).toHaveLength(0);
     const row = body[0];
     expect(row.textContent).toContain('Zagreb, Croatia');
     expect(row.textContent).toContain('Germany');

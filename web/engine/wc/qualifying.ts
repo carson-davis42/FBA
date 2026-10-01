@@ -85,7 +85,7 @@ export function startQualifying(
   return {
     ok: true,
     state: { calendar: input.calendar, rosters, qualifying },
-    changed: ['fbawc/rosters', 'fbawc/qualifying'],
+    changed: ['rosters', 'qualifying'],
     label: `Qualifying started: ${field.length} teams, ${schedule.length} games`,
   };
 }
@@ -104,7 +104,7 @@ export function playQualifyingGame(state: QualifyingState, rng: Rng): WcResult<Q
   return {
     ok: true,
     state: { ...state, qualifying: { ...q, games: [...q.games, game] } },
-    changed: ['fbawc/qualifying'],
+    changed: ['qualifying'],
     label: `Qualifying game ${next.gameNo}: ${next.home} ${game.homePts}-${game.awayPts} ${next.away}`,
   };
 }
@@ -124,7 +124,7 @@ export function finishQualifying(state: QualifyingState): WcResult<QualifyingSta
   return {
     ok: true,
     state: { ...state, calendar: markStepDone(state.calendar, qualifyingStepId(q.season)), qualifying: { ...q, advanced } },
-    changed: ['calendar', 'fbawc/qualifying'],
+    changed: ['calendar', 'qualifying'],
     label: `Qualifying finished: ${advanced.length} advance`,
   };
 }

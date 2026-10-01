@@ -71,7 +71,7 @@ export function Home() {
   if (error) return <p className="error">Couldn't load the calendar: {error.message}. Is the data server running?</p>;
   if (!cal) return <p className="muted">Loading…</p>;
 
-  const title = !step ? `Season ${cal.season} complete` : step.kind === 'league' && step.league ? `Play ${LEAGUE_LABEL[step.league]} S${cal.season}` : step.label;
+  const title = !step ? `Season ${cal.season} complete` : step.id.endsWith('-qualifying') ? `World Cup qualifying S${cal.season}` : step.kind === 'league' && step.league ? `Play ${LEAGUE_LABEL[step.league]} S${cal.season}` : step.label;
   const target = playoffs ?? (step ? stepTarget(step) : '/next-season');
 
   return (

@@ -1,14 +1,16 @@
 import type { ReactNode } from 'react';
 
 /** What a standings row has clinched, shown as a coloured bar on the rank cell (FotMob style) with a legend below. */
-export type ClinchKind = 'promoted' | 'relegated' | 'conference' | 'first' | 'playoff' | 'eliminated';
-type ClinchLeague = 'fba' | 'fbad2';
+export type ClinchKind = 'promoted' | 'relegated' | 'conference' | 'first' | 'playoff' | 'eliminated' | 'qualified' | 'advanced';
+type ClinchLeague = 'fba' | 'fbad2' | 'fbawc';
 
 /** Legend order. */
-const ORDER: ClinchKind[] = ['conference', 'first', 'playoff', 'promoted', 'relegated', 'eliminated'];
+const ORDER: ClinchKind[] = ['qualified', 'advanced', 'conference', 'first', 'playoff', 'promoted', 'relegated', 'eliminated'];
 
 export function clinchLabel(kind: ClinchKind, league: ClinchLeague): string {
   switch (kind) {
+    case 'qualified': return 'Qualified';
+    case 'advanced': return 'Advanced to knockouts';
     case 'promoted': return 'Promoted';
     case 'relegated': return 'Relegated';
     case 'conference': return 'Conference champion';

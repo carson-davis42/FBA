@@ -34,4 +34,13 @@ describe('clinch bars', () => {
     const { container } = render(<ClinchLegend kinds={[null, null]} league="fba" />);
     expect(container.innerHTML).toBe('');
   });
+
+  it('keys the World Cup states in order and labels the advanced bar', () => {
+    render(<ClinchLegend kinds={['eliminated', 'advanced', 'qualified']} league="fbawc" />);
+    expect(screen.getAllByRole('listitem').map(li => li.textContent)).toEqual(['Qualified', 'Advanced to knockouts', 'Eliminated']);
+    cleanup();
+    render(<table><tbody><tr><RankCell kind="advanced" league="fbawc">1</RankCell></tr></tbody></table>);
+    const bar = screen.getByRole('img', { name: 'Advanced to knockouts' });
+    expect(bar.closest('td')?.className).toContain('clinch-advanced');
+  });
 });

@@ -64,7 +64,7 @@ export function startWorldCup(
   return {
     ok: true,
     state: { calendar: input.calendar, rosters, worldCup },
-    changed: ['fbawc/rosters', 'fbawc/worldcup'],
+    changed: ['rosters', 'worldcup'],
     label: `World Cup drawn: ${field.length} teams in ${GROUP_IDS.length} groups, ${schedule.length} games`,
   };
 }
@@ -88,7 +88,7 @@ export function playGroupGame(state: WorldCupState, rng: Rng): WcResult<WorldCup
   return {
     ok: true,
     state: { ...state, worldCup: { ...wc, groupGames: [...wc.groupGames, game] } },
-    changed: ['fbawc/worldcup'],
+    changed: ['worldcup'],
     label: `Group game ${next.gameNo}: ${next.home} ${game.homePts}-${game.awayPts} ${next.away}`,
   };
 }
@@ -124,7 +124,7 @@ export function finishGroups(state: WorldCupState): WcResult<WorldCupState> {
   return {
     ok: true,
     state: { ...state, worldCup: { ...wc, knockout } },
-    changed: ['fbawc/worldcup'],
+    changed: ['worldcup'],
     label: `Group stage finished: ${knockout.filter(g => g.round === 'R32').length} round of 32 games set`,
   };
 }
@@ -158,7 +158,7 @@ export function playKnockoutGame(state: WorldCupState, rng: Rng): WcResult<World
   return {
     ok: true,
     state: { ...state, worldCup: { ...wc, knockout, champion, runnerUp } },
-    changed: ['fbawc/worldcup'],
+    changed: ['worldcup'],
     label: `${slot.id}: ${game.home} ${game.homePts}-${game.awayPts} ${game.away}`,
   };
 }

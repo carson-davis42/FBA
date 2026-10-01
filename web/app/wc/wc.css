@@ -1,0 +1,27 @@
+/* World Cup pages (qualifying and finals). Filled in as the pages are built. */
+.wc-page { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.wc-page > * { min-width: 0; }
+.wc-actions { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.wc-auto { display: flex; flex-wrap: wrap; gap: var(--s2); list-style: none; margin: 0; padding: 0; }
+.wc-auto li { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); }
+.wc-auto li.wc-host { border-color: var(--accent); }
+.wc-host-tag { color: var(--accent); font-weight: 700; font-size: var(--fs-sm); }
+tr.wc-cut td { border-bottom: 2px dashed var(--muted); }
+.wc-ties { margin: var(--s2) 0 0; padding-left: 18px; font-size: var(--fs-sm); }
+.wc-games { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 2px; font-variant-numeric: tabular-nums; }
+.wc-games li.wc-unplayed { color: var(--muted); opacity: 0.6; }
+.wc-group h3 { margin: 0 0 var(--s2); }
+.wc-group.wc-host-group { border-color: var(--accent); }
+.wc-group .wc-games { margin-top: var(--s2); font-size: var(--fs-sm); }
+.wc-teams { list-style: none; margin: 0; padding: 0; }
+.wc-team { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); }
+.wc-team-rating { font-variant-numeric: tabular-nums; font-weight: 700; }
+.wc-bracket { display: flex; gap: var(--s3, 16px); align-items: stretch; }
+.wc-round { display: flex; flex-direction: column; justify-content: space-around; gap: var(--s2); min-width: 150px; }
+.wc-round.wc-round-final { border: 2px solid var(--accent); border-radius: var(--r-sm); padding: 4px; }
+.wc-round h4 { margin: 0; font-size: var(--fs-sm); color: var(--muted); }
+.wc-match { padding: 6px 8px; display: grid; gap: 2px; }
+.wc-side { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); }
+.wc-side.wc-winner { font-weight: 700; }
+.wc-score { font-variant-numeric: tabular-nums; }
+.wc-champion { display: flex; align-items: center; gap: var(--s2); font-weight: 700; }
