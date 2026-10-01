@@ -1,0 +1,72 @@
+# p112 March Madness S77
+S77
+|Houston|32-0
+|Lehigh|21-11
+|Montana State|23-8
+|Syracuse|21-11
+|San Diego State|25-7
+|Wake Forest|23-8
+|Texas Southern|22-9
+|Mississippi State|23-9
+|Michigan State|29-3
+|St.Bonaventure|22-9
+|Utah State|20-11
+|Kansas|22-9
+|Missouri|21-10
+|Oregon|20-10
+|Columbia|21-11
+|Creighton|24-6
+|Tennessee|27-5
+|Richmond|19-14
+|George Mason|25-5
+|Stetson|25-7
+|North Carolina|23-7
+|Saint Mary's|23-9
+|Nebraska|23-9
+|Villanova|21-9
+|Texas|25-6
+|Harvard|21-11
+|Vanderbilt|24-7
+|Marquette|21-9
+|Loyola-Chicago|24-6
+|Belmont|22-8
+|Chattanooga|23-9
+|Arizona|25-6
+|UCLA|28-4
+|Weber State|18-14
+|Iowa State|22-10
+|Florida State|25-7
+|Kentucky|23-8
+|UAB|22-9
+|Florida|19-12
+|UConn|25-8
+|Colorado State|28-4
+|Indiana State|23-8
+|Arkansas|19-12
+|Indiana|25-6
+|St.John's|21-9
+|Baylor|19-11
+|Long Island|20-13
+|Gonzaga|28-4
+|Duke|27-5
+|North Texas|20-13
+|Auburn|19-12
+|Oregon State|21-11
+|Memphis|28-4
+|Dartmouth|22-9
+|Alabama|19-12
+|Nevada|25-6
+|Virginia|25-5
+|Delaware State|22-9
+|Wyoming|20-11
+|Xavier|24-9
+|Illinois|24-8
+|Cleveland State|26-6
+|SIU Edwardsville|23-9
+|Wichita State|31-1
+=Houston 104-62|Montana State 91-84|Wake Forest 99-92|Mississippi State 96-71|Michigan State 113-70|Kansas 101-81|Missouri 88-86|Creighton 95-94 2OT|Tennessee 84-69|George Mason 99-65|North Carolina 81-71|Villanova 103-70|Texas 98-76|Vanderbilt 86-81|Belmont 82-71|Arizona 97-60|UCLA 94-73|Iowa State 85-83|Kentucky 100-74|UConn 91-86|Indiana State 86-78|Indiana 101-90|Baylor 96-75|Gonzaga 95-59|Duke 91-71|Oregon State 99-80|Memphis 90-67|Nevada 104-69|Virginia 86-77|Xavier 86-61|Illinois 93-59|Wichita State 77-63
+=Houston 113-71|Mississippi State 93-88|Michigan State 102-95|Missouri 87-71|Tennessee 92-87|North Carolina 92-75|Texas 85-77|Arizona 96-67|UCLA 107-98|Kentucky 100-80|Indiana 109-70|Baylor 94-86|Duke 95-89|Memphis 91-65|Virginia 81-77|Wichita State 104-79
+=Mississippi State 91-77|Missouri 101-85|Tennessee 96-87|Texas 80-73|Kentucky 102-83|Baylor 82-81|Duke 95-91|Wichita State 90-71
+=Mississippi State 106-103|Texas 95-94|Baylor 76-71|Wichita State 102-99
+=Texas 100-99|Wichita State 96-87
+=Texas 83-79
