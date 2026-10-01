@@ -63,6 +63,16 @@ describe('D2RatingsPage', () => {
     expect((log.puts[0].doc as RankingFile).order).toEqual(['p00028']);
   });
 
+  it('stretches the suggestion ladder of a reset started with a shorter one', async () => {
+    const s = started();
+    const old = { ...takeRest(s.ratings!, id => d2Name(s, id)), curve: [94, 85, 80, 75, 75, 72, 70, 68] };
+    stubApi(docsFor({ ...s, ratings: old }));
+    renderPage();
+    await screen.findByRole('button', { name: 'Finish ratings' });
+    // 10 roster slots in the fixture: ranks 9 and 10 now have a suggestion too.
+    expect(screen.getAllByRole('button', { name: /^Use suggested/ })).toHaveLength(10);
+  });
+
   it('finishes as one batch that includes the calendar', async () => {
     const log = stubApi(docsFor(complete(started())));
     renderPage();

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { applyAllSuggestions, reserveBound, setRating, takeRest } from '../rank/ranking';
 import { RankingFile } from '../shared/types';
-import { buildRankingRows, d2Curve, finishRatings, stretchCurve, membershipBlockers, parseRatingInput, ratingsBlockers, startRatings } from './ratings';
+import { buildRankingRows, d2Curve, finishRatings, stretchCurve, stretchedRatings, membershipBlockers, parseRatingInput, ratingsBlockers, startRatings } from './ratings';
 import { d2Name, type D2Result, type D2State } from './state';
 import { d2BaseState, d2RatedState } from './testFixtures';
 
@@ -73,6 +73,25 @@ describe('stretchCurve', () => {
     expect(stretchCurve([90, 80, 70], 2)).toEqual([90, 80, 70]);
     expect(stretchCurve([90], 5)).toEqual([90]);
     expect(stretchCurve([], 5)).toEqual([]);
+  });
+});
+
+describe('stretchedRatings', () => {
+  const doc = (locked: boolean, curve: number[]): RankingFile => ({ ...prevFile({}, locked), curve });
+
+  it("stretches a reset started before the stretch existed, to the D2's roster slots", () => {
+    const s = d2BaseState();
+    const out = stretchedRatings(s.d2, doc(false, [94, 85, 80, 75, 75, 72, 70, 68]));
+    expect(out.curve).toEqual([94, 87, 82, 78, 75, 75, 73, 71, 70, 68]);
+    expect(stretchedRatings(s.d2, out)).toBe(out);
+  });
+
+  it('leaves a finished reset, and a long enough ladder, alone', () => {
+    const s = d2BaseState();
+    const done = doc(true, [94, 85, 80]);
+    expect(stretchedRatings(s.d2, done)).toBe(done);
+    const long = doc(false, Array.from({ length: 10 }, (_, i) => 90 - i));
+    expect(stretchedRatings(s.d2, long)).toBe(long);
   });
 });
 

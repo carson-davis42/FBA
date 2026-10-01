@@ -1,7 +1,7 @@
 import { rankingBlockers, reserveBound, suggestionsTaken } from '../rank/ranking';
 import { appendTx, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
-import type { RankingFile, RankingRow } from '../shared/types';
+import type { RankingFile, RankingRow, RostersFile } from '../shared/types';
 import { POOL_CUTOFF } from './pool';
 import { d2Fail, d2Name, poolMembers, type D2Result, type D2State } from './state';
 
@@ -57,12 +57,22 @@ export function stretchCurve(curve: number[], slots: number): number[] {
   });
 }
 
+/** The D2 roster slots (teams × positions): how many ranks the suggestion ladder should reach. */
+const rosterSlots = (d2: RostersFile): number => Object.values(d2.teams).reduce((n, t) => n + t.length, 0);
+
+/** An unfinished reset saved before the ladder was stretched gets the stretch too; anything else is returned as is. */
+export function stretchedRatings(d2: RostersFile, doc: RankingFile): RankingFile {
+  if (doc.locked) return doc;
+  const curve = stretchCurve(doc.curve, rosterSlots(d2));
+  return curve === doc.curve ? doc : { ...doc, curve };
+}
+
 export function startRatings(state: D2State): D2Result {
   if (!state.freeAgencyClosed) return d2Fail(['Close free agency first']);
   if (state.ratings) return d2Fail(['The ratings reset has already started']);
   const rows = buildRankingRows(state);
   const ratings: RankingFile = {
-    league: 'fbad2', season: state.season, kind: 'd2-reset', locked: false, rows, order: [], ratings: {}, curve: stretchCurve(d2Curve(state.prevRatings, rows), Object.values(state.d2.teams).reduce((n, t) => n + t.length, 0)),
+    league: 'fbad2', season: state.season, kind: 'd2-reset', locked: false, rows, order: [], ratings: {}, curve: stretchCurve(d2Curve(state.prevRatings, rows), rosterSlots(state.d2)),
   };
   return { ok: true, state: { ...state, ratings }, changed: ['ratings'], label: 'Start D2 ratings reset' };
 }
