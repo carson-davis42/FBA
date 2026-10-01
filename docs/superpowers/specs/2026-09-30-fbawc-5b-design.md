@@ -37,7 +37,7 @@ Every random choice uses an injected `Rng`. Moves return `{ ok: true, state, cha
 - `leagues/fbawc/S<n>/rosters.json`: the existing `RostersFile` (S79 = qualifying rosters, S80 = World Cup rosters). Generated entries have `playerId: null`.
 - `leagues/fbawc/S<odd>/qualifying.json`: `league, season, host, auto[], field[70], schedule[{gameNo, home, away}], keys{teamId: number}, games: GameResult[], advanced[]` (empty until finished).
 - `leagues/fbawc/S<even>/worldcup.json`: `league, season, host, field[64], groups{A..P: [4]}, pots, schedule[], groupGames: GameResult[], knockout: rounds of {id, home, away, game: GameResult | null}[], champion, runnerUp`.
-- On completion the World Cup writes `S<even>/summary.json` (existing `SummaryFile`, with champion/runner-up and host). The Tournament MVP is added by 5c.
+- `S<even>/summary.json` (existing `SummaryFile`, champion/runner-up/host, plus the Tournament MVP) is written by 5c, when the MVP is picked. 5b ends with `champion` and `runnerUp` in `worldcup.json`.
 - `pathAgreementProblem` already checks league and season against the path.
 
 ## 5. Calendar
