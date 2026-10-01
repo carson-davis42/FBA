@@ -1,4 +1,4 @@
-import type { CalendarFile, JcRankingsFile, JcScheduleFile, PlayersFile, RecruitingFile, ResultsFile, RostersFile, SummaryFile, TeamsFile } from '../shared/types';
+import type { CalendarFile, JcAwardsFile, JcPostseasonFile, JcRankingsFile, JcScheduleFile, PlayersFile, RecruitingFile, ResultsFile, RostersFile, SummaryFile, TeamsFile } from '../shared/types';
 
 export const DAYS = 29;
 export const TEAMS_PER_DAY = 108;
@@ -12,12 +12,14 @@ export interface JcState {
   schedule: JcScheduleFile | null;
   results: ResultsFile | null;
   rankings: JcRankingsFile | null;
+  postseason: JcPostseasonFile | null;
+  awards: JcAwardsFile | null;
   summary: SummaryFile | null;
   /** The recruiting board of the class that plays this season (null when it doesn't exist). */
   board: RecruitingFile | null;
 }
 
-export type JcKey = 'rosters' | 'schedule' | 'results' | 'rankings';
+export type JcKey = 'rosters' | 'schedule' | 'results' | 'rankings' | 'postseason' | 'awards' | 'summary';
 export type JcResult = { ok: true; state: JcState; changed: JcKey[]; label: string } | { ok: false; problems: string[] };
 export const jcFail = (problems: string[]): { ok: false; problems: string[] } => ({ ok: false, problems });
 

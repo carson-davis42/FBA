@@ -1,4 +1,4 @@
-import type { CalendarFile, JcRankingsFile, JcScheduleFile, PlayersFile, RecruitingFile, ResultsFile, RostersFile, SummaryFile, TeamsFile } from '../../engine/shared/types';
+import type { CalendarFile, JcAwardsFile, JcPostseasonFile, JcRankingsFile, JcScheduleFile, PlayersFile, RecruitingFile, ResultsFile, RostersFile, SummaryFile, TeamsFile } from '../../engine/shared/types';
 import { boardPath } from '../../engine/college/state';
 import { jcDocPath, type JcState } from '../../engine/jc/state';
 import { docSettled, useDoc, type Versions } from '../api';
@@ -26,10 +26,12 @@ export function useJcDocs(season: number | null): JcDocs {
   const schedule = useDoc<JcScheduleFile>(on ? path('schedule.json') : null);
   const results = useDoc<ResultsFile>(on ? path('results.json') : null);
   const rankings = useDoc<JcRankingsFile>(on ? path('rankings.json') : null);
+  const postseason = useDoc<JcPostseasonFile>(on ? path('postseason.json') : null);
+  const awards = useDoc<JcAwardsFile>(on ? path('awards.json') : null);
   const summary = useDoc<SummaryFile>(on ? path('summary.json') : null);
   const board = useDoc<RecruitingFile>(on ? boardPath(s - 1) : null);
   const previous = useDoc<SummaryFile>(on ? `leagues/fbajc/S${s - 1}/summary.json` : null);
-  const all = [calendar, teams, players, rosters, schedule, results, rankings, summary, board, previous];
+  const all = [calendar, teams, players, rosters, schedule, results, rankings, postseason, awards, summary, board, previous];
 
   const reload = (): void => { for (const d of all) d.reload(); };
 
@@ -39,6 +41,9 @@ export function useJcDocs(season: number | null): JcDocs {
     versions[jcDocPath('schedule', s)] = schedule.version;
     versions[jcDocPath('results', s)] = results.version;
     versions[jcDocPath('rankings', s)] = rankings.version;
+    versions[jcDocPath('postseason', s)] = postseason.version;
+    versions[jcDocPath('awards', s)] = awards.version;
+    versions[jcDocPath('summary', s)] = summary.version;
   }
 
   const failed = all.find(d => d.error && !d.missing)?.error;
@@ -61,6 +66,8 @@ export function useJcDocs(season: number | null): JcDocs {
         schedule: schedule.data ?? null,
         results: results.data ?? null,
         rankings: rankings.data ?? null,
+        postseason: postseason.data ?? null,
+        awards: awards.data ?? null,
         summary: summary.data ?? null,
         board: board.data ?? null,
       }

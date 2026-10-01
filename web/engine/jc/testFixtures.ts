@@ -2,6 +2,7 @@ import { mulberry32, type Rng } from '../d2/random';
 import type { JcScheduleFile, RosterEntry } from '../shared/types';
 import { challengeSets, conferenceDays } from './schedule';
 import type { JcState } from './state';
+import { playToEnd } from './play';
 import { dayGames, makeFields } from './tournaments';
 
 const POS = ['PG', 'SG', 'SF', 'PF', 'C'] as const;
@@ -54,6 +55,8 @@ export function jcStateFixture(seed = 7, season = 79): JcState {
     schedule: { league: 'fbajc', season, locked: false, tournaments: fields.map(f => ({ id: f.id, name: f.name, teams: f.teams })), days, drawKeys },
     results: { league: 'fbajc', season, locked: false, games: [] },
     rankings: { league: 'fbajc', season, locked: false, snapshots: [] },
+    postseason: null,
+    awards: null,
     summary: null,
     board: null,
   };
@@ -65,4 +68,11 @@ export function jcUnstartedFixture(seed = 7, season = 79): JcState {
   const players: JcState['players']['players'] = {};
   for (const [id, p] of Object.entries(s.players.players)) players[id] = { ...p, name: null };
   return { ...s, players: { ...s.players, players }, schedule: null, results: null, rankings: null };
+}
+
+/** A season whose 3132 regular-season games are all played (slow: about 10 seconds; build it once per test file). */
+export function jcPlayedFixture(seed = 7, season = 79): JcState {
+  const r = playToEnd(jcStateFixture(seed, season), mulberry32(seed + 100));
+  if (!r.ok) throw new Error(r.problems.join());
+  return r.state;
 }

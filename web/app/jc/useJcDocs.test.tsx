@@ -96,3 +96,15 @@ describe('useJcRun', () => {
     expect(posts).toHaveLength(0);
   });
 });
+
+describe('useJcDocs postseason docs', () => {
+  it('loads the postseason and awards docs, null with null versions when absent', async () => {
+    const { result } = renderHook(() => useJcDocs(79));
+    await waitFor(() => expect(result.current.loading).toBe(false));
+    expect(result.current.state?.postseason).toBeNull();
+    expect(result.current.state?.awards).toBeNull();
+    expect(result.current.versions['leagues/fbajc/S79/postseason.json']).toBeNull();
+    expect(result.current.versions['leagues/fbajc/S79/awards.json']).toBeNull();
+    expect(result.current.versions['leagues/fbajc/S79/summary.json']).toBeNull();
+  });
+});
