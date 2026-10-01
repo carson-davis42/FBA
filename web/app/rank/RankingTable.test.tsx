@@ -137,6 +137,82 @@ describe('RankingTable', () => {
     expect(box('Ben Cole').value).toBe('85');
   });
 
+  describe('split view', () => {
+    const EXISTING = ['Ben Cole', 'Ada Stone', 'Cal Reyes'];
+    const NEW = ['Finn Lowe', 'Dev Hart', 'Eli Park'];
+    const toggle = () => screen.queryByRole('button', { name: 'Split view' });
+    const names = (table: string) => within(screen.getByRole('table', { name: table })).queryAllByRole('button').map(b => b.textContent);
+    const allExisting = () => rankingDoc({ rows: rankingDoc().rows.filter(r => r.prevRating !== null) });
+    const allNew = () => rankingDoc({ rows: rankingDoc().rows.filter(r => r.prevRating === null) });
+
+    it('offers the toggle only when there are both existing and new players', () => {
+      render(<Harness initial={allExisting()} />);
+      expect(toggle()).toBeNull();
+      cleanup();
+      render(<Harness initial={allNew()} />);
+      expect(toggle()).toBeNull();
+      cleanup();
+      render(<Harness initial={rankingDoc()} />);
+      expect((toggle() as HTMLElement).getAttribute('aria-pressed')).toBe('false');
+    });
+
+    it('is off by default and keeps the New divider', () => {
+      render(<Harness initial={rankingDoc()} />);
+      expect(within(screen.getByRole('table', { name: "Last season's order" })).getByText('New')).toBeTruthy();
+      expect(screen.queryByRole('heading', { name: 'New players · 3' })).toBeNull();
+    });
+
+    it('shows three columns and moves clicked players into the ranking', () => {
+      render(<Harness initial={rankingDoc()} />);
+      fireEvent.click(toggle()!);
+      expect(toggle()!.getAttribute('aria-pressed')).toBe('true');
+      for (const h of ['Already in the league · 3', 'New players · 3', 'New ranking · 0']) expect(screen.getByRole('heading', { name: h })).toBeTruthy();
+      expect(within(screen.getByRole('table', { name: 'Already in the league' })).queryByText('New')).toBeNull();
+      expect(names('Already in the league')).toEqual(EXISTING);
+      expect(names('New players')).toEqual(NEW);
+      fireEvent.click(screen.getByRole('button', { name: 'Rank Ada Stone next' }));
+      expect(screen.getByRole('heading', { name: 'Already in the league · 2' })).toBeTruthy();
+      fireEvent.click(screen.getByRole('button', { name: 'Rank Dev Hart next' }));
+      expect(screen.getByRole('heading', { name: 'New players · 2' })).toBeTruthy();
+      expect(screen.getByRole('heading', { name: 'New ranking · 2' })).toBeTruthy();
+      expect(rightNames()).toEqual(['Ada Stone', 'Dev Hart']);
+    });
+
+    it('takes the rest of one list only', () => {
+      render(<Harness initial={rankingDoc()} />);
+      fireEvent.click(toggle()!);
+      const rest = () => screen.getAllByRole('button', { name: 'Take the rest in order' });
+      expect(rest()).toHaveLength(2);
+      fireEvent.click(rest()[1]);
+      expect(rightNames()).toEqual(NEW);
+      expect(names('Already in the league')).toEqual(EXISTING);
+      expect(screen.getByRole('heading', { name: 'New players · 0' })).toBeTruthy();
+      expect(rest()).toHaveLength(1);
+      fireEvent.click(rest()[0]);
+      expect(rightNames()).toEqual([...NEW, ...EXISTING]);
+      expect(screen.queryByRole('button', { name: 'Take the rest in order' })).toBeNull();
+    });
+
+    it('takes the existing list alone too', () => {
+      render(<Harness initial={rankingDoc()} />);
+      fireEvent.click(toggle()!);
+      fireEvent.click(screen.getAllByRole('button', { name: 'Take the rest in order' })[0]);
+      expect(rightNames()).toEqual(EXISTING);
+      expect(names('New players')).toEqual(NEW);
+    });
+
+    it('applies the position filter to both lists', () => {
+      render(<Harness initial={rankingDoc()} />);
+      fireEvent.click(toggle()!);
+      fireEvent.click(screen.getByRole('button', { name: 'C' }));
+      expect(names('Already in the league')).toEqual([]);
+      expect(names('New players')).toEqual(['Finn Lowe']);
+      fireEvent.click(screen.getByRole('button', { name: 'SG' }));
+      expect(names('Already in the league')).toEqual(['Ben Cole']);
+      expect(names('New players')).toEqual([]);
+    });
+  });
+
   describe('with a consensus column', () => {
     const classDoc = (patch: Partial<RankingFile> = {}) => rankingDoc({
       kind: 'college-class', order: ALL, ratings: IN_ORDER, consensusCurve: [98.8, 91, 79.5], consensus: {}, ...patch,

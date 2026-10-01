@@ -74,7 +74,53 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   const flagged = outOfOrder(doc);
   const blockers = [...rankingBlockers(doc, name), ...extraBlockers];
   const prev = (r: RankingRow) => r.prevRating ?? (r.otherRating !== null ? <span className="muted">{otherLabel} {r.otherRating}</span> : '—');
+  const existing = left.filter(r => r.prevRating !== null);
+  const fresh = left.filter(r => r.prevRating === null);
+  const [split, setSplit] = useState(false);
+  // Offered while both groups exist; once switched on it stays on, even if a list empties.
+  const canSplit = split || (existing.length > 0 && fresh.length > 0);
   let dividerShown = false;
+
+  const leftTable = (rows: RankingRow[], label: string, divide: boolean) => (
+    <div className="table-wrap">
+      <table className="stat-table rank-table" aria-label={label}>
+        <thead>
+          <tr><th className="rank">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th><th>Stat</th></tr>
+        </thead>
+        <tbody>
+          {rows.map((r, i) => {
+            if (!shown(r)) return null;
+            const divider = divide && r.prevRating === null && !dividerShown;
+            if (divider) dividerShown = true;
+            return (
+              <Fragment key={r.playerId}>
+                {divider && <tr className="rank-divider"><td colSpan={7}>New</td></tr>}
+                <tr className={locked ? undefined : 'rank-take'} onClick={locked ? undefined : () => onChange(cur => take(cur, r.playerId))}>
+                  <td className="rank">{i + 1}</td>
+                  <td>
+                    <button type="button" className="rank-name" disabled={locked} aria-label={`Rank ${name(r.playerId)} next`}>{name(r.playerId)}</button>
+                  </td>
+                  <td>{r.position}</td>
+                  <td className="n">{r.age ?? '—'}</td>
+                  <td>{teamLabel(r.team, r)}</td>
+                  <td className="n">{prev(r)}</td>
+                  <td>{r.stat ?? ''}</td>
+                </tr>
+              </Fragment>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+  const leftHead = (title: string, rows: RankingRow[], only?: (r: RankingRow) => boolean) => (
+    <div className="toolbar rank-head">
+      <h3>{title} · {rows.length}</h3>
+      {!locked && rows.length > 0 && (
+        <button type="button" className="btn" onClick={() => onChange(cur => takeRest(cur, name, only))}>Take the rest in order</button>
+      )}
+    </div>
+  );
 
   return (
     <div className="rank stack">
@@ -84,46 +130,28 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
             {f === 'ALL' ? 'All' : f}
           </button>
         ))}
+        {canSplit && (
+          <button type="button" className={`chip${split ? ' on' : ''}`} aria-pressed={split} onClick={() => setSplit(v => !v)}>Split view</button>
+        )}
       </div>
-      <div className="rank-cols">
-        <div className="rank-col card">
-          <div className="toolbar rank-head">
-            <h3>{leftLabel} · {left.length}</h3>
-            {!locked && left.length > 0 && (
-              <button type="button" className="btn" onClick={() => onChange(cur => takeRest(cur, name))}>Take the rest in order</button>
-            )}
+      <div className={`rank-cols${split ? ' split' : ''}`}>
+        {split ? (
+          <>
+            <div className="rank-col card">
+              {leftHead('Already in the league', existing, r => r.prevRating !== null)}
+              {leftTable(existing, 'Already in the league', false)}
+            </div>
+            <div className="rank-col card">
+              {leftHead('New players', fresh, r => r.prevRating === null)}
+              {leftTable(fresh, 'New players', false)}
+            </div>
+          </>
+        ) : (
+          <div className="rank-col card">
+            {leftHead(leftLabel, left)}
+            {leftTable(left, leftLabel, true)}
           </div>
-          <div className="table-wrap">
-            <table className="stat-table rank-table" aria-label={leftLabel}>
-              <thead>
-                <tr><th className="rank">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th><th>Stat</th></tr>
-              </thead>
-              <tbody>
-                {left.map((r, i) => {
-                  if (!shown(r)) return null;
-                  const divider = r.prevRating === null && !dividerShown;
-                  if (divider) dividerShown = true;
-                  return (
-                    <Fragment key={r.playerId}>
-                      {divider && <tr className="rank-divider"><td colSpan={7}>New</td></tr>}
-                      <tr className={locked ? undefined : 'rank-take'} onClick={locked ? undefined : () => onChange(cur => take(cur, r.playerId))}>
-                        <td className="rank">{i + 1}</td>
-                        <td>
-                          <button type="button" className="rank-name" disabled={locked} aria-label={`Rank ${name(r.playerId)} next`}>{name(r.playerId)}</button>
-                        </td>
-                        <td>{r.position}</td>
-                        <td className="n">{r.age ?? '—'}</td>
-                        <td>{teamLabel(r.team, r)}</td>
-                        <td className="n">{prev(r)}</td>
-                        <td>{r.stat ?? ''}</td>
-                      </tr>
-                    </Fragment>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        )}
         <div className="rank-col card">
           <div className="toolbar rank-head">
             <h3>New ranking · {doc.order.length}</h3>
