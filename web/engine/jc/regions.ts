@@ -119,3 +119,42 @@ export function buildMarchMadness(regions: string[][], seeds: Record<string, num
   games.push({ id: 'NC', round: 6, ...open, next: null });
   return buildBracket('MM', 'mm', 'March Madness', games);
 }
+
+/** Region game index (0-7 first round, 8-11, 12-13, 14) is not used here: the NIT has 15 games per region, numbered like `NIT.java`'s 0-30. */
+const NIT_TOP = [0, 8, 4, 12, 1, 9, 5, 13];
+const NIT_BOTTOM = [15, 7, 11, 3, 14, 6, 10, 2];
+
+/**
+ * The 31-game NIT bracket from the 32 teams in seed order (`NIT.java` makeBracket and advanceWinner): team index 2i goes to region 1
+ * with seed i + 1, index 2i + 1 to region 2. Ids N1..N31 (Java game number + 1).
+ */
+export function buildNit(teams: string[]): Bracket {
+  if (teams.length !== 32) throw new Error('The NIT field must have 32 teams');
+  const regions: string[][] = [[], []];
+  teams.forEach((t, i) => regions[i % 2].push(t));
+  const games: NewGame[] = [];
+  const region = (g: number): number => {
+    if (g < 16) return g < 8 ? 0 : 1;
+    if (g < 24) return g < 20 ? 0 : 1;
+    if (g < 28) return g < 26 ? 0 : 1;
+    return g === 28 ? 0 : 1;
+  };
+  for (let g = 0; g < 31; g++) {
+    const r = region(g);
+    const first = g < 16;
+    const k = g % 8;
+    const home = first ? regions[r][NIT_TOP[k]] : null;
+    const away = first ? regions[r][NIT_BOTTOM[k]] : null;
+    const next = g === 30 ? null
+      : g < 16 ? { id: `N${16 + Math.floor(g / 2) + 1}`, side: (g % 2 === 0 ? 'home' : 'away') as 'home' | 'away' }
+      : g < 24 ? { id: `N${24 + Math.floor((g - 16) / 2) + 1}`, side: ((g - 16) % 2 === 0 ? 'home' : 'away') as 'home' | 'away' }
+      : g < 28 ? { id: `N${28 + Math.floor((g - 24) / 2) + 1}`, side: ((g - 24) % 2 === 0 ? 'home' : 'away') as 'home' | 'away' }
+      : { id: 'N31', side: (g === 28 ? 'home' : 'away') as 'home' | 'away' };
+    const round = g < 16 ? 1 : g < 24 ? 2 : g < 28 ? 3 : g < 30 ? 4 : 5;
+    games.push({
+      id: `N${g + 1}`, round, region: r, home, away,
+      homeSeed: home ? regions[r].indexOf(home) + 1 : null, awaySeed: away ? regions[r].indexOf(away) + 1 : null, next,
+    });
+  }
+  return buildBracket('NIT', 'nit', 'NIT', games);
+}

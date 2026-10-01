@@ -42,3 +42,23 @@ export function selectMarchMadness(ranking: string[], champions: string[], confO
   }
   return { field, leftover: left };
 }
+
+/**
+ * The NIT field: every regular-season champion (co-champions included) that missed March Madness comes first, then the best of
+ * the rest by ranking, 32 in all. `leftover` is the ranked list after the March Madness teams were taken. The result is in ranking order.
+ */
+export function selectNit(leftover: string[], rsChampions: string[]): { teams: string[]; warnings: string[] } {
+  const champs = new Set(rsChampions);
+  const guaranteed = leftover.filter(t => champs.has(t));
+  const warnings: string[] = [];
+  let picked: string[];
+  if (guaranteed.length > 32) {
+    picked = guaranteed.slice(0, 32);
+    warnings.push(`${guaranteed.length} regular-season champions missed March Madness; only the best 32 by ranking get an NIT place`);
+  } else {
+    const rest = leftover.filter(t => !champs.has(t)).slice(0, 32 - guaranteed.length);
+    picked = [...guaranteed, ...rest];
+  }
+  const keep = new Set(picked);
+  return { teams: leftover.filter(t => keep.has(t)), warnings };
+}
