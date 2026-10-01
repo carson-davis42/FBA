@@ -25,7 +25,7 @@ export function QualifyingPage() {
 
   if (season === null) return <section className="wc-page"><PageHeader kicker="World Cup" title="Qualifying" /></section>;
   if (season % 2 === 0) {
-    return <section className="wc-page"><PageHeader kicker="World Cup" title={`S${season} Qualifying`} /><p className="muted">Qualifying runs in odd seasons. The World Cup itself is this season.</p></section>;
+    return <section className="wc-page"><PageHeader kicker="World Cup" title="Qualifying" /><p className="muted">Qualifying runs in odd seasons; the next is S{season + 1}. The World Cup itself is this season.</p></section>;
   }
   if (docs.error) return <section className="wc-page"><PageHeader kicker="World Cup" title={`S${season} Qualifying`} /><p className="error">{docs.error.message}</p></section>;
   if (!docs.ready || !docs.calendar || !docs.teams) return <section className="wc-page"><PageHeader kicker="World Cup" title={`S${season} Qualifying`} /><p className="muted">Loading...</p></section>;

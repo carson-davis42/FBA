@@ -121,4 +121,14 @@ describe('WorldCupPage', () => {
     fireEvent.click(screen.getByRole('tab', { name: 'Teams' }));
     await waitFor(() => expect(container.querySelectorAll('.wc-team').length).toBe(64));
   });
+
+  it('in an odd season shows the next World Cup with its host and a qualifying link', async () => {
+    const docs = docsFor(null);
+    docs['meta.json'] = { currentSeason: 79, rosterSeason: { fba: 79, fbad2: 79, fbajc: 79, fbawc: 78 }, lastSeason: { fba: 78, fbad2: 78, fbajc: 78, fbawc: 78 } };
+    mount(docs);
+    expect(await screen.findByText('S80 World Cup')).toBeTruthy();
+    expect(screen.queryByText('S79 World Cup')).toBeNull();
+    expect(await screen.findByText(/Host: Rome, Italy/)).toBeTruthy();
+    expect(screen.getByRole('link', { name: /qualifying/i }).getAttribute('href')).toBe('/league/fbawc/qualifying');
+  });
 });

@@ -138,5 +138,7 @@ describe('QualifyingPage', () => {
     docs['meta.json'] = { currentSeason: 80, rosterSeason: { fba: 80, fbad2: 80, fbajc: 80, fbawc: 79 }, lastSeason: { fba: 79, fbad2: 79, fbajc: 79, fbawc: 79 } };
     mount(docs);
     expect(await screen.findByText(/Qualifying runs in odd seasons/)).toBeTruthy();
+    expect(screen.queryByText('S80 Qualifying')).toBeNull();
+    expect(screen.getByText(/next is S81/)).toBeTruthy();
   });
 });

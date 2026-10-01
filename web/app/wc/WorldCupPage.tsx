@@ -1,6 +1,6 @@
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { mulberry32 } from '../../engine/d2/random';
-import type { MetaFile, Team } from '../../engine/shared/types';
+import type { MetaFile, Team, WcHostsFile } from '../../engine/shared/types';
 import { calendarProblem } from '../../engine/season/moves';
 import { worldCupStepId } from '../../engine/wc/state';
 import { wcWrites } from '../../engine/wc/writes';
@@ -23,11 +23,22 @@ export function WorldCupPage() {
   const season = meta.data?.currentSeason ?? null;
   const docs = useWcDocs(season !== null && season % 2 === 0 ? season : null);
   const { saving, error, run } = useWcRun(docs.versions, docs.reload);
+  const nextHosts = useDoc<WcHostsFile>(season !== null && season % 2 !== 0 ? 'leagues/fbawc/hosts.json' : null);
   const [params, setParams] = useSearchParams();
 
   const head = (title: string) => <PageHeader kicker="World Cup" title={title} />;
   if (season === null) return <section className="wc-page">{head('World Cup')}</section>;
-  if (season % 2 !== 0) return <section className="wc-page">{head(`S${season} World Cup`)}<p className="muted">The World Cup is played in even seasons. This season is qualifying.</p></section>;
+  if (season % 2 !== 0) {
+    const next = season + 1;
+    const nextHost = nextHosts.data?.hosts.find(h => h.season === next);
+    return (
+      <section className="wc-page">
+        {head(`S${next} World Cup`)}
+        {nextHost && <p className="muted">Host: {nextHost.city}, {nextHost.country}</p>}
+        <p className="muted">The World Cup is played in even seasons, after qualifying. This season is <Link to="/league/fbawc/qualifying">qualifying</Link>.</p>
+      </section>
+    );
+  }
   if (docs.error) return <section className="wc-page">{head(`S${season} World Cup`)}<p className="error">{docs.error.message}</p></section>;
   if (!docs.ready || !docs.calendar || !docs.teams) return <section className="wc-page">{head(`S${season} World Cup`)}<p className="muted">Loading...</p></section>;
 
