@@ -8,12 +8,13 @@ From the end of day 29 to the finished `fbajc` calendar step:
 
 1. Conference tournaments (18 conferences, 11 games each).
 2. The March Madness and NIT fields, with a commissioner review before play.
-3. March Madness (63 games) and the NIT (31 games).
-4. C-Ship MVP pick.
-5. Awards: live races, picks and storage.
-6. The season summary, which finishes the `fbajc` step.
+3. **Awards**: live races and picks, made after the fields are set and before any NIT or March Madness game.
+4. The **NIT** (31 games), then **March Madness** (63 games).
+5. **All-American teams**, picked after both tournaments.
+6. C-Ship MVP pick.
+7. The season summary, which finishes the `fbajc` step.
 
-The Java order is conference tournaments → March Madness → NIT. The web app keeps it.
+**Changed:** the Java plays March Madness before the NIT. The web app plays the NIT first, then March Madness.
 
 ## 2. Rules
 
@@ -53,13 +54,22 @@ A regular-season champion that is already in March Madness is in March Madness (
 - March Madness: 6 rounds (R64, R32, Sweet 16, Elite 8, Final Four, Championship), 63 games, no byes. NIT: 5 rounds, 31 games.
 - **Ratings do not change** in March Madness or NIT games (part-6 spec). Player points are recorded.
 - Single game live (the 6a live page pattern), "Play round", and "Play all of March Madness / NIT" (in-memory, one save).
-- Both tournaments can be played in any order; the Java plays March Madness first. The step finishes when both have a champion.
+- **Order (changed from the Java):** the NIT is played first, then March Madness. March Madness cannot start until the NIT has a champion, and the NIT cannot start until the awards are picked (2.7). The step finishes when both have a champion, the All-American teams are picked and the summary is saved.
 
 ### 2.6 C-Ship MVP
 After the title game the commissioner picks the C-Ship MVP from the **champion's roster**, listed by March Madness points per game; X (unnamed) players are allowed, so the pick may be stored as a name (`mvpName`, like the World Cup Tournament MVP).
 
 ### 2.7 Awards
-Same pattern as the FBA awards page. Live races with the Java's score (0.40 × scaled PPG + 0.35 × scaled rating + 0.25 × team success; softmax temperature 8 over the top 8; American odds): Trae York POY, Angelo Farrell Freshman, Rhett Blackwell Guard, Jacob Peters Forward, Dustin Holloway Center and one POY per conference (18). Races count regular-season and conference-tournament games; March Madness and NIT games count for team success only after they're played. The commissioner picks each winner at season end; X players may win. Winners are stored in the summary.
+Same pattern as the FBA awards page. Live races with the Java's score (0.40 × scaled PPG + 0.35 × scaled rating + 0.25 × team success; softmax temperature 8 over the top 8; American odds): Trae York POY, Angelo Farrell Freshman, Rhett Blackwell Guard, Jacob Peters Forward, Dustin Holloway Center and one POY per conference (18).
+
+- **When:** picked after the conference tournaments and the field review, **before the NIT and March Madness**. The races count the regular season and the conference tournaments only; no NIT or March Madness games exist yet.
+- The commissioner picks each winner (races and odds are shown); X players may win. Winners are stored in the summary.
+- The NIT cannot start until every award has a winner.
+
+### 2.8 All-American teams
+**Changed (new):** picked after the NIT and March Madness. Format G/F/C/ANY/ANY (rule change S71): each team has one guard, one forward, one center and two players of any position. Candidates are listed by season points per game, rating and position, with March Madness or NIT points shown. X players may be picked.
+
+The number of teams (first team only, or first, second and third) is not in the Java or the rule history: see §6.
 
 ## 3. Data
 
@@ -68,7 +78,7 @@ New and changed documents under `leagues/fbajc/S<n>/` (strict zod in `engine/sha
 | Document | Contents |
 |---|---|
 | `postseason.json` | `confTournaments` (18: seeds, games, champion), `field` (March Madness 64 in field order with seeds and regions; NIT 32 with regions), `mm` and `nit` brackets with games, `outcome` (champion, runner-up, C-Ship MVP) |
-| `summary.json` | the existing `SummaryFile`, extended with the FBAJC fields: conference champions (tournament and regular season, 18 each, co-champions allowed), national awards, conference POYs, `pastBracket` |
+| `summary.json` | the existing `SummaryFile`, extended with the FBAJC fields: conference champions (tournament and regular season, 18 each, co-champions allowed), national awards, conference POYs, All-American teams, `pastBracket` |
 
 - Postseason game box scores live in `postseason.json` so that standings and the regular-season record stay untouched; per-player postseason points are summed from there.
 - `SummaryFile.confChampions` is E/W only; the FBAJC fields get their own optional keys (`jc`). `web/data.test.ts` must keep passing.
@@ -78,19 +88,23 @@ New and changed documents under `leagues/fbajc/S<n>/` (strict zod in `engine/sha
 
 - FBAJC Scores page gains the postseason after day 29: a "Conference tournaments" stage with a Play round / Play all button.
 - New **Postseason** section: Conference Tournaments (18 brackets, tabs by conference), March Madness (region tabs + Final Four, reusing the bracket styles), NIT, and a **Field** panel (review and swap before the first game).
-- New **Awards** page for the league (races, picks).
+- New **Awards** page for the league: races and picks before the NIT; the All-American picker after March Madness.
 - Standings tables gain the `champion` clinch kind for the regular-season title (6a) and a **bid** kind: MM bid, NIT bid (the tournaments' own bars).
-- C-Ship MVP card on the March Madness page after the title game; a Finish season card finishes the `fbajc` step through `fbajcGateProblem`/the calendar's `markStepDone`, as the FBA/D2 wrap-up does (`engine/season/wrapUp.ts`).
+- NIT and March Madness pages, in play order. C-Ship MVP card on the March Madness page after the title game; a Finish season card finishes the `fbajc` step through `fbajcGateProblem`/the calendar's `markStepDone`, as the FBA/D2 wrap-up does (`engine/season/wrapUp.ts`).
 - Calendar wiring: the step stays open until the summary exists; `stepRoutes.ts` still opens Scores.
 - Roster locks are already decided by `engine/season/locks.ts`; the college rosters don't change in the postseason.
 
 ## 5. Out of scope
-History importers and brackets (6c), the S80 college rollover (the existing wrap-up covers the pro leagues; college rollover is part of the S80 Create Class work), All-American teams (not requested).
+History importers and brackets (6c), the S80 college rollover (the existing wrap-up covers the pro leagues; college rollover is part of the S80 Create Class work).
 
-## 6. Defaults to confirm
-These are my defaults; each is cheap to change before the plan is executed:
+## 6. Decisions and open items
 
+Confirmed by the user on 2026-10-01:
 1. Conference tournament games don't count toward the standings record, but they feed the rankings used to seed March Madness.
-2. Co-champion tie for the regular season counts every team tied at the top of the conference record (not only head-to-head winners).
-3. The NIT is played after March Madness (the Java order), though the pages allow either.
-4. Awards are picked by the commissioner at season end (races and odds are shown), and **All-American teams are not built**.
+2. A regular-season co-champion means every team tied at the top conference record.
+3. The NIT is played before March Madness.
+4. Awards are picked right before the NIT and March Madness; All-American teams are picked after both.
+
+Open:
+- How many All-American teams (first team only, or first, second and third)? Default: three teams of five, G/F/C/ANY/ANY.
+- Does the S78 summary hold All-American history to match? The 6c importer will fill past seasons; 6b stores only from S79 on.
