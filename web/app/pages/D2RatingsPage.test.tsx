@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { startRatings } from '../../engine/d2/ratings';
@@ -52,9 +52,9 @@ describe('D2RatingsPage', () => {
       'Adrian Napoletani', 'Brycen Holcomb', 'Kris Dyer', 'Myron Mason', 'Kyron Smart',
     ]);
     expect(screen.getByRole('group', { name: 'D2 spots left per position' }).textContent).toContain('PG 64');
-    expect(screen.getByText('FBA 71')).toBeTruthy();
+    expect(within(screen.getByRole('table', { name: "Last season's order" })).getByText('FBA 71')).toBeTruthy();
     // Only the FBA free agent is new (Team column "New"); the other unrated Reserves were already in the pool.
-    expect(screen.getByText('Kyron Smart').closest('tr')!.textContent).toContain('New');
+    expect(within(screen.getByRole('table', { name: "Last season's order" })).getByText('Kyron Smart').closest('tr')!.textContent).toContain('New');
     expect(screen.getAllByText('Reserves')).toHaveLength(4);
     expect(screen.getByText("13 players aren't ranked yet")).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'Rank Xavier Booker next' }));
