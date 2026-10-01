@@ -17,8 +17,8 @@ const ORDER = ['PL', 'WL', 'UL', 'IL'];
 const key = (e: Entry) => `S${e.season}${e.group ? ' ' + e.group : ''}`;
 
 describe('d2Brackets.json', () => {
-  it('has at least 8 entries', () => {
-    expect(entries.length).toBeGreaterThanOrEqual(8);
+  it('has at least 15 entries', () => {
+    expect(entries.length).toBeGreaterThanOrEqual(15);
   });
 
   it('each entry passes PastBracket', () => {
@@ -44,7 +44,8 @@ describe('d2Brackets.json', () => {
       const list = sum.champions as { title: string; group?: string | null; champion: string; runnerUp?: string | null }[];
       const cands = e.group
         ? list.filter(c => c.group === e.group)
-        : list.filter(c => c.title === 'D2 International Champion');
+        // S55 has two titles, '(1)' and '(2)'; the page's final matches (2).
+        : list.filter(c => c.title.startsWith('D2 International Champion'));
       if (cands.length === 0) { bad.push(`${key(e)}: no matching champion in summary`); continue; }
       const f = e.series.find(s => s.id === `R${e.rounds}-1`)!;
       const win = f[f.winner]!;
