@@ -21,7 +21,12 @@ export interface CollegeSetupInput {
  * `state` once the season's college rosters exist, otherwise `setup` for the one-time setup panel.
  * `versions` holds every doc either of them may write.
  */
-export function useRecruitingState(boardSeason: number | undefined): { season?: number; state?: RecruitingState; setup?: CollegeSetupInput; versions: Versions; error?: Error } {
+export function useRecruitingState(boardSeason: number | undefined): {
+  season?: number; state?: RecruitingState; setup?: CollegeSetupInput;
+  /** With `setup`: the board as it is, with no college rosters behind it, for a read-only view. */
+  preview?: RecruitingState;
+  versions: Versions; error?: Error;
+} {
   const meta = useDoc<MetaFile>('meta.json');
   const n = meta.data?.currentSeason;
   const at = (k: RecruitingDocKey) => (n === undefined ? null : recruitingDocPath(k, n));
@@ -40,6 +45,7 @@ export function useRecruitingState(boardSeason: number | undefined): { season?: 
   // Stable stand-ins for docs that don't exist yet: useAutosaveDoc resyncs whenever its data changes identity.
   const emptyBoard = useMemo(() => (boardSeason === undefined ? undefined : emptyRecruiting(boardSeason)), [boardSeason]);
   const emptyTx = useMemo<TransactionsFile | undefined>(() => (n === undefined ? undefined : { league: 'fbajc', season: n, entries: [] }), [n]);
+  const emptyRosters = useMemo<RostersFile | undefined>(() => (n === undefined ? undefined : { league: 'fbajc', season: n, locked: false, teams: {} }), [n]);
   const proIds = useMemo(
     () => (fba.data && d2.data ? proPlayerIds({ fba: fba.data, freeAgents: freeAgents.data ?? null, d2: d2.data, reserves: reserves.data ?? null }) : new Set<string>()),
     [fba.data, freeAgents.data, d2.data, reserves.data],
@@ -59,7 +65,16 @@ export function useRecruitingState(boardSeason: number | undefined): { season?: 
   const optional: DocState<unknown>[] = [recruiting, classRanking, rosters, tx, prev, freeAgents, reserves];
   const error = meta.error ?? required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
   if (n === undefined || boardSeason === undefined || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { season: n, versions, error };
-  if (!rosters.data) return { season: n, versions, error, setup: { meta: meta.data!, prev: prev.data ?? null, proIds, calendar: calendar.data! } };
+  if (!rosters.data) {
+    return {
+      season: n, versions, error,
+      setup: { meta: meta.data!, prev: prev.data ?? null, proIds, calendar: calendar.data! },
+      preview: {
+        season: n, recruiting: recruiting.data ?? emptyBoard!, rosters: emptyRosters!, teams: teams.data!, players: players.data!,
+        tx: tx.data ?? emptyTx!, calendar: calendar.data!, ranked: classRanking.data !== undefined,
+      },
+    };
+  }
   return {
     season: n,
     versions,

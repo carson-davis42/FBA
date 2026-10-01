@@ -6,6 +6,7 @@ import { CLASS_DRAFT, collegeBaseState, collegeClassState, collegeCurrentClassSt
 import type { RecruitingFile } from '../../engine/shared/types';
 import { stubApi } from '../d2/testDocs';
 import { RecruitingPage } from './RecruitingPage';
+import { boardPath } from '../../engine/college/state';
 import { recruitingDocs, setupDocs } from './testDocs';
 
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
@@ -52,6 +53,34 @@ describe('RecruitingPage', () => {
     stubApi(setupDocs(78, { adjustAge: true }));
     renderAt('/league/fbajc/recruiting');
     expect(await enabled('Set up S79 college rosters')).toBeTruthy();
+  });
+
+  it('shows an existing board read-only under the setup card, before the college rosters exist', async () => {
+    const board = collegeCurrentClassState().recruiting;
+    stubApi({ ...setupDocs(), [boardPath(78)]: board });
+    renderAt('/league/fbajc/recruiting?class=79');
+    expect(await enabled('Set up S79 college rosters')).toBeTruthy();
+    expect(screen.getByText(/read-only until the S79 college rosters are set up/)).toBeTruthy();
+    expect(await screen.findByText(/of \d+ committed/)).toBeTruthy();
+    const fieldset = document.querySelector('fieldset.readonly') as HTMLFieldSetElement;
+    expect(fieldset.disabled).toBe(true);
+    expect(fieldset.querySelectorAll('button').length).toBeGreaterThan(0);
+    expect(fieldset.querySelectorAll('tbody tr').length).toBeGreaterThan(0);
+  });
+
+  it("says the class board doesn't exist yet instead of showing only the setup card", async () => {
+    stubApi(setupDocs());
+    renderAt('/league/fbajc/recruiting?class=79');
+    expect(await screen.findByText("The S79 class board doesn't exist yet. Import it, or create it in the previous season.")).toBeTruthy();
+    expect(await enabled('Set up S79 college rosters')).toBeTruthy();
+  });
+
+  it('is editable again once the college rosters exist (the fieldset is not disabled)', async () => {
+    stubApi(recruitingDocs(collegeCurrentClassState()));
+    renderAt('/league/fbajc/recruiting?class=79');
+    await screen.findByText(/of \d+ committed/);
+    expect((document.querySelector('fieldset.readonly') as HTMLFieldSetElement).disabled).toBe(false);
+    expect(screen.queryByText(/read-only until/)).toBeNull();
   });
 
   it('opens on the Class tab before the class exists, and the first draft edit creates the recruiting doc', async () => {
