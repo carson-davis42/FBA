@@ -17,8 +17,8 @@ const ORDER = ['PL', 'WL', 'UL', 'IL'];
 const key = (e: Entry) => `S${e.season}${e.group ? ' ' + e.group : ''}`;
 
 describe('d2Brackets.json', () => {
-  it('has at least 15 entries', () => {
-    expect(entries.length).toBeGreaterThanOrEqual(15);
+  it('has at least 23 entries', () => {
+    expect(entries.length).toBeGreaterThanOrEqual(23);
   });
 
   it('each entry passes PastBracket', () => {
