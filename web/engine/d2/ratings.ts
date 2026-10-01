@@ -42,12 +42,26 @@ export function d2Curve(prevRatings: RankingFile | null, rows: RankingRow[]): nu
   return source.map(v => Math.max(1, Math.min(MAX_RATING, v))).sort((a, b) => b - a);
 }
 
+/**
+ * Stretches a ladder shorter than `slots` (the D2 roster spots) to that many rungs by interpolating between neighbours, so the
+ * suggestions reach the last rostered rank with the same top and bottom. A ladder that is long enough is returned as is.
+ */
+export function stretchCurve(curve: number[], slots: number): number[] {
+  if (curve.length < 2 || curve.length >= slots) return curve;
+  return Array.from({ length: slots }, (_, j) => {
+    const x = (j * (curve.length - 1)) / (slots - 1);
+    const i = Math.floor(x);
+    const hi = curve[Math.min(i + 1, curve.length - 1)];
+    return Math.round(curve[i] + (hi - curve[i]) * (x - i));
+  });
+}
+
 export function startRatings(state: D2State): D2Result {
   if (!state.freeAgencyClosed) return d2Fail(['Close free agency first']);
   if (state.ratings) return d2Fail(['The ratings reset has already started']);
   const rows = buildRankingRows(state);
   const ratings: RankingFile = {
-    league: 'fbad2', season: state.season, kind: 'd2-reset', locked: false, rows, order: [], ratings: {}, curve: d2Curve(state.prevRatings, rows),
+    league: 'fbad2', season: state.season, kind: 'd2-reset', locked: false, rows, order: [], ratings: {}, curve: stretchCurve(d2Curve(state.prevRatings, rows), Object.values(state.d2.teams).reduce((n, t) => n + t.length, 0)),
   };
   return { ok: true, state: { ...state, ratings }, changed: ['ratings'], label: 'Start D2 ratings reset' };
 }
