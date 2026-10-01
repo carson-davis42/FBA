@@ -1,0 +1,39 @@
+# p096 March Madness S53 (32 slots, no byes; prefix numbers are national ranks)
+S53
+1|Villanova|14-1
+|Virginia|8-7
+17|West Virginia|10-5
+16|Cincinnati|12-3
+9|Texas Tech|12-3
+24|North Carolina|9-6
+25|St.Bonaventure|14-1
+8|Syracuse|11-4
+5|Kansas|12-3
+|Arkansas|12-3
+21|Butler|11-4
+12|Michigan State|11-4
+13|Houston|14-1
+20|Xavier|11-4
+|Georgetown|10-5
+4|Florida State|12-3
+2|Duke|14-1
+|Middle Tennessee|9-6
+18|Oregon|11-4
+15|Iowa State|10-5
+10|Indiana|11-4
+23|Nevada|9-6
+|Auburn|10-5
+7|Tennessee|13-2
+6|Stanford|15-0
+|NC State|10-5
+22|Gonzaga|10-5
+11|Michigan|11-4
+14|Kansas State|12-3
+19|Arizona State|10-5
+|Seton Hall|9-6
+3|Kentucky|13-2
+=Virginia 46-42|Cincinnati 50-48 2OT|Texas Tech 43-27|Syracuse 54-34|Kansas 47-36|Michigan State 52-17|Houston 39-20|Florida State 56-25|Duke 70-9|Oregon 48-37|Indiana 73-38|Tennessee 52-22|Stanford 53-22|Michigan 52-19|Kansas State 56-17|Kentucky 64-6
+=Virginia 47-46|Syracuse 61-40|Michigan State 51-48|Florida State 91-37|Oregon 51-47 OT|Indiana 48-47|Stanford 60-37|Kentucky 72-70 OT
+=Syracuse 74-36|Michigan State 48-46|Oregon 84-81 3OT|Kentucky 57-55
+=Syracuse 51-47 OT|Kentucky 52-34
+=Syracuse 58-54
