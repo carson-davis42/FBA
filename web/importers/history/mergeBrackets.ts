@@ -9,10 +9,14 @@ const GROUP_ORDER = ['PL', 'WL', 'UL', 'IL'];
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
 
 /** Pure: puts transcribed brackets onto the matching season summaries. Returns only the summaries that changed. */
-export function mergeBrackets(league: 'fbawc' | 'fbad2', entries: BracketEntry[], summaries: Map<number, SummaryFile>): { summaries: SummaryFile[]; report: MergeReport } {
-  if (league === 'fbawc') {
+export function mergeBrackets(league: 'fbawc' | 'fbad2' | 'fbajc', entries: BracketEntry[], summaries: Map<number, SummaryFile>): { summaries: SummaryFile[]; report: MergeReport } {
+  if (league === 'fbawc' || league === 'fbajc') {
     const g = entries.find(e => e.group);
-    if (g) throw new Error(`S${g.season}: a World Cup bracket cannot carry a group (${g.group})`);
+    if (g) throw new Error(`S${g.season}: a ${league === 'fbawc' ? 'World Cup' : 'college'} bracket cannot carry a group (${g.group})`);
+  }
+  if (league !== 'fbajc') {
+    const k = entries.find(e => e.kind);
+    if (k) throw new Error(`S${k.season}: only a college bracket can be an NIT page`);
   }
   if (league === 'fbad2') {
     const bySeason = new Map<number, BracketEntry[]>();
@@ -29,10 +33,14 @@ export function mergeBrackets(league: 'fbawc' | 'fbad2', entries: BracketEntry[]
   const report: MergeReport = { set: 0, unchanged: 0, missingSummary: [], replaced: [] };
   for (const e of entries) {
     const base = next.get(e.season) ?? summaries.get(e.season);
-    if (!base) { report.missingSummary.push(`S${e.season}${e.group ? ` ${e.group}` : ''}`); continue; }
+    if (!base || (e.kind === 'NIT' && !base.jc)) { report.missingSummary.push(`S${e.season}${e.group ? ` ${e.group}` : ''}${e.kind ? ` ${e.kind}` : ''}`); continue; }
     const bracket: PastBracket = { rounds: e.rounds, series: e.series };
     let updated: SummaryFile;
-    if (league === 'fbad2' && e.group) {
+    if (e.kind === 'NIT') {
+      if (same(base.jc!.nitBracket, bracket)) { report.unchanged++; continue; }
+      if (base.jc!.nitBracket) report.replaced.push(`S${e.season} NIT`);
+      updated = { ...base, jc: { ...base.jc!, nitBracket: bracket } };
+    } else if (league === 'fbad2' && e.group) {
       const have = base.pastBrackets ?? [];
       if (same(have.find(p => p.group === e.group)?.bracket, bracket)) { report.unchanged++; continue; }
       const old = have.find(p => p.group === e.group);
@@ -54,7 +62,7 @@ export function mergeBrackets(league: 'fbawc' | 'fbad2', entries: BracketEntry[]
 }
 
 /** Reads the league's summaries from `dir`, merges, validates, and writes the changed ones. Writes nothing if any fails its schema. */
-export function runBracketImport(league: 'fbawc' | 'fbad2', entries: BracketEntry[], dir: string): { report: MergeReport; problems: string[] } {
+export function runBracketImport(league: 'fbawc' | 'fbad2' | 'fbajc', entries: BracketEntry[], dir: string): { report: MergeReport; problems: string[] } {
   const existing = new Map<number, SummaryFile>();
   for (let n = 1; n <= 200; n++) {
     const file = path.join(dir, 'leagues', league, `S${n}`, 'summary.json');

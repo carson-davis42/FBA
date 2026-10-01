@@ -631,7 +631,7 @@ async function importJcSchools(): Promise<void> {
 }
 
 /** Puts the transcribed past brackets (importers/history/<kind>Brackets.json) onto the league's season summaries in the --data folder. */
-function importBrackets(flag: string, league: 'fbawc' | 'fbad2', file: string): void {
+function importBrackets(flag: string, league: 'fbawc' | 'fbad2' | 'fbajc', file: string): void {
   const dir = requireDataDir(flag);
   const entries = JSON.parse(readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), 'history', file), 'utf8')) as BracketEntry[];
   const { report, problems } = runBracketImport(league, entries, dir);
@@ -659,7 +659,7 @@ export async function importWcQualifyingStep(): Promise<void> {
   console.log(`Added s${cal.season}-qualifying`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-brackets', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -681,6 +681,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--wc-history')) return importWcHistory();
   if (process.argv.includes('--jc-history')) return importJcHistory();
   if (process.argv.includes('--jc-schools')) return importJcSchools();
+  if (process.argv.includes('--jc-brackets')) return importBrackets('--jc-brackets', 'fbajc', 'jcBrackets.json');
   if (process.argv.includes('--wc-brackets')) return importBrackets('--wc-brackets', 'fbawc', 'wcBrackets.json');
   if (process.argv.includes('--d2-brackets')) return importBrackets('--d2-brackets', 'fbad2', 'd2Brackets.json');
   if (process.argv.includes('--d2-leagues')) return importD2Leagues();

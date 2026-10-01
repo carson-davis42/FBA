@@ -29,6 +29,16 @@ describe('PastSeries score', () => {
   });
 });
 
+describe('PastSide seeds', () => {
+  it('allows the larger seeds of the college brackets and rejects nonsense', () => {
+    const at = (seed: number) => ({ rounds: 1, series: [{ id: 'R1-1', round: 1, home: side('Duke', seed), away: side('Kansas', 2), homeWins: 1, awayWins: 0, winner: 'home' }] });
+    expect(PastBracket.safeParse(at(32)).success).toBe(true);
+    expect(PastBracket.safeParse(at(64)).success).toBe(true);
+    expect(PastBracket.safeParse(at(65)).success).toBe(false);
+    expect(PastBracket.safeParse(at(0)).success).toBe(false);
+  });
+});
+
 describe('JcSummary imported-history fields', () => {
   it('keeps the 6b shape valid', () => {
     expect(JcSummary.safeParse(baseJc).success).toBe(true);

@@ -639,7 +639,8 @@ export const JcAwardsFile = z.object({
 });
 export type JcAwardsFile = z.infer<typeof JcAwardsFile>;
 
-export const PastSide = z.object({ name: z.string().min(1), record: z.string().regex(/^\d+-\d+(-\d+)?$/).nullable(), seed: int.min(1).max(16).nullable() }).strict();
+export const PastSide = z.object({ name: z.string().min(1), record: z.string().regex(/^\d+-\d+(-\d+)?$/).nullable(), /** Up to 64: the college brackets print seeds beyond 16 (a 32-team NIT, older March Madness pages). */
+  seed: int.min(1).max(64).nullable() }).strict();
 export type PastSide = z.infer<typeof PastSide>;
 export const PastSeries = z.object({
   id: z.string().regex(/^R\d-\d+$/),
