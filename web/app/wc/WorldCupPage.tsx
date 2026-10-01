@@ -4,7 +4,7 @@ import type { MetaFile, Team, WcHostsFile } from '../../engine/shared/types';
 import { calendarProblem } from '../../engine/season/moves';
 import { worldCupStepId } from '../../engine/wc/state';
 import { wcWrites } from '../../engine/wc/writes';
-import { finishGroups, playGroupGame, playKnockoutGame, startWorldCup, type WorldCupState } from '../../engine/wc/worldcup';
+import { finishGroups, nextKnockoutGame, playGroupGame, playKnockoutGame, startWorldCup, type WorldCupState } from '../../engine/wc/worldcup';
 import { useDoc } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { SubNav } from '../components/SubNav';
@@ -54,6 +54,10 @@ export function WorldCupPage() {
   const finished = !!wc?.champion && !!calendar.steps.find(s => s.id === worldCupStepId(season))?.done;
   const stepProblem = finished ? null : calendarProblem(calendar, worldCupStepId(season), 'The World Cup is played');
   const blocked = saving || !!stepProblem;
+  const nextGroupNo = !knockoutOn && wc && groupPlayed < GROUP_GAMES && !stepProblem ? groupPlayed + 1 : null;
+  const nextKo = state && knockoutOn && !stepProblem ? nextKnockoutGame(state) : null;
+  const nextKnockout = nextKo && typeof nextKo !== 'string' ? { slotId: state!.worldCup!.knockout[nextKo.slotIndex].id, gameNo: nextKo.gameNo } : null;
+  const watchNo = nextGroupNo ?? nextKnockout?.gameNo ?? null;
   const notStarted: WcFail = { ok: false, problems: ['The World Cup has not been started'] };
 
   const q = docs.qualifying;
@@ -124,12 +128,14 @@ export function WorldCupPage() {
             <button className="btn primary" disabled={blocked || !!startProblem} title={startProblem ?? stepProblem ?? undefined} onClick={() => void run(start)}>Start World Cup</button>
           ) : knockoutOn ? (
             <>
-              <button className="btn primary" disabled={blocked || !!wc.champion} title={stepProblem ?? undefined} onClick={() => void run(next)}>Play next</button>
+              {watchNo !== null ? <Link className="btn primary" to={`/league/fbawc/game/${watchNo}`}>Watch next</Link> : <button className="btn primary" disabled>Watch next</button>}
+              <button className="btn" disabled={blocked || !!wc.champion} title={stepProblem ?? undefined} onClick={() => void run(next)}>Play next</button>
               <button className="btn" disabled={blocked || !!wc.champion} title={stepProblem ?? undefined} onClick={() => void run(allKnockout)}>Play all</button>
             </>
           ) : (
             <>
-              <button className="btn primary" disabled={blocked || groupPlayed >= GROUP_GAMES} title={stepProblem ?? undefined} onClick={() => void run(next)}>Play next</button>
+              {watchNo !== null ? <Link className="btn primary" to={`/league/fbawc/game/${watchNo}`}>Watch next</Link> : <button className="btn primary" disabled>Watch next</button>}
+              <button className="btn" disabled={blocked || groupPlayed >= GROUP_GAMES} title={stepProblem ?? undefined} onClick={() => void run(next)}>Play next</button>
               <button className="btn" disabled={blocked || groupPlayed >= GROUP_GAMES} title={stepProblem ?? undefined} onClick={() => void run(allGroups)}>Play all groups</button>
               <button className="btn" disabled={blocked || groupPlayed < GROUP_GAMES} title={stepProblem ?? undefined} onClick={() => void run(finishG)}>Finish groups</button>
             </>
@@ -143,8 +149,8 @@ export function WorldCupPage() {
         <>
           <SubNav label="World Cup sections" items={TABS} active={tab} onSelect={id => setParams({ tab: id }, { replace: true })} />
           <div className="tab-panel" id={`panel-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
-            {tab === 'groups' && <GroupsTab wc={wc} byId={byId} season={season} />}
-            {tab === 'knockout' && <KnockoutTab wc={wc} byId={byId} season={season} state={state} players={docs.players} summary={docs.summary} blocked={blocked} run={run} />}
+            {tab === 'groups' && <GroupsTab wc={wc} byId={byId} season={season} nextGameNo={nextGroupNo} />}
+            {tab === 'knockout' && <KnockoutTab wc={wc} byId={byId} season={season} state={state} players={docs.players} summary={docs.summary} blocked={blocked} run={run} next={nextKnockout} />}
             {tab === 'teams' && <TeamsTab wc={wc} rosters={rosters} byId={byId} season={season} />}
           </div>
         </>
