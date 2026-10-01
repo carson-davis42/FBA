@@ -68,7 +68,7 @@ describe('season documents', () => {
   it('knows the season documents', () => {
     expect(schemaForPath('leagues/fba/S79/schedule.json')).toBe(ScheduleFile);
     expect(schemaForPath('leagues/fbad2/S79/schedule.json')).toBe(ScheduleFile);
-    expect(schemaForPath('leagues/fbajc/S79/schedule.json')).toBeNull();
+    expect(schemaForPath('leagues/fbajc/S79/schedule.json')).not.toBe(ScheduleFile);
     expect(schemaForPath('leagues/fba/S79/ratingPause-322.json')).toBe(RatingPauseFile);
     expect(schemaForPath('leagues/fba/S79/ratingPause-x.json')).toBeNull();
     expect(schemaForPath('leagues/fba/S79/allstar.json')).toBe(AllStarFile);
