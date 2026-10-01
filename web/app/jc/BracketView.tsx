@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { roundName } from '../../engine/jc/bracket';
 import type { Bracket, BracketGame } from '../../engine/shared/types';
 
@@ -18,7 +19,11 @@ function Side({ game, side, teamCell }: { game: BracketGame; side: 'home' | 'awa
 }
 
 /** A bracket as columns of games, one column per round. `filter` limits it to some games (a region, or the final rounds). */
-export function BracketView({ bracket, teamCell, filter }: { bracket: Bracket; teamCell: (id: string) => ReactNode; filter?: (g: BracketGame) => boolean }) {
+export function BracketView({ bracket, teamCell, filter, hrefFor }: {
+  bracket: Bracket; teamCell: (id: string) => ReactNode; filter?: (g: BracketGame) => boolean;
+  /** A link for a game (its box score once played, Watch when it is up next), or null. */
+  hrefFor?: (g: BracketGame) => { label: string; to: string } | null;
+}) {
   const games = bracket.games.filter(g => !filter || filter(g));
   const rounds = [...new Set(games.map(g => g.round))].sort((a, b) => a - b);
   return (
@@ -30,6 +35,10 @@ export function BracketView({ bracket, teamCell, filter }: { bracket: Bracket; t
             <div key={g.id} className="jc-bgame card" data-game={g.id}>
               <Side game={g} side="home" teamCell={teamCell} />
               <Side game={g} side="away" teamCell={teamCell} />
+              {(() => {
+                const link = hrefFor?.(g);
+                return link ? <Link className="jc-blink" to={link.to}>{link.label}</Link> : null;
+              })()}
             </div>
           ))}
         </div>

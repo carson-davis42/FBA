@@ -86,6 +86,17 @@ describe('PostseasonPage', () => {
     expect(batches[0].writes.map(w => w.path).sort()).toEqual(['leagues/fbajc/S79/postseason.json', 'leagues/fbajc/S79/rosters.json']);
   });
 
+  it('offers Watch for the next NIT game and box scores for played ones', async () => {
+    mount(ready);
+    const watch = await screen.findByRole('link', { name: 'Watch next game' });
+    expect(watch.getAttribute('href')).toBe(`/league/fbajc/game/${ready.postseason!.nextGameNo}`);
+    fireEvent.click(screen.getByRole('button', { name: 'Region 1' }));
+    expect(screen.getAllByRole('link', { name: 'Watch' }).length).toBe(1);
+    cleanup();
+    mount(afterConf, '/league/fbajc/postseason?tab=conference');
+    expect((await screen.findAllByRole('link', { name: 'Box score' })).length).toBeGreaterThan(0);
+  });
+
   it('keeps March Madness locked until the NIT is won', async () => {
     mount(ready, '/league/fbajc/postseason?tab=mm');
     expect(await screen.findByText('Finish the NIT first')).toBeTruthy();

@@ -99,7 +99,7 @@ export function PostseasonPage() {
                   <>
                     <p>Regular-season champion{rs.length > 1 ? 's' : ''}: {rs.map((id, i) => <span key={id}>{i > 0 && ', '}{teamCell(id)}</span>)}</p>
                     {b.champion && <p className="jc-banner">Tournament champion: {teamCell(b.champion)}</p>}
-                    <BracketView bracket={b} teamCell={teamCell} />
+                    <BracketView bracket={b} teamCell={teamCell} hrefFor={g => (g.result ? { label: 'Box score', to: `/league/fbajc/game/${g.result.gameNo}` } : null)} />
                   </>
                 );
               })()}
@@ -211,7 +211,10 @@ function TournamentPanel({ which, state, teamCell, busy, stage, run, slow }: {
   return (
     <section>
       <div className="jc-actions">
-        <button className="btn primary" disabled={busy || !!reason || !next} title={reason ?? undefined} onClick={playNext}>Play next game</button>
+        {next && !reason
+          ? <Link className="btn primary" to={`/league/fbajc/game/${state.postseason!.nextGameNo}`}>Watch next game</Link>
+          : <button className="btn primary" disabled title={reason ?? undefined}>Watch next game</button>}
+        <button className="btn" disabled={busy || !!reason || !next} title={reason ?? undefined} onClick={playNext}>Sim next game</button>
         <button className="btn" disabled={busy || !!reason} title={reason ?? undefined} onClick={() => void run(() => playPostRound(state, which, newRng()))}>Play round</button>
         <button className="btn" disabled={busy || !!reason} title={reason ?? undefined} onClick={() => slow(() => playPostToEnd(state, which, newRng()))}>Play all of {label}</button>
       </div>
@@ -222,6 +225,8 @@ function TournamentPanel({ which, state, teamCell, busy, stage, run, slow }: {
         <button type="button" className="btn" aria-pressed={region === -1} onClick={() => setRegion(-1)}>{which === 'mm' ? 'Final Four' : 'Final'}</button>
       </div>
       <BracketView bracket={b} teamCell={teamCell}
+        hrefFor={g => (g.result ? { label: 'Box score', to: `/league/fbajc/game/${g.result.gameNo}` }
+          : next && !reason && g.id === next.id ? { label: 'Watch', to: `/league/fbajc/game/${state.postseason!.nextGameNo}` } : null)}
         filter={g => (region === -1 ? g.round >= 5 : g.region === region && g.round < 5)} />
     </section>
   );

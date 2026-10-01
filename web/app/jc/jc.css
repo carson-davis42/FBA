@@ -32,3 +32,4 @@ tr.jc-champion td { font-weight: 700; }
 .jc-regions { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--s2); }
 .jc-race { display: grid; gap: 6px; }
 .jc-race .table-wrap { margin: 0; }
+.jc-blink { font-size: var(--fs-xs); justify-self: end; }

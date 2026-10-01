@@ -124,7 +124,7 @@ export function ScoresPage() {
             return (
               <li key={g.gameNo} className={`jc-game${r ? '' : ' jc-unplayed'}`}>
                 <span className={awayWon ? 'jc-winner' : undefined}>{teamCell(g.away)}</span>
-                <span className="jc-score">{r ? `${r.awayPts}–${r.homePts}` : 'vs'}</span>
+                <span className="jc-score">{r ? <Link to={`/league/fbajc/game/${r.gameNo}`} title="Box score">{r.awayPts}–{r.homePts}</Link> : 'vs'}</span>
                 <span className={homeWon ? 'jc-winner' : undefined}>{teamCell(g.home)}</span>
               </li>
             );
