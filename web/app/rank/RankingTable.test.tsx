@@ -152,8 +152,9 @@ describe('RankingTable', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Rank Cal Reyes next' }));
       expect(spots('PG')).toBe('PG 0');
       expect(spots('SG')).toBe('SG 2');
-      fireEvent.click(screen.getByRole('button', { name: 'Rank Dev Hart next' }));
-      expect(spots('PG')).toBe('PG 0 (1 over)');
+      // Full positions are hidden from the list, so only "Take the rest in order" puts players past the cap (into the Reserve pool).
+      fireEvent.click(screen.getByRole('button', { name: 'Take the rest in order' }));
+      expect(spots('PG')).toBe('PG 0 (2 over)');
     });
   });
 
@@ -296,6 +297,38 @@ describe('RankingTable', () => {
       render(<Harness initial={classDoc({ locked: true, consensus: { p00002: 95 } })} withConsensus />);
       expect(cbox('Ben Cole').disabled).toBe(true);
       expect(screen.queryByRole('button', { name: /^Use suggested consensus/ })).toBeNull();
+    });
+  });
+
+  describe('full positions', () => {
+    const cap = { spots: 2, label: 'D2 spots left per position' };
+    const rank = (n: string) => fireEvent.click(screen.getByRole('button', { name: `Rank ${n} next` }));
+
+    it('hides the unranked players of a full position, and brings them back when a spot opens', () => {
+      render(<Harness initial={rankingDoc()} positionCap={cap} />);
+      rank('Ada Stone');
+      expect(leftNames()).toContain('Dev Hart');
+      rank('Cal Reyes');
+      expect(leftNames()).toEqual(['Ben Cole', 'Finn Lowe']);
+      expect(screen.getByText(/PG full/)).toBeTruthy();
+      fireEvent.click(screen.getByRole('button', { name: 'Send Cal Reyes back' }));
+      expect(leftNames()).toContain('Dev Hart');
+      expect(leftNames()).toContain('Eli Park');
+      expect(screen.queryByText(/PG full/)).toBeNull();
+    });
+
+    it('also drops the full position from the best-new strip, and hides nothing without a cap', () => {
+      render(<Harness initial={rankingDoc()} positionCap={cap} />);
+      rank('Ada Stone');
+      rank('Cal Reyes');
+      const strip = within(screen.getByRole('table', { name: 'Best new at each position' }));
+      expect(strip.queryByRole('button', { name: /best new PG/ })).toBeNull();
+      expect(strip.getByRole('button', { name: 'Rank Finn Lowe next (best new C)' })).toBeTruthy();
+      cleanup();
+      render(<Harness initial={rankingDoc()} />);
+      rank('Ada Stone');
+      rank('Cal Reyes');
+      expect(leftNames()).toContain('Dev Hart');
     });
   });
 

@@ -71,6 +71,9 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   const [filter, setFilter] = useState<Filter>('ALL');
   const locked = doc.locked;
   const shown = (r: RankingRow) => filter === 'ALL' || r.position === filter;
+  // D2 reset: a position whose spots are all taken drops out of the unranked lists (and reappears if someone is sent back).
+  const fullPositions = new Set(positionCap ? POSITIONS.filter(pos => rankedRows(doc).filter(r => r.position === pos).length >= positionCap.spots) : []);
+  const shownLeft = (r: RankingRow) => shown(r) && !fullPositions.has(r.position);
   const left = leftRows(doc, name);
   const allPlaced = left.length === 0;
   const flagged = outOfOrder(doc);
@@ -104,7 +107,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
         <thead>{leftHeadRow}</thead>
         <tbody>
           {rows.map((r, i) => {
-            if (!shown(r)) return null;
+            if (!shownLeft(r)) return null;
             const divider = divide && isNewRow(doc, r) && !dividerShown;
             if (divider) dividerShown = true;
             return (
@@ -119,7 +122,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
     </div>
   );
   const bestNew = bestNewByPosition(doc, name);
-  const bestNewList = POSITIONS.map(pos => bestNew[pos]).filter((r): r is RankingRow => r !== undefined);
+  const bestNewList = POSITIONS.map(pos => bestNew[pos]).filter((r): r is RankingRow => r !== undefined && !fullPositions.has(r.position));
   // A mini copy of the list above its scrolling table, so the best new player at each position stays in view however far the list is scrolled.
   const bestStrip = !locked && bestNewList.length > 0 && (
     <div className="rank-best">
@@ -166,6 +169,11 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
             );
           })}
         </div>
+      )}
+      {fullPositions.size > 0 && (
+        <p className="muted rank-full">
+          {POSITIONS.filter(pos => fullPositions.has(pos)).map(pos => `${pos} full`).join(' · ')}: those players are hidden below; send someone back to see them again.
+        </p>
       )}
       <div className={`rank-cols${split ? ' split' : ''}`}>
         {split ? (
