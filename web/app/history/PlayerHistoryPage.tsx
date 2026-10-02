@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import { awardTotals, careerSpan, careerStats, liveCareer, playerStatus } from '../../engine/history/career';
+import { applyPlacement, awardTotals, careerSpan, careerStats, liveCareer, playerStatus, type Placement } from '../../engine/history/career';
 import { d2PlayerHonours } from '../../engine/history/d2';
 import { playerHonours } from '../../engine/history/honours';
-import type { AwardCountsFile, D2DraftHistoryFile, DraftHistoryFile, HallOfFameFile, PlayerBiosFile, PlayersFile, TeamsFile } from '../../engine/shared/types';
+import type { AwardCountsFile, D2DraftHistoryFile, DraftHistoryFile, HallOfFameFile, MetaFile, PlayerBiosFile, PlayersFile, RostersFile, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
 import { Badge } from '../components/Badge';
 import { Hero } from '../components/Hero';
@@ -57,11 +57,18 @@ export function PlayerHistoryPage() {
   const d2Teams = useD2Teams();
   const jcTeams = useJcTeams();
   const wcTeams = useDoc<TeamsFile>('leagues/fbawc/teams.json');
+  // The live rosters move before any season summary exists (an offseason signing, a trade, a draft pick), so they decide where he is now.
+  const meta = useDoc<MetaFile>('meta.json');
+  const rosterOf = (lg: 'fba' | 'fbad2' | 'fbajc') => (meta.data ? `leagues/${lg}/S${meta.data.rosterSeason[lg]}/rosters.json` : null);
+  const fbaRoster = useDoc<RostersFile>(rosterOf('fba'));
+  const d2Roster = useDoc<RostersFile>(rosterOf('fbad2'));
+  const jcRoster = useDoc<RostersFile>(rosterOf('fbajc'));
+  const rosterSettled = (d: { data?: unknown; missing: boolean; error?: unknown }) => !!d.data || d.missing || !!d.error;
   const failure = error ?? players.error ?? (bios.missing ? undefined : bios.error)
     ?? (counts.missing ? undefined : counts.error) ?? (hall.missing ? undefined : hall.error);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
   if (!seasons || !players.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing) || (!hall.data && !hall.missing) || (!drafts.data && !drafts.missing && !drafts.error) || !settled
-    || (!d2.seasons && !d2.error) || (!d2Drafts.data && !d2Drafts.missing && !d2Drafts.error) || !d2Teams.settled || !jcTeams.settled || (!wcTeams.data && !wcTeams.missing && !wcTeams.error)) {
+    || (!d2.seasons && !d2.error) || (!d2Drafts.data && !d2Drafts.missing && !d2Drafts.error) || !d2Teams.settled || !jcTeams.settled || !(meta.data || meta.missing || meta.error) || (!!meta.data && !(rosterSettled(fbaRoster) && rosterSettled(d2Roster) && rosterSettled(jcRoster))) || (!wcTeams.data && !wcTeams.missing && !wcTeams.error)) {
     return <p className="muted">Loading…</p>;
   }
   const player = players.data.players[playerId];
@@ -73,7 +80,19 @@ export function PlayerHistoryPage() {
   const honours = playerHonours(seasons, playerId);
   const bySeason = new Map<number, string[]>();
   for (const h of honours) bySeason.set(h.season, [...(bySeason.get(h.season) ?? []), h.text]);
-  const career = liveCareer(bio, playerId, seasons, hall.data ?? null);
+  const placement = ((): { now: Placement; season: number } | null => {
+    const onTeam = (doc: RostersFile | undefined) => Object.entries(doc?.teams ?? {}).find(([, es]) => es.some(e => e.playerId === playerId))?.[0];
+    const fbaTeam = onTeam(fbaRoster.data);
+    if (fbaTeam && meta.data) return { now: { kind: 'fba', team: fbaTeam }, season: meta.data.rosterSeason.fba };
+    const d2Team = onTeam(d2Roster.data);
+    const d2Name = d2Teams.teams.find(t => t.teamId === d2Team)?.name;
+    if (d2Name && meta.data) return { now: { kind: 'd2', team: `D2(${d2Name})` }, season: meta.data.rosterSeason.fbad2 };
+    const jcTeam = onTeam(jcRoster.data);
+    const jcName = jcTeams.teams.find(t => t.teamId === jcTeam)?.name;
+    if (jcName && meta.data) return { now: { kind: 'college', team: jcName }, season: meta.data.rosterSeason.fbajc };
+    return null;
+  })();
+  const career = applyPlacement(liveCareer(bio, playerId, seasons, hall.data ?? null), placement?.now ?? null, placement?.season ?? 0);
   const totals = awardTotals(playerId, counts.data ?? null, seasons);
   const stats = careerStats(playerId, seasons);
   const hasAwards = Object.values(totals).some(n => n > 0);

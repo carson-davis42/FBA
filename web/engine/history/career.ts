@@ -337,3 +337,30 @@ export function playerStatus(career: Career, retired: boolean, latestSeason: num
   if (last.kind !== 'college' && typeof last.to === 'number' && last.to < latestSeason) return 'retired';
   return last.kind;
 }
+
+/** Where a player is on the live rosters right now: an FBA team code, a D2 team as "D2(Name)", or a school name. */
+export interface Placement { kind: 'fba' | 'd2' | 'college'; team: string }
+
+/**
+ * Brings a career up to date with the live rosters, which move before any season summary exists (a signing in the offseason, a trade, a draft pick).
+ * The stint he is in stays open ("pres"); when he is somewhere else the open stint ends the season before and a new one starts in `season`.
+ * Returns a new career; without a placement (off every roster) it is unchanged.
+ */
+export function applyPlacement(career: Career, now: Placement | null, season: number): Career {
+  if (!now) return career;
+  const stints = career.stints.map(s => ({ ...s }));
+  const last = stints[stints.length - 1];
+  const lastCode = last ? last.team.split('/').pop() : undefined;
+  const open = last !== undefined && (last.to === 'pres' || (typeof last.to === 'number' && last.to >= season - 1));
+  if (last && last.kind === now.kind && lastCode === now.team && open) {
+    last.to = 'pres';
+    last.range = last.from === null ? last.range : `S${last.from}-pres.`;
+    return { ...career, stints };
+  }
+  if (last && last.to === 'pres') {
+    last.to = Math.max(last.from ?? 0, season - 1);
+    setRange(last);
+  }
+  stints.push({ kind: now.kind, team: now.team, range: `S${season}-pres.`, from: season, to: 'pres', honours: [] });
+  return { ...career, stints };
+}

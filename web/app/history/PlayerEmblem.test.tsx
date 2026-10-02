@@ -36,24 +36,59 @@ const bios: PlayerBiosFile = { league: 'fba', bios: [
 ] };
 const s78: SummaryFile = { league: 'fba', season: 78, locked: true, host: null, champions: [] };
 
-function stub() {
+function stub(extra: Record<string, unknown> = {}) {
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
     if (url === '/api/history/fba') return new Response(JSON.stringify({ seasons: [s78], errors: [] }));
     if (url === '/api/history/fbad2') return new Response(JSON.stringify({ seasons: [], errors: [] }));
     const docs: Record<string, unknown> = {
       '/api/state/players.json': players, '/api/state/leagues/fba/playerBios.json': bios, '/api/state/leagues/fba/teams.json': fbaTeams, '/api/state/leagues/fba/franchises.json': franchises,
-      '/api/state/leagues/fbad2/teams.json': d2Teams, '/api/state/leagues/fbajc/teams.json': jcTeams,
+      '/api/state/leagues/fbad2/teams.json': d2Teams, '/api/state/leagues/fbajc/teams.json': jcTeams, ...extra,
     };
     return url in docs ? new Response(JSON.stringify(docs[url]), { headers: { ETag: '"0000000000000001"' } }) : new Response('{}', { status: 404 });
   }));
 }
-const open = async (id: string) => {
-  stub();
+const open = async (id: string, extra: Record<string, unknown> = {}) => {
+  stub(extra);
   const view = render(<MemoryRouter initialEntries={[`/history/fba/players/${id}`]}><Routes><Route path="/history/fba/players/:playerId" element={<PlayerHistoryPage />} /></Routes></MemoryRouter>);
   await screen.findByRole('heading', { name: 'Career' });
   return view.container;
 };
 const heroSrc = (c: HTMLElement) => c.querySelector('.hero-logo img')?.getAttribute('src') ?? null;
+
+const meta = { currentSeason: 79, rosterSeason: { fba: 79, fbad2: 79, fbajc: 78, fbawc: 78 }, lastSeason: { fba: 78, fbad2: 78, fbajc: 78, fbawc: 78 } };
+const entry = (playerId: string) => ({ position: 'PG', playerId, age: 27, rating: 80, contractEnd: 81, contractAmount: 5 });
+
+describe('player page follows the live rosters', () => {
+  it('shows the team he signed with in the offseason: a new open stint, the banner and the logo', async () => {
+    const c = await open('p00001', {
+      '/api/state/meta.json': meta,
+      '/api/state/leagues/fba/S79/rosters.json': { league: 'fba', season: 79, locked: false, teams: { TOR: [entry('p00001')], VEG: [] } },
+    });
+    const rows = [...c.querySelectorAll('table.stat-table tbody tr')].map(tr => [...tr.querySelectorAll('td')].map(td => td.textContent));
+    expect(rows.slice(-2)).toEqual([['FBA', 'VEGVEG', 'S77-S78', ''], ['FBA', 'TORTOR', 'S79-pres.', '']]);
+    expect(c.querySelector('.hero-logo .team-badge')!.textContent).toBe('TOR');
+  });
+
+  it('keeps the team he is still with, and a released player stays as he was', async () => {
+    const same = await open('p00001', {
+      '/api/state/meta.json': meta,
+      '/api/state/leagues/fba/S79/rosters.json': { league: 'fba', season: 79, locked: false, teams: { VEG: [entry('p00001')] } },
+    });
+    expect([...same.querySelectorAll('table.stat-table tbody tr')].pop()!.textContent).toContain('S77-pres.');
+    cleanup();
+    const released = await open('p00001', { '/api/state/meta.json': meta, '/api/state/leagues/fba/S79/rosters.json': { league: 'fba', season: 79, locked: false, teams: { VEG: [] } } });
+    expect([...released.querySelectorAll('table.stat-table tbody tr')].pop()!.textContent).toContain('S77-pres.');
+  });
+
+  it('puts a player found on a D2 roster in D2', async () => {
+    const c = await open('p00001', {
+      '/api/state/meta.json': meta,
+      '/api/state/leagues/fbad2/S79/rosters.json': { league: 'fbad2', season: 79, locked: false, teams: { AUS: [entry('p00001')] } },
+    });
+    expect([...c.querySelectorAll('table.stat-table tbody tr')].pop()!.textContent).toContain('S79-pres.');
+    expect(c.querySelector('.hero-logo .team-badge')!.textContent).toBe('AUS');
+  });
+});
 
 describe('player page career and emblem', () => {
   it('reads a school spelled differently in a bio (case, "Lousiville") and still links it', async () => {
