@@ -8,6 +8,7 @@ import { fillWalkOns, openSpots, walkOnProblem } from '../../engine/college/walk
 import type { Rng } from '../../engine/d2/random';
 import { groupLabel } from '../../engine/shared/leagues';
 import { POSITIONS } from '../../engine/roster/rules';
+import { portalByRating } from '../../engine/college/portal';
 import type { PortalPlayer, Position, Prospect, Team } from '../../engine/shared/types';
 import { newBatchId } from '../roster/commit';
 import '../pages/roster.css';
@@ -70,7 +71,8 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
   // A player's rank is his place in his group (the class or the portal), so it stays the same while the filters narrow the list.
   const rankOf = new Map<string, number>([...doc.recruits, ...doc.portal].map(p => [p.playerId, 0]));
   doc.recruits.forEach((p, i) => rankOf.set(p.playerId, i + 1));
-  doc.portal.forEach((p, i) => rankOf.set(p.playerId, i + 1));
+  const portal = portalByRating(state);
+  portal.forEach((p, i) => rankOf.set(p.playerId, i + 1));
   const row = (p: Prospect | PortalPlayer) => (
     <tr key={p.playerId}>
       <td className="n">{rankOf.get(p.playerId)}</td>
@@ -178,7 +180,7 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
         <div className="table-wrap tall">
           <table className="stat-table board-table" aria-label="Transfer portal">
             {head(true)}
-            <tbody>{doc.portal.filter(shown).map(row)}</tbody>
+            <tbody>{portal.filter(shown).map(row)}</tbody>
           </table>
         </div>
       )}

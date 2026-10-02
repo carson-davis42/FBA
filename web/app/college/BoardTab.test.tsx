@@ -37,6 +37,17 @@ describe('BoardTab', () => {
     expect(screen.getByRole('link', { name: /Open the transfer portal page/ }).getAttribute('href')).toBe('/league/fbajc/portal');
   });
 
+  it('lists the transfer portal highest rating first, whatever order it is stored in', () => {
+    const s = collegeCurrentClassState();
+    const mk = (playerId: string, rating: number) => ({ playerId, position: 'PF' as const, classYear: 'Jr' as const, rating, stars: null, projections: {}, committedTo: null, fromTeam: 'BAY' });
+    const portal = [mk('p90001', 60), mk('p90002', 90), mk('p90003', 75)];
+    const sample = Object.values(s.players.players)[0];
+    const players = { ...s.players, players: { ...s.players.players, ...Object.fromEntries(portal.map(x => [x.playerId, { ...sample, name: x.playerId }])) } };
+    render(<Harness initial={{ ...s, players, recruiting: { ...s.recruiting, portal } }} runs={[]} />);
+    expect(names('Transfer portal')).toEqual(['p90002', 'p90003', 'p90001']);
+    expect(ranks('Transfer portal')).toEqual(['1', '2', '3']);
+  });
+
   it('numbers the class and the portal 1, 2, 3 in their own order, and keeps a player\'s rank when the list is filtered', () => {
     const s = collegeCurrentClassState();
     render(<Harness initial={s} runs={[]} />);
