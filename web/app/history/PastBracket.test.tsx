@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { Bracket } from '../playoffs/Bracket';
 import type { FranchisesFile, PastBracket as PastBracketDoc, PastSeries, PlayoffSeries, Team } from '../../engine/shared/types';
 import { PastBracket } from './PastBracket';
@@ -144,6 +144,15 @@ describe('PastBracket rounds layout (32 and 64 slots)', () => {
     expect(colCounts(container)).toEqual([32, 16, 8, 4, 2, 1]);
     expect(container.querySelectorAll('.bracket-col')).toHaveLength(0);
     expect(container.querySelectorAll('.cols-col:last-child .champ-badge')).toHaveLength(1);
+  });
+
+  it('slides the bracket to a round when its header is clicked', () => {
+    const { container } = render(<PastBracket bracket={full(5)} teams={[]} season={11} />);
+    const box = container.querySelector('.bracket.cols') as HTMLElement;
+    const scrollTo = vi.fn();
+    box.scrollTo = scrollTo as unknown as typeof box.scrollTo;
+    fireEvent.click(screen.getByRole('button', { name: 'Elite 8' }));
+    expect(scrollTo).toHaveBeenCalledTimes(1);
   });
 
   it('labels a 32-team page from its field size, and shows scores and OT tags in the cards', () => {
