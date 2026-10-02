@@ -40,7 +40,7 @@ describe('TradePage', () => {
     fireEvent.change(await screen.findByLabelText('Add team'), { target: { value: 'MON' } });
     const car = screen.getByRole('region', { name: 'CAR Team' });
     const mon = screen.getByRole('region', { name: 'MON Team' });
-    fireEvent.click(within(car).getByText('Terence Hopkins'));
+    fireEvent.click(within(car).getByText('Terence Hopkins').closest('span')!);
     fireEvent.click(within(mon).getByText('S81 own pick'));
     fireEvent.change(within(mon).getByLabelText('S81 condition'), { target: { value: 'top' } });
     fireEvent.change(within(mon).getByLabelText('S81 protected top'), { target: { value: '4' } });
@@ -61,7 +61,7 @@ describe('TradePage', () => {
       );
       const car = await screen.findByRole('region', { name: 'CAR Team' });
       expect(screen.getByText('Add a second team to start a trade.')).toBeTruthy();
-      fireEvent.click(within(car).getByText('Terence Hopkins'));
+      fireEvent.click(within(car).getByText('Terence Hopkins').closest('span')!);
       expect(within(car).getByText('Terence Hopkins').closest('.asset')?.className).not.toContain('sending');
       expect(screen.getByText('Add a second team to start a trade.')).toBeTruthy();
     });
@@ -92,7 +92,7 @@ describe('TradePage', () => {
       const car = screen.getByRole('region', { name: 'CAR Team' });
       fireEvent.click(within(car).getByText('S81 Draft Pick(via MON)(4P)'));
       fireEvent.change(within(car).getByLabelText('Send S81 Draft Pick(via MON)(4P) to'), { target: { value: 'BOS' } });
-      fireEvent.click(within(car).getByText('Terence Hopkins'));
+      fireEvent.click(within(car).getByText('Terence Hopkins').closest('span')!);
       fireEvent.change(within(car).getByLabelText('Send Terence Hopkins to'), { target: { value: 'MON' } });
       expect(screen.getByText('->BOS S81 Draft Pick(via MON)(4P)')).toBeTruthy();
       expect(screen.getByText('->MON SG-Terence Hopkins')).toBeTruthy();

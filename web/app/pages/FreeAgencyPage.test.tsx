@@ -58,7 +58,7 @@ describe('FreeAgencyPage', () => {
 
   it('signs a player through the sign panel', async () => {
     renderPage();
-    fireEvent.click(await screen.findByText('Azubuike Okoro'));
+    fireEvent.click((await screen.findByText('Azubuike Okoro')).closest('tr')!);
     const panel = screen.getByRole('region', { name: /sign azubuike okoro/i });
     fireEvent.change(within(panel).getByLabelText('Team'), { target: { value: 'CAR' } });
     fireEvent.change(within(panel).getByLabelText('Years'), { target: { value: '2' } });
@@ -73,7 +73,7 @@ describe('FreeAgencyPage', () => {
 
   it('sends the loaded version with every write', async () => {
     renderPage();
-    fireEvent.click(await screen.findByText('Azubuike Okoro'));
+    fireEvent.click((await screen.findByText('Azubuike Okoro')).closest('tr')!);
     const panel = screen.getByRole('region', { name: /sign azubuike okoro/i });
     fireEvent.change(within(panel).getByLabelText('Team'), { target: { value: 'CAR' } });
     fireEvent.click(within(panel).getByRole('button', { name: 'Sign' }));

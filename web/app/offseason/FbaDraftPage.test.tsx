@@ -54,7 +54,7 @@ const enabled = async (name: string, root: HTMLElement = document.body) => {
   return b;
 };
 const names = (table: string) => within(screen.getByRole('table', { name: table })).getAllByRole('row').slice(1).map(r => (r as HTMLTableRowElement).cells[0].textContent);
-const rowOf = (name: string) => screen.getByText(name, { selector: 'td' }).closest('tr') as HTMLElement;
+const rowOf = (name: string) => within(screen.getByRole('table', { name: 'Prospects' })).getByRole('link', { name }).closest('tr') as HTMLElement;
 
 describe('FbaDraftPage', () => {
   it('asks for Adjust Age first when there is no draft board', async () => {
@@ -126,7 +126,7 @@ describe('FbaDraftPage', () => {
       ['players.json', '0000000000000001'],
     ].sort());
     expect(log.batches).toHaveLength(1);
-    expect(await screen.findByText('Sophie So', { selector: 'td' })).toBeTruthy();
+    expect(await within(await screen.findByRole('table', { name: 'Prospects' })).findByRole('link', { name: 'Sophie So' })).toBeTruthy();
   });
 
   it('sends an early entrant back to school or into the portal', async () => {
@@ -201,7 +201,7 @@ describe('FbaDraftPage', () => {
     expect(within(rowOf('Tim Taken')).getByRole('button', { name: 'Draft' })).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Back to school' })).toBeNull();
     expect(names('Picks')).toEqual(['1', '2']);
-    expect(within(screen.getByRole('table', { name: 'Picks' })).getByText('Dan Draftee (PF, School One)')).toBeTruthy();
+    expect(within(screen.getByRole('table', { name: 'Picks' })).getByText((_, el) => el?.tagName === 'TD' && el.textContent === 'Dan Draftee (PF, School One)')).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Finish the draft' })).toBeNull();
   });
 
