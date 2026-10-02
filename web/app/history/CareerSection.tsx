@@ -1,6 +1,7 @@
 import type { Career, Honour, Stint } from '../../engine/history/career';
-import type { AwardKey, Team } from '../../engine/shared/types';
+import type { AwardKey, FranchisesFile, Team } from '../../engine/shared/types';
 import { AWARD_KEYS } from '../../engine/shared/types';
+import { franchiseByAbbr } from '../../engine/shared/franchises';
 import { TeamName } from '../components/TeamName';
 
 /** Short award names, shared by the Awards-by-player columns and the player page chips. */
@@ -27,17 +28,19 @@ export function hasCareer(career: Career): boolean {
 }
 
 /** The team lists a stint's team is looked up in, one per league. */
-export interface StintTeams { fba: Team[]; d2: Team[]; college: Team[] }
+export interface StintTeams { fba: Team[]; d2: Team[]; college: Team[]; franchises?: FranchisesFile | null }
 
 /** A stint's team as a link to its history page (franchise, D2 team or school) with its logo; text when the team is unknown or has no page. */
 export function StintTeam({ stint, teams }: { stint: Stint; teams: StintTeams }) {
-  const season = typeof stint.from === 'number' ? stint.from : typeof stint.to === 'number' ? stint.to : 79;
+  const season = typeof stint.from === 'number' ? stint.from : typeof stint.to === 'number' ? stint.to : 1;
   if (stint.kind === 'fba') {
     return (
       <>
         {stint.team.split('/').map((code, i) => {
-          const t = teams.fba.find(x => x.teamId === code);
-          return <span key={i}>{i > 0 && '/'}{t ? <TeamName team={t} season={season} variant="abbr" size={18} to={`/history/fba/teams/${t.teamId}`} /> : code}</span>;
+          // Bios use the abbreviation of the era (FP, CT, USA, CHA, SOX…), so the franchise is looked up by era first.
+          const hit = franchiseByAbbr(teams.franchises, code, season);
+          const t = teams.fba.find(x => x.teamId === (hit?.teamId ?? code));
+          return <span key={i}>{i > 0 && '/'}{t ? <TeamName team={t} season={season} variant="abbr" size={18} abbr={code} name={hit?.era?.name ?? t.name} to={`/history/fba/teams/${t.teamId}`} /> : code}</span>;
         })}
       </>
     );

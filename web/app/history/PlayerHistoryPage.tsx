@@ -10,6 +10,7 @@ import { TeamMark } from '../components/TeamMark';
 import { teamTheme } from '../components/teamColors';
 import { CareerSection, hasCareer } from './CareerSection';
 import { Link } from 'react-router-dom';
+import { franchiseByAbbr } from '../../engine/shared/franchises';
 import { draftLine, draftTeamId } from './DraftSeasonPage';
 import { playerEmblem } from './PlayerEmblem';
 import { useJcTeams } from './jc/useJc';
@@ -20,6 +21,12 @@ import './history.css';
 
 const dash = (n: number | null) => (n === null ? '—' : String(n));
 const fixed = (n: number | null) => (n === null ? '—' : n.toFixed(1));
+
+/** The last season the FBA stints cover (for reading the era abbreviation of the newest one). */
+function latestSeasonOfStints(career: { stints: { kind: string; to: number | 'pres' | null; from: number | null }[] }): number {
+  const last = [...career.stints].reverse().find(s => s.kind === 'fba');
+  return last ? (typeof last.to === 'number' ? last.to : typeof last.from === 'number' ? last.from : 79) : 79;
+}
 
 /** `text` with the team it names in parentheses turned into a link, when the team is known. */
 function TeamLinkedText({ text, team, to }: { text: string; team: { id: string; name: string } | undefined; to: (t: { id: string; name: string }) => string }) {
@@ -75,10 +82,10 @@ export function PlayerHistoryPage() {
   // The newest FBA stint's last team ("BOS/DEN" counts as DEN); else the newest season line.
   const fbaStints = career.stints.filter(s => s.kind === 'fba');
   const recent = fbaStints.length > 0 ? fbaStints[fbaStints.length - 1].team.split('/').pop() : stats.rows.length > 0 ? stats.rows[stats.rows.length - 1].teamId : null;
-  const recentTeam = findTeam(teams, recent);
+  const recentTeam = findTeam(teams, franchiseByAbbr(franchises, recent ?? '', latestSeasonOfStints(career))?.teamId ?? recent);
   const latestFba = seasons.reduce((m, x) => Math.max(m, x.season), 0);
   const status = playerStatus(career, !!player.retired, latestFba);
-  const emblemTeams = { fba: teams, d2: d2Teams.teams, college: jcTeams.teams, wc: wcTeams.data?.teams ?? [] };
+  const emblemTeams = { fba: teams, d2: d2Teams.teams, college: jcTeams.teams, wc: wcTeams.data?.teams ?? [], franchises };
   const emblem = playerEmblem(status, career.stints[career.stints.length - 1], emblemTeams, recentTeam);
   const latestSeason = stats.rows.length > 0 ? stats.rows[stats.rows.length - 1].season : 0;
   const position = seasons.flatMap(s => (s.players ?? []).filter(l => l.playerId === playerId).map(l => ({ season: s.season, position: l.position })))
@@ -114,7 +121,7 @@ export function PlayerHistoryPage() {
       {drafted && <p className="muted"><DraftedLine text={drafted} teamId={draftTeamId(drafts.data ?? null, playerId)} teams={teams} /></p>}
       <SkippedWarning errors={errors} />
       {!bio && !hasCareer(career) && !hasAwards && honours.length === 0 && d2Honours.length === 0 && stats.rows.length === 0 && <p className="muted">No history recorded</p>}
-      <CareerSection career={career} born={bio ? bio.born : null} totals={totals} teams={{ fba: teams, d2: d2Teams.teams, college: jcTeams.teams }} />
+      <CareerSection career={career} born={bio ? bio.born : null} totals={totals} teams={{ fba: teams, d2: d2Teams.teams, college: jcTeams.teams, franchises }} />
       {honours.length > 0 && (
         <div>
           <h2>Honours</h2>

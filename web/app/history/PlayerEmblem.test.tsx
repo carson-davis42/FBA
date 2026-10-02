@@ -10,7 +10,11 @@ afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
 const badge = { bg: '#112233', fg: '#ffffff' };
 const team = (teamId: string, name: string, group: string | null, extra = {}) => ({ teamId, name, abbr: teamId, group, logoFolder: null, badge, ...extra });
-const fbaTeams = { league: 'fba', teams: [team('TOR', 'Toronto Wolves', 'E'), team('VEG', 'Las Vegas Aces', 'W')] } as TeamsFile;
+const fbaTeams = { league: 'fba', teams: [team('TOR', 'Toronto Wolves', 'E'), team('VEG', 'Las Vegas Aces', 'W'), team('CP', 'Columbus Pirates', 'E'), team('TEX', 'Texas Outlaws', 'W')] } as TeamsFile;
+const franchises = { franchises: [
+  { teamId: 'CP', eras: [{ name: 'Former Pirates', abbr: 'FP', city: 'Former', from: 1, to: 34 }, { name: 'Columbus Pirates', abbr: 'CP', city: 'Columbus', from: 35, to: null }] },
+  { teamId: 'TEX', eras: [{ name: 'Texas Outlaws', abbr: 'TEX', city: 'Texas', from: 30, to: null }] },
+] };
 const d2Teams = { league: 'fbad2', teams: [team('AUS', 'Austin', 'PL')] } as TeamsFile;
 const jcTeams = { league: 'fbajc', teams: [
   team('ARMY', 'Army', 'PAT', { logoFolder: 'FBAJC_Final', logoFile: 'Army.png' }),
@@ -19,7 +23,7 @@ const jcTeams = { league: 'fbajc', teams: [
 
 const person = (n: number, name: string, retired = false) => [`p0000${n}`, { id: `p0000${n}`, name, birthSeason: 52, ...(retired ? { retired: { season: 78, league: 'fba', teamId: 'TOR', position: 'PG' } } : {}) }];
 const players = { nextId: 9, players: Object.fromEntries([
-  person(1, 'Andre Active'), person(2, 'Rita Retired', true), person(3, 'Hank Hall'), person(4, 'Colin College'), person(5, 'Dee Dee'),
+  person(1, 'Andre Active'), person(2, 'Rita Retired', true), person(3, 'Hank Hall'), person(4, 'Colin College'), person(5, 'Dee Dee'), person(6, 'Old Timer'),
 ]) } as unknown as PlayersFile;
 const bio = (n: number, entries: string[]) => ({ playerId: `p0000${n}`, born: 'Born-S52', entries });
 const bios: PlayerBiosFile = { league: 'fba', bios: [
@@ -28,6 +32,7 @@ const bios: PlayerBiosFile = { league: 'fba', bios: [
   bio(3, ['Army-S50', 'TOR-S51-S60', 'HOF-S66']),
   bio(4, ['Army-S77-S78']),
   bio(5, ['Ohio State-S76', 'D2(Austin)-S77-pres.']),
+  bio(6, ['FP-S1-S19']),
 ] };
 const s78: SummaryFile = { league: 'fba', season: 78, locked: true, host: null, champions: [] };
 
@@ -36,7 +41,7 @@ function stub() {
     if (url === '/api/history/fba') return new Response(JSON.stringify({ seasons: [s78], errors: [] }));
     if (url === '/api/history/fbad2') return new Response(JSON.stringify({ seasons: [], errors: [] }));
     const docs: Record<string, unknown> = {
-      '/api/state/players.json': players, '/api/state/leagues/fba/playerBios.json': bios, '/api/state/leagues/fba/teams.json': fbaTeams,
+      '/api/state/players.json': players, '/api/state/leagues/fba/playerBios.json': bios, '/api/state/leagues/fba/teams.json': fbaTeams, '/api/state/leagues/fba/franchises.json': franchises,
       '/api/state/leagues/fbad2/teams.json': d2Teams, '/api/state/leagues/fbajc/teams.json': jcTeams,
     };
     return url in docs ? new Response(JSON.stringify(docs[url]), { headers: { ETag: '"0000000000000001"' } }) : new Response('{}', { status: 404 });
@@ -51,6 +56,15 @@ const open = async (id: string) => {
 const heroSrc = (c: HTMLElement) => c.querySelector('.hero-logo img')?.getAttribute('src') ?? null;
 
 describe('player page career and emblem', () => {
+  it('links an old era abbreviation to its franchise and shows that era\'s name', async () => {
+    const c = await open('p00006');
+    const link = within(c.querySelector('table.stat-table') as HTMLElement).getByRole('link');
+    expect(link.getAttribute('href')).toBe('/history/fba/teams/CP');
+    expect(link.textContent).toContain('FP');
+    expect(link.getAttribute('title')).toBe('Former Pirates');
+    expect(heroSrc(c)).toContain('/logos/FBA/');
+  });
+
   it('lists the college years as ordinary rows, links every team, and counts them in the years under the name', async () => {
     const c = await open('p00001');
     expect(c.querySelector('.hero-kicker')!.textContent).toBe('S70–pres.');
