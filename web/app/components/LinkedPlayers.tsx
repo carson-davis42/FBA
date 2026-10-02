@@ -13,6 +13,15 @@ export function uniqueNameIndex(players: PlayersFile): Map<string, string> {
   return new Map([...seen].filter((e): e is [string, string] => e[1] !== null));
 }
 
+/** Names the sheets spell differently from the player record (lower case on both sides). */
+const NAME_SPELLING: Record<string, string> = { 'mitchel corey': 'mitchell corey' };
+
+/** The player a name belongs to, when exactly one does. */
+export const idForName = (index: Map<string, string>, name: string): string | null => {
+  const key = name.trim().toLowerCase();
+  return index.get(NAME_SPELLING[key] ?? key) ?? null;
+};
+
 /** A position then a name, as the roster moves write them: "PG-Gabriel Greenwood", ended by " (", ":" or the end of the line. */
 const MOVE_NAME = /\b(PG|SG|SF|PF|C)-([^():→]+?)(?=\s*(?:\(|:|$))/g;
 
