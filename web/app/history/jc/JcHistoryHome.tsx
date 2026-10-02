@@ -19,6 +19,7 @@ export function JcHistoryHome() {
     { to: '/history/fbajc/championships', title: 'Championships', text: 'Every national champion, NIT champion and title count.' },
     { to: '/history/fbajc/awards', title: 'Awards', text: 'National and conference awards, season by season.' },
     ...(latest ? [{ to: `/history/fbajc/season/${latest.season}`, title: 'Seasons', text: 'Champions, awards, All-Americans and brackets for any season.' }] : []),
+    { to: '/history/fbajc/recruiting', title: 'Recruiting', text: 'Every past recruiting class and transfer portal, with where each player went.' },
     { to: '/history/fbajc/schools', title: 'Schools', text: 'Every school: titles, March Madness runs and awards.' },
   ];
   return (

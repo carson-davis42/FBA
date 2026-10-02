@@ -13,6 +13,7 @@ import { runBracketImport } from './history/mergeBrackets';
 import type { BracketEntry } from './history/convertBrackets';
 import { buildWcHistory, WC_SHEET_TAB } from './wcHistory';
 import { JC_HISTORY_TABS, planJcHistory } from './jcHistoryRun';
+import { JC_RECRUITING_TABS, planJcRecruitingHistory } from './jcRecruitingHistory';
 import { JC_LAST_SEASON } from './jcHistory';
 import { JC_LOGO_FOLDER, wireJcLogos, type JcLogoColors } from './jcLogos';
 import { planJcSchools } from './jcSchools';
@@ -631,6 +632,30 @@ async function importJcSchools(): Promise<void> {
   console.log(`Wrote ${docs[0]?.[0]} (${report.count('warn')} warnings) to ${dir}.`);
 }
 
+/** Reads the "FBA JC Recruiting" and "FBA JC Transfer Portal" tabs into leagues/fbajc/recruitingHistory.json: the S52-S78 classes and portals. Writes nothing else. */
+async function importJcRecruitingHistory(): Promise<void> {
+  const dir = requireDataDir('--jc-recruiting');
+  const players = readDataJson<PlayersFile>(dir, 'players.json');
+  const teams = readDataJson<TeamsFile>(dir, 'leagues/fbajc/teams.json');
+  if (!players || !teams) {
+    console.error('--jc-recruiting needs players.json and leagues/fbajc/teams.json in the data folder.');
+    process.exit(1);
+  }
+  rmSync(path.join(CACHE, `${SHEETS.collegeHistory}.xlsx`), { force: true });
+  console.log('Downloading the FBAJC history sheet...');
+  const tabs = await readTabs(await downloadWorkbook(SHEETS.collegeHistory, CACHE), Object.values(JC_RECRUITING_TABS));
+  const report = new Report();
+  const { docs, problems } = planJcRecruitingHistory({ players, teams, tabs }, report);
+  printReport(report);
+  for (const e of report.entries.filter(x => x.level === 'info' && x.topic === 'jc-recruiting')) console.log(e.message);
+  if (report.count('error') > 0 || problems.length) {
+    console.error(`${report.count('error') + problems.length} error(s); nothing was written.${problems.length ? `\n${problems.join('\n')}` : ''}`);
+    process.exit(1);
+  }
+  for (const [rel, doc] of docs) writeDoc(dir, rel, doc);
+  console.log(`Wrote ${docs[0]?.[0]} (${report.count('warn')} warnings) to ${dir}.`);
+}
+
 /** Points every college team in leagues/fbajc/teams.json at its file in FBA Logos/FBAJC_Final and gives it its logo's colours. Writes only that doc. */
 function importJcLogos(): void {
   const dir = requireDataDir('--jc-logos');
@@ -676,7 +701,7 @@ export async function importWcQualifyingStep(): Promise<void> {
   console.log(`Added s${cal.season}-qualifying`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-brackets', '--jc-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -699,6 +724,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--wc-history')) return importWcHistory();
   if (process.argv.includes('--jc-history')) return importJcHistory();
   if (process.argv.includes('--jc-schools')) return importJcSchools();
+  if (process.argv.includes('--jc-recruiting')) return importJcRecruitingHistory();
   if (process.argv.includes('--jc-brackets')) return importBrackets('--jc-brackets', 'fbajc', 'jcBrackets.json');
   if (process.argv.includes('--wc-brackets')) return importBrackets('--wc-brackets', 'fbawc', 'wcBrackets.json');
   if (process.argv.includes('--d2-brackets')) return importBrackets('--d2-brackets', 'fbad2', 'd2Brackets.json');

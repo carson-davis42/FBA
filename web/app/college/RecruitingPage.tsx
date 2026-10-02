@@ -47,6 +47,8 @@ export function RecruitingPage() {
       kicker="FBAJC"
       title={`FBAJC recruiting · Class of S${classOf}`}
       actions={(
+        <>
+        <Link to="/history/fbajc/recruiting">Past classes ▸</Link>{' '}
         <label className="muted">
           Class{' '}
           <select aria-label="Class" value={classOf} onChange={e => setParams({ class: e.target.value })}>
@@ -54,6 +56,7 @@ export function RecruitingPage() {
             <option value={n + 1}>S{n + 1} class</option>
           </select>
         </label>
+        </>
       )}
     />
   );

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { JcSchoolHistoryFile, PlayersFile, Team, TeamsFile } from '../../../engine/shared/types';
+import type { JcRecruitingHistoryFile, JcSchoolHistoryFile, PlayersFile, Team, TeamsFile } from '../../../engine/shared/types';
 import { useDoc } from '../../api';
 import { TeamName } from '../../components/TeamName';
 import { findTeam } from '../useTeams';
@@ -13,6 +13,12 @@ export function useJcTeams(): { settled: boolean; teams: Team[] } {
 /** The imported school history (S1-S78). It is optional: a league without it still shows what the season summaries give. */
 export function useJcSchoolHistory(): { settled: boolean; file: JcSchoolHistoryFile | null } {
   const doc = useDoc<JcSchoolHistoryFile>('leagues/fbajc/schoolHistory.json');
+  return { settled: !!doc.data || doc.missing || !!doc.error, file: doc.data ?? null };
+}
+
+/** The imported recruiting classes and transfer portals (S52-S78). Optional, like the school history. */
+export function useJcRecruitingHistory(): { settled: boolean; file: JcRecruitingHistoryFile | null } {
+  const doc = useDoc<JcRecruitingHistoryFile>('leagues/fbajc/recruitingHistory.json');
   return { settled: !!doc.data || doc.missing || !!doc.error, file: doc.data ?? null };
 }
 

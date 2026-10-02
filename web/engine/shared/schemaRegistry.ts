@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 import {
-  AllStarFile, AwardCountsFile, AwardsFile, CalendarFile, D2DraftFile, D2DraftHistoryFile, D2LeagueHistoryFile, D2PoolFile, DraftFile, DraftHistoryFile, EventsFile, FranchisesFile, FreeAgentsFile, HallOfFameFile, JcAwardsFile, JcPostseasonFile, JcRankingsFile, JcScheduleFile, JcSchoolHistoryFile, LogoManifest, LotteryFile, MetaFile, PicksFile, PlayerBiosFile, PlayersFile, PastTransactionsFile, PlayoffsFile, QualifyingFile, RankingFile, RatingPauseFile, RecruitingFile, ReservesFile, ResultsFile,
+  AllStarFile, AwardCountsFile, AwardsFile, CalendarFile, D2DraftFile, D2DraftHistoryFile, D2LeagueHistoryFile, D2PoolFile, DraftFile, DraftHistoryFile, EventsFile, FranchisesFile, FreeAgentsFile, HallOfFameFile, JcAwardsFile, JcPostseasonFile, JcRecruitingHistoryFile, JcRankingsFile, JcScheduleFile, JcSchoolHistoryFile, LogoManifest, LotteryFile, MetaFile, PicksFile, PlayerBiosFile, PlayersFile, PastTransactionsFile, PlayoffsFile, QualifyingFile, RankingFile, RatingPauseFile, RecruitingFile, ReservesFile, ResultsFile,
   RostersFile, ScheduleFile, SummaryFile, TeamsFile, TransactionsFile, WcHostsFile, WorldCupFile,
 } from './types';
 
@@ -30,6 +30,7 @@ const RULES: [RegExp, z.ZodTypeAny][] = [
   [/^leagues\/fba\/pastTransactions\.json$/, PastTransactionsFile],
   [/^leagues\/fba\/events\.json$/, EventsFile],
   [/^leagues\/fbajc\/schoolHistory\.json$/, JcSchoolHistoryFile],
+  [/^leagues\/fbajc\/recruitingHistory\.json$/, JcRecruitingHistoryFile],
   [/^leagues\/fba\/hallOfFame\.json$/, HallOfFameFile],
   [/^leagues\/fba\/playerBios\.json$/, PlayerBiosFile],
   [/^leagues\/fba\/awardCounts\.json$/, AwardCountsFile],
