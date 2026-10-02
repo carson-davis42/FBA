@@ -41,6 +41,19 @@ describe('BoardTab', () => {
     expect(document.activeElement).toBe(screen.getByLabelText('Search schools'));
   });
 
+  it('does the same from a portal player\'s row', () => {
+    const scroll = vi.fn();
+    Element.prototype.scrollIntoView = scroll;
+    const s = collegeCurrentClassState();
+    const sample = Object.keys(s.players.players)[0];
+    const portal = [{ playerId: sample, position: 'PF' as const, classYear: 'Jr' as const, rating: 70, stars: null, projections: {}, committedTo: null, fromTeam: 'BAY' }];
+    render(<Harness initial={{ ...s, recruiting: { ...s.recruiting, portal } }} runs={[]} />);
+    const row = within(screen.getByRole('table', { name: 'Transfer portal' })).getAllByRole('row')[1];
+    fireEvent.click(within(row).getByRole('button', { name: /^Add a projection for/ }));
+    expect(scroll).toHaveBeenCalledTimes(1);
+    expect(document.activeElement).toBe(screen.getByLabelText('Search schools'));
+  });
+
   it('links to the transfer portal page', () => {
     render(<Harness initial={collegeCurrentClassState()} runs={[]} />);
     expect(screen.getByRole('link', { name: /Open the transfer portal page/ }).getAttribute('href')).toBe('/league/fbajc/portal');
