@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { type Possession, type SimGame, winProbability } from '../../engine/season/sim';
 import { playerName, type SeasonState } from '../../engine/season/state';
-import { LEAGUE_LABEL } from '../../engine/shared/leagues';
+import { groupLabel, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import { useSaving } from '../api';
 import { BoxTable, bugSide, LineScore, periodName, ScoreBug, teamLabel } from './GameViews';
 import '../pages/season.css';
@@ -90,9 +90,13 @@ export function LiveGame({ state, sim, save, back }: LiveGameProps) {
   const lines = (side: 'home' | 'away') => sim[side].players.map((pl, k) => ({ playerId: pl.playerId, pts: box[side][k] }));
   const points = history.map((v, i) => `${(i / Math.max(1, sim.possessions.length)) * 300},${60 - v * 60}`).join(' ');
 
+  // The conference or division the two teams play in (both, when they differ).
+  const groups = [...new Set([sim.home.teamId, sim.away.teamId].map(id => state.teams.teams.find(t => t.teamId === id)?.group ?? null))]
+    .filter((g): g is string => g !== null).map(g => groupLabel(state.league, g));
+
   return (
     <section className="stack">
-      <p className="page-kicker">{LEAGUE_LABEL[state.league] ?? state.league} · S{state.season}</p>
+      <p className="page-kicker">{[LEAGUE_LABEL[state.league] ?? state.league, ...groups, `S${state.season}`].join(' · ')}</p>
       <ScoreBug
         away={bugSide(state, sim.away.teamId, last?.awayScore ?? 0, { full: true, record: true })}
         home={bugSide(state, sim.home.teamId, last?.homeScore ?? 0, { full: true, record: true })}
