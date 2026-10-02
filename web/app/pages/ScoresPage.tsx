@@ -6,7 +6,7 @@ import { records } from '../../engine/season/standings';
 import {
   blockingPause, gamesPlayed, PAUSE_LABEL, playerName, seasonOver, type SeasonResult, type SeasonState,
 } from '../../engine/season/state';
-import { LEAGUE_LABEL } from '../../engine/shared/leagues';
+import { groupLabel, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { Team } from '../../engine/shared/types';
 import { useSaving, type Versions } from '../api';
 import { Badge } from '../components/Badge';
@@ -197,10 +197,13 @@ export function ScoresPage() {
           const status = r ? `Final${r.ot ? (r.ot > 1 ? ` (${r.ot}OT)` : ' (OT)') : ''}` : isNext ? 'Next' : 'Upcoming';
           const lines = r?.box ? [...r.box.home, ...r.box.away] : [];
           const top = lines.length ? lines.reduce((a, b) => (b.pts > a.pts ? b : a)) : null;
+          const codes = [...new Set([away.group, home.group].filter((c): c is string => !!c))];
+          const conf = codes.join('/');
+          const confTitle = codes.map(c => groupLabel(lg, c)).join(' / ');
           return (
             <div key={n} className={`card game-card${isNext ? ' next' : ''}`}>
               <div className="game-head">
-                <div className="game-status">Game {n} · {status}</div>
+                <div className="game-status">Game {n} · {status}{conf && <span className="game-conf" title={confTitle}>{conf}</span>}</div>
                 {r ? <Badge kind="final">final</Badge> : isNext ? <Badge kind="current">next</Badge> : null}
               </div>
               <TeamLine team={away} rec={rec(away.teamId)} pts={r ? r.awayPts : null} won={!!r && r.awayPts > r.homePts} season={state.season} />
