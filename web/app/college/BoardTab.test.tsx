@@ -70,8 +70,8 @@ describe('BoardTab', () => {
     expect(screen.getByText('0 of 3 committed · 0 in the portal')).toBeTruthy();
     expect(names('Class of S80')).toEqual(['Zion Carter', 'Malik Ford', 'Eli Grant']);
     const zion = screen.getByText('Zion Carter').closest('tr')!;
-    expect(within(zion).getByText('67% TEX')).toBeTruthy();
-    expect(within(zion).getByText('33% BAY')).toBeTruthy();
+    expect(within(zion).getByText((_, el) => !!el?.classList.contains('tag') && /^67% TEX/.test(el.textContent ?? ''))).toBeTruthy();
+    expect(within(zion).getByText((_, el) => !!el?.classList.contains('tag') && /^33% BAY/.test(el.textContent ?? ''))).toBeTruthy();
     expect(screen.getByText('Nobody is in the portal.')).toBeTruthy();
   });
 
@@ -85,7 +85,7 @@ describe('BoardTab', () => {
     fireEvent.click(within(dialog).getByRole('button', { name: 'Texas' }));
     expect(runs.at(-1)).toMatchObject({ ok: true, label: 'Project Zion Carter to Texas' });
     expect(screen.queryByRole('dialog')).toBeNull();
-    expect(screen.getByText('100% TEX')).toBeTruthy();
+    expect(screen.getByText((_, el) => !!el?.classList.contains('tag') && /^100% TEX/.test(el.textContent ?? ''))).toBeTruthy();
     fireEvent.click(button('Remove a TEX projection for Zion Carter'));
     expect(runs.at(-1)).toMatchObject({ ok: true, label: 'Remove a Texas projection for Zion Carter' });
   });
@@ -102,7 +102,7 @@ describe('BoardTab', () => {
     expect(within(dialog).getByText('Jaden Moss (So, 82) will enter the portal')).toBeTruthy();
     fireEvent.click(within(dialog).getByRole('button', { name: 'Confirm commit' }));
     expect(runs.at(-1)).toMatchObject({ ok: true, label: 'Zion Carter commits to Baylor' });
-    expect(screen.getByText('Committed: Baylor')).toBeTruthy();
+    expect(screen.getByText((_, el) => el?.tagName === 'STRONG' && /^Committed:.*Baylor$/.test(el.textContent ?? ''))).toBeTruthy();
     expect(screen.getByText('1 of 3 committed · 1 in the portal')).toBeTruthy();
     expect(names('Transfer portal')).toEqual(['Jaden Moss']);
   });
@@ -191,5 +191,21 @@ describe('BoardTab', () => {
       render(<Harness initial={collegeClassState()} runs={[]} />);
       expect(screen.queryByRole('button', { name: /walk-ons/ })).toBeNull();
     });
+  });
+});
+
+describe('school logos on the recruiting pages', () => {
+  it('shows a school with its logo wherever it appears', async () => {
+    // A school with a logo file draws it as an image next to the name.
+    const { School } = await import('./School');
+    const { render: r } = await import('@testing-library/react');
+    const state = { season: 79, teams: { league: 'fbajc', teams: [{ teamId: 'DUKE', name: 'Duke', abbr: 'DUKE', group: 'ACC', logoFolder: 'FBAJC_Final', logoFile: 'Duke.png', badge: { bg: '#000', fg: '#fff' } }] } } as unknown as Parameters<typeof School>[0]['state'];
+    const { container } = r(<School state={state} teamId="DUKE" />);
+    expect(container.querySelector('img.team-mark')!.getAttribute('src')).toBe('/logos/FBAJC_Final/79?file=Duke.png');
+    expect(container.textContent).toBe('Duke');
+    cleanup();
+    const unknown = r(<School state={state} teamId="ZZZ" />);
+    expect(unknown.container.textContent).toBe('ZZZ');
+    expect(unknown.container.querySelector('img')).toBeNull();
   });
 });
