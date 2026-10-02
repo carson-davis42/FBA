@@ -12,6 +12,7 @@
 .game-card { display: grid; gap: var(--s1); padding: var(--s3); align-content: start; }
 .game-card.next { border-color: var(--accent); }
 .game-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); margin-bottom: var(--s1); }
+.game-conf { margin-left: var(--s2); padding: 0 var(--s1); border-radius: var(--r-sm, 4px); background: var(--surface-2); color: var(--text); }
 .game-status { font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
 .team-line { display: grid; grid-template-columns: 1fr auto 40px; gap: var(--s2); align-items: center; padding: 2px 0; min-width: 0; }
 .team-line.won { font-weight: 800; }

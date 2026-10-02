@@ -60,6 +60,15 @@ describe('ScoresPage', () => {
     expect(await screen.findByText(/No schedule yet/)).toBeTruthy();
   });
 
+  it('tags each game with its conference code', async () => {
+    stubApi(seasonDocs(fbaSeasonState()));
+    renderAt('/league/fba/scores');
+    await screen.findByText('Game 1 · Next');
+    const tags = [...document.querySelectorAll('.game-conf')].map(e => e.textContent);
+    expect(tags.length).toBeGreaterThan(0);
+    for (const t of tags) expect(t).toMatch(/^[EW](\/[EW])?$/);
+  });
+
   it('shows the next game and quick-sims it as one batch', async () => {
     const log = stubApi(seasonDocs(fbaSeasonState()));
     renderAt('/league/fba/scores');

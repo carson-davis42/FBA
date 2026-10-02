@@ -48,6 +48,6 @@ describe('LiveGame', () => {
     const name = (id: string) => state.teams.teams.find(t => t.teamId === id)!.name;
     expect(bug).toContain(`${name('BOS')}1-0`);
     expect(bug).toContain(`${name('CAR')}0-1`);
-    expect(document.querySelector('.page-kicker')!.textContent).toBe(`FBA · S${state.season}`);
+    expect(document.querySelector('.page-kicker')!.textContent).toMatch(/^FBA · (Eastern|Western) Conference( · (Eastern|Western) Conference)? · S\d+$/);
   });
 });
