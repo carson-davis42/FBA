@@ -770,6 +770,39 @@ export const JcSchoolHistoryFile = z.object({
 }).strict().refine(f => new Set(f.schools.map(sc => sc.teamId)).size === f.schools.length, 'A school is listed twice');
 export type JcSchoolHistoryFile = z.infer<typeof JcSchoolHistoryFile>;
 
+/** The college recruiting classes and transfer portals of S52-S78 as the history sheet lists them (the sheet's eras differ: early classes have no ratings, and position is IN, MID or OUT). */
+export const JcRecruitingHistoryFile = z.object({
+  league: z.literal('fbajc'),
+  throughSeason: int.min(1),
+  classes: z.array(z.object({
+    season: int.min(1),
+    recruits: z.array(z.object({
+      rank: int.min(1),
+      stars: int.min(1).max(5).nullable(),
+      /** PG, SG, SF, PF or C; IN, MID or OUT in the early classes. */
+      pos: z.string().min(1),
+      name: z.string().min(1),
+      playerId: playerId.nullable(),
+      rating: int.min(1).max(100).nullable(),
+      consensus: z.number().min(0).max(100).nullable(),
+      school: z.string().min(1).nullable(),
+      teamId: z.string().min(1).nullable(),
+    }).strict()),
+    portal: z.array(z.object({
+      rank: int.min(1),
+      pos: z.string().min(1),
+      name: z.string().min(1),
+      playerId: playerId.nullable(),
+      rating: int.min(1).max(100).nullable(),
+      fromSchool: z.string().min(1).nullable(),
+      fromTeamId: z.string().min(1).nullable(),
+      toSchool: z.string().min(1).nullable(),
+      toTeamId: z.string().min(1).nullable(),
+    }).strict()),
+  }).strict()),
+}).strict().refine(f => f.classes.every((c, i) => i === 0 || c.season > f.classes[i - 1].season), 'Classes must be sorted by season, once each');
+export type JcRecruitingHistoryFile = z.infer<typeof JcRecruitingHistoryFile>;
+
 export const RatingPauseRow = z.object({
   playerId,
   teamId: z.string().min(1),

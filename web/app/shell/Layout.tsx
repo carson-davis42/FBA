@@ -53,6 +53,7 @@ import { D2TeamsPage } from '../history/d2/D2TeamsPage';
 import { JcAwardsHistoryPage } from '../history/jc/JcAwardsHistoryPage';
 import { JcChampionshipsPage } from '../history/jc/JcChampionshipsPage';
 import { JcHistoryHome } from '../history/jc/JcHistoryHome';
+import { JcRecruitingPage } from '../history/jc/JcRecruitingPage';
 import { JcSchoolPage } from '../history/jc/JcSchoolPage';
 import { JcSchoolsPage } from '../history/jc/JcSchoolsPage';
 import { JcSeasonPage } from '../history/jc/JcSeasonPage';
@@ -131,6 +132,7 @@ const ROUTES = createRoutesFromElements(
   <Route path="/history/fbad2/drafts/:season" element={<D2DraftSeasonPage />} />
   <Route path="/history/fbajc" element={<JcHistoryHome />} />
   <Route path="/history/fbajc/championships" element={<JcChampionshipsPage />} />
+  <Route path="/history/fbajc/recruiting" element={<JcRecruitingPage />} />
   <Route path="/history/fbajc/awards" element={<JcAwardsHistoryPage />} />
   <Route path="/history/fbajc/season/:season" element={<JcSeasonPage />} />
   <Route path="/history/fbajc/schools" element={<JcSchoolsPage />} />
