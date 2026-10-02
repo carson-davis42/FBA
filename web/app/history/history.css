@@ -45,15 +45,16 @@
 .series-box.empty { visibility: hidden; min-height: 64px; box-shadow: none; }
 .bracket-col.l .series-box.empty::after, .bracket-col.r .series-box.empty::before { display: none; }
 
-/* Big brackets: one round at a time, games stacked vertically, no sideways scrolling. */
-.rounds-bracket { display: grid; gap: var(--s3); min-width: 0; }
-.bracket-champion { display: grid; gap: 0; max-width: 360px; background: var(--surface); border: 2px solid var(--border); border-radius: var(--r); box-shadow: var(--shadow-1); }
-.bracket-champion .champ-badge { display: flex; justify-content: center; padding: 4px; background: var(--row-alt); border-bottom: 1px solid var(--border); border-radius: var(--r) var(--r) 0 0; }
-.bracket-champion .series-side { font-size: var(--fs-md); padding: 10px; }
-.round-tabs { display: flex; flex-wrap: wrap; gap: var(--s1); }
-.round-tabs .chip { cursor: pointer; font: inherit; }
-.round-title { margin: 0 0 var(--s2); }
-.round-games { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: var(--s2); }
-.round-games .series-box { width: 100%; }
-.round-byes { margin: var(--s2) 0 0; }
-.round-nav { display: flex; justify-content: space-between; gap: var(--s2); }
+/* Big brackets: one-sided, a column per round, each game centred between the two it came from. */
+.bracket.cols { gap: 28px; }
+.cols-col { display: flex; flex-direction: column; min-width: 220px; flex: none; }
+.col-head { margin: 0 0 var(--s2); font-size: var(--fs-xs); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); text-align: center; }
+.col-slots { display: flex; flex-direction: column; flex: 1; }
+.col-slot { position: relative; flex: 1; display: flex; align-items: center; padding: 3px 0; }
+.col-slot .series-box { width: 100%; }
+.cols-col:not(.last) .col-slot .series-box::after { content: ''; position: absolute; top: 50%; left: 100%; width: 14px; height: 1px; background: var(--border); }
+.cols-col:not(.first) .col-slot .series-box::before { content: ''; position: absolute; top: 50%; right: 100%; width: 14px; height: 1px; background: var(--border); }
+.cols-col:not(.last) .col-slot::after { content: ''; position: absolute; right: -14px; width: 1px; background: var(--border); }
+.cols-col:not(.last) .col-slot:nth-child(odd)::after { top: 50%; bottom: 0; }
+.cols-col:not(.last) .col-slot:nth-child(even)::after { top: 0; bottom: 50%; }
+.cols-col .series-box.empty::before, .cols-col .series-box.empty::after { display: none; }
