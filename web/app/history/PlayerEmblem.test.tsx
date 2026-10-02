@@ -56,6 +56,13 @@ const open = async (id: string) => {
 const heroSrc = (c: HTMLElement) => c.querySelector('.hero-logo img')?.getAttribute('src') ?? null;
 
 describe('player page career and emblem', () => {
+  it('reads a school spelled differently in a bio (case, "Lousiville") and still links it', async () => {
+    const { findSchool } = await import('./CareerSection');
+    expect(findSchool(jcTeams.teams, 'ohio state')?.teamId).toBe('OSU');
+    expect(findSchool([{ ...jcTeams.teams[0], name: 'Louisville' }], 'Lousiville')).toBeDefined();
+    expect(findSchool(jcTeams.teams, 'Nowhere U')).toBeUndefined();
+  });
+
   it('links an old era abbreviation to its franchise and shows that era\'s name', async () => {
     const c = await open('p00006');
     const link = within(c.querySelector('table.stat-table') as HTMLElement).getByRole('link');

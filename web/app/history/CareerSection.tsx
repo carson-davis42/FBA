@@ -30,6 +30,14 @@ export function hasCareer(career: Career): boolean {
 /** The team lists a stint's team is looked up in, one per league. */
 export interface StintTeams { fba: Team[]; d2: Team[]; college: Team[]; franchises?: FranchisesFile | null }
 
+/** Spellings in the bios that differ from the school's name (and capitalisation is ignored). */
+const COLLEGE_SPELLING: Record<string, string> = { lousiville: 'louisville' };
+export const findSchool = (teams: Team[], name: string): Team | undefined => {
+  const key = name.trim().toLowerCase();
+  const want = COLLEGE_SPELLING[key] ?? key;
+  return teams.find(t => t.name.toLowerCase() === want);
+};
+
 /** A stint's team as a link to its history page (franchise, D2 team or school) with its logo; text when the team is unknown or has no page. */
 export function StintTeam({ stint, teams }: { stint: Stint; teams: StintTeams }) {
   const season = typeof stint.from === 'number' ? stint.from : typeof stint.to === 'number' ? stint.to : 1;
@@ -51,7 +59,7 @@ export function StintTeam({ stint, teams }: { stint: Stint; teams: StintTeams })
     return t ? <TeamName team={t} season={season} size={18} to={`/history/fbad2/teams/${t.teamId}`} /> : <>{name}</>;
   }
   if (stint.kind === 'college') {
-    const t = teams.college.find(x => x.name === stint.team);
+    const t = findSchool(teams.college, stint.team);
     return t ? <TeamName team={t} season={season} size={18} to={`/history/fbajc/schools/${t.teamId}`} /> : <>{stint.team}</>;
   }
   return <>{stint.team.replace(/^WC\((.*)\)$/, '$1')}</>;
