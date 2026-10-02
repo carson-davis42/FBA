@@ -71,7 +71,8 @@ describe('World Cup season page', () => {
     renderAt('79');
     await screen.findByRole('heading', { name: 'S79 World Cup' });
     await screen.findByText('Tournament MVP');
-    expect(document.querySelectorAll('.bracket .series-box')).toHaveLength(31);
+    expect(screen.getAllByRole('tab')).toHaveLength(5);
+    expect(document.querySelectorAll('.round-games .series-box')).toHaveLength(16);
     seasons.pop();
   });
 

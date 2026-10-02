@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { Bracket } from '../playoffs/Bracket';
 import type { FranchisesFile, PastBracket as PastBracketDoc, PastSeries, PlayoffSeries, Team } from '../../engine/shared/types';
@@ -117,9 +117,87 @@ describe('PastBracket 6 rounds', () => {
         series.push(ps(`R${r}-${k}`, `T${lo}`, `T${lo + span / 2}`, 4, 1));
       }
     }
-    const { container } = render(<PastBracket bracket={{ rounds: 6, series }} teams={[]} season={5} />);
+    const { container } = render(<PastBracket bracket={{ rounds: 6, series }} teams={[]} season={5} layout="tree" />);
     expect(container.querySelectorAll('.series-box')).toHaveLength(63);
     expect(container.querySelectorAll('.bracket > .bracket-col')).toHaveLength(11);
+  });
+});
+
+describe('PastBracket rounds layout (32 and 64 slots)', () => {
+  const full = (rounds: number, scored = true): PastBracketDoc => {
+    const series: PastSeries[] = [];
+    for (let r = 1; r <= rounds; r++) {
+      const n = 2 ** (rounds - r), span = 2 ** r;
+      for (let k = 1; k <= n; k++) {
+        const lo = (k - 1) * span + 1;
+        series.push({ ...ps(`R${r}-${k}`, `T${lo}`, `T${lo + span / 2}`, scored ? 1 : 0, 0), ...(scored ? { score: '60–50' } : { unscored: true as const }) });
+      }
+    }
+    return { rounds, series };
+  };
+  const tabs = (c: HTMLElement) => [...c.querySelectorAll('[role="tab"]')].map(t => t.textContent);
+
+  it('shows a 64-slot page one round at a time, labelled like the tournament, with the champion on top', () => {
+    const { container } = render(<PastBracket bracket={full(6)} teams={[]} season={63} />);
+    expect(tabs(container)).toEqual(['Round of 64', 'Round of 32', 'Sweet 16', 'Elite 8', 'Final Four', 'Championship']);
+    expect(container.querySelector('.bracket')).toBeNull();
+    expect(container.querySelectorAll('.round-games .series-box')).toHaveLength(32);
+    expect(container.querySelector('.bracket-champion')!.textContent).toContain('T1');
+    expect(screen.getByRole('tab', { selected: true }).textContent).toBe('Round of 64');
+  });
+
+  it('moves between rounds with the tabs and the previous and next buttons', () => {
+    const { container } = render(<PastBracket bracket={full(6)} teams={[]} season={63} />);
+    fireEvent.click(screen.getByRole('tab', { name: 'Sweet 16' }));
+    expect(container.querySelectorAll('.round-games .series-box')).toHaveLength(8);
+    fireEvent.click(screen.getByRole('button', { name: 'Elite 8 →' }));
+    expect(screen.getByRole('tab', { selected: true }).textContent).toBe('Elite 8');
+    expect(container.querySelectorAll('.round-games .series-box')).toHaveLength(4);
+    fireEvent.click(screen.getByRole('button', { name: '← Sweet 16' }));
+    expect(screen.getByRole('tab', { selected: true }).textContent).toBe('Sweet 16');
+    fireEvent.click(screen.getByRole('tab', { name: 'Championship' }));
+    expect(container.querySelectorAll('.round-games .series-box')).toHaveLength(1);
+    expect(container.querySelector('.round-games .champ-badge')).not.toBeNull();
+    expect((screen.getByRole('button', { name: /Next/ }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('labels a 32-team page from its field size, and shows scores and OT tags in the cards', () => {
+    const b = full(5);
+    b.series[0] = { ...b.series[0], score: '53–51 2OT' };
+    const { container } = render(<PastBracket bracket={b} teams={[]} season={11} />);
+    expect(tabs(container)).toEqual(['Round of 32', 'Sweet 16', 'Elite 8', 'Final Four', 'Championship']);
+    expect(container.querySelectorAll('.round-games .series-box')).toHaveLength(16);
+    expect(container.querySelector('.series-ot')!.textContent).toBe('2OT');
+  });
+
+  it('keeps byes out of the game list and names the teams that had one; rounds with no games get no tab', () => {
+    const b: PastBracketDoc = {
+      rounds: 5,
+      series: [
+        ...Array.from({ length: 16 }, (_, k) => ({ id: `R1-${k + 1}`, round: 1, home: k === 0 ? side('Louisville') : k === 1 ? side('Purdue') : null, away: null, homeWins: 0, awayWins: 0, winner: 'home' as const })),
+        ...Array.from({ length: 8 }, (_, k) => ps(`R2-${k + 1}`, k === 0 ? 'Louisville' : null, k === 0 ? 'Purdue' : null, 0, 0)),
+        ...Array.from({ length: 4 }, (_, k) => ps(`R3-${k + 1}`, null, null, 0, 0)),
+        ...Array.from({ length: 2 }, (_, k) => ps(`R4-${k + 1}`, null, null, 0, 0)),
+        ps('R5-1', null, null, 0, 0),
+      ],
+    };
+    const { container } = render(<PastBracket bracket={b} teams={[]} season={14} />);
+    expect(tabs(container)).toEqual(['Sweet 16']);
+    expect(container.querySelectorAll('.round-games .series-box')).toHaveLength(1);
+  });
+
+  it('shows byes of a round beside its games', () => {
+    const b = full(5);
+    b.series[3] = { ...b.series[3], away: null, score: undefined, homeWins: 0, unscored: undefined };
+    const { container } = render(<PastBracket bracket={b} teams={[]} season={11} />);
+    expect(container.querySelectorAll('.round-games .series-box')).toHaveLength(15);
+    expect(container.querySelector('.round-byes')!.textContent).toBe(`Byes: ${b.series[3].home!.name}`);
+  });
+
+  it('leaves the small brackets as the two-sided tree', () => {
+    const { container } = render(<PastBracket bracket={full(4)} teams={[]} season={5} />);
+    expect(container.querySelectorAll('.bracket > .bracket-col')).toHaveLength(7);
+    expect(screen.queryAllByRole('tab')).toHaveLength(0);
   });
 });
 
@@ -174,7 +252,7 @@ describe('PastBracket college pages', () => {
         series.push({ ...ps(`R${r}-${k}`, `T${lo}`, `T${lo + span / 2}`, 0, 0), unscored: true });
       }
     }
-    const { container } = render(<PastBracket bracket={{ rounds: 5, series }} teams={[]} season={11} />);
+    const { container } = render(<PastBracket bracket={{ rounds: 5, series }} teams={[]} season={11} layout="tree" />);
     expect(container.querySelectorAll('.series-box')).toHaveLength(31);
     expect(container.querySelectorAll('.bracket > .bracket-col')).toHaveLength(9);
   });
