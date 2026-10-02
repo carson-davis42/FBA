@@ -38,4 +38,16 @@ describe('LiveGame', () => {
     await waitFor(() => expect(save).toHaveBeenCalledTimes(2));
     expect(await screen.findByRole('link', { name: 'Saved · back ▸' })).toBeTruthy();
   });
+
+  it('names the league and shows each team\'s full name and record in the banner', () => {
+    const state = fbaSeasonState();
+    const sim = simGame(1, lineup(state, 'BOS') as SimTeam, lineup(state, 'CAR') as SimTeam, mulberry32(3));
+    const results = { league: 'fba' as const, season: state.season, locked: false, games: [{ gameNo: 1, home: 'BOS', away: 'CAR', homePts: 90, awayPts: 80 }] };
+    render(<MemoryRouter><LiveGame state={{ ...state, results }} sim={sim} save={async () => {}} back={{ to: '/x', label: 'back ▸' }} /></MemoryRouter>);
+    const bug = document.querySelector('.scorebug')!.textContent!;
+    const name = (id: string) => state.teams.teams.find(t => t.teamId === id)!.name;
+    expect(bug).toContain(`${name('BOS')}1-0`);
+    expect(bug).toContain(`${name('CAR')}0-1`);
+    expect(document.querySelector('.page-kicker')!.textContent).toBe(`FBA · S${state.season}`);
+  });
 });

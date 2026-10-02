@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
+import { records } from '../../engine/season/standings';
 import { playerName, type SeasonState } from '../../engine/season/state';
 import type { GameResult, Team } from '../../engine/shared/types';
 import { Badge } from '../components/Badge';
@@ -28,13 +29,14 @@ export const ACCENT_SIDES: CSSProperties[] = [
   { '--team': 'var(--hero-to)', '--team-2': 'var(--accent)', '--team-ink': 'var(--masthead-text)' } as CSSProperties,
 ];
 
-export interface BugSide { label: string; score: number; team?: Team; season?: number; style: CSSProperties }
+export interface BugSide { label: string; score: number; team?: Team; season?: number; style: CSSProperties; /** Small line under the label, such as a record. */ sub?: string }
 
 /** A side of the scorebug for a real team, in its colours. */
-export function bugSide(state: SeasonState, teamId: string, score: number): BugSide {
+export function bugSide(state: SeasonState, teamId: string, score: number, opts: { full?: boolean; record?: boolean } = {}): BugSide {
   const t = teamOf(state, teamId);
+  const rec = opts.record && state.results ? records(state.teams.teams.map(x => ({ teamId: x.teamId, group: x.group })), state.results.games).get(teamId) : undefined;
   return t
-    ? { label: t.abbr, score, team: t, season: state.season, style: teamVars(teamTheme(t, state.league)) }
+    ? { label: opts.full ? t.name : t.abbr, sub: rec ? `${rec.w}-${rec.l}` : undefined, score, team: t, season: state.season, style: teamVars(teamTheme(t, state.league)) }
     : { label: teamId, score, style: ACCENT_SIDES[0] };
 }
 
@@ -42,7 +44,7 @@ function Half({ side, cls }: { side: BugSide; cls: string }) {
   return (
     <div className={`scorebug-side ${cls}`} style={side.style}>
       {side.team && side.season !== undefined && <TeamMark team={side.team} season={side.season} size={36} />}
-      <span className="abbr">{side.label}</span>
+      <span className="abbr">{side.label}{side.sub && <small className="rec">{side.sub}</small>}</span>
       <span className="score">{side.score}</span>
     </div>
   );
