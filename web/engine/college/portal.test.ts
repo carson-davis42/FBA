@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { CalendarFile, PortalPlayer, RosterEntry } from '../shared/types';
+import { commit, commitPreview } from './recruiting';
 import { enterPortal, portalByRating, portalCandidates, portalProblem, takeOutOfPortal } from './portal';
 import type { RecruitingResult, RecruitingState } from './state';
 import { collegeCurrentClassState } from './testFixtures';
@@ -115,6 +116,19 @@ describe('takeOutOfPortal', () => {
     expect(r.state.rosters.teams.DUKE[0]).toEqual(e('p00510', 'PG', 'Jr', 84, 4));
     const last = r.state.tx.entries[r.state.tx.entries.length - 1];
     expect([last.type, last.teams, last.lines]).toEqual(['portal', ['DUKE'], ['Ty Brooks leaves the transfer portal and stays at Duke']]);
+  });
+
+  it('committing a portal player back to the school they left takes them out of the portal', () => {
+    expect(commitPreview(entered(), 'p00510', 'DUKE')).toEqual({ ok: true, text: 'Stays at Duke and leaves the portal' });
+    const r = ok(commit(entered(), 'p00510', 'DUKE', ctx));
+    expect(r.label).toBe('Ty Brooks leaves the transfer portal and stays at Duke');
+    expect(r.state.recruiting.portal).toEqual([]);
+    expect(r.state.rosters.teams.DUKE[0]).toEqual(e('p00510', 'PG', 'Jr', 84, 4));
+  });
+
+  it('committing to any other school still keeps them in the portal, committed', () => {
+    const r = ok(commit(entered(), 'p00510', 'BAY', ctx));
+    expect(r.state.recruiting.portal.filter(p => p.playerId === 'p00510').map(p => p.committedTo)).toEqual(['BAY']);
   });
 
   it('refuses a committed player, a filled spot, and someone not in the portal', () => {

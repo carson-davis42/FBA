@@ -3,6 +3,7 @@ import { appendTx, withTeam, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
 import { calendarProblem } from '../season/moves';
 import type { ClassDraftRow, PortalPlayer, Position, Prospect, RecruitingFile, RosterEntry, RostersFile } from '../shared/types';
+import { takeOutOfPortal } from './portal';
 import { collegeHole } from './setup';
 import { collegeName, playsThisSeason, recruitingFail, schoolName, type RecruitingDocKey, type RecruitingResult, type RecruitingState } from './state';
 
@@ -235,6 +236,9 @@ export function commitPreview(state: RecruitingState, playerId: string, teamId: 
   const check = boardCheck(state, playerId, teamId);
   if (!check.ok) return { ok: false, text: check.problems.join('; ') };
   const p = check.found.p;
+  if (check.found.list === 'portal' && teamId === check.found.p.fromTeam && takeOutOfPortal(state, playerId, { batchId: 'preview' }).ok) {
+    return { ok: true, text: `Stays at ${check.school} and leaves the portal` };
+  }
   if (!playsThisSeason(state)) {
     const taken = sameSlotCommit(state, p, teamId);
     if (taken) return { ok: false, text: taken };
@@ -257,6 +261,11 @@ export function commit(state: RecruitingState, playerId: string, teamId: string,
   if (!check.ok) return check;
   const { found, name, school } = check;
   const p = found.p;
+  // A portal player committing back to the school they left just stays: they leave the portal and retake their spot.
+  if (found.list === 'portal' && teamId === found.p.fromTeam) {
+    const back = takeOutOfPortal(state, playerId, ctx);
+    if (back.ok) return back;
+  }
   const what = found.list === 'portal'
     ? `${p.classYear} ${p.position}, transfer from ${schoolName(state, found.p.fromTeam)}`
     : `${p.stars !== null ? `${p.stars}★ ` : ''}${p.position}`;
