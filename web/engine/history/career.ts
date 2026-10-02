@@ -3,7 +3,8 @@ import { AWARD_KEYS, type AwardCountsFile, type AwardKey, type HallOfFameFile, t
 export type StintKind = 'college' | 'fba' | 'd2' | 'wc';
 export interface Honour { label: string; count: number; seasons: number[] }
 export interface Stint { kind: StintKind; team: string; range: string; from: number | null; to: number | 'pres' | null; honours: Honour[] }
-export interface Career { stints: Stint[]; hof: string | null; other: string[] }
+/** `stints` are club and school teams only; `nationalTeams` are the World Cup call-ups, kept apart so they never interrupt a club run. */
+export interface Career { stints: Stint[]; nationalTeams: Stint[]; hof: string | null; other: string[] }
 
 const STINT = /^(.+?)\s*-\s*((?:S\d+|FFL|pres\.)(?:\s*-\s*(?:S\d+|FFL|pres\.))?(?:\s*;\s*(?:S\d+|FFL)(?:\s*-\s*(?:S\d+|FFL|pres\.))?)*)$/;
 // Every FBA team code in the Players-tab bios. A shape rule can't be used: colleges such as Duke, UCLA and BYU look like team codes.
@@ -23,7 +24,7 @@ function seasonOf(token: string): number | null {
 }
 
 export function parseBio(bio: { born: string; entries: string[] }): Career {
-  const career: Career = { stints: [], hof: null, other: [] };
+  const career: Career = { stints: [], nationalTeams: [], hof: null, other: [] };
   for (const raw of bio.entries) {
     const entry = raw.trim();
     const hof = /^HOF-(S\d+|FFL)$/.exec(entry);
@@ -63,6 +64,8 @@ export function parseBio(bio: { born: string; entries: string[] }): Career {
     career.other.push(entry);
   }
   career.stints = mergeAcrossWorldCup(career.stints);
+  career.nationalTeams = career.stints.filter(x => x.kind === 'wc');
+  career.stints = career.stints.filter(x => x.kind !== 'wc');
   return career;
 }
 
@@ -205,7 +208,7 @@ function addHonour(stint: Stint, e: HonourEvent, season: number) {
 }
 
 export function liveCareer(bio: { born: string; entries: string[] } | null, playerId: string, summaries: SummaryFile[], hof: HallOfFameFile | null): Career {
-  const career: Career = bio ? parseBio(bio) : { stints: [], hof: null, other: [] };
+  const career: Career = bio ? parseBio(bio) : { stints: [], nationalTeams: [], hof: null, other: [] };
   const lastFba = (): Stint | undefined => [...career.stints].reverse().find(s => s.kind === 'fba');
   for (const s of fbaSummaries(summaries)) {
     if (s.season < 79) continue;
@@ -353,7 +356,7 @@ export type PlayerStatus = 'hof' | 'retired' | StintKind | 'unknown';
 export function playerStatus(career: Career, retired: boolean, latestSeason: number): PlayerStatus {
   if (career.hof !== null) return 'hof';
   if (retired) return 'retired';
-  const last = career.stints[career.stints.length - 1];
+  const last = career.stints[career.stints.length - 1] ?? career.nationalTeams[career.nationalTeams.length - 1];
   if (!last) return 'unknown';
   if (last.kind !== 'college' && typeof last.to === 'number' && last.to < latestSeason) return 'retired';
   return last.kind;

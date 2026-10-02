@@ -24,11 +24,11 @@ function honourTexts(honours: Honour[]): string[] {
 }
 
 export function hasCareer(career: Career): boolean {
-  return career.stints.length > 0 || career.other.length > 0 || career.hof !== null;
+  return career.stints.length > 0 || career.nationalTeams.length > 0 || career.other.length > 0 || career.hof !== null;
 }
 
 /** The team lists a stint's team is looked up in, one per league. */
-export interface StintTeams { fba: Team[]; d2: Team[]; college: Team[]; franchises?: FranchisesFile | null }
+export interface StintTeams { fba: Team[]; d2: Team[]; college: Team[]; wc?: Team[]; franchises?: FranchisesFile | null }
 
 /** Spellings in the bios that differ from the school's name (and capitalisation is ignored). */
 const COLLEGE_SPELLING: Record<string, string> = { lousiville: 'louisville' };
@@ -62,7 +62,9 @@ export function StintTeam({ stint, teams }: { stint: Stint; teams: StintTeams })
     const t = findSchool(teams.college, stint.team);
     return t ? <TeamName team={t} season={season} size={18} to={`/history/fbajc/schools/${t.teamId}`} /> : <>{stint.team}</>;
   }
-  return <>{stint.team.replace(/^WC\((.*)\)$/, '$1')}</>;
+  const country = stint.team.replace(/^WC\((.*)\)$/, '$1');
+  const t = (teams.wc ?? []).find(x => x.name === country);
+  return t ? <TeamName team={t} season={season} size={18} to={`/history/fbawc/teams/${t.teamId}`} /> : <>{country}</>;
 }
 
 export function CareerSection({ career, born, totals, teams }: { career: Career; born: string | null; totals: Record<AwardKey, number>; teams: StintTeams }) {
@@ -90,6 +92,25 @@ export function CareerSection({ career, born, totals, teams }: { career: Career;
                 </tbody>
               </table>
             </div>
+          )}
+          {career.nationalTeams.length > 0 && (
+            <>
+              <h3>National team</h3>
+              <div className="table-wrap">
+                <table className="stat-table" aria-label="National team">
+                  <thead><tr><th>Team</th><th>Seasons</th><th>Honours</th></tr></thead>
+                  <tbody>
+                    {career.nationalTeams.map((s, k) => (
+                      <tr key={k}>
+                        <td><StintTeam stint={s} teams={teams} /></td>
+                        <td>{s.range}</td>
+                        <td>{honourTexts(s.honours).join(', ')}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
           )}
           {career.other.length > 0 && <ul className="muted">{career.other.map((e, k) => <li key={k}>{e}</li>)}</ul>}
           {career.hof !== null && <p>Hall of Fame: {career.hof}</p>}

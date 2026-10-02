@@ -5,7 +5,8 @@ import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer,
 describe('parseBio', () => {
   it('keeps one stint when a World Cup call-up sits between two stints with the same team', () => {
     const c = parseBio({ born: 'S56', entries: ['Clemson-S74-S75', 'Texas-S76-S77', '1x National Champion', 'D2(BUD)-S78-pres.', 'WC(HUN)-S78', 'D2(BUD)-S79-pres.', 'S79 MVP'] });
-    expect(c.stints.map(s => `${s.kind}:${s.team}:${s.range}`)).toEqual(['college:Clemson:S74-S75', 'college:Texas:S76-S77', 'd2:D2(BUD):S78-pres.', 'wc:WC(HUN):S78']);
+    expect(c.stints.map(s => `${s.kind}:${s.team}:${s.range}`)).toEqual(['college:Clemson:S74-S75', 'college:Texas:S76-S77', 'd2:D2(BUD):S78-pres.']);
+    expect(c.nationalTeams.map(s => `${s.kind}:${s.team}:${s.range}`)).toEqual(['wc:WC(HUN):S78']);
     expect(c.stints[2].honours.map(h => h.label)).toEqual(['MVP']);
   });
 
@@ -71,7 +72,7 @@ describe('parseBio', () => {
   it('handles edge-case stints', () => {
     const ffl = parseBio({ born: 'Born-FFL', entries: ['SOX - FFL-FFL'] }).stints[0];
     expect(ffl).toMatchObject({ kind: 'fba', team: 'SOX', from: null, to: null, range: 'FFL-FFL' });
-    const wc = parseBio({ born: 'Born-S1', entries: ['WC(Germany)-S56-S58;S62'] }).stints[0];
+    const wc = parseBio({ born: 'Born-S1', entries: ['WC(Germany)-S56-S58;S62'] }).nationalTeams[0];
     expect(wc).toMatchObject({ kind: 'wc', team: 'WC(Germany)', from: 56, to: 62, range: 'S56-S58;S62' });
     expect(parseBio({ born: 'Born-S1', entries: ['D2(Milan)-S53-S56'] }).stints[0].kind).toBe('d2');
     expect(parseBio({ born: 'Born-S1', entries: ['FP/MON-S6-S25'] }).stints[0].kind).toBe('fba');
@@ -167,7 +168,7 @@ describe('liveCareer', () => {
     const c = liveCareer(null, 'p00009', [summary(79, { players: [line('p00009', 'CP', 1, 70, 1400)] }), summary(80, { players: [line('p00009', 'CP', 1, 70, 1400)] })], null);
     expect(c.stints).toHaveLength(1);
     expect(c.stints[0]).toMatchObject({ kind: 'fba', team: 'CP', from: 79, to: 80, range: 'S79-S80' });
-    expect(liveCareer(null, 'p00009', [], null)).toEqual({ stints: [], hof: null, other: [] });
+    expect(liveCareer(null, 'p00009', [], null)).toEqual({ stints: [], nationalTeams: [], hof: null, other: [] });
   });
 
   it('adds S79 honours to the stint that held the team', () => {
@@ -300,15 +301,17 @@ describe('careerSpan and playerStatus', () => {
     expect(playerStatus(bio(['Duke-S60-S63', 'BOS-S64-S70']), false, 78)).toBe('retired');
     expect(playerStatus(bio(['Duke-S77-S78']), false, 78)).toBe('college');
     expect(playerStatus(bio(['Army-S70', 'D2(Austin)-S78']), false, 78)).toBe('d2');
-    expect(playerStatus(bio(['Army-S70', 'WC(Brazil)-S78']), false, 78)).toBe('wc');
-    expect(playerStatus({ stints: [], hof: null, other: [] }, false, 78)).toBe('unknown');
+    expect(playerStatus(bio(['Army-S70', 'WC(Brazil)-S78']), false, 78)).toBe('college');
+    expect(playerStatus(bio(['WC(Brazil)-S78']), false, 78)).toBe('wc');
+    expect(playerStatus({ stints: [], nationalTeams: [], hof: null, other: [] }, false, 78)).toBe('unknown');
   });
 });
 
 describe('parseBio week suffixes', () => {
   it('drops "(W5-W6)" so the team code is read as an FBA team', () => {
     const c = parseBio({ born: 'Born-S40', entries: ['CT(W5-W6)-S58', '1x All-Star', 'D2(Austin)-S59', 'WC(Brazil)-S60'] });
-    expect(c.stints.map(s => [s.kind, s.team, s.range])).toEqual([['fba', 'CT', 'S58'], ['d2', 'D2(Austin)', 'S59'], ['wc', 'WC(Brazil)', 'S60']]);
+    expect(c.stints.map(s => [s.kind, s.team, s.range])).toEqual([['fba', 'CT', 'S58'], ['d2', 'D2(Austin)', 'S59']]);
+    expect(c.nationalTeams.map(s => s.team)).toEqual(['WC(Brazil)']);
     expect(c.stints[0].honours[0].label).toBe('All-Star');
   });
 });
