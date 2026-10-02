@@ -200,7 +200,7 @@ describe('Finals MVP card', () => {
     const name = picked.players.players[picked.playoffs!.outcome!.champions[0].finalsMvp!]?.name ?? 'Unnamed';
     stubApi(seasonDocs(ok(finishSeason(picked, [], { batchId: 't' })).state));
     renderAt('/league/fba/playoffs');
-    expect(await screen.findByText(`Finals MVP: ${name}`)).toBeTruthy();
+    expect(await screen.findByText((_, el) => el?.tagName === 'P' && el.textContent === `Finals MVP: ${name}`)).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Pick' })).toBeNull();
     expect(screen.queryByRole('table')).toBeNull();
   });

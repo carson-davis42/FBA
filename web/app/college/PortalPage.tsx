@@ -12,6 +12,7 @@ import { useRecruitingState } from './useRecruitingState';
 import '../pages/roster.css';
 import './college.css';
 import '../offseason/offseason.css';
+import { PlayerName } from '../components/PlayerName';
 
 /**
  * The FBAJC transfer portal (/league/fbajc/portal): put returning players (So/Jr/Sr) in the portal, and take them back out.
@@ -114,7 +115,7 @@ export function PortalPage() {
                     checked={picked.has(c.playerId)} onChange={() => toggle(c.playerId)}
                   />
                 </td>
-                <td>{name(c.playerId)}</td>
+                <td><PlayerName id={c.playerId} name={name(c.playerId)} /></td>
                 <td>{schoolName(state, c.teamId)}</td>
                 <td>{c.classYear}</td>
                 <td>{c.position}</td>
@@ -136,7 +137,7 @@ export function PortalPage() {
             <tbody>
               {inPortal.map(p => (
                 <tr key={p.playerId}>
-                  <td>{name(p.playerId)}</td>
+                  <td><PlayerName id={p.playerId} name={name(p.playerId)} /></td>
                   <td>{`from ${schoolName(state, p.fromTeam)}`}</td>
                   <td>{p.position}</td>
                   <td>{p.classYear}</td>

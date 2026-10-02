@@ -9,6 +9,7 @@ import { useSaving, type Versions } from '../api';
 import { teamTheme, teamVars } from './teamColors';
 import { TeamName } from './TeamName';
 import { commitMove, newBatchId } from '../roster/commit';
+import { PlayerName } from './PlayerName';
 
 export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versions, phase }: {
   state: RosterState; teams: TeamsFile; playerId: string; defaultTeam: string; onClose: () => void; versions: Versions; phase?: SeasonPhase;
@@ -50,7 +51,7 @@ export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versio
 
   return (
     <section className="card headed sign-panel" style={chosen ? teamVars(teamTheme(chosen, 'fba')) : undefined} aria-label={`Sign ${row.name}`}>
-      <h3>Sign {row.name} ({row.position}, {row.rating ?? 'unrated'}{row.scale === 'D2' ? ' D2' : ''})</h3>
+      <h3>Sign <PlayerName id={playerId} name={row.name} /> ({row.position}, {row.rating ?? 'unrated'}{row.scale === 'D2' ? ' D2' : ''})</h3>
       <div className="form-row">
         <label>Team
           <select value={teamId} onChange={e => setTeamId(e.target.value)}>
@@ -65,7 +66,7 @@ export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versio
       </div>
       {occupant && (
         <fieldset className="form-row">
-          <legend>{teamId} already has {occupantName} at {row.position}</legend>
+          <legend>{teamId} already has <PlayerName id={occupant?.playerId} name={occupantName} /> at {row.position}</legend>
           {(['release', 'cut', 'keep'] as const).map(c => (
             <label key={c}><input type="radio" name="conflict" checked={conflict === c} onChange={() => setConflict(c)} />
               {c === 'release' ? `Release ${occupantName}` : c === 'cut' ? `Cut ${occupantName}` : 'Keep both for now'}</label>

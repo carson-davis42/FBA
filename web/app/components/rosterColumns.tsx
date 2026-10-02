@@ -1,8 +1,10 @@
+import type { ReactNode } from 'react';
 import type { LeagueId, Player, RosterEntry } from '../../engine/shared/types';
+import { PlayerName } from './PlayerName';
 
 export interface Column {
   label: string;
-  value: (e: RosterEntry, name: string) => string;
+  value: (e: RosterEntry, name: string) => ReactNode;
   numeric?: boolean;
 }
 
@@ -29,7 +31,7 @@ const dash = (n: number | null) => (n === null ? '—' : String(n));
 
 export function rosterColumns(league: LeagueId): Column[] {
   const pos: Column = { label: 'Pos', value: e => e.position };
-  const player: Column = { label: 'Player', value: (_e, name) => name };
+  const player: Column = { label: 'Player', value: (e, name) => <PlayerName id={e.playerId} name={name} /> };
   const age: Column = { label: 'Age', value: e => dash(e.age), numeric: true };
   const rating: Column = { label: 'Rating', value: e => dash(e.rating), numeric: true };
   switch (league) {

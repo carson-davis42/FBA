@@ -1,20 +1,22 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { type Possession, type SimGame, winProbability } from '../../engine/season/sim';
 import { playerName, type SeasonState } from '../../engine/season/state';
 import { useSaving } from '../api';
 import { BoxTable, bugSide, LineScore, periodName, ScoreBug, teamLabel } from './GameViews';
 import '../pages/season.css';
+import { PlayerName } from '../components/PlayerName';
 
 const SPEED_MS = { slow: 700, normal: 250, fast: 40 } as const;
 const CLUTCH_MS = 1200;
 
-function playText(state: SeasonState, g: SimGame, p: Possession): string {
+function playText(state: SeasonState, g: SimGame, p: Possession): ReactNode {
   const off = p.offense === 'home' ? g.home : g.away;
   const def = p.offense === 'home' ? g.away : g.home;
-  const who = playerName(state, off.players[p.handler].playerId);
-  const guard = playerName(state, def.players[p.defender].playerId);
-  return p.made ? `${off.teamId}: ${who} scores ${p.points} over ${guard}` : `${off.teamId}: ${who} is stopped by ${guard}`;
+  const hid = off.players[p.handler].playerId, did = def.players[p.defender].playerId;
+  const who = <PlayerName id={hid} name={playerName(state, hid)} />;
+  const guard = <PlayerName id={did} name={playerName(state, did)} />;
+  return p.made ? <>{off.teamId}: {who} scores {p.points} over {guard}</> : <>{off.teamId}: {who} is stopped by {guard}</>;
 }
 
 export interface LiveGameProps {

@@ -98,6 +98,6 @@ describe('team page actions', () => {
 
   it('lists transactions newest first', async () => {
     renderAt('/league/fba/transactions');
-    expect(await screen.findByText('Signed C-Azubuike Okoro (2/$2, thru S80)')).toBeTruthy();
+    expect(await screen.findByText((_, el) => el?.className === 'tx-line' && el.textContent === 'Signed C-Azubuike Okoro (2/$2, thru S80)')).toBeTruthy();
   });
 });

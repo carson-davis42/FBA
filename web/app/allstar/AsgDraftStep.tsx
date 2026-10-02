@@ -3,6 +3,7 @@ import { asgAvailable, asgNeeds, asgOnClock, asgPick, asgTeams, startAsgDraft } 
 import { ACCENT_SIDES, teamLabel } from '../season/GameViews';
 import { StepCard } from './DiceReveal';
 import type { StepProps } from './types';
+import { PlayerName } from '../components/PlayerName';
 
 export function AsgDraftStep({ state, doc, list, readOnly, saving, save }: StepProps) {
   const [selected, setSelected] = useState<string | null>(null);
@@ -21,35 +22,35 @@ export function AsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
   const clock = asgOnClock(doc);
   const available = asgAvailable(doc, list);
   const chosen = available.find(p => p.playerId === selected);
-  const captainName = (t: 0 | 1) => name(teams[t][0]);
+  const captain = (t: 0 | 1) => <PlayerName id={teams[t][0]} name={name(teams[t][0])} />;
   return (
     <div className="live-grid">
       <div>
         {([0, 1] as const).map(t => (
           <div key={t} className={`card headed asg-team${clock === t ? ' on-clock' : ''}`} style={ACCENT_SIDES[t]}>
-            <h3>Team {captainName(t)}{clock === t ? ' · on the clock' : ''}</h3>
+            <h3>Team {captain(t)}{clock === t ? ' · on the clock' : ''}</h3>
             <div className="table-wrap"><table className="stat-table"><tbody>
-              {teams[t].map((id, k) => <tr key={id}><td className="rank">{k === 0 ? 'C' : k}</td><td>{name(id)}{k < 5 ? ' · starter' : ''}</td><td>{pos(id)}</td></tr>)}
+              {teams[t].map((id, k) => <tr key={id}><td className="rank">{k === 0 ? 'C' : k}</td><td><PlayerName id={id} name={name(id)} />{k < 5 ? ' · starter' : ''}</td><td>{pos(id)}</td></tr>)}
             </tbody></table></div>
           </div>
         ))}
       </div>
       {clock !== null && !readOnly ? (
         <div className="card headed">
-          <h3>Available · Team {captainName(clock)}{asgNeeds(doc, clock, list).length ? ` needs ${asgNeeds(doc, clock, list).join('/')}` : ''}</h3>
+          <h3>Available · Team {captain(clock)}{asgNeeds(doc, clock, list).length ? ` needs ${asgNeeds(doc, clock, list).join('/')}` : ''}</h3>
           <div className="table-wrap tall"><table className="stat-table market" aria-label="Available All-Stars">
             <thead><tr><th>Player</th><th>Pos</th><th>Team</th><th className="n">Rtg</th></tr></thead>
             <tbody>
               {available.map(p => (
                 <tr key={p.playerId} className={p.playerId === selected ? 'selected' : undefined} onClick={() => setSelected(p.playerId)}>
-                  <td>{p.name}</td><td>{p.position}</td><td>{teamLabel(state, p.teamId)}</td><td className="n">{p.rating}</td>
+                  <td><PlayerName id={p.playerId} name={p.name} /></td><td>{p.position}</td><td>{teamLabel(state, p.teamId)}</td><td className="n">{p.rating}</td>
                 </tr>
               ))}
             </tbody>
           </table></div>
           {chosen && (
             <button className="btn primary" disabled={saving} onClick={async () => { if (await save(asgPick(doc, chosen.playerId, list))) setSelected(null); }}>
-              Pick {chosen.name} → Team {captainName(clock)}
+              Pick <PlayerName id={chosen.playerId} name={chosen.name} /> → Team {captain(clock)}
             </button>
           )}
         </div>

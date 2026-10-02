@@ -5,6 +5,7 @@ import { playerSeasonStats } from '../../engine/season/ratingPause';
 import type { AllStarSelections } from '../../engine/shared/types';
 import { teamLabel } from '../season/GameViews';
 import type { StepProps } from './types';
+import { PlayerName } from '../components/PlayerName';
 
 const idFrom = (text: string) => /\((p\d{5})\)$/.exec(text.trim())?.[1] ?? '';
 
@@ -45,7 +46,7 @@ export function SelectionStep({ state, doc, list, readOnly, saving, save }: Step
           {rows.map(p => (
             <tr key={p.playerId}>
               <td><input type="checkbox" aria-label={`${label}: ${p.name}`} checked={sel[key].includes(p.playerId)} disabled={readOnly} onChange={() => toggle(key, p.playerId)} /></td>
-              <td>{p.name}{p.restricted && key === 'youngStars' ? ' · rookie deal' : ''}</td><td>{p.position}</td><td>{teamLabel(state, p.teamId)}</td>
+              <td><PlayerName id={p.playerId} name={p.name} />{p.restricted && key === 'youngStars' ? ' · rookie deal' : ''}</td><td>{p.position}</td><td>{teamLabel(state, p.teamId)}</td>
               <td className="n">{p.rating}</td><td className="n">{(ppg.get(p.playerId) ?? 0).toFixed(1)}</td>
             </tr>
           ))}

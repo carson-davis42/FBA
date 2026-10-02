@@ -15,6 +15,7 @@ import { TeamName } from '../components/TeamName';
 import { commitSeason } from '../season/commitSeason';
 import { useSeasonState } from '../season/useSeasonState';
 import './season.css';
+import { PlayerName } from '../components/PlayerName';
 
 type Target = 'next' | 'day' | 'pause' | 'season' | number;
 
@@ -204,7 +205,7 @@ export function ScoresPage() {
               </div>
               <TeamLine team={away} rec={rec(away.teamId)} pts={r ? r.awayPts : null} won={!!r && r.awayPts > r.homePts} season={state.season} />
               <TeamLine team={home} rec={rec(home.teamId)} pts={r ? r.homePts : null} won={!!r && r.homePts > r.awayPts} season={state.season} />
-              {top && <div className="muted">Top: {playerName(state, top.playerId)} {top.pts}</div>}
+              {top && <div className="muted">Top: <PlayerName id={top.playerId} name={playerName(state, top.playerId)} /> {top.pts}</div>}
               <div className="game-links">
                 {r && <Link to={`/league/${lg}/game/${n}`}>Box score</Link>}
                 {isNext && <Link to={`/league/${lg}/game/${n}`}>Watch</Link>}

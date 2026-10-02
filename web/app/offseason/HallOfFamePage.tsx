@@ -11,6 +11,7 @@ import { SkippedWarning } from '../history/PlayerLink';
 import { commitDocs, newBatchId } from '../roster/commit';
 import '../pages/roster.css';
 import './offseason.css';
+import { PlayerName } from '../components/PlayerName';
 
 type Tab = 'hall' | 'nominees';
 
@@ -22,7 +23,7 @@ const linesOf = (text: string): string[] => text.split('\n').map(l => l.trim()).
 function Card({ card, children }: { card: HofCard; children?: React.ReactNode }) {
   return (
     <div className="hof-card">
-      <h3>{card.name}</h3>
+      <h3><PlayerName id={card.playerId} name={card.name} /></h3>
       <div className="muted">Retired {card.retiredSeason}</div>
       {children}
     </div>

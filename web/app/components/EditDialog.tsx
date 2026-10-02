@@ -4,6 +4,7 @@ import type { RosterState } from '../../engine/roster/state';
 import type { SeasonPhase } from '../../engine/season/locks';
 import { useSaving, type Versions } from '../api';
 import { commitMove, newBatchId } from '../roster/commit';
+import { PlayerName } from './PlayerName';
 
 const num = (s: string): number | null => (s.trim() === '' ? null : Number(s));
 
@@ -46,7 +47,7 @@ export function EditDialog({ state, league, teamId, playerId, onClose, versions,
 
   return (
     <section className="card headed sign-panel edit-dialog" aria-label={`Edit ${name}`}>
-      <h3>Edit {name}</h3>
+      <h3>Edit <PlayerName id={playerId} name={name} /></h3>
       <div className="form-row">
         <label>Rating <input type="number" value={rating} onChange={e => setRating(e.target.value)} /></label>
         <label>Age <input type="number" value={age} onChange={e => setAge(e.target.value)} /></label>

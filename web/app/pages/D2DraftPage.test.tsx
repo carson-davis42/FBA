@@ -130,7 +130,7 @@ describe('D2DraftPage: draft board', () => {
     renderPage();
     expect(await screen.findByText('On the clock: #1 BER Club')).toBeTruthy();
     expect(screen.getByText('Needs: PG, SG, PF')).toBeTruthy();
-    fireEvent.click(screen.getByText('Kyron Smart'));
+    fireEvent.click(screen.getByText('Kyron Smart').closest('tr')!);
     fireEvent.click(screen.getByRole('button', { name: 'Draft Kyron Smart → BER Club' }));
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].label).toBe('D2 draft #1: BER selects Kyron Smart');
@@ -189,7 +189,7 @@ describe('D2DraftPage: draft board', () => {
     stubApi(docsFor(pickAll(['p00041', 'p00040', 'p00042', 'p00044'])));
     renderPage();
     expect(await screen.findByText(/The D2 draft is finished/)).toBeTruthy();
-    expect(screen.getByText(/SG-Kyron Smart/)).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Kyron Smart' }).closest('.chip')!.textContent).toBe('SG-Kyron Smart');
   });
 
   it('clears the selected player when the clock changes underneath it', async () => {
@@ -197,7 +197,7 @@ describe('D2DraftPage: draft board', () => {
     stubApi(docs);
     renderPage();
     expect(await screen.findByText('On the clock: #1 BER Club')).toBeTruthy();
-    fireEvent.click(screen.getByText('Kyron Smart'));
+    fireEvent.click(screen.getByText('Kyron Smart').closest('tr')!);
     expect(await screen.findByRole('button', { name: 'Draft Kyron Smart → BER Club' })).toBeTruthy();
 
     // Simulate another tab (or an undo) advancing the draft with a different pick while this

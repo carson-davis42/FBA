@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { isLeagueId, LEAGUE_LABEL } from '../../engine/shared/leagues';
-import type { MetaFile, TeamsFile, TransactionsFile } from '../../engine/shared/types';
+import type { MetaFile, PlayersFile, TeamsFile, TransactionsFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
+import { linkTransactionLine, uniqueNameIndex } from '../components/LinkedPlayers';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import './roster.css';
@@ -12,9 +13,11 @@ export function TransactionsPage() {
   const { data: meta } = useDoc<MetaFile>(valid ? 'meta.json' : null);
   const { data: tx, error } = useDoc<TransactionsFile>(valid && meta ? `leagues/${league}/S${meta.currentSeason}/transactions.json` : null);
   const { data: teams } = useDoc<TeamsFile>(valid ? `leagues/${league}/teams.json` : null);
+  const { data: players } = useDoc<PlayersFile>(valid ? 'players.json' : null);
   if (!valid) return <p className="error">Unknown league "{league}".</p>;
   if (error) return <p className="muted">No transactions yet this season.</p>;
   if (!tx) return <p className="muted">Loading…</p>;
+  const index = players ? uniqueNameIndex(players) : new Map<string, string>();
   return (
     <section>
       <PageHeader kicker={LEAGUE_LABEL[league]} title={`${LEAGUE_LABEL[league]} transactions · S${tx.season}`} />
@@ -32,7 +35,7 @@ export function TransactionsPage() {
                 })}
                 <span className="badge">{e.type}</span>
               </div>
-              {e.lines.map(l => <div key={l} className="tx-line">{l}</div>)}
+              {e.lines.map(l => <div key={l} className="tx-line">{linkTransactionLine(l, index)}</div>)}
             </div>
           </li>
         ))}

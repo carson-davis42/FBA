@@ -13,6 +13,7 @@ import { newBatchId } from '../roster/commit';
 import '../pages/roster.css';
 import './college.css';
 import '../offseason/offseason.css';
+import { PlayerName } from '../components/PlayerName';
 
 type Status = 'all' | 'open' | 'committed';
 type Picking = { playerId: string; mode: 'project' | 'commit' };
@@ -71,7 +72,7 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
   const row = (p: Prospect | PortalPlayer) => (
     <tr key={p.playerId}>
       <td className="n">{rankOf.get(p.playerId)}</td>
-      <td>{name(p.playerId)}</td>
+      <td><PlayerName id={p.playerId} name={name(p.playerId)} /></td>
       <td>{p.position}</td>
       <td>{p.classYear}</td>
       <td>{p.stars !== null ? `${p.stars}★` : '—'}</td>
@@ -214,7 +215,7 @@ function SchoolPicker({ state, prospect, mode, saving, onPick, onClose }: {
   return (
     <div className="card picker" role="dialog" aria-label={`${mode === 'project' ? 'Project' : 'Commit'} ${who}`}>
       <div className="toolbar">
-        <h3>{mode === 'project' ? 'Add a projection' : 'Commit'} · {who}</h3>
+        <h3>{mode === 'project' ? 'Add a projection' : 'Commit'} · <PlayerName id={prospect.playerId} name={who} /></h3>
         <button type="button" className="btn" onClick={onClose}>Close</button>
       </div>
       <input className="college-search" aria-label="Search schools" placeholder="Search schools" value={query} onChange={e => setQuery(e.target.value)} />

@@ -14,6 +14,7 @@ import { useSeasonState } from '../season/useSeasonState';
 import { useAutosaveDoc } from '../useAutosaveDoc';
 import './roster.css';
 import './season.css';
+import { PlayerName } from '../components/PlayerName';
 
 type Tab = 'ALL' | Position;
 const signed = (n: number) => (n > 0 ? `+${n}` : n < 0 ? `−${-n}` : '±0');
@@ -97,7 +98,7 @@ export function RatingPausePage() {
           <tbody>
             {rows.map(r => (
               <tr key={r.playerId} className={r.rating !== r.oldRating ? 'edited' : undefined}>
-                <td>{name(r.playerId)}{tab === 'ALL' && <span className="muted"> · {r.position}</span>}</td>
+                <td><PlayerName id={r.playerId} name={name(r.playerId)} />{tab === 'ALL' && <span className="muted"> · {r.position}</span>}</td>
                 <td>{teamOf(r.teamId)}</td>
                 <td className="n">{r.games}</td>
                 <td className="n">{r.ppg.toFixed(1)}</td>

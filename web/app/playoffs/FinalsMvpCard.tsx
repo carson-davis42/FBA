@@ -7,6 +7,7 @@ import { Badge } from '../components/Badge';
 import { teamTheme, teamVars } from '../components/teamColors';
 import { commitSeason } from '../season/commitSeason';
 import './playoffs.css';
+import { PlayerName } from '../components/PlayerName';
 
 /** Pick (or change) one champion's Finals MVP (FBA) or Series MVP (D2). After wrap-up it only reports the pick. */
 export function FinalsMvpCard({ state, versions, group }: { state: SeasonState; versions: Versions; group: string | null }) {
@@ -21,7 +22,7 @@ export function FinalsMvpCard({ state, versions, group }: { state: SeasonState; 
   const champTeam = champion ? state.teams.teams.find(t => t.teamId === champion.teamId) : undefined;
   const style = champTeam ? teamVars(teamTheme(champTeam, state.league)) : undefined;
 
-  if (state.summary) return picked ? <div className="card headed" style={style}><p>{title}: {playerName(state, picked)}</p></div> : null;
+  if (state.summary) return picked ? <div className="card headed" style={style}><p>{title}: <PlayerName id={picked} name={playerName(state, picked)} /></p></div> : null;
 
   const pick = async (playerId: string) => {
     // A ref, not state: the save must never start twice (useSaving re-renders as it starts).
@@ -53,7 +54,7 @@ export function FinalsMvpCard({ state, versions, group }: { state: SeasonState; 
           <tbody>
             {rows.map(c => (
               <tr key={c.playerId}>
-                <td>{c.name}</td>
+                <td><PlayerName id={c.playerId} name={c.name} /></td>
                 <td className="n">{c.gp}</td>
                 <td className="n">{c.ppg.toFixed(1)}</td>
                 <td>{c.playerId === picked ? <Badge kind="finals-mvp">{title === 'Finals MVP' ? 'Finals MVP' : 'Series MVP'}</Badge> : <button className="btn" disabled={saving} onClick={() => pick(c.playerId)}>Pick</button>}</td>
