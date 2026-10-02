@@ -28,9 +28,9 @@ describe('CareerSection national teams', () => {
     expect(within(national).getByText('1x WC Champion')).toBeTruthy();
   });
 
-  it('links the national team to its history page', () => {
+  it('links the national team to its roster page', () => {
     render1();
-    expect(within(screen.getByRole('table', { name: 'National team' })).getByRole('link', { name: /Mexico/ }).getAttribute('href')).toBe('/history/fbawc/teams/MEX');
+    expect(within(screen.getByRole('table', { name: 'National team' })).getByRole('link', { name: /Mexico/ }).getAttribute('href')).toBe('/league/fbawc/team/MEX');
   });
 
   it('shows no national table without a call-up', () => {
