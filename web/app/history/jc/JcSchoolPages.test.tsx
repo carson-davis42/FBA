@@ -101,6 +101,8 @@ describe('JcSchoolPage', () => {
     expect(container.textContent).toContain('Conference regular season: S53 (Big 12), S75');
     expect(screen.getByRole('link', { name: 'Rylan Rush' }).getAttribute('href')).toBe('/history/fba/players/p00001');
     expect(screen.queryByText(/has no entry for this school/)).toBeNull();
+    const hero = container.querySelector('section.hero-team') as HTMLElement;
+    expect(hero.style.getPropertyValue('--team')).toBe('#112233');
   });
 
   it('shows what the summaries give for a school missing from the school history', async () => {

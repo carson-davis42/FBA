@@ -49,6 +49,7 @@ describe('team page actions', () => {
     renderAt('/league/fbajc/team/DUKE');
     const link = await screen.findByRole('link', { name: 'School history' });
     expect(link.getAttribute('href')).toBe('/history/fbajc/schools/DUKE');
+    expect(screen.queryByRole('link', { name: 'Franchise history' })).toBeNull();
   });
 
   it('shows payroll and contract tags', async () => {
