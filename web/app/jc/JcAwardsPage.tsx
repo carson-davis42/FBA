@@ -12,6 +12,7 @@ import { PageHeader } from '../components/PageHeader';
 import { jcGate } from './JcGate';
 import { usePostseasonDocs } from './usePostseasonDocs';
 import './jc.css';
+import { PlayerName } from '../components/PlayerName';
 
 const SLOT_POSITIONS: Record<string, Position[]> = { G: ['PG', 'SG'], F: ['SF', 'PF'], C: ['C'], ANY: ['PG', 'SG', 'SF', 'PF', 'C'] };
 
@@ -50,7 +51,7 @@ export function JcAwardsPage() {
     return (
       <section key={`${race.kind}-${race.id}`} className="card jc-race" aria-label={race.label}>
         <h3>{race.label}</h3>
-        <p>Winner: <strong>{who(winner)}</strong>{winner && !finished && !picksLocked && <>{' '}<button className="btn" disabled={saving} onClick={pick(null)}>Clear</button></>}</p>
+        <p>Winner: <strong><PlayerName id={winner} name={who(winner)} /></strong>{winner && !finished && !picksLocked && <>{' '}<button className="btn" disabled={saving} onClick={pick(null)}>Clear</button></>}</p>
         <div className="table-wrap">
           <table>
             <thead><tr><th>#</th><th>Player</th><th>Pos</th><th>PPG</th><th>Rtg</th>{race.id === 'DPOY' && <th>Saved/G</th>}<th>Odds</th><th /></tr></thead>
@@ -58,7 +59,7 @@ export function JcAwardsPage() {
               {race.rows.slice(0, race.limit).map((r, i) => (
                 <tr key={r.playerId} className={r.playerId === winner ? 'jc-champion' : undefined}>
                   <td>{i + 1}</td>
-                  <td>{who(r.playerId, r.teamId)}</td>
+                  <td><PlayerName id={r.playerId} name={who(r.playerId, r.teamId)} /></td>
                   <td>{r.position}</td>
                   <td>{r.ppg.toFixed(1)}</td>
                   <td>{r.rating}</td>

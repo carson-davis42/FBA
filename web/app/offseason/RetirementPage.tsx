@@ -9,6 +9,7 @@ import { PageHeader } from '../components/PageHeader';
 import { commitDocs, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
 import './offseason.css';
+import { PlayerName } from '../components/PlayerName';
 
 const MIN_QUERY = 3;
 const MAX_RESULTS = 20;
@@ -62,7 +63,7 @@ export function RetirementPage() {
 
   const row = (r: Retiree, removable: boolean) => (
     <tr key={r.playerId}>
-      <td>{r.name}</td><td>{r.position}</td><td>{place(r)}</td><td>{leagueName(r)}</td>
+      <td><PlayerName id={r.playerId} name={r.name} /></td><td>{r.position}</td><td>{place(r)}</td><td>{leagueName(r)}</td>
       <td className="num">{r.age ?? '?'}</td>
       <td>{removable && <button className="btn" onClick={() => remove(r.playerId)}>Remove</button>}</td>
     </tr>
@@ -92,7 +93,7 @@ export function RetirementPage() {
           <ul className="plain-list tight" aria-label="Search results">
             {results.map(r => (
               <li key={r.playerId}>
-                <span>{r.name}</span> {r.position} {place(r)} {leagueName(r)}, age {r.age ?? '?'}{' '}
+                <span><PlayerName id={r.playerId} name={r.name} /></span> {r.position} {place(r)} {leagueName(r)}, age {r.age ?? '?'}{' '}
                 <button className="btn" onClick={() => add(r.playerId)}>Add</button>
               </li>
             ))}
@@ -104,7 +105,7 @@ export function RetirementPage() {
             <ul className="plain-list">
               {unknown.map(r => (
                 <li key={r.playerId}>
-                  {r.name} ({r.position}, {place(r)}, {leagueName(r)}){' '}
+                  <PlayerName id={r.playerId} name={r.name} /> ({r.position}, {place(r)}, {leagueName(r)}){' '}
                   <button className="btn" onClick={() => add(r.playerId)}>Add</button>
                 </li>
               ))}

@@ -9,6 +9,7 @@ import { teamTheme, teamVars } from '../components/teamColors';
 import { useSort } from '../components/useSort';
 import { SortTh } from '../components/SortTh';
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
+import { PlayerName } from '../components/PlayerName';
 
 export const periodName = (p: number) => (p <= 4 ? `Q${p}` : p === 5 ? 'OT' : `${p - 4}OT`);
 
@@ -90,7 +91,7 @@ export function BoxTable({ state, title, lines }: { state: SeasonState; title: R
     <div className="table-wrap">
       <table className="stat-table box-score">
         <thead><tr><th>{title}</th><SortTh label="PTS" className="n" {...sortProps('pts')} /></tr></thead>
-        <tbody>{rows.map(l => <tr key={l.playerId}><td>{playerName(state, l.playerId)}</td><td className="n">{l.pts}</td></tr>)}</tbody>
+        <tbody>{rows.map(l => <tr key={l.playerId}><td><PlayerName id={l.playerId} name={playerName(state, l.playerId)} /></td><td className="n">{l.pts}</td></tr>)}</tbody>
       </table>
     </div>
   );

@@ -2,6 +2,7 @@ import { CONTEST_SPOTS, contestTurn, drawCounts, drawOnClock, startContestDraw }
 import { teamLabel } from '../season/GameViews';
 import { StepCard } from './DiceReveal';
 import type { StepProps } from './types';
+import { PlayerName } from '../components/PlayerName';
 
 export function ContestDrawStep({ state, doc, list, readOnly, saving, save }: StepProps) {
   if (!doc) return null;
@@ -34,7 +35,7 @@ export function ContestDrawStep({ state, doc, list, readOnly, saving, save }: St
           <div className="table-wrap"><table className="stat-table"><tbody>
             {roster.map(p => (
               <tr key={p.playerId}>
-                <td>{p.name}</td><td>{p.position}</td><td className="n">{p.rating}</td>
+                <td><PlayerName id={p.playerId} name={p.name} /></td><td>{p.position}</td><td className="n">{p.rating}</td>
                 <td>
                   <button className="btn" disabled={saving || counts['5pt'] >= CONTEST_SPOTS['5pt']} onClick={() => save(contestTurn(doc, { contest: '5pt', playerId: p.playerId }, list))}>5pt</button>{' '}
                   <button className="btn" disabled={saving || counts.dunk >= CONTEST_SPOTS.dunk} onClick={() => save(contestTurn(doc, { contest: 'dunk', playerId: p.playerId }, list))}>Dunk</button>

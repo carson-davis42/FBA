@@ -21,6 +21,7 @@ import { FinalsMvpCard } from './FinalsMvpCard';
 import { FinishSeasonCard } from './FinishSeasonCard';
 import '../pages/season.css';
 import './playoffs.css';
+import { PlayerName } from '../components/PlayerName';
 
 function SeedTables({ lg, state, seeds, teams }: { lg: SeasonLeague; state: SeasonState; seeds: PlayoffsFile['seeds']; teams: Map<string, Team> }) {
   const st = seasonStandings(state);
@@ -137,7 +138,7 @@ export function PlayoffsPage() {
         <>
           {pf.outcome.champions.map(c => {
             const team = teams.get(c.teamId);
-            const mvp = c.finalsMvp ? playerName(state, c.finalsMvp) : null;
+            const mvp = c.finalsMvp ? <PlayerName id={c.finalsMvp} name={playerName(state, c.finalsMvp)} /> : null;
             return (
               <Hero
                 key={c.group ?? 'fba'}

@@ -9,6 +9,7 @@ import { RatingInput } from '../components/RatingInput';
 import '../pages/roster.css';
 import '../offseason/offseason.css';
 import './rank.css';
+import { PlayerName } from '../components/PlayerName';
 
 type Filter = 'ALL' | Position;
 
@@ -230,7 +231,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
                   return (
                     <tr key={r.playerId} className={bad ? 'out-of-order' : undefined}>
                       <td className="rank">{i + 1}</td>
-                      <td>{name(r.playerId)}{bad && <span className="rank-flag" title="Rated above a player ranked higher">⚠</span>}</td>
+                      <td><PlayerName id={r.playerId} name={name(r.playerId)} />{bad && <span className="rank-flag" title="Rated above a player ranked higher">⚠</span>}</td>
                       <td>{r.position}</td>
                       <td className="n">{r.age ?? '—'}</td>
                       <td>{teamLabel(r.team, r)}</td>

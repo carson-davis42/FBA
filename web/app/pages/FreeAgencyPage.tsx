@@ -18,6 +18,7 @@ import { commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
 import { useSeasonPhase } from '../season/useSeasonPhase';
 import './roster.css';
+import { PlayerName } from '../components/PlayerName';
 
 const TYPES: MarketType[] = ['FA', 'Rookie', 'D2', 'Expired'];
 
@@ -47,7 +48,7 @@ function MarketTable({ rows, selected, onSelect, teams, season }: {
             return (
               <tr key={r.playerId} className={selected === r.playerId ? 'selected' : ''} onClick={() => onSelect(r.playerId)}>
                 <td>{r.position}</td>
-                <td>{r.name}</td>
+                <td><PlayerName id={r.playerId} name={r.name} /></td>
                 <td className="num">{r.age ?? '—'}</td>
                 <td className="num">{r.rating ?? '—'}{r.scale === 'D2' ? ' D2' : ''}</td>
                 <td><span className={`tag tag-${r.type.toLowerCase()}`}>{r.type}</span></td>

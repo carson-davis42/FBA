@@ -5,6 +5,8 @@ import { SidesBug } from '../season/GameViews';
 export interface RevealLine {
   group: string;
   text: string;
+  /** The same line with player names as profile links; shown instead of `text` when present. */
+  node?: ReactNode;
   dice?: Dice;
   /** Which scoreboard side this roll counts for, and how much. */
   side?: number;
@@ -33,7 +35,7 @@ export function StaticLines({ lines }: { lines: RevealLine[] }) {
       {lines.map((l, i) => (
         <li key={i}>
           {(i === 0 || lines[i - 1].group !== l.group) && !l.bare && <strong>{l.group} · </strong>}
-          {l.dice && <DiceFaces dice={l.dice} />} {l.text}
+          {l.dice && <DiceFaces dice={l.dice} />} {l.node ?? l.text}
         </li>
       ))}
     </ul>

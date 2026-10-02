@@ -56,7 +56,7 @@ describe('All-Star events', () => {
     await screen.findByRole('button', { name: 'Run the dunk contest' });
     fireEvent.click(screen.getByRole('button', { name: /5pt contest/ }));
     expect(screen.queryByRole('button', { name: 'Roll next' })).toBeNull();
-    expect(await screen.findByText(/^Winner: /)).toBeTruthy();
+    expect(await screen.findByText(/^Winner:/)).toBeTruthy();
   });
 
   it('retries a failed save with the same rolled result, without re-rolling', async () => {

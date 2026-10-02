@@ -11,6 +11,7 @@ import { TeamName } from '../components/TeamName';
 import { commitDocs, newBatchId } from '../roster/commit';
 import '../pages/roster.css';
 import '../offseason/offseason.css';
+import { PlayerName } from '../components/PlayerName';
 
 export function DraftBoard({ state, versions, teams }: { state: D2State; versions: Versions; teams: TeamsFile | undefined }) {
   const saving = useSaving();
@@ -81,7 +82,7 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
         return (
           <li key={i} className={now ? 'now' : pick ? 'done' : undefined}>
             <span className="rank">#{i + 1}</span> {teamCell(teamId)}
-            {pick && <> <span className="chip">{pick.playerId ? `${pick.position}-${d2Name(state, pick.playerId)}` : 'skipped'}</span></>}
+            {pick && <> <span className="chip">{pick.playerId ? <>{pick.position}-<PlayerName id={pick.playerId} name={d2Name(state, pick.playerId)} /></> : 'skipped'}</span></>}
             {now && <strong> ← on the clock</strong>}
           </li>
         );
@@ -128,7 +129,7 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
             <table className="stat-table">
               <tbody>
                 {roster.map(e => (
-                  <tr key={e.position}><td>{e.position}</td><td>{e.playerId ? d2Name(state, e.playerId) : '—'}</td><td className="n">{e.rating ?? ''}</td></tr>
+                  <tr key={e.position}><td>{e.position}</td><td>{e.playerId ? <PlayerName id={e.playerId} name={d2Name(state, e.playerId)} /> : '—'}</td><td className="n">{e.rating ?? ''}</td></tr>
                 ))}
               </tbody>
             </table>
@@ -147,7 +148,7 @@ export function DraftBoard({ state, versions, teams }: { state: D2State; version
                   <tbody>
                     {available.map(p => (
                       <tr key={p.playerId} className={p.playerId === selected ? 'selected' : undefined} onClick={() => setSelected(p.playerId)}>
-                        <td>{d2Name(state, p.playerId)}</td><td>{p.position}</td><td className="n">{p.age ?? '—'}</td><td className="n">{p.rating ?? '—'}</td>
+                        <td><PlayerName id={p.playerId} name={d2Name(state, p.playerId)} /></td><td>{p.position}</td><td className="n">{p.age ?? '—'}</td><td className="n">{p.rating ?? '—'}</td>
                       </tr>
                     ))}
                   </tbody>

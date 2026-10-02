@@ -12,6 +12,7 @@ import { commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
 import { useSeasonPhase } from '../season/useSeasonPhase';
 import './roster.css';
+import { PlayerName } from '../components/PlayerName';
 
 type Kind = PickCondition['kind'];
 
@@ -118,7 +119,7 @@ export function TradePage() {
               return (
                 <div key={e.playerId} className={`asset ${i >= 0 ? 'sending' : ''}`}>
                   <span onClick={() => toggle({ kind: 'player', playerId: e.playerId!, from, to: defaultTo(from) }, a => a.kind === 'player' && a.playerId === e.playerId)}>
-                    {e.position} <b>{name}</b> {e.rating ?? '—'}{lg === 'fba' && e.contractEnd != null ? ` · S${e.contractEnd} $${e.contractAmount}` : ''}
+                    {e.position} <b><PlayerName id={e.playerId} name={name} /></b> {e.rating ?? '—'}{lg === 'fba' && e.contractEnd != null ? ` · S${e.contractEnd} $${e.contractAmount}` : ''}
                   </span>
                   {i >= 0 && teamIds.length > 2 && (
                     <select aria-label={`Send ${name} to`} value={assets[i].to} onChange={ev => setDest(i, ev.target.value)}>

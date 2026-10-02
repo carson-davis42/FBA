@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, type ReactNode } from 'react';
 import { asgTeams } from '../../engine/allstar/asgDraft';
 import { runAsg } from '../../engine/allstar/asgGame';
 import type { AllStarResult } from '../../engine/allstar/common';
@@ -6,39 +6,59 @@ import { runDunk, runFivePoint } from '../../engine/allstar/contests';
 import { total } from '../../engine/allstar/dice';
 import { runYoungStar, startYsgDraft, ysgAvailable, ysgOnClock, ysgPick, ysgTeams } from '../../engine/allstar/youngStars';
 import type { ContestResult, TeamGame } from '../../engine/shared/types';
+import { PlayerName } from '../components/PlayerName';
 import { ACCENT_SIDES } from '../season/GameViews';
 import { DiceReveal, type RevealLine, StaticLines, StepCard } from './DiceReveal';
 import type { StepProps } from './types';
 
+/** A piece of a reveal line: plain text, or a player (shown by name, linked to the profile). */
+export type Part = string | { id: string };
+
+/** One reveal line from its parts: the plain text for tests and logs, and the same line with player names linked. */
+export function line(name: (id: string) => string, group: string, parts: Part[], extra: Partial<RevealLine> = {}): RevealLine {
+  return {
+    group,
+    text: parts.map(p => (typeof p === 'string' ? p : name(p.id))).join(''),
+    node: <>{parts.map((p, i) => (typeof p === 'string' ? p : <PlayerName key={i} id={p.id} name={name(p.id)} />))}</>,
+    ...extra,
+  };
+}
+
 export function contestLines(result: ContestResult, name: (id: string) => string): RevealLine[] {
   const out: RevealLine[] = [];
+  const L = (group: string, parts: Part[], extra?: Partial<RevealLine>) => out.push(line(name, group, parts, extra));
   result.rounds.forEach((round, r) => {
     const group = `Round ${r + 1}`;
     for (const id of round.players) {
-      round.rolls[id].forEach((dice, k) => out.push({ group, text: `${name(id)} roll ${k + 1}: ${total(dice)}`, dice }));
+      round.rolls[id].forEach((dice, k) => L(group, [{ id }, ` roll ${k + 1}: ${total(dice)}`], { dice }));
     }
-    for (const ro of round.rollOffs) for (const rnd of ro.rounds) for (const [id, dice] of Object.entries(rnd)) out.push({ group, text: `Roll-off: ${name(id)} ${total(dice)}`, dice });
-    const standings = [...round.players].sort((a, b) => round.totals[b] - round.totals[a]).map(id => `${name(id)} ${round.totals[id]}`).join(', ');
-    out.push({ group, text: `Totals: ${standings}` });
-    out.push({ group, text: `Advancing: ${round.advanced.map(name).join(', ')}` });
+    for (const ro of round.rollOffs) for (const rnd of ro.rounds) for (const [id, dice] of Object.entries(rnd)) L(group, ['Roll-off: ', { id }, ` ${total(dice)}`], { dice });
+    const standings = [...round.players].sort((a, b) => round.totals[b] - round.totals[a]);
+    L(group, ['Totals: ', ...standings.flatMap((id, i): Part[] => [i > 0 ? ', ' : '', { id }, ` ${round.totals[id]}`])]);
+    L(group, ['Advancing: ', ...round.advanced.flatMap((id, i): Part[] => [i > 0 ? ', ' : '', { id }])]);
   });
-  out.push({ group: 'Result', text: `Winner: ${name(result.winner)}` });
+  L('Result', ['Winner: ', { id: result.winner }]);
   return out;
 }
 
-export function teamGameLines(game: TeamGame, label: (team: number) => string, name: (id: string) => string, period: (i: number) => string): RevealLine[] {
+export function teamGameLines(game: TeamGame, label: (team: number) => Part[], name: (id: string) => string, period: (i: number) => string): RevealLine[] {
   const out: RevealLine[] = [];
+  const L = (group: string, parts: Part[], extra?: Partial<RevealLine>) => out.push(line(name, group, parts, extra));
   game.rolls.forEach((rolls, i) => {
     for (const r of rolls) {
-      out.push({ group: period(i), text: `${label(r.team)} · ${name(r.playerId)}: ${total(r.dice)}`, dice: r.dice, side: game.teams.indexOf(r.team), value: total(r.dice) });
+      L(period(i), [...label(r.team), ' · ', { id: r.playerId }, `: ${total(r.dice)}`], { dice: r.dice, side: game.teams.indexOf(r.team), value: total(r.dice) });
     }
   });
-  if (game.rollOff) for (const rnd of game.rollOff.rounds) for (const [id, dice] of Object.entries(rnd)) out.push({ group: 'Roll-off', text: `${label(Number(id))}: ${total(dice)}`, dice });
-  out.push({ group: 'Final', text: `Final: ${label(game.teams[0])} ${game.scores[0]} – ${label(game.teams[1])} ${game.scores[1]} · ${label(game.winner)} win` });
+  if (game.rollOff) for (const rnd of game.rollOff.rounds) for (const [id, dice] of Object.entries(rnd)) L('Roll-off', [...label(Number(id)), `: ${total(dice)}`], { dice });
+  L('Final', ['Final: ', ...label(game.teams[0]), ` ${game.scores[0]} – `, ...label(game.teams[1]), ` ${game.scores[1]} · `, ...label(game.winner), ' win']);
   return out;
 }
 
-/** "Team X 150–140", or "Team X 144–144, won the roll-off" when a roll-off decided the game. */
+/** "Team X 150–140", or "Team X 144–144, won the roll-off" when a roll-off decided the game, as text and name parts. */
+export function gameResultParts(game: TeamGame, label: (team: number) => Part[]): Part[] {
+  const side = game.teams.indexOf(game.winner);
+  return [...label(game.winner), ` ${game.scores[side]}–${game.scores[1 - side]}${game.rollOff ? ', won the roll-off' : ''}`];
+}
 export function gameResultText(game: TeamGame, label: (team: number) => string): string {
   const side = game.teams.indexOf(game.winner);
   const text = `${label(game.winner)} ${game.scores[side]}–${game.scores[1 - side]}`;
@@ -106,8 +126,8 @@ export function YsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
       <div className="grid-2">
         {teams.map((ids, t) => (
           <div key={t} className={`card headed asg-team${clock === t ? ' on-clock' : ''}`} style={ACCENT_SIDES[t % 2]}>
-            <h3>Team {captain(t)}{clock === t ? ' · on the clock' : ''}</h3>
-            <ul>{ids.map(id => <li key={id}>{name(id)} · {list.find(p => p.playerId === id)?.position}</li>)}</ul>
+            <h3>Team <PlayerName id={doc.selections!.youngCaptains[t]} name={captain(t)} />{clock === t ? ' · on the clock' : ''}</h3>
+            <ul>{ids.map(id => <li key={id}><PlayerName id={id} name={name(id)} /> · {list.find(p => p.playerId === id)?.position}</li>)}</ul>
           </div>
         ))}
       </div>
@@ -120,7 +140,7 @@ export function YsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
             <tbody>
               {available.map(p => (
                 <tr key={p.playerId} className={p.playerId === selected ? 'selected' : undefined} onClick={() => setSelected(p.playerId)}>
-                  <td>{p.name}</td><td>{p.position}</td><td className="n">{p.rating}</td>
+                  <td><PlayerName id={p.playerId} name={p.name} /></td><td>{p.position}</td><td className="n">{p.rating}</td>
                 </tr>
               ))}
             </tbody>
@@ -139,7 +159,7 @@ export function YsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
 
 export function ysgLines(doc: NonNullable<StepProps['doc']>, name: (id: string) => string): RevealLine[] {
   const ysg = doc.ysg!;
-  const label = (t: number) => `Team ${name(doc.selections!.youngCaptains[t])}`;
+  const label = (t: number): Part[] => ['Team ', { id: doc.selections!.youngCaptains[t] }];
   const games: [string, TeamGame][] = [['Semifinal 1', ysg.semis[0]], ['Semifinal 2', ysg.semis[1]], ['Final', ysg.final]];
   return [
     ...games.flatMap(([title, g]) => teamGameLines(g, label, name, i => `${title} · round ${i + 1}`).map(l => ({
@@ -148,8 +168,8 @@ export function ysgLines(doc: NonNullable<StepProps['doc']>, name: (id: string) 
       group: l.group === 'Final' || l.group === 'Roll-off' ? `${title} · ${l.group.toLowerCase()}` : l.group,
       bare: l.group === 'Final' || undefined,
     }))),
-    { group: 'Champions', text: `Champions: ${label(ysg.champion)}`, bare: true },
-    ...(ysg.mvp ? [{ group: 'MVP', text: `YSG MVP: ${name(ysg.mvp)}`, bare: true }] : []),
+    line(name, 'Champions', ['Champions: ', ...label(ysg.champion)], { bare: true }),
+    ...(ysg.mvp ? [line(name, 'MVP', ['YSG MVP: ', { id: ysg.mvp }], { bare: true })] : []),
   ];
 }
 
@@ -168,8 +188,8 @@ export function YsgStep(props: StepProps) {
 
 function asgLines(doc: NonNullable<StepProps['doc']>, name: (id: string) => string): RevealLine[] {
   const teams = asgTeams(doc);
-  const label = (t: number) => `Team ${name(teams[t][0])}`;
-  return [...teamGameLines(doc.asg!.game, label, name, i => `Q${i + 1}`), { group: 'MVP', text: `MVP: ${name(doc.asg!.mvp)}` }];
+  const label = (t: number): Part[] => ['Team ', { id: teams[t][0] }];
+  return [...teamGameLines(doc.asg!.game, label, name, i => `Q${i + 1}`), line(name, 'MVP', ['MVP: ', { id: doc.asg!.mvp }])];
 }
 
 export function AsgStep(props: StepProps) {
@@ -196,10 +216,10 @@ export function WrapUp({ state, doc, list, saving, finished, onFinish }: StepPro
     <div className="card headed">
       <h3>All-Star weekend results</h3>
       <ul>
-        <li>5pt contest: {name(doc.fivePoint.winner)}</li>
-        <li>Dunk contest: {name(doc.dunk.winner)}</li>
-        <li>Young-Star champions: Team {name(doc.selections!.youngCaptains[doc.ysg.champion])}{doc.ysg.mvp ? ` · MVP ${name(doc.ysg.mvp)}` : ''}</li>
-        <li>All-Star Game: {gameResultText(g, t => `Team ${name(teams[t][0])}`)} · MVP {name(doc.asg.mvp)}</li>
+        <li>5pt contest: <PlayerName id={doc.fivePoint.winner} name={name(doc.fivePoint.winner)} /></li>
+        <li>Dunk contest: <PlayerName id={doc.dunk.winner} name={name(doc.dunk.winner)} /></li>
+        <li>Young-Star champions: Team <PlayerName id={doc.selections!.youngCaptains[doc.ysg.champion]} name={name(doc.selections!.youngCaptains[doc.ysg.champion])} />{doc.ysg.mvp && <> · MVP <PlayerName id={doc.ysg.mvp} name={name(doc.ysg.mvp)} /></>}</li>
+        <li>All-Star Game: {line(name, '', gameResultParts(g, t => ['Team ', { id: teams[t][0] }])).node} · MVP <PlayerName id={doc.asg.mvp} name={name(doc.asg.mvp)} /></li>
       </ul>
       {finished ? <p className="muted">The All-Star weekend is finished.</p> : (
         <button className="btn primary" disabled={saving} onClick={onFinish}>Finish All-Star weekend</button>

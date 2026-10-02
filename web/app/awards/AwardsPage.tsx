@@ -17,6 +17,7 @@ import { useSeasonState } from '../season/useSeasonState';
 import { useAutosaveDoc } from '../useAutosaveDoc';
 import '../pages/season.css';
 import '../playoffs/playoffs.css';
+import { PlayerName } from '../components/PlayerName';
 
 const signed = (n: number) => (n > 0 ? `+${n}` : String(n));
 
@@ -57,7 +58,7 @@ function RaceCard({ race, name, teams, season, league, winnerId }: RaceCardProps
       {!lead ? <p className="muted">No eligible players yet.</p> : (
         <>
           <div className="spotlight">
-            <span className="who">{name(lead.playerId)}</span>
+            <span className="who"><PlayerName id={lead.playerId} name={name(lead.playerId)} /></span>
             <span className="badges">
               {teamCell(lead.teamId)}
               {winnerId && lead.playerId === winnerId && <Badge kind="mvp">Winner</Badge>}
@@ -73,7 +74,7 @@ function RaceCard({ race, name, teams, season, league, winnerId }: RaceCardProps
                   return (
                     <tr key={r.playerId}>
                       <td className="rank">{i + 1}</td>
-                      <td>{name(r.playerId)}{winnerId === r.playerId && <> <Badge kind="mvp">Winner</Badge></>}<div className="muted why">{why(race, r)}</div></td>
+                      <td><PlayerName id={r.playerId} name={name(r.playerId)} />{winnerId === r.playerId && <> <Badge kind="mvp">Winner</Badge></>}<div className="muted why">{why(race, r)}</div></td>
                       <td>{teamCell(r.teamId)}</td><td>{r.position}</td>
                       <td className="n">{r.ppg.toFixed(1)}</td><td className="n">{r.rating}</td>
                       <td className="odds-cell">

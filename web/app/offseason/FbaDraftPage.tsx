@@ -22,6 +22,7 @@ import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import { commitDocs, newBatchId } from '../roster/commit';
 import './offseason.css';
+import { PlayerName } from '../components/PlayerName';
 
 /**
  * The draft board and the FBA draft (/league/fba/draft). Before the start: the prospects (with late-entrant ratings), the early
@@ -176,7 +177,7 @@ export function FbaDraftPage() {
         <tbody>
           {rows.map(p => (
             <tr key={p.playerId}>
-              <td>{nameOf(p.playerId)}</td>
+              <td><PlayerName id={p.playerId} name={nameOf(p.playerId)} /></td>
               <td>{p.position}</td>
               <td>{school(p.college)}</td>
               <td>{p.classYear}</td>
@@ -213,7 +214,7 @@ export function FbaDraftPage() {
                 <td className="rank">{p.slot}</td>
                 <td>{proTeamCell(p.owner)}{p.owner !== p.originalTeam && ` (from ${proAbbr(p.originalTeam)})`}</td>
                 <td>
-                  {p.playerId && prospect ? `${nameOf(p.playerId)} (${prospect.position}, ${school(prospect.college)})` : <span className="muted">No selection</span>}
+                  {p.playerId && prospect ? <><PlayerName id={p.playerId} name={nameOf(p.playerId)} /> ({prospect.position}, {school(prospect.college)})</> : <span className="muted">No selection</span>}
                 </td>
               </tr>
             );
@@ -308,7 +309,7 @@ export function FbaDraftPage() {
               <ul className="plain-list tight" aria-label={`${school(teamId)} early entrants`}>
                 {list.map(c => (
                   <li key={c.playerId}>
-                    {nameOf(c.playerId)}, {c.classYear} {c.position}{c.rating !== null && `, ${c.rating}`}{' '}
+                    <PlayerName id={c.playerId} name={nameOf(c.playerId)} />, {c.classYear} {c.position}{c.rating !== null && `, ${c.rating}`}{' '}
                     <button className="btn" disabled={saving} onClick={() => run(() => declare(boardState, c.playerId, ctx()))}>Declare</button>
                   </li>
                 ))}

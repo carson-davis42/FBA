@@ -11,6 +11,7 @@ import { commitDocs, newBatchId } from '../roster/commit';
 import { useAutosaveDoc } from '../useAutosaveDoc';
 import '../pages/roster.css';
 import '../offseason/offseason.css';
+import { PlayerName } from '../components/PlayerName';
 
 export function PoolBuilder({ state, versions }: { state: D2State; versions: Versions }) {
   const saving = useSaving();
@@ -106,7 +107,7 @@ export function PoolBuilder({ state, versions }: { state: D2State; versions: Ver
                 }}
               >
                 <span className="rank">{i + 1}</span>
-                <span className="pname">{name}</span>
+                <span className="pname"><PlayerName id={id} name={name} /></span>
                 <span className="muted">{m?.age ?? '—'}</span>
                 <span className="n">{m?.rating ?? '—'}</span>
                 <span>{m?.team ?? (fromFba.has(id) ? 'New' : 'Reserves')}</span>
