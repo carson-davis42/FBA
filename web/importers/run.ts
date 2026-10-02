@@ -14,7 +14,7 @@ import type { BracketEntry } from './history/convertBrackets';
 import { buildWcHistory, WC_SHEET_TAB } from './wcHistory';
 import { JC_HISTORY_TABS, planJcHistory } from './jcHistoryRun';
 import { JC_LAST_SEASON } from './jcHistory';
-import { JC_LOGO_FOLDER, wireJcLogos } from './jcLogos';
+import { JC_LOGO_FOLDER, wireJcLogos, type JcLogoColors } from './jcLogos';
 import { planJcSchools } from './jcSchools';
 import { parseNationalChampions } from './sheets/jcHistory';
 import { buildLogoManifest, diffLogoManifests } from './logoManifest';
@@ -631,7 +631,7 @@ async function importJcSchools(): Promise<void> {
   console.log(`Wrote ${docs[0]?.[0]} (${report.count('warn')} warnings) to ${dir}.`);
 }
 
-/** Points every college team in leagues/fbajc/teams.json at its file in FBA Logos/FBAJC_Final. Writes only that doc. */
+/** Points every college team in leagues/fbajc/teams.json at its file in FBA Logos/FBAJC_Final and gives it its logo's colours. Writes only that doc. */
 function importJcLogos(): void {
   const dir = requireDataDir('--jc-logos');
   const teams = readDataJson<TeamsFile>(dir, 'leagues/fbajc/teams.json');
@@ -640,7 +640,8 @@ function importJcLogos(): void {
     process.exit(1);
   }
   const report = new Report();
-  const wired = wireJcLogos(teams, readdirSync(path.join(REPO, 'FBA Logos', JC_LOGO_FOLDER)), report);
+  const colors = JSON.parse(readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), 'jcLogoColors.json'), 'utf8')) as JcLogoColors;
+  const wired = wireJcLogos(teams, readdirSync(path.join(REPO, 'FBA Logos', JC_LOGO_FOLDER)), report, colors);
   printReport(report);
   if (JSON.stringify(wired) === JSON.stringify(teams)) { console.log('leagues/fbajc/teams.json is already wired.'); return; }
   writeDoc(dir, 'leagues/fbajc/teams.json', wired);
