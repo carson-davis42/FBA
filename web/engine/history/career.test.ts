@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { AwardCountsFile, HallOfFameFile, SummaryFile, SummaryPlayerLine } from '../shared/types';
-import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll, careerSpan, playerStatus } from './career';
+import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll, careerSpan, playerStatus, applyPlacement } from './career';
 
 describe('parseBio', () => {
   it('parses Akeem Naylor', () => {
@@ -296,5 +296,44 @@ describe('careerSpan and playerStatus', () => {
     expect(playerStatus(bio(['Army-S70', 'D2(Austin)-S78']), false, 78)).toBe('d2');
     expect(playerStatus(bio(['Army-S70', 'WC(Brazil)-S78']), false, 78)).toBe('wc');
     expect(playerStatus({ stints: [], hof: null, other: [] }, false, 78)).toBe('unknown');
+  });
+});
+
+describe('parseBio week suffixes', () => {
+  it('drops "(W5-W6)" so the team code is read as an FBA team', () => {
+    const c = parseBio({ born: 'Born-S40', entries: ['CT(W5-W6)-S58', '1x All-Star', 'D2(Austin)-S59', 'WC(Brazil)-S60'] });
+    expect(c.stints.map(s => [s.kind, s.team, s.range])).toEqual([['fba', 'CT', 'S58'], ['d2', 'D2(Austin)', 'S59'], ['wc', 'WC(Brazil)', 'S60']]);
+    expect(c.stints[0].honours[0].label).toBe('All-Star');
+  });
+});
+
+describe('applyPlacement', () => {
+  const base = () => parseBio({ born: 'Born-S51', entries: ['Penn-S69', 'Iowa-S70-S71', 'VEG-S72-pres.', '2x Young-Star'] });
+  it('ends the open stint the season before and starts the new team when he signed elsewhere', () => {
+    const c = applyPlacement(base(), { kind: 'fba', team: 'BOS' }, 79);
+    expect(c.stints.map(s => [s.team, s.range, s.to])).toEqual([['Penn', 'S69', 69], ['Iowa', 'S70-S71', 71], ['VEG', 'S72-S78', 78], ['BOS', 'S79-pres.', 'pres']]);
+    expect(c.stints[2].honours).toHaveLength(1);
+  });
+  it('leaves a player who is still with his team open, and does not change the input', () => {
+    const input = base();
+    const c = applyPlacement(input, { kind: 'fba', team: 'VEG' }, 79);
+    expect(c.stints).toHaveLength(3);
+    expect(c.stints[2]).toMatchObject({ to: 'pres', range: 'S72-pres.' });
+    applyPlacement(input, { kind: 'fba', team: 'BOS' }, 79);
+    expect(input.stints[2].range).toBe('S72-pres.');
+  });
+  it('is unchanged when he is on no roster, and moves between leagues', () => {
+    const input = base();
+    expect(applyPlacement(input, null, 79)).toBe(input);
+    const c = applyPlacement(input, { kind: 'd2', team: 'D2(Austin)' }, 79);
+    expect(c.stints.map(s => s.kind)).toEqual(['college', 'college', 'fba', 'd2']);
+  });
+  it('a stint that ended long ago is not reopened for the same team', () => {
+    const c = applyPlacement(parseBio({ born: 'Born-S40', entries: ['BOS-S60-S65'] }), { kind: 'fba', team: 'BOS' }, 79);
+    expect(c.stints.map(s => s.range)).toEqual(['S60-S65', 'S79-pres.']);
+  });
+  it('a player signed and traded in the same season keeps a one-season first stint', () => {
+    const c = applyPlacement(parseBio({ born: 'Born-S40', entries: ['VEG-S79-pres.'] }), { kind: 'fba', team: 'BOS' }, 79);
+    expect(c.stints.map(s => s.range)).toEqual(['S79', 'S79-pres.']);
   });
 });
