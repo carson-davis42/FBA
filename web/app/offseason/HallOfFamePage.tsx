@@ -11,6 +11,7 @@ import { SkippedWarning } from '../history/PlayerLink';
 import { commitDocs, newBatchId } from '../roster/commit';
 import '../pages/roster.css';
 import './offseason.css';
+import { idForName, uniqueNameIndex } from '../components/LinkedPlayers';
 import { PlayerName } from '../components/PlayerName';
 
 type Tab = 'hall' | 'nominees';
@@ -20,10 +21,10 @@ const cardKey = (card: HofCard): string => card.playerId ?? `name:${card.name.tr
 
 const linesOf = (text: string): string[] => text.split('\n').map(l => l.trim()).filter(l => l !== '');
 
-function Card({ card, children }: { card: HofCard; children?: React.ReactNode }) {
+function Card({ card, index, children }: { card: HofCard; index: Map<string, string>; children?: React.ReactNode }) {
   return (
     <div className="hof-card">
-      <h3><PlayerName id={card.playerId} name={card.name} /></h3>
+      <h3><PlayerName id={card.playerId ?? idForName(index, card.name)} name={card.name} /></h3>
       <div className="muted">Retired {card.retiredSeason}</div>
       {children}
     </div>
@@ -53,6 +54,7 @@ export function HallOfFamePage() {
   const [actionError, setActionError] = useState('');
 
   const list = useMemo(() => (hof.data && players.data ? candidates(hof.data, players.data) : []), [hof.data, players.data]);
+  const nameIndex = useMemo(() => (players.data ? uniqueNameIndex(players.data) : new Map<string, string>()), [players.data]);
 
   const err = meta.error ?? calendar.error ?? players.error ?? tx.error ?? (hof.missing ? undefined : hof.error) ?? (bios.missing ? undefined : bios.error) ?? history.error;
   if (err) return <p className="error">Couldn't load the Hall of Fame: {err.message}</p>;
@@ -102,7 +104,7 @@ export function HallOfFamePage() {
       {doc.nominees.length === 0 && <p className="muted">The class needs nominees: add one (from the candidates or by name) before inducting.</p>}
       <div className="hof-grid">
         {doc.nominees.map((card, i) => (
-          <Card key={`${i}${card.name}${card.lines.join('\n')}`} card={card}>
+          <Card key={`${i}${card.name}${card.lines.join('\n')}`} card={card} index={nameIndex}>
             <textarea
               aria-label={`${card.name} lines`}
               rows={Math.max(3, card.lines.length + 1)}

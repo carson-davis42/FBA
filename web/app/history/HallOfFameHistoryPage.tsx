@@ -2,19 +2,23 @@ import { Link } from 'react-router-dom';
 import type { HofCard, HallOfFameFile, PlayersFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
 import { Badge } from '../components/Badge';
+import { idForName, uniqueNameIndex } from '../components/LinkedPlayers';
+import { PlayerName } from '../components/PlayerName';
 import { PageHeader } from '../components/PageHeader';
-import { PlayerLink, SkippedWarning } from './PlayerLink';
+import { SkippedWarning } from './PlayerLink';
 import './history.css';
 
 /** A stored career line: "TEAM: S64", "TEAM: S65-S76" (FFL or pres. allowed) or a multi-part "TEAM: S16-S18;S48". Everything else is an honour. */
 const CAREER_LINE = /^[^:]+: (S\d+|FFL)(-(S\d+|FFL|pres\.))?(;(S\d+|FFL)(-(S\d+|FFL|pres\.))?)*$/;
 
-function Card({ card, players, inducted }: { card: HofCard; players: PlayersFile; inducted: string }) {
+function Card({ card, index, inducted }: { card: HofCard; index: Map<string, string>; inducted: string }) {
+  // The early Hall cards carry no player id: the name finds the player when only one has it.
+  const id = card.playerId ?? idForName(index, card.name);
   const career = card.lines.filter(l => CAREER_LINE.test(l));
   const honours = card.lines.filter(l => !CAREER_LINE.test(l));
   return (
     <div className="card headed plaque hof-card">
-      <h3 className="plaque-name">{card.playerId ? <PlayerLink id={card.playerId} players={players} /> : card.name}</h3>
+      <h3 className="plaque-name"><PlayerName id={id} name={card.name} /></h3>
       <div><Badge kind="hof">Class of {inducted}</Badge></div>
       <div className="muted">Retired {card.retiredSeason}</div>
       {career.length > 0 && (
@@ -42,6 +46,7 @@ export function HallOfFameHistoryPage() {
   const failure = players.error ?? (hof.missing ? undefined : hof.error);
   if (failure) return <p className="error">Couldn't load the Hall of Fame: {failure.message}</p>;
   if (!players.data || (!hof.data && !hof.missing)) return <p className="muted">Loading…</p>;
+  const index = uniqueNameIndex(players.data);
   const classes = hof.data ? [...hof.data.classes].reverse() : [];
   return (
     <section className="stack">
@@ -51,7 +56,7 @@ export function HallOfFameHistoryPage() {
         <div key={c.season}>
           <h2 className="section-title">{c.season}</h2>
           <div className="card-grid">
-            {c.inductees.map((card, i) => <Card key={`${card.name}${i}`} card={card} players={players.data!} inducted={c.season} />)}
+            {c.inductees.map((card, i) => <Card key={`${card.name}${i}`} card={card} index={index} inducted={c.season} />)}
           </div>
         </div>
       ))}
