@@ -26,6 +26,23 @@ describe('fbaBrackets.json', () => {
     }
   });
 
+  it('seeds the 16-slot pages by conference: each half of the page is one conference, seeded 1, 8, 4, 5, 3, 6, 2, 7 down the slots, and wins fall with the seed', () => {
+    const order = [1, 8, 4, 5, 3, 6, 2, 7];
+    for (const { season, series } of entries.filter(e => e.season >= 62)) {
+      const r1 = series.filter(s => s.round === 1).sort((a, b) => Number(a.id.split('-')[1]) - Number(b.id.split('-')[1]));
+      const halves: { seed: number; wins: number | null }[][] = [[], []];
+      r1.forEach((s, i) => [s.home, s.away].forEach((x, k) => {
+        if (!x) return;
+        expect(x.seed, `S${season} ${s.id}`).toBe(order[(2 * i + k) % 8]);
+        halves[i < 4 ? 0 : 1].push({ seed: x.seed!, wins: x.record ? Number(x.record.split('-')[0]) : null });
+      }));
+      for (const h of halves) {
+        const w = h.sort((a, b) => a.seed - b.seed).map(x => x.wins).filter((x): x is number => x !== null);
+        expect(w, `S${season}`).toEqual([...w].sort((a, b) => b - a));
+      }
+    }
+  });
+
   it('has unique, ascending seasons', () => {
     for (let i = 1; i < entries.length; i++) expect(entries[i].season).toBeGreaterThan(entries[i - 1].season);
   });

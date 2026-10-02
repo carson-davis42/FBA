@@ -1,37 +1,37 @@
 # p113 March Madness S18 (32 slots, no byes; prefix numbers are national ranks; "SFA" written out in full)
 S18
 1|Virginia|
-|Stephen F Austin|
-17|Loyola-Chicago|
-16|Nevada|
-9|Michigan State|
-24|Oklahoma|
-25|Clemson|
-8|Gonzaga|
-5|Kentucky|
-|St.Joseph's|
-21|Georgetown|
-12|Purdue|
-13|Duke|
-20|Wisconsin|
-|Butler|
-4|Arizona|
-2|Villanova|
-|NC State|
-18|Houston|
-15|Seton Hall|
-10|Xavier|
-23|Providence|
-|St.Bonaventure|
-7|Wichita State|
-6|West Virginia|
-|Middle Tennessee|
-22|Texas Tech|
-11|Michigan|
-14|North Carolina|
-19|Tennessee|
-|Cincinnati|
-3|Kansas|
+16|Stephen F Austin|
+9|Loyola-Chicago|
+8|Nevada|
+5|Michigan State|
+12|Oklahoma|
+13|Clemson|
+4|Gonzaga|
+3|Kentucky|
+14|St.Joseph's|
+11|Georgetown|
+6|Purdue|
+7|Duke|
+10|Wisconsin|
+15|Butler|
+2|Arizona|
+1|Villanova|
+16|NC State|
+9|Houston|
+8|Seton Hall|
+5|Xavier|
+12|Providence|
+13|St.Bonaventure|
+4|Wichita State|
+3|West Virginia|
+14|Middle Tennessee|
+11|Texas Tech|
+6|Michigan|
+7|North Carolina|
+10|Tennessee|
+15|Cincinnati|
+2|Kansas|
 =Virginia 43-20|Nevada 35-31|Michigan State 32-28|Gonzaga 40-11|Kentucky 41-21|Purdue 34-21|Wisconsin 36-27|Arizona 38-21|Villanova 46-31|Houston 40-38|Providence 35-29|St.Bonaventure 35-33|West Virginia 33-32|Texas Tech 41-33|Tennessee 35-32|Kansas 40-26
 =Virginia 40-22|Michigan State 38-36|Purdue 40-24|Arizona 41-30|Villanova 41-33|Providence 37-33|West Virginia 40-38|Kansas 40-19
 =Virginia 41-32|Purdue 40-20|Villanova 40-30|West Virginia 32-29

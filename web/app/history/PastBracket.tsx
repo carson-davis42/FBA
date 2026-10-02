@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import type { FranchisesFile, PastBracket as PastBracketDoc, PastSeries, PastSide, Team } from '../../engine/shared/types';
 import { ChampBadge, SideRow } from '../playoffs/Bracket';
 import { TeamFull } from './useTeams';
@@ -47,13 +48,22 @@ export function roundLabel(rounds: number, round: number): string {
 function ColumnsBracket({ bracket, ...rest }: BracketProps) {
   const R = bracket.rounds;
   const byId = new Map(bracket.series.map(s => [s.id, s]));
+  const box = useRef<HTMLDivElement>(null);
+  // A round header slides the bracket so that round's column is the first one in view.
+  const shiftTo = (col: HTMLElement) => {
+    const el = box.current;
+    if (!el || typeof el.scrollTo !== 'function') return;
+    el.scrollTo({ left: col.offsetLeft - el.offsetLeft, behavior: 'smooth' });
+  };
   return (
-    <div className="bracket cols">
+    <div className="bracket cols" ref={box}>
       {Array.from({ length: R }, (_, i) => i + 1).map(r => {
         const n = 2 ** (R - r);
         return (
           <div key={r} className={`cols-col${r === R ? ' last' : ''}${r === 1 ? ' first' : ''}`}>
-            <h3 className="col-head">{roundLabel(R, r)}</h3>
+            <h3 className="col-head">
+              <button type="button" title="Shift the bracket to this round" onClick={e => shiftTo(e.currentTarget.closest('.cols-col') as HTMLElement)}>{roundLabel(R, r)}</button>
+            </h3>
             <div className="col-slots">
               {Array.from({ length: n }, (_, k) => {
                 const s = byId.get(`R${r}-${k + 1}`);

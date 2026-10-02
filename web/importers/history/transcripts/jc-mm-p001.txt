@@ -2,68 +2,68 @@
 S64
 1|Alabama|24-0
 BYE
-|Butler|15-7
-|Northern Kentucky|23-1
-17|BYU|21-3
-|Princeton|16-7
-|Marquette|12-10
-16|Houston|19-5
-9|Villanova|20-4
-|Dartmouth|15-8
-|NC State|11-11
-24|Auburn|15-8
-25|Oklahoma|14-9
-|Saint Mary's|18-6
-|Stephen F Austin|12-12
-8|North Carolina|19-4
-4|UCLA|22-2
+9|Butler|15-7
+8|Northern Kentucky|23-1
+5|BYU|21-3
+12|Princeton|16-7
+13|Marquette|12-10
+4|Houston|19-5
+3|Villanova|20-4
+14|Dartmouth|15-8
+11|NC State|11-11
+6|Auburn|15-8
+7|Oklahoma|14-9
+10|Saint Mary's|18-6
+15|Stephen F Austin|12-12
+2|North Carolina|19-4
+1|UCLA|22-2
 BYE
-|Indiana|13-9
-|Texas|14-9
-20|Winthrop|23-1
-|Arizona|11-11
-|Rhode Island|18-6
-13|Michigan State|19-5
-12|Florida|18-6
-|Delaware|17-6
-|Harvard|17-7
-21|Wisconsin|16-8
-|Wichita State|15-8
-|Ohio State|12-10
-|Belmont|11-11
-5|Virginia|21-3
-2|Kansas|23-1
+9|Indiana|13-9
+8|Texas|14-9
+5|Winthrop|23-1
+12|Arizona|11-11
+13|Rhode Island|18-6
+4|Michigan State|19-5
+3|Florida|18-6
+14|Delaware|17-6
+11|Harvard|17-7
+6|Wisconsin|16-8
+7|Wichita State|15-8
+10|Ohio State|12-10
+15|Belmont|11-11
+2|Virginia|21-3
+1|Kansas|23-1
 BYE
-|South Carolina|18-5
-|Creighton|14-10
-18|Baylor|17-7
-|LSU|11-11
-|Penn State|11-11
-15|Louisville|16-7
-10|USC|18-5
-|Boston U|16-7
-|Georgetown|12-11
-23|Illinois|16-7
-|Nevada|17-6
-|Purdue|12-11
-|Montana|14-10
-7|Duke|20-4
-3|Wake Forest|23-1
+9|South Carolina|18-5
+8|Creighton|14-10
+5|Baylor|17-7
+12|LSU|11-11
+13|Penn State|11-11
+4|Louisville|16-7
+3|USC|18-5
+14|Boston U|16-7
+11|Georgetown|12-11
+6|Illinois|16-7
+7|Nevada|17-6
+10|Purdue|12-11
+15|Montana|14-10
+2|Duke|20-4
+1|Wake Forest|23-1
 BYE
-|West Virginia|13-9
-|East Carolina|19-5
-19|Arizona State|15-8
-|Loyola-Chicago|17-6
-|Utah State|15-8
-14|Kentucky|18-5
-11|Michigan|19-4
-|SMU|11-11
-|Columbia|20-4
-22|Xavier|17-6
-|Texas Tech|14-9
-|VCU|15-8
-|Liberty|13-9
-6|Gonzaga|21-3
+9|West Virginia|13-9
+8|East Carolina|19-5
+5|Arizona State|15-8
+12|Loyola-Chicago|17-6
+13|Utah State|15-8
+4|Kentucky|18-5
+3|Michigan|19-4
+14|SMU|11-11
+11|Columbia|20-4
+6|Xavier|17-6
+7|Texas Tech|14-9
+10|VCU|15-8
+15|Liberty|13-9
+2|Gonzaga|21-3
 =Alabama BYE|Butler 37-32|BYU 38-23|Houston 44-15|Villanova 48-18|NC State 36-34|Oklahoma 35-23|North Carolina 55-20|UCLA BYE|Texas 44-39|Winthrop 42-35|Michigan State 37-24|Florida 43-21|Wisconsin 30-28|Wichita State 40-39 OT|Virginia 46-17|Kansas BYE|Creighton 40-11|Baylor 40-31|Louisville 47-17|USC 42-16|Illinois 42-25|Nevada 41-35|Duke 50-27|Wake Forest BYE|West Virginia 38-29|Arizona State 42-32|Kentucky 46-14|Michigan 32-21|Columbia 45-44 OT|Texas Tech 38-31|Gonzaga 51-17
 =Alabama 43-25|Houston 45-38 OT|Villanova 39-29|North Carolina 49-44 OT|UCLA 44-20|Winthrop 37-34|Florida 42-23|Virginia 48-29|Kansas 52-28|Louisville 39-36|USC 33-20|Duke 40-30|Wake Forest 45-19|Arizona State 37-35|Michigan 34-32|Gonzaga 40-29
 =Alabama 43-17|North Carolina 33-32|UCLA 40-25|Virginia 42-39|Kansas 42-41|Duke 51-44 OT|Wake Forest 42-36|Michigan 42-34

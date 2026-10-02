@@ -1,69 +1,69 @@
 # p102 March Madness S74
 S74
-|Michigan State|27-5
-|Cleveland State|14-19
-|Kansas|20-12
-|Creighton|20-12
-|Indiana|22-9
-|Texas Tech|17-13
-|Wisconsin|20-11
-|North Carolina|24-7
-|Villanova|26-6
-|St.Bonaventure|23-9
-|Oregon State|20-11
-|Alabama|20-10
-|Arizona State|21-10
-|Ohio State|17-14
-|Abilene Christian|24-8
-|Nevada|30-2
-|Houston|26-5
-|UCSB|19-13
-|Illinois|21-10
-|Washington|21-10
-|Auburn|24-8
-|Iona|24-6
-|Pitt|20-13
-|San Diego State|26-6
-|Memphis|29-3
-|Georgia State|24-8
-|Nebraska|24-7
-|Wake Forest|20-10
-|Purdue|22-10
-|West Virginia|20-11
-|Northeastern|19-14
-|Florida State|26-6
-|UConn|29-3
-|Murray State|16-17
-|Butler|20-11
-|Missouri|22-10
-|Louisville|21-9
-|Ole Miss|18-12
-|UNC Wilmington|24-7
-|Michigan|27-4
-|Florida|24-8
-|Sam Houston State|24-8
-|Kentucky|19-12
-|FAU|26-5
-|Wichita State|24-8
-|Virginia|20-11
-|Saint Louis|19-14
-|Gonzaga|25-6
-|Duke|27-5
-|Weber State|19-13
-|St.John's|21-11
-|Oregon|23-9
-|Texas|23-9
-|Clemson|19-12
-|Texas A&M|18-13
-|Arizona|24-8
-|UCLA|24-7
-|Howard|21-9
-|Baylor|18-13
-|Marquette|21-9
-|Tennessee|22-9
-|UCF|21-9
-|Robert Morris|21-11
-|Xavier|24-6
+1|Michigan State|27-5
+16|Cleveland State|14-19
+9|Kansas|20-12
+8|Creighton|20-12
+5|Indiana|22-9
+12|Texas Tech|17-13
+13|Wisconsin|20-11
+4|North Carolina|24-7
+3|Villanova|26-6
+14|St.Bonaventure|23-9
+11|Oregon State|20-11
+6|Alabama|20-10
+7|Arizona State|21-10
+10|Ohio State|17-14
+15|Abilene Christian|24-8
+2|Nevada|30-2
+1|Houston|26-5
+16|UCSB|19-13
+9|Illinois|21-10
+8|Washington|21-10
+5|Auburn|24-8
+12|Iona|24-6
+13|Pitt|20-13
+4|San Diego State|26-6
+3|Memphis|29-3
+14|Georgia State|24-8
+11|Nebraska|24-7
+6|Wake Forest|20-10
+7|Purdue|22-10
+10|West Virginia|20-11
+15|Northeastern|19-14
+2|Florida State|26-6
+1|UConn|29-3
+16|Murray State|16-17
+9|Butler|20-11
+8|Missouri|22-10
+5|Louisville|21-9
+12|Ole Miss|18-12
+13|UNC Wilmington|24-7
+4|Michigan|27-4
+3|Florida|24-8
+14|Sam Houston State|24-8
+11|Kentucky|19-12
+6|FAU|26-5
+7|Wichita State|24-8
+10|Virginia|20-11
+15|Saint Louis|19-14
+2|Gonzaga|25-6
+1|Duke|27-5
+16|Weber State|19-13
+9|St.John's|21-11
+8|Oregon|23-9
+5|Texas|23-9
+12|Clemson|19-12
+13|Texas A&M|18-13
+4|Arizona|24-8
+3|UCLA|24-7
+14|Howard|21-9
+11|Baylor|18-13
+6|Marquette|21-9
+7|Tennessee|22-9
+10|UCF|21-9
+15|Robert Morris|21-11
+2|Xavier|24-6
 =Michigan State 73-60|Creighton 78-67|Indiana 82-69|North Carolina 75-72|Villanova 83-73|Oregon State 78-77|Arizona State 80-59|Nevada 107-51|Houston 76-42|Illinois 83-74|Auburn 97-55|San Diego State 76-67|Memphis 81-78|Wake Forest 91-72|West Virginia 83-74|Florida State 80-60|UConn 79-62|Missouri 84-78|Louisville 89-67|Michigan 70-62|Florida 81-57|FAU 73-72|Wichita State 77-75|Gonzaga 77-53|Duke 90-44|St.John's 85-76|Clemson 84-65|Arizona 78-72|UCLA 88-64|Marquette 80-67|UCF 80-68|Xavier 95-56
 =Michigan State 69-67|North Carolina 84-81 OT|Villanova 94-92|Nevada 77-71|Houston 90-69|San Diego State 90-86|Memphis 72-65|Florida State 64-48|Missouri 85-77|Michigan 93-89|Florida 79-77|Wichita State 91-89|Duke 82-51|Arizona 94-71|Marquette 82-81|Xavier 100-75
 =North Carolina 84-81|Nevada 93-82|Houston 90-80|Memphis 90-84|Michigan 94-86|Florida 75-64|Arizona 84-66|Marquette 82-78

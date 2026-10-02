@@ -1,38 +1,38 @@
 # p085 NIT S75 (32 slots; the page prints no scores; records are printed)
 S75
 K:NIT
-|Butler|18-13
-|Cal|19-12
-|Colorado|16-15
-|USC|15-15
-|Harvard|22-8
-|Florida|15-15
-|Air Force|18-12
-|IUPUI|20-10
-|Mississippi State|16-14
-|Colorado State|18-13
-|Oklahoma|15-15
-|Grambling State|19-11
-|Iowa|16-15
-|LSU|16-15
-|Southern|18-12
-|Ole Miss|18-13
-|Clemson|21-12
-|San Jose State|17-14
-|Arkansas Pine Bluff|20-11
-|Arkansas Little Rock|19-11
-|Marist|20-11
-|Oklahoma State|14-16
-|Robert Morris|16-14
-|Duquesne|19-12
-|Arizona State|18-13
-|Colgate|21-10
-|North Dakota State|21-11
-|Iowa State|15-16
-|McNeese State|22-10
-|Murray State|21-11
-|Montana State|19-12
-|Notre Dame|15-16
+1|Butler|18-13
+16|Cal|19-12
+9|Colorado|16-15
+8|USC|15-15
+5|Harvard|22-8
+12|Florida|15-15
+13|Air Force|18-12
+4|IUPUI|20-10
+3|Mississippi State|16-14
+14|Colorado State|18-13
+11|Oklahoma|15-15
+6|Grambling State|19-11
+7|Iowa|16-15
+10|LSU|16-15
+15|Southern|18-12
+2|Ole Miss|18-13
+1|Clemson|21-12
+16|San Jose State|17-14
+9|Arkansas Pine Bluff|20-11
+8|Arkansas Little Rock|19-11
+5|Marist|20-11
+12|Oklahoma State|14-16
+13|Robert Morris|16-14
+4|Duquesne|19-12
+3|Arizona State|18-13
+14|Colgate|21-10
+11|North Dakota State|21-11
+6|Iowa State|15-16
+7|McNeese State|22-10
+10|Murray State|21-11
+15|Montana State|19-12
+2|Notre Dame|15-16
 =Butler -|Colorado -|Florida -|IUPUI -|Colorado State -|Oklahoma -|Iowa -|Ole Miss -|Clemson -|Arkansas Little Rock -|Marist -|Duquesne -|Arizona State -|Iowa State -|McNeese State -|Notre Dame -
 =Butler -|Florida -|Oklahoma -|Ole Miss -|Clemson -|Marist -|Iowa State -|Notre Dame -
 =Florida -|Oklahoma -|Clemson -|Iowa State -

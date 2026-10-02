@@ -1,37 +1,37 @@
 # p104 March Madness S13 (32 slots; "SDSU" and "ECU" written out in full)
 S13
-|Texas Tech|
+1|Texas Tech|
 BYE
-|San Diego State|
-|TCU|
-|Kansas State|
-BYE
-BYE
-|Duke|
-|Kansas|
+9|San Diego State|
+8|TCU|
+5|Kansas State|
 BYE
 BYE
-|Purdue|
-|Baylor|
-|Utah|
-BYE
-|Villanova|
-|Virginia|
-BYE
-|Iowa State|
-|Florida|
-|Oklahoma|
+4|Duke|
+3|Kansas|
 BYE
 BYE
-|North Carolina|
-|Memphis|
+6|Purdue|
+7|Baylor|
+10|Utah|
 BYE
-|East Carolina|
-|Louisville|
-|Clemson|
-|Michigan State|
+2|Villanova|
+1|Virginia|
 BYE
-|West Virginia|
+9|Iowa State|
+8|Florida|
+5|Oklahoma|
+BYE
+BYE
+4|North Carolina|
+3|Memphis|
+BYE
+11|East Carolina|
+6|Louisville|
+7|Clemson|
+10|Michigan State|
+BYE
+2|West Virginia|
 =Texas Tech BYE|TCU 25-15|Kansas State BYE|Duke BYE|Kansas BYE|Purdue BYE|Utah 26-24|Villanova BYE|Virginia BYE|Iowa State 23-20|Oklahoma BYE|North Carolina BYE|Memphis BYE|Louisville 22-19|Clemson 30-19|West Virginia BYE
 =Texas Tech 36-13|Kansas State 20-18|Kansas 22-12|Villanova 28-2|Virginia 35-7|Oklahoma 20-19|Louisville 25-23|West Virginia 34-33 OT
 =Texas Tech 30-20|Kansas 24-22|Virginia 33-18|West Virginia 21-17

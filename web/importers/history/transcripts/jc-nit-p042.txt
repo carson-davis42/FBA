@@ -1,38 +1,38 @@
 # p042 NIT S78 (32 slots; every game is scored; records are printed)
 S78
 K:NIT
-|Oklahoma|18-13
-|Furman|16-15
-|North Dakota State|21-10
-|Drake|20-10
-|Saint Mary's|21-10
-|Ohio|18-12
-|Boise State|20-10
-|Longwood|17-13
-|UAB|19-11
-|Butler|17-14
-|Cal|19-11
-|Buffalo|18-13
-|Vanderbilt|18-13
-|Saint Peter's|20-12
-|Seton Hall|18-13
-|Northern Kentucky|17-14
-|Creighton|18-13
-|Stephen F Austin|17-16
-|Texas A&M CC|18-12
-|ETSU|20-12
-|Wyoming|17-15
-|Kennesaw State|18-14
-|Cincinnati|20-11
-|Boston College|17-14
-|Loyola-Chicago|19-12
-|Appalachian State|16-14
-|Grambling State|19-12
-|Washington State|16-15
-|Southern|20-11
-|San Francisco|18-12
-|TCU|19-12
-|Middle Tennessee|17-14
+1|Oklahoma|18-13
+16|Furman|16-15
+9|North Dakota State|21-10
+8|Drake|20-10
+5|Saint Mary's|21-10
+12|Ohio|18-12
+13|Boise State|20-10
+4|Longwood|17-13
+3|UAB|19-11
+14|Butler|17-14
+11|Cal|19-11
+6|Buffalo|18-13
+7|Vanderbilt|18-13
+10|Saint Peter's|20-12
+15|Seton Hall|18-13
+2|Northern Kentucky|17-14
+1|Creighton|18-13
+16|Stephen F Austin|17-16
+9|Texas A&M CC|18-12
+8|ETSU|20-12
+5|Wyoming|17-15
+12|Kennesaw State|18-14
+13|Cincinnati|20-11
+4|Boston College|17-14
+3|Loyola-Chicago|19-12
+14|Appalachian State|16-14
+11|Grambling State|19-12
+6|Washington State|16-15
+7|Southern|20-11
+10|San Francisco|18-12
+15|TCU|19-12
+2|Middle Tennessee|17-14
 =Oklahoma 89-63|Drake 91-82|Saint Mary's 97-58|Boise State 90-68|UAB 89-77|Cal 68-62|Saint Peter's 89-86|Seton Hall 86-81|Creighton 103-62|Texas A&M CC 85-76|Kennesaw State 81-78|Cincinnati 92-82|Loyola-Chicago 84-80|Washington State 114-55|San Francisco 78-67|TCU 81-59
 =Oklahoma 86-67|Boise State 90-82|UAB 94-48|Saint Peter's 68-67 OT|Creighton 108-79|Cincinnati 80-66|Washington State 93-75|TCU 69-68
 =Oklahoma 81-57|Saint Peter's 82-68|Creighton 87-65|Washington State 81-72

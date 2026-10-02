@@ -1,38 +1,38 @@
 # p101 NIT S72 (32 slots; the page prints no scores; prefix numbers are absent, records are printed)
 S72
 K:NIT
-|Cincinnati|16-13
-|Iona|15-14
-|Jackson State|18-11
-|Western Kentucky|18-10
-|Georgetown|15-15
-|New Mexico State|18-12
-|Morehead State|17-11
-|Army|17-11
-|Delaware|18-11
-|Cal|18-12
-|Belmont|18-12
-|TCU|15-14
-|Navy|19-11
-|Middle Tennessee|18-13
-|South Dakota State|15-13
-|Seton Hall|16-13
-|Arizona State|16-13
-|James Madison|16-13
-|Winthrop|17-12
-|Auburn|16-14
-|St.Joseph's|16-13
-|Oregon State|13-16
-|Arkansas|14-14
-|VCU|16-12
-|Purdue|17-12
-|Oral Roberts|16-14
-|Princeton|17-12
-|ETSU|19-10
-|North Dakota State|18-11
-|Yale|17-11
-|Missouri|13-16
-|Iowa State|16-13
+1|Cincinnati|16-13
+16|Iona|15-14
+9|Jackson State|18-11
+8|Western Kentucky|18-10
+5|Georgetown|15-15
+12|New Mexico State|18-12
+13|Morehead State|17-11
+4|Army|17-11
+3|Delaware|18-11
+14|Cal|18-12
+11|Belmont|18-12
+6|TCU|15-14
+7|Navy|19-11
+10|Middle Tennessee|18-13
+15|South Dakota State|15-13
+2|Seton Hall|16-13
+1|Arizona State|16-13
+16|James Madison|16-13
+9|Winthrop|17-12
+8|Auburn|16-14
+5|St.Joseph's|16-13
+12|Oregon State|13-16
+13|Arkansas|14-14
+4|VCU|16-12
+3|Purdue|17-12
+14|Oral Roberts|16-14
+11|Princeton|17-12
+6|ETSU|19-10
+7|North Dakota State|18-11
+10|Yale|17-11
+15|Missouri|13-16
+2|Iowa State|16-13
 =Cincinnati -|Western Kentucky -|New Mexico State -|Morehead State -|Cal -|TCU -|Navy -|Seton Hall -|Arizona State -|Auburn -|St.Joseph's -|VCU -|Purdue -|ETSU -|Yale -|Missouri -
 =Cincinnati -|Morehead State -|TCU -|Seton Hall -|Arizona State -|St.Joseph's -|Purdue -|Missouri -
 =Cincinnati -|Seton Hall -|St.Joseph's -|Purdue -

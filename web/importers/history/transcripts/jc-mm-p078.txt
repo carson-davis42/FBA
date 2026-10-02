@@ -1,69 +1,69 @@
 # p078 March Madness S14 (the page prints "SDSU"; written out in full)
 S14
-|Louisville|
+1|Louisville|
 BYE
 BYE
 BYE
-|TCU|
+5|TCU|
 BYE
 BYE
-|Purdue|
-|Michigan State|
-BYE
-BYE
-BYE
-BYE
-BYE
-BYE
-|Duke|
-|Texas Tech|10-0
-BYE
-BYE
-BYE
-|Ole Miss|
-BYE
-BYE
-|San Diego State|
-|Oklahoma|
+4|Purdue|
+3|Michigan State|
 BYE
 BYE
 BYE
 BYE
 BYE
 BYE
-|Kansas|
-|Villanova|10-0
+2|Duke|
+1|Texas Tech|10-0
 BYE
 BYE
 BYE
-|Iowa State|
+5|Ole Miss|
 BYE
 BYE
-|Yale|
-|North Carolina|
-BYE
-BYE
-BYE
-BYE
-BYE
-BYE
-|Virginia|
-|Kansas State|
-BYE
-BYE
-BYE
-|Florida|
-BYE
-BYE
-|Memphis|
-|Clemson|
+4|San Diego State|
+3|Oklahoma|
 BYE
 BYE
 BYE
 BYE
 BYE
 BYE
-|West Virginia|
+2|Kansas|
+1|Villanova|10-0
+BYE
+BYE
+BYE
+5|Iowa State|
+BYE
+BYE
+4|Yale|
+3|North Carolina|
+BYE
+BYE
+BYE
+BYE
+BYE
+BYE
+2|Virginia|
+1|Kansas State|
+BYE
+BYE
+BYE
+5|Florida|
+BYE
+BYE
+4|Memphis|
+3|Clemson|
+BYE
+BYE
+BYE
+BYE
+BYE
+BYE
+2|West Virginia|
 =Louisville BYE|BYE|TCU BYE|Purdue BYE|Michigan State BYE|BYE|BYE|Duke BYE|Texas Tech BYE|BYE|Ole Miss BYE|San Diego State BYE|Oklahoma BYE|BYE|BYE|Kansas BYE|Villanova BYE|BYE|Iowa State BYE|Yale BYE|North Carolina BYE|BYE|BYE|Virginia BYE|Kansas State BYE|BYE|Florida BYE|Memphis BYE|Clemson BYE|BYE|BYE|West Virginia BYE
 =Louisville BYE|Purdue 34-33 2OT|Michigan State BYE|Duke BYE|Texas Tech BYE|San Diego State 24-19|Oklahoma BYE|Kansas BYE|Villanova BYE|Yale 39-9|North Carolina BYE|Virginia BYE|Kansas State BYE|Memphis 31-10|Clemson BYE|West Virginia BYE
 =Louisville 31-22|Duke 23-19|Texas Tech 33-19|Kansas 30-17|Yale 33-31|Virginia 36-13|Kansas State 31-19|Clemson 25-16

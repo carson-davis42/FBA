@@ -2,68 +2,68 @@
 S58
 1|Kentucky|23-0
 BYE
-|Florida|13-8
-|Georgia|14-8
-17|Kansas|14-7
-|Harvard|17-6
+9|Florida|13-8
+8|Georgia|14-8
+5|Kansas|14-7
+12|Harvard|17-6
 BYE
-16|Michigan State|16-6
-9|Seton Hall|22-1
+4|Michigan State|16-6
+3|Seton Hall|22-1
 BYE
-|Wichita State|11-10
-24|Marquette|16-6
-25|Michigan|14-6
-|East Carolina|14-8
+11|Wichita State|11-10
+6|Marquette|16-6
+7|Michigan|14-6
+10|East Carolina|14-8
 BYE
-8|Louisville|20-3
-4|UCLA|21-2
+2|Louisville|20-3
+1|UCLA|21-2
 BYE
-|Baylor|11-11
-|Wake Forest|13-8
-20|Oklahoma State|17-6
-|Cornell|18-5
+9|Baylor|11-11
+8|Wake Forest|13-8
+5|Oklahoma State|17-6
+12|Cornell|18-5
 BYE
-13|Texas A&M|17-6
-12|Memphis|21-2
+4|Texas A&M|17-6
+3|Memphis|21-2
 BYE
-|Buffalo|12-9
-21|Syracuse|15-7
-|Arizona|14-8
-|Stephen F Austin|19-4
+11|Buffalo|12-9
+6|Syracuse|15-7
+7|Arizona|14-8
+10|Stephen F Austin|19-4
 BYE
-5|Wisconsin|21-2
-2|Duke|23-0
+2|Wisconsin|21-2
+1|Duke|23-0
 BYE
-|Ohio State|12-9
-|Colorado|12-9
-18|LSU|16-6
-|Vermont|15-7
+9|Ohio State|12-9
+8|Colorado|12-9
+5|LSU|16-6
+12|Vermont|15-7
 BYE
-15|Villanova|18-5
-10|Texas Tech|19-3
+4|Villanova|18-5
+3|Texas Tech|19-3
 BYE
-|Utah State|16-7
-23|North Carolina|13-8
-|UCF|14-8
-|UConn|11-11
+11|Utah State|16-7
+6|North Carolina|13-8
+7|UCF|14-8
+10|UConn|11-11
 BYE
-7|St.Joseph's|23-0
-3|Texas|21-2
+2|St.Joseph's|23-0
+1|Texas|21-2
 BYE
-|Georgetown|13-9
-|Virginia|12-10
-19|VCU|20-3
-|Belmont|15-6
+9|Georgetown|13-9
+8|Virginia|12-10
+5|VCU|20-3
+12|Belmont|15-6
 BYE
-14|San Diego State|21-2
-11|Nevada|20-3
+4|San Diego State|21-2
+3|Nevada|20-3
 BYE
-|Xavier|11-10
-22|USC|15-7
-|Dayton|17-5
-|Mississippi State|11-10
+11|Xavier|11-10
+6|USC|15-7
+7|Dayton|17-5
+10|Mississippi State|11-10
 BYE
-6|Gonzaga|20-3
+2|Gonzaga|20-3
 =Kentucky BYE|Georgia 52-51|Kansas 55-33|Michigan State BYE|Seton Hall BYE|Marquette 52-39|Michigan 74-14|Louisville BYE|UCLA BYE|Wake Forest 54-42|Oklahoma State 61-23|Texas A&M BYE|Memphis BYE|Syracuse 55-14|Stephen F Austin 60-56|Wisconsin BYE|Duke BYE|Colorado 54-45|LSU 46-16|Villanova BYE|Texas Tech BYE|North Carolina 64-33|UCF 41-38|St.Joseph's BYE|Texas BYE|Virginia 47-37|VCU 67-12|San Diego State BYE|Nevada BYE|USC 51-30|Dayton 53-39|Gonzaga BYE
 =Kentucky 53-26|Michigan State 60-43|Seton Hall 48-32|Louisville 57-56|Wake Forest 51-48|Oklahoma State 62-54 OT|Syracuse 61-59|Stephen F Austin 47-45|Duke 80-38|LSU 61-30|Texas Tech 53-31|St.Joseph's 96-30|Texas 60-39|San Diego State 55-42|Nevada 57-56|Gonzaga 59-54
 =Kentucky 62-47|Seton Hall 64-62 OT|Oklahoma State 54-51|Syracuse 54-52|Duke 61-56|Texas Tech 67-57|Texas 52-50|Gonzaga 66-59

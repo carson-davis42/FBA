@@ -49,6 +49,8 @@
 .bracket.cols { gap: 28px; }
 .cols-col { display: flex; flex-direction: column; min-width: 220px; flex: none; }
 .col-head { margin: 0 0 var(--s2); font-size: var(--fs-xs); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); text-align: center; }
+.col-head button { all: unset; cursor: pointer; padding: 2px var(--s2); border-radius: var(--r); }
+.col-head button:hover, .col-head button:focus-visible { background: var(--row-alt); color: var(--text); }
 .col-slots { display: flex; flex-direction: column; flex: 1; }
 .col-slot { position: relative; flex: 1; display: flex; align-items: center; padding: 3px 0; }
 .col-slot .series-box { width: 100%; }

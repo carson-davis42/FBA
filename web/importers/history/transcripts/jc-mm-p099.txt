@@ -1,69 +1,69 @@
 # p099 March Madness S66
 S66
 1|Villanova|27-0
-|Yale|17-10
-|Ohio State|14-11
-|Penn State|17-8
-17|Oklahoma|17-8
-|Wright State|22-4
-|Texas A&M|15-10
-16|Houston|20-7
-9|Kansas|22-5
-|San Francisco|20-6
-|Michigan State|13-12
-24|Arizona|17-8
-|Virginia Tech|17-9
-|Providence|20-6
-|Loyola-Chicago|17-10
-8|Auburn|22-5
-4|Duke|25-2
-|North Texas|15-11
-|Seton Hall|17-9
-|Arkansas|20-7
-20|Texas|18-8
-|Columbia|22-5
-|SMU|14-11
-13|Wisconsin|20-7
-12|Kentucky|19-7
-|Winthrop|19-7
-|Rutgers|17-10
-21|Creighton|20-6
-|Memphis|17-8
-|Wofford|25-2
-|Florida State|13-12
-5|Gonzaga|24-3
-2|Michigan|26-1
-|Delaware|15-12
-|Virginia|16-10
-|UConn|17-9
-18|UCLA|17-8
-|Miami|16-10
-|Harvard|20-5
-14|Texas Tech|20-7
-11|Tennessee|21-6
-|Wichita State|14-12
-|TCU|13-12
-23|BYU|20-6
-|Butler|18-9
-|Notre Dame|16-9
-|Stephen F Austin|17-10
-7|Arizona State|24-3
-3|Wake Forest|26-1
-|UC Irvine|16-10
-|VCU|17-8
-|New Mexico State|26-1
-19|Illinois|18-8
-|Marquette|15-10
-|Stanford|13-13
-15|Alabama|18-7
-10|Purdue|21-5
-|Georgetown|13-12
-|UCF|15-11
-22|Baylor|17-9
-25|LSU|17-9
-|Oregon|15-11
-|St.Joseph's|19-8
-6|North Carolina|23-4
+16|Yale|17-10
+9|Ohio State|14-11
+8|Penn State|17-8
+5|Oklahoma|17-8
+12|Wright State|22-4
+13|Texas A&M|15-10
+4|Houston|20-7
+3|Kansas|22-5
+14|San Francisco|20-6
+11|Michigan State|13-12
+6|Arizona|17-8
+7|Virginia Tech|17-9
+10|Providence|20-6
+15|Loyola-Chicago|17-10
+2|Auburn|22-5
+1|Duke|25-2
+16|North Texas|15-11
+9|Seton Hall|17-9
+8|Arkansas|20-7
+5|Texas|18-8
+12|Columbia|22-5
+13|SMU|14-11
+4|Wisconsin|20-7
+3|Kentucky|19-7
+14|Winthrop|19-7
+11|Rutgers|17-10
+6|Creighton|20-6
+7|Memphis|17-8
+10|Wofford|25-2
+15|Florida State|13-12
+2|Gonzaga|24-3
+1|Michigan|26-1
+16|Delaware|15-12
+9|Virginia|16-10
+8|UConn|17-9
+5|UCLA|17-8
+12|Miami|16-10
+13|Harvard|20-5
+4|Texas Tech|20-7
+3|Tennessee|21-6
+14|Wichita State|14-12
+11|TCU|13-12
+6|BYU|20-6
+7|Butler|18-9
+10|Notre Dame|16-9
+15|Stephen F Austin|17-10
+2|Arizona State|24-3
+1|Wake Forest|26-1
+16|UC Irvine|16-10
+9|VCU|17-8
+8|New Mexico State|26-1
+5|Illinois|18-8
+12|Marquette|15-10
+13|Stanford|13-13
+4|Alabama|18-7
+3|Purdue|21-5
+14|Georgetown|13-12
+11|UCF|15-11
+6|Baylor|17-9
+7|LSU|17-9
+10|Oregon|15-11
+15|St.Joseph's|19-8
+2|North Carolina|23-4
 =Villanova -|Penn State 34-33|Oklahoma 44-32|Houston 46-28|Kansas -|Michigan State -|Virginia Tech -|Auburn 47-26|Duke -|Arkansas 45-37|Texas -|Wisconsin -|Kentucky 49-30|Creighton -|Wofford 41-33|Gonzaga 45-21|Michigan -|UConn -|UCLA -|Texas Tech 41-30|Tennessee 52-16|BYU 48-32|Notre Dame 43-41|Arizona State -|Wake Forest 47-18|New Mexico State -|Illinois -|Alabama -|Georgetown -|Baylor 41-28|LSU -|North Carolina -
 =Villanova -|Oklahoma -|Kansas -|Auburn -|Arkansas -|Wisconsin -|Kentucky -|Gonzaga -|Michigan -|UCLA -|Tennessee -|Arizona State -|Wake Forest -|Illinois -|Baylor -|North Carolina -
 =Villanova -|Kansas -|Arkansas -|Gonzaga -|Michigan -|Tennessee -|Wake Forest -|North Carolina -

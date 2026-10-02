@@ -1,69 +1,69 @@
 # p012 March Madness S69
 S69
 1|Creighton|22-3
-|Stephen F Austin|15-11
-|Winthrop|23-4
-|Loyola-Chicago|24-3
-17|Virginia|19-6
-|BYU|14-11
-|Penn|21-6
-16|Alabama|21-6
-9|Arizona|22-5
-|Providence|19-7
-|Texas A&M|13-13
-24|Nevada|20-6
-25|Arkansas|25-2
-|TCU|13-12
-|North Texas|19-8
-8|Duke|22-4
-4|Kansas|23-4
-|Belmont|15-11
-|VCU|21-6
-|Arizona State|16-9
-19|Illinois|17-8
-|San Diego State|15-10
-|Buffalo|19-7
-13|Xavier|21-6
-12|Baylor|21-5
-|Syracuse|12-13
-|Dayton|18-8
-21|Michigan|18-8
-|Wake Forest|17-8
-|Florida|15-11
-|Wofford|18-8
-5|North Carolina|23-4
-2|UConn|25-2
-|New Mexico State|15-10
-|Georgetown|15-10
-|Michigan State|16-10
-18|Oregon|20-6
-|Harvard|21-4
-|Northwestern|14-12
-15|Oklahoma|21-6
-10|Indiana|22-5
-|Miami|13-12
-|Louisville|13-13
-23|Villanova|18-8
-|Auburn|17-8
-|Murray State|23-4
-|Columbia|17-9
-7|Texas|22-4
-3|UCLA|24-3
-|Yale|17-10
-|Tennessee|16-9
-|Marquette|19-8
-20|Houston|19-8
-|Richmond|22-5
-|Iona|20-7
-14|Ohio State|20-7
-11|Florida State|22-5
-|Butler|12-13
-|Texas Tech|12-13
-22|Gonzaga|18-8
-|Purdue|18-7
-|Memphis|14-12
-|Kansas State|12-14
-6|Kentucky|22-3
+16|Stephen F Austin|15-11
+9|Winthrop|23-4
+8|Loyola-Chicago|24-3
+5|Virginia|19-6
+12|BYU|14-11
+13|Penn|21-6
+4|Alabama|21-6
+3|Arizona|22-5
+14|Providence|19-7
+11|Texas A&M|13-13
+6|Nevada|20-6
+7|Arkansas|25-2
+10|TCU|13-12
+15|North Texas|19-8
+2|Duke|22-4
+1|Kansas|23-4
+16|Belmont|15-11
+9|VCU|21-6
+8|Arizona State|16-9
+5|Illinois|17-8
+12|San Diego State|15-10
+13|Buffalo|19-7
+4|Xavier|21-6
+3|Baylor|21-5
+14|Syracuse|12-13
+11|Dayton|18-8
+6|Michigan|18-8
+7|Wake Forest|17-8
+10|Florida|15-11
+15|Wofford|18-8
+2|North Carolina|23-4
+1|UConn|25-2
+16|New Mexico State|15-10
+9|Georgetown|15-10
+8|Michigan State|16-10
+5|Oregon|20-6
+12|Harvard|21-4
+13|Northwestern|14-12
+4|Oklahoma|21-6
+3|Indiana|22-5
+14|Miami|13-12
+11|Louisville|13-13
+6|Villanova|18-8
+7|Auburn|17-8
+10|Murray State|23-4
+15|Columbia|17-9
+2|Texas|22-4
+1|UCLA|24-3
+16|Yale|17-10
+9|Tennessee|16-9
+8|Marquette|19-8
+5|Houston|19-8
+12|Richmond|22-5
+13|Iona|20-7
+4|Ohio State|20-7
+3|Florida State|22-5
+14|Butler|12-13
+11|Texas Tech|12-13
+6|Gonzaga|18-8
+7|Purdue|18-7
+10|Memphis|14-12
+15|Kansas State|12-14
+2|Kentucky|22-3
 =Creighton -|Loyola-Chicago -|Virginia -|Penn -|Arizona -|Nevada -|Arkansas -|Duke -|Kansas -|Arizona State -|Illinois -|Xavier -|Baylor -|Dayton -|Wake Forest -|North Carolina -|UConn -|Michigan State -|Harvard -|Northwestern -|Indiana -|Villanova -|Auburn -|Texas -|UCLA -|Marquette -|Houston -|Ohio State -|Florida State -|Gonzaga -|Purdue -|Kentucky -
 =Creighton -|Penn -|Arizona -|Duke -|Kansas -|Xavier -|Baylor -|North Carolina -|UConn -|Harvard -|Indiana -|Texas -|UCLA -|Ohio State -|Florida State -|Kentucky -
 =Creighton -|Arizona -|Xavier -|North Carolina -|UConn -|Indiana -|UCLA -|Kentucky -
