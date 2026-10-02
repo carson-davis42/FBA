@@ -2,7 +2,7 @@
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { useState } from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { addProjection, commit } from '../../engine/college/recruiting';
 import type { RecruitingResult, RecruitingState } from '../../engine/college/state';
 import { collegeBaseState, collegeClassState, collegeCurrentClassState } from '../../engine/college/testFixtures';
@@ -32,6 +32,28 @@ const ranks = (table: string) => within(screen.getByRole('table', { name: table 
   .map(r => (r as HTMLTableRowElement).cells[0].textContent);
 
 describe('BoardTab', () => {
+  it('takes the page to the school picker when a projection or commit is started', () => {
+    const scroll = vi.fn();
+    Element.prototype.scrollIntoView = scroll;
+    render(<Harness initial={collegeCurrentClassState()} runs={[]} />);
+    fireEvent.click(screen.getAllByRole('button', { name: /^Add a projection for/ })[0]);
+    expect(scroll).toHaveBeenCalledTimes(1);
+    expect(document.activeElement).toBe(screen.getByLabelText('Search schools'));
+  });
+
+  it('does the same from a portal player\'s row', () => {
+    const scroll = vi.fn();
+    Element.prototype.scrollIntoView = scroll;
+    const s = collegeCurrentClassState();
+    const sample = Object.keys(s.players.players)[0];
+    const portal = [{ playerId: sample, position: 'PF' as const, classYear: 'Jr' as const, rating: 70, stars: null, projections: {}, committedTo: null, fromTeam: 'BAY' }];
+    render(<Harness initial={{ ...s, recruiting: { ...s.recruiting, portal } }} runs={[]} />);
+    const row = within(screen.getByRole('table', { name: 'Transfer portal' })).getAllByRole('row')[1];
+    fireEvent.click(within(row).getByRole('button', { name: /^Add a projection for/ }));
+    expect(scroll).toHaveBeenCalledTimes(1);
+    expect(document.activeElement).toBe(screen.getByLabelText('Search schools'));
+  });
+
   it('links to the transfer portal page', () => {
     render(<Harness initial={collegeCurrentClassState()} runs={[]} />);
     expect(screen.getByRole('link', { name: /Open the transfer portal page/ }).getAttribute('href')).toBe('/league/fbajc/portal');
