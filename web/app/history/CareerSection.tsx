@@ -32,6 +32,9 @@ export interface StintTeams { fba: Team[]; d2: Team[]; college: Team[]; wc?: Tea
 
 /** Spellings in the bios that differ from the school's name (and capitalisation is ignored). */
 const COLLEGE_SPELLING: Record<string, string> = { lousiville: 'louisville' };
+/** Old D2 teams the bios name that are now a current team (compared with the team's name). The row keeps the name as printed. */
+const D2_SUCCESSORS: Record<string, string> = { Pearland: 'Austin', Orlando: 'Miami' };
+
 export const findSchool = (teams: Team[], name: string): Team | undefined => {
   const key = name.trim().toLowerCase();
   const want = COLLEGE_SPELLING[key] ?? key;
@@ -55,8 +58,8 @@ export function StintTeam({ stint, teams }: { stint: Stint; teams: StintTeams })
   }
   if (stint.kind === 'd2') {
     const name = /^D2\((.*)\)$/.exec(stint.team)?.[1] ?? stint.team;
-    const t = teams.d2.find(x => x.name === name);
-    return t ? <TeamName team={t} season={season} size={18} to={`/history/fbad2/teams/${t.teamId}`} /> : <>{name}</>;
+    const t = teams.d2.find(x => x.name === name) ?? teams.d2.find(x => x.name === D2_SUCCESSORS[name]);
+    return t ? <TeamName team={t} season={season} size={18} name={name} to={`/history/fbad2/teams/${t.teamId}`} /> : <>{name}</>;
   }
   if (stint.kind === 'college') {
     const t = findSchool(teams.college, stint.team);
