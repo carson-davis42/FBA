@@ -106,17 +106,22 @@ export function d2TeamCase(team: Team, seasons: SummaryFile[], drafts: D2DraftHi
   return out;
 }
 
-export interface D2Honour { season: number; text: string }
+/** `team` is the D2 team the text names in parentheses, so a page can link it. */
+export interface D2Honour { season: number; text: string; team?: { id: string; name: string } }
 
 /** A player's D2 honours, oldest first. */
 export function d2PlayerHonours(playerId: string, seasons: SummaryFile[], drafts: D2DraftHistoryFile | null, teams: Team[]): D2Honour[] {
   const nameOf = (id: string | null, fallback: string) => (id ? teams.find(t => t.teamId === id)?.name : undefined) ?? teams.find(t => t.teamId === fallback)?.name ?? fallback;
+  const teamOf = (id: string | null, fallback: string): D2Honour['team'] => {
+    const t = (id ? teams.find(x => x.teamId === id) : undefined) ?? teams.find(x => x.teamId === fallback);
+    return t ? { id: t.teamId, name: t.name } : undefined;
+  };
   const out: D2Honour[] = [];
   for (const d of drafts?.drafts ?? []) {
-    for (const p of d.picks) if (p.playerId === playerId) out.push({ season: d.season, text: `D2 draft: pick ${p.pick} (${nameOf(p.teamId, p.teamName)})` });
+    for (const p of d.picks) if (p.playerId === playerId) out.push({ season: d.season, text: `D2 draft: pick ${p.pick} (${nameOf(p.teamId, p.teamName)})`, team: teamOf(p.teamId, p.teamName) });
   }
   for (const s of seasons) {
-    for (const a of d2Mvps(s)) if (a.playerId === playerId) out.push({ season: s.season, text: `${AWARD_LABEL[a.award]} (${nameOf(null, a.teamId)})` });
+    for (const a of d2Mvps(s)) if (a.playerId === playerId) out.push({ season: s.season, text: `${AWARD_LABEL[a.award]} (${nameOf(null, a.teamId)})`, team: teamOf(null, a.teamId) });
     for (const c of s.champions) if (c.finalsMvp === playerId) out.push({ season: s.season, text: `Series MVP, ${c.title}` });
   }
   return out.map((h, i) => ({ h, i })).sort((a, b) => a.h.season - b.h.season || a.i - b.i).map(x => x.h);

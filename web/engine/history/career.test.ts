@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { AwardCountsFile, HallOfFameFile, SummaryFile, SummaryPlayerLine } from '../shared/types';
-import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll } from './career';
+import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll, careerSpan, playerStatus } from './career';
 
 describe('parseBio', () => {
   it('parses Akeem Naylor', () => {
@@ -276,5 +276,25 @@ describe('careerTotalsAll', () => {
     expect(all.get('p99999')).toBeUndefined();
     const single = careerStats('p00001', [traded, s79]).total;
     expect(all.get('p00001')).toEqual({ gp: single.gp, pts: single.pts });
+  });
+});
+
+describe('careerSpan and playerStatus', () => {
+  const bio = (entries: string[]) => parseBio({ born: 'Born-S52', entries });
+  it('spans the college years through the last stint, "pres" while it runs', () => {
+    expect(careerSpan(bio(['Army-S70', 'Ohio State-S71-S73', 'D2(Austin)-S74', 'TOR-S75-S76', 'CP-S77', 'VEG-S78-pres.']))).toEqual({ from: 70, to: 'pres' });
+    expect(careerSpan(bio(['Duke-S60-S62', 'BOS-S63-S70']))).toEqual({ from: 60, to: 70 });
+    expect(careerSpan(bio(['Born-S1 noise']))).toBeNull();
+  });
+  it('is a Hall of Famer first, then retired, then wherever the last stint is', () => {
+    const active = bio(['Duke-S60', 'BOS-S61-pres.']);
+    expect(playerStatus({ ...active, hof: '77' }, true, 78)).toBe('hof');
+    expect(playerStatus(active, true, 78)).toBe('retired');
+    expect(playerStatus(active, false, 78)).toBe('fba');
+    expect(playerStatus(bio(['Duke-S60-S63', 'BOS-S64-S70']), false, 78)).toBe('retired');
+    expect(playerStatus(bio(['Duke-S77-S78']), false, 78)).toBe('college');
+    expect(playerStatus(bio(['Army-S70', 'D2(Austin)-S78']), false, 78)).toBe('d2');
+    expect(playerStatus(bio(['Army-S70', 'WC(Brazil)-S78']), false, 78)).toBe('wc');
+    expect(playerStatus({ stints: [], hof: null, other: [] }, false, 78)).toBe('unknown');
   });
 });

@@ -1,6 +1,7 @@
 import type { Career, Honour, Stint } from '../../engine/history/career';
-import type { AwardKey } from '../../engine/shared/types';
+import type { AwardKey, Team } from '../../engine/shared/types';
 import { AWARD_KEYS } from '../../engine/shared/types';
+import { TeamName } from '../components/TeamName';
 
 /** Short award names, shared by the Awards-by-player columns and the player page chips. */
 export const AWARD_LABELS: Record<AwardKey, string> = {
@@ -25,9 +26,36 @@ export function hasCareer(career: Career): boolean {
   return career.stints.length > 0 || career.other.length > 0 || career.hof !== null;
 }
 
-export function CareerSection({ career, born, totals }: { career: Career; born: string | null; totals: Record<AwardKey, number> }) {
-  const college = career.stints.filter(s => s.kind === 'college');
-  const pro = career.stints.filter(s => s.kind !== 'college');
+/** The team lists a stint's team is looked up in, one per league. */
+export interface StintTeams { fba: Team[]; d2: Team[]; college: Team[] }
+
+/** A stint's team as a link to its history page (franchise, D2 team or school) with its logo; text when the team is unknown or has no page. */
+export function StintTeam({ stint, teams }: { stint: Stint; teams: StintTeams }) {
+  const season = typeof stint.from === 'number' ? stint.from : typeof stint.to === 'number' ? stint.to : 79;
+  if (stint.kind === 'fba') {
+    return (
+      <>
+        {stint.team.split('/').map((code, i) => {
+          const t = teams.fba.find(x => x.teamId === code);
+          return <span key={i}>{i > 0 && '/'}{t ? <TeamName team={t} season={season} variant="abbr" size={18} to={`/history/fba/teams/${t.teamId}`} /> : code}</span>;
+        })}
+      </>
+    );
+  }
+  if (stint.kind === 'd2') {
+    const name = /^D2\((.*)\)$/.exec(stint.team)?.[1] ?? stint.team;
+    const t = teams.d2.find(x => x.name === name);
+    return t ? <TeamName team={t} season={season} size={18} to={`/history/fbad2/teams/${t.teamId}`} /> : <>{name}</>;
+  }
+  if (stint.kind === 'college') {
+    const t = teams.college.find(x => x.name === stint.team);
+    return t ? <TeamName team={t} season={season} size={18} to={`/history/fbajc/schools/${t.teamId}`} /> : <>{stint.team}</>;
+  }
+  return <>{stint.team.replace(/^WC\((.*)\)$/, '$1')}</>;
+}
+
+export function CareerSection({ career, born, totals, teams }: { career: Career; born: string | null; totals: Record<AwardKey, number>; teams: StintTeams }) {
+  const pro = career.stints;
   const chips = AWARD_KEYS.filter(k => totals[k] > 0);
   return (
     <>
@@ -35,7 +63,6 @@ export function CareerSection({ career, born, totals }: { career: Career; born: 
         <div>
           {born !== null && <p>Born: {born.replace(/^Born-/, '')}</p>}
           {hasCareer(career) && <h2>Career</h2>}
-          {college.length > 0 && <p>College: {college.map(s => `${s.team} (${s.range})`).join(' · ')}</p>}
           {pro.length > 0 && (
             <div className="table-wrap">
               <table className="stat-table">
@@ -44,7 +71,7 @@ export function CareerSection({ career, born, totals }: { career: Career; born: 
                   {pro.map((s, k) => (
                     <tr key={k}>
                       <td>{LEAGUE[s.kind]}</td>
-                      <td>{s.team}</td>
+                      <td><StintTeam stint={s} teams={teams} /></td>
                       <td>{s.range}</td>
                       <td>{honourTexts(s.honours).join(', ')}</td>
                     </tr>

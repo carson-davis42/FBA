@@ -2648,6 +2648,14 @@
         "variant": 1
       }
     ],
+    "FBA_Gold": [
+      {
+        "file": "FBA_logo_gold.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      }
+    ],
     "Florida Panthers": [
       {
         "file": "Florida Panthers S45-S62.png",

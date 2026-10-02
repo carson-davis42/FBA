@@ -312,3 +312,27 @@ export function careerTotalsAll(summaries: SummaryFile[]): Map<string, { gp: num
   }
   return out;
 }
+
+/** The first and last season a career covers (college years included): `to` is "pres" for a stint still running. Null when no stint has a season. */
+export function careerSpan(career: Career): { from: number; to: number | 'pres' | null } | null {
+  const seasons = career.stints.flatMap(s => (s.from !== null ? [s.from] : []));
+  if (seasons.length === 0) return null;
+  const last = [...career.stints].reverse().find(s => s.to !== null);
+  const numeric = career.stints.flatMap(s => (typeof s.to === 'number' ? [s.to] : []));
+  return { from: Math.min(...seasons), to: last ? last.to : numeric.length ? Math.max(...numeric) : null };
+}
+
+export type PlayerStatus = 'hof' | 'retired' | StintKind | 'unknown';
+
+/**
+ * Where a player is now: in the Hall of Fame, retired (the app recorded his retirement, or his last pro stint ended before the latest season),
+ * or playing in the league of his last stint (FBA, D2, college or World Cup).
+ */
+export function playerStatus(career: Career, retired: boolean, latestSeason: number): PlayerStatus {
+  if (career.hof !== null) return 'hof';
+  if (retired) return 'retired';
+  const last = career.stints[career.stints.length - 1];
+  if (!last) return 'unknown';
+  if (last.kind !== 'college' && typeof last.to === 'number' && last.to < latestSeason) return 'retired';
+  return last.kind;
+}

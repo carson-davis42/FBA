@@ -24,6 +24,16 @@ export function draftLine(history: DraftHistoryFile | null, playerId: string, te
   return undrafted === null ? null : `Undrafted, S${undrafted}`;
 }
 
+/** The FBA team that made the player's first real pick (the one `draftLine` names), or null. */
+export function draftTeamId(history: DraftHistoryFile | null, playerId: string): string | null {
+  if (!history) return null;
+  for (const d of [...history.drafts].sort((a, b) => a.season - b.season || (a.kind === b.kind ? 0 : a.kind === 'draft' ? -1 : 1))) {
+    const p = d.picks.find(x => x.playerId === playerId);
+    if (p && p.pick !== null) return p.teamId ?? null;
+  }
+  return null;
+}
+
 type Teams = ReturnType<typeof useFbaTeams>;
 
 function HistoryTable({ draft, players, fb }: { draft: DraftHistoryDraft; players: PlayersFile; fb: Teams }) {
