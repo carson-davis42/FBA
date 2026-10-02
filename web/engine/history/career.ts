@@ -62,7 +62,28 @@ export function parseBio(bio: { born: string; entries: string[] }): Career {
     }
     career.other.push(entry);
   }
+  career.stints = mergeAcrossWorldCup(career.stints);
   return career;
+}
+
+/** A World Cup call-up doesn't interrupt a player's team: "D2(BUD)-S78-pres.", "WC(HUN)-S78", "D2(BUD)-S79-pres." is one Budapest stint with the World Cup row after it. */
+function mergeAcrossWorldCup(stints: Stint[]): Stint[] {
+  const out: Stint[] = [];
+  for (const s of stints) {
+    if (s.kind === 'wc') { out.push(s); continue; }
+    const base = [...out].reverse().find(o => o.kind !== 'wc');
+    const gap = base && out.indexOf(base) < out.length - 1;
+    const simple = (x: Stint) => x.from !== null && x.to !== null && !x.range.includes(';');
+    if (base && gap && base.kind === s.kind && base.team === s.team && simple(base) && simple(s)
+      && (base.to === 'pres' || (s.from as number) <= (base.to as number) + 1)) {
+      base.to = s.to;
+      base.range = s.to === 'pres' ? `S${base.from}-pres.` : base.from === s.to ? `S${base.from}` : `S${base.from}-S${s.to}`;
+      base.honours.push(...s.honours);
+      continue;
+    }
+    out.push(s);
+  }
+  return out;
 }
 
 const LABEL_KEYS: Record<string, AwardKey> = {

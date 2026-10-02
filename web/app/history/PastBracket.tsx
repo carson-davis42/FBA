@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type { FranchisesFile, PastBracket as PastBracketDoc, PastSeries, PastSide, Team } from '../../engine/shared/types';
 import { ChampBadge, SideRow } from '../playoffs/Bracket';
 import { TeamFull } from './useTeams';
@@ -44,47 +43,32 @@ export function roundLabel(rounds: number, round: number): string {
   return teams === 2 ? 'Championship' : teams === 4 ? 'Final Four' : teams === 8 ? 'Elite 8' : teams === 16 ? 'Sweet 16' : `Round of ${teams}`;
 }
 
-/** The big college pages (32 or 64 slots): one round at a time as a vertical list of games, with tabs to move between rounds. No sideways scrolling. */
-function RoundsBracket({ bracket, ...rest }: BracketProps) {
+/** The big college pages (32 or 64 slots): one-sided, left to right, every round a column with its games spread so each sits between the two it came from. */
+function ColumnsBracket({ bracket, ...rest }: BracketProps) {
   const R = bracket.rounds;
-  const num = (id: string) => Number(id.split('-')[1]);
-  const rounds = Array.from({ length: R }, (_, i) => i + 1).map(r => {
-    const all = bracket.series.filter(s => s.round === r && (s.home || s.away)).sort((a, b) => num(a.id) - num(b.id));
-    return { r, games: all.filter(s => s.home && s.away), byes: all.filter(s => !s.home || !s.away) };
-  }).filter(x => x.games.length > 0);
-  const [picked, setPicked] = useState<number | null>(null);
-  if (rounds.length === 0) return null;
-  const at = Math.max(0, rounds.findIndex(x => x.r === picked));
-  const cur = rounds[at];
-  const final = bracket.series.find(s => s.round === R);
-  const champion = final ? final[final.winner] : null;
-  const go = (i: number) => setPicked(rounds[i].r);
+  const byId = new Map(bracket.series.map(s => [s.id, s]));
   return (
-    <div className="rounds-bracket">
-      {champion && (
-        <div className="bracket-champion">
-          <ChampBadge />
-          <Side side={champion} wins="" won teams={rest.teams} franchises={rest.franchises} season={rest.season} showRecords={rest.showRecords} />
-        </div>
-      )}
-      <div className="round-tabs" role="tablist" aria-label="Rounds">
-        {rounds.map((x, i) => (
-          <button key={x.r} type="button" role="tab" aria-selected={i === at} className={`chip${i === at ? ' active' : ''}`} onClick={() => go(i)}>{roundLabel(R, x.r)}</button>
-        ))}
-      </div>
-      <div role="tabpanel" aria-label={roundLabel(R, cur.r)}>
-        <h3 className="round-title">{roundLabel(R, cur.r)} <span className="muted">· {cur.games.length} {cur.games.length === 1 ? 'game' : 'games'}</span></h3>
-        <div className="round-games">
-          {cur.games.map(s => <SeriesBox key={s.id} s={s} finals={cur.r === R} {...rest} />)}
-        </div>
-        {cur.byes.length > 0 && (
-          <p className="muted round-byes">Byes: {cur.byes.map(s => (s.home ?? s.away)!.name).join(', ')}</p>
-        )}
-      </div>
-      <div className="round-nav">
-        <button type="button" className="btn" disabled={at === 0} onClick={() => go(at - 1)}>← {at > 0 ? roundLabel(R, rounds[at - 1].r) : 'Previous'}</button>
-        <button type="button" className="btn" disabled={at === rounds.length - 1} onClick={() => go(at + 1)}>{at < rounds.length - 1 ? roundLabel(R, rounds[at + 1].r) : 'Next'} →</button>
-      </div>
+    <div className="bracket cols">
+      {Array.from({ length: R }, (_, i) => i + 1).map(r => {
+        const n = 2 ** (R - r);
+        return (
+          <div key={r} className={`cols-col${r === R ? ' last' : ''}${r === 1 ? ' first' : ''}`}>
+            <h3 className="col-head">{roundLabel(R, r)}</h3>
+            <div className="col-slots">
+              {Array.from({ length: n }, (_, k) => {
+                const s = byId.get(`R${r}-${k + 1}`);
+                return (
+                  <div key={k} className="col-slot">
+                    {s && (s.home || s.away)
+                      ? <SeriesBox s={s} finals={r === R} {...rest} />
+                      : <div className="series-box empty" aria-hidden="true" />}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -124,8 +108,8 @@ function TreeBracket({ bracket, ...rest }: BracketProps) {
 }
 
 /**
- * A transcribed historical bracket. Pages of 32 or more slots (the college pages) show one round at a time as a vertical list with round tabs,
- * like a phone bracket app; smaller ones keep the two-sided tree. A scored game shows its points (with an OT tag), `showRecords` prints each
+ * A transcribed historical bracket. Pages of 32 or more slots (the college pages) are a one-sided bracket with a column per round;
+ * smaller ones keep the two-sided tree. A scored game shows its points (with an OT tag), `showRecords` prints each
  * team's record after its name, and `layout` forces one of the two views.
  */
 export function PastBracket({ bracket, teams, season, franchises = null, showRecords = false, layout = 'auto' }: {
@@ -133,5 +117,5 @@ export function PastBracket({ bracket, teams, season, franchises = null, showRec
 }) {
   const props = { bracket, teams, season, franchises, showRecords };
   const rounds = layout === 'rounds' || (layout === 'auto' && bracket.rounds >= 5);
-  return rounds ? <RoundsBracket {...props} /> : <TreeBracket {...props} />;
+  return rounds ? <ColumnsBracket {...props} /> : <TreeBracket {...props} />;
 }

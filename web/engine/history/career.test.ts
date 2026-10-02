@@ -3,6 +3,12 @@ import type { AwardCountsFile, HallOfFameFile, SummaryFile, SummaryPlayerLine } 
 import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll, careerSpan, playerStatus, applyPlacement } from './career';
 
 describe('parseBio', () => {
+  it('keeps one stint when a World Cup call-up sits between two stints with the same team', () => {
+    const c = parseBio({ born: 'S56', entries: ['Clemson-S74-S75', 'Texas-S76-S77', '1x National Champion', 'D2(BUD)-S78-pres.', 'WC(HUN)-S78', 'D2(BUD)-S79-pres.', 'S79 MVP'] });
+    expect(c.stints.map(s => `${s.kind}:${s.team}:${s.range}`)).toEqual(['college:Clemson:S74-S75', 'college:Texas:S76-S77', 'd2:D2(BUD):S78-pres.', 'wc:WC(HUN):S78']);
+    expect(c.stints[2].honours.map(h => h.label)).toEqual(['MVP']);
+  });
+
   it('parses Akeem Naylor', () => {
     const c = parseBio({
       born: 'Born-S45',
