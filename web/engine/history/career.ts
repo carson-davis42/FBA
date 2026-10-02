@@ -46,7 +46,8 @@ export function parseBio(bio: { born: string; entries: string[] }): Career {
     }
     const m = STINT.exec(entry);
     if (m) {
-      const team = m[1].trim();
+      // "CT(W5-W6)-S58": the weeks of a mid-season stint are dropped, leaving the team code.
+      const team = m[1].trim().replace(/\(W\d+(?:-W\d+)?\)$/i, '').trim();
       const range = m[2];
       const tokens = range.split(/[-;]/).map(t => t.trim());
       const first = tokens[0];

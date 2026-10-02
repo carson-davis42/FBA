@@ -298,3 +298,11 @@ describe('careerSpan and playerStatus', () => {
     expect(playerStatus({ stints: [], hof: null, other: [] }, false, 78)).toBe('unknown');
   });
 });
+
+describe('parseBio week suffixes', () => {
+  it('drops "(W5-W6)" so the team code is read as an FBA team', () => {
+    const c = parseBio({ born: 'Born-S40', entries: ['CT(W5-W6)-S58', '1x All-Star', 'D2(Austin)-S59', 'WC(Brazil)-S60'] });
+    expect(c.stints.map(s => [s.kind, s.team, s.range])).toEqual([['fba', 'CT', 'S58'], ['d2', 'D2(Austin)', 'S59'], ['wc', 'WC(Brazil)', 'S60']]);
+    expect(c.stints[0].honours[0].label).toBe('All-Star');
+  });
+});
