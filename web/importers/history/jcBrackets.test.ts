@@ -11,6 +11,19 @@ interface ChampFixture { season: number; kind: 'MM' | 'NIT'; champion: string; r
 const entries = data as unknown as Entry[];
 const champs = fixture as ChampFixture[];
 
+describe('seeds', () => {
+  it('gives every first-round team the grey seed printed beside its slot: 1 to 16 in each block of 16 slots, in the pages\' fixed order', () => {
+    const order = [1, 16, 9, 8, 5, 12, 13, 4, 3, 14, 11, 6, 7, 10, 15, 2];
+    for (const e of entries) {
+      const r1 = e.series.filter(s => s.round === 1).sort((a, b) => Number(a.id.split('-')[1]) - Number(b.id.split('-')[1]));
+      r1.forEach((s, i) => {
+        if (s.home) expect(s.home.seed, `S${e.season}${e.kind ?? ''} ${s.id}`).toBe(order[(2 * i) % 16]);
+        if (s.away) expect(s.away.seed, `S${e.season}${e.kind ?? ''} ${s.id}`).toBe(order[(2 * i + 1) % 16]);
+      });
+    }
+  });
+});
+
 /** Brackets where the page itself disagrees with the history workbook; the page is kept. Add only with the commissioner's approval. */
 const ALLOWED_MISMATCH: string[] = [];
 

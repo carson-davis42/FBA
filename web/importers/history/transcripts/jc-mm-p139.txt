@@ -1,37 +1,37 @@
 # p139 March Madness S17 (32 slots, no byes; prefix numbers are national ranks; "SFA" written out in full)
 S17
 1|Gonzaga|
-|Middle Tennessee|
-17|NC State|
-16|Xavier|
-9|Purdue|
-24|Providence|
-25|Rhode Island|
-8|Villanova|
-5|West Virginia|
-|Texas Tech|
-21|Loyola-Chicago|
-12|Georgetown|
-13|North Carolina|
-20|Kentucky|
-|Cincinnati|
-4|Michigan State|
-2|Kansas|
-|Oklahoma|
-18|Seton Hall|
-15|Wisconsin|
-10|Wichita State|
-23|St.Bonaventure|
-|Stephen F Austin|
-7|Michigan|
-6|Arizona|
-|Houston|
-22|Butler|
-11|Tennessee|
-14|Virginia|
-19|Ohio State|
-|Baylor|
-3|Duke|
+16|Middle Tennessee|
+9|NC State|
+8|Xavier|
+5|Purdue|
+12|Providence|
+13|Rhode Island|
+4|Villanova|
+3|West Virginia|
+14|Texas Tech|
+11|Loyola-Chicago|
+6|Georgetown|
+7|North Carolina|
+10|Kentucky|
+15|Cincinnati|
+2|Michigan State|
+1|Kansas|
+16|Oklahoma|
+9|Seton Hall|
+8|Wisconsin|
+5|Wichita State|
+12|St.Bonaventure|
+13|Stephen F Austin|
+4|Michigan|
+3|Arizona|
+14|Houston|
+11|Butler|
+6|Tennessee|
+7|Virginia|
+10|Ohio State|
+15|Baylor|
+2|Duke|
 =Gonzaga 28-25|Xavier 33-32|Providence 32-31|Villanova 34-17|West Virginia 42-41|Loyola-Chicago 42-16|Kentucky 31-28|Cincinnati 36-31|Kansas 39-26|Seton Hall 30-20|Wichita State 38-30|Michigan 36-26|Arizona 39-12|Tennessee 51-26|Virginia 43-30|Duke 34-25
 =Xavier 35-33|Villanova 32-26|Loyola-Chicago 34-32|Kentucky 34-27|Kansas 34-31|Wichita State 32-27|Arizona 33-27|Virginia 50-28
 =Villanova 37-30|Kentucky 36-31|Kansas 38-23|Virginia 36-31

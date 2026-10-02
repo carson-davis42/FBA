@@ -1,37 +1,37 @@
 # p122 March Madness S52 (32 slots, no byes; prefix numbers are national ranks; the page prints 6-0 beside four teams)
 S52
 1|Gonzaga|6-0
-|Arkansas|
-17|Kansas|
-16|Kentucky|
-9|Auburn|
-24|North Carolina|
-25|St.Bonaventure|6-0
-8|Florida State|6-0
-5|Arizona State|6-0
-|Cincinnati|
-21|Texas|
-12|Duke|
-13|Michigan State|
-20|Stanford|
-|Oregon|
-4|Iowa State|
-2|Villanova|
-|Loyola-Chicago|
-18|West Virginia|
-15|Oklahoma|
-10|Arizona|
-23|Indiana|
-|Providence|
-7|Wisconsin|
-6|Michigan|
-|Virginia|
-22|Wichita State|
-11|Syracuse|
-14|Xavier|
-19|Tennessee|
-|Alabama|
-3|Texas Tech|
+16|Arkansas|
+9|Kansas|
+8|Kentucky|
+5|Auburn|
+12|North Carolina|
+13|St.Bonaventure|6-0
+4|Florida State|6-0
+3|Arizona State|6-0
+14|Cincinnati|
+11|Texas|
+6|Duke|
+7|Michigan State|
+10|Stanford|
+15|Oregon|
+2|Iowa State|
+1|Villanova|
+16|Loyola-Chicago|
+9|West Virginia|
+8|Oklahoma|
+5|Arizona|
+12|Indiana|
+13|Providence|
+4|Wisconsin|
+3|Michigan|
+14|Virginia|
+11|Wichita State|
+6|Syracuse|
+7|Xavier|
+10|Tennessee|
+15|Alabama|
+2|Texas Tech|
 =Gonzaga 22-13|Kansas 30-21|Auburn 26-15|Florida State 29-17|Arizona State 35-14|Duke 32-11|Stanford 29-25|Iowa State 30-13|Villanova 39-6|Oklahoma 31-21|Indiana 21-8|Wisconsin 32-6|Michigan 26-24|Syracuse 24-19|Xavier 25-17|Texas Tech 33-9
 =Gonzaga 28-27|Florida State 25-20|Arizona State 30-20|Iowa State 33-29|Villanova 32-10|Wisconsin 28-22|Syracuse 35-16|Texas Tech 41-18
 =Florida State 37-33|Iowa State 44-24|Villanova 34-33|Syracuse 50-42

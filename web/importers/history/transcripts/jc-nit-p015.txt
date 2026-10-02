@@ -1,38 +1,38 @@
 # p015 NIT S76 (32 slots; the page prints no scores; records are printed)
 S76
 K:NIT
-|Iowa|19-12
-|ETSU|18-13
-|UNLV|16-14
-|FAU|19-12
-|Providence|17-15
-|Wyoming|17-13
-|DePaul|14-18
-|Texas Tech|15-15
-|Ohio State|18-13
-|Longwood|15-15
-|Clemson|15-16
-|West Virginia|16-14
-|Texas|15-16
-|High Point|17-14
-|North Dakota State|17-14
-|VCU|18-13
-|New Mexico State|19-12
-|Cal|18-13
-|Northern Illinois|20-12
-|Northwestern|16-15
-|Mississippi State|16-14
-|Syracuse|15-16
-|Boston U|19-12
-|East Carolina|17-13
-|Dayton|18-13
-|Arizona State|15-15
-|Penn State|14-16
-|Virginia|16-14
-|Alabama|16-16
-|Oral Roberts|18-12
-|San Jose State|18-15
-|Nebraska|18-14
+1|Iowa|19-12
+16|ETSU|18-13
+9|UNLV|16-14
+8|FAU|19-12
+5|Providence|17-15
+12|Wyoming|17-13
+13|DePaul|14-18
+4|Texas Tech|15-15
+3|Ohio State|18-13
+14|Longwood|15-15
+11|Clemson|15-16
+6|West Virginia|16-14
+7|Texas|15-16
+10|High Point|17-14
+15|North Dakota State|17-14
+2|VCU|18-13
+1|New Mexico State|19-12
+16|Cal|18-13
+9|Northern Illinois|20-12
+8|Northwestern|16-15
+5|Mississippi State|16-14
+12|Syracuse|15-16
+13|Boston U|19-12
+4|East Carolina|17-13
+3|Dayton|18-13
+14|Arizona State|15-15
+11|Penn State|14-16
+6|Virginia|16-14
+7|Alabama|16-16
+10|Oral Roberts|18-12
+15|San Jose State|18-15
+2|Nebraska|18-14
 =ETSU -|FAU -|Providence -|Texas Tech -|Ohio State -|Clemson -|Texas -|VCU -|New Mexico State -|Northwestern -|Mississippi State -|East Carolina -|Arizona State -|Virginia -|Alabama -|Nebraska -
 =ETSU -|Texas Tech -|Ohio State -|Texas -|New Mexico State -|Mississippi State -|Virginia -|Nebraska -
 =Texas Tech -|Ohio State -|Mississippi State -|Nebraska -

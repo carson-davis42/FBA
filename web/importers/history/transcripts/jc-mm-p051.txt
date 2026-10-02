@@ -1,69 +1,69 @@
 # p051 March Madness S15 (the page prints "SDSU"; written out in full)
 S15
-2|Gonzaga|10-0
+1|Gonzaga|10-0
 BYE
 BYE
 BYE
-|Iowa State|4-6
+5|Iowa State|4-6
 BYE
 BYE
-|Purdue|5-5
-9|Duke|6-4
-BYE
-BYE
-BYE
-BYE
-BYE
-BYE
-7|Michigan State|8-2
-3|Texas Tech|8-2
-BYE
-BYE
-BYE
-|San Diego State|6-4
-BYE
-BYE
-15|Oklahoma|4-6
-10|Virginia|6-4
+4|Purdue|5-5
+3|Duke|6-4
 BYE
 BYE
 BYE
 BYE
 BYE
 BYE
-6|Kansas|9-1
+2|Michigan State|8-2
+1|Texas Tech|8-2
+BYE
+BYE
+BYE
+5|San Diego State|6-4
+BYE
+BYE
+4|Oklahoma|4-6
+3|Virginia|6-4
+BYE
+BYE
+BYE
+BYE
+BYE
+BYE
+2|Kansas|9-1
 1|Louisville|9-1
 BYE
 BYE
 BYE
-|Memphis|6-4
+5|Memphis|6-4
 BYE
 BYE
-14|West Virginia|6-4
-11|Villanova|7-3
-BYE
-BYE
-BYE
-BYE
-BYE
-BYE
-8|Xavier|8-2
-4|Yale|7-3
-BYE
-BYE
-BYE
-|Ole Miss|7-3
-BYE
-BYE
-13|Clemson|8-2
-12|North Carolina|7-3
+4|West Virginia|6-4
+3|Villanova|7-3
 BYE
 BYE
 BYE
 BYE
 BYE
 BYE
-5|Kansas State|8-2
+2|Xavier|8-2
+1|Yale|7-3
+BYE
+BYE
+BYE
+5|Ole Miss|7-3
+BYE
+BYE
+4|Clemson|8-2
+3|North Carolina|7-3
+BYE
+BYE
+BYE
+BYE
+BYE
+BYE
+2|Kansas State|8-2
 =Gonzaga BYE|BYE|Iowa State BYE|Purdue BYE|Duke BYE|BYE|BYE|Michigan State BYE|Texas Tech BYE|BYE|San Diego State BYE|Oklahoma BYE|Virginia BYE|BYE|BYE|Kansas BYE|Louisville BYE|BYE|Memphis BYE|West Virginia BYE|Villanova BYE|BYE|BYE|Xavier BYE|Yale BYE|BYE|Ole Miss BYE|Clemson BYE|North Carolina BYE|BYE|BYE|Kansas State BYE
 =Gonzaga BYE|Purdue 24-22|Duke BYE|Michigan State BYE|Texas Tech BYE|San Diego State 24-22|Virginia BYE|Kansas BYE|Louisville BYE|Memphis 27-24|Villanova BYE|Xavier BYE|Yale BYE|Clemson 33-11|North Carolina BYE|Kansas State BYE
 =Gonzaga 33-14|Michigan State 31-19|Texas Tech 30-22|Kansas 28-23|Louisville 31-19|Xavier 24-17|Yale 42-11|Kansas State 27-17

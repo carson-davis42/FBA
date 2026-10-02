@@ -2,68 +2,68 @@
 S62
 1|North Carolina|23-0
 BYE
-|East Carolina|
-|Arkansas|18-5
-17|DePaul|19-3
-|Mississippi State|11-10
-|Purdue|11-10
-16|Cincinnati|17-6
-9|Arizona State|
-|Columbia|13-9
-|Ohio State|12-9
-24|Penn State|
-25|BYU|19-4
-|Texas A&M|13-9
+9|East Carolina|
+8|Arkansas|18-5
+5|DePaul|19-3
+12|Mississippi State|11-10
+13|Purdue|11-10
+4|Cincinnati|17-6
+3|Arizona State|
+14|Columbia|13-9
+11|Ohio State|12-9
+6|Penn State|
+7|BYU|19-4
+10|Texas A&M|13-9
 BYE
-8|Kentucky|20-3
-4|Gonzaga|19-3
+2|Kentucky|20-3
+1|Gonzaga|19-3
 BYE
-|Butler|14-8
-|Florida|15-8
-20|Indiana|15-7
-|Buffalo|15-6
-|Florida State|
-13|Stanford|17-5
-12|Yale|23-0
-|Northern Kentucky|12-9
-|TCU|13-8
-21|Vermont|21-2
-|UCLA|14-9
-|UConn|12-9
+9|Butler|14-8
+8|Florida|15-8
+5|Indiana|15-7
+12|Buffalo|15-6
+13|Florida State|
+4|Stanford|17-5
+3|Yale|23-0
+14|Northern Kentucky|12-9
+11|TCU|13-8
+6|Vermont|21-2
+7|UCLA|14-9
+10|UConn|12-9
 BYE
-5|Duke|19-4
-2|Wake Forest|
+2|Duke|19-4
+1|Wake Forest|
 BYE
-|NC State|14-8
-|Northeastern|19-3
-18|Auburn|16-5
-|Dayton|13-8
-|VCU|13-9
-15|Arizona|15-6
-10|Baylor|20-3
-|Montana|13-9
-|Illinois|17-6
-23|San Diego State|15-7
-|Texas|15-8
-|Harvard|17-6
+9|NC State|14-8
+8|Northeastern|19-3
+5|Auburn|16-5
+12|Dayton|13-8
+13|VCU|13-9
+4|Arizona|15-6
+3|Baylor|20-3
+14|Montana|13-9
+11|Illinois|17-6
+6|San Diego State|15-7
+7|Texas|15-8
+10|Harvard|17-6
 BYE
-7|Villanova|21-2
-3|Michigan State|
+2|Villanova|21-2
+1|Michigan State|
 BYE
-|Nevada|13-9
-|Creighton|15-8
-19|Texas Tech|16-6
-|Providence|15-7
-|UC Irvine|13-8
-14|Louisville|16-6
-11|Michigan|19-4
-|Boston U|13-10
-|New Mexico State|
-22|Wichita State|
-|ETSU|19-4
-|South Carolina|15-8
+9|Nevada|13-9
+8|Creighton|15-8
+5|Texas Tech|16-6
+12|Providence|15-7
+13|UC Irvine|13-8
+4|Louisville|16-6
+3|Michigan|19-4
+14|Boston U|13-10
+11|New Mexico State|
+6|Wichita State|
+7|ETSU|19-4
+10|South Carolina|15-8
 BYE
-6|Kansas|19-3
+2|Kansas|19-3
 =North Carolina BYE|Arkansas 42-28|DePaul 40-4|Cincinnati 37-21|Arizona State 47-8|Ohio State 31-29|BYU 40-26|Kentucky BYE|Gonzaga BYE|Florida 30-29|Indiana 41-19|Stanford 42-16|Yale 38-19|Vermont 34-21|UCLA 29-25|Duke BYE|Wake Forest BYE|Northeastern 57-55 OT|Auburn 40-25|Arizona 46-14|Baylor 39-17|San Diego State 30-14|Harvard 28-27|Villanova BYE|Michigan State BYE|Nevada 32-31|Texas Tech 56-15|Louisville 62-18|Michigan 45-12|Wichita State 43-35|ETSU 32-27|Kansas BYE
 =North Carolina 50-17|DePaul 44-40|Arizona State 41-26|Kentucky 37-13|Gonzaga 46-24|Stanford 33-31|Vermont 42-35|Duke 51-29|Wake Forest 39-22|Auburn 39-38|Baylor 39-37|Villanova 39-30|Michigan State 43-18|Louisville 39-34|Michigan 46-28|Kansas 41-30
 =North Carolina 44-33|Arizona State 38-35|Gonzaga 38-36|Duke 43-29|Wake Forest 44-34|Baylor 39-37|Michigan State 47-38 OT|Kansas 41-29

@@ -1,37 +1,37 @@
 # p087 March Madness S48 (32 slots, no byes; prefix numbers are national ranks)
 S48
 1|Kansas|
-|Arkansas|
-17|Wisconsin|
-16|Texas Tech|
-9|West Virginia|
-|Louisville|
-|Texas A&M|
-8|Nevada|
-5|Villanova|
-|NC State|
-|Florida|
-12|Xavier|
-13|Georgetown|
-20|Houston|
-|Butler|
-4|Duke|
-2|Wichita State|
-|Purdue|
-18|Michigan|
-15|North Carolina|
-10|Arizona|
-|Oklahoma|
-|Utah|
-7|Michigan State|
-6|Virginia|
-|TCU|
-|Stanford|
-11|Gonzaga|
-14|Providence|
-19|Loyola-Chicago|
-|USC|
-3|Kentucky|
+16|Arkansas|
+9|Wisconsin|
+8|Texas Tech|
+5|West Virginia|
+12|Louisville|
+13|Texas A&M|
+4|Nevada|
+3|Villanova|
+14|NC State|
+11|Florida|
+6|Xavier|
+7|Georgetown|
+10|Houston|
+15|Butler|
+2|Duke|
+1|Wichita State|
+16|Purdue|
+9|Michigan|
+8|North Carolina|
+5|Arizona|
+12|Oklahoma|
+13|Utah|
+4|Michigan State|
+3|Virginia|
+14|TCU|
+11|Stanford|
+6|Gonzaga|
+7|Providence|
+10|Loyola-Chicago|
+15|USC|
+2|Kentucky|
 =Kansas 22-20|Texas Tech 23-17|West Virginia 22-16|Nevada 20-11|Villanova 25-8|Florida 23-21|Georgetown 17-14|Duke 25-4|Wichita State 22-4|Michigan 20-19|Oklahoma 21-19|Utah 21-16 OT|Virginia 17-16|Stanford 17-14|Providence 23-13|Kentucky 23-13
 =Kansas 35-30|West Virginia 34-27|Villanova 42-38 2OT|Duke 41-10|Wichita State 36-13|Oklahoma 36-21|Stanford 30-19|Kentucky 39-30
 =Kansas 29-26|Duke 38-30|Wichita State 37-15|Stanford 27-21

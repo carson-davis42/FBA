@@ -2,36 +2,36 @@
 S16
 1|Kansas|
 BYE
-17|San Diego State|
-16|Oklahoma|
-9|Purdue|
+9|San Diego State|
+8|Oklahoma|
+5|Purdue|
 BYE
 BYE
-8|Xavier|
-5|North Carolina|
+4|Xavier|
+3|North Carolina|
 BYE
 BYE
-12|Texas Tech|
-13|Yale|
-20|Syracuse|
+6|Texas Tech|
+7|Yale|
+10|Syracuse|
 BYE
-4|Villanova|
-2|Gonzaga|
+2|Villanova|
+1|Gonzaga|
 BYE
-18|Auburn|
-15|Kansas State|
-10|West Virginia|
-BYE
-BYE
-7|Duke|
-6|Michigan State|
+9|Auburn|
+8|Kansas State|
+5|West Virginia|
 BYE
 BYE
-11|Clemson|
-14|Baylor|
-19|Louisville|
+4|Duke|
+3|Michigan State|
 BYE
-3|Virginia|
+BYE
+6|Clemson|
+7|Baylor|
+10|Louisville|
+BYE
+2|Virginia|
 =Kansas BYE|San Diego State 28-25|Purdue BYE|Xavier BYE|North Carolina BYE|Texas Tech BYE|Yale 33-10|Villanova BYE|Gonzaga BYE|Kansas State 27-22|West Virginia BYE|Duke BYE|Michigan State BYE|Clemson BYE|Baylor 30-20|Virginia BYE
 =Kansas 45-21|Purdue 44-43|North Carolina 40-31|Villanova 60-24|Gonzaga 46-28|Duke 51-50 OT|Michigan State 42-27|Virginia 37-29
 =Purdue 37-35|Villanova 42-36|Gonzaga 32-31|Michigan State 47-46 OT

@@ -1,38 +1,38 @@
 # p058 NIT S73 (32 slots; the page prints no scores; records are printed)
 S73
 K:NIT
-|Arizona State|18-13
-|Middle Tennessee|17-14
-|UNC Asheville|19-12
-|North Dakota State|20-10
-|Florida|18-14
-|Liberty|18-14
-|Kennesaw State|17-13
-|San Francisco|22-9
-|Arkansas|19-12
-|Vanderbilt|15-16
-|Columbia|19-12
-|Oregon State|17-14
-|Colgate|21-10
-|Colorado|15-15
-|Georgia State|16-14
-|Virginia|19-12
-|South Dakota State|24-8
-|Delaware|17-14
-|Iowa|17-14
-|Stetson|19-11
-|Indiana State|20-13
-|Rhode Island|17-13
-|Kansas State|15-15
-|SMU|20-12
-|UCLA|18-12
-|New Mexico State|15-16
-|Texas State|19-12
-|Miami|19-14
-|Oklahoma State|17-14
-|North Texas|20-12
-|Abilene Christian|17-13
-|Evansville|21-11
+1|Arizona State|18-13
+16|Middle Tennessee|17-14
+9|UNC Asheville|19-12
+8|North Dakota State|20-10
+5|Florida|18-14
+12|Liberty|18-14
+13|Kennesaw State|17-13
+4|San Francisco|22-9
+3|Arkansas|19-12
+14|Vanderbilt|15-16
+11|Columbia|19-12
+6|Oregon State|17-14
+7|Colgate|21-10
+10|Colorado|15-15
+15|Georgia State|16-14
+2|Virginia|19-12
+1|South Dakota State|24-8
+16|Delaware|17-14
+9|Iowa|17-14
+8|Stetson|19-11
+5|Indiana State|20-13
+12|Rhode Island|17-13
+13|Kansas State|15-15
+4|SMU|20-12
+3|UCLA|18-12
+14|New Mexico State|15-16
+11|Texas State|19-12
+6|Miami|19-14
+7|Oklahoma State|17-14
+10|North Texas|20-12
+15|Abilene Christian|17-13
+2|Evansville|21-11
 =Arizona State -|UNC Asheville -|Florida -|San Francisco -|Arkansas -|Oregon State -|Colgate -|Virginia -|South Dakota State -|Stetson -|Indiana State -|Kansas State -|UCLA -|Miami -|Oklahoma State -|Evansville -
 =Arizona State -|San Francisco -|Arkansas -|Virginia -|South Dakota State -|Kansas State -|Miami -|Oklahoma State -
 =Arizona State -|Arkansas -|South Dakota State -|Oklahoma State -

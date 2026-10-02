@@ -1,38 +1,38 @@
 # p086 NIT S77 (32 slots; the page prints no scores; records are printed)
 S77
 K:NIT
-|Kansas State|18-13
-|Boise State|15-16
-|Georgetown|16-16
-|UTSA|18-12
-|Purdue|20-11
-|Duquesne|19-11
-|Texas A&M CC|17-14
-|Navy|21-10
-|UCSB|21-10
-|Clemson|15-17
-|Northwestern|18-13
-|Oral Roberts|18-13
-|Oklahoma|15-15
-|Michigan|18-13
-|New Mexico State|15-15
-|Southeastern Missouri State|21-10
-|Pitt|21-12
-|Georgia State|19-13
-|Portland State|17-14
-|Troy|21-11
-|North Dakota State|19-11
-|Butler|13-17
-|Marist|17-13
-|Tulane|18-13
-|LSU|15-15
-|Cal|17-14
-|UC Irvine|19-14
-|Washington|16-15
-|McNeese State|18-13
-|Seton Hall|15-17
-|UNLV|15-16
-|Texas Tech|17-13
+1|Kansas State|18-13
+16|Boise State|15-16
+9|Georgetown|16-16
+8|UTSA|18-12
+5|Purdue|20-11
+12|Duquesne|19-11
+13|Texas A&M CC|17-14
+4|Navy|21-10
+3|UCSB|21-10
+14|Clemson|15-17
+11|Northwestern|18-13
+6|Oral Roberts|18-13
+7|Oklahoma|15-15
+10|Michigan|18-13
+15|New Mexico State|15-15
+2|Southeastern Missouri State|21-10
+1|Pitt|21-12
+16|Georgia State|19-13
+9|Portland State|17-14
+8|Troy|21-11
+5|North Dakota State|19-11
+12|Butler|13-17
+13|Marist|17-13
+4|Tulane|18-13
+3|LSU|15-15
+14|Cal|17-14
+11|UC Irvine|19-14
+6|Washington|16-15
+7|McNeese State|18-13
+10|Seton Hall|15-17
+15|UNLV|15-16
+2|Texas Tech|17-13
 =Kansas State -|Georgetown -|Purdue -|Texas A&M CC -|Clemson -|Oral Roberts -|Michigan -|Southeastern Missouri State -|Pitt -|Troy -|Butler -|Marist -|LSU -|Washington -|McNeese State -|Texas Tech -
 =Kansas State -|Purdue -|Clemson -|Michigan -|Pitt -|Butler -|LSU -|Texas Tech -
 =Purdue -|Michigan -|Pitt -|Texas Tech -

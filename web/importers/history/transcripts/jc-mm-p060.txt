@@ -1,37 +1,37 @@
 # p060 March Madness S49 (32 slots, no byes; prefix numbers are national ranks)
 S49
 1|Duke|
-|Providence|
-17|North Carolina|
-16|Houston|
-9|Georgetown|
-|Butler|
-|Virginia Tech|
-8|Wichita State|
-5|Kentucky|
-|Michigan State|
-|Middle Tennessee|
-12|Nevada|
-13|Iowa State|
-20|Loyola-Chicago|
-|Clemson|
-4|Michigan|
-2|Kansas|
-|Ole Miss|
-18|Stanford|
-15|Virginia|
-10|Texas Tech|
-|Alabama|
-|Florida|
-7|Xavier|
-6|Arizona|
-|Oklahoma|
-|Texas|
-11|West Virginia|
-14|Gonzaga|
-19|Wisconsin|
-|Louisville|
-3|Villanova|
+16|Providence|
+9|North Carolina|
+8|Houston|
+5|Georgetown|
+12|Butler|
+13|Virginia Tech|
+4|Wichita State|
+3|Kentucky|
+14|Michigan State|
+11|Middle Tennessee|
+6|Nevada|
+7|Iowa State|
+10|Loyola-Chicago|
+15|Clemson|
+2|Michigan|
+1|Kansas|
+16|Ole Miss|
+9|Stanford|
+8|Virginia|
+5|Texas Tech|
+12|Alabama|
+13|Florida|
+4|Xavier|
+3|Arizona|
+14|Oklahoma|
+11|Texas|
+6|West Virginia|
+7|Gonzaga|
+10|Wisconsin|
+15|Louisville|
+2|Villanova|
 =Duke 20-12|Houston 25-18|Georgetown 22-12|Wichita State 23-14|Kentucky 26-0|Nevada 19-11|Iowa State 31-11|Michigan 24-8|Kansas 30-2|Stanford 24-17|Texas Tech 23-17|Xavier 26-16|Arizona 14-13|Texas 30-23 OT|Wisconsin 26-5|Villanova 32-5
 =Duke 29-25 OT|Wichita State 27-15|Nevada 28-24 2OT|Michigan 25-24|Kansas 25-21|Texas Tech 31-21|Arizona 34-31 2OT|Villanova 27-14
 =Duke 37-29|Michigan 49-22|Texas Tech 35-31|Villanova 32-25

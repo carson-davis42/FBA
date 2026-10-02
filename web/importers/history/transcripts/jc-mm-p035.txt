@@ -1,37 +1,37 @@
 # p035 March Madness S50 (32 slots, no byes; prefix numbers are national ranks)
 S50
 1|North Carolina|
-|Utah|
-17|Alabama|
-16|Gonzaga|
-9|West Virginia|
-24|Florida|
-25|Memphis|
-8|Kentucky|
-5|Texas Tech|
-|Syracuse|
-21|St.Bonaventure|
-12|Texas|
-13|Nevada|
-20|Virginia|
-|Oklahoma|
-4|Duke|
-2|Arizona|
-|Ohio State|
-18|Houston|
-15|Wichita State|
-10|Kansas|
-23|Louisville|
-|Loyola-Chicago|
-7|Iowa State|
-6|Xavier|
-|Butler|
-22|Georgetown|
-11|Villanova|
-14|Michigan State|
-19|Stanford|
-|Tennessee|
-3|Michigan|
+16|Utah|
+9|Alabama|
+8|Gonzaga|
+5|West Virginia|
+12|Florida|
+13|Memphis|
+4|Kentucky|
+3|Texas Tech|
+14|Syracuse|
+11|St.Bonaventure|
+6|Texas|
+7|Nevada|
+10|Virginia|
+15|Oklahoma|
+2|Duke|
+1|Arizona|
+16|Ohio State|
+9|Houston|
+8|Wichita State|
+5|Kansas|
+12|Louisville|
+13|Loyola-Chicago|
+4|Iowa State|
+3|Xavier|
+14|Butler|
+11|Georgetown|
+6|Villanova|
+7|Michigan State|
+10|Stanford|
+15|Tennessee|
+2|Michigan|
 =North Carolina 18-9|Alabama 33-14|West Virginia 27-13|Kentucky 27-23|Texas Tech 23-14|Texas 24-20|Nevada 21-18|Duke 26-7|Arizona 30-2|Houston 30-27 OT|Kansas 30-13|Iowa State 36-2|Xavier 23-11|Villanova 23-18|Michigan State 25-19|Michigan 23-5
 =North Carolina 21-15|West Virginia 24-22|Texas Tech 27-19|Duke 23-15|Arizona 28-12|Iowa State 24-22|Xavier 32-31 OT|Michigan 24-19
 =North Carolina 34-21|Duke 34-29|Arizona 36-33|Xavier 32-31

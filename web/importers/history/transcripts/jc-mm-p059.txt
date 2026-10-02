@@ -1,69 +1,69 @@
 # p059 March Madness S75
 S75
-|Gonzaga|28-4
-|Arkansas State|15-18
-|Pitt|25-6
-|Michigan|20-11
-|West Virginia|23-9
-|Xavier|18-13
-|Kentucky|18-13
-|Illinois|22-9
-|Florida State|26-6
-|Dartmouth|23-9
-|UCLA|20-12
-|Tennessee|20-11
-|Kansas|19-13
-|Wisconsin|18-13
-|Lehigh|24-8
-|St.John's|24-7
-|Ohio State|25-6
-|Quinnipiac|20-12
-|South Florida|23-8
-|Wake Forest|21-9
-|Wichita State|26-6
-|Middle Tennessee|24-7
-|Buffalo|20-13
-|San Diego State|29-3
-|Texas Tech|24-8
-|Cornell|21-10
-|Oregon State|23-8
-|Memphis|26-5
-|Purdue|23-9
-|Washington|19-11
-|Sam Houston State|22-11
-|Louisville|27-4
-|Villanova|27-5
-|Stetson|19-13
-|UAB|22-9
-|Houston|21-9
-|Michigan State|22-9
-|UMBC|27-5
-|Oregon|17-13
-|Texas A&M|23-8
-|Nevada|29-3
-|Northern Kentucky|21-9
-|Baylor|18-13
-|Indiana|22-10
-|BYU|20-11
-|North Carolina|20-11
-|Winthrop|23-9
-|UConn|25-5
-|Missouri|27-5
-|Wofford|21-11
-|Liberty|26-5
-|Nebraska|24-7
-|UCF|27-5
-|Saint Louis|25-7
-|Alabama|18-12
-|Duke|23-8
-|Arizona|26-6
-|Northern Illinois|24-7
-|Loyola-Chicago|23-9
-|Creighton|23-9
-|Marquette|21-10
-|Texas|21-10
-|Abilene Christian|20-10
-|Auburn|25-7
+1|Gonzaga|28-4
+16|Arkansas State|15-18
+9|Pitt|25-6
+8|Michigan|20-11
+5|West Virginia|23-9
+12|Xavier|18-13
+13|Kentucky|18-13
+4|Illinois|22-9
+3|Florida State|26-6
+14|Dartmouth|23-9
+11|UCLA|20-12
+6|Tennessee|20-11
+7|Kansas|19-13
+10|Wisconsin|18-13
+15|Lehigh|24-8
+2|St.John's|24-7
+1|Ohio State|25-6
+16|Quinnipiac|20-12
+9|South Florida|23-8
+8|Wake Forest|21-9
+5|Wichita State|26-6
+12|Middle Tennessee|24-7
+13|Buffalo|20-13
+4|San Diego State|29-3
+3|Texas Tech|24-8
+14|Cornell|21-10
+11|Oregon State|23-8
+6|Memphis|26-5
+7|Purdue|23-9
+10|Washington|19-11
+15|Sam Houston State|22-11
+2|Louisville|27-4
+1|Villanova|27-5
+16|Stetson|19-13
+9|UAB|22-9
+8|Houston|21-9
+5|Michigan State|22-9
+12|UMBC|27-5
+13|Oregon|17-13
+4|Texas A&M|23-8
+3|Nevada|29-3
+14|Northern Kentucky|21-9
+11|Baylor|18-13
+6|Indiana|22-10
+7|BYU|20-11
+10|North Carolina|20-11
+15|Winthrop|23-9
+2|UConn|25-5
+1|Missouri|27-5
+16|Wofford|21-11
+9|Liberty|26-5
+8|Nebraska|24-7
+5|UCF|27-5
+12|Saint Louis|25-7
+13|Alabama|18-12
+4|Duke|23-8
+3|Arizona|26-6
+14|Northern Illinois|24-7
+11|Loyola-Chicago|23-9
+6|Creighton|23-9
+7|Marquette|21-10
+10|Texas|21-10
+15|Abilene Christian|20-10
+2|Auburn|25-7
 =Gonzaga 85-51|Pitt 75-66|Xavier 93-80|Illinois 95-91|Florida State 92-89 OT|Tennessee 83-75|Wisconsin 89-82|St.John's 76-60|Ohio State 78-58|Wake Forest 83-58|Wichita State 81-71|San Diego State 60-57|Texas Tech 77-68|Memphis 93-48|Purdue 91-75|Louisville 76-74|Villanova 75-70|Houston 103-68|UMBC 71-69|Texas A&M 85-63|Nevada 94-67|Indiana 90-87|BYU 93-66|UConn 76-61|Missouri 107-64|Nebraska 71-65|UCF 87-60|Duke 81-58|Arizona 90-61|Creighton 85-70|Texas 88-86|Auburn 89-54
 =Gonzaga 87-75|Illinois 74-60|Florida State 75-70|St.John's 77-63|Wake Forest 88-81|San Diego State 73-70|Memphis 97-79|Louisville 77-70|Houston 80-76|UMBC 84-77|Nevada 78-71|UConn 78-62|Missouri 98-84|Duke 92-78|Arizona 100-67|Texas 91-86
 =Gonzaga 99-90|Florida State 70-62|Wake Forest 78-70|Louisville 77-61|Houston 85-66|UConn 71-66|Missouri 89-70|Arizona 91-65

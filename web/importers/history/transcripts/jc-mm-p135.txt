@@ -1,69 +1,69 @@
 # p135 March Madness S70
 S70
 1|Purdue|28-2
-|Wofford|23-7
-|TCU|18-11
-|Clemson|19-11
-17|Nevada|25-5
-|Florida|14-14
-|Army|25-5
-16|Creighton|24-5
-9|Virginia|23-6
-|Harvard|21-9
-|FAU|18-12
-24|Auburn|21-8
-25|Michigan|21-8
-|Texas Tech|18-12
-|LSU|14-15
-8|Gonzaga|25-5
-4|UConn|26-4
-|Pitt|19-10
-|Texas A&M|18-11
-|Illinois|19-9
-20|Oklahoma|21-8
-|Oral Roberts|24-6
-|Dayton|24-6
-13|Arizona State|21-7
-12|Houston|25-5
-|Wichita State|16-13
-|Missouri|16-13
-21|Michigan State|21-10
-|Marquette|19-10
-|Washington|16-13
-|Rutgers|21-8
-5|Duke|25-5
-2|UCLA|26-4
-|Delaware|21-8
-|Ohio State|19-10
-|UCF|21-8
-18|Villanova|24-6
-|Alabama|15-14
-|VCU|24-6
-15|Wake Forest|22-6
-10|Tennessee|25-5
-|UCSB|20-9
-|Winthrop|26-4
-23|North Carolina|22-9
-|Oregon|21-9
-|Iowa|19-10
-|Baylor|14-15
-7|Texas|23-5
-3|Arizona|24-5
-|Kansas State|12-17
-|Arkansas|19-10
-|Indiana|19-10
-19|Xavier|21-8
-|Yale|24-6
-|Tulane|16-12
-14|Miami|22-6
-11|Kansas|25-5
-|Iona|21-8
-|Louisville|15-14
-22|Georgetown|21-8
-|San Diego State|24-6
-|USC|16-13
-|Memphis|15-14
-6|Kentucky|25-5
+16|Wofford|23-7
+9|TCU|18-11
+8|Clemson|19-11
+5|Nevada|25-5
+12|Florida|14-14
+13|Army|25-5
+4|Creighton|24-5
+3|Virginia|23-6
+14|Harvard|21-9
+11|FAU|18-12
+6|Auburn|21-8
+7|Michigan|21-8
+10|Texas Tech|18-12
+15|LSU|14-15
+2|Gonzaga|25-5
+1|UConn|26-4
+16|Pitt|19-10
+9|Texas A&M|18-11
+8|Illinois|19-9
+5|Oklahoma|21-8
+12|Oral Roberts|24-6
+13|Dayton|24-6
+4|Arizona State|21-7
+3|Houston|25-5
+14|Wichita State|16-13
+11|Missouri|16-13
+6|Michigan State|21-10
+7|Marquette|19-10
+10|Washington|16-13
+15|Rutgers|21-8
+2|Duke|25-5
+1|UCLA|26-4
+16|Delaware|21-8
+9|Ohio State|19-10
+8|UCF|21-8
+5|Villanova|24-6
+12|Alabama|15-14
+13|VCU|24-6
+4|Wake Forest|22-6
+3|Tennessee|25-5
+14|UCSB|20-9
+11|Winthrop|26-4
+6|North Carolina|22-9
+7|Oregon|21-9
+10|Iowa|19-10
+15|Baylor|14-15
+2|Texas|23-5
+1|Arizona|24-5
+16|Kansas State|12-17
+9|Arkansas|19-10
+8|Indiana|19-10
+5|Xavier|21-8
+12|Yale|24-6
+13|Tulane|16-12
+4|Miami|22-6
+3|Kansas|25-5
+14|Iona|21-8
+11|Louisville|15-14
+6|Georgetown|21-8
+7|San Diego State|24-6
+10|USC|16-13
+15|Memphis|15-14
+2|Kentucky|25-5
 =Purdue -|TCU -|Nevada -|Creighton -|Virginia -|FAU -|Michigan -|Gonzaga -|UConn -|Illinois -|Oral Roberts -|Arizona State -|Houston -|Michigan State -|Washington -|Duke -|UCLA -|UCF -|Villanova -|Wake Forest -|Tennessee -|North Carolina -|Iowa -|Texas -|Arizona -|Arkansas -|Xavier -|Miami -|Kansas -|Louisville -|San Diego State -|Kentucky -
 =Purdue -|Creighton -|Virginia -|Michigan -|UConn -|Arizona State -|Michigan State -|Duke -|UCLA -|Villanova -|Tennessee -|Texas -|Arizona -|Xavier -|Kansas -|Kentucky -
 =Purdue -|Virginia -|UConn -|Michigan State -|Villanova -|Tennessee -|Arizona -|Kentucky -

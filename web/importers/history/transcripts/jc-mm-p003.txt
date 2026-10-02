@@ -1,69 +1,69 @@
 # p003 March Madness S71
 S71
 1|Gonzaga|27-2
-|Iona|20-8
-|South Dakota State|26-4
-|Miami|18-10
-17|UCF|25-5
-|Nebraska|22-6
-|Arkansas|16-13
-16|Kansas|24-5
-9|Creighton|26-4
-|Grand Canyon|21-9
-|Clemson|18-11
-24|Illinois|23-6
-25|Washington|20-9
-|Baylor|19-11
-|Michigan State|17-12
-8|Kentucky|27-3
-4|Tennessee|27-3
-|Montana State|19-12
-|Louisville|18-11
-|Western Kentucky|23-7
-20|Texas Tech|20-8
-|Wichita State|18-12
-|Navy|22-8
-13|Iowa|24-6
-12|Duke|25-5
-|Loyola-Chicago|19-11
-|LSU|16-13
-21|FAU|21-8
-|UCLA|21-8
-|Purdue|21-10
-|Harvard|22-8
-5|Texas|25-5
-2|Nevada|29-1
-|Georgetown|18-11
-|Pitt|25-5
-|North Carolina|20-10
-18|Texas A&M|21-7
-|Oregon|19-10
-|Texas A&M CC|23-7
-15|UConn|24-5
-10|Houston|26-4
-|Kennesaw State|17-11
-|Tulane|18-11
-23|VCU|25-4
-|Auburn|20-9
-|Michigan|19-10
-|Memphis|16-13
-7|Arizona|27-3
-3|Wake Forest|27-3
-|Furman|16-12
-|Indiana|20-8
-|Missouri|19-10
-19|San Diego State|21-7
-|Middle Tennessee|23-7
-|Kansas State|15-14
-14|Marquette|24-6
-11|Virginia|24-5
-|Oklahoma State|14-14
-|Georgia State|21-7
-22|Ohio State|23-6
-|Arizona State|21-9
-|Florida|18-12
-|TCU|15-14
-6|Villanova|25-4
+16|Iona|20-8
+9|South Dakota State|26-4
+8|Miami|18-10
+5|UCF|25-5
+12|Nebraska|22-6
+13|Arkansas|16-13
+4|Kansas|24-5
+3|Creighton|26-4
+14|Grand Canyon|21-9
+11|Clemson|18-11
+6|Illinois|23-6
+7|Washington|20-9
+10|Baylor|19-11
+15|Michigan State|17-12
+2|Kentucky|27-3
+1|Tennessee|27-3
+16|Montana State|19-12
+9|Louisville|18-11
+8|Western Kentucky|23-7
+5|Texas Tech|20-8
+12|Wichita State|18-12
+13|Navy|22-8
+4|Iowa|24-6
+3|Duke|25-5
+14|Loyola-Chicago|19-11
+11|LSU|16-13
+6|FAU|21-8
+7|UCLA|21-8
+10|Purdue|21-10
+15|Harvard|22-8
+2|Texas|25-5
+1|Nevada|29-1
+16|Georgetown|18-11
+9|Pitt|25-5
+8|North Carolina|20-10
+5|Texas A&M|21-7
+12|Oregon|19-10
+13|Texas A&M CC|23-7
+4|UConn|24-5
+3|Houston|26-4
+14|Kennesaw State|17-11
+11|Tulane|18-11
+6|VCU|25-4
+7|Auburn|20-9
+10|Michigan|19-10
+15|Memphis|16-13
+2|Arizona|27-3
+1|Wake Forest|27-3
+16|Furman|16-12
+9|Indiana|20-8
+8|Missouri|19-10
+5|San Diego State|21-7
+12|Middle Tennessee|23-7
+13|Kansas State|15-14
+4|Marquette|24-6
+3|Virginia|24-5
+14|Oklahoma State|14-14
+11|Georgia State|21-7
+6|Ohio State|23-6
+7|Arizona State|21-9
+10|Florida|18-12
+15|TCU|15-14
+2|Villanova|25-4
 =Gonzaga -|Miami -|Nebraska -|Kansas -|Grand Canyon -|Illinois -|Baylor -|Kentucky -|Tennessee -|Louisville -|Texas Tech -|Iowa -|Duke -|FAU -|UCLA -|Texas -|Nevada -|Pitt -|Texas A&M -|UConn -|Houston -|VCU -|Auburn -|Arizona -|Wake Forest -|Indiana -|Middle Tennessee -|Marquette -|Virginia -|Ohio State -|Arizona State -|Villanova -
 =Gonzaga -|Kansas -|Grand Canyon -|Kentucky -|Tennessee -|Iowa -|Duke -|Texas -|Nevada -|Texas A&M -|Houston -|Arizona -|Wake Forest -|Middle Tennessee -|Ohio State -|Villanova -
 =Gonzaga -|Kentucky -|Iowa -|Texas -|Nevada -|Houston -|Wake Forest -|Ohio State -

@@ -1,69 +1,69 @@
 # p129 March Madness S76
 S76
-|Indiana|27-4
-|Montana|16-17
-|Texas Southern|25-7
-|Wake Forest|22-9
-|Michigan State|25-7
-|Colorado State|20-11
-|Northeastern|22-10
-|UCLA|25-7
-|Oregon|25-7
-|Quinnipiac|21-10
-|Florida State|19-12
-|Florida|22-10
-|UConn|23-9
-|Oregon State|19-12
-|James Madison|21-10
-|Houston|24-6
-|Marquette|24-6
-|Harvard|20-12
-|Memphis|22-9
-|Missouri|21-10
-|San Diego State|24-6
-|Southeastern Missouri State|23-9
-|BYU|18-15
-|UMBC|27-5
-|Auburn|27-5
-|Duquesne|21-10
-|Arkansas Pine Bluff|23-7
-|Creighton|22-9
-|Tennessee|21-11
-|Pitt|23-9
-|Winthrop|19-12
-|Wichita State|29-3
-|North Carolina|29-3
-|Stephen F Austin|17-16
-|Michigan|22-10
-|Villanova|21-12
-|Xavier|22-8
-|Navy|23-8
-|Oklahoma|18-13
-|Purdue|24-7
-|Louisville|27-5
-|Marist|20-10
-|Dartmouth|25-7
-|Washington|22-9
-|Kansas|20-12
-|South Dakota State|25-7
-|Georgia State|22-10
-|Gonzaga|23-8
-|Arizona|26-5
-|Norfolk State|19-13
-|IUPUI|26-6
-|Loyola-Chicago|24-8
-|Baylor|23-7
-|Duke|20-11
-|Montana State|20-10
-|Texas A&M|24-6
-|Kentucky|23-7
-|Long Island|21-10
-|Illinois|19-12
-|Tulane|25-7
-|St.John's|23-7
-|Murray State|26-5
-|George Mason|21-11
-|Nevada|27-5
+1|Indiana|27-4
+16|Montana|16-17
+9|Texas Southern|25-7
+8|Wake Forest|22-9
+5|Michigan State|25-7
+12|Colorado State|20-11
+13|Northeastern|22-10
+4|UCLA|25-7
+3|Oregon|25-7
+14|Quinnipiac|21-10
+11|Florida State|19-12
+6|Florida|22-10
+7|UConn|23-9
+10|Oregon State|19-12
+15|James Madison|21-10
+2|Houston|24-6
+1|Marquette|24-6
+16|Harvard|20-12
+9|Memphis|22-9
+8|Missouri|21-10
+5|San Diego State|24-6
+12|Southeastern Missouri State|23-9
+13|BYU|18-15
+4|UMBC|27-5
+3|Auburn|27-5
+14|Duquesne|21-10
+11|Arkansas Pine Bluff|23-7
+6|Creighton|22-9
+7|Tennessee|21-11
+10|Pitt|23-9
+15|Winthrop|19-12
+2|Wichita State|29-3
+1|North Carolina|29-3
+16|Stephen F Austin|17-16
+9|Michigan|22-10
+8|Villanova|21-12
+5|Xavier|22-8
+12|Navy|23-8
+13|Oklahoma|18-13
+4|Purdue|24-7
+3|Louisville|27-5
+14|Marist|20-10
+11|Dartmouth|25-7
+6|Washington|22-9
+7|Kansas|20-12
+10|South Dakota State|25-7
+15|Georgia State|22-10
+2|Gonzaga|23-8
+1|Arizona|26-5
+16|Norfolk State|19-13
+9|IUPUI|26-6
+8|Loyola-Chicago|24-8
+5|Baylor|23-7
+12|Duke|20-11
+13|Montana State|20-10
+4|Texas A&M|24-6
+3|Kentucky|23-7
+14|Long Island|21-10
+11|Illinois|19-12
+6|Tulane|25-7
+7|St.John's|23-7
+10|Murray State|26-5
+15|George Mason|21-11
+2|Nevada|27-5
 =Indiana 99-91|Wake Forest 85-73|Colorado State 85-71|UCLA 90-61|Oregon 94-61|Florida 87-67|Oregon State 86-85 OT|Houston 77-69|Marquette 83-75|Memphis 87-58|Southeastern Missouri State 90-86|BYU 99-82|Auburn 95-66|Arkansas Pine Bluff 83-79|Tennessee 96-61|Wichita State 87-49|North Carolina 91-65|Michigan 65-61|Xavier 82-72|Purdue 97-94 OT|Louisville 92-58|Washington 84-67|Kansas 89-73|Gonzaga 84-69|Arizona 98-62|Loyola-Chicago 88-80|Baylor 97-82|Texas A&M 73-65|Kentucky 97-67|Illinois 78-74|Murray State 88-78|Nevada 69-64
 =Indiana 84-80|Colorado State 102-81|Florida 75-72|Houston 95-66|Memphis 102-71|BYU 85-82|Auburn 84-70|Tennessee 100-90|North Carolina 89-87|Xavier 102-93|Washington 85-83|Gonzaga 84-69|Arizona 101-73|Baylor 102-85|Kentucky 94-92|Nevada 81-79
 =Indiana 100-81|Florida 89-85|BYU 90-74|Auburn 84-64|North Carolina 77-73|Gonzaga 90-69|Arizona 109-90|Nevada 97-96

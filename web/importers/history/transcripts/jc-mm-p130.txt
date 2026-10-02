@@ -1,37 +1,37 @@
 # p130 March Madness S12 (32 slots; "SDSU" written out in full)
 S12
-|TCU|
+1|TCU|
 BYE
-|Louisville|
-|San Diego State|
-|Purdue|
-BYE
-BYE
-|Texas Tech|
-|West Virginia|
+9|Louisville|
+8|San Diego State|
+5|Purdue|
 BYE
 BYE
-|Oklahoma|
-|Utah|
-|Michigan State|
-BYE
-|Villanova|
-|Memphis|
-BYE
-|South Carolina|
-|Iowa State|
-|Virginia|
+4|Texas Tech|
+3|West Virginia|
 BYE
 BYE
-|Kansas|
-|Duke|
+6|Oklahoma|
+7|Utah|
+10|Michigan State|
+BYE
+2|Villanova|
+1|Memphis|
+BYE
+9|South Carolina|
+8|Iowa State|
+5|Virginia|
 BYE
 BYE
-|Baylor|
-|Kansas State|
-|Miami|
+4|Kansas|
+3|Duke|
 BYE
-|North Carolina|
+BYE
+6|Baylor|
+7|Kansas State|
+10|Miami|
+BYE
+2|North Carolina|
 =TCU BYE|Louisville 24-13|Purdue BYE|Texas Tech BYE|West Virginia BYE|Oklahoma BYE|Utah 30-10|Villanova BYE|Memphis BYE|Iowa State 20-19|Virginia BYE|Kansas BYE|Duke BYE|Baylor BYE|Kansas State 27-14|North Carolina BYE
 =TCU 33-13|Texas Tech 28-11|West Virginia 28-27|Utah 27-26|Memphis 28-12|Kansas 27-22|Duke 32-13|North Carolina 26-24
 =TCU 25-18|Utah 29-27|Memphis 35-34|Duke 31-25

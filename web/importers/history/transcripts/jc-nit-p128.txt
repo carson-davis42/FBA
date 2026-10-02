@@ -1,38 +1,38 @@
 # p128 NIT S74 (32 slots; the page prints no scores; records are printed)
 S74
 K:NIT
-|BYU|18-13
-|Miami|12-18
-|Seton Hall|14-16
-|UMBC|20-11
-|Notre Dame|15-16
-|Wyoming|16-15
-|USC|15-15
-|South Florida|22-10
-|Penn State|15-15
-|Middle Tennessee|21-11
-|Quinnipiac|21-11
-|Drake|20-11
-|VCU|20-11
-|Penn|21-11
-|Colorado State|15-15
-|Iowa|15-15
-|Rutgers|22-10
-|Marist|19-12
-|New Mexico State|16-15
-|Loyola-Chicago|18-13
-|Arkansas Pine Bluff|20-10
-|Jackson State|19-12
-|Georgia Tech|17-15
-|Northern Illinois|22-9
-|Oklahoma|16-15
-|Oral Roberts|20-11
-|New Mexico|16-15
-|Evansville|21-9
-|Grand Canyon|19-11
-|Troy|17-13
-|Boston College|17-13
-|Iowa State|16-14
+1|BYU|18-13
+16|Miami|12-18
+9|Seton Hall|14-16
+8|UMBC|20-11
+5|Notre Dame|15-16
+12|Wyoming|16-15
+13|USC|15-15
+4|South Florida|22-10
+3|Penn State|15-15
+14|Middle Tennessee|21-11
+11|Quinnipiac|21-11
+6|Drake|20-11
+7|VCU|20-11
+10|Penn|21-11
+15|Colorado State|15-15
+2|Iowa|15-15
+1|Rutgers|22-10
+16|Marist|19-12
+9|New Mexico State|16-15
+8|Loyola-Chicago|18-13
+5|Arkansas Pine Bluff|20-10
+12|Jackson State|19-12
+13|Georgia Tech|17-15
+4|Northern Illinois|22-9
+3|Oklahoma|16-15
+14|Oral Roberts|20-11
+11|New Mexico|16-15
+6|Evansville|21-9
+7|Grand Canyon|19-11
+10|Troy|17-13
+15|Boston College|17-13
+2|Iowa State|16-14
 =BYU -|Seton Hall -|Wyoming -|USC -|Middle Tennessee -|Drake -|VCU -|Iowa -|Rutgers -|Loyola-Chicago -|Jackson State -|Northern Illinois -|Oklahoma -|New Mexico -|Troy -|Iowa State -
 =Seton Hall -|USC -|Drake -|Iowa -|Rutgers -|Jackson State -|Oklahoma -|Iowa State -
 =Seton Hall -|Iowa -|Rutgers -|Iowa State -
