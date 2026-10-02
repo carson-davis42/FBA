@@ -5,7 +5,7 @@ import type { LogoEntry, LogoManifest } from '../engine/shared/types';
 import type { Report } from './report';
 
 /** Folders whose files are one undated logo per team, so no era is expected in the names. */
-const SHARED_FOLDERS = new Set(['FBA', 'FBAJC', 'FBAJC_Final']);
+const SHARED_FOLDERS = new Set(['FBA', 'FBA_Gold', 'FBAJC', 'FBAJC_Final']);
 
 export function buildLogoManifest(logoRoot: string, report: Report): LogoManifest {
   const folders: Record<string, LogoEntry[]> = {};

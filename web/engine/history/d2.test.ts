@@ -142,8 +142,8 @@ describe('d2PlayerHonours', () => {
   ] }] };
   it('writes the three text forms oldest first', () => {
     expect(d2PlayerHonours('p00003', [s70, s55], drafts, teams)).toEqual([
-      { season: 50, text: 'D2 draft: pick 4 (Osaka Kings)' },
-      { season: 70, text: 'Premier League MVP (Osaka Kings)' },
+      { season: 50, text: 'D2 draft: pick 4 (Osaka Kings)', team: { id: 'OSK', name: 'Osaka Kings' } },
+      { season: 70, text: 'Premier League MVP (Osaka Kings)', team: { id: 'OSK', name: 'Osaka Kings' } },
       { season: 70, text: 'Series MVP, PL Champion' },
     ]);
     expect(d2PlayerHonours('p00002', [s55, s70], null, teams).map(h => h.text)).toEqual(['International League MVP (Old Town)', 'D2 MVP (Other)']);

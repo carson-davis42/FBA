@@ -17,9 +17,9 @@ export function findTeam(teams: Team[], id?: string | null, name?: string | null
 }
 
 /** A team's abbreviation with its logo when the team is known, else the bare text. */
-export function TeamAbbr({ teams, teamId, season }: { teams: Team[]; teamId: string; season: number }) {
+export function TeamAbbr({ teams, teamId, season, link = false }: { teams: Team[]; teamId: string; season: number; link?: boolean }) {
   const team = findTeam(teams, teamId);
-  return team ? <TeamName team={team} season={season} variant="abbr" size={16} /> : <>{teamId}</>;
+  return team ? <TeamName team={team} season={season} variant="abbr" size={16} to={link ? `/history/fba/teams/${team.teamId}` : undefined} /> : <>{teamId}</>;
 }
 
 /** A team as recorded in a past season, with its franchise's logo when it resolves, else the bare text. */

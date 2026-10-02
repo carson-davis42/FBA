@@ -1,15 +1,18 @@
 import { useParams } from 'react-router-dom';
-import { awardTotals, careerStats, liveCareer } from '../../engine/history/career';
+import { awardTotals, careerSpan, careerStats, liveCareer, playerStatus } from '../../engine/history/career';
 import { d2PlayerHonours } from '../../engine/history/d2';
 import { playerHonours } from '../../engine/history/honours';
-import type { AwardCountsFile, D2DraftHistoryFile, DraftHistoryFile, HallOfFameFile, PlayerBiosFile, PlayersFile } from '../../engine/shared/types';
+import type { AwardCountsFile, D2DraftHistoryFile, DraftHistoryFile, HallOfFameFile, PlayerBiosFile, PlayersFile, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
 import { Badge } from '../components/Badge';
 import { Hero } from '../components/Hero';
 import { TeamMark } from '../components/TeamMark';
 import { teamTheme } from '../components/teamColors';
 import { CareerSection, hasCareer } from './CareerSection';
-import { draftLine } from './DraftSeasonPage';
+import { Link } from 'react-router-dom';
+import { draftLine, draftTeamId } from './DraftSeasonPage';
+import { playerEmblem } from './PlayerEmblem';
+import { useJcTeams } from './jc/useJc';
 import { SkippedWarning } from './PlayerLink';
 import { useD2Teams } from './d2/useD2';
 import { findTeam, TeamAbbr, useFbaTeams } from './useTeams';
@@ -17,6 +20,20 @@ import './history.css';
 
 const dash = (n: number | null) => (n === null ? '—' : String(n));
 const fixed = (n: number | null) => (n === null ? '—' : n.toFixed(1));
+
+/** `text` with the team it names in parentheses turned into a link, when the team is known. */
+function TeamLinkedText({ text, team, to }: { text: string; team: { id: string; name: string } | undefined; to: (t: { id: string; name: string }) => string }) {
+  const at = team ? text.lastIndexOf(`(${team.name})`) : -1;
+  if (!team || at < 0) return <>{text}</>;
+  return <>{text.slice(0, at + 1)}<Link to={to(team)}>{team.name}</Link>{text.slice(at + 1 + team.name.length)}</>;
+}
+
+/** "Drafted S74, #18 by Honolulu Rays" with the franchise linked to its history page. */
+function DraftedLine({ text, teamId, teams }: { text: string; teamId: string | null; teams: Parameters<typeof findTeam>[0] }) {
+  const at = text.lastIndexOf(' by ');
+  if (at < 0 || !teamId || !findTeam(teams, teamId)) return <>{text}</>;
+  return <>{text.slice(0, at + 4)}<Link to={`/history/fba/teams/${teamId}`}>{text.slice(at + 4)}</Link></>;
+}
 
 export function PlayerHistoryPage() {
   const { playerId = '' } = useParams();
@@ -31,11 +48,13 @@ export function PlayerHistoryPage() {
   const d2 = useHistory('fbad2');
   const d2Drafts = useDoc<D2DraftHistoryFile>('leagues/fbad2/draftHistory.json');
   const d2Teams = useD2Teams();
+  const jcTeams = useJcTeams();
+  const wcTeams = useDoc<TeamsFile>('leagues/fbawc/teams.json');
   const failure = error ?? players.error ?? (bios.missing ? undefined : bios.error)
     ?? (counts.missing ? undefined : counts.error) ?? (hall.missing ? undefined : hall.error);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
   if (!seasons || !players.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing) || (!hall.data && !hall.missing) || (!drafts.data && !drafts.missing && !drafts.error) || !settled
-    || (!d2.seasons && !d2.error) || (!d2Drafts.data && !d2Drafts.missing && !d2Drafts.error) || !d2Teams.settled) {
+    || (!d2.seasons && !d2.error) || (!d2Drafts.data && !d2Drafts.missing && !d2Drafts.error) || !d2Teams.settled || !jcTeams.settled || (!wcTeams.data && !wcTeams.missing && !wcTeams.error)) {
     return <p className="muted">Loading…</p>;
   }
   const player = players.data.players[playerId];
@@ -57,10 +76,15 @@ export function PlayerHistoryPage() {
   const fbaStints = career.stints.filter(s => s.kind === 'fba');
   const recent = fbaStints.length > 0 ? fbaStints[fbaStints.length - 1].team.split('/').pop() : stats.rows.length > 0 ? stats.rows[stats.rows.length - 1].teamId : null;
   const recentTeam = findTeam(teams, recent);
+  const latestFba = seasons.reduce((m, x) => Math.max(m, x.season), 0);
+  const status = playerStatus(career, !!player.retired, latestFba);
+  const emblemTeams = { fba: teams, d2: d2Teams.teams, college: jcTeams.teams, wc: wcTeams.data?.teams ?? [] };
+  const emblem = playerEmblem(status, career.stints[career.stints.length - 1], emblemTeams, recentTeam);
   const latestSeason = stats.rows.length > 0 ? stats.rows[stats.rows.length - 1].season : 0;
   const position = seasons.flatMap(s => (s.players ?? []).filter(l => l.playerId === playerId).map(l => ({ season: s.season, position: l.position })))
     .sort((a, b) => b.season - a.season)[0]?.position;
-  const years = fbaStints.length > 0 && fbaStints[0].range ? `${fbaStints[0].range.split('-')[0]}–${fbaStints[fbaStints.length - 1].range.split('-').pop()}` : null;
+  const span = careerSpan(career);
+  const years = span ? `S${span.from}–${span.to === 'pres' ? 'pres.' : span.to === null ? '' : `S${span.to}`}`.replace(/–$/, '') : null;
   const kicker = [position, years].filter(Boolean).join(' · ') || 'Player';
   const heroStats: { label: string; value: string | number }[] = [];
   if (stats.rows.length > 0) heroStats.push({ label: 'Seasons', value: new Set(stats.rows.map(r => r.season)).size });
@@ -73,8 +97,8 @@ export function PlayerHistoryPage() {
       <Hero
         kicker={kicker}
         title={player.name}
-        theme={recentTeam ? teamTheme(recentTeam, 'fba') : undefined}
-        logo={recentTeam ? <TeamMark team={recentTeam} season={latestSeason || 79} size={72} /> : undefined}
+        theme={emblem ? teamTheme(emblem, emblem === recentTeam ? 'fba' : 'fbajc') : undefined}
+        logo={emblem ? <TeamMark team={emblem} season={latestSeason || 79} size={72} /> : undefined}
         stats={heroStats}
       >
         {(totals.MVP > 0 || allFba > 0 || totals.ALL_STAR > 0 || totals.CHAMPION > 0 || career.hof !== null) && (
@@ -87,10 +111,10 @@ export function PlayerHistoryPage() {
           </div>
         )}
       </Hero>
-      {drafted && <p className="muted">{drafted}</p>}
+      {drafted && <p className="muted"><DraftedLine text={drafted} teamId={draftTeamId(drafts.data ?? null, playerId)} teams={teams} /></p>}
       <SkippedWarning errors={errors} />
       {!bio && !hasCareer(career) && !hasAwards && honours.length === 0 && d2Honours.length === 0 && stats.rows.length === 0 && <p className="muted">No history recorded</p>}
-      <CareerSection career={career} born={bio ? bio.born : null} totals={totals} />
+      <CareerSection career={career} born={bio ? bio.born : null} totals={totals} teams={{ fba: teams, d2: d2Teams.teams, college: jcTeams.teams }} />
       {honours.length > 0 && (
         <div>
           <h2>Honours</h2>
@@ -103,7 +127,7 @@ export function PlayerHistoryPage() {
         <div>
           <h2>D2 honours</h2>
           <ul>
-            {d2Honours.map((h, i) => <li key={i}>S{h.season}: {h.text}</li>)}
+            {d2Honours.map((h, i) => <li key={i}>S{h.season}: <TeamLinkedText text={h.text} team={h.team} to={t => `/history/fbad2/teams/${t.id}`} /></li>)}
           </ul>
         </div>
       )}
@@ -122,7 +146,7 @@ export function PlayerHistoryPage() {
                 {stats.rows.map((r, k) => (
                   <tr key={k}>
                     <td>S{r.season}</td>
-                    <td>{r.teamId ? <TeamAbbr teams={teams} teamId={r.teamId} season={r.season} /> : '—'}</td>
+                    <td>{r.teamId ? <TeamAbbr teams={teams} teamId={r.teamId} season={r.season} link /> : '—'}</td>
                     <td className="n">{dash(r.gp)}</td>
                     <td className="n">{dash(r.pts)}</td>
                     <td className="n">{fixed(r.ppg)}</td>

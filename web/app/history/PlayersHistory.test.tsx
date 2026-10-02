@@ -125,9 +125,10 @@ describe('PlayerHistoryPage', () => {
   it('renders the Career block: college line, three FBA rows, other lines and the Hall of Fame class', async () => {
     stub({ bios: naylorBio });
     renderAt('/history/fba/players/p00001');
-    expect(await screen.findByText('College: Wake Forest (S63)')).toBeTruthy();
+    await screen.findByRole('heading', { name: 'Career' });
     const rows = screen.getAllByRole('row').map(r => Array.from(r.querySelectorAll('td')).map(td => td.textContent)).filter(r => r.length > 0);
     expect(rows).toEqual([
+      ['College', 'Wake Forest', 'S63', ''],
       ['FBA', 'BOS', 'S64-S68', '3x All-Star, S67 MIP'],
       ['FBA', 'DEN', 'S69-S70', ''],
       ['FBA', 'SEA', 'S71-pres.', '1x MVP'],

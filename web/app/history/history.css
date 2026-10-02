@@ -44,3 +44,16 @@
 .series-box .series-ot { padding: 1px 10px 3px; text-align: right; font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.04em; }
 .series-box.empty { visibility: hidden; min-height: 64px; box-shadow: none; }
 .bracket-col.l .series-box.empty::after, .bracket-col.r .series-box.empty::before { display: none; }
+
+/* Big brackets: one round at a time, games stacked vertically, no sideways scrolling. */
+.rounds-bracket { display: grid; gap: var(--s3); min-width: 0; }
+.bracket-champion { display: grid; gap: 0; max-width: 360px; background: var(--surface); border: 2px solid var(--border); border-radius: var(--r); box-shadow: var(--shadow-1); }
+.bracket-champion .champ-badge { display: flex; justify-content: center; padding: 4px; background: var(--row-alt); border-bottom: 1px solid var(--border); border-radius: var(--r) var(--r) 0 0; }
+.bracket-champion .series-side { font-size: var(--fs-md); padding: 10px; }
+.round-tabs { display: flex; flex-wrap: wrap; gap: var(--s1); }
+.round-tabs .chip { cursor: pointer; font: inherit; }
+.round-title { margin: 0 0 var(--s2); }
+.round-games { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: var(--s2); }
+.round-games .series-box { width: 100%; }
+.round-byes { margin: var(--s2) 0 0; }
+.round-nav { display: flex; justify-content: space-between; gap: var(--s2); }

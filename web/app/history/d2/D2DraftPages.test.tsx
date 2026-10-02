@@ -114,7 +114,8 @@ describe('PlayerHistoryPage D2 honours', () => {
     stub();
     at('/history/fba/players/p00002');
     expect(await screen.findByRole('heading', { name: 'D2 honours' })).toBeTruthy();
-    expect(screen.getByText('S69: Premier League MVP (Lisbon)')).toBeTruthy();
+    expect(screen.getByText((_, el) => el?.tagName === 'LI' && el.textContent === 'S69: Premier League MVP (Lisbon)')).toBeTruthy();
+    expect(screen.getAllByRole('link', { name: 'Lisbon' }).every(a => a.getAttribute('href') === '/history/fbad2/teams/LIS')).toBe(true);
     expect(screen.getByText('S69: Series MVP, Premier League Champion')).toBeTruthy();
     expect(screen.queryByText('No history recorded')).toBeNull();
   });
