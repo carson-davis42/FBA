@@ -12,7 +12,7 @@ const players: PlayersFile = {
   nextId: 3,
   players: {
     p00001: { id: 'p00001', name: 'Payton Atkinson', birthSeason: 46 },
-    p00002: { id: 'p00002', name: 'Old Timer', birthSeason: 10 },
+    p00002: { id: 'p00002', name: 'Sam Senior', birthSeason: 10 },
     p00003: { id: 'p00003', name: 'Mitchell Corey', birthSeason: 12 },
     p00004: { id: 'p00004', name: 'Twin Name', birthSeason: 12 },
     p00005: { id: 'p00005', name: 'Twin Name', birthSeason: 13 },
@@ -61,9 +61,10 @@ describe('HallOfFameHistoryPage', () => {
   it('links an inductee with no player id by his name, including a respelled one, and leaves unknown or ambiguous names as text', async () => {
     const corey: HofCard = { name: 'Mitchel Corey', playerId: null, retiredSeason: 'S20', lines: ['BOS: S1-S20'] };
     const twin: HofCard = { name: 'Twin Name', playerId: null, retiredSeason: 'S21', lines: ['BOS: S1-S21'] };
+    const senior: HofCard = { name: 'Sam Senior', playerId: null, retiredSeason: 'S9', lines: ['BOS: S1-S9'] };
     const ghost: HofCard = { name: 'Ghost Player', playerId: null, retiredSeason: 'S22', lines: ['BOS: S1-S22'] };
-    renderPage(hof({ classes: [{ season: 'S22', inductees: [old, corey, twin, ghost] }] }));
-    expect((await screen.findByRole('link', { name: 'Old Timer' })).getAttribute('href')).toBe('/history/fba/players/p00002');
+    renderPage(hof({ classes: [{ season: 'S22', inductees: [senior, corey, twin, ghost] }] }));
+    expect((await screen.findByRole('link', { name: 'Sam Senior' })).getAttribute('href')).toBe('/history/fba/players/p00002');
     expect(screen.getByRole('link', { name: 'Mitchel Corey' }).getAttribute('href')).toBe('/history/fba/players/p00003');
     expect(screen.queryByRole('link', { name: 'Twin Name' })).toBeNull();
     expect(screen.queryByRole('link', { name: 'Ghost Player' })).toBeNull();
