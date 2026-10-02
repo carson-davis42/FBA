@@ -58,6 +58,7 @@ import { JcSchoolPage } from '../history/jc/JcSchoolPage';
 import { JcSchoolsPage } from '../history/jc/JcSchoolsPage';
 import { JcSeasonPage } from '../history/jc/JcSeasonPage';
 import { WcHistoryPage } from '../history/wc/WcHistoryPage';
+import { WcTeamPage } from '../history/wc/WcTeamPage';
 import { WcSeasonPage } from '../history/wc/WcSeasonPage';
 import { DraftsPage } from '../history/DraftsPage';
 import { FranchisePage } from '../history/FranchisePage';
@@ -139,6 +140,7 @@ const ROUTES = createRoutesFromElements(
   <Route path="/history/fbajc/schools/:teamId" element={<JcSchoolPage />} />
   <Route path="/history/fbawc" element={<WcHistoryPage />} />
   <Route path="/history/fbawc/season/:season" element={<WcSeasonPage />} />
+  <Route path="/history/fbawc/teams/:teamId" element={<WcTeamPage />} />
   <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
   <Route path="/history/fba/awards" element={<AwardsHistoryPage />} />
   <Route path="/history/fba/awards/players" element={<AwardsByPlayerPage />} />
