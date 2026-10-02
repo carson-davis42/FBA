@@ -1,8 +1,8 @@
 import type { Team } from '../../engine/shared/types';
 import { flagUrl } from './flags';
 
-/** `label` overrides the name in the alt text (history pages show the name a team used that season). `decorative` gives a flag an empty alt when the name is shown beside it. */
-export function TeamMark({ team, season, size = 32, label, decorative = false }: { team: Team; season: number; size?: number; label?: string; decorative?: boolean }) {
+/** `silent` gives a logo an empty alt, for a mark inside a button or link that already says the name. `label` overrides the name in the alt text (history pages show the name a team used that season). `decorative` gives a flag an empty alt when the name is shown beside it. */
+export function TeamMark({ team, season, size = 32, label, decorative = false, silent = false }: { team: Team; season: number; size?: number; label?: string; decorative?: boolean; silent?: boolean }) {
   const flag = team.flag ? flagUrl(team.flag) : null;
   if (flag) {
     return <img className="team-flag" src={flag} width={Math.round(size * 4 / 3)} height={size} alt={decorative ? '' : `${label ?? team.name} flag`} />;
@@ -14,7 +14,7 @@ export function TeamMark({ team, season, size = 32, label, decorative = false }:
         src={`/logos/${encodeURIComponent(team.logoFolder)}/${season}${team.logoFile ? `?file=${encodeURIComponent(team.logoFile)}` : ''}`}
         width={size}
         height={size}
-        alt={`${label ?? team.name} logo`}
+        alt={silent ? '' : `${label ?? team.name} logo`}
       />
     );
   }

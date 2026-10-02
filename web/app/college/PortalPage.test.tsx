@@ -46,9 +46,9 @@ describe('PortalPage', () => {
     const rows = within(screen.getByRole('table', { name: 'Players who can enter the portal' })).getAllByRole('row').slice(1);
     const cells = rows.map(r => Array.from((r as HTMLTableRowElement).cells).slice(1, 6).map(c => c.textContent));
     expect(cells).toEqual([
-      ['Jaden Moss', 'Baylor', 'So', 'PG', '82'],
-      ['Omar Reed', 'Baylor', 'Sr', 'PF', '69'],
-      ['Luis Vega', 'Texas', 'Jr', 'PF', '66'],
+      ['Jaden Moss', 'BAYBaylor', 'So', 'PG', '82'],
+      ['Omar Reed', 'BAYBaylor', 'Sr', 'PF', '69'],
+      ['Luis Vega', 'TEXTexas', 'Jr', 'PF', '66'],
     ]);
     expect(screen.getByText('The S79 transfer portal is open.')).toBeTruthy();
   });
@@ -96,7 +96,7 @@ describe('PortalPage', () => {
     const table = await screen.findByRole('table', { name: 'In the portal' });
     const rows = within(table).getAllByRole('row').slice(1).map(r => (r as HTMLTableRowElement).cells);
     expect(rows.map(c => c[0].textContent)).toEqual(['Jaden Moss', 'Omar Reed', 'Luis Vega']);
-    expect(rows[0][1].textContent).toBe('from Baylor');
+    expect(rows[0][1].textContent).toBe('from BAYBaylor');
     expect(rows[1][5].textContent).toContain('100% TEX');
     expect(rows[2][5].textContent).toContain('No projections');
     fireEvent.click(await enabled('Take out Luis Vega'));
@@ -128,7 +128,7 @@ describe('PortalPage', () => {
     const s = { ...s0, recruiting: { ...s0.recruiting, portal: s0.recruiting.portal.map(p => ({ ...p, committedTo: 'DUKE' })) } };
     stubApi(recruitingDocs(s));
     renderPage();
-    expect(await screen.findByText('Committed: Duke')).toBeTruthy();
+    expect(await screen.findByText((_, el) => el?.tagName === 'STRONG' && /^Committed:.*Duke$/.test(el.textContent ?? ''))).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Take out Jaden Moss' })).toBeNull();
   });
 

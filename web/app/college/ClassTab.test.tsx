@@ -69,7 +69,7 @@ describe('ClassTab after the class exists', () => {
     render(<Harness initial={{ ...s, recruiting: { ...s.recruiting, recruits } }} runs={runs} />);
     expect((screen.getByRole('button', { name: 'Remove Malik Ford' }) as HTMLButtonElement).disabled).toBe(true);
     expect(input('Name of Eli Grant').disabled).toBe(true);
-    expect(screen.getByText('Committed: Duke')).toBeTruthy();
+    expect(screen.getByText((_, el) => el?.tagName === 'TD' && /^Committed:.*Duke$/.test(el.textContent ?? ''))).toBeTruthy();
     expect(screen.getByText('Projected')).toBeTruthy();
     fireEvent.change(input('Name of Zion Carter'), { target: { value: 'Zion Carver' } });
     fireEvent.blur(input('Name of Zion Carter'));

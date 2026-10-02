@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { enterPortal, portalByRating, portalCandidates, portalProblem, takeOutOfPortal } from '../../engine/college/portal';
-import { formatShares } from '../../engine/college/recruiting';
+import { projectionShares } from '../../engine/college/recruiting';
 import { collegeName, currentClassBoardSeason, recruitingWrites, schoolAbbr, schoolName, type RecruitingResult } from '../../engine/college/state';
 import { groupLabel } from '../../engine/shared/leagues';
 import { POSITIONS } from '../../engine/roster/rules';
@@ -13,6 +13,7 @@ import '../pages/roster.css';
 import './college.css';
 import '../offseason/offseason.css';
 import { PlayerName } from '../components/PlayerName';
+import { School } from './School';
 
 /**
  * The FBAJC transfer portal (/league/fbajc/portal): put returning players (So/Jr/Sr) in the portal, and take them back out.
@@ -116,7 +117,7 @@ export function PortalPage() {
                   />
                 </td>
                 <td><PlayerName id={c.playerId} name={name(c.playerId)} /></td>
-                <td>{schoolName(state, c.teamId)}</td>
+                <td><School state={state} teamId={c.teamId} /></td>
                 <td>{c.classYear}</td>
                 <td>{c.position}</td>
                 <td className="n">{c.rating ?? '—'}</td>
@@ -138,16 +139,16 @@ export function PortalPage() {
               {inPortal.map(p => (
                 <tr key={p.playerId}>
                   <td><PlayerName id={p.playerId} name={name(p.playerId)} /></td>
-                  <td>{`from ${schoolName(state, p.fromTeam)}`}</td>
+                  <td>from <School state={state} teamId={p.fromTeam} /></td>
                   <td>{p.position}</td>
                   <td>{p.classYear}</td>
                   <td className="n">{p.rating ?? '—'}</td>
                   <td>
                     {p.committedTo
-                      ? <strong>{`Committed: ${schoolName(state, p.committedTo)}`}</strong>
+                      ? <strong>Committed: <School state={state} teamId={p.committedTo} /></strong>
                       : Object.keys(p.projections).length === 0
                         ? <span className="muted">No projections</span>
-                        : formatShares(p, id => schoolAbbr(state, id))}
+                        : projectionShares(p).map((s, i) => <span key={s.teamId}>{i > 0 && ', '}{`${s.pct}% `}<School state={state} teamId={s.teamId} variant="abbr" size={16} /></span>)}
                   </td>
                   <td className="actions">
                     {!p.committedTo && (

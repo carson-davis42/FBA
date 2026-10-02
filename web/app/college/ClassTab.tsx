@@ -9,6 +9,7 @@ import { newBatchId } from '../roster/commit';
 import '../pages/roster.css';
 import './college.css';
 import '../offseason/offseason.css';
+import { School } from './School';
 
 interface Props {
   state: RecruitingState;
@@ -127,7 +128,7 @@ function CreatedClass({ state, saving, onRun }: { state: RecruitingState; saving
                 <tr key={p.playerId}>
                   <td><TextField label={`Name of ${name}`} value={name} disabled={fixed || saving} onSave={v => onRun(editRecruit(state, p.playerId, { name: v }))} /></td>
                   <td><PositionSelect label={`Position of ${name}`} value={p.position} disabled={fixed || saving} onChange={pos => onRun(editRecruit(state, p.playerId, { position: pos }))} /></td>
-                  <td>{p.committedTo ? `Committed: ${schoolName(state, p.committedTo)}` : projected ? 'Projected' : 'Open'}</td>
+                  <td>{p.committedTo ? <>Committed: <School state={state} teamId={p.committedTo} /></> : projected ? 'Projected' : 'Open'}</td>
                   <td>
                     <button
                       type="button" className="btn" aria-label={`Remove ${name}`} disabled={fixed || projected || saving}

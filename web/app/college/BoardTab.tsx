@@ -14,6 +14,8 @@ import '../pages/roster.css';
 import './college.css';
 import '../offseason/offseason.css';
 import { PlayerName } from '../components/PlayerName';
+import { School } from './School';
+import { TeamMark } from '../components/TeamMark';
 
 type Status = 'all' | 'open' | 'committed';
 type Picking = { playerId: string; mode: 'project' | 'commit' };
@@ -77,13 +79,13 @@ export function BoardTab({ state, saving, onRun, rng = Math.random }: Props) {
       <td>{p.classYear}</td>
       <td>{p.stars !== null ? `${p.stars}★` : '—'}</td>
       <td className="n">{p.rating ?? '—'}</td>
-      {'fromTeam' in p && <td>{schoolName(state, p.fromTeam)}</td>}
+      {'fromTeam' in p && <td><School state={state} teamId={p.fromTeam} /></td>}
       <td>
-        {p.committedTo ? <strong>{`Committed: ${schoolName(state, p.committedTo)}`}</strong> : (
+        {p.committedTo ? <strong>Committed: <School state={state} teamId={p.committedTo} /></strong> : (
           <span className="shares">
             {projectionShares(p).map(s => (
               <span key={s.teamId} className="tag">
-                {`${s.pct}% ${schoolAbbr(state, s.teamId)}`}
+                {`${s.pct}% `}<School state={state} teamId={s.teamId} variant="abbr" size={16} />
                 {!locked && (
                   <button
                     type="button" className="tag-x" disabled={saving}
@@ -209,7 +211,7 @@ function SchoolPicker({ state, prospect, mode, saving, onPick, onClose }: {
       key={t.teamId} type="button" className={`chip${chosen === t.teamId ? ' on' : ''}`} disabled={saving}
       onClick={() => (mode === 'project' ? onPick(t.teamId) : setChosen(t.teamId))}
     >
-      {t.name}
+      <TeamMark team={t} season={state.season} size={18} silent />{t.name}
     </button>
   );
   return (
