@@ -6,7 +6,7 @@
 .paste { width: 100%; max-width: 480px; min-height: 90px; font: inherit; padding: var(--s2); border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); color: var(--text); }
 .shares { display: inline-flex; flex-wrap: wrap; gap: var(--s1); }
 .tag-x { margin-left: var(--s1); border: 0; background: none; color: var(--muted); cursor: pointer; font-weight: 700; padding: 0; }
-.picker { margin: var(--s2) 0; border-top: 3px solid var(--accent); }
+.picker { scroll-margin-top: var(--s4); margin: var(--s2) 0; border-top: 3px solid var(--accent); }
 .picker h4 { margin: var(--s2) 0 var(--s1); font-size: var(--fs-sm); color: var(--muted); }
 .picker-preview { margin-top: var(--s3); display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
 .card.filters { padding: var(--s2) var(--s3); }

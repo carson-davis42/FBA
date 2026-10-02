@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   addProjection, commit, commitPreview, decommit, projectionShares, removeProjection, uncommitted,
@@ -196,6 +196,13 @@ function SchoolPicker({ state, prospect, mode, saving, onPick, onClose }: {
 }) {
   const [query, setQuery] = useState('');
   const [chosen, setChosen] = useState<string | null>(null);
+  const box = useRef<HTMLDivElement>(null);
+  const search = useRef<HTMLInputElement>(null);
+  // Opening the picker takes the page to it (it sits above the tables), ready to type a school.
+  useEffect(() => {
+    box.current?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
+    search.current?.focus({ preventScroll: true });
+  }, [prospect.playerId, mode]);
   const who = collegeName(state.players, prospect.playerId);
   const needle = query.trim().toLowerCase();
   const projected = new Set(Object.keys(prospect.projections));
@@ -217,12 +224,12 @@ function SchoolPicker({ state, prospect, mode, saving, onPick, onClose }: {
     </button>
   );
   return (
-    <div className="card picker" role="dialog" aria-label={`${mode === 'project' ? 'Project' : 'Commit'} ${who}`}>
+    <div ref={box} className="card picker" role="dialog" aria-label={`${mode === 'project' ? 'Project' : 'Commit'} ${who}`}>
       <div className="toolbar">
         <h3>{mode === 'project' ? 'Add a projection' : 'Commit'} · <PlayerName id={prospect.playerId} name={who} /></h3>
         <button type="button" className="btn" onClick={onClose}>Close</button>
       </div>
-      <input className="college-search" aria-label="Search schools" placeholder="Search schools" value={query} onChange={e => setQuery(e.target.value)} />
+      <input ref={search} className="college-search" aria-label="Search schools" placeholder="Search schools" value={query} onChange={e => setQuery(e.target.value)} />
       {first.length > 0 && (
         <>
           <h4>Projected</h4>
