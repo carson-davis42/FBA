@@ -18,7 +18,7 @@ import '../pages/season.css';
 
 /** The slice of a college season the shared game views read (names, teams, colours). */
 export function viewState(s: JcState): SeasonState {
-  return { league: 'fbajc' as unknown as SeasonLeague, season: s.season, teams: s.teams, rosters: s.rosters, players: s.players } as unknown as SeasonState;
+  return { league: 'fbajc' as unknown as SeasonLeague, season: s.season, teams: s.teams, rosters: s.rosters, players: s.players, results: s.results } as unknown as SeasonState;
 }
 
 export interface GameInfo { result: GameResult; bracket: Bracket | null; game: BracketGame | null }

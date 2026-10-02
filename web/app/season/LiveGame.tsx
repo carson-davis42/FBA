@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { type Possession, type SimGame, winProbability } from '../../engine/season/sim';
 import { playerName, type SeasonState } from '../../engine/season/state';
+import { LEAGUE_LABEL } from '../../engine/shared/leagues';
 import { useSaving } from '../api';
 import { BoxTable, bugSide, LineScore, periodName, ScoreBug, teamLabel } from './GameViews';
 import '../pages/season.css';
@@ -91,9 +92,10 @@ export function LiveGame({ state, sim, save, back }: LiveGameProps) {
 
   return (
     <section className="stack">
+      <p className="page-kicker">{LEAGUE_LABEL[state.league] ?? state.league} · S{state.season}</p>
       <ScoreBug
-        away={bugSide(state, sim.away.teamId, last?.awayScore ?? 0)}
-        home={bugSide(state, sim.home.teamId, last?.homeScore ?? 0)}
+        away={bugSide(state, sim.away.teamId, last?.awayScore ?? 0, { full: true, record: true })}
+        home={bugSide(state, sim.home.teamId, last?.homeScore ?? 0, { full: true, record: true })}
         middle={done ? `Final${sim.ot ? ` (${sim.ot > 1 ? `${sim.ot}OT` : 'OT'})` : ''}` : `${periodName(last ? last.period : 1)} · ${end - shown} possessions left`}
       />
       <div className="card sim-controls">
