@@ -6,6 +6,7 @@ import type { PlayersFile } from '../../../engine/shared/types';
 import { useDoc, useHistory } from '../../api';
 import { Hero } from '../../components/Hero';
 import { TeamMark } from '../../components/TeamMark';
+import { teamTheme } from '../../components/teamColors';
 import { SkippedWarning } from '../PlayerLink';
 import '../history.css';
 import { HistoryLeagueSwitch } from '../d2/HistoryLeagueSwitch';
@@ -45,6 +46,7 @@ export function JcSchoolPage() {
       <Hero
         kicker={team.group ? groupLabel('fbajc', team.group) : 'College'}
         title={team.name}
+        theme={teamTheme(team, 'fbajc')}
         logo={<TeamMark team={team} season={lastSeason} size={72} />}
         stats={[
           { label: 'National titles', value: k.national.length },

@@ -126,7 +126,7 @@ export function TeamPage() {
         stats={stats}
       >
         {editable && <Link className="btn" to={`/trade/${league}?team=${teamId}`}>Trade…</Link>}
-        {lg === 'fba' && <Link className="btn" to={`/history/fba/teams/${teamId}`}>Franchise history</Link>}
+        {league === 'fba' && <Link className="btn" to={`/history/fba/teams/${teamId}`}>Franchise history</Link>}
         {league === 'fbajc' && <Link className="btn" to={`/history/fbajc/schools/${teamId}`}>School history</Link>}
         {league === 'fbad2' && <Link className="btn" to={`/history/fbad2/teams/${teamId}`}>Team history</Link>}
       </Hero>
