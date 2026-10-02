@@ -18,6 +18,8 @@ beforeEach(() => {
     'meta.json': { currentSeason: 79, rosterSeason: { fba: 79, fbad2: 79, fbajc: 78, fbawc: 78 }, lastSeason: { fba: 78, fbad2: 78, fbajc: 78, fbawc: 78 } },
     'leagues/fbajc/teams.json': { league: 'fbajc', teams: [{ teamId: 'DUKE', name: 'Duke', abbr: 'DUKE', group: 'ACC', logoFolder: null, badge }] },
     'leagues/fbajc/S78/rosters.json': { league: 'fbajc', season: 78, locked: true, teams: { DUKE: [] } },
+    'leagues/fbawc/teams.json': { league: 'fbawc', teams: [{ teamId: 'MEX', name: 'Mexico', abbr: 'MEX', group: null, logoFolder: null, badge }] },
+    'leagues/fbawc/S78/rosters.json': { league: 'fbawc', season: 78, locked: true, teams: { MEX: [] } },
     'leagues/fba/teams.json': { league: 'fba', teams: ['BOS', 'CAR', 'MON'].map(t => ({ teamId: t, name: `${t} Team`, abbr: t, group: 'E', logoFolder: null, badge })) },
   };
   for (const k of DOC_KEYS) d[docPath(k, 79)] = s[k];
@@ -50,6 +52,12 @@ describe('team page actions', () => {
     const link = await screen.findByRole('link', { name: 'School history' });
     expect(link.getAttribute('href')).toBe('/history/fbajc/schools/DUKE');
     expect(screen.queryByRole('link', { name: 'Franchise history' })).toBeNull();
+  });
+
+  it('links a national team page to the team history', async () => {
+    renderAt('/league/fbawc/team/MEX');
+    const link = await screen.findByRole('link', { name: 'Team history' });
+    expect(link.getAttribute('href')).toBe('/history/fbawc/teams/MEX');
   });
 
   it('shows payroll and contract tags', async () => {

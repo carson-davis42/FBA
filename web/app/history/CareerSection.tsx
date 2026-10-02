@@ -64,7 +64,7 @@ export function StintTeam({ stint, teams }: { stint: Stint; teams: StintTeams })
   }
   const country = stint.team.replace(/^WC\((.*)\)$/, '$1');
   const t = (teams.wc ?? []).find(x => x.name === country);
-  return t ? <TeamName team={t} season={season} size={18} to={`/history/fbawc/teams/${t.teamId}`} /> : <>{country}</>;
+  return t ? <TeamName team={t} season={season} size={18} to={`/league/fbawc/team/${t.teamId}`} /> : <>{country}</>;
 }
 
 export function CareerSection({ career, born, totals, teams }: { career: Career; born: string | null; totals: Record<AwardKey, number>; teams: StintTeams }) {

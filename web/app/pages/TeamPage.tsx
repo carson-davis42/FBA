@@ -129,6 +129,7 @@ export function TeamPage() {
         {league === 'fba' && <Link className="btn" to={`/history/fba/teams/${teamId}`}>Franchise history</Link>}
         {league === 'fbajc' && <Link className="btn" to={`/history/fbajc/schools/${teamId}`}>School history</Link>}
         {league === 'fbad2' && <Link className="btn" to={`/history/fbad2/teams/${teamId}`}>Team history</Link>}
+        {league === 'fbawc' && <Link className="btn" to={`/history/fbawc/teams/${teamId}`}>Team history</Link>}
       </Hero>
       {lg === 'fba' && editable && <PayrollBar total={payroll(entries, season)} />}
       {error && <p className="error">{error}</p>}
