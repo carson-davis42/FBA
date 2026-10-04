@@ -2,10 +2,10 @@ export type SeasonPhase = 'open' | 'd2-cycle' | 'fba-season' | 'post-deadline';
 export type LockedAction = 'sign' | 'release' | 'cut' | 'trade' | 'edit';
 
 export const LOCK_MESSAGES = {
-  faClosed: 'Free agency is closed: FBA rosters change only by trade (and Edit) until the season starts',
+  faClosed: 'Free agency is closed: FBA rosters change only by trade, Edit, and contract extensions until the season starts',
   d2: 'D2 rosters are locked from the close of free agency until the next offseason',
-  season: 'During the FBA season rosters change only by trade, until the trade deadline',
-  deadline: 'The trade deadline has passed: rosters are locked until the offseason',
+  season: 'During the FBA season only trades (until the deadline) and contract extensions are available',
+  deadline: 'The trade deadline has passed: roster moves are locked until the offseason; FBA contract extensions remain available',
 } as const;
 
 export function seasonPhase(input: { freeAgencyClosed: boolean; fbaGamesPlayed: number; deadlineDone: boolean }): SeasonPhase {

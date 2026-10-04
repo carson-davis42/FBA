@@ -9,6 +9,7 @@ import type { MetaFile, PlayersFile, ResultsFile, RosterEntry, RostersFile, Sche
 import { useDoc, useSaving } from '../api';
 import { useWcRosters } from '../wc/useWcRosters';
 import { EditDialog } from '../components/EditDialog';
+import { ExtendDialog } from '../components/ExtendDialog';
 import { PayrollBar } from '../components/PayrollBar';
 import { RosterTable } from '../components/RosterTable';
 import { teamRating } from '../components/rosterColumns';
@@ -44,6 +45,7 @@ export function TeamPage() {
   const { data: fbaTeams } = useDoc<TeamsFile>(editable ? 'leagues/fba/teams.json' : null);
   const [pending, setPending] = useState<{ playerId: string; kind: 'released' | 'cut' } | null>(null);
   const [editing, setEditing] = useState<string | null>(null);
+  const [extending, setExtending] = useState<string | null>(null);
   const [resigning, setResigning] = useState<string | null>(null);
   const [error, setError] = useState('');
   const [tab, setTab] = useState('roster');
@@ -90,8 +92,11 @@ export function TeamPage() {
     return (
       <span className="row-actions">
         {tags}
+        {lg === 'fba' && e.contractEnd != null && e.contractAmount != null && !isExpired(e, state.season) && (
+          <button className="btn" onClick={() => { setEditing(null); setResigning(null); setExtending(e.playerId); }}>Extend</button>
+        )}
         {lg === 'fba' && isExpired(e, state.season) && !state.freeAgents.locked && !lockProblem(phase, 'fba', 'sign') && (
-          <button className="btn" onClick={() => setResigning(e.playerId)}>Re-sign</button>
+          <button className="btn" onClick={() => { setExtending(null); setEditing(null); setResigning(e.playerId); }}>Re-sign</button>
         )}
         {!lockProblem(phase, lg, 'release') && (
           <>
@@ -99,7 +104,7 @@ export function TeamPage() {
             <button className="btn" onClick={() => setPending({ playerId: e.playerId!, kind: 'cut' })}>Cut</button>
           </>
         )}
-        {!lockProblem(phase, lg, 'edit') && <button className="btn" onClick={() => setEditing(e.playerId)}>Edit</button>}
+        {!lockProblem(phase, lg, 'edit') && <button className="btn" onClick={() => { setExtending(null); setEditing(e.playerId); }}>Edit</button>}
       </span>
     );
   };
@@ -134,6 +139,7 @@ export function TeamPage() {
       {lg === 'fba' && editable && <PayrollBar total={payroll(entries, season)} />}
       {error && <p className="error">{error}</p>}
       {editing && state && <EditDialog key={editing} state={state} league={lg} teamId={teamId} playerId={editing} onClose={() => setEditing(null)} versions={versions} phase={phase} />}
+      {extending && state && <ExtendDialog key={extending} state={state} teamId={teamId} playerId={extending} onClose={() => setExtending(null)} versions={versions} />}
       {resigning && state && fbaTeams && <SignPanel key={resigning} state={state} teams={fbaTeams} playerId={resigning} defaultTeam={teamId} onClose={() => setResigning(null)} versions={versions} phase={phase} />}
       {editable && phase && lockProblem(phase, lg, 'release') && <p className="muted">{lockProblem(phase, lg, 'release')}</p>}
       {sections.length > 1 && <SubNav label="Team sections" items={sections} active={shown} onSelect={setTab} />}
