@@ -38,6 +38,7 @@ describe('contract extensions', () => {
   it('does not apply new-signing or re-signing length limits to extensions', () => {
     const state = baseState();
     state.fba.teams.BOS[0].contractEnd = 83;
+    state.fba.teams.BOS[0].age = 26;
     expect(extendPlayer(state, { ...input, amount: 8 }, ctx).ok).toBe(true);
   });
 
@@ -76,5 +77,57 @@ describe('contract extensions', () => {
       state[key].locked = true;
       expect(extendPlayer(state, input, ctx)).toEqual({ ok: false, problems: ['This season is final (locked)'] });
     }
+  });
+
+  it.each([
+    { age: 30, contractEnd: 80, allowed: true },
+    { age: 31, contractEnd: 79, allowed: true },
+    { age: 31, contractEnd: 80, allowed: false },
+    { age: 32, contractEnd: 79, allowed: false },
+  ])('age $age, current contract through S$contractEnd: extension allowed=$allowed', ({ age, contractEnd, allowed }) => {
+    const state = baseState();
+    Object.assign(state.fba.teams.BOS[0], { age, contractEnd });
+    const snapshot = structuredClone(state);
+    const result = extendPlayer(state, input, ctx);
+    expect(result.ok).toBe(allowed);
+    expect(state).toEqual(snapshot);
+    if (!allowed && !result.ok) expect(result.problems).toContain(`Contract cannot extend past S${79 + 32 - age}, the player’s age-32 season`);
+  });
+
+  it('uses birth season over a conflicting edited roster age', () => {
+    const state = baseState();
+    state.players.players.p00001.birthSeason = 47; // Age 32 in S79.
+    state.fba.teams.BOS[0].age = 20;
+    expect(extendPlayer(state, input, ctx)).toEqual({ ok: false, problems: ['Contract cannot extend past S79, the player’s age-32 season'] });
+  });
+
+  it('cannot bypass retirement with repeated one-season extensions', () => {
+    const state = baseState();
+    Object.assign(state.fba.teams.BOS[0], { age: 30, contractEnd: 79 });
+    const first = extendPlayer(state, input, ctx);
+    if (!first.ok) throw new Error(first.problems.join('; '));
+    const second = extendPlayer(first.state, input, ctx);
+    if (!second.ok) throw new Error(second.problems.join('; '));
+    expect(second.state.fba.teams.BOS[0].contractEnd).toBe(81);
+    expect(extendPlayer(second.state, input, ctx)).toEqual({ ok: false, problems: ['Contract cannot extend past S81, the player’s age-32 season'] });
+  });
+
+  it('can check retirement from birth season when the roster age is missing', () => {
+    const state = baseState();
+    state.players.players.p00001.birthSeason = 49; // Age 32 in S81.
+    state.fba.teams.BOS[0].age = null;
+    expect(extendPlayer(state, input, ctx).ok).toBe(true);
+  });
+
+  it('blocks extensions when age and birth season are both unknown', () => {
+    const state = baseState();
+    state.fba.teams.BOS[0].age = null;
+    expect(extendPlayer(state, input, ctx)).toEqual({ ok: false, problems: ['Set the player’s age before extending his contract so the retirement limit can be checked'] });
+  });
+
+  it('cannot extend a player already marked retired', () => {
+    const state = baseState();
+    state.players.players.p00001.retired = { season: 78, league: 'fba', teamId: 'BOS', position: 'PG' };
+    expect(extendPlayer(state, input, ctx)).toEqual({ ok: false, problems: ['A retired player cannot be extended'] });
   });
 });

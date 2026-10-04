@@ -5,6 +5,8 @@ export const CAP = 25;
 export const MAX_AMOUNT = 8;
 export const MAX_YEARS_NEW = 4;
 export const MAX_YEARS_RESIGN = 5;
+/** Players retire after the season in which they play at this age. */
+export const RETIRE_AGE = 32;
 
 export type ContractKind = 'new' | 'resign' | 'rookie';
 

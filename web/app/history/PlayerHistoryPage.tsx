@@ -77,6 +77,15 @@ export function PlayerHistoryPage() {
   const drafted = draftLine(drafts.data ?? null, playerId, teams, franchises);
   const d2Honours = d2PlayerHonours(playerId, d2.seasons ?? [], d2Drafts.data ?? null, d2Teams.teams);
   const bio = bios.data?.bios.find(b => b.playerId === playerId) ?? null;
+  const bornText = bio?.born.trim().replace(/^Born-/, '') ?? '';
+  const bioBirth = /^S(-?\d+)$/.exec(bornText) ?? /^FFL S\d+\((-?\d+)\)$/.exec(bornText);
+  const birthSeason = player.birthSeason ?? (bioBirth ? Number(bioBirth[1]) : null);
+  const rosterEntry = [fbaRoster.data, d2Roster.data, jcRoster.data].flatMap(r =>
+    Object.values(r?.teams ?? {}).flat().filter(e => e.playerId === playerId && e.age !== null)
+      .map(e => ({ age: e.age!, season: r!.season })),
+  )[0];
+  const age = meta.data ? (birthSeason !== null ? meta.data.currentSeason - birthSeason
+    : rosterEntry ? rosterEntry.age + meta.data.currentSeason - rosterEntry.season : null) : null;
   const honours = playerHonours(seasons, playerId);
   const bySeason = new Map<number, string[]>();
   for (const h of honours) bySeason.set(h.season, [...(bySeason.get(h.season) ?? []), h.text]);
@@ -140,7 +149,7 @@ export function PlayerHistoryPage() {
       {drafted && <p className="muted"><DraftedLine text={drafted} teamId={draftTeamId(drafts.data ?? null, playerId)} teams={teams} /></p>}
       <SkippedWarning errors={errors} />
       {!bio && !hasCareer(career) && !hasAwards && honours.length === 0 && d2Honours.length === 0 && stats.rows.length === 0 && <p className="muted">No history recorded</p>}
-      <CareerSection career={career} born={bio ? bio.born : null} totals={totals} teams={{ fba: teams, d2: d2Teams.teams, college: jcTeams.teams, wc: wcTeams.data?.teams ?? [], franchises }} />
+      <CareerSection career={career} born={bio ? bio.born : null} age={age} totals={totals} teams={{ fba: teams, d2: d2Teams.teams, college: jcTeams.teams, wc: wcTeams.data?.teams ?? [], franchises }} />
       {honours.length > 0 && (
         <div>
           <h2>Honours</h2>

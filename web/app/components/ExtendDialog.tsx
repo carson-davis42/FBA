@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { extendPlayer } from '../../engine/roster/moves';
 import type { RosterState } from '../../engine/roster/state';
-import { MAX_AMOUNT, payroll } from '../../engine/roster/rules';
+import { MAX_AMOUNT, payroll, RETIRE_AGE } from '../../engine/roster/rules';
 import { useSaving, type Versions } from '../api';
 import { commitMove, newBatchId } from '../roster/commit';
 import { PlayerName } from './PlayerName';
@@ -34,6 +34,7 @@ export function ExtendDialog({ state, teamId, playerId, onClose, versions }: {
       <h3>Extend <PlayerName id={playerId} name={name} /></h3>
       <p>Add one season: S{entry.contractEnd} → S{end} ({years} seasons remaining, including S{state.season}).</p>
       <p className="muted">New pay takes effect immediately. Pay can decrease by up to $1; remaining seasons cannot exceed pay. The $8 maximum and $25 team cap apply.</p>
+      <p className="muted">The contract cannot go beyond the season the player plays at age {RETIRE_AGE}; he retires after that season.</p>
       <div className="form-row">
         <label>Amount ($) <input type="number" min={Math.max(1, entry.contractAmount - 1, years)} max={MAX_AMOUNT} step={1} value={amount} onChange={e => setAmount(e.target.value)} /></label>
       </div>

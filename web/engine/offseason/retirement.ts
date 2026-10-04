@@ -1,11 +1,11 @@
-import { normalizeRoster } from '../roster/rules';
+import { normalizeRoster, RETIRE_AGE } from '../roster/rules';
 import { appendTx, docPath, nameOf, withTeam, type DocKey, type MoveContext, type RosterState } from '../roster/state';
 import { calendarProblem, type WritesResult } from '../season/moves';
 import { markStepDone } from '../shared/calendar';
 import type { CalendarFile, Position, RostersFile } from '../shared/types';
 
 /** Players this age or older retire automatically. */
-export const RETIRE_AGE = 32;
+export { RETIRE_AGE } from '../roster/rules';
 export const RETIREMENT_STEP = 'retirement';
 
 export interface Retiree { playerId: string; name: string; league: 'fba' | 'fbad2'; teamId: string | null; position: Position; age: number | null }

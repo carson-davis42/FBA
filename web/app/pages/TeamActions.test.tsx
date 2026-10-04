@@ -162,6 +162,23 @@ describe('team page actions', () => {
     expect(posted).toBeNull();
   });
 
+  it('blocks saving an extension past the age-32 season and explains the retirement limit', async () => {
+    const rosters = baseState().fba;
+    Object.assign(rosters.teams.BOS[0], { age: 31, contractEnd: 80 });
+    docs['leagues/fba/S79/rosters.json'] = rosters;
+    renderAt('/league/fba/team/BOS');
+    const row = (await screen.findByText('Gabriel Greenwood')).closest('tr')!;
+    fireEvent.click(await within(row).findByRole('button', { name: 'Extend' }));
+    const dialog = screen.getByRole('region', { name: 'Extend Gabriel Greenwood' });
+    expect(within(dialog).getByText('Contract cannot extend past S80, the player’s age-32 season')).toBeTruthy();
+    const save = within(dialog).getByRole('button', { name: 'Extend contract' }) as HTMLButtonElement;
+    expect(save.disabled).toBe(true);
+    fireEvent.change(within(dialog).getByLabelText('Amount ($)'), { target: { value: '8' } });
+    expect(save.disabled).toBe(true);
+    fireEvent.click(save);
+    expect(posted).toBeNull();
+  });
+
   it('resets the edit dialog when switching players without cancelling', async () => {
     renderAt('/league/fba/team/BOS');
     const row1 = (await screen.findByText('Gabriel Greenwood')).closest('tr')!;

@@ -67,14 +67,15 @@ export function StintTeam({ stint, teams }: { stint: Stint; teams: StintTeams })
   return t ? <TeamName team={t} season={season} size={18} to={`/league/fbawc/team/${t.teamId}`} /> : <>{country}</>;
 }
 
-export function CareerSection({ career, born, totals, teams }: { career: Career; born: string | null; totals: Record<AwardKey, number>; teams: StintTeams }) {
+export function CareerSection({ career, born, age, totals, teams }: { career: Career; born: string | null; age?: number | null; totals: Record<AwardKey, number>; teams: StintTeams }) {
   const pro = career.stints;
   const chips = AWARD_KEYS.filter(k => totals[k] > 0);
   return (
     <>
-      {(born !== null || hasCareer(career)) && (
+      {(born !== null || age !== undefined || hasCareer(career)) && (
         <div>
           {born !== null && <p>Born: {born.replace(/^Born-/, '')}</p>}
+          {age !== undefined && <p>Age: {age ?? '—'}</p>}
           {hasCareer(career) && <h2>Career</h2>}
           {pro.length > 0 && (
             <div className="table-wrap">

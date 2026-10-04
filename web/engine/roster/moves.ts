@@ -1,7 +1,7 @@
 import type { FreeAgent, Position, RosterEntry } from '../shared/types';
 import { lockProblem } from '../season/locks';
 import {
-  CAP, capProblem, contractEndFor, contractProblems, isExpired, MAX_AMOUNT, MAX_YEARS_RESIGN, normalizeRoster, payroll, POSITIONS, slotProblems,
+  CAP, capProblem, contractEndFor, contractProblems, isExpired, MAX_AMOUNT, MAX_YEARS_RESIGN, normalizeRoster, payroll, POSITIONS, RETIRE_AGE, slotProblems,
   type ContractKind,
 } from './rules';
 import {
@@ -137,6 +137,15 @@ export function extendPlayer(state: RosterState, input: ExtendInput, ctx: MoveCo
   const end = before.contractEnd + 1;
   const years = end - state.season + 1;
   const problems: string[] = [];
+  const player = state.players.players[input.playerId];
+  const birth = player?.birthSeason;
+  const age = birth == null ? before.age : state.season - birth;
+  if (player?.retired) problems.push('A retired player cannot be extended');
+  else if (age == null) problems.push('Set the player’s age before extending his contract so the retirement limit can be checked');
+  else {
+    const lastSeason = state.season + RETIRE_AGE - age;
+    if (end > lastSeason) problems.push(`Contract cannot extend past S${lastSeason}, the player’s age-${RETIRE_AGE} season`);
+  }
   if (!Number.isInteger(input.amount) || input.amount < 1) problems.push('Amount must be a whole number of dollars, at least $1');
   else {
     if (input.amount > MAX_AMOUNT) problems.push(`Amount can't exceed $${MAX_AMOUNT}`);

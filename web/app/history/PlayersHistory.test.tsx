@@ -59,12 +59,13 @@ const s79: SummaryFile = {
   players: [line('SEA', 1, [50, 1000], [10, 300])],
 };
 
-function stub(opts: { bios?: PlayerBiosFile | null; seasons?: SummaryFile[]; counts?: AwardCountsFile; drafts?: DraftHistoryFile } = {}) {
+function stub(opts: { bios?: PlayerBiosFile | null; seasons?: SummaryFile[]; counts?: AwardCountsFile; drafts?: DraftHistoryFile; players?: PlayersFile; currentSeason?: number } = {}) {
   const b = 'bios' in opts ? opts.bios : bios;
   const seasons = opts.seasons ?? [s72, s71];
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
     if (url === '/api/history/fba') return new Response(JSON.stringify({ seasons, errors: [] }));
-    const docs: Record<string, unknown> = { '/api/state/players.json': players };
+    const docs: Record<string, unknown> = { '/api/state/players.json': opts.players ?? players };
+    if (opts.currentSeason !== undefined) docs['/api/state/meta.json'] = { currentSeason: opts.currentSeason, rosterSeason: { fba: opts.currentSeason, fbad2: opts.currentSeason, fbajc: opts.currentSeason, fbawc: opts.currentSeason } };
     if (b) docs['/api/state/leagues/fba/playerBios.json'] = b;
     if (opts.drafts) docs['/api/state/leagues/fba/draftHistory.json'] = opts.drafts;
     if (opts.counts) docs['/api/state/leagues/fba/awardCounts.json'] = opts.counts;
@@ -108,6 +109,24 @@ describe('PlayersHistoryPage', () => {
 });
 
 describe('PlayerHistoryPage', () => {
+  it('shows current age beside the birth information using the current season rather than the last played season', async () => {
+    stub({ currentSeason: 79 });
+    renderAt('/history/fba/players/p00001');
+    expect(await screen.findByText('Born: March 3, 2040')).toBeTruthy();
+    expect(screen.getByText('Age: 39')).toBeTruthy();
+  });
+
+  it.each([
+    ['Born-S60', 'Age: 19'],
+    ['Born-FFL S1(-53)', 'Age: 132'],
+    ['', 'Age: —'],
+  ])('handles biography birth information %s when the player has no recorded birth season', async (born, expected) => {
+    stub({ currentSeason: 79, players: { ...players, players: { ...players.players, p00001: { ...players.players.p00001, birthSeason: null } } },
+      bios: { league: 'fba', bios: [{ playerId: 'p00001', born, entries: [] }] } });
+    renderAt('/history/fba/players/p00001');
+    expect(await screen.findByText(expected)).toBeTruthy();
+  });
+
   it('shows the born line, honours in season order and an empty seasons table for pre-S79 lines', async () => {
     stub();
     renderAt('/history/fba/players/p00001');
