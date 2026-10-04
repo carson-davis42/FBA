@@ -38,7 +38,7 @@ const s78: SummaryFile = { league: 'fba', season: 78, locked: true, host: null, 
 
 function stub(extra: Record<string, unknown> = {}) {
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
-    if (url === '/api/history/fba') return new Response(JSON.stringify({ seasons: [s78], errors: [] }));
+    if (url === '/api/history/fba') return new Response(JSON.stringify(extra[url] ?? { seasons: [s78], errors: [] }));
     if (url === '/api/history/fbad2') return new Response(JSON.stringify({ seasons: [], errors: [] }));
     const docs: Record<string, unknown> = {
       '/api/state/players.json': players, '/api/state/leagues/fba/playerBios.json': bios, '/api/state/leagues/fba/teams.json': fbaTeams, '/api/state/leagues/fba/franchises.json': franchises,
@@ -59,6 +59,21 @@ const meta = { currentSeason: 79, rosterSeason: { fba: 79, fbad2: 79, fbajc: 78,
 const entry = (playerId: string) => ({ position: 'PG', playerId, age: 27, rating: 80, contractEnd: 81, contractAmount: 5 });
 
 describe('player page follows the live rosters', () => {
+  it.each([79, 80])('uses S%s logos for the banner and ongoing stint even when the latest stats are S78', async currentSeason => {
+    const c = await open('p00001', {
+      '/api/state/meta.json': { ...meta, currentSeason, rosterSeason: { ...meta.rosterSeason, fba: currentSeason } },
+      [`/api/state/leagues/fba/S${currentSeason}/rosters.json`]: { league: 'fba', season: currentSeason, locked: false, teams: { VEG: [entry('p00001')] } },
+      '/api/state/leagues/fba/teams.json': { ...fbaTeams, teams: fbaTeams.teams.map(t => ({ ...t, logoFolder: t.name })) },
+      '/api/history/fba': { seasons: [{ ...s78, legacyPpg: [{ playerId: 'p00001', teamId: 'VEG', ppg: 20 }] }], errors: [] },
+    });
+    expect(heroSrc(c)).toBe(`/logos/Las%20Vegas%20Aces/${currentSeason}`);
+    const careerTable = c.querySelector('table.stat-table')!;
+    const ongoing = within(careerTable as HTMLElement).getByRole('link', { name: /VEG$/ });
+    expect(ongoing.querySelector('img')!.getAttribute('src')).toBe(`/logos/Las%20Vegas%20Aces/${currentSeason}`);
+    const historical = within(careerTable as HTMLElement).getByRole('link', { name: /TOR$/ });
+    expect(historical.querySelector('img')!.getAttribute('src')).toBe('/logos/Toronto%20Wolves/75');
+  });
+
   it('shows the team he signed with in the offseason: a new open stint, the banner and the logo', async () => {
     const c = await open('p00001', {
       '/api/state/meta.json': meta,

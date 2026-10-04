@@ -39,8 +39,9 @@ export const findSchool = (teams: Team[], name: string): Team | undefined => {
 };
 
 /** A stint's team as a link to its history page (franchise, D2 team or school) with its logo; text when the team is unknown or has no page. */
-export function StintTeam({ stint, teams }: { stint: Stint; teams: StintTeams }) {
-  const season = typeof stint.from === 'number' ? stint.from : typeof stint.to === 'number' ? stint.to : 1;
+export function StintTeam({ stint, teams, currentSeason }: { stint: Stint; teams: StintTeams; currentSeason?: number }) {
+  const season = stint.to === 'pres' && currentSeason !== undefined ? currentSeason
+    : typeof stint.from === 'number' ? stint.from : typeof stint.to === 'number' ? stint.to : 1;
   if (stint.kind === 'fba') {
     return (
       <>
@@ -67,7 +68,7 @@ export function StintTeam({ stint, teams }: { stint: Stint; teams: StintTeams })
   return t ? <TeamName team={t} season={season} size={18} to={`/league/fbawc/team/${t.teamId}`} /> : <>{country}</>;
 }
 
-export function CareerSection({ career, born, age, totals, teams }: { career: Career; born: string | null; age?: number | null; totals: Record<AwardKey, number>; teams: StintTeams }) {
+export function CareerSection({ career, born, age, currentSeason, totals, teams }: { career: Career; born: string | null; age?: number | null; currentSeason?: number; totals: Record<AwardKey, number>; teams: StintTeams }) {
   const pro = career.stints;
   const chips = AWARD_KEYS.filter(k => totals[k] > 0);
   return (
@@ -85,7 +86,7 @@ export function CareerSection({ career, born, age, totals, teams }: { career: Ca
                   {pro.map((s, k) => (
                     <tr key={k}>
                       <td>{LEAGUE[s.kind]}</td>
-                      <td><StintTeam stint={s} teams={teams} /></td>
+                      <td><StintTeam stint={s} teams={teams} currentSeason={currentSeason} /></td>
                       <td>{s.range}</td>
                       <td>{honourTexts(s.honours).join(', ')}</td>
                     </tr>
@@ -103,7 +104,7 @@ export function CareerSection({ career, born, age, totals, teams }: { career: Ca
                   <tbody>
                     {career.nationalTeams.map((s, k) => (
                       <tr key={k}>
-                        <td><StintTeam stint={s} teams={teams} /></td>
+                        <td><StintTeam stint={s} teams={teams} currentSeason={currentSeason} /></td>
                         <td>{s.range}</td>
                         <td>{honourTexts(s.honours).join(', ')}</td>
                       </tr>

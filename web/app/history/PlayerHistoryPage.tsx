@@ -133,7 +133,7 @@ export function PlayerHistoryPage() {
         kicker={kicker}
         title={player.name}
         theme={emblem ? teamTheme(emblem, emblem === recentTeam ? 'fba' : 'fbajc') : undefined}
-        logo={emblem ? <TeamMark team={emblem} season={latestSeason || 79} size={72} /> : undefined}
+        logo={emblem ? <TeamMark team={emblem} season={meta.data?.currentSeason ?? (latestSeason || 79)} size={72} /> : undefined}
         stats={heroStats}
       >
         {(totals.MVP > 0 || allFba > 0 || totals.ALL_STAR > 0 || totals.CHAMPION > 0 || career.hof !== null) && (
@@ -149,7 +149,7 @@ export function PlayerHistoryPage() {
       {drafted && <p className="muted"><DraftedLine text={drafted} teamId={draftTeamId(drafts.data ?? null, playerId)} teams={teams} /></p>}
       <SkippedWarning errors={errors} />
       {!bio && !hasCareer(career) && !hasAwards && honours.length === 0 && d2Honours.length === 0 && stats.rows.length === 0 && <p className="muted">No history recorded</p>}
-      <CareerSection career={career} born={bio ? bio.born : null} age={age} totals={totals} teams={{ fba: teams, d2: d2Teams.teams, college: jcTeams.teams, wc: wcTeams.data?.teams ?? [], franchises }} />
+      <CareerSection career={career} born={bio ? bio.born : null} age={age} currentSeason={meta.data?.currentSeason} totals={totals} teams={{ fba: teams, d2: d2Teams.teams, college: jcTeams.teams, wc: wcTeams.data?.teams ?? [], franchises }} />
       {honours.length > 0 && (
         <div>
           <h2>Honours</h2>
