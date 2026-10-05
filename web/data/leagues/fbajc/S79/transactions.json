@@ -43,6 +43,796 @@
       "lines": [
         "Don Goldyn (4★ SG) commits to Wichita State"
       ]
+    },
+    {
+      "seq": 5,
+      "batchId": "bmuqmq1d93iwez",
+      "type": "class",
+      "teams": [],
+      "lines": [
+        "S80 class created: 30 recruits"
+      ]
+    },
+    {
+      "seq": 6,
+      "batchId": "bmuqmu8my11e37",
+      "type": "portal",
+      "teams": [
+        "UNC"
+      ],
+      "lines": [
+        "Jovan Mijic (Sr SF, 86) enters the transfer portal from North Carolina"
+      ]
+    },
+    {
+      "seq": 7,
+      "batchId": "bmuqmu8my11e37",
+      "type": "commit",
+      "teams": [
+        "UNC"
+      ],
+      "lines": [
+        "Kylan Whitemore (5★ SF) commits to North Carolina"
+      ]
+    },
+    {
+      "seq": 8,
+      "batchId": "bmuqmvwv36jppn",
+      "type": "portal",
+      "teams": [
+        "AF"
+      ],
+      "lines": [
+        "Andre Lafleur (Sr C, 82) enters the transfer portal from Air Force"
+      ]
+    },
+    {
+      "seq": 9,
+      "batchId": "bmuqmx14w05q0b",
+      "type": "portal",
+      "teams": [
+        "PITT"
+      ],
+      "lines": [
+        "Kadeem Hollingsworth (So SF, 88) enters the transfer portal from Pitt"
+      ]
+    },
+    {
+      "seq": 10,
+      "batchId": "bmuqmx14w05q0b",
+      "type": "portal",
+      "teams": [
+        "DAY"
+      ],
+      "lines": [
+        "Alonso Cabrera (Sr SF, 81) enters the transfer portal from Dayton"
+      ]
+    },
+    {
+      "seq": 11,
+      "batchId": "bmuqmx14w05q0b",
+      "type": "portal",
+      "teams": [
+        "LUC"
+      ],
+      "lines": [
+        "Kyrie Finch (Jr SF, 80) enters the transfer portal from Loyola-Chicago"
+      ]
+    },
+    {
+      "seq": 12,
+      "batchId": "bmuqmx14w05q0b",
+      "type": "portal",
+      "teams": [
+        "PITT"
+      ],
+      "lines": [
+        "Dmitri Kolesnikov (Sr C, 89) enters the transfer portal from Pitt"
+      ]
+    },
+    {
+      "seq": 13,
+      "batchId": "bmuqmxdbudcsiy",
+      "type": "portal",
+      "teams": [
+        "FAU"
+      ],
+      "lines": [
+        "Ryan Haskins (Sr SG, 84) enters the transfer portal from FAU"
+      ]
+    },
+    {
+      "seq": 14,
+      "batchId": "bmuqmxh8p4nmya",
+      "type": "portal",
+      "teams": [
+        "SMU"
+      ],
+      "lines": [
+        "Dede Baker (So PG, 84) enters the transfer portal from SMU"
+      ]
+    },
+    {
+      "seq": 15,
+      "batchId": "bmuqmz185ul8k2",
+      "type": "portal",
+      "teams": [
+        "DUKE"
+      ],
+      "lines": [
+        "Kofi Mensah (Jr SF, 88) enters the transfer portal from Duke"
+      ]
+    },
+    {
+      "seq": 16,
+      "batchId": "bmuqmz185ul8k2",
+      "type": "portal",
+      "teams": [
+        "LOU"
+      ],
+      "lines": [
+        "Emerson Tate (So PF, 82) enters the transfer portal from Louisville"
+      ]
+    },
+    {
+      "seq": 17,
+      "batchId": "bmuqmz185ul8k2",
+      "type": "portal",
+      "teams": [
+        "VATECH"
+      ],
+      "lines": [
+        "Cole Fenner (Jr PG, 80) enters the transfer portal from Virginia Tech"
+      ]
+    },
+    {
+      "seq": 18,
+      "batchId": "bmuqmz185ul8k2",
+      "type": "portal",
+      "teams": [
+        "WF"
+      ],
+      "lines": [
+        "Jean-Pierre Laurent (Jr SG, 80) enters the transfer portal from Wake Forest"
+      ]
+    },
+    {
+      "seq": 19,
+      "batchId": "bmuqn1lzs75v54",
+      "type": "portal",
+      "teams": [
+        "ILL"
+      ],
+      "lines": [
+        "Lars Jensen (Jr SF, 79) enters the transfer portal from Illinois"
+      ]
+    },
+    {
+      "seq": 20,
+      "batchId": "bmuqn1lzs75v54",
+      "type": "portal",
+      "teams": [
+        "IOWA"
+      ],
+      "lines": [
+        "Keenan Ellison (Sr C, 80) enters the transfer portal from Iowa"
+      ]
+    },
+    {
+      "seq": 21,
+      "batchId": "bmuqn2hdtqb7ae",
+      "type": "portal",
+      "teams": [
+        "OU"
+      ],
+      "lines": [
+        "Samuel Okoro (Sr PF, 86) enters the transfer portal from Oklahoma"
+      ]
+    },
+    {
+      "seq": 22,
+      "batchId": "bmuqn3aqwjg5nf",
+      "type": "portal",
+      "teams": [
+        "MTU"
+      ],
+      "lines": [
+        "Reed Sterling (Sr PF, 81) enters the transfer portal from Middle Tennessee"
+      ]
+    },
+    {
+      "seq": 23,
+      "batchId": "bmuqn3aqwjg5nf",
+      "type": "portal",
+      "teams": [
+        "WIN"
+      ],
+      "lines": [
+        "Devonte Phelps (Jr SG, 83) enters the transfer portal from Winthrop"
+      ]
+    },
+    {
+      "seq": 24,
+      "batchId": "bmuqn3f8zg2653",
+      "type": "portal",
+      "teams": [
+        "STB"
+      ],
+      "lines": [
+        "Rocco Shaw (Sr SF, 80) enters the transfer portal from St.Bonaventure"
+      ]
+    },
+    {
+      "seq": 25,
+      "batchId": "bmuqn3f8zg2653",
+      "type": "portal",
+      "teams": [
+        "STB"
+      ],
+      "lines": [
+        "Malakai Reed (Sr PF, 80) enters the transfer portal from St.Bonaventure"
+      ]
+    },
+    {
+      "seq": 26,
+      "batchId": "bmuqn3yp724l1o",
+      "type": "portal",
+      "teams": [
+        "CAL"
+      ],
+      "lines": [
+        "Damari Thorne (Sr SF, 82) enters the transfer portal from Cal"
+      ]
+    },
+    {
+      "seq": 27,
+      "batchId": "bmuqn3yp724l1o",
+      "type": "portal",
+      "teams": [
+        "PENN"
+      ],
+      "lines": [
+        "Kingsley Tate (Sr PF, 80) enters the transfer portal from Penn"
+      ]
+    },
+    {
+      "seq": 28,
+      "batchId": "bmuqn3yp724l1o",
+      "type": "portal",
+      "teams": [
+        "DART"
+      ],
+      "lines": [
+        "Keandre Vaughn (Jr SF, 83) enters the transfer portal from Dartmouth"
+      ]
+    },
+    {
+      "seq": 29,
+      "batchId": "bmuqn4hklqfe77",
+      "type": "portal",
+      "teams": [
+        "UNLV"
+      ],
+      "lines": [
+        "Hugo Brisson (Sr SG, 83) enters the transfer portal from UNLV"
+      ]
+    },
+    {
+      "seq": 30,
+      "batchId": "bmuqn4hklqfe77",
+      "type": "portal",
+      "teams": [
+        "USU"
+      ],
+      "lines": [
+        "Legend Moss (Sr PF, 80) enters the transfer portal from Utah State"
+      ]
+    },
+    {
+      "seq": 31,
+      "batchId": "bmuqn4oe0wivyc",
+      "type": "portal",
+      "teams": [
+        "DUQ"
+      ],
+      "lines": [
+        "Gideon Stone (Sr PF, 80) enters the transfer portal from Duquesne"
+      ]
+    },
+    {
+      "seq": 32,
+      "batchId": "bmuqn4oe0wivyc",
+      "type": "portal",
+      "teams": [
+        "UNCA"
+      ],
+      "lines": [
+        "Ridge Mercer (Sr PG, 80) enters the transfer portal from UNC Asheville"
+      ]
+    },
+    {
+      "seq": 33,
+      "batchId": "bmuqn4v15vp6un",
+      "type": "portal",
+      "teams": [
+        "GCU"
+      ],
+      "lines": [
+        "Zae Whitford (Sr PG, 80) enters the transfer portal from Grand Canyon"
+      ]
+    },
+    {
+      "seq": 34,
+      "batchId": "bmuqn4v15vp6un",
+      "type": "portal",
+      "teams": [
+        "TROY"
+      ],
+      "lines": [
+        "Brandon Cole (Sr C, 83) enters the transfer portal from Troy"
+      ]
+    },
+    {
+      "seq": 35,
+      "batchId": "bmuqn5wc34op79",
+      "type": "portal",
+      "teams": [
+        "UTAH"
+      ],
+      "lines": [
+        "Justin Creed (Sr C, 81) enters the transfer portal from Utah"
+      ]
+    },
+    {
+      "seq": 36,
+      "batchId": "bmuqn5wc34op79",
+      "type": "portal",
+      "teams": [
+        "WASH"
+      ],
+      "lines": [
+        "Malik Grimes (Jr PG, 84) enters the transfer portal from Washington"
+      ]
+    },
+    {
+      "seq": 37,
+      "batchId": "bmuqn5wc34op79",
+      "type": "portal",
+      "teams": [
+        "WSU"
+      ],
+      "lines": [
+        "Nikos Argyros (Sr SF, 81) enters the transfer portal from Washington State"
+      ]
+    },
+    {
+      "seq": 38,
+      "batchId": "bmuqn62l3sq1gv",
+      "type": "portal",
+      "teams": [
+        "LEH"
+      ],
+      "lines": [
+        "Tatum Carradine (Sr PG, 83) enters the transfer portal from Lehigh"
+      ]
+    },
+    {
+      "seq": 39,
+      "batchId": "bmuqn62l3sq1gv",
+      "type": "portal",
+      "teams": [
+        "FOLK"
+      ],
+      "lines": [
+        "Luc Moreau (Jr C, 79) enters the transfer portal from Norfolk State"
+      ]
+    },
+    {
+      "seq": 40,
+      "batchId": "bmuqn76tp18hkv",
+      "type": "portal",
+      "teams": [
+        "LSU"
+      ],
+      "lines": [
+        "Tyquan Ellis (So SF, 76) enters the transfer portal from LSU"
+      ]
+    },
+    {
+      "seq": 41,
+      "batchId": "bmuqn76tp18hkv",
+      "type": "portal",
+      "teams": [
+        "MIZZ"
+      ],
+      "lines": [
+        "Lance Durbin (Sr SF, 88) enters the transfer portal from Missouri"
+      ]
+    },
+    {
+      "seq": 42,
+      "batchId": "bmuqn7fli69guw",
+      "type": "portal",
+      "teams": [
+        "HPU"
+      ],
+      "lines": [
+        "Mitch Callahan (Sr SF, 81) enters the transfer portal from High Point"
+      ]
+    },
+    {
+      "seq": 43,
+      "batchId": "bmuqn7fli69guw",
+      "type": "portal",
+      "teams": [
+        "KENN"
+      ],
+      "lines": [
+        "Gage Bishop (Sr PF, 80) enters the transfer portal from Kennesaw State"
+      ]
+    },
+    {
+      "seq": 44,
+      "batchId": "bmuqn7jk1cmopj",
+      "type": "portal",
+      "teams": [
+        "SFA"
+      ],
+      "lines": [
+        "Alden Webb (Sr PG, 83) enters the transfer portal from Stephen F Austin"
+      ]
+    },
+    {
+      "seq": 45,
+      "batchId": "bmuqn7nyjpj970",
+      "type": "portal",
+      "teams": [
+        "GAST"
+      ],
+      "lines": [
+        "Axl Graves (Sr SG, 82) enters the transfer portal from Georgia State"
+      ]
+    },
+    {
+      "seq": 46,
+      "batchId": "bmuqn7nyjpj970",
+      "type": "portal",
+      "teams": [
+        "USF"
+      ],
+      "lines": [
+        "Zander Quinn (Sr PG, 81) enters the transfer portal from South Florida"
+      ]
+    },
+    {
+      "seq": 47,
+      "batchId": "bmuqn8ynvedwx3",
+      "type": "portal",
+      "teams": [
+        "ARIZ"
+      ],
+      "lines": [
+        "Kwame Mensah (Sr PG, 86) enters the transfer portal from Arizona"
+      ]
+    },
+    {
+      "seq": 48,
+      "batchId": "bmuqn8ynvedwx3",
+      "type": "commit",
+      "teams": [
+        "ARIZ"
+      ],
+      "lines": [
+        "Zain Moxy (5★ PG) commits to Arizona"
+      ]
+    },
+    {
+      "seq": 49,
+      "batchId": "bmuqn9nf3e9p0u",
+      "type": "commit",
+      "teams": [
+        "VIL"
+      ],
+      "lines": [
+        "Rylee Werner (5★ SG) commits to Villanova"
+      ]
+    },
+    {
+      "seq": 50,
+      "batchId": "bmuqncnx0zrpbo",
+      "type": "commit",
+      "teams": [
+        "UM"
+      ],
+      "lines": [
+        "Julius Snow (5★ PG) commits to Michigan"
+      ]
+    },
+    {
+      "seq": 51,
+      "batchId": "bmuqne22fdcxea",
+      "type": "portal",
+      "teams": [
+        "TENN"
+      ],
+      "lines": [
+        "Viktor Kovalenko (Sr SG, 85) enters the transfer portal from Tennessee"
+      ]
+    },
+    {
+      "seq": 52,
+      "batchId": "bmuqne22fdcxea",
+      "type": "commit",
+      "teams": [
+        "TENN"
+      ],
+      "lines": [
+        "Moussa Faye (5★ SG) commits to Tennessee"
+      ]
+    },
+    {
+      "seq": 53,
+      "batchId": "bmuqnh2qywqjk4",
+      "type": "commit",
+      "teams": [
+        "UCLA"
+      ],
+      "lines": [
+        "Zyon Merrick (5★ C) commits to UCLA"
+      ]
+    },
+    {
+      "seq": 54,
+      "batchId": "bmuqnhcygbgcja",
+      "type": "portal",
+      "teams": [
+        "ARIZ"
+      ],
+      "lines": [
+        "Bronn Smith (So SF, 82) enters the transfer portal from Arizona"
+      ]
+    },
+    {
+      "seq": 55,
+      "batchId": "bmuqnhcygbgcja",
+      "type": "commit",
+      "teams": [
+        "ARIZ"
+      ],
+      "lines": [
+        "Aziel Vandenberg (5★ SF) commits to Arizona"
+      ]
+    },
+    {
+      "seq": 56,
+      "batchId": "bmuqnis8k9i8kr",
+      "type": "commit",
+      "teams": [
+        "KU"
+      ],
+      "lines": [
+        "Jonas Lindholm (5★ PG) commits to Kansas"
+      ]
+    },
+    {
+      "seq": 57,
+      "batchId": "bmuqnl4ed7wc92",
+      "type": "commit",
+      "teams": [
+        "UCON"
+      ],
+      "lines": [
+        "Kenzo Mori (5★ PF) commits to UConn"
+      ]
+    },
+    {
+      "seq": 58,
+      "batchId": "bmuqnofauoskys",
+      "type": "commit",
+      "teams": [
+        "ORE"
+      ],
+      "lines": [
+        "Isaiah Montclair (So SF, transfer from Gonzaga) commits to Oregon"
+      ]
+    },
+    {
+      "seq": 59,
+      "batchId": "bmur7owmk0zdcb",
+      "type": "commit",
+      "teams": [
+        "BAY"
+      ],
+      "lines": [
+        "Grant Blevins (4★ PF) commits to Baylor"
+      ]
+    },
+    {
+      "seq": 60,
+      "batchId": "bmurw8tabiphyo",
+      "type": "commit",
+      "teams": [
+        "ND"
+      ],
+      "lines": [
+        "Jamar Hollowell (4★ SG) commits to Notre Dame"
+      ]
+    },
+    {
+      "seq": 61,
+      "batchId": "bmurwb5agwic7q",
+      "type": "commit",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Bryson Hollowbrook (4★ PG) commits to Florida"
+      ]
+    },
+    {
+      "seq": 62,
+      "batchId": "bmurwdpm0e8si1",
+      "type": "commit",
+      "teams": [
+        "SDSU"
+      ],
+      "lines": [
+        "Kofi Mensah (Jr SF, transfer from Duke) commits to San Diego State"
+      ]
+    },
+    {
+      "seq": 63,
+      "batchId": "bmurweuup3n0af",
+      "type": "commit",
+      "teams": [
+        "UT"
+      ],
+      "lines": [
+        "Samuel Okoro (Sr PF, transfer from Oklahoma) commits to Texas"
+      ]
+    },
+    {
+      "seq": 64,
+      "batchId": "bmurwgjlzpkl56",
+      "type": "portal",
+      "teams": [
+        "WF"
+      ],
+      "lines": [
+        "Jovani Reyes (Sr SF, 81) enters the transfer portal from Wake Forest"
+      ]
+    },
+    {
+      "seq": 65,
+      "batchId": "bmurwgjlzpkl56",
+      "type": "commit",
+      "teams": [
+        "WF"
+      ],
+      "lines": [
+        "Jovan Mijic (Sr SF, transfer from North Carolina) commits to Wake Forest"
+      ]
+    },
+    {
+      "seq": 66,
+      "batchId": "bmurwhesj16y2u",
+      "type": "commit",
+      "teams": [
+        "UH"
+      ],
+      "lines": [
+        "Kylor Ashbourne (5★ PF) commits to Houston"
+      ]
+    },
+    {
+      "seq": 67,
+      "batchId": "bmurwjhzo65g08",
+      "type": "commit",
+      "teams": [
+        "LSU"
+      ],
+      "lines": [
+        "Mateo Quintero (4★ SF) commits to LSU"
+      ]
+    },
+    {
+      "seq": 68,
+      "batchId": "bmurwl0ifbcrg9",
+      "type": "portal",
+      "teams": [
+        "DUKE"
+      ],
+      "lines": [
+        "Luka Petrenko (Sr C, 85) enters the transfer portal from Duke"
+      ]
+    },
+    {
+      "seq": 69,
+      "batchId": "bmurwl0ifbcrg9",
+      "type": "commit",
+      "teams": [
+        "DUKE"
+      ],
+      "lines": [
+        "Kwesi Badu (5★ C) commits to Duke"
+      ]
+    },
+    {
+      "seq": 70,
+      "batchId": "bmurwmhgormiqo",
+      "type": "commit",
+      "teams": [
+        "ARK"
+      ],
+      "lines": [
+        "Jayce Drexel (4★ SG) commits to Arkansas"
+      ]
+    },
+    {
+      "seq": 71,
+      "batchId": "bmurwmujn8yly3",
+      "type": "commit",
+      "teams": [
+        "PITT"
+      ],
+      "lines": [
+        "Archie Foster Jr (4★ PG) commits to Pitt"
+      ]
+    },
+    {
+      "seq": 72,
+      "batchId": "bmurwo8gb479a5",
+      "type": "portal",
+      "teams": [
+        "PITT"
+      ],
+      "lines": [
+        "Dmitri Kolesnikov leaves the transfer portal and stays at Pitt"
+      ]
+    },
+    {
+      "seq": 73,
+      "batchId": "bmurwpps6woneh",
+      "type": "commit",
+      "teams": [
+        "UCON"
+      ],
+      "lines": [
+        "Kwame Mensah (Sr PG, transfer from Arizona) commits to UConn"
+      ]
+    },
+    {
+      "seq": 74,
+      "batchId": "bmurwq6p5u176d",
+      "type": "commit",
+      "teams": [
+        "KU"
+      ],
+      "lines": [
+        "Lance Durbin (Sr SF, transfer from Missouri) commits to Kansas"
+      ]
+    },
+    {
+      "seq": 75,
+      "batchId": "bmurwsy0io21ap",
+      "type": "commit",
+      "teams": [
+        "CTN"
+      ],
+      "lines": [
+        "Ron Jerrick (4★ C) commits to Creighton"
+      ]
+    },
+    {
+      "seq": 76,
+      "batchId": "bmurwtlpukfmjd",
+      "type": "portal",
+      "teams": [
+        "PITT"
+      ],
+      "lines": [
+        "Kadeem Hollingsworth leaves the transfer portal and stays at Pitt"
+      ]
     }
   ]
 }

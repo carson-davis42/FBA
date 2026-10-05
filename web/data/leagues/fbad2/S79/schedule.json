@@ -1,0 +1,4808 @@
+{
+  "league": "fbad2",
+  "season": 79,
+  "locked": true,
+  "games": [
+    {
+      "gameNo": 1,
+      "home": "BEL",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 2,
+      "home": "AUS",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 3,
+      "home": "EDM",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 4,
+      "home": "GLAS",
+      "away": "IST"
+    },
+    {
+      "gameNo": 5,
+      "home": "OSA",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 6,
+      "home": "ACK",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 7,
+      "home": "OMA",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 8,
+      "home": "LIS",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 9,
+      "home": "BA",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 10,
+      "home": "ROT",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 11,
+      "home": "RIO",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 12,
+      "home": "DUB",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 13,
+      "home": "GUAD",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 14,
+      "home": "REC",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 15,
+      "home": "MIA",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 16,
+      "home": "DBA",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 17,
+      "home": "IST",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 18,
+      "home": "DHA",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 19,
+      "home": "LIS",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 20,
+      "home": "VIE",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 21,
+      "home": "LYON",
+      "away": "STP"
+    },
+    {
+      "gameNo": 22,
+      "home": "EDM",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 23,
+      "home": "DBA",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 24,
+      "home": "FLO",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 25,
+      "home": "LAG",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 26,
+      "home": "CAI",
+      "away": "STO"
+    },
+    {
+      "gameNo": 27,
+      "home": "MUN",
+      "away": "SP"
+    },
+    {
+      "gameNo": 28,
+      "home": "BUD",
+      "away": "MC"
+    },
+    {
+      "gameNo": 29,
+      "home": "DHA",
+      "away": "COP"
+    },
+    {
+      "gameNo": 30,
+      "home": "JOH",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 31,
+      "home": "BER",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 32,
+      "home": "MUM",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 33,
+      "home": "TOK",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 34,
+      "home": "FRAN",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 35,
+      "home": "PAR",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 36,
+      "home": "OMA",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 37,
+      "home": "REC",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 38,
+      "home": "LIV",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 39,
+      "home": "SHAN",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 40,
+      "home": "BEI",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 41,
+      "home": "MC",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 42,
+      "home": "LON",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 43,
+      "home": "WAR",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 44,
+      "home": "SP",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 45,
+      "home": "TAM",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 46,
+      "home": "LIV",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 47,
+      "home": "BEI",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 48,
+      "home": "AMS",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 49,
+      "home": "OSL",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 50,
+      "home": "MUM",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 51,
+      "home": "STO",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 52,
+      "home": "TOK",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 53,
+      "home": "RIO",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 54,
+      "home": "BER",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 55,
+      "home": "CAI",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 56,
+      "home": "DUB",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 57,
+      "home": "LAG",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 58,
+      "home": "MOS",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 59,
+      "home": "ZUR",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 60,
+      "home": "LIS",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 61,
+      "home": "FLO",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 62,
+      "home": "BUD",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 63,
+      "home": "BA",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 64,
+      "home": "LON",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 65,
+      "home": "MAN",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 66,
+      "home": "KIEV",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 67,
+      "home": "OTT",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 68,
+      "home": "MAN",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 69,
+      "home": "MC",
+      "away": "STP"
+    },
+    {
+      "gameNo": 70,
+      "home": "LUX",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 71,
+      "home": "NAP",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 72,
+      "home": "SJ",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 73,
+      "home": "CAS",
+      "away": "COP"
+    },
+    {
+      "gameNo": 74,
+      "home": "MAD",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 75,
+      "home": "STP",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 76,
+      "home": "SALZ",
+      "away": "LON"
+    },
+    {
+      "gameNo": 77,
+      "home": "ROT",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 78,
+      "home": "STP",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 79,
+      "home": "SYD",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 80,
+      "home": "FRAN",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 81,
+      "home": "DUB",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 82,
+      "home": "MIL",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 83,
+      "home": "BRUS",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 84,
+      "home": "ZUR",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 85,
+      "home": "GLAS",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 86,
+      "home": "REC",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 87,
+      "home": "MIA",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 88,
+      "home": "STP",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 89,
+      "home": "DHA",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 90,
+      "home": "BARC",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 91,
+      "home": "ACK",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 92,
+      "home": "SALZ",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 93,
+      "home": "KIEV",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 94,
+      "home": "SP",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 95,
+      "home": "LUX",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 96,
+      "home": "AMS",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 97,
+      "home": "BA",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 98,
+      "home": "PAR",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 99,
+      "home": "COP",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 100,
+      "home": "LIS",
+      "away": "BER"
+    },
+    {
+      "gameNo": 101,
+      "home": "LIV",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 102,
+      "home": "ROT",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 103,
+      "home": "EDM",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 104,
+      "home": "BEI",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 105,
+      "home": "ATH",
+      "away": "STO"
+    },
+    {
+      "gameNo": 106,
+      "home": "IST",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 107,
+      "home": "LAG",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 108,
+      "home": "MUN",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 109,
+      "home": "BER",
+      "away": "LON"
+    },
+    {
+      "gameNo": 110,
+      "home": "MIL",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 111,
+      "home": "EDI",
+      "away": "STO"
+    },
+    {
+      "gameNo": 112,
+      "home": "EDM",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 113,
+      "home": "LYON",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 114,
+      "home": "OSL",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 115,
+      "home": "BEI",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 116,
+      "home": "ACK",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 117,
+      "home": "OSL",
+      "away": "IST"
+    },
+    {
+      "gameNo": 118,
+      "home": "ROT",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 119,
+      "home": "COP",
+      "away": "SP"
+    },
+    {
+      "gameNo": 120,
+      "home": "REC",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 121,
+      "home": "MIA",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 122,
+      "home": "SHAN",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 123,
+      "home": "EDM",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 124,
+      "home": "BARC",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 125,
+      "home": "SHAN",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 126,
+      "home": "SJ",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 127,
+      "home": "TOK",
+      "away": "MC"
+    },
+    {
+      "gameNo": 128,
+      "home": "MOS",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 129,
+      "home": "PAR",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 130,
+      "home": "DBA",
+      "away": "REC"
+    },
+    {
+      "gameNo": 131,
+      "home": "MUN",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 132,
+      "home": "OMA",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 133,
+      "home": "OSA",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 134,
+      "home": "GLAS",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 135,
+      "home": "FRAN",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 136,
+      "home": "MIL",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 137,
+      "home": "GLAS",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 138,
+      "home": "RIO",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 139,
+      "home": "CAI",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 140,
+      "home": "SALZ",
+      "away": "BA"
+    },
+    {
+      "gameNo": 141,
+      "home": "ZAG",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 142,
+      "home": "DHA",
+      "away": "SP"
+    },
+    {
+      "gameNo": 143,
+      "home": "AUS",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 144,
+      "home": "ATH",
+      "away": "IST"
+    },
+    {
+      "gameNo": 145,
+      "home": "IST",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 146,
+      "home": "LYON",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 147,
+      "home": "STO",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 148,
+      "home": "BRUS",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 149,
+      "home": "LIV",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 150,
+      "home": "OSA",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 151,
+      "home": "KIEV",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 152,
+      "home": "MOS",
+      "away": "MC"
+    },
+    {
+      "gameNo": 153,
+      "home": "SALZ",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 154,
+      "home": "SHAN",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 155,
+      "home": "LIS",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 156,
+      "home": "IST",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 157,
+      "home": "LUX",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 158,
+      "home": "BEL",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 159,
+      "home": "RIO",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 160,
+      "home": "MIA",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 161,
+      "home": "VIE",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 162,
+      "home": "BA",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 163,
+      "home": "SALZ",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 164,
+      "home": "CAS",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 165,
+      "home": "DUB",
+      "away": "COP"
+    },
+    {
+      "gameNo": 166,
+      "home": "OSL",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 167,
+      "home": "MIL",
+      "away": "BER"
+    },
+    {
+      "gameNo": 168,
+      "home": "LON",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 169,
+      "home": "ZUR",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 170,
+      "home": "DBA",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 171,
+      "home": "HAM",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 172,
+      "home": "GUAD",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 173,
+      "home": "ACK",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 174,
+      "home": "BEI",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 175,
+      "home": "ROT",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 176,
+      "home": "OSA",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 177,
+      "home": "BA",
+      "away": "BER"
+    },
+    {
+      "gameNo": 178,
+      "home": "LIV",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 179,
+      "home": "EDI",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 180,
+      "home": "BUD",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 181,
+      "home": "ZUR",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 182,
+      "home": "WAR",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 183,
+      "home": "OSL",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 184,
+      "home": "SYD",
+      "away": "MC"
+    },
+    {
+      "gameNo": 185,
+      "home": "SP",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 186,
+      "home": "DBA",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 187,
+      "home": "MIA",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 188,
+      "home": "FRAN",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 189,
+      "home": "MUM",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 190,
+      "home": "BEI",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 191,
+      "home": "COP",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 192,
+      "home": "LYON",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 193,
+      "home": "PAR",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 194,
+      "home": "HAM",
+      "away": "LON"
+    },
+    {
+      "gameNo": 195,
+      "home": "EDI",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 196,
+      "home": "SJ",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 197,
+      "home": "MIL",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 198,
+      "home": "FLO",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 199,
+      "home": "FRAN",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 200,
+      "home": "AMS",
+      "away": "REC"
+    },
+    {
+      "gameNo": 201,
+      "home": "OTT",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 202,
+      "home": "STP",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 203,
+      "home": "LIV",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 204,
+      "home": "SP",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 205,
+      "home": "OSL",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 206,
+      "home": "LAG",
+      "away": "STO"
+    },
+    {
+      "gameNo": 207,
+      "home": "BARC",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 208,
+      "home": "ZAG",
+      "away": "STP"
+    },
+    {
+      "gameNo": 209,
+      "home": "AUS",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 210,
+      "home": "SYD",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 211,
+      "home": "SALZ",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 212,
+      "home": "ROME",
+      "away": "BA"
+    },
+    {
+      "gameNo": 213,
+      "home": "DHA",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 214,
+      "home": "MC",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 215,
+      "home": "SP",
+      "away": "COP"
+    },
+    {
+      "gameNo": 216,
+      "home": "REC",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 217,
+      "home": "LYON",
+      "away": "COP"
+    },
+    {
+      "gameNo": 218,
+      "home": "MUM",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 219,
+      "home": "MOS",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 220,
+      "home": "JOH",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 221,
+      "home": "GLAS",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 222,
+      "home": "LON",
+      "away": "BER"
+    },
+    {
+      "gameNo": 223,
+      "home": "PAR",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 224,
+      "home": "KIEV",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 225,
+      "home": "DUB",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 226,
+      "home": "TAM",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 227,
+      "home": "ACK",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 228,
+      "home": "ROME",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 229,
+      "home": "FLO",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 230,
+      "home": "FLO",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 231,
+      "home": "AMS",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 232,
+      "home": "SHAN",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 233,
+      "home": "OMA",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 234,
+      "home": "MIA",
+      "away": "BA"
+    },
+    {
+      "gameNo": 235,
+      "home": "ACK",
+      "away": "STO"
+    },
+    {
+      "gameNo": 236,
+      "home": "MC",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 237,
+      "home": "GUAD",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 238,
+      "home": "CAS",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 239,
+      "home": "FRAN",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 240,
+      "home": "BARC",
+      "away": "REC"
+    },
+    {
+      "gameNo": 241,
+      "home": "PAR",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 242,
+      "home": "LON",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 243,
+      "home": "OTT",
+      "away": "BER"
+    },
+    {
+      "gameNo": 244,
+      "home": "VIE",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 245,
+      "home": "MAD",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 246,
+      "home": "GLAS",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 247,
+      "home": "NAP",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 248,
+      "home": "OSA",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 249,
+      "home": "BUD",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 250,
+      "home": "NAP",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 251,
+      "home": "WAR",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 252,
+      "home": "KIEV",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 253,
+      "home": "LAG",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 254,
+      "home": "OTT",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 255,
+      "home": "SP",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 256,
+      "home": "BUD",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 257,
+      "home": "DBA",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 258,
+      "home": "JOH",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 259,
+      "home": "MUM",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 260,
+      "home": "STP",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 261,
+      "home": "ATH",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 262,
+      "home": "CAI",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 263,
+      "home": "ZUR",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 264,
+      "home": "TAM",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 265,
+      "home": "OMA",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 266,
+      "home": "BARC",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 267,
+      "home": "IST",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 268,
+      "home": "SALZ",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 269,
+      "home": "BEL",
+      "away": "REC"
+    },
+    {
+      "gameNo": 270,
+      "home": "DUB",
+      "away": "MC"
+    },
+    {
+      "gameNo": 271,
+      "home": "GUAD",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 272,
+      "home": "LYON",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 273,
+      "home": "MIL",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 274,
+      "home": "MOS",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 275,
+      "home": "STO",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 276,
+      "home": "BARC",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 277,
+      "home": "ZAG",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 278,
+      "home": "BEL",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 279,
+      "home": "GUAD",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 280,
+      "home": "MC",
+      "away": "COP"
+    },
+    {
+      "gameNo": 281,
+      "home": "BER",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 282,
+      "home": "MAD",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 283,
+      "home": "CAI",
+      "away": "IST"
+    },
+    {
+      "gameNo": 284,
+      "home": "LUX",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 285,
+      "home": "MIL",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 286,
+      "home": "BA",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 287,
+      "home": "HAM",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 288,
+      "home": "OSA",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 289,
+      "home": "EDM",
+      "away": "BA"
+    },
+    {
+      "gameNo": 290,
+      "home": "DHA",
+      "away": "STP"
+    },
+    {
+      "gameNo": 291,
+      "home": "EDI",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 292,
+      "home": "LYON",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 293,
+      "home": "JOH",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 294,
+      "home": "COP",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 295,
+      "home": "REC",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 296,
+      "home": "TAM",
+      "away": "STO"
+    },
+    {
+      "gameNo": 297,
+      "home": "SJ",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 298,
+      "home": "MAN",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 299,
+      "home": "VIE",
+      "away": "STP"
+    },
+    {
+      "gameNo": 300,
+      "home": "LON",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 301,
+      "home": "KIEV",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 302,
+      "home": "WAR",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 303,
+      "home": "CAS",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 304,
+      "home": "EDI",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 305,
+      "home": "DUB",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 306,
+      "home": "MIL",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 307,
+      "home": "RIO",
+      "away": "IST"
+    },
+    {
+      "gameNo": 308,
+      "home": "LUX",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 309,
+      "home": "FLO",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 310,
+      "home": "SP",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 311,
+      "home": "STP",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 312,
+      "home": "ZAG",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 313,
+      "home": "MUN",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 314,
+      "home": "SYD",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 315,
+      "home": "TAM",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 316,
+      "home": "BER",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 317,
+      "home": "MIA",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 318,
+      "home": "PAR",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 319,
+      "home": "BEL",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 320,
+      "home": "LAG",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 321,
+      "home": "DBA",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 322,
+      "home": "DUB",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 323,
+      "home": "SJ",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 324,
+      "home": "BEI",
+      "away": "REC"
+    },
+    {
+      "gameNo": 325,
+      "home": "LUX",
+      "away": "STO"
+    },
+    {
+      "gameNo": 326,
+      "home": "OMA",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 327,
+      "home": "MAN",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 328,
+      "home": "EDI",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 329,
+      "home": "GUAD",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 330,
+      "home": "AUS",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 331,
+      "home": "LON",
+      "away": "BA"
+    },
+    {
+      "gameNo": 332,
+      "home": "DBA",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 333,
+      "home": "ZAG",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 334,
+      "home": "MAD",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 335,
+      "home": "BER",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 336,
+      "home": "HAM",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 337,
+      "home": "VIE",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 338,
+      "home": "SYD",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 339,
+      "home": "MAN",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 340,
+      "home": "WAR",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 341,
+      "home": "GUAD",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 342,
+      "home": "TAM",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 343,
+      "home": "MC",
+      "away": "SP"
+    },
+    {
+      "gameNo": 344,
+      "home": "MUN",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 345,
+      "home": "FLO",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 346,
+      "home": "ACK",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 347,
+      "home": "LIV",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 348,
+      "home": "JOH",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 349,
+      "home": "BEL",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 350,
+      "home": "NAP",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 351,
+      "home": "BUD",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 352,
+      "home": "ATH",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 353,
+      "home": "BEI",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 354,
+      "home": "SHAN",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 355,
+      "home": "OMA",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 356,
+      "home": "GUAD",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 357,
+      "home": "BEI",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 358,
+      "home": "STO",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 359,
+      "home": "LIS",
+      "away": "BA"
+    },
+    {
+      "gameNo": 360,
+      "home": "MAD",
+      "away": "LON"
+    },
+    {
+      "gameNo": 361,
+      "home": "TAM",
+      "away": "IST"
+    },
+    {
+      "gameNo": 362,
+      "home": "VIE",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 363,
+      "home": "MUN",
+      "away": "COP"
+    },
+    {
+      "gameNo": 364,
+      "home": "TOK",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 365,
+      "home": "JOH",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 366,
+      "home": "BA",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 367,
+      "home": "EDM",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 368,
+      "home": "DBA",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 369,
+      "home": "BRUS",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 370,
+      "home": "AUS",
+      "away": "BA"
+    },
+    {
+      "gameNo": 371,
+      "home": "LON",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 372,
+      "home": "HAM",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 373,
+      "home": "MIA",
+      "away": "BER"
+    },
+    {
+      "gameNo": 374,
+      "home": "WAR",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 375,
+      "home": "HAM",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 376,
+      "home": "IST",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 377,
+      "home": "SP",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 378,
+      "home": "KIEV",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 379,
+      "home": "LIS",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 380,
+      "home": "REC",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 381,
+      "home": "TOK",
+      "away": "STP"
+    },
+    {
+      "gameNo": 382,
+      "home": "DBA",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 383,
+      "home": "DBA",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 384,
+      "home": "MC",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 385,
+      "home": "KIEV",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 386,
+      "home": "SALZ",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 387,
+      "home": "EDM",
+      "away": "LON"
+    },
+    {
+      "gameNo": 388,
+      "home": "DHA",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 389,
+      "home": "FLO",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 390,
+      "home": "OMA",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 391,
+      "home": "MUM",
+      "away": "BER"
+    },
+    {
+      "gameNo": 392,
+      "home": "COP",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 393,
+      "home": "GLAS",
+      "away": "STO"
+    },
+    {
+      "gameNo": 394,
+      "home": "ATH",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 395,
+      "home": "NAP",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 396,
+      "home": "SYD",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 397,
+      "home": "CAS",
+      "away": "MC"
+    },
+    {
+      "gameNo": 398,
+      "home": "NAP",
+      "away": "REC"
+    },
+    {
+      "gameNo": 399,
+      "home": "IST",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 400,
+      "home": "ROME",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 401,
+      "home": "BEI",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 402,
+      "home": "BARC",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 403,
+      "home": "SYD",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 404,
+      "home": "SJ",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 405,
+      "home": "AMS",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 406,
+      "home": "MUM",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 407,
+      "home": "AUS",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 408,
+      "home": "BEL",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 409,
+      "home": "DHA",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 410,
+      "home": "LIS",
+      "away": "LON"
+    },
+    {
+      "gameNo": 411,
+      "home": "SP",
+      "away": "STP"
+    },
+    {
+      "gameNo": 412,
+      "home": "TAM",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 413,
+      "home": "ATH",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 414,
+      "home": "OTT",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 415,
+      "home": "EDM",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 416,
+      "home": "ROT",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 417,
+      "home": "GLAS",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 418,
+      "home": "MC",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 419,
+      "home": "BUD",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 420,
+      "home": "GLAS",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 421,
+      "home": "GLAS",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 422,
+      "home": "FRAN",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 423,
+      "home": "ZAG",
+      "away": "SP"
+    },
+    {
+      "gameNo": 424,
+      "home": "BUD",
+      "away": "COP"
+    },
+    {
+      "gameNo": 425,
+      "home": "CAS",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 426,
+      "home": "HAM",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 427,
+      "home": "LAG",
+      "away": "IST"
+    },
+    {
+      "gameNo": 428,
+      "home": "FLO",
+      "away": "STO"
+    },
+    {
+      "gameNo": 429,
+      "home": "BRUS",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 430,
+      "home": "LIV",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 431,
+      "home": "ACK",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 432,
+      "home": "ZAG",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 433,
+      "home": "AMS",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 434,
+      "home": "CAS",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 435,
+      "home": "PAR",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 436,
+      "home": "LUX",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 437,
+      "home": "FRAN",
+      "away": "IST"
+    },
+    {
+      "gameNo": 438,
+      "home": "OSL",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 439,
+      "home": "STP",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 440,
+      "home": "LIV",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 441,
+      "home": "ATH",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 442,
+      "home": "BARC",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 443,
+      "home": "GUAD",
+      "away": "BER"
+    },
+    {
+      "gameNo": 444,
+      "home": "LYON",
+      "away": "MC"
+    },
+    {
+      "gameNo": 445,
+      "home": "MIA",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 446,
+      "home": "SALZ",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 447,
+      "home": "LAG",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 448,
+      "home": "OSL",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 449,
+      "home": "DUB",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 450,
+      "home": "NAP",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 451,
+      "home": "MOS",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 452,
+      "home": "AUS",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 453,
+      "home": "OTT",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 454,
+      "home": "BRUS",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 455,
+      "home": "EDM",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 456,
+      "home": "SJ",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 457,
+      "home": "IST",
+      "away": "STO"
+    },
+    {
+      "gameNo": 458,
+      "home": "ZUR",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 459,
+      "home": "LUX",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 460,
+      "home": "COP",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 461,
+      "home": "MUM",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 462,
+      "home": "SJ",
+      "away": "REC"
+    },
+    {
+      "gameNo": 463,
+      "home": "FLO",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 464,
+      "home": "VIE",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 465,
+      "home": "LON",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 466,
+      "home": "PAR",
+      "away": "REC"
+    },
+    {
+      "gameNo": 467,
+      "home": "SHAN",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 468,
+      "home": "FLO",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 469,
+      "home": "MUM",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 470,
+      "home": "ROME",
+      "away": "BER"
+    },
+    {
+      "gameNo": 471,
+      "home": "WAR",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 472,
+      "home": "BA",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 473,
+      "home": "ROT",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 474,
+      "home": "GUAD",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 475,
+      "home": "DUB",
+      "away": "SP"
+    },
+    {
+      "gameNo": 476,
+      "home": "MUN",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 477,
+      "home": "LIS",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 478,
+      "home": "CAS",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 479,
+      "home": "OMA",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 480,
+      "home": "KIEV",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 481,
+      "home": "NAP",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 482,
+      "home": "BARC",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 483,
+      "home": "MUN",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 484,
+      "home": "BEL",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 485,
+      "home": "STP",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 486,
+      "home": "MAN",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 487,
+      "home": "MIL",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 488,
+      "home": "EDI",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 489,
+      "home": "TOK",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 490,
+      "home": "COP",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 491,
+      "home": "DHA",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 492,
+      "home": "ACK",
+      "away": "IST"
+    },
+    {
+      "gameNo": 493,
+      "home": "STO",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 494,
+      "home": "OSL",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 495,
+      "home": "AUS",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 496,
+      "home": "HAM",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 497,
+      "home": "ROT",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 498,
+      "home": "JOH",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 499,
+      "home": "MAD",
+      "away": "BER"
+    },
+    {
+      "gameNo": 500,
+      "home": "ZAG",
+      "away": "MC"
+    },
+    {
+      "gameNo": 501,
+      "home": "KIEV",
+      "away": "REC"
+    },
+    {
+      "gameNo": 502,
+      "home": "CAI",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 503,
+      "home": "OTT",
+      "away": "BA"
+    },
+    {
+      "gameNo": 504,
+      "home": "LAG",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 505,
+      "home": "FLO",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 506,
+      "home": "MUN",
+      "away": "STP"
+    },
+    {
+      "gameNo": 507,
+      "home": "GUAD",
+      "away": "LON"
+    },
+    {
+      "gameNo": 508,
+      "home": "EDM",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 509,
+      "home": "BEI",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 510,
+      "home": "ROME",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 511,
+      "home": "STO",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 512,
+      "home": "LUX",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 513,
+      "home": "TOK",
+      "away": "SP"
+    },
+    {
+      "gameNo": 514,
+      "home": "BRUS",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 515,
+      "home": "PAR",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 516,
+      "home": "ZUR",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 517,
+      "home": "TAM",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 518,
+      "home": "COP",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 519,
+      "home": "MOS",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 520,
+      "home": "MOS",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 521,
+      "home": "VIE",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 522,
+      "home": "JOH",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 523,
+      "home": "SJ",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 524,
+      "home": "DHA",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 525,
+      "home": "TAM",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 526,
+      "home": "GUAD",
+      "away": "BA"
+    },
+    {
+      "gameNo": 527,
+      "home": "OSA",
+      "away": "REC"
+    },
+    {
+      "gameNo": 528,
+      "home": "SHAN",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 529,
+      "home": "TOK",
+      "away": "COP"
+    },
+    {
+      "gameNo": 530,
+      "home": "STP",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 531,
+      "home": "MAN",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 532,
+      "home": "FRAN",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 533,
+      "home": "DUB",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 534,
+      "home": "BUD",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 535,
+      "home": "IST",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 536,
+      "home": "STO",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 537,
+      "home": "KIEV",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 538,
+      "home": "MUM",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 539,
+      "home": "OMA",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 540,
+      "home": "BEL",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 541,
+      "home": "MIA",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 542,
+      "home": "BUD",
+      "away": "SP"
+    },
+    {
+      "gameNo": 543,
+      "home": "DBA",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 544,
+      "home": "ZUR",
+      "away": "BA"
+    },
+    {
+      "gameNo": 545,
+      "home": "CAI",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 546,
+      "home": "MC",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 547,
+      "home": "ATH",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 548,
+      "home": "EDM",
+      "away": "BER"
+    },
+    {
+      "gameNo": 549,
+      "home": "FRAN",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 550,
+      "home": "LON",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 551,
+      "home": "MAD",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 552,
+      "home": "STP",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 553,
+      "home": "AMS",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 554,
+      "home": "ZUR",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 555,
+      "home": "ROME",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 556,
+      "home": "ROT",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 557,
+      "home": "OSL",
+      "away": "STO"
+    },
+    {
+      "gameNo": 558,
+      "home": "LIS",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 559,
+      "home": "MOS",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 560,
+      "home": "AMS",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 561,
+      "home": "VIE",
+      "away": "SP"
+    },
+    {
+      "gameNo": 562,
+      "home": "ROT",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 563,
+      "home": "MC",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 564,
+      "home": "AUS",
+      "away": "BER"
+    },
+    {
+      "gameNo": 565,
+      "home": "GLAS",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 566,
+      "home": "BEL",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 567,
+      "home": "GLAS",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 568,
+      "home": "MOS",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 569,
+      "home": "BARC",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 570,
+      "home": "ATH",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 571,
+      "home": "AUS",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 572,
+      "home": "NAP",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 573,
+      "home": "WAR",
+      "away": "IST"
+    },
+    {
+      "gameNo": 574,
+      "home": "MUM",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 575,
+      "home": "FLO",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 576,
+      "home": "LUX",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 577,
+      "home": "MIA",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 578,
+      "home": "REC",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 579,
+      "home": "LIS",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 580,
+      "home": "ACK",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 581,
+      "home": "EDI",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 582,
+      "home": "DUB",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 583,
+      "home": "ACK",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 584,
+      "home": "OSA",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 585,
+      "home": "BEI",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 586,
+      "home": "LON",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 587,
+      "home": "COP",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 588,
+      "home": "SHAN",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 589,
+      "home": "SYD",
+      "away": "SP"
+    },
+    {
+      "gameNo": 590,
+      "home": "DUB",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 591,
+      "home": "OTT",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 592,
+      "home": "TOK",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 593,
+      "home": "OSA",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 594,
+      "home": "LYON",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 595,
+      "home": "AMS",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 596,
+      "home": "LON",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 597,
+      "home": "MC",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 598,
+      "home": "BARC",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 599,
+      "home": "LAG",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 600,
+      "home": "REC",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 601,
+      "home": "SJ",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 602,
+      "home": "WAR",
+      "away": "STO"
+    },
+    {
+      "gameNo": 603,
+      "home": "SYD",
+      "away": "COP"
+    },
+    {
+      "gameNo": 604,
+      "home": "MAD",
+      "away": "BA"
+    },
+    {
+      "gameNo": 605,
+      "home": "RIO",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 606,
+      "home": "FLO",
+      "away": "IST"
+    },
+    {
+      "gameNo": 607,
+      "home": "LUX",
+      "away": "IST"
+    },
+    {
+      "gameNo": 608,
+      "home": "ROME",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 609,
+      "home": "CAI",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 610,
+      "home": "BER",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 611,
+      "home": "COP",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 612,
+      "home": "ROME",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 613,
+      "home": "MUN",
+      "away": "MC"
+    },
+    {
+      "gameNo": 614,
+      "home": "BER",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 615,
+      "home": "NAP",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 616,
+      "home": "ZAG",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 617,
+      "home": "STO",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 618,
+      "home": "SYD",
+      "away": "STP"
+    },
+    {
+      "gameNo": 619,
+      "home": "ROT",
+      "away": "REC"
+    },
+    {
+      "gameNo": 620,
+      "home": "SALZ",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 621,
+      "home": "LON",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 622,
+      "home": "OMA",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 623,
+      "home": "SYD",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 624,
+      "home": "BUD",
+      "away": "STP"
+    },
+    {
+      "gameNo": 625,
+      "home": "BEI",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 626,
+      "home": "ATH",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 627,
+      "home": "SP",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 628,
+      "home": "OTT",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 629,
+      "home": "LUX",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 630,
+      "home": "CAI",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 631,
+      "home": "MIL",
+      "away": "BA"
+    },
+    {
+      "gameNo": 632,
+      "home": "OSL",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 633,
+      "home": "MAN",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 634,
+      "home": "STO",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 635,
+      "home": "SHAN",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 636,
+      "home": "MAD",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 637,
+      "home": "SP",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 638,
+      "home": "VIE",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 639,
+      "home": "KIEV",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 640,
+      "home": "MUN",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 641,
+      "home": "BEL",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 642,
+      "home": "BEL",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 643,
+      "home": "MOS",
+      "away": "STP"
+    },
+    {
+      "gameNo": 644,
+      "home": "JOH",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 645,
+      "home": "AUS",
+      "away": "LON"
+    },
+    {
+      "gameNo": 646,
+      "home": "BARC",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 647,
+      "home": "RIO",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 648,
+      "home": "ROME",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 649,
+      "home": "GLAS",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 650,
+      "home": "CAS",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 651,
+      "home": "REC",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 652,
+      "home": "GUAD",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 653,
+      "home": "ROT",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 654,
+      "home": "ROME",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 655,
+      "home": "CAI",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 656,
+      "home": "BER",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 657,
+      "home": "NAP",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 658,
+      "home": "EDM",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 659,
+      "home": "JOH",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 660,
+      "home": "RIO",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 661,
+      "home": "GUAD",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 662,
+      "home": "OSA",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 663,
+      "home": "BUD",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 664,
+      "home": "PAR",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 665,
+      "home": "HAM",
+      "away": "BA"
+    },
+    {
+      "gameNo": 666,
+      "home": "AMS",
+      "away": "BRUS"
+    },
+    {
+      "gameNo": 667,
+      "home": "MUN",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 668,
+      "home": "STP",
+      "away": "MC"
+    },
+    {
+      "gameNo": 669,
+      "home": "VIE",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 670,
+      "home": "ACK",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 671,
+      "home": "OTT",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 672,
+      "home": "HAM",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 673,
+      "home": "WAR",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 674,
+      "home": "MAD",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 675,
+      "home": "MOS",
+      "away": "COP"
+    },
+    {
+      "gameNo": 676,
+      "home": "ZAG",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 677,
+      "home": "LAG",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 678,
+      "home": "BEI",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 679,
+      "home": "FRAN",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 680,
+      "home": "MC",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 681,
+      "home": "FLO",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 682,
+      "home": "TOK",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 683,
+      "home": "DBA",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 684,
+      "home": "SJ",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 685,
+      "home": "LIS",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 686,
+      "home": "CAI",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 687,
+      "home": "BRUS",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 688,
+      "home": "WAR",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 689,
+      "home": "EDI",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 690,
+      "home": "MUM",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 691,
+      "home": "BA",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 692,
+      "home": "BRUS",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 693,
+      "home": "SALZ",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 694,
+      "home": "IST",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 695,
+      "home": "TOK",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 696,
+      "home": "BRUS",
+      "away": "REC"
+    },
+    {
+      "gameNo": 697,
+      "home": "MIL",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 698,
+      "home": "LYON",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 699,
+      "home": "MC",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 700,
+      "home": "ZAG",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 701,
+      "home": "ZUR",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 702,
+      "home": "RIO",
+      "away": "STO"
+    },
+    {
+      "gameNo": 703,
+      "home": "MAN",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 704,
+      "home": "MIA",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 705,
+      "home": "COP",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 706,
+      "home": "VIE",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 707,
+      "home": "MAN",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 708,
+      "home": "OSL",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 709,
+      "home": "OSA",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 710,
+      "home": "WAR",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 711,
+      "home": "BEL",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 712,
+      "home": "LIV",
+      "away": "SP"
+    },
+    {
+      "gameNo": 713,
+      "home": "ACK",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 714,
+      "home": "KIEV",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 715,
+      "home": "HAM",
+      "away": "BER"
+    },
+    {
+      "gameNo": 716,
+      "home": "LON",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 717,
+      "home": "AUS",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 718,
+      "home": "AMS",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 719,
+      "home": "SJ",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 720,
+      "home": "CAI",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 721,
+      "home": "CAS",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 722,
+      "home": "ZAG",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 723,
+      "home": "MIL",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 724,
+      "home": "SALZ",
+      "away": "BER"
+    },
+    {
+      "gameNo": 725,
+      "home": "AMS",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 726,
+      "home": "DUB",
+      "away": "STP"
+    },
+    {
+      "gameNo": 727,
+      "home": "BRUS",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 728,
+      "home": "GLAS",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 729,
+      "home": "MAN",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 730,
+      "home": "LIV",
+      "away": "COP"
+    },
+    {
+      "gameNo": 731,
+      "home": "LIS",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 732,
+      "home": "SJ",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 733,
+      "home": "BUD",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 734,
+      "home": "OSA",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 735,
+      "home": "MIL",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 736,
+      "home": "RIO",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 737,
+      "home": "ROME",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 738,
+      "home": "REC",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 739,
+      "home": "FRAN",
+      "away": "STO"
+    },
+    {
+      "gameNo": 740,
+      "home": "RIO",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 741,
+      "home": "RIO",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 742,
+      "home": "ATH",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 743,
+      "home": "MIA",
+      "away": "LON"
+    },
+    {
+      "gameNo": 744,
+      "home": "BER",
+      "away": "BA"
+    },
+    {
+      "gameNo": 745,
+      "home": "VIE",
+      "away": "MC"
+    },
+    {
+      "gameNo": 746,
+      "home": "ZUR",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 747,
+      "home": "KIEV",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 748,
+      "home": "EDI",
+      "away": "IST"
+    },
+    {
+      "gameNo": 749,
+      "home": "OSL",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 750,
+      "home": "LUX",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 751,
+      "home": "TAM",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 752,
+      "home": "MUN",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 753,
+      "home": "REC",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 754,
+      "home": "CAS",
+      "away": "SP"
+    },
+    {
+      "gameNo": 755,
+      "home": "DUB",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 756,
+      "home": "EDM",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 757,
+      "home": "MUM",
+      "away": "BA"
+    },
+    {
+      "gameNo": 758,
+      "home": "BARC",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 759,
+      "home": "SHAN",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 760,
+      "home": "BA",
+      "away": "LON"
+    },
+    {
+      "gameNo": 761,
+      "home": "ZAG",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 762,
+      "home": "LYON",
+      "away": "SP"
+    },
+    {
+      "gameNo": 763,
+      "home": "DHA",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 764,
+      "home": "EDI",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 765,
+      "home": "MC",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 766,
+      "home": "LUX",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 767,
+      "home": "REC",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 768,
+      "home": "MUN",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 769,
+      "home": "STP",
+      "away": "COP"
+    },
+    {
+      "gameNo": 770,
+      "home": "MAD",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 771,
+      "home": "ATH",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 772,
+      "home": "IST",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 773,
+      "home": "LAG",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 774,
+      "home": "BER",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 775,
+      "home": "ROME",
+      "away": "LON"
+    },
+    {
+      "gameNo": 776,
+      "home": "WAR",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 777,
+      "home": "STO",
+      "away": "IST"
+    },
+    {
+      "gameNo": 778,
+      "home": "NAP",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 779,
+      "home": "PAR",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 780,
+      "home": "BA",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 781,
+      "home": "OSA",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 782,
+      "home": "KIEV",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 783,
+      "home": "LON",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 784,
+      "home": "BRUS",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 785,
+      "home": "OTT",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 786,
+      "home": "ACK",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 787,
+      "home": "SALZ",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 788,
+      "home": "NAP",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 789,
+      "home": "AUS",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 790,
+      "home": "SHAN",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 791,
+      "home": "STO",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 792,
+      "home": "TAM",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 793,
+      "home": "JOH",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 794,
+      "home": "MAD",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 795,
+      "home": "LYON",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 796,
+      "home": "REC",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 797,
+      "home": "CAS",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 798,
+      "home": "FRAN",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 799,
+      "home": "SYD",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 800,
+      "home": "BUD",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 801,
+      "home": "TOK",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 802,
+      "home": "LUX",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 803,
+      "home": "LIV",
+      "away": "STP"
+    },
+    {
+      "gameNo": 804,
+      "home": "GUAD",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 805,
+      "home": "OSA",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 806,
+      "home": "LIS",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 807,
+      "home": "COP",
+      "away": "MC"
+    },
+    {
+      "gameNo": 808,
+      "home": "ZUR",
+      "away": "LON"
+    },
+    {
+      "gameNo": 809,
+      "home": "MOS",
+      "away": "SP"
+    },
+    {
+      "gameNo": 810,
+      "home": "SHAN",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 811,
+      "home": "STP",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 812,
+      "home": "AMS",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 813,
+      "home": "AUS",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 814,
+      "home": "OSA",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 815,
+      "home": "ROME",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 816,
+      "home": "MAN",
+      "away": "REC"
+    },
+    {
+      "gameNo": 817,
+      "home": "NAP",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 818,
+      "home": "HAM",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 819,
+      "home": "TOK",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 820,
+      "home": "MUN",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 821,
+      "home": "LAG",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 822,
+      "home": "JOH",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 823,
+      "home": "FRAN",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 824,
+      "home": "CAI",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 825,
+      "home": "LIV",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 826,
+      "home": "ACK",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 827,
+      "home": "BER",
+      "away": "AUS"
+    },
+    {
+      "gameNo": 828,
+      "home": "OMA",
+      "away": "STO"
+    },
+    {
+      "gameNo": 829,
+      "home": "EDI",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 830,
+      "home": "DHA",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 831,
+      "home": "MIA",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 832,
+      "home": "ROME",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 833,
+      "home": "OTT",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 834,
+      "home": "IST",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 835,
+      "home": "STP",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 836,
+      "home": "COP",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 837,
+      "home": "IST",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 838,
+      "home": "DHA",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 839,
+      "home": "VIE",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 840,
+      "home": "ATH",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 841,
+      "home": "MAD",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 842,
+      "home": "MUM",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 843,
+      "home": "STP",
+      "away": "SP"
+    },
+    {
+      "gameNo": 844,
+      "home": "STO",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 845,
+      "home": "BA",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 846,
+      "home": "SHAN",
+      "away": "ROT"
+    },
+    {
+      "gameNo": 847,
+      "home": "PAR",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 848,
+      "home": "JOH",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 849,
+      "home": "RIO",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 850,
+      "home": "LYON",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 851,
+      "home": "BRUS",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 852,
+      "home": "JOH",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 853,
+      "home": "EDI",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 854,
+      "home": "OTT",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 855,
+      "home": "OSL",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 856,
+      "home": "ZAG",
+      "away": "COP"
+    },
+    {
+      "gameNo": 857,
+      "home": "OMA",
+      "away": "IST"
+    },
+    {
+      "gameNo": 858,
+      "home": "SP",
+      "away": "CAS"
+    },
+    {
+      "gameNo": 859,
+      "home": "SJ",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 860,
+      "home": "CAI",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 861,
+      "home": "EDM",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 862,
+      "home": "MC",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 863,
+      "home": "OSL",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 864,
+      "home": "SYD",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 865,
+      "home": "BER",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 866,
+      "home": "MAN",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 867,
+      "home": "DBA",
+      "away": "AMS"
+    },
+    {
+      "gameNo": 868,
+      "home": "WAR",
+      "away": "TAM"
+    },
+    {
+      "gameNo": 869,
+      "home": "DHA",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 870,
+      "home": "BA",
+      "away": "ZUR"
+    },
+    {
+      "gameNo": 871,
+      "home": "LIS",
+      "away": "HAM"
+    },
+    {
+      "gameNo": 872,
+      "home": "ZUR",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 873,
+      "home": "BER",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 874,
+      "home": "MIL",
+      "away": "LON"
+    },
+    {
+      "gameNo": 875,
+      "home": "NAP",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 876,
+      "home": "LAG",
+      "away": "OSL"
+    },
+    {
+      "gameNo": 877,
+      "home": "TOK",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 878,
+      "home": "STO",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 879,
+      "home": "TAM",
+      "away": "RIO"
+    },
+    {
+      "gameNo": 880,
+      "home": "OMA",
+      "away": "EDI"
+    },
+    {
+      "gameNo": 881,
+      "home": "IST",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 882,
+      "home": "DBA",
+      "away": "JOH"
+    },
+    {
+      "gameNo": 883,
+      "home": "LIV",
+      "away": "BUD"
+    },
+    {
+      "gameNo": 884,
+      "home": "OTT",
+      "away": "LON"
+    },
+    {
+      "gameNo": 885,
+      "home": "STO",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 886,
+      "home": "BRUS",
+      "away": "BEL"
+    },
+    {
+      "gameNo": 887,
+      "home": "PAR",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 888,
+      "home": "MOS",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 889,
+      "home": "VIE",
+      "away": "COP"
+    },
+    {
+      "gameNo": 890,
+      "home": "DHA",
+      "away": "MC"
+    },
+    {
+      "gameNo": 891,
+      "home": "ATH",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 892,
+      "home": "MIA",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 893,
+      "home": "LAG",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 894,
+      "home": "SHAN",
+      "away": "REC"
+    },
+    {
+      "gameNo": 895,
+      "home": "BEL",
+      "away": "BARC"
+    },
+    {
+      "gameNo": 896,
+      "home": "LYON",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 897,
+      "home": "MIL",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 898,
+      "home": "CAI",
+      "away": "OMA"
+    },
+    {
+      "gameNo": 899,
+      "home": "MAN",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 900,
+      "home": "SP",
+      "away": "LIV"
+    },
+    {
+      "gameNo": 901,
+      "home": "BARC",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 902,
+      "home": "BA",
+      "away": "MAD"
+    },
+    {
+      "gameNo": 903,
+      "home": "ROT",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 904,
+      "home": "CAS",
+      "away": "VIE"
+    },
+    {
+      "gameNo": 905,
+      "home": "BRUS",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 906,
+      "home": "SYD",
+      "away": "DHA"
+    },
+    {
+      "gameNo": 907,
+      "home": "BA",
+      "away": "SALZ"
+    },
+    {
+      "gameNo": 908,
+      "home": "HAM",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 909,
+      "home": "BEI",
+      "away": "PAR"
+    },
+    {
+      "gameNo": 910,
+      "home": "STO",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 911,
+      "home": "RIO",
+      "away": "LUX"
+    },
+    {
+      "gameNo": 912,
+      "home": "AMS",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 913,
+      "home": "HAM",
+      "away": "ROME"
+    },
+    {
+      "gameNo": 914,
+      "home": "TAM",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 915,
+      "home": "ROT",
+      "away": "BEI"
+    },
+    {
+      "gameNo": 916,
+      "home": "CAS",
+      "away": "SYD"
+    },
+    {
+      "gameNo": 917,
+      "home": "ATH",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 918,
+      "home": "COP",
+      "away": "MOS"
+    },
+    {
+      "gameNo": 919,
+      "home": "FRAN",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 920,
+      "home": "CAS",
+      "away": "STP"
+    },
+    {
+      "gameNo": 921,
+      "home": "TOK",
+      "away": "LYON"
+    },
+    {
+      "gameNo": 922,
+      "home": "ZAG",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 923,
+      "home": "SP",
+      "away": "MC"
+    },
+    {
+      "gameNo": 924,
+      "home": "SALZ",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 925,
+      "home": "EDI",
+      "away": "WAR"
+    },
+    {
+      "gameNo": 926,
+      "home": "MUM",
+      "away": "LON"
+    },
+    {
+      "gameNo": 927,
+      "home": "BRUS",
+      "away": "MAN"
+    },
+    {
+      "gameNo": 928,
+      "home": "HAM",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 929,
+      "home": "OTT",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 930,
+      "home": "JOH",
+      "away": "REC"
+    },
+    {
+      "gameNo": 931,
+      "home": "BUD",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 932,
+      "home": "ZUR",
+      "away": "BER"
+    },
+    {
+      "gameNo": 933,
+      "home": "SJ",
+      "away": "OSA"
+    },
+    {
+      "gameNo": 934,
+      "home": "GLAS",
+      "away": "FLO"
+    },
+    {
+      "gameNo": 935,
+      "home": "PAR",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 936,
+      "home": "MAD",
+      "away": "OTT"
+    },
+    {
+      "gameNo": 937,
+      "home": "MAN",
+      "away": "NAP"
+    },
+    {
+      "gameNo": 938,
+      "home": "LIV",
+      "away": "MC"
+    },
+    {
+      "gameNo": 939,
+      "home": "EDI",
+      "away": "ACK"
+    },
+    {
+      "gameNo": 940,
+      "home": "IST",
+      "away": "ATH"
+    },
+    {
+      "gameNo": 941,
+      "home": "SP",
+      "away": "ZAG"
+    },
+    {
+      "gameNo": 942,
+      "home": "ZUR",
+      "away": "MIL"
+    },
+    {
+      "gameNo": 943,
+      "home": "OMA",
+      "away": "CAI"
+    },
+    {
+      "gameNo": 944,
+      "home": "SYD",
+      "away": "DUB"
+    },
+    {
+      "gameNo": 945,
+      "home": "COP",
+      "away": "STP"
+    },
+    {
+      "gameNo": 946,
+      "home": "AMS",
+      "away": "SJ"
+    },
+    {
+      "gameNo": 947,
+      "home": "MOS",
+      "away": "MUN"
+    },
+    {
+      "gameNo": 948,
+      "home": "BER",
+      "away": "EDM"
+    },
+    {
+      "gameNo": 949,
+      "home": "WAR",
+      "away": "LAG"
+    },
+    {
+      "gameNo": 950,
+      "home": "ROT",
+      "away": "SHAN"
+    },
+    {
+      "gameNo": 951,
+      "home": "BARC",
+      "away": "DBA"
+    },
+    {
+      "gameNo": 952,
+      "home": "TAM",
+      "away": "FRAN"
+    },
+    {
+      "gameNo": 953,
+      "home": "LYON",
+      "away": "TOK"
+    },
+    {
+      "gameNo": 954,
+      "home": "SALZ",
+      "away": "LIS"
+    },
+    {
+      "gameNo": 955,
+      "home": "MAD",
+      "away": "GUAD"
+    },
+    {
+      "gameNo": 956,
+      "home": "AUS",
+      "away": "MUM"
+    },
+    {
+      "gameNo": 957,
+      "home": "BEL",
+      "away": "KIEV"
+    },
+    {
+      "gameNo": 958,
+      "home": "RIO",
+      "away": "GLAS"
+    },
+    {
+      "gameNo": 959,
+      "home": "ROME",
+      "away": "MIA"
+    },
+    {
+      "gameNo": 960,
+      "home": "REC",
+      "away": "BEI"
+    }
+  ],
+  "pauses": []
+}

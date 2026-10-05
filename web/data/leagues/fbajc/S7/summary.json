@@ -1,0 +1,28 @@
+{
+  "league": "fbajc",
+  "season": 7,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "National Champion",
+      "champion": "Yale",
+      "runnerUp": "North Carolina",
+      "score": null,
+      "teamId": "YALE",
+      "runnerUpId": "UNC",
+      "finalsMvp": "p02015"
+    }
+  ],
+  "jc": {
+    "confChampions": [],
+    "national": [],
+    "conference": [],
+    "allAmerican": null,
+    "mvp": {
+      "mm": "p02015",
+      "nit": null
+    },
+    "nit": null
+  }
+}

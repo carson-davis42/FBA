@@ -131,12 +131,12 @@
         "home": {
           "name": "Milwaukee Warriors",
           "record": "69-17",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Carolina Knights",
           "record": "45-41",
-          "seed": null
+          "seed": 8
         },
         "homeWins": 4,
         "awayWins": 3,
@@ -148,12 +148,12 @@
         "home": {
           "name": "Chicago Spartans",
           "record": "60-26",
-          "seed": null
+          "seed": 4
         },
         "away": {
           "name": "Montreal Chevaliers",
           "record": "59-27",
-          "seed": null
+          "seed": 5
         },
         "homeWins": 1,
         "awayWins": 4,
@@ -165,12 +165,12 @@
         "home": {
           "name": "Columbus Pirates",
           "record": "60-26",
-          "seed": null
+          "seed": 3
         },
         "away": {
           "name": "Detroit Motors",
           "record": "54-32",
-          "seed": null
+          "seed": 6
         },
         "homeWins": 4,
         "awayWins": 0,
@@ -182,12 +182,12 @@
         "home": {
           "name": "Boston Bucks",
           "record": "65-21",
-          "seed": null
+          "seed": 2
         },
         "away": {
           "name": "Toronto Wolves",
           "record": "52-34",
-          "seed": null
+          "seed": 7
         },
         "homeWins": 4,
         "awayWins": 3,
@@ -199,12 +199,12 @@
         "home": {
           "name": "San Antonio Spirits",
           "record": "71-15",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Seattle Shock",
           "record": "39-47",
-          "seed": null
+          "seed": 8
         },
         "homeWins": 4,
         "awayWins": 1,
@@ -216,12 +216,12 @@
         "home": {
           "name": "Honolulu Rays",
           "record": "59-27",
-          "seed": null
+          "seed": 4
         },
         "away": {
           "name": "Cypress Green Guns",
           "record": "55-31",
-          "seed": null
+          "seed": 5
         },
         "homeWins": 4,
         "awayWins": 1,
@@ -233,12 +233,12 @@
         "home": {
           "name": "New Orleans Seminoles",
           "record": "63-23",
-          "seed": null
+          "seed": 3
         },
         "away": {
           "name": "Texas Outlaws",
           "record": "49-37",
-          "seed": null
+          "seed": 6
         },
         "homeWins": 4,
         "awayWins": 2,
@@ -250,12 +250,12 @@
         "home": {
           "name": "Oakland All-Stars",
           "record": "70-16",
-          "seed": null
+          "seed": 2
         },
         "away": {
           "name": "Vegas Volts",
           "record": "46-40",
-          "seed": null
+          "seed": 7
         },
         "homeWins": 4,
         "awayWins": 1,
@@ -267,12 +267,12 @@
         "home": {
           "name": "Milwaukee Warriors",
           "record": "69-17",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Montreal Chevaliers",
           "record": "59-27",
-          "seed": null
+          "seed": 5
         },
         "homeWins": 4,
         "awayWins": 1,
@@ -284,12 +284,12 @@
         "home": {
           "name": "Columbus Pirates",
           "record": "60-26",
-          "seed": null
+          "seed": 3
         },
         "away": {
           "name": "Boston Bucks",
           "record": "65-21",
-          "seed": null
+          "seed": 2
         },
         "homeWins": 0,
         "awayWins": 4,
@@ -301,12 +301,12 @@
         "home": {
           "name": "San Antonio Spirits",
           "record": "71-15",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Honolulu Rays",
           "record": "59-27",
-          "seed": null
+          "seed": 4
         },
         "homeWins": 3,
         "awayWins": 4,
@@ -318,12 +318,12 @@
         "home": {
           "name": "New Orleans Seminoles",
           "record": "63-23",
-          "seed": null
+          "seed": 3
         },
         "away": {
           "name": "Oakland All-Stars",
           "record": "70-16",
-          "seed": null
+          "seed": 2
         },
         "homeWins": 1,
         "awayWins": 4,
@@ -335,12 +335,12 @@
         "home": {
           "name": "Milwaukee Warriors",
           "record": "69-17",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Boston Bucks",
           "record": "65-21",
-          "seed": null
+          "seed": 2
         },
         "homeWins": 4,
         "awayWins": 3,
@@ -352,12 +352,12 @@
         "home": {
           "name": "Honolulu Rays",
           "record": "59-27",
-          "seed": null
+          "seed": 4
         },
         "away": {
           "name": "Oakland All-Stars",
           "record": "70-16",
-          "seed": null
+          "seed": 2
         },
         "homeWins": 0,
         "awayWins": 4,
@@ -369,12 +369,12 @@
         "home": {
           "name": "Milwaukee Warriors",
           "record": "69-17",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Oakland All-Stars",
           "record": "70-16",
-          "seed": null
+          "seed": 2
         },
         "homeWins": 4,
         "awayWins": 3,

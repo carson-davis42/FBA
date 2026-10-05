@@ -32,13 +32,13 @@
         "classYear": "Jr"
       },
       {
-        "playerId": "p00488",
+        "playerId": "p02376",
         "position": "PF",
-        "rating": 69,
+        "rating": 84,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": "So"
+        "stars": 4,
+        "classYear": "Fr"
       },
       {
         "playerId": "p00489",
@@ -126,13 +126,13 @@
         "classYear": null
       },
       {
-        "playerId": "p00497",
+        "playerId": "p02363",
         "position": "PF",
-        "rating": 70,
+        "rating": 93,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": "So"
+        "stars": 5,
+        "classYear": "Fr"
       },
       {
         "playerId": "p00498",
@@ -193,13 +193,13 @@
     ],
     "KU": [
       {
-        "playerId": "p00504",
+        "playerId": "p02370",
         "position": "PG",
-        "rating": 73,
+        "rating": 86,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": "So"
+        "stars": 5,
+        "classYear": "Fr"
       },
       {
         "playerId": null,
@@ -211,13 +211,13 @@
         "classYear": null
       },
       {
-        "playerId": null,
+        "playerId": "p00700",
         "position": "SF",
-        "rating": null,
+        "rating": 88,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 4,
+        "classYear": "Sr"
       },
       {
         "playerId": "p00506",
@@ -314,13 +314,13 @@
         "classYear": "Jr"
       },
       {
-        "playerId": "p00516",
+        "playerId": null,
         "position": "PF",
-        "rating": 86,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": null,
@@ -455,13 +455,13 @@
         "classYear": null
       },
       {
-        "playerId": null,
+        "playerId": "p00516",
         "position": "PF",
-        "rating": null,
+        "rating": 86,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": null
+        "classYear": "Sr"
       },
       {
         "playerId": "p00532",
@@ -634,13 +634,13 @@
         "classYear": "So"
       },
       {
-        "playerId": "p00550",
+        "playerId": null,
         "position": "SF",
-        "rating": 88,
+        "rating": null,
         "age": null,
         "points": 0,
-        "stars": 5,
-        "classYear": "Jr"
+        "stars": null,
+        "classYear": null
       },
       {
         "playerId": "p00551",
@@ -652,13 +652,13 @@
         "classYear": "Jr"
       },
       {
-        "playerId": "p00552",
+        "playerId": "p02372",
         "position": "C",
         "rating": 85,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": "Sr"
+        "stars": 5,
+        "classYear": "Fr"
       }
     ],
     "FSU": [
@@ -737,13 +737,13 @@
         "classYear": "Jr"
       },
       {
-        "playerId": "p00561",
+        "playerId": null,
         "position": "PF",
-        "rating": 82,
+        "rating": null,
         "age": null,
         "points": 0,
-        "stars": 4,
-        "classYear": "So"
+        "stars": null,
+        "classYear": null
       },
       {
         "playerId": "p00562",
@@ -869,13 +869,13 @@
         "classYear": null
       },
       {
-        "playerId": "p00574",
+        "playerId": "p02361",
         "position": "SF",
-        "rating": 86,
+        "rating": 94,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": "Sr"
+        "stars": 5,
+        "classYear": "Fr"
       },
       {
         "playerId": null,
@@ -907,13 +907,13 @@
         "classYear": "So"
       },
       {
-        "playerId": null,
+        "playerId": "p02375",
         "position": "SG",
-        "rating": null,
+        "rating": 84,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 4,
+        "classYear": "Fr"
       },
       {
         "playerId": "p00579",
@@ -1039,13 +1039,13 @@
     ],
     "VATECH": [
       {
-        "playerId": "p00592",
+        "playerId": null,
         "position": "PG",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Jr"
+        "classYear": null
       },
       {
         "playerId": "p00593",
@@ -1095,18 +1095,18 @@
         "classYear": "Sr"
       },
       {
-        "playerId": "p00598",
+        "playerId": null,
         "position": "SG",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Jr"
+        "classYear": null
       },
       {
-        "playerId": "p00599",
+        "playerId": "p00574",
         "position": "SF",
-        "rating": 81,
+        "rating": 86,
         "age": null,
         "points": 0,
         "stars": null,
@@ -1216,13 +1216,13 @@
         "classYear": null
       },
       {
-        "playerId": null,
+        "playerId": "p02381",
         "position": "C",
-        "rating": null,
+        "rating": 81,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 4,
+        "classYear": "Fr"
       }
     ],
     "DSN": [
@@ -1556,13 +1556,13 @@
     ],
     "UCON": [
       {
-        "playerId": null,
+        "playerId": "p00837",
         "position": "PG",
-        "rating": null,
+        "rating": 86,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": null
+        "classYear": "Sr"
       },
       {
         "playerId": null,
@@ -1583,13 +1583,13 @@
         "classYear": "So"
       },
       {
-        "playerId": null,
+        "playerId": "p02371",
         "position": "PF",
-        "rating": null,
+        "rating": 86,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 5,
+        "classYear": "Fr"
       },
       {
         "playerId": "p00650",
@@ -1612,13 +1612,13 @@
         "classYear": "Jr"
       },
       {
-        "playerId": null,
+        "playerId": "p02364",
         "position": "SG",
-        "rating": null,
+        "rating": 91,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 5,
+        "classYear": "Fr"
       },
       {
         "playerId": null,
@@ -1753,13 +1753,13 @@
         "classYear": null
       },
       {
-        "playerId": null,
+        "playerId": "p02377",
         "position": "SG",
-        "rating": null,
+        "rating": 84,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 4,
+        "classYear": "Fr"
       },
       {
         "playerId": "p00668",
@@ -1838,13 +1838,13 @@
     ],
     "FLO": [
       {
-        "playerId": null,
+        "playerId": "p02379",
         "position": "PG",
-        "rating": null,
+        "rating": 82,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 4,
+        "classYear": "Fr"
       },
       {
         "playerId": null,
@@ -1997,13 +1997,13 @@
         "classYear": null
       },
       {
-        "playerId": "p00691",
+        "playerId": "p02373",
         "position": "SF",
-        "rating": 76,
+        "rating": 85,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": "So"
+        "stars": 4,
+        "classYear": "Fr"
       },
       {
         "playerId": "p00692",
@@ -2091,13 +2091,13 @@
         "classYear": null
       },
       {
-        "playerId": "p00700",
+        "playerId": null,
         "position": "SF",
-        "rating": 88,
+        "rating": null,
         "age": null,
         "points": 0,
-        "stars": 4,
-        "classYear": "Sr"
+        "stars": null,
+        "classYear": null
       },
       {
         "playerId": "p00701",
@@ -2176,13 +2176,13 @@
         "classYear": null
       },
       {
-        "playerId": "p00708",
+        "playerId": "p02368",
         "position": "SG",
-        "rating": 85,
+        "rating": 87,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": "Sr"
+        "stars": 5,
+        "classYear": "Fr"
       },
       {
         "playerId": null,
@@ -2279,13 +2279,13 @@
         "classYear": null
       },
       {
-        "playerId": "p00719",
+        "playerId": null,
         "position": "SF",
-        "rating": 79,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Jr"
+        "classYear": null
       },
       {
         "playerId": null,
@@ -2391,13 +2391,13 @@
         "classYear": "Jr"
       },
       {
-        "playerId": "p00731",
+        "playerId": null,
         "position": "C",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       }
     ],
     "MD": [
@@ -2449,13 +2449,13 @@
     ],
     "UM": [
       {
-        "playerId": null,
+        "playerId": "p02366",
         "position": "PG",
-        "rating": null,
+        "rating": 88,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 5,
+        "classYear": "Fr"
       },
       {
         "playerId": null,
@@ -2928,13 +2928,13 @@
         "classYear": "Jr"
       },
       {
-        "playerId": "p00788",
+        "playerId": null,
         "position": "SG",
-        "rating": 84,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": "p00789",
@@ -3107,13 +3107,13 @@
     ],
     "SMU": [
       {
-        "playerId": "p00807",
+        "playerId": null,
         "position": "PG",
-        "rating": 84,
+        "rating": null,
         "age": null,
         "points": 0,
-        "stars": 3,
-        "classYear": "So"
+        "stars": null,
+        "classYear": null
       },
       {
         "playerId": "p00808",
@@ -3351,7 +3351,7 @@
         "classYear": "So"
       },
       {
-        "playerId": "p02415",
+        "playerId": "p02384",
         "position": "SG",
         "rating": 80,
         "age": null,
@@ -3389,13 +3389,13 @@
     ],
     "ARIZ": [
       {
-        "playerId": "p00837",
+        "playerId": "p02362",
         "position": "PG",
-        "rating": 86,
+        "rating": 94,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": "Sr"
+        "stars": 5,
+        "classYear": "Fr"
       },
       {
         "playerId": "p00838",
@@ -3407,13 +3407,13 @@
         "classYear": "Jr"
       },
       {
-        "playerId": "p00839",
+        "playerId": "p02365",
         "position": "SF",
-        "rating": 82,
+        "rating": 90,
         "age": null,
         "points": 0,
-        "stars": 4,
-        "classYear": "So"
+        "stars": 5,
+        "classYear": "Fr"
       },
       {
         "playerId": "p00840",
@@ -3548,7 +3548,7 @@
         "classYear": "Jr"
       },
       {
-        "playerId": "p02400",
+        "playerId": "p02369",
         "position": "SF",
         "rating": 87,
         "age": null,
@@ -3595,13 +3595,13 @@
         "classYear": "Sr"
       },
       {
-        "playerId": null,
+        "playerId": "p00854",
         "position": "SF",
-        "rating": null,
+        "rating": 87,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 4,
+        "classYear": "So"
       },
       {
         "playerId": "p00860",
@@ -3754,13 +3754,13 @@
         "classYear": "So"
       },
       {
-        "playerId": null,
+        "playerId": "p02367",
         "position": "C",
-        "rating": null,
+        "rating": 87,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 5,
+        "classYear": "Fr"
       }
     ],
     "USC": [
@@ -3848,24 +3848,24 @@
         "classYear": "So"
       },
       {
-        "playerId": "p00885",
+        "playerId": null,
         "position": "C",
-        "rating": 81,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       }
     ],
     "WASH": [
       {
-        "playerId": "p00886",
+        "playerId": null,
         "position": "PG",
-        "rating": 84,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Jr"
+        "classYear": null
       },
       {
         "playerId": "p00887",
@@ -3924,13 +3924,13 @@
         "classYear": null
       },
       {
-        "playerId": "p00893",
+        "playerId": null,
         "position": "SF",
-        "rating": 81,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": null,
@@ -4065,13 +4065,13 @@
         "classYear": "Jr"
       },
       {
-        "playerId": "p00908",
+        "playerId": null,
         "position": "SF",
-        "rating": 81,
+        "rating": null,
         "age": null,
         "points": 0,
-        "stars": 3,
-        "classYear": "Sr"
+        "stars": null,
+        "classYear": null
       },
       {
         "playerId": "p00909",
@@ -4159,13 +4159,13 @@
         "classYear": null
       },
       {
-        "playerId": "p00918",
+        "playerId": null,
         "position": "SF",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Jr"
+        "classYear": null
       },
       {
         "playerId": "p00919",
@@ -4235,13 +4235,13 @@
     ],
     "PITT": [
       {
-        "playerId": null,
+        "playerId": "p02374",
         "position": "PG",
-        "rating": null,
+        "rating": 85,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 4,
+        "classYear": "Fr"
       },
       {
         "playerId": "p00927",
@@ -4705,13 +4705,13 @@
     ],
     "LEH": [
       {
-        "playerId": "p00976",
+        "playerId": null,
         "position": "PG",
-        "rating": 83,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": null,
@@ -4929,13 +4929,13 @@
         "classYear": null
       },
       {
-        "playerId": "p01000",
+        "playerId": null,
         "position": "C",
-        "rating": 79,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Jr"
+        "classYear": null
       }
     ],
     "STM": [
@@ -5390,13 +5390,13 @@
         "classYear": "So"
       },
       {
-        "playerId": "p01049",
+        "playerId": null,
         "position": "PF",
-        "rating": 81,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": "p01050",
@@ -5607,13 +5607,13 @@
         "classYear": "Jr"
       },
       {
-        "playerId": "p01072",
+        "playerId": null,
         "position": "SG",
-        "rating": 83,
+        "rating": null,
         "age": null,
         "points": 0,
-        "stars": 3,
-        "classYear": "Jr"
+        "stars": null,
+        "classYear": null
       },
       {
         "playerId": "p01073",
@@ -6039,22 +6039,22 @@
         "classYear": "So"
       },
       {
-        "playerId": "p01118",
+        "playerId": null,
         "position": "SF",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
-        "playerId": "p01119",
+        "playerId": null,
         "position": "PF",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": "p01120",
@@ -6274,13 +6274,13 @@
         "classYear": null
       },
       {
-        "playerId": "p01143",
+        "playerId": null,
         "position": "SF",
-        "rating": 82,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": "p01144",
@@ -6462,13 +6462,13 @@
         "classYear": "Sr"
       },
       {
-        "playerId": "p01163",
+        "playerId": null,
         "position": "SF",
-        "rating": 83,
+        "rating": null,
         "age": null,
         "points": 0,
-        "stars": 3,
-        "classYear": "Jr"
+        "stars": null,
+        "classYear": null
       },
       {
         "playerId": "p01164",
@@ -6612,13 +6612,13 @@
         "classYear": null
       },
       {
-        "playerId": "p01179",
+        "playerId": null,
         "position": "PF",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": null,
@@ -7102,13 +7102,13 @@
     ],
     "SFA": [
       {
-        "playerId": "p01231",
+        "playerId": null,
         "position": "PG",
-        "rating": 83,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": null,
@@ -7628,13 +7628,13 @@
         "classYear": "So"
       },
       {
-        "playerId": "p01287",
+        "playerId": null,
         "position": "SG",
-        "rating": 82,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": null,
@@ -7807,13 +7807,13 @@
     ],
     "USF": [
       {
-        "playerId": "p01306",
+        "playerId": null,
         "position": "PG",
-        "rating": 81,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": "p01307",
@@ -8013,13 +8013,13 @@
         "classYear": "So"
       },
       {
-        "playerId": "p01328",
+        "playerId": null,
         "position": "SF",
-        "rating": 81,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": "p01329",
@@ -8069,13 +8069,13 @@
         "classYear": "So"
       },
       {
-        "playerId": "p01334",
+        "playerId": null,
         "position": "PF",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": null,
@@ -8501,13 +8501,13 @@
         "classYear": "So"
       },
       {
-        "playerId": "p01380",
+        "playerId": null,
         "position": "C",
-        "rating": 82,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       }
     ],
     "BSU": [
@@ -8812,13 +8812,13 @@
         "classYear": "Sr"
       },
       {
-        "playerId": null,
+        "playerId": "p00550",
         "position": "SF",
-        "rating": null,
+        "rating": 88,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 5,
+        "classYear": "Jr"
       },
       {
         "playerId": "p01412",
@@ -8897,13 +8897,13 @@
         "classYear": "Sr"
       },
       {
-        "playerId": "p01420",
+        "playerId": null,
         "position": "SG",
-        "rating": 83,
+        "rating": null,
         "age": null,
         "points": 0,
-        "stars": 4,
-        "classYear": "Sr"
+        "stars": null,
+        "classYear": null
       },
       {
         "playerId": "p01421",
@@ -8962,13 +8962,13 @@
         "classYear": "So"
       },
       {
-        "playerId": "p01427",
+        "playerId": null,
         "position": "PF",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": null,
@@ -9123,13 +9123,13 @@
     ],
     "GCU": [
       {
-        "playerId": "p01444",
+        "playerId": null,
         "position": "PG",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": "p01445",
@@ -9582,13 +9582,13 @@
         "classYear": null
       },
       {
-        "playerId": "p01493",
+        "playerId": null,
         "position": "C",
-        "rating": 83,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       }
     ],
     "BRY": [
@@ -9667,13 +9667,13 @@
         "classYear": null
       },
       {
-        "playerId": "p01502",
+        "playerId": null,
         "position": "PF",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": "p01503",
@@ -10063,13 +10063,13 @@
     ],
     "UNCA": [
       {
-        "playerId": "p01544",
+        "playerId": null,
         "position": "PG",
-        "rating": 80,
+        "rating": null,
         "age": null,
         "points": 0,
         "stars": null,
-        "classYear": "Sr"
+        "classYear": null
       },
       {
         "playerId": "p01545",

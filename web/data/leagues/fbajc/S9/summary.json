@@ -1,0 +1,28 @@
+{
+  "league": "fbajc",
+  "season": 9,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "National Champion",
+      "champion": "Villanova",
+      "runnerUp": "Duke",
+      "score": null,
+      "teamId": "VIL",
+      "runnerUpId": "DUKE",
+      "finalsMvp": "p02025"
+    }
+  ],
+  "jc": {
+    "confChampions": [],
+    "national": [],
+    "conference": [],
+    "allAmerican": null,
+    "mvp": {
+      "mm": "p02025",
+      "nit": null
+    },
+    "nit": null
+  }
+}

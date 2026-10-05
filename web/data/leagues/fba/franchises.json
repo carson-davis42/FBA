@@ -98,7 +98,7 @@
           "abbr": "CHI",
           "city": "Chicago, Illinois",
           "from": 45,
-          "to": 49
+          "to": 48
         }
       ]
     },
@@ -327,6 +327,13 @@
           "to": 56
         },
         {
+          "name": "Florida Panthers",
+          "abbr": "FLO",
+          "city": "Orlando, Florida",
+          "from": 11,
+          "to": 11
+        },
+        {
           "name": "Texas Outlaws",
           "abbr": "TEX",
           "city": "Dallas, Texas",
@@ -482,6 +489,13 @@
           "city": "Seattle, Washington",
           "from": 78,
           "to": null
+        },
+        {
+          "name": "Seattle Shock",
+          "abbr": "SEA",
+          "city": "Seattle, Washington",
+          "from": 77,
+          "to": 77
         },
         {
           "name": "Seattle Shock",

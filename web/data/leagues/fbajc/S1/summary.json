@@ -1,0 +1,28 @@
+{
+  "league": "fbajc",
+  "season": 1,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "National Champion",
+      "champion": "Duke",
+      "runnerUp": "Virginia",
+      "score": null,
+      "teamId": "DUKE",
+      "runnerUpId": "UVA",
+      "finalsMvp": "p01927"
+    }
+  ],
+  "jc": {
+    "confChampions": [],
+    "national": [],
+    "conference": [],
+    "allAmerican": null,
+    "mvp": {
+      "mm": "p01927",
+      "nit": null
+    },
+    "nit": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "league": "fbajc",
+  "season": 2,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "National Champion",
+      "champion": "San Diego State",
+      "runnerUp": "Duke",
+      "score": null,
+      "teamId": "SDSU",
+      "runnerUpId": "DUKE",
+      "finalsMvp": "p01928"
+    }
+  ],
+  "jc": {
+    "confChampions": [],
+    "national": [],
+    "conference": [],
+    "allAmerican": null,
+    "mvp": {
+      "mm": "p01928",
+      "nit": null
+    },
+    "nit": null
+  }
+}

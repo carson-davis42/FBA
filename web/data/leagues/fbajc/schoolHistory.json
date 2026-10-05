@@ -1,0 +1,9831 @@
+{
+  "league": "fbajc",
+  "throughSeason": 78,
+  "schools": [
+    {
+      "teamId": "BAY",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          16,
+          17,
+          54,
+          55,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77
+        ],
+        "sweet16": [
+          11,
+          12,
+          16,
+          57,
+          59,
+          60,
+          62,
+          63,
+          66,
+          69,
+          72,
+          76,
+          77
+        ],
+        "elite8": [
+          11,
+          57,
+          59,
+          60,
+          62,
+          63,
+          77
+        ],
+        "final4": [
+          11,
+          59,
+          60,
+          63,
+          77
+        ],
+        "titleGame": [
+          63
+        ],
+        "champion": [
+          63
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 62,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "BYU",
+      "mm": {
+        "app": [
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          75,
+          76
+        ],
+        "sweet16": [
+          65,
+          76
+        ],
+        "elite8": [
+          76
+        ],
+        "final4": [
+          76
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 62,
+          "conf": "A10"
+        },
+        {
+          "season": 64,
+          "conf": "A10"
+        },
+        {
+          "season": 65,
+          "conf": "A10"
+        },
+        {
+          "season": 66,
+          "conf": "A10"
+        },
+        {
+          "season": 68,
+          "conf": "A10"
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 62,
+          "conf": "A10"
+        },
+        {
+          "season": 63,
+          "conf": "A10"
+        },
+        {
+          "season": 64,
+          "conf": "A10"
+        },
+        {
+          "season": 65,
+          "conf": "A10"
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "UH",
+      "mm": {
+        "app": [
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          53,
+          54,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          18,
+          49,
+          50,
+          53,
+          64,
+          67,
+          68,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "elite8": [
+          68,
+          71,
+          72,
+          74,
+          75
+        ],
+        "final4": [
+          71,
+          72,
+          74
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": "AAC"
+        },
+        {
+          "season": 54,
+          "conf": "AAC"
+        },
+        {
+          "season": 67,
+          "conf": "AAC"
+        },
+        {
+          "season": 68,
+          "conf": "AAC"
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 67,
+          "conf": "AAC"
+        },
+        {
+          "season": 68,
+          "conf": "AAC"
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ISU",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          73,
+          77,
+          78
+        ],
+        "sweet16": [
+          11,
+          12,
+          13,
+          49,
+          50,
+          51,
+          52
+        ],
+        "elite8": [
+          50,
+          51,
+          52
+        ],
+        "final4": [
+          52
+        ],
+        "titleGame": [
+          52
+        ],
+        "champion": [
+          52
+        ]
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "KU",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          60,
+          61,
+          62,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72
+        ],
+        "elite8": [
+          8,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          60,
+          62,
+          64,
+          65,
+          66,
+          68
+        ],
+        "final4": [
+          8,
+          13,
+          17,
+          48,
+          62,
+          64,
+          65
+        ],
+        "titleGame": [
+          8,
+          17,
+          48,
+          64,
+          65
+        ],
+        "champion": [
+          48,
+          64,
+          65
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": null
+        },
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "KSU",
+      "mm": {
+        "app": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          53,
+          54,
+          55,
+          56,
+          69,
+          70,
+          71
+        ],
+        "sweet16": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          53,
+          55,
+          56
+        ],
+        "elite8": [
+          13,
+          14,
+          15,
+          55
+        ],
+        "final4": [
+          14,
+          55
+        ],
+        "titleGame": [
+          14
+        ],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": null
+        },
+        {
+          "season": 55,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "OU",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          54,
+          57,
+          60,
+          61,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          76
+        ],
+        "sweet16": [
+          11,
+          12,
+          13,
+          14,
+          48,
+          52,
+          60,
+          61,
+          65,
+          66,
+          67
+        ],
+        "elite8": [
+          11,
+          13,
+          48,
+          60,
+          61,
+          65,
+          67
+        ],
+        "final4": [
+          60
+        ],
+        "titleGame": [
+          60
+        ],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 65,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "OSU",
+      "mm": {
+        "app": [
+          57,
+          58,
+          59,
+          71,
+          72
+        ],
+        "sweet16": [
+          58,
+          59
+        ],
+        "elite8": [
+          58
+        ],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 59,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 59,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "TCU",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          48,
+          59,
+          62,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        "sweet16": [
+          10,
+          11,
+          12,
+          13
+        ],
+        "elite8": [
+          10,
+          11,
+          12
+        ],
+        "final4": [
+          10,
+          11,
+          12
+        ],
+        "titleGame": [
+          10,
+          11,
+          12
+        ],
+        "champion": [
+          10,
+          11
+        ]
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 67,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "UT",
+      "mm": {
+        "app": [
+          49,
+          50,
+          51,
+          52,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          77,
+          78
+        ],
+        "sweet16": [
+          49,
+          50,
+          56,
+          57,
+          58,
+          63,
+          68,
+          69,
+          70,
+          71,
+          75,
+          77,
+          78
+        ],
+        "elite8": [
+          57,
+          58,
+          68,
+          71,
+          77
+        ],
+        "final4": [
+          57,
+          68,
+          71,
+          77
+        ],
+        "titleGame": [
+          57,
+          71,
+          77
+        ],
+        "champion": [
+          57,
+          77
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "TTU",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          78
+        ],
+        "sweet16": [
+          4,
+          5,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          58,
+          60,
+          61
+        ],
+        "elite8": [
+          4,
+          5,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          49,
+          50,
+          51,
+          52,
+          58,
+          61
+        ],
+        "final4": [
+          4,
+          5,
+          10,
+          13,
+          14,
+          15,
+          49,
+          51
+        ],
+        "titleGame": [
+          4,
+          5,
+          10,
+          13,
+          14,
+          49,
+          51
+        ],
+        "champion": [
+          5,
+          14
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "WVU",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          56,
+          59,
+          64,
+          65,
+          74,
+          75
+        ],
+        "sweet16": [
+          11,
+          12,
+          13,
+          14,
+          16,
+          17,
+          18,
+          48,
+          50,
+          59
+        ],
+        "elite8": [
+          11,
+          12,
+          13,
+          18,
+          48,
+          50,
+          59
+        ],
+        "final4": [
+          13,
+          18
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "CLEM",
+      "mm": {
+        "app": [
+          13,
+          14,
+          15,
+          16,
+          18,
+          49,
+          70,
+          71,
+          72,
+          73,
+          74
+        ],
+        "sweet16": [
+          13,
+          14,
+          15,
+          16,
+          73
+        ],
+        "elite8": [
+          14,
+          73
+        ],
+        "final4": [
+          73
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "DUKE",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          1,
+          2,
+          9,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          58,
+          60,
+          62,
+          63,
+          64,
+          65,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          77,
+          78
+        ],
+        "elite8": [
+          1,
+          2,
+          9,
+          11,
+          12,
+          14,
+          16,
+          48,
+          49,
+          50,
+          51,
+          54,
+          58,
+          60,
+          62,
+          63,
+          64,
+          73,
+          77,
+          78
+        ],
+        "final4": [
+          1,
+          2,
+          9,
+          11,
+          12,
+          48,
+          49,
+          50,
+          51,
+          54,
+          58,
+          78
+        ],
+        "titleGame": [
+          1,
+          2,
+          9,
+          11,
+          12,
+          51
+        ],
+        "champion": [
+          1,
+          12,
+          51
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "FSU",
+      "mm": {
+        "app": [
+          52,
+          53,
+          54,
+          55,
+          56,
+          60,
+          62,
+          66,
+          67,
+          68,
+          69,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          52,
+          53,
+          54,
+          55,
+          56,
+          60,
+          69,
+          73,
+          74,
+          75
+        ],
+        "elite8": [
+          52,
+          53,
+          54,
+          73,
+          75
+        ],
+        "final4": [
+          52,
+          54
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "LOU",
+      "mm": {
+        "app": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          48,
+          49,
+          50,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          68,
+          69,
+          70,
+          71,
+          74,
+          75,
+          76
+        ],
+        "sweet16": [
+          12,
+          13,
+          14,
+          15,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          64,
+          75
+        ],
+        "elite8": [
+          13,
+          14,
+          15,
+          57,
+          59,
+          60,
+          75
+        ],
+        "final4": [
+          14,
+          15,
+          57,
+          59,
+          60,
+          75
+        ],
+        "titleGame": [
+          57,
+          59
+        ],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 60,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MIA",
+      "mm": {
+        "app": [
+          11,
+          12,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72
+        ],
+        "sweet16": [
+          11
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 70,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "NCS",
+      "mm": {
+        "app": [
+          17,
+          18,
+          48,
+          51,
+          53,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65
+        ],
+        "sweet16": [
+          61
+        ],
+        "elite8": [
+          61
+        ],
+        "final4": [
+          61
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 61,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UNC",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          4,
+          5,
+          6,
+          7,
+          12,
+          13,
+          14,
+          15,
+          16,
+          50,
+          51,
+          55,
+          56,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          67,
+          69,
+          72,
+          74,
+          76,
+          77,
+          78
+        ],
+        "elite8": [
+          4,
+          5,
+          6,
+          7,
+          12,
+          16,
+          50,
+          55,
+          56,
+          59,
+          62,
+          64,
+          66,
+          67,
+          69,
+          74,
+          76,
+          78
+        ],
+        "final4": [
+          4,
+          5,
+          6,
+          7,
+          50,
+          55,
+          56,
+          62,
+          66,
+          78
+        ],
+        "titleGame": [
+          4,
+          5,
+          6,
+          7,
+          50,
+          55,
+          62,
+          66,
+          78
+        ],
+        "champion": [
+          4,
+          6,
+          55,
+          62,
+          78
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ND",
+      "mm": {
+        "app": [
+          57,
+          66,
+          67,
+          72
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "SYR",
+      "mm": {
+        "app": [
+          16,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          69,
+          77,
+          78
+        ],
+        "sweet16": [
+          51,
+          52,
+          53,
+          58,
+          78
+        ],
+        "elite8": [
+          52,
+          53,
+          58,
+          78
+        ],
+        "final4": [
+          52,
+          53,
+          58,
+          78
+        ],
+        "titleGame": [
+          53,
+          78
+        ],
+        "champion": [
+          53
+        ]
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UVA",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          74,
+          77,
+          78
+        ],
+        "sweet16": [
+          1,
+          3,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          53,
+          55,
+          57,
+          59,
+          64,
+          70,
+          72,
+          77,
+          78
+        ],
+        "elite8": [
+          1,
+          3,
+          13,
+          14,
+          16,
+          17,
+          18,
+          53,
+          64,
+          70,
+          78
+        ],
+        "final4": [
+          1,
+          3,
+          13,
+          17,
+          18
+        ],
+        "titleGame": [
+          1,
+          3,
+          13
+        ],
+        "champion": [
+          13
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "VATECH",
+      "mm": {
+        "app": [
+          49,
+          51,
+          65,
+          66,
+          67,
+          68
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "WF",
+      "mm": {
+        "app": [
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          56,
+          57,
+          58,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          68,
+          71,
+          72,
+          75,
+          78
+        ],
+        "elite8": [
+          56,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          71,
+          75,
+          78
+        ],
+        "final4": [
+          56,
+          60,
+          62,
+          63,
+          71,
+          78
+        ],
+        "titleGame": [
+          60,
+          62,
+          71
+        ],
+        "champion": [
+          60,
+          71
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 56,
+          "conf": "AAC"
+        },
+        {
+          "season": 60,
+          "conf": "AAC"
+        },
+        {
+          "season": 61,
+          "conf": "AAC"
+        },
+        {
+          "season": 62,
+          "conf": "AAC"
+        },
+        {
+          "season": 63,
+          "conf": "AAC"
+        },
+        {
+          "season": 64,
+          "conf": "AAC"
+        },
+        {
+          "season": 65,
+          "conf": "AAC"
+        },
+        {
+          "season": 66,
+          "conf": "AAC"
+        },
+        {
+          "season": 67,
+          "conf": "AAC"
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 60,
+          "conf": "AAC"
+        },
+        {
+          "season": 61,
+          "conf": "AAC"
+        },
+        {
+          "season": 62,
+          "conf": "AAC"
+        },
+        {
+          "season": 63,
+          "conf": "AAC"
+        },
+        {
+          "season": 64,
+          "conf": "AAC"
+        },
+        {
+          "season": 66,
+          "conf": "AAC"
+        },
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "UB",
+      "mm": {
+        "app": [
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          53,
+          59,
+          60,
+          61,
+          62,
+          64,
+          65,
+          66,
+          67,
+          69,
+          72,
+          73,
+          74
+        ],
+        "sweet16": [
+          59,
+          72
+        ],
+        "elite8": [
+          59
+        ],
+        "final4": [
+          59
+        ],
+        "titleGame": [
+          59
+        ],
+        "champion": [
+          59
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 59,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 59,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "CTN",
+      "mm": {
+        "app": [
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77
+        ],
+        "sweet16": [
+          59,
+          61,
+          67,
+          68,
+          69,
+          70,
+          73
+        ],
+        "elite8": [
+          59,
+          68,
+          69
+        ],
+        "final4": [
+          68,
+          69
+        ],
+        "titleGame": [
+          68,
+          69
+        ],
+        "champion": [
+          68
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "DSN",
+      "mm": {
+        "app": [
+          56,
+          61
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "DEP",
+      "mm": {
+        "app": [
+          59,
+          60,
+          61,
+          62,
+          63
+        ],
+        "sweet16": [
+          62,
+          63
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 59,
+          "conf": "COL"
+        },
+        {
+          "season": 60,
+          "conf": "COL"
+        },
+        {
+          "season": 62,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 60,
+          "conf": "COL"
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "GTWN",
+      "mm": {
+        "app": [
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71
+        ],
+        "sweet16": [
+          48,
+          49
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "MQ",
+      "mm": {
+        "app": [
+          54,
+          55,
+          56,
+          57,
+          58,
+          64,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          55,
+          72,
+          74
+        ],
+        "elite8": [
+          72,
+          74
+        ],
+        "final4": [
+          72
+        ],
+        "titleGame": [
+          72
+        ],
+        "champion": [
+          72
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "PROV",
+      "mm": {
+        "app": [
+          17,
+          18,
+          48,
+          49,
+          52,
+          57,
+          62,
+          65,
+          66,
+          67,
+          69
+        ],
+        "sweet16": [
+          17,
+          18,
+          48
+        ],
+        "elite8": [
+          18
+        ],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 66,
+          "conf": "COL"
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "SH",
+      "mm": {
+        "app": [
+          17,
+          18,
+          53,
+          54,
+          55,
+          58,
+          59,
+          60,
+          61,
+          65,
+          66,
+          67,
+          73
+        ],
+        "sweet16": [
+          17,
+          58,
+          61
+        ],
+        "elite8": [
+          58
+        ],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 58,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 58,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "STJOHNS",
+      "mm": {
+        "app": [
+          63,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          75,
+          78
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UCON",
+      "mm": {
+        "app": [
+          54,
+          55,
+          56,
+          57,
+          58,
+          60,
+          61,
+          62,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          55,
+          61,
+          67,
+          68,
+          69,
+          70,
+          72,
+          73,
+          75
+        ],
+        "elite8": [
+          68,
+          69,
+          70,
+          72,
+          73,
+          75
+        ],
+        "final4": [
+          70,
+          75
+        ],
+        "titleGame": [
+          70
+        ],
+        "champion": [
+          70
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 61,
+          "conf": "AAC"
+        },
+        {
+          "season": 67,
+          "conf": "AAC"
+        },
+        {
+          "season": 69,
+          "conf": "AAC"
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 69,
+          "conf": "AAC"
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "VIL",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          9,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          55,
+          56,
+          57,
+          59,
+          60,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          70,
+          71,
+          74
+        ],
+        "elite8": [
+          9,
+          11,
+          13,
+          16,
+          17,
+          18,
+          48,
+          49,
+          51,
+          52,
+          63,
+          66,
+          67,
+          70
+        ],
+        "final4": [
+          9,
+          11,
+          16,
+          17,
+          18,
+          49,
+          51,
+          52,
+          63,
+          66,
+          70
+        ],
+        "titleGame": [
+          9,
+          16,
+          17,
+          18,
+          52,
+          63,
+          66
+        ],
+        "champion": [
+          9,
+          16,
+          17,
+          66
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": null
+        },
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "XU",
+      "mm": {
+        "app": [
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          63,
+          64,
+          65,
+          67,
+          68,
+          69,
+          70,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77
+        ],
+        "sweet16": [
+          15,
+          17,
+          49,
+          50,
+          51,
+          52,
+          54,
+          65,
+          68,
+          69,
+          70,
+          74,
+          76
+        ],
+        "elite8": [
+          15,
+          17,
+          50,
+          54,
+          69
+        ],
+        "final4": [
+          50,
+          69
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 54,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 65,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ALA",
+      "mm": {
+        "app": [
+          49,
+          50,
+          51,
+          52,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          72,
+          73,
+          74,
+          75,
+          77
+        ],
+        "sweet16": [
+          50,
+          64,
+          65,
+          67
+        ],
+        "elite8": [
+          64
+        ],
+        "final4": [
+          64
+        ],
+        "titleGame": [
+          64
+        ],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 64,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ARK",
+      "mm": {
+        "app": [
+          48,
+          52,
+          53,
+          61,
+          62,
+          63,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          77
+        ],
+        "sweet16": [
+          66,
+          67
+        ],
+        "elite8": [
+          66,
+          67
+        ],
+        "final4": [
+          67
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 61,
+          "conf": "PAT"
+        },
+        {
+          "season": 67,
+          "conf": "A10"
+        },
+        {
+          "season": 69,
+          "conf": "A10"
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 61,
+          "conf": "PAT"
+        },
+        {
+          "season": 67,
+          "conf": "A10"
+        },
+        {
+          "season": 69,
+          "conf": "A10"
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "AUB",
+      "mm": {
+        "app": [
+          11,
+          16,
+          51,
+          52,
+          53,
+          54,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          74,
+          75,
+          76,
+          77
+        ],
+        "sweet16": [
+          51,
+          52,
+          62,
+          66,
+          67,
+          76
+        ],
+        "elite8": [
+          51,
+          76
+        ],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 66,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "FLO",
+      "mm": {
+        "app": [
+          11,
+          13,
+          14,
+          48,
+          49,
+          50,
+          54,
+          55,
+          56,
+          57,
+          58,
+          61,
+          62,
+          63,
+          64,
+          65,
+          69,
+          70,
+          71,
+          74,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          48,
+          63,
+          64,
+          74,
+          76,
+          78
+        ],
+        "elite8": [
+          63,
+          74,
+          76
+        ],
+        "final4": [
+          63,
+          74
+        ],
+        "titleGame": [
+          74
+        ],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UGA",
+      "mm": {
+        "app": [
+          58,
+          59,
+          60,
+          73
+        ],
+        "sweet16": [
+          60
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 60,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UK",
+      "mm": {
+        "app": [
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          17,
+          18,
+          48,
+          49,
+          50,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          61,
+          62,
+          65,
+          66,
+          68,
+          69,
+          70,
+          71,
+          73,
+          76,
+          77
+        ],
+        "elite8": [
+          17,
+          48,
+          53,
+          54,
+          55,
+          56,
+          58,
+          61,
+          65,
+          69,
+          70,
+          71,
+          77
+        ],
+        "final4": [
+          17,
+          53,
+          56,
+          58,
+          61,
+          65,
+          69
+        ],
+        "titleGame": [
+          53,
+          56,
+          58,
+          61
+        ],
+        "champion": [
+          58
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": null
+        },
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "LSU",
+      "mm": {
+        "app": [
+          54,
+          55,
+          57,
+          58,
+          59,
+          60,
+          61,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          70,
+          71,
+          72,
+          78
+        ],
+        "sweet16": [
+          54,
+          57,
+          58,
+          65
+        ],
+        "elite8": [
+          57
+        ],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "MISSST",
+      "mm": {
+        "app": [
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          62,
+          77,
+          78
+        ],
+        "sweet16": [
+          60,
+          77,
+          78
+        ],
+        "elite8": [
+          77,
+          78
+        ],
+        "final4": [
+          77
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MIZZ",
+      "mm": {
+        "app": [
+          70,
+          71,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          74,
+          75,
+          77,
+          78
+        ],
+        "elite8": [
+          75,
+          77
+        ],
+        "final4": [
+          75
+        ],
+        "titleGame": [
+          75
+        ],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "MISS",
+      "mm": {
+        "app": [
+          14,
+          15,
+          49,
+          56,
+          72,
+          74
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "TENN",
+      "mm": {
+        "app": [
+          17,
+          18,
+          50,
+          52,
+          53,
+          54,
+          55,
+          56,
+          63,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          17,
+          18,
+          53,
+          54,
+          55,
+          56,
+          66,
+          67,
+          68,
+          70,
+          71,
+          76,
+          77
+        ],
+        "elite8": [
+          56,
+          66,
+          67,
+          68,
+          70,
+          77
+        ],
+        "final4": [
+          68
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": null
+        },
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "TAMU",
+      "mm": {
+        "app": [
+          48,
+          51,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          78
+        ],
+        "sweet16": [
+          51,
+          57,
+          71
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 72,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ILL",
+      "mm": {
+        "app": [
+          60,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          60,
+          65,
+          66,
+          68,
+          72,
+          75,
+          78
+        ],
+        "elite8": [
+          60,
+          65,
+          72,
+          78
+        ],
+        "final4": [
+          65,
+          72
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 60,
+          "conf": "HOR"
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 60,
+          "conf": "HOR"
+        },
+        {
+          "season": 65,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "IU",
+      "mm": {
+        "app": [
+          52,
+          53,
+          54,
+          55,
+          61,
+          62,
+          63,
+          64,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          52,
+          53,
+          69,
+          73,
+          76,
+          77
+        ],
+        "elite8": [
+          53,
+          69,
+          76
+        ],
+        "final4": [
+          69,
+          76
+        ],
+        "titleGame": [
+          69,
+          76
+        ],
+        "champion": [
+          69,
+          76
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "IOWA",
+      "mm": {
+        "app": [
+          70,
+          71,
+          72
+        ],
+        "sweet16": [
+          71
+        ],
+        "elite8": [
+          71
+        ],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MD",
+      "mm": {
+        "app": [
+          54,
+          59,
+          61,
+          67,
+          68
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UM",
+      "mm": {
+        "app": [
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          78
+        ],
+        "sweet16": [
+          17,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          59,
+          61,
+          62,
+          64,
+          66,
+          67,
+          68,
+          70,
+          73,
+          74,
+          78
+        ],
+        "elite8": [
+          49,
+          50,
+          54,
+          56,
+          59,
+          61,
+          64,
+          66,
+          73,
+          74,
+          78
+        ],
+        "final4": [
+          49,
+          59,
+          61,
+          64,
+          66,
+          73
+        ],
+        "titleGame": [
+          49,
+          73
+        ],
+        "champion": [
+          49
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": null
+        },
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MSU",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          11,
+          14,
+          15,
+          16,
+          18,
+          50,
+          53,
+          54,
+          55,
+          58,
+          61,
+          62,
+          63,
+          68,
+          70,
+          73,
+          74,
+          77
+        ],
+        "elite8": [
+          15,
+          16,
+          18,
+          53,
+          54,
+          55,
+          61,
+          62,
+          70,
+          73
+        ],
+        "final4": [
+          16,
+          53,
+          54,
+          61
+        ],
+        "titleGame": [
+          16,
+          54,
+          61
+        ],
+        "champion": [
+          54,
+          61
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": null
+        },
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MIN",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "NW",
+      "mm": {
+        "app": [
+          68,
+          69,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "OHSU",
+      "mm": {
+        "app": [
+          17,
+          50,
+          55,
+          58,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          78
+        ],
+        "sweet16": [
+          69,
+          71,
+          72,
+          73
+        ],
+        "elite8": [
+          71,
+          72,
+          73
+        ],
+        "final4": [
+          73
+        ],
+        "titleGame": [
+          73
+        ],
+        "champion": [
+          73
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "PSU",
+      "mm": {
+        "app": [
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          66,
+          67,
+          68
+        ],
+        "sweet16": [
+          63
+        ],
+        "elite8": [
+          63
+        ],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 61,
+          "conf": "COL"
+        },
+        {
+          "season": 63,
+          "conf": "COL"
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 62,
+          "conf": "COL"
+        },
+        {
+          "season": 63,
+          "conf": "COL"
+        },
+        {
+          "season": 68,
+          "conf": "A10"
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "PUR",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          48,
+          54,
+          55,
+          56,
+          57,
+          62,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          73,
+          74,
+          75,
+          76,
+          78
+        ],
+        "sweet16": [
+          3,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          18,
+          70,
+          78
+        ],
+        "elite8": [
+          3,
+          16,
+          18,
+          70
+        ],
+        "final4": [
+          3,
+          16,
+          18,
+          70
+        ],
+        "titleGame": [
+          3,
+          18
+        ],
+        "champion": [
+          3,
+          18
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 70,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 70,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "WIS",
+      "mm": {
+        "app": [
+          17,
+          18,
+          48,
+          49,
+          51,
+          52,
+          56,
+          57,
+          58,
+          59,
+          60,
+          63,
+          64,
+          65,
+          66,
+          68,
+          74,
+          75
+        ],
+        "sweet16": [
+          18,
+          49,
+          51,
+          52,
+          57,
+          60,
+          65,
+          66
+        ],
+        "elite8": [
+          52,
+          57,
+          65
+        ],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 60,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "AKR",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "CIN",
+      "mm": {
+        "app": [
+          17,
+          18,
+          52,
+          53,
+          54,
+          62,
+          63
+        ],
+        "sweet16": [
+          17,
+          53,
+          63
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "FAU",
+      "mm": {
+        "app": [
+          70,
+          71,
+          72,
+          73,
+          74,
+          78
+        ],
+        "sweet16": [
+          73
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "GT",
+      "mm": {
+        "app": [
+          72
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "MEM",
+      "mm": {
+        "app": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          50,
+          51,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          56,
+          57,
+          65,
+          68,
+          73,
+          74,
+          75,
+          76,
+          77
+        ],
+        "elite8": [
+          11,
+          12,
+          57,
+          68,
+          74
+        ],
+        "final4": [
+          12,
+          57
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "RICE",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "SMU",
+      "mm": {
+        "app": [
+          64,
+          65,
+          66,
+          67
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "TOL",
+      "mm": {
+        "app": [
+          73
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "TUL",
+      "mm": {
+        "app": [
+          65,
+          70,
+          71,
+          73,
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "UAB",
+      "mm": {
+        "app": [
+          75,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UCF",
+      "mm": {
+        "app": [
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          66,
+          67,
+          68,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75
+        ],
+        "sweet16": [
+          55,
+          56
+        ],
+        "elite8": [
+          55,
+          56
+        ],
+        "final4": [
+          55
+        ],
+        "titleGame": [
+          55
+        ],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "WICH",
+      "mm": {
+        "app": [
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          17,
+          48,
+          49,
+          51,
+          54,
+          55,
+          74,
+          77
+        ],
+        "elite8": [
+          17,
+          48,
+          49,
+          54,
+          55,
+          77
+        ],
+        "final4": [
+          48,
+          54,
+          77
+        ],
+        "titleGame": [
+          48,
+          54,
+          77
+        ],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ARIZ",
+      "mm": {
+        "app": [
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          17,
+          18,
+          49,
+          50,
+          51,
+          54,
+          55,
+          56,
+          57,
+          60,
+          61,
+          63,
+          68,
+          69,
+          70,
+          71,
+          72,
+          74,
+          75,
+          76,
+          77
+        ],
+        "elite8": [
+          17,
+          18,
+          49,
+          50,
+          51,
+          54,
+          55,
+          60,
+          69,
+          70,
+          72,
+          74,
+          75,
+          76
+        ],
+        "final4": [
+          50,
+          70,
+          72,
+          74
+        ],
+        "titleGame": [
+          50,
+          70,
+          72
+        ],
+        "champion": [
+          50
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ASU",
+      "mm": {
+        "app": [
+          11,
+          51,
+          52,
+          53,
+          54,
+          55,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          74
+        ],
+        "sweet16": [
+          11,
+          51,
+          52,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          70
+        ],
+        "elite8": [
+          51,
+          52,
+          61,
+          62,
+          65,
+          67
+        ],
+        "final4": [
+          67
+        ],
+        "titleGame": [
+          67
+        ],
+        "champion": [
+          67
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "COLO",
+      "mm": {
+        "app": [
+          58,
+          72
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "GU",
+      "mm": {
+        "app": [
+          15,
+          16,
+          17,
+          18,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          15,
+          16,
+          17,
+          18,
+          51,
+          52,
+          54,
+          56,
+          57,
+          58,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          71,
+          72,
+          75,
+          76
+        ],
+        "elite8": [
+          15,
+          16,
+          51,
+          52,
+          58,
+          62,
+          63,
+          65,
+          66,
+          67,
+          71,
+          72,
+          75,
+          76
+        ],
+        "final4": [
+          15,
+          16,
+          51,
+          58,
+          62,
+          65,
+          66,
+          67,
+          71,
+          75,
+          76
+        ],
+        "titleGame": [
+          15,
+          58,
+          65,
+          67,
+          75,
+          76
+        ],
+        "champion": [
+          75
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 54,
+          "conf": "PAT"
+        },
+        {
+          "season": 55,
+          "conf": "PAT"
+        },
+        {
+          "season": 56,
+          "conf": "PAT"
+        },
+        {
+          "season": 57,
+          "conf": "PAT"
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 55,
+          "conf": "PAT"
+        },
+        {
+          "season": 57,
+          "conf": "PAT"
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ORE",
+      "mm": {
+        "app": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          59,
+          63,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          53,
+          54,
+          59,
+          63,
+          67
+        ],
+        "elite8": [
+          53
+        ],
+        "final4": [
+          53
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 59,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ORST",
+      "mm": {
+        "app": [
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "STAN",
+      "mm": {
+        "app": [
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          61,
+          62,
+          63,
+          65,
+          66
+        ],
+        "sweet16": [
+          48,
+          49,
+          51,
+          52,
+          53,
+          54,
+          62,
+          63
+        ],
+        "elite8": [
+          48,
+          53,
+          63
+        ],
+        "final4": [
+          48
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UCLA",
+      "mm": {
+        "app": [
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          57,
+          59,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          77
+        ],
+        "elite8": [
+          57,
+          64,
+          67,
+          68,
+          69
+        ],
+        "final4": [
+          64,
+          67,
+          68
+        ],
+        "titleGame": [
+          68
+        ],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "USC",
+      "mm": {
+        "app": [
+          48,
+          57,
+          58,
+          59,
+          60,
+          61,
+          64,
+          70,
+          73,
+          78
+        ],
+        "sweet16": [
+          61,
+          64
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "UTAH",
+      "mm": {
+        "app": [
+          12,
+          13,
+          48,
+          50,
+          65
+        ],
+        "sweet16": [
+          12,
+          13,
+          48
+        ],
+        "elite8": [
+          12
+        ],
+        "final4": [
+          12
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "WASH",
+      "mm": {
+        "app": [
+          54,
+          56,
+          57,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76
+        ],
+        "sweet16": [
+          72,
+          73,
+          76
+        ],
+        "elite8": [
+          72
+        ],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "WSU",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "BC",
+      "mm": {
+        "app": [
+          68
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "BUF",
+      "mm": {
+        "app": [
+          54,
+          55,
+          56,
+          57,
+          58,
+          62,
+          68,
+          69,
+          75
+        ],
+        "sweet16": [
+          54,
+          56
+        ],
+        "elite8": [
+          56
+        ],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": "HOR"
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "DAY",
+      "mm": {
+        "app": [
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          69,
+          70,
+          72,
+          73
+        ],
+        "sweet16": [
+          59
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "ECU",
+      "mm": {
+        "app": [
+          11,
+          13,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          62,
+          64,
+          65,
+          72,
+          73
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 56,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "LUC",
+      "mm": {
+        "app": [
+          17,
+          18,
+          48,
+          49,
+          50,
+          52,
+          55,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          71,
+          72,
+          73,
+          75,
+          76,
+          77
+        ],
+        "sweet16": [
+          17
+        ],
+        "elite8": [
+          17
+        ],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 65,
+          "conf": "HOR"
+        },
+        {
+          "season": 69,
+          "conf": "HOR"
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 69,
+          "conf": "HOR"
+        },
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "NEB",
+      "mm": {
+        "app": [
+          71,
+          72,
+          74,
+          75,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "PITT",
+      "mm": {
+        "app": [
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "RUT",
+      "mm": {
+        "app": [
+          65,
+          66,
+          67,
+          70
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 66,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "SC",
+      "mm": {
+        "app": [
+          11,
+          12,
+          62,
+          63,
+          64,
+          65
+        ],
+        "sweet16": [
+          11
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 63,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "STJ",
+      "mm": {
+        "app": [
+          18,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          66
+        ],
+        "sweet16": [
+          57,
+          58
+        ],
+        "elite8": [
+          57
+        ],
+        "final4": [
+          57
+        ],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "VAN",
+      "mm": {
+        "app": [
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "VCU",
+      "mm": {
+        "app": [
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          73,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ARMY",
+      "mm": {
+        "app": [
+          70
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 70,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "BEL",
+      "mm": {
+        "app": [
+          54,
+          55,
+          57,
+          58,
+          59,
+          63,
+          64,
+          67,
+          69,
+          73,
+          77
+        ],
+        "sweet16": [
+          59
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "COLG",
+      "mm": {
+        "app": [
+          72
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 72,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "HOW",
+      "mm": {
+        "app": [
+          74
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "LEH",
+      "mm": {
+        "app": [
+          75,
+          77,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "LIB",
+      "mm": {
+        "app": [
+          59,
+          60,
+          64,
+          75
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 59,
+          "conf": "A10"
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MURRST",
+      "mm": {
+        "app": [
+          54,
+          55,
+          56,
+          57,
+          67,
+          68,
+          69,
+          74,
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "NAVY",
+      "mm": {
+        "app": [
+          71,
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "FOLK",
+      "mm": {
+        "app": [
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "STM",
+      "mm": {
+        "app": [
+          60,
+          61,
+          63,
+          64,
+          65,
+          68,
+          73,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "STP",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "VT",
+      "mm": {
+        "app": [
+          58,
+          59,
+          60,
+          61,
+          62,
+          65,
+          72
+        ],
+        "sweet16": [
+          62
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "BU",
+      "mm": {
+        "app": [
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "DEL",
+      "mm": {
+        "app": [
+          64,
+          65,
+          66,
+          67,
+          68,
+          70
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "DSU",
+      "mm": {
+        "app": [
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "DRA",
+      "mm": {
+        "app": [
+          72,
+          73
+        ],
+        "sweet16": [
+          73
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 72,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "GW",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "INST",
+      "mm": {
+        "app": [
+          72,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "MTU",
+      "mm": {
+        "app": [
+          17,
+          18,
+          49,
+          53,
+          71,
+          75
+        ],
+        "sweet16": [
+          71
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "NE",
+      "mm": {
+        "app": [
+          61,
+          62,
+          63,
+          73,
+          74,
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 62,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "URI",
+      "mm": {
+        "app": [
+          17,
+          57,
+          64,
+          65,
+          67,
+          68
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 68,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "RICH",
+      "mm": {
+        "app": [
+          63,
+          69,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "UMBC",
+      "mm": {
+        "app": [
+          75,
+          76
+        ],
+        "sweet16": [
+          75
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "WIN",
+      "mm": {
+        "app": [
+          61,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          73,
+          75,
+          76,
+          78
+        ],
+        "sweet16": [
+          64
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "CLST",
+      "mm": {
+        "app": [
+          74,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "IONA",
+      "mm": {
+        "app": [
+          65,
+          67,
+          68,
+          69,
+          70,
+          71,
+          74
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "IUP",
+      "mm": {
+        "app": [
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "NDSU",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "NKU",
+      "mm": {
+        "app": [
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          67,
+          68,
+          75
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "OAK",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "SAN",
+      "mm": {
+        "app": [
+          73,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "SDST",
+      "mm": {
+        "app": [
+          71,
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "STB",
+      "mm": {
+        "app": [
+          17,
+          18,
+          50,
+          51,
+          52,
+          53,
+          65,
+          74,
+          77,
+          78
+        ],
+        "sweet16": [
+          18
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 53,
+          "conf": "A10"
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "UCI",
+      "mm": {
+        "app": [
+          60,
+          61,
+          62,
+          63,
+          66
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "WOF",
+      "mm": {
+        "app": [
+          54,
+          55,
+          56,
+          60,
+          61,
+          63,
+          66,
+          67,
+          68,
+          69,
+          70,
+          72,
+          75
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 60,
+          "conf": "A10"
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "WRIG",
+      "mm": {
+        "app": [
+          61,
+          63,
+          66
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "BRN",
+      "mm": {
+        "app": [
+          67,
+          68
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "CAL",
+      "mm": {
+        "app": [
+          73
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "CHI",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "COL",
+      "mm": {
+        "app": [
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          69,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "CORN",
+      "mm": {
+        "app": [
+          57,
+          58,
+          59,
+          61,
+          67,
+          68,
+          72,
+          73,
+          75
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 57,
+          "conf": null
+        },
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 59,
+          "conf": null
+        },
+        {
+          "season": 67,
+          "conf": null
+        },
+        {
+          "season": 68,
+          "conf": null
+        },
+        {
+          "season": 72,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "DART",
+      "mm": {
+        "app": [
+          64,
+          67,
+          68,
+          75,
+          76,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "HAR",
+      "mm": {
+        "app": [
+          54,
+          58,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          68,
+          69,
+          70,
+          71,
+          76,
+          77
+        ],
+        "sweet16": [
+          69
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 58,
+          "conf": null
+        },
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 66,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 61,
+          "conf": null
+        },
+        {
+          "season": 63,
+          "conf": null
+        },
+        {
+          "season": 64,
+          "conf": null
+        },
+        {
+          "season": 65,
+          "conf": null
+        },
+        {
+          "season": 69,
+          "conf": null
+        },
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MIT",
+      "mm": {
+        "app": [
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "PENN",
+      "mm": {
+        "app": [
+          54,
+          55,
+          56,
+          69,
+          78
+        ],
+        "sweet16": [
+          69
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 54,
+          "conf": null
+        },
+        {
+          "season": 55,
+          "conf": null
+        },
+        {
+          "season": 56,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "PRIN",
+      "mm": {
+        "app": [
+          60,
+          64
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UCSB",
+      "mm": {
+        "app": [
+          70,
+          74,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "YALE",
+      "mm": {
+        "app": [
+          14,
+          15,
+          16,
+          56,
+          60,
+          61,
+          62,
+          66,
+          69,
+          70
+        ],
+        "sweet16": [
+          6,
+          7,
+          8,
+          14,
+          15,
+          16
+        ],
+        "elite8": [
+          6,
+          7,
+          8,
+          14,
+          15
+        ],
+        "final4": [
+          6,
+          7,
+          8,
+          14,
+          15
+        ],
+        "titleGame": [
+          6,
+          7,
+          8,
+          15
+        ],
+        "champion": [
+          7,
+          8,
+          15
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 60,
+          "conf": null
+        },
+        {
+          "season": 62,
+          "conf": null
+        },
+        {
+          "season": 70,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ACU",
+      "mm": {
+        "app": [
+          74,
+          75,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MCN",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UNT",
+      "mm": {
+        "app": [
+          66,
+          69,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ORU",
+      "mm": {
+        "app": [
+          70
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 70,
+          "conf": "HOR"
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "SAM",
+      "mm": {
+        "app": [
+          73
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "SHSU",
+      "mm": {
+        "app": [
+          74,
+          75
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "SOU",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "SFA",
+      "mm": {
+        "app": [
+          17,
+          18,
+          58,
+          60,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          76
+        ],
+        "sweet16": [
+          58
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 58,
+          "conf": "PAT"
+        },
+        {
+          "season": 65,
+          "conf": "PAT"
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 65,
+          "conf": "PAT"
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "AMCC",
+      "mm": {
+        "app": [
+          71
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "TXSO",
+      "mm": {
+        "app": [
+          76,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 76,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "TXST",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UTSA",
+      "mm": {
+        "app": [
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "ALST",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "APB",
+      "mm": {
+        "app": [
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "ARST",
+      "mm": {
+        "app": [
+          75
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "CHAT",
+      "mm": {
+        "app": [
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "ETSU",
+      "mm": {
+        "app": [
+          60,
+          61,
+          62,
+          63
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 61,
+          "conf": "HOR"
+        },
+        {
+          "season": 62,
+          "conf": "HOR"
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 62,
+          "conf": "HOR"
+        },
+        {
+          "season": 63,
+          "conf": "HOR"
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "FUR",
+      "mm": {
+        "app": [
+          71,
+          72,
+          73
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "GAST",
+      "mm": {
+        "app": [
+          71,
+          74,
+          76,
+          78
+        ],
+        "sweet16": [
+          78
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 71,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "GRAM",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "JSU",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "JMU",
+      "mm": {
+        "app": [
+          73,
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "USF",
+      "mm": {
+        "app": [
+          72,
+          73,
+          75,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 72,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "WKU",
+      "mm": {
+        "app": [
+          71
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 72,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 71,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "EWU",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "EVA",
+      "mm": {
+        "app": [
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "HPU",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "KENN",
+      "mm": {
+        "app": [
+          71
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "LONG",
+      "mm": {
+        "app": [
+          73
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 73,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MON",
+      "mm": {
+        "app": [
+          62,
+          64,
+          65,
+          72,
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MOST",
+      "mm": {
+        "app": [
+          71,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 76,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 71,
+          "conf": "HOR"
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "PTST",
+      "mm": {
+        "app": [
+          72
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "SF",
+      "mm": {
+        "app": [
+          65,
+          66
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "STET",
+      "mm": {
+        "app": [
+          75,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "UCSD",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "WEB",
+      "mm": {
+        "app": [
+          74,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "AF",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "BSU",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "CSU",
+      "mm": {
+        "app": [
+          72,
+          76,
+          77
+        ],
+        "sweet16": [
+          76
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 72,
+          "conf": "SOCON"
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "FRES",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "NEV",
+      "mm": {
+        "app": [
+          18,
+          48,
+          49,
+          50,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          18,
+          48,
+          49,
+          50,
+          55,
+          56,
+          57,
+          58,
+          59,
+          71,
+          73,
+          74,
+          75,
+          76
+        ],
+        "elite8": [
+          49,
+          55,
+          56,
+          59,
+          71,
+          73,
+          74,
+          76
+        ],
+        "final4": [
+          55,
+          56,
+          73,
+          74,
+          76
+        ],
+        "titleGame": [
+          56,
+          74
+        ],
+        "champion": [
+          56,
+          74
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 55,
+          "conf": "B10"
+        },
+        {
+          "season": 56,
+          "conf": "B10"
+        },
+        {
+          "season": 59,
+          "conf": "B10"
+        },
+        {
+          "season": 70,
+          "conf": "AAC"
+        },
+        {
+          "season": 71,
+          "conf": "AAC"
+        },
+        {
+          "season": 72,
+          "conf": "AAC"
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 55,
+          "conf": "B10"
+        },
+        {
+          "season": 56,
+          "conf": "B10"
+        },
+        {
+          "season": 57,
+          "conf": "B10"
+        },
+        {
+          "season": 58,
+          "conf": "B10"
+        },
+        {
+          "season": 71,
+          "conf": "AAC"
+        },
+        {
+          "season": 72,
+          "conf": "AAC"
+        },
+        {
+          "season": 73,
+          "conf": null
+        },
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "NMU",
+      "mm": {
+        "app": [
+          73
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "NMSU",
+      "mm": {
+        "app": [
+          54,
+          55,
+          56,
+          57,
+          59,
+          62,
+          66,
+          67,
+          68,
+          69
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 66,
+          "conf": "PAT"
+        },
+        {
+          "season": 67,
+          "conf": "PAT"
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 54,
+          "conf": "PAT"
+        },
+        {
+          "season": 66,
+          "conf": "PAT"
+        },
+        {
+          "season": 67,
+          "conf": "PAT"
+        },
+        {
+          "season": 68,
+          "conf": "PAT"
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "SDSU",
+      "mm": {
+        "app": [
+          12,
+          13,
+          14,
+          15,
+          16,
+          55,
+          58,
+          59,
+          60,
+          61,
+          62,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78
+        ],
+        "sweet16": [
+          2,
+          14,
+          15,
+          16,
+          55,
+          58,
+          59,
+          72,
+          74,
+          75,
+          78
+        ],
+        "elite8": [
+          2
+        ],
+        "final4": [
+          2
+        ],
+        "titleGame": [
+          2
+        ],
+        "champion": [
+          2
+        ]
+      },
+      "rsChampion": [
+        {
+          "season": 58,
+          "conf": "AAC"
+        },
+        {
+          "season": 59,
+          "conf": "AAC"
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 55,
+          "conf": "AAC"
+        },
+        {
+          "season": 70,
+          "conf": "AAC"
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "SJSU",
+      "mm": {
+        "app": [
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UNLV",
+      "mm": {
+        "app": [
+          72,
+          73,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 72,
+          "conf": "HOR"
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 72,
+          "conf": "HOR"
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "USU",
+      "mm": {
+        "app": [
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          63,
+          64,
+          72,
+          73,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 72,
+          "conf": "PAT"
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 58,
+          "conf": "PAT"
+        },
+        {
+          "season": 72,
+          "conf": "PAT"
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "WYO",
+      "mm": {
+        "app": [
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "APP",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "ALR",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "GCU",
+      "mm": {
+        "app": [
+          71,
+          72,
+          78
+        ],
+        "sweet16": [
+          71
+        ],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 72,
+          "conf": "SOCON"
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "KENT",
+      "mm": {
+        "app": [
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MORE",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "NIU",
+      "mm": {
+        "app": [
+          75
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "OHIO",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "OMA",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "STL",
+      "mm": {
+        "app": [
+          74,
+          75
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 75,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "SEMO",
+      "mm": {
+        "app": [
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "SIUE",
+      "mm": {
+        "app": [
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "TROY",
+      "mm": {
+        "app": [
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "BRY",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "DUQ",
+      "mm": {
+        "app": [
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "FDU",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "GMU",
+      "mm": {
+        "app": [
+          76,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 76,
+          "conf": null
+        },
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "confTournament": [
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "LIP",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "LIU",
+      "mm": {
+        "app": [
+          76,
+          77
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 77,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "MAR",
+      "mm": {
+        "app": [
+          76
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 76,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "QUIN",
+      "mm": {
+        "app": [
+          75,
+          76,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 75,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "RMU",
+      "mm": {
+        "app": [
+          74,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [
+        {
+          "season": 74,
+          "conf": null
+        }
+      ],
+      "mmWins": null
+    },
+    {
+      "teamId": "UMAS",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UNCA",
+      "mm": {
+        "app": [],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [],
+      "confTournament": [],
+      "mmWins": null
+    },
+    {
+      "teamId": "UNCW",
+      "mm": {
+        "app": [
+          74,
+          78
+        ],
+        "sweet16": [],
+        "elite8": [],
+        "final4": [],
+        "titleGame": [],
+        "champion": []
+      },
+      "rsChampion": [
+        {
+          "season": 74,
+          "conf": null
+        },
+        {
+          "season": 78,
+          "conf": null
+        }
+      ],
+      "confTournament": [],
+      "mmWins": null
+    }
+  ]
+}

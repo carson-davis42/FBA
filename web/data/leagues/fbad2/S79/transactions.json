@@ -475,6 +475,29 @@
       "lines": [
         "D2 Draft #38: EDI selects SG-Cooper Yates"
       ]
+    },
+    {
+      "seq": 42,
+      "batchId": "bmurcogrzu2kbb",
+      "type": "awards",
+      "teams": [
+        "GUAD",
+        "ZAG",
+        "BEL",
+        "OSL"
+      ],
+      "lines": [
+        "S79 D2 awards: Premier League MVP Kerry Khan (GUAD), World League MVP Roman Findlay (ZAG), United League MVP Jarrett Joseph Jr (BEL), International League MVP Dean Mays (OSL)"
+      ]
+    },
+    {
+      "seq": 43,
+      "batchId": "bmurgws9kr1rjg",
+      "type": "season",
+      "teams": [],
+      "lines": [
+        "S79 D2 season finished"
+      ]
     }
   ]
 }

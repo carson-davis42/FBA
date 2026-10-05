@@ -1,0 +1,1454 @@
+{
+  "league": "fbajc",
+  "season": 60,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "National Champion",
+      "champion": "Wake Forest",
+      "runnerUp": "Oklahoma",
+      "score": "74-72",
+      "teamId": "WF",
+      "runnerUpId": "OU",
+      "finalsMvp": "p02265"
+    }
+  ],
+  "jc": {
+    "confChampions": [
+      {
+        "conf": "B12",
+        "tournament": "KU",
+        "regularSeason": [
+          "BAY",
+          "KU"
+        ],
+        "regularSeasonRecords": [
+          "18-2",
+          null
+        ]
+      },
+      {
+        "conf": "ACC",
+        "tournament": "LOU",
+        "regularSeason": [
+          "DUKE"
+        ],
+        "regularSeasonRecords": [
+          "18-2"
+        ]
+      },
+      {
+        "conf": "BE",
+        "tournament": "VIL",
+        "regularSeason": [
+          "CTN"
+        ],
+        "regularSeasonRecords": [
+          "19-1"
+        ]
+      },
+      {
+        "conf": "SEC",
+        "tournament": "MISSST",
+        "regularSeason": [
+          "UGA",
+          "MISSST"
+        ],
+        "regularSeasonRecords": [
+          "17-3",
+          null
+        ]
+      },
+      {
+        "conf": "B10",
+        "tournament": "WIS",
+        "regularSeason": [
+          "WIS"
+        ],
+        "regularSeasonRecords": [
+          "20-0"
+        ]
+      },
+      {
+        "conf": "AAC",
+        "tournament": "WF",
+        "regularSeason": [
+          "WF"
+        ],
+        "regularSeasonRecords": [
+          "20-0"
+        ]
+      },
+      {
+        "conf": "P12",
+        "tournament": "ARIZ",
+        "regularSeason": [
+          "ARIZ"
+        ],
+        "regularSeasonRecords": [
+          "20-0"
+        ]
+      },
+      {
+        "conf": "A10",
+        "tournament": "WOF",
+        "regularSeason": [
+          "DAY",
+          "VCU"
+        ],
+        "regularSeasonRecords": [
+          "17-3",
+          null
+        ]
+      },
+      {
+        "conf": "PAT",
+        "tournament": "VT",
+        "regularSeason": [
+          "VT"
+        ],
+        "regularSeasonRecords": [
+          "19-1"
+        ]
+      },
+      {
+        "conf": "COL",
+        "tournament": "DEP",
+        "regularSeason": [
+          "DEP"
+        ],
+        "regularSeasonRecords": [
+          "19-1"
+        ]
+      },
+      {
+        "conf": "HOR",
+        "tournament": "ILL",
+        "regularSeason": [
+          "ILL"
+        ],
+        "regularSeasonRecords": [
+          "20-0"
+        ]
+      },
+      {
+        "conf": "IVY",
+        "tournament": "YALE",
+        "regularSeason": [
+          "YALE"
+        ],
+        "regularSeasonRecords": [
+          "18-2"
+        ]
+      }
+    ],
+    "national": [
+      {
+        "award": "POY",
+        "playerId": "p02251",
+        "teamId": "ARIZ",
+        "name": "Kamden Pierre-Kent",
+        "school": "Arizona"
+      },
+      {
+        "award": "FOY",
+        "playerId": "p02251",
+        "teamId": "ARIZ",
+        "name": "Kamden Pierre-Kent",
+        "school": "Arizona"
+      },
+      {
+        "award": "GOY",
+        "playerId": "p02251",
+        "teamId": "ARIZ",
+        "name": "Kamden Pierre-Kent",
+        "school": "Arizona"
+      },
+      {
+        "award": "FWD",
+        "playerId": "p02244",
+        "teamId": "BAY",
+        "name": "Luke Hart",
+        "school": "Baylor"
+      },
+      {
+        "award": "COY",
+        "playerId": "p02252",
+        "teamId": "KU",
+        "name": "Darius Crewe",
+        "school": "Kansas"
+      },
+      {
+        "award": "DPOY",
+        "playerId": "p02245",
+        "teamId": "UGA",
+        "name": "Isaac Wolfe",
+        "school": "Georgia"
+      }
+    ],
+    "conference": [
+      {
+        "conf": "B12",
+        "playerId": "p02244",
+        "teamId": "BAY",
+        "name": "Luke Hart",
+        "school": "Baylor"
+      },
+      {
+        "conf": "ACC",
+        "playerId": "p02255",
+        "teamId": "DUKE",
+        "name": "Roman Westbrook",
+        "school": "Duke"
+      },
+      {
+        "conf": "BE",
+        "playerId": "p02250",
+        "teamId": "CTN",
+        "name": "Lonnie Elliott",
+        "school": "Creighton"
+      },
+      {
+        "conf": "SEC",
+        "playerId": "p02247",
+        "teamId": "MISSST",
+        "name": "Orlando Riley",
+        "school": "Mississippi State"
+      },
+      {
+        "conf": "B10",
+        "playerId": "p02258",
+        "teamId": "WIS",
+        "name": "Whittaker Ware",
+        "school": "Wisconsin"
+      },
+      {
+        "conf": "AAC",
+        "playerId": "p02265",
+        "teamId": "WF",
+        "name": "Drew Wade",
+        "school": "Wake Forest"
+      },
+      {
+        "conf": "P12",
+        "playerId": "p02251",
+        "teamId": "ARIZ",
+        "name": "Kamden Pierre-Kent",
+        "school": "Arizona"
+      },
+      {
+        "conf": "A10",
+        "playerId": "p02225",
+        "teamId": "VCU",
+        "name": "Prince Holmes",
+        "school": "VCU"
+      },
+      {
+        "conf": "PAT",
+        "playerId": "p02248",
+        "teamId": "VT",
+        "name": "Chester McGee",
+        "school": "Vermont"
+      },
+      {
+        "conf": "COL",
+        "playerId": "p02249",
+        "teamId": "DEP",
+        "name": "Adam Moore",
+        "school": "DePaul"
+      },
+      {
+        "conf": "HOR",
+        "playerId": "p02271",
+        "teamId": "ILL",
+        "name": "Pierre Barker",
+        "school": "Illinois"
+      },
+      {
+        "conf": "IVY",
+        "playerId": "p02275",
+        "teamId": "YALE",
+        "name": "Junior Strickland",
+        "school": "Yale"
+      }
+    ],
+    "allAmerican": null,
+    "mvp": {
+      "mm": "p02265",
+      "nit": null
+    },
+    "nit": null,
+    "allAmericanLegacy": {
+      "teams": [
+        {
+          "team": 1,
+          "slots": [
+            {
+              "slot": "OUT",
+              "name": "Kamden Pierre-Kent",
+              "school": "Arizona",
+              "playerId": "p02251",
+              "teamId": "ARIZ"
+            },
+            {
+              "slot": "OUT",
+              "name": "Roman Westbrook",
+              "school": "Duke",
+              "playerId": "p02255",
+              "teamId": "DUKE"
+            },
+            {
+              "slot": "OUT",
+              "name": "Billie Alvey",
+              "school": "Florida State",
+              "playerId": "p02254",
+              "teamId": "FSU"
+            },
+            {
+              "slot": "MID",
+              "name": "Luke Hart",
+              "school": "Baylor",
+              "playerId": "p02244",
+              "teamId": "BAY"
+            },
+            {
+              "slot": "MID",
+              "name": "Whittaker Ware",
+              "school": "Wisconsin",
+              "playerId": "p02258",
+              "teamId": "WIS"
+            },
+            {
+              "slot": "MID",
+              "name": "Forest Thomas",
+              "school": "Oklahoma",
+              "playerId": "p02253",
+              "teamId": "OU"
+            },
+            {
+              "slot": "IN",
+              "name": "Darius Crewe",
+              "school": "Kansas",
+              "playerId": "p02252",
+              "teamId": "KU"
+            },
+            {
+              "slot": "IN",
+              "name": "Adam Moore",
+              "school": "DePaul",
+              "playerId": "p02249",
+              "teamId": "DEP"
+            },
+            {
+              "slot": "IN",
+              "name": "Mario Collier",
+              "school": "Wake Forest",
+              "playerId": "p02267",
+              "teamId": "WF"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "pastBracket": {
+    "rounds": 6,
+    "series": [
+      {
+        "id": "R1-1",
+        "round": 1,
+        "home": {
+          "name": "Arizona",
+          "record": "23-0",
+          "seed": 1
+        },
+        "away": null,
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-2",
+        "round": 1,
+        "home": {
+          "name": "USC",
+          "record": "13-9",
+          "seed": 9
+        },
+        "away": {
+          "name": "ETSU",
+          "record": "20-3",
+          "seed": 8
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "53–30"
+      },
+      {
+        "id": "R1-3",
+        "round": 1,
+        "home": {
+          "name": "Arizona State",
+          "record": "17-6",
+          "seed": 5
+        },
+        "away": {
+          "name": "Xavier",
+          "record": "12-9",
+          "seed": 12
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "53–28"
+      },
+      {
+        "id": "R1-4",
+        "round": 1,
+        "home": {
+          "name": "Wichita State",
+          "record": "12-9",
+          "seed": 13
+        },
+        "away": {
+          "name": "Memphis",
+          "record": "17-6",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "60–30"
+      },
+      {
+        "id": "R1-5",
+        "round": 1,
+        "home": {
+          "name": "Oklahoma",
+          "record": "17-5",
+          "seed": 3
+        },
+        "away": {
+          "name": "UC Irvine",
+          "record": "13-9",
+          "seed": 14
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "51–27"
+      },
+      {
+        "id": "R1-6",
+        "round": 1,
+        "home": {
+          "name": "St.Joseph's",
+          "record": "16-7",
+          "seed": 11
+        },
+        "away": {
+          "name": "UConn",
+          "record": "17-5",
+          "seed": 6
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "50–36"
+      },
+      {
+        "id": "R1-7",
+        "round": 1,
+        "home": {
+          "name": "Vermont",
+          "record": "22-1",
+          "seed": 7
+        },
+        "away": {
+          "name": "Saint Mary's",
+          "record": "17-4",
+          "seed": 10
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "41–36"
+      },
+      {
+        "id": "R1-8",
+        "round": 1,
+        "home": null,
+        "away": {
+          "name": "Florida State",
+          "record": "16-6",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away"
+      },
+      {
+        "id": "R1-9",
+        "round": 1,
+        "home": {
+          "name": "Wisconsin",
+          "record": "23-0",
+          "seed": 1
+        },
+        "away": null,
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-10",
+        "round": 1,
+        "home": {
+          "name": "Auburn",
+          "record": "13-9",
+          "seed": 9
+        },
+        "away": {
+          "name": "VCU",
+          "record": "18-4",
+          "seed": 8
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "52–50"
+      },
+      {
+        "id": "R1-11",
+        "round": 1,
+        "home": {
+          "name": "Illinois",
+          "record": "23-0",
+          "seed": 5
+        },
+        "away": {
+          "name": "Wofford",
+          "record": "15-8",
+          "seed": 12
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "42–24"
+      },
+      {
+        "id": "R1-12",
+        "round": 1,
+        "home": {
+          "name": "Stephen F Austin",
+          "record": "14-9",
+          "seed": 13
+        },
+        "away": {
+          "name": "Nevada",
+          "record": "20-3",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "50–18"
+      },
+      {
+        "id": "R1-13",
+        "round": 1,
+        "home": {
+          "name": "Villanova",
+          "record": "20-3",
+          "seed": 3
+        },
+        "away": {
+          "name": "Ohio State",
+          "record": "11-10",
+          "seed": 14
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "61–26"
+      },
+      {
+        "id": "R1-14",
+        "round": 1,
+        "home": {
+          "name": "NC State",
+          "record": "12-9",
+          "seed": 11
+        },
+        "away": {
+          "name": "Kentucky",
+          "record": "15-7",
+          "seed": 6
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "48–37"
+      },
+      {
+        "id": "R1-15",
+        "round": 1,
+        "home": {
+          "name": "Butler",
+          "record": "14-8",
+          "seed": 7
+        },
+        "away": {
+          "name": "Gonzaga",
+          "record": "12-9",
+          "seed": 10
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "39–37"
+      },
+      {
+        "id": "R1-16",
+        "round": 1,
+        "home": null,
+        "away": {
+          "name": "Baylor",
+          "record": "20-3",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away"
+      },
+      {
+        "id": "R1-17",
+        "round": 1,
+        "home": {
+          "name": "Kansas",
+          "record": "21-2",
+          "seed": 1
+        },
+        "away": null,
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-18",
+        "round": 1,
+        "home": {
+          "name": "Seton Hall",
+          "record": "14-8",
+          "seed": 9
+        },
+        "away": {
+          "name": "Penn State",
+          "record": "20-2",
+          "seed": 8
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "40–34"
+      },
+      {
+        "id": "R1-19",
+        "round": 1,
+        "home": {
+          "name": "North Carolina",
+          "record": "15-8",
+          "seed": 5
+        },
+        "away": {
+          "name": "LSU",
+          "record": "11-10",
+          "seed": 12
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "85–84 2OT"
+      },
+      {
+        "id": "R1-20",
+        "round": 1,
+        "home": {
+          "name": "Harvard",
+          "record": "15-7",
+          "seed": 13
+        },
+        "away": {
+          "name": "DePaul",
+          "record": "22-1",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "44–11"
+      },
+      {
+        "id": "R1-21",
+        "round": 1,
+        "home": {
+          "name": "Mississippi State",
+          "record": "20-3",
+          "seed": 3
+        },
+        "away": {
+          "name": "Liberty",
+          "record": "13-8",
+          "seed": 14
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "52–40"
+      },
+      {
+        "id": "R1-22",
+        "round": 1,
+        "home": {
+          "name": "Boston U",
+          "record": "16-7",
+          "seed": 11
+        },
+        "away": {
+          "name": "UCLA",
+          "record": "15-7",
+          "seed": 6
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "41–40"
+      },
+      {
+        "id": "R1-23",
+        "round": 1,
+        "home": {
+          "name": "Dayton",
+          "record": "18-4",
+          "seed": 7
+        },
+        "away": {
+          "name": "Texas",
+          "record": "11-10",
+          "seed": 10
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "53–27"
+      },
+      {
+        "id": "R1-24",
+        "round": 1,
+        "home": null,
+        "away": {
+          "name": "Louisville",
+          "record": "20-3",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away"
+      },
+      {
+        "id": "R1-25",
+        "round": 1,
+        "home": {
+          "name": "Wake Forest",
+          "record": "23-0",
+          "seed": 1
+        },
+        "away": null,
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "home"
+      },
+      {
+        "id": "R1-26",
+        "round": 1,
+        "home": {
+          "name": "Yale",
+          "record": "21-2",
+          "seed": 9
+        },
+        "away": {
+          "name": "Texas A&M",
+          "record": "13-8",
+          "seed": 8
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "42–39"
+      },
+      {
+        "id": "R1-27",
+        "round": 1,
+        "home": {
+          "name": "Michigan",
+          "record": "16-6",
+          "seed": 5
+        },
+        "away": {
+          "name": "Virginia",
+          "record": "11-10",
+          "seed": 12
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "56–46"
+      },
+      {
+        "id": "R1-28",
+        "round": 1,
+        "home": {
+          "name": "Utah State",
+          "record": "14-8",
+          "seed": 13
+        },
+        "away": {
+          "name": "Georgia",
+          "record": "19-4",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "59–25"
+      },
+      {
+        "id": "R1-29",
+        "round": 1,
+        "home": {
+          "name": "Creighton",
+          "record": "21-2",
+          "seed": 3
+        },
+        "away": {
+          "name": "Northern Kentucky",
+          "record": "13-9",
+          "seed": 14
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "64–26"
+      },
+      {
+        "id": "R1-30",
+        "round": 1,
+        "home": {
+          "name": "Princeton",
+          "record": "16-7",
+          "seed": 11
+        },
+        "away": {
+          "name": "Texas Tech",
+          "record": "13-9",
+          "seed": 6
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "44–30"
+      },
+      {
+        "id": "R1-31",
+        "round": 1,
+        "home": {
+          "name": "San Diego State",
+          "record": "17-5",
+          "seed": 7
+        },
+        "away": {
+          "name": "Michigan State",
+          "record": "13-9",
+          "seed": 10
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "38–33"
+      },
+      {
+        "id": "R1-32",
+        "round": 1,
+        "home": null,
+        "away": {
+          "name": "Duke",
+          "record": "19-3",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 0,
+        "winner": "away"
+      },
+      {
+        "id": "R2-1",
+        "round": 2,
+        "home": {
+          "name": "Arizona",
+          "record": "23-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "USC",
+          "record": "13-9",
+          "seed": 9
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "52–30"
+      },
+      {
+        "id": "R2-2",
+        "round": 2,
+        "home": {
+          "name": "Arizona State",
+          "record": "17-6",
+          "seed": 5
+        },
+        "away": {
+          "name": "Memphis",
+          "record": "17-6",
+          "seed": 4
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "54–47 OT"
+      },
+      {
+        "id": "R2-3",
+        "round": 2,
+        "home": {
+          "name": "Oklahoma",
+          "record": "17-5",
+          "seed": 3
+        },
+        "away": {
+          "name": "UConn",
+          "record": "17-5",
+          "seed": 6
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "41–39"
+      },
+      {
+        "id": "R2-4",
+        "round": 2,
+        "home": {
+          "name": "Vermont",
+          "record": "22-1",
+          "seed": 7
+        },
+        "away": {
+          "name": "Florida State",
+          "record": "16-6",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "50–43"
+      },
+      {
+        "id": "R2-5",
+        "round": 2,
+        "home": {
+          "name": "Wisconsin",
+          "record": "23-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Auburn",
+          "record": "13-9",
+          "seed": 9
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "46–30"
+      },
+      {
+        "id": "R2-6",
+        "round": 2,
+        "home": {
+          "name": "Illinois",
+          "record": "23-0",
+          "seed": 5
+        },
+        "away": {
+          "name": "Nevada",
+          "record": "20-3",
+          "seed": 4
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "41–33"
+      },
+      {
+        "id": "R2-7",
+        "round": 2,
+        "home": {
+          "name": "Villanova",
+          "record": "20-3",
+          "seed": 3
+        },
+        "away": {
+          "name": "NC State",
+          "record": "12-9",
+          "seed": 11
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "44–37"
+      },
+      {
+        "id": "R2-8",
+        "round": 2,
+        "home": {
+          "name": "Butler",
+          "record": "14-8",
+          "seed": 7
+        },
+        "away": {
+          "name": "Baylor",
+          "record": "20-3",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "44–25"
+      },
+      {
+        "id": "R2-9",
+        "round": 2,
+        "home": {
+          "name": "Kansas",
+          "record": "21-2",
+          "seed": 1
+        },
+        "away": {
+          "name": "Penn State",
+          "record": "20-2",
+          "seed": 8
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "45–29"
+      },
+      {
+        "id": "R2-10",
+        "round": 2,
+        "home": {
+          "name": "North Carolina",
+          "record": "15-8",
+          "seed": 5
+        },
+        "away": {
+          "name": "DePaul",
+          "record": "22-1",
+          "seed": 4
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "46–42"
+      },
+      {
+        "id": "R2-11",
+        "round": 2,
+        "home": {
+          "name": "Mississippi State",
+          "record": "20-3",
+          "seed": 3
+        },
+        "away": {
+          "name": "Boston U",
+          "record": "16-7",
+          "seed": 11
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "46–29"
+      },
+      {
+        "id": "R2-12",
+        "round": 2,
+        "home": {
+          "name": "Dayton",
+          "record": "18-4",
+          "seed": 7
+        },
+        "away": {
+          "name": "Louisville",
+          "record": "20-3",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "59–49"
+      },
+      {
+        "id": "R2-13",
+        "round": 2,
+        "home": {
+          "name": "Wake Forest",
+          "record": "23-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Yale",
+          "record": "21-2",
+          "seed": 9
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "47–45"
+      },
+      {
+        "id": "R2-14",
+        "round": 2,
+        "home": {
+          "name": "Virginia",
+          "record": "11-10",
+          "seed": 12
+        },
+        "away": {
+          "name": "Georgia",
+          "record": "19-4",
+          "seed": 4
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "43–32"
+      },
+      {
+        "id": "R2-15",
+        "round": 2,
+        "home": {
+          "name": "Creighton",
+          "record": "21-2",
+          "seed": 3
+        },
+        "away": {
+          "name": "Texas Tech",
+          "record": "13-9",
+          "seed": 6
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "43–41"
+      },
+      {
+        "id": "R2-16",
+        "round": 2,
+        "home": {
+          "name": "San Diego State",
+          "record": "17-5",
+          "seed": 7
+        },
+        "away": {
+          "name": "Duke",
+          "record": "19-3",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "41–34"
+      },
+      {
+        "id": "R3-1",
+        "round": 3,
+        "home": {
+          "name": "Arizona",
+          "record": "23-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Arizona State",
+          "record": "17-6",
+          "seed": 5
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "48–36"
+      },
+      {
+        "id": "R3-2",
+        "round": 3,
+        "home": {
+          "name": "Oklahoma",
+          "record": "17-5",
+          "seed": 3
+        },
+        "away": {
+          "name": "Florida State",
+          "record": "16-6",
+          "seed": 2
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "45–42"
+      },
+      {
+        "id": "R3-3",
+        "round": 3,
+        "home": {
+          "name": "Wisconsin",
+          "record": "23-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Illinois",
+          "record": "23-0",
+          "seed": 5
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "78–70 2OT"
+      },
+      {
+        "id": "R3-4",
+        "round": 3,
+        "home": {
+          "name": "Villanova",
+          "record": "20-3",
+          "seed": 3
+        },
+        "away": {
+          "name": "Baylor",
+          "record": "20-3",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "47–46"
+      },
+      {
+        "id": "R3-5",
+        "round": 3,
+        "home": {
+          "name": "Kansas",
+          "record": "21-2",
+          "seed": 1
+        },
+        "away": {
+          "name": "North Carolina",
+          "record": "15-8",
+          "seed": 5
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "48–37"
+      },
+      {
+        "id": "R3-6",
+        "round": 3,
+        "home": {
+          "name": "Mississippi State",
+          "record": "20-3",
+          "seed": 3
+        },
+        "away": {
+          "name": "Louisville",
+          "record": "20-3",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "52–47"
+      },
+      {
+        "id": "R3-7",
+        "round": 3,
+        "home": {
+          "name": "Wake Forest",
+          "record": "23-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Georgia",
+          "record": "19-4",
+          "seed": 4
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "50–36"
+      },
+      {
+        "id": "R3-8",
+        "round": 3,
+        "home": {
+          "name": "Texas Tech",
+          "record": "13-9",
+          "seed": 6
+        },
+        "away": {
+          "name": "Duke",
+          "record": "19-3",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "45–27"
+      },
+      {
+        "id": "R4-1",
+        "round": 4,
+        "home": {
+          "name": "Arizona",
+          "record": "23-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Oklahoma",
+          "record": "17-5",
+          "seed": 3
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "84–78 3OT"
+      },
+      {
+        "id": "R4-2",
+        "round": 4,
+        "home": {
+          "name": "Illinois",
+          "record": "23-0",
+          "seed": 5
+        },
+        "away": {
+          "name": "Baylor",
+          "record": "20-3",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "43–31"
+      },
+      {
+        "id": "R4-3",
+        "round": 4,
+        "home": {
+          "name": "Kansas",
+          "record": "21-2",
+          "seed": 1
+        },
+        "away": {
+          "name": "Louisville",
+          "record": "20-3",
+          "seed": 2
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "63–60 OT"
+      },
+      {
+        "id": "R4-4",
+        "round": 4,
+        "home": {
+          "name": "Wake Forest",
+          "record": "23-0",
+          "seed": 1
+        },
+        "away": {
+          "name": "Duke",
+          "record": "19-3",
+          "seed": 2
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "49–43"
+      },
+      {
+        "id": "R5-1",
+        "round": 5,
+        "home": {
+          "name": "Oklahoma",
+          "record": "17-5",
+          "seed": 3
+        },
+        "away": {
+          "name": "Baylor",
+          "record": "20-3",
+          "seed": 2
+        },
+        "homeWins": 1,
+        "awayWins": 0,
+        "winner": "home",
+        "score": "56–53"
+      },
+      {
+        "id": "R5-2",
+        "round": 5,
+        "home": {
+          "name": "Louisville",
+          "record": "20-3",
+          "seed": 2
+        },
+        "away": {
+          "name": "Wake Forest",
+          "record": "23-0",
+          "seed": 1
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "50–48"
+      },
+      {
+        "id": "R6-1",
+        "round": 6,
+        "home": {
+          "name": "Oklahoma",
+          "record": "17-5",
+          "seed": 3
+        },
+        "away": {
+          "name": "Wake Forest",
+          "record": "23-0",
+          "seed": 1
+        },
+        "homeWins": 0,
+        "awayWins": 1,
+        "winner": "away",
+        "score": "74–72 OT"
+      }
+    ]
+  }
+}

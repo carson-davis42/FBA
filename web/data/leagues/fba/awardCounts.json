@@ -1,0 +1,6386 @@
+{
+  "league": "fba",
+  "throughSeason": 78,
+  "counts": [
+    {
+      "playerId": "p00001",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00002",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00003",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00004",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00005",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00006",
+      "key": "MIP",
+      "count": 1
+    },
+    {
+      "playerId": "p00006",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p00006",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p00006",
+      "key": "ALL_STAR",
+      "count": 6
+    },
+    {
+      "playerId": "p00006",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00006",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00006",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00006",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00006",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00007",
+      "key": "ALL_STAR",
+      "count": 4
+    },
+    {
+      "playerId": "p00007",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00007",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p00008",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00008",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00008",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00009",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00009",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00010",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00010",
+      "key": "ALL_FBA_2",
+      "count": 5
+    },
+    {
+      "playerId": "p00010",
+      "key": "ALL_STAR",
+      "count": 8
+    },
+    {
+      "playerId": "p00010",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00010",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00010",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00010",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00010",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00011",
+      "key": "DPOY",
+      "count": 1
+    },
+    {
+      "playerId": "p00011",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p00011",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00012",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00012",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00012",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p00013",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00013",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p00013",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00013",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00013",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00014",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00014",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00014",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00014",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00014",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p00015",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00016",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00016",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p00017",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00017",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00019",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00019",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00020",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00021",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00021",
+      "key": "ALL_STAR",
+      "count": 4
+    },
+    {
+      "playerId": "p00021",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00022",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00023",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00024",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00024",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00025",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00025",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00026",
+      "key": "MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p00026",
+      "key": "PPK",
+      "count": 4
+    },
+    {
+      "playerId": "p00026",
+      "key": "ALL_FBA_1",
+      "count": 7
+    },
+    {
+      "playerId": "p00026",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p00026",
+      "key": "ALL_STAR",
+      "count": 10
+    },
+    {
+      "playerId": "p00026",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00026",
+      "key": "FINALS_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p00026",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00026",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p00026",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00028",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00029",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00029",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00029",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00029",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p00029",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00030",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00030",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00030",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00031",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00031",
+      "key": "PPK",
+      "count": 1
+    },
+    {
+      "playerId": "p00031",
+      "key": "MIP",
+      "count": 1
+    },
+    {
+      "playerId": "p00031",
+      "key": "ALL_FBA_1",
+      "count": 4
+    },
+    {
+      "playerId": "p00031",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p00031",
+      "key": "ALL_STAR",
+      "count": 8
+    },
+    {
+      "playerId": "p00031",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00031",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00031",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p00033",
+      "key": "ALL_STAR",
+      "count": 7
+    },
+    {
+      "playerId": "p00033",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00033",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00034",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00035",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00036",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00036",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p00036",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00036",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00037",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00038",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00039",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00041",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00041",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00041",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00042",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00043",
+      "key": "DPOY",
+      "count": 2
+    },
+    {
+      "playerId": "p00043",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00043",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00044",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00044",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00045",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00045",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00045",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00045",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00046",
+      "key": "MIP",
+      "count": 1
+    },
+    {
+      "playerId": "p00046",
+      "key": "ALL_FBA_2",
+      "count": 3
+    },
+    {
+      "playerId": "p00046",
+      "key": "ALL_STAR",
+      "count": 7
+    },
+    {
+      "playerId": "p00046",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00046",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00047",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00048",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00048",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00049",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00050",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00051",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00053",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00054",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00054",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00055",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00055",
+      "key": "PPK",
+      "count": 1
+    },
+    {
+      "playerId": "p00055",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p00055",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p00055",
+      "key": "ALL_STAR",
+      "count": 6
+    },
+    {
+      "playerId": "p00055",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00055",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00055",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00056",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00056",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00056",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00057",
+      "key": "DPOY",
+      "count": 1
+    },
+    {
+      "playerId": "p00057",
+      "key": "ALL_STAR",
+      "count": 9
+    },
+    {
+      "playerId": "p00057",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00057",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00058",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00058",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00058",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00058",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00059",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00060",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00060",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00060",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00060",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00062",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00064",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00064",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00066",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00067",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00067",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00067",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00068",
+      "key": "MIP",
+      "count": 1
+    },
+    {
+      "playerId": "p00068",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00068",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00070",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00071",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00072",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00073",
+      "key": "MIP",
+      "count": 1
+    },
+    {
+      "playerId": "p00073",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p00073",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p00073",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00073",
+      "key": "ASG_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p00073",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00076",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00076",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00076",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p00077",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00077",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00077",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00078",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00078",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00078",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00078",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00079",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00079",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00079",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00079",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00080",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00080",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00080",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00080",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00081",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00082",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00084",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00084",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00084",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00084",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p00085",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00085",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p00086",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00087",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00090",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00090",
+      "key": "LP",
+      "count": 1
+    },
+    {
+      "playerId": "p00090",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p00090",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p00090",
+      "key": "ALL_STAR",
+      "count": 6
+    },
+    {
+      "playerId": "p00090",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00091",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00091",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00092",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00092",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00093",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00093",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00096",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00098",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00098",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00099",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00099",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00099",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00100",
+      "key": "LP",
+      "count": 1
+    },
+    {
+      "playerId": "p00100",
+      "key": "MIP",
+      "count": 1
+    },
+    {
+      "playerId": "p00100",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p00100",
+      "key": "ALL_FBA_2",
+      "count": 4
+    },
+    {
+      "playerId": "p00100",
+      "key": "ALL_STAR",
+      "count": 7
+    },
+    {
+      "playerId": "p00100",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00100",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00100",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00100",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p00100",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00100",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p00102",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00104",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00104",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00105",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00106",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00107",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00109",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00110",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00110",
+      "key": "ALL_STAR",
+      "count": 5
+    },
+    {
+      "playerId": "p00110",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00110",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00110",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00110",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00111",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00111",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00112",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00112",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00113",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00113",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00113",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00113",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00114",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00114",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00114",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p00114",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00114",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p00115",
+      "key": "LP",
+      "count": 2
+    },
+    {
+      "playerId": "p00115",
+      "key": "ALL_FBA_1",
+      "count": 5
+    },
+    {
+      "playerId": "p00115",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p00115",
+      "key": "ALL_STAR",
+      "count": 13
+    },
+    {
+      "playerId": "p00115",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00116",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00116",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00116",
+      "key": "MC",
+      "count": 4
+    },
+    {
+      "playerId": "p00116",
+      "key": "DPOY",
+      "count": 1
+    },
+    {
+      "playerId": "p00116",
+      "key": "ALL_FBA_1",
+      "count": 5
+    },
+    {
+      "playerId": "p00116",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p00116",
+      "key": "ALL_STAR",
+      "count": 9
+    },
+    {
+      "playerId": "p00116",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00116",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00116",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00116",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p00116",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00117",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00117",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00118",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00118",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00119",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00120",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00120",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00120",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00120",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00120",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p00120",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00121",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00122",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00124",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00125",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00126",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00127",
+      "key": "ALL_STAR",
+      "count": 5
+    },
+    {
+      "playerId": "p00127",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00127",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p00128",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00129",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p00129",
+      "key": "ALL_STAR",
+      "count": 11
+    },
+    {
+      "playerId": "p00129",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00129",
+      "key": "YSG_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p00130",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00131",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00132",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00132",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00132",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00134",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00135",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00135",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00135",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00136",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00137",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00138",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00139",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00141",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00142",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00142",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00142",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00142",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p00143",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00143",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00143",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00143",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p00143",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p00143",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p00144",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p00144",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00145",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00145",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00145",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00148",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00148",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p00148",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00148",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p00149",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00149",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00149",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00149",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00149",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00151",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00152",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00152",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00153",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00154",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00154",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p00154",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00154",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p00155",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00157",
+      "key": "MC",
+      "count": 1
+    },
+    {
+      "playerId": "p00157",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p00157",
+      "key": "ALL_FBA_2",
+      "count": 5
+    },
+    {
+      "playerId": "p00157",
+      "key": "ALL_STAR",
+      "count": 14
+    },
+    {
+      "playerId": "p00157",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00157",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00157",
+      "key": "CSHIP_APP",
+      "count": 6
+    },
+    {
+      "playerId": "p00157",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p00158",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p00158",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p00158",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p00158",
+      "key": "ALL_STAR",
+      "count": 13
+    },
+    {
+      "playerId": "p00158",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00158",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00158",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00158",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p00158",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p00158",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p00159",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00159",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00159",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00160",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00162",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00162",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00166",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00178",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00182",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00182",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p00190",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00190",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00193",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00194",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00194",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p00227",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00239",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00241",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00274",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00298",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00300",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00320",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00320",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p00320",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00341",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00351",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00351",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00360",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00395",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00395",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00396",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00408",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00408",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00408",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00408",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00408",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p00409",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00409",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00419",
+      "key": "DPOY",
+      "count": 1
+    },
+    {
+      "playerId": "p00419",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00446",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p00455",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00455",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00456",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00456",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00471",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00471",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p00471",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p00473",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p00473",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00479",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00479",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p00479",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p00480",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p01922",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p01922",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01923",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01923",
+      "key": "CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p01923",
+      "key": "CSHIP_APP",
+      "count": 5
+    },
+    {
+      "playerId": "p01923",
+      "key": "CONF_CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p01924",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01924",
+      "key": "FINALS_MVP",
+      "count": 4
+    },
+    {
+      "playerId": "p01924",
+      "key": "CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p01924",
+      "key": "CSHIP_APP",
+      "count": 6
+    },
+    {
+      "playerId": "p01924",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01925",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01925",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p01925",
+      "key": "CONF_CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p01926",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01926",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p01926",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01927",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01927",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p01927",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01928",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01929",
+      "key": "MVP",
+      "count": 3
+    },
+    {
+      "playerId": "p01929",
+      "key": "FINALS_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p01929",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p01929",
+      "key": "CSHIP_APP",
+      "count": 6
+    },
+    {
+      "playerId": "p01929",
+      "key": "CONF_CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p01930",
+      "key": "CHAMPION",
+      "count": 7
+    },
+    {
+      "playerId": "p01930",
+      "key": "CSHIP_APP",
+      "count": 12
+    },
+    {
+      "playerId": "p01930",
+      "key": "CONF_CHAMPION",
+      "count": 11
+    },
+    {
+      "playerId": "p01935",
+      "key": "MVP",
+      "count": 3
+    },
+    {
+      "playerId": "p01935",
+      "key": "FINALS_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p01935",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01935",
+      "key": "CSHIP_APP",
+      "count": 5
+    },
+    {
+      "playerId": "p01935",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01937",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01937",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p01937",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01938",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p01938",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01939",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01939",
+      "key": "CSHIP_APP",
+      "count": 5
+    },
+    {
+      "playerId": "p01939",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01940",
+      "key": "MVP",
+      "count": 3
+    },
+    {
+      "playerId": "p01940",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01940",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01940",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p01940",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01941",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01941",
+      "key": "CSHIP_APP",
+      "count": 5
+    },
+    {
+      "playerId": "p01941",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01943",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01943",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p01943",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01944",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01944",
+      "key": "CSHIP_APP",
+      "count": 5
+    },
+    {
+      "playerId": "p01944",
+      "key": "CONF_CHAMPION",
+      "count": 8
+    },
+    {
+      "playerId": "p01947",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01947",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p01947",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p01948",
+      "key": "MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p01948",
+      "key": "FINALS_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p01948",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01948",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p01948",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p01949",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01949",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p01949",
+      "key": "CSHIP_APP",
+      "count": 8
+    },
+    {
+      "playerId": "p01949",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01950",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p01950",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01953",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01953",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p01953",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01954",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01954",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p01954",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01955",
+      "key": "FINALS_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p01955",
+      "key": "CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01955",
+      "key": "CSHIP_APP",
+      "count": 11
+    },
+    {
+      "playerId": "p01955",
+      "key": "CONF_CHAMPION",
+      "count": 9
+    },
+    {
+      "playerId": "p01956",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01956",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p01956",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p01957",
+      "key": "MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p01957",
+      "key": "FINALS_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p01957",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01957",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p01957",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p01959",
+      "key": "MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p01959",
+      "key": "FINALS_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p01959",
+      "key": "CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01959",
+      "key": "CSHIP_APP",
+      "count": 7
+    },
+    {
+      "playerId": "p01959",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01960",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01960",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p01960",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01964",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01964",
+      "key": "FINALS_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p01964",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01964",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p01964",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p01965",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01965",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01965",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01965",
+      "key": "CSHIP_APP",
+      "count": 5
+    },
+    {
+      "playerId": "p01965",
+      "key": "CONF_CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p01966",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01966",
+      "key": "CHAMPION",
+      "count": 8
+    },
+    {
+      "playerId": "p01966",
+      "key": "CSHIP_APP",
+      "count": 11
+    },
+    {
+      "playerId": "p01966",
+      "key": "CONF_CHAMPION",
+      "count": 10
+    },
+    {
+      "playerId": "p01967",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01967",
+      "key": "CSHIP_APP",
+      "count": 8
+    },
+    {
+      "playerId": "p01967",
+      "key": "CONF_CHAMPION",
+      "count": 7
+    },
+    {
+      "playerId": "p01968",
+      "key": "CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p01968",
+      "key": "CSHIP_APP",
+      "count": 5
+    },
+    {
+      "playerId": "p01968",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01969",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01969",
+      "key": "CSHIP_APP",
+      "count": 5
+    },
+    {
+      "playerId": "p01969",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p01970",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01970",
+      "key": "CSHIP_APP",
+      "count": 8
+    },
+    {
+      "playerId": "p01970",
+      "key": "CONF_CHAMPION",
+      "count": 8
+    },
+    {
+      "playerId": "p01972",
+      "key": "MVP",
+      "count": 5
+    },
+    {
+      "playerId": "p01972",
+      "key": "FINALS_MVP",
+      "count": 4
+    },
+    {
+      "playerId": "p01972",
+      "key": "CHAMPION",
+      "count": 9
+    },
+    {
+      "playerId": "p01972",
+      "key": "CSHIP_APP",
+      "count": 10
+    },
+    {
+      "playerId": "p01972",
+      "key": "CONF_CHAMPION",
+      "count": 10
+    },
+    {
+      "playerId": "p01977",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p01977",
+      "key": "CSHIP_APP",
+      "count": 6
+    },
+    {
+      "playerId": "p01977",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p01978",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p01978",
+      "key": "CSHIP_APP",
+      "count": 6
+    },
+    {
+      "playerId": "p01978",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p01979",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01979",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01979",
+      "key": "CSHIP_APP",
+      "count": 7
+    },
+    {
+      "playerId": "p01979",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01980",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p01980",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p01980",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p01981",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p01981",
+      "key": "CONF_CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p01982",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01982",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p01982",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01983",
+      "key": "MVP",
+      "count": 7
+    },
+    {
+      "playerId": "p01983",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p01983",
+      "key": "FINALS_MVP",
+      "count": 3
+    },
+    {
+      "playerId": "p01983",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p01983",
+      "key": "CSHIP_APP",
+      "count": 6
+    },
+    {
+      "playerId": "p01983",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p01984",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01984",
+      "key": "CSHIP_APP",
+      "count": 6
+    },
+    {
+      "playerId": "p01984",
+      "key": "CONF_CHAMPION",
+      "count": 7
+    },
+    {
+      "playerId": "p01986",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p01986",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01986",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p01986",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01992",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p01992",
+      "key": "CHAMPION",
+      "count": 9
+    },
+    {
+      "playerId": "p01992",
+      "key": "CSHIP_APP",
+      "count": 10
+    },
+    {
+      "playerId": "p01992",
+      "key": "CONF_CHAMPION",
+      "count": 12
+    },
+    {
+      "playerId": "p01995",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p01995",
+      "key": "CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p01995",
+      "key": "CSHIP_APP",
+      "count": 8
+    },
+    {
+      "playerId": "p01995",
+      "key": "CONF_CHAMPION",
+      "count": 12
+    },
+    {
+      "playerId": "p01996",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p01996",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p01996",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01997",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01997",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p01997",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p01997",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01997",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p01997",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p01997",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p01997",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01998",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p01998",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p01998",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02001",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02001",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02001",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02001",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02001",
+      "key": "CSHIP_APP",
+      "count": 6
+    },
+    {
+      "playerId": "p02001",
+      "key": "CONF_CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p02002",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02002",
+      "key": "CHAMPION",
+      "count": 8
+    },
+    {
+      "playerId": "p02002",
+      "key": "CSHIP_APP",
+      "count": 9
+    },
+    {
+      "playerId": "p02002",
+      "key": "CONF_CHAMPION",
+      "count": 11
+    },
+    {
+      "playerId": "p02008",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02013",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02013",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02013",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02014",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02015",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02015",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p02015",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02015",
+      "key": "CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02015",
+      "key": "CSHIP_APP",
+      "count": 7
+    },
+    {
+      "playerId": "p02015",
+      "key": "CONF_CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p02017",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02017",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02017",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p02017",
+      "key": "ALL_STAR",
+      "count": 5
+    },
+    {
+      "playerId": "p02017",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02018",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02018",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02019",
+      "key": "ALL_STAR",
+      "count": 4
+    },
+    {
+      "playerId": "p02019",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02019",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02020",
+      "key": "MVP",
+      "count": 10
+    },
+    {
+      "playerId": "p02020",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02020",
+      "key": "ALL_FBA_1",
+      "count": 4
+    },
+    {
+      "playerId": "p02020",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02020",
+      "key": "ALL_STAR",
+      "count": 5
+    },
+    {
+      "playerId": "p02020",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02020",
+      "key": "FINALS_MVP",
+      "count": 14
+    },
+    {
+      "playerId": "p02020",
+      "key": "CHAMPION",
+      "count": 14
+    },
+    {
+      "playerId": "p02020",
+      "key": "CSHIP_APP",
+      "count": 15
+    },
+    {
+      "playerId": "p02020",
+      "key": "CONF_CHAMPION",
+      "count": 17
+    },
+    {
+      "playerId": "p02021",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02021",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02021",
+      "key": "ALL_FBA_1",
+      "count": 2
+    },
+    {
+      "playerId": "p02021",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p02021",
+      "key": "ALL_STAR",
+      "count": 5
+    },
+    {
+      "playerId": "p02021",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02021",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02023",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02023",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02023",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02024",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02024",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02024",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02027",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p02027",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02028",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02028",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02029",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02029",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02029",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02032",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02032",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02032",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02032",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02032",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02032",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02033",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02033",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02033",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02033",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02034",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02034",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02034",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02035",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02035",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02035",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02036",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02036",
+      "key": "CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02036",
+      "key": "CSHIP_APP",
+      "count": 7
+    },
+    {
+      "playerId": "p02036",
+      "key": "CONF_CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p02038",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02038",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02038",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02038",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02040",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02041",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02041",
+      "key": "ALL_STAR",
+      "count": 4
+    },
+    {
+      "playerId": "p02041",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02041",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02043",
+      "key": "CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02043",
+      "key": "CSHIP_APP",
+      "count": 7
+    },
+    {
+      "playerId": "p02043",
+      "key": "CONF_CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p02045",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02049",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02049",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02049",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02050",
+      "key": "MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p02050",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02050",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02050",
+      "key": "ALL_STAR",
+      "count": 5
+    },
+    {
+      "playerId": "p02050",
+      "key": "FINALS_MVP",
+      "count": 3
+    },
+    {
+      "playerId": "p02050",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02050",
+      "key": "CSHIP_APP",
+      "count": 6
+    },
+    {
+      "playerId": "p02050",
+      "key": "CONF_CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p02052",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02053",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02053",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02053",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02056",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02056",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02056",
+      "key": "ALL_STAR",
+      "count": 4
+    },
+    {
+      "playerId": "p02056",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02056",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02057",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02057",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02057",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02058",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02058",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02058",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02062",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02063",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02063",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02064",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02064",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02067",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02067",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02068",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02068",
+      "key": "ALL_FBA_1",
+      "count": 3
+    },
+    {
+      "playerId": "p02068",
+      "key": "ALL_STAR",
+      "count": 5
+    },
+    {
+      "playerId": "p02068",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02070",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02070",
+      "key": "ALL_FBA_1",
+      "count": 2
+    },
+    {
+      "playerId": "p02070",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02070",
+      "key": "ALL_STAR",
+      "count": 4
+    },
+    {
+      "playerId": "p02070",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02070",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02070",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02070",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02071",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02071",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02071",
+      "key": "ALL_STAR",
+      "count": 4
+    },
+    {
+      "playerId": "p02071",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02071",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02072",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02072",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02072",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02073",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02073",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02073",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02075",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02075",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02075",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02075",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02076",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02076",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02076",
+      "key": "ALL_FBA_1",
+      "count": 3
+    },
+    {
+      "playerId": "p02076",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02076",
+      "key": "ALL_STAR",
+      "count": 8
+    },
+    {
+      "playerId": "p02076",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02076",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02076",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02076",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02078",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02078",
+      "key": "ALL_FBA_1",
+      "count": 2
+    },
+    {
+      "playerId": "p02078",
+      "key": "ALL_FBA_2",
+      "count": 3
+    },
+    {
+      "playerId": "p02078",
+      "key": "ALL_STAR",
+      "count": 7
+    },
+    {
+      "playerId": "p02078",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02078",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02078",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p02078",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02079",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02079",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02079",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02082",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02082",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02082",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02082",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02083",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02084",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02086",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02086",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02086",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02093",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02093",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02093",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02093",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02093",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02093",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02098",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02098",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02098",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p02098",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02099",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02099",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p02099",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02099",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02100",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02101",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02101",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02101",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p02101",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02102",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02103",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02103",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02103",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02104",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02104",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02105",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02105",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02106",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02108",
+      "key": "ALL_FBA_2",
+      "count": 4
+    },
+    {
+      "playerId": "p02108",
+      "key": "ALL_STAR",
+      "count": 7
+    },
+    {
+      "playerId": "p02108",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02108",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02109",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02109",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02109",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02109",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02109",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02110",
+      "key": "MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p02110",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02110",
+      "key": "LP",
+      "count": 2
+    },
+    {
+      "playerId": "p02110",
+      "key": "ALL_FBA_1",
+      "count": 5
+    },
+    {
+      "playerId": "p02110",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p02110",
+      "key": "ALL_STAR",
+      "count": 10
+    },
+    {
+      "playerId": "p02110",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02110",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02110",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p02110",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p02110",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p02111",
+      "key": "MC",
+      "count": 1
+    },
+    {
+      "playerId": "p02111",
+      "key": "ALL_FBA_1",
+      "count": 2
+    },
+    {
+      "playerId": "p02111",
+      "key": "ALL_STAR",
+      "count": 5
+    },
+    {
+      "playerId": "p02111",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02111",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02111",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02115",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02118",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02118",
+      "key": "ALL_STAR",
+      "count": 6
+    },
+    {
+      "playerId": "p02118",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02118",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02121",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02121",
+      "key": "PPK",
+      "count": 2
+    },
+    {
+      "playerId": "p02121",
+      "key": "DPOY",
+      "count": 3
+    },
+    {
+      "playerId": "p02121",
+      "key": "ALL_FBA_1",
+      "count": 6
+    },
+    {
+      "playerId": "p02121",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p02121",
+      "key": "ALL_STAR",
+      "count": 11
+    },
+    {
+      "playerId": "p02121",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02121",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02121",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02121",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02121",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02122",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02122",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02122",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02122",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p02123",
+      "key": "MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p02123",
+      "key": "PPK",
+      "count": 2
+    },
+    {
+      "playerId": "p02123",
+      "key": "ALL_FBA_1",
+      "count": 4
+    },
+    {
+      "playerId": "p02123",
+      "key": "ALL_FBA_2",
+      "count": 3
+    },
+    {
+      "playerId": "p02123",
+      "key": "ALL_STAR",
+      "count": 8
+    },
+    {
+      "playerId": "p02123",
+      "key": "FINALS_MVP",
+      "count": 3
+    },
+    {
+      "playerId": "p02123",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02123",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02123",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02123",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p02127",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02128",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02128",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p02128",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02128",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02129",
+      "key": "MC",
+      "count": 2
+    },
+    {
+      "playerId": "p02129",
+      "key": "ALL_FBA_1",
+      "count": 3
+    },
+    {
+      "playerId": "p02129",
+      "key": "ALL_FBA_2",
+      "count": 3
+    },
+    {
+      "playerId": "p02129",
+      "key": "ALL_STAR",
+      "count": 8
+    },
+    {
+      "playerId": "p02129",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02130",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p02130",
+      "key": "ALL_STAR",
+      "count": 5
+    },
+    {
+      "playerId": "p02130",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02130",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02131",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p02131",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p02131",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02131",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02131",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p02131",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02132",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02132",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p02132",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02132",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02132",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02133",
+      "key": "ALL_FBA_2",
+      "count": 3
+    },
+    {
+      "playerId": "p02133",
+      "key": "ALL_STAR",
+      "count": 7
+    },
+    {
+      "playerId": "p02133",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02133",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02133",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p02133",
+      "key": "CONF_CHAMPION",
+      "count": 5
+    },
+    {
+      "playerId": "p02134",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02139",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02139",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02139",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02139",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02139",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02140",
+      "key": "MC",
+      "count": 1
+    },
+    {
+      "playerId": "p02140",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02140",
+      "key": "ALL_STAR",
+      "count": 7
+    },
+    {
+      "playerId": "p02140",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02140",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02140",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02141",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02141",
+      "key": "ALL_FBA_1",
+      "count": 2
+    },
+    {
+      "playerId": "p02141",
+      "key": "ALL_STAR",
+      "count": 9
+    },
+    {
+      "playerId": "p02141",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02141",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02141",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02142",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p02143",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p02143",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02143",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02143",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p02143",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02144",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02145",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02145",
+      "key": "ALL_FBA_1",
+      "count": 2
+    },
+    {
+      "playerId": "p02145",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02145",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02146",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02146",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02146",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02149",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02149",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02149",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02150",
+      "key": "ALL_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02150",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02150",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02152",
+      "key": "MC",
+      "count": 2
+    },
+    {
+      "playerId": "p02152",
+      "key": "DPOY",
+      "count": 1
+    },
+    {
+      "playerId": "p02152",
+      "key": "ALL_FBA_1",
+      "count": 2
+    },
+    {
+      "playerId": "p02152",
+      "key": "ALL_STAR",
+      "count": 5
+    },
+    {
+      "playerId": "p02152",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02152",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02152",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02153",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02153",
+      "key": "ALL_STAR",
+      "count": 6
+    },
+    {
+      "playerId": "p02153",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02153",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02153",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02154",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02155",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02155",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02155",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02160",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02160",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02161",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p02161",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02161",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02161",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02162",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02162",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02162",
+      "key": "ALL_STAR",
+      "count": 6
+    },
+    {
+      "playerId": "p02162",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02162",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02165",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02165",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02165",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02166",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02171",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02172",
+      "key": "ALL_STAR",
+      "count": 5
+    },
+    {
+      "playerId": "p02173",
+      "key": "LP",
+      "count": 1
+    },
+    {
+      "playerId": "p02173",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02173",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02173",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02173",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02173",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02174",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02174",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02174",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02176",
+      "key": "MVP",
+      "count": 4
+    },
+    {
+      "playerId": "p02176",
+      "key": "PPK",
+      "count": 6
+    },
+    {
+      "playerId": "p02176",
+      "key": "DPOY",
+      "count": 1
+    },
+    {
+      "playerId": "p02176",
+      "key": "ALL_FBA_1",
+      "count": 8
+    },
+    {
+      "playerId": "p02176",
+      "key": "ALL_FBA_2",
+      "count": 4
+    },
+    {
+      "playerId": "p02176",
+      "key": "ALL_STAR",
+      "count": 13
+    },
+    {
+      "playerId": "p02176",
+      "key": "ASG_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p02176",
+      "key": "FINALS_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p02176",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02176",
+      "key": "CSHIP_APP",
+      "count": 5
+    },
+    {
+      "playerId": "p02176",
+      "key": "CONF_CHAMPION",
+      "count": 6
+    },
+    {
+      "playerId": "p02176",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p02176",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02177",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02178",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02178",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02178",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02179",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02179",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02179",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02179",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02186",
+      "key": "MC",
+      "count": 1
+    },
+    {
+      "playerId": "p02186",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02186",
+      "key": "ALL_FBA_2",
+      "count": 3
+    },
+    {
+      "playerId": "p02186",
+      "key": "ALL_STAR",
+      "count": 12
+    },
+    {
+      "playerId": "p02186",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02186",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02190",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02190",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02190",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02190",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02191",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02191",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02191",
+      "key": "PPK",
+      "count": 1
+    },
+    {
+      "playerId": "p02191",
+      "key": "ALL_FBA_1",
+      "count": 3
+    },
+    {
+      "playerId": "p02191",
+      "key": "ALL_FBA_2",
+      "count": 6
+    },
+    {
+      "playerId": "p02191",
+      "key": "ALL_STAR",
+      "count": 14
+    },
+    {
+      "playerId": "p02191",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02191",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02191",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p02191",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02193",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02193",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02193",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02193",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p02195",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02195",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02198",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02198",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02198",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02198",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02198",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02202",
+      "key": "DPOY",
+      "count": 1
+    },
+    {
+      "playerId": "p02202",
+      "key": "ALL_STAR",
+      "count": 4
+    },
+    {
+      "playerId": "p02202",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02202",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02205",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02205",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02206",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p02206",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02206",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02207",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02207",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02208",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02208",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02209",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02209",
+      "key": "ALL_STAR",
+      "count": 7
+    },
+    {
+      "playerId": "p02209",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02209",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02209",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02209",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02217",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02219",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02219",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02219",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02220",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02220",
+      "key": "PPK",
+      "count": 2
+    },
+    {
+      "playerId": "p02220",
+      "key": "DPOY",
+      "count": 2
+    },
+    {
+      "playerId": "p02220",
+      "key": "ALL_FBA_1",
+      "count": 3
+    },
+    {
+      "playerId": "p02220",
+      "key": "ALL_FBA_2",
+      "count": 5
+    },
+    {
+      "playerId": "p02220",
+      "key": "ALL_STAR",
+      "count": 14
+    },
+    {
+      "playerId": "p02220",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02220",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02220",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02220",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02220",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02220",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02220",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p02221",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02221",
+      "key": "LP",
+      "count": 1
+    },
+    {
+      "playerId": "p02221",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02221",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02221",
+      "key": "ALL_STAR",
+      "count": 11
+    },
+    {
+      "playerId": "p02221",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02221",
+      "key": "FINALS_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p02221",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02221",
+      "key": "CSHIP_APP",
+      "count": 5
+    },
+    {
+      "playerId": "p02221",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02221",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02223",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02223",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p02223",
+      "key": "ALL_STAR",
+      "count": 13
+    },
+    {
+      "playerId": "p02223",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02224",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02229",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02229",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02229",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02229",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02233",
+      "key": "LP",
+      "count": 2
+    },
+    {
+      "playerId": "p02233",
+      "key": "ALL_FBA_1",
+      "count": 2
+    },
+    {
+      "playerId": "p02233",
+      "key": "ALL_FBA_2",
+      "count": 4
+    },
+    {
+      "playerId": "p02233",
+      "key": "ALL_STAR",
+      "count": 14
+    },
+    {
+      "playerId": "p02233",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02233",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02233",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02233",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02233",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02233",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02233",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02234",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02234",
+      "key": "ALL_STAR",
+      "count": 9
+    },
+    {
+      "playerId": "p02234",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02234",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02238",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02243",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02243",
+      "key": "LP",
+      "count": 1
+    },
+    {
+      "playerId": "p02243",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02243",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p02243",
+      "key": "ALL_STAR",
+      "count": 12
+    },
+    {
+      "playerId": "p02243",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02243",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02243",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02243",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p02244",
+      "key": "ALL_STAR",
+      "count": 3
+    },
+    {
+      "playerId": "p02244",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02244",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02245",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02251",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02251",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02251",
+      "key": "PPK",
+      "count": 3
+    },
+    {
+      "playerId": "p02251",
+      "key": "ALL_FBA_1",
+      "count": 6
+    },
+    {
+      "playerId": "p02251",
+      "key": "ALL_FBA_2",
+      "count": 5
+    },
+    {
+      "playerId": "p02251",
+      "key": "ALL_STAR",
+      "count": 12
+    },
+    {
+      "playerId": "p02251",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02251",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02251",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02251",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02251",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02251",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02252",
+      "key": "MC",
+      "count": 5
+    },
+    {
+      "playerId": "p02252",
+      "key": "ALL_FBA_1",
+      "count": 5
+    },
+    {
+      "playerId": "p02252",
+      "key": "ALL_FBA_2",
+      "count": 4
+    },
+    {
+      "playerId": "p02252",
+      "key": "ALL_STAR",
+      "count": 14
+    },
+    {
+      "playerId": "p02252",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02252",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02252",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02252",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02252",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p02252",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02253",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02253",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02254",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02255",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02255",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02265",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02271",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02275",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02275",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02275",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02275",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02276",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02277",
+      "key": "LP",
+      "count": 1
+    },
+    {
+      "playerId": "p02277",
+      "key": "ALL_FBA_1",
+      "count": 1
+    },
+    {
+      "playerId": "p02277",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02277",
+      "key": "ALL_STAR",
+      "count": 12
+    },
+    {
+      "playerId": "p02277",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02277",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02277",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02277",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02278",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02278",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02279",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02279",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02280",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02281",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02281",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02281",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02281",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02282",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02282",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02282",
+      "key": "ALL_STAR",
+      "count": 9
+    },
+    {
+      "playerId": "p02282",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02282",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02282",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02282",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p02286",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02300",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02301",
+      "key": "DPOY",
+      "count": 2
+    },
+    {
+      "playerId": "p02301",
+      "key": "ALL_FBA_2",
+      "count": 3
+    },
+    {
+      "playerId": "p02301",
+      "key": "ALL_STAR",
+      "count": 11
+    },
+    {
+      "playerId": "p02301",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02301",
+      "key": "ASG_MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p02301",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02301",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02301",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02302",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02302",
+      "key": "DPOY",
+      "count": 4
+    },
+    {
+      "playerId": "p02302",
+      "key": "ALL_FBA_2",
+      "count": 3
+    },
+    {
+      "playerId": "p02302",
+      "key": "ALL_STAR",
+      "count": 14
+    },
+    {
+      "playerId": "p02302",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02302",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02303",
+      "key": "ALL_FBA_2",
+      "count": 2
+    },
+    {
+      "playerId": "p02303",
+      "key": "ALL_STAR",
+      "count": 9
+    },
+    {
+      "playerId": "p02303",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02303",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02303",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02303",
+      "key": "CONF_CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02303",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02306",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02307",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02307",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02308",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02309",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02323",
+      "key": "ALL_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02323",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02323",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02323",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p02325",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02325",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02325",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02325",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p02326",
+      "key": "MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02326",
+      "key": "LP",
+      "count": 5
+    },
+    {
+      "playerId": "p02326",
+      "key": "ALL_FBA_1",
+      "count": 9
+    },
+    {
+      "playerId": "p02326",
+      "key": "ALL_FBA_2",
+      "count": 1
+    },
+    {
+      "playerId": "p02326",
+      "key": "ALL_STAR",
+      "count": 14
+    },
+    {
+      "playerId": "p02326",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02326",
+      "key": "ASG_MVP",
+      "count": 3
+    },
+    {
+      "playerId": "p02326",
+      "key": "FINALS_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02326",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02326",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02326",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02326",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02327",
+      "key": "MVP",
+      "count": 2
+    },
+    {
+      "playerId": "p02327",
+      "key": "ROTY",
+      "count": 1
+    },
+    {
+      "playerId": "p02327",
+      "key": "LP",
+      "count": 5
+    },
+    {
+      "playerId": "p02327",
+      "key": "ALL_FBA_1",
+      "count": 7
+    },
+    {
+      "playerId": "p02327",
+      "key": "ALL_FBA_2",
+      "count": 5
+    },
+    {
+      "playerId": "p02327",
+      "key": "ALL_STAR",
+      "count": 14
+    },
+    {
+      "playerId": "p02327",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02327",
+      "key": "YSG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02327",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02327",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02327",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02328",
+      "key": "MVP",
+      "count": 3
+    },
+    {
+      "playerId": "p02328",
+      "key": "MC",
+      "count": 5
+    },
+    {
+      "playerId": "p02328",
+      "key": "DPOY",
+      "count": 1
+    },
+    {
+      "playerId": "p02328",
+      "key": "ALL_FBA_1",
+      "count": 8
+    },
+    {
+      "playerId": "p02328",
+      "key": "ALL_FBA_2",
+      "count": 3
+    },
+    {
+      "playerId": "p02328",
+      "key": "ALL_STAR",
+      "count": 14
+    },
+    {
+      "playerId": "p02328",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02328",
+      "key": "ASG_MVP",
+      "count": 1
+    },
+    {
+      "playerId": "p02328",
+      "key": "FINALS_MVP",
+      "count": 3
+    },
+    {
+      "playerId": "p02328",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02328",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02328",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02329",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02329",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02330",
+      "key": "ALL_STAR",
+      "count": 10
+    },
+    {
+      "playerId": "p02330",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02330",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02330",
+      "key": "CSHIP_APP",
+      "count": 6
+    },
+    {
+      "playerId": "p02330",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02331",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02331",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02331",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02332",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02334",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02334",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02336",
+      "key": "CSHIP_APP",
+      "count": 3
+    },
+    {
+      "playerId": "p02336",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02338",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02338",
+      "key": "CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02338",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02338",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02339",
+      "key": "DPOY",
+      "count": 1
+    },
+    {
+      "playerId": "p02339",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02339",
+      "key": "CHAMPION",
+      "count": 3
+    },
+    {
+      "playerId": "p02339",
+      "key": "CSHIP_APP",
+      "count": 4
+    },
+    {
+      "playerId": "p02339",
+      "key": "CONF_CHAMPION",
+      "count": 4
+    },
+    {
+      "playerId": "p02339",
+      "key": "DUNK",
+      "count": 1
+    },
+    {
+      "playerId": "p02340",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02341",
+      "key": "FIVE_POINT",
+      "count": 1
+    },
+    {
+      "playerId": "p02342",
+      "key": "YOUNG_STAR",
+      "count": 2
+    },
+    {
+      "playerId": "p02342",
+      "key": "CSHIP_APP",
+      "count": 1
+    },
+    {
+      "playerId": "p02342",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02344",
+      "key": "CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02344",
+      "key": "CSHIP_APP",
+      "count": 2
+    },
+    {
+      "playerId": "p02344",
+      "key": "CONF_CHAMPION",
+      "count": 2
+    },
+    {
+      "playerId": "p02348",
+      "key": "YOUNG_STAR",
+      "count": 1
+    },
+    {
+      "playerId": "p02353",
+      "key": "CONF_CHAMPION",
+      "count": 1
+    },
+    {
+      "playerId": "p02358",
+      "key": "YOUNG_STAR",
+      "count": 2
+    }
+  ]
+}

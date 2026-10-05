@@ -116,7 +116,7 @@
         "home": {
           "name": "DCB",
           "record": "44-18",
-          "seed": null
+          "seed": 1
         },
         "away": null,
         "homeWins": 0,
@@ -129,12 +129,12 @@
         "home": {
           "name": "Maine Wildcats",
           "record": "37-25",
-          "seed": null
+          "seed": 4
         },
         "away": {
           "name": "Columbus Pirates",
           "record": "36-26",
-          "seed": null
+          "seed": 5
         },
         "homeWins": 1,
         "awayWins": 2,
@@ -146,12 +146,12 @@
         "home": {
           "name": "Detroit Motors",
           "record": "38-24",
-          "seed": null
+          "seed": 3
         },
         "away": {
           "name": "Milwaukee Warriors",
           "record": "32-30",
-          "seed": null
+          "seed": 6
         },
         "homeWins": 2,
         "awayWins": 0,
@@ -163,7 +163,7 @@
         "home": {
           "name": "Chicago Spartans",
           "record": "44-18",
-          "seed": null
+          "seed": 2
         },
         "away": null,
         "homeWins": 0,
@@ -176,7 +176,7 @@
         "home": {
           "name": "San Antonio Spirits",
           "record": "53-9",
-          "seed": null
+          "seed": 1
         },
         "away": null,
         "homeWins": 0,
@@ -189,12 +189,12 @@
         "home": {
           "name": "Los Angeles Hawks",
           "record": "40-22",
-          "seed": null
+          "seed": 4
         },
         "away": {
           "name": "Texas Outlaws",
           "record": "38-24",
-          "seed": null
+          "seed": 5
         },
         "homeWins": 2,
         "awayWins": 0,
@@ -206,12 +206,12 @@
         "home": {
           "name": "New Orleans Seminoles",
           "record": "43-19",
-          "seed": null
+          "seed": 3
         },
         "away": {
           "name": "Oakland All-Stars",
           "record": "37-25",
-          "seed": null
+          "seed": 6
         },
         "homeWins": 2,
         "awayWins": 0,
@@ -223,7 +223,7 @@
         "home": {
           "name": "Seattle Shock",
           "record": "45-17",
-          "seed": null
+          "seed": 2
         },
         "away": null,
         "homeWins": 0,
@@ -236,12 +236,12 @@
         "home": {
           "name": "DCB",
           "record": "44-18",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Columbus Pirates",
           "record": "36-26",
-          "seed": null
+          "seed": 5
         },
         "homeWins": 3,
         "awayWins": 0,
@@ -253,12 +253,12 @@
         "home": {
           "name": "Detroit Motors",
           "record": "38-24",
-          "seed": null
+          "seed": 3
         },
         "away": {
           "name": "Chicago Spartans",
           "record": "44-18",
-          "seed": null
+          "seed": 2
         },
         "homeWins": 3,
         "awayWins": 1,
@@ -270,12 +270,12 @@
         "home": {
           "name": "San Antonio Spirits",
           "record": "53-9",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Los Angeles Hawks",
           "record": "40-22",
-          "seed": null
+          "seed": 4
         },
         "homeWins": 3,
         "awayWins": 1,
@@ -287,12 +287,12 @@
         "home": {
           "name": "New Orleans Seminoles",
           "record": "43-19",
-          "seed": null
+          "seed": 3
         },
         "away": {
           "name": "Seattle Shock",
           "record": "45-17",
-          "seed": null
+          "seed": 2
         },
         "homeWins": 2,
         "awayWins": 3,
@@ -304,12 +304,12 @@
         "home": {
           "name": "DCB",
           "record": "44-18",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Detroit Motors",
           "record": "38-24",
-          "seed": null
+          "seed": 3
         },
         "homeWins": 3,
         "awayWins": 1,
@@ -321,12 +321,12 @@
         "home": {
           "name": "San Antonio Spirits",
           "record": "53-9",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Seattle Shock",
           "record": "45-17",
-          "seed": null
+          "seed": 2
         },
         "homeWins": 3,
         "awayWins": 2,
@@ -338,12 +338,12 @@
         "home": {
           "name": "DCB",
           "record": "44-18",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "San Antonio Spirits",
           "record": "53-9",
-          "seed": null
+          "seed": 1
         },
         "homeWins": 2,
         "awayWins": 3,

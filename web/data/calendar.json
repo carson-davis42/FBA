@@ -55,7 +55,7 @@
       "kind": "offseason",
       "league": null,
       "sub": false,
-      "done": false
+      "done": true
     },
     {
       "id": "make-s79-schedules",
@@ -63,7 +63,7 @@
       "kind": "offseason",
       "league": null,
       "sub": false,
-      "done": false
+      "done": true
     },
     {
       "id": "fba-d2",
@@ -71,7 +71,7 @@
       "kind": "league",
       "league": "fbad2",
       "sub": false,
-      "done": false
+      "done": true
     },
     {
       "id": "fba",

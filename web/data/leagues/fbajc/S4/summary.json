@@ -1,0 +1,28 @@
+{
+  "league": "fbajc",
+  "season": 4,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "National Champion",
+      "champion": "North Carolina",
+      "runnerUp": "Texas Tech",
+      "score": null,
+      "teamId": "UNC",
+      "runnerUpId": "TTU",
+      "finalsMvp": "p02021"
+    }
+  ],
+  "jc": {
+    "confChampions": [],
+    "national": [],
+    "conference": [],
+    "allAmerican": null,
+    "mvp": {
+      "mm": "p02021",
+      "nit": null
+    },
+    "nit": null
+  }
+}

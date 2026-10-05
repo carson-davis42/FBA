@@ -1,0 +1,28 @@
+{
+  "league": "fbad2",
+  "season": 79,
+  "locked": true,
+  "awards": [
+    {
+      "award": "MVP-PL",
+      "playerId": "p00270",
+      "teamId": "GUAD"
+    },
+    {
+      "award": "MVP-WL",
+      "playerId": "p00151",
+      "teamId": "ZAG"
+    },
+    {
+      "award": "MVP-UL",
+      "playerId": "p00152",
+      "teamId": "BEL"
+    },
+    {
+      "award": "MVP-IL",
+      "playerId": "p00373",
+      "teamId": "OSL"
+    }
+  ],
+  "allFba": null
+}

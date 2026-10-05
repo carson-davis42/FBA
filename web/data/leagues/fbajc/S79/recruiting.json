@@ -1,0 +1,298 @@
+{
+  "league": "fbajc",
+  "season": 79,
+  "classOf": 80,
+  "locked": false,
+  "classDraft": [],
+  "created": true,
+  "recruits": [
+    {
+      "playerId": "p02422",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {
+        "BYU": 1
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02423",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02424",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {
+        "ALA": 1
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02425",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02426",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02427",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02428",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02429",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02430",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02431",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02432",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02433",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02434",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02435",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02436",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02437",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02438",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {
+        "DUKE": 1
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02439",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02440",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02441",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02442",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02443",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {
+        "UNC": 1,
+        "NCS": 1
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02444",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02445",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02446",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02447",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02448",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02449",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {
+        "KU": 1
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02450",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {
+        "USC": 1,
+        "UCLA": 1,
+        "STAN": 1
+      },
+      "committedTo": null
+    },
+    {
+      "playerId": "p02451",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {
+        "WIS": 1
+      },
+      "committedTo": null
+    }
+  ],
+  "portal": []
+}

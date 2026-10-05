@@ -586,6 +586,34 @@
       ]
     },
     {
+      "playerId": "p00040",
+      "born": "Born-S50",
+      "entries": [
+        "Iona-S68",
+        "1x HOR RS Champion",
+        "UCLA-S69-S70",
+        "1x P12 RS Champion",
+        "1x P12 TOUR Champion",
+        "Texas A&M-S71",
+        "1x SEC POY",
+        "1x All-American(3rd)",
+        "D2(Osaka)-S72-S75",
+        "1x IL C-Ship app.",
+        "1x IL Champion",
+        "1x IL C-Ship MVP",
+        "1x UL MVP",
+        "1x UL RS Champion",
+        "1x UL C-Ship app.",
+        "1x UL Champion",
+        "1x UL C-Ship MVP",
+        "WC(Japan)-S72-S74",
+        "1x World Cup C-Ship app.",
+        "1x World Cup Champion",
+        "MW-S76-S77",
+        "MAN-S78-pres."
+      ]
+    },
+    {
       "playerId": "p00041",
       "born": "Born-S57",
       "entries": [
@@ -9917,6 +9945,15 @@
       "entries": [
         "Purdue-S71-S74",
         "D2(San Jose)-S75-S76"
+      ]
+    },
+    {
+      "playerId": "p01913",
+      "born": "Born-S57",
+      "entries": [
+        "Florida-S75-S76",
+        "Creighton-S77-pres.",
+        "1x BE RS Champion"
       ]
     },
     {

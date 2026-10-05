@@ -131,12 +131,12 @@
         "home": {
           "name": "Carolina Knights",
           "record": "62-24",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Atlanta Venom",
           "record": "45-41",
-          "seed": null
+          "seed": 8
         },
         "homeWins": 3,
         "awayWins": 4,
@@ -148,12 +148,12 @@
         "home": {
           "name": "Manhattan Magic",
           "record": "54-32",
-          "seed": null
+          "seed": 4
         },
         "away": {
           "name": "Cincinnati Blue Stripes",
           "record": "51-35",
-          "seed": null
+          "seed": 5
         },
         "homeWins": 3,
         "awayWins": 4,
@@ -165,12 +165,12 @@
         "home": {
           "name": "Detroit Motors",
           "record": "56-30",
-          "seed": null
+          "seed": 3
         },
         "away": {
           "name": "Maine Wildcats",
           "record": "50-36",
-          "seed": null
+          "seed": 6
         },
         "homeWins": 2,
         "awayWins": 4,
@@ -182,12 +182,12 @@
         "home": {
           "name": "Boston Bucks",
           "record": "60-26",
-          "seed": null
+          "seed": 2
         },
         "away": {
           "name": "Toronto Wolves",
           "record": "48-38",
-          "seed": null
+          "seed": 7
         },
         "homeWins": 4,
         "awayWins": 2,
@@ -199,12 +199,12 @@
         "home": {
           "name": "Honolulu Rays",
           "record": "66-20",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Seattle Shock",
           "record": "45-41",
-          "seed": null
+          "seed": 8
         },
         "homeWins": 4,
         "awayWins": 3,
@@ -216,12 +216,12 @@
         "home": {
           "name": "Cypress Green Guns",
           "record": "59-27",
-          "seed": null
+          "seed": 4
         },
         "away": {
           "name": "Denver Heights",
           "record": "58-28",
-          "seed": null
+          "seed": 5
         },
         "homeWins": 4,
         "awayWins": 2,
@@ -233,12 +233,12 @@
         "home": {
           "name": "Texas Outlaws",
           "record": "62-24",
-          "seed": null
+          "seed": 3
         },
         "away": {
           "name": "Memphis Blues",
           "record": "56-30",
-          "seed": null
+          "seed": 6
         },
         "homeWins": 3,
         "awayWins": 4,
@@ -250,12 +250,12 @@
         "home": {
           "name": "New Orleans Seminoles",
           "record": "63-23",
-          "seed": null
+          "seed": 2
         },
         "away": {
           "name": "San Antonio Spirits",
           "record": "53-33",
-          "seed": null
+          "seed": 7
         },
         "homeWins": 4,
         "awayWins": 3,
@@ -267,12 +267,12 @@
         "home": {
           "name": "Atlanta Venom",
           "record": "45-41",
-          "seed": null
+          "seed": 8
         },
         "away": {
           "name": "Cincinnati Blue Stripes",
           "record": "51-35",
-          "seed": null
+          "seed": 5
         },
         "homeWins": 3,
         "awayWins": 4,
@@ -284,12 +284,12 @@
         "home": {
           "name": "Maine Wildcats",
           "record": "50-36",
-          "seed": null
+          "seed": 6
         },
         "away": {
           "name": "Boston Bucks",
           "record": "60-26",
-          "seed": null
+          "seed": 2
         },
         "homeWins": 3,
         "awayWins": 4,
@@ -301,12 +301,12 @@
         "home": {
           "name": "Honolulu Rays",
           "record": "66-20",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Cypress Green Guns",
           "record": "59-27",
-          "seed": null
+          "seed": 4
         },
         "homeWins": 4,
         "awayWins": 2,
@@ -318,12 +318,12 @@
         "home": {
           "name": "Memphis Blues",
           "record": "56-30",
-          "seed": null
+          "seed": 6
         },
         "away": {
           "name": "New Orleans Seminoles",
           "record": "63-23",
-          "seed": null
+          "seed": 2
         },
         "homeWins": 4,
         "awayWins": 2,
@@ -335,12 +335,12 @@
         "home": {
           "name": "Cincinnati Blue Stripes",
           "record": "51-35",
-          "seed": null
+          "seed": 5
         },
         "away": {
           "name": "Boston Bucks",
           "record": "60-26",
-          "seed": null
+          "seed": 2
         },
         "homeWins": 0,
         "awayWins": 4,
@@ -352,12 +352,12 @@
         "home": {
           "name": "Honolulu Rays",
           "record": "66-20",
-          "seed": null
+          "seed": 1
         },
         "away": {
           "name": "Memphis Blues",
           "record": "56-30",
-          "seed": null
+          "seed": 6
         },
         "homeWins": 1,
         "awayWins": 4,
@@ -369,12 +369,12 @@
         "home": {
           "name": "Boston Bucks",
           "record": "60-26",
-          "seed": null
+          "seed": 2
         },
         "away": {
           "name": "Memphis Blues",
           "record": "56-30",
-          "seed": null
+          "seed": 6
         },
         "homeWins": 4,
         "awayWins": 1,
@@ -850,6 +850,758 @@
       "marker": null,
       "seed": null,
       "playoff": null
+    }
+  ],
+  "legacyPpg": [
+    {
+      "playerId": "p00100",
+      "teamId": "OAK",
+      "ppg": 43.4
+    },
+    {
+      "playerId": "p00026",
+      "teamId": "CP",
+      "ppg": 40.7
+    },
+    {
+      "playerId": "p00031",
+      "teamId": "TOR",
+      "ppg": 40.2
+    },
+    {
+      "playerId": "p00115",
+      "teamId": "CHI",
+      "ppg": 38.5
+    },
+    {
+      "playerId": "p00116",
+      "teamId": "SAS",
+      "ppg": 37.8
+    },
+    {
+      "playerId": "p00055",
+      "teamId": "HON",
+      "ppg": 36.9
+    },
+    {
+      "playerId": "p00046",
+      "teamId": "DET",
+      "ppg": 36.1
+    },
+    {
+      "playerId": "p00111",
+      "teamId": "PHX",
+      "ppg": 35.5
+    },
+    {
+      "playerId": "p00006",
+      "teamId": "BOS",
+      "ppg": 34.7
+    },
+    {
+      "playerId": "p00090",
+      "teamId": "NO",
+      "ppg": 34.6
+    },
+    {
+      "playerId": "p00007",
+      "teamId": "VEG",
+      "ppg": 34
+    },
+    {
+      "playerId": "p00073",
+      "teamId": "MEM",
+      "ppg": 33.9
+    },
+    {
+      "playerId": "p00021",
+      "teamId": "CIN",
+      "ppg": 32.9
+    },
+    {
+      "playerId": "p00079",
+      "teamId": "MIL",
+      "ppg": 32.7
+    },
+    {
+      "playerId": "p00041",
+      "teamId": "DEN",
+      "ppg": 31.8
+    },
+    {
+      "playerId": "p00010",
+      "teamId": "BOS",
+      "ppg": 31.7
+    },
+    {
+      "playerId": "p00127",
+      "teamId": "TEX",
+      "ppg": 31.3
+    },
+    {
+      "playerId": "p00033",
+      "teamId": "CGG",
+      "ppg": 29.1
+    },
+    {
+      "playerId": "p00013",
+      "teamId": "CAR",
+      "ppg": 29.1
+    },
+    {
+      "playerId": "p00129",
+      "teamId": "TEX",
+      "ppg": 29.1
+    },
+    {
+      "playerId": "p00011",
+      "teamId": "CAR",
+      "ppg": 29.1
+    },
+    {
+      "playerId": "p00043",
+      "teamId": "DEN",
+      "ppg": 28.2
+    },
+    {
+      "playerId": "p00030",
+      "teamId": "CGG",
+      "ppg": 27
+    },
+    {
+      "playerId": "p00057",
+      "teamId": "HON",
+      "ppg": 26.5
+    },
+    {
+      "playerId": "p00099",
+      "teamId": "NY",
+      "ppg": 26.3
+    },
+    {
+      "playerId": "p00067",
+      "teamId": "MW",
+      "ppg": 26.2
+    },
+    {
+      "playerId": "p00068",
+      "teamId": "MAN",
+      "ppg": 25.9
+    },
+    {
+      "playerId": "p00084",
+      "teamId": "CGG",
+      "ppg": 25.4
+    },
+    {
+      "playerId": "p00071",
+      "teamId": "MAN",
+      "ppg": 24.9
+    },
+    {
+      "playerId": "p00137",
+      "teamId": "VAN",
+      "ppg": 24.8
+    },
+    {
+      "playerId": "p00157",
+      "teamId": "NO",
+      "ppg": 24.4
+    },
+    {
+      "playerId": "p00062",
+      "teamId": "LA",
+      "ppg": 23.5
+    },
+    {
+      "playerId": "p00091",
+      "teamId": "NO",
+      "ppg": 23.5
+    },
+    {
+      "playerId": "p00136",
+      "teamId": "VAN",
+      "ppg": 23.3
+    },
+    {
+      "playerId": "p00118",
+      "teamId": "SEA",
+      "ppg": 23.2
+    },
+    {
+      "playerId": "p00005",
+      "teamId": "ATL",
+      "ppg": 22.9
+    },
+    {
+      "playerId": "p00038",
+      "teamId": "DCB",
+      "ppg": 22.7
+    },
+    {
+      "playerId": "p00128",
+      "teamId": "TEX",
+      "ppg": 22
+    },
+    {
+      "playerId": "p00048",
+      "teamId": "DET",
+      "ppg": 21.8
+    },
+    {
+      "playerId": "p00158",
+      "teamId": "SAS",
+      "ppg": 21.7
+    },
+    {
+      "playerId": "p00050",
+      "teamId": "FLO",
+      "ppg": 21.7
+    },
+    {
+      "playerId": "p00001",
+      "teamId": "ATL",
+      "ppg": 21.5
+    },
+    {
+      "playerId": "p00070",
+      "teamId": "MAN",
+      "ppg": 21.2
+    },
+    {
+      "playerId": "p00059",
+      "teamId": "LA",
+      "ppg": 20.9
+    },
+    {
+      "playerId": "p00093",
+      "teamId": "NY",
+      "ppg": 20.7
+    },
+    {
+      "playerId": "p00076",
+      "teamId": "MEM",
+      "ppg": 20.5
+    },
+    {
+      "playerId": "p00060",
+      "teamId": "SAS",
+      "ppg": 20.5
+    },
+    {
+      "playerId": "p00105",
+      "teamId": "OV",
+      "ppg": 20.5
+    },
+    {
+      "playerId": "p00065",
+      "teamId": "MW",
+      "ppg": 20.2
+    },
+    {
+      "playerId": "p00117",
+      "teamId": "SEA",
+      "ppg": 19.8
+    },
+    {
+      "playerId": "p00119",
+      "teamId": "SEA",
+      "ppg": 19.6
+    },
+    {
+      "playerId": "p00034",
+      "teamId": "DCB",
+      "ppg": 19.5
+    },
+    {
+      "playerId": "p00142",
+      "teamId": "MON",
+      "ppg": 19.1
+    },
+    {
+      "playerId": "p00066",
+      "teamId": "MW",
+      "ppg": 19
+    },
+    {
+      "playerId": "p00035",
+      "teamId": "DCB",
+      "ppg": 18.9
+    },
+    {
+      "playerId": "p00126",
+      "teamId": "STL",
+      "ppg": 18.7
+    },
+    {
+      "playerId": "p00125",
+      "teamId": "STL",
+      "ppg": 18.4
+    },
+    {
+      "playerId": "p00024",
+      "teamId": "CIN",
+      "ppg": 18.3
+    },
+    {
+      "playerId": "p00122",
+      "teamId": "STL",
+      "ppg": 18.3
+    },
+    {
+      "playerId": "p00144",
+      "teamId": "VEG",
+      "ppg": 18
+    },
+    {
+      "playerId": "p00087",
+      "teamId": "MON",
+      "ppg": 17.9
+    },
+    {
+      "playerId": "p00051",
+      "teamId": "FLO",
+      "ppg": 17.6
+    },
+    {
+      "playerId": "p00044",
+      "teamId": "DET",
+      "ppg": 17.5
+    },
+    {
+      "playerId": "p00141",
+      "teamId": "VEG",
+      "ppg": 17.1
+    },
+    {
+      "playerId": "p00056",
+      "teamId": "HON",
+      "ppg": 17
+    },
+    {
+      "playerId": "p00020",
+      "teamId": "CIN",
+      "ppg": 16.9
+    },
+    {
+      "playerId": "p00014",
+      "teamId": "CAR",
+      "ppg": 16.7
+    },
+    {
+      "playerId": "p00102",
+      "teamId": "OV",
+      "ppg": 16.4
+    },
+    {
+      "playerId": "p00042",
+      "teamId": "DEN",
+      "ppg": 16.2
+    },
+    {
+      "playerId": "p00092",
+      "teamId": "NY",
+      "ppg": 16.2
+    },
+    {
+      "playerId": "p00110",
+      "teamId": "PHX",
+      "ppg": 16
+    },
+    {
+      "playerId": "p00082",
+      "teamId": "MIL",
+      "ppg": 15.8
+    },
+    {
+      "playerId": "p00131",
+      "teamId": "TOR",
+      "ppg": 15.7
+    },
+    {
+      "playerId": "p00107",
+      "teamId": "PHX",
+      "ppg": 15.6
+    },
+    {
+      "playerId": "p00029",
+      "teamId": "CP",
+      "ppg": 15.4
+    },
+    {
+      "playerId": "p00148",
+      "teamId": "FLO",
+      "ppg": 15.2
+    },
+    {
+      "playerId": "p00113",
+      "teamId": "BOS",
+      "ppg": 15.1
+    },
+    {
+      "playerId": "p00104",
+      "teamId": "OV",
+      "ppg": 14.8
+    },
+    {
+      "playerId": "p00077",
+      "teamId": "MEM",
+      "ppg": 14.6
+    },
+    {
+      "playerId": "p00003",
+      "teamId": "ATL",
+      "ppg": 14.5
+    },
+    {
+      "playerId": "p00098",
+      "teamId": "OAK",
+      "ppg": 14.4
+    },
+    {
+      "playerId": "p00016",
+      "teamId": "CHI",
+      "ppg": 14.3
+    },
+    {
+      "playerId": "p00134",
+      "teamId": "TOR",
+      "ppg": 13.6
+    },
+    {
+      "playerId": "p00023",
+      "teamId": "CIN",
+      "ppg": 13.1
+    },
+    {
+      "playerId": "p00036",
+      "teamId": "MEM",
+      "ppg": 13
+    },
+    {
+      "playerId": "p00017",
+      "teamId": "CHI",
+      "ppg": 12.7
+    },
+    {
+      "playerId": "p00089",
+      "teamId": "LA",
+      "ppg": 12.5
+    },
+    {
+      "playerId": "p00002",
+      "teamId": "ATL",
+      "ppg": 12.4
+    },
+    {
+      "playerId": "p00054",
+      "teamId": "MON",
+      "ppg": 12.3
+    },
+    {
+      "playerId": "p00064",
+      "teamId": "MW",
+      "ppg": 12.2
+    },
+    {
+      "playerId": "p00028",
+      "teamId": "CP",
+      "ppg": 12.2
+    },
+    {
+      "playerId": "p00109",
+      "teamId": "PHX",
+      "ppg": 11.8
+    },
+    {
+      "playerId": "p00025",
+      "teamId": "OAK",
+      "ppg": 11.8
+    },
+    {
+      "playerId": "p00121",
+      "teamId": "SEA",
+      "ppg": 11.7
+    },
+    {
+      "playerId": "p00004",
+      "teamId": "ATL",
+      "ppg": 11.4
+    },
+    {
+      "playerId": "p00086",
+      "teamId": "MON",
+      "ppg": 11.3
+    },
+    {
+      "playerId": "p00072",
+      "teamId": "LA",
+      "ppg": 11.2
+    },
+    {
+      "playerId": "p00139",
+      "teamId": "VAN",
+      "ppg": 11.1
+    },
+    {
+      "playerId": "p00078",
+      "teamId": "MIL",
+      "ppg": 10.4
+    },
+    {
+      "playerId": "p00074",
+      "teamId": "OV",
+      "ppg": 10.3
+    },
+    {
+      "playerId": "p00132",
+      "teamId": "STL",
+      "ppg": 9.9
+    },
+    {
+      "playerId": "p00096",
+      "teamId": "NY",
+      "ppg": 9.8
+    },
+    {
+      "playerId": "p00106",
+      "teamId": "OV",
+      "ppg": 9.7
+    },
+    {
+      "playerId": "p00143",
+      "teamId": "DCB",
+      "ppg": 9.6
+    },
+    {
+      "playerId": "p00138",
+      "teamId": "VAN",
+      "ppg": 9.4
+    },
+    {
+      "playerId": "p00080",
+      "teamId": "MIL",
+      "ppg": 9.4
+    },
+    {
+      "playerId": "p00154",
+      "teamId": "MON",
+      "ppg": 9.3
+    },
+    {
+      "playerId": "p00037",
+      "teamId": "DCB",
+      "ppg": 9.3
+    },
+    {
+      "playerId": "p00049",
+      "teamId": "FLO",
+      "ppg": 9.3
+    },
+    {
+      "playerId": "p00015",
+      "teamId": "CHI",
+      "ppg": 9.1
+    },
+    {
+      "playerId": "p00135",
+      "teamId": "VAN",
+      "ppg": 9.1
+    },
+    {
+      "playerId": "p00039",
+      "teamId": "DEN",
+      "ppg": 8.2
+    },
+    {
+      "playerId": "p00053",
+      "teamId": "FLO",
+      "ppg": 8.1
+    },
+    {
+      "playerId": "p00155",
+      "teamId": "MW",
+      "ppg": 8
+    },
+    {
+      "playerId": "p00120",
+      "teamId": "SEA",
+      "ppg": 7.9
+    },
+    {
+      "playerId": "p00124",
+      "teamId": "STL",
+      "ppg": 7.7
+    },
+    {
+      "playerId": "p00146",
+      "teamId": "CP",
+      "ppg": 7.5
+    },
+    {
+      "playerId": "p00040",
+      "teamId": "MAN",
+      "ppg": 7.3
+    },
+    {
+      "playerId": "p00045",
+      "teamId": "DET",
+      "ppg": 7.2
+    },
+    {
+      "playerId": "p00019",
+      "teamId": "CAR",
+      "ppg": 7.1
+    },
+    {
+      "playerId": "p00081",
+      "teamId": "VEG",
+      "ppg": 6.8
+    },
+    {
+      "playerId": "p00153",
+      "teamId": "MIL",
+      "ppg": 6.8
+    },
+    {
+      "playerId": "p00145",
+      "teamId": "CHI",
+      "ppg": 6.7
+    },
+    {
+      "playerId": "p00061",
+      "teamId": "LA",
+      "ppg": 6.5
+    },
+    {
+      "playerId": "p00133",
+      "teamId": "TOR",
+      "ppg": 6.4
+    },
+    {
+      "playerId": "p00085",
+      "teamId": "OAK",
+      "ppg": 6.2
+    },
+    {
+      "playerId": "p00162",
+      "teamId": "VEG",
+      "ppg": 6.2
+    },
+    {
+      "playerId": "p00027",
+      "teamId": "CP",
+      "ppg": 6.1
+    },
+    {
+      "playerId": "p00088",
+      "teamId": "NO",
+      "ppg": 5.9
+    },
+    {
+      "playerId": "p00095",
+      "teamId": "NY",
+      "ppg": 5.9
+    },
+    {
+      "playerId": "p00108",
+      "teamId": "PHX",
+      "ppg": 5.6
+    },
+    {
+      "playerId": "p00112",
+      "teamId": "SAS",
+      "ppg": 5.4
+    },
+    {
+      "playerId": "p00009",
+      "teamId": "BOS",
+      "ppg": 5.4
+    },
+    {
+      "playerId": "p00149",
+      "teamId": "HON",
+      "ppg": 5.4
+    },
+    {
+      "playerId": "p00012",
+      "teamId": "CAR",
+      "ppg": 5.4
+    },
+    {
+      "playerId": "p00058",
+      "teamId": "HON",
+      "ppg": 5.3
+    },
+    {
+      "playerId": "p00147",
+      "teamId": "DEN",
+      "ppg": 5.2
+    },
+    {
+      "playerId": "p00161",
+      "teamId": "TOR",
+      "ppg": 5.1
+    },
+    {
+      "playerId": "p00101",
+      "teamId": "OAK",
+      "ppg": 5
+    },
+    {
+      "playerId": "p00130",
+      "teamId": "CGG",
+      "ppg": 4.8
+    },
+    {
+      "playerId": "p00151",
+      "teamId": "MAN",
+      "ppg": 4.8
+    },
+    {
+      "playerId": "p00114",
+      "teamId": "SAS",
+      "ppg": 4.4
+    },
+    {
+      "playerId": "p00152",
+      "teamId": "MEM",
+      "ppg": 4.4
+    },
+    {
+      "playerId": "p00047",
+      "teamId": "DET",
+      "ppg": 4.1
+    },
+    {
+      "playerId": "p00032",
+      "teamId": "CGG",
+      "ppg": 4.1
+    },
+    {
+      "playerId": "p00022",
+      "teamId": "CIN",
+      "ppg": 4
+    },
+    {
+      "playerId": "p00159",
+      "teamId": "TEX",
+      "ppg": 4
+    },
+    {
+      "playerId": "p00160",
+      "teamId": "TEX",
+      "ppg": 3.9
+    },
+    {
+      "playerId": "p00008",
+      "teamId": "BOS",
+      "ppg": 3.4
+    },
+    {
+      "playerId": "p00156",
+      "teamId": "NO",
+      "ppg": 3.1
     }
   ]
 }

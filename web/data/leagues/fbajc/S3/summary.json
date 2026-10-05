@@ -1,0 +1,28 @@
+{
+  "league": "fbajc",
+  "season": 3,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "National Champion",
+      "champion": "Purdue",
+      "runnerUp": "Virginia",
+      "score": null,
+      "teamId": "PUR",
+      "runnerUpId": "UVA",
+      "finalsMvp": "p01959"
+    }
+  ],
+  "jc": {
+    "confChampions": [],
+    "national": [],
+    "conference": [],
+    "allAmerican": null,
+    "mvp": {
+      "mm": "p01959",
+      "nit": null
+    },
+    "nit": null
+  }
+}
