@@ -168,12 +168,12 @@ export function JcSeasonPage() {
       <Sections season={season} teams={teams} players={players.data} />
       <div className="stack">
         <h2 className="section-title">March Madness</h2>
-        {mm ? <PastBracket bracket={mm} teams={teams} season={n} showRecords /> : <p className="muted">No bracket recorded</p>}
+        {mm ? <PastBracket bracket={mm} teams={teams} season={n} showRecords gameLink={id => `/history/fbajc/season/${n}/game/${id}`} /> : <p className="muted">No bracket recorded</p>}
       </div>
       {(nitBracket || season.champions.some(c => isJcNitTitle(c.title))) && (
         <div className="stack">
           <h2 className="section-title">NIT</h2>
-          {nitBracket ? <PastBracket bracket={nitBracket} teams={teams} season={n} showRecords /> : <p className="muted">No bracket recorded</p>}
+          {nitBracket ? <PastBracket bracket={nitBracket} teams={teams} season={n} showRecords gameLink={id => `/history/fbajc/season/${n}/game/${id}?bracket=nit`} /> : <p className="muted">No bracket recorded</p>}
         </div>
       )}
     </section>

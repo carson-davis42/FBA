@@ -139,11 +139,11 @@ export function D2SeasonPage() {
             ? GROUPS.map(g => season.pastBrackets!.find(p => p.group === g)).filter(p => !!p).map(p => (
               <div key={p.group}>
                 <h3>{groupLabel('fbad2', p.group)}</h3>
-                <PastBracket bracket={p.bracket} teams={teams} season={n} />
+                <PastBracket bracket={p.bracket} teams={teams} season={n} gameLink={id => `/history/fbad2/season/${n}/game/${id}?bracket=${p.group}`} />
               </div>
             ))
             : season.pastBracket
-              ? <PastBracket bracket={season.pastBracket} teams={teams} season={n} />
+              ? <PastBracket bracket={season.pastBracket} teams={teams} season={n} gameLink={id => `/history/fbad2/season/${n}/game/${id}`} />
               : <p className="muted">No bracket recorded</p>}
         </div>
       )}

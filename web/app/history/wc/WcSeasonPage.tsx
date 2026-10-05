@@ -50,7 +50,7 @@ export function WcSeasonPage() {
       <div>
         <h2 className="section-title">Bracket</h2>
         {summary.pastBracket
-          ? <PastBracket bracket={summary.pastBracket} teams={teams} season={n} />
+          ? <PastBracket bracket={summary.pastBracket} teams={teams} season={n} gameLink={id => `/history/fbawc/season/${n}/game/${id}`} />
           : <p className="muted">No bracket recorded</p>}
       </div>
     </section>

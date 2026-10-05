@@ -32,6 +32,7 @@ import { FbaDraftPage } from '../offseason/FbaDraftPage';
 import { ProRatingsPage } from '../offseason/ProRatingsPage';
 import { RetirementPage } from '../offseason/RetirementPage';
 import { AwardsByPlayerPage } from '../history/AwardsByPlayerPage';
+import { BoxScorePage } from '../history/BoxScorePage';
 import { AwardsHistoryPage } from '../history/AwardsHistoryPage';
 import { ChampionshipsPage } from '../history/ChampionshipsPage';
 import { HallOfFameHistoryPage } from '../history/HallOfFameHistoryPage';
@@ -141,6 +142,7 @@ const ROUTES = createRoutesFromElements(
   <Route path="/history/fbawc" element={<WcHistoryPage />} />
   <Route path="/history/fbawc/season/:season" element={<WcSeasonPage />} />
   <Route path="/history/fbawc/teams/:teamId" element={<WcTeamPage />} />
+  <Route path="/history/:league/season/:season/game/:seriesId" element={<BoxScorePage />} />
   <Route path="/history/fba/championships" element={<ChampionshipsPage />} />
   <Route path="/history/fba/awards" element={<AwardsHistoryPage />} />
   <Route path="/history/fba/awards/players" element={<AwardsByPlayerPage />} />

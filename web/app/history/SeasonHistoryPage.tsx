@@ -92,7 +92,7 @@ function Playoffs({ season, teams, players, franchises }: { season: SummaryFile;
       {season.bracket ? (
         <Bracket league="fba" series={season.bracket.series} teams={new Map(teams.map(t => [t.teamId, t]))} season={season.season} group={null} open={null} />
       ) : season.pastBracket ? (
-        <PastBracket bracket={season.pastBracket} teams={teams} season={season.season} franchises={franchises} />
+        <PastBracket bracket={season.pastBracket} teams={teams} season={season.season} franchises={franchises} gameLink={id => `/history/fba/season/${season.season}/game/${id}`} />
       ) : champion ? (
         <FinalsCard champion={champion} teams={teams} franchises={franchises} season={season.season} />
       ) : (
