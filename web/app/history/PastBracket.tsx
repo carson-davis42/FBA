@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import type { FranchisesFile, PastBracket as PastBracketDoc, PastSeries, PastSide, Team } from '../../engine/shared/types';
 import { ChampBadge, SideRow } from '../playoffs/Bracket';
 import { TeamFull } from './useTeams';
@@ -20,15 +21,15 @@ function Side({ side, wins, won, teams, franchises, season, showRecords }: { sid
   );
 }
 
-interface BracketProps { bracket: PastBracketDoc; teams: Team[]; season: number; franchises: FranchisesFile | null; showRecords: boolean }
+interface BracketProps { bracket: PastBracketDoc; teams: Team[]; season: number; franchises: FranchisesFile | null; showRecords: boolean; gameLink?: (seriesId: string) => string }
 
 /** One game or series box: points or wins beside each side, an OT tag, the champion badge on the final. */
-function SeriesBox({ s, finals, ...rest }: { s: PastSeries; finals: boolean } & Omit<BracketProps, 'bracket'>) {
+function SeriesBox({ s, finals, gameLink, ...rest }: { s: PastSeries; finals: boolean } & Omit<BracketProps, 'bracket'>) {
   const none = s.unscored ? '' : null;
   const m = s.score ? SCORE.exec(s.score) : null;
   const pts = m ? [m[1], m[2]] : null;
   const winHome = s.winner === 'home';
-  return (
+  const box = (
     <div className={`series-box${s.score || s.unscored ? ' past' : ''}${finals ? ' finals' : ''}${s.winner ? ' decided' : ''}`}>
       {finals && s.winner && <ChampBadge />}
       <Side side={s.home} wins={none ?? (pts ? pts[winHome ? 0 : 1] : s.homeWins)} won={s.winner === 'home'} {...rest} />
@@ -36,6 +37,8 @@ function SeriesBox({ s, finals, ...rest }: { s: PastSeries; finals: boolean } & 
       {m?.[3] && <span className="series-ot">{m[3]}</span>}
     </div>
   );
+  // A bye (one side empty) has no game to open.
+  return gameLink && s.home && s.away ? <Link className="series-link" to={gameLink(s.id)} aria-label={`${s.home.name} vs ${s.away.name}: open the box score`}>{box}</Link> : box;
 }
 
 /** What a round is called by the number of teams still in it: Round of 64, Round of 32, Sweet 16, Elite 8, Final Four, Championship. */
@@ -120,12 +123,12 @@ function TreeBracket({ bracket, ...rest }: BracketProps) {
 /**
  * A transcribed historical bracket. Pages of 32 or more slots (the college pages) are a one-sided bracket with a column per round;
  * smaller ones keep the two-sided tree. A scored game shows its points (with an OT tag), `showRecords` prints each
- * team's record after its name, and `layout` forces one of the two views.
+ * team's record after its name, `layout` forces one of the two views, and `gameLink` makes each played game or series a link to its box score.
  */
-export function PastBracket({ bracket, teams, season, franchises = null, showRecords = false, layout = 'auto' }: {
-  bracket: PastBracketDoc; teams: Team[]; season: number; franchises?: FranchisesFile | null; showRecords?: boolean; layout?: 'auto' | 'tree' | 'rounds';
+export function PastBracket({ bracket, teams, season, franchises = null, showRecords = false, layout = 'auto', gameLink }: {
+  bracket: PastBracketDoc; teams: Team[]; season: number; franchises?: FranchisesFile | null; showRecords?: boolean; layout?: 'auto' | 'tree' | 'rounds'; gameLink?: (seriesId: string) => string;
 }) {
-  const props = { bracket, teams, season, franchises, showRecords };
+  const props = { bracket, teams, season, franchises, showRecords, gameLink };
   const rounds = layout === 'rounds' || (layout === 'auto' && bracket.rounds >= 5);
   return rounds ? <ColumnsBracket {...props} /> : <TreeBracket {...props} />;
 }

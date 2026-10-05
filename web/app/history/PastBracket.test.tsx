@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { Bracket } from '../playoffs/Bracket';
 import type { FranchisesFile, PastBracket as PastBracketDoc, PastSeries, PlayoffSeries, Team } from '../../engine/shared/types';
@@ -236,5 +237,20 @@ describe('PastBracket college pages', () => {
     const { container } = render(<PastBracket bracket={{ rounds: 5, series }} teams={[]} season={11} layout="tree" />);
     expect(container.querySelectorAll('.series-box')).toHaveLength(31);
     expect(container.querySelectorAll('.bracket > .bracket-col')).toHaveLength(9);
+  });
+});
+
+describe('PastBracket game links', () => {
+  it('links every played game to its box score and leaves byes unlinked', () => {
+    const b: PastBracketDoc = { rounds: 2, series: [ps('R1-1', 'Alpha', 'Beta', 4, 1), ps('R1-2', 'Gamma', null, 0, 0), ps('R2-1', 'Alpha', 'Gamma', 4, 2)] };
+    render(<MemoryRouter><PastBracket bracket={b} teams={[]} season={5} gameLink={id => `/history/fba/season/5/game/${id}`} /></MemoryRouter>);
+    const hrefs = screen.getAllByRole('link').map(a => a.getAttribute('href'));
+    expect(hrefs.sort()).toEqual(['/history/fba/season/5/game/R1-1', '/history/fba/season/5/game/R2-1']);
+    expect(screen.getByRole('link', { name: 'Alpha vs Beta: open the box score' })).toBeTruthy();
+  });
+
+  it('has no links without gameLink', () => {
+    render(<PastBracket bracket={tree} teams={[]} season={5} />);
+    expect(screen.queryAllByRole('link')).toHaveLength(0);
   });
 });

@@ -17,7 +17,7 @@ export interface FranchiseRosterInput {
 const season = (t: string): number | null => (/^S(\d+)$/i.exec(t) ? Number(t.slice(1)) : null);
 
 /** The seasons a stint range covers: "S22", "S12-S18;S22", "FFL-S10" (from season 1), "S73-pres." (through S78, the last bio season). */
-function stintSeasons(range: string): number[] {
+export function stintSeasons(range: string): number[] {
   const out: number[] = [];
   for (const part of range.split(';')) {
     const toks = part.split('-').map(t => t.trim());

@@ -29,7 +29,7 @@ export const ACCENT_SIDES: CSSProperties[] = [
   { '--team': 'var(--hero-to)', '--team-2': 'var(--accent)', '--team-ink': 'var(--masthead-text)' } as CSSProperties,
 ];
 
-export interface BugSide { label: string; score: number; team?: Team; season?: number; style: CSSProperties; /** Small line under the label, such as a record. */ sub?: string }
+export interface BugSide { label: string; score: number | string; team?: Team; season?: number; style: CSSProperties; /** Small line under the label, such as a record. */ sub?: string }
 
 /** A side of the scorebug for a real team, in its colours. */
 export function bugSide(state: SeasonState, teamId: string, score: number, opts: { full?: boolean; record?: boolean } = {}): BugSide {
