@@ -25,6 +25,10 @@ describe('parseFranchiseTab', () => {
       { name: 'Cal Tech Knights', abbr: 'CT', city: 'Sacramento, California', from: 41, to: 56 },
     ]);
   });
+  it('reads a one-season era written as a single season', () => {
+    const rows: string[][] = [['Florida Panthers'], ['FLO'], ['(Orlando, Florida)'], ['S11']];
+    expect(parseFranchiseTab(rows).eras).toEqual([{ name: 'Florida Panthers', abbr: 'FLO', city: 'Orlando, Florida', from: 11, to: 11 }]);
+  });
   it('accepts "pres" without the dot', () => {
     const rows: string[][] = [['Denver Heights'], ['DEN'], ['(Denver, Colorado)'], ['S61-pres']];
     expect(parseFranchiseTab(rows).eras).toEqual([{ name: 'Denver Heights', abbr: 'DEN', city: 'Denver, Colorado', from: 61, to: null }]);
