@@ -79,7 +79,8 @@ export function franchiseIndex(input: FranchiseRosterInput): { players: Franchis
       const codes = stint.team.split('/');
       const covered = stintSeasons(stint.range).filter(n => {
         const abbr = abbrAt(franchise, n);
-        return (abbr !== null && codes.includes(abbr)) || (n >= 79 && codes.includes(franchise.teamId));
+        // Bios usually write the code of the era, but sometimes the franchise's current one (`MON` for its Texas years).
+        return abbr !== null && (codes.includes(abbr) || codes.includes(franchise.teamId));
       });
       if (covered.length === 0) continue;
       covered.forEach(n => seasons.add(n));

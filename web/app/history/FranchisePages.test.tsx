@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { DraftHistoryFile, FranchisesFile, LogoManifest, PlayersFile, SummaryFile, TeamsFile } from '../../engine/shared/types';
@@ -42,7 +42,7 @@ const drafts: DraftHistoryFile = {
   }],
 };
 
-function stub(opts: { drafts?: boolean; manifest?: LogoManifest; logoFolder?: string; noFranchises?: boolean; draftsFail?: boolean } = {}) {
+function stub(opts: { drafts?: boolean; manifest?: LogoManifest; logoFolder?: string; noFranchises?: boolean; draftsFail?: boolean; extra?: Record<string, unknown> } = {}) {
   const docs: Record<string, unknown> = {
     '/api/history/fba': { seasons: [s20], errors: [] },
     '/api/state/players.json': players,
@@ -53,13 +53,14 @@ function stub(opts: { drafts?: boolean; manifest?: LogoManifest; logoFolder?: st
   if (opts.drafts !== false) docs['/api/state/leagues/fba/draftHistory.json'] = drafts;
   if (opts.manifest) docs['/api/state/logos/manifest.json'] = opts.manifest;
   if (opts.noFranchises) delete docs['/api/state/leagues/fba/franchises.json'];
+  Object.assign(docs, opts.extra);
   vi.stubGlobal('fetch', vi.fn(async (url: string) =>
     opts.draftsFail && url === '/api/state/leagues/fba/draftHistory.json' ? new Response('boom', { status: 500 }) :
     url in docs ? new Response(JSON.stringify(docs[url]), { headers: { ETag: '"0000000000000001"' } }) : new Response('{}', { status: 404 })));
 }
 
-const renderFranchise = (teamId = 'SAS') => render(
-  <MemoryRouter initialEntries={[`/history/fba/teams/${teamId}`]}>
+const renderFranchise = (teamId = 'SAS', search = '') => render(
+  <MemoryRouter initialEntries={[`/history/fba/teams/${teamId}${search}`]}>
     <Routes><Route path="/history/fba/teams/:teamId" element={<FranchisePage />} /></Routes>
   </MemoryRouter>,
 );
@@ -138,5 +139,30 @@ describe('Franchise pages', () => {
     stub({ draftsFail: true });
     renderFranchise();
     expect((await screen.findByText(/Couldn't load the history/)).className).toBe('error');
+  });
+
+  describe('Players tab', () => {
+    const extra = {
+      '/api/state/leagues/fba/playerBios.json': { league: 'fba', bios: [{ playerId: 'p00001', born: 'Born-S40', entries: ['USA-S18-S22', 'S20 MVP'] }] },
+    };
+    const requested = () => (fetch as unknown as ReturnType<typeof vi.fn>).mock.calls.map(c => String(c[0]));
+
+    it('opens on Overview and does not load the bios', async () => {
+      stub({ extra });
+      renderFranchise();
+      await screen.findByRole('heading', { level: 1 });
+      expect(screen.getByRole('tab', { name: 'Overview' }).getAttribute('aria-selected')).toBe('true');
+      expect(requested().some(u => u.includes('playerBios'))).toBe(false);
+    });
+
+    it('?tab=players lists the franchise players, and the tab buttons switch', async () => {
+      stub({ extra });
+      renderFranchise('SAS', '?tab=players');
+      expect(await screen.findByRole('link', { name: 'Cameron Lučić' })).toBeTruthy();
+      expect(screen.getByText(/S18–S22/)).toBeTruthy();
+      expect(screen.getByText(/MVP \(S20\)/)).toBeTruthy();
+      fireEvent.click(screen.getByRole('tab', { name: 'Overview' }));
+      expect(await screen.findByRole('heading', { name: 'Championships' })).toBeTruthy();
+    });
   });
 });

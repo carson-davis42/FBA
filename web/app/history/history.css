@@ -60,3 +60,5 @@
 .cols-col:not(.last) .col-slot:nth-child(odd)::after { top: 50%; bottom: 0; }
 .cols-col:not(.last) .col-slot:nth-child(even)::after { top: 0; bottom: 50%; }
 .cols-col .series-box.empty::before, .cols-col .series-box.empty::after { display: none; }
+
+.fp-controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); }

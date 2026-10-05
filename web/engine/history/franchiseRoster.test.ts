@@ -22,6 +22,7 @@ const bios = {
     bio('p00004', 'FLO-S11'),
     bio('p00005', 'Duke-S1-S2'),
     bio('p00007', 'MON-S77-pres.', 'HOF-S90'),
+    bio('p00008', 'MON-S8-S12', 'TEX-S45'),
   ],
 };
 const roster = (season: number, ids: string[]): RostersFile => ({
@@ -40,6 +41,8 @@ describe('franchiseIndex', () => {
     expect(seasons('p00004')).toEqual([11]);
     expect(seasons('p00005')).toBeUndefined();
     expect(seasons('p00007')).toEqual([77, 78]);
+    // Some bios use the franchise's current code for its older seasons; another team's later use of an old abbreviation is not ours.
+    expect(seasons('p00008')).toEqual([8, 9, 10, 11, 12]);
   });
 
   it('keeps count-only honours on the player and exact-season honours on their season', () => {
@@ -61,7 +64,7 @@ describe('franchiseIndex', () => {
   });
 
   it('sorts players by first season, then name', () => {
-    expect(build().players.map(r => r.playerId)).toEqual(['p00001', 'p00004', 'p00002', 'p00007']);
+    expect(build().players.map(r => r.playerId)).toEqual(['p00001', 'p00008', 'p00004', 'p00002', 'p00007']);
   });
 });
 
