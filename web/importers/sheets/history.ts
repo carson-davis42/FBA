@@ -176,7 +176,8 @@ export function parseBios(rows: string[][]): BioRow[] {
   const out: BioRow[] = [];
   for (const r of rows) {
     const name = (r?.[0] ?? '').trim();
-    if (name === '') continue;
+    // The sheet ends with a "Through: S78-M12" marker row, which is not a player.
+    if (name === '' || /^through:/i.test(name)) continue;
     out.push({
       name,
       born: (r[1] ?? '').trim(),

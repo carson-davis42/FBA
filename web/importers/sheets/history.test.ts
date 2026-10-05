@@ -128,4 +128,7 @@ describe('parseBios', () => {
       { name: 'Paulie Gregory', born: 'Born-S61', entries: [] },
     ]);
   });
+  it("skips the sheet's \"Through:\" marker row", () => {
+    expect(parseBios([['Paulie Gregory', 'Born-S61'], ['Through: S78-M12']]).map(b => b.name)).toEqual(['Paulie Gregory']);
+  });
 });
