@@ -1,7 +1,7 @@
 import type { PickCondition, PickObligation } from '../shared/types';
 import { lockProblem } from '../season/locks';
 import { futureSeasons, nextPriority, pickLabel } from './picks';
-import { capProblem, normalizeRoster, payroll, slotProblems } from './rules';
+import { capProblem, normalizeRoster, payroll, slotProblems, TRADE_CAP } from './rules';
 import { appendTx, type DocKey, fail, type MoveContext, type MoveResult, nameOf, type RosterState, withLeague, withTeam } from './state';
 
 export type TradeAsset =
@@ -94,7 +94,7 @@ export function makeTrade(state: RosterState, input: TradeInput, ctx: MoveContex
   const slotIssues = teams.flatMap(t => slotProblems(t, rosters.teams[t]));
   if (input.league === 'fba') {
     for (const t of teams) {
-      const cap = capProblem(payroll(rosters.teams[t], state.season));
+      const cap = capProblem(payroll(rosters.teams[t], state.season), TRADE_CAP);
       if (cap) problems.push(`${t}: ${cap}`);
     }
     if (state.freeAgents.locked) problems.push(...slotIssues);

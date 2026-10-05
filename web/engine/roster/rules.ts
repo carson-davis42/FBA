@@ -2,6 +2,7 @@ import type { Position, RosterEntry } from '../shared/types';
 
 export const POSITIONS: Position[] = ['PG', 'SG', 'SF', 'PF', 'C'];
 export const CAP = 25;
+export const TRADE_CAP = 27;
 export const MAX_AMOUNT = 8;
 export const MAX_YEARS_NEW = 4;
 export const MAX_YEARS_RESIGN = 5;
@@ -43,8 +44,68 @@ export function contractProblems(t: { years: number; amount: number }, kind: Con
   return p;
 }
 
-export function capProblem(total: number): string | null {
-  return total > CAP ? `Payroll would be $${total} (cap $${CAP})` : null;
+export function capProblem(total: number, cap = CAP): string | null {
+  return total > cap ? 'Payroll would be 
+
+export function slotProblems(teamId: string, entries: RosterEntry[]): string[] {
+  const p: string[] = [];
+  for (const pos of POSITIONS) {
+    const n = entries.filter(e => e.position === pos && e.playerId !== null).length;
+    if (n === 0) p.push(`${teamId}: no ${pos}`);
+    if (n > 1) p.push(`${teamId}: ${n} players at ${pos}`);
+  }
+  return p;
+}
+
+export function vacantEntry(position: Position, league: 'fba' | 'fbad2'): RosterEntry {
+  const e: RosterEntry = { playerId: null, position, rating: null, age: null, points: 0 };
+  if (league === 'fba') {
+    e.contractEnd = null;
+    e.contractAmount = null;
+  }
+  return e;
+}
+
+/** Orders entries PG→C, keeps every player, and leaves exactly one vacant entry for each position with no player. */
+export function normalizeRoster(entries: RosterEntry[], league: 'fba' | 'fbad2'): RosterEntry[] {
+  const out: RosterEntry[] = [];
+  for (const pos of POSITIONS) {
+    const filled = entries.filter(e => e.position === pos && e.playerId !== null);
+    out.push(...(filled.length ? filled : [vacantEntry(pos, league)]));
+  }
+  return out;
+}
+ + total + ' (cap 
+
+export function slotProblems(teamId: string, entries: RosterEntry[]): string[] {
+  const p: string[] = [];
+  for (const pos of POSITIONS) {
+    const n = entries.filter(e => e.position === pos && e.playerId !== null).length;
+    if (n === 0) p.push(`${teamId}: no ${pos}`);
+    if (n > 1) p.push(`${teamId}: ${n} players at ${pos}`);
+  }
+  return p;
+}
+
+export function vacantEntry(position: Position, league: 'fba' | 'fbad2'): RosterEntry {
+  const e: RosterEntry = { playerId: null, position, rating: null, age: null, points: 0 };
+  if (league === 'fba') {
+    e.contractEnd = null;
+    e.contractAmount = null;
+  }
+  return e;
+}
+
+/** Orders entries PG→C, keeps every player, and leaves exactly one vacant entry for each position with no player. */
+export function normalizeRoster(entries: RosterEntry[], league: 'fba' | 'fbad2'): RosterEntry[] {
+  const out: RosterEntry[] = [];
+  for (const pos of POSITIONS) {
+    const filled = entries.filter(e => e.position === pos && e.playerId !== null);
+    out.push(...(filled.length ? filled : [vacantEntry(pos, league)]));
+  }
+  return out;
+}
+ + cap + ')' : null;
 }
 
 export function slotProblems(teamId: string, entries: RosterEntry[]): string[] {

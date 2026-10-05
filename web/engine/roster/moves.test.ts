@@ -69,6 +69,24 @@ describe('signPlayer', () => {
     ]);
   });
 
+  it('lets a team re-sign its own expired player up to $27 but keeps outside signings at $25', () => {
+    const own = baseState();
+    own.fba.teams.MON[0].contractAmount = 8;
+    own.fba.teams.MON[2].contractAmount = 8;
+    own.fba.teams.MON[4].contractAmount = 8;
+    const resigned = signPlayer(own, { playerId: 'p00012', teamId: 'MON', years: 1, amount: 3, conflict: 'keep' }, ctx);
+    expect(resigned.ok).toBe(true);
+    if (resigned.ok) expect(payroll(resigned.state.fba.teams.MON, 79)).toBe(27);
+
+    const outside = baseState();
+    outside.fba.teams.CAR[0].contractAmount = 8;
+    outside.fba.teams.CAR[1].contractAmount = 2;
+    outside.fba.teams.CAR[2].contractAmount = 8;
+    outside.fba.teams.CAR[3].contractAmount = 7;
+    expect(problems(signPlayer(outside, { playerId: 'p00030', teamId: 'CAR', years: 1, amount: 1, conflict: 'keep' }, ctx)))
+      .toEqual(['Payroll would be $26 (cap $25)']);
+  });
+
   it("protects a restricted expired player from other teams and lets his team re-sign him", () => {
     expect(problems(signPlayer(baseState(), { playerId: 'p00012', teamId: 'CAR', years: 1, amount: 1, conflict: 'keep' }, ctx))).toEqual(['Dan Price is restricted: only MON can re-sign him']);
     const r = ok(signPlayer(baseState(), { playerId: 'p00012', teamId: 'MON', years: 5, amount: 5, conflict: 'release' }, ctx));

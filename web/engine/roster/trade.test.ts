@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { MoveResult, RosterState } from './state';
 import { baseState } from './testFixtures';
 import { makeTrade } from './trade';
+import { payroll } from './rules';
 
 const ctx = { batchId: 'bT' };
 const ok = (r: MoveResult) => {
@@ -30,9 +31,25 @@ describe('makeTrade', () => {
     expect(r.label).toBe('Trade CAR/MON');
   });
 
-  it('blocks a trade that puts a team over the cap', () => {
-    const r = makeTrade(baseState(), { league: 'fba', teams: ['CAR', 'BOS'], assets: [{ kind: 'player', playerId: 'p00009', from: 'CAR', to: 'BOS' }] }, ctx);
-    expect(problems(r)).toEqual(['BOS: Payroll would be $30 (cap $25)']);
+  it('allows a team to reach the $27 trade cap and blocks payroll above it', () => {
+    const s = baseState();
+    Object.assign(s.fba.teams.BOS[1], { contractAmount: 5 });
+    Object.assign(s.fba.teams.BOS[2], { contractEnd: 79, contractAmount: 2 });
+    Object.assign(s.fba.teams.BOS[3], { contractEnd: 79, contractAmount: 2 });
+    Object.assign(s.fba.teams.CAR[1], { contractAmount: 7 });
+    Object.assign(s.fba.teams.CAR[2], { contractAmount: 5 });
+    Object.assign(s.fba.teams.CAR[3], { contractAmount: 5 });
+    const allowed = makeTrade(s, {
+      league: 'fba', teams: ['CAR', 'BOS'], assets: [
+        { kind: 'player', playerId: 'p00007', from: 'CAR', to: 'BOS' },
+        { kind: 'player', playerId: 'p00002', from: 'BOS', to: 'CAR' },
+      ],
+    }, ctx);
+    expect(allowed.ok).toBe(true);
+    if (allowed.ok) expect(payroll(allowed.state.fba.teams.BOS, 79)).toBe(27);
+
+    const over = makeTrade(baseState(), { league: 'fba', teams: ['CAR', 'BOS'], assets: [{ kind: 'player', playerId: 'p00009', from: 'CAR', to: 'BOS' }] }, ctx);
+    expect(problems(over)).toEqual(['BOS: Payroll would be $30 (cap $27)']);
   });
 
   it('blocks slot problems once free agency is closed', () => {
