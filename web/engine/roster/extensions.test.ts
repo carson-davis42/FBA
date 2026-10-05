@@ -63,6 +63,13 @@ describe('contract extensions', () => {
     expect(extendPlayer(baseState(), { teamId: 'CAR', playerId: 'p00007', amount: 4 }, ctx)).toEqual({ ok: false, problems: ['Payroll would be $26 (cap $25)'] });
   });
 
+  it('keeps the $25 cap for extensions even when the team is legally above it', () => {
+    const state = baseState();
+    state.fba.teams.BOS[1].contractAmount = 11; // BOS payroll $27
+    expect(extendPlayer(state, input, { ...ctx }).ok).toBe(false);
+    expect(extendPlayer(state, { ...input, amount: 8 }, ctx)).toEqual({ ok: false, problems: ['Payroll would be $27 (cap $25)'] });
+  });
+
   it('requires an active contract on the selected team', () => {
     expect(extendPlayer(baseState(), { ...input, teamId: 'MON' }, ctx).ok).toBe(false);
     expect(extendPlayer(baseState(), { ...input, playerId: 'p00003' }, ctx).ok).toBe(false);

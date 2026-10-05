@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { capProblem, contractEndFor, contractProblems, isExpired, normalizeRoster, payroll, slotProblems, vacantEntry } from './rules';
+import { capProblem, contractEndFor, contractProblems, isExpired, normalizeRoster, payroll, slotProblems, TRADE_CAP, vacantEntry } from './rules';
 import { appendTx, docPath, findOnRoster } from './state';
 import { baseState } from './testFixtures';
 
@@ -36,6 +36,8 @@ describe('contractProblems', () => {
   it('checks the cap', () => {
     expect(capProblem(25)).toBeNull();
     expect(capProblem(26)).toBe('Payroll would be $26 (cap $25)');
+    expect(capProblem(27, TRADE_CAP)).toBeNull();
+    expect(capProblem(28, TRADE_CAP)).toBe('Payroll would be $28 (cap $27)');
   });
 });
 

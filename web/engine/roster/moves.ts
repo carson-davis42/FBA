@@ -1,7 +1,7 @@
 import type { FreeAgent, Position, RosterEntry } from '../shared/types';
 import { lockProblem } from '../season/locks';
 import {
-  CAP, capProblem, contractEndFor, contractProblems, isExpired, MAX_AMOUNT, MAX_YEARS_RESIGN, normalizeRoster, payroll, POSITIONS, RETIRE_AGE, slotProblems,
+  CAP, capProblem, contractEndFor, contractProblems, isExpired, MAX_AMOUNT, MAX_YEARS_RESIGN, normalizeRoster, payroll, POSITIONS, RETIRE_AGE, slotProblems, TRADE_CAP,
   type ContractKind,
 } from './rules';
 import {
@@ -78,7 +78,7 @@ export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContex
     [...entries, { playerId: input.playerId, position, rating: rating ?? null, age, points: 0, contractEnd: end, contractAmount: input.amount, restricted: kind === 'rookie' }],
     'fba',
   );
-  const cap = capProblem(payroll(entries, season));
+  const cap = capProblem(payroll(entries, season), resign ? TRADE_CAP : CAP);
   if (cap) problems.push(cap);
   if (problems.length) return fail(problems);
 
@@ -245,7 +245,8 @@ export function editWarnings(state: RosterState, input: EditInput): string[] {
   if (after.contractEnd != null && after.contractEnd - state.season + 1 > MAX_YEARS_RESIGN) w.push(`Contract runs more than ${MAX_YEARS_RESIGN} seasons`);
   if (after.contractEnd != null && after.contractAmount != null && after.contractEnd - state.season + 1 > after.contractAmount) w.push("Years exceed dollars");
   const total = payroll(entries, state.season);
-  if (total > CAP) w.push(`Payroll would be $${total} (cap $${CAP})`);
+  const over = capProblem(total, TRADE_CAP);
+  if (over) w.push(over);
   return w;
 }
 
@@ -294,7 +295,7 @@ export function freeAgencyBlockers(state: RosterState): string[] {
         if (isExpired(e, state.season)) out.push(`${teamId}: ${pos}-${nameOf(state, e.playerId!)}'s contract expired (re-sign or release him)`);
       }
     }
-    const cap = capProblem(payroll(entries, state.season));
+    const cap = capProblem(payroll(entries, state.season), TRADE_CAP);
     if (cap) out.push(`${teamId}: ${cap}`);
   }
   return out;

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { payroll } from './rules';
 import type { MoveResult, RosterState } from './state';
 import { baseState } from './testFixtures';
 import { makeTrade } from './trade';
@@ -32,7 +33,30 @@ describe('makeTrade', () => {
 
   it('blocks a trade that puts a team over the cap', () => {
     const r = makeTrade(baseState(), { league: 'fba', teams: ['CAR', 'BOS'], assets: [{ kind: 'player', playerId: 'p00009', from: 'CAR', to: 'BOS' }] }, ctx);
-    expect(problems(r)).toEqual(['BOS: Payroll would be $30 (cap $25)']);
+    expect(problems(r)).toEqual(['BOS: Payroll would be $30 (cap $27)']);
+  });
+
+  describe('trade ceiling', () => {
+    // CAR is at exactly $25 with five $5 players; BOS's SG p00002 is the $7 target.
+    const carAt25 = (swapAmount: number): RosterState => {
+      const s = baseState();
+      s.fba.teams.CAR = s.fba.teams.CAR.map(e => ({ ...e, ...(e.playerId === null ? { playerId: 'p00040', rating: 60, age: 25 } : {}), contractEnd: 80, contractAmount: 5 }));
+      s.fba.teams.BOS = s.fba.teams.BOS.map(e => (e.playerId === 'p00002' ? { ...e, contractAmount: swapAmount } : e));
+      return s;
+    };
+    const swap = { league: 'fba' as const, teams: ['CAR', 'BOS'], assets: [
+      { kind: 'player' as const, playerId: 'p00007', from: 'CAR', to: 'BOS' },
+      { kind: 'player' as const, playerId: 'p00002', from: 'BOS', to: 'CAR' },
+    ] };
+
+    it('lets a $25 team trade a $5 player for a $7 player and land on exactly $27', () => {
+      const r = ok(makeTrade(carAt25(7), swap, ctx));
+      expect(payroll(r.state.fba.teams.CAR, 79)).toBe(27);
+    });
+
+    it('blocks a trade that would take a team to $28 and names the $27 ceiling', () => {
+      expect(problems(makeTrade(carAt25(8), swap, ctx))).toEqual(['CAR: Payroll would be $28 (cap $27)']);
+    });
   });
 
   it('blocks slot problems once free agency is closed', () => {
