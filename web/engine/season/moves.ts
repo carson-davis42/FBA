@@ -1,5 +1,6 @@
 import type { Rng } from '../d2/random';
 import { defenseLines, leagueRefRating } from '../awards/defense';
+import { scoringLines } from './scoring';
 import { POSITIONS } from '../roster/rules';
 import { currentStepIndex, markStepDone } from '../shared/calendar';
 import type { CalendarFile, CalendarStep, GameResult, PauseKind, ResultsFile, ScheduleFile, TeamsFile } from '../shared/types';
@@ -94,7 +95,8 @@ export function simNextGames(state: SeasonState, max: number, rng: Rng): { games
 /** A simmed game as saved. With a reference rating, each box line also gets its defensive stats (engine/awards/defense.ts). */
 export function toGameResult(g: SimGame, refRating?: number): GameResult {
   const d = refRating === undefined ? null : defenseLines(g, refRating);
-  const lines = (side: 'home' | 'away') => g[side].players.map((p, k) => ({ playerId: p.playerId, pts: g.box[side][k], ...(d ? d[side][k] : {}) }));
+  const scoring = scoringLines(g);
+  const lines = (side: 'home' | 'away') => g[side].players.map((p, k) => ({ playerId: p.playerId, pts: g.box[side][k], ...scoring[side][k], ...(d ? d[side][k] : {}) }));
   return {
     gameNo: g.gameNo,
     home: g.home.teamId,

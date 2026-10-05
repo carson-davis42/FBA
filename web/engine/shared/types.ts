@@ -121,6 +121,12 @@ const pts = int.nonnegative();
 export const BoxLine = z.object({
   playerId: z.string().min(1),
   pts,
+  /** Shot opportunities; absent on older saved games. */
+  att: pts.optional(),
+  /** Expected points for the shooter's actual shots and matchups, in hundredths. */
+  offExp: pts.optional(),
+  /** Shot variance total, in ten-thousandths. */
+  offVar: pts.optional(),
   /** Possessions defended. */
   def: pts.optional(),
   /** Missed shots while defending. */
@@ -811,6 +817,11 @@ export const RatingPauseRow = z.object({
   oldRating: int,
   games: int.nonnegative(),
   ppg: z.number().nonnegative(),
+  /** Games in this pause's interval with complete shooting expectations. */
+  performanceGames: int.nonnegative().optional(),
+  attempts: int.nonnegative().optional(),
+  expectedPpg: z.number().nonnegative().nullable().optional(),
+  performanceZ: z.number().nullable().optional(),
   perf: int.min(-2).max(2).nullable(),
   suggested: d2Rating.nullable(),
   rating: d2Rating,

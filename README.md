@@ -48,7 +48,7 @@ League data lives in `web/data/` as JSON and is committed like the old `.txt` fi
 - **Live game** (Watch): the scorebug, play-by-play, win probability and box score, possession by possession (it slows down in the clutch). It is saved at the final buzzer.
 - **Standings**: FBA conferences with the Java clinch markers (`*` #1 seed, `x` playoffs, `n` eliminated) and lottery standings; D2's four leagues.
 - **FBA pauses**:
-  - after games 322, 645 and 967, a rating editor that suggests ±2 from scoring vs. expectation
+  - at each rating pause, suggestions use only games since the previous rating pause. Scoring is compared with expectations for actual shot opportunities and defenders, so teammates sharing possessions do not penalize a player. Normal suggestions range from −2 to +2; ratings 90–94 require at least 1.5 standard deviations above or below expectations to change, and ratings 95+ require at least 2.0. Both increases and decreases at 90+ are capped at one point (99 remains the maximum). You can override suggestions. Older saved games without shooting expectations remain readable but need manual ratings until a fresh block has complete shooting data.
   - at 645, the trade deadline (Close trading makes trades read-only for the season)
   - at 967, the All-Star weekend: selections, the captains' draft, the contest draw, the 5pt and dunk contests, the Young-Star tournament, and the All-Star Game on 2d6 dice
 - **Roster locks**: after free agency closes, rosters only change as the season allows (FBA trades until the deadline).

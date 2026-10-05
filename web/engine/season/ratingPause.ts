@@ -1,5 +1,4 @@
 import { appendTx, type MoveContext } from '../roster/state';
-import { zBuckets } from '../shared/perfBuckets';
 import type { RatingPauseFile, RatingPauseRow, ResultsFile } from '../shared/types';
 import { completePause } from './moves';
 import { blockingPause, playerName, seasonFail, type SeasonResult, type SeasonState } from './state';
@@ -21,18 +20,56 @@ export function playerSeasonStats(results: ResultsFile | null): Map<string, { ga
 
 const clampRating = (n: number) => Math.max(1, Math.min(99, n));
 
+/** Only games since the preceding completed rating pause, up to the current pause. */
+export function ratingInterval(state: SeasonState): { afterGame: number; throughGame: number; results: ResultsFile | null } {
+  const due = blockingPause(state);
+  const throughGame = due?.kind === 'ratings' ? due.afterGame
+    : Math.max(0, ...(state.results?.games ?? []).map(g => g.gameNo));
+  const afterGame = Math.max(0, ...(state.schedule?.pauses ?? [])
+    .filter(p => p.kind === 'ratings' && p.done && p.afterGame < throughGame).map(p => p.afterGame));
+  return { afterGame, throughGame, results: state.results ? { ...state.results, games: state.results.games.filter(g => g.gameNo > afterGame && g.gameNo <= throughGame) } : null };
+}
+
+/** Elite ratings need equally strong evidence in either direction, with changes capped at one point. */
+export function performanceChange(rating: number, z: number): number {
+  if (rating >= 90) {
+    const threshold = rating >= 95 ? 2 : 1.5;
+    if (z <= -threshold) return -1;
+    return z >= threshold && rating < 99 ? 1 : 0;
+  }
+  if (z <= -1.5) return -2;
+  if (z <= -0.5) return -1;
+  return z >= 1.5 ? 2 : z >= 0.5 ? 1 : 0;
+}
+
 /** One row per rated FBA roster player (team order, then slot order). */
 export function buildRatingPause(state: SeasonState, minGames = MIN_PAUSE_GAMES): RatingPauseRow[] {
-  const stats = playerSeasonStats(state.results);
+  const interval = ratingInterval(state);
+  const stats = playerSeasonStats(interval.results);
+  const shooting = new Map<string, { games: number; attempts: number; pts: number; exp: number; variance: number }>();
+  for (const g of interval.results?.games ?? []) {
+    for (const line of [...(g.box?.home ?? []), ...(g.box?.away ?? [])]) {
+      if (line.att === undefined || line.offExp === undefined || line.offVar === undefined) continue;
+      const t = shooting.get(line.playerId) ?? { games: 0, attempts: 0, pts: 0, exp: 0, variance: 0 };
+      t.games++;
+      t.attempts += line.att;
+      t.pts += line.pts;
+      t.exp += line.offExp;
+      t.variance += line.offVar;
+      shooting.set(line.playerId, t);
+    }
+  }
   const base = Object.entries(state.rosters.teams).flatMap(([teamId, entries]) =>
     entries.filter(e => e.playerId !== null && e.rating !== null).map(e => {
       const s = stats.get(e.playerId!) ?? { games: 0, pts: 0 };
       return { playerId: e.playerId!, teamId, position: e.position, oldRating: e.rating!, games: s.games, ppgExact: s.games ? s.pts / s.games : 0 };
     }));
-  const eligible = base.filter(r => r.games >= minGames);
-  const perf = zBuckets(eligible.map(r => ({ id: r.playerId, x: r.oldRating, y: r.ppgExact })));
   return base.map(r => {
-    const p = r.games >= minGames ? perf.get(r.playerId) ?? 0 : null;
+    const shots = shooting.get(r.playerId);
+    const complete = shots !== undefined && shots.games === r.games;
+    const z = shots && complete && shots.games >= minGames && shots.attempts > 0 && shots.variance > 0
+      ? (shots.pts - shots.exp / 100) / Math.sqrt(shots.variance / 10000) : null;
+    const p = z === null ? null : performanceChange(r.oldRating, z);
     const suggested = p === null ? null : clampRating(r.oldRating + p);
     return {
       playerId: r.playerId,
@@ -41,6 +78,10 @@ export function buildRatingPause(state: SeasonState, minGames = MIN_PAUSE_GAMES)
       oldRating: r.oldRating,
       games: r.games,
       ppg: Math.round(r.ppgExact * 10) / 10,
+      performanceGames: shots?.games ?? 0,
+      attempts: shots?.attempts ?? 0,
+      expectedPpg: shots && complete && shots.games > 0 ? Math.round(shots.exp / 100 / shots.games * 10) / 10 : null,
+      performanceZ: z,
       perf: p,
       suggested,
       rating: suggested ?? clampRating(r.oldRating),

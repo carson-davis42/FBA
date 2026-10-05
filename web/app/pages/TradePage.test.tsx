@@ -154,7 +154,7 @@ describe('TradePage roster locks', () => {
         <Routes><Route path="/trade/:league" element={<TradePage />} /></Routes>
       </MemoryRouter>,
     );
-    expect(await screen.findByText('The trade deadline has passed: rosters are locked until the offseason')).toBeTruthy();
+    expect(await screen.findByText('The trade deadline has passed: roster moves are locked until the offseason; FBA contract extensions remain available')).toBeTruthy();
     expect((screen.getByRole('button', { name: 'Make trade' }) as HTMLButtonElement).disabled).toBe(true);
   });
 });

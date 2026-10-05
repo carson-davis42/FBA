@@ -38,6 +38,7 @@ describe('RatingPausePage', () => {
   it('starts the adjustments as one batch', async () => {
     const log = stubApi(seasonDocs(atFirstPause()));
     renderPage();
+    expect(await screen.findByText(/Suggestions use games 1–4/)).toBeTruthy();
     fireEvent.click(await screen.findByRole('button', { name: 'Start rating adjustments' }));
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].label).toBe('Start rating adjustments (after game 4)');
@@ -49,6 +50,7 @@ describe('RatingPausePage', () => {
     if (!started.ok) throw new Error(started.problems.join('; '));
     const log = stubApi(seasonDocs(started.state));
     renderPage();
+    expect(await screen.findByRole('columnheader', { name: 'Expected PPG' })).toBeTruthy();
     const input = await screen.findByLabelText('New rating for BOS SG');
     fireEvent.change(input, { target: { value: '91' } });
     fireEvent.blur(input);

@@ -31,6 +31,8 @@ export interface Possession {
 }
 
 export interface SimGame {
+  /** Needed to interpret shot expectations; absent on older transient game objects means FBA. */
+  profile?: SimProfile;
   gameNo: number;
   home: SimTeam;
   away: SimTeam;
@@ -157,7 +159,7 @@ export function simGame(gameNo: number, home: SimTeam, away: SimTeam, rng: Rng, 
     }
     periods[p.offense][p.period - 1] += p.points;
   });
-  return { gameNo, home, away, possessions, homePts: c.home, awayPts: c.away, ot: c.ot, periods, box };
+  return { gameNo, home, away, possessions, homePts: c.home, awayPts: c.away, ot: c.ot, periods, box, profile };
 }
 
 /** Chance the home team wins, simulating the rest of the game n times from the state after `revealed` possessions. */

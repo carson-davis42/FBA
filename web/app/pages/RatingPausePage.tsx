@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { POSITIONS } from '../../engine/roster/rules';
-import { finishRatingPause, MIN_PAUSE_GAMES, setPauseRating, startRatingPause } from '../../engine/season/ratingPause';
+import { finishRatingPause, MIN_PAUSE_GAMES, ratingInterval, setPauseRating, startRatingPause } from '../../engine/season/ratingPause';
 import { blockingPause, playerName, seasonDocPath, seasonOver, type SeasonResult } from '../../engine/season/state';
 import type { Position, RatingPauseFile } from '../../engine/shared/types';
 import { useSaving } from '../api';
@@ -33,6 +33,7 @@ export function RatingPausePage() {
   if (error) return <p className="error">Couldn't load the season: {error.message}</p>;
   if (!state) return <p className="muted">Loading…</p>;
   const title = <PageHeader kicker="Regular season pause" title={`S${state.season} rating adjustments`} />;
+  const interval = ratingInterval(state);
   if (!due) {
     const next = seasonOver(state)
       ? <Link to="/league/fba/playoffs">Continue to playoffs ▸</Link>
@@ -60,8 +61,9 @@ export function RatingPausePage() {
         {title}
         <div className="card">
           <p className="muted">
-            Pause after game {due.afterGame}. The app suggests changes from each player's scoring so far (players with at least {MIN_PAUSE_GAMES} games).
+            Pause after game {due.afterGame}. Suggestions use games {interval.afterGame + 1}–{interval.throughGame}, since the previous rating adjustment, with at least {MIN_PAUSE_GAMES} games of shooting data.
           </p>
+          <p className="muted">Scoring is compared with expectations for the player's actual shot opportunities and defenders. Ratings 90–94 require strong evidence to gain or lose one point; ratings 95+ require exceptional evidence. Changes at 90+ are capped at ±1, with 99 remaining the maximum.</p>
           <button className="btn primary" disabled={saving} onClick={() => run(startRatingPause(state))}>Start rating adjustments</button>
         </div>
         {message && <p className="error">{message}</p>}
@@ -80,6 +82,7 @@ export function RatingPausePage() {
     <section className="stack">
       {title}
       <p className="muted">Pause after game {due.afterGame} · {changed} rating(s) changed</p>
+      <p className="muted">G and PPG cover games {interval.afterGame + 1}–{interval.throughGame}. Expected PPG accounts for actual shot opportunities and defenders. Changes at 90+ require equally strong evidence for improvement or regression and are capped at ±1. Games without shooting data have no automatic suggestion; you can still edit ratings.</p>
       <div className="card toolbar">
         <div className="tabs" role="tablist">
           {(['ALL', ...POSITIONS] as Tab[]).map(t => (
@@ -93,7 +96,7 @@ export function RatingPausePage() {
       <div className="table-wrap tall">
         <table className="stat-table ratings-table">
           <thead>
-            <tr><th>Player</th><th>Team</th><th className="n">G</th><th className="n">PPG</th><th className="n">Old</th><th className="n">Suggested</th><th className="n">New</th></tr>
+            <tr><th>Player</th><th>Team</th><th className="n">G</th><th className="n">PPG</th><th className="n">Expected PPG</th><th className="n">Old</th><th className="n">Suggested</th><th className="n">New</th></tr>
           </thead>
           <tbody>
             {rows.map(r => (
@@ -102,8 +105,9 @@ export function RatingPausePage() {
                 <td>{teamOf(r.teamId)}</td>
                 <td className="n">{r.games}</td>
                 <td className="n">{r.ppg.toFixed(1)}</td>
+                <td className="n">{r.expectedPpg == null ? '—' : r.expectedPpg.toFixed(1)}</td>
                 <td className="n">{r.oldRating}</td>
-                <td className="n" title={r.perf === null ? `Fewer than ${MIN_PAUSE_GAMES} games` : `performance ${signed(r.perf)}`}>
+                <td className="n" title={r.perf === null ? `Needs at least ${MIN_PAUSE_GAMES} games with complete shooting data and shot opportunities` : `performance ${signed(r.perf)}${r.performanceZ == null ? '' : ` · ${r.performanceZ.toFixed(2)} standard deviations from expected scoring`}`}>
                   {r.suggested === null ? '—' : <>{r.suggested} <span className={r.suggested > r.oldRating ? 'delta-up' : r.suggested < r.oldRating ? 'delta-down' : 'muted'}>{signed(r.suggested - r.oldRating)}</span></>}
                 </td>
                 <td className="n">
