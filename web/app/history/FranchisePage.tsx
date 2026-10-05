@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { trophyCase, TROPHY_AWARDS } from '../../engine/history/trophies';
-import type { DraftHistoryFile, Franchise, HallOfFameFile, LogoManifest, PlayersFile } from '../../engine/shared/types';
+import type { CalendarFile, DraftHistoryFile, Franchise, HallOfFameFile, LogoManifest, PlayersFile } from '../../engine/shared/types';
 import { docFailure, docSettled, useDoc, useHistory } from '../api';
 import { Hero } from '../components/Hero';
 import { teamTheme } from '../components/teamColors';
@@ -17,6 +17,7 @@ export function FranchisePage() {
   const hof = useDoc<HallOfFameFile>('leagues/fba/hallOfFame.json');
   const drafts = useDoc<DraftHistoryFile>('leagues/fba/draftHistory.json');
   const manifest = useDoc<LogoManifest>('logos/manifest.json');
+  const calendar = useDoc<CalendarFile>('calendar.json');
   const { settled, teams, franchises } = useFbaTeams();
   const failure = error ?? players.error ?? docFailure(hof) ?? docFailure(drafts) ?? docFailure(manifest);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
@@ -30,7 +31,8 @@ export function FranchisePage() {
     ?? (team ? { teamId, eras: [{ name: team.name, abbr: team.abbr, city: '', from: 1, to: null }] } : undefined);
   if (!franchise) return <p className="error">Unknown franchise "{teamId}".</p>;
 
-  const latest = seasons.length > 0 ? seasons.reduce((m, s) => Math.max(m, s.season), 0) : 79;
+  // The logo is the team's current one: the calendar's season, which runs ahead of the last finished season's summary.
+  const latest = Math.max(79, calendar.data?.season ?? 0, ...seasons.map(s => s.season), ...franchise.eras.map(e => e.from));
   const c = trophyCase(teamId, { summaries: seasons, teams, franchises, hallOfFame: hof.data ?? null });
   const name = team?.name ?? franchise.eras[0].name;
   const chips = (title: string, list: number[]) => (
