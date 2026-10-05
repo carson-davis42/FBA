@@ -77,6 +77,30 @@ describe('signPlayer', () => {
     expect(r.label).toBe('Re-sign Dan Price → MON');
   });
 
+  describe('$27 ceiling for own-player re-signings', () => {
+    // MON payroll $24 (PG, SF, C at $8) with Dan Price's expired restricted PF contract waiting to be re-signed.
+    const monAt24 = (): RosterState => {
+      const s = baseState();
+      s.fba.teams.MON = s.fba.teams.MON.map(e => (e.playerId && e.playerId !== 'p00012' ? { ...e, contractAmount: 8 } : e));
+      return s;
+    };
+    const resign = (amount: number) => signPlayer(monAt24(), { playerId: 'p00012', teamId: 'MON', years: 1, amount, conflict: 'release' }, ctx);
+
+    it.each([2, 3])('lets a team re-sign its own player up to payroll $%i + 24', amount => {
+      expect(payroll(ok(resign(amount)).state.fba.teams.MON, 79)).toBe(24 + amount);
+    });
+
+    it('blocks a re-signing that would pass $27', () => {
+      expect(problems(resign(4))).toEqual(['Payroll would be $28 (cap $27)']);
+    });
+
+    it('holds outside free agents to the $25 cap', () => {
+      expect(problems(signPlayer(monAt24(), { playerId: 'p00030', teamId: 'MON', years: 1, amount: 2, conflict: 'keep' }, ctx))).toEqual(['Payroll would be $26 (cap $25)']);
+      expect(problems(signPlayer(monAt24(), { playerId: 'p00021', teamId: 'MON', years: 1, amount: 2, rating: 70, conflict: 'keep' }, ctx))).toEqual(['Payroll would be $26 (cap $25)']);
+      expect(problems(signPlayer(monAt24(), { playerId: 'p00031', teamId: 'MON', years: 2, amount: 2, rating: 70, conflict: 'keep' }, ctx))).toEqual(['Payroll would be $26 (cap $25)']);
+    });
+  });
+
   it('refuses to sign a player who is listed in more than one place', () => {
     const dup: RosterState = {
       ...baseState(),
@@ -169,5 +193,31 @@ describe('closing free agency', () => {
     expect(r.state.reserves.players.map(p => p.fbaRating ?? null)).toEqual([null, null, 69]);
     expect(r.state.fbaTx.entries.at(-1)).toMatchObject({ type: 'fa-closed', lines: ['Free agency closed: 2 unsigned players moved to D2 Reserves'] });
     expect(r.changed.sort()).toEqual(['fbaTx', 'freeAgents', 'reserves']);
+  });
+
+  describe('payroll above the $25 cap', () => {
+    const readyToClose = (bosSgAmount: number): RosterState => {
+      let s = baseState();
+      s = ok(signPlayer(s, { playerId: 'p00003', teamId: 'BOS', years: 1, amount: 1, conflict: 'keep' }, ctx)).state;
+      s = ok(signPlayer(s, { playerId: 'p00004', teamId: 'BOS', years: 1, amount: 1, conflict: 'keep' }, ctx)).state;
+      s = ok(signPlayer(s, { playerId: 'p00030', teamId: 'CAR', years: 1, amount: 1, conflict: 'keep' }, ctx)).state;
+      s = ok(signPlayer(s, { playerId: 'p00012', teamId: 'MON', years: 1, amount: 1, conflict: 'keep' }, ctx)).state;
+      s = ok(signPlayer(s, { playerId: 'p00021', teamId: 'MON', years: 1, amount: 1, rating: 70, conflict: 'keep' }, ctx)).state;
+      s.fba.teams.BOS = s.fba.teams.BOS.map(e => (e.playerId === 'p00002' ? { ...e, contractAmount: bosSgAmount } : e)); // BOS payroll is $18 plus this
+      return s;
+    };
+
+    it.each([8, 9])('can close with a team at $%i + 18 (i.e. $26 or $27)', sg => {
+      const s = readyToClose(sg);
+      expect(payroll(s.fba.teams.BOS, 79)).toBe(18 + sg);
+      expect(freeAgencyBlockers(s)).toEqual([]);
+      ok(closeFreeAgency(s, ctx));
+    });
+
+    it('still blocks closing when a team is above $27', () => {
+      const s = readyToClose(10);
+      expect(freeAgencyBlockers(s)).toEqual(['BOS: Payroll would be $28 (cap $27)']);
+      expect(problems(closeFreeAgency(s, ctx))).toEqual(['BOS: Payroll would be $28 (cap $27)']);
+    });
   });
 });

@@ -2,6 +2,8 @@ import type { Position, RosterEntry } from '../shared/types';
 
 export const POSITIONS: Position[] = ['PG', 'SG', 'SF', 'PF', 'C'];
 export const CAP = 25;
+/** Hard payroll ceiling for trades and own-player re-signings; every other move stays under CAP. */
+export const TRADE_CAP = 27;
 export const MAX_AMOUNT = 8;
 export const MAX_YEARS_NEW = 4;
 export const MAX_YEARS_RESIGN = 5;
@@ -43,8 +45,8 @@ export function contractProblems(t: { years: number; amount: number }, kind: Con
   return p;
 }
 
-export function capProblem(total: number): string | null {
-  return total > CAP ? `Payroll would be $${total} (cap $${CAP})` : null;
+export function capProblem(total: number, cap: number = CAP): string | null {
+  return total > cap ? `Payroll would be $${total} (cap $${cap})` : null;
 }
 
 export function slotProblems(teamId: string, entries: RosterEntry[]): string[] {
