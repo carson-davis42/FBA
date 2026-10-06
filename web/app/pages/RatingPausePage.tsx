@@ -105,9 +105,9 @@ export function RatingPausePage() {
                 <td>{teamOf(r.teamId)}</td>
                 <td className="n">{r.games}</td>
                 <td className="n">{r.ppg.toFixed(1)}</td>
-                <td className="n">{r.expectedPpg == null ? '—' : r.expectedPpg.toFixed(1)}</td>
+                <td className="n" title={r.expectedPpg == null ? undefined : `Expected scoring over the ${r.performanceGames ?? 0} of ${r.games} games with shooting data`}>{r.expectedPpg == null ? '—' : r.expectedPpg.toFixed(1)}</td>
                 <td className="n">{r.oldRating}</td>
-                <td className="n" title={r.perf === null ? `Needs at least ${MIN_PAUSE_GAMES} games with complete shooting data and shot opportunities` : `performance ${signed(r.perf)}${r.performanceZ == null ? '' : ` · ${r.performanceZ.toFixed(2)} standard deviations from expected scoring`}`}>
+                <td className="n" title={r.perf === null ? `Needs at least ${MIN_PAUSE_GAMES} games with shooting data and shot opportunities` : `performance ${signed(r.perf)}${r.performanceZ == null ? '' : ` · ${r.performanceZ.toFixed(2)} standard deviations from expected scoring, over the ${r.performanceGames ?? 0} of ${r.games} games with shooting data`}`}>
                   {r.suggested === null ? '—' : <>{r.suggested} <span className={r.suggested > r.oldRating ? 'delta-up' : r.suggested < r.oldRating ? 'delta-down' : 'muted'}>{signed(r.suggested - r.oldRating)}</span></>}
                 </td>
                 <td className="n">

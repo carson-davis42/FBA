@@ -70,11 +70,16 @@ describe('buildRatingPause', () => {
     expect(rows.find(r => r.playerId === 'p00003')!.perf).toBe(-1);
   });
 
-  it('does not guess expectations for old games or partially recorded shooting data', () => {
+  it('judges a player on the games that carry shooting data, when he has enough of them', () => {
     const s = atFirstPause();
     delete s.results!.games[0].box!.home[0].offExp;
-    const row = buildRatingPause(s, 1)[0];
-    expect(row).toMatchObject({ games: 2, performanceGames: 1, perf: null, suggested: null, rating: 95, expectedPpg: null });
+    expect(buildRatingPause(s, 1)[0]).toMatchObject({ games: 2, performanceGames: 1, perf: 1, suggested: 96, rating: 96, expectedPpg: 20 });
+  });
+
+  it('does not guess when too few games carry shooting data', () => {
+    const s = atFirstPause();
+    delete s.results!.games[0].box!.home[0].offExp;
+    expect(buildRatingPause(s, 2)[0]).toMatchObject({ games: 2, performanceGames: 1, perf: null, suggested: null, rating: 95 });
   });
 
   it('leaves a player with no shot opportunities unchanged', () => {

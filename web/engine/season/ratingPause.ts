@@ -66,8 +66,8 @@ export function buildRatingPause(state: SeasonState, minGames = MIN_PAUSE_GAMES)
     }));
   return base.map(r => {
     const shots = shooting.get(r.playerId);
-    const complete = shots !== undefined && shots.games === r.games;
-    const z = shots && complete && shots.games >= minGames && shots.attempts > 0 && shots.variance > 0
+    // Games from before shooting expectations were recorded simply don't count: the z-score over the games that carry them is as fair as over all of them.
+    const z = shots && shots.games >= minGames && shots.attempts > 0 && shots.variance > 0
       ? (shots.pts - shots.exp / 100) / Math.sqrt(shots.variance / 10000) : null;
     const p = z === null ? null : performanceChange(r.oldRating, z);
     const suggested = p === null ? null : clampRating(r.oldRating + p);
@@ -80,7 +80,7 @@ export function buildRatingPause(state: SeasonState, minGames = MIN_PAUSE_GAMES)
       ppg: Math.round(r.ppgExact * 10) / 10,
       performanceGames: shots?.games ?? 0,
       attempts: shots?.attempts ?? 0,
-      expectedPpg: shots && complete && shots.games > 0 ? Math.round(shots.exp / 100 / shots.games * 10) / 10 : null,
+      expectedPpg: shots && shots.games > 0 ? Math.round(shots.exp / 100 / shots.games * 10) / 10 : null,
       performanceZ: z,
       perf: p,
       suggested,
