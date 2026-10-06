@@ -1232,6 +1232,22 @@
       "lines": [
         "Rating C-Clay Pitts: 76→77 (in-season)"
       ]
+    },
+    {
+      "seq": 113,
+      "batchId": "bmuvxec1s9przv",
+      "type": "trade",
+      "teams": [
+        "TOR",
+        "BOS",
+        "MON"
+      ],
+      "lines": [
+        "->MON SF-Terrance Barnett",
+        "->TOR SF-Mubiru Okeke",
+        "->BOS SF-Alexei Romano",
+        "->TOR S83 Draft Pick(via BOS)(8P)"
+      ]
     }
   ]
 }

@@ -193,6 +193,24 @@
       "priority": 1,
       "rolls": [],
       "note": ""
+    },
+    {
+      "id": "bmuvxec1s9przv-1",
+      "season": 83,
+      "originalTeam": "BOS",
+      "owner": "TOR",
+      "condition": {
+        "kind": "top",
+        "n": 8
+      },
+      "originalCondition": {
+        "kind": "top",
+        "n": 8
+      },
+      "originSeason": 83,
+      "priority": 1,
+      "rolls": [],
+      "note": ""
     }
   ]
 }
