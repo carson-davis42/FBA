@@ -1,0 +1,11 @@
+{
+  "records": [
+    { "teamId": "CGG", "name": "Cypress Green Guns", "kind": "W", "length": 50, "fromSeason": 33, "toSeason": 38 },
+    { "teamId": "OAK", "name": "Oakland All-Stars", "kind": "W", "length": 35, "fromSeason": 26, "toSeason": 29 },
+    { "teamId": "MIL", "name": "Milwaukee Warriors", "kind": "W", "length": 31, "fromSeason": 47, "toSeason": 49 },
+    { "teamId": "SAS", "name": "San Antonio", "kind": "W", "length": 29, "fromSeason": 19, "toSeason": 22 },
+    { "teamId": "SAS", "name": "San Antonio", "kind": "L", "length": 21, "fromSeason": 50, "toSeason": 53 },
+    { "teamId": "CGG", "name": "Cypress Green Guns", "kind": "W", "length": 20, "fromSeason": 51, "toSeason": 52 },
+    { "teamId": "CP", "name": "Former Pirates", "kind": "W", "length": 16, "fromSeason": 15, "toSeason": 16 }
+  ]
+}

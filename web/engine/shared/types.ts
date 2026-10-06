@@ -1114,6 +1114,20 @@ export const RelativesFile = z.object({
 });
 export type RelativesFile = z.infer<typeof RelativesFile>;
 
+/** leagues/fba/streakRecords.json: win and losing streaks from before the app recorded game by game (hand-entered); later streaks are tracked from the games. */
+export const StreakRecord = z.object({
+  teamId: z.string().min(1),
+  /** The name the team went by then. */
+  name: z.string().min(1),
+  kind: z.enum(['W', 'L']),
+  length: int.min(2),
+  fromSeason: int.min(1),
+  toSeason: int.min(1),
+}).strict().refine(r => r.toSeason >= r.fromSeason, { message: 'toSeason must be at least fromSeason' });
+export type StreakRecord = z.infer<typeof StreakRecord>;
+export const StreakRecordsFile = z.object({ records: z.array(StreakRecord) }).strict();
+export type StreakRecordsFile = z.infer<typeof StreakRecordsFile>;
+
 export const AWARD_KEYS = ['MVP', 'ROTY', 'PPK', 'LP', 'MC', 'DPOY', 'MIP', 'ALL_FBA_1', 'ALL_FBA_2', 'ALL_STAR', 'YOUNG_STAR',
   'ASG_MVP', 'YSG_MVP', 'FINALS_MVP', 'CHAMPION', 'CSHIP_APP', 'CONF_CHAMPION', 'FIVE_POINT', 'DUNK'] as const;
 export type AwardKey = typeof AWARD_KEYS[number];

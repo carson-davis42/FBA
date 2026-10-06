@@ -12,6 +12,7 @@ const FEATURES: { to: string; title: string; text: string }[] = [
   { to: '/history/fba/awards', title: 'Awards', text: 'The winners of each award, season by season.' },
   { to: '/history/fba/awards/players', title: 'Awards by player', text: 'Award counts for every player, sortable.' },
   { to: '/history/fba/leaders', title: 'Career leaders', text: 'Points, games and points per game.' },
+  { to: '/history/fba/streaks', title: 'Streaks', text: 'The longest winning and losing streaks ever, with the ones running now.' },
   { to: '/history/fba/players', title: 'Players', text: 'Search and browse every player in the record.' },
   { to: '/history/fba/hall-of-fame', title: 'Hall of Fame', text: 'The inducted classes, newest first.' },
   { to: '/history/fba/transactions', title: 'Transactions', text: 'Trades, signings and cuts by season.' },

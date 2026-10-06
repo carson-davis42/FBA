@@ -3,7 +3,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { schemaForPath } from './engine/shared/schemaRegistry';
 import { relativesOf } from './engine/history/relatives';
-import type { FreeAgentsFile, MetaFile, PlayersFile, RelativesFile, ReservesFile, RostersFile } from './engine/shared/types';
+import type { FranchisesFile, FreeAgentsFile, MetaFile, PlayersFile, RelativesFile, ReservesFile, RostersFile, StreakRecordsFile } from './engine/shared/types';
 
 const DATA_DIR = path.join(__dirname, 'data');
 const readData = <T>(rel: string): T => JSON.parse(readFileSync(path.join(DATA_DIR, ...rel.split('/')), 'utf8')) as T;
@@ -51,6 +51,14 @@ describe('committed data', () => {
     expect(of('Marcus Quinsler')).toContain('Nephew/niece: Stephen Quinsler');
     expect(of('Saun Quinsler')).toContain('Grandchild: CJ Quinsler');
     expect(of('Seth Quinsler')).toContain('Third cousin: CJ Quinsler');
+  });
+
+  it('keeps streak records only for franchises that exist, from before the tracked seasons', () => {
+    const franchises = new Set(readData<FranchisesFile>('leagues/fba/franchises.json').franchises.map(f => f.teamId));
+    for (const r of readData<StreakRecordsFile>('leagues/fba/streakRecords.json').records) {
+      expect(franchises.has(r.teamId), r.teamId).toBe(true);
+      expect(r.toSeason, `${r.teamId} ${r.length}${r.kind}`).toBeLessThan(79);
+    }
   });
 
   it('has no player listed in more than one pool for the current season', () => {
