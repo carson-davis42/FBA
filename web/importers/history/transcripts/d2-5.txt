@@ -63,7 +63,7 @@ S68
 G:PL
 1|Roma Pallacanestro|25-5
 8|Hamburg|18-12
-5|Berlin|20-10
+5|Berlin Bären BC|20-10
 4|Manchester|22-8
 3|Salzburg BC|23-7
 6|Tampa|19-11
@@ -76,7 +76,7 @@ G:PL
 # p083 FBA D2 World League Tournament
 S71
 G:WL
-1|Austin|28-2
+1|Austin BC|28-2
 8|Kiev|14-16
 5|Mexico City|20-10
 4|London|20-10
@@ -84,15 +84,15 @@ G:WL
 6|Paris|19-11
 7|Copenhagen|15-15
 2|Tokyo|24-6
-= Austin 4-0 | London 4-3 | Vienna 4-2 | Tokyo 4-1
-= Austin 4-1 | Tokyo 4-0
-= Austin 4-3
+= Austin BC 4-0 | London 4-3 | Vienna 4-2 | Tokyo 4-1
+= Austin BC 4-1 | Tokyo 4-0
+= Austin BC 4-3
 
 # p091 FBA D2 World League Tournament
 S69
 G:WL
 1|Glasgow|11-3
-4|Austin|8-6
+4|Austin BC|8-6
 3|Zurich|9-5
 2|Istanbul|10-4
 = Glasgow 4-1 | Zurich 4-2

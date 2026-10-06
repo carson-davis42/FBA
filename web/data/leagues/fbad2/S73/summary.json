@@ -109,7 +109,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "17-13",
               "seed": 8
             },
@@ -143,7 +143,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Berlin",
+              "name": "Berlin Bären BC",
               "record": "17-13",
               "seed": 6
             },
@@ -172,7 +172,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "17-13",
               "seed": 8
             },
@@ -189,7 +189,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Berlin",
+              "name": "Berlin Bären BC",
               "record": "17-13",
               "seed": 6
             },

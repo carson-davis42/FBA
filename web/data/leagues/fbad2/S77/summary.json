@@ -7,7 +7,7 @@
     {
       "title": "Premier League Champion",
       "champion": "Salzburg BC",
-      "runnerUp": "Austin",
+      "runnerUp": "Austin BC",
       "score": null,
       "group": "PL",
       "finalsMvp": "p00409",
@@ -71,7 +71,7 @@
     {
       "group": "PL",
       "teams": [
-        "Austin"
+        "Austin BC"
       ]
     },
     {
@@ -103,7 +103,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "23-7",
               "seed": 1
             },
@@ -171,7 +171,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "23-7",
               "seed": 1
             },
@@ -205,7 +205,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "23-7",
               "seed": 1
             },

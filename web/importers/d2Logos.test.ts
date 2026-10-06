@@ -4,7 +4,7 @@ import { D2_LOGO_FOLDER, logoStem, wireD2Logos } from './d2Logos';
 import { Report } from './report';
 
 const t = (teamId: string, name: string) => ({ teamId, name, abbr: teamId, group: 'PL', logoFolder: null, badge: { bg: 'hsl(1 50% 36%)', fg: '#ffffff' } });
-const teams = { league: 'fbad2', teams: [t('ROME', 'Roma Pallacanestro'), t('GDL', 'Guadalajara CB'), t('MUM', 'Mumbai BC'), t('SAL', 'Salzburg BC'), t('SJ', 'San Jose'), t('SAN', 'San'), t('NEW', 'No Logo City')] } as TeamsFile;
+const teams = { league: 'fbad2', teams: [t('ROME', 'Roma Pallacanestro'), t('GDL', 'Guadalajara CB'), t('MUM', 'Mumbai BC'), t('SAL', 'Salzburg BC'), t('SJ', 'San Jose'), t('SAN', 'San'), t('AUS', 'Austin BC'), t('BER', 'Berlin Bären BC'), t('NEW', 'No Logo City')] } as TeamsFile;
 const colors = {
   'AS Roma Pallacanestro S79-pres.': { primary: '#7B1C23', secondary: '#C0946B' },
   'Roma Pallacanestro S79-pres.': { primary: '#7B1C23', secondary: '#C0946B' },
@@ -38,6 +38,13 @@ describe('wireD2Logos', () => {
     const out = wireD2Logos(teams, ['Roma Pallacanestro S79-pres..png', 'AS Roma Pallacanestro S79-pres..png'], report, colors);
     expect(out.teams.find(x => x.teamId === 'ROME')!.logoFile).toBe('Roma Pallacanestro S79-pres..png');
     expect(report.entries.filter(e => e.level === 'warn').map(e => e.message)).toEqual(['Roma Pallacanestro has two logos (AS Roma Pallacanestro S79-pres..png and Roma Pallacanestro S79-pres..png); using Roma Pallacanestro S79-pres..png']);
+  });
+
+  it('matches the undated file names now in use, including one with an umlaut', () => {
+    const out = wireD2Logos(teams, ['Austin BC.png', 'Berlin Bären BC.png', 'Mumbai BC.png'], new Report(), {});
+    expect(out.teams.find(x => x.teamId === 'AUS')!.logoFile).toBe('Austin BC.png');
+    expect(out.teams.find(x => x.teamId === 'BER')!.logoFile).toBe('Berlin Bären BC.png');
+    expect(out.teams.find(x => x.teamId === 'MUM')!.logoFile).toBe('Mumbai BC.png');
   });
 
   it('prefers the longest team name when one team name starts another', () => {

@@ -16,7 +16,7 @@
     {
       "title": "World League Champion",
       "champion": "Paris",
-      "runnerUp": "Austin",
+      "runnerUp": "Austin BC",
       "score": null,
       "group": "WL",
       "finalsMvp": "p00077",
@@ -221,7 +221,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "12-10",
               "seed": 5
             },
@@ -273,7 +273,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "12-10",
               "seed": 5
             },
@@ -302,7 +302,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "12-10",
               "seed": 5
             },

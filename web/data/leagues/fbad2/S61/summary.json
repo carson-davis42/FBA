@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "D2 International Champion",
-      "champion": "Austin",
+      "champion": "Austin BC",
       "runnerUp": "Hamburg",
       "score": null,
       "group": "D2",
@@ -79,7 +79,7 @@
           "seed": 9
         },
         "away": {
-          "name": "Austin",
+          "name": "Austin BC",
           "record": "7-3",
           "seed": 8
         },
@@ -205,7 +205,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Austin",
+          "name": "Austin BC",
           "record": "7-3",
           "seed": 8
         },
@@ -272,7 +272,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Austin",
+          "name": "Austin BC",
           "record": "7-3",
           "seed": 8
         },
@@ -308,7 +308,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Austin",
+          "name": "Austin BC",
           "record": "7-3",
           "seed": 8
         },

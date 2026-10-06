@@ -20,12 +20,12 @@ G:PL
 8|Vancouver|17-13
 5|Salzburg BC|21-9
 4|Tokyo|21-9
-3|Berlin|23-7
+3|Berlin Bären BC|23-7
 6|Ottawa|20-10
 7|Milan|20-10
-2|Austin|23-7
-= San Jose 4-0 | Salzburg BC 4-2 | Berlin 4-1 | Austin 4-1
-= San Jose 4-2 | Austin 4-2
+2|Austin BC|23-7
+= San Jose 4-0 | Salzburg BC 4-2 | Berlin Bären BC 4-1 | Austin BC 4-1
+= San Jose 4-2 | Austin BC 4-2
 = San Jose 4-0
 
 # p007 FBA D2 World League Tournament
@@ -76,7 +76,7 @@ G:IL
 # p025 FBA D2 Premier League Tournament
 S77
 G:PL
-1|Austin|23-7
+1|Austin BC|23-7
 8|Roma Pallacanestro|17-13
 5|London|17-13
 4|Mexico City|19-11
@@ -84,22 +84,22 @@ G:PL
 6|Lisbon|17-13
 7|Buenos Aires|17-13
 2|Salzburg BC|22-8
-= Austin 4-1 | London 4-1 | Guadalajara CB 4-2 | Salzburg BC 4-0
-= Austin 4-3 | Salzburg BC 4-0
+= Austin BC 4-1 | London 4-1 | Guadalajara CB 4-2 | Salzburg BC 4-0
+= Austin BC 4-3 | Salzburg BC 4-0
 = Salzburg BC 4-3
 
 # p033 FBA D2 Premier League Tournament
 S76
 G:PL
-1|Austin|27-3
+1|Austin BC|27-3
 8|Guadalajara CB|16-14
 5|Lisbon|16-14
 4|London|19-11
 3|Budapest|20-10
 6|Recife|16-14
 7|Milan|16-14
-2|Berlin|22-8
-= Guadalajara CB 4-3 | London 4-3 | Budapest 4-3 | Berlin 4-3
+2|Berlin Bären BC|22-8
+= Guadalajara CB 4-3 | London 4-3 | Budapest 4-3 | Berlin Bären BC 4-3
 = London 4-1 | Budapest 4-1
 = Budapest 4-0
 

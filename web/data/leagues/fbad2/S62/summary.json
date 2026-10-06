@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "D2 International Champion",
-      "champion": "Austin",
+      "champion": "Austin BC",
       "runnerUp": "Madrid",
       "score": null,
       "group": "D2",
@@ -27,7 +27,7 @@
       "group": "AM",
       "teams": [
         "San Jose",
-        "Austin"
+        "Austin BC"
       ]
     },
     {
@@ -40,7 +40,7 @@
       "group": "EE",
       "teams": [
         "Hamburg",
-        "Berlin",
+        "Berlin Bären BC",
         "Moscow"
       ]
     },
@@ -94,7 +94,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Austin",
+          "name": "Austin BC",
           "record": "9-1",
           "seed": 5
         },
@@ -166,7 +166,7 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Berlin",
+          "name": "Berlin Bären BC",
           "record": "8-2",
           "seed": 7
         },
@@ -220,7 +220,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Austin",
+          "name": "Austin BC",
           "record": "9-1",
           "seed": 5
         },
@@ -256,7 +256,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Berlin",
+          "name": "Berlin Bären BC",
           "record": "8-2",
           "seed": 7
         },
@@ -279,7 +279,7 @@
           "seed": 8
         },
         "away": {
-          "name": "Austin",
+          "name": "Austin BC",
           "record": "9-1",
           "seed": 5
         },
@@ -310,7 +310,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Austin",
+          "name": "Austin BC",
           "record": "9-1",
           "seed": 5
         },

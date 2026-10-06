@@ -321,7 +321,7 @@
         {
           "pick": 12,
           "teamId": "AUS",
-          "teamName": "Austin",
+          "teamName": "Austin BC",
           "name": "Bobbie Allen",
           "playerId": "p00161",
           "pos": "C",
@@ -461,7 +461,7 @@
         {
           "pick": 26,
           "teamId": "BER",
-          "teamName": "Berlin",
+          "teamName": "Berlin Bären BC",
           "name": "Cory Connors",
           "playerId": "p00196",
           "pos": "C",
@@ -1081,7 +1081,7 @@
         {
           "pick": 8,
           "teamId": "BER",
-          "teamName": "Berlin",
+          "teamName": "Berlin Bären BC",
           "name": "Forest Thomas",
           "playerId": "p02253",
           "pos": "SF",
@@ -1171,7 +1171,7 @@
         {
           "pick": 17,
           "teamId": "AUS",
-          "teamName": "Austin",
+          "teamName": "Austin BC",
           "name": "Franciszek Mazur",
           "playerId": "p00395",
           "pos": "PF",
@@ -2346,7 +2346,7 @@
         {
           "pick": 1,
           "teamId": "AUS",
-          "teamName": "Austin",
+          "teamName": "Austin BC",
           "name": "AJ Walker",
           "playerId": "p00182",
           "pos": "C",
@@ -2386,7 +2386,7 @@
         {
           "pick": 5,
           "teamId": "AUS",
-          "teamName": "Austin",
+          "teamName": "Austin BC",
           "name": "Xavier Booker",
           "playerId": "p00178",
           "pos": "PG",
@@ -2456,7 +2456,7 @@
         {
           "pick": 12,
           "teamId": "BER",
-          "teamName": "Berlin",
+          "teamName": "Berlin Bären BC",
           "name": "Ezio Stanek",
           "playerId": "p00147",
           "pos": "SG",
@@ -2516,7 +2516,7 @@
         {
           "pick": 18,
           "teamId": "AUS",
-          "teamName": "Austin",
+          "teamName": "Austin BC",
           "name": "Andre Robinson",
           "playerId": "p00081",
           "pos": "PF",
@@ -2706,7 +2706,7 @@
         {
           "pick": 37,
           "teamId": "AUS",
-          "teamName": "Austin",
+          "teamName": "Austin BC",
           "name": "Niko Ivanov",
           "playerId": "p01834",
           "pos": "SG",
@@ -2751,7 +2751,7 @@
         {
           "pick": 2,
           "teamId": "BER",
-          "teamName": "Berlin",
+          "teamName": "Berlin Bären BC",
           "name": "Amari Chase",
           "playerId": "p00193",
           "pos": "SG",
@@ -2811,7 +2811,7 @@
         {
           "pick": 8,
           "teamId": "BER",
-          "teamName": "Berlin",
+          "teamName": "Berlin Bären BC",
           "name": "Folarin Adebayo",
           "playerId": "p00195",
           "pos": "PF",
@@ -2871,7 +2871,7 @@
         {
           "pick": 14,
           "teamId": "BER",
-          "teamName": "Berlin",
+          "teamName": "Berlin Bären BC",
           "name": "Jordan Bell",
           "playerId": "p01839",
           "pos": "SF",
@@ -3071,7 +3071,7 @@
         {
           "pick": 34,
           "teamId": "AUS",
-          "teamName": "Austin",
+          "teamName": "Austin BC",
           "name": "Keenan Ward",
           "playerId": "p01870",
           "pos": "PF",
@@ -3226,7 +3226,7 @@
         {
           "pick": 11,
           "teamId": "AUS",
-          "teamName": "Austin",
+          "teamName": "Austin BC",
           "name": "Charles Petty",
           "playerId": "p02323",
           "pos": "SF",
@@ -3681,7 +3681,7 @@
         {
           "pick": 14,
           "teamId": "AUS",
-          "teamName": "Austin",
+          "teamName": "Austin BC",
           "name": "Alonso Bennett",
           "playerId": "p00180",
           "pos": "SF",
@@ -3781,7 +3781,7 @@
         {
           "pick": 24,
           "teamId": "AUS",
-          "teamName": "Austin",
+          "teamName": "Austin BC",
           "name": "Kendrick Ramos",
           "playerId": "p00181",
           "pos": "PF",
@@ -3831,7 +3831,7 @@
         {
           "pick": 29,
           "teamId": "BER",
-          "teamName": "Berlin",
+          "teamName": "Berlin Bären BC",
           "name": "Milo Dean",
           "playerId": "p00192",
           "pos": "PG",
@@ -4136,7 +4136,7 @@
         {
           "pick": 1,
           "teamId": "BER",
-          "teamName": "Berlin",
+          "teamName": "Berlin Bären BC",
           "name": "Jaden Samuels",
           "playerId": "p00194",
           "pos": "SF",

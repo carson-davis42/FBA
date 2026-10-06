@@ -16,7 +16,7 @@
     },
     {
       "title": "World League Champion",
-      "champion": "Austin",
+      "champion": "Austin BC",
       "runnerUp": "Tokyo",
       "score": null,
       "group": "WL",
@@ -62,7 +62,7 @@
     {
       "group": "WL",
       "teams": [
-        "Austin"
+        "Austin BC"
       ]
     },
     {
@@ -209,7 +209,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "28-2",
               "seed": 1
             },
@@ -277,7 +277,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "28-2",
               "seed": 1
             },
@@ -311,7 +311,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "28-2",
               "seed": 1
             },

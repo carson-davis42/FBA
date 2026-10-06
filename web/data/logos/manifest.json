@@ -156,34 +156,40 @@
     ],
     "FBAD2": [
       {
-        "file": "AS Roma Pallacanestro S79-pres..png",
-        "from": 79,
+        "file": "Austin BC.png",
+        "from": null,
         "to": null,
-        "variant": 0
+        "variant": 1
       },
       {
-        "file": "Guadalajara CB S79-pres..png",
-        "from": 79,
+        "file": "Berlin Bären BC.png",
+        "from": null,
         "to": null,
-        "variant": 0
+        "variant": 1
       },
       {
-        "file": "Mumbai BC S79-pres..png",
-        "from": 79,
+        "file": "Guadalajara CB.png",
+        "from": null,
         "to": null,
-        "variant": 0
+        "variant": 1
       },
       {
-        "file": "Roma Pallacanestro S79-pres..png",
-        "from": 79,
+        "file": "Mumbai BC.png",
+        "from": null,
         "to": null,
-        "variant": 0
+        "variant": 1
       },
       {
-        "file": "Salzburg BC S79-pres..png",
-        "from": 79,
+        "file": "Roma Pallacanestro.png",
+        "from": null,
         "to": null,
-        "variant": 0
+        "variant": 1
+      },
+      {
+        "file": "Salzburg BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
       }
     ],
     "FBAJC": [

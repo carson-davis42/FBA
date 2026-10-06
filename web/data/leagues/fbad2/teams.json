@@ -36,14 +36,16 @@
     },
     {
       "teamId": "AUS",
-      "name": "Austin",
+      "name": "Austin BC",
       "abbr": "AUS",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(58 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#0D0F11",
+        "fg": "#fff",
+        "accent": "#C3541D"
+      },
+      "logoFile": "Austin BC.png"
     },
     {
       "teamId": "BA",
@@ -91,14 +93,16 @@
     },
     {
       "teamId": "BER",
-      "name": "Berlin",
+      "name": "Berlin Bären BC",
       "abbr": "BER",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(34 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#D90302",
+        "fg": "#fff",
+        "accent": "#030202"
+      },
+      "logoFile": "Berlin Bären BC.png"
     },
     {
       "teamId": "BRUS",
@@ -254,7 +258,7 @@
         "fg": "#fff",
         "accent": "#EEE8BF"
       },
-      "logoFile": "Guadalajara CB S79-pres..png"
+      "logoFile": "Guadalajara CB.png"
     },
     {
       "teamId": "HAM",
@@ -443,7 +447,7 @@
         "fg": "#fff",
         "accent": "#120E0A"
       },
-      "logoFile": "Mumbai BC S79-pres..png"
+      "logoFile": "Mumbai BC.png"
     },
     {
       "teamId": "MUN",
@@ -555,7 +559,7 @@
         "fg": "#fff",
         "accent": "#C0946B"
       },
-      "logoFile": "Roma Pallacanestro S79-pres..png"
+      "logoFile": "Roma Pallacanestro.png"
     },
     {
       "teamId": "ROT",
@@ -579,7 +583,7 @@
         "fg": "#fff",
         "accent": "#BBA87D"
       },
-      "logoFile": "Salzburg BC S79-pres..png"
+      "logoFile": "Salzburg BC.png"
     },
     {
       "teamId": "SHAN",

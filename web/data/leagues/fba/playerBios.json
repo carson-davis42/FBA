@@ -1179,7 +1179,7 @@
         "1x NC MVP",
         "1x B10 RS Champion",
         "1x B10 TOUR Champion",
-        "D2(Austin)-S74",
+        "D2(Austin BC)-S74",
         "1x PL C-Ship app.",
         "TOR-S75-S76",
         "CP-S77",
@@ -2138,7 +2138,7 @@
         "1x RB Award",
         "1x P12 POY",
         "1x P12 RS Champion",
-        "D2(Berlin)-S74",
+        "D2(Berlin Bären BC)-S74",
         "WC(Germany)-S74",
         "1x World Cup C-Ship app.",
         "MIL-S75",
@@ -2382,7 +2382,7 @@
         "2x AAC RS Champion",
         "2x AAC TOUR Champion",
         "1x All-American(2nd)",
-        "D2(Austin)-S69-S73",
+        "D2(Austin BC)-S69-S73",
         "2x WL C-Ship app.",
         "1x WL RS Champion",
         "1x WL Champion",
@@ -2595,7 +2595,7 @@
         "TEX-S69-S70",
         "1x Young-Star",
         "STL-S71-S73",
-        "D2(Austin)-S74-pres.",
+        "D2(Austin BC)-S74-pres.",
         "2x PL C-Ship app.",
         "2x PL RS Champion",
         "WC(USA)-S74-S78",
@@ -2611,7 +2611,7 @@
         "Tulane-S70-S71",
         "D2(Warsaw)-S72-S75",
         "WC(Poland)-S72-S74",
-        "D2(Austin)-S76-pres.",
+        "D2(Austin BC)-S76-pres.",
         "2x PL RS Champion",
         "1x PL C-Ship app."
       ]
@@ -2626,7 +2626,7 @@
         "1x IVY TOUR Champion",
         "Louisville-S74-S76",
         "1x ACC RS Champion",
-        "D2(Austin)-S77-pres.",
+        "D2(Austin BC)-S77-pres.",
         "1x PL RS Champion",
         "1x PL C-Ship app."
       ]
@@ -2636,7 +2636,7 @@
       "born": "Born-S55",
       "entries": [
         "Arizona State-S73-S76",
-        "D2(Austin)-S77-pres.",
+        "D2(Austin BC)-S77-pres.",
         "1x PL RS Champion",
         "1x PL C-Ship app."
       ]
@@ -2649,7 +2649,7 @@
         "MAN-S69-S73",
         "2x Young-Star",
         "1x YSG MVP",
-        "D2(Austin)-S74-pres.",
+        "D2(Austin BC)-S74-pres.",
         "2x PL C-Ship app.",
         "2x PL RS Champion",
         "WC(USA)-S74-S78",
@@ -2775,7 +2775,7 @@
         "Virginia-S74",
         "San Diego State-S75-S76",
         "2x MWC RS Champion",
-        "D2(Berlin)-S77-pres."
+        "D2(Berlin Bären BC)-S77-pres."
       ]
     },
     {
@@ -2787,7 +2787,7 @@
         "1x A10 TOUR Champion",
         "MAN-S68-S74",
         "1x Young-Star",
-        "D2(Berlin)-S75-pres.",
+        "D2(Berlin Bären BC)-S75-pres.",
         "1x PL RS Champion",
         "WC(Germany)-S76-S78",
         "1x World Cup C-Ship app.",
@@ -2809,7 +2809,7 @@
         "2x Young-Star",
         "NY-S72",
         "LA-S73-S77",
-        "D2(Berlin)-S78-pres.",
+        "D2(Berlin Bären BC)-S78-pres.",
         "WC(Germany)-S78",
         "1x World Cup C-Ship app.",
         "1x World Cup Champions"
@@ -2821,7 +2821,7 @@
       "entries": [
         "Colorado-S71-S72",
         "TOR-S73-S74",
-        "D2(Berlin)-S75-pres.",
+        "D2(Berlin Bären BC)-S75-pres.",
         "1x PL RS Champion"
       ]
     },
@@ -2831,7 +2831,7 @@
       "entries": [
         "Saint Mary's-S65",
         "Virginia-S66-S68",
-        "D2(Berlin)-S69-pres.",
+        "D2(Berlin Bären BC)-S69-pres.",
         "1x PL RS Champion"
       ]
     },
@@ -5423,7 +5423,7 @@
         "2x BE TOUR Champion",
         "2x NC app.",
         "2x National Champion",
-        "D2(Austin)-S71",
+        "D2(Austin BC)-S71",
         "1x WL RS Champion",
         "1x WL C-Ship app.",
         "1x WL Champion",
@@ -9222,7 +9222,7 @@
         "North Texas-S71",
         "1x SOCON RS Champion",
         "Dayton-S72-S73",
-        "D2(Austin)-S74-S75",
+        "D2(Austin BC)-S74-S75",
         "1x PL C-Ship app."
       ]
     },
@@ -9267,7 +9267,7 @@
       "born": "Born-S53",
       "entries": [
         "Wichita State-S71-S74",
-        "D2(Berlin)-S75-S77",
+        "D2(Berlin Bären BC)-S75-S77",
         "1x PL RS Champion"
       ]
     },
@@ -9548,7 +9548,7 @@
       "entries": [
         "TCU-S71-S72",
         "Texas Tech-S73-S74",
-        "D2(Austin)-S75-S76",
+        "D2(Austin BC)-S75-S76",
         "1x PL RS Champion"
       ]
     },
@@ -11590,7 +11590,7 @@
         "Michigan State-S16-S18;S48",
         "1x NC app.",
         "CIN-S49-S54",
-        "D2(Berlin)-S55-S60",
+        "D2(Berlin Bären BC)-S55-S60",
         "WC(Germany)-S56"
       ]
     },
@@ -12392,7 +12392,7 @@
         "1x B10 TOUR Champion",
         "CGG-S55-S58",
         "1x WC Champion",
-        "D2(Austin)-S59-S64",
+        "D2(Austin BC)-S59-S64",
         "1x D2A Champion",
         "3x D2 C-Ship app.",
         "3x D2 Champion",
@@ -13100,7 +13100,7 @@
         "1x B10 TOUR Champion",
         "CIN-S57-S58",
         "SEA-S59",
-        "D2(Austin)-S60-S68",
+        "D2(Austin BC)-S60-S68",
         "1x D2A Champion",
         "2x D2 C-Ship app.",
         "2x D2 Champion",
@@ -13635,7 +13635,7 @@
         "North Carolina-S56-S59",
         "1x ACC RS Champion",
         "CGG-S60-S61",
-        "D2(Berlin)-S62-S70",
+        "D2(Berlin Bären BC)-S62-S70",
         "1x EE Champion"
       ]
     },
@@ -13792,7 +13792,7 @@
       "born": "Born-S39",
       "entries": [
         "LSU-S57-S60",
-        "D2(Berlin)-S61-S71",
+        "D2(Berlin Bären BC)-S61-S71",
         "1x EE Champion"
       ]
     },
@@ -14094,7 +14094,7 @@
       "entries": [
         "USC-S58-S61",
         "1x P12 TOUR Champion",
-        "D2(Austin)-S62",
+        "D2(Austin BC)-S62",
         "1x D2A Champion",
         "1x D2 C-Ship app.",
         "1x D2 Champion",
@@ -14290,7 +14290,7 @@
       "born": "Born-S41",
       "entries": [
         "UCLA-S59-S62",
-        "D2(Austin)-S63-S73",
+        "D2(Austin BC)-S63-S73",
         "2x WL C-Ship app.",
         "1x WL RS Champion",
         "1x WL Champion"
@@ -14391,7 +14391,7 @@
         "2x B12 RS Champion",
         "1x B12 TOUR Champion",
         "PHX-S63-S64",
-        "D2(Austin)-S65-S73",
+        "D2(Austin BC)-S65-S73",
         "1x D2A MVP",
         "2x WL C-Ship app.",
         "1x WL RS Champion",
@@ -14545,7 +14545,7 @@
         "PHX-S67-S68",
         "SAS-S69",
         "CHA-S70",
-        "D2(Berlin)-S71-S74",
+        "D2(Berlin Bären BC)-S71-S74",
         "WC(Germany)-S72"
       ]
     },
@@ -14761,7 +14761,7 @@
         "1x AAC RS Champion",
         "1x AAC TOUR Champion",
         "DEN-S61",
-        "D2(Berlin)-S62-S74",
+        "D2(Berlin Bären BC)-S62-S74",
         "1x EE Champion",
         "WC(Germany)-S62;S68-S70",
         "3x World Cup C-Ship app.",
@@ -15164,7 +15164,7 @@
         "Indiana-S61-S64",
         "1x B10 POY",
         "1x B10 RS Champion",
-        "D2(Austin)-S65-S75",
+        "D2(Austin BC)-S65-S75",
         "2x WL C-Ship app.",
         "1x WL RS Champion",
         "1x WL Champion",
@@ -15563,7 +15563,7 @@
         "1x BE POY",
         "1x BE RS Champion",
         "MW-S64",
-        "D2(Berlin)-S65-S76",
+        "D2(Berlin Bären BC)-S65-S76",
         "1x PL MVP",
         "1x PL RS Champion",
         "WC(Germany)-S66-S68;S72-S74",
@@ -15711,7 +15711,7 @@
         "1x YSG MVP",
         "1x All-Star",
         "DEN-S74-S75",
-        "D2(Austin)-S76",
+        "D2(Austin BC)-S76",
         "1x PL RS Champion",
         "WC(USA)-S76"
       ]

@@ -1,21 +1,25 @@
 {
- "AS Roma Pallacanestro S79-pres.": {
-  "primary": "#7B1C23",
-  "secondary": "#C0946B"
+ "Austin BC": {
+  "primary": "#0D0F11",
+  "secondary": "#C3541D"
  },
- "Guadalajara CB S79-pres.": {
+ "Berlin Bären BC": {
+  "primary": "#D90302",
+  "secondary": "#030202"
+ },
+ "Guadalajara CB": {
   "primary": "#0E4C37",
   "secondary": "#EEE8BF"
  },
- "Mumbai BC S79-pres.": {
+ "Mumbai BC": {
   "primary": "#D5772A",
   "secondary": "#120E0A"
  },
- "Roma Pallacanestro S79-pres.": {
+ "Roma Pallacanestro": {
   "primary": "#7B1C23",
   "secondary": "#C0946B"
  },
- "Salzburg BC S79-pres.": {
+ "Salzburg BC": {
   "primary": "#152739",
   "secondary": "#BBA87D"
  }

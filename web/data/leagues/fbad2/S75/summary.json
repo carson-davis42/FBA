@@ -71,7 +71,7 @@
     {
       "group": "PL",
       "teams": [
-        "Berlin"
+        "Berlin Bären BC"
       ]
     },
     {
@@ -103,12 +103,12 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Berlin",
+              "name": "Berlin Bären BC",
               "record": "25-5",
               "seed": 1
             },
             "away": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "16-14",
               "seed": 8
             },
@@ -171,7 +171,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Austin",
+              "name": "Austin BC",
               "record": "16-14",
               "seed": 8
             },

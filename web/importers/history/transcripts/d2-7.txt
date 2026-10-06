@@ -6,7 +6,7 @@ G:PL
 5|Roma Pallacanestro|20-10
 4|Munich|20-10
 3|Lisbon|21-9
-6|Austin|19-11
+6|Austin BC|19-11
 7|Ottawa|18-12
 2|Milan|24-6
 = Salzburg BC 4-2 | Munich 4-1 | Lisbon 4-2 | Milan 4-3
@@ -50,7 +50,7 @@ G:PL
 8|Buenos Aires|15-15
 5|London|19-11
 4|Miami|19-11
-3|Austin|20-10
+3|Austin BC|20-10
 6|Milan|18-12
 7|Zurich|16-14
 2|Lisbon|21-9
