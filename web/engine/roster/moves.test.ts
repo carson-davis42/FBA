@@ -77,7 +77,7 @@ describe('signPlayer', () => {
     expect(r.label).toBe('Re-sign Dan Price → MON');
   });
 
-  describe('$27 ceiling for own-player re-signings', () => {
+  describe('$25 cap for own-player re-signings', () => {
     // MON payroll $24 (PG, SF, C at $8) with Dan Price's expired restricted PF contract waiting to be re-signed.
     const monAt24 = (): RosterState => {
       const s = baseState();
@@ -86,12 +86,12 @@ describe('signPlayer', () => {
     };
     const resign = (amount: number) => signPlayer(monAt24(), { playerId: 'p00012', teamId: 'MON', years: 1, amount, conflict: 'release' }, ctx);
 
-    it.each([2, 3])('lets a team re-sign its own player up to payroll $%i + 24', amount => {
-      expect(payroll(ok(resign(amount)).state.fba.teams.MON, 79)).toBe(24 + amount);
+    it('lets a team re-sign its own player up to payroll $25', () => {
+      expect(payroll(ok(resign(1)).state.fba.teams.MON, 79)).toBe(25);
     });
 
-    it('blocks a re-signing that would pass $27', () => {
-      expect(problems(resign(4))).toEqual(['Payroll would be $28 (cap $27)']);
+    it('blocks a re-signing that would pass $25, like any other signing', () => {
+      expect(problems(resign(2))).toEqual(['Payroll would be $26 (cap $25)']);
     });
 
     it('holds outside free agents to the $25 cap', () => {

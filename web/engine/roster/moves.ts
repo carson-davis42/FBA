@@ -78,7 +78,7 @@ export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContex
     [...entries, { playerId: input.playerId, position, rating: rating ?? null, age, points: 0, contractEnd: end, contractAmount: input.amount, restricted: kind === 'rookie' }],
     'fba',
   );
-  const cap = capProblem(payroll(entries, season), resign ? TRADE_CAP : CAP);
+  const cap = capProblem(payroll(entries, season), CAP);
   if (cap) problems.push(cap);
   if (problems.length) return fail(problems);
 

@@ -2,7 +2,7 @@ import type { Position, RosterEntry } from '../shared/types';
 
 export const POSITIONS: Position[] = ['PG', 'SG', 'SF', 'PF', 'C'];
 export const CAP = 25;
-/** Hard payroll ceiling for trades and own-player re-signings; every other move stays under CAP. */
+/** Hard payroll ceiling for trades; every other move, re-signings included, stays under CAP. */
 export const TRADE_CAP = 27;
 export const MAX_AMOUNT = 8;
 export const MAX_YEARS_NEW = 4;
