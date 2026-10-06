@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { mulberry32, type Rng } from '../d2/random';
 import { POSITIONS } from '../roster/rules';
 import {
-  defenderWeights, FBA_PROFILE, isClutch, JC_PROFILE, makeChance, periodOf, pickDefender, pickHandler, REGULATION, shotPoints, simGame, type SimTeam, winProbability,
+  defenderWeights, FBA_PROFILE, isClutch, JC_PROFILE, makeChance, periodOf, pickDefender, pickHandler, REGULATION, shotPoints, simGame, touchShare, type SimTeam, usagePenalty, winProbability,
 } from './sim';
 
 const team = (id: string, ratings: number[]): SimTeam => ({
@@ -145,12 +145,66 @@ describe('FBAJC profile', () => {
     expect(simGame(1, hi, lo, r(), JC_PROFILE).possessions[0].made).toBe(true);
     expect(simGame(1, hi, lo, r()).possessions[0].made).toBe(false);
   });
-  it('FBA results are unchanged by the profile parameter', () => {
+  it('FBA results do not depend on passing the profile explicitly', () => {
     const t = (id: string, r: number[]) => team(id, r);
     const g = simGame(1, t('A', [90, 80, 70, 65, 58]), t('B', [85, 75, 72, 60, 55]), mulberry32(42));
-    expect([g.homePts, g.awayPts, g.possessions.length]).toEqual([100, 73, 120]);
-    expect(g.box).toEqual({ home: [63, 27, 8, 2, 0], away: [42, 14, 17, 0, 0] });
+    expect([g.homePts, g.awayPts, g.possessions.length]).toEqual([95, 70, 120]);
+    expect(g.box).toEqual({ home: [58, 27, 8, 2, 0], away: [42, 14, 14, 0, 0] });
     const e = simGame(1, t('A', [90, 80, 70, 65, 58]), t('B', [85, 75, 72, 60, 55]), mulberry32(42), FBA_PROFILE);
     expect(e).toEqual(g);
+  });
+});
+
+describe('usage penalty', () => {
+  const star = team('S', [98, 73, 73, 73, 73]);
+  const balanced = team('B', [78, 78, 78, 78, 78]);
+
+  it('touch share is the rating-over-base weight over the team total', () => {
+    expect(touchShare(star, 0, FBA_PROFILE)).toBeCloseTo(38 / 90, 6);
+    expect(touchShare(balanced, 2, FBA_PROFILE)).toBeCloseTo(0.2, 6);
+    expect(touchShare(team('Z', [60, 60, 60, 60, 60]), 0, FBA_PROFILE)).toBe(0.2);
+  });
+
+  it('costs make chance only above an even share, and never in the FBAJC', () => {
+    expect(usagePenalty(0.2, FBA_PROFILE)).toBe(0);
+    expect(usagePenalty(0.1, FBA_PROFILE)).toBe(0);
+    expect(usagePenalty(0.4, FBA_PROFILE)).toBeCloseTo(2, 6);
+    expect(usagePenalty(0.4, JC_PROFILE)).toBe(0);
+  });
+
+  it('makes a star plus role players about even with a balanced team of the same total rating', () => {
+    const rng = mulberry32(2026);
+    let wins = 0;
+    const n = 6000;
+    for (let g = 0; g < n; g++) {
+      const starHome = g % 2 === 0;
+      const r = simGame(g, starHome ? star : balanced, starHome ? balanced : star, rng);
+      if (starHome ? r.homePts > r.awayPts : r.awayPts > r.homePts) wins++;
+    }
+    expect(wins / n).toBeGreaterThan(0.45);
+    expect(wins / n).toBeLessThan(0.54);
+  });
+
+  it('still lets two stars beat a balanced team', () => {
+    const rng = mulberry32(7);
+    let wins = 0;
+    const n = 3000;
+    const two = team('T', [95, 95, 68, 68, 68]);
+    for (let g = 0; g < n; g++) {
+      const r = simGame(g, g % 2 === 0 ? two : balanced, g % 2 === 0 ? balanced : two, rng);
+      if (g % 2 === 0 ? r.homePts > r.awayPts : r.awayPts > r.homePts) wins++;
+    }
+    expect(wins / n).toBeGreaterThan(0.62);
+  });
+
+  it('keeps scoring level from the first quarter to the last', () => {
+    const rng = mulberry32(99);
+    const q = [0, 0, 0, 0];
+    const n = 1500;
+    for (let g = 0; g < n; g++) {
+      const r = simGame(g, star, balanced, rng);
+      for (const side of ['home', 'away'] as const) for (let i = 0; i < 4; i++) q[i] += r.periods[side][i];
+    }
+    expect(Math.max(...q) / Math.min(...q)).toBeLessThan(1.05);
   });
 });

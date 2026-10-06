@@ -60,9 +60,11 @@ export interface SimProfile {
   handlerTotalOffset: number;
   /** Added to the 0..99 shot roll: 1 gives the FBA's 1..100, 0 the FBAJC's 0..99. */
   rollOffset: number;
+  /** Make-chance points lost per percentage point of touch share above an even share, so a star who takes the ball more shoots a little worse. */
+  usagePenalty: number;
 }
-export const FBA_PROFILE: SimProfile = { handlerBase: 60, handlerTotalOffset: 300, rollOffset: 1 };
-export const JC_PROFILE: SimProfile = { handlerBase: 40, handlerTotalOffset: 200, rollOffset: 0 };
+export const FBA_PROFILE: SimProfile = { handlerBase: 60, handlerTotalOffset: 300, rollOffset: 1, usagePenalty: 0.1 };
+export const JC_PROFILE: SimProfile = { handlerBase: 40, handlerTotalOffset: 200, rollOffset: 0, usagePenalty: 0 };
 
 /** Java: whoGetsBall = (int)(random * (Σratings − 300)) + 1, then the first cumulative (rating − 60) ≥ whoGetsBall. */
 export function pickHandler(team: SimTeam, rng: Rng, profile: SimProfile = FBA_PROFILE): number {
@@ -75,6 +77,18 @@ export function pickHandler(team: SimTeam, rng: Rng, profile: SimProfile = FBA_P
     if (running >= who) return k;
   }
   return 0;
+}
+
+/** A player's share of his team's touches: the same rating-over-base weights `pickHandler` draws from (an even share when nobody is above the base). */
+export function touchShare(team: SimTeam, index: number, profile: SimProfile = FBA_PROFILE): number {
+  const weights = team.players.map(p => Math.max(0, p.rating - profile.handlerBase));
+  const total = weights.reduce((s, w) => s + w, 0);
+  return total > 0 ? weights[index] / total : 1 / team.players.length;
+}
+
+/** Make-chance points a shooter loses for taking more than an even share of his team's touches. */
+export function usagePenalty(share: number, profile: SimProfile = FBA_PROFILE): number {
+  return profile.usagePenalty * Math.max(0, share - 0.2) * 100;
 }
 
 /** Java Team.pickDefender weights. */
@@ -124,7 +138,8 @@ function playOne(home: SimTeam, away: SimTeam, c: Cursor, rng: Rng, profile: Sim
   const handler = pickHandler(off, rng, profile);
   const defender = pickDefender(def, off, handler, rng);
   const roll = Math.floor(rng() * 100) + profile.rollOffset;
-  const points = shotPoints(makeChance(off.players[handler].rating, def.players[defender].rating), roll);
+  const odds = makeChance(off.players[handler].rating, def.players[defender].rating) - usagePenalty(touchShare(off, handler, profile), profile);
+  const points = shotPoints(odds, roll);
   if (offense === 'home') c.home += points;
   else c.away += points;
   const i = c.i;
@@ -175,7 +190,7 @@ export function winProbability(game: SimGame, revealed: number, rng: Rng, n = 20
       away: last ? last.awayScore : 0,
       ot: 0,
     };
-    runOut(game.home, game.away, c, rng, FBA_PROFILE);
+    runOut(game.home, game.away, c, rng, game.profile ?? FBA_PROFILE);
     if (c.home > c.away) wins++;
   }
   return wins / n;
