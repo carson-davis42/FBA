@@ -16,6 +16,8 @@ export interface TradeInput {
 }
 
 export function makeTrade(state: RosterState, input: TradeInput, ctx: MoveContext): MoveResult {
+  // Only the FBA trades.
+  if (input.league !== 'fba') return fail(['D2 teams do not trade']);
   const locked = lockProblem(ctx.phase, input.league, 'trade');
   if (locked) return fail([locked]);
   const key = input.league === 'fba' ? 'fba' : 'd2';

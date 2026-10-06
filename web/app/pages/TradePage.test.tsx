@@ -119,31 +119,19 @@ describe('TradePage', () => {
   });
 
   describe('FBAD2', () => {
-    it('has no draft picks section', async () => {
+    it('has no trade page: only the FBA trades', async () => {
       render(
         <MemoryRouter initialEntries={['/trade/fbad2?team=AMS']}>
           <Routes><Route path="/trade/:league" element={<TradePage />} /></Routes>
         </MemoryRouter>,
       );
-      await screen.findByText('AMS Team');
-      expect(screen.queryByText('Draft picks')).toBeNull();
+      expect(await screen.findByText('Trades are for the FBA only.')).toBeTruthy();
+      expect(screen.queryByRole('button', { name: 'Make trade' })).toBeNull();
     });
   });
 });
 
 describe('TradePage roster locks', () => {
-  it("doesn't say rosters are final during the D2 cycle, when the roster file itself isn't locked (F9)", async () => {
-    setupFetch(s => { s.freeAgents = { ...s.freeAgents, locked: true }; });
-    render(
-      <MemoryRouter initialEntries={['/trade/fbad2?team=AMS']}>
-        <Routes><Route path="/trade/:league" element={<TradePage />} /></Routes>
-      </MemoryRouter>,
-    );
-    expect(await screen.findByText('D2 rosters are locked from the close of free agency until the next offseason')).toBeTruthy();
-    expect(screen.queryByText(/rosters are final/)).toBeNull();
-    expect((screen.getByRole('button', { name: 'Make trade' }) as HTMLButtonElement).disabled).toBe(true);
-  });
-
   it('is read-only after the trade deadline', async () => {
     setupFetch(s => { s.freeAgents = { ...s.freeAgents, locked: true }; }, {
       'leagues/fba/S79/schedule.json': { league: 'fba', season: 79, locked: false, games: [], pauses: [{ afterGame: 645, kind: 'deadline', done: true }] },

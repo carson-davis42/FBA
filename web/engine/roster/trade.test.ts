@@ -84,14 +84,14 @@ describe('makeTrade', () => {
     expect(problems(makeTrade(s, { league: 'fba', teams: ['CAR', 'MON'], assets: [{ kind: 'player', playerId: 'p00001', from: 'CAR', to: 'MON' }] }, ctx))).toEqual(['Gabriel Greenwood is not on CAR']);
     expect(problems(makeTrade(s, { league: 'fba', teams: ['CAR', 'MON'], assets: [{ kind: 'pick', obligationId: 'nope', from: 'CAR', to: 'MON' }] }, ctx))).toEqual(['CAR does not own pick nope']);
     expect(problems(makeTrade(s, { league: 'fba', teams: ['CAR', 'MON'], assets: [{ kind: 'ownPick', season: 90, from: 'CAR', to: 'MON', condition: { kind: 'none' } }] }, ctx))).toEqual(['Picks can be traded for S80–S83']);
-    expect(problems(makeTrade(s, { league: 'fbad2', teams: ['AMS', 'X'], assets: [] }, ctx))).toContain('Unknown team X');
+    expect(problems(makeTrade(s, { league: 'fba', teams: ['CAR', 'X'], assets: [] }, ctx))).toContain('Unknown team X');
   });
 
-  it('trades between D2 teams without contracts or picks', () => {
+  it('refuses trades between D2 teams: only the FBA trades', () => {
     const s = baseState();
     s.d2.teams.ZUR = [{ playerId: 'p00040', position: 'PG', rating: 70, age: 30, points: 0 }];
-    const r = ok(makeTrade(s, { league: 'fbad2', teams: ['AMS', 'ZUR'], assets: [{ kind: 'player', playerId: 'p00020', from: 'AMS', to: 'ZUR' }, { kind: 'player', playerId: 'p00040', from: 'ZUR', to: 'AMS' }] }, ctx));
-    expect(r.state.d2.teams.AMS[0].playerId).toBe('p00040');
-    expect(r.changed.sort()).toEqual(['d2', 'd2Tx']);
+    const r = makeTrade(s, { league: 'fbad2', teams: ['AMS', 'ZUR'], assets: [{ kind: 'player', playerId: 'p00020', from: 'AMS', to: 'ZUR' }, { kind: 'player', playerId: 'p00040', from: 'ZUR', to: 'AMS' }] }, ctx);
+    expect(problems(r)).toEqual(['D2 teams do not trade']);
+    expect(s.d2.teams.AMS[0].playerId).toBe('p00020');
   });
 });

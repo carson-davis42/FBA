@@ -30,7 +30,7 @@ export function TradePage() {
   const { league = '' } = useParams();
   const [search] = useSearchParams();
   const { state, versions, error } = useRosterState();
-  const lg = league === 'fbad2' ? 'fbad2' : 'fba';
+  const lg = 'fba';
   const phase = useSeasonPhase();
   const { data: teams } = useDoc<TeamsFile>(`leagues/${lg}/teams.json`);
   const [teamIds, setTeamIds] = useState<string[]>(search.get('team') ? [search.get('team')!] : []);
@@ -40,7 +40,7 @@ export function TradePage() {
   const [saveError, setSaveError] = useState('');
   const saving = useSaving();
 
-  if (league !== 'fba' && league !== 'fbad2') return <p className="error">Trades are for the FBA and FBAD2.</p>;
+  if (league !== 'fba') return <p className="error">Trades are for the FBA only.</p>;
   if (error) return <p className="error">Couldn't load rosters: {error.message}</p>;
   if (!state || !teams) return <p className="muted">Loading…</p>;
 
