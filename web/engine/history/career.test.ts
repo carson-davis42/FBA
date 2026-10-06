@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import type { AwardCountsFile, HallOfFameFile, SummaryFile, SummaryPlayerLine } from '../shared/types';
-import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll, careerSpan, playerStatus, applyPlacement } from './career';
+import type { AwardCountsFile, HallOfFameFile, ResultsFile, SummaryFile, SummaryPlayerLine } from '../shared/types';
+import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll, careerSpan, playerStatus, applyPlacement, applyPlayed, teamsPlayedFor } from './career';
 
 describe('parseBio', () => {
   it('keeps one stint when a World Cup call-up sits between two stints with the same team', () => {
@@ -344,5 +344,42 @@ describe('applyPlacement', () => {
   it('a player signed and traded in the same season keeps a one-season first stint', () => {
     const c = applyPlacement(parseBio({ born: 'Born-S40', entries: ['VEG-S79-pres.'] }), { kind: 'fba', team: 'BOS' }, 79);
     expect(c.stints.map(s => s.range)).toEqual(['S79', 'S79-pres.']);
+  });
+});
+
+describe('games played in a season that has no summary yet', () => {
+  const box = (...ids: string[]) => ids.map(playerId => ({ playerId, pts: 5, def: 0, stops: 0, allowed: 0, exp: 100 }));
+  const results: ResultsFile = {
+    league: 'fba', season: 79, locked: false,
+    games: [
+      { gameNo: 2, home: 'BOS', away: 'OAK', homePts: 70, awayPts: 60, box: { home: box('p00009'), away: box('p00001') } },
+      { gameNo: 1, home: 'OAK', away: 'ATL', homePts: 70, awayPts: 60, box: { home: box('p00001', 'p00002'), away: box('p00009') } },
+      { gameNo: 3, home: 'BOS', away: 'ATL', homePts: 70, awayPts: 60, box: { home: box('p00001'), away: box('p00009') } },
+      { gameNo: 4, home: 'BOS', away: 'ATL', homePts: 70, awayPts: 60 },
+    ],
+  };
+
+  it('lists the teams a player appeared for, in order of his first game', () => {
+    expect(teamsPlayedFor(results, 'p00001')).toEqual(['OAK', 'BOS']);
+    expect(teamsPlayedFor(results, 'p00009')).toEqual(['ATL', 'BOS']);
+    expect(teamsPlayedFor(results, 'p00500')).toEqual([]);
+  });
+
+  it('keeps the team he played for this season when he is traded away before the placement', () => {
+    const played = applyPlayed(parseBio({ born: 'Born-S55', entries: ['FLO-S77', 'OAK-S78-pres.'] }), ['OAK'], 79);
+    const c = applyPlacement(played, { kind: 'fba', team: 'BOS' }, 79);
+    expect(c.stints.map(s => `${s.team}:${s.range}`)).toEqual(['FLO:S77', 'OAK:S78-S79', 'BOS:S79-pres.']);
+  });
+
+  it('starts a new stint when he played for a different team first, and extends an open one for the same team', () => {
+    const traded = applyPlayed(parseBio({ born: 'Born-S55', entries: ['OAK-S78-pres.'] }), ['OAK', 'BOS'], 79);
+    expect(traded.stints.map(s => `${s.team}:${s.range}`)).toEqual(['OAK:S78-S79', 'BOS:S79']);
+    const same = applyPlayed(parseBio({ born: 'Born-S55', entries: ['OAK-S78-pres.'] }), ['OAK'], 79);
+    expect(same.stints.map(s => `${s.team}:${s.range}`)).toEqual(['OAK:S78-S79']);
+  });
+
+  it('leaves a career alone when he has played no game', () => {
+    const c = parseBio({ born: 'Born-S55', entries: ['OAK-S78-pres.'] });
+    expect(applyPlayed(c, [], 79)).toEqual(c);
   });
 });

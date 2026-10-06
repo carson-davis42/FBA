@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import { applyPlacement, awardTotals, careerSpan, careerStats, liveCareer, playerStatus, type Placement } from '../../engine/history/career';
+import { applyPlacement, applyPlayed, awardTotals, careerSpan, careerStats, liveCareer, playerStatus, teamsPlayedFor, type Placement } from '../../engine/history/career';
 import { d2PlayerHonours } from '../../engine/history/d2';
 import { playerHonours } from '../../engine/history/honours';
-import type { AwardCountsFile, D2DraftHistoryFile, DraftHistoryFile, HallOfFameFile, MetaFile, PlayerBiosFile, PlayersFile, RostersFile, TeamsFile } from '../../engine/shared/types';
+import type { AwardCountsFile, D2DraftHistoryFile, DraftHistoryFile, HallOfFameFile, MetaFile, PlayerBiosFile, PlayersFile, ResultsFile, RostersFile, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
 import { Badge } from '../components/Badge';
 import { Hero } from '../components/Hero';
@@ -63,6 +63,8 @@ export function PlayerHistoryPage() {
   const fbaRoster = useDoc<RostersFile>(rosterOf('fba'));
   const d2Roster = useDoc<RostersFile>(rosterOf('fbad2'));
   const jcRoster = useDoc<RostersFile>(rosterOf('fbajc'));
+  // The season being played has no summary yet, so its games say which teams he has played for (a traded player keeps the team he left).
+  const results = useDoc<ResultsFile>(meta.data ? `leagues/fba/S${meta.data.rosterSeason.fba}/results.json` : null);
   // Unsigned players (the FBA free-agent list, the D2 reserves and pool) are still active, though on no roster.
   const unsigned = [
     useDoc<unknown>(meta.data ? `leagues/fba/S${meta.data.rosterSeason.fba}/freeAgents.json` : null),
@@ -74,7 +76,7 @@ export function PlayerHistoryPage() {
     ?? (counts.missing ? undefined : counts.error) ?? (hall.missing ? undefined : hall.error);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
   if (!seasons || !players.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing) || (!hall.data && !hall.missing) || (!drafts.data && !drafts.missing && !drafts.error) || !settled
-    || (!d2.seasons && !d2.error) || (!d2Drafts.data && !d2Drafts.missing && !d2Drafts.error) || !d2Teams.settled || !jcTeams.settled || !(meta.data || meta.missing || meta.error) || (!!meta.data && !(rosterSettled(fbaRoster) && rosterSettled(d2Roster) && rosterSettled(jcRoster) && unsigned.every(rosterSettled))) || (!wcTeams.data && !wcTeams.missing && !wcTeams.error)) {
+    || (!d2.seasons && !d2.error) || (!d2Drafts.data && !d2Drafts.missing && !d2Drafts.error) || !d2Teams.settled || !jcTeams.settled || !(meta.data || meta.missing || meta.error) || (!!meta.data && !(rosterSettled(fbaRoster) && rosterSettled(d2Roster) && rosterSettled(jcRoster) && unsigned.every(rosterSettled) && rosterSettled(results))) || (!wcTeams.data && !wcTeams.missing && !wcTeams.error)) {
     return <p className="muted">Loading…</p>;
   }
   const player = players.data.players[playerId];
@@ -107,7 +109,9 @@ export function PlayerHistoryPage() {
     if (jcName && meta.data) return { now: { kind: 'college', team: jcName }, season: meta.data.rosterSeason.fbajc };
     return null;
   })();
-  const career = applyPlacement(liveCareer(bio, playerId, seasons, hall.data ?? null), placement?.now ?? null, placement?.season ?? 0);
+  const unsummarised = results.data && !seasons.some(x => x.season === results.data!.season) ? results.data : null;
+  const playedFor = unsummarised ? teamsPlayedFor(unsummarised, playerId) : [];
+  const career = applyPlacement(applyPlayed(liveCareer(bio, playerId, seasons, hall.data ?? null), playedFor, unsummarised?.season ?? 0), placement?.now ?? null, placement?.season ?? 0);
   const totals = awardTotals(playerId, counts.data ?? null, seasons);
   const stats = careerStats(playerId, seasons);
   const hasAwards = Object.values(totals).some(n => n > 0);

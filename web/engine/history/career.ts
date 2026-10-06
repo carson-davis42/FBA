@@ -1,4 +1,4 @@
-import { AWARD_KEYS, type AwardCountsFile, type AwardKey, type HallOfFameFile, type SummaryFile } from '../shared/types';
+import { AWARD_KEYS, type AwardCountsFile, type AwardKey, type HallOfFameFile, type ResultsFile, type SummaryFile } from '../shared/types';
 
 export type StintKind = 'college' | 'fba' | 'd2' | 'wc';
 export interface Honour { label: string; count: number; seasons: number[] }
@@ -360,6 +360,41 @@ export function playerStatus(career: Career, retired: boolean, latestSeason: num
   if (!last) return 'unknown';
   if (last.kind !== 'college' && typeof last.to === 'number' && last.to < latestSeason) return 'retired';
   return last.kind;
+}
+
+/** The FBA teams a player appeared for in a season's played games, in order of his first game for each. */
+export function teamsPlayedFor(results: ResultsFile, playerId: string): string[] {
+  const teams: string[] = [];
+  for (const g of [...results.games].sort((x, y) => x.gameNo - y.gameNo)) {
+    for (const side of ['home', 'away'] as const) {
+      if (g.box?.[side].some(l => l.playerId === playerId) && !teams.includes(g[side])) teams.push(g[side]);
+    }
+  }
+  return teams;
+}
+
+/**
+ * Brings a career up to date with the games played in a season that has no summary yet (the one being played): every team he appeared for stays
+ * on his record, so a player traded mid-season keeps the team he left. Does nothing for a season whose summary `liveCareer` already reads.
+ */
+export function applyPlayed(career: Career, teams: string[], season: number): Career {
+  if (teams.length === 0) return career;
+  const stints = career.stints.map(s => ({ ...s }));
+  for (const team of teams) {
+    const last = [...stints].reverse().find(s => s.kind === 'fba');
+    const open = last !== undefined && (last.to === 'pres' || (typeof last.to === 'number' && last.to >= season - 1));
+    if (last && open && last.team.split('/').pop() === team) {
+      last.from ??= season;
+      last.to = season;
+      setRange(last);
+      continue;
+    }
+    if (last && last.to === 'pres') { last.to = season - 1; setRange(last); }
+    const stint: Stint = { kind: 'fba', team, range: '', from: season, to: season, honours: [] };
+    setRange(stint);
+    stints.push(stint);
+  }
+  return { ...career, stints };
 }
 
 /** Where a player is on the live rosters right now: an FBA team code, a D2 team as "D2(Name)", or a school name. */
