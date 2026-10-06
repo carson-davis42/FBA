@@ -52,6 +52,36 @@ describe('TradePage', () => {
     expect(posted!.writes.map(w => w.path).sort()).toEqual(['leagues/fba/S79/rosters.json', 'leagues/fba/S79/transactions.json', 'leagues/fba/picks.json']);
   });
 
+  describe('fairness meter', () => {
+    const renderTrade = () => render(
+      <MemoryRouter initialEntries={['/trade/fba?team=BOS']}>
+        <Routes><Route path="/trade/:league" element={<TradePage />} /></Routes>
+      </MemoryRouter>,
+    );
+
+    it('is hidden until something is in the trade, then judges it', async () => {
+      renderTrade();
+      fireEvent.change(await screen.findByLabelText('Add team'), { target: { value: 'CAR' } });
+      expect(screen.queryByText('Fairness')).toBeNull();
+      const bos = screen.getByRole('region', { name: 'BOS Team' });
+      fireEvent.click(within(bos).getByText('Gabriel Greenwood').closest('span')!);
+      expect(await screen.findByText('Fairness')).toBeTruthy();
+      expect(screen.getByText('Lopsided toward CAR Team')).toBeTruthy();
+      expect(screen.getByRole('img', { name: /Lopsided toward CAR Team/ })).toBeTruthy();
+    });
+
+    it('moves to fair when the other side sends back something of similar worth', async () => {
+      renderTrade();
+      fireEvent.change(await screen.findByLabelText('Add team'), { target: { value: 'CAR' } });
+      const bos = screen.getByRole('region', { name: 'BOS Team' });
+      const car = screen.getByRole('region', { name: 'CAR Team' });
+      fireEvent.click(within(bos).getByText('Gabriel Greenwood').closest('span')!); // 95, age 28, $8
+      fireEvent.click(within(car).getByText('Jelani Soweto').closest('span')!); // 92, age 24, $8
+      expect(screen.getByText(/Fair trade|Slightly favours|Favours/)).toBeTruthy();
+      expect(screen.queryByText(/Lopsided/)).toBeNull();
+    });
+  });
+
   describe('fewer than 2 teams', () => {
     it('shows a hint instead of starting a trade when clicking an asset', async () => {
       render(

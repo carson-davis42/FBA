@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { futureSeasons, owedFrom, pickLabel } from '../../engine/roster/picks';
 import { makeTrade, type TradeAsset } from '../../engine/roster/trade';
+import { assessTrade } from '../../engine/roster/tradeValue';
 import { lockProblem } from '../../engine/season/locks';
 import type { PickCondition, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
 import { PageHeader } from '../components/PageHeader';
+import { TradeFairness } from '../components/TradeFairness';
 import { teamTheme, teamVars } from '../components/teamColors';
 import { TeamName } from '../components/TeamName';
 import { commitMove, newBatchId } from '../roster/commit';
@@ -61,6 +63,7 @@ export function TradePage() {
   const preview = teamIds.length >= 2 && assets.length ? makeTrade(state, { league: lg, teams: teamIds, assets: withConditions }, { batchId: 'preview', phase }) : null;
   const txKey = lg === 'fba' ? 'fbaTx' : 'd2Tx';
   const lines = preview?.ok ? preview.state[txKey].entries.at(-1)!.lines : [];
+  const fairness = teamIds.length >= 2 && assets.length ? assessTrade(state, { teams: teamIds, assets: withConditions }) : null;
 
   const canTrade = teamIds.length >= 2;
   const toggle = (asset: TradeAsset, matches: (a: TradeAsset) => boolean) => {
@@ -193,6 +196,7 @@ export function TradePage() {
 
       <div className="card headed trade-summary">
         <h3>Summary</h3>
+        {fairness && <TradeFairness assessment={fairness} nameOf={nameOfTeam} />}
         {lines.length > 0 && <ul className="tx-list">{lines.map(l => <li key={l}>{l}</li>)}</ul>}
         {preview && !preview.ok && <ul className="problems">{preview.problems.map(p => <li key={p}>{p}</li>)}</ul>}
         {preview?.ok && preview.warnings.length > 0 && <p className="muted">Fix before free agency ends: {preview.warnings.join('; ')}</p>}
