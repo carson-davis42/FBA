@@ -17,6 +17,28 @@ function fixture(): string {
   return root;
 }
 
+describe('buildLogoManifest with the main league under FBA_Main', () => {
+  function layout(): string {
+    const root = mkdtempSync(path.join(tmpdir(), 'logos-main-'));
+    mkdirSync(path.join(root, 'FBA_Main', 'DCB', 'Concepts'), { recursive: true });
+    writeFileSync(path.join(root, 'FBA_Main', 'DCB', 'DCB S44-S78.png'), 'x');
+    writeFileSync(path.join(root, 'FBA_Main', 'DCB', 'Concepts', 'DCB concept.png'), 'x');
+    mkdirSync(path.join(root, 'FBA_Main', 'Boston Bucks'));
+    writeFileSync(path.join(root, 'FBA_Main', 'Boston Bucks', 'Boston Bucks S61-pres..png'), 'x');
+    mkdirSync(path.join(root, 'FBAJC_Final'));
+    writeFileSync(path.join(root, 'FBAJC_Final', 'Duke.png'), 'x');
+    mkdirSync(path.join(root, 'FBA'));
+    writeFileSync(path.join(root, 'FBA', 'FBA_logo.png'), 'x');
+    return root;
+  }
+  it('lists each team folder in FBA_Main as its own folder, beside the top-level shared ones, without FBA_Main itself', () => {
+    const m = buildLogoManifest(layout(), new Report());
+    expect(Object.keys(m.folders).sort()).toEqual(['Boston Bucks', 'DCB', 'FBA', 'FBAJC_Final']);
+    expect(m.folders['DCB'].map(e => e.file)).toEqual(['DCB S44-S78.png']);
+    expect(m.folders['Boston Bucks'][0]).toMatchObject({ from: 61, to: null });
+  });
+});
+
 describe('buildLogoManifest', () => {
   it('lists png files per folder and skips subfolders', () => {
     const m = buildLogoManifest(fixture(), new Report());

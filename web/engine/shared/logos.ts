@@ -1,5 +1,8 @@
 import type { LogoEntry } from './types';
 
+/** The folder under `FBA Logos/` that holds one subfolder per main-league team. Shared folders (FBA, FBA_Gold, the college logos) sit beside it. */
+export const TEAM_LOGOS_DIR = 'FBA_Main';
+
 const ERA = /\sS(\d+)(?:-(?:S(\d+)|pres))?$/i;
 
 export function parseLogoFilename(file: string): LogoEntry | null {

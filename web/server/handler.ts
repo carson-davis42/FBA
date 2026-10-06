@@ -3,7 +3,7 @@ import type http from 'node:http';
 import path from 'node:path';
 import { z } from 'zod';
 import { isLeagueId } from '../engine/shared/leagues';
-import { resolveLogo } from '../engine/shared/logos';
+import { resolveLogo, TEAM_LOGOS_DIR } from '../engine/shared/logos';
 import { LogoManifest } from '../engine/shared/types';
 import { Storage, StorageError, type BatchWrite, type Version } from './storage';
 
@@ -174,13 +174,17 @@ export function createHandler(
         const wanted = new URL(req.url ?? '/', 'http://localhost').searchParams.get('file');
         const file = !entries ? null : wanted !== null ? (entries.some(e => e.file === wanted) ? wanted : null) : resolveLogo(entries, folder, Number(season));
         if (!file || !isBareName(folder) || !isBareName(file)) return sendJson(res, 404, { error: `No logo for ${folder}` });
-        let data: Buffer;
-        try {
-          data = await readFile(path.join(logoDir, folder, file));
-        } catch (e) {
-          if (isMissing(e)) return sendJson(res, 404, { error: `No logo for ${folder}` });
-          throw e;
+        // Team folders sit under FBA_Main; shared folders (FBA, FBA_Gold, the college logos) are at the top level.
+        let data: Buffer | null = null;
+        for (const dir of [path.join(logoDir, TEAM_LOGOS_DIR, folder), path.join(logoDir, folder)]) {
+          try {
+            data = await readFile(path.join(dir, file));
+            break;
+          } catch (e) {
+            if (!isMissing(e)) throw e;
+          }
         }
+        if (!data) return sendJson(res, 404, { error: `No logo for ${folder}` });
         res.writeHead(200, { 'Content-Type': 'image/png', 'Cache-Control': 'max-age=3600' });
         return res.end(data);
       }

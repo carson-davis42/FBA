@@ -15,8 +15,9 @@ beforeAll(async () => {
   const logoDir = mkdtempSync(path.join(tmpdir(), 'fba-logos-'));
   mkdirSync(path.join(logoDir, 'Shared'));
   writeFileSync(path.join(logoDir, 'Shared', 'Duke.png'), Buffer.from([0x89, 0x50, 0x4e, 0x47]));
-  mkdirSync(path.join(logoDir, 'Boston Bucks'));
-  writeFileSync(path.join(logoDir, 'Boston Bucks', 'Boston Bucks S61-pres..png'), Buffer.from([0x89, 0x50, 0x4e, 0x47]));
+  // The main league's team folders live under FBA_Main; shared folders such as the college logos stay at the top level.
+  mkdirSync(path.join(logoDir, 'FBA_Main', 'Boston Bucks'), { recursive: true });
+  writeFileSync(path.join(logoDir, 'FBA_Main', 'Boston Bucks', 'Boston Bucks S61-pres..png'), Buffer.from([0x89, 0x50, 0x4e, 0x47]));
   const storage = new Storage(dataDir);
   await storage.write('logos/manifest.json', { folders: { Shared: [{ file: 'Duke.png', from: null, to: null, variant: 1 }, { file: 'Kansas.png', from: null, to: null, variant: 1 }], 'Boston Bucks': [{ file: 'Boston Bucks S61-pres..png', from: 61, to: null, variant: 0 }] } });
   server = http.createServer(createHandler(storage, logoDir));
@@ -73,6 +74,10 @@ describe('HTTP handler', () => {
     expect((await fetch(`${base}/logos/Shared/78?file=Nope.png`)).status).toBe(404);
     expect((await fetch(`${base}/logos/Shared/78?file=Kansas.png`)).status).toBe(404);
     expect((await fetch(`${base}/logos/Shared/78?file=..%2Fsecret.png`)).status).toBe(404);
+  });
+
+  it('does not serve FBA_Main itself as a logo folder', async () => {
+    expect((await fetch(`${base}/logos/FBA_Main/79`)).status).toBe(404);
   });
 
   it('404s unknown logo folders and traversal attempts', async () => {

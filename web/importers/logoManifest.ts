@@ -1,18 +1,30 @@
 import { readdirSync } from 'node:fs';
 import path from 'node:path';
-import { parseLogoFilename } from '../engine/shared/logos';
+import { parseLogoFilename, TEAM_LOGOS_DIR } from '../engine/shared/logos';
 import type { LogoEntry, LogoManifest } from '../engine/shared/types';
 import type { Report } from './report';
 
 /** Folders whose files are one undated logo per team, so no era is expected in the names. */
 const SHARED_FOLDERS = new Set(['FBA', 'FBA_Gold', 'FBAJC', 'FBAJC_Final']);
 
+/** The logo folders under the root: the top-level ones, plus each team folder inside FBA_Main (which is not a logo folder itself). */
+function logoFolders(logoRoot: string): { name: string; dir: string }[] {
+  const out: { name: string; dir: string }[] = [];
+  for (const d of readdirSync(logoRoot, { withFileTypes: true })) {
+    if (!d.isDirectory()) continue;
+    if (d.name !== TEAM_LOGOS_DIR) { out.push({ name: d.name, dir: path.join(logoRoot, d.name) }); continue; }
+    for (const team of readdirSync(path.join(logoRoot, d.name), { withFileTypes: true })) {
+      if (team.isDirectory()) out.push({ name: team.name, dir: path.join(logoRoot, d.name, team.name) });
+    }
+  }
+  return out;
+}
+
 export function buildLogoManifest(logoRoot: string, report: Report): LogoManifest {
   const folders: Record<string, LogoEntry[]> = {};
-  for (const dir of readdirSync(logoRoot, { withFileTypes: true })) {
-    if (!dir.isDirectory()) continue;
+  for (const dir of logoFolders(logoRoot)) {
     const entries: LogoEntry[] = [];
-    for (const f of readdirSync(path.join(logoRoot, dir.name), { withFileTypes: true })) {
+    for (const f of readdirSync(dir.dir, { withFileTypes: true })) {
       if (!f.isFile()) continue;
       const parsed = parseLogoFilename(f.name);
       if (!parsed) {
