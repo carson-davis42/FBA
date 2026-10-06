@@ -2,7 +2,8 @@ import { useParams } from 'react-router-dom';
 import { applyPlacement, applyPlayed, awardTotals, careerSpan, careerStats, liveCareer, playerStatus, teamsPlayedFor, type Placement } from '../../engine/history/career';
 import { d2PlayerHonours } from '../../engine/history/d2';
 import { playerHonours } from '../../engine/history/honours';
-import type { AwardCountsFile, D2DraftHistoryFile, DraftHistoryFile, HallOfFameFile, MetaFile, PlayerBiosFile, PlayersFile, ResultsFile, RostersFile, TeamsFile } from '../../engine/shared/types';
+import { relativesOf } from '../../engine/history/relatives';
+import type { AwardCountsFile, D2DraftHistoryFile, DraftHistoryFile, HallOfFameFile, MetaFile, PlayerBiosFile, PlayersFile, RelativesFile, ResultsFile, RostersFile, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
 import { Badge } from '../components/Badge';
 import { Hero } from '../components/Hero';
@@ -14,7 +15,7 @@ import { franchiseByAbbr } from '../../engine/shared/franchises';
 import { draftLine, draftTeamId } from './DraftSeasonPage';
 import { playerEmblem } from './PlayerEmblem';
 import { useJcTeams } from './jc/useJc';
-import { SkippedWarning } from './PlayerLink';
+import { PlayerLink, SkippedWarning } from './PlayerLink';
 import { useD2Teams } from './d2/useD2';
 import { findTeam, TeamAbbr, useFbaTeams } from './useTeams';
 import './history.css';
@@ -48,6 +49,8 @@ export function PlayerHistoryPage() {
   const players = useDoc<PlayersFile>('players.json');
   const bios = useDoc<PlayerBiosFile>('leagues/fba/playerBios.json');
   const counts = useDoc<AwardCountsFile>('leagues/fba/awardCounts.json');
+  // Family links only decorate the page, so a missing or slow file never blocks it.
+  const relativesDoc = useDoc<RelativesFile>('leagues/fba/relatives.json');
   const hall = useDoc<HallOfFameFile>('leagues/fba/hallOfFame.json');
   const drafts = useDoc<DraftHistoryFile>('leagues/fba/draftHistory.json');
   const { settled, teams, franchises } = useFbaTeams();
@@ -95,6 +98,7 @@ export function PlayerHistoryPage() {
   const age = meta.data ? (birthSeason !== null ? meta.data.currentSeason - birthSeason
     : rosterEntry ? rosterEntry.age + meta.data.currentSeason - rosterEntry.season : null) : null;
   const honours = playerHonours(seasons, playerId);
+  const relatives = relativesDoc.data ? relativesOf(relativesDoc.data, playerId) : [];
   const bySeason = new Map<number, string[]>();
   for (const h of honours) bySeason.set(h.season, [...(bySeason.get(h.season) ?? []), h.text]);
   const placement = ((): { now: Placement; season: number } | null => {
@@ -162,6 +166,14 @@ export function PlayerHistoryPage() {
       <SkippedWarning errors={errors} />
       {!bio && !hasCareer(career) && !hasAwards && honours.length === 0 && d2Honours.length === 0 && stats.rows.length === 0 && <p className="muted">No history recorded</p>}
       <CareerSection career={career} born={bio ? bio.born : null} age={age} currentSeason={meta.data?.currentSeason} totals={totals} teams={{ fba: teams, d2: d2Teams.teams, college: jcTeams.teams, wc: wcTeams.data?.teams ?? [], franchises }} />
+      {relatives.length > 0 && (
+        <div>
+          <h2>Relatives</h2>
+          <ul className="plain-list">
+            {relatives.map(r => <li key={r.playerId}><b>{r.label}</b> <PlayerLink id={r.playerId} players={players.data!} /></li>)}
+          </ul>
+        </div>
+      )}
       {honours.length > 0 && (
         <div>
           <h2>Honours</h2>

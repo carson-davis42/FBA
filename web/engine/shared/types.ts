@@ -1075,6 +1075,45 @@ export const PlayerBiosFile = z.object({ league: z.literal('fba'), bios: z.array
   .refine(f => new Set(f.bios.map(b => b.playerId)).size === f.bios.length, 'Each player has one bio');
 export type PlayerBiosFile = z.infer<typeof PlayerBiosFile>;
 
+/**
+ * leagues/fba/relatives.json: who is whose parent. Siblings share a parent. A relative who is not a player, and any skipped generation, is an `unlisted`
+ * id (u001...), so cousins, uncles, grandparents and the rest are worked out from these links rather than stored.
+ */
+const RelativeId = z.string().regex(/^(p\d{5}|u\d{3})$/);
+export const RelativesFile = z.object({
+  unlisted: z.array(z.string().regex(/^u\d{3}$/)),
+  parents: z.array(z.object({ child: RelativeId, parent: RelativeId }).strict()),
+}).strict().superRefine((f, ctx) => {
+  const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
+  const declared = new Set(f.unlisted);
+  if (declared.size !== f.unlisted.length) issue('Unlisted ids must be unique');
+  const used = new Set<string>();
+  const seen = new Set<string>();
+  const parentsOf = new Map<string, string[]>();
+  for (const { child, parent } of f.parents) {
+    if (child === parent) issue(`${child} cannot be their own parent`);
+    const key = `${child}>${parent}`;
+    if (seen.has(key)) issue(`Duplicate link ${key}`);
+    seen.add(key);
+    for (const id of [child, parent]) if (id.startsWith('u')) { used.add(id); if (!declared.has(id)) issue(`${id} is not declared in unlisted`); }
+    parentsOf.set(child, [...(parentsOf.get(child) ?? []), parent]);
+  }
+  for (const id of declared) if (!used.has(id)) issue(`${id} is declared but never linked`);
+  for (const [child, ps] of parentsOf) if (ps.length > 2) issue(`${child} has more than two parents`);
+  // No one can be their own ancestor.
+  const state = new Map<string, 1 | 2>();
+  const visit = (id: string): boolean => {
+    if (state.get(id) === 2) return false;
+    if (state.get(id) === 1) return true;
+    state.set(id, 1);
+    for (const p of parentsOf.get(id) ?? []) if (visit(p)) return true;
+    state.set(id, 2);
+    return false;
+  };
+  for (const id of parentsOf.keys()) if (visit(id)) { issue('The links form a loop'); break; }
+});
+export type RelativesFile = z.infer<typeof RelativesFile>;
+
 export const AWARD_KEYS = ['MVP', 'ROTY', 'PPK', 'LP', 'MC', 'DPOY', 'MIP', 'ALL_FBA_1', 'ALL_FBA_2', 'ALL_STAR', 'YOUNG_STAR',
   'ASG_MVP', 'YSG_MVP', 'FINALS_MVP', 'CHAMPION', 'CSHIP_APP', 'CONF_CHAMPION', 'FIVE_POINT', 'DUNK'] as const;
 export type AwardKey = typeof AWARD_KEYS[number];

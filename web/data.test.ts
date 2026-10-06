@@ -2,7 +2,8 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { schemaForPath } from './engine/shared/schemaRegistry';
-import type { FreeAgentsFile, MetaFile, ReservesFile, RostersFile } from './engine/shared/types';
+import { relativesOf } from './engine/history/relatives';
+import type { FreeAgentsFile, MetaFile, PlayersFile, RelativesFile, ReservesFile, RostersFile } from './engine/shared/types';
 
 const DATA_DIR = path.join(__dirname, 'data');
 const readData = <T>(rel: string): T => JSON.parse(readFileSync(path.join(DATA_DIR, ...rel.split('/')), 'utf8')) as T;
@@ -39,6 +40,18 @@ describe('committed data', () => {
       expect(result.success).toBe(true);
     },
   );
+
+  it('links relatives only to players that exist, and derives the Quinsler family correctly', () => {
+    const rel = readData<RelativesFile>('leagues/fba/relatives.json');
+    const players = readData<PlayersFile>('players.json').players;
+    for (const { child, parent } of rel.parents) for (const id of [child, parent]) if (id.startsWith('p')) expect(players[id], id).toBeDefined();
+    const idOf = (name: string) => Object.values(players).find(p => p.name === name)!.id;
+    const of = (name: string) => relativesOf(rel, idOf(name)).map(r => `${r.label}: ${players[r.playerId].name}`);
+    expect(of('Matt Quinsler')).toEqual(expect.arrayContaining(['Parent: Marcus Quinsler', 'Sibling: Saun Quinsler', 'Cousin: Stephen Quinsler']));
+    expect(of('Marcus Quinsler')).toContain('Nephew/niece: Stephen Quinsler');
+    expect(of('Saun Quinsler')).toContain('Grandchild: CJ Quinsler');
+    expect(of('Seth Quinsler')).toContain('Third cousin: CJ Quinsler');
+  });
 
   it('has no player listed in more than one pool for the current season', () => {
     const meta = readData<MetaFile>('meta.json');

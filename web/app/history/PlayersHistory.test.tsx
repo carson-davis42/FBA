@@ -128,6 +128,28 @@ describe('PlayerHistoryPage', () => {
     expect(await screen.findByText(expected)).toBeTruthy();
   });
 
+  describe('relatives', () => {
+    // p00001 is the parent of p00002 and p00003, who are therefore siblings.
+    const relatives = { unlisted: [], parents: [{ child: 'p00002', parent: 'p00001' }, { child: 'p00003', parent: 'p00001' }] };
+
+    it('lists relatives with how they are related, each linked to their page', async () => {
+      stub({ currentSeason: 79, extra: { '/api/state/leagues/fba/relatives.json': relatives } });
+      renderAt('/history/fba/players/p00002');
+      const heading = await screen.findByRole('heading', { name: 'Relatives' });
+      const list = heading.parentElement!;
+      expect(within(list).getByText('Parent').parentElement!.textContent).toContain('Cameron Lučić');
+      expect(within(list).getByText('Sibling').parentElement!.textContent).toContain('Sam Nobody');
+      expect(within(list).getByRole('link', { name: 'Sam Nobody' }).getAttribute('href')).toBe('/history/fba/players/p00003');
+    });
+
+    it('shows no Relatives section for a player with no family on file, or without a relatives file', async () => {
+      stub({ currentSeason: 79 });
+      renderAt('/history/fba/players/p00002');
+      await screen.findByRole('heading', { level: 1, name: 'Ray Allen' });
+      expect(screen.queryByRole('heading', { name: 'Relatives' })).toBeNull();
+    });
+  });
+
   describe('a player whose last stint ended before the current season', () => {
     const gone: PlayerBiosFile = { league: 'fba', bios: [{ playerId: 'p00001', born: 'Born-S46', entries: ['D2(Mumbai)-S77-S78'] }] };
     const roster = (season: number) => ({ league: 'fbad2', season, locked: false, teams: { MUM: [{ playerId: 'p00001', position: 'PG', rating: 70, age: 30, points: 0 }] } });
