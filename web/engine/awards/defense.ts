@@ -1,4 +1,4 @@
-import { makeChance, type SimGame } from '../season/sim';
+import { FBA_PROFILE, shotOddsAgainst, type SimGame } from '../season/sim';
 import type { ResultsFile, RostersFile } from '../shared/types';
 
 export interface DefenseLine { def: number; stops: number; allowed: number; exp: number }
@@ -19,7 +19,7 @@ export function defenseLines(g: SimGame, refRating: number): { home: DefenseLine
     d.def++;
     if (!p.made) d.stops++;
     d.allowed += p.points;
-    d.exp += expHundredths(makeChance(offense.players[p.handler].rating, refRating));
+    d.exp += expHundredths(shotOddsAgainst(offense, p.handler, refRating, g.profile ?? FBA_PROFILE));
   }
   return out;
 }

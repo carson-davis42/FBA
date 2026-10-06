@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
 import { recordGames, simNextGames, toGameResult } from '../season/moves';
-import type { Possession, SimGame, SimTeam } from '../season/sim';
+import { simGame, type Possession, type SimGame, type SimTeam } from '../season/sim';
 import { fbaSeasonState } from '../season/testFixtures';
 import type { ResultsFile, RostersFile } from '../shared/types';
 import { defenseLines, expHundredths, leagueRefRating, pointsSavedPerGame, seasonDefense } from './defense';
@@ -28,9 +28,9 @@ describe('expHundredths', () => {
 
 describe('defenseLines', () => {
   it('credits each possession to its defender, with exp against the reference rating', () => {
-    // Ref 80: makeChance(90, 80) = 64 → 162; makeChance(70, 80) = 44 → 102.
+    // Ref 80: the 90 takes 27% of H's touches, so makeChance(90, 80) = 64 less a 0.7 usage penalty is 63 → 159; makeChance(70, 80) = 44 → 102.
     const d = defenseLines(game([poss('home', 0, 0, 2), poss('away', 1, 2, 0), poss('home', 0, 0, 3)]), 80);
-    expect(d.away[0]).toEqual({ def: 2, stops: 0, allowed: 5, exp: 324 });
+    expect(d.away[0]).toEqual({ def: 2, stops: 0, allowed: 5, exp: 318 });
     expect(d.home[2]).toEqual({ def: 1, stops: 1, allowed: 0, exp: 102 });
     expect(d.home[0]).toEqual({ def: 0, stops: 0, allowed: 0, exp: 0 });
   });
@@ -70,5 +70,23 @@ describe('saved games carry defensive stats', () => {
     const r = recordGames({ ...s, schedule: { ...s.schedule!, pauses: [] } }, games);
     if (!r.ok) throw new Error(r.problems.join('; '));
     expect(r.state.results!.games[0].box!.away[0].def).toBeTypeOf('number');
+  });
+});
+
+describe('points saved is fair to defenders of high-usage shooters', () => {
+  it('an average defender guarding a star team saves about nothing, usage penalty included', () => {
+    const star = team('S', [98, 73, 73, 73, 73]);
+    const avg = team('B', [78, 78, 78, 78, 78]);
+    const rng = mulberry32(8675309);
+    const totals = { games: 0, def: 0, stops: 0, allowed: 0, exp: 0 };
+    const n = 1500;
+    for (let i = 0; i < n; i++) {
+      const g = simGame(i, i % 2 === 0 ? star : avg, i % 2 === 0 ? avg : star, rng);
+      const lines = defenseLines(g, 78)[i % 2 === 0 ? 'away' : 'home'];
+      for (const l of lines) { totals.allowed += l.allowed; totals.exp += l.exp; }
+      totals.games += 5;
+    }
+    // Before the usage penalty was in the expectation, these defenders looked about half a point a game better than they were.
+    expect(Math.abs(pointsSavedPerGame(totals))).toBeLessThan(0.2);
   });
 });
