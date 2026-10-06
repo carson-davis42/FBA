@@ -243,7 +243,7 @@
         "ALA": 1,
         "GU": 1
       },
-      "committedTo": null
+      "committedTo": "MSU"
     },
     {
       "playerId": "p02379",
@@ -271,7 +271,7 @@
         "UGA": 1,
         "MISS": 1
       },
-      "committedTo": null
+      "committedTo": "MISS"
     },
     {
       "playerId": "p02381",
@@ -297,7 +297,7 @@
       "projections": {
         "MEM": 1
       },
-      "committedTo": null
+      "committedTo": "MEM"
     },
     {
       "playerId": "p02383",
@@ -309,7 +309,7 @@
       "projections": {
         "DUKE": 1
       },
-      "committedTo": null
+      "committedTo": "GU"
     },
     {
       "playerId": "p02384",
@@ -328,8 +328,14 @@
       "rating": 79,
       "stars": 4,
       "consensus": 82.3,
-      "projections": {},
-      "committedTo": null
+      "projections": {
+        "BYU": 1,
+        "LOU": 1,
+        "OHSU": 1,
+        "ORE": 1,
+        "WICH": 1
+      },
+      "committedTo": "LOU"
     },
     {
       "playerId": "p02386",
@@ -339,7 +345,7 @@
       "stars": 4,
       "consensus": 81.4,
       "projections": {},
-      "committedTo": null
+      "committedTo": "MISS"
     },
     {
       "playerId": "p02387",
@@ -348,8 +354,10 @@
       "rating": 77,
       "stars": 4,
       "consensus": 80.3,
-      "projections": {},
-      "committedTo": null
+      "projections": {
+        "TAMU": 1
+      },
+      "committedTo": "VAN"
     },
     {
       "playerId": "p02388",
@@ -359,7 +367,7 @@
       "stars": 3,
       "consensus": 79.8,
       "projections": {},
-      "committedTo": null
+      "committedTo": "FAU"
     },
     {
       "playerId": "p02389",
@@ -369,7 +377,7 @@
       "stars": 3,
       "consensus": 79.6,
       "projections": {},
-      "committedTo": null
+      "committedTo": "BSU"
     },
     {
       "playerId": "p02390",
@@ -379,7 +387,7 @@
       "stars": 3,
       "consensus": 78.5,
       "projections": {},
-      "committedTo": null
+      "committedTo": "MIN"
     }
   ],
   "portal": [
@@ -445,7 +453,7 @@
       "rating": 84,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "FLO",
       "fromTeam": "FAU"
     },
     {
@@ -455,7 +463,7 @@
       "rating": 84,
       "stars": 3,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "DUKE",
       "fromTeam": "SMU"
     },
     {
@@ -659,7 +667,7 @@
       "rating": 83,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "AUB",
       "fromTeam": "TROY"
     },
     {
@@ -679,7 +687,7 @@
       "rating": 84,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "PUR",
       "fromTeam": "WASH"
     },
     {
@@ -763,7 +771,7 @@
       "rating": 83,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "TTU",
       "fromTeam": "SFA"
     },
     {
@@ -805,7 +813,7 @@
       "rating": 85,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "ILL",
       "fromTeam": "TENN"
     },
     {
@@ -835,8 +843,18 @@
       "rating": 85,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "TENN",
       "fromTeam": "DUKE"
+    },
+    {
+      "playerId": "p00767",
+      "position": "PG",
+      "classYear": "Sr",
+      "rating": 82,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "PUR"
     }
   ]
 }

@@ -1248,6 +1248,1905 @@
         "->BOS SF-Alexei Romano",
         "->TOR S83 Draft Pick(via BOS)(8P)"
       ]
+    },
+    {
+      "seq": 114,
+      "batchId": "bmuw7hh7u53aox",
+      "type": "trade",
+      "teams": [
+        "FLO",
+        "CGG"
+      ],
+      "lines": [
+        "->CGG C-Landon Love",
+        "->FLO C-Ignacio Cain",
+        "->FLO S83 Draft Pick(via CGG)(8P)"
+      ]
+    },
+    {
+      "seq": 115,
+      "batchId": "bmuw7lyikd1wij",
+      "type": "trade",
+      "teams": [
+        "DET",
+        "MIL"
+      ],
+      "lines": [
+        "->MIL PF-Jimi Jackson",
+        "->DET PF-Andre Robinson",
+        "->MIL S81 Draft Pick(via DET)(LP)"
+      ]
+    },
+    {
+      "seq": 116,
+      "batchId": "bmuw7obtg2n9he",
+      "type": "trade",
+      "teams": [
+        "TOR",
+        "CAR"
+      ],
+      "lines": [
+        "->CAR C-Kenneth Nkuna",
+        "->TOR C-Azubuike Okoro",
+        "->TOR S82 Draft Pick(via CAR)(10P)"
+      ]
+    },
+    {
+      "seq": 117,
+      "batchId": "bmuw7tsou3lxld",
+      "type": "trade",
+      "teams": [
+        "NO",
+        "OV"
+      ],
+      "lines": [
+        "->NO C-Ifa Fukui",
+        "->OV C-Damion Bradley",
+        "->OV S80 Draft Pick(via NO)(LP)"
+      ]
+    },
+    {
+      "seq": 118,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Rating PG-Gabriel Greenwood: 93→94 (in-season)"
+      ]
+    },
+    {
+      "seq": 119,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Rating SG-Yasin Milovanović: 87→88 (in-season)"
+      ]
+    },
+    {
+      "seq": 120,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Rating SF-Alexei Romano: 71→72 (in-season)"
+      ]
+    },
+    {
+      "seq": 121,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Rating PF-Callan Schwangau: 68→67 (in-season)"
+      ]
+    },
+    {
+      "seq": 122,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CAR"
+      ],
+      "lines": [
+        "Rating SG-Terence Hopkins: 69→67 (in-season)"
+      ]
+    },
+    {
+      "seq": 123,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "Rating SG-Kenyon Rush Jr: 79→78 (in-season)"
+      ]
+    },
+    {
+      "seq": 124,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "Rating PF-Luke Tennyson: 73→71 (in-season)"
+      ]
+    },
+    {
+      "seq": 125,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "Rating C-Ivan Petrovich: 73→74 (in-season)"
+      ]
+    },
+    {
+      "seq": 126,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Rating PG-Angel Wilson: 77→75 (in-season)"
+      ]
+    },
+    {
+      "seq": 127,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Rating SG-JT Ramsey: 95→94 (in-season)"
+      ]
+    },
+    {
+      "seq": 128,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Rating SF-Kobe Crawford: 67→69 (in-season)"
+      ]
+    },
+    {
+      "seq": 129,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Rating C-Grant Ogden: 83→82 (in-season)"
+      ]
+    },
+    {
+      "seq": 130,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CP"
+      ],
+      "lines": [
+        "Rating SF-Akeel Moody: 68→67 (in-season)"
+      ]
+    },
+    {
+      "seq": 131,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CP"
+      ],
+      "lines": [
+        "Rating PF-Trace Garnett: 75→76 (in-season)"
+      ]
+    },
+    {
+      "seq": 132,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CP"
+      ],
+      "lines": [
+        "Rating C-Bryson Kirkland: 75→74 (in-season)"
+      ]
+    },
+    {
+      "seq": 133,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "CGG"
+      ],
+      "lines": [
+        "Rating C-Landon Love: 71→72 (in-season)"
+      ]
+    },
+    {
+      "seq": 134,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "DCB"
+      ],
+      "lines": [
+        "Rating PG-Kyler Crest: 81→82 (in-season)"
+      ]
+    },
+    {
+      "seq": 135,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "DCB"
+      ],
+      "lines": [
+        "Rating SG-Kendall Hatfield: 83→84 (in-season)"
+      ]
+    },
+    {
+      "seq": 136,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "DCB"
+      ],
+      "lines": [
+        "Rating PF-Dior Freeman: 73→71 (in-season)"
+      ]
+    },
+    {
+      "seq": 137,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "DCB"
+      ],
+      "lines": [
+        "Rating C-Kasey Monroe: 81→82 (in-season)"
+      ]
+    },
+    {
+      "seq": 138,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "DEN"
+      ],
+      "lines": [
+        "Rating PG-Beau Riley: 72→73 (in-season)"
+      ]
+    },
+    {
+      "seq": 139,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "DEN"
+      ],
+      "lines": [
+        "Rating SG-Nadeem Akers: 68→67 (in-season)"
+      ]
+    },
+    {
+      "seq": 140,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "DEN"
+      ],
+      "lines": [
+        "Rating PF-Ronan Langford: 80→81 (in-season)"
+      ]
+    },
+    {
+      "seq": 141,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "DEN"
+      ],
+      "lines": [
+        "Rating C-Bello Olumide: 88→89 (in-season)"
+      ]
+    },
+    {
+      "seq": 142,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "DET"
+      ],
+      "lines": [
+        "Rating PG-Donovan Brooks: 81→80 (in-season)"
+      ]
+    },
+    {
+      "seq": 143,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "DET"
+      ],
+      "lines": [
+        "Rating SG-Uzoma Okorie: 70→71 (in-season)"
+      ]
+    },
+    {
+      "seq": 144,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "DET"
+      ],
+      "lines": [
+        "Rating C-JJ Eaton: 85→86 (in-season)"
+      ]
+    },
+    {
+      "seq": 145,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Rating PG-Willy Jacobs: 70→69 (in-season)"
+      ]
+    },
+    {
+      "seq": 146,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Rating SG-Kamil Novakovic: 83→82 (in-season)"
+      ]
+    },
+    {
+      "seq": 147,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Rating SF-AJ Krause: 78→77 (in-season)"
+      ]
+    },
+    {
+      "seq": 148,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "HON"
+      ],
+      "lines": [
+        "Rating PF-Kodi Bates: 84→85 (in-season)"
+      ]
+    },
+    {
+      "seq": 149,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "LA"
+      ],
+      "lines": [
+        "Rating PG-Bryce Wilson: 78→79 (in-season)"
+      ]
+    },
+    {
+      "seq": 150,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "LA"
+      ],
+      "lines": [
+        "Rating SG-Avery Wilkins: 81→82 (in-season)"
+      ]
+    },
+    {
+      "seq": 151,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "LA"
+      ],
+      "lines": [
+        "Rating PF-Jayce Jackson-Peters: 81→80 (in-season)"
+      ]
+    },
+    {
+      "seq": 152,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "LA"
+      ],
+      "lines": [
+        "Rating C-Isaiah Freeman: 73→72 (in-season)"
+      ]
+    },
+    {
+      "seq": 153,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Rating PG-Kyron Smart: 68→67 (in-season)"
+      ]
+    },
+    {
+      "seq": 154,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Rating C-Adonis Wonder: 88→89 (in-season)"
+      ]
+    },
+    {
+      "seq": 155,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MAN"
+      ],
+      "lines": [
+        "Rating SG-Rylan Rush: 69→70 (in-season)"
+      ]
+    },
+    {
+      "seq": 156,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MAN"
+      ],
+      "lines": [
+        "Rating SF-Ollie Frye: 84→86 (in-season)"
+      ]
+    },
+    {
+      "seq": 157,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MAN"
+      ],
+      "lines": [
+        "Rating PF-Denver Bruner: 88→86 (in-season)"
+      ]
+    },
+    {
+      "seq": 158,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "Rating SG-Carmelo Brunnell: 70→72 (in-season)"
+      ]
+    },
+    {
+      "seq": 159,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "Rating SF-Zykeem Bellamy: 68→67 (in-season)"
+      ]
+    },
+    {
+      "seq": 160,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "Rating PF-Will Fox Jr: 84→83 (in-season)"
+      ]
+    },
+    {
+      "seq": 161,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "Rating C-Kilian Leclair: 76→74 (in-season)"
+      ]
+    },
+    {
+      "seq": 162,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "Rating PG-Wesley Knight: 72→73 (in-season)"
+      ]
+    },
+    {
+      "seq": 163,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "Rating PF-Jimi Jackson: 68→67 (in-season)"
+      ]
+    },
+    {
+      "seq": 164,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "Rating C-Malik Locke: 77→78 (in-season)"
+      ]
+    },
+    {
+      "seq": 165,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MON"
+      ],
+      "lines": [
+        "Rating PG-Milo Lawrenz: 83→84 (in-season)"
+      ]
+    },
+    {
+      "seq": 166,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MON"
+      ],
+      "lines": [
+        "Rating SG-Justin Green: 86→88 (in-season)"
+      ]
+    },
+    {
+      "seq": 167,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MON"
+      ],
+      "lines": [
+        "Rating PF-JJ Peterson: 71→70 (in-season)"
+      ]
+    },
+    {
+      "seq": 168,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "MON"
+      ],
+      "lines": [
+        "Rating C-Duke Chudnovsky: 78→77 (in-season)"
+      ]
+    },
+    {
+      "seq": 169,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "NO"
+      ],
+      "lines": [
+        "Rating PG-Liam Mercado: 68→69 (in-season)"
+      ]
+    },
+    {
+      "seq": 170,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "NO"
+      ],
+      "lines": [
+        "Rating SG-Luca Rossi: 73→75 (in-season)"
+      ]
+    },
+    {
+      "seq": 171,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "NO"
+      ],
+      "lines": [
+        "Rating C-Ifa Fukui: 73→71 (in-season)"
+      ]
+    },
+    {
+      "seq": 172,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "Rating PG-SJ Herring: 76→77 (in-season)"
+      ]
+    },
+    {
+      "seq": 173,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "Rating SG-Harley Hamlin: 82→83 (in-season)"
+      ]
+    },
+    {
+      "seq": 174,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "Rating SF-Jakoby Henderson: 69→67 (in-season)"
+      ]
+    },
+    {
+      "seq": 175,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "Rating PF-Darius Bruner: 71→72 (in-season)"
+      ]
+    },
+    {
+      "seq": 176,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "OAK"
+      ],
+      "lines": [
+        "Rating SG-Kai Switzer: 76→78 (in-season)"
+      ]
+    },
+    {
+      "seq": 177,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "OAK"
+      ],
+      "lines": [
+        "Rating SF-Scottie Riley: 86→85 (in-season)"
+      ]
+    },
+    {
+      "seq": 178,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Rating PG-Kymari Rivers: 75→74 (in-season)"
+      ]
+    },
+    {
+      "seq": 179,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Rating SG-Jalen St.Clair: 78→79 (in-season)"
+      ]
+    },
+    {
+      "seq": 180,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Rating SF-Kai Richardson: 79→78 (in-season)"
+      ]
+    },
+    {
+      "seq": 181,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Rating C-Damion Bradley: 68→67 (in-season)"
+      ]
+    },
+    {
+      "seq": 182,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "SAS"
+      ],
+      "lines": [
+        "Rating PG-Jimmy Joyce: 68→69 (in-season)"
+      ]
+    },
+    {
+      "seq": 183,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "SAS"
+      ],
+      "lines": [
+        "Rating SG-Riley Shannon: 78→79 (in-season)"
+      ]
+    },
+    {
+      "seq": 184,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "Rating PG-Soren Lindberg: 83→84 (in-season)"
+      ]
+    },
+    {
+      "seq": 185,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "Rating SG-Baylor Whittaker: 84→82 (in-season)"
+      ]
+    },
+    {
+      "seq": 186,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "Rating PF-Morgan Meyer: 70→71 (in-season)"
+      ]
+    },
+    {
+      "seq": 187,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "Rating C-Thiago Costa: 75→74 (in-season)"
+      ]
+    },
+    {
+      "seq": 188,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Rating SF-Xavier Rose: 71→69 (in-season)"
+      ]
+    },
+    {
+      "seq": 189,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Rating PF-Romello Cain: 79→80 (in-season)"
+      ]
+    },
+    {
+      "seq": 190,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Rating C-Samuel Adeyemi: 80→82 (in-season)"
+      ]
+    },
+    {
+      "seq": 191,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "TEX"
+      ],
+      "lines": [
+        "Rating SF-Koa'e Keano: 67→66 (in-season)"
+      ]
+    },
+    {
+      "seq": 192,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "TOR"
+      ],
+      "lines": [
+        "Rating C-Azubuike Okoro: 68→69 (in-season)"
+      ]
+    },
+    {
+      "seq": 193,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "VAN"
+      ],
+      "lines": [
+        "Rating PG-Quinn Ellwood: 83→82 (in-season)"
+      ]
+    },
+    {
+      "seq": 194,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "VAN"
+      ],
+      "lines": [
+        "Rating SG-Mani Varela: 84→82 (in-season)"
+      ]
+    },
+    {
+      "seq": 195,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "VEG"
+      ],
+      "lines": [
+        "Rating SF-Clarke Ewing: 75→76 (in-season)"
+      ]
+    },
+    {
+      "seq": 196,
+      "batchId": "bmuw805g6rmz0j",
+      "type": "edit",
+      "teams": [
+        "VEG"
+      ],
+      "lines": [
+        "Rating C-Clay Pitts: 77→79 (in-season)"
+      ]
+    },
+    {
+      "seq": 197,
+      "batchId": "bmuw82gvicnldk",
+      "type": "trade",
+      "teams": [
+        "CHI",
+        "CP"
+      ],
+      "lines": [
+        "->CHI SF-Akeel Moody",
+        "->CP SF-Xavier Harwood",
+        "->CHI S80 Draft Pick(via CP)(10P)"
+      ]
+    },
+    {
+      "seq": 198,
+      "batchId": "bmuw8771n2a0fg",
+      "type": "trade",
+      "teams": [
+        "TOR",
+        "TEX"
+      ],
+      "lines": [
+        "->TOR SF-Koa'e Keano",
+        "->TEX SF-Mubiru Okeke",
+        "->TOR S81 Pick Swap(TEX/TOR)(TOR gets better)"
+      ]
+    },
+    {
+      "seq": 199,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Rating SG-Yasin Milovanović: 88→90 (in-season)"
+      ]
+    },
+    {
+      "seq": 200,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Rating SF-Alexei Romano: 72→73 (in-season)"
+      ]
+    },
+    {
+      "seq": 201,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Rating PF-Callan Schwangau: 67→68 (in-season)"
+      ]
+    },
+    {
+      "seq": 202,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CAR"
+      ],
+      "lines": [
+        "Rating PF-Kya Emery: 76→75 (in-season)"
+      ]
+    },
+    {
+      "seq": 203,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CAR"
+      ],
+      "lines": [
+        "Rating C-Kenneth Nkuna: 73→72 (in-season)"
+      ]
+    },
+    {
+      "seq": 204,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "Rating PG-Jalen Carter: 72→73 (in-season)"
+      ]
+    },
+    {
+      "seq": 205,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "Rating SF-Akeel Moody: 67→68 (in-season)"
+      ]
+    },
+    {
+      "seq": 206,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Rating PG-Angel Wilson: 75→76 (in-season)"
+      ]
+    },
+    {
+      "seq": 207,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Rating SG-JT Ramsey: 94→95 (in-season)"
+      ]
+    },
+    {
+      "seq": 208,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Rating SF-Kobe Crawford: 69→68 (in-season)"
+      ]
+    },
+    {
+      "seq": 209,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Rating C-Grant Ogden: 82→81 (in-season)"
+      ]
+    },
+    {
+      "seq": 210,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CP"
+      ],
+      "lines": [
+        "Rating PG-Kabelo Ayodele: 71→72 (in-season)"
+      ]
+    },
+    {
+      "seq": 211,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CP"
+      ],
+      "lines": [
+        "Rating SF-Xavier Harwood: 74→73 (in-season)"
+      ]
+    },
+    {
+      "seq": 212,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CP"
+      ],
+      "lines": [
+        "Rating PF-Trace Garnett: 76→74 (in-season)"
+      ]
+    },
+    {
+      "seq": 213,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CGG"
+      ],
+      "lines": [
+        "Rating SF-Griffin Correa: 67→66 (in-season)"
+      ]
+    },
+    {
+      "seq": 214,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "CGG"
+      ],
+      "lines": [
+        "Rating C-Landon Love: 72→71 (in-season)"
+      ]
+    },
+    {
+      "seq": 215,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "DCB"
+      ],
+      "lines": [
+        "Rating SG-Kendall Hatfield: 84→86 (in-season)"
+      ]
+    },
+    {
+      "seq": 216,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "DCB"
+      ],
+      "lines": [
+        "Rating SF-Keon Whitfield: 77→76 (in-season)"
+      ]
+    },
+    {
+      "seq": 217,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "DCB"
+      ],
+      "lines": [
+        "Rating PF-Dior Freeman: 71→70 (in-season)"
+      ]
+    },
+    {
+      "seq": 218,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "DEN"
+      ],
+      "lines": [
+        "Rating SG-Nadeem Akers: 67→68 (in-season)"
+      ]
+    },
+    {
+      "seq": 219,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "DEN"
+      ],
+      "lines": [
+        "Rating PF-Ronan Langford: 81→80 (in-season)"
+      ]
+    },
+    {
+      "seq": 220,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "DET"
+      ],
+      "lines": [
+        "Rating PG-Donovan Brooks: 80→82 (in-season)"
+      ]
+    },
+    {
+      "seq": 221,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "DET"
+      ],
+      "lines": [
+        "Rating PF-Andre Robinson: 71→70 (in-season)"
+      ]
+    },
+    {
+      "seq": 222,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "DET"
+      ],
+      "lines": [
+        "Rating C-JJ Eaton: 86→87 (in-season)"
+      ]
+    },
+    {
+      "seq": 223,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Rating PG-Willy Jacobs: 69→70 (in-season)"
+      ]
+    },
+    {
+      "seq": 224,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Rating SG-Kamil Novakovic: 82→81 (in-season)"
+      ]
+    },
+    {
+      "seq": 225,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Rating SF-AJ Krause: 77→76 (in-season)"
+      ]
+    },
+    {
+      "seq": 226,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Rating PF-Daelin Strickland: 77→79 (in-season)"
+      ]
+    },
+    {
+      "seq": 227,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Rating C-Ignacio Cain: 67→68 (in-season)"
+      ]
+    },
+    {
+      "seq": 228,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "HON"
+      ],
+      "lines": [
+        "Rating PG-Cam Clark: 70→71 (in-season)"
+      ]
+    },
+    {
+      "seq": 229,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "HON"
+      ],
+      "lines": [
+        "Rating SF-Makenzie Bell: 78→77 (in-season)"
+      ]
+    },
+    {
+      "seq": 230,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "LA"
+      ],
+      "lines": [
+        "Rating SG-Avery Wilkins: 82→83 (in-season)"
+      ]
+    },
+    {
+      "seq": 231,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "LA"
+      ],
+      "lines": [
+        "Rating PF-Jayce Jackson-Peters: 80→81 (in-season)"
+      ]
+    },
+    {
+      "seq": 232,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "LA"
+      ],
+      "lines": [
+        "Rating C-Isaiah Freeman: 72→73 (in-season)"
+      ]
+    },
+    {
+      "seq": 233,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Rating PG-Kyron Smart: 67→65 (in-season)"
+      ]
+    },
+    {
+      "seq": 234,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Rating SG-Micah Akers: 78→79 (in-season)"
+      ]
+    },
+    {
+      "seq": 235,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Rating C-Adonis Wonder: 89→88 (in-season)"
+      ]
+    },
+    {
+      "seq": 236,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MAN"
+      ],
+      "lines": [
+        "Rating PG-KJ Cooke: 86→88 (in-season)"
+      ]
+    },
+    {
+      "seq": 237,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MAN"
+      ],
+      "lines": [
+        "Rating SG-Rylan Rush: 70→71 (in-season)"
+      ]
+    },
+    {
+      "seq": 238,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MAN"
+      ],
+      "lines": [
+        "Rating SF-Ollie Frye: 86→85 (in-season)"
+      ]
+    },
+    {
+      "seq": 239,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MAN"
+      ],
+      "lines": [
+        "Rating C-Kiri Camacho: 70→69 (in-season)"
+      ]
+    },
+    {
+      "seq": 240,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "Rating SG-Carmelo Brunnell: 72→71 (in-season)"
+      ]
+    },
+    {
+      "seq": 241,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "Rating C-Kilian Leclair: 74→75 (in-season)"
+      ]
+    },
+    {
+      "seq": 242,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "Rating PG-Wesley Knight: 73→72 (in-season)"
+      ]
+    },
+    {
+      "seq": 243,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "Rating SG-Cooper Wells: 86→87 (in-season)"
+      ]
+    },
+    {
+      "seq": 244,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "Rating SF-Dominic Mercer: 71→72 (in-season)"
+      ]
+    },
+    {
+      "seq": 245,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "Rating PF-Jimi Jackson: 67→66 (in-season)"
+      ]
+    },
+    {
+      "seq": 246,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "MON"
+      ],
+      "lines": [
+        "Rating PF-JJ Peterson: 70→71 (in-season)"
+      ]
+    },
+    {
+      "seq": 247,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "NO"
+      ],
+      "lines": [
+        "Rating PG-Liam Mercado: 69→70 (in-season)"
+      ]
+    },
+    {
+      "seq": 248,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "NO"
+      ],
+      "lines": [
+        "Rating SG-Luca Rossi: 75→74 (in-season)"
+      ]
+    },
+    {
+      "seq": 249,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "NO"
+      ],
+      "lines": [
+        "Rating C-Ifa Fukui: 71→70 (in-season)"
+      ]
+    },
+    {
+      "seq": 250,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "Rating PG-SJ Herring: 77→76 (in-season)"
+      ]
+    },
+    {
+      "seq": 251,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "Rating SF-Jakoby Henderson: 67→68 (in-season)"
+      ]
+    },
+    {
+      "seq": 252,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "Rating PF-Darius Bruner: 72→73 (in-season)"
+      ]
+    },
+    {
+      "seq": 253,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "OAK"
+      ],
+      "lines": [
+        "Rating PG-Camden Giles: 69→70 (in-season)"
+      ]
+    },
+    {
+      "seq": 254,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "OAK"
+      ],
+      "lines": [
+        "Rating SG-Kai Switzer: 78→79 (in-season)"
+      ]
+    },
+    {
+      "seq": 255,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "OAK"
+      ],
+      "lines": [
+        "Rating SF-Scottie Riley: 85→86 (in-season)"
+      ]
+    },
+    {
+      "seq": 256,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "OAK"
+      ],
+      "lines": [
+        "Rating C-Artyom Kovalchuk: 68→67 (in-season)"
+      ]
+    },
+    {
+      "seq": 257,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Rating SG-Jalen St.Clair: 79→81 (in-season)"
+      ]
+    },
+    {
+      "seq": 258,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Rating SF-Kai Richardson: 78→76 (in-season)"
+      ]
+    },
+    {
+      "seq": 259,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "PHX"
+      ],
+      "lines": [
+        "Rating PG-Donn Duarte: 80→78 (in-season)"
+      ]
+    },
+    {
+      "seq": 260,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "PHX"
+      ],
+      "lines": [
+        "Rating SF-Uriel Murray: 77→76 (in-season)"
+      ]
+    },
+    {
+      "seq": 261,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "SAS"
+      ],
+      "lines": [
+        "Rating PG-Jimmy Joyce: 69→68 (in-season)"
+      ]
+    },
+    {
+      "seq": 262,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "SAS"
+      ],
+      "lines": [
+        "Rating SG-Riley Shannon: 79→80 (in-season)"
+      ]
+    },
+    {
+      "seq": 263,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "Rating PG-Soren Lindberg: 84→85 (in-season)"
+      ]
+    },
+    {
+      "seq": 264,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "Rating SG-Baylor Whittaker: 82→81 (in-season)"
+      ]
+    },
+    {
+      "seq": 265,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "Rating SF-Izayah Hilliard: 81→82 (in-season)"
+      ]
+    },
+    {
+      "seq": 266,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "Rating C-Thiago Costa: 74→75 (in-season)"
+      ]
+    },
+    {
+      "seq": 267,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Rating PG-Amari Phillips: 78→77 (in-season)"
+      ]
+    },
+    {
+      "seq": 268,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Rating SG-Jordi Crowder: 77→76 (in-season)"
+      ]
+    },
+    {
+      "seq": 269,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Rating SF-Xavier Rose: 69→68 (in-season)"
+      ]
+    },
+    {
+      "seq": 270,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Rating PF-Romello Cain: 80→81 (in-season)"
+      ]
+    },
+    {
+      "seq": 271,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Rating C-Samuel Adeyemi: 82→81 (in-season)"
+      ]
+    },
+    {
+      "seq": 272,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "TEX"
+      ],
+      "lines": [
+        "Rating SG-Jalen Adams: 80→79 (in-season)"
+      ]
+    },
+    {
+      "seq": 273,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "TEX"
+      ],
+      "lines": [
+        "Rating SF-Mubiru Okeke: 68→69 (in-season)"
+      ]
+    },
+    {
+      "seq": 274,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "TEX"
+      ],
+      "lines": [
+        "Rating PF-Jamari Odom: 86→87 (in-season)"
+      ]
+    },
+    {
+      "seq": 275,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "TEX"
+      ],
+      "lines": [
+        "Rating C-Kaelan Kingsley: 70→69 (in-season)"
+      ]
+    },
+    {
+      "seq": 276,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "TOR"
+      ],
+      "lines": [
+        "Rating PG-Rhett Blackwell II: 77→78 (in-season)"
+      ]
+    },
+    {
+      "seq": 277,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "TOR"
+      ],
+      "lines": [
+        "Rating SG-Kyan Mathews: 74→73 (in-season)"
+      ]
+    },
+    {
+      "seq": 278,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "TOR"
+      ],
+      "lines": [
+        "Rating SF-Koa'e Keano: 66→67 (in-season)"
+      ]
+    },
+    {
+      "seq": 279,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "TOR"
+      ],
+      "lines": [
+        "Rating PF-Kamil Bauer: 79→78 (in-season)"
+      ]
+    },
+    {
+      "seq": 280,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "TOR"
+      ],
+      "lines": [
+        "Rating C-Azubuike Okoro: 69→68 (in-season)"
+      ]
+    },
+    {
+      "seq": 281,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "VAN"
+      ],
+      "lines": [
+        "Rating PG-Quinn Ellwood: 82→83 (in-season)"
+      ]
+    },
+    {
+      "seq": 282,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "VEG"
+      ],
+      "lines": [
+        "Rating SG-Nadir Jacobs: 74→73 (in-season)"
+      ]
+    },
+    {
+      "seq": 283,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "VEG"
+      ],
+      "lines": [
+        "Rating SF-Clarke Ewing: 76→77 (in-season)"
+      ]
+    },
+    {
+      "seq": 284,
+      "batchId": "bmuw963s24zzi0",
+      "type": "edit",
+      "teams": [
+        "VEG"
+      ],
+      "lines": [
+        "Rating C-Clay Pitts: 79→80 (in-season)"
+      ]
     }
   ]
 }

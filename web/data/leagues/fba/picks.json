@@ -211,6 +211,112 @@
       "priority": 1,
       "rolls": [],
       "note": ""
+    },
+    {
+      "id": "bmuw7hh7u53aox-1",
+      "season": 83,
+      "originalTeam": "CGG",
+      "owner": "FLO",
+      "condition": {
+        "kind": "top",
+        "n": 8
+      },
+      "originalCondition": {
+        "kind": "top",
+        "n": 8
+      },
+      "originSeason": 83,
+      "priority": 1,
+      "rolls": [],
+      "note": ""
+    },
+    {
+      "id": "bmuw7lyikd1wij-1",
+      "season": 81,
+      "originalTeam": "DET",
+      "owner": "MIL",
+      "condition": {
+        "kind": "lottery"
+      },
+      "originalCondition": {
+        "kind": "lottery"
+      },
+      "originSeason": 81,
+      "priority": 1,
+      "rolls": [],
+      "note": ""
+    },
+    {
+      "id": "bmuw7obtg2n9he-1",
+      "season": 82,
+      "originalTeam": "CAR",
+      "owner": "TOR",
+      "condition": {
+        "kind": "top",
+        "n": 10
+      },
+      "originalCondition": {
+        "kind": "top",
+        "n": 10
+      },
+      "originSeason": 82,
+      "priority": 1,
+      "rolls": [],
+      "note": ""
+    },
+    {
+      "id": "bmuw7tsou3lxld-1",
+      "season": 80,
+      "originalTeam": "NO",
+      "owner": "OV",
+      "condition": {
+        "kind": "lottery"
+      },
+      "originalCondition": {
+        "kind": "lottery"
+      },
+      "originSeason": 80,
+      "priority": 1,
+      "rolls": [],
+      "note": ""
+    },
+    {
+      "id": "bmuw82gvicnldk-1",
+      "season": 80,
+      "originalTeam": "CP",
+      "owner": "CHI",
+      "condition": {
+        "kind": "top",
+        "n": 10
+      },
+      "originalCondition": {
+        "kind": "top",
+        "n": 10
+      },
+      "originSeason": 80,
+      "priority": 1,
+      "rolls": [],
+      "note": ""
+    },
+    {
+      "id": "bmuw8771n2a0fg-1",
+      "season": 81,
+      "originalTeam": "TEX",
+      "owner": "TOR",
+      "condition": {
+        "kind": "swap",
+        "otherTeam": "TOR",
+        "betterTo": "TOR"
+      },
+      "originalCondition": {
+        "kind": "swap",
+        "otherTeam": "TOR",
+        "betterTo": "TOR"
+      },
+      "originSeason": 81,
+      "priority": 1,
+      "rolls": [],
+      "note": ""
     }
   ]
 }

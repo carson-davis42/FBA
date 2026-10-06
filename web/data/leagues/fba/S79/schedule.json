@@ -6463,17 +6463,17 @@
     {
       "afterGame": 645,
       "kind": "ratings",
-      "done": false
+      "done": true
     },
     {
       "afterGame": 645,
       "kind": "deadline",
-      "done": false
+      "done": true
     },
     {
       "afterGame": 967,
       "kind": "ratings",
-      "done": false
+      "done": true
     },
     {
       "afterGame": 967,

@@ -833,6 +833,204 @@
       "lines": [
         "Kadeem Hollingsworth leaves the transfer portal and stays at Pitt"
       ]
+    },
+    {
+      "seq": 77,
+      "batchId": "bmux0l9dfv7y5c",
+      "type": "commit",
+      "teams": [
+        "TENN"
+      ],
+      "lines": [
+        "Luka Petrenko (Sr C, transfer from Duke) commits to Tennessee"
+      ]
+    },
+    {
+      "seq": 78,
+      "batchId": "bmux0ljd8wlsyi",
+      "type": "commit",
+      "teams": [
+        "ILL"
+      ],
+      "lines": [
+        "Viktor Kovalenko (Sr SG, transfer from Tennessee) commits to Illinois"
+      ]
+    },
+    {
+      "seq": 79,
+      "batchId": "bmux0mbjny78fq",
+      "type": "commit",
+      "teams": [
+        "DUKE"
+      ],
+      "lines": [
+        "Dede Baker (So PG, transfer from SMU) commits to Duke"
+      ]
+    },
+    {
+      "seq": 80,
+      "batchId": "bmux0ohbffcthb",
+      "type": "portal",
+      "teams": [
+        "PUR"
+      ],
+      "lines": [
+        "Bojan Markovic (Sr PG, 82) enters the transfer portal from Purdue"
+      ]
+    },
+    {
+      "seq": 81,
+      "batchId": "bmux0ohbffcthb",
+      "type": "commit",
+      "teams": [
+        "PUR"
+      ],
+      "lines": [
+        "Malik Grimes (Jr PG, transfer from Washington) commits to Purdue"
+      ]
+    },
+    {
+      "seq": 82,
+      "batchId": "bmux0pdp5hv86z",
+      "type": "commit",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Ryan Haskins (Sr SG, transfer from FAU) commits to Florida"
+      ]
+    },
+    {
+      "seq": 83,
+      "batchId": "bmux0pxb2vt29d",
+      "type": "commit",
+      "teams": [
+        "TTU"
+      ],
+      "lines": [
+        "Alden Webb (Sr PG, transfer from Stephen F Austin) commits to Texas Tech"
+      ]
+    },
+    {
+      "seq": 84,
+      "batchId": "bmux36p4k5s8hu",
+      "type": "commit",
+      "teams": [
+        "MISS"
+      ],
+      "lines": [
+        "Zaire Lockridge (4★ PF) commits to Ole Miss"
+      ]
+    },
+    {
+      "seq": 85,
+      "batchId": "bmux38411vmmt8",
+      "type": "commit",
+      "teams": [
+        "MSU"
+      ],
+      "lines": [
+        "Siphesihle Dlamini (4★ C) commits to Michigan State"
+      ]
+    },
+    {
+      "seq": 86,
+      "batchId": "bmux38knvl38bd",
+      "type": "commit",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "Trill Kody (4★ SF) commits to Memphis"
+      ]
+    },
+    {
+      "seq": 87,
+      "batchId": "bmux3a8u4gi6o1",
+      "type": "commit",
+      "teams": [
+        "GU"
+      ],
+      "lines": [
+        "Tyler Maddox (4★ PF) commits to Gonzaga"
+      ]
+    },
+    {
+      "seq": 88,
+      "batchId": "bmux3ar39t3mnk",
+      "type": "commit",
+      "teams": [
+        "AUB"
+      ],
+      "lines": [
+        "Brandon Cole (Sr C, transfer from Troy) commits to Auburn"
+      ]
+    },
+    {
+      "seq": 89,
+      "batchId": "bmux3bihcwp1uj",
+      "type": "commit",
+      "teams": [
+        "LOU"
+      ],
+      "lines": [
+        "Paulie Gregory (4★ C) commits to Louisville"
+      ]
+    },
+    {
+      "seq": 90,
+      "batchId": "bmux3cpze92afk",
+      "type": "commit",
+      "teams": [
+        "VAN"
+      ],
+      "lines": [
+        "Cash White (4★ PG) commits to Vanderbilt"
+      ]
+    },
+    {
+      "seq": 91,
+      "batchId": "bmux3d5v470icx",
+      "type": "commit",
+      "teams": [
+        "MISS"
+      ],
+      "lines": [
+        "DJ Carmichael (4★ SF) commits to Ole Miss"
+      ]
+    },
+    {
+      "seq": 92,
+      "batchId": "bmux3dg8z0lbad",
+      "type": "commit",
+      "teams": [
+        "FAU"
+      ],
+      "lines": [
+        "Connor Haskins (3★ SG) commits to FAU"
+      ]
+    },
+    {
+      "seq": 93,
+      "batchId": "bmux3dsxko6jsj",
+      "type": "commit",
+      "teams": [
+        "BSU"
+      ],
+      "lines": [
+        "Peter Blanton (3★ PF) commits to Boise State"
+      ]
+    },
+    {
+      "seq": 94,
+      "batchId": "bmux3el868tf42",
+      "type": "commit",
+      "teams": [
+        "MIN"
+      ],
+      "lines": [
+        "Jean Diarra (3★ C) commits to Minnesota"
+      ]
     }
   ]
 }
