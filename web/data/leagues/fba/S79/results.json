@@ -57562,6 +57562,834 @@
           }
         ]
       }
+    },
+    {
+      "gameNo": 532,
+      "home": "TEX",
+      "away": "CIN",
+      "homePts": 105,
+      "awayPts": 76,
+      "ot": 0,
+      "periods": {
+        "home": [
+          24,
+          29,
+          25,
+          27
+        ],
+        "away": [
+          19,
+          17,
+          24,
+          16
+        ]
+      },
+      "box": {
+        "home": [
+          {
+            "playerId": "p00127",
+            "pts": 39,
+            "att": 22,
+            "offExp": 3525,
+            "offVar": 359625,
+            "def": 15,
+            "stops": 8,
+            "allowed": 18,
+            "exp": 2163
+          },
+          {
+            "playerId": "p00128",
+            "pts": 23,
+            "att": 12,
+            "offExp": 1572,
+            "offVar": 190944,
+            "def": 12,
+            "stops": 6,
+            "allowed": 12,
+            "exp": 1794
+          },
+          {
+            "playerId": "p00008",
+            "pts": 3,
+            "att": 2,
+            "offExp": 222,
+            "offVar": 29958,
+            "def": 14,
+            "stops": 4,
+            "allowed": 26,
+            "exp": 1803
+          },
+          {
+            "playerId": "p00129",
+            "pts": 28,
+            "att": 19,
+            "offExp": 2886,
+            "offVar": 312528,
+            "def": 10,
+            "stops": 6,
+            "allowed": 9,
+            "exp": 1335
+          },
+          {
+            "playerId": "p00130",
+            "pts": 12,
+            "att": 5,
+            "offExp": 522,
+            "offVar": 72006,
+            "def": 9,
+            "stops": 5,
+            "allowed": 11,
+            "exp": 1275
+          }
+        ],
+        "away": [
+          {
+            "playerId": "p00020",
+            "pts": 10,
+            "att": 13,
+            "offExp": 1515,
+            "offVar": 198039,
+            "def": 18,
+            "stops": 7,
+            "allowed": 26,
+            "exp": 2880
+          },
+          {
+            "playerId": "p00021",
+            "pts": 33,
+            "att": 20,
+            "offExp": 3279,
+            "offVar": 326067,
+            "def": 13,
+            "stops": 1,
+            "allowed": 30,
+            "exp": 1983
+          },
+          {
+            "playerId": "p00022",
+            "pts": 11,
+            "att": 6,
+            "offExp": 648,
+            "offVar": 88146,
+            "def": 6,
+            "stops": 3,
+            "allowed": 8,
+            "exp": 750
+          },
+          {
+            "playerId": "p00023",
+            "pts": 7,
+            "att": 8,
+            "offExp": 981,
+            "offVar": 125007,
+            "def": 14,
+            "stops": 3,
+            "allowed": 30,
+            "exp": 1980
+          },
+          {
+            "playerId": "p00024",
+            "pts": 15,
+            "att": 13,
+            "offExp": 1923,
+            "offVar": 213087,
+            "def": 9,
+            "stops": 4,
+            "allowed": 11,
+            "exp": 1281
+          }
+        ]
+      }
+    },
+    {
+      "gameNo": 533,
+      "home": "NO",
+      "away": "HON",
+      "homePts": 89,
+      "awayPts": 97,
+      "ot": 0,
+      "periods": {
+        "home": [
+          25,
+          22,
+          16,
+          26
+        ],
+        "away": [
+          29,
+          35,
+          17,
+          16
+        ]
+      },
+      "box": {
+        "home": [
+          {
+            "playerId": "p00088",
+            "pts": 7,
+            "att": 6,
+            "offExp": 630,
+            "offVar": 85770,
+            "def": 9,
+            "stops": 3,
+            "allowed": 14,
+            "exp": 1185
+          },
+          {
+            "playerId": "p00089",
+            "pts": 12,
+            "att": 6,
+            "offExp": 630,
+            "offVar": 85284,
+            "def": 11,
+            "stops": 4,
+            "allowed": 19,
+            "exp": 1509
+          },
+          {
+            "playerId": "p00090",
+            "pts": 37,
+            "att": 29,
+            "offExp": 4743,
+            "offVar": 472983,
+            "def": 22,
+            "stops": 7,
+            "allowed": 37,
+            "exp": 3264
+          },
+          {
+            "playerId": "p00091",
+            "pts": 31,
+            "att": 16,
+            "offExp": 2640,
+            "offVar": 260400,
+            "def": 9,
+            "stops": 3,
+            "allowed": 14,
+            "exp": 1323
+          },
+          {
+            "playerId": "p00145",
+            "pts": 2,
+            "att": 3,
+            "offExp": 321,
+            "offVar": 43659,
+            "def": 9,
+            "stops": 3,
+            "allowed": 13,
+            "exp": 1113
+          }
+        ],
+        "away": [
+          {
+            "playerId": "p00054",
+            "pts": 10,
+            "att": 9,
+            "offExp": 1023,
+            "offVar": 135351,
+            "def": 7,
+            "stops": 3,
+            "allowed": 10,
+            "exp": 723
+          },
+          {
+            "playerId": "p00055",
+            "pts": 38,
+            "att": 20,
+            "offExp": 3234,
+            "offVar": 327084,
+            "def": 11,
+            "stops": 3,
+            "allowed": 20,
+            "exp": 1596
+          },
+          {
+            "playerId": "p00056",
+            "pts": 18,
+            "att": 12,
+            "offExp": 1404,
+            "offVar": 181836,
+            "def": 21,
+            "stops": 12,
+            "allowed": 23,
+            "exp": 3465
+          },
+          {
+            "playerId": "p00057",
+            "pts": 25,
+            "att": 15,
+            "offExp": 2076,
+            "offVar": 241614,
+            "def": 17,
+            "stops": 5,
+            "allowed": 29,
+            "exp": 2688
+          },
+          {
+            "playerId": "p00058",
+            "pts": 6,
+            "att": 4,
+            "offExp": 456,
+            "offVar": 60816,
+            "def": 4,
+            "stops": 1,
+            "allowed": 7,
+            "exp": 528
+          }
+        ]
+      }
+    },
+    {
+      "gameNo": 534,
+      "home": "FLO",
+      "away": "VEG",
+      "homePts": 80,
+      "awayPts": 92,
+      "ot": 0,
+      "periods": {
+        "home": [
+          20,
+          13,
+          26,
+          21
+        ],
+        "away": [
+          22,
+          23,
+          29,
+          18
+        ]
+      },
+      "box": {
+        "home": [
+          {
+            "playerId": "p00049",
+            "pts": 0,
+            "att": 2,
+            "offExp": 213,
+            "offVar": 29175,
+            "def": 12,
+            "stops": 3,
+            "allowed": 22,
+            "exp": 1635
+          },
+          {
+            "playerId": "p00050",
+            "pts": 24,
+            "att": 19,
+            "offExp": 2820,
+            "offVar": 313140,
+            "def": 17,
+            "stops": 8,
+            "allowed": 22,
+            "exp": 2094
+          },
+          {
+            "playerId": "p00051",
+            "pts": 19,
+            "att": 12,
+            "offExp": 1635,
+            "offVar": 195633,
+            "def": 12,
+            "stops": 5,
+            "allowed": 17,
+            "exp": 1422
+          },
+          {
+            "playerId": "p00052",
+            "pts": 25,
+            "att": 18,
+            "offExp": 2448,
+            "offVar": 293220,
+            "def": 12,
+            "stops": 5,
+            "allowed": 17,
+            "exp": 1398
+          },
+          {
+            "playerId": "p00053",
+            "pts": 12,
+            "att": 9,
+            "offExp": 1017,
+            "offVar": 136053,
+            "def": 7,
+            "stops": 2,
+            "allowed": 14,
+            "exp": 840
+          }
+        ],
+        "away": [
+          {
+            "playerId": "p00141",
+            "pts": 23,
+            "att": 17,
+            "offExp": 2448,
+            "offVar": 278736,
+            "def": 5,
+            "stops": 4,
+            "allowed": 2,
+            "exp": 681
+          },
+          {
+            "playerId": "p00142",
+            "pts": 23,
+            "att": 12,
+            "offExp": 1374,
+            "offVar": 182556,
+            "def": 13,
+            "stops": 6,
+            "allowed": 16,
+            "exp": 1758
+          },
+          {
+            "playerId": "p00143",
+            "pts": 18,
+            "att": 13,
+            "offExp": 1551,
+            "offVar": 202071,
+            "def": 10,
+            "stops": 3,
+            "allowed": 18,
+            "exp": 1395
+          },
+          {
+            "playerId": "p00153",
+            "pts": 10,
+            "att": 9,
+            "offExp": 975,
+            "offVar": 132615,
+            "def": 20,
+            "stops": 11,
+            "allowed": 22,
+            "exp": 2511
+          },
+          {
+            "playerId": "p00144",
+            "pts": 18,
+            "att": 9,
+            "offExp": 1203,
+            "offVar": 145881,
+            "def": 12,
+            "stops": 3,
+            "allowed": 22,
+            "exp": 1389
+          }
+        ]
+      }
+    },
+    {
+      "gameNo": 535,
+      "home": "HON",
+      "away": "SEA",
+      "homePts": 78,
+      "awayPts": 71,
+      "ot": 0,
+      "periods": {
+        "home": [
+          27,
+          14,
+          17,
+          20
+        ],
+        "away": [
+          18,
+          15,
+          19,
+          19
+        ]
+      },
+      "box": {
+        "home": [
+          {
+            "playerId": "p00054",
+            "pts": 14,
+            "att": 11,
+            "offExp": 1092,
+            "offVar": 153186,
+            "def": 7,
+            "stops": 1,
+            "allowed": 14,
+            "exp": 1008
+          },
+          {
+            "playerId": "p00055",
+            "pts": 23,
+            "att": 17,
+            "offExp": 2805,
+            "offVar": 276675,
+            "def": 21,
+            "stops": 16,
+            "allowed": 11,
+            "exp": 3054
+          },
+          {
+            "playerId": "p00056",
+            "pts": 16,
+            "att": 12,
+            "offExp": 1521,
+            "offVar": 191169,
+            "def": 15,
+            "stops": 3,
+            "allowed": 28,
+            "exp": 1980
+          },
+          {
+            "playerId": "p00057",
+            "pts": 19,
+            "att": 11,
+            "offExp": 1686,
+            "offVar": 180960,
+            "def": 9,
+            "stops": 5,
+            "allowed": 9,
+            "exp": 1134
+          },
+          {
+            "playerId": "p00058",
+            "pts": 6,
+            "att": 9,
+            "offExp": 951,
+            "offVar": 130509,
+            "def": 8,
+            "stops": 4,
+            "allowed": 9,
+            "exp": 948
+          }
+        ],
+        "away": [
+          {
+            "playerId": "p00117",
+            "pts": 22,
+            "att": 13,
+            "offExp": 1836,
+            "offVar": 209712,
+            "def": 10,
+            "stops": 4,
+            "allowed": 14,
+            "exp": 1290
+          },
+          {
+            "playerId": "p00118",
+            "pts": 13,
+            "att": 19,
+            "offExp": 2451,
+            "offVar": 303177,
+            "def": 18,
+            "stops": 10,
+            "allowed": 18,
+            "exp": 2550
+          },
+          {
+            "playerId": "p00119",
+            "pts": 18,
+            "att": 13,
+            "offExp": 1737,
+            "offVar": 209739,
+            "def": 15,
+            "stops": 6,
+            "allowed": 25,
+            "exp": 2049
+          },
+          {
+            "playerId": "p00120",
+            "pts": 14,
+            "att": 9,
+            "offExp": 957,
+            "offVar": 130797,
+            "def": 10,
+            "stops": 5,
+            "allowed": 12,
+            "exp": 1260
+          },
+          {
+            "playerId": "p00121",
+            "pts": 4,
+            "att": 6,
+            "offExp": 789,
+            "offVar": 96579,
+            "def": 7,
+            "stops": 3,
+            "allowed": 9,
+            "exp": 867
+          }
+        ]
+      }
+    },
+    {
+      "gameNo": 536,
+      "home": "MAN",
+      "away": "CIN",
+      "homePts": 94,
+      "awayPts": 74,
+      "ot": 0,
+      "periods": {
+        "home": [
+          19,
+          20,
+          28,
+          27
+        ],
+        "away": [
+          21,
+          19,
+          17,
+          17
+        ]
+      },
+      "box": {
+        "home": [
+          {
+            "playerId": "p00068",
+            "pts": 22,
+            "att": 15,
+            "offExp": 2253,
+            "offVar": 245619,
+            "def": 13,
+            "stops": 9,
+            "allowed": 9,
+            "exp": 1950
+          },
+          {
+            "playerId": "p00069",
+            "pts": 10,
+            "att": 6,
+            "offExp": 570,
+            "offVar": 79578,
+            "def": 12,
+            "stops": 6,
+            "allowed": 13,
+            "exp": 1824
+          },
+          {
+            "playerId": "p00070",
+            "pts": 31,
+            "att": 13,
+            "offExp": 1830,
+            "offVar": 210756,
+            "def": 11,
+            "stops": 4,
+            "allowed": 17,
+            "exp": 1605
+          },
+          {
+            "playerId": "p00071",
+            "pts": 27,
+            "att": 17,
+            "offExp": 2712,
+            "offVar": 278106,
+            "def": 12,
+            "stops": 5,
+            "allowed": 17,
+            "exp": 1548
+          },
+          {
+            "playerId": "p00072",
+            "pts": 4,
+            "att": 9,
+            "offExp": 909,
+            "offVar": 126765,
+            "def": 12,
+            "stops": 5,
+            "allowed": 18,
+            "exp": 1665
+          }
+        ],
+        "away": [
+          {
+            "playerId": "p00020",
+            "pts": 9,
+            "att": 9,
+            "offExp": 1137,
+            "offVar": 142479,
+            "def": 12,
+            "stops": 5,
+            "allowed": 17,
+            "exp": 1734
+          },
+          {
+            "playerId": "p00021",
+            "pts": 24,
+            "att": 23,
+            "offExp": 3795,
+            "offVar": 374325,
+            "def": 14,
+            "stops": 4,
+            "allowed": 26,
+            "exp": 1959
+          },
+          {
+            "playerId": "p00022",
+            "pts": 2,
+            "att": 2,
+            "offExp": 168,
+            "offVar": 24288,
+            "def": 10,
+            "stops": 2,
+            "allowed": 21,
+            "exp": 1503
+          },
+          {
+            "playerId": "p00023",
+            "pts": 22,
+            "att": 13,
+            "offExp": 1545,
+            "offVar": 200775,
+            "def": 13,
+            "stops": 3,
+            "allowed": 26,
+            "exp": 1899
+          },
+          {
+            "playerId": "p00024",
+            "pts": 17,
+            "att": 13,
+            "offExp": 1932,
+            "offVar": 212880,
+            "def": 11,
+            "stops": 9,
+            "allowed": 4,
+            "exp": 1371
+          }
+        ]
+      }
+    },
+    {
+      "gameNo": 537,
+      "home": "MW",
+      "away": "OAK",
+      "homePts": 77,
+      "awayPts": 71,
+      "ot": 0,
+      "periods": {
+        "home": [
+          18,
+          21,
+          16,
+          22
+        ],
+        "away": [
+          18,
+          14,
+          22,
+          17
+        ]
+      },
+      "box": {
+        "home": [
+          {
+            "playerId": "p00146",
+            "pts": 7,
+            "att": 4,
+            "offExp": 435,
+            "offVar": 59133,
+            "def": 7,
+            "stops": 2,
+            "allowed": 13,
+            "exp": 777
+          },
+          {
+            "playerId": "p00064",
+            "pts": 6,
+            "att": 7,
+            "offExp": 894,
+            "offVar": 111198,
+            "def": 8,
+            "stops": 4,
+            "allowed": 9,
+            "exp": 1056
+          },
+          {
+            "playerId": "p00065",
+            "pts": 23,
+            "att": 18,
+            "offExp": 2355,
+            "offVar": 287757,
+            "def": 11,
+            "stops": 8,
+            "allowed": 7,
+            "exp": 1629
+          },
+          {
+            "playerId": "p00066",
+            "pts": 17,
+            "att": 12,
+            "offExp": 1656,
+            "offVar": 193176,
+            "def": 16,
+            "stops": 8,
+            "allowed": 18,
+            "exp": 2556
+          },
+          {
+            "playerId": "p00067",
+            "pts": 24,
+            "att": 19,
+            "offExp": 2955,
+            "offVar": 309225,
+            "def": 18,
+            "stops": 8,
+            "allowed": 24,
+            "exp": 2508
+          }
+        ],
+        "away": [
+          {
+            "playerId": "p00097",
+            "pts": 5,
+            "att": 4,
+            "offExp": 468,
+            "offVar": 61644,
+            "def": 5,
+            "stops": 2,
+            "allowed": 7,
+            "exp": 567
+          },
+          {
+            "playerId": "p00098",
+            "pts": 18,
+            "att": 12,
+            "offExp": 1512,
+            "offVar": 190494,
+            "def": 7,
+            "stops": 3,
+            "allowed": 9,
+            "exp": 897
+          },
+          {
+            "playerId": "p00099",
+            "pts": 12,
+            "att": 13,
+            "offExp": 1932,
+            "offVar": 214428,
+            "def": 13,
+            "stops": 5,
+            "allowed": 20,
+            "exp": 1833
+          },
+          {
+            "playerId": "p00100",
+            "pts": 31,
+            "att": 24,
+            "offExp": 3960,
+            "offVar": 390600,
+            "def": 17,
+            "stops": 10,
+            "allowed": 18,
+            "exp": 2505
+          },
+          {
+            "playerId": "p00101",
+            "pts": 5,
+            "att": 7,
+            "offExp": 609,
+            "offVar": 87717,
+            "def": 18,
+            "stops": 9,
+            "allowed": 23,
+            "exp": 2784
+          }
+        ]
+      }
     }
   ]
 }
