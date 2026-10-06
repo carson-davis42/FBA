@@ -63,12 +63,18 @@ export function PlayerHistoryPage() {
   const fbaRoster = useDoc<RostersFile>(rosterOf('fba'));
   const d2Roster = useDoc<RostersFile>(rosterOf('fbad2'));
   const jcRoster = useDoc<RostersFile>(rosterOf('fbajc'));
+  // Unsigned players (the FBA free-agent list, the D2 reserves and pool) are still active, though on no roster.
+  const unsigned = [
+    useDoc<unknown>(meta.data ? `leagues/fba/S${meta.data.rosterSeason.fba}/freeAgents.json` : null),
+    useDoc<unknown>(meta.data ? `leagues/fbad2/S${meta.data.rosterSeason.fbad2}/reserves.json` : null),
+    useDoc<unknown>(meta.data ? `leagues/fbad2/S${meta.data.rosterSeason.fbad2}/pool.json` : null),
+  ];
   const rosterSettled = (d: { data?: unknown; missing: boolean; error?: unknown }) => !!d.data || d.missing || !!d.error;
   const failure = error ?? players.error ?? (bios.missing ? undefined : bios.error)
     ?? (counts.missing ? undefined : counts.error) ?? (hall.missing ? undefined : hall.error);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
   if (!seasons || !players.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing) || (!hall.data && !hall.missing) || (!drafts.data && !drafts.missing && !drafts.error) || !settled
-    || (!d2.seasons && !d2.error) || (!d2Drafts.data && !d2Drafts.missing && !d2Drafts.error) || !d2Teams.settled || !jcTeams.settled || !(meta.data || meta.missing || meta.error) || (!!meta.data && !(rosterSettled(fbaRoster) && rosterSettled(d2Roster) && rosterSettled(jcRoster))) || (!wcTeams.data && !wcTeams.missing && !wcTeams.error)) {
+    || (!d2.seasons && !d2.error) || (!d2Drafts.data && !d2Drafts.missing && !d2Drafts.error) || !d2Teams.settled || !jcTeams.settled || !(meta.data || meta.missing || meta.error) || (!!meta.data && !(rosterSettled(fbaRoster) && rosterSettled(d2Roster) && rosterSettled(jcRoster) && unsigned.every(rosterSettled))) || (!wcTeams.data && !wcTeams.missing && !wcTeams.error)) {
     return <p className="muted">Loading…</p>;
   }
   const player = players.data.players[playerId];
@@ -112,7 +118,9 @@ export function PlayerHistoryPage() {
   const recent = fbaStints.length > 0 ? fbaStints[fbaStints.length - 1].team.split('/').pop() : stats.rows.length > 0 ? stats.rows[stats.rows.length - 1].teamId : null;
   const recentTeam = findTeam(teams, franchiseByAbbr(franchises, recent ?? '', latestSeasonOfStints(career))?.teamId ?? recent);
   const latestFba = seasons.reduce((m, x) => Math.max(m, x.season), 0);
-  const status = playerStatus(career, !!player.retired, latestFba);
+  // The summaries lag a season behind the play: a player whose last stint ended before the current season, and who is on no roster or unsigned list, has retired.
+  const active = placement !== null || unsigned.some(d => JSON.stringify(d.data ?? null).includes(`"${playerId}"`));
+  const status = playerStatus(career, !!player.retired, active ? latestFba : Math.max(latestFba, meta.data?.currentSeason ?? 0));
   const emblemTeams = { fba: teams, d2: d2Teams.teams, college: jcTeams.teams, wc: wcTeams.data?.teams ?? [], franchises };
   const emblem = playerEmblem(status, career.stints[career.stints.length - 1], emblemTeams, recentTeam);
   const latestSeason = stats.rows.length > 0 ? stats.rows[stats.rows.length - 1].season : 0;

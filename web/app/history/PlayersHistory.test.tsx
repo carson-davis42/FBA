@@ -59,7 +59,7 @@ const s79: SummaryFile = {
   players: [line('SEA', 1, [50, 1000], [10, 300])],
 };
 
-function stub(opts: { bios?: PlayerBiosFile | null; seasons?: SummaryFile[]; counts?: AwardCountsFile; drafts?: DraftHistoryFile; players?: PlayersFile; currentSeason?: number } = {}) {
+function stub(opts: { bios?: PlayerBiosFile | null; seasons?: SummaryFile[]; counts?: AwardCountsFile; drafts?: DraftHistoryFile; players?: PlayersFile; currentSeason?: number; extra?: Record<string, unknown> } = {}) {
   const b = 'bios' in opts ? opts.bios : bios;
   const seasons = opts.seasons ?? [s72, s71];
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
@@ -67,6 +67,7 @@ function stub(opts: { bios?: PlayerBiosFile | null; seasons?: SummaryFile[]; cou
     const docs: Record<string, unknown> = { '/api/state/players.json': opts.players ?? players };
     if (opts.currentSeason !== undefined) docs['/api/state/meta.json'] = { currentSeason: opts.currentSeason, rosterSeason: { fba: opts.currentSeason, fbad2: opts.currentSeason, fbajc: opts.currentSeason, fbawc: opts.currentSeason } };
     if (b) docs['/api/state/leagues/fba/playerBios.json'] = b;
+    Object.assign(docs, opts.extra);
     if (opts.drafts) docs['/api/state/leagues/fba/draftHistory.json'] = opts.drafts;
     if (opts.counts) docs['/api/state/leagues/fba/awardCounts.json'] = opts.counts;
     if (url in docs) return new Response(JSON.stringify(docs[url]), { headers: { ETag: '"0000000000000001"' } });
@@ -125,6 +126,31 @@ describe('PlayerHistoryPage', () => {
       bios: { league: 'fba', bios: [{ playerId: 'p00001', born, entries: [] }] } });
     renderAt('/history/fba/players/p00001');
     expect(await screen.findByText(expected)).toBeTruthy();
+  });
+
+  describe('a player whose last stint ended before the current season', () => {
+    const gone: PlayerBiosFile = { league: 'fba', bios: [{ playerId: 'p00001', born: 'Born-S46', entries: ['D2(Mumbai)-S77-S78'] }] };
+    const roster = (season: number) => ({ league: 'fbad2', season, locked: false, teams: { MUM: [{ playerId: 'p00001', position: 'PG', rating: 70, age: 30, points: 0 }] } });
+
+    it('leads with the FBA retired mark when he is on no roster this season', async () => {
+      stub({ currentSeason: 79, bios: gone });
+      renderAt('/history/fba/players/p00001');
+      expect((await screen.findAllByRole('img', { name: 'FBA logo' })).length).toBeGreaterThan(0);
+    });
+
+    it('keeps his team when he is on a live roster', async () => {
+      stub({ currentSeason: 79, bios: gone, extra: { '/api/state/leagues/fbad2/S79/rosters.json': roster(79), '/api/state/leagues/fbad2/teams.json': { league: 'fbad2', teams: [{ teamId: 'MUM', name: 'Mumbai', abbr: 'MUM', group: null, logoFolder: null, badge: { bg: '#000', fg: '#fff' } }] } } });
+      renderAt('/history/fba/players/p00001');
+      await screen.findByText(/Born:/);
+      expect(screen.queryByRole('img', { name: 'FBA logo' })).toBeNull();
+    });
+
+    it('keeps his team while he sits in the D2 reserves', async () => {
+      stub({ currentSeason: 79, bios: gone, extra: { '/api/state/leagues/fbad2/S79/reserves.json': { league: 'fbad2', season: 79, locked: false, players: [{ playerId: 'p00001', position: 'PG', age: 30, rating: null }] } } });
+      renderAt('/history/fba/players/p00001');
+      await screen.findByText(/Born:/);
+      expect(screen.queryByRole('img', { name: 'FBA logo' })).toBeNull();
+    });
   });
 
   it('shows the born line, honours in season order and an empty seasons table for pre-S79 lines', async () => {
