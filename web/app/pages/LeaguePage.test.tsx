@@ -4,6 +4,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { LeaguePage } from './LeaguePage';
 import { TeamPage } from './TeamPage';
+import { logoUrl } from '../components/logoUrl';
 
 const badge = { bg: 'hsl(10 55% 36%)', fg: '#ffffff' };
 const docs: Record<string, unknown> = {
@@ -89,6 +90,6 @@ describe('TeamPage', () => {
     expect(await screen.findByText('Gabriel Greenwood')).toBeTruthy();
     expect(screen.getByText('S80 · $8')).toBeTruthy();
     expect(screen.getByText('Vacant')).toBeTruthy();
-    expect(screen.getByRole('img', { name: 'Boston Bucks logo' }).getAttribute('src')).toBe('/logos/Boston%20Bucks/79');
+    expect(screen.getByRole('img', { name: 'Boston Bucks logo' }).getAttribute('src')).toBe(logoUrl('Boston Bucks', 79));
   });
 });

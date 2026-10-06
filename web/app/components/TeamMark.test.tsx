@@ -3,6 +3,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import type { Team } from '../../engine/shared/types';
 import { TeamMark } from './TeamMark';
+import { logoUrl } from './logoUrl';
 
 afterEach(cleanup);
 const base: Team = { teamId: 'GER', name: 'Germany', abbr: 'GER', group: null, logoFolder: null, badge: { bg: '#000', fg: '#fff' } };
@@ -24,10 +25,10 @@ describe('TeamMark', () => {
   });
   it('asks for its own file inside a shared logo folder', () => {
     const { container } = render(<TeamMark team={{ ...base, name: 'Texas A&M', logoFolder: 'FBAJC_Final', logoFile: 'Texas A&M.png' }} season={78} />);
-    expect(container.querySelector('img.team-mark')?.getAttribute('src')).toBe('/logos/FBAJC_Final/78?file=Texas%20A%26M.png');
+    expect(container.querySelector('img.team-mark')?.getAttribute('src')).toBe(logoUrl('FBAJC_Final', 78, 'Texas A&M.png'));
   });
   it('uses the season route alone for a team without a file', () => {
     const { container } = render(<TeamMark team={{ ...base, logoFolder: 'Atlanta Venom' }} season={78} />);
-    expect(container.querySelector('img.team-mark')?.getAttribute('src')).toBe('/logos/Atlanta%20Venom/78');
+    expect(container.querySelector('img.team-mark')?.getAttribute('src')).toBe(logoUrl('Atlanta Venom', 78));
   });
 });

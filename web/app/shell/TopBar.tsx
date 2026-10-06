@@ -5,6 +5,7 @@ import { currentStepIndex } from '../../engine/shared/calendar';
 import { isUndoProtected } from '../../engine/shared/schemaRegistry';
 import type { CalendarFile, LeagueId } from '../../engine/shared/types';
 import { peekUndo, undoLast, useDoc, useSaving } from '../api';
+import { logoUrl } from '../components/logoUrl';
 import { useTheme } from '../useTheme';
 import { SHORT_LABEL } from './useCurrentLeague';
 
@@ -46,7 +47,7 @@ export function TopBar({ league }: { league: LeagueId }) {
   };
   return (
     <header className="masthead">
-      <Link to="/" className="brand" aria-label="FBA Universe home"><img src="/logos/FBA/1" alt="" /><span className="brand-text">FBA Universe</span></Link>
+      <Link to="/" className="brand" aria-label="FBA Universe home"><img src={logoUrl('FBA', 1)} alt="" /><span className="brand-text">FBA Universe</span></Link>
       <nav className="league-switch" aria-label="Leagues">
         {LEAGUES.map(lg => (
           <Link key={lg} to={`/league/${lg}`} className={lg === league ? 'active' : ''} title={LEAGUE_LABEL[lg]}>{SHORT_LABEL[lg]}</Link>

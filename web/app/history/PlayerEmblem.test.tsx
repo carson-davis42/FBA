@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { PlayerBiosFile, PlayersFile, SummaryFile, TeamsFile } from '../../engine/shared/types';
 import { FBA_EMBLEM, HOF_EMBLEM } from './PlayerEmblem';
 import { PlayerHistoryPage } from './PlayerHistoryPage';
+import { logoUrl } from '../components/logoUrl';
 
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
@@ -66,12 +67,12 @@ describe('player page follows the live rosters', () => {
       '/api/state/leagues/fba/teams.json': { ...fbaTeams, teams: fbaTeams.teams.map(t => ({ ...t, logoFolder: t.name })) },
       '/api/history/fba': { seasons: [{ ...s78, legacyPpg: [{ playerId: 'p00001', teamId: 'VEG', ppg: 20 }] }], errors: [] },
     });
-    expect(heroSrc(c)).toBe(`/logos/Las%20Vegas%20Aces/${currentSeason}`);
+    expect(heroSrc(c)).toBe(logoUrl('Las Vegas Aces', currentSeason));
     const careerTable = c.querySelector('table.stat-table')!;
     const ongoing = within(careerTable as HTMLElement).getByRole('link', { name: /VEG$/ });
-    expect(ongoing.querySelector('img')!.getAttribute('src')).toBe(`/logos/Las%20Vegas%20Aces/${currentSeason}`);
+    expect(ongoing.querySelector('img')!.getAttribute('src')).toBe(logoUrl('Las Vegas Aces', currentSeason));
     const historical = within(careerTable as HTMLElement).getByRole('link', { name: /TOR$/ });
-    expect(historical.querySelector('img')!.getAttribute('src')).toBe('/logos/Toronto%20Wolves/75');
+    expect(historical.querySelector('img')!.getAttribute('src')).toBe(logoUrl('Toronto Wolves', 75));
   });
 
   it('shows the team he signed with in the offseason: a new open stint, the banner and the logo', async () => {
@@ -139,19 +140,19 @@ describe('player page career and emblem', () => {
 
   it('shows the FBA logo for a retired player', async () => {
     const c = await open('p00002');
-    expect(heroSrc(c)).toBe(`/logos/${FBA_EMBLEM.logoFolder}/79?file=${encodeURIComponent(FBA_EMBLEM.logoFile!)}`);
+    expect(heroSrc(c)).toBe(logoUrl(FBA_EMBLEM.logoFolder!, 79, FBA_EMBLEM.logoFile));
     expect(c.querySelector('.hero-kicker')!.textContent).toBe('S60–S70');
   });
 
   it('shows the gold FBA logo for a Hall of Famer, even if he is retired too', async () => {
     const c = await open('p00003');
-    expect(heroSrc(c)).toBe(`/logos/${HOF_EMBLEM.logoFolder}/79?file=${encodeURIComponent(HOF_EMBLEM.logoFile!)}`);
+    expect(heroSrc(c)).toBe(logoUrl(HOF_EMBLEM.logoFolder!, 79, HOF_EMBLEM.logoFile));
     expect(HOF_EMBLEM.logoFolder).toBe('FBA_Gold');
   });
 
   it('shows the school logo for a player still in college', async () => {
     const c = await open('p00004');
-    expect(heroSrc(c)).toBe('/logos/FBAJC_Final/79?file=Army.png');
+    expect(heroSrc(c)).toBe(logoUrl('FBAJC_Final', 79, 'Army.png'));
     expect(c.querySelector('.hero')!.getAttribute('style')).toContain('#112233');
   });
 

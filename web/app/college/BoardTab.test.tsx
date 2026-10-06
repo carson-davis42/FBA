@@ -8,6 +8,7 @@ import type { RecruitingResult, RecruitingState } from '../../engine/college/sta
 import { collegeBaseState, collegeClassState, collegeCurrentClassState } from '../../engine/college/testFixtures';
 import { walkOnProblem } from '../../engine/college/walkOns';
 import { BoardTab } from './BoardTab';
+import { logoUrl } from '../components/logoUrl';
 
 afterEach(cleanup);
 
@@ -234,7 +235,7 @@ describe('school logos on the recruiting pages', () => {
     const { render: r } = await import('@testing-library/react');
     const state = { season: 79, teams: { league: 'fbajc', teams: [{ teamId: 'DUKE', name: 'Duke', abbr: 'DUKE', group: 'ACC', logoFolder: 'FBAJC_Final', logoFile: 'Duke.png', badge: { bg: '#000', fg: '#fff' } }] } } as unknown as Parameters<typeof School>[0]['state'];
     const { container } = r(<School state={state} teamId="DUKE" />);
-    expect(container.querySelector('img.team-mark')!.getAttribute('src')).toBe('/logos/FBAJC_Final/79?file=Duke.png');
+    expect(container.querySelector('img.team-mark')!.getAttribute('src')).toBe(logoUrl('FBAJC_Final', 79, 'Duke.png'));
     expect(container.textContent).toBe('Duke');
     cleanup();
     const unknown = r(<School state={state} teamId="ZZZ" />);

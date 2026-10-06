@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { DraftHistoryFile, FranchisesFile, LogoManifest, PlayersFile, SummaryFile, TeamsFile } from '../../engine/shared/types';
 import { FranchisePage } from './FranchisePage';
 import { TeamsHistoryPage } from './TeamsHistoryPage';
+import { logoUrl } from '../components/logoUrl';
 
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
@@ -119,7 +120,7 @@ describe('Franchise pages', () => {
     renderFranchise();
     await screen.findByRole('heading', { level: 1 });
     const tile = screen.getAllByRole('listitem').find(li => li.textContent?.includes('S57–pres.'))!;
-    expect(within(tile).getByRole('img').getAttribute('src')).toBe('/logos/San%20Antonio/57');
+    expect(within(tile).getByRole('img').getAttribute('src')).toBe(logoUrl('San Antonio', 57));
   });
 
   it('reports an unknown franchise', async () => {

@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import type http from 'node:http';
 import path from 'node:path';
@@ -185,7 +186,13 @@ export function createHandler(
           }
         }
         if (!data) return sendJson(res, 404, { error: `No logo for ${folder}` });
-        res.writeHead(200, { 'Content-Type': 'image/png', 'Cache-Control': 'max-age=3600' });
+        // Revalidate on every load: logos are replaced in place while the app is open, and a cached old image would hide the change.
+        const etag = `"${createHash('sha1').update(data).digest('hex').slice(0, 16)}"`;
+        if (req.headers['if-none-match'] === etag) {
+          res.writeHead(304, { ETag: etag, 'Cache-Control': 'no-cache' });
+          return res.end();
+        }
+        res.writeHead(200, { 'Content-Type': 'image/png', 'Cache-Control': 'no-cache', ETag: etag });
         return res.end(data);
       }
 

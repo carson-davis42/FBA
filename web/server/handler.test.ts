@@ -425,3 +425,36 @@ describe('history and resetUndo routes', () => {
     expect((await post({ label: 'X', writes: [{ path: 'calendar.json', doc: cal(true), baseVersion: unquote(tag3) }], resetUndo: 'yes' })).status).toBe(400);
   });
 });
+
+describe('logo caching', () => {
+  it('revalidates on every load, so a replaced logo shows without waiting out a cache', async () => {
+    const dataDir = mkdtempSync(path.join(tmpdir(), 'fba-http-logocache-'));
+    const logoDir = mkdtempSync(path.join(tmpdir(), 'fba-logos-cache-'));
+    mkdirSync(path.join(logoDir, 'FBAD2'));
+    const file = path.join(logoDir, 'FBAD2', 'Mumbai BC.png');
+    writeFileSync(file, Buffer.from([0x89, 0x50, 0x4e, 0x47, 1]));
+    const storage = new Storage(dataDir);
+    await storage.write('logos/manifest.json', { folders: { FBAD2: [{ file: 'Mumbai BC.png', from: null, to: null, variant: 1 }] } });
+    const srv = http.createServer(createHandler(storage, logoDir));
+    await new Promise<void>(r => srv.listen(0, '127.0.0.1', r));
+    const url = `http://127.0.0.1:${(srv.address() as AddressInfo).port}/logos/FBAD2/79?file=Mumbai%20BC.png`;
+    try {
+      const first = await fetch(url);
+      expect(first.status).toBe(200);
+      expect(first.headers.get('cache-control')).toBe('no-cache');
+      const tag = first.headers.get('etag')!;
+      expect(tag).toMatch(/^"[0-9a-f]+"$/);
+      // Unchanged: the browser is told to keep what it has, without the image being sent again.
+      const again = await fetch(url, { headers: { 'If-None-Match': tag } });
+      expect(again.status).toBe(304);
+      // Replaced: a new tag and the new bytes.
+      writeFileSync(file, Buffer.from([0x89, 0x50, 0x4e, 0x47, 2, 2]));
+      const replaced = await fetch(url, { headers: { 'If-None-Match': tag } });
+      expect(replaced.status).toBe(200);
+      expect(replaced.headers.get('etag')).not.toBe(tag);
+      expect((await replaced.arrayBuffer()).byteLength).toBe(6);
+    } finally {
+      await new Promise<void>(r => srv.close(() => r()));
+    }
+  });
+});

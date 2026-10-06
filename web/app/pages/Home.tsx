@@ -11,6 +11,7 @@ import { useSeasonState } from '../season/useSeasonState';
 import { TickerChip } from '../shell/Ticker';
 import { tickerItems } from '../shell/tickerItems';
 import { stepTarget } from '../stepRoutes';
+import { logoUrl } from '../components/logoUrl';
 import './pages.css';
 
 /** For an FBA/D2 league step: the Playoffs tab once that league's regular season is over, else null. */
@@ -77,7 +78,7 @@ export function Home() {
   return (
     <section>
       <PortalBanner />
-      <Hero kicker={`Season ${cal.season}`} title={title} logo={<img src="/logos/FBA/1" alt="" />}>
+      <Hero kicker={`Season ${cal.season}`} title={title} logo={<img src={logoUrl('FBA', 1)} alt="" />}>
         <Link className="btn primary big" to={target}>Continue ▸</Link>
       </Hero>
       <div className="card-grid home-leagues">

@@ -1,4 +1,5 @@
 import type { Franchise, LogoManifest, Team } from '../../engine/shared/types';
+import { logoUrl } from '../components/logoUrl';
 import { TeamMark } from '../components/TeamMark';
 
 /** A franchise's name eras, newest first, each with the logos its team wore then. */
@@ -18,7 +19,7 @@ export function EraStrip({ franchise, team, manifest }: { franchise: Franchise; 
                   <img
                     key={e.file}
                     className="team-mark"
-                    src={`/logos/${encodeURIComponent(folder)}/${Math.max(e.from ?? 1, era.from)}`}
+                    src={logoUrl(folder, Math.max(e.from ?? 1, era.from))}
                     width={56}
                     height={56}
                     alt={`${era.name} logo`}
