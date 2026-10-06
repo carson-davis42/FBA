@@ -4,6 +4,7 @@ import { type Possession, type SimGame, winProbability } from '../../engine/seas
 import { playerName, type SeasonState } from '../../engine/season/state';
 import { groupLabel, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import { useSaving } from '../api';
+import { WinProbChart } from './WinProbChart';
 import { BoxTable, bugSide, LineScore, periodName, ScoreBug, teamLabel } from './GameViews';
 import '../pages/season.css';
 import { PlayerName } from '../components/PlayerName';
@@ -88,7 +89,6 @@ export function LiveGame({ state, sim, save, back }: LiveGameProps) {
     box[p.offense][p.handler] += p.points;
   }
   const lines = (side: 'home' | 'away') => sim[side].players.map((pl, k) => ({ playerId: pl.playerId, pts: box[side][k] }));
-  const points = history.map((v, i) => `${(i / Math.max(1, sim.possessions.length)) * 300},${60 - v * 60}`).join(' ');
 
   // The conference or division the two teams play in (both, when they differ).
   const groups = [...new Set([sim.home.teamId, sim.away.teamId].map(id => state.teams.teams.find(t => t.teamId === id)?.group ?? null))]
@@ -126,11 +126,8 @@ export function LiveGame({ state, sim, save, back }: LiveGameProps) {
           </ul>
         </div>
         <div className="card headed stack">
-          <div className="card-head"><h3>Win probability · {sim.home.teamId} {Math.round(prob * 100)}%</h3></div>
-          <svg viewBox="0 0 300 60" width="100%" height="60" role="img" aria-label="Win probability">
-            <line className="wp-mid" x1="0" y1="30" x2="300" y2="30" />
-            <polyline className="wp-line" fill="none" points={points} />
-          </svg>
+          <div className="card-head"><h3>Win probability</h3></div>
+          <WinProbChart state={state} sim={sim} history={history} prob={prob} />
           <LineScore home={teamLabel(state, sim.home.teamId)} away={teamLabel(state, sim.away.teamId)} periods={periods} />
           <BoxTable state={state} title={teamLabel(state, sim.away.teamId)} lines={lines('away')} />
           <BoxTable state={state} title={teamLabel(state, sim.home.teamId)} lines={lines('home')} />

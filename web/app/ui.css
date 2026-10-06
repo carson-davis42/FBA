@@ -14,6 +14,7 @@
 /* page header */
 .page-head { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s3); margin: 0 0 var(--s4); padding-bottom: var(--s3); border-bottom: 1px solid var(--border); }
 .page-head h1 { margin: 0; line-height: 1; }
+.standings-page .page-head h1 { font-size: 36px; }
 .page-kicker { font-size: var(--fs-xs); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: var(--s1); }
 .page-head .actions { margin-left: auto; display: flex; flex-wrap: wrap; gap: var(--s2); }
 

@@ -59,7 +59,7 @@ export function StandingsPage() {
   const teams = new Map(state.teams.teams.map(t => [t.teamId, t]));
   const s = standings(lg, state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group })), state.results?.games ?? [], undefined, state.playoffs);
   return (
-    <section className="stack">
+    <section className="stack standings-page">
       <PageHeader kicker={`${LEAGUE_LABEL[lg]} · S${state.season}`} title="Standings" />
       {s.groups.map(g => (
         <div key={g.group} className="stand-group">
