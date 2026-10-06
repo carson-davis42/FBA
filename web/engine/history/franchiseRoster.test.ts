@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { Franchise, PlayersFile, RostersFile } from '../shared/types';
+import type { Franchise, PlayersFile, ResultsFile, RostersFile } from '../shared/types';
 import { franchiseIndex, franchiseSeasons, seasonRanges } from './franchiseRoster';
 
 const franchise: Franchise = {
@@ -76,5 +76,27 @@ describe('franchiseSeasons / seasonRanges', () => {
     expect(seasonRanges([12, 13, 14, 22])).toBe('S12–S14, S22');
     expect(seasonRanges([5])).toBe('S5');
     expect(seasonRanges([])).toBe('');
+  });
+});
+
+describe('the season being played', () => {
+  const line = (playerId: string) => ({ playerId, pts: 5, def: 0, stops: 0, allowed: 0, exp: 100 });
+  const results: ResultsFile = {
+    league: 'fba', season: 79, locked: false,
+    games: [
+      { gameNo: 1, home: 'MON', away: 'BOS', homePts: 70, awayPts: 60, box: { home: [line('p00006'), line('p00007')], away: [line('p00003')] } },
+      { gameNo: 2, home: 'BOS', away: 'MON', homePts: 70, awayPts: 60, box: { home: [line('p00003')], away: [line('p00007')] } },
+    ],
+  };
+  const idx = franchiseIndex({ franchise, players, bios, summaries: [], hof: null, rosters: [], results });
+
+  it('lists a player who played for the franchise this season even if he has since left', () => {
+    expect(idx.players.find(r => r.playerId === 'p00006')?.seasons).toEqual([79]);
+    expect(idx.rosterFor(79).map(r => r.playerId).sort()).toEqual(['p00006', 'p00007']);
+  });
+
+  it('extends an open stint into the season, and ignores players who only faced the franchise', () => {
+    expect(idx.players.find(r => r.playerId === 'p00007')?.seasons).toEqual([77, 78, 79]);
+    expect(idx.players.find(r => r.playerId === 'p00003')).toBeUndefined();
   });
 });

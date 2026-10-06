@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { franchiseIndex, franchiseSeasons, seasonRanges, type FranchiseHonour, type FranchisePlayer } from '../../engine/history/franchiseRoster';
-import type { Franchise, HallOfFameFile, PlayerBiosFile, PlayersFile, RostersFile, SummaryFile } from '../../engine/shared/types';
+import type { Franchise, HallOfFameFile, PlayerBiosFile, PlayersFile, ResultsFile, RostersFile, SummaryFile } from '../../engine/shared/types';
 import { PlayerLink } from './PlayerLink';
 
 type Sort = 'name' | 'first' | 'seasons' | 'accolades';
@@ -27,15 +27,17 @@ export interface FranchisePlayersProps {
   summaries: SummaryFile[];
   hof: HallOfFameFile | null;
   rosters: RostersFile[];
+  /** The season being played: its games show who played for the franchise before any summary exists. */
+  results?: ResultsFile | null;
   latest: number;
 }
 
 /** Every player who played for the franchise (with their seasons and accolades), or the roster of one chosen season. */
-export function FranchisePlayers({ franchise, players, bios, summaries, hof, rosters, latest }: FranchisePlayersProps) {
+export function FranchisePlayers({ franchise, players, bios, summaries, hof, rosters, results = null, latest }: FranchisePlayersProps) {
   const [params, setParams] = useSearchParams();
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState<Sort>('first');
-  const index = useMemo(() => franchiseIndex({ franchise, players, bios, summaries, hof, rosters }), [franchise, players, bios, summaries, hof, rosters]);
+  const index = useMemo(() => franchiseIndex({ franchise, players, bios, summaries, hof, rosters, results }), [franchise, players, bios, summaries, hof, rosters, results]);
   const seasons = useMemo(() => franchiseSeasons(franchise, latest), [franchise, latest]);
 
   const view = params.get('view') === 'season' ? 'season' : 'all';

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { trophyCase, TROPHY_AWARDS } from '../../engine/history/trophies';
-import type { CalendarFile, DraftHistoryFile, Franchise, HallOfFameFile, LogoManifest, PlayerBiosFile, PlayersFile, RostersFile } from '../../engine/shared/types';
+import type { CalendarFile, DraftHistoryFile, Franchise, HallOfFameFile, LogoManifest, PlayerBiosFile, PlayersFile, ResultsFile, RostersFile } from '../../engine/shared/types';
 import { docFailure, docSettled, useDoc, useHistory } from '../api';
 import { Hero } from '../components/Hero';
 import { teamTheme } from '../components/teamColors';
@@ -13,19 +13,19 @@ import { PlayerLink } from './PlayerLink';
 import { useFbaTeams } from './useTeams';
 import './history.css';
 
-/** The season roster files from S78 (the first with full rosters) through `latest`, once the Players tab asks for them. */
-function useRosters(latest: number | null): RostersFile[] | null {
-  const [state, setState] = useState<{ latest: number; files: RostersFile[] } | null>(null);
+/** The season roster files from S78 (the first with full rosters) through `latest`, and the games of `latest`, once the Players tab asks for them. */
+function useSeasonFiles(latest: number | null): { rosters: RostersFile[]; results: ResultsFile | null } | null {
+  const [state, setState] = useState<{ latest: number; rosters: RostersFile[]; results: ResultsFile | null } | null>(null);
   useEffect(() => {
     if (latest === null) return;
     let live = true;
+    const read = <T,>(rel: string) => fetch(`/api/state/leagues/fba/${rel}`).then(res => (res.ok ? res.json() as Promise<T> : null), () => null);
     const seasons = Array.from({ length: Math.max(0, latest - 77) }, (_, i) => 78 + i);
-    Promise.all(seasons.map(n => fetch(`/api/state/leagues/fba/S${n}/rosters.json`)
-      .then(res => (res.ok ? res.json() as Promise<RostersFile> : null), () => null)))
-      .then(files => { if (live) setState({ latest, files: files.filter((f): f is RostersFile => f !== null) }); });
+    Promise.all([Promise.all(seasons.map(n => read<RostersFile>(`S${n}/rosters.json`))), read<ResultsFile>(`S${latest}/results.json`)])
+      .then(([files, results]) => { if (live) setState({ latest, rosters: files.filter((f): f is RostersFile => f !== null), results }); });
     return () => { live = false; };
   }, [latest]);
-  return latest !== null && state?.latest === latest ? state.files : null;
+  return latest !== null && state?.latest === latest ? state : null;
 }
 
 export function FranchisePage() {
@@ -39,11 +39,11 @@ export function FranchisePage() {
   const tab = params.get('tab') === 'players' ? 'players' : 'overview';
   const bios = useDoc<PlayerBiosFile>(tab === 'players' ? 'leagues/fba/playerBios.json' : null);
   const calendar = useDoc<CalendarFile>('calendar.json');
-  const rosters = useRosters(tab === 'players' ? Math.max(79, calendar.data?.season ?? 0) : null);
+  const seasonFiles = useSeasonFiles(tab === 'players' ? Math.max(79, calendar.data?.season ?? 0) : null);
   const { settled, teams, franchises } = useFbaTeams();
   const failure = error ?? players.error ?? docFailure(hof) ?? docFailure(drafts) ?? docFailure(manifest) ?? docFailure(bios);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
-  if (!seasons || !players.data || !settled || !docSettled(hof) || !docSettled(drafts) || !docSettled(manifest) || (tab === 'players' && (!docSettled(bios) || rosters === null))) return <p className="muted">Loading…</p>;
+  if (!seasons || !players.data || !settled || !docSettled(hof) || !docSettled(drafts) || !docSettled(manifest) || (tab === 'players' && (!docSettled(bios) || seasonFiles === null))) return <p className="muted">Loading…</p>;
 
   if (!franchises) return <p className="muted">No franchise history yet. Run npm run import -- --franchises.</p>;
 
@@ -90,7 +90,7 @@ export function FranchisePage() {
       <SubNav label="Franchise" items={[{ id: 'overview', label: 'Overview' }, { id: 'players', label: 'Players' }]} active={tab} onSelect={id => setParams(id === 'players' ? { tab: 'players' } : {})} />
       {tab === 'players' ? (
         <div id="panel-players" role="tabpanel" aria-labelledby="tab-players">
-          <FranchisePlayers franchise={franchise} players={playerDoc} bios={bios.data ?? null} summaries={seasons} hof={hof.data ?? null} rosters={rosters ?? []} latest={latest} />
+          <FranchisePlayers franchise={franchise} players={playerDoc} bios={bios.data ?? null} summaries={seasons} hof={hof.data ?? null} rosters={seasonFiles?.rosters ?? []} results={seasonFiles?.results ?? null} latest={latest} />
         </div>
       ) : (
         <>

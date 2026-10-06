@@ -1,5 +1,5 @@
-import type { Franchise, HallOfFameFile, PlayerBiosFile, PlayersFile, RosterEntry, RostersFile, SummaryFile } from '../shared/types';
-import { liveCareer } from './career';
+import type { Franchise, HallOfFameFile, PlayerBiosFile, PlayersFile, RosterEntry, ResultsFile, RostersFile, SummaryFile } from '../shared/types';
+import { applyPlayed, liveCareer, teamsPlayedFor } from './career';
 
 export interface FranchiseHonour { label: string; count: number; seasons: number[] }
 export interface FranchisePlayer { playerId: string; name: string; seasons: number[]; honours: FranchiseHonour[]; hof: string | null }
@@ -12,6 +12,8 @@ export interface FranchiseRosterInput {
   hof: HallOfFameFile | null;
   /** The season roster files that exist (S78 on); older seasons are known only from the bios. */
   rosters: RostersFile[];
+  /** The season being played, whose games say who has played for the franchise before any summary or roster file does. */
+  results?: ResultsFile | null;
 }
 
 const season = (t: string): number | null => (/^S(\d+)$/i.exec(t) ? Number(t.slice(1)) : null);
@@ -54,6 +56,7 @@ export function seasonRanges(seasons: number[]): string {
 /** Every player who played for the franchise, and each season's roster. Pre-S78 seasons come from the career bios alone. */
 export function franchiseIndex(input: FranchiseRosterInput): { players: FranchisePlayer[]; rosterFor(season: number): SeasonRosterRow[] } {
   const { franchise, bios, summaries, hof, rosters } = input;
+  const results = input.results && !summaries.some(x => x.season === input.results!.season) ? input.results : null;
   const bioOf = new Map((bios?.bios ?? []).map(b => [b.playerId, b]));
   const slots = new Map<number, Map<string, RosterEntry>>();
   const candidates = new Set(bioOf.keys());
@@ -67,11 +70,17 @@ export function franchiseIndex(input: FranchiseRosterInput): { players: Franchis
     slots.set(r.season, bySeason);
   }
 
+  for (const g of results?.games ?? []) {
+    const side = g.home === franchise.teamId ? 'home' : g.away === franchise.teamId ? 'away' : null;
+    if (side) for (const l of g.box?.[side] ?? []) candidates.add(l.playerId);
+  }
+
   const rows: FranchisePlayer[] = [];
   for (const id of candidates) {
     const name = input.players.players[id]?.name;
     if (!name) continue;
-    const career = liveCareer(bioOf.get(id) ?? null, id, summaries, hof);
+    const live = liveCareer(bioOf.get(id) ?? null, id, summaries, hof);
+    const career = results ? applyPlayed(live, teamsPlayedFor(results, id), results.season) : live;
     const seasons = new Set<number>();
     const honours = new Map<string, FranchiseHonour>();
     for (const stint of career.stints) {
