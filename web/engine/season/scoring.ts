@@ -1,4 +1,4 @@
-import { makeChance, type SimGame, type SimProfile } from './sim';
+import { FBA_PROFILE, shotOdds, type SimGame } from './sim';
 
 export interface ScoringLine {
   att: number;
@@ -21,12 +21,12 @@ export function shotMoments(odds: number, rollOffset = 1): { exp: number; varian
 export function scoringLines(g: SimGame): { home: ScoringLine[]; away: ScoringLine[] } {
   const zero = (n: number) => Array.from({ length: n }, () => ({ att: 0, offExp: 0, offVar: 0 }));
   const out = { home: zero(g.home.players.length), away: zero(g.away.players.length) };
-  const profile: Pick<SimProfile, 'rollOffset'> = g.profile ?? { rollOffset: 1 };
+  const profile = g.profile ?? FBA_PROFILE;
   for (const p of g.possessions) {
     const offense = g[p.offense];
     const defense = g[p.offense === 'home' ? 'away' : 'home'];
     const line = out[p.offense][p.handler];
-    const moments = shotMoments(makeChance(offense.players[p.handler].rating, defense.players[p.defender].rating), profile.rollOffset);
+    const moments = shotMoments(shotOdds(offense, p.handler, defense, p.defender, profile), profile.rollOffset);
     line.att++;
     line.offExp += moments.exp;
     line.offVar += moments.variance;

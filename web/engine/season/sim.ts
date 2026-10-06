@@ -122,6 +122,19 @@ export function makeChance(handlerRating: number, defenderRating: number): numbe
   return Math.max(35, Math.min(65, handlerRating - Math.floor(0.45 * defenderRating) + 10));
 }
 
+/**
+ * The make chance the sim uses for one shot: the matchup odds less the shooter's usage penalty, in whole points (the roll is a whole number, so the fraction never changes a result).
+ * The rating pause's expected points call this too, so expectations always match the sim.
+ */
+export function shotOdds(offense: SimTeam, handler: number, defense: SimTeam, defender: number, profile: SimProfile = FBA_PROFILE): number {
+  return shotOddsAgainst(offense, handler, defense.players[defender].rating, profile);
+}
+
+/** `shotOdds` against a defender of a given rating (the reference defender behind points saved). */
+export function shotOddsAgainst(offense: SimTeam, handler: number, defenderRating: number, profile: SimProfile = FBA_PROFILE): number {
+  return Math.floor(makeChance(offense.players[handler].rating, defenderRating) - usagePenalty(touchShare(offense, handler, profile), profile));
+}
+
 /** roll is 1–100 (0–99 in the FBAJC); made when odds ≥ roll, and a margin of 30 or more scores 3. */
 export function shotPoints(odds: number, roll: number): 0 | 2 | 3 {
   if (odds < roll) return 0;
@@ -138,8 +151,7 @@ function playOne(home: SimTeam, away: SimTeam, c: Cursor, rng: Rng, profile: Sim
   const handler = pickHandler(off, rng, profile);
   const defender = pickDefender(def, off, handler, rng);
   const roll = Math.floor(rng() * 100) + profile.rollOffset;
-  const odds = makeChance(off.players[handler].rating, def.players[defender].rating) - usagePenalty(touchShare(off, handler, profile), profile);
-  const points = shotPoints(odds, roll);
+  const points = shotPoints(shotOdds(off, handler, def, defender, profile), roll);
   if (offense === 'home') c.home += points;
   else c.away += points;
   const i = c.i;

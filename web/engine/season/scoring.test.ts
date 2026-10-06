@@ -45,4 +45,19 @@ describe('scoring expectations', () => {
     expect(row.offExp).toBe(row.att! * expectation.exp);
     expect(row.offVar).toBe(row.att! * expectation.variance);
   });
+
+  it('expects what the sim actually gives a high-usage shooter, usage penalty included', () => {
+    const star: SimTeam = { teamId: 'S', players: [98, 73, 73, 73, 73].map((rating, i) => ({ playerId: `S${i}`, position: (['PG', 'SG', 'SF', 'PF', 'C'] as const)[i], rating })) };
+    const rest = team('B', 78);
+    const rng = mulberry32(5150);
+    const n = 1500;
+    let diff = 0;
+    for (let i = 0; i < n; i++) {
+      const g = simGame(i, i % 2 === 0 ? star : rest, i % 2 === 0 ? rest : star, rng);
+      const side = i % 2 === 0 ? 'home' : 'away';
+      diff += g.box[side][0] - scoringLines(g)[side][0].offExp / 100;
+    }
+    // A star taking ~42% of his team's touches loses about 2 make-chance points; ignoring that left him about 2 points a game short of "expected".
+    expect(Math.abs(diff / n)).toBeLessThan(0.5);
+  });
 });
