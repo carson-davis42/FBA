@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "D2 International Champion",
-      "champion": "Rome",
+      "champion": "Roma Pallacanestro",
       "runnerUp": "Paris",
       "score": null,
       "group": "D2",
@@ -64,7 +64,7 @@
     {
       "group": "ES",
       "teams": [
-        "Rome"
+        "Roma Pallacanestro"
       ]
     }
   ],
@@ -129,7 +129,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "6-4",
           "seed": 13
         },
@@ -206,7 +206,7 @@
           "seed": 15
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 2
         },
@@ -278,7 +278,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 2
         },
@@ -314,7 +314,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 2
         },
@@ -332,7 +332,7 @@
           "seed": 4
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 2
         },

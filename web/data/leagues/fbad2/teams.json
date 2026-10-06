@@ -245,14 +245,16 @@
     },
     {
       "teamId": "GUAD",
-      "name": "Guadalajara",
+      "name": "Guadalajara CB",
       "abbr": "GUAD",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(211 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#0E4C37",
+        "fg": "#fff",
+        "accent": "#EEE8BF"
+      },
+      "logoFile": "Guadalajara CB S79-pres..png"
     },
     {
       "teamId": "HAM",
@@ -432,14 +434,16 @@
     },
     {
       "teamId": "MUM",
-      "name": "Mumbai",
+      "name": "Mumbai BC",
       "abbr": "MUM",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(333 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#D77629",
+        "fg": "#fff",
+        "accent": "#120D09"
+      },
+      "logoFile": "Mumbai BC S79-pres..png"
     },
     {
       "teamId": "MUN",
@@ -542,14 +546,16 @@
     },
     {
       "teamId": "ROME",
-      "name": "Rome",
+      "name": "Roma Pallacanestro",
       "abbr": "ROME",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(253 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#7B1C23",
+        "fg": "#fff",
+        "accent": "#C0946B"
+      },
+      "logoFile": "Roma Pallacanestro S79-pres..png"
     },
     {
       "teamId": "ROT",
@@ -564,14 +570,16 @@
     },
     {
       "teamId": "SALZ",
-      "name": "Salzburg",
+      "name": "Salzburg BC",
       "abbr": "SALZ",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(140 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#152739",
+        "fg": "#fff",
+        "accent": "#BBA87D"
+      },
+      "logoFile": "Salzburg BC S79-pres..png"
     },
     {
       "teamId": "SHAN",

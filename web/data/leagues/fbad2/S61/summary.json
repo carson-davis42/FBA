@@ -44,7 +44,7 @@
     {
       "group": "ES",
       "teams": [
-        "Rome",
+        "Roma Pallacanestro",
         "Madrid"
       ]
     }
@@ -74,7 +74,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "6-4",
           "seed": 9
         },
@@ -151,7 +151,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 6
         },
@@ -241,7 +241,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 6
         },

@@ -7,7 +7,7 @@ const base = { season: 60, locked: true, host: null, champions: [] };
 
 describe('D2 history schemas', () => {
   it('accepts rsChampions and the new MVP ids on a D2 summary only', () => {
-    const d2 = { league: 'fbad2', ...base, rsChampions: [{ group: 'AM', teams: ['San Jose', 'Toronto'] }], awards: [{ award: 'MVP-D2', playerId: 'p00001', teamId: 'Rome' }] };
+    const d2 = { league: 'fbad2', ...base, rsChampions: [{ group: 'AM', teams: ['San Jose', 'Toronto'] }], awards: [{ award: 'MVP-D2', playerId: 'p00001', teamId: 'Roma Pallacanestro' }] };
     expect(SummaryFile.safeParse(d2).success).toBe(true);
     expect(SummaryFile.safeParse({ ...d2, league: 'fba', awards: [] }).success).toBe(false);
     expect(SummaryFile.safeParse({ ...d2, rsChampions: [{ group: 'AM', teams: [] }] }).success).toBe(false);
@@ -23,7 +23,7 @@ describe('D2 history schemas', () => {
   });
 
   it('validates D2 drafts: picks 1..n, one draft per season', () => {
-    const pick = (n: number) => ({ pick: n, teamId: 'ROM', teamName: 'Rome', name: 'A B', playerId: null, pos: 'PG', age: 22, rating: null });
+    const pick = (n: number) => ({ pick: n, teamId: 'ROM', teamName: 'Roma Pallacanestro', name: 'A B', playerId: null, pos: 'PG', age: 22, rating: null });
     expect(D2DraftHistoryFile.safeParse({ drafts: [{ season: 68, picks: [pick(1), pick(2)] }] }).success).toBe(true);
     expect(D2DraftHistoryFile.safeParse({ drafts: [{ season: 68, picks: [pick(2)] }] }).success).toBe(false);
     expect(D2DraftHistoryFile.safeParse({ drafts: [{ season: 68, picks: [] }, { season: 68, picks: [] }] }).success).toBe(false);

@@ -13,7 +13,7 @@ const bios = {
     bio('p00001', 'Wake Forest-S58-S60', 'S59 FOY', '1x All-American', 'D2(San Jose)-S61-S64', 'S62 MVP-D2', 'WC(USA)-S62'),
     bio('p00002', 'D2(San Jose)-S62-pres.', 'WC(USA)-S62-S63'),
     bio('p00003', 'Duke-S58-S60'),
-    bio('p00004', 'D2(Rome)-S62'),
+    bio('p00004', 'D2(Roma Pallacanestro)-S62'),
   ],
 };
 

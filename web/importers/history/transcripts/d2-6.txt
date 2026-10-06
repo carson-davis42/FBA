@@ -74,7 +74,7 @@ G:PL
 1|Hamburg|23-7
 8|Milan|18-12
 5|Lisbon|20-10
-4|Rome|21-9
+4|Roma Pallacanestro|21-9
 3|San Jose|22-8
 6|Vancouver|19-11
 7|Toronto|19-11
@@ -90,7 +90,7 @@ G:IL
 8|Belfast|15-15
 5|Dubai|20-10
 4|Luxembourg|20-10
-3|Mumbai|20-10
+3|Mumbai BC|20-10
 6|Rotterdam|18-12
 7|Dhaka|17-13
 2|Saint Petersburg|22-8

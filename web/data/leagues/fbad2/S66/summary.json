@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion",
       "champion": "Milan",
-      "runnerUp": "Salzburg",
+      "runnerUp": "Salzburg BC",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02147",
@@ -59,7 +59,7 @@
     {
       "group": "EE",
       "teams": [
-        "Salzburg"
+        "Salzburg BC"
       ]
     },
     {
@@ -76,7 +76,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
@@ -94,12 +94,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "8-2",
           "seed": 9
         },
         "away": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "7-3",
           "seed": 8
         },
@@ -220,12 +220,12 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "8-2",
           "seed": 9
         },
@@ -292,7 +292,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
@@ -328,7 +328,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },

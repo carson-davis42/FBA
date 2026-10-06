@@ -20,7 +20,7 @@ const bracket = (extra: Record<string, unknown> = {}): PastBracket => ({
 const mkTeam = (teamId: string, name: string) => ({ teamId, name, abbr: teamId, group: null, logoFolder: null, badge: { bg: '#000', fg: '#fff' } });
 const players = { nextId: 4, players: { p00001: { id: 'p00001', name: 'Ann Able', birthSeason: 40 }, p00002: { id: 'p00002', name: 'Bo Baker', birthSeason: 40 }, p00003: { id: 'p00003', name: 'Cy Cole', birthSeason: 40 } } };
 const bio = (playerId: string, ...entries: string[]) => ({ playerId, born: 'Born-S40', entries });
-const bios = { league: 'fba', bios: [bio('p00001', 'USA-S18-S22', 'S20 MVP'), bio('p00002', 'MON-S18-S22', 'D2(Rome)-S23-S24', 'WC(Italy)-S23'), bio('p00003', 'D2(Rome)-S23-S24')] };
+const bios = { league: 'fba', bios: [bio('p00001', 'USA-S18-S22', 'S20 MVP'), bio('p00002', 'MON-S18-S22', 'D2(Roma Pallacanestro)-S23-S24', 'WC(Italy)-S23'), bio('p00003', 'D2(Roma Pallacanestro)-S23-S24')] };
 const franchises = {
   franchises: [
     { teamId: 'SAS', eras: [{ name: 'San Antonio', abbr: 'USA', city: 'San Antonio', from: 1, to: null }] },
@@ -82,11 +82,11 @@ describe('BoxScorePage', () => {
 
   it('builds a D2 roster from the bios by team name', async () => {
     const d2 = { league: 'fbad2', season: 24, locked: true, host: null, champions: [], pastBracket: { rounds: 1, series: [
-      { id: 'R1-1', round: 1, home: side('Rome', 1), away: side('Hamburg', 2), homeWins: 3, awayWins: 1, winner: 'home' },
+      { id: 'R1-1', round: 1, home: side('Roma Pallacanestro', 1), away: side('Hamburg', 2), homeWins: 3, awayWins: 1, winner: 'home' },
     ] } };
-    stub({ ...common, '/api/state/leagues/fbad2/S24/summary.json': d2, '/api/state/leagues/fbad2/teams.json': { league: 'fbad2', teams: [mkTeam('ROME', 'Rome')] } });
+    stub({ ...common, '/api/state/leagues/fbad2/S24/summary.json': d2, '/api/state/leagues/fbad2/teams.json': { league: 'fbad2', teams: [mkTeam('ROME', 'Roma Pallacanestro')] } });
     renderAt('/history/fbad2/season/24/game/R1-1');
-    const rome = (await screen.findByText('Rome in S24')).closest('section')!;
+    const rome = (await screen.findByText('Roma Pallacanestro in S24')).closest('section')!;
     expect(within(rome).getByRole('link', { name: 'Bo Baker' })).toBeTruthy();
     expect(within(rome).getByRole('link', { name: 'Cy Cole' })).toBeTruthy();
     const hamburg = screen.getByText('Hamburg in S24').closest('section')!;

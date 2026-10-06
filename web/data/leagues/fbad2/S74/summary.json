@@ -120,7 +120,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "21-9",
               "seed": 5
             },
@@ -176,7 +176,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "21-9",
               "seed": 5
             },
@@ -247,7 +247,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Guadalajara",
+              "name": "Guadalajara CB",
               "record": "22-8",
               "seed": 5
             },
@@ -518,7 +518,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Mumbai",
+              "name": "Mumbai BC",
               "record": "24-6",
               "seed": 3
             },
@@ -569,7 +569,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Mumbai",
+              "name": "Mumbai BC",
               "record": "24-6",
               "seed": 3
             },

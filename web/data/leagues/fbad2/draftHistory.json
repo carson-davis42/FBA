@@ -106,7 +106,7 @@
         {
           "pick": 11,
           "teamId": "ROME",
-          "teamName": "Rome",
+          "teamName": "Roma Pallacanestro",
           "name": "Kodi Mclellan",
           "playerId": "p00476",
           "pos": "SG",
@@ -116,7 +116,7 @@
         {
           "pick": 12,
           "teamId": "ROME",
-          "teamName": "Rome",
+          "teamName": "Roma Pallacanestro",
           "name": "Franco Hoffman",
           "playerId": "p00477",
           "pos": "C",
@@ -196,7 +196,7 @@
         {
           "pick": 20,
           "teamId": "GUAD",
-          "teamName": "Guadalajara",
+          "teamName": "Guadalajara CB",
           "name": "Greyson Martin",
           "playerId": "p02355",
           "pos": "SG",
@@ -351,7 +351,7 @@
         {
           "pick": 15,
           "teamId": "GUAD",
-          "teamName": "Guadalajara",
+          "teamName": "Guadalajara CB",
           "name": "Tyreke Frost",
           "playerId": "p02321",
           "pos": "PF",
@@ -511,7 +511,7 @@
         {
           "pick": 31,
           "teamId": "ROME",
-          "teamName": "Rome",
+          "teamName": "Roma Pallacanestro",
           "name": "Alec Guy",
           "playerId": "p01828",
           "pos": "SG",
@@ -541,7 +541,7 @@
         {
           "pick": 34,
           "teamId": "SALZ",
-          "teamName": "Salzburg",
+          "teamName": "Salzburg BC",
           "name": "Joni Fox",
           "playerId": "p00407",
           "pos": "SG",
@@ -796,7 +796,7 @@
         {
           "pick": 20,
           "teamId": "GUAD",
-          "teamName": "Guadalajara",
+          "teamName": "Guadalajara CB",
           "name": "RJ Hagan",
           "playerId": "p00272",
           "pos": "SF",
@@ -1301,7 +1301,7 @@
         {
           "pick": 30,
           "teamId": "SALZ",
-          "teamName": "Salzburg",
+          "teamName": "Salzburg BC",
           "name": "Edwin Bell",
           "playerId": "p01884",
           "pos": "C",
@@ -1546,7 +1546,7 @@
         {
           "pick": 7,
           "teamId": "MUM",
-          "teamName": "Mumbai",
+          "teamName": "Mumbai BC",
           "name": "Derrick Donald",
           "playerId": "p00350",
           "pos": "C",
@@ -1726,7 +1726,7 @@
         {
           "pick": 25,
           "teamId": "MUM",
-          "teamName": "Mumbai",
+          "teamName": "Mumbai BC",
           "name": "Brook England",
           "playerId": "p01840",
           "pos": "SF",
@@ -2071,7 +2071,7 @@
         {
           "pick": 14,
           "teamId": "MUM",
-          "teamName": "Mumbai",
+          "teamName": "Mumbai BC",
           "name": "Damian Roberts",
           "playerId": "p00349",
           "pos": "PF",
@@ -2191,7 +2191,7 @@
         {
           "pick": 26,
           "teamId": "MUM",
-          "teamName": "Mumbai",
+          "teamName": "Mumbai BC",
           "name": "Wade Woods",
           "playerId": "p00347",
           "pos": "SG",
@@ -2396,7 +2396,7 @@
         {
           "pick": 6,
           "teamId": "GUAD",
-          "teamName": "Guadalajara",
+          "teamName": "Guadalajara CB",
           "name": "Enoch Fisher",
           "playerId": "p00274",
           "pos": "C",
@@ -2636,7 +2636,7 @@
         {
           "pick": 30,
           "teamId": "ROME",
-          "teamName": "Rome",
+          "teamName": "Roma Pallacanestro",
           "name": "Kian Butler",
           "playerId": "p00394",
           "pos": "SF",
@@ -2656,7 +2656,7 @@
         {
           "pick": 32,
           "teamId": "MUM",
-          "teamName": "Mumbai",
+          "teamName": "Mumbai BC",
           "name": "Mason Cross",
           "playerId": "p01794",
           "pos": "PG",
@@ -3166,7 +3166,7 @@
         {
           "pick": 5,
           "teamId": "ROME",
-          "teamName": "Rome",
+          "teamName": "Roma Pallacanestro",
           "name": "Dennis Holloway",
           "playerId": "p02349",
           "pos": "PG",
@@ -3246,7 +3246,7 @@
         {
           "pick": 13,
           "teamId": "SALZ",
-          "teamName": "Salzburg",
+          "teamName": "Salzburg BC",
           "name": "Darien Shepherd",
           "playerId": "p00409",
           "pos": "PF",
@@ -3346,7 +3346,7 @@
         {
           "pick": 23,
           "teamId": "SALZ",
-          "teamName": "Salzburg",
+          "teamName": "Salzburg BC",
           "name": "Kyran Walker",
           "playerId": "p00406",
           "pos": "PG",
@@ -3426,7 +3426,7 @@
         {
           "pick": 31,
           "teamId": "ROME",
-          "teamName": "Rome",
+          "teamName": "Roma Pallacanestro",
           "name": "Franciszek Mazur",
           "playerId": "p00395",
           "pos": "PF",
@@ -3551,7 +3551,7 @@
         {
           "pick": 1,
           "teamId": "SALZ",
-          "teamName": "Salzburg",
+          "teamName": "Salzburg BC",
           "name": "Jalen Flowers",
           "playerId": "p00408",
           "pos": "SF",
@@ -3601,7 +3601,7 @@
         {
           "pick": 6,
           "teamId": "MUM",
-          "teamName": "Mumbai",
+          "teamName": "Mumbai BC",
           "name": "Kye Kenny",
           "playerId": "p00471",
           "pos": "PG",
@@ -3631,7 +3631,7 @@
         {
           "pick": 9,
           "teamId": "GUAD",
-          "teamName": "Guadalajara",
+          "teamName": "Guadalajara CB",
           "name": "Kerry Khan",
           "playerId": "p00270",
           "pos": "PG",
@@ -3871,7 +3871,7 @@
         {
           "pick": 33,
           "teamId": "GUAD",
-          "teamName": "Guadalajara",
+          "teamName": "Guadalajara CB",
           "name": "Callum Kent",
           "playerId": "p00273",
           "pos": "PF",
@@ -4216,7 +4216,7 @@
         {
           "pick": 9,
           "teamId": "SALZ",
-          "teamName": "Salzburg",
+          "teamName": "Salzburg BC",
           "name": "Theon Campos",
           "playerId": "p00478",
           "pos": "C",
@@ -4256,7 +4256,7 @@
         {
           "pick": 13,
           "teamId": "ROME",
-          "teamName": "Rome",
+          "teamName": "Roma Pallacanestro",
           "name": "Logan Cohen",
           "playerId": "p00393",
           "pos": "PG",
@@ -4366,7 +4366,7 @@
         {
           "pick": 24,
           "teamId": "MUM",
-          "teamName": "Mumbai",
+          "teamName": "Mumbai BC",
           "name": "Kai Miller",
           "playerId": "p00348",
           "pos": "SF",

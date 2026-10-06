@@ -691,7 +691,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -714,7 +714,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "7-3",
           "seed": 4
         },
@@ -763,12 +763,12 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "7-3",
           "seed": 4
         },
@@ -799,7 +799,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -859,7 +859,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "8-2",
           "seed": null
         },
@@ -913,7 +913,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "8-2",
           "seed": null
         },
@@ -973,7 +973,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "8-2",
           "seed": 9
         },
@@ -1231,7 +1231,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -1272,7 +1272,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "7-3",
           "seed": 12
         },
@@ -1375,7 +1375,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -1447,7 +1447,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -1584,7 +1584,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "6-4",
           "seed": 14
         },
@@ -1602,7 +1602,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 6
         },
@@ -1692,7 +1692,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 6
         },
@@ -1741,7 +1741,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 6
         },
@@ -1764,7 +1764,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 6
         },
@@ -1801,7 +1801,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "6-4",
           "seed": 9
         },
@@ -1878,7 +1878,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 6
         },
@@ -1968,7 +1968,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 6
         },
@@ -2149,7 +2149,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "8-2",
           "seed": 11
         },
@@ -2244,7 +2244,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "8-2",
           "seed": 11
         },
@@ -2389,7 +2389,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "6-4",
           "seed": 13
         },
@@ -2466,7 +2466,7 @@
           "seed": 15
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 2
         },
@@ -2538,7 +2538,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 2
         },
@@ -2574,7 +2574,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 2
         },
@@ -2592,7 +2592,7 @@
           "seed": 4
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 2
         },
@@ -2611,7 +2611,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 1
         },
@@ -2670,7 +2670,7 @@
           "seed": 13
         },
         "away": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "9-1",
           "seed": 4
         },
@@ -2755,7 +2755,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 1
         },
@@ -2778,7 +2778,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "9-1",
           "seed": 4
         },
@@ -2827,7 +2827,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 1
         },
@@ -2910,7 +2910,7 @@
           "seed": 9
         },
         "away": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "6-4",
           "seed": 8
         },
@@ -2923,7 +2923,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 5
         },
@@ -2946,7 +2946,7 @@
           "seed": 13
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "8-2",
           "seed": 4
         },
@@ -3049,12 +3049,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 5
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "8-2",
           "seed": 4
         },
@@ -3108,7 +3108,7 @@
           "seed": 9
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "8-2",
           "seed": 4
         },
@@ -3139,7 +3139,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "8-2",
           "seed": 4
         },
@@ -3163,7 +3163,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
@@ -3181,12 +3181,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "8-2",
           "seed": 9
         },
         "away": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "7-3",
           "seed": 8
         },
@@ -3307,12 +3307,12 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "8-2",
           "seed": 9
         },
@@ -3379,7 +3379,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
@@ -3415,7 +3415,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
@@ -3439,7 +3439,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
@@ -3529,7 +3529,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "9-1",
           "seed": 2
         },
@@ -3547,7 +3547,7 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -3583,7 +3583,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
@@ -3624,7 +3624,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "9-1",
           "seed": 2
         },
@@ -3637,7 +3637,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -3655,7 +3655,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
@@ -3673,12 +3673,12 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "9-1",
           "seed": 2
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -3691,12 +3691,12 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -3716,7 +3716,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "25-5",
           "seed": 1
         },
@@ -3750,7 +3750,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "23-7",
           "seed": 3
         },
@@ -3784,7 +3784,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "25-5",
           "seed": 1
         },
@@ -3818,7 +3818,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "25-5",
           "seed": 1
         },
@@ -3958,7 +3958,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "23-7",
           "seed": 1
         },
@@ -3997,7 +3997,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "20-10",
           "seed": 6
         },
@@ -4026,7 +4026,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "23-7",
           "seed": 1
         },
@@ -4060,7 +4060,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "23-7",
           "seed": 1
         },
@@ -4239,7 +4239,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "19-11",
           "seed": 6
         },
@@ -4256,7 +4256,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "23-7",
           "seed": 2
         },
@@ -4285,12 +4285,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "19-11",
           "seed": 6
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "23-7",
           "seed": 2
         },
@@ -4307,7 +4307,7 @@
           "seed": 4
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "23-7",
           "seed": 2
         },
@@ -4584,7 +4584,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "21-9",
           "seed": 4
         },
@@ -4937,7 +4937,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "18-12",
           "seed": 8
         },
@@ -4949,7 +4949,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "20-10",
           "seed": 5
         },
@@ -5000,7 +5000,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "18-12",
           "seed": 8
         },
@@ -5034,7 +5034,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "18-12",
           "seed": 8
         },
@@ -5109,7 +5109,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "18-12",
           "seed": 7
         },
@@ -5453,12 +5453,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "17-13",
           "seed": 5
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "19-11",
           "seed": 4
         },
@@ -5509,7 +5509,7 @@
           "seed": 8
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "17-13",
           "seed": 5
         },
@@ -5538,7 +5538,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "17-13",
           "seed": 5
         },
@@ -5567,7 +5567,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "15-15",
           "seed": 8
         },
@@ -5848,7 +5848,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "20-10",
           "seed": 3
         },
@@ -5957,7 +5957,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "21-9",
           "seed": 5
         },
@@ -6013,7 +6013,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "21-9",
           "seed": 5
         },
@@ -6083,7 +6083,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "22-8",
           "seed": 5
         },
@@ -6352,7 +6352,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "24-6",
           "seed": 3
         },
@@ -6403,7 +6403,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "24-6",
           "seed": 3
         },
@@ -6570,7 +6570,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "28-2",
           "seed": 1
         },
@@ -6638,7 +6638,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "28-2",
           "seed": 1
         },
@@ -6672,7 +6672,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "28-2",
           "seed": 1
         },
@@ -6878,7 +6878,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "27-3",
           "seed": 2
         },
@@ -6912,7 +6912,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "27-3",
           "seed": 2
         },
@@ -6929,7 +6929,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "27-3",
           "seed": 2
         },
@@ -6953,7 +6953,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "16-14",
           "seed": 8
         },
@@ -7016,7 +7016,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "16-14",
           "seed": 8
         },
@@ -7074,7 +7074,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "25-5",
           "seed": 1
         },
@@ -7142,7 +7142,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "25-5",
           "seed": 1
         },
@@ -7176,7 +7176,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "25-5",
           "seed": 1
         },
@@ -7457,7 +7457,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "17-13",
           "seed": 8
         },
@@ -7486,7 +7486,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "19-11",
           "seed": 3
         },
@@ -7508,7 +7508,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "22-8",
           "seed": 2
         },
@@ -7537,12 +7537,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "19-11",
           "seed": 3
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "22-8",
           "seed": 2
         },
@@ -7559,7 +7559,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "22-8",
           "seed": 2
         },
@@ -7704,7 +7704,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "26-4",
           "seed": 1
         },
@@ -7772,7 +7772,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "26-4",
           "seed": 1
         },
@@ -7806,7 +7806,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "26-4",
           "seed": 1
         },
@@ -7956,7 +7956,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "23-7",
           "seed": 1
         },
@@ -8024,7 +8024,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "23-7",
           "seed": 1
         },
@@ -8058,7 +8058,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "23-7",
           "seed": 1
         },
@@ -8082,7 +8082,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "28-2",
           "seed": 1
         },
@@ -8150,7 +8150,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "28-2",
           "seed": 1
         },
@@ -8184,7 +8184,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Mumbai",
+          "name": "Mumbai BC",
           "record": "28-2",
           "seed": 1
         },

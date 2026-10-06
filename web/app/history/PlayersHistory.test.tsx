@@ -151,7 +151,7 @@ describe('PlayerHistoryPage', () => {
   });
 
   describe('a player whose last stint ended before the current season', () => {
-    const gone: PlayerBiosFile = { league: 'fba', bios: [{ playerId: 'p00001', born: 'Born-S46', entries: ['D2(Mumbai)-S77-S78'] }] };
+    const gone: PlayerBiosFile = { league: 'fba', bios: [{ playerId: 'p00001', born: 'Born-S46', entries: ['D2(Mumbai BC)-S77-S78'] }] };
     const roster = (season: number) => ({ league: 'fbad2', season, locked: false, teams: { MUM: [{ playerId: 'p00001', position: 'PG', rating: 70, age: 30, points: 0 }] } });
 
     it('leads with the FBA retired mark when he is on no roster this season', async () => {
@@ -161,7 +161,7 @@ describe('PlayerHistoryPage', () => {
     });
 
     it('keeps his team when he is on a live roster', async () => {
-      stub({ currentSeason: 79, bios: gone, extra: { '/api/state/leagues/fbad2/S79/rosters.json': roster(79), '/api/state/leagues/fbad2/teams.json': { league: 'fbad2', teams: [{ teamId: 'MUM', name: 'Mumbai', abbr: 'MUM', group: null, logoFolder: null, badge: { bg: '#000', fg: '#fff' } }] } } });
+      stub({ currentSeason: 79, bios: gone, extra: { '/api/state/leagues/fbad2/S79/rosters.json': roster(79), '/api/state/leagues/fbad2/teams.json': { league: 'fbad2', teams: [{ teamId: 'MUM', name: 'Mumbai BC', abbr: 'MUM', group: null, logoFolder: null, badge: { bg: '#000', fg: '#fff' } }] } } });
       renderAt('/history/fba/players/p00001');
       await screen.findByText(/Born:/);
       expect(screen.queryByRole('img', { name: 'FBA logo' })).toBeNull();

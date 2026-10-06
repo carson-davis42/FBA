@@ -5,7 +5,7 @@ import type { LogoEntry, LogoManifest } from '../engine/shared/types';
 import type { Report } from './report';
 
 /** Folders whose files are one undated logo per team, so no era is expected in the names. */
-const SHARED_FOLDERS = new Set(['FBA', 'FBA_Gold', 'FBAJC', 'FBAJC_Final']);
+const SHARED_FOLDERS = new Set(['FBA', 'FBA_Gold', 'FBAD2', 'FBAJC', 'FBAJC_Final']);
 
 /** The logo folders under the root: the top-level ones, plus each team folder inside FBA_Main (which is not a logo folder itself). */
 function logoFolders(logoRoot: string): { name: string; dir: string }[] {
@@ -38,7 +38,9 @@ export function buildLogoManifest(logoRoot: string, report: Report): LogoManifes
     }
     folders[dir.name] = entries.sort((a, b) => a.file.localeCompare(b.file));
   }
-  return { folders };
+  // The same order a directory listing gives (case-insensitive), whether a folder sits at the top level or inside FBA_Main.
+  const upper = (s: string) => s.toUpperCase();
+  return { folders: Object.fromEntries(Object.entries(folders).sort(([a], [b]) => (upper(a) < upper(b) ? -1 : upper(a) > upper(b) ? 1 : 0))) };
 }
 
 /** The folders whose logo list differs between two manifests, by kind, each sorted by name. */

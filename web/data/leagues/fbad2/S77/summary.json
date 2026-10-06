@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "Premier League Champion",
-      "champion": "Salzburg",
+      "champion": "Salzburg BC",
       "runnerUp": "Austin",
       "score": null,
       "group": "PL",
@@ -26,7 +26,7 @@
     },
     {
       "title": "United League Champion",
-      "champion": "Mumbai",
+      "champion": "Mumbai BC",
       "runnerUp": "Copenhagen",
       "score": null,
       "group": "UL",
@@ -83,7 +83,7 @@
     {
       "group": "UL",
       "teams": [
-        "Mumbai"
+        "Mumbai BC"
       ]
     },
     {
@@ -108,7 +108,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "17-13",
               "seed": 8
             },
@@ -137,7 +137,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Guadalajara",
+              "name": "Guadalajara CB",
               "record": "19-11",
               "seed": 3
             },
@@ -159,7 +159,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "22-8",
               "seed": 2
             },
@@ -188,12 +188,12 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Guadalajara",
+              "name": "Guadalajara CB",
               "record": "19-11",
               "seed": 3
             },
             "away": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "22-8",
               "seed": 2
             },
@@ -210,7 +210,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "22-8",
               "seed": 2
             },
@@ -357,7 +357,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Mumbai",
+              "name": "Mumbai BC",
               "record": "26-4",
               "seed": 1
             },
@@ -425,7 +425,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Mumbai",
+              "name": "Mumbai BC",
               "record": "26-4",
               "seed": 1
             },
@@ -459,7 +459,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Mumbai",
+              "name": "Mumbai BC",
               "record": "26-4",
               "seed": 1
             },

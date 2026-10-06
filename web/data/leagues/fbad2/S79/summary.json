@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "Premier League Champion",
-      "champion": "Salzburg",
+      "champion": "Salzburg BC",
       "runnerUp": "Milan",
       "score": "4–0",
       "teamId": "SALZ",
@@ -72,7 +72,7 @@
   "standings": [
     {
       "teamId": "SALZ",
-      "name": "Salzburg",
+      "name": "Salzburg BC",
       "group": "PL",
       "rank": 1,
       "w": 20,
@@ -123,7 +123,7 @@
     },
     {
       "teamId": "GUAD",
-      "name": "Guadalajara",
+      "name": "Guadalajara CB",
       "group": "PL",
       "rank": 4,
       "w": 18,
@@ -140,7 +140,7 @@
     },
     {
       "teamId": "ROME",
-      "name": "Rome",
+      "name": "Roma Pallacanestro",
       "group": "PL",
       "rank": 5,
       "w": 18,
@@ -306,7 +306,7 @@
     },
     {
       "teamId": "MUM",
-      "name": "Mumbai",
+      "name": "Mumbai BC",
       "group": "PL",
       "rank": 16,
       "w": 7,

@@ -11,7 +11,7 @@ const docs: Record<string, unknown> = {
     { id: 'fba-d2', label: 'FBA D2', kind: 'league', league: 'fbad2', sub: false, done: false },
   ] },
   'leagues/fba/S78/summary.json': { league: 'fba', season: 78, locked: true, host: null, champions: [{ title: 'FBA Champion', champion: 'Boston Bucks', runnerUp: 'Memphis Blues', score: '4-1' }] },
-  'leagues/fbad2/S78/summary.json': { league: 'fbad2', season: 78, locked: true, host: null, champions: [{ title: 'Premier League Champion', champion: 'Salzburg', runnerUp: 'Zurich', score: '4-1' }] },
+  'leagues/fbad2/S78/summary.json': { league: 'fbad2', season: 78, locked: true, host: null, champions: [{ title: 'Premier League Champion', champion: 'Salzburg BC', runnerUp: 'Zurich', score: '4-1' }] },
   'leagues/fbajc/S78/summary.json': { league: 'fbajc', season: 78, locked: true, host: null, champions: [{ title: 'National Champion', champion: 'North Carolina', runnerUp: 'Syracuse', score: null }] },
   'leagues/fbawc/S78/summary.json': { league: 'fbawc', season: 78, locked: true, host: 'Croatia', champions: [{ title: 'World Cup Champion', champion: 'Germany', runnerUp: 'Italy', score: null }] },
 };
@@ -46,7 +46,7 @@ describe('Home', () => {
   it('lists last champions for every league', async () => {
     render(<MemoryRouter><Home /></MemoryRouter>);
     expect(await screen.findByText('Boston Bucks')).toBeTruthy();
-    expect(await screen.findByText('Salzburg')).toBeTruthy();
+    expect(await screen.findByText('Salzburg BC')).toBeTruthy();
     expect(await screen.findByText('North Carolina')).toBeTruthy();
     expect(await screen.findByText('Germany')).toBeTruthy();
     expect(screen.getByText(/host: Croatia/)).toBeTruthy();
@@ -118,7 +118,7 @@ describe('Home', () => {
       expect(await screen.findByText('Hawaii Volcanoes')).toBeTruthy();
       expect(screen.getByText('FBA S79 · FBA Champion')).toBeTruthy();
       expect(screen.queryByText('Boston Bucks')).toBeNull();
-      expect(await screen.findByText('Salzburg')).toBeTruthy();
+      expect(await screen.findByText('Salzburg BC')).toBeTruthy();
     } finally {
       delete docs['leagues/fba/S79/summary.json'];
     }

@@ -7,7 +7,7 @@
     {
       "title": "Premier League Champion",
       "champion": "Toronto",
-      "runnerUp": "Rome",
+      "runnerUp": "Roma Pallacanestro",
       "score": null,
       "group": "PL",
       "finalsMvp": "p02193",
@@ -55,7 +55,7 @@
     {
       "group": "PL",
       "teams": [
-        "Rome"
+        "Roma Pallacanestro"
       ]
     },
     {
@@ -81,7 +81,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "25-5",
               "seed": 1
             },
@@ -115,7 +115,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "23-7",
               "seed": 3
             },
@@ -149,7 +149,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "25-5",
               "seed": 1
             },
@@ -183,7 +183,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "25-5",
               "seed": 1
             },

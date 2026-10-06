@@ -566,7 +566,7 @@ describe('Part 3a history schemas', () => {
     });
     it('accepts an unscored series and rejects unscored with wins or a score', () => {
       const un = (fn: (s: Record<string, unknown>) => void = () => {}) => {
-        const b = { rounds: 1, series: [{ ...ser('R1-1', side('Rome', null, null), side('Oslo', null, null), 0, 0, 'home'), unscored: true }] };
+        const b = { rounds: 1, series: [{ ...ser('R1-1', side('Roma Pallacanestro', null, null), side('Oslo', null, null), 0, 0, 'home'), unscored: true }] };
         fn(b.series[0] as Record<string, unknown>);
         return b;
       };

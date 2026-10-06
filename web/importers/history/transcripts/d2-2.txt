@@ -1,6 +1,6 @@
 # p073 FBA D2 Tournament
 S67
-1|Salzburg|10-0
+1|Salzburg BC|10-0
 4|Athens|6-4
 2|Manchester|8-2
 3|Toronto|7-3
@@ -10,27 +10,27 @@ S67
 3|Berlin|7-3
 1|Dublin|10-0
 4|Vienna|6-4
-2|Guadalajara|9-1
+2|Guadalajara CB|9-1
 3|Milan|7-3
-1|Rome|10-0
+1|Roma Pallacanestro|10-0
 4|San Jose|6-4
 2|Hamburg|8-2
 3|Brussels|8-2
-= Salzburg - | Manchester - | Tampa - | Berlin - | Dublin - | Guadalajara - | Rome - | Brussels -
-= Salzburg - | Berlin - | Guadalajara - | Rome -
-= Salzburg - | Rome -
-= Rome -
+= Salzburg BC - | Manchester - | Tampa - | Berlin - | Dublin - | Guadalajara CB - | Roma Pallacanestro - | Brussels -
+= Salzburg BC - | Berlin - | Guadalajara CB - | Roma Pallacanestro -
+= Salzburg BC - | Roma Pallacanestro -
+= Roma Pallacanestro -
 
 # p081 FBA D2 Tournament
 S64
-1|Rome|9-1
+1|Roma Pallacanestro|9-1
 16|Manchester|5-5
 9|Hamburg|8-2
 8|Vancouver|7-3
 5|Munich|9-1
 12|Dublin|6-4
 13|Milan|7-3
-4|Guadalajara|9-1
+4|Guadalajara CB|9-1
 3|Kiev|9-1
 14|Tampa|6-4
 11|Lisbon|7-3
@@ -39,8 +39,8 @@ S64
 10|Austin|6-4
 15|Berlin|5-5
 2|Amsterdam|10-0
-= Rome 42-19 | Hamburg 43-35 | Munich 34-24 | Guadalajara 36-34 | Kiev 35-24 | Lisbon 38-28 | Istanbul 35-25 | Amsterdam 39-27
-= Rome 42-33 | Munich 41-36 | Lisbon 40-36 | Istanbul 40-33
+= Roma Pallacanestro 42-19 | Hamburg 43-35 | Munich 34-24 | Guadalajara CB 36-34 | Kiev 35-24 | Lisbon 38-28 | Istanbul 35-25 | Amsterdam 39-27
+= Roma Pallacanestro 42-33 | Munich 41-36 | Lisbon 40-36 | Istanbul 40-33
 = Munich 64-59 | Lisbon 42-40
 = Munich 34-31
 
@@ -50,26 +50,26 @@ S57
 |San Jose|8-2
 |Frankfurt|8-2
 |Milan|6-4
-|Rome|8-2
+|Roma Pallacanestro|8-2
 |Berlin|5-5
 |Vienna|10-0
 |Toronto|8-2
-= Athens 61-50 | Frankfurt 32-30 | Rome 71-46 | Vienna 50-48
+= Athens 61-50 | Frankfurt 32-30 | Roma Pallacanestro 71-46 | Vienna 50-48
 = Frankfurt 46-43 | Vienna 49-45
 = Vienna 48-45
 
 # p114 FBA D2 Tournament
 S56
-1|Rome|10-0
+1|Roma Pallacanestro|10-0
 8|Pearland Flames|6-4
 5|London|8-2
-4|Salzburg|7-3
+4|Salzburg BC|7-3
 3|Istanbul|8-2
 6|Madrid|5-5
 7|Paris|6-4
 2|Milan|7-3
-= Rome - | Salzburg - | Istanbul - | Milan -
-= Rome - | Istanbul -
+= Roma Pallacanestro - | Salzburg BC - | Istanbul - | Milan -
+= Roma Pallacanestro - | Istanbul -
 = Istanbul -
 
 # p116 FBA D2 Tournament
@@ -77,11 +77,11 @@ S65
 1|Brussels|10-0
 16|Berlin|7-3
 9|Lisbon|8-2
-8|Guadalajara|6-4
-5|Rome|9-1
+8|Guadalajara CB|6-4
+5|Roma Pallacanestro|9-1
 12|Austin|6-4
 13|Glasgow|6-4
-4|Salzburg|8-2
+4|Salzburg BC|8-2
 3|Istanbul|9-1
 14|Tampa|6-4
 11|London|7-3
@@ -90,10 +90,10 @@ S65
 10|Hamburg|7-3
 15|Milan|6-4
 2|San Jose|10-0
-= Brussels 38-33 | Lisbon 40-34 | Rome 35-31 | Salzburg 47-17 | Istanbul 41-37 | London 45-33 | Hamburg 38-31 | Milan 37-36
-= Lisbon 39-31 | Salzburg 38-36 | Istanbul 43-38 | Hamburg 37-30
-= Salzburg 40-37 | Istanbul 33-24
-= Salzburg 40-35
+= Brussels 38-33 | Lisbon 40-34 | Roma Pallacanestro 35-31 | Salzburg BC 47-17 | Istanbul 41-37 | London 45-33 | Hamburg 38-31 | Milan 37-36
+= Lisbon 39-31 | Salzburg BC 38-36 | Istanbul 43-38 | Hamburg 37-30
+= Salzburg BC 40-37 | Istanbul 33-24
+= Salzburg BC 40-35
 
 # p124 FBA D2 Tournament
 S62
@@ -107,13 +107,13 @@ S62
 4|Hamburg|8-2
 3|San Jose|9-1
 14|Kiev|7-3
-11|Rome|8-2
+11|Roma Pallacanestro|8-2
 6|Manchester|9-1
 7|Berlin|8-2
 10|Maine|6-4
 15|Dublin|5-5
 2|Madrid|10-0
-= Amsterdam 50-20 | Milan 38-36 | Austin 47-21 | Hamburg 43-38 | San Jose 39-29 | Rome 52-36 | Berlin 39-26 | Madrid 56-35
+= Amsterdam 50-20 | Milan 38-36 | Austin 47-21 | Hamburg 43-38 | San Jose 39-29 | Roma Pallacanestro 52-36 | Berlin 39-26 | Madrid 56-35
 = Milan 60-52 | Austin 47-41 | San Jose 47-36 | Madrid 47-38
 = Austin 56-51 | Madrid 52-33
 = Austin 51-42

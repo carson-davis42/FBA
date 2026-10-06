@@ -15,6 +15,7 @@ import { buildWcHistory, WC_SHEET_TAB } from './wcHistory';
 import { JC_HISTORY_TABS, planJcHistory } from './jcHistoryRun';
 import { JC_RECRUITING_TABS, planJcRecruitingHistory } from './jcRecruitingHistory';
 import { JC_LAST_SEASON } from './jcHistory';
+import { D2_LOGO_FOLDER, wireD2Logos, type D2LogoColors } from './d2Logos';
 import { JC_LOGO_FOLDER, wireJcLogos, type JcLogoColors } from './jcLogos';
 import { planJcSchools } from './jcSchools';
 import { parseNationalChampions } from './sheets/jcHistory';
@@ -672,6 +673,22 @@ function importJcLogos(): void {
   writeDoc(dir, 'leagues/fbajc/teams.json', wired);
 }
 
+/** Points each D2 club with a file in FBA Logos/FBAD2 at it and gives it the logo's colours. Writes only leagues/fbad2/teams.json. */
+function importD2Logos(): void {
+  const dir = requireDataDir('--d2-logos');
+  const teams = readDataJson<TeamsFile>(dir, 'leagues/fbad2/teams.json');
+  if (!teams) {
+    console.error('--d2-logos needs leagues/fbad2/teams.json in the data folder.');
+    process.exit(1);
+  }
+  const report = new Report();
+  const colors = JSON.parse(readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), 'd2LogoColors.json'), 'utf8')) as D2LogoColors;
+  const wired = wireD2Logos(teams, readdirSync(path.join(REPO, 'FBA Logos', D2_LOGO_FOLDER)), report, colors);
+  printReport(report);
+  if (JSON.stringify(wired) === JSON.stringify(teams)) { console.log('leagues/fbad2/teams.json is already wired.'); return; }
+  writeDoc(dir, 'leagues/fbad2/teams.json', wired);
+}
+
 /** Puts the transcribed past brackets (importers/history/<kind>Brackets.json) onto the league's season summaries in the --data folder. */
 function importBrackets(flag: string, league: 'fbawc' | 'fbad2' | 'fbajc', file: string): void {
   const dir = requireDataDir(flag);
@@ -701,7 +718,7 @@ export async function importWcQualifyingStep(): Promise<void> {
   console.log(`Added s${cal.season}-qualifying`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -711,6 +728,7 @@ async function main(): Promise<void> {
   }
   if (process.argv.includes('--logos')) return refreshLogos();
   if (process.argv.includes('--jc-logos')) return importJcLogos();
+  if (process.argv.includes('--d2-logos')) return importD2Logos();
   if (process.argv.includes('--franchises')) return importFranchises();
   if (process.argv.includes('--refresh-rosters')) return refreshRosters();
   if (process.argv.includes('--hall-of-fame')) return importHallOfFame();

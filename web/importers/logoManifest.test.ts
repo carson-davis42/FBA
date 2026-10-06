@@ -37,6 +37,9 @@ describe('buildLogoManifest with the main league under FBA_Main', () => {
     expect(m.folders['DCB'].map(e => e.file)).toEqual(['DCB S44-S78.png']);
     expect(m.folders['Boston Bucks'][0]).toMatchObject({ from: 61, to: null });
   });
+  it('keeps the folders in name order, ignoring case, wherever they sit on disk, so the stored manifest stays stable', () => {
+    expect(Object.keys(buildLogoManifest(layout(), new Report()).folders)).toEqual(['Boston Bucks', 'DCB', 'FBA', 'FBAJC_Final']);
+  });
 });
 
 describe('buildLogoManifest', () => {

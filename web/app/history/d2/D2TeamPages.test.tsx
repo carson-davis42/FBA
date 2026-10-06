@@ -18,18 +18,18 @@ const players: PlayersFile = {
   },
 };
 const team = (teamId: string, name: string, group: string) => ({ teamId, name, abbr: teamId, group, logoFolder: null, badge: { bg: '#112233', fg: '#ffffff' } });
-const teams: TeamsFile = { league: 'fbad2', teams: [team('LIS', 'Lisbon', 'PL'), team('ROM', 'Rome', 'PL'), team('OSL', 'Oslo', 'UL'), team('BER', 'Bern', 'WL')] };
+const teams: TeamsFile = { league: 'fbad2', teams: [team('LIS', 'Lisbon', 'PL'), team('ROM', 'Roma Pallacanestro', 'PL'), team('OSL', 'Oslo', 'UL'), team('BER', 'Bern', 'WL')] };
 
 const s69: SummaryFile = {
   league: 'fbad2', season: 69, locked: true, host: null,
-  champions: [{ title: 'Premier League Champion', champion: 'Lisbon', runnerUp: 'Rome', score: '4-2', group: 'PL', finalsMvp: 'p00002' }],
+  champions: [{ title: 'Premier League Champion', champion: 'Lisbon', runnerUp: 'Roma Pallacanestro', score: '4-2', group: 'PL', finalsMvp: 'p00002' }],
   awards: [{ award: 'MVP-PL', playerId: 'p00002', teamId: 'LIS' }],
-  rsChampions: [{ group: 'PL', teams: ['Rome'] }],
+  rsChampions: [{ group: 'PL', teams: ['Roma Pallacanestro'] }],
 };
 const row = (teamId: string, name: string, rank: number, w: number, l: number) => ({ teamId, name, group: 'PL', rank, w, l, confW: null, confL: null, diff: null, marker: null, seed: null, playoff: null });
 const s80: SummaryFile = {
   league: 'fbad2', season: 80, locked: true, host: null, champions: [],
-  standings: [row('ROM', 'Rome', 2, 10, 20), row('LIS', 'Lisbon', 1, 20, 10)],
+  standings: [row('ROM', 'Roma Pallacanestro', 2, 10, 20), row('LIS', 'Lisbon', 1, 20, 10)],
   promotion: [{ league: 'PL', promoted: [], relegated: ['LIS'] }],
 };
 const history: D2LeagueHistoryFile = {

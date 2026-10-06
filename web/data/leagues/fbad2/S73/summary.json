@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "Premier League Champion",
-      "champion": "Rome",
+      "champion": "Roma Pallacanestro",
       "runnerUp": "Lisbon",
       "score": null,
       "group": "PL",
@@ -121,12 +121,12 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "17-13",
               "seed": 5
             },
             "away": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "19-11",
               "seed": 4
             },
@@ -177,7 +177,7 @@
               "seed": 8
             },
             "away": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "17-13",
               "seed": 5
             },
@@ -206,7 +206,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "17-13",
               "seed": 5
             },
@@ -236,7 +236,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Guadalajara",
+              "name": "Guadalajara CB",
               "record": "15-15",
               "seed": 8
             },
@@ -519,7 +519,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Mumbai",
+              "name": "Mumbai BC",
               "record": "20-10",
               "seed": 3
             },

@@ -33,11 +33,11 @@ const s55: SummaryFile = {
 const s69: SummaryFile = {
   league: 'fbad2', season: 69, locked: true, host: null,
   champions: [
-    { title: 'Premier League Champion', champion: 'Lisbon', runnerUp: 'Rome', score: '4-2', group: 'PL', finalsMvp: 'p00002' },
+    { title: 'Premier League Champion', champion: 'Lisbon', runnerUp: 'Roma Pallacanestro', score: '4-2', group: 'PL', finalsMvp: 'p00002' },
     { title: 'Ultra League Champion', champion: 'Oslo', runnerUp: 'Bern', score: null, group: 'UL' },
   ],
   awards: [{ award: 'MVP-PL', playerId: 'p00002', teamId: 'LIS' }],
-  rsChampions: [{ group: 'PL', teams: ['Munich', 'Rome'] }],
+  rsChampions: [{ group: 'PL', teams: ['Munich', 'Roma Pallacanestro'] }],
 };
 
 function stub() {
@@ -75,8 +75,8 @@ describe('D2 history pages', () => {
     expect(rows).toHaveLength(2);
     expect(rows[0].textContent).toContain('Premier League');
     expect(within(rows[0]).getByRole('link', { name: 'Lisbon' }).getAttribute('href')).toBe('/history/fbad2/teams/LIS');
-    expect(rows[0].textContent).toContain('Rome');
-    expect(within(rows[0]).queryByRole('link', { name: 'Rome' })).toBeNull();
+    expect(rows[0].textContent).toContain('Roma Pallacanestro');
+    expect(within(rows[0]).queryByRole('link', { name: 'Roma Pallacanestro' })).toBeNull();
     expect(rows[0].textContent).toContain('Series MVP');
     expect(rows[1].textContent).toContain('D2 International Champion (1)');
     expect(rows[1].textContent).toContain('(2)');
@@ -88,7 +88,7 @@ describe('D2 history pages', () => {
     expect(await screen.findByRole('heading', { name: 'D2 Awards' })).toBeTruthy();
     const row = (await screen.findByRole('link', { name: 'S69' })).closest('tr') as HTMLElement;
     expect(row.textContent).toContain('Premier League MVP');
-    expect(row.textContent).toContain('Premier League: Munich / Rome');
+    expect(row.textContent).toContain('Premier League: Munich / Roma Pallacanestro');
     expect(row.textContent).toContain('Lisbon)');
     expect(row.textContent).not.toContain('(LIS)');
     const most = (await screen.findByRole('heading', { name: 'Most MVPs' })).parentElement!.querySelector('ol') as HTMLElement;

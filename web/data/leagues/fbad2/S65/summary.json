@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "D2 International Champion",
-      "champion": "Salzburg",
+      "champion": "Salzburg BC",
       "runnerUp": "Istanbul",
       "score": null,
       "group": "D2",
@@ -58,14 +58,14 @@
     {
       "group": "EE",
       "teams": [
-        "Salzburg"
+        "Salzburg BC"
       ]
     },
     {
       "group": "ES",
       "teams": [
         "Istanbul",
-        "Rome"
+        "Roma Pallacanestro"
       ]
     }
   ],
@@ -99,7 +99,7 @@
           "seed": 9
         },
         "away": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "6-4",
           "seed": 8
         },
@@ -112,7 +112,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 5
         },
@@ -135,7 +135,7 @@
           "seed": 13
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "8-2",
           "seed": 4
         },
@@ -238,12 +238,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "9-1",
           "seed": 5
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "8-2",
           "seed": 4
         },
@@ -297,7 +297,7 @@
           "seed": 9
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "8-2",
           "seed": 4
         },
@@ -328,7 +328,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "8-2",
           "seed": 4
         },

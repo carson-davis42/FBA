@@ -154,6 +154,38 @@
         "variant": 1
       }
     ],
+    "FBAD2": [
+      {
+        "file": "AS Roma Pallacanestro S79-pres..png",
+        "from": 79,
+        "to": null,
+        "variant": 0
+      },
+      {
+        "file": "Guadalajara CB S79-pres..png",
+        "from": 79,
+        "to": null,
+        "variant": 0
+      },
+      {
+        "file": "Mumbai BC S79-pres..png",
+        "from": 79,
+        "to": null,
+        "variant": 0
+      },
+      {
+        "file": "Roma Pallacanestro S79-pres..png",
+        "from": 79,
+        "to": null,
+        "variant": 0
+      },
+      {
+        "file": "Salzburg BC S79-pres..png",
+        "from": 79,
+        "to": null,
+        "variant": 0
+      }
+    ],
     "FBAJC": [
       {
         "file": "Abilene Christian.png",

@@ -17,7 +17,7 @@
     {
       "title": "World League Champion",
       "champion": "Vancouver",
-      "runnerUp": "Rome",
+      "runnerUp": "Roma Pallacanestro",
       "score": null,
       "group": "WL",
       "finalsMvp": "p02329",
@@ -76,7 +76,7 @@
     {
       "group": "WL",
       "teams": [
-        "Rome"
+        "Roma Pallacanestro"
       ]
     },
     {
@@ -107,7 +107,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Guadalajara",
+              "name": "Guadalajara CB",
               "record": "16-14",
               "seed": 8
             },
@@ -170,7 +170,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Guadalajara",
+              "name": "Guadalajara CB",
               "record": "16-14",
               "seed": 8
             },
@@ -229,7 +229,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "25-5",
               "seed": 1
             },
@@ -297,7 +297,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "25-5",
               "seed": 1
             },
@@ -331,7 +331,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "25-5",
               "seed": 1
             },

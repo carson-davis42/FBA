@@ -3,7 +3,7 @@ import { PastBracket, SummaryFile } from './types';
 
 const side = (name: string, seed: number | null = 1) => ({ name, record: null, seed });
 const final = (over: Record<string, unknown> = {}) => ({
-  id: 'R1-1', round: 1, home: side('Rome'), away: side('Oslo', 2), homeWins: 1, awayWins: 0, winner: 'home', score: '97–75', ...over,
+  id: 'R1-1', round: 1, home: side('Roma Pallacanestro'), away: side('Oslo', 2), homeWins: 1, awayWins: 0, winner: 'home', score: '97–75', ...over,
 });
 const bracket = (over: Record<string, unknown> = {}) => ({ rounds: 1, series: [final(over)] });
 const summary = (league: string, extra: Record<string, unknown> = {}) => ({ league, season: 76, locked: true, host: null, champions: [], ...extra });

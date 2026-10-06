@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "Premier League Champion",
-      "champion": "Rome",
+      "champion": "Roma Pallacanestro",
       "runnerUp": "Toronto",
       "score": null,
       "group": "PL",
@@ -120,7 +120,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "19-11",
               "seed": 6
             },
@@ -137,7 +137,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "23-7",
               "seed": 2
             },
@@ -166,12 +166,12 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "19-11",
               "seed": 6
             },
             "away": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "23-7",
               "seed": 2
             },
@@ -188,7 +188,7 @@
               "seed": 4
             },
             "away": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "23-7",
               "seed": 2
             },

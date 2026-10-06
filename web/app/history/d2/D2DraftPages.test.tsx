@@ -17,12 +17,12 @@ const players: PlayersFile = {
   },
 };
 const team = (teamId: string, name: string, group: string) => ({ teamId, name, abbr: teamId, group, logoFolder: null, badge: { bg: '#112233', fg: '#ffffff' } });
-const teams: TeamsFile = { league: 'fbad2', teams: [team('LIS', 'Lisbon', 'PL'), team('ROM', 'Rome', 'PL')] };
+const teams: TeamsFile = { league: 'fbad2', teams: [team('LIS', 'Lisbon', 'PL'), team('ROM', 'Roma Pallacanestro', 'PL')] };
 const drafts: D2DraftHistoryFile = {
   drafts: [
     {
       season: 68,
-      picks: [{ pick: 1, teamId: 'ROM', teamName: 'Rome', name: 'Old Timer', playerId: null, pos: 'C', age: 20, rating: null }],
+      picks: [{ pick: 1, teamId: 'ROM', teamName: 'Roma Pallacanestro', name: 'Old Timer', playerId: null, pos: 'C', age: 20, rating: null }],
     },
     {
       season: 70,
@@ -35,7 +35,7 @@ const drafts: D2DraftHistoryFile = {
 };
 const s69: SummaryFile = {
   league: 'fbad2', season: 69, locked: true, host: null,
-  champions: [{ title: 'Premier League Champion', champion: 'Lisbon', runnerUp: 'Rome', score: '4-2', group: 'PL', finalsMvp: 'p00002' }],
+  champions: [{ title: 'Premier League Champion', champion: 'Lisbon', runnerUp: 'Roma Pallacanestro', score: '4-2', group: 'PL', finalsMvp: 'p00002' }],
   awards: [{ award: 'MVP-PL', playerId: 'p00002', teamId: 'LIS' }],
 };
 

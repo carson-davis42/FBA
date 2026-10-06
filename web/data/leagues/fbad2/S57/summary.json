@@ -46,7 +46,7 @@
     {
       "group": "ES",
       "teams": [
-        "Rome"
+        "Roma Pallacanestro"
       ]
     }
   ],
@@ -93,7 +93,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "8-2",
           "seed": null
         },
@@ -147,7 +147,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "8-2",
           "seed": null
         },

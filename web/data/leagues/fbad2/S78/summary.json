@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "Premier League Champion",
-      "champion": "Salzburg",
+      "champion": "Salzburg BC",
       "runnerUp": "Zurich",
       "score": "4-1",
       "group": "PL",
@@ -16,7 +16,7 @@
     },
     {
       "title": "World League Champion",
-      "champion": "Mumbai",
+      "champion": "Mumbai BC",
       "runnerUp": "Hamburg",
       "score": "4-2",
       "group": "WL",
@@ -71,13 +71,13 @@
     {
       "group": "PL",
       "teams": [
-        "Salzburg"
+        "Salzburg BC"
       ]
     },
     {
       "group": "WL",
       "teams": [
-        "Mumbai"
+        "Mumbai BC"
       ]
     },
     {
@@ -103,7 +103,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "23-7",
               "seed": 1
             },
@@ -171,7 +171,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "23-7",
               "seed": 1
             },
@@ -205,7 +205,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "23-7",
               "seed": 1
             },
@@ -230,7 +230,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Mumbai",
+              "name": "Mumbai BC",
               "record": "28-2",
               "seed": 1
             },
@@ -298,7 +298,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Mumbai",
+              "name": "Mumbai BC",
               "record": "28-2",
               "seed": 1
             },
@@ -332,7 +332,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Mumbai",
+              "name": "Mumbai BC",
               "record": "28-2",
               "seed": 1
             },

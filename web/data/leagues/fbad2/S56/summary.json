@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion",
       "champion": "Istanbul",
-      "runnerUp": "Rome",
+      "runnerUp": "Roma Pallacanestro",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02105",
@@ -44,7 +44,7 @@
     {
       "group": "ES",
       "teams": [
-        "Rome"
+        "Roma Pallacanestro"
       ]
     }
   ],
@@ -55,7 +55,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -78,7 +78,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "7-3",
           "seed": 4
         },
@@ -127,12 +127,12 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
         "away": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "7-3",
           "seed": 4
         },
@@ -163,7 +163,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },

@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "Premier League Champion",
-      "champion": "Salzburg",
+      "champion": "Salzburg BC",
       "runnerUp": "Lisbon",
       "score": null,
       "group": "PL",
@@ -108,7 +108,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "18-12",
               "seed": 8
             },
@@ -120,7 +120,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Rome",
+              "name": "Roma Pallacanestro",
               "record": "20-10",
               "seed": 5
             },
@@ -171,7 +171,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "18-12",
               "seed": 8
             },
@@ -205,7 +205,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Salzburg",
+              "name": "Salzburg BC",
               "record": "18-12",
               "seed": 8
             },
@@ -281,7 +281,7 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Guadalajara",
+              "name": "Guadalajara CB",
               "record": "18-12",
               "seed": 7
             },

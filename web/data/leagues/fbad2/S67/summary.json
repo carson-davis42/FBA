@@ -6,8 +6,8 @@
   "champions": [
     {
       "title": "D2 International Champion",
-      "champion": "Rome",
-      "runnerUp": "Salzburg",
+      "champion": "Roma Pallacanestro",
+      "runnerUp": "Salzburg BC",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02235",
@@ -46,7 +46,7 @@
     {
       "group": "AM",
       "teams": [
-        "Guadalajara",
+        "Guadalajara CB",
         "Tampa"
       ]
     },
@@ -59,13 +59,13 @@
     {
       "group": "EE",
       "teams": [
-        "Salzburg"
+        "Salzburg BC"
       ]
     },
     {
       "group": "ES",
       "teams": [
-        "Rome"
+        "Roma Pallacanestro"
       ]
     }
   ],
@@ -76,7 +76,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
@@ -166,7 +166,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "9-1",
           "seed": 2
         },
@@ -184,7 +184,7 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -220,7 +220,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
@@ -261,7 +261,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "9-1",
           "seed": 2
         },
@@ -274,7 +274,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -292,7 +292,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
@@ -310,12 +310,12 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Guadalajara",
+          "name": "Guadalajara CB",
           "record": "9-1",
           "seed": 2
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },
@@ -328,12 +328,12 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Salzburg",
+          "name": "Salzburg BC",
           "record": "10-0",
           "seed": 1
         },
         "away": {
-          "name": "Rome",
+          "name": "Roma Pallacanestro",
           "record": "10-0",
           "seed": 1
         },

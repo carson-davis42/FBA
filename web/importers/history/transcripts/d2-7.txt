@@ -2,16 +2,16 @@
 S72
 G:PL
 1|Tokyo|25-5
-8|Salzburg|18-12
-5|Rome|20-10
+8|Salzburg BC|18-12
+5|Roma Pallacanestro|20-10
 4|Munich|20-10
 3|Lisbon|21-9
 6|Austin|19-11
 7|Ottawa|18-12
 2|Milan|24-6
-= Salzburg 4-2 | Munich 4-1 | Lisbon 4-2 | Milan 4-3
-= Salzburg 4-3 | Lisbon 4-2
-= Salzburg 4-2
+= Salzburg BC 4-2 | Munich 4-1 | Lisbon 4-2 | Milan 4-3
+= Salzburg BC 4-3 | Lisbon 4-2
+= Salzburg BC 4-2
 
 # p119 FBA D2 International League Tournament
 S76
@@ -33,7 +33,7 @@ S74
 G:WL
 1|Madrid|29-1
 8|Shanghai|16-14
-5|Guadalajara|22-8
+5|Guadalajara CB|22-8
 4|Recife|23-7
 3|Sao Paolo|24-6
 6|Liverpool|22-8
@@ -46,7 +46,7 @@ G:WL
 # p121 FBA D2 Premier League Tournament
 S78
 G:PL
-1|Salzburg|23-7
+1|Salzburg BC|23-7
 8|Buenos Aires|15-15
 5|London|19-11
 4|Miami|19-11
@@ -54,9 +54,9 @@ G:PL
 6|Milan|18-12
 7|Zurich|16-14
 2|Lisbon|21-9
-= Salzburg 4-2 | London 4-0 | Milan 4-1 | Zurich 4-1
-= Salzburg 4-2 | Zurich 4-2
-= Salzburg 4-1
+= Salzburg BC 4-2 | London 4-0 | Milan 4-1 | Zurich 4-1
+= Salzburg BC 4-2 | Zurich 4-2
+= Salzburg BC 4-1
 
 # p126 FBA D2 United League Tournament
 S70
