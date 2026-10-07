@@ -77,7 +77,7 @@
     {
       "group": "WL",
       "teams": [
-        "Zurich"
+        "Zürich Helvetia"
       ]
     },
     {
@@ -230,7 +230,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Zurich",
+              "name": "Zürich Helvetia",
               "record": "24-6",
               "seed": 1
             },
@@ -286,7 +286,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Miami",
+              "name": "Miami BC",
               "record": "21-9",
               "seed": 2
             },
@@ -298,7 +298,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Zurich",
+              "name": "Zürich Helvetia",
               "record": "24-6",
               "seed": 1
             },
@@ -320,7 +320,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Miami",
+              "name": "Miami BC",
               "record": "21-9",
               "seed": 2
             },

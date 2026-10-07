@@ -18,7 +18,7 @@ const players: PlayersFile = {
   },
 };
 const team = (teamId: string, name: string, group: string) => ({ teamId, name, abbr: teamId, group, logoFolder: null, badge: { bg: '#112233', fg: '#ffffff' } });
-const teams: TeamsFile = { league: 'fbad2', teams: [team('LIS', 'Atlético Lisboa', 'PL'), team('ROM', 'Roma Pallacanestro', 'PL'), team('OSL', 'Oslo', 'UL'), team('BER', 'Bern', 'WL')] };
+const teams: TeamsFile = { league: 'fbad2', teams: [{ ...team('LIS', 'Atlético Lisboa', 'PL'), city: 'Lisbon', country: 'Portugal' }, team('ROM', 'Roma Pallacanestro', 'PL'), team('OSL', 'Oslo', 'UL'), team('BER', 'Bern', 'WL')] };
 
 const s69: SummaryFile = {
   league: 'fbad2', season: 69, locked: true, host: null,
@@ -110,6 +110,7 @@ describe('D2 season, teams and team pages', () => {
     expect(await screen.findByRole('heading', { name: 'Atlético Lisboa' })).toBeTruthy();
     expect(await screen.findByText('Euro-South S56–S67')).toBeTruthy();
     expect(screen.getByText('Premier League S68–pres.')).toBeTruthy();
+    expect(screen.getByText('Lisbon, Portugal')).toBeTruthy();
     const titlesList = screen.getAllByRole('heading', { name: 'Titles' })[0].parentElement as HTMLElement;
     expect(within(titlesList).getByText('S69 Premier League Champion')).toBeTruthy();
     const pick = screen.getByRole('heading', { name: 'Draft picks' }).parentElement as HTMLElement;

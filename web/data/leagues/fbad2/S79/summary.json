@@ -7,7 +7,7 @@
     {
       "title": "Premier League Champion",
       "champion": "Salzburg BC",
-      "runnerUp": "Milan",
+      "runnerUp": "Milano BC",
       "score": "4–0",
       "teamId": "SALZ",
       "runnerUpId": "MIL",
@@ -89,7 +89,7 @@
     },
     {
       "teamId": "MIL",
-      "name": "Milan",
+      "name": "Milano BC",
       "group": "PL",
       "rank": 2,
       "w": 20,
@@ -208,7 +208,7 @@
     },
     {
       "teamId": "ZUR",
-      "name": "Zurich",
+      "name": "Zürich Helvetia",
       "group": "PL",
       "rank": 9,
       "w": 16,
@@ -250,7 +250,7 @@
     },
     {
       "teamId": "MAD",
-      "name": "Madrid",
+      "name": "Club Madrid",
       "group": "PL",
       "rank": 12,
       "w": 13,
@@ -264,7 +264,7 @@
     },
     {
       "teamId": "OTT",
-      "name": "Ottawa",
+      "name": "Union Ottawa",
       "group": "PL",
       "rank": 13,
       "w": 12,
@@ -292,7 +292,7 @@
     },
     {
       "teamId": "MIA",
-      "name": "Miami",
+      "name": "Miami BC",
       "group": "PL",
       "rank": 15,
       "w": 9,

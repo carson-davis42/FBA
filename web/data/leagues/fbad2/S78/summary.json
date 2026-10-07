@@ -7,7 +7,7 @@
     {
       "title": "Premier League Champion",
       "champion": "Salzburg BC",
-      "runnerUp": "Zurich",
+      "runnerUp": "Zürich Helvetia",
       "score": "4-1",
       "group": "PL",
       "teamId": "SALZ",
@@ -125,7 +125,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Miami",
+              "name": "Miami BC",
               "record": "19-11",
               "seed": 4
             },
@@ -142,7 +142,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Milan",
+              "name": "Milano BC",
               "record": "18-12",
               "seed": 6
             },
@@ -154,7 +154,7 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Zurich",
+              "name": "Zürich Helvetia",
               "record": "16-14",
               "seed": 7
             },
@@ -188,12 +188,12 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Milan",
+              "name": "Milano BC",
               "record": "18-12",
               "seed": 6
             },
             "away": {
-              "name": "Zurich",
+              "name": "Zürich Helvetia",
               "record": "16-14",
               "seed": 7
             },
@@ -210,7 +210,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Zurich",
+              "name": "Zürich Helvetia",
               "record": "16-14",
               "seed": 7
             },

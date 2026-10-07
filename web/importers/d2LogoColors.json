@@ -15,13 +15,17 @@
   "primary": "#5BA8E4",
   "secondary": "#F2B93B"
  },
+ "Club Madrid": {
+  "primary": "#760510",
+  "secondary": "#D9A044"
+ },
  "Edmonton Aurora": {
   "primary": "#0E4A33",
   "secondary": "#E0AE4A"
  },
  "Guadalajara CB": {
-  "primary": "#0E4C37",
-  "secondary": "#EEE8BF"
+  "primary": "#0E5A3A",
+  "secondary": "#D1AE5A"
  },
  "Hamburg Hanse": {
   "primary": "#A31616",
@@ -31,16 +35,32 @@
   "primary": "#0B1A44",
   "secondary": "#EDC15A"
  },
+ "Miami BC": {
+  "primary": "#0B3B4C",
+  "secondary": "#3DB4AE"
+ },
+ "Milano BC": {
+  "primary": "#0B3F8F",
+  "secondary": "#C8102E"
+ },
  "Mumbai BC": {
-  "primary": "#D5772A",
-  "secondary": "#120E0A"
+  "primary": "#F47A1F",
+  "secondary": "#E3C48F"
  },
  "Roma Pallacanestro": {
-  "primary": "#7B1C23",
-  "secondary": "#C0946B"
+  "primary": "#7B0F1F",
+  "secondary": "#D9A94F"
  },
  "Salzburg BC": {
-  "primary": "#152739",
-  "secondary": "#BBA87D"
+  "primary": "#0E2A55",
+  "secondary": "#DDB448"
+ },
+ "Union Ottawa": {
+  "primary": "#5E0A18",
+  "secondary": "#D9B04F"
+ },
+ "Zürich Helvetia": {
+  "primary": "#1558C8",
+  "secondary": "#E3B94F"
  }
 }

@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion",
       "champion": "Austin BC",
-      "runnerUp": "Madrid",
+      "runnerUp": "Club Madrid",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02228",
@@ -47,7 +47,7 @@
     {
       "group": "ES",
       "teams": [
-        "Madrid"
+        "Club Madrid"
       ]
     }
   ],
@@ -81,7 +81,7 @@
           "seed": 9
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 8
         },
@@ -189,7 +189,7 @@
           "seed": 15
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "10-0",
           "seed": 2
         },
@@ -207,7 +207,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 8
         },
@@ -261,7 +261,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "10-0",
           "seed": 2
         },
@@ -274,7 +274,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 8
         },
@@ -297,7 +297,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "10-0",
           "seed": 2
         },
@@ -315,7 +315,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "10-0",
           "seed": 2
         },

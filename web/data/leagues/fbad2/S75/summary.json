@@ -142,7 +142,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Ottawa",
+              "name": "Union Ottawa",
               "record": "19-11",
               "seed": 6
             },
@@ -154,7 +154,7 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Milan",
+              "name": "Milano BC",
               "record": "17-13",
               "seed": 7
             },
@@ -193,7 +193,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Milan",
+              "name": "Milano BC",
               "record": "17-13",
               "seed": 7
             },
@@ -252,7 +252,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Miami",
+              "name": "Miami BC",
               "record": "22-8",
               "seed": 4
             },
@@ -303,7 +303,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Miami",
+              "name": "Miami BC",
               "record": "22-8",
               "seed": 4
             },

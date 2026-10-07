@@ -16,13 +16,13 @@ G:IL
 # p049 FBA D2 Premier League Tournament
 S73
 G:PL
-1|Ottawa|23-7
+1|Union Ottawa|23-7
 8|Austin BC|17-13
 5|Roma Pallacanestro|17-13
 4|Salzburg BC|19-11
 3|Tokyo|21-9
 6|Berlin Bären BC|17-13
-7|Milan|17-13
+7|Milano BC|17-13
 2|Atlético Lisboa|21-9
 = Austin BC 4-2 | Roma Pallacanestro 4-0 | Berlin Bären BC 4-2 | Atlético Lisboa 4-2
 = Roma Pallacanestro 4-0 | Atlético Lisboa 4-3
@@ -36,10 +36,10 @@ G:PL
 5|Atlético Lisboa|20-10
 4|Budapest|20-10
 3|Tokyo|22-8
-6|Ottawa|19-11
-7|Milan|17-13
+6|Union Ottawa|19-11
+7|Milano BC|17-13
 2|San Jose|22-8
-= Austin BC 4-2 | Budapest 4-2 | Tokyo 4-3 | Milan 4-1
+= Austin BC 4-2 | Budapest 4-2 | Tokyo 4-3 | Milano BC 4-1
 = Budapest 4-1 | Tokyo 4-2
 = Tokyo 4-1
 

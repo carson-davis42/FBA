@@ -10,7 +10,9 @@
       "badge": {
         "bg": "hsl(287 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Auckland",
+      "country": "New Zealand"
     },
     {
       "teamId": "AMS",
@@ -21,7 +23,9 @@
       "badge": {
         "bg": "hsl(286 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Amsterdam",
+      "country": "Netherlands"
     },
     {
       "teamId": "ATH",
@@ -32,7 +36,9 @@
       "badge": {
         "bg": "hsl(341 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Athens",
+      "country": "Greece"
     },
     {
       "teamId": "AUS",
@@ -45,7 +51,9 @@
         "fg": "#fff",
         "accent": "#C3541D"
       },
-      "logoFile": "Austin BC.png"
+      "logoFile": "Austin BC.png",
+      "city": "Austin",
+      "country": "United States"
     },
     {
       "teamId": "BA",
@@ -58,7 +66,9 @@
         "fg": "#fff",
         "accent": "#F2B93B"
       },
-      "logoFile": "Buenos Aires BC.png"
+      "logoFile": "Buenos Aires BC.png",
+      "city": "Buenos Aires",
+      "country": "Argentina"
     },
     {
       "teamId": "BARC",
@@ -69,7 +79,9 @@
       "badge": {
         "bg": "hsl(67 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Barcelona",
+      "country": "Spain"
     },
     {
       "teamId": "BEI",
@@ -80,7 +92,9 @@
       "badge": {
         "bg": "hsl(262 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Beijing",
+      "country": "China"
     },
     {
       "teamId": "BEL",
@@ -91,7 +105,9 @@
       "badge": {
         "bg": "hsl(301 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Belfast",
+      "country": "Northern Ireland"
     },
     {
       "teamId": "BER",
@@ -104,7 +120,9 @@
         "fg": "#fff",
         "accent": "#030202"
       },
-      "logoFile": "Berlin Bären BC.png"
+      "logoFile": "Berlin Bären BC.png",
+      "city": "Berlin",
+      "country": "Germany"
     },
     {
       "teamId": "BRUS",
@@ -115,7 +133,9 @@
       "badge": {
         "bg": "hsl(239 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Brussels",
+      "country": "Belgium"
     },
     {
       "teamId": "BUD",
@@ -126,7 +146,9 @@
       "badge": {
         "bg": "hsl(302 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Budapest",
+      "country": "Hungary"
     },
     {
       "teamId": "CAI",
@@ -137,7 +159,9 @@
       "badge": {
         "bg": "hsl(344 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Cairo",
+      "country": "Egypt"
     },
     {
       "teamId": "CAS",
@@ -148,7 +172,9 @@
       "badge": {
         "bg": "hsl(217 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Casablanca",
+      "country": "Morocco"
     },
     {
       "teamId": "COP",
@@ -159,7 +185,9 @@
       "badge": {
         "bg": "hsl(306 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Copenhagen",
+      "country": "Denmark"
     },
     {
       "teamId": "DBA",
@@ -170,7 +198,9 @@
       "badge": {
         "bg": "hsl(65 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Dubai",
+      "country": "United Arab Emirates"
     },
     {
       "teamId": "DHA",
@@ -181,7 +211,9 @@
       "badge": {
         "bg": "hsl(203 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Dhaka",
+      "country": "Bangladesh"
     },
     {
       "teamId": "DUB",
@@ -192,7 +224,9 @@
       "badge": {
         "bg": "hsl(96 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Dublin",
+      "country": "Ireland"
     },
     {
       "teamId": "EDI",
@@ -203,7 +237,9 @@
       "badge": {
         "bg": "hsl(116 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Edinburgh",
+      "country": "Scotland"
     },
     {
       "teamId": "EDM",
@@ -216,7 +252,9 @@
         "fg": "#fff",
         "accent": "#E0AE4A"
       },
-      "logoFile": "Edmonton Aurora.png"
+      "logoFile": "Edmonton Aurora.png",
+      "city": "Edmonton",
+      "country": "Canada"
     },
     {
       "teamId": "FLO",
@@ -227,7 +265,9 @@
       "badge": {
         "bg": "hsl(268 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Florence",
+      "country": "Italy"
     },
     {
       "teamId": "FRAN",
@@ -238,7 +278,9 @@
       "badge": {
         "bg": "hsl(291 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Frankfurt",
+      "country": "Germany"
     },
     {
       "teamId": "GLAS",
@@ -249,7 +291,9 @@
       "badge": {
         "bg": "hsl(304 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Glasgow",
+      "country": "Scotland"
     },
     {
       "teamId": "GUAD",
@@ -258,11 +302,13 @@
       "group": "PL",
       "logoFolder": "FBAD2",
       "badge": {
-        "bg": "#0E4C37",
+        "bg": "#0E5A3A",
         "fg": "#fff",
-        "accent": "#EEE8BF"
+        "accent": "#D1AE5A"
       },
-      "logoFile": "Guadalajara CB.png"
+      "logoFile": "Guadalajara CB.png",
+      "city": "Guadalajara",
+      "country": "Mexico"
     },
     {
       "teamId": "HAM",
@@ -275,7 +321,9 @@
         "fg": "#fff",
         "accent": "#0F2347"
       },
-      "logoFile": "Hamburg Hanse.png"
+      "logoFile": "Hamburg Hanse.png",
+      "city": "Hamburg",
+      "country": "Germany"
     },
     {
       "teamId": "IST",
@@ -286,7 +334,9 @@
       "badge": {
         "bg": "hsl(282 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Istanbul",
+      "country": "Turkey"
     },
     {
       "teamId": "JOH",
@@ -297,7 +347,9 @@
       "badge": {
         "bg": "hsl(76 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Johannesburg",
+      "country": "South Africa"
     },
     {
       "teamId": "KIEV",
@@ -308,7 +360,9 @@
       "badge": {
         "bg": "hsl(279 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Kyiv",
+      "country": "Ukraine"
     },
     {
       "teamId": "LAG",
@@ -319,7 +373,9 @@
       "badge": {
         "bg": "hsl(142 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Lagos",
+      "country": "Nigeria"
     },
     {
       "teamId": "LIS",
@@ -332,7 +388,9 @@
         "fg": "#fff",
         "accent": "#C9A04A"
       },
-      "logoFile": "Atlético Lisboa.png"
+      "logoFile": "Atlético Lisboa.png",
+      "city": "Lisbon",
+      "country": "Portugal"
     },
     {
       "teamId": "LIV",
@@ -343,7 +401,9 @@
       "badge": {
         "bg": "hsl(242 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Liverpool",
+      "country": "England"
     },
     {
       "teamId": "LON",
@@ -356,7 +416,9 @@
         "fg": "#fff",
         "accent": "#EDC15A"
       },
-      "logoFile": "London Royal.png"
+      "logoFile": "London Royal.png",
+      "city": "London",
+      "country": "England"
     },
     {
       "teamId": "LUX",
@@ -367,7 +429,9 @@
       "badge": {
         "bg": "hsl(110 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Luxembourg",
+      "country": "Luxembourg"
     },
     {
       "teamId": "LYON",
@@ -378,18 +442,24 @@
       "badge": {
         "bg": "hsl(28 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Lyon",
+      "country": "France"
     },
     {
       "teamId": "MAD",
-      "name": "Madrid",
+      "name": "Club Madrid",
       "abbr": "MAD",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(293 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#760510",
+        "fg": "#fff",
+        "accent": "#D9A044"
+      },
+      "logoFile": "Club Madrid.png",
+      "city": "Madrid",
+      "country": "Spain"
     },
     {
       "teamId": "MAN",
@@ -400,7 +470,9 @@
       "badge": {
         "bg": "hsl(148 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Manchester",
+      "country": "England"
     },
     {
       "teamId": "MC",
@@ -411,29 +483,39 @@
       "badge": {
         "bg": "hsl(222 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Mexico City",
+      "country": "Mexico"
     },
     {
       "teamId": "MIA",
-      "name": "Miami",
+      "name": "Miami BC",
       "abbr": "MIA",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(193 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#0B3B4C",
+        "fg": "#fff",
+        "accent": "#3DB4AE"
+      },
+      "logoFile": "Miami BC.png",
+      "city": "Miami",
+      "country": "United States"
     },
     {
       "teamId": "MIL",
-      "name": "Milan",
+      "name": "Milano BC",
       "abbr": "MIL",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(317 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#0B3F8F",
+        "fg": "#fff",
+        "accent": "#C8102E"
+      },
+      "logoFile": "Milano BC.png",
+      "city": "Milan",
+      "country": "Italy"
     },
     {
       "teamId": "MOS",
@@ -444,7 +526,9 @@
       "badge": {
         "bg": "hsl(122 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Moscow",
+      "country": "Russia"
     },
     {
       "teamId": "MUM",
@@ -453,11 +537,13 @@
       "group": "PL",
       "logoFolder": "FBAD2",
       "badge": {
-        "bg": "#D5772A",
+        "bg": "#F47A1F",
         "fg": "#fff",
-        "accent": "#120E0A"
+        "accent": "#E3C48F"
       },
-      "logoFile": "Mumbai BC.png"
+      "logoFile": "Mumbai BC.png",
+      "city": "Mumbai",
+      "country": "India"
     },
     {
       "teamId": "MUN",
@@ -468,7 +554,9 @@
       "badge": {
         "bg": "hsl(192 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Munich",
+      "country": "Germany"
     },
     {
       "teamId": "NAP",
@@ -479,7 +567,9 @@
       "badge": {
         "bg": "hsl(341 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Naples",
+      "country": "Italy"
     },
     {
       "teamId": "OMA",
@@ -490,7 +580,9 @@
       "badge": {
         "bg": "hsl(276 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Omaha",
+      "country": "United States"
     },
     {
       "teamId": "OSA",
@@ -501,7 +593,9 @@
       "badge": {
         "bg": "hsl(195 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Osaka",
+      "country": "Japan"
     },
     {
       "teamId": "OSL",
@@ -512,18 +606,24 @@
       "badge": {
         "bg": "hsl(23 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Oslo",
+      "country": "Norway"
     },
     {
       "teamId": "OTT",
-      "name": "Ottawa",
+      "name": "Union Ottawa",
       "abbr": "OTT",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(324 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#5E0A18",
+        "fg": "#fff",
+        "accent": "#D9B04F"
+      },
+      "logoFile": "Union Ottawa.png",
+      "city": "Ottawa",
+      "country": "Canada"
     },
     {
       "teamId": "PAR",
@@ -534,7 +634,9 @@
       "badge": {
         "bg": "hsl(211 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Paris",
+      "country": "France"
     },
     {
       "teamId": "REC",
@@ -545,7 +647,9 @@
       "badge": {
         "bg": "hsl(80 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Recife",
+      "country": "Brazil"
     },
     {
       "teamId": "RIO",
@@ -556,7 +660,9 @@
       "badge": {
         "bg": "hsl(129 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Rio de Janeiro",
+      "country": "Brazil"
     },
     {
       "teamId": "ROME",
@@ -565,11 +671,13 @@
       "group": "PL",
       "logoFolder": "FBAD2",
       "badge": {
-        "bg": "#7B1C23",
+        "bg": "#7B0F1F",
         "fg": "#fff",
-        "accent": "#C0946B"
+        "accent": "#D9A94F"
       },
-      "logoFile": "Roma Pallacanestro.png"
+      "logoFile": "Roma Pallacanestro.png",
+      "city": "Rome",
+      "country": "Italy"
     },
     {
       "teamId": "ROT",
@@ -580,7 +688,9 @@
       "badge": {
         "bg": "hsl(142 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Rotterdam",
+      "country": "Netherlands"
     },
     {
       "teamId": "SALZ",
@@ -589,11 +699,13 @@
       "group": "PL",
       "logoFolder": "FBAD2",
       "badge": {
-        "bg": "#152739",
+        "bg": "#0E2A55",
         "fg": "#fff",
-        "accent": "#BBA87D"
+        "accent": "#DDB448"
       },
-      "logoFile": "Salzburg BC.png"
+      "logoFile": "Salzburg BC.png",
+      "city": "Salzburg",
+      "country": "Austria"
     },
     {
       "teamId": "SHAN",
@@ -604,7 +716,9 @@
       "badge": {
         "bg": "hsl(235 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Shanghai",
+      "country": "China"
     },
     {
       "teamId": "SJ",
@@ -615,7 +729,9 @@
       "badge": {
         "bg": "hsl(351 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "San Jose",
+      "country": "United States"
     },
     {
       "teamId": "SP",
@@ -626,7 +742,9 @@
       "badge": {
         "bg": "hsl(354 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "São Paulo",
+      "country": "Brazil"
     },
     {
       "teamId": "STO",
@@ -637,7 +755,9 @@
       "badge": {
         "bg": "hsl(110 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Stockholm",
+      "country": "Sweden"
     },
     {
       "teamId": "STP",
@@ -648,7 +768,9 @@
       "badge": {
         "bg": "hsl(286 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Saint Petersburg",
+      "country": "Russia"
     },
     {
       "teamId": "SYD",
@@ -659,7 +781,9 @@
       "badge": {
         "bg": "hsl(156 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Sydney",
+      "country": "Australia"
     },
     {
       "teamId": "TAM",
@@ -670,7 +794,9 @@
       "badge": {
         "bg": "hsl(49 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Tampa",
+      "country": "United States"
     },
     {
       "teamId": "TOK",
@@ -681,7 +807,9 @@
       "badge": {
         "bg": "hsl(54 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Tokyo",
+      "country": "Japan"
     },
     {
       "teamId": "VIE",
@@ -692,7 +820,9 @@
       "badge": {
         "bg": "hsl(279 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Vienna",
+      "country": "Austria"
     },
     {
       "teamId": "WAR",
@@ -703,7 +833,9 @@
       "badge": {
         "bg": "hsl(209 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Warsaw",
+      "country": "Poland"
     },
     {
       "teamId": "ZAG",
@@ -714,18 +846,24 @@
       "badge": {
         "bg": "hsl(63 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "city": "Zagreb",
+      "country": "Croatia"
     },
     {
       "teamId": "ZUR",
-      "name": "Zurich",
+      "name": "Zürich Helvetia",
       "abbr": "ZUR",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(359 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#1558C8",
+        "fg": "#fff",
+        "accent": "#E3B94F"
+      },
+      "logoFile": "Zürich Helvetia.png",
+      "city": "Zurich",
+      "country": "Switzerland"
     }
   ]
 }

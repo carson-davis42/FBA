@@ -38,6 +38,7 @@
 .hero-logo img, .hero-logo .team-badge { width: 96px !important; height: 96px !important; }
 .hero-kicker { font-size: var(--fs-sm); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.8; }
 .hero-title { font-family: var(--font-head); font-size: var(--fs-display); font-weight: 800; line-height: 0.95; margin: 4px 0 0; color: inherit; }
+.hero-place { margin: 0; font-size: var(--fs-md, 1rem); opacity: 0.85; }
 .hero-extra { margin-top: var(--s3); display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
 .hero-stats { display: flex; gap: var(--s2); }
 .stat-tile { background: var(--surface-2); border-radius: var(--r); padding: 8px 14px; text-align: center; min-width: 72px; }

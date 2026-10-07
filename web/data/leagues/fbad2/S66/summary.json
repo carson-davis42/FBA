@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "D2 International Champion",
-      "champion": "Milan",
+      "champion": "Milano BC",
       "runnerUp": "Salzburg BC",
       "score": null,
       "group": "D2",
@@ -65,7 +65,7 @@
     {
       "group": "ES",
       "teams": [
-        "Milan"
+        "Milano BC"
       ]
     }
   ],
@@ -207,7 +207,7 @@
           "seed": 15
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "9-1",
           "seed": 2
         },
@@ -279,7 +279,7 @@
           "seed": 10
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "9-1",
           "seed": 2
         },
@@ -315,7 +315,7 @@
           "seed": 6
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "9-1",
           "seed": 2
         },
@@ -333,7 +333,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "9-1",
           "seed": 2
         },

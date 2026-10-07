@@ -180,6 +180,12 @@
         "variant": 1
       },
       {
+        "file": "Club Madrid.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Edmonton Aurora.png",
         "from": null,
         "to": null,
@@ -204,6 +210,18 @@
         "variant": 1
       },
       {
+        "file": "Miami BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Milano BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Mumbai BC.png",
         "from": null,
         "to": null,
@@ -217,6 +235,18 @@
       },
       {
         "file": "Salzburg BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Union Ottawa.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Zürich Helvetia.png",
         "from": null,
         "to": null,
         "variant": 1

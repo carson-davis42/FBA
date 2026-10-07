@@ -26,7 +26,7 @@
     {
       "title": "United League Champion",
       "champion": "Glasgow",
-      "runnerUp": "Zurich",
+      "runnerUp": "Zürich Helvetia",
       "score": null,
       "group": "UL",
       "finalsMvp": "p02166",
@@ -289,7 +289,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Zurich",
+              "name": "Zürich Helvetia",
               "record": "10-4",
               "seed": 2
             },
@@ -306,7 +306,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Zurich",
+              "name": "Zürich Helvetia",
               "record": "10-4",
               "seed": 2
             },

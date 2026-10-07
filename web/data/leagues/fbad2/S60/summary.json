@@ -44,7 +44,7 @@
     {
       "group": "ES",
       "teams": [
-        "Milan"
+        "Milano BC"
       ]
     }
   ],
@@ -73,7 +73,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "7-3",
           "seed": 9
         },
@@ -186,7 +186,7 @@
           "seed": 15
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "10-0",
           "seed": 2
         },
@@ -258,7 +258,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "10-0",
           "seed": 2
         },

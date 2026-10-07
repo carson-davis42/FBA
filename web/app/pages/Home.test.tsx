@@ -11,7 +11,7 @@ const docs: Record<string, unknown> = {
     { id: 'fba-d2', label: 'FBA D2', kind: 'league', league: 'fbad2', sub: false, done: false },
   ] },
   'leagues/fba/S78/summary.json': { league: 'fba', season: 78, locked: true, host: null, champions: [{ title: 'FBA Champion', champion: 'Boston Bucks', runnerUp: 'Memphis Blues', score: '4-1' }] },
-  'leagues/fbad2/S78/summary.json': { league: 'fbad2', season: 78, locked: true, host: null, champions: [{ title: 'Premier League Champion', champion: 'Salzburg BC', runnerUp: 'Zurich', score: '4-1' }] },
+  'leagues/fbad2/S78/summary.json': { league: 'fbad2', season: 78, locked: true, host: null, champions: [{ title: 'Premier League Champion', champion: 'Salzburg BC', runnerUp: 'Zürich Helvetia', score: '4-1' }] },
   'leagues/fbajc/S78/summary.json': { league: 'fbajc', season: 78, locked: true, host: null, champions: [{ title: 'National Champion', champion: 'North Carolina', runnerUp: 'Syracuse', score: null }] },
   'leagues/fbawc/S78/summary.json': { league: 'fbawc', season: 78, locked: true, host: 'Croatia', champions: [{ title: 'World Cup Champion', champion: 'Germany', runnerUp: 'Italy', score: null }] },
 };

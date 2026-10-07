@@ -71,7 +71,7 @@
     {
       "group": "PL",
       "teams": [
-        "Ottawa"
+        "Union Ottawa"
       ]
     },
     {
@@ -104,7 +104,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Ottawa",
+              "name": "Union Ottawa",
               "record": "23-7",
               "seed": 1
             },
@@ -155,7 +155,7 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Milan",
+              "name": "Milano BC",
               "record": "17-13",
               "seed": 7
             },
@@ -248,7 +248,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Zurich",
+              "name": "Zürich Helvetia",
               "record": "17-13",
               "seed": 5
             },
@@ -282,7 +282,7 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Madrid",
+              "name": "Club Madrid",
               "record": "16-14",
               "seed": 7
             },
@@ -409,7 +409,7 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Miami",
+              "name": "Miami BC",
               "record": "17-13",
               "seed": 7
             },

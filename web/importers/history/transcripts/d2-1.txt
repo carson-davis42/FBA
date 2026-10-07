@@ -2,7 +2,7 @@
 S60
 1|Hamburg Hanse|10-0
 16|Brussels|6-4
-9|Zurich|7-3
+9|Zürich Helvetia|7-3
 8|Pearland|7-3
 5|Amsterdam|9-1
 12|Kiev|7-3
@@ -15,8 +15,8 @@ S60
 7|Moscow|8-2
 10|Lyon|6-4
 15|Orlando|7-3
-2|Milan|10-0
-= Hamburg Hanse 52-40 | Pearland 47-31 | Amsterdam 55-34 | San Jose 43-40 | Manchester 70-19 | Roma Pallacanestro 49-29 | Moscow 51-41 | Milan 61-43
+2|Milano BC|10-0
+= Hamburg Hanse 52-40 | Pearland 47-31 | Amsterdam 55-34 | San Jose 43-40 | Manchester 70-19 | Roma Pallacanestro 49-29 | Moscow 51-41 | Milano BC 61-43
 = Hamburg Hanse 60-49 | Amsterdam 55-44 | Roma Pallacanestro 59-54 | Moscow 50-49
 = Hamburg Hanse 60-54 | Roma Pallacanestro 59-32
 = Roma Pallacanestro 70-54
@@ -32,7 +32,7 @@ S63
 13|Salzburg BC|6-4
 4|Paris|9-1
 3|Maine|9-1
-14|Milan|7-3
+14|Milano BC|7-3
 11|Hamburg Hanse|6-4
 6|Amsterdam|8-2
 7|Berlin Bären BC|7-3
@@ -57,7 +57,7 @@ S59
 3|Kiev|9-1
 14|Maine|6-4
 11|Manchester|8-2
-6|Milan|9-1
+6|Milano BC|9-1
 7|Hamburg Hanse|8-2
 10|Barcelona|6-4
 15|Lyon|6-4
@@ -84,20 +84,20 @@ S66
 7|Amsterdam|9-1
 10|Moscow|6-4
 15|Toronto|6-4
-2|Milan|9-1
-= Salzburg BC 47-35 | Roma Pallacanestro 43-31 | Istanbul 54-53 | Berlin Bären BC 44-42 | Brussels 41-34 | Munich 45-26 | Moscow 46-41 | Milan 44-27
-= Salzburg BC 45-43 | Istanbul 45-32 | Munich 53-45 | Milan 43-40
-= Salzburg BC 49-40 | Milan 45-43
-= Milan 43-35
+2|Milano BC|9-1
+= Salzburg BC 47-35 | Roma Pallacanestro 43-31 | Istanbul 54-53 | Berlin Bären BC 44-42 | Brussels 41-34 | Munich 45-26 | Moscow 46-41 | Milano BC 44-27
+= Salzburg BC 45-43 | Istanbul 45-32 | Munich 53-45 | Milano BC 43-40
+= Salzburg BC 49-40 | Milano BC 45-43
+= Milano BC 43-35
 
 # p062 FBA D2 Tournament
 S61
 1|Amsterdam|10-0
-16|Zurich|5-5
+16|Zürich Helvetia|5-5
 9|Salzburg BC|6-4
 8|Austin BC|7-3
 5|Dublin|7-3
-12|Milan|8-2
+12|Milano BC|8-2
 13|Kiev|6-4
 4|Maine|8-2
 3|Hamburg Hanse|9-1
@@ -107,9 +107,9 @@ S61
 7|Moscow|8-2
 10|Manchester|7-3
 15|Toronto|6-4
-2|Madrid|9-1
-= Amsterdam 52-44 | Austin BC 38-35 | Milan 45-44 | Kiev 45-44 | Hamburg Hanse 60-52 | Roma Pallacanestro 38-23 | Manchester 51-41 | Madrid 61-20
-= Austin BC 39-38 | Milan 49-28 | Hamburg Hanse 62-52 | Madrid 59-18
+2|Club Madrid|9-1
+= Amsterdam 52-44 | Austin BC 38-35 | Milano BC 45-44 | Kiev 45-44 | Hamburg Hanse 60-52 | Roma Pallacanestro 38-23 | Manchester 51-41 | Club Madrid 61-20
+= Austin BC 39-38 | Milano BC 49-28 | Hamburg Hanse 62-52 | Club Madrid 59-18
 = Austin BC 48-38 | Hamburg Hanse 46-42
 = Austin BC 70-69
 
@@ -119,7 +119,7 @@ S58
 16|Paris|6-4
 9|Roma Pallacanestro|8-2
 8|Orlando|8-2
-5|Milan|8-2
+5|Milano BC|8-2
 12|San Jose|8-2
 13|Kiev|6-4
 4|Glasgow|9-1
@@ -131,10 +131,10 @@ S58
 10|Frankfurt|7-3
 15|Istanbul|6-4
 2|Toronto|9-1
-= Vienna 43-31 | Orlando 34-33 | Milan 40-39 | Glasgow 55-54 | Athens 39-20 | Manchester 40-38 | Frankfurt 26-19 | Toronto 50-19
-= Vienna 39-16 | Milan 53-36 | Athens 52-49 | Toronto 28-27
-= Milan 63-53 | Athens 36-34
-= Milan 49-37
+= Vienna 43-31 | Orlando 34-33 | Milano BC 40-39 | Glasgow 55-54 | Athens 39-20 | Manchester 40-38 | Frankfurt 26-19 | Toronto 50-19
+= Vienna 39-16 | Milano BC 53-36 | Athens 52-49 | Toronto 28-27
+= Milano BC 63-53 | Athens 36-34
+= Milano BC 49-37
 
 # p055 FBA D2 Tournament
 S53

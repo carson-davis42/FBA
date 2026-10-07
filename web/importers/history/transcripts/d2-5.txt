@@ -18,7 +18,7 @@ S70
 G:PL
 1|Hamburg Hanse|24-6
 8|Glasgow|16-14
-5|Milan|20-10
+5|Milano BC|20-10
 4|Toronto|21-9
 3|Munich|21-9
 6|Salzburg BC|19-11
@@ -34,12 +34,12 @@ G:WL
 1|Guadalajara CB|28-2
 8|Shanghai|16-14
 5|Liverpool|22-8
-4|Miami|22-8
+4|Miami BC|22-8
 3|Sao Paolo|26-4
 6|Amsterdam|21-9
 7|Hamburg Hanse|18-12
 2|Recife|26-4
-= Guadalajara CB 4-0 | Miami 4-2 | Amsterdam 4-2 | Recife 4-0
+= Guadalajara CB 4-0 | Miami BC 4-2 | Amsterdam 4-2 | Recife 4-0
 = Guadalajara CB 4-1 | Recife 4-1
 = Recife 4-2
 
@@ -93,9 +93,9 @@ S69
 G:WL
 1|Glasgow|11-3
 4|Austin BC|8-6
-3|Zurich|9-5
+3|Zürich Helvetia|9-5
 2|Istanbul|10-4
-= Glasgow 4-1 | Zurich 4-2
+= Glasgow 4-1 | Zürich Helvetia 4-2
 = Glasgow 4-0
 
 # p092 FBA D2 World League Tournament

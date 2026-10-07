@@ -1,7 +1,7 @@
 # p093 FBA D2 United League Tournament
 S74
 G:UL
-1|Miami|30-0
+1|Miami BC|30-0
 8|Johannesburg|16-14
 5|Manchester|21-9
 4|Moscow|21-9
@@ -9,9 +9,9 @@ G:UL
 6|Saint Petersburg|16-14
 7|Beijing|16-14
 2|Sydney|25-5
-= Miami 4-0 | Manchester 4-0 | Casablanca 4-3 | Sydney 4-3
-= Miami 4-1 | Sydney 4-3
-= Miami 4-3
+= Miami BC 4-0 | Manchester 4-0 | Casablanca 4-3 | Sydney 4-3
+= Miami BC 4-1 | Sydney 4-3
+= Miami BC 4-3
 
 # p094 FBA D2 United League Tournament
 S76
@@ -31,30 +31,30 @@ G:UL
 # p100 FBA D2 World League Tournament
 S70
 G:WL
-1|Madrid|18-4
+1|Club Madrid|18-4
 BYE
 5|Austin BC|12-10
-4|Zurich|15-7
+4|Zürich Helvetia|15-7
 3|Paris|17-5
 6|Athens|12-10
 BYE
 2|Vancouver|17-5
-= Madrid BYE | Austin BC 4-2 | Paris 4-1 | Vancouver BYE
+= Club Madrid BYE | Austin BC 4-2 | Paris 4-1 | Vancouver BYE
 = Austin BC 4-3 | Paris 4-1
 = Paris 4-1
 
 # p103 FBA D2 World League Tournament
 S77
 G:WL
-1|Zurich|24-6
+1|Zürich Helvetia|24-6
 8|Lyon|17-13
 5|Sao Paolo|20-10
 4|Zagreb|20-10
 3|Casablanca|20-10
 6|Dhaka|18-12
 7|Hamburg Hanse|18-12
-2|Miami|21-9
-= Zurich 4-1 | Sao Paolo 4-2 | Casablanca 4-3 | Miami 4-0
+2|Miami BC|21-9
+= Zürich Helvetia 4-1 | Sao Paolo 4-2 | Casablanca 4-3 | Miami BC 4-0
 = Sao Paolo 4-1 | Casablanca 4-2
 = Sao Paolo 4-0
 
@@ -72,15 +72,15 @@ G:WL
 S71
 G:PL
 1|Hamburg Hanse|23-7
-8|Milan|18-12
+8|Milano BC|18-12
 5|Atlético Lisboa|20-10
 4|Roma Pallacanestro|21-9
 3|San Jose|22-8
 6|Vancouver|19-11
 7|Toronto|19-11
-2|Madrid|22-8
-= Hamburg Hanse 4-2 | Atlético Lisboa 4-3 | San Jose 4-1 | Madrid 4-1
-= Hamburg Hanse 4-3 | Madrid 4-3
+2|Club Madrid|22-8
+= Hamburg Hanse 4-2 | Atlético Lisboa 4-3 | San Jose 4-1 | Club Madrid 4-1
+= Hamburg Hanse 4-3 | Club Madrid 4-3
 = Hamburg Hanse 4-1
 
 # p110 FBA D2 International League Tournament
@@ -101,7 +101,7 @@ G:IL
 # p117 FBA D2 United League Tournament
 S69
 G:UL
-1|Madrid|12-2
+1|Club Madrid|12-2
 4|Mexico City|8-6
 3|Barcelona|10-4
 2|Vancouver|12-2

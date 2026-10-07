@@ -45,7 +45,7 @@
       "group": "ES",
       "teams": [
         "Roma Pallacanestro",
-        "Madrid"
+        "Club Madrid"
       ]
     }
   ],
@@ -61,7 +61,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "5-5",
           "seed": 16
         },
@@ -97,7 +97,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 12
         },
@@ -187,7 +187,7 @@
           "seed": 15
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "9-1",
           "seed": 2
         },
@@ -218,7 +218,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 12
         },
@@ -259,7 +259,7 @@
           "seed": 10
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "9-1",
           "seed": 2
         },
@@ -277,7 +277,7 @@
           "seed": 8
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 12
         },
@@ -295,7 +295,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "9-1",
           "seed": 2
         },

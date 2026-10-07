@@ -532,7 +532,7 @@ describe('Part 3a history schemas', () => {
     rounds: 3,
     series: [
       ser('R1-1', side('St.Louis', '6-1', 1), side('Former Pirates', '3-4', 8), 2, 0, 'home'),
-      ser('R1-2', side('Boston', '5-2', 4), side('Miami', '4-3', 5), 2, 1, 'home'),
+      ser('R1-2', side('Boston', '5-2', 4), side('Miami BC', '4-3', 5), 2, 1, 'home'),
       ser('R1-3', side('Denver', '5-2', 2), side('Utah', '3-4', 7), 2, 0, 'home'),
       ser('R1-4', side('Seattle', '4-3', 3), side('Dallas', '4-3', 6), 1, 2, 'away'),
       ser('R2-1', side('St.Louis', null, 1), side('Boston', null, 4), 3, 1, 'home'),

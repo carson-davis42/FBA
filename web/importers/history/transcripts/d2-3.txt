@@ -6,7 +6,7 @@ G:WL
 5|Hamburg Hanse|19-11
 4|Sydney|20-10
 3|Sao Paolo|23-7
-6|Zurich|16-14
+6|Zürich Helvetia|16-14
 7|Dhaka|16-14
 2|Vancouver|24-6
 = Roma Pallacanestro 4-0 | Sydney 4-3 | Sao Paolo 4-0 | Vancouver 4-0
@@ -21,8 +21,8 @@ G:PL
 5|Salzburg BC|21-9
 4|Tokyo|21-9
 3|Berlin Bären BC|23-7
-6|Ottawa|20-10
-7|Milan|20-10
+6|Union Ottawa|20-10
+7|Milano BC|20-10
 2|Austin BC|23-7
 = San Jose 4-0 | Salzburg BC 4-2 | Berlin Bären BC 4-1 | Austin BC 4-1
 = San Jose 4-2 | Austin BC 4-2
@@ -48,11 +48,11 @@ S73
 G:WL
 1|Vienna|23-7
 8|Guadalajara CB|15-15
-5|Zurich|17-13
+5|Zürich Helvetia|17-13
 4|Lyon|18-12
 3|Liverpool|21-9
 6|Shanghai|17-13
-7|Madrid|16-14
+7|Club Madrid|16-14
 2|London Royal|22-8
 = Vienna 4-3 | Lyon 4-1 | Liverpool 4-0 | London Royal 4-1
 = Vienna 4-3 | London Royal 4-2
@@ -97,7 +97,7 @@ G:PL
 4|London Royal|19-11
 3|Budapest|20-10
 6|Recife|16-14
-7|Milan|16-14
+7|Milano BC|16-14
 2|Berlin Bären BC|22-8
 = Guadalajara CB 4-3 | London Royal 4-3 | Budapest 4-3 | Berlin Bären BC 4-3
 = London Royal 4-1 | Budapest 4-1

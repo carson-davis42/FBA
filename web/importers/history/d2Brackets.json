@@ -732,7 +732,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "5-5",
           "seed": 6
         },
@@ -750,7 +750,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "7-3",
           "seed": 2
         },
@@ -786,7 +786,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "7-3",
           "seed": 2
         },
@@ -846,7 +846,7 @@
           "seed": null
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "6-4",
           "seed": null
         },
@@ -991,7 +991,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 5
         },
@@ -1117,7 +1117,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 5
         },
@@ -1176,7 +1176,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 5
         },
@@ -1207,7 +1207,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 5
         },
@@ -1326,7 +1326,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "9-1",
           "seed": 6
         },
@@ -1525,7 +1525,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "7-3",
           "seed": 9
         },
@@ -1638,7 +1638,7 @@
           "seed": 15
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "10-0",
           "seed": 2
         },
@@ -1710,7 +1710,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "10-0",
           "seed": 2
         },
@@ -1788,7 +1788,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "5-5",
           "seed": 16
         },
@@ -1824,7 +1824,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 12
         },
@@ -1914,7 +1914,7 @@
           "seed": 15
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "9-1",
           "seed": 2
         },
@@ -1945,7 +1945,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 12
         },
@@ -1986,7 +1986,7 @@
           "seed": 10
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "9-1",
           "seed": 2
         },
@@ -2004,7 +2004,7 @@
           "seed": 8
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 12
         },
@@ -2022,7 +2022,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "9-1",
           "seed": 2
         },
@@ -2082,7 +2082,7 @@
           "seed": 9
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 8
         },
@@ -2190,7 +2190,7 @@
           "seed": 15
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "10-0",
           "seed": 2
         },
@@ -2208,7 +2208,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 8
         },
@@ -2262,7 +2262,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "10-0",
           "seed": 2
         },
@@ -2275,7 +2275,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 8
         },
@@ -2298,7 +2298,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "10-0",
           "seed": 2
         },
@@ -2316,7 +2316,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "10-0",
           "seed": 2
         },
@@ -2412,7 +2412,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "7-3",
           "seed": 14
         },
@@ -2665,7 +2665,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "7-3",
           "seed": 13
         },
@@ -3013,7 +3013,7 @@
         "id": "R1-8",
         "round": 1,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "6-4",
           "seed": 15
         },
@@ -3090,7 +3090,7 @@
           "seed": 10
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "6-4",
           "seed": 15
         },
@@ -3294,7 +3294,7 @@
           "seed": 15
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "9-1",
           "seed": 2
         },
@@ -3366,7 +3366,7 @@
           "seed": 10
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "9-1",
           "seed": 2
         },
@@ -3402,7 +3402,7 @@
           "seed": 6
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "9-1",
           "seed": 2
         },
@@ -3420,7 +3420,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "9-1",
           "seed": 2
         },
@@ -3534,7 +3534,7 @@
           "seed": 2
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "7-3",
           "seed": 3
         },
@@ -3922,7 +3922,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "10-4",
           "seed": 2
         },
@@ -3939,7 +3939,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "10-4",
           "seed": 2
         },
@@ -4101,7 +4101,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "9-5",
           "seed": 3
         },
@@ -4123,7 +4123,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "9-5",
           "seed": 3
         },
@@ -4142,7 +4142,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "12-2",
           "seed": 1
         },
@@ -4217,7 +4217,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "20-10",
           "seed": 5
         },
@@ -4326,7 +4326,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "18-4",
           "seed": 1
         },
@@ -4344,7 +4344,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "15-7",
           "seed": 4
         },
@@ -4386,7 +4386,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "18-4",
           "seed": 1
         },
@@ -4567,7 +4567,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "18-12",
           "seed": 8
         },
@@ -4618,7 +4618,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "22-8",
           "seed": 2
         },
@@ -4652,7 +4652,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "22-8",
           "seed": 2
         },
@@ -4669,7 +4669,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "22-8",
           "seed": 2
         },
@@ -4983,12 +4983,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Ottawa",
+          "name": "Union Ottawa",
           "record": "18-12",
           "seed": 7
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "24-6",
           "seed": 2
         },
@@ -5022,7 +5022,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "24-6",
           "seed": 2
         },
@@ -5436,7 +5436,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Ottawa",
+          "name": "Union Ottawa",
           "record": "23-7",
           "seed": 1
         },
@@ -5487,7 +5487,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "17-13",
           "seed": 7
         },
@@ -5579,7 +5579,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "17-13",
           "seed": 5
         },
@@ -5613,7 +5613,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "16-14",
           "seed": 7
         },
@@ -5739,7 +5739,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Miami",
+          "name": "Miami BC",
           "record": "17-13",
           "seed": 7
         },
@@ -5979,7 +5979,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Ottawa",
+          "name": "Union Ottawa",
           "record": "20-10",
           "seed": 6
         },
@@ -5991,7 +5991,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "20-10",
           "seed": 7
         },
@@ -6066,7 +6066,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "29-1",
           "seed": 1
         },
@@ -6134,7 +6134,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "29-1",
           "seed": 1
         },
@@ -6168,7 +6168,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Madrid",
+          "name": "Club Madrid",
           "record": "29-1",
           "seed": 1
         },
@@ -6192,7 +6192,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Miami",
+          "name": "Miami BC",
           "record": "30-0",
           "seed": 1
         },
@@ -6260,7 +6260,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Miami",
+          "name": "Miami BC",
           "record": "30-0",
           "seed": 1
         },
@@ -6294,7 +6294,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Miami",
+          "name": "Miami BC",
           "record": "30-0",
           "seed": 1
         },
@@ -6483,7 +6483,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Ottawa",
+          "name": "Union Ottawa",
           "record": "19-11",
           "seed": 6
         },
@@ -6495,7 +6495,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "17-13",
           "seed": 7
         },
@@ -6534,7 +6534,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "17-13",
           "seed": 7
         },
@@ -6592,7 +6592,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Miami",
+          "name": "Miami BC",
           "record": "22-8",
           "seed": 4
         },
@@ -6643,7 +6643,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Miami",
+          "name": "Miami BC",
           "record": "22-8",
           "seed": 4
         },
@@ -6999,7 +6999,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "16-14",
           "seed": 7
         },
@@ -7113,7 +7113,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "16-14",
           "seed": 6
         },
@@ -7578,7 +7578,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "24-6",
           "seed": 1
         },
@@ -7634,7 +7634,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Miami",
+          "name": "Miami BC",
           "record": "21-9",
           "seed": 2
         },
@@ -7646,7 +7646,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "24-6",
           "seed": 1
         },
@@ -7668,7 +7668,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Miami",
+          "name": "Miami BC",
           "record": "21-9",
           "seed": 2
         },
@@ -7978,7 +7978,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Miami",
+          "name": "Miami BC",
           "record": "19-11",
           "seed": 4
         },
@@ -7995,7 +7995,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "18-12",
           "seed": 6
         },
@@ -8007,7 +8007,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "16-14",
           "seed": 7
         },
@@ -8041,12 +8041,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "18-12",
           "seed": 6
         },
         "away": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "16-14",
           "seed": 7
         },
@@ -8063,7 +8063,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Zurich",
+          "name": "Zürich Helvetia",
           "record": "16-14",
           "seed": 7
         },

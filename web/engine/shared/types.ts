@@ -48,6 +48,9 @@ export const Team = z.object({
   badge: Badge,
   /** ISO 3166 code (or gb-eng/gb-sct/gb-nir) for a flag; World Cup countries only. */
   flag: z.string().regex(/^[a-z]{2}(-[a-z]{3})?$/).optional(),
+  /** Where a club is based (the D2 clubs): shown under its name on the team history page. */
+  city: z.string().min(1).optional(),
+  country: z.string().min(1).optional(),
 }).strict();
 export type Team = z.infer<typeof Team>;
 

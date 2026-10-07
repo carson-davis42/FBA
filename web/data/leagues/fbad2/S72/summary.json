@@ -154,12 +154,12 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Ottawa",
+              "name": "Union Ottawa",
               "record": "18-12",
               "seed": 7
             },
             "away": {
-              "name": "Milan",
+              "name": "Milano BC",
               "record": "24-6",
               "seed": 2
             },
@@ -193,7 +193,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Milan",
+              "name": "Milano BC",
               "record": "24-6",
               "seed": 2
             },

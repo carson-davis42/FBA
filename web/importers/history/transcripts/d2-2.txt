@@ -11,7 +11,7 @@ S67
 1|Dublin|10-0
 4|Vienna|6-4
 2|Guadalajara CB|9-1
-3|Milan|7-3
+3|Milano BC|7-3
 1|Roma Pallacanestro|10-0
 4|San Jose|6-4
 2|Hamburg Hanse|8-2
@@ -29,7 +29,7 @@ S64
 8|Vancouver|7-3
 5|Munich|9-1
 12|Dublin|6-4
-13|Milan|7-3
+13|Milano BC|7-3
 4|Guadalajara CB|9-1
 3|Kiev|9-1
 14|Tampa|6-4
@@ -49,7 +49,7 @@ S57
 |Athens|7-3
 |San Jose|8-2
 |Frankfurt|8-2
-|Milan|6-4
+|Milano BC|6-4
 |Roma Pallacanestro|8-2
 |Berlin Bären BC|5-5
 |Vienna|10-0
@@ -65,10 +65,10 @@ S56
 5|London Royal|8-2
 4|Salzburg BC|7-3
 3|Istanbul|8-2
-6|Madrid|5-5
+6|Club Madrid|5-5
 7|Paris|6-4
-2|Milan|7-3
-= Roma Pallacanestro - | Salzburg BC - | Istanbul - | Milan -
+2|Milano BC|7-3
+= Roma Pallacanestro - | Salzburg BC - | Istanbul - | Milano BC -
 = Roma Pallacanestro - | Istanbul -
 = Istanbul -
 
@@ -88,9 +88,9 @@ S65
 6|Munich|7-3
 7|Amsterdam|7-3
 10|Hamburg Hanse|7-3
-15|Milan|6-4
+15|Milano BC|6-4
 2|San Jose|10-0
-= Brussels 38-33 | Atlético Lisboa 40-34 | Roma Pallacanestro 35-31 | Salzburg BC 47-17 | Istanbul 41-37 | London Royal 45-33 | Hamburg Hanse 38-31 | Milan 37-36
+= Brussels 38-33 | Atlético Lisboa 40-34 | Roma Pallacanestro 35-31 | Salzburg BC 47-17 | Istanbul 41-37 | London Royal 45-33 | Hamburg Hanse 38-31 | Milano BC 37-36
 = Atlético Lisboa 39-31 | Salzburg BC 38-36 | Istanbul 43-38 | Hamburg Hanse 37-30
 = Salzburg BC 40-37 | Istanbul 33-24
 = Salzburg BC 40-35
@@ -100,7 +100,7 @@ S62
 1|Amsterdam|10-0
 16|Mexico City|5-5
 9|Moscow|8-2
-8|Milan|8-2
+8|Milano BC|8-2
 5|Austin BC|9-1
 12|Glasgow|7-3
 13|Atlético Lisboa|5-5
@@ -112,10 +112,10 @@ S62
 7|Berlin Bären BC|8-2
 10|Maine|6-4
 15|Dublin|5-5
-2|Madrid|10-0
-= Amsterdam 50-20 | Milan 38-36 | Austin BC 47-21 | Hamburg Hanse 43-38 | San Jose 39-29 | Roma Pallacanestro 52-36 | Berlin Bären BC 39-26 | Madrid 56-35
-= Milan 60-52 | Austin BC 47-41 | San Jose 47-36 | Madrid 47-38
-= Austin BC 56-51 | Madrid 52-33
+2|Club Madrid|10-0
+= Amsterdam 50-20 | Milano BC 38-36 | Austin BC 47-21 | Hamburg Hanse 43-38 | San Jose 39-29 | Roma Pallacanestro 52-36 | Berlin Bären BC 39-26 | Club Madrid 56-35
+= Milano BC 60-52 | Austin BC 47-41 | San Jose 47-36 | Club Madrid 47-38
+= Austin BC 56-51 | Club Madrid 52-33
 = Austin BC 51-42
 
 # p140 FBA D2 Tournament

@@ -17,7 +17,7 @@
     {
       "title": "World League Champion",
       "champion": "Glasgow",
-      "runnerUp": "Zurich",
+      "runnerUp": "Zürich Helvetia",
       "score": null,
       "group": "WL",
       "finalsMvp": "p02349",
@@ -68,7 +68,7 @@
     {
       "group": "UL",
       "teams": [
-        "Madrid",
+        "Club Madrid",
         "Vancouver"
       ]
     }
@@ -227,7 +227,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Zurich",
+              "name": "Zürich Helvetia",
               "record": "9-5",
               "seed": 3
             },
@@ -249,7 +249,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Zurich",
+              "name": "Zürich Helvetia",
               "record": "9-5",
               "seed": 3
             },
@@ -269,7 +269,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Madrid",
+              "name": "Club Madrid",
               "record": "12-2",
               "seed": 1
             },

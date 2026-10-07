@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "D2 International Champion",
-      "champion": "Milan",
+      "champion": "Milano BC",
       "runnerUp": "Athens",
       "score": null,
       "group": "D2",
@@ -91,7 +91,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 5
         },
@@ -217,7 +217,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 5
         },
@@ -276,7 +276,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 5
         },
@@ -307,7 +307,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Milan",
+          "name": "Milano BC",
           "record": "8-2",
           "seed": 5
         },

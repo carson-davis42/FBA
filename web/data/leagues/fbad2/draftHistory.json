@@ -16,7 +16,7 @@
         {
           "pick": 2,
           "teamId": "ZUR",
-          "teamName": "Zurich",
+          "teamName": "Zürich Helvetia",
           "name": "Iman Solis",
           "playerId": "p00484",
           "pos": "C",
@@ -36,7 +36,7 @@
         {
           "pick": 4,
           "teamId": "MIL",
-          "teamName": "Milan",
+          "teamName": "Milano BC",
           "name": "Mica Reed",
           "playerId": "p02350",
           "pos": "PF",
@@ -156,7 +156,7 @@
         {
           "pick": 16,
           "teamId": "ZUR",
-          "teamName": "Zurich",
+          "teamName": "Zürich Helvetia",
           "name": "Fabian Gordon",
           "playerId": "p00465",
           "pos": "SF",
@@ -231,7 +231,7 @@
         {
           "pick": 3,
           "teamId": "MAD",
-          "teamName": "Madrid",
+          "teamName": "Club Madrid",
           "name": "Jaydon Cantrell",
           "playerId": "p02215",
           "pos": "PG",
@@ -341,7 +341,7 @@
         {
           "pick": 14,
           "teamId": "MAD",
-          "teamName": "Madrid",
+          "teamName": "Club Madrid",
           "name": "Jett Kitchens",
           "playerId": "p02257",
           "pos": "SF",
@@ -431,7 +431,7 @@
         {
           "pick": 23,
           "teamId": "ZUR",
-          "teamName": "Zurich",
+          "teamName": "Zürich Helvetia",
           "name": "Malik Fisher",
           "playerId": "p00457",
           "pos": "SF",
@@ -581,7 +581,7 @@
         {
           "pick": 38,
           "teamId": "MIL",
-          "teamName": "Milan",
+          "teamName": "Milano BC",
           "name": "Joel Rubio",
           "playerId": "p01806",
           "pos": "PG",
@@ -1566,7 +1566,7 @@
         {
           "pick": 9,
           "teamId": "MIA",
-          "teamName": "Miami",
+          "teamName": "Miami BC",
           "name": "Billie Alvey",
           "playerId": "p02254",
           "pos": "PG",
@@ -1866,7 +1866,7 @@
         {
           "pick": 39,
           "teamId": "MIA",
-          "teamName": "Miami",
+          "teamName": "Miami BC",
           "name": "Pat Yokota",
           "playerId": "p00337",
           "pos": "C",
@@ -1971,7 +1971,7 @@
         {
           "pick": 4,
           "teamId": "MAD",
-          "teamName": "Madrid",
+          "teamName": "Club Madrid",
           "name": "Franciszek Mazur",
           "playerId": "p00395",
           "pos": "PF",
@@ -2001,7 +2001,7 @@
         {
           "pick": 7,
           "teamId": "MIA",
-          "teamName": "Miami",
+          "teamName": "Miami BC",
           "name": "Brooks Braun",
           "playerId": "p00335",
           "pos": "SF",
@@ -2271,7 +2271,7 @@
         {
           "pick": 34,
           "teamId": "MIA",
-          "teamName": "Miami",
+          "teamName": "Miami BC",
           "name": "Nikolai Nelson",
           "playerId": "p01881",
           "pos": "PF",
@@ -2356,7 +2356,7 @@
         {
           "pick": 2,
           "teamId": "MIA",
-          "teamName": "Miami",
+          "teamName": "Miami BC",
           "name": "Toni Turner",
           "playerId": "p02341",
           "pos": "SG",
@@ -2526,7 +2526,7 @@
         {
           "pick": 19,
           "teamId": "MAD",
-          "teamName": "Madrid",
+          "teamName": "Club Madrid",
           "name": "Bobby Irving",
           "playerId": "p02331",
           "pos": "PG",
@@ -2666,7 +2666,7 @@
         {
           "pick": 33,
           "teamId": "MAD",
-          "teamName": "Madrid",
+          "teamName": "Club Madrid",
           "name": "Jordan Coleman",
           "playerId": "p00321",
           "pos": "SG",
@@ -2831,7 +2831,7 @@
         {
           "pick": 10,
           "teamId": "MAD",
-          "teamName": "Madrid",
+          "teamName": "Club Madrid",
           "name": "Malik Kamau",
           "playerId": "p00323",
           "pos": "PF",
@@ -2881,7 +2881,7 @@
         {
           "pick": 15,
           "teamId": "MAD",
-          "teamName": "Madrid",
+          "teamName": "Club Madrid",
           "name": "Julian Wright",
           "playerId": "p01857",
           "pos": "SF",
@@ -2971,7 +2971,7 @@
         {
           "pick": 24,
           "teamId": "MIA",
-          "teamName": "Miami",
+          "teamName": "Miami BC",
           "name": "Ayo Ajayi",
           "playerId": "p00333",
           "pos": "PG",
@@ -3156,7 +3156,7 @@
         {
           "pick": 4,
           "teamId": "MIL",
-          "teamName": "Milan",
+          "teamName": "Milano BC",
           "name": "Dennis Lofton",
           "playerId": "p00342",
           "pos": "C",
@@ -3256,7 +3256,7 @@
         {
           "pick": 14,
           "teamId": "OTT",
-          "teamName": "Ottawa",
+          "teamName": "Union Ottawa",
           "name": "Todd Moody",
           "playerId": "p00375",
           "pos": "SF",
@@ -3356,7 +3356,7 @@
         {
           "pick": 24,
           "teamId": "MAD",
-          "teamName": "Madrid",
+          "teamName": "Club Madrid",
           "name": "Garrick Thorne",
           "playerId": "p00324",
           "pos": "C",
@@ -3376,7 +3376,7 @@
         {
           "pick": 26,
           "teamId": "OTT",
-          "teamName": "Ottawa",
+          "teamName": "Union Ottawa",
           "name": "Isaiah Massey",
           "playerId": "p00377",
           "pos": "C",
@@ -3436,7 +3436,7 @@
         {
           "pick": 32,
           "teamId": "MIL",
-          "teamName": "Milan",
+          "teamName": "Milano BC",
           "name": "Omar Huffman",
           "playerId": "p00340",
           "pos": "SF",
@@ -3561,7 +3561,7 @@
         {
           "pick": 2,
           "teamId": "ZUR",
-          "teamName": "Zurich",
+          "teamName": "Zürich Helvetia",
           "name": "Markus Edmonds",
           "playerId": "p00455",
           "pos": "PG",
@@ -3671,7 +3671,7 @@
         {
           "pick": 13,
           "teamId": "ZUR",
-          "teamName": "Zurich",
+          "teamName": "Zürich Helvetia",
           "name": "Kealan Jansen",
           "playerId": "p00456",
           "pos": "SG",
@@ -3721,7 +3721,7 @@
         {
           "pick": 18,
           "teamId": "MAD",
-          "teamName": "Madrid",
+          "teamName": "Club Madrid",
           "name": "Tristan Hayes",
           "playerId": "p00322",
           "pos": "SF",
@@ -3951,7 +3951,7 @@
         {
           "pick": 41,
           "teamId": "ZUR",
-          "teamName": "Zurich",
+          "teamName": "Zürich Helvetia",
           "name": "Thaddeus Mueller",
           "playerId": "p00458",
           "pos": "PF",
@@ -4156,7 +4156,7 @@
         {
           "pick": 3,
           "teamId": "MIA",
-          "teamName": "Miami",
+          "teamName": "Miami BC",
           "name": "Jasper Monroe",
           "playerId": "p00334",
           "pos": "SG",
@@ -4166,7 +4166,7 @@
         {
           "pick": 4,
           "teamId": "MAD",
-          "teamName": "Madrid",
+          "teamName": "Club Madrid",
           "name": "Simon Sparks",
           "playerId": "p00320",
           "pos": "PG",
@@ -4246,7 +4246,7 @@
         {
           "pick": 12,
           "teamId": "MIL",
-          "teamName": "Milan",
+          "teamName": "Milano BC",
           "name": "Hiroshi Tanaka",
           "playerId": "p00341",
           "pos": "PF",
@@ -4266,7 +4266,7 @@
         {
           "pick": 14,
           "teamId": "MIL",
-          "teamName": "Milan",
+          "teamName": "Milano BC",
           "name": "Simeon Estrada",
           "playerId": "p00339",
           "pos": "SG",
@@ -4276,7 +4276,7 @@
         {
           "pick": 15,
           "teamId": "MIL",
-          "teamName": "Milan",
+          "teamName": "Milano BC",
           "name": "Dillon Stevens",
           "playerId": "p00338",
           "pos": "PG",

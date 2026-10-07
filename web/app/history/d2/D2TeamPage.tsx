@@ -44,7 +44,9 @@ export function D2TeamPage() {
           { label: 'Finals', value: c.titles.length + c.finalsLost.length },
           { label: 'RS titles', value: c.rsTitles.length },
         ]}
-      />
+      >
+        {team.city && <p className="hero-place">{team.country ? `${team.city}, ${team.country}` : team.city}</p>}
+      </Hero>
       <HistoryLeagueSwitch />
       <div>
         <h2 className="section-title">League path</h2>
