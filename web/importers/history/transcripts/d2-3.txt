@@ -4,12 +4,12 @@ G:WL
 1|Roma Pallacanestro|25-5
 8|Liverpool Maritime|15-15
 5|Hamburg Hanse|19-11
-4|Sydney|20-10
-3|Sao Paolo|23-7
+4|Sydney Harbour|20-10
+3|Paulistano|23-7
 6|Zürich Helvetia|16-14
 7|Dhaka Sporting|16-14
 2|Vancouver|24-6
-= Roma Pallacanestro 4-0 | Sydney 4-3 | Sao Paolo 4-0 | Vancouver 4-0
+= Roma Pallacanestro 4-0 | Sydney Harbour 4-3 | Paulistano 4-0 | Vancouver 4-0
 = Roma Pallacanestro 4-0 | Vancouver 4-3
 = Vancouver 4-2
 
@@ -19,7 +19,7 @@ G:PL
 1|San Jose|24-6
 8|Vancouver|17-13
 5|Salzburg BC|21-9
-4|Tokyo|21-9
+4|Tokyo BC|21-9
 3|Berlin Bären BC|23-7
 6|Union Ottawa|20-10
 7|Milano BC|20-10
@@ -32,21 +32,21 @@ G:PL
 S78
 G:WL
 1|Mumbai BC|28-2
-8|Zagreb|16-14
+8|Zagreb Košarka|16-14
 5|Dhaka Sporting|18-12
 4|Københavns BK|20-10
-3|Sao Paolo|20-10
+3|Paulistano|20-10
 6|Münchner BC|17-13
 7|Union Casablanca|17-13
 2|Hamburg Hanse|23-7
-= Mumbai BC 4-2 | Dhaka Sporting 4-1 | Sao Paolo 4-1 | Hamburg Hanse 4-3
+= Mumbai BC 4-2 | Dhaka Sporting 4-1 | Paulistano 4-1 | Hamburg Hanse 4-3
 = Mumbai BC 4-2 | Hamburg Hanse 4-0
 = Mumbai BC 4-2
 
 # p023 FBA D2 World League Tournament
 S73
 G:WL
-1|Vienna|23-7
+1|Wien SV|23-7
 8|Guadalajara CB|15-15
 5|Zürich Helvetia|17-13
 4|Sporting Lyon|18-12
@@ -54,9 +54,9 @@ G:WL
 6|Shanghai|17-13
 7|Club Madrid|16-14
 2|London Royal|22-8
-= Vienna 4-3 | Sporting Lyon 4-1 | Liverpool Maritime 4-0 | London Royal 4-1
-= Vienna 4-3 | London Royal 4-2
-= Vienna 4-2
+= Wien SV 4-3 | Sporting Lyon 4-1 | Liverpool Maritime 4-0 | London Royal 4-1
+= Wien SV 4-3 | London Royal 4-2
+= Wien SV 4-2
 
 # p024 FBA D2 International League Tournament
 S75

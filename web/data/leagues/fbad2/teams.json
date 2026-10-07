@@ -755,16 +755,18 @@
     },
     {
       "teamId": "SP",
-      "name": "Sao Paolo",
+      "name": "Paulistano",
       "abbr": "SP",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(354 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#101010",
+        "fg": "#fff",
+        "accent": "#B50E1A"
       },
       "city": "São Paulo",
-      "country": "Brazil"
+      "country": "Brazil",
+      "logoFile": "Paulistano.png"
     },
     {
       "teamId": "STO",
@@ -796,16 +798,18 @@
     },
     {
       "teamId": "SYD",
-      "name": "Sydney",
+      "name": "Sydney Harbour",
       "abbr": "SYD",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(156 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#0B2350",
+        "fg": "#fff",
+        "accent": "#D9AC3F"
       },
       "city": "Sydney",
-      "country": "Australia"
+      "country": "Australia",
+      "logoFile": "Sydney Harbour.png"
     },
     {
       "teamId": "TAM",
@@ -822,29 +826,33 @@
     },
     {
       "teamId": "TOK",
-      "name": "Tokyo",
+      "name": "Tokyo BC",
       "abbr": "TOK",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(54 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#0B1A44",
+        "fg": "#fff",
+        "accent": "#D9AC4A"
       },
       "city": "Tokyo",
-      "country": "Japan"
+      "country": "Japan",
+      "logoFile": "Tokyo BC.png"
     },
     {
       "teamId": "VIE",
-      "name": "Vienna",
+      "name": "Wien SV",
       "abbr": "VIE",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(279 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#6B0A12",
+        "fg": "#fff",
+        "accent": "#D4B062"
       },
       "city": "Vienna",
-      "country": "Austria"
+      "country": "Austria",
+      "logoFile": "Wien SV.png"
     },
     {
       "teamId": "WAR",
@@ -861,16 +869,18 @@
     },
     {
       "teamId": "ZAG",
-      "name": "Zagreb",
+      "name": "Zagreb Košarka",
       "abbr": "ZAG",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(63 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#0F3585",
+        "fg": "#fff",
+        "accent": "#C8102E"
       },
       "city": "Zagreb",
-      "country": "Croatia"
+      "country": "Croatia",
+      "logoFile": "Zagreb Košarka.png"
     },
     {
       "teamId": "ZUR",

@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "Premier League Champion",
-      "champion": "Tokyo",
+      "champion": "Tokyo BC",
       "runnerUp": "Budapesti SE",
       "score": null,
       "group": "PL",
@@ -137,7 +137,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Tokyo",
+              "name": "Tokyo BC",
               "record": "22-8",
               "seed": 3
             },
@@ -188,7 +188,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Tokyo",
+              "name": "Tokyo BC",
               "record": "22-8",
               "seed": 3
             },
@@ -210,7 +210,7 @@
               "seed": 4
             },
             "away": {
-              "name": "Tokyo",
+              "name": "Tokyo BC",
               "record": "22-8",
               "seed": 3
             },
@@ -264,7 +264,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Sao Paolo",
+              "name": "Paulistano",
               "record": "26-4",
               "seed": 3
             },

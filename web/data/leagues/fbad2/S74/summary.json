@@ -27,7 +27,7 @@
     {
       "title": "United League Champion",
       "champion": "Miami BC",
-      "runnerUp": "Sydney",
+      "runnerUp": "Sydney Harbour",
       "score": null,
       "group": "UL",
       "finalsMvp": "p02254",
@@ -125,7 +125,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Tokyo",
+              "name": "Tokyo BC",
               "record": "21-9",
               "seed": 4
             },
@@ -264,7 +264,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Sao Paolo",
+              "name": "Paulistano",
               "record": "24-6",
               "seed": 3
             },
@@ -315,7 +315,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Sao Paolo",
+              "name": "Paulistano",
               "record": "24-6",
               "seed": 3
             },
@@ -413,7 +413,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Sydney",
+              "name": "Sydney Harbour",
               "record": "25-5",
               "seed": 2
             },
@@ -447,7 +447,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Sydney",
+              "name": "Sydney Harbour",
               "record": "25-5",
               "seed": 2
             },
@@ -464,7 +464,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Sydney",
+              "name": "Sydney Harbour",
               "record": "25-5",
               "seed": 2
             },

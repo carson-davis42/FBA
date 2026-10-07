@@ -1,7 +1,7 @@
 # p118 FBA D2 Premier League Tournament
 S72
 G:PL
-1|Tokyo|25-5
+1|Tokyo BC|25-5
 8|Salzburg BC|18-12
 5|Roma Pallacanestro|20-10
 4|Münchner BC|20-10
@@ -35,11 +35,11 @@ G:WL
 8|Shanghai|16-14
 5|Guadalajara CB|22-8
 4|Recife|23-7
-3|Sao Paolo|24-6
+3|Paulistano|24-6
 6|Liverpool Maritime|22-8
 7|Amsterdam|18-12
 2|Budapesti SE|24-6
-= Club Madrid 4-1 | Recife 4-3 | Sao Paolo 4-1 | Amsterdam 4-2
+= Club Madrid 4-1 | Recife 4-3 | Paulistano 4-1 | Amsterdam 4-2
 = Club Madrid 4-0 | Amsterdam 4-1
 = Club Madrid 4-2
 
@@ -61,7 +61,7 @@ G:PL
 # p126 FBA D2 United League Tournament
 S70
 G:UL
-1|Tokyo|20-2
+1|Tokyo BC|20-2
 BYE
 5|Buenos Aires BC|13-9
 4|Sporting Lyon|14-8
@@ -69,9 +69,9 @@ BYE
 6|Lagos|12-10
 BYE
 2|Shanghai|17-5
-= Tokyo BYE | Buenos Aires BC 4-3 | Københavns BK 4-3 | Shanghai BYE
-= Tokyo 4-0 | Shanghai 4-3
-= Tokyo 4-1
+= Tokyo BC BYE | Buenos Aires BC 4-3 | Københavns BK 4-3 | Shanghai BYE
+= Tokyo BC 4-0 | Shanghai 4-3
+= Tokyo BC 4-1
 
 # p134 FBA D2 United League Tournament
 S68
@@ -86,17 +86,17 @@ G:UL
 # p136 FBA D2 United League Tournament
 S73
 G:UL
-1|Sao Paolo|28-2
+1|Paulistano|28-2
 8|Johannesburg|17-13
 5|Beijing|18-12
-4|Sydney|20-10
+4|Sydney Harbour|20-10
 3|Stockholm|20-10
 6|Rio De Janeiro|17-13
 7|Miami BC|17-13
 2|Budapesti SE|22-8
-= Sao Paolo 4-1 | Beijing 4-2 | Stockholm 4-3 | Budapesti SE 4-0
-= Sao Paolo 4-1 | Stockholm 4-3
-= Sao Paolo 4-0
+= Paulistano 4-1 | Beijing 4-2 | Stockholm 4-3 | Budapesti SE 4-0
+= Paulistano 4-1 | Stockholm 4-3
+= Paulistano 4-0
 
 # p137 FBA D2 United League Tournament
 S75

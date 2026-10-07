@@ -251,7 +251,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Sydney",
+              "name": "Sydney Harbour",
               "record": "20-10",
               "seed": 4
             },
@@ -263,7 +263,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Sao Paolo",
+              "name": "Paulistano",
               "record": "23-7",
               "seed": 3
             },
@@ -302,7 +302,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Sydney",
+              "name": "Sydney Harbour",
               "record": "20-10",
               "seed": 4
             },
@@ -314,7 +314,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Sao Paolo",
+              "name": "Paulistano",
               "record": "23-7",
               "seed": 3
             },

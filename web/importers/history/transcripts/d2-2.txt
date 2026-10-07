@@ -9,7 +9,7 @@ S67
 2|Atlético Lisboa|9-1
 3|Berlin Bären BC|7-3
 1|Dublin BC|10-0
-4|Vienna|6-4
+4|Wien SV|6-4
 2|Guadalajara CB|9-1
 3|Milano BC|7-3
 1|Roma Pallacanestro|10-0
@@ -52,11 +52,11 @@ S57
 |Milano BC|6-4
 |Roma Pallacanestro|8-2
 |Berlin Bären BC|5-5
-|Vienna|10-0
+|Wien SV|10-0
 |Toronto|8-2
-= Athens 61-50 | Frankfurt 32-30 | Roma Pallacanestro 71-46 | Vienna 50-48
-= Frankfurt 46-43 | Vienna 49-45
-= Vienna 48-45
+= Athens 61-50 | Frankfurt 32-30 | Roma Pallacanestro 71-46 | Wien SV 50-48
+= Frankfurt 46-43 | Wien SV 49-45
+= Wien SV 48-45
 
 # p114 FBA D2 Tournament
 S56

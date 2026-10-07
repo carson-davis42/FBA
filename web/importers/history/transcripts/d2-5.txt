@@ -35,7 +35,7 @@ G:WL
 8|Shanghai|16-14
 5|Liverpool Maritime|22-8
 4|Miami BC|22-8
-3|Sao Paolo|26-4
+3|Paulistano|26-4
 6|Amsterdam|21-9
 7|Hamburg Hanse|18-12
 2|Recife|26-4
@@ -80,12 +80,12 @@ G:WL
 8|Kiev|14-16
 5|Club Capital|20-10
 4|London Royal|20-10
-3|Vienna|21-9
+3|Wien SV|21-9
 6|Paris|19-11
 7|Københavns BK|15-15
-2|Tokyo|24-6
-= Austin BC 4-0 | London Royal 4-3 | Vienna 4-2 | Tokyo 4-1
-= Austin BC 4-1 | Tokyo 4-0
+2|Tokyo BC|24-6
+= Austin BC 4-0 | London Royal 4-3 | Wien SV 4-2 | Tokyo BC 4-1
+= Austin BC 4-1 | Tokyo BC 4-0
 = Austin BC 4-3
 
 # p091 FBA D2 World League Tournament
@@ -106,7 +106,7 @@ G:WL
 5|Københavns BK|20-10
 4|London Royal|21-9
 3|Shanghai|21-9
-6|Vienna|20-10
+6|Wien SV|20-10
 7|Guadalajara CB|18-12
 2|Buenos Aires BC|23-7
 = Sporting Lyon 4-2 | London Royal 4-3 | Shanghai 4-1 | Buenos Aires BC 4-2

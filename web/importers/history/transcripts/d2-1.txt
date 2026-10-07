@@ -115,7 +115,7 @@ S61
 
 # p063 FBA D2 Tournament
 S58
-1|Vienna|10-0
+1|Wien SV|10-0
 16|Paris|6-4
 9|Roma Pallacanestro|8-2
 8|Orlando|8-2
@@ -131,8 +131,8 @@ S58
 10|Frankfurt|7-3
 15|Istanbul|6-4
 2|Toronto|9-1
-= Vienna 43-31 | Orlando 34-33 | Milano BC 40-39 | Glasgow 55-54 | Athens 39-20 | Manchester 40-38 | Frankfurt 26-19 | Toronto 50-19
-= Vienna 39-16 | Milano BC 53-36 | Athens 52-49 | Toronto 28-27
+= Wien SV 43-31 | Orlando 34-33 | Milano BC 40-39 | Glasgow 55-54 | Athens 39-20 | Manchester 40-38 | Frankfurt 26-19 | Toronto 50-19
+= Wien SV 39-16 | Milano BC 53-36 | Athens 52-49 | Toronto 28-27
 = Milano BC 63-53 | Athens 36-34
 = Milano BC 49-37
 

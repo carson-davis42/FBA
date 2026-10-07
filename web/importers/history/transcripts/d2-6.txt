@@ -8,9 +8,9 @@ G:UL
 3|Union Casablanca|25-5
 6|Nevskiy|16-14
 7|Beijing|16-14
-2|Sydney|25-5
-= Miami BC 4-0 | Manchester 4-0 | Union Casablanca 4-3 | Sydney 4-3
-= Miami BC 4-1 | Sydney 4-3
+2|Sydney Harbour|25-5
+= Miami BC 4-0 | Manchester 4-0 | Union Casablanca 4-3 | Sydney Harbour 4-3
+= Miami BC 4-1 | Sydney Harbour 4-3
 = Miami BC 4-3
 
 # p094 FBA D2 United League Tournament
@@ -48,15 +48,15 @@ S77
 G:WL
 1|Zürich Helvetia|24-6
 8|Sporting Lyon|17-13
-5|Sao Paolo|20-10
-4|Zagreb|20-10
+5|Paulistano|20-10
+4|Zagreb Košarka|20-10
 3|Union Casablanca|20-10
 6|Dhaka Sporting|18-12
 7|Hamburg Hanse|18-12
 2|Miami BC|21-9
-= Zürich Helvetia 4-1 | Sao Paolo 4-2 | Union Casablanca 4-3 | Miami BC 4-0
-= Sao Paolo 4-1 | Union Casablanca 4-2
-= Sao Paolo 4-0
+= Zürich Helvetia 4-1 | Paulistano 4-2 | Union Casablanca 4-3 | Miami BC 4-0
+= Paulistano 4-1 | Union Casablanca 4-2
+= Paulistano 4-0
 
 # p108 FBA D2 World League Tournament
 S68

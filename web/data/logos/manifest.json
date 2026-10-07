@@ -282,6 +282,12 @@
         "variant": 1
       },
       {
+        "file": "Paulistano.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Roma Pallacanestro.png",
         "from": null,
         "to": null,
@@ -300,6 +306,18 @@
         "variant": 1
       },
       {
+        "file": "Sydney Harbour.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Tokyo BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Union Casablanca.png",
         "from": null,
         "to": null,
@@ -307,6 +325,18 @@
       },
       {
         "file": "Union Ottawa.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Wien SV.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Zagreb Košarka.png",
         "from": null,
         "to": null,
         "variant": 1

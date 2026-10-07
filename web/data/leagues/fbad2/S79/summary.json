@@ -354,7 +354,7 @@
     },
     {
       "teamId": "ZAG",
-      "name": "Zagreb",
+      "name": "Zagreb Košarka",
       "group": "WL",
       "rank": 3,
       "w": 20,
@@ -405,7 +405,7 @@
     },
     {
       "teamId": "SP",
-      "name": "Sao Paolo",
+      "name": "Paulistano",
       "group": "WL",
       "rank": 6,
       "w": 18,
@@ -456,7 +456,7 @@
     },
     {
       "teamId": "VIE",
-      "name": "Vienna",
+      "name": "Wien SV",
       "group": "WL",
       "rank": 9,
       "w": 13,
@@ -526,7 +526,7 @@
     },
     {
       "teamId": "TOK",
-      "name": "Tokyo",
+      "name": "Tokyo BC",
       "group": "WL",
       "rank": 14,
       "w": 10,
@@ -540,7 +540,7 @@
     },
     {
       "teamId": "SYD",
-      "name": "Sydney",
+      "name": "Sydney Harbour",
       "group": "WL",
       "rank": 15,
       "w": 8,

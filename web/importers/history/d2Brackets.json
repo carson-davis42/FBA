@@ -877,7 +877,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "10-0",
           "seed": null
         },
@@ -918,7 +918,7 @@
           "seed": null
         },
         "away": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "10-0",
           "seed": null
         },
@@ -936,7 +936,7 @@
           "seed": null
         },
         "away": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "10-0",
           "seed": null
         },
@@ -955,7 +955,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "10-0",
           "seed": 1
         },
@@ -1099,7 +1099,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "10-0",
           "seed": 1
         },
@@ -1171,7 +1171,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "10-0",
           "seed": 1
         },
@@ -3516,7 +3516,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "6-4",
           "seed": 4
         },
@@ -4444,7 +4444,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "20-2",
           "seed": 1
         },
@@ -4504,7 +4504,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "20-2",
           "seed": 1
         },
@@ -4538,7 +4538,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "20-2",
           "seed": 1
         },
@@ -4722,7 +4722,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "21-9",
           "seed": 3
         },
@@ -4744,7 +4744,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "24-6",
           "seed": 2
         },
@@ -4773,12 +4773,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "21-9",
           "seed": 3
         },
         "away": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "24-6",
           "seed": 2
         },
@@ -4795,7 +4795,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "24-6",
           "seed": 2
         },
@@ -4814,7 +4814,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Zagreb",
+          "name": "Zagreb Košarka",
           "record": "20-2",
           "seed": 1
         },
@@ -4849,7 +4849,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Sydney",
+          "name": "Sydney Harbour",
           "record": "12-10",
           "seed": 6
         },
@@ -4874,7 +4874,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Zagreb",
+          "name": "Zagreb Košarka",
           "record": "20-2",
           "seed": 1
         },
@@ -4891,7 +4891,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Sydney",
+          "name": "Sydney Harbour",
           "record": "12-10",
           "seed": 6
         },
@@ -4908,7 +4908,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Zagreb",
+          "name": "Zagreb Košarka",
           "record": "20-2",
           "seed": 1
         },
@@ -4932,7 +4932,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "25-5",
           "seed": 1
         },
@@ -5097,7 +5097,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "20-10",
           "seed": 6
         },
@@ -5218,7 +5218,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Sydney",
+          "name": "Sydney Harbour",
           "record": "24-6",
           "seed": 3
         },
@@ -5269,7 +5269,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Sydney",
+          "name": "Sydney Harbour",
           "record": "24-6",
           "seed": 3
         },
@@ -5366,7 +5366,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "23-7",
           "seed": 2
         },
@@ -5400,7 +5400,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "23-7",
           "seed": 2
         },
@@ -5417,7 +5417,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "23-7",
           "seed": 2
         },
@@ -5470,7 +5470,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "21-9",
           "seed": 3
         },
@@ -5562,7 +5562,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "23-7",
           "seed": 1
         },
@@ -5630,7 +5630,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "23-7",
           "seed": 1
         },
@@ -5664,7 +5664,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "23-7",
           "seed": 1
         },
@@ -5688,7 +5688,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "28-2",
           "seed": 1
         },
@@ -5710,7 +5710,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Sydney",
+          "name": "Sydney Harbour",
           "record": "20-10",
           "seed": 4
         },
@@ -5756,7 +5756,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "28-2",
           "seed": 1
         },
@@ -5790,7 +5790,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "28-2",
           "seed": 1
         },
@@ -5962,7 +5962,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "21-9",
           "seed": 4
         },
@@ -6100,7 +6100,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "24-6",
           "seed": 3
         },
@@ -6151,7 +6151,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "24-6",
           "seed": 3
         },
@@ -6248,7 +6248,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Sydney",
+          "name": "Sydney Harbour",
           "record": "25-5",
           "seed": 2
         },
@@ -6282,7 +6282,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Sydney",
+          "name": "Sydney Harbour",
           "record": "25-5",
           "seed": 2
         },
@@ -6299,7 +6299,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Sydney",
+          "name": "Sydney Harbour",
           "record": "25-5",
           "seed": 2
         },
@@ -6478,7 +6478,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "22-8",
           "seed": 3
         },
@@ -6529,7 +6529,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "22-8",
           "seed": 3
         },
@@ -6551,7 +6551,7 @@
           "seed": 4
         },
         "away": {
-          "name": "Tokyo",
+          "name": "Tokyo BC",
           "record": "22-8",
           "seed": 3
         },
@@ -6604,7 +6604,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "26-4",
           "seed": 3
         },
@@ -7096,7 +7096,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Sydney",
+          "name": "Sydney Harbour",
           "record": "20-10",
           "seed": 4
         },
@@ -7108,7 +7108,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "23-7",
           "seed": 3
         },
@@ -7147,7 +7147,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Sydney",
+          "name": "Sydney Harbour",
           "record": "20-10",
           "seed": 4
         },
@@ -7159,7 +7159,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "23-7",
           "seed": 3
         },
@@ -7595,12 +7595,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "20-10",
           "seed": 5
         },
         "away": {
-          "name": "Zagreb",
+          "name": "Zagreb Košarka",
           "record": "20-10",
           "seed": 4
         },
@@ -7651,7 +7651,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "20-10",
           "seed": 5
         },
@@ -7680,7 +7680,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "20-10",
           "seed": 5
         },
@@ -8087,7 +8087,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Zagreb",
+          "name": "Zagreb Košarka",
           "record": "16-14",
           "seed": 8
         },
@@ -8116,7 +8116,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "20-10",
           "seed": 3
         },
@@ -8167,7 +8167,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Sao Paolo",
+          "name": "Paulistano",
           "record": "20-10",
           "seed": 3
         },

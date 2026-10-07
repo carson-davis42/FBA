@@ -37,7 +37,7 @@
     {
       "title": "International League Champion",
       "champion": "Budapesti SE",
-      "runnerUp": "Sao Paolo",
+      "runnerUp": "Paulistano",
       "score": null,
       "group": "IL",
       "finalsMvp": "p02312",
@@ -71,7 +71,7 @@
     {
       "group": "PL",
       "teams": [
-        "Tokyo"
+        "Tokyo BC"
       ]
     },
     {
@@ -103,7 +103,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Tokyo",
+              "name": "Tokyo BC",
               "record": "25-5",
               "seed": 1
             },
@@ -269,7 +269,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Vienna",
+              "name": "Wien SV",
               "record": "20-10",
               "seed": 6
             },
@@ -391,7 +391,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Sydney",
+              "name": "Sydney Harbour",
               "record": "24-6",
               "seed": 3
             },
@@ -442,7 +442,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Sydney",
+              "name": "Sydney Harbour",
               "record": "24-6",
               "seed": 3
             },
@@ -540,7 +540,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Sao Paolo",
+              "name": "Paulistano",
               "record": "23-7",
               "seed": 2
             },
@@ -574,7 +574,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Sao Paolo",
+              "name": "Paulistano",
               "record": "23-7",
               "seed": 2
             },
@@ -591,7 +591,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Sao Paolo",
+              "name": "Paulistano",
               "record": "23-7",
               "seed": 2
             },

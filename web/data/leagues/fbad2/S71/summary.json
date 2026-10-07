@@ -17,7 +17,7 @@
     {
       "title": "World League Champion",
       "champion": "Austin BC",
-      "runnerUp": "Tokyo",
+      "runnerUp": "Tokyo BC",
       "score": null,
       "group": "WL",
       "finalsMvp": "p00161",
@@ -26,7 +26,7 @@
     },
     {
       "title": "United League Champion",
-      "champion": "Zagreb",
+      "champion": "Zagreb Košarka",
       "runnerUp": "Buenos Aires BC",
       "score": null,
       "group": "UL",
@@ -68,7 +68,7 @@
     {
       "group": "UL",
       "teams": [
-        "Zagreb"
+        "Zagreb Košarka"
       ]
     }
   ],
@@ -243,7 +243,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Vienna",
+              "name": "Wien SV",
               "record": "21-9",
               "seed": 3
             },
@@ -265,7 +265,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Tokyo",
+              "name": "Tokyo BC",
               "record": "24-6",
               "seed": 2
             },
@@ -294,12 +294,12 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Vienna",
+              "name": "Wien SV",
               "record": "21-9",
               "seed": 3
             },
             "away": {
-              "name": "Tokyo",
+              "name": "Tokyo BC",
               "record": "24-6",
               "seed": 2
             },
@@ -316,7 +316,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Tokyo",
+              "name": "Tokyo BC",
               "record": "24-6",
               "seed": 2
             },
@@ -336,7 +336,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Zagreb",
+              "name": "Zagreb Košarka",
               "record": "20-2",
               "seed": 1
             },
@@ -371,7 +371,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Sydney",
+              "name": "Sydney Harbour",
               "record": "12-10",
               "seed": 6
             },
@@ -396,7 +396,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Zagreb",
+              "name": "Zagreb Košarka",
               "record": "20-2",
               "seed": 1
             },
@@ -413,7 +413,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Sydney",
+              "name": "Sydney Harbour",
               "record": "12-10",
               "seed": 6
             },
@@ -430,7 +430,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Zagreb",
+              "name": "Zagreb Košarka",
               "record": "20-2",
               "seed": 1
             },

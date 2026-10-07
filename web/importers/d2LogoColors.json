@@ -83,6 +83,10 @@
   "primary": "#9CCBF2",
   "secondary": "#0C2350"
  },
+ "Paulistano": {
+  "primary": "#101010",
+  "secondary": "#B50E1A"
+ },
  "Roma Pallacanestro": {
   "primary": "#7B0F1F",
   "secondary": "#D9A94F"
@@ -95,6 +99,14 @@
   "primary": "#8F0A1D",
   "secondary": "#0F2A5C"
  },
+ "Sydney Harbour": {
+  "primary": "#0B2350",
+  "secondary": "#D9AC3F"
+ },
+ "Tokyo BC": {
+  "primary": "#0B1A44",
+  "secondary": "#D9AC4A"
+ },
  "Union Casablanca": {
   "primary": "#0B1D45",
   "secondary": "#D98A4A"
@@ -102,6 +114,14 @@
  "Union Ottawa": {
   "primary": "#5E0A18",
   "secondary": "#D9B04F"
+ },
+ "Wien SV": {
+  "primary": "#6B0A12",
+  "secondary": "#D4B062"
+ },
+ "Zagreb Košarka": {
+  "primary": "#0F3585",
+  "secondary": "#C8102E"
  },
  "Zürich Helvetia": {
   "primary": "#1558C8",

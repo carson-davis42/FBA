@@ -25,7 +25,7 @@
     },
     {
       "title": "United League Champion",
-      "champion": "Tokyo",
+      "champion": "Tokyo BC",
       "runnerUp": "Shanghai",
       "score": null,
       "group": "UL",
@@ -67,7 +67,7 @@
     {
       "group": "UL",
       "teams": [
-        "Tokyo"
+        "Tokyo BC"
       ]
     }
   ],
@@ -327,7 +327,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Tokyo",
+              "name": "Tokyo BC",
               "record": "20-2",
               "seed": 1
             },
@@ -387,7 +387,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Tokyo",
+              "name": "Tokyo BC",
               "record": "20-2",
               "seed": 1
             },
@@ -421,7 +421,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Tokyo",
+              "name": "Tokyo BC",
               "record": "20-2",
               "seed": 1
             },

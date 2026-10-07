@@ -491,7 +491,7 @@
         {
           "pick": 29,
           "teamId": "VIE",
-          "teamName": "Vienna",
+          "teamName": "Wien SV",
           "name": "Jevan Jones",
           "playerId": "p00441",
           "pos": "PG",
@@ -646,7 +646,7 @@
         {
           "pick": 5,
           "teamId": "TOK",
-          "teamName": "Tokyo",
+          "teamName": "Tokyo BC",
           "name": "Kian Koch",
           "playerId": "p00439",
           "pos": "PF",
@@ -656,7 +656,7 @@
         {
           "pick": 6,
           "teamId": "TOK",
-          "teamName": "Tokyo",
+          "teamName": "Tokyo BC",
           "name": "Aiden Emmett",
           "playerId": "p00436",
           "pos": "PG",
@@ -666,7 +666,7 @@
         {
           "pick": 7,
           "teamId": "TOK",
-          "teamName": "Tokyo",
+          "teamName": "Tokyo BC",
           "name": "Mitchell Singleton",
           "playerId": "p02307",
           "pos": "C",
@@ -696,7 +696,7 @@
         {
           "pick": 10,
           "teamId": "TOK",
-          "teamName": "Tokyo",
+          "teamName": "Tokyo BC",
           "name": "Skye Clay",
           "playerId": "p02336",
           "pos": "SG",
@@ -716,7 +716,7 @@
         {
           "pick": 12,
           "teamId": "VIE",
-          "teamName": "Vienna",
+          "teamName": "Wien SV",
           "name": "Zaydan Hart",
           "playerId": "p00445",
           "pos": "C",
@@ -916,7 +916,7 @@
         {
           "pick": 32,
           "teamId": "TOK",
-          "teamName": "Tokyo",
+          "teamName": "Tokyo BC",
           "name": "Jimmie Childs",
           "playerId": "p00438",
           "pos": "SF",
@@ -1011,7 +1011,7 @@
         {
           "pick": 1,
           "teamId": "SYD",
-          "teamName": "Sydney",
+          "teamName": "Sydney Harbour",
           "name": "Abraham Burke",
           "playerId": "p02285",
           "pos": "PF",
@@ -1061,7 +1061,7 @@
         {
           "pick": 6,
           "teamId": "ZAG",
-          "teamName": "Zagreb",
+          "teamName": "Zagreb Košarka",
           "name": "Milo Blanchard",
           "playerId": "p02208",
           "pos": "PG",
@@ -1091,7 +1091,7 @@
         {
           "pick": 9,
           "teamId": "ZAG",
-          "teamName": "Zagreb",
+          "teamName": "Zagreb Košarka",
           "name": "Zak Byrd",
           "playerId": "p02334",
           "pos": "PF",
@@ -1111,7 +1111,7 @@
         {
           "pick": 11,
           "teamId": "ZAG",
-          "teamName": "Zagreb",
+          "teamName": "Zagreb Košarka",
           "name": "AJ Story",
           "playerId": "p00453",
           "pos": "SF",
@@ -1221,7 +1221,7 @@
         {
           "pick": 22,
           "teamId": "SYD",
-          "teamName": "Sydney",
+          "teamName": "Sydney Harbour",
           "name": "Jaime Tyler",
           "playerId": "p00429",
           "pos": "PG",
@@ -1281,7 +1281,7 @@
         {
           "pick": 28,
           "teamId": "SYD",
-          "teamName": "Sydney",
+          "teamName": "Sydney Harbour",
           "name": "Courtney Bray",
           "playerId": "p00430",
           "pos": "SG",
@@ -1291,7 +1291,7 @@
         {
           "pick": 29,
           "teamId": "VIE",
-          "teamName": "Vienna",
+          "teamName": "Wien SV",
           "name": "Rhys Thomson",
           "playerId": "p00444",
           "pos": "PF",
@@ -1311,7 +1311,7 @@
         {
           "pick": 31,
           "teamId": "ZAG",
-          "teamName": "Zagreb",
+          "teamName": "Zagreb Košarka",
           "name": "Kobi Harris",
           "playerId": "p00452",
           "pos": "SG",
@@ -1351,7 +1351,7 @@
         {
           "pick": 35,
           "teamId": "SYD",
-          "teamName": "Sydney",
+          "teamName": "Sydney Harbour",
           "name": "Eric Moody",
           "playerId": "p00431",
           "pos": "SF",
@@ -1361,7 +1361,7 @@
         {
           "pick": 36,
           "teamId": "SYD",
-          "teamName": "Sydney",
+          "teamName": "Sydney Harbour",
           "name": "Tamar Brown",
           "playerId": "p00432",
           "pos": "C",
@@ -1391,7 +1391,7 @@
         {
           "pick": 39,
           "teamId": "TOK",
-          "teamName": "Tokyo",
+          "teamName": "Tokyo BC",
           "name": "Jasper Sommer",
           "playerId": "p00437",
           "pos": "SG",
@@ -1411,7 +1411,7 @@
         {
           "pick": 41,
           "teamId": "ZAG",
-          "teamName": "Zagreb",
+          "teamName": "Zagreb Košarka",
           "name": "Eddie Easton",
           "playerId": "p00219",
           "pos": "PF",
@@ -1516,7 +1516,7 @@
         {
           "pick": 4,
           "teamId": "SP",
-          "teamName": "Sao Paolo",
+          "teamName": "Paulistano",
           "name": "Keelan Greene",
           "playerId": "p02344",
           "pos": "SF",
@@ -1556,7 +1556,7 @@
         {
           "pick": 8,
           "teamId": "SP",
-          "teamName": "Sao Paolo",
+          "teamName": "Paulistano",
           "name": "Adam Moore",
           "playerId": "p02249",
           "pos": "C",
@@ -1981,7 +1981,7 @@
         {
           "pick": 5,
           "teamId": "SP",
-          "teamName": "Sao Paolo",
+          "teamName": "Paulistano",
           "name": "Kam Curtis",
           "playerId": "p02342",
           "pos": "SG",
@@ -2031,7 +2031,7 @@
         {
           "pick": 10,
           "teamId": "VIE",
-          "teamName": "Vienna",
+          "teamName": "Wien SV",
           "name": "Josiah Hill",
           "playerId": "p00443",
           "pos": "SF",
@@ -2111,7 +2111,7 @@
         {
           "pick": 18,
           "teamId": "SP",
-          "teamName": "Sao Paolo",
+          "teamName": "Paulistano",
           "name": "D'Angelo Rose",
           "playerId": "p00415",
           "pos": "PG",
@@ -2426,7 +2426,7 @@
         {
           "pick": 9,
           "teamId": "SP",
-          "teamName": "Sao Paolo",
+          "teamName": "Paulistano",
           "name": "Tyrese Weber",
           "playerId": "p00418",
           "pos": "PF",
@@ -2576,7 +2576,7 @@
         {
           "pick": 24,
           "teamId": "SP",
-          "teamName": "Sao Paolo",
+          "teamName": "Paulistano",
           "name": "Tyler Thomas",
           "playerId": "p01885",
           "pos": "C",
@@ -2941,7 +2941,7 @@
         {
           "pick": 21,
           "teamId": "VIE",
-          "teamName": "Vienna",
+          "teamName": "Wien SV",
           "name": "Fabio Moretti",
           "playerId": "p00442",
           "pos": "SG",
@@ -3111,7 +3111,7 @@
         {
           "pick": 38,
           "teamId": "ZAG",
-          "teamName": "Zagreb",
+          "teamName": "Zagreb Košarka",
           "name": "Theo Moore",
           "playerId": "p01807",
           "pos": "PG",
@@ -3466,7 +3466,7 @@
         {
           "pick": 35,
           "teamId": "SYD",
-          "teamName": "Sydney",
+          "teamName": "Sydney Harbour",
           "name": "Timothy Branch",
           "playerId": "p02305",
           "pos": "PF",
@@ -3591,7 +3591,7 @@
         {
           "pick": 5,
           "teamId": "ZAG",
-          "teamName": "Zagreb",
+          "teamName": "Zagreb Košarka",
           "name": "Mack Orazio",
           "playerId": "p00483",
           "pos": "C",
@@ -3641,7 +3641,7 @@
         {
           "pick": 10,
           "teamId": "SYD",
-          "teamName": "Sydney",
+          "teamName": "Sydney Harbour",
           "name": "Yusuf Porter",
           "playerId": "p00480",
           "pos": "PF",
@@ -3971,7 +3971,7 @@
         {
           "pick": 43,
           "teamId": "TOK",
-          "teamName": "Tokyo",
+          "teamName": "Tokyo BC",
           "name": "Erdal Karakaya",
           "playerId": "p00440",
           "pos": "C",
@@ -4176,7 +4176,7 @@
         {
           "pick": 5,
           "teamId": "SP",
-          "teamName": "Sao Paolo",
+          "teamName": "Paulistano",
           "name": "Derek King",
           "playerId": "p00419",
           "pos": "C",
@@ -4406,7 +4406,7 @@
         {
           "pick": 28,
           "teamId": "SP",
-          "teamName": "Sao Paolo",
+          "teamName": "Paulistano",
           "name": "Jesse Boyd",
           "playerId": "p00417",
           "pos": "SF",
@@ -4416,7 +4416,7 @@
         {
           "pick": 29,
           "teamId": "SP",
-          "teamName": "Sao Paolo",
+          "teamName": "Paulistano",
           "name": "Wyatt Wright",
           "playerId": "p00416",
           "pos": "SG",
@@ -4426,7 +4426,7 @@
         {
           "pick": 30,
           "teamId": "ZAG",
-          "teamName": "Zagreb",
+          "teamName": "Zagreb Košarka",
           "name": "Brody Fox",
           "playerId": "p00454",
           "pos": "PF",

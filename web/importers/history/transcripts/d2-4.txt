@@ -8,9 +8,9 @@ G:IL
 3|Osaka|22-8
 6|Union Casablanca|19-11
 7|Dhaka Sporting|18-12
-2|Sao Paolo|23-7
-= Budapesti SE 4-0 | Auckland 4-2 | Osaka 4-3 | Sao Paolo 4-3
-= Budapesti SE 4-0 | Sao Paolo 4-3
+2|Paulistano|23-7
+= Budapesti SE 4-0 | Auckland 4-2 | Osaka 4-3 | Paulistano 4-3
+= Budapesti SE 4-0 | Paulistano 4-3
 = Budapesti SE 4-0
 
 # p049 FBA D2 Premier League Tournament
@@ -20,7 +20,7 @@ G:PL
 8|Austin BC|17-13
 5|Roma Pallacanestro|17-13
 4|Salzburg BC|19-11
-3|Tokyo|21-9
+3|Tokyo BC|21-9
 6|Berlin Bären BC|17-13
 7|Milano BC|17-13
 2|Atlético Lisboa|21-9
@@ -35,13 +35,13 @@ G:PL
 8|Austin BC|16-14
 5|Atlético Lisboa|20-10
 4|Budapesti SE|20-10
-3|Tokyo|22-8
+3|Tokyo BC|22-8
 6|Union Ottawa|19-11
 7|Milano BC|17-13
 2|San Jose|22-8
-= Austin BC 4-2 | Budapesti SE 4-2 | Tokyo 4-3 | Milano BC 4-1
-= Budapesti SE 4-1 | Tokyo 4-2
-= Tokyo 4-1
+= Austin BC 4-2 | Budapesti SE 4-2 | Tokyo BC 4-3 | Milano BC 4-1
+= Budapesti SE 4-1 | Tokyo BC 4-2
+= Tokyo BC 4-1
 
 # p052 FBA D2 International League Tournament
 S77
@@ -61,17 +61,17 @@ G:IL
 # p057 FBA D2 United League Tournament
 S71
 G:UL
-1|Zagreb|20-2
+1|Zagreb Košarka|20-2
 BYE
 5|Johannesburg|12-10
 4|Recife|14-8
 3|Liverpool Maritime|15-7
-6|Sydney|12-10
+6|Sydney Harbour|12-10
 BYE
 2|Buenos Aires BC|19-3
-= Zagreb BYE | Recife 4-2 | Sydney 4-2 | Buenos Aires BC BYE
-= Zagreb 4-2 | Buenos Aires BC 4-1
-= Zagreb 4-2
+= Zagreb Košarka BYE | Recife 4-2 | Sydney Harbour 4-2 | Buenos Aires BC BYE
+= Zagreb Košarka 4-2 | Buenos Aires BC 4-1
+= Zagreb Košarka 4-2
 
 # p061 FBA D2 International League Tournament
 S78
@@ -110,10 +110,10 @@ G:UL
 8|Manchester|16-14
 5|Rio De Janeiro|21-9
 4|Johannesburg|22-8
-3|Sydney|24-6
+3|Sydney Harbour|24-6
 6|Stockholm|18-12
 7|Lagos|16-14
 2|Recife|24-6
-= Liverpool Maritime 4-3 | Johannesburg 4-0 | Sydney 4-0 | Recife 4-1
+= Liverpool Maritime 4-3 | Johannesburg 4-0 | Sydney Harbour 4-0 | Recife 4-1
 = Liverpool Maritime 4-2 | Recife 4-2
 = Recife 4-1

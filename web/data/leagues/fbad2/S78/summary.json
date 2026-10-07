@@ -235,7 +235,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Zagreb",
+              "name": "Zagreb Košarka",
               "record": "16-14",
               "seed": 8
             },
@@ -264,7 +264,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Sao Paolo",
+              "name": "Paulistano",
               "record": "20-10",
               "seed": 3
             },
@@ -315,7 +315,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Sao Paolo",
+              "name": "Paulistano",
               "record": "20-10",
               "seed": 3
             },

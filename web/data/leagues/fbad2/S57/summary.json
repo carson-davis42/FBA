@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "D2 International Champion",
-      "champion": "Vienna",
+      "champion": "Wien SV",
       "runnerUp": "Frankfurt",
       "score": null,
       "group": "D2",
@@ -40,7 +40,7 @@
     {
       "group": "EE",
       "teams": [
-        "Vienna"
+        "Wien SV"
       ]
     },
     {
@@ -111,7 +111,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "10-0",
           "seed": null
         },
@@ -152,7 +152,7 @@
           "seed": null
         },
         "away": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "10-0",
           "seed": null
         },
@@ -170,7 +170,7 @@
           "seed": null
         },
         "away": {
-          "name": "Vienna",
+          "name": "Wien SV",
           "record": "10-0",
           "seed": null
         },
