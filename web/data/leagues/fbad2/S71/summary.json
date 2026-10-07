@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "Premier League Champion",
-      "champion": "Hamburg",
+      "champion": "Hamburg Hanse",
       "runnerUp": "Madrid",
       "score": null,
       "group": "PL",
@@ -27,7 +27,7 @@
     {
       "title": "United League Champion",
       "champion": "Zagreb",
-      "runnerUp": "Buenos Aires",
+      "runnerUp": "Buenos Aires BC",
       "score": null,
       "group": "UL",
       "finalsMvp": "p02208",
@@ -56,7 +56,7 @@
     {
       "group": "PL",
       "teams": [
-        "Hamburg"
+        "Hamburg Hanse"
       ]
     },
     {
@@ -82,7 +82,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Hamburg",
+              "name": "Hamburg Hanse",
               "record": "23-7",
               "seed": 1
             },
@@ -99,7 +99,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "20-10",
               "seed": 5
             },
@@ -150,12 +150,12 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Hamburg",
+              "name": "Hamburg Hanse",
               "record": "23-7",
               "seed": 1
             },
             "away": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "20-10",
               "seed": 5
             },
@@ -184,7 +184,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Hamburg",
+              "name": "Hamburg Hanse",
               "record": "23-7",
               "seed": 1
             },
@@ -384,7 +384,7 @@
             "round": 1,
             "home": null,
             "away": {
-              "name": "Buenos Aires",
+              "name": "Buenos Aires BC",
               "record": "19-3",
               "seed": 2
             },
@@ -418,7 +418,7 @@
               "seed": 6
             },
             "away": {
-              "name": "Buenos Aires",
+              "name": "Buenos Aires BC",
               "record": "19-3",
               "seed": 2
             },
@@ -435,7 +435,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Buenos Aires",
+              "name": "Buenos Aires BC",
               "record": "19-3",
               "seed": 2
             },

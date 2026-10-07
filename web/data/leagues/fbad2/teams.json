@@ -49,14 +49,16 @@
     },
     {
       "teamId": "BA",
-      "name": "Buenos Aires",
+      "name": "Buenos Aires BC",
       "abbr": "BA",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(312 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#5BA8E4",
+        "fg": "#fff",
+        "accent": "#F2B93B"
+      },
+      "logoFile": "Buenos Aires BC.png"
     },
     {
       "teamId": "BARC",
@@ -205,14 +207,16 @@
     },
     {
       "teamId": "EDM",
-      "name": "Edmonton",
+      "name": "Edmonton Aurora",
       "abbr": "EDM",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(118 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#0E4A33",
+        "fg": "#fff",
+        "accent": "#E0AE4A"
+      },
+      "logoFile": "Edmonton Aurora.png"
     },
     {
       "teamId": "FLO",
@@ -262,14 +266,16 @@
     },
     {
       "teamId": "HAM",
-      "name": "Hamburg",
+      "name": "Hamburg Hanse",
       "abbr": "HAM",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(20 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#A31616",
+        "fg": "#fff",
+        "accent": "#0F2347"
+      },
+      "logoFile": "Hamburg Hanse.png"
     },
     {
       "teamId": "IST",
@@ -317,14 +323,16 @@
     },
     {
       "teamId": "LIS",
-      "name": "Lisbon",
+      "name": "Atlético Lisboa",
       "abbr": "LIS",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(75 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#6B0A0F",
+        "fg": "#fff",
+        "accent": "#C9A04A"
+      },
+      "logoFile": "Atlético Lisboa.png"
     },
     {
       "teamId": "LIV",

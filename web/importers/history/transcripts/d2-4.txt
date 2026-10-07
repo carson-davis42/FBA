@@ -23,9 +23,9 @@ G:PL
 3|Tokyo|21-9
 6|Berlin Bären BC|17-13
 7|Milan|17-13
-2|Lisbon|21-9
-= Austin BC 4-2 | Roma Pallacanestro 4-0 | Berlin Bären BC 4-2 | Lisbon 4-2
-= Roma Pallacanestro 4-0 | Lisbon 4-3
+2|Atlético Lisboa|21-9
+= Austin BC 4-2 | Roma Pallacanestro 4-0 | Berlin Bären BC 4-2 | Atlético Lisboa 4-2
+= Roma Pallacanestro 4-0 | Atlético Lisboa 4-3
 = Roma Pallacanestro 4-2
 
 # p050 FBA D2 Premier League Tournament
@@ -33,7 +33,7 @@ S75
 G:PL
 1|Berlin Bären BC|25-5
 8|Austin BC|16-14
-5|Lisbon|20-10
+5|Atlético Lisboa|20-10
 4|Budapest|20-10
 3|Tokyo|22-8
 6|Ottawa|19-11
@@ -68,9 +68,9 @@ BYE
 3|Liverpool|15-7
 6|Sydney|12-10
 BYE
-2|Buenos Aires|19-3
-= Zagreb BYE | Recife 4-2 | Sydney 4-2 | Buenos Aires BYE
-= Zagreb 4-2 | Buenos Aires 4-1
+2|Buenos Aires BC|19-3
+= Zagreb BYE | Recife 4-2 | Sydney 4-2 | Buenos Aires BC BYE
+= Zagreb 4-2 | Buenos Aires BC 4-1
 = Zagreb 4-2
 
 # p061 FBA D2 International League Tournament
@@ -95,13 +95,13 @@ G:PL
 8|Berlin Bären BC|18-12
 5|Toronto|21-9
 4|Amsterdam|22-8
-3|Lisbon|22-8
+3|Atlético Lisboa|22-8
 6|Salzburg BC|20-10
-7|Hamburg|19-11
+7|Hamburg Hanse|19-11
 2|Munich|23-7
-= Roma Pallacanestro 4-0 | Amsterdam 4-2 | Lisbon 4-3 | Munich 4-1
-= Roma Pallacanestro 4-3 | Lisbon 4-2
-= Lisbon 4-2
+= Roma Pallacanestro 4-0 | Amsterdam 4-2 | Atlético Lisboa 4-3 | Munich 4-1
+= Roma Pallacanestro 4-3 | Atlético Lisboa 4-2
+= Atlético Lisboa 4-2
 
 # p066 FBA D2 United League Tournament
 S72

@@ -52,7 +52,7 @@ G:WL
 4|Zagreb|20-10
 3|Casablanca|20-10
 6|Dhaka|18-12
-7|Hamburg|18-12
+7|Hamburg Hanse|18-12
 2|Miami|21-9
 = Zurich 4-1 | Sao Paolo 4-2 | Casablanca 4-3 | Miami 4-0
 = Sao Paolo 4-1 | Casablanca 4-2
@@ -71,17 +71,17 @@ G:WL
 # p109 FBA D2 Premier League Tournament
 S71
 G:PL
-1|Hamburg|23-7
+1|Hamburg Hanse|23-7
 8|Milan|18-12
-5|Lisbon|20-10
+5|Atlético Lisboa|20-10
 4|Roma Pallacanestro|21-9
 3|San Jose|22-8
 6|Vancouver|19-11
 7|Toronto|19-11
 2|Madrid|22-8
-= Hamburg 4-2 | Lisbon 4-3 | San Jose 4-1 | Madrid 4-1
-= Hamburg 4-3 | Madrid 4-3
-= Hamburg 4-1
+= Hamburg Hanse 4-2 | Atlético Lisboa 4-3 | San Jose 4-1 | Madrid 4-1
+= Hamburg Hanse 4-3 | Madrid 4-3
+= Hamburg Hanse 4-1
 
 # p110 FBA D2 International League Tournament
 S73

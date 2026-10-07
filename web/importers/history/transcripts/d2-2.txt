@@ -6,7 +6,7 @@ S67
 3|Toronto|7-3
 1|Tampa|9-1
 4|London|5-5
-2|Lisbon|9-1
+2|Atlético Lisboa|9-1
 3|Berlin Bären BC|7-3
 1|Dublin|10-0
 4|Vienna|6-4
@@ -14,7 +14,7 @@ S67
 3|Milan|7-3
 1|Roma Pallacanestro|10-0
 4|San Jose|6-4
-2|Hamburg|8-2
+2|Hamburg Hanse|8-2
 3|Brussels|8-2
 = Salzburg BC - | Manchester - | Tampa - | Berlin Bären BC - | Dublin - | Guadalajara CB - | Roma Pallacanestro - | Brussels -
 = Salzburg BC - | Berlin Bären BC - | Guadalajara CB - | Roma Pallacanestro -
@@ -25,7 +25,7 @@ S67
 S64
 1|Roma Pallacanestro|9-1
 16|Manchester|5-5
-9|Hamburg|8-2
+9|Hamburg Hanse|8-2
 8|Vancouver|7-3
 5|Munich|9-1
 12|Dublin|6-4
@@ -33,15 +33,15 @@ S64
 4|Guadalajara CB|9-1
 3|Kiev|9-1
 14|Tampa|6-4
-11|Lisbon|7-3
+11|Atlético Lisboa|7-3
 6|Glasgow|8-2
 7|Istanbul|8-2
 10|Austin BC|6-4
 15|Berlin Bären BC|5-5
 2|Amsterdam|10-0
-= Roma Pallacanestro 42-19 | Hamburg 43-35 | Munich 34-24 | Guadalajara CB 36-34 | Kiev 35-24 | Lisbon 38-28 | Istanbul 35-25 | Amsterdam 39-27
-= Roma Pallacanestro 42-33 | Munich 41-36 | Lisbon 40-36 | Istanbul 40-33
-= Munich 64-59 | Lisbon 42-40
+= Roma Pallacanestro 42-19 | Hamburg Hanse 43-35 | Munich 34-24 | Guadalajara CB 36-34 | Kiev 35-24 | Atlético Lisboa 38-28 | Istanbul 35-25 | Amsterdam 39-27
+= Roma Pallacanestro 42-33 | Munich 41-36 | Atlético Lisboa 40-36 | Istanbul 40-33
+= Munich 64-59 | Atlético Lisboa 42-40
 = Munich 34-31
 
 # p088 FBA D2 Tournament
@@ -76,7 +76,7 @@ S56
 S65
 1|Brussels|10-0
 16|Berlin Bären BC|7-3
-9|Lisbon|8-2
+9|Atlético Lisboa|8-2
 8|Guadalajara CB|6-4
 5|Roma Pallacanestro|9-1
 12|Austin BC|6-4
@@ -87,11 +87,11 @@ S65
 11|London|7-3
 6|Munich|7-3
 7|Amsterdam|7-3
-10|Hamburg|7-3
+10|Hamburg Hanse|7-3
 15|Milan|6-4
 2|San Jose|10-0
-= Brussels 38-33 | Lisbon 40-34 | Roma Pallacanestro 35-31 | Salzburg BC 47-17 | Istanbul 41-37 | London 45-33 | Hamburg 38-31 | Milan 37-36
-= Lisbon 39-31 | Salzburg BC 38-36 | Istanbul 43-38 | Hamburg 37-30
+= Brussels 38-33 | Atlético Lisboa 40-34 | Roma Pallacanestro 35-31 | Salzburg BC 47-17 | Istanbul 41-37 | London 45-33 | Hamburg Hanse 38-31 | Milan 37-36
+= Atlético Lisboa 39-31 | Salzburg BC 38-36 | Istanbul 43-38 | Hamburg Hanse 37-30
 = Salzburg BC 40-37 | Istanbul 33-24
 = Salzburg BC 40-35
 
@@ -103,8 +103,8 @@ S62
 8|Milan|8-2
 5|Austin BC|9-1
 12|Glasgow|7-3
-13|Lisbon|5-5
-4|Hamburg|8-2
+13|Atlético Lisboa|5-5
+4|Hamburg Hanse|8-2
 3|San Jose|9-1
 14|Kiev|7-3
 11|Roma Pallacanestro|8-2
@@ -113,7 +113,7 @@ S62
 10|Maine|6-4
 15|Dublin|5-5
 2|Madrid|10-0
-= Amsterdam 50-20 | Milan 38-36 | Austin BC 47-21 | Hamburg 43-38 | San Jose 39-29 | Roma Pallacanestro 52-36 | Berlin Bären BC 39-26 | Madrid 56-35
+= Amsterdam 50-20 | Milan 38-36 | Austin BC 47-21 | Hamburg Hanse 43-38 | San Jose 39-29 | Roma Pallacanestro 52-36 | Berlin Bären BC 39-26 | Madrid 56-35
 = Milan 60-52 | Austin BC 47-41 | San Jose 47-36 | Madrid 47-38
 = Austin BC 56-51 | Madrid 52-33
 = Austin BC 51-42

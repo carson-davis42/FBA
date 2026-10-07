@@ -56,7 +56,7 @@
         {
           "pick": 6,
           "teamId": "HAM",
-          "teamName": "Hamburg",
+          "teamName": "Hamburg Hanse",
           "name": "Clyde Irving",
           "playerId": "p00463",
           "pos": "SF",
@@ -301,7 +301,7 @@
         {
           "pick": 10,
           "teamId": "HAM",
-          "teamName": "Hamburg",
+          "teamName": "Hamburg Hanse",
           "name": "Tobias Major",
           "playerId": "p02352",
           "pos": "PF",
@@ -371,7 +371,7 @@
         {
           "pick": 17,
           "teamId": "LIS",
-          "teamName": "Lisbon",
+          "teamName": "Atlético Lisboa",
           "name": "TJ Wade",
           "playerId": "p00466",
           "pos": "SG",
@@ -726,7 +726,7 @@
         {
           "pick": 13,
           "teamId": "BA",
-          "teamName": "Buenos Aires",
+          "teamName": "Buenos Aires BC",
           "name": "Keagan Shannon",
           "playerId": "p00213",
           "pos": "SF",
@@ -736,7 +736,7 @@
         {
           "pick": 14,
           "teamId": "BA",
-          "teamName": "Buenos Aires",
+          "teamName": "Buenos Aires BC",
           "name": "Killian Hull",
           "playerId": "p00215",
           "pos": "C",
@@ -846,7 +846,7 @@
         {
           "pick": 25,
           "teamId": "BA",
-          "teamName": "Buenos Aires",
+          "teamName": "Buenos Aires BC",
           "name": "Yannis Morales",
           "playerId": "p00214",
           "pos": "PF",
@@ -926,7 +926,7 @@
         {
           "pick": 33,
           "teamId": "BA",
-          "teamName": "Buenos Aires",
+          "teamName": "Buenos Aires BC",
           "name": "Jordie Lindsay",
           "playerId": "p00365",
           "pos": "SG",
@@ -1131,7 +1131,7 @@
         {
           "pick": 13,
           "teamId": "LIS",
-          "teamName": "Lisbon",
+          "teamName": "Atlético Lisboa",
           "name": "Simon Sparks",
           "playerId": "p00320",
           "pos": "PG",
@@ -1181,7 +1181,7 @@
         {
           "pick": 18,
           "teamId": "BA",
-          "teamName": "Buenos Aires",
+          "teamName": "Buenos Aires BC",
           "name": "Isac Payton",
           "playerId": "p00212",
           "pos": "SG",
@@ -1941,7 +1941,7 @@
         {
           "pick": 1,
           "teamId": "LIS",
-          "teamName": "Lisbon",
+          "teamName": "Atlético Lisboa",
           "name": "Ayomide King",
           "playerId": "p00300",
           "pos": "C",
@@ -2406,7 +2406,7 @@
         {
           "pick": 7,
           "teamId": "HAM",
-          "teamName": "Hamburg",
+          "teamName": "Hamburg Hanse",
           "name": "Hakeem Bishop",
           "playerId": "p02276",
           "pos": "SG",
@@ -2596,7 +2596,7 @@
         {
           "pick": 26,
           "teamId": "LIS",
-          "teamName": "Lisbon",
+          "teamName": "Atlético Lisboa",
           "name": "Roman Westbrook",
           "playerId": "p02255",
           "pos": "PG",
@@ -2791,7 +2791,7 @@
         {
           "pick": 6,
           "teamId": "HAM",
-          "teamName": "Hamburg",
+          "teamName": "Hamburg Hanse",
           "name": "Rashad Garland",
           "playerId": "p02351",
           "pos": "PG",
@@ -2951,7 +2951,7 @@
         {
           "pick": 22,
           "teamId": "LIS",
-          "teamName": "Lisbon",
+          "teamName": "Atlético Lisboa",
           "name": "Miles Davis",
           "playerId": "p00297",
           "pos": "PG",
@@ -2991,7 +2991,7 @@
         {
           "pick": 26,
           "teamId": "HAM",
-          "teamName": "Hamburg",
+          "teamName": "Hamburg Hanse",
           "name": "Javier Morales",
           "playerId": "p00276",
           "pos": "SG",
@@ -3031,7 +3031,7 @@
         {
           "pick": 30,
           "teamId": "LIS",
-          "teamName": "Lisbon",
+          "teamName": "Atlético Lisboa",
           "name": "Isaiah Wright",
           "playerId": "p00299",
           "pos": "PF",
@@ -3186,7 +3186,7 @@
         {
           "pick": 7,
           "teamId": "LIS",
-          "teamName": "Lisbon",
+          "teamName": "Atlético Lisboa",
           "name": "Harrison Reiter",
           "playerId": "p00298",
           "pos": "SF",
@@ -3196,7 +3196,7 @@
         {
           "pick": 8,
           "teamId": "HAM",
-          "teamName": "Hamburg",
+          "teamName": "Hamburg Hanse",
           "name": "Robert Bryant",
           "playerId": "p00278",
           "pos": "C",
@@ -3506,7 +3506,7 @@
         {
           "pick": 39,
           "teamId": "BA",
-          "teamName": "Buenos Aires",
+          "teamName": "Buenos Aires BC",
           "name": "Nigel Swift",
           "playerId": "p01803",
           "pos": "PG",
@@ -4011,7 +4011,7 @@
         {
           "pick": 47,
           "teamId": "BA",
-          "teamName": "Buenos Aires",
+          "teamName": "Buenos Aires BC",
           "name": "Benjamin Gould",
           "playerId": "p00211",
           "pos": "PG",
@@ -4146,7 +4146,7 @@
         {
           "pick": 2,
           "teamId": "HAM",
-          "teamName": "Hamburg",
+          "teamName": "Hamburg Hanse",
           "name": "Rowan Hawthorne",
           "playerId": "p00277",
           "pos": "PF",
@@ -4386,7 +4386,7 @@
         {
           "pick": 26,
           "teamId": "HAM",
-          "teamName": "Hamburg",
+          "teamName": "Hamburg Hanse",
           "name": "Kam Randle",
           "playerId": "p00275",
           "pos": "PG",

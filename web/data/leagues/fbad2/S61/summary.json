@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion",
       "champion": "Austin BC",
-      "runnerUp": "Hamburg",
+      "runnerUp": "Hamburg Hanse",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02127",
@@ -38,7 +38,7 @@
     {
       "group": "EE",
       "teams": [
-        "Hamburg"
+        "Hamburg Hanse"
       ]
     },
     {
@@ -128,7 +128,7 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "9-1",
           "seed": 3
         },
@@ -236,7 +236,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "9-1",
           "seed": 3
         },
@@ -290,7 +290,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "9-1",
           "seed": 3
         },
@@ -313,7 +313,7 @@
           "seed": 8
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "9-1",
           "seed": 3
         },

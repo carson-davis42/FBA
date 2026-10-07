@@ -82,14 +82,14 @@ describe('BoxScorePage', () => {
 
   it('builds a D2 roster from the bios by team name', async () => {
     const d2 = { league: 'fbad2', season: 24, locked: true, host: null, champions: [], pastBracket: { rounds: 1, series: [
-      { id: 'R1-1', round: 1, home: side('Roma Pallacanestro', 1), away: side('Hamburg', 2), homeWins: 3, awayWins: 1, winner: 'home' },
+      { id: 'R1-1', round: 1, home: side('Roma Pallacanestro', 1), away: side('Hamburg Hanse', 2), homeWins: 3, awayWins: 1, winner: 'home' },
     ] } };
     stub({ ...common, '/api/state/leagues/fbad2/S24/summary.json': d2, '/api/state/leagues/fbad2/teams.json': { league: 'fbad2', teams: [mkTeam('ROME', 'Roma Pallacanestro')] } });
     renderAt('/history/fbad2/season/24/game/R1-1');
     const rome = (await screen.findByText('Roma Pallacanestro in S24')).closest('section')!;
     expect(within(rome).getByRole('link', { name: 'Bo Baker' })).toBeTruthy();
     expect(within(rome).getByRole('link', { name: 'Cy Cole' })).toBeTruthy();
-    const hamburg = screen.getByText('Hamburg in S24').closest('section')!;
+    const hamburg = screen.getByText('Hamburg Hanse in S24').closest('section')!;
     expect(within(hamburg).getByText('No players recorded for this team and season.')).toBeTruthy();
   });
 

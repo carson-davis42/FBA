@@ -19,7 +19,7 @@ const players: PlayersFile = {
 };
 const teams: TeamsFile = {
   league: 'fbad2',
-  teams: [{ teamId: 'LIS', name: 'Lisbon', abbr: 'LIS', group: 'PL', logoFolder: null, badge: { bg: '#112233', fg: '#ffffff' } }],
+  teams: [{ teamId: 'LIS', name: 'Atlético Lisboa', abbr: 'LIS', group: 'PL', logoFolder: null, badge: { bg: '#112233', fg: '#ffffff' } }],
 };
 
 const s55: SummaryFile = {
@@ -33,7 +33,7 @@ const s55: SummaryFile = {
 const s69: SummaryFile = {
   league: 'fbad2', season: 69, locked: true, host: null,
   champions: [
-    { title: 'Premier League Champion', champion: 'Lisbon', runnerUp: 'Roma Pallacanestro', score: '4-2', group: 'PL', finalsMvp: 'p00002' },
+    { title: 'Premier League Champion', champion: 'Atlético Lisboa', runnerUp: 'Roma Pallacanestro', score: '4-2', group: 'PL', finalsMvp: 'p00002' },
     { title: 'Ultra League Champion', champion: 'Oslo', runnerUp: 'Bern', score: null, group: 'UL' },
   ],
   awards: [{ award: 'MVP-PL', playerId: 'p00002', teamId: 'LIS' }],
@@ -74,7 +74,7 @@ describe('D2 history pages', () => {
     const rows = [...container.querySelectorAll<HTMLElement>('.timeline-row')];
     expect(rows).toHaveLength(2);
     expect(rows[0].textContent).toContain('Premier League');
-    expect(within(rows[0]).getByRole('link', { name: 'Lisbon' }).getAttribute('href')).toBe('/history/fbad2/teams/LIS');
+    expect(within(rows[0]).getByRole('link', { name: 'Atlético Lisboa' }).getAttribute('href')).toBe('/history/fbad2/teams/LIS');
     expect(rows[0].textContent).toContain('Roma Pallacanestro');
     expect(within(rows[0]).queryByRole('link', { name: 'Roma Pallacanestro' })).toBeNull();
     expect(rows[0].textContent).toContain('Series MVP');
@@ -89,7 +89,7 @@ describe('D2 history pages', () => {
     const row = (await screen.findByRole('link', { name: 'S69' })).closest('tr') as HTMLElement;
     expect(row.textContent).toContain('Premier League MVP');
     expect(row.textContent).toContain('Premier League: Munich / Roma Pallacanestro');
-    expect(row.textContent).toContain('Lisbon)');
+    expect(row.textContent).toContain('Atlético Lisboa)');
     expect(row.textContent).not.toContain('(LIS)');
     const most = (await screen.findByRole('heading', { name: 'Most MVPs' })).parentElement!.querySelector('ol') as HTMLElement;
     expect(within(most).getAllByRole('listitem')[0].textContent).toContain('Cameron Lučić');

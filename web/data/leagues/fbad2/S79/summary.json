@@ -157,7 +157,7 @@
     },
     {
       "teamId": "EDM",
-      "name": "Edmonton",
+      "name": "Edmonton Aurora",
       "group": "PL",
       "rank": 6,
       "w": 17,
@@ -174,7 +174,7 @@
     },
     {
       "teamId": "HAM",
-      "name": "Hamburg",
+      "name": "Hamburg Hanse",
       "group": "PL",
       "rank": 7,
       "w": 17,
@@ -222,7 +222,7 @@
     },
     {
       "teamId": "LIS",
-      "name": "Lisbon",
+      "name": "Atlético Lisboa",
       "group": "PL",
       "rank": 10,
       "w": 14,
@@ -236,7 +236,7 @@
     },
     {
       "teamId": "BA",
-      "name": "Buenos Aires",
+      "name": "Buenos Aires BC",
       "group": "PL",
       "rank": 11,
       "w": 13,

@@ -7,7 +7,7 @@
     {
       "title": "Premier League Champion",
       "champion": "Roma Pallacanestro",
-      "runnerUp": "Lisbon",
+      "runnerUp": "Atlético Lisboa",
       "score": null,
       "group": "PL",
       "finalsMvp": "p02235",
@@ -160,7 +160,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "21-9",
               "seed": 2
             },
@@ -194,7 +194,7 @@
               "seed": 6
             },
             "away": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "21-9",
               "seed": 2
             },
@@ -211,7 +211,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "21-9",
               "seed": 2
             },

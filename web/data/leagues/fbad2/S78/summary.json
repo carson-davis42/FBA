@@ -17,7 +17,7 @@
     {
       "title": "World League Champion",
       "champion": "Mumbai BC",
-      "runnerUp": "Hamburg",
+      "runnerUp": "Hamburg Hanse",
       "score": "4-2",
       "group": "WL",
       "teamId": "MUM",
@@ -108,7 +108,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Buenos Aires",
+              "name": "Buenos Aires BC",
               "record": "15-15",
               "seed": 8
             },
@@ -159,7 +159,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "21-9",
               "seed": 2
             },
@@ -286,7 +286,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Hamburg",
+              "name": "Hamburg Hanse",
               "record": "23-7",
               "seed": 2
             },
@@ -320,7 +320,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Hamburg",
+              "name": "Hamburg Hanse",
               "record": "23-7",
               "seed": 2
             },
@@ -337,7 +337,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Hamburg",
+              "name": "Hamburg Hanse",
               "record": "23-7",
               "seed": 2
             },

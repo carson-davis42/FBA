@@ -7,7 +7,7 @@
     {
       "title": "Premier League Champion",
       "champion": "Salzburg BC",
-      "runnerUp": "Lisbon",
+      "runnerUp": "Atlético Lisboa",
       "score": null,
       "group": "PL",
       "finalsMvp": "p02281",
@@ -16,7 +16,7 @@
     },
     {
       "title": "World League Champion",
-      "champion": "Buenos Aires",
+      "champion": "Buenos Aires BC",
       "runnerUp": "London",
       "score": null,
       "group": "WL",
@@ -137,7 +137,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "21-9",
               "seed": 3
             },
@@ -188,7 +188,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "21-9",
               "seed": 3
             },
@@ -210,7 +210,7 @@
               "seed": 8
             },
             "away": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "21-9",
               "seed": 3
             },
@@ -286,7 +286,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Buenos Aires",
+              "name": "Buenos Aires BC",
               "record": "23-7",
               "seed": 2
             },
@@ -320,7 +320,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Buenos Aires",
+              "name": "Buenos Aires BC",
               "record": "23-7",
               "seed": 2
             },
@@ -337,7 +337,7 @@
               "seed": 4
             },
             "away": {
-              "name": "Buenos Aires",
+              "name": "Buenos Aires BC",
               "record": "23-7",
               "seed": 2
             },

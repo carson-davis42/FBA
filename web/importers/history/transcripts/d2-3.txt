@@ -3,7 +3,7 @@ S76
 G:WL
 1|Roma Pallacanestro|25-5
 8|Liverpool|15-15
-5|Hamburg|19-11
+5|Hamburg Hanse|19-11
 4|Sydney|20-10
 3|Sao Paolo|23-7
 6|Zurich|16-14
@@ -38,9 +38,9 @@ G:WL
 3|Sao Paolo|20-10
 6|Munich|17-13
 7|Casablanca|17-13
-2|Hamburg|23-7
-= Mumbai BC 4-2 | Dhaka 4-1 | Sao Paolo 4-1 | Hamburg 4-3
-= Mumbai BC 4-2 | Hamburg 4-0
+2|Hamburg Hanse|23-7
+= Mumbai BC 4-2 | Dhaka 4-1 | Sao Paolo 4-1 | Hamburg Hanse 4-3
+= Mumbai BC 4-2 | Hamburg Hanse 4-0
 = Mumbai BC 4-2
 
 # p023 FBA D2 World League Tournament
@@ -81,8 +81,8 @@ G:PL
 5|London|17-13
 4|Mexico City|19-11
 3|Guadalajara CB|19-11
-6|Lisbon|17-13
-7|Buenos Aires|17-13
+6|Atlético Lisboa|17-13
+7|Buenos Aires BC|17-13
 2|Salzburg BC|22-8
 = Austin BC 4-1 | London 4-1 | Guadalajara CB 4-2 | Salzburg BC 4-0
 = Austin BC 4-3 | Salzburg BC 4-0
@@ -93,7 +93,7 @@ S76
 G:PL
 1|Austin BC|27-3
 8|Guadalajara CB|16-14
-5|Lisbon|16-14
+5|Atlético Lisboa|16-14
 4|London|19-11
 3|Budapest|20-10
 6|Recife|16-14

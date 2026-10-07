@@ -39,7 +39,7 @@
     {
       "group": "EE",
       "teams": [
-        "Hamburg",
+        "Hamburg Hanse",
         "Berlin Bären BC",
         "Moscow"
       ]
@@ -112,12 +112,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "5-5",
           "seed": 13
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "8-2",
           "seed": 4
         },
@@ -225,7 +225,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "8-2",
           "seed": 4
         },

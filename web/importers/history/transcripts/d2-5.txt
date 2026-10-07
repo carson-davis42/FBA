@@ -16,15 +16,15 @@ G:IL
 # p074 FBA D2 Premier League Tournament
 S70
 G:PL
-1|Hamburg|24-6
+1|Hamburg Hanse|24-6
 8|Glasgow|16-14
 5|Milan|20-10
 4|Toronto|21-9
 3|Munich|21-9
 6|Salzburg BC|19-11
-7|Lisbon|19-11
+7|Atlético Lisboa|19-11
 2|Roma Pallacanestro|23-7
-= Hamburg 4-3 | Toronto 4-1 | Salzburg BC 4-3 | Roma Pallacanestro 4-3
+= Hamburg Hanse 4-3 | Toronto 4-1 | Salzburg BC 4-3 | Roma Pallacanestro 4-3
 = Toronto 4-2 | Roma Pallacanestro 4-2
 = Roma Pallacanestro 4-1
 
@@ -37,7 +37,7 @@ G:WL
 4|Miami|22-8
 3|Sao Paolo|26-4
 6|Amsterdam|21-9
-7|Hamburg|18-12
+7|Hamburg Hanse|18-12
 2|Recife|26-4
 = Guadalajara CB 4-0 | Miami 4-2 | Amsterdam 4-2 | Recife 4-0
 = Guadalajara CB 4-1 | Recife 4-1
@@ -62,12 +62,12 @@ G:UL
 S68
 G:PL
 1|Roma Pallacanestro|25-5
-8|Hamburg|18-12
+8|Hamburg Hanse|18-12
 5|Berlin Bären BC|20-10
 4|Manchester|22-8
 3|Salzburg BC|23-7
 6|Tampa|19-11
-7|Lisbon|18-12
+7|Atlético Lisboa|18-12
 2|Toronto|24-6
 = Roma Pallacanestro 4-1 | Manchester 4-3 | Tampa 4-2 | Toronto 4-1
 = Roma Pallacanestro 4-1 | Toronto 4-3
@@ -108,7 +108,7 @@ G:WL
 3|Shanghai|21-9
 6|Vienna|20-10
 7|Guadalajara CB|18-12
-2|Buenos Aires|23-7
-= Lyon 4-2 | London 4-3 | Shanghai 4-1 | Buenos Aires 4-2
-= London 4-3 | Buenos Aires 4-2
-= Buenos Aires 4-2
+2|Buenos Aires BC|23-7
+= Lyon 4-2 | London 4-3 | Shanghai 4-1 | Buenos Aires BC 4-2
+= London 4-3 | Buenos Aires BC 4-2
+= Buenos Aires BC 4-2

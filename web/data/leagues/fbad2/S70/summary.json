@@ -55,7 +55,7 @@
     {
       "group": "PL",
       "teams": [
-        "Hamburg"
+        "Hamburg Hanse"
       ]
     },
     {
@@ -81,7 +81,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Hamburg",
+              "name": "Hamburg Hanse",
               "record": "24-6",
               "seed": 1
             },
@@ -132,7 +132,7 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "19-11",
               "seed": 7
             },
@@ -149,7 +149,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Hamburg",
+              "name": "Hamburg Hanse",
               "record": "24-6",
               "seed": 1
             },
@@ -340,7 +340,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Buenos Aires",
+              "name": "Buenos Aires BC",
               "record": "13-9",
               "seed": 5
             },
@@ -392,7 +392,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Buenos Aires",
+              "name": "Buenos Aires BC",
               "record": "13-9",
               "seed": 5
             },

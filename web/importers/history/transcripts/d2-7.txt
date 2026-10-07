@@ -5,12 +5,12 @@ G:PL
 8|Salzburg BC|18-12
 5|Roma Pallacanestro|20-10
 4|Munich|20-10
-3|Lisbon|21-9
+3|Atlético Lisboa|21-9
 6|Austin BC|19-11
 7|Ottawa|18-12
 2|Milan|24-6
-= Salzburg BC 4-2 | Munich 4-1 | Lisbon 4-2 | Milan 4-3
-= Salzburg BC 4-3 | Lisbon 4-2
+= Salzburg BC 4-2 | Munich 4-1 | Atlético Lisboa 4-2 | Milan 4-3
+= Salzburg BC 4-3 | Atlético Lisboa 4-2
 = Salzburg BC 4-2
 
 # p119 FBA D2 International League Tournament
@@ -47,13 +47,13 @@ G:WL
 S78
 G:PL
 1|Salzburg BC|23-7
-8|Buenos Aires|15-15
+8|Buenos Aires BC|15-15
 5|London|19-11
 4|Miami|19-11
 3|Austin BC|20-10
 6|Milan|18-12
 7|Zurich|16-14
-2|Lisbon|21-9
+2|Atlético Lisboa|21-9
 = Salzburg BC 4-2 | London 4-0 | Milan 4-1 | Zurich 4-1
 = Salzburg BC 4-2 | Zurich 4-2
 = Salzburg BC 4-1
@@ -63,13 +63,13 @@ S70
 G:UL
 1|Tokyo|20-2
 BYE
-5|Buenos Aires|13-9
+5|Buenos Aires BC|13-9
 4|Lyon|14-8
 3|Copenhagen|14-8
 6|Lagos|12-10
 BYE
 2|Shanghai|17-5
-= Tokyo BYE | Buenos Aires 4-3 | Copenhagen 4-3 | Shanghai BYE
+= Tokyo BYE | Buenos Aires BC 4-3 | Copenhagen 4-3 | Shanghai BYE
 = Tokyo 4-0 | Shanghai 4-3
 = Tokyo 4-1
 

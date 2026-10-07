@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion",
       "champion": "Roma Pallacanestro",
-      "runnerUp": "Hamburg",
+      "runnerUp": "Hamburg Hanse",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02135",
@@ -38,7 +38,7 @@
     {
       "group": "EE",
       "teams": [
-        "Hamburg"
+        "Hamburg Hanse"
       ]
     },
     {
@@ -55,7 +55,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "10-0",
           "seed": 1
         },
@@ -199,7 +199,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "10-0",
           "seed": 1
         },
@@ -271,7 +271,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "10-0",
           "seed": 1
         },
@@ -307,7 +307,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "10-0",
           "seed": 1
         },

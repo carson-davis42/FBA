@@ -1050,7 +1050,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "8-2",
           "seed": 6
         },
@@ -1339,7 +1339,7 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "8-2",
           "seed": 7
         },
@@ -1507,7 +1507,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "10-0",
           "seed": 1
         },
@@ -1651,7 +1651,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "10-0",
           "seed": 1
         },
@@ -1723,7 +1723,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "10-0",
           "seed": 1
         },
@@ -1759,7 +1759,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "10-0",
           "seed": 1
         },
@@ -1855,7 +1855,7 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "9-1",
           "seed": 3
         },
@@ -1963,7 +1963,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "9-1",
           "seed": 3
         },
@@ -2017,7 +2017,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "9-1",
           "seed": 3
         },
@@ -2040,7 +2040,7 @@
           "seed": 8
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "9-1",
           "seed": 3
         },
@@ -2113,12 +2113,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "5-5",
           "seed": 13
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "8-2",
           "seed": 4
         },
@@ -2226,7 +2226,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "8-2",
           "seed": 4
         },
@@ -2353,7 +2353,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "8-2",
           "seed": 9
         },
@@ -2425,7 +2425,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "6-4",
           "seed": 11
         },
@@ -2484,7 +2484,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "8-2",
           "seed": 9
         },
@@ -2520,7 +2520,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "6-4",
           "seed": 11
         },
@@ -2551,7 +2551,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "8-2",
           "seed": 9
         },
@@ -2569,7 +2569,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "6-4",
           "seed": 11
         },
@@ -2629,7 +2629,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "8-2",
           "seed": 9
         },
@@ -2701,7 +2701,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "7-3",
           "seed": 11
         },
@@ -2760,7 +2760,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "8-2",
           "seed": 9
         },
@@ -2796,7 +2796,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "7-3",
           "seed": 11
         },
@@ -2845,7 +2845,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "7-3",
           "seed": 11
         },
@@ -2868,7 +2868,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "7-3",
           "seed": 11
         },
@@ -2905,7 +2905,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "8-2",
           "seed": 9
         },
@@ -3000,7 +3000,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "7-3",
           "seed": 10
         },
@@ -3036,7 +3036,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "8-2",
           "seed": 9
         },
@@ -3085,7 +3085,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "7-3",
           "seed": 10
         },
@@ -3103,7 +3103,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "8-2",
           "seed": 9
         },
@@ -3126,7 +3126,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "7-3",
           "seed": 10
         },
@@ -3240,7 +3240,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "6-4",
           "seed": 14
         },
@@ -3493,7 +3493,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "9-1",
           "seed": 2
         },
@@ -3565,7 +3565,7 @@
         "id": "R1-8",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "8-2",
           "seed": 2
         },
@@ -3721,7 +3721,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "18-12",
           "seed": 8
         },
@@ -3767,7 +3767,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "18-12",
           "seed": 7
         },
@@ -3992,7 +3992,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "22-8",
           "seed": 3
         },
@@ -4009,7 +4009,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "19-11",
           "seed": 7
         },
@@ -4043,7 +4043,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "22-8",
           "seed": 3
         },
@@ -4065,7 +4065,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "22-8",
           "seed": 3
         },
@@ -4200,7 +4200,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "24-6",
           "seed": 1
         },
@@ -4251,7 +4251,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "19-11",
           "seed": 7
         },
@@ -4268,7 +4268,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "24-6",
           "seed": 1
         },
@@ -4457,7 +4457,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Buenos Aires",
+          "name": "Buenos Aires BC",
           "record": "13-9",
           "seed": 5
         },
@@ -4509,7 +4509,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Buenos Aires",
+          "name": "Buenos Aires BC",
           "record": "13-9",
           "seed": 5
         },
@@ -4562,7 +4562,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "23-7",
           "seed": 1
         },
@@ -4579,7 +4579,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "20-10",
           "seed": 5
         },
@@ -4630,12 +4630,12 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "23-7",
           "seed": 1
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "20-10",
           "seed": 5
         },
@@ -4664,7 +4664,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "23-7",
           "seed": 1
         },
@@ -4862,7 +4862,7 @@
         "round": 1,
         "home": null,
         "away": {
-          "name": "Buenos Aires",
+          "name": "Buenos Aires BC",
           "record": "19-3",
           "seed": 2
         },
@@ -4896,7 +4896,7 @@
           "seed": 6
         },
         "away": {
-          "name": "Buenos Aires",
+          "name": "Buenos Aires BC",
           "record": "19-3",
           "seed": 2
         },
@@ -4913,7 +4913,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Buenos Aires",
+          "name": "Buenos Aires BC",
           "record": "19-3",
           "seed": 2
         },
@@ -4966,7 +4966,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "21-9",
           "seed": 3
         },
@@ -5017,7 +5017,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "21-9",
           "seed": 3
         },
@@ -5039,7 +5039,7 @@
           "seed": 8
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "21-9",
           "seed": 3
         },
@@ -5114,7 +5114,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Buenos Aires",
+          "name": "Buenos Aires BC",
           "record": "23-7",
           "seed": 2
         },
@@ -5148,7 +5148,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Buenos Aires",
+          "name": "Buenos Aires BC",
           "record": "23-7",
           "seed": 2
         },
@@ -5165,7 +5165,7 @@
           "seed": 4
         },
         "away": {
-          "name": "Buenos Aires",
+          "name": "Buenos Aires BC",
           "record": "23-7",
           "seed": 2
         },
@@ -5492,7 +5492,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "21-9",
           "seed": 2
         },
@@ -5526,7 +5526,7 @@
           "seed": 6
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "21-9",
           "seed": 2
         },
@@ -5543,7 +5543,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "21-9",
           "seed": 2
         },
@@ -6461,7 +6461,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "20-10",
           "seed": 5
         },
@@ -6621,7 +6621,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "18-12",
           "seed": 7
         },
@@ -6965,7 +6965,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "16-14",
           "seed": 5
         },
@@ -7091,7 +7091,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "19-11",
           "seed": 5
         },
@@ -7491,7 +7491,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "17-13",
           "seed": 6
         },
@@ -7503,7 +7503,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Buenos Aires",
+          "name": "Buenos Aires BC",
           "record": "17-13",
           "seed": 7
         },
@@ -7629,7 +7629,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "18-12",
           "seed": 7
         },
@@ -7961,7 +7961,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Buenos Aires",
+          "name": "Buenos Aires BC",
           "record": "15-15",
           "seed": 8
         },
@@ -8012,7 +8012,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "21-9",
           "seed": 2
         },
@@ -8138,7 +8138,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "23-7",
           "seed": 2
         },
@@ -8172,7 +8172,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "23-7",
           "seed": 2
         },
@@ -8189,7 +8189,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "23-7",
           "seed": 2
         },

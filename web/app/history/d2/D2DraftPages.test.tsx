@@ -17,7 +17,7 @@ const players: PlayersFile = {
   },
 };
 const team = (teamId: string, name: string, group: string) => ({ teamId, name, abbr: teamId, group, logoFolder: null, badge: { bg: '#112233', fg: '#ffffff' } });
-const teams: TeamsFile = { league: 'fbad2', teams: [team('LIS', 'Lisbon', 'PL'), team('ROM', 'Roma Pallacanestro', 'PL')] };
+const teams: TeamsFile = { league: 'fbad2', teams: [team('LIS', 'Atlético Lisboa', 'PL'), team('ROM', 'Roma Pallacanestro', 'PL')] };
 const drafts: D2DraftHistoryFile = {
   drafts: [
     {
@@ -27,7 +27,7 @@ const drafts: D2DraftHistoryFile = {
     {
       season: 70,
       picks: [
-        { pick: 1, teamId: 'LIS', teamName: 'Lisbon', name: 'Ray Allen', playerId: 'p00002', pos: 'G', age: 19, rating: 88 },
+        { pick: 1, teamId: 'LIS', teamName: 'Atlético Lisboa', name: 'Ray Allen', playerId: 'p00002', pos: 'G', age: 19, rating: 88 },
         { pick: 2, teamId: null, teamName: 'Vancouver', name: 'Bob Unlinked', playerId: null, pos: 'F', age: null, rating: null },
       ],
     },
@@ -35,7 +35,7 @@ const drafts: D2DraftHistoryFile = {
 };
 const s69: SummaryFile = {
   league: 'fbad2', season: 69, locked: true, host: null,
-  champions: [{ title: 'Premier League Champion', champion: 'Lisbon', runnerUp: 'Roma Pallacanestro', score: '4-2', group: 'PL', finalsMvp: 'p00002' }],
+  champions: [{ title: 'Premier League Champion', champion: 'Atlético Lisboa', runnerUp: 'Roma Pallacanestro', score: '4-2', group: 'PL', finalsMvp: 'p00002' }],
   awards: [{ award: 'MVP-PL', playerId: 'p00002', teamId: 'LIS' }],
 };
 
@@ -83,12 +83,12 @@ describe('D2 draft pages', () => {
     expect(await screen.findByRole('heading', { name: 'S70 D2 Draft' })).toBeTruthy();
     const rows = within(await screen.findByRole('table')).getAllByRole('row');
     expect(rows).toHaveLength(3);
-    expect(rows[1].textContent).toContain('Lisbon');
+    expect(rows[1].textContent).toContain('Atlético Lisboa');
     expect(rows[1].textContent).toContain('Ray Allen');
     expect(rows[2].textContent).toContain('Vancouver');
     expect(rows[2].textContent).toContain('Bob Unlinked');
     expect(rows[2].textContent).toContain('—');
-    expect(screen.getByRole('link', { name: /Lisbon/ }).getAttribute('href')).toBe('/history/fbad2/teams/LIS');
+    expect(screen.getByRole('link', { name: /Atlético Lisboa/ }).getAttribute('href')).toBe('/history/fbad2/teams/LIS');
     expect(screen.queryByRole('link', { name: 'Vancouver' })).toBeNull();
     expect(screen.getByRole('link', { name: 'Ray Allen' })).toBeTruthy();
     expect(screen.getByRole('link', { name: /S68/ }).getAttribute('href')).toBe('/history/fbad2/drafts/68');
@@ -114,8 +114,8 @@ describe('PlayerHistoryPage D2 honours', () => {
     stub();
     at('/history/fba/players/p00002');
     expect(await screen.findByRole('heading', { name: 'D2 honours' })).toBeTruthy();
-    expect(screen.getByText((_, el) => el?.tagName === 'LI' && el.textContent === 'S69: Premier League MVP (Lisbon)')).toBeTruthy();
-    expect(screen.getAllByRole('link', { name: 'Lisbon' }).every(a => a.getAttribute('href') === '/history/fbad2/teams/LIS')).toBe(true);
+    expect(screen.getByText((_, el) => el?.tagName === 'LI' && el.textContent === 'S69: Premier League MVP (Atlético Lisboa)')).toBeTruthy();
+    expect(screen.getAllByRole('link', { name: 'Atlético Lisboa' }).every(a => a.getAttribute('href') === '/history/fbad2/teams/LIS')).toBe(true);
     expect(screen.getByText('S69: Series MVP, Premier League Champion')).toBeTruthy();
     expect(screen.queryByText('No history recorded')).toBeNull();
   });

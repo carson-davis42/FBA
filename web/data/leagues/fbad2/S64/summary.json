@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion",
       "champion": "Munich",
-      "runnerUp": "Lisbon",
+      "runnerUp": "Atlético Lisboa",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02142",
@@ -94,7 +94,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "8-2",
           "seed": 9
         },
@@ -166,7 +166,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "7-3",
           "seed": 11
         },
@@ -225,7 +225,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Hamburg",
+          "name": "Hamburg Hanse",
           "record": "8-2",
           "seed": 9
         },
@@ -261,7 +261,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "7-3",
           "seed": 11
         },
@@ -310,7 +310,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "7-3",
           "seed": 11
         },
@@ -333,7 +333,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Lisbon",
+          "name": "Atlético Lisboa",
           "record": "7-3",
           "seed": 11
         },

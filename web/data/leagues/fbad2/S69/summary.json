@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "Premier League Champion",
-      "champion": "Lisbon",
+      "champion": "Atlético Lisboa",
       "runnerUp": "Roma Pallacanestro",
       "score": null,
       "group": "PL",
@@ -117,7 +117,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "22-8",
               "seed": 3
             },
@@ -134,7 +134,7 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Hamburg",
+              "name": "Hamburg Hanse",
               "record": "19-11",
               "seed": 7
             },
@@ -168,7 +168,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "22-8",
               "seed": 3
             },
@@ -190,7 +190,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Lisbon",
+              "name": "Atlético Lisboa",
               "record": "22-8",
               "seed": 3
             },

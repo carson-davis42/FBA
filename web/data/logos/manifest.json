@@ -156,6 +156,12 @@
     ],
     "FBAD2": [
       {
+        "file": "Atlético Lisboa.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Austin BC.png",
         "from": null,
         "to": null,
@@ -168,7 +174,25 @@
         "variant": 1
       },
       {
+        "file": "Buenos Aires BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Edmonton Aurora.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Guadalajara CB.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Hamburg Hanse.png",
         "from": null,
         "to": null,
         "variant": 1

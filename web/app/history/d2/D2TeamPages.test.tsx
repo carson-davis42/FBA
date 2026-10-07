@@ -18,25 +18,25 @@ const players: PlayersFile = {
   },
 };
 const team = (teamId: string, name: string, group: string) => ({ teamId, name, abbr: teamId, group, logoFolder: null, badge: { bg: '#112233', fg: '#ffffff' } });
-const teams: TeamsFile = { league: 'fbad2', teams: [team('LIS', 'Lisbon', 'PL'), team('ROM', 'Roma Pallacanestro', 'PL'), team('OSL', 'Oslo', 'UL'), team('BER', 'Bern', 'WL')] };
+const teams: TeamsFile = { league: 'fbad2', teams: [team('LIS', 'Atlético Lisboa', 'PL'), team('ROM', 'Roma Pallacanestro', 'PL'), team('OSL', 'Oslo', 'UL'), team('BER', 'Bern', 'WL')] };
 
 const s69: SummaryFile = {
   league: 'fbad2', season: 69, locked: true, host: null,
-  champions: [{ title: 'Premier League Champion', champion: 'Lisbon', runnerUp: 'Roma Pallacanestro', score: '4-2', group: 'PL', finalsMvp: 'p00002' }],
+  champions: [{ title: 'Premier League Champion', champion: 'Atlético Lisboa', runnerUp: 'Roma Pallacanestro', score: '4-2', group: 'PL', finalsMvp: 'p00002' }],
   awards: [{ award: 'MVP-PL', playerId: 'p00002', teamId: 'LIS' }],
   rsChampions: [{ group: 'PL', teams: ['Roma Pallacanestro'] }],
 };
 const row = (teamId: string, name: string, rank: number, w: number, l: number) => ({ teamId, name, group: 'PL', rank, w, l, confW: null, confL: null, diff: null, marker: null, seed: null, playoff: null });
 const s80: SummaryFile = {
   league: 'fbad2', season: 80, locked: true, host: null, champions: [],
-  standings: [row('ROM', 'Roma Pallacanestro', 2, 10, 20), row('LIS', 'Lisbon', 1, 20, 10)],
+  standings: [row('ROM', 'Roma Pallacanestro', 2, 10, 20), row('LIS', 'Atlético Lisboa', 1, 20, 10)],
   promotion: [{ league: 'PL', promoted: [], relegated: ['LIS'] }],
 };
 const history: D2LeagueHistoryFile = {
   teams: [{ teamId: 'LIS', founded: 56, spells: [{ group: 'ES', from: 56, to: 67 }, { group: 'PL', from: 68, to: null }] }],
 };
 const drafts: D2DraftHistoryFile = {
-  drafts: [{ season: 70, picks: [{ pick: 1, teamId: 'LIS', teamName: 'Lisbon', name: 'Ray Allen', playerId: 'p00002', pos: 'G', age: 19, rating: null }] }],
+  drafts: [{ season: 70, picks: [{ pick: 1, teamId: 'LIS', teamName: 'Atlético Lisboa', name: 'Ray Allen', playerId: 'p00002', pos: 'G', age: 19, rating: null }] }],
 };
 
 function stub(opts: { withHistory?: boolean } = {}) {
@@ -84,9 +84,9 @@ describe('D2 season, teams and team pages', () => {
     const table = screen.getByRole('table');
     const rows = within(table).getAllByRole('row');
     expect(rows).toHaveLength(3);
-    expect(rows[1].textContent).toContain('Lisbon');
+    expect(rows[1].textContent).toContain('Atlético Lisboa');
     expect(screen.getByRole('heading', { name: 'Promotion and relegation' })).toBeTruthy();
-    expect(screen.getByText(/Premier League: promoted .* relegated/).textContent).toContain('relegated Lisbon');
+    expect(screen.getByText(/Premier League: promoted .* relegated/).textContent).toContain('relegated Atlético Lisboa');
   });
 
   it('an unknown season is not found', async () => {
@@ -107,7 +107,7 @@ describe('D2 season, teams and team pages', () => {
   it('a team page shows the league path, titles and draft picks', async () => {
     stub();
     at('/history/fbad2/teams/LIS');
-    expect(await screen.findByRole('heading', { name: 'Lisbon' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: 'Atlético Lisboa' })).toBeTruthy();
     expect(await screen.findByText('Euro-South S56–S67')).toBeTruthy();
     expect(screen.getByText('Premier League S68–pres.')).toBeTruthy();
     const titlesList = screen.getAllByRole('heading', { name: 'Titles' })[0].parentElement as HTMLElement;

@@ -1,4 +1,8 @@
 {
+ "Atlético Lisboa": {
+  "primary": "#6B0A0F",
+  "secondary": "#C9A04A"
+ },
  "Austin BC": {
   "primary": "#0D0F11",
   "secondary": "#C3541D"
@@ -7,9 +11,21 @@
   "primary": "#D90302",
   "secondary": "#030202"
  },
+ "Buenos Aires BC": {
+  "primary": "#5BA8E4",
+  "secondary": "#F2B93B"
+ },
+ "Edmonton Aurora": {
+  "primary": "#0E4A33",
+  "secondary": "#E0AE4A"
+ },
  "Guadalajara CB": {
   "primary": "#0E4C37",
   "secondary": "#EEE8BF"
+ },
+ "Hamburg Hanse": {
+  "primary": "#A31616",
+  "secondary": "#0F2347"
  },
  "Mumbai BC": {
   "primary": "#D5772A",
