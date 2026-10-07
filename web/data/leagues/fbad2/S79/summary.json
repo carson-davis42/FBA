@@ -16,8 +16,8 @@
     },
     {
       "title": "World League Champion",
-      "champion": "Moscow",
-      "runnerUp": "Copenhagen",
+      "champion": "Moskovskiy BK",
+      "runnerUp": "Københavns BK",
       "score": "4–2",
       "teamId": "MOS",
       "runnerUpId": "COP",
@@ -320,7 +320,7 @@
     },
     {
       "teamId": "MOS",
-      "name": "Moscow",
+      "name": "Moskovskiy BK",
       "group": "WL",
       "rank": 1,
       "w": 24,
@@ -337,7 +337,7 @@
     },
     {
       "teamId": "COP",
-      "name": "Copenhagen",
+      "name": "Københavns BK",
       "group": "WL",
       "rank": 2,
       "w": 23,
@@ -371,7 +371,7 @@
     },
     {
       "teamId": "BUD",
-      "name": "Budapest",
+      "name": "Budapesti SE",
       "group": "WL",
       "rank": 4,
       "w": 19,
@@ -388,7 +388,7 @@
     },
     {
       "teamId": "DHA",
-      "name": "Dhaka",
+      "name": "Dhaka Sporting",
       "group": "WL",
       "rank": 5,
       "w": 19,
@@ -422,7 +422,7 @@
     },
     {
       "teamId": "CAS",
-      "name": "Casablanca",
+      "name": "Union Casablanca",
       "group": "WL",
       "rank": 7,
       "w": 18,
@@ -439,7 +439,7 @@
     },
     {
       "teamId": "DUB",
-      "name": "Dublin",
+      "name": "Dublin BC",
       "group": "WL",
       "rank": 8,
       "w": 16,
@@ -470,7 +470,7 @@
     },
     {
       "teamId": "STP",
-      "name": "Saint Petersburg",
+      "name": "Nevskiy",
       "group": "WL",
       "rank": 10,
       "w": 12,
@@ -484,7 +484,7 @@
     },
     {
       "teamId": "MC",
-      "name": "Mexico City",
+      "name": "Club Capital",
       "group": "WL",
       "rank": 11,
       "w": 12,
@@ -498,7 +498,7 @@
     },
     {
       "teamId": "MUN",
-      "name": "Munich",
+      "name": "Münchner BC",
       "group": "WL",
       "rank": 12,
       "w": 12,
@@ -512,7 +512,7 @@
     },
     {
       "teamId": "LYON",
-      "name": "Lyon",
+      "name": "Sporting Lyon",
       "group": "WL",
       "rank": 13,
       "w": 11,
@@ -554,7 +554,7 @@
     },
     {
       "teamId": "LIV",
-      "name": "Liverpool",
+      "name": "Liverpool Maritime",
       "group": "WL",
       "rank": 16,
       "w": 5,

@@ -16,7 +16,7 @@
     {
       "title": "World League Champion",
       "champion": "Amsterdam",
-      "runnerUp": "Munich",
+      "runnerUp": "Münchner BC",
       "score": null,
       "group": "WL",
       "finalsMvp": "p02163",
@@ -230,7 +230,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Munich",
+              "name": "Münchner BC",
               "record": "11-3",
               "seed": 2
             },
@@ -247,7 +247,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Munich",
+              "name": "Münchner BC",
               "record": "11-3",
               "seed": 2
             },

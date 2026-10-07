@@ -17,7 +17,7 @@
     {
       "title": "World League Champion",
       "champion": "Sao Paolo",
-      "runnerUp": "Casablanca",
+      "runnerUp": "Union Casablanca",
       "score": null,
       "group": "WL",
       "finalsMvp": "p00418",
@@ -27,7 +27,7 @@
     {
       "title": "United League Champion",
       "champion": "Mumbai BC",
-      "runnerUp": "Copenhagen",
+      "runnerUp": "Københavns BK",
       "score": null,
       "group": "UL",
       "finalsMvp": "p00471",
@@ -36,7 +36,7 @@
     },
     {
       "title": "International League Champion",
-      "champion": "Dublin",
+      "champion": "Dublin BC",
       "runnerUp": "Naples",
       "score": null,
       "group": "IL",
@@ -89,7 +89,7 @@
     {
       "group": "IL",
       "teams": [
-        "Dublin"
+        "Dublin BC"
       ]
     }
   ],
@@ -125,7 +125,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Mexico City",
+              "name": "Club Capital",
               "record": "19-11",
               "seed": 4
             },
@@ -235,7 +235,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Lyon",
+              "name": "Sporting Lyon",
               "record": "17-13",
               "seed": 8
             },
@@ -264,12 +264,12 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Casablanca",
+              "name": "Union Casablanca",
               "record": "20-10",
               "seed": 3
             },
             "away": {
-              "name": "Dhaka",
+              "name": "Dhaka Sporting",
               "record": "18-12",
               "seed": 6
             },
@@ -315,7 +315,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Casablanca",
+              "name": "Union Casablanca",
               "record": "20-10",
               "seed": 3
             },
@@ -337,7 +337,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Casablanca",
+              "name": "Union Casablanca",
               "record": "20-10",
               "seed": 3
             },
@@ -379,7 +379,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Moscow",
+              "name": "Moskovskiy BK",
               "record": "23-7",
               "seed": 4
             },
@@ -413,7 +413,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Copenhagen",
+              "name": "Københavns BK",
               "record": "25-5",
               "seed": 2
             },
@@ -447,7 +447,7 @@
               "seed": 6
             },
             "away": {
-              "name": "Copenhagen",
+              "name": "Københavns BK",
               "record": "25-5",
               "seed": 2
             },
@@ -464,7 +464,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Copenhagen",
+              "name": "Københavns BK",
               "record": "25-5",
               "seed": 2
             },
@@ -484,7 +484,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Dublin",
+              "name": "Dublin BC",
               "record": "30-0",
               "seed": 1
             },
@@ -552,7 +552,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Dublin",
+              "name": "Dublin BC",
               "record": "30-0",
               "seed": 1
             },
@@ -586,7 +586,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Dublin",
+              "name": "Dublin BC",
               "record": "30-0",
               "seed": 1
             },

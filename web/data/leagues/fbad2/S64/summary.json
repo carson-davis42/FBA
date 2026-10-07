@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "D2 International Champion",
-      "champion": "Munich",
+      "champion": "Münchner BC",
       "runnerUp": "Atlético Lisboa",
       "score": null,
       "group": "D2",
@@ -59,7 +59,7 @@
       "group": "EE",
       "teams": [
         "Kiev",
-        "Munich"
+        "Münchner BC"
       ]
     },
     {
@@ -112,12 +112,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Munich",
+          "name": "Münchner BC",
           "record": "9-1",
           "seed": 5
         },
         "away": {
-          "name": "Dublin",
+          "name": "Dublin BC",
           "record": "6-4",
           "seed": 12
         },
@@ -238,7 +238,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Munich",
+          "name": "Münchner BC",
           "record": "9-1",
           "seed": 5
         },
@@ -297,7 +297,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Munich",
+          "name": "Münchner BC",
           "record": "9-1",
           "seed": 5
         },
@@ -328,7 +328,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Munich",
+          "name": "Münchner BC",
           "record": "9-1",
           "seed": 5
         },

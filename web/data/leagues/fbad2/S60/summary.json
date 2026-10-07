@@ -163,12 +163,12 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Moscow",
+          "name": "Moskovskiy BK",
           "record": "8-2",
           "seed": 7
         },
         "away": {
-          "name": "Lyon",
+          "name": "Sporting Lyon",
           "record": "6-4",
           "seed": 10
         },
@@ -253,7 +253,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Moscow",
+          "name": "Moskovskiy BK",
           "record": "8-2",
           "seed": 7
         },
@@ -294,7 +294,7 @@
           "seed": 6
         },
         "away": {
-          "name": "Moscow",
+          "name": "Moskovskiy BK",
           "record": "8-2",
           "seed": 7
         },

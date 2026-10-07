@@ -41,7 +41,7 @@
       "teams": [
         "Hamburg Hanse",
         "Berlin Bären BC",
-        "Moscow"
+        "Moskovskiy BK"
       ]
     },
     {
@@ -63,7 +63,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Mexico City",
+          "name": "Club Capital",
           "record": "5-5",
           "seed": 16
         },
@@ -76,7 +76,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Moscow",
+          "name": "Moskovskiy BK",
           "record": "8-2",
           "seed": 9
         },
@@ -184,7 +184,7 @@
         "id": "R1-8",
         "round": 1,
         "home": {
-          "name": "Dublin",
+          "name": "Dublin BC",
           "record": "5-5",
           "seed": 15
         },

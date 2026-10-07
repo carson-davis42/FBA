@@ -2,12 +2,12 @@
 S76
 G:WL
 1|Roma Pallacanestro|25-5
-8|Liverpool|15-15
+8|Liverpool Maritime|15-15
 5|Hamburg Hanse|19-11
 4|Sydney|20-10
 3|Sao Paolo|23-7
 6|Zürich Helvetia|16-14
-7|Dhaka|16-14
+7|Dhaka Sporting|16-14
 2|Vancouver|24-6
 = Roma Pallacanestro 4-0 | Sydney 4-3 | Sao Paolo 4-0 | Vancouver 4-0
 = Roma Pallacanestro 4-0 | Vancouver 4-3
@@ -33,13 +33,13 @@ S78
 G:WL
 1|Mumbai BC|28-2
 8|Zagreb|16-14
-5|Dhaka|18-12
-4|Copenhagen|20-10
+5|Dhaka Sporting|18-12
+4|Københavns BK|20-10
 3|Sao Paolo|20-10
-6|Munich|17-13
-7|Casablanca|17-13
+6|Münchner BC|17-13
+7|Union Casablanca|17-13
 2|Hamburg Hanse|23-7
-= Mumbai BC 4-2 | Dhaka 4-1 | Sao Paolo 4-1 | Hamburg Hanse 4-3
+= Mumbai BC 4-2 | Dhaka Sporting 4-1 | Sao Paolo 4-1 | Hamburg Hanse 4-3
 = Mumbai BC 4-2 | Hamburg Hanse 4-0
 = Mumbai BC 4-2
 
@@ -49,12 +49,12 @@ G:WL
 1|Vienna|23-7
 8|Guadalajara CB|15-15
 5|Zürich Helvetia|17-13
-4|Lyon|18-12
-3|Liverpool|21-9
+4|Sporting Lyon|18-12
+3|Liverpool Maritime|21-9
 6|Shanghai|17-13
 7|Club Madrid|16-14
 2|London Royal|22-8
-= Vienna 4-3 | Lyon 4-1 | Liverpool 4-0 | London Royal 4-1
+= Vienna 4-3 | Sporting Lyon 4-1 | Liverpool Maritime 4-0 | London Royal 4-1
 = Vienna 4-3 | London Royal 4-2
 = Vienna 4-2
 
@@ -79,7 +79,7 @@ G:PL
 1|Austin BC|23-7
 8|Roma Pallacanestro|17-13
 5|London Royal|17-13
-4|Mexico City|19-11
+4|Club Capital|19-11
 3|Guadalajara CB|19-11
 6|Atlético Lisboa|17-13
 7|Buenos Aires BC|17-13
@@ -95,25 +95,25 @@ G:PL
 8|Guadalajara CB|16-14
 5|Atlético Lisboa|16-14
 4|London Royal|19-11
-3|Budapest|20-10
+3|Budapesti SE|20-10
 6|Recife|16-14
 7|Milano BC|16-14
 2|Berlin Bären BC|22-8
-= Guadalajara CB 4-3 | London Royal 4-3 | Budapest 4-3 | Berlin Bären BC 4-3
-= London Royal 4-1 | Budapest 4-1
-= Budapest 4-0
+= Guadalajara CB 4-3 | London Royal 4-3 | Budapesti SE 4-3 | Berlin Bären BC 4-3
+= London Royal 4-1 | Budapesti SE 4-1
+= Budapesti SE 4-0
 
 # p034 FBA D2 United League Tournament
 S78
 G:UL
-1|Moscow|23-7
+1|Moskovskiy BK|23-7
 8|Beijing|16-14
 5|Paris|18-12
-4|Dublin|19-11
+4|Dublin BC|19-11
 3|Dubai|20-10
 6|Belfast|18-12
 7|Johannesburg|17-13
 2|Kiev|21-9
-= Moscow 4-0 | Dublin 4-3 | Dubai 4-3 | Johannesburg 4-2
-= Dublin 4-2 | Johannesburg 4-0
-= Dublin 4-0
+= Moskovskiy BK 4-0 | Dublin BC 4-3 | Dubai 4-3 | Johannesburg 4-2
+= Dublin BC 4-2 | Johannesburg 4-0
+= Dublin BC 4-0

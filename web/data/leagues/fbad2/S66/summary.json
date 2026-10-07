@@ -81,7 +81,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Dublin",
+          "name": "Dublin BC",
           "record": "7-3",
           "seed": 16
         },
@@ -171,7 +171,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Munich",
+          "name": "Münchner BC",
           "record": "8-2",
           "seed": 6
         },
@@ -189,7 +189,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Moscow",
+          "name": "Moskovskiy BK",
           "record": "6-4",
           "seed": 10
         },
@@ -261,7 +261,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Munich",
+          "name": "Münchner BC",
           "record": "8-2",
           "seed": 6
         },
@@ -274,7 +274,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Moscow",
+          "name": "Moskovskiy BK",
           "record": "6-4",
           "seed": 10
         },
@@ -310,7 +310,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Munich",
+          "name": "Münchner BC",
           "record": "8-2",
           "seed": 6
         },

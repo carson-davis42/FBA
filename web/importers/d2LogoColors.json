@@ -11,13 +11,29 @@
   "primary": "#D90302",
   "secondary": "#030202"
  },
+ "Budapesti SE": {
+  "primary": "#0D3B1E",
+  "secondary": "#D9A94F"
+ },
  "Buenos Aires BC": {
   "primary": "#5BA8E4",
   "secondary": "#F2B93B"
  },
+ "Club Capital": {
+  "primary": "#111314",
+  "secondary": "#D9B55E"
+ },
  "Club Madrid": {
   "primary": "#760510",
   "secondary": "#D9A044"
+ },
+ "Dhaka Sporting": {
+  "primary": "#0B3D1F",
+  "secondary": "#C9A94E"
+ },
+ "Dublin BC": {
+  "primary": "#0B1D45",
+  "secondary": "#E0B94F"
  },
  "Edmonton Aurora": {
   "primary": "#0E4A33",
@@ -31,6 +47,14 @@
   "primary": "#A31616",
   "secondary": "#0F2347"
  },
+ "Københavns BK": {
+  "primary": "#A31214",
+  "secondary": "#173F66"
+ },
+ "Liverpool Maritime": {
+  "primary": "#0C1B3A",
+  "secondary": "#C98A4B"
+ },
  "London Royal": {
   "primary": "#0B1A44",
   "secondary": "#EDC15A"
@@ -43,9 +67,21 @@
   "primary": "#0B3F8F",
   "secondary": "#C8102E"
  },
+ "Moskovskiy BK": {
+  "primary": "#7A0A18",
+  "secondary": "#1F2229"
+ },
  "Mumbai BC": {
   "primary": "#F47A1F",
   "secondary": "#E3C48F"
+ },
+ "Münchner BC": {
+  "primary": "#0F0F0F",
+  "secondary": "#E8B63C"
+ },
+ "Nevskiy": {
+  "primary": "#9CCBF2",
+  "secondary": "#0C2350"
  },
  "Roma Pallacanestro": {
   "primary": "#7B0F1F",
@@ -54,6 +90,14 @@
  "Salzburg BC": {
   "primary": "#0E2A55",
   "secondary": "#DDB448"
+ },
+ "Sporting Lyon": {
+  "primary": "#8F0A1D",
+  "secondary": "#0F2A5C"
+ },
+ "Union Casablanca": {
+  "primary": "#0B1D45",
+  "secondary": "#D98A4A"
  },
  "Union Ottawa": {
   "primary": "#5E0A18",

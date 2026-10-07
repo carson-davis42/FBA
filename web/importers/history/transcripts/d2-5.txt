@@ -1,7 +1,7 @@
 # p067 FBA D2 International League Tournament
 S74
 G:IL
-1|Dhaka|28-2
+1|Dhaka Sporting|28-2
 8|Frankfurt|13-17
 5|Florence|23-7
 4|Belfast|24-6
@@ -9,7 +9,7 @@ G:IL
 6|Edinburgh|19-11
 7|Kiev|17-13
 2|Osaka|26-4
-= Dhaka 4-3 | Belfast 4-3 | Mumbai BC 4-1 | Osaka 4-2
+= Dhaka Sporting 4-3 | Belfast 4-3 | Mumbai BC 4-1 | Osaka 4-2
 = Belfast 4-2 | Osaka 4-3
 = Osaka 4-0
 
@@ -20,7 +20,7 @@ G:PL
 8|Glasgow|16-14
 5|Milano BC|20-10
 4|Toronto|21-9
-3|Munich|21-9
+3|Münchner BC|21-9
 6|Salzburg BC|19-11
 7|Atlético Lisboa|19-11
 2|Roma Pallacanestro|23-7
@@ -33,7 +33,7 @@ S75
 G:WL
 1|Guadalajara CB|28-2
 8|Shanghai|16-14
-5|Liverpool|22-8
+5|Liverpool Maritime|22-8
 4|Miami BC|22-8
 3|Sao Paolo|26-4
 6|Amsterdam|21-9
@@ -49,13 +49,13 @@ G:UL
 1|Mumbai BC|26-4
 8|Johannesburg|13-17
 5|Paris|22-8
-4|Moscow|23-7
+4|Moskovskiy BK|23-7
 3|Kiev|24-6
 6|Brussels|19-11
 7|Manchester|14-16
-2|Copenhagen|25-5
-= Mumbai BC 4-3 | Paris 4-1 | Brussels 4-1 | Copenhagen 4-1
-= Mumbai BC 4-2 | Copenhagen 4-0
+2|Københavns BK|25-5
+= Mumbai BC 4-3 | Paris 4-1 | Brussels 4-1 | Københavns BK 4-1
+= Mumbai BC 4-2 | Københavns BK 4-0
 = Mumbai BC 4-2
 
 # p082 FBA D2 Premier League Tournament
@@ -78,11 +78,11 @@ S71
 G:WL
 1|Austin BC|28-2
 8|Kiev|14-16
-5|Mexico City|20-10
+5|Club Capital|20-10
 4|London Royal|20-10
 3|Vienna|21-9
 6|Paris|19-11
-7|Copenhagen|15-15
+7|Københavns BK|15-15
 2|Tokyo|24-6
 = Austin BC 4-0 | London Royal 4-3 | Vienna 4-2 | Tokyo 4-1
 = Austin BC 4-1 | Tokyo 4-0
@@ -101,14 +101,14 @@ G:WL
 # p092 FBA D2 World League Tournament
 S72
 G:WL
-1|Mexico City|25-5
-8|Lyon|18-12
-5|Copenhagen|20-10
+1|Club Capital|25-5
+8|Sporting Lyon|18-12
+5|Københavns BK|20-10
 4|London Royal|21-9
 3|Shanghai|21-9
 6|Vienna|20-10
 7|Guadalajara CB|18-12
 2|Buenos Aires BC|23-7
-= Lyon 4-2 | London Royal 4-3 | Shanghai 4-1 | Buenos Aires BC 4-2
+= Sporting Lyon 4-2 | London Royal 4-3 | Shanghai 4-1 | Buenos Aires BC 4-2
 = London Royal 4-3 | Buenos Aires BC 4-2
 = Buenos Aires BC 4-2

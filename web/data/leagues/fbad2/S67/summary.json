@@ -53,7 +53,7 @@
     {
       "group": "EW",
       "teams": [
-        "Dublin"
+        "Dublin BC"
       ]
     },
     {
@@ -148,7 +148,7 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Dublin",
+          "name": "Dublin BC",
           "record": "10-0",
           "seed": 1
         },
@@ -256,7 +256,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Dublin",
+          "name": "Dublin BC",
           "record": "10-0",
           "seed": 1
         },

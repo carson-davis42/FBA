@@ -139,16 +139,18 @@
     },
     {
       "teamId": "BUD",
-      "name": "Budapest",
+      "name": "Budapesti SE",
       "abbr": "BUD",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(302 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#0D3B1E",
+        "fg": "#fff",
+        "accent": "#D9A94F"
       },
       "city": "Budapest",
-      "country": "Hungary"
+      "country": "Hungary",
+      "logoFile": "Budapesti SE.png"
     },
     {
       "teamId": "CAI",
@@ -165,29 +167,33 @@
     },
     {
       "teamId": "CAS",
-      "name": "Casablanca",
+      "name": "Union Casablanca",
       "abbr": "CAS",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(217 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#0B1D45",
+        "fg": "#fff",
+        "accent": "#D98A4A"
       },
       "city": "Casablanca",
-      "country": "Morocco"
+      "country": "Morocco",
+      "logoFile": "Union Casablanca.png"
     },
     {
       "teamId": "COP",
-      "name": "Copenhagen",
+      "name": "Københavns BK",
       "abbr": "COP",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(306 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#A31214",
+        "fg": "#fff",
+        "accent": "#173F66"
       },
       "city": "Copenhagen",
-      "country": "Denmark"
+      "country": "Denmark",
+      "logoFile": "Københavns BK.png"
     },
     {
       "teamId": "DBA",
@@ -204,29 +210,33 @@
     },
     {
       "teamId": "DHA",
-      "name": "Dhaka",
+      "name": "Dhaka Sporting",
       "abbr": "DHA",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(203 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#0B3D1F",
+        "fg": "#fff",
+        "accent": "#C9A94E"
       },
       "city": "Dhaka",
-      "country": "Bangladesh"
+      "country": "Bangladesh",
+      "logoFile": "Dhaka Sporting.png"
     },
     {
       "teamId": "DUB",
-      "name": "Dublin",
+      "name": "Dublin BC",
       "abbr": "DUB",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(96 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#0B1D45",
+        "fg": "#fff",
+        "accent": "#E0B94F"
       },
       "city": "Dublin",
-      "country": "Ireland"
+      "country": "Ireland",
+      "logoFile": "Dublin BC.png"
     },
     {
       "teamId": "EDI",
@@ -394,16 +404,18 @@
     },
     {
       "teamId": "LIV",
-      "name": "Liverpool",
+      "name": "Liverpool Maritime",
       "abbr": "LIV",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(242 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#0C1B3A",
+        "fg": "#fff",
+        "accent": "#C98A4B"
       },
       "city": "Liverpool",
-      "country": "England"
+      "country": "England",
+      "logoFile": "Liverpool Maritime.png"
     },
     {
       "teamId": "LON",
@@ -435,16 +447,18 @@
     },
     {
       "teamId": "LYON",
-      "name": "Lyon",
+      "name": "Sporting Lyon",
       "abbr": "LYON",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(28 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#8F0A1D",
+        "fg": "#fff",
+        "accent": "#0F2A5C"
       },
       "city": "Lyon",
-      "country": "France"
+      "country": "France",
+      "logoFile": "Sporting Lyon.png"
     },
     {
       "teamId": "MAD",
@@ -476,16 +490,18 @@
     },
     {
       "teamId": "MC",
-      "name": "Mexico City",
+      "name": "Club Capital",
       "abbr": "MC",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(222 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#111314",
+        "fg": "#fff",
+        "accent": "#D9B55E"
       },
       "city": "Mexico City",
-      "country": "Mexico"
+      "country": "Mexico",
+      "logoFile": "Club Capital.png"
     },
     {
       "teamId": "MIA",
@@ -519,16 +535,18 @@
     },
     {
       "teamId": "MOS",
-      "name": "Moscow",
+      "name": "Moskovskiy BK",
       "abbr": "MOS",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(122 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#7A0A18",
+        "fg": "#fff",
+        "accent": "#1F2229"
       },
       "city": "Moscow",
-      "country": "Russia"
+      "country": "Russia",
+      "logoFile": "Moskovskiy BK.png"
     },
     {
       "teamId": "MUM",
@@ -547,16 +565,18 @@
     },
     {
       "teamId": "MUN",
-      "name": "Munich",
+      "name": "Münchner BC",
       "abbr": "MUN",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(192 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#0F0F0F",
+        "fg": "#fff",
+        "accent": "#E8B63C"
       },
       "city": "Munich",
-      "country": "Germany"
+      "country": "Germany",
+      "logoFile": "Münchner BC.png"
     },
     {
       "teamId": "NAP",
@@ -761,16 +781,18 @@
     },
     {
       "teamId": "STP",
-      "name": "Saint Petersburg",
+      "name": "Nevskiy",
       "abbr": "STP",
       "group": "WL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(286 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#9CCBF2",
+        "fg": "#111",
+        "accent": "#0C2350"
       },
       "city": "Saint Petersburg",
-      "country": "Russia"
+      "country": "Russia",
+      "logoFile": "Nevskiy.png"
     },
     {
       "teamId": "SYD",

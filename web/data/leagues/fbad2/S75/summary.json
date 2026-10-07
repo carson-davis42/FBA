@@ -7,7 +7,7 @@
     {
       "title": "Premier League Champion",
       "champion": "Tokyo",
-      "runnerUp": "Budapest",
+      "runnerUp": "Budapesti SE",
       "score": null,
       "group": "PL",
       "finalsMvp": "p02307",
@@ -27,7 +27,7 @@
     {
       "title": "United League Champion",
       "champion": "Osaka",
-      "runnerUp": "Dhaka",
+      "runnerUp": "Dhaka Sporting",
       "score": null,
       "group": "UL",
       "finalsMvp": "p00040",
@@ -125,7 +125,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Budapest",
+              "name": "Budapesti SE",
               "record": "20-10",
               "seed": 4
             },
@@ -176,7 +176,7 @@
               "seed": 8
             },
             "away": {
-              "name": "Budapest",
+              "name": "Budapesti SE",
               "record": "20-10",
               "seed": 4
             },
@@ -205,7 +205,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Budapest",
+              "name": "Budapesti SE",
               "record": "20-10",
               "seed": 4
             },
@@ -247,7 +247,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Liverpool",
+              "name": "Liverpool Maritime",
               "record": "22-8",
               "seed": 5
             },
@@ -362,7 +362,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Moscow",
+              "name": "Moskovskiy BK",
               "record": "16-14",
               "seed": 8
             },
@@ -374,7 +374,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Casablanca",
+              "name": "Union Casablanca",
               "record": "20-10",
               "seed": 5
             },
@@ -391,7 +391,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Saint Petersburg",
+              "name": "Nevskiy",
               "record": "27-3",
               "seed": 3
             },
@@ -413,7 +413,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Dhaka",
+              "name": "Dhaka Sporting",
               "record": "28-2",
               "seed": 2
             },
@@ -442,12 +442,12 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Saint Petersburg",
+              "name": "Nevskiy",
               "record": "27-3",
               "seed": 3
             },
             "away": {
-              "name": "Dhaka",
+              "name": "Dhaka Sporting",
               "record": "28-2",
               "seed": 2
             },
@@ -464,7 +464,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Dhaka",
+              "name": "Dhaka Sporting",
               "record": "28-2",
               "seed": 2
             },

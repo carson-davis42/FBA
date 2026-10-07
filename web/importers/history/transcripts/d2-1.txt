@@ -12,19 +12,19 @@ S60
 14|Salzburg BC|6-4
 11|Toronto|7-3
 6|Roma Pallacanestro|9-1
-7|Moscow|8-2
-10|Lyon|6-4
+7|Moskovskiy BK|8-2
+10|Sporting Lyon|6-4
 15|Orlando|7-3
 2|Milano BC|10-0
-= Hamburg Hanse 52-40 | Pearland 47-31 | Amsterdam 55-34 | San Jose 43-40 | Manchester 70-19 | Roma Pallacanestro 49-29 | Moscow 51-41 | Milano BC 61-43
-= Hamburg Hanse 60-49 | Amsterdam 55-44 | Roma Pallacanestro 59-54 | Moscow 50-49
+= Hamburg Hanse 52-40 | Pearland 47-31 | Amsterdam 55-34 | San Jose 43-40 | Manchester 70-19 | Roma Pallacanestro 49-29 | Moskovskiy BK 51-41 | Milano BC 61-43
+= Hamburg Hanse 60-49 | Amsterdam 55-44 | Roma Pallacanestro 59-54 | Moskovskiy BK 50-49
 = Hamburg Hanse 60-54 | Roma Pallacanestro 59-32
 = Roma Pallacanestro 70-54
 
 # p020 FBA D2 Tournament
 S63
 1|Kiev|10-0
-16|Dublin|6-4
+16|Dublin BC|6-4
 9|Atlético Lisboa|8-2
 8|Vancouver|7-3
 5|Istanbul|8-2
@@ -60,7 +60,7 @@ S59
 6|Milano BC|9-1
 7|Hamburg Hanse|8-2
 10|Barcelona|6-4
-15|Lyon|6-4
+15|Sporting Lyon|6-4
 2|San Jose|10-0
 = Roma Pallacanestro 51-24 | Glasgow 41-37 | Pearland 38-26 | Amsterdam 44-41 | Maine 61-52 | Manchester 53-47 | Barcelona 47-36 | San Jose 45-30
 = Roma Pallacanestro 50-30 | Pearland 42-35 | Maine 49-46 | San Jose 46-31
@@ -70,7 +70,7 @@ S59
 # p039 FBA D2 Tournament
 S66
 1|Salzburg BC|10-0
-16|Dublin|7-3
+16|Dublin BC|7-3
 9|Roma Pallacanestro|8-2
 8|Guadalajara CB|7-3
 5|Istanbul|8-2
@@ -80,13 +80,13 @@ S66
 3|Brussels|9-1
 14|Atlético Lisboa|6-4
 11|Tampa|7-3
-6|Munich|8-2
+6|Münchner BC|8-2
 7|Amsterdam|9-1
-10|Moscow|6-4
+10|Moskovskiy BK|6-4
 15|Toronto|6-4
 2|Milano BC|9-1
-= Salzburg BC 47-35 | Roma Pallacanestro 43-31 | Istanbul 54-53 | Berlin Bären BC 44-42 | Brussels 41-34 | Munich 45-26 | Moscow 46-41 | Milano BC 44-27
-= Salzburg BC 45-43 | Istanbul 45-32 | Munich 53-45 | Milano BC 43-40
+= Salzburg BC 47-35 | Roma Pallacanestro 43-31 | Istanbul 54-53 | Berlin Bären BC 44-42 | Brussels 41-34 | Münchner BC 45-26 | Moskovskiy BK 46-41 | Milano BC 44-27
+= Salzburg BC 45-43 | Istanbul 45-32 | Münchner BC 53-45 | Milano BC 43-40
 = Salzburg BC 49-40 | Milano BC 45-43
 = Milano BC 43-35
 
@@ -96,15 +96,15 @@ S61
 16|Zürich Helvetia|5-5
 9|Salzburg BC|6-4
 8|Austin BC|7-3
-5|Dublin|7-3
+5|Dublin BC|7-3
 12|Milano BC|8-2
 13|Kiev|6-4
 4|Maine|8-2
 3|Hamburg Hanse|9-1
-14|Lyon|6-4
-11|Mexico City|6-4
+14|Sporting Lyon|6-4
+11|Club Capital|6-4
 6|Roma Pallacanestro|9-1
-7|Moscow|8-2
+7|Moskovskiy BK|8-2
 10|Manchester|7-3
 15|Toronto|6-4
 2|Club Madrid|9-1

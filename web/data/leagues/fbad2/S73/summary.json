@@ -89,8 +89,8 @@
     {
       "group": "IL",
       "teams": [
-        "Casablanca",
-        "Saint Petersburg"
+        "Union Casablanca",
+        "Nevskiy"
       ]
     }
   ],
@@ -253,7 +253,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Lyon",
+              "name": "Sporting Lyon",
               "record": "18-12",
               "seed": 4
             },
@@ -265,7 +265,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Liverpool",
+              "name": "Liverpool Maritime",
               "record": "21-9",
               "seed": 3
             },
@@ -304,7 +304,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Lyon",
+              "name": "Sporting Lyon",
               "record": "18-12",
               "seed": 4
             },
@@ -316,7 +316,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Liverpool",
+              "name": "Liverpool Maritime",
               "record": "21-9",
               "seed": 3
             },
@@ -414,7 +414,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Budapest",
+              "name": "Budapesti SE",
               "record": "22-8",
               "seed": 2
             },
@@ -448,7 +448,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Budapest",
+              "name": "Budapesti SE",
               "record": "22-8",
               "seed": 2
             },
@@ -485,7 +485,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Casablanca",
+              "name": "Union Casablanca",
               "record": "22-8",
               "seed": 1
             },
@@ -536,12 +536,12 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Dhaka",
+              "name": "Dhaka Sporting",
               "record": "17-13",
               "seed": 7
             },
             "away": {
-              "name": "Saint Petersburg",
+              "name": "Nevskiy",
               "record": "22-8",
               "seed": 2
             },
@@ -553,7 +553,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Casablanca",
+              "name": "Union Casablanca",
               "record": "22-8",
               "seed": 1
             },
@@ -575,7 +575,7 @@
               "seed": 6
             },
             "away": {
-              "name": "Dhaka",
+              "name": "Dhaka Sporting",
               "record": "17-13",
               "seed": 7
             },

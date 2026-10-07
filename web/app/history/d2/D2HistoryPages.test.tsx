@@ -37,7 +37,7 @@ const s69: SummaryFile = {
     { title: 'Ultra League Champion', champion: 'Oslo', runnerUp: 'Bern', score: null, group: 'UL' },
   ],
   awards: [{ award: 'MVP-PL', playerId: 'p00002', teamId: 'LIS' }],
-  rsChampions: [{ group: 'PL', teams: ['Munich', 'Roma Pallacanestro'] }],
+  rsChampions: [{ group: 'PL', teams: ['Münchner BC', 'Roma Pallacanestro'] }],
 };
 
 function stub() {
@@ -88,7 +88,7 @@ describe('D2 history pages', () => {
     expect(await screen.findByRole('heading', { name: 'D2 Awards' })).toBeTruthy();
     const row = (await screen.findByRole('link', { name: 'S69' })).closest('tr') as HTMLElement;
     expect(row.textContent).toContain('Premier League MVP');
-    expect(row.textContent).toContain('Premier League: Munich / Roma Pallacanestro');
+    expect(row.textContent).toContain('Premier League: Münchner BC / Roma Pallacanestro');
     expect(row.textContent).toContain('Atlético Lisboa)');
     expect(row.textContent).not.toContain('(LIS)');
     const most = (await screen.findByRole('heading', { name: 'Most MVPs' })).parentElement!.querySelector('ol') as HTMLElement;

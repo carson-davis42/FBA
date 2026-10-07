@@ -89,7 +89,7 @@
     {
       "group": "IL",
       "teams": [
-        "Dhaka"
+        "Dhaka Sporting"
       ]
     }
   ],
@@ -269,7 +269,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Liverpool",
+              "name": "Liverpool Maritime",
               "record": "22-8",
               "seed": 6
             },
@@ -286,7 +286,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Budapest",
+              "name": "Budapesti SE",
               "record": "24-6",
               "seed": 2
             },
@@ -379,7 +379,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Moscow",
+              "name": "Moskovskiy BK",
               "record": "21-9",
               "seed": 4
             },
@@ -391,12 +391,12 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Casablanca",
+              "name": "Union Casablanca",
               "record": "25-5",
               "seed": 3
             },
             "away": {
-              "name": "Saint Petersburg",
+              "name": "Nevskiy",
               "record": "16-14",
               "seed": 6
             },
@@ -442,7 +442,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Casablanca",
+              "name": "Union Casablanca",
               "record": "25-5",
               "seed": 3
             },
@@ -484,7 +484,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Dhaka",
+              "name": "Dhaka Sporting",
               "record": "28-2",
               "seed": 1
             },
@@ -552,7 +552,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Dhaka",
+              "name": "Dhaka Sporting",
               "record": "28-2",
               "seed": 1
             },

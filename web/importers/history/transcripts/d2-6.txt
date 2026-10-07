@@ -4,29 +4,29 @@ G:UL
 1|Miami BC|30-0
 8|Johannesburg|16-14
 5|Manchester|21-9
-4|Moscow|21-9
-3|Casablanca|25-5
-6|Saint Petersburg|16-14
+4|Moskovskiy BK|21-9
+3|Union Casablanca|25-5
+6|Nevskiy|16-14
 7|Beijing|16-14
 2|Sydney|25-5
-= Miami BC 4-0 | Manchester 4-0 | Casablanca 4-3 | Sydney 4-3
+= Miami BC 4-0 | Manchester 4-0 | Union Casablanca 4-3 | Sydney 4-3
 = Miami BC 4-1 | Sydney 4-3
 = Miami BC 4-3
 
 # p094 FBA D2 United League Tournament
 S76
 G:UL
-1|Casablanca|24-6
+1|Union Casablanca|24-6
 8|Manchester|14-16
 5|Brussels|18-12
 4|Paris|18-12
-3|Moscow|21-9
+3|Moskovskiy BK|21-9
 6|Dubai|17-13
-7|Copenhagen|17-13
-2|Saint Petersburg|22-8
-= Casablanca 4-0 | Paris 4-3 | Moscow 4-1 | Saint Petersburg 4-0
-= Casablanca 4-1 | Moscow 4-0
-= Casablanca 4-2
+7|Københavns BK|17-13
+2|Nevskiy|22-8
+= Union Casablanca 4-0 | Paris 4-3 | Moskovskiy BK 4-1 | Nevskiy 4-0
+= Union Casablanca 4-1 | Moskovskiy BK 4-0
+= Union Casablanca 4-2
 
 # p100 FBA D2 World League Tournament
 S70
@@ -47,15 +47,15 @@ BYE
 S77
 G:WL
 1|Zürich Helvetia|24-6
-8|Lyon|17-13
+8|Sporting Lyon|17-13
 5|Sao Paolo|20-10
 4|Zagreb|20-10
-3|Casablanca|20-10
-6|Dhaka|18-12
+3|Union Casablanca|20-10
+6|Dhaka Sporting|18-12
 7|Hamburg Hanse|18-12
 2|Miami BC|21-9
-= Zürich Helvetia 4-1 | Sao Paolo 4-2 | Casablanca 4-3 | Miami BC 4-0
-= Sao Paolo 4-1 | Casablanca 4-2
+= Zürich Helvetia 4-1 | Sao Paolo 4-2 | Union Casablanca 4-3 | Miami BC 4-0
+= Sao Paolo 4-1 | Union Casablanca 4-2
 = Sao Paolo 4-0
 
 # p108 FBA D2 World League Tournament
@@ -64,8 +64,8 @@ G:WL
 1|Amsterdam|12-2
 4|Paris|7-7
 3|Istanbul|8-6
-2|Munich|11-3
-= Amsterdam 4-0 | Munich 4-0
+2|Münchner BC|11-3
+= Amsterdam 4-0 | Münchner BC 4-0
 = Amsterdam 4-2
 
 # p109 FBA D2 Premier League Tournament
@@ -86,15 +86,15 @@ G:PL
 # p110 FBA D2 International League Tournament
 S73
 G:IL
-1|Casablanca|22-8
+1|Union Casablanca|22-8
 8|Belfast|15-15
 5|Dubai|20-10
 4|Luxembourg|20-10
 3|Mumbai BC|20-10
 6|Rotterdam|18-12
-7|Dhaka|17-13
-2|Saint Petersburg|22-8
-= Casablanca 4-1 | Luxembourg 4-1 | Rotterdam 4-2 | Dhaka 4-0
+7|Dhaka Sporting|17-13
+2|Nevskiy|22-8
+= Union Casablanca 4-1 | Luxembourg 4-1 | Rotterdam 4-2 | Dhaka Sporting 4-0
 = Luxembourg 4-1 | Rotterdam 4-3
 = Rotterdam 4-2
 
@@ -102,8 +102,8 @@ G:IL
 S69
 G:UL
 1|Club Madrid|12-2
-4|Mexico City|8-6
+4|Club Capital|8-6
 3|Barcelona|10-4
 2|Vancouver|12-2
-= Mexico City 4-2 | Vancouver 4-1
+= Club Capital 4-2 | Vancouver 4-1
 = Vancouver 4-2

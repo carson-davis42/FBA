@@ -115,7 +115,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Munich",
+              "name": "Münchner BC",
               "record": "21-9",
               "seed": 3
             },
@@ -345,7 +345,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Lyon",
+              "name": "Sporting Lyon",
               "record": "14-8",
               "seed": 4
             },
@@ -357,7 +357,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Copenhagen",
+              "name": "Københavns BK",
               "record": "14-8",
               "seed": 3
             },
@@ -404,7 +404,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Copenhagen",
+              "name": "Københavns BK",
               "record": "14-8",
               "seed": 3
             },

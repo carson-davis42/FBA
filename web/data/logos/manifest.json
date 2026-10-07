@@ -174,13 +174,37 @@
         "variant": 1
       },
       {
+        "file": "Budapesti SE.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Buenos Aires BC.png",
         "from": null,
         "to": null,
         "variant": 1
       },
       {
+        "file": "Club Capital.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Club Madrid.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Dhaka Sporting.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Dublin BC.png",
         "from": null,
         "to": null,
         "variant": 1
@@ -204,6 +228,18 @@
         "variant": 1
       },
       {
+        "file": "Københavns BK.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Liverpool Maritime.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "London Royal.png",
         "from": null,
         "to": null,
@@ -222,7 +258,25 @@
         "variant": 1
       },
       {
+        "file": "Moskovskiy BK.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Mumbai BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Münchner BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Nevskiy.png",
         "from": null,
         "to": null,
         "variant": 1
@@ -235,6 +289,18 @@
       },
       {
         "file": "Salzburg BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Sporting Lyon.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Union Casablanca.png",
         "from": null,
         "to": null,
         "variant": 1

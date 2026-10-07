@@ -27,7 +27,7 @@
     {
       "title": "United League Champion",
       "champion": "Vancouver",
-      "runnerUp": "Mexico City",
+      "runnerUp": "Club Capital",
       "score": null,
       "group": "UL",
       "finalsMvp": "p02269",
@@ -55,7 +55,7 @@
     {
       "group": "PL",
       "teams": [
-        "Munich",
+        "Münchner BC",
         "Roma Pallacanestro"
       ]
     },
@@ -139,7 +139,7 @@
               "seed": 7
             },
             "away": {
-              "name": "Munich",
+              "name": "Münchner BC",
               "record": "23-7",
               "seed": 2
             },
@@ -173,7 +173,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Munich",
+              "name": "Münchner BC",
               "record": "23-7",
               "seed": 2
             },
@@ -274,7 +274,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Mexico City",
+              "name": "Club Capital",
               "record": "8-6",
               "seed": 4
             },
@@ -303,7 +303,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Mexico City",
+              "name": "Club Capital",
               "record": "8-6",
               "seed": 4
             },

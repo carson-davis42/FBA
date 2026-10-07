@@ -27,7 +27,7 @@
     {
       "title": "United League Champion",
       "champion": "Recife",
-      "runnerUp": "Liverpool",
+      "runnerUp": "Liverpool Maritime",
       "score": null,
       "group": "UL",
       "finalsMvp": "p00146",
@@ -36,7 +36,7 @@
     },
     {
       "title": "International League Champion",
-      "champion": "Budapest",
+      "champion": "Budapesti SE",
       "runnerUp": "Sao Paolo",
       "score": null,
       "group": "IL",
@@ -77,19 +77,19 @@
     {
       "group": "WL",
       "teams": [
-        "Mexico City"
+        "Club Capital"
       ]
     },
     {
       "group": "UL",
       "teams": [
-        "Liverpool"
+        "Liverpool Maritime"
       ]
     },
     {
       "group": "IL",
       "teams": [
-        "Budapest"
+        "Budapesti SE"
       ]
     }
   ],
@@ -125,7 +125,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Munich",
+              "name": "Münchner BC",
               "record": "20-10",
               "seed": 4
             },
@@ -176,7 +176,7 @@
               "seed": 8
             },
             "away": {
-              "name": "Munich",
+              "name": "Münchner BC",
               "record": "20-10",
               "seed": 4
             },
@@ -230,12 +230,12 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Mexico City",
+              "name": "Club Capital",
               "record": "25-5",
               "seed": 1
             },
             "away": {
-              "name": "Lyon",
+              "name": "Sporting Lyon",
               "record": "18-12",
               "seed": 8
             },
@@ -247,7 +247,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Copenhagen",
+              "name": "Københavns BK",
               "record": "20-10",
               "seed": 5
             },
@@ -298,7 +298,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Lyon",
+              "name": "Sporting Lyon",
               "record": "18-12",
               "seed": 8
             },
@@ -357,7 +357,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Liverpool",
+              "name": "Liverpool Maritime",
               "record": "25-5",
               "seed": 1
             },
@@ -425,7 +425,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Liverpool",
+              "name": "Liverpool Maritime",
               "record": "25-5",
               "seed": 1
             },
@@ -459,7 +459,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Liverpool",
+              "name": "Liverpool Maritime",
               "record": "25-5",
               "seed": 1
             },
@@ -484,12 +484,12 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Budapest",
+              "name": "Budapesti SE",
               "record": "30-0",
               "seed": 1
             },
             "away": {
-              "name": "Saint Petersburg",
+              "name": "Nevskiy",
               "record": "18-12",
               "seed": 8
             },
@@ -523,7 +523,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Casablanca",
+              "name": "Union Casablanca",
               "record": "19-11",
               "seed": 6
             },
@@ -535,7 +535,7 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Dhaka",
+              "name": "Dhaka Sporting",
               "record": "18-12",
               "seed": 7
             },
@@ -552,7 +552,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Budapest",
+              "name": "Budapesti SE",
               "record": "30-0",
               "seed": 1
             },
@@ -586,7 +586,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Budapest",
+              "name": "Budapesti SE",
               "record": "30-0",
               "seed": 1
             },

@@ -92,7 +92,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Dublin",
+          "name": "Dublin BC",
           "record": "7-3",
           "seed": 5
         },
@@ -133,7 +133,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Lyon",
+          "name": "Sporting Lyon",
           "record": "6-4",
           "seed": 14
         },
@@ -146,7 +146,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Mexico City",
+          "name": "Club Capital",
           "record": "6-4",
           "seed": 11
         },
@@ -164,7 +164,7 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Moscow",
+          "name": "Moskovskiy BK",
           "record": "8-2",
           "seed": 7
         },

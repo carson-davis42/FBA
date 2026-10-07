@@ -1,17 +1,17 @@
 # p040 FBA D2 International League Tournament
 S72
 G:IL
-1|Budapest|30-0
-8|Saint Petersburg|18-12
+1|Budapesti SE|30-0
+8|Nevskiy|18-12
 5|Auckland|19-11
 4|Rotterdam|19-11
 3|Osaka|22-8
-6|Casablanca|19-11
-7|Dhaka|18-12
+6|Union Casablanca|19-11
+7|Dhaka Sporting|18-12
 2|Sao Paolo|23-7
-= Budapest 4-0 | Auckland 4-2 | Osaka 4-3 | Sao Paolo 4-3
-= Budapest 4-0 | Sao Paolo 4-3
-= Budapest 4-0
+= Budapesti SE 4-0 | Auckland 4-2 | Osaka 4-3 | Sao Paolo 4-3
+= Budapesti SE 4-0 | Sao Paolo 4-3
+= Budapesti SE 4-0
 
 # p049 FBA D2 Premier League Tournament
 S73
@@ -34,19 +34,19 @@ G:PL
 1|Berlin Bären BC|25-5
 8|Austin BC|16-14
 5|Atlético Lisboa|20-10
-4|Budapest|20-10
+4|Budapesti SE|20-10
 3|Tokyo|22-8
 6|Union Ottawa|19-11
 7|Milano BC|17-13
 2|San Jose|22-8
-= Austin BC 4-2 | Budapest 4-2 | Tokyo 4-3 | Milano BC 4-1
-= Budapest 4-1 | Tokyo 4-2
+= Austin BC 4-2 | Budapesti SE 4-2 | Tokyo 4-3 | Milano BC 4-1
+= Budapesti SE 4-1 | Tokyo 4-2
 = Tokyo 4-1
 
 # p052 FBA D2 International League Tournament
 S77
 G:IL
-1|Dublin|30-0
+1|Dublin BC|30-0
 8|Auckland|16-14
 5|Barcelona|20-10
 4|Warsaw|21-9
@@ -54,9 +54,9 @@ G:IL
 6|Naples|19-11
 7|Oslo|18-12
 2|Belfast|22-8
-= Dublin 4-0 | Barcelona 4-1 | Naples 4-3 | Belfast 4-0
-= Dublin 4-1 | Naples 4-3
-= Dublin 4-1
+= Dublin BC 4-0 | Barcelona 4-1 | Naples 4-3 | Belfast 4-0
+= Dublin BC 4-1 | Naples 4-3
+= Dublin BC 4-1
 
 # p057 FBA D2 United League Tournament
 S71
@@ -65,7 +65,7 @@ G:UL
 BYE
 5|Johannesburg|12-10
 4|Recife|14-8
-3|Liverpool|15-7
+3|Liverpool Maritime|15-7
 6|Sydney|12-10
 BYE
 2|Buenos Aires BC|19-3
@@ -98,15 +98,15 @@ G:PL
 3|Atlético Lisboa|22-8
 6|Salzburg BC|20-10
 7|Hamburg Hanse|19-11
-2|Munich|23-7
-= Roma Pallacanestro 4-0 | Amsterdam 4-2 | Atlético Lisboa 4-3 | Munich 4-1
+2|Münchner BC|23-7
+= Roma Pallacanestro 4-0 | Amsterdam 4-2 | Atlético Lisboa 4-3 | Münchner BC 4-1
 = Roma Pallacanestro 4-3 | Atlético Lisboa 4-2
 = Atlético Lisboa 4-2
 
 # p066 FBA D2 United League Tournament
 S72
 G:UL
-1|Liverpool|25-5
+1|Liverpool Maritime|25-5
 8|Manchester|16-14
 5|Rio De Janeiro|21-9
 4|Johannesburg|22-8
@@ -114,6 +114,6 @@ G:UL
 6|Stockholm|18-12
 7|Lagos|16-14
 2|Recife|24-6
-= Liverpool 4-3 | Johannesburg 4-0 | Sydney 4-0 | Recife 4-1
-= Liverpool 4-2 | Recife 4-2
+= Liverpool Maritime 4-3 | Johannesburg 4-0 | Sydney 4-0 | Recife 4-1
+= Liverpool Maritime 4-2 | Recife 4-2
 = Recife 4-1
