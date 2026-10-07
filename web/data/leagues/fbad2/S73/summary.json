@@ -17,7 +17,7 @@
     {
       "title": "World League Champion",
       "champion": "Vienna",
-      "runnerUp": "London",
+      "runnerUp": "London Royal",
       "score": null,
       "group": "WL",
       "finalsMvp": "p00444",
@@ -287,7 +287,7 @@
               "seed": 7
             },
             "away": {
-              "name": "London",
+              "name": "London Royal",
               "record": "22-8",
               "seed": 2
             },
@@ -321,7 +321,7 @@
               "seed": 3
             },
             "away": {
-              "name": "London",
+              "name": "London Royal",
               "record": "22-8",
               "seed": 2
             },
@@ -338,7 +338,7 @@
               "seed": 1
             },
             "away": {
-              "name": "London",
+              "name": "London Royal",
               "record": "22-8",
               "seed": 2
             },

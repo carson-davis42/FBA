@@ -127,7 +127,7 @@ S58
 14|Maine|6-4
 11|Manchester|7-3
 6|Hamburg Hanse|8-2
-7|London|8-2
+7|London Royal|8-2
 10|Frankfurt|7-3
 15|Istanbul|6-4
 2|Toronto|9-1

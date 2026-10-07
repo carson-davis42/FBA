@@ -17,7 +17,7 @@
     {
       "title": "World League Champion",
       "champion": "Buenos Aires BC",
-      "runnerUp": "London",
+      "runnerUp": "London Royal",
       "score": null,
       "group": "WL",
       "finalsMvp": "p00213",
@@ -252,7 +252,7 @@
               "seed": 5
             },
             "away": {
-              "name": "London",
+              "name": "London Royal",
               "record": "21-9",
               "seed": 4
             },
@@ -303,7 +303,7 @@
               "seed": 8
             },
             "away": {
-              "name": "London",
+              "name": "London Royal",
               "record": "21-9",
               "seed": 4
             },
@@ -332,7 +332,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "London",
+              "name": "London Royal",
               "record": "21-9",
               "seed": 4
             },

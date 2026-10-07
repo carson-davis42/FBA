@@ -48,13 +48,13 @@ S78
 G:PL
 1|Salzburg BC|23-7
 8|Buenos Aires BC|15-15
-5|London|19-11
+5|London Royal|19-11
 4|Miami|19-11
 3|Austin BC|20-10
 6|Milan|18-12
 7|Zurich|16-14
 2|Atlético Lisboa|21-9
-= Salzburg BC 4-2 | London 4-0 | Milan 4-1 | Zurich 4-1
+= Salzburg BC 4-2 | London Royal 4-0 | Milan 4-1 | Zurich 4-1
 = Salzburg BC 4-2 | Zurich 4-2
 = Salzburg BC 4-1
 

@@ -347,14 +347,16 @@
     },
     {
       "teamId": "LON",
-      "name": "London",
+      "name": "London Royal",
       "abbr": "LON",
       "group": "PL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(288 55% 36%)",
-        "fg": "#ffffff"
-      }
+        "bg": "#0B1A44",
+        "fg": "#fff",
+        "accent": "#EDC15A"
+      },
+      "logoFile": "London Royal.png"
     },
     {
       "teamId": "LUX",

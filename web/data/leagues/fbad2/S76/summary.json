@@ -7,7 +7,7 @@
     {
       "title": "Premier League Champion",
       "champion": "Budapest",
-      "runnerUp": "London",
+      "runnerUp": "London Royal",
       "score": null,
       "group": "PL",
       "finalsMvp": "p02332",
@@ -124,7 +124,7 @@
               "seed": 5
             },
             "away": {
-              "name": "London",
+              "name": "London Royal",
               "record": "19-11",
               "seed": 4
             },
@@ -175,7 +175,7 @@
               "seed": 8
             },
             "away": {
-              "name": "London",
+              "name": "London Royal",
               "record": "19-11",
               "seed": 4
             },
@@ -204,7 +204,7 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "London",
+              "name": "London Royal",
               "record": "19-11",
               "seed": 4
             },

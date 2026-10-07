@@ -79,12 +79,12 @@ G:WL
 1|Austin BC|28-2
 8|Kiev|14-16
 5|Mexico City|20-10
-4|London|20-10
+4|London Royal|20-10
 3|Vienna|21-9
 6|Paris|19-11
 7|Copenhagen|15-15
 2|Tokyo|24-6
-= Austin BC 4-0 | London 4-3 | Vienna 4-2 | Tokyo 4-1
+= Austin BC 4-0 | London Royal 4-3 | Vienna 4-2 | Tokyo 4-1
 = Austin BC 4-1 | Tokyo 4-0
 = Austin BC 4-3
 
@@ -104,11 +104,11 @@ G:WL
 1|Mexico City|25-5
 8|Lyon|18-12
 5|Copenhagen|20-10
-4|London|21-9
+4|London Royal|21-9
 3|Shanghai|21-9
 6|Vienna|20-10
 7|Guadalajara CB|18-12
 2|Buenos Aires BC|23-7
-= Lyon 4-2 | London 4-3 | Shanghai 4-1 | Buenos Aires BC 4-2
-= London 4-3 | Buenos Aires BC 4-2
+= Lyon 4-2 | London Royal 4-3 | Shanghai 4-1 | Buenos Aires BC 4-2
+= London Royal 4-3 | Buenos Aires BC 4-2
 = Buenos Aires BC 4-2

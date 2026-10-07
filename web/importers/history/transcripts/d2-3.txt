@@ -53,9 +53,9 @@ G:WL
 3|Liverpool|21-9
 6|Shanghai|17-13
 7|Madrid|16-14
-2|London|22-8
-= Vienna 4-3 | Lyon 4-1 | Liverpool 4-0 | London 4-1
-= Vienna 4-3 | London 4-2
+2|London Royal|22-8
+= Vienna 4-3 | Lyon 4-1 | Liverpool 4-0 | London Royal 4-1
+= Vienna 4-3 | London Royal 4-2
 = Vienna 4-2
 
 # p024 FBA D2 International League Tournament
@@ -78,13 +78,13 @@ S77
 G:PL
 1|Austin BC|23-7
 8|Roma Pallacanestro|17-13
-5|London|17-13
+5|London Royal|17-13
 4|Mexico City|19-11
 3|Guadalajara CB|19-11
 6|Atlético Lisboa|17-13
 7|Buenos Aires BC|17-13
 2|Salzburg BC|22-8
-= Austin BC 4-1 | London 4-1 | Guadalajara CB 4-2 | Salzburg BC 4-0
+= Austin BC 4-1 | London Royal 4-1 | Guadalajara CB 4-2 | Salzburg BC 4-0
 = Austin BC 4-3 | Salzburg BC 4-0
 = Salzburg BC 4-3
 
@@ -94,13 +94,13 @@ G:PL
 1|Austin BC|27-3
 8|Guadalajara CB|16-14
 5|Atlético Lisboa|16-14
-4|London|19-11
+4|London Royal|19-11
 3|Budapest|20-10
 6|Recife|16-14
 7|Milan|16-14
 2|Berlin Bären BC|22-8
-= Guadalajara CB 4-3 | London 4-3 | Budapest 4-3 | Berlin Bären BC 4-3
-= London 4-1 | Budapest 4-1
+= Guadalajara CB 4-3 | London Royal 4-3 | Budapest 4-3 | Berlin Bären BC 4-3
+= London Royal 4-1 | Budapest 4-1
 = Budapest 4-0
 
 # p034 FBA D2 United League Tournament
