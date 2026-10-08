@@ -1988,13 +1988,13 @@
         "classYear": "Jr"
       },
       {
-        "playerId": null,
+        "playerId": "p01072",
         "position": "SG",
-        "rating": null,
+        "rating": 83,
         "age": null,
         "points": 0,
-        "stars": null,
-        "classYear": null
+        "stars": 3,
+        "classYear": "Jr"
       },
       {
         "playerId": "p02373",
