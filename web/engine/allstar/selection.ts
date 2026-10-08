@@ -1,5 +1,6 @@
 import { POSITIONS } from '../roster/rules';
 import type { AllStarFile, AllStarSelections, PlayersFile } from '../shared/types';
+import { captainProblems, type CaptainRules } from './youngCaptains';
 import { allStarFail, type AllStarResult, emptyAllStar, type FbaPlayer } from './common';
 
 export const ALL_STAR_COUNT = 28;
@@ -49,7 +50,8 @@ function groupProblems(label: string, ids: string[], count: number, limits: { mi
   return out;
 }
 
-export function selectionProblems(sel: AllStarSelections, list: FbaPlayer[], registry: PlayersFile): string[] {
+/** `rules` (the Hall of Fame class and past champion captains) is checked when given. */
+export function selectionProblems(sel: AllStarSelections, list: FbaPlayer[], registry: PlayersFile, rules?: CaptainRules): string[] {
   const byId = new Map(list.map(p => [p.playerId, p]));
   const out = [
     ...groupProblems('All-Stars', sel.allStars, ALL_STAR_COUNT, ALL_STAR_LIMITS, byId),
@@ -61,13 +63,13 @@ export function selectionProblems(sel: AllStarSelections, list: FbaPlayer[], reg
   const yc = sel.youngCaptains;
   if (yc.length !== 4 || new Set(yc).size !== 4 || yc.some(id => !registry.players[id] || sel.youngStars.includes(id))) {
     out.push('Pick 4 Young-Star captains who are not Young-Stars');
-  }
+  } else if (rules) out.push(...captainProblems(yc, sel.youngStars, rules));
   return out;
 }
 
-export function saveSelections(doc: AllStarFile | null, sel: AllStarSelections, season: number, list: FbaPlayer[], registry: PlayersFile): AllStarResult {
+export function saveSelections(doc: AllStarFile | null, sel: AllStarSelections, season: number, list: FbaPlayer[], registry: PlayersFile, rules?: CaptainRules): AllStarResult {
   if (doc?.asgDraft) return allStarFail(['Selections are locked once the All-Star draft starts']);
-  const problems = selectionProblems(sel, list, registry);
+  const problems = selectionProblems(sel, list, registry, rules);
   if (problems.length) return allStarFail(problems);
   return { ok: true, doc: { ...(doc ?? emptyAllStar(season)), selections: sel }, label: 'Save All-Star selections' };
 }

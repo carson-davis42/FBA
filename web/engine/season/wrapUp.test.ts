@@ -121,10 +121,10 @@ describe('seasonRecord', () => {
     const doc: AllStarFile = {
       ...allStarDoc(true),
       selections: { allStars: ['p00001'], captains: ['p00010', 'p00011'], youngStars: ['p00002'], youngCaptains: ['p00020', 'p00021'] },
-      asg: { game: { teams: [0, 1], rolls: [], scores: [40, 50], rollOff: null, winner: 1 }, mvp: 'p00011', mvpRollOff: null },
+      asg: { game: { teams: [0, 1], rosters: [[], []], plays: [], lineups: [], points: [], scores: [40, 50], ot: 0, winner: 1 }, mvp: 'p00011' },
       ysg: {
-        semis: [], final: { teams: [0, 1], rolls: [], scores: [30, 20], rollOff: null, winner: 0 }, champion: 0, mvp: 'p00020', mvpRollOff: null,
-      } as AllStarFile['ysg'],
+        semis: [], final: { teams: [0, 1], rosters: [[], []], plays: [], lineups: [], points: [], scores: [30, 20], ot: 0, winner: 0 }, champion: 0, mvp: 'p00020',
+      },
     };
     const name = (id: string) => s.players.players[id]?.name ?? 'Unnamed';
     const rec = seasonRecord({ ...s, allstar: doc }, []);

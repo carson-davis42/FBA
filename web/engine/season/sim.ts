@@ -42,7 +42,18 @@ export interface SimGame {
   ot: number;
   periods: { home: number[]; away: number[] };
   box: { home: number[]; away: number[] };
+  /** Games where a side changes its five between periods: `home`/`away` hold more than five players, and these are the roster indexes on the floor each quarter. */
+  rotation?: Rotation;
 }
+
+/** Roster indexes on the floor for each quarter of each side (a side with one entry keeps it all game); overtime uses the first. */
+export interface Rotation { home: number[][]; away: number[][] }
+
+const lineupFor = (rotation: Rotation, side: Side, period: number): number[] => {
+  const q = rotation[side];
+  return q[period <= 4 ? Math.min(period - 1, q.length - 1) : 0];
+};
+const onFloor = (team: SimTeam, idx: number[]): SimTeam => ({ teamId: team.teamId, players: idx.map(i => team.players[i]) });
 
 export function periodOf(i: number): number {
   return i < REGULATION ? Math.floor(i / QUARTER) + 1 : 5 + Math.floor((i - REGULATION) / OT_LENGTH);
@@ -163,10 +174,13 @@ function playOne(home: SimTeam, away: SimTeam, c: Cursor, rng: Rng, profile: Sim
   return { i, period: periodOf(i), offense, handler, defender, made: points > 0, points, homeScore: c.home, awayScore: c.away, clutch, end: c.end };
 }
 
-function runOut(home: SimTeam, away: SimTeam, c: Cursor, rng: Rng, profile: SimProfile, onPossession?: (p: Possession) => void): void {
+function runOut(home: SimTeam, away: SimTeam, c: Cursor, rng: Rng, profile: SimProfile, onPossession?: (p: Possession) => void, rotation?: Rotation): void {
   while (c.i < c.end) {
     if (c.i >= MAX_POSSESSIONS) throw new Error('Game did not finish');
-    const p = playOne(home, away, c, rng, profile);
+    const period = periodOf(c.i);
+    const p = rotation
+      ? playOne(onFloor(home, lineupFor(rotation, 'home', period)), onFloor(away, lineupFor(rotation, 'away', period)), c, rng, profile)
+      : playOne(home, away, c, rng, profile);
     onPossession?.(p);
   }
 }
@@ -189,6 +203,51 @@ export function simGame(gameNo: number, home: SimTeam, away: SimTeam, rng: Rng, 
   return { gameNo, home, away, possessions, homePts: c.home, awayPts: c.away, ot: c.ot, periods, box, profile };
 }
 
+/**
+ * The same game as `simGame`, but each side can change its five between periods. `home` and `away` are whole rosters, and `rotation`
+ * says which five (by roster index) play each quarter; overtime always uses the first. Possessions refer to roster indexes.
+ */
+export function simRotationGame(gameNo: number, home: SimTeam, away: SimTeam, rotation: Rotation, rng: Rng, profile: SimProfile = FBA_PROFILE): SimGame {
+  for (const [side, team] of [['home', home], ['away', away]] as const) {
+    for (const idx of rotation[side]) {
+      if (idx.length !== 5 || new Set(idx).size !== 5 || idx.some(i => !team.players[i])) throw new Error('Each lineup needs exactly 5 players from the roster');
+    }
+  }
+  const c: Cursor = { i: 0, end: REGULATION, home: 0, away: 0, ot: 0 };
+  const possessions: Possession[] = [];
+  const box = { home: home.players.map(() => 0), away: away.players.map(() => 0) };
+  const periods = { home: [] as number[], away: [] as number[] };
+  while (c.i < c.end) {
+    if (c.i >= MAX_POSSESSIONS) throw new Error('Game did not finish');
+    const period = periodOf(c.i);
+    const hIdx = lineupFor(rotation, 'home', period);
+    const aIdx = lineupFor(rotation, 'away', period);
+    const p = playOne(onFloor(home, hIdx), onFloor(away, aIdx), c, rng, profile);
+    const off = p.offense === 'home' ? hIdx : aIdx;
+    const def = p.offense === 'home' ? aIdx : hIdx;
+    const mapped: Possession = { ...p, handler: off[p.handler], defender: def[p.defender] };
+    possessions.push(mapped);
+    box[p.offense][mapped.handler] += p.points;
+    while (periods.home.length < p.period) { periods.home.push(0); periods.away.push(0); }
+    periods[p.offense][p.period - 1] += p.points;
+  }
+  return { gameNo, home, away, possessions, homePts: c.home, awayPts: c.away, ot: c.ot, periods, box, profile, rotation };
+}
+
+/** Rebuilds a played game's possessions from its plays ([offense side, handler, defender, points]), working out the clutch flag and the running end as the engine did. */
+export function replayPossessions(plays: [0 | 1, number, number, 0 | 2 | 3][]): Possession[] {
+  const c: Cursor = { i: 0, end: REGULATION, home: 0, away: 0, ot: 0 };
+  return plays.map(([side, handler, defender, points]) => {
+    const offense: Side = side === 0 ? 'home' : 'away';
+    const clutch = isClutch(c.i, c.end, Math.abs(c.home - c.away));
+    c[offense] += points;
+    const i = c.i;
+    if (i % 10 === 9 && i >= REGULATION - 1 && c.home === c.away) { c.end += OT_LENGTH; c.ot++; }
+    c.i++;
+    return { i, period: periodOf(i), offense, handler, defender, made: points > 0, points, homeScore: c.home, awayScore: c.away, clutch, end: c.end };
+  });
+}
+
 /** Chance the home team wins, simulating the rest of the game n times from the state after `revealed` possessions. */
 export function winProbability(game: SimGame, revealed: number, rng: Rng, n = 200): number {
   if (revealed >= game.possessions.length) return game.homePts > game.awayPts ? 1 : 0;
@@ -202,7 +261,7 @@ export function winProbability(game: SimGame, revealed: number, rng: Rng, n = 20
       away: last ? last.awayScore : 0,
       ot: 0,
     };
-    runOut(game.home, game.away, c, rng, game.profile ?? FBA_PROFILE);
+    runOut(game.home, game.away, c, rng, game.profile ?? FBA_PROFILE, undefined, game.rotation);
     if (c.home > c.away) wins++;
   }
   return wins / n;

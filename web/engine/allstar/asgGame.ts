@@ -1,9 +1,9 @@
 import type { Rng } from '../d2/random';
 import { POSITIONS } from '../roster/rules';
-import type { AllStarFile, DiceRoll, Position, RollOff } from '../shared/types';
+import type { AllStarFile, Position } from '../shared/types';
 import { asgTeams } from './asgDraft';
 import { allStarFail, type AllStarResult, type FbaPlayer } from './common';
-import { roll, rollOff, total } from './dice';
+import { playExhibition, type Roster, topScorer } from './exhibition';
 
 const PATTERN: Record<number, number[]> = { 1: [0, 0, 0, 0], 2: [0, 1, 1, 0], 3: [0, 1, 2, 0] };
 
@@ -36,47 +36,22 @@ export function asgLineups(members: { playerId: string; position: Position }[]):
   return quarters.map(qr => qr.flatMap((id, pi) => (id ? [{ playerId: id, slot: POSITIONS[pi] }] : [])));
 }
 
+/** The All-Star Game: four quarters on the game engine, each side rotating its lineups as `asgLineups` sets them (overtime is the starters). The MVP is the winning team's top scorer. */
 export function runAsg(doc: AllStarFile, list: FbaPlayer[], rng: Rng): AllStarResult {
   if (!doc.ysg) return allStarFail(['Play the Young-Star tournament first']);
   if (doc.asg) return allStarFail(['The All-Star Game has already been played']);
   const teams = asgTeams(doc);
-  const lineups = teams.map(ids => asgLineups(ids.map(id => ({ playerId: id, position: list.find(p => p.playerId === id)!.position }))));
-  const rolls: DiceRoll[][] = [];
-  const scores: [number, number] = [0, 0];
-  const byPlayer = new Map<string, number>();
-  for (let q = 0; q < 4; q++) {
-    const period: DiceRoll[] = [];
-    for (const team of [0, 1]) {
-      for (const slot of lineups[team][q]) {
-        const dice = roll(rng);
-        period.push({ team, playerId: slot.playerId, dice });
-        scores[team] += total(dice);
-        byPlayer.set(slot.playerId, (byPlayer.get(slot.playerId) ?? 0) + total(dice));
-      }
-    }
-    rolls.push(period);
+  const rosters: Roster[] = [];
+  const rotation: number[][][] = [];
+  for (const ids of teams) {
+    const info = new Map(ids.map(id => [id, list.find(p => p.playerId === id)]));
+    if ([...info.values()].some(p => !p)) return allStarFail(['Every All-Star must be on an FBA roster']);
+    const quarters = asgLineups(ids.map(id => ({ playerId: id, position: info.get(id)!.position })));
+    if (quarters.some(q => q.length !== 5)) return allStarFail(['Each team needs a player at every position']);
+    rosters.push(ids.map(id => ({ playerId: id, position: info.get(id)!.position, rating: info.get(id)!.rating })));
+    rotation.push(quarters.map(q => q.map(sl => ids.indexOf(sl.playerId))));
   }
-  let winner: number;
-  let gameRollOff: RollOff | null = null;
-  if (scores[0] !== scores[1]) winner = scores[0] > scores[1] ? 0 : 1;
-  else {
-    const r = rollOff(['0', '1'], rng);
-    winner = Number(r.order[0]);
-    gameRollOff = r.rollOff;
-  }
-  const winners = teams[winner].filter(id => byPlayer.has(id));
-  const best = Math.max(...winners.map(id => byPlayer.get(id)!));
-  const top = winners.filter(id => byPlayer.get(id) === best);
-  let mvp = top[0];
-  let mvpRollOff: RollOff | null = null;
-  if (top.length > 1) {
-    const r = rollOff(top, rng);
-    mvp = r.order[0];
-    mvpRollOff = r.rollOff;
-  }
-  return {
-    ok: true,
-    doc: { ...doc, asg: { game: { teams: [0, 1], rolls, scores, rollOff: gameRollOff, winner }, mvp, mvpRollOff } },
-    label: 'Play the All-Star Game',
-  };
+  const game = playExhibition([0, 1], [rosters[0], rosters[1]], [rotation[0], rotation[1]], rng);
+  const mvp = topScorer([game], teams[game.winner], rng);
+  return { ok: true, doc: { ...doc, asg: { game, mvp } }, label: 'Play the All-Star Game' };
 }

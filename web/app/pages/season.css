@@ -88,9 +88,16 @@
 .asg-team.on-clock { box-shadow: 0 0 0 2px var(--team); }
 .asg-team ul { margin: 0; padding-left: var(--s4); }
 .dice { display: inline-block; min-width: 22px; border: 1.5px solid var(--text); border-radius: var(--r-sm); background: var(--surface); text-align: center; font-weight: 800; font-variant-numeric: tabular-nums; margin-right: 2px; animation: dice-pop var(--dur) var(--ease) both; }
+@keyframes dice-tumble { 0% { transform: rotate(0) translateY(0); } 25% { transform: rotate(90deg) translateY(-4px); } 50% { transform: rotate(180deg) translateY(0); } 75% { transform: rotate(270deg) translateY(-4px); } 100% { transform: rotate(360deg) translateY(0); } }
+.dice.rolling { animation: dice-tumble 0.35s linear infinite; }
 @keyframes dice-pop { from { transform: rotate(-14deg) scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
 .reveal-lines { list-style: none; padding: 0; margin: var(--s2) 0; max-height: 420px; overflow: auto; }
 .reveal-lines li { padding: 3px 0; border-bottom: 1px solid var(--border); animation: page-in var(--dur) var(--ease) both; }
+.reveal-lines li.roll-grid-row { border-bottom: 0; }
+.roll-grid { margin-top: var(--s2); }
+.roll-grid tr.out { opacity: 0.55; }
+.roll-grid tr.out td:first-child { text-decoration: line-through; }
+.roll-grid td { white-space: nowrap; }
 .reveal-lines li.group { font-weight: 800; color: var(--muted); border-bottom: 0; padding-top: var(--s2); }
 .stat-table tbody tr.selected:nth-child(n) td { background: var(--accent-soft); }
 .stat-table.market tbody tr { cursor: pointer; }

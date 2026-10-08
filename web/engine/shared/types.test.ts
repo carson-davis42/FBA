@@ -135,8 +135,10 @@ describe('season schemas', () => {
     };
     expect(AllStarFile.safeParse(empty).success).toBe(true);
     const game = {
-      teams: [0, 1], scores: [7, 5], rollOff: null, winner: 0,
-      rolls: [[{ team: 0, playerId: 'p00001', dice: [3, 4] }, { team: 1, playerId: 'p00002', dice: [2, 3] }]],
+      teams: [0, 1], scores: [7, 5], ot: 0, winner: 0,
+      rosters: [[{ playerId: 'p00001', position: 'PG', rating: 70 }], [{ playerId: 'p00002', position: 'PG', rating: 70 }]],
+      plays: [[0, 0, 0, 2], [1, 0, 0, 3]],
+      lineups: [[['p00001'], ['p00002']]], points: [{ p00001: 7, p00002: 5 }],
     };
     const partial = {
       ...empty,
@@ -147,7 +149,7 @@ describe('season schemas', () => {
         winner: 'p00001',
         rounds: [{ players: ['p00001'], rolls: { p00001: [[1, 2], [3, 4], [5, 6]] }, totals: { p00001: 21 }, advanced: ['p00001'], rollOffs: [] }],
       },
-      asg: { game, mvp: 'p00001', mvpRollOff: { ids: ['p00001', 'p00003'], rounds: [{ p00001: [6, 6], p00003: [1, 1] }] } },
+      asg: { game, mvp: 'p00001' },
     };
     expect(AllStarFile.safeParse(partial).success).toBe(true);
     expect(AllStarFile.safeParse({ ...partial, asgDraft: { first: 2, picks: [] } }).success).toBe(false);
@@ -644,12 +646,11 @@ describe('Part 3a history schemas', () => {
       expect(shape.safeParse({ ...champ, finalsMvp: null }).success).toBe(true);
       expect(shape.safeParse(champ).success).toBe(true);
     });
-    it('lets the ysg carry an mvp and a roll-off', () => {
+    it('requires the ysg to name an mvp, and has no roll-off for it', () => {
       const ysg = AllStarFile.shape.ysg.unwrap();
       expect(ysg.shape.mvp.safeParse('p00001').success).toBe(true);
-      expect(ysg.shape.mvp.safeParse(undefined).success).toBe(true);
-      expect(ysg.shape.mvpRollOff.safeParse(null).success).toBe(true);
-      expect(ysg.shape.mvpRollOff.safeParse(undefined).success).toBe(true);
+      expect(ysg.shape.mvp.safeParse(undefined).success).toBe(false);
+      expect('mvpRollOff' in ysg.shape).toBe(false);
     });
   });
 

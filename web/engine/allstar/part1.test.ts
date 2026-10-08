@@ -77,9 +77,9 @@ describe('selections', () => {
 });
 
 describe('ASG draft', () => {
-  it('alternates from the coin-flip winner and makes the first 4 picks complete the starters', () => {
+  it('is a snake draft from the coin-flip winner and makes the first 4 picks complete the starters', () => {
     let doc = ok(startAsgDraft(selected(), seq(0)));
-    expect(doc.asgDraft).toEqual({ first: 0, picks: [] });
+    expect(doc.asgDraft).toEqual({ first: 0, snake: true, picks: [] });
     expect(asgOnClock(doc)).toBe(0);
     const captain0 = doc.selections!.captains[0];
     expect(asgNeeds(doc, 0, list)).not.toContain(posOf(captain0));
@@ -91,6 +91,21 @@ describe('ASG draft', () => {
     expect(a).toHaveLength(14);
     expect(b).toHaveLength(14);
     for (const team of [a, b]) expect(new Set(team.slice(0, 5).map(posOf)).size).toBe(5);
+  });
+});
+
+describe('ASG draft order', () => {
+  const clockAfter = (first: 0 | 1, snake: boolean | undefined, picks: number) => {
+    const doc = { ...ok(startAsgDraft(selected(), seq(0))) };
+    doc.asgDraft = { first, ...(snake === undefined ? {} : { snake }), picks: Array.from({ length: picks }, (_, i) => `x${i}`) };
+    return asgOnClock(doc);
+  };
+  it('goes A B B A A B B A … in a snake draft, from whoever won the flip', () => {
+    expect(Array.from({ length: 8 }, (_, k) => clockAfter(0, true, k))).toEqual([0, 1, 1, 0, 0, 1, 1, 0]);
+    expect(Array.from({ length: 8 }, (_, k) => clockAfter(1, true, k))).toEqual([1, 0, 0, 1, 1, 0, 0, 1]);
+  });
+  it('still reads a draft saved without the snake flag as alternating', () => {
+    expect(Array.from({ length: 6 }, (_, k) => clockAfter(0, undefined, k))).toEqual([0, 1, 0, 1, 0, 1]);
   });
 });
 

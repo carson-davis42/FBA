@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { asgAvailable, asgNeeds, asgOnClock, asgPick, asgTeams, startAsgDraft } from '../../engine/allstar/asgDraft';
+import { POSITIONS } from '../../engine/roster/rules';
 import { ACCENT_SIDES, teamLabel } from '../season/GameViews';
 import { StepCard } from './DiceReveal';
 import type { StepProps } from './types';
@@ -13,7 +14,7 @@ export function AsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
   if (!doc.asgDraft) {
     return (
       <StepCard title="All-Star draft">
-        <p className="muted">A coin flip decides which captain picks first; then they alternate. Each team's first 4 picks plus its captain must cover every position.</p>
+        <p className="muted">A coin flip decides which captain picks first; then it is a snake draft (A B B A A B …). Each team's first 4 picks plus its captain must cover every position.</p>
         {!readOnly && <button className="btn primary" disabled={saving} onClick={() => save(startAsgDraft(doc, Math.random))}>Coin flip</button>}
       </StepCard>
     );
@@ -22,6 +23,9 @@ export function AsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
   const clock = asgOnClock(doc);
   const available = asgAvailable(doc, list);
   const chosen = available.find(p => p.playerId === selected);
+  /** A team's players by position (PG to C), then in the order picked; the captain is pick 0 and the first five are the starters. */
+  const rosterRows = (ids: string[]) => ids.map((id, k) => ({ id, k }))
+    .sort((a, b) => POSITIONS.indexOf(pos(a.id) as never) - POSITIONS.indexOf(pos(b.id) as never) || a.k - b.k);
   const captain = (t: 0 | 1) => <PlayerName id={teams[t][0]} name={name(teams[t][0])} />;
   return (
     <div className="live-grid">
@@ -30,7 +34,7 @@ export function AsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
           <div key={t} className={`card headed asg-team${clock === t ? ' on-clock' : ''}`} style={ACCENT_SIDES[t]}>
             <h3>Team {captain(t)}{clock === t ? ' · on the clock' : ''}</h3>
             <div className="table-wrap"><table className="stat-table"><tbody>
-              {teams[t].map((id, k) => <tr key={id}><td className="rank">{k === 0 ? 'C' : k}</td><td><PlayerName id={id} name={name(id)} />{k < 5 ? ' · starter' : ''}</td><td>{pos(id)}</td></tr>)}
+              {rosterRows(teams[t]).map(({ id, k }) => <tr key={id}><td className="rank">{k === 0 ? 'C' : k}</td><td><PlayerName id={id} name={name(id)} />{k < 5 ? ' · starter' : ''}</td><td>{pos(id)}</td></tr>)}
             </tbody></table></div>
           </div>
         ))}

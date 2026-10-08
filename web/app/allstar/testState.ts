@@ -50,7 +50,7 @@ export function allStarSeasonState(stage: Stage): SeasonState {
   if (at >= 6) doc = ok(runDunk(ok(runFivePoint(doc, mulberry32(3))), mulberry32(4)));
   if (at >= 7) doc = ok(startYsgDraft(doc, mulberry32(5)));
   if (at >= 8) for (let k = 0; k < 20; k++) doc = ok(ysgPick(doc, ysgAvailable(doc, list)[0].playerId, list));
-  if (at >= 9) doc = ok(runYoungStar(doc, mulberry32(6)));
+  if (at >= 9) doc = ok(runYoungStar(doc, list, mulberry32(6)));
   if (at >= 10) doc = ok(runAsg(doc, list, mulberry32(7)));
   return { ...state, allstar: doc };
 }

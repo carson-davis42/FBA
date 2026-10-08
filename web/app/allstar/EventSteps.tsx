@@ -5,21 +5,28 @@ import type { AllStarResult } from '../../engine/allstar/common';
 import { runDunk, runFivePoint } from '../../engine/allstar/contests';
 import { total } from '../../engine/allstar/dice';
 import { runYoungStar, startYsgDraft, ysgAvailable, ysgOnClock, ysgPick, ysgTeams } from '../../engine/allstar/youngStars';
-import type { ContestResult, TeamGame } from '../../engine/shared/types';
+import type { ContestResult, ExhibitionGame } from '../../engine/shared/types';
 import { PlayerName } from '../components/PlayerName';
+import { POSITIONS } from '../../engine/roster/rules';
 import { ACCENT_SIDES } from '../season/GameViews';
 import { DiceReveal, type RevealLine, StaticLines, StepCard } from './DiceReveal';
+import { AsgGame, YsgTournament } from './ExhibitionViews';
 import type { StepProps } from './types';
 
 /** A piece of a reveal line: plain text, or a player (shown by name, linked to the profile). */
 export type Part = string | { id: string };
 
 /** One reveal line from its parts: the plain text for tests and logs, and the same line with player names linked. */
+/** Parts as one piece of markup: text as is, players as profile links. */
+export const partsNode = (name: (id: string) => string, parts: Part[]): ReactNode => (
+  <>{parts.map((p, i) => (typeof p === 'string' ? p : <PlayerName key={i} id={p.id} name={name(p.id)} />))}</>
+);
+
 export function line(name: (id: string) => string, group: string, parts: Part[], extra: Partial<RevealLine> = {}): RevealLine {
   return {
     group,
     text: parts.map(p => (typeof p === 'string' ? p : name(p.id))).join(''),
-    node: <>{parts.map((p, i) => (typeof p === 'string' ? p : <PlayerName key={i} id={p.id} name={name(p.id)} />))}</>,
+    node: partsNode(name, parts),
     ...extra,
   };
 }
@@ -29,40 +36,33 @@ export function contestLines(result: ContestResult, name: (id: string) => string
   const L = (group: string, parts: Part[], extra?: Partial<RevealLine>) => out.push(line(name, group, parts, extra));
   result.rounds.forEach((round, r) => {
     const group = `Round ${r + 1}`;
-    for (const id of round.players) {
-      round.rolls[id].forEach((dice, k) => L(group, [{ id }, ` roll ${k + 1}: ${total(dice)}`], { dice }));
+    // Everyone's first roll, then everyone's second, then their third.
+    const perPlayer = Math.max(...round.players.map(id => round.rolls[id].length));
+    for (let k = 0; k < perPlayer; k++) {
+      for (const id of round.players) {
+        const dice = round.rolls[id][k];
+        if (dice) L(`${group} · Roll ${k + 1}`, [{ id }, ` roll ${k + 1}: ${total(dice)}`], { dice, who: partsNode(name, [{ id }]), cell: { table: group, row: id, rowNode: <PlayerName id={id} name={name(id)} />, col: k, carry: r > 0 ? result.rounds[r - 1].totals[id] ?? 0 : 0 } });
+      }
     }
-    for (const ro of round.rollOffs) for (const rnd of ro.rounds) for (const [id, dice] of Object.entries(rnd)) L(group, ['Roll-off: ', { id }, ` ${total(dice)}`], { dice });
+    for (const ro of round.rollOffs) for (const rnd of ro.rounds) for (const [id, dice] of Object.entries(rnd)) L(group, ['Roll-off: ', { id }, ` ${total(dice)}`], { dice, who: partsNode(name, ['Roll-off · ', { id }]) });
     const standings = [...round.players].sort((a, b) => round.totals[b] - round.totals[a]);
     L(group, ['Totals: ', ...standings.flatMap((id, i): Part[] => [i > 0 ? ', ' : '', { id }, ` ${round.totals[id]}`])]);
-    L(group, ['Advancing: ', ...round.advanced.flatMap((id, i): Part[] => [i > 0 ? ', ' : '', { id }])]);
+    L(group, ['Advancing: ', ...round.advanced.flatMap((id, i): Part[] => [i > 0 ? ', ' : '', { id }])], { eliminated: { table: group, rows: round.players.filter(id => !round.advanced.includes(id)) } });
   });
   L('Result', ['Winner: ', { id: result.winner }]);
   return out;
 }
 
-export function teamGameLines(game: TeamGame, label: (team: number) => Part[], name: (id: string) => string, period: (i: number) => string): RevealLine[] {
-  const out: RevealLine[] = [];
-  const L = (group: string, parts: Part[], extra?: Partial<RevealLine>) => out.push(line(name, group, parts, extra));
-  game.rolls.forEach((rolls, i) => {
-    for (const r of rolls) {
-      L(period(i), [...label(r.team), ' · ', { id: r.playerId }, `: ${total(r.dice)}`], { dice: r.dice, side: game.teams.indexOf(r.team), value: total(r.dice) });
-    }
-  });
-  if (game.rollOff) for (const rnd of game.rollOff.rounds) for (const [id, dice] of Object.entries(rnd)) L('Roll-off', [...label(Number(id)), `: ${total(dice)}`], { dice });
-  L('Final', ['Final: ', ...label(game.teams[0]), ` ${game.scores[0]} – `, ...label(game.teams[1]), ` ${game.scores[1]} · `, ...label(game.winner), ' win']);
-  return out;
-}
-
-/** "Team X 150–140", or "Team X 144–144, won the roll-off" when a roll-off decided the game, as text and name parts. */
-export function gameResultParts(game: TeamGame, label: (team: number) => Part[]): Part[] {
+/** "Team X 150–140", or "Team X 150–148 (OT)" when overtime was needed, as text and name parts. */
+export function gameResultParts(game: ExhibitionGame, label: (team: number) => Part[]): Part[] {
   const side = game.teams.indexOf(game.winner);
-  return [...label(game.winner), ` ${game.scores[side]}–${game.scores[1 - side]}${game.rollOff ? ', won the roll-off' : ''}`];
+  const ot = game.ot === 0 ? '' : game.ot === 1 ? ' (OT)' : ` (${game.ot}OT)`;
+  return [...label(game.winner), ` ${game.scores[side]}–${game.scores[1 - side]}${ot}`];
 }
-export function gameResultText(game: TeamGame, label: (team: number) => string): string {
+export function gameResultText(game: ExhibitionGame, label: (team: number) => string): string {
   const side = game.teams.indexOf(game.winner);
-  const text = `${label(game.winner)} ${game.scores[side]}–${game.scores[1 - side]}`;
-  return game.rollOff ? `${text}, won the roll-off` : text;
+  const ot = game.ot === 0 ? '' : game.ot === 1 ? ' (OT)' : ` (${game.ot}OT)`;
+  return `${label(game.winner)} ${game.scores[side]}–${game.scores[1 - side]}${ot}`;
 }
 
 /** Runs an event once (pre-rolled), saves it immediately, then reveals the saved result. */
@@ -121,19 +121,25 @@ export function YsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
   const available = ysgAvailable(doc, list);
   const chosen = available.find(p => p.playerId === selected);
   const captain = (t: number) => name(doc.selections!.youngCaptains[t]);
+  const posOf = (id: string) => list.find(p => p.playerId === id)?.position;
+  const counts = (ids: string[]) => POSITIONS.map(pos => `${pos} ${ids.filter(id => posOf(id) === pos).length}`).join(' · ');
+  const picked = new Set(doc.ysgDraft.picks);
+  const left = doc.selections.youngStars.filter(id => !picked.has(id));
   return (
     <div className="live-grid">
       <div className="grid-2">
         {teams.map((ids, t) => (
           <div key={t} className={`card headed asg-team${clock === t ? ' on-clock' : ''}`} style={ACCENT_SIDES[t % 2]}>
             <h3>Team <PlayerName id={doc.selections!.youngCaptains[t]} name={captain(t)} />{clock === t ? ' · on the clock' : ''}</h3>
-            <ul>{ids.map(id => <li key={id}><PlayerName id={id} name={name(id)} /> · {list.find(p => p.playerId === id)?.position}</li>)}</ul>
+            <p className="muted pos-counts" aria-label={`Team ${captain(t)} positions`}>{counts(ids)}</p>
+            <ul>{ids.map(id => <li key={id}><PlayerName id={id} name={name(id)} /> · {posOf(id)}</li>)}</ul>
           </div>
         ))}
       </div>
       {clock !== null && !readOnly ? (
         <div className="card headed">
           <h3>Available · Team {captain(clock)}</h3>
+          <p className="muted pos-counts" aria-label="Young-Stars left by position">Left to draft ({left.length}): {counts(left)}</p>
           <div className="table-wrap tall">
           <table className="stat-table market" aria-label="Available Young-Stars">
             <thead><tr><th>Player</th><th>Pos</th><th className="n">Rtg</th></tr></thead>
@@ -157,51 +163,27 @@ export function YsgDraftStep({ state, doc, list, readOnly, saving, save }: StepP
   );
 }
 
-export function ysgLines(doc: NonNullable<StepProps['doc']>, name: (id: string) => string): RevealLine[] {
-  const ysg = doc.ysg!;
-  const label = (t: number): Part[] => ['Team ', { id: doc.selections!.youngCaptains[t] }];
-  const games: [string, TeamGame][] = [['Semifinal 1', ysg.semis[0]], ['Semifinal 2', ysg.semis[1]], ['Final', ysg.final]];
-  return [
-    ...games.flatMap(([title, g]) => teamGameLines(g, label, name, i => `${title} · round ${i + 1}`).map(l => ({
-      ...l,
-      side: undefined,
-      group: l.group === 'Final' || l.group === 'Roll-off' ? `${title} · ${l.group.toLowerCase()}` : l.group,
-      bare: l.group === 'Final' || undefined,
-    }))),
-    line(name, 'Champions', ['Champions: ', ...label(ysg.champion)], { bare: true }),
-    ...(ysg.mvp ? [line(name, 'MVP', ['YSG MVP: ', { id: ysg.mvp }], { bare: true })] : []),
-  ];
-}
-
 export function YsgStep(props: StepProps) {
   const { state, doc, list, readOnly, saving } = props;
   const ev = useEvent(props);
   if (!doc) return null;
   const name = (id: string) => list.find(p => p.playerId === id)?.name ?? state.players.players[id]?.name ?? id;
   const T = 'Young-Star tournament';
-  if (ev.status === 'revealing' && ev.pending) return <StepCard title={T}><DiceReveal lines={ysgLines(ev.pending.doc, name)} onFinished={ev.onFinished} busy={saving} /></StepCard>;
-  if (doc.ysg) return <StepCard title={T}><StaticLines lines={ysgLines(doc, name)} /></StepCard>;
+  if (ev.status === 'revealing' && ev.pending) return <StepCard title={T}><YsgTournament state={state} doc={ev.pending.doc} name={name} reveal onAllDone={ev.onFinished} /></StepCard>;
+  if (doc.ysg) return <StepCard title={T}><YsgTournament state={state} doc={doc} name={name} reveal={false} onAllDone={ev.onFinished} /></StepCard>;
   if (ev.status === 'failed') return <StepCard title={T}><button className="btn primary" disabled={saving} onClick={ev.retry}>Retry save</button></StepCard>;
   if (readOnly) return <StepCard title={T}><p className="muted">Not played yet.</p></StepCard>;
-  return <StepCard title={T}><button className="btn primary" disabled={saving} onClick={() => ev.run(runYoungStar(doc, Math.random))}>Run the Young-Star tournament</button></StepCard>;
-}
-
-function asgLines(doc: NonNullable<StepProps['doc']>, name: (id: string) => string): RevealLine[] {
-  const teams = asgTeams(doc);
-  const label = (t: number): Part[] => ['Team ', { id: teams[t][0] }];
-  return [...teamGameLines(doc.asg!.game, label, name, i => `Q${i + 1}`), line(name, 'MVP', ['MVP: ', { id: doc.asg!.mvp }])];
+  return <StepCard title={T}><button className="btn primary" disabled={saving} onClick={() => ev.run(runYoungStar(doc, list, Math.random))}>Run the Young-Star tournament</button></StepCard>;
 }
 
 export function AsgStep(props: StepProps) {
-  const { doc, list, readOnly, saving } = props;
+  const { state, doc, list, readOnly, saving } = props;
   const ev = useEvent(props);
   if (!doc) return null;
-  const name = (id: string) => list.find(p => p.playerId === id)?.name ?? id;
-  const teams = asgTeams(doc);
-  const sides = [`Team ${name(teams[0][0])}`, `Team ${name(teams[1][0])}`];
+  const name = (id: string) => list.find(p => p.playerId === id)?.name ?? state.players.players[id]?.name ?? id;
   const T = 'All-Star Game';
-  if (ev.status === 'revealing' && ev.pending) return <StepCard title={T}><DiceReveal lines={asgLines(ev.pending.doc, name)} sides={sides} onFinished={ev.onFinished} busy={saving} /></StepCard>;
-  if (doc.asg) return <StepCard title={T}><StaticLines lines={asgLines(doc, name)} /></StepCard>;
+  if (ev.status === 'revealing' && ev.pending) return <StepCard title={T}><AsgGame state={state} doc={ev.pending.doc} name={name} reveal onAllDone={ev.onFinished} /></StepCard>;
+  if (doc.asg) return <StepCard title={T}><AsgGame state={state} doc={doc} name={name} reveal={false} onAllDone={ev.onFinished} /></StepCard>;
   if (ev.status === 'failed') return <StepCard title={T}><button className="btn primary" disabled={saving} onClick={ev.retry}>Retry save</button></StepCard>;
   if (readOnly) return <StepCard title={T}><p className="muted">Not played yet.</p></StepCard>;
   return <StepCard title={T}><button className="btn primary" disabled={saving} onClick={() => ev.run(runAsg(doc, list, Math.random))}>Play the All-Star Game</button></StepCard>;

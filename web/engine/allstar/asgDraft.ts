@@ -9,24 +9,26 @@ export function startAsgDraft(doc: AllStarFile, rng: Rng): AllStarResult {
   if (!doc.selections) return allStarFail(['Save the selections first']);
   if (doc.asgDraft) return allStarFail(['The All-Star draft has already started']);
   const first = randInt(rng, 0, 1) as 0 | 1;
-  return { ok: true, doc: { ...doc, asgDraft: { first, picks: [] } }, label: 'Start All-Star draft (coin flip)' };
+  return { ok: true, doc: { ...doc, asgDraft: { first, snake: true, picks: [] } }, label: 'Start All-Star draft (coin flip)' };
 }
 
-const teamOfPick = (first: 0 | 1, k: number): 0 | 1 => ((first + k) % 2) as 0 | 1;
+/** Who makes pick k: the captains alternate, or (a snake draft) reverse every round: A B B A A B B A … */
+const teamOfPick = (first: 0 | 1, k: number, snake = false): 0 | 1 =>
+  ((first + (snake ? (k % 2) ^ (Math.floor(k / 2) % 2) : k)) % 2) as 0 | 1;
 
 /** Each team's members in draft order: its captain first, then its picks. */
 export function asgTeams(doc: AllStarFile): [string[], string[]] {
   const captains = doc.selections?.captains ?? [];
   const teams: [string[], string[]] = [captains[0] ? [captains[0]] : [], captains[1] ? [captains[1]] : []];
   const d = doc.asgDraft;
-  d?.picks.forEach((id, k) => teams[teamOfPick(d.first, k)].push(id));
+  d?.picks.forEach((id, k) => teams[teamOfPick(d.first, k, d.snake)].push(id));
   return teams;
 }
 
 export function asgOnClock(doc: AllStarFile): 0 | 1 | null {
   const d = doc.asgDraft;
   if (!d || d.picks.length >= ASG_PICKS) return null;
-  return teamOfPick(d.first, d.picks.length);
+  return teamOfPick(d.first, d.picks.length, d.snake);
 }
 
 /** Positions a team must still fill with its first 4 picks so captain + those picks are one per position. */
