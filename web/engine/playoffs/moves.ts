@@ -1,7 +1,7 @@
 import { leagueRefRating } from '../awards/defense';
 import { leagueStepProblem, toGameResult } from '../season/moves';
 import type { SimGame } from '../season/sim';
-import { PLAYOFF_SEEDS, records, SEASON_LENGTH, standings, type Standings } from '../season/standings';
+import { PLAYOFF_SEEDS, records, seasonLength, standings, type Standings } from '../season/standings';
 import { PAUSE_LABEL, playerName, seasonFail, seasonOver, type SeasonResult, type SeasonState } from '../season/state';
 import type { PlayoffGame, PlayoffsFile } from '../shared/types';
 import { advance, buildBracket, finalId, FINALS, hostOf } from './bracket';
@@ -14,7 +14,7 @@ const LEAGUE_NAME = { fba: 'FBA', fbad2: 'D2' } as const;
 
 export function seasonStandings(state: SeasonState): Standings {
   const teams = state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group }));
-  return standings(state.league, teams, state.results?.games ?? [], SEASON_LENGTH[state.league], state.playoffs);
+  return standings(state.league, teams, state.results?.games ?? [], seasonLength(state.league, teams), state.playoffs);
 }
 
 /** Each group's top 8 from the current standings, with the notes for ties that involve them. */

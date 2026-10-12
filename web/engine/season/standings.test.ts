@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { GameResult } from '../shared/types';
-import { betterThan, markerFor, standings, type TeamRecord } from './standings';
+import { betterThan, markerFor, seasonLength, standings, type TeamRecord } from './standings';
 
 const rec = (teamId: string, group: string, w: number, l: number, extra: Partial<TeamRecord> = {}): TeamRecord => ({
   teamId, group, w, l, confW: 0, confL: 0, pf: 0, pa: 0, h2h: new Map(), log: [], ...extra,
@@ -67,5 +67,18 @@ describe('standings', () => {
     expect(s.groups.map(x => x.group)).toEqual(['PL', 'WL']);
     // Each group here has a single team, trivially clinching first place.
     expect(s.groups.every(x => x.rows.every(r => r.marker === '*'))).toBe(true);
+  });
+});
+
+describe('seasonLength', () => {
+  const league = (perGroup: number) => ['E', 'W'].flatMap(g => Array.from({ length: perGroup }, (_, i) => ({ teamId: `${g}${i}`, group: g })));
+  it('matches the 15-per-conference season (86 games, 56 in conference)', () => {
+    expect(seasonLength('fba', league(15))).toEqual({ games: 86, confGames: 56 });
+  });
+  it('is 92 and 60 for 16 per conference', () => {
+    expect(seasonLength('fba', league(16))).toEqual({ games: 92, confGames: 60 });
+  });
+  it('is 30 for a 16-team D2 league', () => {
+    expect(seasonLength('fbad2', Array.from({ length: 16 }, (_, i) => ({ teamId: `D${i}`, group: 'PL' })))).toEqual({ games: 30, confGames: 30 });
   });
 });

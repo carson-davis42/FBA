@@ -1,4 +1,5 @@
 import type { PickCondition, RosterEntry, RostersFile } from '../shared/types';
+import { lotterySizeFor } from '../shared/league';
 import { RETIRE_AGE } from './rules';
 import type { RosterState } from './state';
 import type { TradeAsset } from './trade';
@@ -9,7 +10,6 @@ import type { TradeAsset } from './trade';
  */
 const PICK_TOP = 40;
 const PICK_DECAY = 0.93;
-const AVERAGE_SLOT = 15.5;
 
 /** Rating drives value steeply (a 90 is worth over twice an 80), so one star can outweigh two good players. */
 const ratingValue = (rating: number): number => Math.max(0, rating - 60) ** 2 / 10;
@@ -47,17 +47,18 @@ const slotValue = (slot: number): number => PICK_TOP * PICK_DECAY ** (slot - 1);
  */
 export function pickValue(originalTeam: string, pickSeason: number, condition: PickCondition, season: number, ranks: Map<string, number>, receiver?: string): number {
   const teams = Math.max(ranks.size, 2);
+  const average = (ranks.size + 1) / 2;
   const years = Math.max(1, pickSeason - season);
   const drift = Math.min(1, 0.25 * (years - 1));
   const project = (team: string): number => {
-    const rank = ranks.get(team) ?? AVERAGE_SLOT;
-    return rank + (AVERAGE_SLOT - rank) * drift;
+    const rank = ranks.get(team) ?? average;
+    return rank + (average - rank) * drift;
   };
   const slot = project(originalTeam);
   switch (condition.kind) {
     case 'none': return slotValue(slot);
     case 'top': case 'lottery': {
-      const n = condition.kind === 'top' ? condition.n : Math.min(14, teams);
+      const n = condition.kind === 'top' ? condition.n : Math.min(lotterySizeFor(teams), teams);
       // Conveys only when the pick lands below the protected slots, with about half a draft's worth of uncertainty either way.
       const conveys = Math.max(0.05, Math.min(1, (slot - n) / (teams / 2) + 0.5));
       return slotValue(slot) * conveys;

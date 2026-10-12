@@ -89,4 +89,9 @@ describe('assessTrade', () => {
     expect(gift.verdict).toBe('lopsided');
     expect(gift.favoured).toBe('CAR');
   });
+
+  it('protects up to slot 16 in a 32-team league', () => {
+    const ranks32 = new Map(Array.from({ length: 32 }, (_, i) => [`T${i + 1}`, i + 1] as const));
+    expect(pickValue('T16', 81, { kind: 'lottery' }, 80, ranks32)).toBeCloseTo(pickValue('T16', 81, { kind: 'top', n: 16 }, 80, ranks32));
+  });
 });

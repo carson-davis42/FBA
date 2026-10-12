@@ -1,6 +1,6 @@
 import type { PickCondition, PickObligation } from '../shared/types';
 
-export const LOTTERY_SIZE = 14;
+export { lotterySizeFor } from '../shared/league';
 
 export function pickLabel(ob: PickObligation): string {
   const c = ob.condition;

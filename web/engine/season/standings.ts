@@ -1,14 +1,24 @@
 import type { GameResult, PlayoffsFile } from '../shared/types';
 import { powerRankings } from '../playoffs/ranker';
 import { orderTeams, type TieNote } from '../playoffs/tiebreak';
-import type { ScheduleTeamInfo, SeasonLeague } from './schedule';
+import { PLAYOFF_SEEDS } from '../shared/league';
+import { PAIRINGS, type ScheduleTeamInfo, type SeasonLeague } from './schedule';
+
+export { PLAYOFF_SEEDS };
 
 export const GROUP_ORDER: Record<SeasonLeague, string[]> = { fba: ['E', 'W'], fbad2: ['PL', 'WL', 'UL', 'IL'] };
-export const PLAYOFF_SEEDS = 8;
-export const SEASON_LENGTH: Record<SeasonLeague, { games: number; confGames: number }> = {
-  fba: { games: 86, confGames: 56 },
-  fbad2: { games: 30, confGames: 30 },
-};
+
+/** Games per team and conference games per team, from the real group sizes (each pairing is played home and away). */
+export function seasonLength(league: SeasonLeague, teams: ScheduleTeamInfo[]): { games: number; confGames: number } {
+  const { sameGroup, otherGroup } = PAIRINGS[league];
+  const size = new Map<string | null, number>();
+  for (const t of teams) size.set(t.group, (size.get(t.group) ?? 0) + 1);
+  const [mine = 1] = [...size.values()];
+  const same = Math.max(0, mine - 1);
+  const other = teams.length - mine;
+  const confGames = same * sameGroup * 2;
+  return { games: confGames + other * otherGroup * 2, confGames };
+}
 
 export interface TeamRecord {
   teamId: string;
@@ -249,7 +259,7 @@ function toRows(league: SeasonLeague, group: string, ordered: TeamRecord[], len:
   }));
 }
 
-export function standings(league: SeasonLeague, teams: ScheduleTeamInfo[], games: GameResult[], len = SEASON_LENGTH[league], playoffs: PlayoffsFile | null = null): Standings {
+export function standings(league: SeasonLeague, teams: ScheduleTeamInfo[], games: GameResult[], len = seasonLength(league, teams), playoffs: PlayoffsFile | null = null): Standings {
   const recs = records(teams, games);
   const better = (a: TeamRecord, b: TeamRecord) => betterThan(league, a, b);
   let ranked: string[] | null = null;

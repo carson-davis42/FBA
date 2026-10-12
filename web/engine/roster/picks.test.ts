@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { PickCondition, PickObligation } from '../shared/types';
-import { futureSeasons, isProtected, LOTTERY_SIZE, nextPriority, pickLabel, resolvePicks, shrink } from './picks';
+import { futureSeasons, isProtected, lotterySizeFor, nextPriority, pickLabel, resolvePicks, shrink } from './picks';
 
 const ob = (over: Partial<PickObligation>): PickObligation => ({
   id: 'x', season: 80, originalTeam: 'DCB', owner: 'OV', condition: { kind: 'none' }, originalCondition: { kind: 'none' },
@@ -29,11 +29,11 @@ describe('labels and conditions', () => {
   });
 
   it('checks protection by slot', () => {
-    expect(isProtected({ kind: 'top', n: 9 }, 9, LOTTERY_SIZE)).toBe(true);
-    expect(isProtected({ kind: 'top', n: 9 }, 10, LOTTERY_SIZE)).toBe(false);
-    expect(isProtected({ kind: 'lottery' }, 14, LOTTERY_SIZE)).toBe(true);
-    expect(isProtected({ kind: 'lottery' }, 15, LOTTERY_SIZE)).toBe(false);
-    expect(isProtected({ kind: 'none' }, 1, LOTTERY_SIZE)).toBe(false);
+    expect(isProtected({ kind: 'top', n: 9 }, 9, lotterySizeFor(30))).toBe(true);
+    expect(isProtected({ kind: 'top', n: 9 }, 10, lotterySizeFor(30))).toBe(false);
+    expect(isProtected({ kind: 'lottery' }, 14, lotterySizeFor(30))).toBe(true);
+    expect(isProtected({ kind: 'lottery' }, 15, lotterySizeFor(30))).toBe(false);
+    expect(isProtected({ kind: 'none' }, 1, lotterySizeFor(30))).toBe(false);
   });
 
   it('shrinks protection by one spot per roll', () => {
@@ -43,7 +43,7 @@ describe('labels and conditions', () => {
       [{ kind: 'top', n: 1 }, { kind: 'none' }],
       [{ kind: 'none' }, { kind: 'none' }],
     ];
-    for (const [from, to] of cases) expect(shrink(from, LOTTERY_SIZE)).toEqual(to);
+    for (const [from, to] of cases) expect(shrink(from, lotterySizeFor(30))).toEqual(to);
   });
 
   it('lists future seasons and next priority', () => {
@@ -55,7 +55,7 @@ describe('labels and conditions', () => {
 
 describe('resolvePicks', () => {
   it('keeps a protected pick and rolls both obligations with smaller protection', () => {
-    const r = resolvePicks({ season: 80, order: orderWithDcbAt(5), lotterySize: LOTTERY_SIZE, obligations: dcb() });
+    const r = resolvePicks({ season: 80, order: orderWithDcbAt(5), lotterySize: lotterySizeFor(30), obligations: dcb() });
     expect(r.picks.find(p => p.originalTeam === 'DCB')).toEqual({ slot: 5, originalTeam: 'DCB', owner: 'DCB', obligationId: null, flag: null });
     expect(r.obligations.map(o => [o.id, o.season, o.condition, o.priority, o.rolls])).toEqual([
       ['ov', 81, { kind: 'top', n: 8 }, 1, [{ fromSeason: 80, reason: 'protected' }]],
@@ -64,7 +64,7 @@ describe('resolvePicks', () => {
   });
 
   it('conveys to the first unprotected obligation and rolls the rest as already owed', () => {
-    const r = resolvePicks({ season: 80, order: orderWithDcbAt(12), lotterySize: LOTTERY_SIZE, obligations: dcb() });
+    const r = resolvePicks({ season: 80, order: orderWithDcbAt(12), lotterySize: lotterySizeFor(30), obligations: dcb() });
     expect(r.picks.find(p => p.originalTeam === 'DCB')).toMatchObject({ owner: 'OV', obligationId: 'ov' });
     expect(r.obligations).toHaveLength(1);
     expect(r.obligations[0]).toMatchObject({ id: 'ny', season: 81, condition: { kind: 'top', n: 10 }, rolls: [{ fromSeason: 80, reason: 'already-owed' }] });
@@ -72,45 +72,45 @@ describe('resolvePicks', () => {
 
   it('skips a protected first obligation and conveys to the next one', () => {
     const obligations = [ob({ id: 'a', owner: 'OV', condition: { kind: 'top', n: 12 }, priority: 1 }), ob({ id: 'b', owner: 'NY', condition: { kind: 'top', n: 9 }, priority: 2 })];
-    const r = resolvePicks({ season: 80, order: orderWithDcbAt(10), lotterySize: LOTTERY_SIZE, obligations });
+    const r = resolvePicks({ season: 80, order: orderWithDcbAt(10), lotterySize: lotterySizeFor(30), obligations });
     expect(r.picks.find(p => p.originalTeam === 'DCB')).toMatchObject({ owner: 'NY', obligationId: 'b' });
     expect(r.obligations[0]).toMatchObject({ id: 'a', season: 81, condition: { kind: 'top', n: 11 }, rolls: [{ fromSeason: 80, reason: 'protected' }] });
   });
 
   it('turns lottery protection into top 13 when it rolls', () => {
-    const r = resolvePicks({ season: 81, order: orderWithDcbAt(3), lotterySize: LOTTERY_SIZE, obligations: [ob({ season: 81, condition: { kind: 'lottery' } })] });
+    const r = resolvePicks({ season: 81, order: orderWithDcbAt(3), lotterySize: lotterySizeFor(30), obligations: [ob({ season: 81, condition: { kind: 'lottery' } })] });
     expect(r.obligations[0]).toMatchObject({ season: 82, condition: { kind: 'top', n: 13 } });
   });
 
   it('queues rolled obligations after ones already owed next season', () => {
     const obligations = [...dcb(), ob({ id: 'next', season: 81, owner: 'MEM', priority: 1 })];
-    const r = resolvePicks({ season: 80, order: orderWithDcbAt(5), lotterySize: LOTTERY_SIZE, obligations });
+    const r = resolvePicks({ season: 80, order: orderWithDcbAt(5), lotterySize: lotterySizeFor(30), obligations });
     expect(r.obligations.filter(o => o.season === 81).map(o => [o.id, o.priority])).toEqual([['next', 1], ['ov', 2], ['ny', 3]]);
   });
 
   it('gives the better pick of a swap to the named team', () => {
     const swap = ob({ id: 's', originalTeam: 'DCB', owner: 'SAS', condition: { kind: 'swap', otherTeam: 'SAS', betterTo: 'SAS' } });
-    const r = resolvePicks({ season: 80, order: ['DCB', 'X', 'SAS'], lotterySize: LOTTERY_SIZE, obligations: [swap] });
+    const r = resolvePicks({ season: 80, order: ['DCB', 'X', 'SAS'], lotterySize: lotterySizeFor(30), obligations: [swap] });
     expect(r.picks.map(p => [p.slot, p.originalTeam, p.owner])).toEqual([[1, 'DCB', 'SAS'], [2, 'X', 'X'], [3, 'SAS', 'DCB']]);
     expect(r.obligations).toEqual([]);
   });
 
   it('flags custom conditions and leaves them unresolved', () => {
     const custom = ob({ id: 'c', condition: { kind: 'custom', text: 'if DCB wins the title' } });
-    const r = resolvePicks({ season: 80, order: orderWithDcbAt(4), lotterySize: LOTTERY_SIZE, obligations: [custom] });
+    const r = resolvePicks({ season: 80, order: orderWithDcbAt(4), lotterySize: lotterySizeFor(30), obligations: [custom] });
     expect(r.picks.find(p => p.originalTeam === 'DCB')).toMatchObject({ owner: 'DCB', flag: 'Custom condition: decide manually' });
     expect(r.obligations).toEqual([custom]);
   });
 
   it('leaves other seasons untouched', () => {
     const later = ob({ id: 'later', season: 82 });
-    const r = resolvePicks({ season: 80, order: orderWithDcbAt(1), lotterySize: LOTTERY_SIZE, obligations: [later] });
+    const r = resolvePicks({ season: 80, order: orderWithDcbAt(1), lotterySize: lotterySizeFor(30), obligations: [later] });
     expect(r.obligations).toEqual([later]);
   });
 
   it('throws when an obligation names a team that is not in the draft order', () => {
-    expect(() => resolvePicks({ season: 80, order: orderWithDcbAt(1), lotterySize: LOTTERY_SIZE, obligations: [ob({ id: 'z', originalTeam: 'ZZZ' })] })).toThrow(/ZZZ/);
+    expect(() => resolvePicks({ season: 80, order: orderWithDcbAt(1), lotterySize: lotterySizeFor(30), obligations: [ob({ id: 'z', originalTeam: 'ZZZ' })] })).toThrow(/ZZZ/);
     const swap = ob({ id: 's', originalTeam: 'DCB', condition: { kind: 'swap', otherTeam: 'ZZZ', betterTo: 'DCB' } });
-    expect(() => resolvePicks({ season: 80, order: orderWithDcbAt(1), lotterySize: LOTTERY_SIZE, obligations: [swap] })).toThrow(/ZZZ/);
+    expect(() => resolvePicks({ season: 80, order: orderWithDcbAt(1), lotterySize: lotterySizeFor(30), obligations: [swap] })).toThrow(/ZZZ/);
   });
 });
