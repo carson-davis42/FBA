@@ -5,6 +5,7 @@ import { calendarProblem, type WritesResult } from '../season/moves';
 import type { ScheduleTeamInfo } from '../season/schedule';
 import { betterThan, javaOrder, records, standings } from '../season/standings';
 import { markStepDone } from '../shared/calendar';
+import { teamsInSeason, teamsJoining } from '../shared/teams';
 import type {
   CalendarFile, GameResult, LotteryFile, LotteryOdds, PicksFile, PlayoffsFile, ResultsFile, TeamsFile, TransactionsFile,
 } from '../shared/types';
@@ -14,14 +15,31 @@ export const LOTTERY_ODDS: Record<number, number[]> = {
   14: [14, 14, 14, 12.5, 10.5, 9, 7.5, 6, 4.5, 3, 2, 1.5, 1, 0.5],
 };
 
-export interface LotteryTeam { teamId: string; w: number; l: number }
+export interface LotteryTeam { teamId: string; w: number; l: number; expansion?: boolean }
 
-/** Odds per team, worst first. Teams tied on W-L share the average of their slots' odds. */
+const EXPANSION_PCT = 14;
+
+/**
+ * The pick-1 odds (percent), worst slot first, for `real` regular lottery teams plus `expansion` expansion teams.
+ * Expansion teams are tied at the top; the real teams share what is left on the real table's shape.
+ */
+export function oddsTable(real: number, expansion: number): number[] | null {
+  const base = LOTTERY_ODDS[real];
+  if (!base) return null;
+  if (expansion === 0) return base;
+  const scale = (100 - expansion * EXPANSION_PCT) / 100;
+  return [...Array<number>(expansion).fill(EXPANSION_PCT), ...base.map(p => Number((p * scale).toFixed(6)))];
+}
+
 export function lotteryOdds(teams: LotteryTeam[]): { ok: true; odds: LotteryOdds[] } | { ok: false; problem: string } {
-  const table = LOTTERY_ODDS[teams.length];
+  const exp = teams.filter(t => t.expansion);
+  const real = teams.filter(t => !t.expansion);
+  const table = oddsTable(real.length, exp.length);
   if (!table) return { ok: false, problem: `No lottery odds for a ${teams.length}-team lottery` };
-  const odds = teams.map((t, i) => ({ teamId: t.teamId, slot: i + 1, w: t.w, l: t.l, pct: table[i] }));
-  for (let i = 0; i < odds.length;) {
+  const ordered = [...exp, ...real];
+  const odds: LotteryOdds[] = ordered.map((t, i) => ({ teamId: t.teamId, slot: i + 1, w: t.w, l: t.l, pct: table[i] }));
+  // Ties share the average of their slots; expansion teams (the first exp.length rows) are never averaged with real teams.
+  for (let i = exp.length; i < odds.length;) {
     let j = i;
     while (j + 1 < odds.length && odds[j + 1].w === odds[i].w && odds[j + 1].l === odds[i].l) j++;
     const avg = table.slice(i, j + 1).reduce((a, b) => a + b, 0) / (j - i + 1);
@@ -72,12 +90,14 @@ export interface LotteryState {
 export const lotteryStepId = (season: number) => `s${season + 1}-fba-draft-lottery`;
 export const lotteryPath = (season: number) => `leagues/fba/S${season}/lottery.json`;
 
-const teamInfo = (s: LotteryState): ScheduleTeamInfo[] => s.teams.teams.map(t => ({ teamId: t.teamId, group: t.group }));
+/** The teams that played season n (the expansion teams, which join in n + 1, have no record). */
+const teamInfo = (s: LotteryState): ScheduleTeamInfo[] => teamsInSeason(s.teams, s.season).teams.map(t => ({ teamId: t.teamId, group: t.group }));
 
 /** The odds table from the final standings (the page shows it before the draw). */
 export function lotteryPreview(state: LotteryState): ReturnType<typeof lotteryOdds> {
   const rows = standings('fba', teamInfo(state), state.results.games, undefined, state.playoffs).lottery;
-  return lotteryOdds(rows.map(r => ({ teamId: r.teamId, w: r.w, l: r.l })));
+  const joining = teamsJoining(state.teams, state.season + 1).map(t => ({ teamId: t.teamId, w: 0, l: 0, expansion: true }));
+  return lotteryOdds([...joining, ...rows.map(r => ({ teamId: r.teamId, w: r.w, l: r.l }))]);
 }
 
 export function runLottery(state: LotteryState, rng: Rng, ctx: MoveContext): WritesResult {

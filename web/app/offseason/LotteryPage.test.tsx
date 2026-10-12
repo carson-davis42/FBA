@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mulberry32 } from '../../engine/d2/random';
 import { lotteryPath, runLottery, type LotteryState } from '../../engine/offseason/lottery';
-import { calendar, ctx, state } from '../../engine/offseason/testFixtures';
+import { calendar, ctx, state, teamsFile32 } from '../../engine/offseason/testFixtures';
 import type { LotteryFile } from '../../engine/shared/types';
 import { stubApi } from '../d2/testDocs';
 import { LotteryPage } from './LotteryPage';
@@ -47,6 +47,14 @@ describe('LotteryPage', () => {
     expect(within(rows[0]).getByText('0-29')).toBeTruthy();
     expect(within(rows[0]).getByText('14.0%')).toBeTruthy();
     expect(within(rows[13]).getByText('0.5%')).toBeTruthy();
+  });
+
+  it('labels the two expansion teams and shows 16 odds rows', async () => {
+    stubApi(docsFor(state({ teams: teamsFile32() })));
+    renderPage();
+    const rows = (await screen.findAllByRole('row')).slice(1);
+    expect(rows).toHaveLength(16);
+    expect(screen.getAllByText('Expansion')).toHaveLength(2);
   });
 
   it('runs the lottery as one batch of four documents', async () => {

@@ -1,4 +1,5 @@
 import { calendarFor } from '../shared/calendar';
+import { EXPANSION_TEAMS } from '../shared/expansion';
 import type { ClassYear, DraftFile, GameResult, LotteryFile, PickObligation, PicksFile, PlayersFile, PlayoffsFile, Position, RankingFile, RecruitingFile, RosterEntry, RostersFile, TeamsFile, TransactionsFile } from '../shared/types';
 import type { AdjustAgeState } from './adjustAge';
 import type { DraftBoardState } from './draftBoard';
@@ -12,6 +13,11 @@ export const teamsFile = (): TeamsFile => ({
   league: 'fba',
   teams: ids.map((teamId, i) => ({ teamId, name: teamId, abbr: teamId, group: i % 2 === 0 ? 'E' : 'W', logoFolder: null, badge: { bg: '#000', fg: '#fff' } })),
 });
+/** The 30-team fixture plus PHI and LAL (fromSeason 80), as teams.json holds them once the teams are added. */
+export const teamsFile32 = (): TeamsFile => {
+  const f = teamsFile();
+  return { ...f, teams: [...f.teams, ...EXPANSION_TEAMS] };
+};
 export const games = (): GameResult[] => {
   const out: GameResult[] = [];
   let n = 1;

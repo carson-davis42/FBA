@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
 import type { GameResult, PicksFile, TransactionsFile } from '../shared/types';
-import { draftOrder, drawLottery, LOTTERY_ODDS, lotteryOdds, lotteryPath, lotteryStepId, runLottery, type LotteryState } from './lottery';
-import { calendar, ctx, ob, playoffs, state } from './testFixtures';
+import { draftOrder, drawLottery, LOTTERY_ODDS, lotteryOdds, lotteryPath, lotteryPreview, lotteryStepId, oddsTable, runLottery, type LotteryState } from './lottery';
+import { calendar, ctx, ob, playoffs, state, teamsFile32 } from './testFixtures';
 
 const TABLE = LOTTERY_ODDS[14];
 const team = (i: number, w = 100 - i, l = i) => ({ teamId: `T${i}`, w, l });
@@ -122,5 +122,46 @@ describe('runLottery', () => {
     expect(obligations[0].rolls).toEqual([{ fromSeason: 80, reason: 'protected' }]);
     const lot = r.writes[0].doc as { picks: { originalTeam: string; owner: string }[] };
     expect(lot.picks.find(p => p.originalTeam === winner)?.owner).toBe(winner);
+  });
+});
+
+describe('16-team lottery with 2 expansion teams', () => {
+  const real = Array.from({ length: 14 }, (_, i) => team(i, i, 80 - i));
+  const exp = [{ teamId: 'PHI', w: 0, l: 0, expansion: true }, { teamId: 'LAL', w: 0, l: 0, expansion: true }];
+
+  it('derives the table: 14, 14, then the S74 table scaled to 72%', () => {
+    const t = oddsTable(14, 2)!;
+    expect(t).toHaveLength(16);
+    expect(t.slice(0, 2)).toEqual([14, 14]);
+    expect(t[2]).toBeCloseTo(10.08, 10);
+    expect(t[15]).toBeCloseTo(0.36, 10);
+    expect(t.reduce((a, b) => a + b, 0)).toBeCloseTo(100, 10);
+  });
+  it('puts the expansion teams in slots 1 and 2 even when listed last, and averages ties only among real teams', () => {
+    const r = lotteryOdds([...real, ...exp]);
+    if (!r.ok) throw new Error(r.problem);
+    expect(r.odds.slice(0, 2).map(o => [o.teamId, o.slot, o.pct])).toEqual([['PHI', 1, 14], ['LAL', 2, 14]]);
+    expect(r.odds[2]).toMatchObject({ teamId: 'T0', slot: 3 });
+    expect(r.odds.reduce((s, o) => s + o.pct, 0)).toBeCloseTo(100, 10);
+  });
+  it('has no table for 16 real teams yet', () => {
+    expect(lotteryOdds(Array.from({ length: 16 }, (_, i) => team(i)))).toEqual({ ok: false, problem: 'No lottery odds for a 16-team lottery' });
+  });
+});
+
+describe('runLottery with expansion teams in teams.json', () => {
+  it('draws 16 teams, orders 32 picks and ignores the expansion teams in S79 standings', () => {
+    const s = state({ teams: teamsFile32() });
+    const preview = lotteryPreview(s);
+    if (!preview.ok) throw new Error(preview.problem);
+    expect(preview.odds).toHaveLength(16);
+    expect(preview.odds.slice(0, 2).map(o => o.teamId)).toEqual(['PHI', 'LAL']);
+    const r = runLottery(s, mulberry32(7), ctx);
+    if (!r.ok) throw new Error(r.problems.join('; '));
+    const doc = r.writes.find(w => w.path === 'leagues/fba/S79/lottery.json')!.doc as { lottery: string[]; order: string[] };
+    expect(doc.lottery).toHaveLength(16);
+    expect(doc.order).toHaveLength(32);
+    expect(new Set(doc.order).size).toBe(32);
+    expect(doc.order[31]).toBe('T00');
   });
 });

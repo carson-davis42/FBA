@@ -26,7 +26,9 @@ export function LotteryPage() {
   const nameOf = (id: string) => state.teams.teams.find(t => t.teamId === id)?.name ?? id;
   const teamOf = (id: string) => {
     const t = state.teams.teams.find(x => x.teamId === id);
-    return t ? <TeamName team={t} season={state.season} /> : id;
+    return t
+      ? <><TeamName team={t} season={state.season} />{t.fromSeason === state.season + 1 && <Badge kind="current">Expansion</Badge>}</>
+      : id;
   };
   const title = <PageHeader kicker="Offseason" title={`S${state.season + 1} Draft Lottery`} />;
 
