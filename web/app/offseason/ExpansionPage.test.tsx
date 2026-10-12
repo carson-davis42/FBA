@@ -149,6 +149,35 @@ describe('ExpansionPage', () => {
     expect((log.batches[0].writes.find(w => w.path === expansionPath(80))!.doc as ExpansionFile).picks).toHaveLength(1);
   });
 
+  it('draft mode: Unlock protections is offered before the first pick and goes back to the protect phase', async () => {
+    const log = stubApi(draftDocs(file({ phase: 'draft' })));
+    renderPage();
+    fireEvent.click(await enabled('Unlock protections'));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    expect(log.batches[0].writes.map(w => w.path)).toEqual([expansionPath(80)]);
+    expect((log.batches[0].writes[0].doc as ExpansionFile).phase).toBe('protect');
+  });
+
+  it('draft mode: no Unlock protections once a pick has been made', async () => {
+    const picks = [{ n: 1, teamId: 'PHI', fromTeamId: 'A', playerId: 'p10001', position: 'PG' as const }];
+    stubApi(draftDocs(file({ phase: 'draft', picks })));
+    renderPage();
+    expect(await screen.findByText(/On the clock: pick 2/)).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Unlock protections' })).toBeNull();
+  });
+
+  it('protect mode: Lock protections shows the refusal when no legal 8 picks exist', async () => {
+    const protections: Record<string, string[]> = {};
+    for (const [t, ids] of Object.entries(expansionState().fba.teams)) {
+      if (['PHI', 'LAL'].includes(t)) continue;
+      protections[t] = ids.filter(e => e.position !== 'PG' && !e.restricted).map(e => e.playerId!);
+    }
+    stubApi(draftDocs(file({ protections })));
+    renderPage();
+    expect(await screen.findByText(/No legal sequence of 8 picks exists/)).toBeTruthy();
+    expect((screen.getByRole('button', { name: 'Lock protections' }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
   it('draft mode: a pick for a position the team holds is refused with its text and posts nothing', async () => {
     const s = expansionState();
     const phi = s.fba.teams.PHI.map(e => (e.position === 'PG'

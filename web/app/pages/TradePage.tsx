@@ -158,7 +158,7 @@ export function TradePage() {
                             <option value="swap">Pick swap</option>
                             <option value="custom">Custom</option>
                           </select>
-                          {opt.kind === 'top' && <input aria-label={`S${season} protected top`} type="number" min={1} max={29} value={opt.n} onChange={e => setOpt({ n: Number(e.target.value) })} />}
+                          {opt.kind === 'top' && <input aria-label={`S${season} protected top`} type="number" min={1} max={Math.max(1, teams.teams.length - 1)} value={opt.n} onChange={e => setOpt({ n: Number(e.target.value) })} />}
                           {opt.kind === 'swap' && (
                             <select aria-label={`S${season} better pick to`} value={opt.betterTo} onChange={e => setOpt({ betterTo: e.target.value })}>
                               <option value={from}>{from} gets better</option>

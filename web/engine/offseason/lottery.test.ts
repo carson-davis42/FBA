@@ -71,16 +71,16 @@ describe('draftOrder', () => {
 
 describe('runLottery', () => {
   it('writes the lottery, the picks, the transaction and the calendar', () => {
-    const r = runLottery(state(), mulberry32(3), ctx);
+    const r = runLottery(state({ teams: teamsFile32() }), mulberry32(3), ctx);
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     expect(r.writes.map(w => w.path)).toEqual([lotteryPath(79), 'leagues/fba/picks.json', 'leagues/fba/S79/transactions.json', 'calendar.json']);
     const lot = r.writes[0].doc as { locked: boolean; draftSeason: number; picks: unknown[]; lottery: string[]; order: string[] };
     expect(lot).toMatchObject({ locked: true, draftSeason: 80 });
-    expect(lot.picks).toHaveLength(30);
-    expect(lot.lottery).toHaveLength(14);
-    expect(lot.order).toHaveLength(30);
-    expect(lot.order[29]).toBe('T00');
+    expect(lot.picks).toHaveLength(32);
+    expect(lot.lottery).toHaveLength(16);
+    expect(lot.order).toHaveLength(32);
+    expect(lot.order[31]).toBe('T00');
     const tx = r.writes[2].doc as TransactionsFile;
     expect(tx.entries).toHaveLength(1);
     expect(tx.entries[0]).toMatchObject({ type: 'lottery', teams: [lot.lottery[0]], lines: [`S80 Draft Lottery: ${lot.lottery[0]} wins the first pick`] });
@@ -90,31 +90,31 @@ describe('runLottery', () => {
 
   it('refuses off the calendar step, a second run, and unfinished playoffs', () => {
     const early = { ...calendar(), steps: calendar().steps.map(s => ({ ...s, done: false })) };
-    const a = runLottery(state({ calendar: early }), mulberry32(1), ctx);
+    const a = runLottery(state({ teams: teamsFile32(), calendar: early }), mulberry32(1), ctx);
     expect(a.ok).toBe(false);
     if (!a.ok) expect(a.problems[0]).toContain('S80 FBA Draft Lottery step');
-    const done = runLottery(state(), mulberry32(1), ctx);
+    const done = runLottery(state({ teams: teamsFile32() }), mulberry32(1), ctx);
     if (!done.ok) throw new Error('setup');
-    const b = runLottery(state({ lottery: done.writes[0].doc as LotteryState['lottery'] }), mulberry32(1), ctx);
+    const b = runLottery(state({ teams: teamsFile32(), lottery: done.writes[0].doc as LotteryState['lottery'] }), mulberry32(1), ctx);
     expect(b).toEqual({ ok: false, problems: ['The lottery has already been run'] });
-    const c = runLottery(state({ playoffs: null }), mulberry32(1), ctx);
+    const c = runLottery(state({ teams: teamsFile32(), playoffs: null }), mulberry32(1), ctx);
     expect(c).toEqual({ ok: false, problems: ["The FBA playoffs aren't finished"] });
-    const d = runLottery(state({ playoffs: { ...playoffs(), outcome: null } }), mulberry32(1), ctx);
+    const d = runLottery(state({ teams: teamsFile32(), playoffs: { ...playoffs(), outcome: null } }), mulberry32(1), ctx);
     expect(d).toEqual({ ok: false, problems: ["The FBA playoffs aren't finished"] });
   });
 
   it('fails cleanly when a pick names an unknown team', () => {
-    const r = runLottery(state({ picks: { league: 'fba', obligations: [ob({ originalTeam: 'ZZZ' })] } as PicksFile }), mulberry32(1), ctx);
+    const r = runLottery(state({ teams: teamsFile32(), picks: { league: 'fba', obligations: [ob({ originalTeam: 'ZZZ' })] } as PicksFile }), mulberry32(1), ctx);
     expect(r.ok).toBe(false);
     if (!r.ok) expect(r.problems[0]).toMatch(/ZZZ/);
   });
 
   it('rolls a top-1 protected pick on the lottery winner to the next season', () => {
-    const first = runLottery(state(), mulberry32(3), ctx);
+    const first = runLottery(state({ teams: teamsFile32() }), mulberry32(3), ctx);
     if (!first.ok) throw new Error('setup');
     const winner = (first.writes[0].doc as { lottery: string[] }).lottery[0];
     const picks = { league: 'fba', obligations: [ob({ id: 'p1', originalTeam: winner, condition: { kind: 'top', n: 1 }, originalCondition: { kind: 'top', n: 1 } })] } as PicksFile;
-    const r = runLottery(state({ picks }), mulberry32(3), ctx);
+    const r = runLottery(state({ teams: teamsFile32(), picks }), mulberry32(3), ctx);
     if (!r.ok) throw new Error('run');
     const obligations = (r.writes[1].doc as PicksFile).obligations;
     expect(obligations).toHaveLength(1);
@@ -146,6 +146,14 @@ describe('16-team lottery with 2 expansion teams', () => {
   });
   it('has no table for 16 real teams yet', () => {
     expect(lotteryOdds(Array.from({ length: 16 }, (_, i) => team(i)))).toEqual({ ok: false, problem: 'No lottery odds for a 16-team lottery' });
+  });
+});
+
+describe('runLottery before the expansion teams are added', () => {
+  it('refuses the S79 lottery until teams.json has the S80 expansion teams', () => {
+    const r = runLottery(state(), mulberry32(1), ctx);
+    expect(r).toEqual({ ok: false, problems: ['Add the S80 expansion teams first'] });
+    expect(runLottery(state({ teams: teamsFile32() }), mulberry32(1), ctx).ok).toBe(true);
   });
 });
 

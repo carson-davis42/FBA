@@ -105,9 +105,12 @@ export function setProtections(state: ExpansionState, teamId: string, playerIds:
   if (file.phase !== 'protect') return { ok: false, problems: ['Protections are locked'] };
   if (!existingTeamIds(state).includes(teamId)) return { ok: false, problems: [`${teamName(state, teamId)} isn't an existing team`] };
   const problems: string[] = [];
+  const roster = state.fba.teams[teamId] ?? [];
+  // A player protected earlier who has since left the team (traded, released) is dropped, not counted.
+  const before = new Set(file.protections[teamId] ?? []);
+  playerIds = playerIds.filter(id => !(before.has(id) && !roster.some(e => e.playerId === id)));
   if (playerIds.length > MAX_PROTECTED) problems.push(`A team protects at most ${MAX_PROTECTED} players`);
   if (new Set(playerIds).size !== playerIds.length) problems.push('A player is listed twice');
-  const roster = state.fba.teams[teamId] ?? [];
   for (const id of new Set(playerIds)) {
     const entry = roster.find(e => e.playerId === id);
     if (!entry) problems.push(`${playerName(state, id)} isn't on ${teamName(state, teamId)}`);
@@ -124,6 +127,52 @@ export function setProtections(state: ExpansionState, teamId: string, playerIds:
   };
 }
 
+/**
+ * Whether the picks still to be made can all be legal (position held once, payroll under the cap, one player per donor team):
+ * a backtracking search over the pick order, remembering the states that failed.
+ */
+function feasibleDraft(state: ExpansionState): boolean {
+  const file = state.expansion!;
+  const exposed = exposedPlayers(state).map(e => {
+    const entry = state.fba.teams[e.teamId]?.find(x => x.playerId === e.playerId);
+    return { teamId: e.teamId, position: e.position, amount: entry ? payroll([entry], state.season) : 0 };
+  });
+  const held = new Map<string, { positions: Set<Position>; pay: number }>();
+  for (const id of new Set(file.order)) {
+    const roster = state.fba.teams[id] ?? [];
+    held.set(id, {
+      positions: new Set(roster.filter(e => e.playerId !== null).map(e => e.position)),
+      pay: payroll(roster, state.season),
+    });
+  }
+  const failed = new Set<string>();
+  const used = new Set<string>();
+  const go = (i: number): boolean => {
+    if (i >= file.order.length) return true;
+    const key = `${i}|${[...used].sort().join(',')}|${[...held.entries()].map(([t, h]) => `${t}:${[...h.positions].sort().join('')}:${h.pay}`).join(';')}`;
+    if (failed.has(key)) return false;
+    const h = held.get(file.order[i])!;
+    const tried = new Set<string>();
+    for (const e of exposed) {
+      if (used.has(e.teamId) || h.positions.has(e.position) || capProblem(h.pay + e.amount)) continue;
+      const sig = `${e.teamId}:${e.position}:${e.amount}`;
+      if (tried.has(sig)) continue;
+      tried.add(sig);
+      used.add(e.teamId);
+      h.positions.add(e.position);
+      h.pay += e.amount;
+      const ok = go(i + 1);
+      h.pay -= e.amount;
+      h.positions.delete(e.position);
+      used.delete(e.teamId);
+      if (ok) return true;
+    }
+    failed.add(key);
+    return false;
+  };
+  return go(file.picks.length);
+}
+
 export function lockProtections(state: ExpansionState, ctx: MoveContext): WritesResult {
   void ctx;
   const file = state.expansion;
@@ -136,7 +185,23 @@ export function lockProtections(state: ExpansionState, ctx: MoveContext): Writes
       problems: [`Only ${donors} ${donors === 1 ? 'team has' : 'teams have'} an exposed player; the draft needs ${file.order.length}. Lower some protections`],
     };
   }
+  if (!feasibleDraft(state)) {
+    return {
+      ok: false,
+      problems: [`No legal sequence of ${file.order.length} picks exists (one position per team, payroll under the cap, one player per team). Lower some protections`],
+    };
+  }
   return { ok: true, writes: [write(state, { ...file, phase: 'draft' })], label: 'Lock the protections' };
+}
+
+/** Back to the protect phase, allowed only until the first pick is made. */
+export function unlockProtections(state: ExpansionState, ctx: MoveContext): WritesResult {
+  void ctx;
+  const file = state.expansion;
+  if (!file) return { ok: false, problems: ["The expansion draft hasn't started"] };
+  if (file.phase === 'protect') return { ok: false, problems: ['Protections are not locked'] };
+  if (file.phase === 'done' || file.picks.length > 0) return { ok: false, problems: ['Protections cannot be unlocked once a pick has been made'] };
+  return { ok: true, writes: [write(state, { ...file, phase: 'protect' })], label: 'Unlock the protections' };
 }
 
 /** Why this pick is refused (empty = allowed). */

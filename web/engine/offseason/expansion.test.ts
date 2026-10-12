@@ -6,7 +6,7 @@ import { DraftHistoryFile, ExpansionFile, type Position, type RosterEntry } from
 import { normalizeRoster } from '../roster/rules';
 import {
   expansionOrder, expansionPick, expansionPath, exposedPlayers, finishExpansion, lockProtections, onTheClock, pickProblems, setProtections,
-  startExpansion, type ExpansionState,
+  startExpansion, unlockProtections, type ExpansionState,
 } from './expansion';
 import { expansionState, expansionTeamIds } from './testFixtures';
 
@@ -184,6 +184,99 @@ describe('lockProtections', () => {
   });
 });
 
+/** Every team protects all but its PG (a restricted C is exempt anyway): 8 donors expose one PG each, so one team can never get its second pick. */
+const onlyPgsExposed = (s: ExpansionState): ExpansionState => {
+  let t = s;
+  for (const team of expansionTeamIds) {
+    t = apply(t, setProtections(t, team, ['SG', 'SF', 'PF', 'C'].map(p => pid(team, p as Position)).filter(id => !t.fba.teams[team].find(e => e.playerId === id)?.restricted), ctx));
+  }
+  return t;
+};
+
+describe('lockProtections feasibility', () => {
+  it('refuses when no legal sequence of 8 picks exists, though 8 teams expose a player', () => {
+    const s = onlyPgsExposed(started());
+    expect(exposedPlayers(s)).toHaveLength(8);
+    const p = problemsOf(lockProtections(s, ctx));
+    expect(p).toHaveLength(1);
+    expect(p[0]).toMatch(/no legal sequence of 8 picks/i);
+    expect(p[0]).toMatch(/lower/i);
+  });
+
+  it('accepts a feasible exposure', () => {
+    expect(lockProtections(started(), ctx).ok).toBe(true);
+  });
+
+  it('refuses when the cap makes the picks impossible', () => {
+    const base = expansionState();
+    const teams = Object.fromEntries(Object.entries(base.fba.teams).map(([t, es]) => [
+      t, expansionTeamIds.includes(t) ? es.map(e => ({ ...e, contractAmount: 9 })) : es,
+    ]));
+    // $9 each: four picks cost $36 > $25 for every expansion team.
+    const s = started({ fba: { ...base.fba, teams } });
+    expect(problemsOf(lockProtections(s, ctx))[0]).toMatch(/no legal sequence/i);
+  });
+
+  it('is fast with 30 exposed players that cannot work', () => {
+    const base = expansionState();
+    const mk = (t: string, i: number) => ({ playerId: `q${t}${i}`, position: 'PG' as Position, rating: 70, age: 25, points: 0, contractEnd: 82, contractAmount: 1 });
+    const extra = Array.from({ length: 30 }, (_, i) => `X${i}`);
+    const teams = { ...base.fba.teams };
+    for (const [i, t] of extra.entries()) teams[t] = normalizeRoster([mk(t, i)], 'fba');
+    const players = { ...base.players, players: { ...base.players.players } };
+    for (const [i, t] of extra.entries()) players.players[`q${t}${i}`] = { id: `q${t}${i}`, name: t, birthSeason: 55 };
+    const teamsFile = {
+      ...base.teams,
+      teams: [...base.teams.teams, ...extra.map(t => ({ teamId: t, name: t, abbr: t, group: 'E', logoFolder: null, badge: { bg: '#000', fg: '#fff' } }))],
+    };
+    // all 30 expose one PG and nothing else; the 8 original teams protect everyone.
+    let s = started({ fba: { ...base.fba, teams }, players, teams: teamsFile });
+    for (const t of expansionTeamIds) {
+      s = apply(s, setProtections(s, t, ['PG', 'SG', 'SF', 'PF'].map(p => pid(t, p as Position)), ctx));
+    }
+    const t0 = performance.now();
+    const r = lockProtections(s, ctx);
+    expect(performance.now() - t0).toBeLessThan(200);
+    expect(problemsOf(r)[0]).toMatch(/no legal sequence/i);
+  });
+});
+
+describe('unlockProtections', () => {
+  it('goes back to the protect phase before the first pick', () => {
+    const s = drafting();
+    const r = unlockProtections(s, ctx);
+    expect(r.ok).toBe(true);
+    const next = apply(s, r);
+    expect(next.expansion!.phase).toBe('protect');
+    expect(lockProtections(next, ctx).ok).toBe(true);
+  });
+  it('refuses after a pick, in the protect phase, when not started, and when done', () => {
+    const picked = pickAll(drafting(), 1);
+    expect(problemsOf(unlockProtections(picked, ctx))).toHaveLength(1);
+    expect(problemsOf(unlockProtections(started(), ctx))).toHaveLength(1);
+    expect(problemsOf(unlockProtections(expansionState(), ctx))).toEqual(["The expansion draft hasn't started"]);
+    const done = apply(pickAll(drafting()), finishExpansion(pickAll(drafting()), ctx));
+    expect(problemsOf(unlockProtections(done, ctx))).toHaveLength(1);
+  });
+});
+
+describe('stale protections', () => {
+  it('drops protected ids that left the roster and does not count them', () => {
+    const s0 = started();
+    const four = ['PG', 'SG', 'SF', 'PF'].map(p => pid('A', p as Position));
+    const s1 = apply(s0, setProtections(s0, 'A', four, ctx));
+    // A's PG is traded away.
+    const teams = { ...s1.fba.teams, A: s1.fba.teams.A.filter(e => e.playerId !== four[0]) };
+    const s2 = { ...s1, fba: { ...s1.fba, teams } };
+    const r = setProtections(s2, 'A', four, ctx);
+    expect(r.ok).toBe(true);
+    const s3 = apply(s2, r);
+    expect(s3.expansion!.protections.A).toEqual(four.slice(1));
+    // another team's player is still refused
+    expect(problemsOf(setProtections(s2, 'A', [pid('B', 'PG')], ctx))[0]).toMatch(/isn't on/);
+  });
+});
+
 describe('expansionPick', () => {
   it('moves the player with his contract and vacates the donor slot', () => {
     const s = drafting();
@@ -245,14 +338,14 @@ describe('expansionPick', () => {
       PHI: normalizeRoster([big], 'fba'),
       A: base.fba.teams.A.map(e => (e.playerId === pid('A', 'PG') ? { ...e, contractAmount: 4 } : e)),
     };
-    const s = drafting({ fba: { ...base.fba, teams } });
+    const s = { ...drafting(), fba: { ...base.fba, teams } }; // set after locking: the lock would find this roster infeasible
     expect(pickProblems(s, pid('A', 'PG'))).toEqual(['Payroll would be $26 (cap $25)']);
     expect(problemsOf(expansionPick(s, pid('A', 'PG'), ctx))).toEqual(['Payroll would be $26 (cap $25)']);
     // A $3 player fits: 22 + 3 = 25.
     expect(pickProblems(s, pid('B', 'PG'))).toEqual([]);
     // An expired contract does not count.
     const expired = { ...base.fba, teams: { ...teams, A: teams.A.map(e => (e.playerId === pid('A', 'PG') ? { ...e, contractEnd: 79 } : e)) } };
-    expect(pickProblems(drafting({ fba: expired }), pid('A', 'PG'))).toEqual([]);
+    expect(pickProblems({ ...drafting(), fba: expired }, pid('A', 'PG'))).toEqual([]);
   });
 
   it('refuses picking out of turn data: not exposed, phase not draft, draft finished', () => {

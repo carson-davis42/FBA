@@ -135,6 +135,14 @@ describe('expansion steps', () => {
     expect(next.steps.filter(s => s.done)).toHaveLength(9);
     expect(withExpansionStep(next)).toBe(next);
   });
+  it('leaves a calendar alone whose lottery step is already done', () => {
+    const old = calendarFor(79);
+    const cal = {
+      ...old,
+      steps: old.steps.filter(s => !/add-expansion/.test(s.id)).map(s => ({ ...s, done: s.id === 's80-fba-draft-lottery' })),
+    };
+    expect(withExpansionStep(cal)).toBe(cal);
+  });
   it('leaves other seasons alone', () => {
     const c = calendarFor(78);
     expect(withExpansionStep(c)).toBe(c);

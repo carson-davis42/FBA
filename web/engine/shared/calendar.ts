@@ -65,11 +65,12 @@ export function withQualifyingStep(cal: CalendarFile): CalendarFile {
   return { ...cal, steps };
 }
 
-/** Adds the add-teams step (before the lottery) to the calendar of the season before the expansion, if it lacks it. */
+/** Adds the add-teams step (before the lottery) to the calendar of the season before the expansion, if it lacks it; unchanged once the lottery has run. */
 export function withExpansionStep(cal: CalendarFile): CalendarFile {
   const id = addTeamsStepId(EXPANSION_SEASON);
   if (cal.season !== EXPANSION_SEASON - 1 || cal.steps.some(s => s.id === id)) return cal;
   const at = cal.steps.findIndex(s => s.id === `s${EXPANSION_SEASON}-fba-draft-lottery`);
+  if (at >= 0 && cal.steps[at].done) return cal;
   const added: CalendarStep = { id, label: `Add S${EXPANSION_SEASON} Expansion Teams`, kind: 'offseason', league: null, sub: false, done: false };
   const steps = at < 0 ? [...cal.steps, added] : [...cal.steps.slice(0, at), added, ...cal.steps.slice(at)];
   return { ...cal, steps };

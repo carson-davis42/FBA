@@ -29,6 +29,19 @@ describe('addExpansionTeams', () => {
     const r = addExpansionTeams(state({ calendar: calendarFor(79) }), { batchId: 'b' });
     expect(r.ok).toBe(false);
   });
+  it('refuses after the lottery has run, naming the lottery', () => {
+    const cal = atStep();
+    const done = { ...cal, steps: cal.steps.map(s => (s.id === 's80-fba-draft-lottery' ? { ...s, done: true } : s)) };
+    const r = addExpansionTeams(state({ calendar: done }), { batchId: 'b' });
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.problems.join(' ')).toMatch(/lottery/i);
+  });
+  it('refuses a calendar with no add-teams step, naming the lottery', () => {
+    const cal = atStep();
+    const r = addExpansionTeams(state({ calendar: { ...cal, steps: cal.steps.filter(s => s.id !== 's80-add-expansion-teams') } }), { batchId: 'b' });
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.problems.join(' ')).toMatch(/lottery/i);
+  });
   it('refuses when the teams are already there', () => {
     const r = addExpansionTeams(state({ teams: { ...base(), teams: [...base().teams, ...EXPANSION_TEAMS] } }), { batchId: 'b' });
     expect(r).toEqual({ ok: false, problems: ['The expansion teams are already in the league'] });

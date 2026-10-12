@@ -29,7 +29,7 @@ const docsFor = (s: LotteryState): Record<string, unknown> => {
 
 /** A run of the lottery whose doc is served as already saved. */
 const saved = (): LotteryFile => {
-  const r = runLottery(state(), mulberry32(5), ctx);
+  const r = runLottery(state({ teams: teamsFile32() }), mulberry32(5), ctx);
   if (!r.ok) throw new Error(r.problems.join('; '));
   return r.writes[0].doc as LotteryFile;
 };
@@ -58,7 +58,7 @@ describe('LotteryPage', () => {
   });
 
   it('runs the lottery as one batch of four documents', async () => {
-    const log = stubApi(docsFor(state()));
+    const log = stubApi(docsFor(state({ teams: teamsFile32() })));
     renderPage();
     const button = await screen.findByRole('button', { name: 'Run lottery' });
     await waitFor(() => expect((button as HTMLButtonElement).disabled).toBe(false));
@@ -72,24 +72,24 @@ describe('LotteryPage', () => {
       ['calendar.json', '0000000000000001'],
     ]);
     // The run starts hidden: nothing is revealed until the user says so.
-    await waitFor(() => expect(screen.getAllByText('?')).toHaveLength(14));
+    await waitFor(() => expect(screen.getAllByText('?')).toHaveLength(16));
     expect(screen.queryByText(/Full S80 draft order/)).toBeNull();
   });
 
   it('reveals a saved lottery from the last pick up, then shows the whole order', async () => {
     const lot = saved();
-    stubApi(docsFor(state({ lottery: lot, calendar: calendar('never') })));
+    stubApi(docsFor(state({ teams: teamsFile32(), lottery: lot, calendar: calendar('never') })));
     renderPage();
     // A reload shows everything at once.
     expect(await screen.findByRole('heading', { name: /Full S80 draft order/ })).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Reveal next' })).toBeNull();
     expect(screen.queryByRole('button', { name: 'Reveal all' })).toBeNull();
-    expect(screen.getAllByRole('row')).toHaveLength(31);
+    expect(screen.getAllByRole('row')).toHaveLength(33);
   });
 
   it('hides only the last pick until Reveal next, and Reveal all shows pick 1', async () => {
     // Run in this mount so the reveal starts at zero.
-    const s = state();
+    const s = state({ teams: teamsFile32() });
     const log = stubApi(docsFor(s));
     renderPage();
     const run = await screen.findByRole('button', { name: 'Run lottery' });
@@ -99,15 +99,15 @@ describe('LotteryPage', () => {
     const lot = log.batches[0].writes[0].doc as LotteryFile;
     await screen.findByRole('button', { name: 'Reveal next' });
     const list = screen.getByRole('list', { name: 'Lottery' });
-    expect(within(list).getAllByText('?')).toHaveLength(14);
+    expect(within(list).getAllByText('?')).toHaveLength(16);
     fireEvent.click(screen.getByRole('button', { name: 'Reveal next' }));
     const items = within(list).getAllByRole('listitem');
-    expect(items[0].textContent).toContain('14');
-    expect(items[0].textContent).toContain(lot.lottery[13]);
-    expect(within(list).getAllByText('?')).toHaveLength(13);
+    expect(items[0].textContent).toContain('16');
+    expect(items[0].textContent).toContain(teamsFile32().teams.find(t => t.teamId === lot.lottery[15])!.name);
+    expect(within(list).getAllByText('?')).toHaveLength(15);
     fireEvent.click(screen.getByRole('button', { name: 'Reveal all' }));
     expect(within(list).queryAllByText('?')).toHaveLength(0);
-    expect(list.textContent).toContain(lot.lottery[0]);
+    expect(list.textContent).toContain(teamsFile32().teams.find(t => t.teamId === lot.lottery[0])!.name);
     expect(screen.queryByRole('button', { name: 'Reveal all' })).toBeNull();
     expect(await screen.findByRole('heading', { name: /Full S80 draft order/ })).toBeTruthy();
   });
@@ -115,16 +115,24 @@ describe('LotteryPage', () => {
   it('lists the full order with "via" for traded picks and shows flags', async () => {
     const lot = saved();
     lot.picks = lot.picks.map(p => (p.slot === 2 ? { ...p, owner: p.originalTeam === 'T07' ? 'T08' : 'T07' } : p.slot === 3 ? { ...p, flag: 'Conveyance needs a decision' } : p));
-    stubApi(docsFor(state({ lottery: lot, calendar: calendar('never') })));
+    stubApi(docsFor(state({ teams: teamsFile32(), lottery: lot, calendar: calendar('never') })));
     renderPage();
     await screen.findByRole('heading', { name: /Full S80 draft order/ });
     const table = screen.getAllByRole('table').at(-1)!;
     const rows = within(table).getAllByRole('row').slice(1);
-    expect(rows).toHaveLength(30);
+    expect(rows).toHaveLength(32);
     expect(rows[1].textContent).toContain(`via ${lot.picks[1].originalTeam}`);
     expect(rows[0].textContent).not.toContain('via');
     expect(rows[2].textContent).toContain('Conveyance needs a decision');
     expect(screen.getByText('Settle flagged picks by hand in the picks editor.')).toBeTruthy();
+  });
+
+  it('disables the run until the expansion teams are added', async () => {
+    stubApi(docsFor(state()));
+    renderPage();
+    const button = await screen.findByRole('button', { name: 'Run lottery' });
+    expect((button as HTMLButtonElement).disabled).toBe(true);
+    expect(screen.getByText(/Add the S80 expansion teams first/)).toBeTruthy();
   });
 
   it('disables the run with the calendar problem when the step is not current', async () => {

@@ -5,6 +5,7 @@ import { calendarProblem, type WritesResult } from '../season/moves';
 import type { ScheduleTeamInfo } from '../season/schedule';
 import { betterThan, javaOrder, records, standings } from '../season/standings';
 import { markStepDone } from '../shared/calendar';
+import { EXPANSION_SEASON } from '../shared/expansion';
 import { teamsInSeason, teamsJoining } from '../shared/teams';
 import type {
   CalendarFile, GameResult, LotteryFile, LotteryOdds, PicksFile, PlayoffsFile, ResultsFile, TeamsFile, TransactionsFile,
@@ -105,6 +106,9 @@ export function runLottery(state: LotteryState, rng: Rng, ctx: MoveContext): Wri
   if (state.lottery) return { ok: false, problems: ['The lottery has already been run'] };
   const step = calendarProblem(state.calendar, lotteryStepId(n), 'The lottery is run');
   if (step) return { ok: false, problems: [step] };
+  if (n + 1 === EXPANSION_SEASON && teamsJoining(state.teams, EXPANSION_SEASON).length === 0) {
+    return { ok: false, problems: [`Add the S${EXPANSION_SEASON} expansion teams first`] };
+  }
   const champion = state.playoffs?.outcome?.champions[0]?.teamId;
   if (!champion) return { ok: false, problems: ["The FBA playoffs aren't finished"] };
   const odds = lotteryPreview(state);

@@ -1,6 +1,6 @@
 import { useRef, useState, type ReactNode } from 'react';
 import {
-  exposedPlayers, expansionPick, finishExpansion, lockProtections, onTheClock, pickProblems, setProtections, startExpansion,
+  exposedPlayers, expansionPick, finishExpansion, lockProtections, onTheClock, pickProblems, setProtections, startExpansion, unlockProtections,
   type ExpansionState,
 } from '../../engine/offseason/expansion';
 import { addExpansionTeams } from '../../engine/season/addExpansionTeams';
@@ -152,7 +152,10 @@ function Protect({ s, h, saving, run, teamId, setTeamId }: {
   const joining = new Set(teamsJoining(s.teams, s.season).map(t => t.teamId));
   const existing = s.teams.teams.filter(t => !joining.has(t.teamId) && s.fba.teams[t.teamId]);
   const selected = existing.find(t => t.teamId === teamId) ?? existing[0];
-  const protectedIds = selected ? f.protections[selected.teamId] ?? [] : [];
+  const onRoster = (teamId: string) => new Set((s.fba.teams[teamId] ?? []).map(e => e.playerId));
+  /** Protected players still on the roster (a traded or released one is stale and not counted). */
+  const live = (teamId: string) => (f.protections[teamId] ?? []).filter(id => onRoster(teamId).has(id));
+  const protectedIds = selected ? live(selected.teamId) : [];
   const exposed = exposedPlayers(s);
   const donors = new Set(exposed.map(e => e.teamId)).size;
   const lock = lockProtections(s, PREVIEW);
@@ -166,7 +169,7 @@ function Protect({ s, h, saving, run, teamId, setTeamId }: {
         <p className="toolbar">
           <label>Team{' '}
             <select value={selected?.teamId ?? ''} onChange={e => setTeamId(e.target.value)} aria-label="Team">
-              {existing.map(t => <option key={t.teamId} value={t.teamId}>{t.name} ({(f.protections[t.teamId] ?? []).length}/{MAX_PROTECTED})</option>)}
+              {existing.map(t => <option key={t.teamId} value={t.teamId}>{t.name} ({live(t.teamId).length}/{MAX_PROTECTED})</option>)}
             </select>
           </label>
         </p>
@@ -210,6 +213,12 @@ function Draft({ s, h, saving, run }: { s: ExpansionState; h: Helpers; saving: b
   const exposed = exposedPlayers(s);
   return (
     <>
+      {f.picks.length === 0 && (
+        <div className="card toolbar">
+          <button className="btn" disabled={saving} onClick={() => run(() => unlockProtections(s, ctxOf()))}>Unlock protections</button>
+          <span className="muted">Lower protections before the first pick.</span>
+        </div>
+      )}
       <div className="card clock-card">
         {clock === null
           ? <p>All {f.order.length} picks are made.</p>
