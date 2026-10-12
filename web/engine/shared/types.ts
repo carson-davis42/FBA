@@ -1353,6 +1353,23 @@ export const DraftHistoryFile = z.object({ drafts: z.array(DraftHistoryDraft) })
   .refine(f => new Set(f.drafts.map(d => `${d.season}:${d.kind}`)).size === f.drafts.length, 'One draft of each kind per season');
 export type DraftHistoryFile = z.infer<typeof DraftHistoryFile>;
 
+/** leagues/fba/S{n}/expansion.json: the expansion draft held in season n (protections, then the picks). */
+export const ExpansionPick = z.object({
+  n: int.positive(), teamId: z.string().min(1), fromTeamId: z.string().min(1), playerId, position: Position,
+}).strict();
+export type ExpansionPick = z.infer<typeof ExpansionPick>;
+export const ExpansionFile = z.object({
+  league: z.literal('fba'),
+  season: int,
+  phase: z.enum(['protect', 'draft', 'done']),
+  /** Up to 4 chosen players per existing team (restricted-contract players are protected without being listed). */
+  protections: z.record(z.string(), z.array(playerId).max(4)),
+  /** The expansion teams in pick order. */
+  order: z.array(z.string().min(1)),
+  picks: z.array(ExpansionPick),
+}).strict().refine(f => f.picks.length <= f.order.length, 'More picks than the order allows');
+export type ExpansionFile = z.infer<typeof ExpansionFile>;
+
 export const PastAsset = z.object({ text: z.string().min(1), pos: z.string().min(1).nullable(), name: z.string().min(1).nullable(), playerId: playerId.nullable() }).strict();
 export type PastAsset = z.infer<typeof PastAsset>;
 export const PastMove = z.object({ to: z.string().min(1), asset: PastAsset }).strict();

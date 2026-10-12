@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { pathAgreementProblem, schemaForPath } from './schemaRegistry';
-import { DraftHistoryFile, EventsFile, PastTransactionsFile, AwardCountsFile, PlayerBiosFile, AllStarFile, AwardsFile, D2DraftFile, D2PoolFile, DraftFile, HallOfFameFile, LotteryFile, RankingFile, PlayoffsFile, RatingPauseFile, RecruitingFile, ScheduleFile } from './types';
+import { DraftHistoryFile, EventsFile, ExpansionFile, PastTransactionsFile, AwardCountsFile, PlayerBiosFile, AllStarFile, AwardsFile, D2DraftFile, D2PoolFile, DraftFile, HallOfFameFile, LotteryFile, RankingFile, PlayoffsFile, RatingPauseFile, RecruitingFile, ScheduleFile } from './types';
 import { seasonDocPath } from '../season/state';
 
 describe('schemaForPath', () => {
@@ -29,6 +29,8 @@ describe('part 7b paths', () => {
   it('routes the lottery and Hall of Fame documents', () => {
     expect(schemaForPath('leagues/fba/S79/lottery.json')).toBe(LotteryFile);
     expect(schemaForPath('leagues/fba/hallOfFame.json')).toBe(HallOfFameFile);
+    expect(schemaForPath('leagues/fba/S80/expansion.json')).toBe(ExpansionFile);
+    expect(schemaForPath('leagues/fbad2/S80/expansion.json')).toBeNull();
     expect(schemaForPath('leagues/fbad2/S79/lottery.json')).toBeNull();
     expect(schemaForPath('leagues/fba/S79/lottery9json')).toBeNull();
   });

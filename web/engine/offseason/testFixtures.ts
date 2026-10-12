@@ -1,7 +1,9 @@
+import { normalizeRoster } from '../roster/rules';
 import { calendarFor } from '../shared/calendar';
 import { EXPANSION_TEAMS } from '../shared/expansion';
 import type { ClassYear, DraftFile, GameResult, LotteryFile, PickObligation, PicksFile, PlayersFile, PlayoffsFile, Position, RankingFile, RecruitingFile, RosterEntry, RostersFile, TeamsFile, TransactionsFile } from '../shared/types';
 import type { AdjustAgeState } from './adjustAge';
+import type { ExpansionState } from './expansion';
 import type { DraftBoardState } from './draftBoard';
 import type { FbaDraftState } from './fbaDraft';
 import type { ProRatingsState } from './proRatings';
@@ -278,6 +280,54 @@ export const fbaDraftState = (over: Partial<FbaDraftState> = {}): FbaDraftState 
     fbaTeams: draftFbaTeams(),
     collegeTeams: ageCollegeTeams(),
     tx: { league: 'fba', season: 80, entries: [] },
+    ...over,
+  };
+};
+
+
+// ---- Expansion draft (S80) ----
+
+const EXP_POSITIONS: Position[] = ['PG', 'SG', 'SF', 'PF', 'C'];
+/** The eight existing teams (one donor per pick of the 8-pick draft) of the expansion fixture. */
+export const expansionTeamIds = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
+/**
+ * Teams A-H hold five players each, one per position: ids p10001... (A: p10001-p10005, B: p10006-p10010, ... H: p10036-p10040), ratings 70-90,
+ * $3 through S82; the C of teams A, C, E and G is restricted. PHI and LAL (fromSeason 80) have empty rosters.
+ * Calendar: everything before s80-expansion-draft is done. draftHistory has an S79 draft only.
+ */
+export const expansionState = (over: Partial<ExpansionState> = {}): ExpansionState => {
+  const cal = calendarFor(80);
+  const at = cal.steps.findIndex(s => s.id === 's80-expansion-draft');
+  const players: PlayersFile['players'] = {};
+  const teams: RostersFile['teams'] = {};
+  expansionTeamIds.forEach((teamId, t) => {
+    teams[teamId] = EXP_POSITIONS.map((position, i) => {
+      const n = t * 5 + i + 1;
+      const playerId = `p${String(10000 + n).padStart(5, '0')}`;
+      players[playerId] = { id: playerId, name: `${teamId} ${position}`, birthSeason: 55 + (n % 6) };
+      return {
+        playerId, position, rating: 70 + ((n * 7) % 21), age: 25, points: 0, contractEnd: 82, contractAmount: 3,
+        ...(position === 'C' && t % 2 === 0 ? { restricted: true } : {}),
+      };
+    });
+  });
+  for (const t of EXPANSION_TEAMS) teams[t.teamId] = normalizeRoster([], 'fba');
+  return {
+    season: 80,
+    calendar: { ...cal, steps: cal.steps.map((s, i) => ({ ...s, done: i < at })) },
+    teams: {
+      league: 'fba',
+      teams: [
+        ...expansionTeamIds.map((teamId, i) => ({ teamId, name: `Team ${teamId}`, abbr: teamId, group: i % 2 === 0 ? 'E' : 'W', logoFolder: null, badge: { bg: '#000', fg: '#fff' } })),
+        ...EXPANSION_TEAMS,
+      ],
+    },
+    fba: { league: 'fba', season: 80, locked: false, teams },
+    players: { nextId: 10041, players },
+    expansion: null,
+    tx: { league: 'fba', season: 80, entries: [] },
+    history: { drafts: [{ season: 79, kind: 'draft', picks: [] }] },
     ...over,
   };
 };
