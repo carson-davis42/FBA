@@ -46,3 +46,15 @@ export function buildDraftHistory(
   drafts.sort((a, b) => a.season - b.season || (a.kind === b.kind ? 0 : a.kind === 'draft' ? -1 : 1));
   return { drafts };
 }
+
+/**
+ * The freshly built drafts (S49-`lastSeason`) plus the `existing` file's drafts after `lastSeason`, which the sheet doesn't hold
+ * (the S80 FBA draft and expansion draft played in the app), so re-importing never drops them.
+ */
+export function keepLaterDrafts(existing: DraftHistoryFile | null, built: DraftHistoryFile, lastSeason: number): DraftHistoryFile {
+  if (!existing) return built;
+  const later = existing.drafts.filter(d => d.season > lastSeason);
+  if (later.length === 0) return built;
+  const drafts = [...built.drafts, ...later].sort((a, b) => a.season - b.season || (a.kind === b.kind ? 0 : a.kind === 'draft' ? -1 : 1));
+  return { ...built, drafts };
+}

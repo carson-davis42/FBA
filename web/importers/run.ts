@@ -7,7 +7,8 @@ import { EXPANSION_SEASON } from '../engine/shared/expansion';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
 import { buildD2History, buildLeagueHistory, d2LeagueMoves, D2_TABS } from './d2History';
-import { buildDraftHistory } from './draftHistory';
+import { buildDraftHistory, keepLaterDrafts } from './draftHistory';
+import { DraftHistoryFile } from '../engine/shared/types';
 import { buildPastTransactions } from './pastTransactions';
 import { planHistoryImport } from './historyRun';
 import { runBracketImport } from './history/mergeBrackets';
@@ -381,7 +382,11 @@ async function importDraftHistory(): Promise<void> {
   const doc = buildDraftHistory(tabs, { players, franchises, lastSeason: 79 }, report);
   printReport(report);
   for (const d of doc.drafts) console.log(`S${d.season} ${d.kind}: ${d.picks.filter(p => p.pick !== null).length} picks, ${d.picks.filter(p => p.pick === null).length} undrafted`);
-  writeDoc(dir, 'leagues/fba/draftHistory.json', doc);
+  const existing = readDataJson<DraftHistoryFile>(dir, 'leagues/fba/draftHistory.json');
+  const kept = keepLaterDrafts(existing, doc, 79);
+  const later = kept.drafts.length - doc.drafts.length;
+  if (later > 0) console.log(`Kept ${later} later draft${later === 1 ? '' : 's'} (after S79) from the existing file.`);
+  writeDoc(dir, 'leagues/fba/draftHistory.json', DraftHistoryFile.parse(kept));
 }
 
 /** Reads the D2 history sheet and the draft sheet's D2 tabs into the D2 season summaries, leagueHistory.json and draftHistory.json. */

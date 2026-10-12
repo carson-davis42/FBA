@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { FranchisesFile, PlayersFile } from '../engine/shared/types';
-import { buildDraftHistory, resolveSheetTeam } from './draftHistory';
+import { buildDraftHistory, keepLaterDrafts, resolveSheetTeam } from './draftHistory';
 import { Report } from './report';
 
 const era = (name: string, abbr: string, from: number, to: number | null) => ({ name, abbr, city: name.split(' ')[0], from, to });
@@ -43,5 +43,21 @@ describe('buildDraftHistory', () => {
     const warns = report.entries.filter(e => e.level === 'warn');
     expect(warns.length).toBeGreaterThanOrEqual(2);
     expect(warns.every(w => w.topic === 'drafts')).toBe(true);
+  });
+});
+
+describe('keepLaterDrafts', () => {
+  const d = (season: number, kind: 'draft' | 'expansion') => ({ season, kind, picks: [] });
+  const built = { drafts: [d(78, 'draft'), d(79, 'draft')] };
+
+  it('keeps the existing drafts after the last imported season, ordered by season then draft before expansion', () => {
+    const existing = { drafts: [d(80, 'expansion'), d(79, 'draft'), d(80, 'draft'), d(78, 'draft')] };
+    const out = keepLaterDrafts(existing, built, 79);
+    expect(out.drafts.map(x => `${x.season}${x.kind}`)).toEqual(['78draft', '79draft', '80draft', '80expansion']);
+    expect(out.drafts[1]).toBe(built.drafts[1]);
+  });
+
+  it('returns the built drafts when there is no existing file', () => {
+    expect(keepLaterDrafts(null, built, 79)).toEqual(built);
   });
 });
