@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { groupLabel, isLeagueId, LEAGUE_LABEL } from '../../engine/shared/leagues';
+import { groupLabel, isLeagueId, LEAGUE_LABEL, orderGroups } from '../../engine/shared/leagues';
 import type { MetaFile, RostersFile, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
 import { useWcRosters } from '../wc/useWcRosters';
@@ -42,7 +42,7 @@ export function LeaguePage() {
     <section>
       <PageHeader kicker={LEAGUE_LABEL[league]} title="Teams" actions={actions} />
       <p className="muted league-sub">S{season} rosters · {teams.teams.length} teams{rosters.locked ? ' · final (locked)' : ''}</p>
-      {[...groups.entries()].map(([code, list]) => (
+      {orderGroups(league, [...groups.keys()]).map(code => [code, groups.get(code)!] as const).map(([code, list]) => (
         <div className="group" key={code ?? 'all'}>
           <h2 className="group-title">{groupLabel(league, code)}</h2>
           <div className="card-grid">

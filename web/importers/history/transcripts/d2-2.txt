@@ -38,8 +38,8 @@ S64
 7|Istanbul|8-2
 10|Austin BC|6-4
 15|Berlin Bären BC|5-5
-2|Amsterdam|10-0
-= Roma Pallacanestro 42-19 | Hamburg Hanse 43-35 | Münchner BC 34-24 | Guadalajara CB 36-34 | Kiev 35-24 | Atlético Lisboa 38-28 | Istanbul 35-25 | Amsterdam 39-27
+2|Amsterdam BC|10-0
+= Roma Pallacanestro 42-19 | Hamburg Hanse 43-35 | Münchner BC 34-24 | Guadalajara CB 36-34 | Kiev 35-24 | Atlético Lisboa 38-28 | Istanbul 35-25 | Amsterdam BC 39-27
 = Roma Pallacanestro 42-33 | Münchner BC 41-36 | Atlético Lisboa 40-36 | Istanbul 40-33
 = Münchner BC 64-59 | Atlético Lisboa 42-40
 = Münchner BC 34-31
@@ -86,7 +86,7 @@ S65
 14|Tampa|6-4
 11|London Royal|7-3
 6|Münchner BC|7-3
-7|Amsterdam|7-3
+7|Amsterdam BC|7-3
 10|Hamburg Hanse|7-3
 15|Milano BC|6-4
 2|San Jose|10-0
@@ -97,7 +97,7 @@ S65
 
 # p124 FBA D2 Tournament
 S62
-1|Amsterdam|10-0
+1|Amsterdam BC|10-0
 16|Club Capital|5-5
 9|Moskovskiy BK|8-2
 8|Milano BC|8-2
@@ -113,7 +113,7 @@ S62
 10|Maine|6-4
 15|Dublin BC|5-5
 2|Club Madrid|10-0
-= Amsterdam 50-20 | Milano BC 38-36 | Austin BC 47-21 | Hamburg Hanse 43-38 | San Jose 39-29 | Roma Pallacanestro 52-36 | Berlin Bären BC 39-26 | Club Madrid 56-35
+= Amsterdam BC 50-20 | Milano BC 38-36 | Austin BC 47-21 | Hamburg Hanse 43-38 | San Jose 39-29 | Roma Pallacanestro 52-36 | Berlin Bären BC 39-26 | Club Madrid 56-35
 = Milano BC 60-52 | Austin BC 47-41 | San Jose 47-36 | Club Madrid 47-38
 = Austin BC 56-51 | Club Madrid 52-33
 = Austin BC 51-42

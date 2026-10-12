@@ -61,12 +61,12 @@ G:WL
 # p108 FBA D2 World League Tournament
 S68
 G:WL
-1|Amsterdam|12-2
+1|Amsterdam BC|12-2
 4|Paris|7-7
 3|Istanbul|8-6
 2|Münchner BC|11-3
-= Amsterdam 4-0 | Münchner BC 4-0
-= Amsterdam 4-2
+= Amsterdam BC 4-0 | Münchner BC 4-0
+= Amsterdam BC 4-2
 
 # p109 FBA D2 Premier League Tournament
 S71

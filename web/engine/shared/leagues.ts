@@ -24,6 +24,17 @@ export function isLeagueId(x: string): x is LeagueId {
   return (LEAGUES as string[]).includes(x);
 }
 
+/** The order a league's groups are listed in on the teams page; a league without one keeps the order its teams file gives. */
+const GROUP_ORDER: Partial<Record<LeagueId, string[]>> = { fbad2: ['PL', 'WL', 'UL', 'IL'] };
+
+/** `groups` in the league's listing order (groups it doesn't name go last, in the order given). */
+export function orderGroups<T extends string | null>(league: LeagueId, groups: T[]): T[] {
+  const order = GROUP_ORDER[league];
+  if (!order) return groups;
+  const rank = (g: T) => { const i = order.indexOf(g as string); return i === -1 ? order.length : i; };
+  return groups.map((g, k) => ({ g, k })).sort((a, b) => rank(a.g) - rank(b.g) || a.k - b.k).map(x => x.g);
+}
+
 export function groupLabel(league: LeagueId, code: string | null): string {
   if (code === null) return 'Teams';
   return GROUP_LABEL[league][code] ?? code;

@@ -4,7 +4,7 @@ S60
 16|Brussels|6-4
 9|Zürich Helvetia|7-3
 8|Pearland|7-3
-5|Amsterdam|9-1
+5|Amsterdam BC|9-1
 12|Kiev|7-3
 13|Istanbul|5-5
 4|San Jose|8-2
@@ -16,8 +16,8 @@ S60
 10|Sporting Lyon|6-4
 15|Orlando|7-3
 2|Milano BC|10-0
-= Hamburg Hanse 52-40 | Pearland 47-31 | Amsterdam 55-34 | San Jose 43-40 | Manchester 70-19 | Roma Pallacanestro 49-29 | Moskovskiy BK 51-41 | Milano BC 61-43
-= Hamburg Hanse 60-49 | Amsterdam 55-44 | Roma Pallacanestro 59-54 | Moskovskiy BK 50-49
+= Hamburg Hanse 52-40 | Pearland 47-31 | Amsterdam BC 55-34 | San Jose 43-40 | Manchester 70-19 | Roma Pallacanestro 49-29 | Moskovskiy BK 51-41 | Milano BC 61-43
+= Hamburg Hanse 60-49 | Amsterdam BC 55-44 | Roma Pallacanestro 59-54 | Moskovskiy BK 50-49
 = Hamburg Hanse 60-54 | Roma Pallacanestro 59-32
 = Roma Pallacanestro 70-54
 
@@ -34,7 +34,7 @@ S63
 3|Maine|9-1
 14|Milano BC|7-3
 11|Hamburg Hanse|6-4
-6|Amsterdam|8-2
+6|Amsterdam BC|8-2
 7|Berlin Bären BC|7-3
 10|Manchester|8-2
 15|Austin BC|6-4
@@ -53,7 +53,7 @@ S59
 5|Pearland|8-2
 12|Salzburg BC|7-3
 13|Athens|6-4
-4|Amsterdam|9-1
+4|Amsterdam BC|9-1
 3|Kiev|9-1
 14|Maine|6-4
 11|Manchester|8-2
@@ -62,7 +62,7 @@ S59
 10|Barcelona|6-4
 15|Sporting Lyon|6-4
 2|San Jose|10-0
-= Roma Pallacanestro 51-24 | Glasgow 41-37 | Pearland 38-26 | Amsterdam 44-41 | Maine 61-52 | Manchester 53-47 | Barcelona 47-36 | San Jose 45-30
+= Roma Pallacanestro 51-24 | Glasgow 41-37 | Pearland 38-26 | Amsterdam BC 44-41 | Maine 61-52 | Manchester 53-47 | Barcelona 47-36 | San Jose 45-30
 = Roma Pallacanestro 50-30 | Pearland 42-35 | Maine 49-46 | San Jose 46-31
 = Pearland 52-42 | San Jose 50-49
 = Pearland 52-50
@@ -81,7 +81,7 @@ S66
 14|Atlético Lisboa|6-4
 11|Tampa|7-3
 6|Münchner BC|8-2
-7|Amsterdam|9-1
+7|Amsterdam BC|9-1
 10|Moskovskiy BK|6-4
 15|Toronto|6-4
 2|Milano BC|9-1
@@ -92,7 +92,7 @@ S66
 
 # p062 FBA D2 Tournament
 S61
-1|Amsterdam|10-0
+1|Amsterdam BC|10-0
 16|Zürich Helvetia|5-5
 9|Salzburg BC|6-4
 8|Austin BC|7-3
@@ -108,7 +108,7 @@ S61
 10|Manchester|7-3
 15|Toronto|6-4
 2|Club Madrid|9-1
-= Amsterdam 52-44 | Austin BC 38-35 | Milano BC 45-44 | Kiev 45-44 | Hamburg Hanse 60-52 | Roma Pallacanestro 38-23 | Manchester 51-41 | Club Madrid 61-20
+= Amsterdam BC 52-44 | Austin BC 38-35 | Milano BC 45-44 | Kiev 45-44 | Hamburg Hanse 60-52 | Roma Pallacanestro 38-23 | Manchester 51-41 | Club Madrid 61-20
 = Austin BC 39-38 | Milano BC 49-28 | Hamburg Hanse 62-52 | Club Madrid 59-18
 = Austin BC 48-38 | Hamburg Hanse 46-42
 = Austin BC 70-69

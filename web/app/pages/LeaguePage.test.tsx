@@ -58,6 +58,18 @@ describe('LeaguePage', () => {
     expect((await screen.findByRole('link', { name: 'D2 ratings reset' })).getAttribute('href')).toBe('/league/fbad2/ratings');
   });
 
+  it('lists the D2 leagues in order, Premier to International, whatever order the teams file has them in', async () => {
+    const saved = docs['leagues/fbad2/teams.json'];
+    docs['leagues/fbad2/teams.json'] = { league: 'fbad2', teams: ['IL', 'UL', 'WL', 'PL', 'IL'].map((group, i) => ({ teamId: `T${i}`, name: `Team ${i}`, abbr: `T${i}`, group, logoFolder: null, badge })) };
+    try {
+      const { container } = renderAt('/league/fbad2');
+      await screen.findByText('Premier League');
+      expect([...container.querySelectorAll('.group-title')].map(h => h.textContent)).toEqual(['Premier League', 'World League', 'United League', 'International League']);
+    } finally {
+      docs['leagues/fbad2/teams.json'] = saved;
+    }
+  });
+
   it('links the D2 draft from the D2 league page', async () => {
     renderAt('/league/fbad2');
     expect((await screen.findByRole('link', { name: 'D2 draft' })).getAttribute('href')).toBe('/league/fbad2/draft');

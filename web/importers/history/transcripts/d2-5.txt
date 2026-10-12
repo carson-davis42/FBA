@@ -36,10 +36,10 @@ G:WL
 5|Liverpool Maritime|22-8
 4|Miami BC|22-8
 3|Paulistano|26-4
-6|Amsterdam|21-9
+6|Amsterdam BC|21-9
 7|Hamburg Hanse|18-12
 2|Recife|26-4
-= Guadalajara CB 4-0 | Miami BC 4-2 | Amsterdam 4-2 | Recife 4-0
+= Guadalajara CB 4-0 | Miami BC 4-2 | Amsterdam BC 4-2 | Recife 4-0
 = Guadalajara CB 4-1 | Recife 4-1
 = Recife 4-2
 

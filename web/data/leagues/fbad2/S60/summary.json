@@ -91,7 +91,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "9-1",
           "seed": 5
         },
@@ -217,7 +217,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "9-1",
           "seed": 5
         },
@@ -276,7 +276,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "9-1",
           "seed": 5
         },

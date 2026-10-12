@@ -53,7 +53,7 @@
       "group": "EW",
       "teams": [
         "Brussels",
-        "Amsterdam"
+        "Amsterdam BC"
       ]
     },
     {
@@ -184,7 +184,7 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "9-1",
           "seed": 7
         },

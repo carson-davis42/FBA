@@ -37,10 +37,10 @@ G:WL
 4|Recife|23-7
 3|Paulistano|24-6
 6|Liverpool Maritime|22-8
-7|Amsterdam|18-12
+7|Amsterdam BC|18-12
 2|Budapesti SE|24-6
-= Club Madrid 4-1 | Recife 4-3 | Paulistano 4-1 | Amsterdam 4-2
-= Club Madrid 4-0 | Amsterdam 4-1
+= Club Madrid 4-1 | Recife 4-3 | Paulistano 4-1 | Amsterdam BC 4-2
+= Club Madrid 4-0 | Amsterdam BC 4-1
 = Club Madrid 4-2
 
 # p121 FBA D2 Premier League Tournament

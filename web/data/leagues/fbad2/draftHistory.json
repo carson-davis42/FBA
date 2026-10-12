@@ -26,7 +26,7 @@
         {
           "pick": 3,
           "teamId": "AMS",
-          "teamName": "Amsterdam",
+          "teamName": "Amsterdam BC",
           "name": "Malcom Currier",
           "playerId": "p02353",
           "pos": "PF",
@@ -251,7 +251,7 @@
         {
           "pick": 5,
           "teamId": "AMS",
-          "teamName": "Amsterdam",
+          "teamName": "Amsterdam BC",
           "name": "Adam Moore",
           "playerId": "p02249",
           "pos": "C",
@@ -281,7 +281,7 @@
         {
           "pick": 8,
           "teamId": "AMS",
-          "teamName": "Amsterdam",
+          "teamName": "Amsterdam BC",
           "name": "Alonso Gray",
           "playerId": "p02238",
           "pos": "SF",
@@ -1461,7 +1461,7 @@
         {
           "pick": 46,
           "teamId": "AMS",
-          "teamName": "Amsterdam",
+          "teamName": "Amsterdam BC",
           "name": "Ben Montgomery",
           "playerId": "p00163",
           "pos": "PG",
@@ -2366,7 +2366,7 @@
         {
           "pick": 3,
           "teamId": "AMS",
-          "teamName": "Amsterdam",
+          "teamName": "Amsterdam BC",
           "name": "Tomas Hall",
           "playerId": "p02278",
           "pos": "C",
@@ -2536,7 +2536,7 @@
         {
           "pick": 20,
           "teamId": "AMS",
-          "teamName": "Amsterdam",
+          "teamName": "Amsterdam BC",
           "name": "Jamal Edwards",
           "playerId": "p00165",
           "pos": "SF",
@@ -3091,7 +3091,7 @@
         {
           "pick": 36,
           "teamId": "AMS",
-          "teamName": "Amsterdam",
+          "teamName": "Amsterdam BC",
           "name": "Brooks Burrows",
           "playerId": "p00164",
           "pos": "SG",
@@ -3446,7 +3446,7 @@
         {
           "pick": 33,
           "teamId": "AMS",
-          "teamName": "Amsterdam",
+          "teamName": "Amsterdam BC",
           "name": "Rick King",
           "playerId": "p00167",
           "pos": "C",
@@ -4306,7 +4306,7 @@
         {
           "pick": 18,
           "teamId": "AMS",
-          "teamName": "Amsterdam",
+          "teamName": "Amsterdam BC",
           "name": "Maddox Dean",
           "playerId": "p00166",
           "pos": "PF",

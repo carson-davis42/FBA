@@ -1290,7 +1290,7 @@
           "seed": 13
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "9-1",
           "seed": 4
         },
@@ -1398,7 +1398,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "9-1",
           "seed": 4
         },
@@ -1543,7 +1543,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "9-1",
           "seed": 5
         },
@@ -1669,7 +1669,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "9-1",
           "seed": 5
         },
@@ -1728,7 +1728,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "9-1",
           "seed": 5
         },
@@ -1783,7 +1783,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "10-0",
           "seed": 1
         },
@@ -1927,7 +1927,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "10-0",
           "seed": 1
         },
@@ -2059,7 +2059,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "10-0",
           "seed": 1
         },
@@ -2203,7 +2203,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "10-0",
           "seed": 1
         },
@@ -2430,7 +2430,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "8-2",
           "seed": 6
         },
@@ -2742,7 +2742,7 @@
           "seed": 15
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "10-0",
           "seed": 2
         },
@@ -2814,7 +2814,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "10-0",
           "seed": 2
         },
@@ -2995,7 +2995,7 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "7-3",
           "seed": 7
         },
@@ -3271,7 +3271,7 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "9-1",
           "seed": 7
         },
@@ -3842,7 +3842,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "12-2",
           "seed": 1
         },
@@ -3876,7 +3876,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "12-2",
           "seed": 1
         },
@@ -3980,7 +3980,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "22-8",
           "seed": 4
         },
@@ -4031,7 +4031,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "22-8",
           "seed": 4
         },
@@ -6117,7 +6117,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "18-12",
           "seed": 7
         },
@@ -6156,7 +6156,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "18-12",
           "seed": 7
         },
@@ -6173,7 +6173,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "18-12",
           "seed": 7
         },
@@ -6609,7 +6609,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "21-9",
           "seed": 6
         },
@@ -6655,7 +6655,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Amsterdam",
+          "name": "Amsterdam BC",
           "record": "21-9",
           "seed": 6
         },

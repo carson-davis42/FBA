@@ -16,16 +16,18 @@
     },
     {
       "teamId": "AMS",
-      "name": "Amsterdam",
+      "name": "Amsterdam BC",
       "abbr": "AMS",
       "group": "UL",
-      "logoFolder": null,
+      "logoFolder": "FBAD2",
       "badge": {
-        "bg": "hsl(286 55% 36%)",
-        "fg": "#ffffff"
+        "bg": "#A80A18",
+        "fg": "#fff",
+        "accent": "#111111"
       },
       "city": "Amsterdam",
-      "country": "Netherlands"
+      "country": "Netherlands",
+      "logoFile": "Amsterdam BC.png"
     },
     {
       "teamId": "ATH",

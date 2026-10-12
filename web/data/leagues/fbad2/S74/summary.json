@@ -17,7 +17,7 @@
     {
       "title": "World League Champion",
       "champion": "Club Madrid",
-      "runnerUp": "Amsterdam",
+      "runnerUp": "Amsterdam BC",
       "score": null,
       "group": "WL",
       "finalsMvp": "p00395",
@@ -281,7 +281,7 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Amsterdam",
+              "name": "Amsterdam BC",
               "record": "18-12",
               "seed": 7
             },
@@ -320,7 +320,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Amsterdam",
+              "name": "Amsterdam BC",
               "record": "18-12",
               "seed": 7
             },
@@ -337,7 +337,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Amsterdam",
+              "name": "Amsterdam BC",
               "record": "18-12",
               "seed": 7
             },
