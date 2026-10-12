@@ -97,6 +97,15 @@ Checked in the code survey; each gets a test that runs with 16/16 teams:
 - Importing S80 sheet data (real-data runs stay deferred).
 - Expansion team free-agency behaviour: they fill rosters through normal Free Agency.
 
+## 8. Addendum (found while planning)
+
+- **Rosters are 5 slots, one per position** (PG SG SF PF C; `slotProblems`, `normalizeRoster`). So an expansion team can take at most one player per position, and the 4 picks must be at 4 different positions. A pick at a position the team already holds is refused. With 4 protected, an existing team exposes at most its 5th player, so "one loss per team" holds by construction as well as by rule.
+- **Payroll cap.** An expansion pick is refused if it takes the team's payroll over `CAP` ($25), the same check every roster move uses.
+- **No lock exception is needed.** The S80 offseason phase is `open`, so `lockProblem` already allows roster writes; the spec's §4 paragraph about `locks.ts` is dropped.
+- **Calendar for the existing S79 calendar** is migrated the way the qualifying step was: `withExpansionStep` plus an importer mode `--expansion-step --data <dir>`, which you run once on the real data. `calendarFor` gets both steps for newly created seasons.
+- **Lottery tables.** The 16-entry table applies to "2 expansion teams + 14 real teams". From S81 on a lottery has 16 real teams and no table exists for that yet; the lottery refuses with "No lottery odds for a 16-team lottery" until one is added to `LOTTERY_ODDS`. This is a decision for you before the S81 lottery, not before the S80 rollover.
+- **Draft history.** The finished expansion draft appends `{ season: 80, kind: 'expansion' }` to `leagues/fba/draftHistory.json`, and the `--drafts` importer keeps entries newer than its `lastSeason` (79) so a re-import doesn't drop it.
+
 ## Risks and assumptions to confirm
 
 - `teamId: 'LAL'` for "Team 32" (X1) instead of `T32`; the spec row says "Team 32 (T32)", so this is a judgement call.
