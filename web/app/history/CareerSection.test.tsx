@@ -37,4 +37,11 @@ describe('CareerSection national teams', () => {
     render(<MemoryRouter><CareerSection career={parseBio({ born: 'Born-S55', entries: ['Cornell-S73'] })} born={null} totals={none} teams={{ fba: [], d2: [], college: [] }} /></MemoryRouter>);
     expect(screen.queryByRole('table', { name: 'National team' })).toBeNull();
   });
+
+  it('links an old D2 team to the team it became, under the name the bio uses', () => {
+    const c = parseBio({ born: 'Born-S40', entries: ['D2(Pearland)-S53-S58', 'D2(Orlando)-S59'] });
+    render(<MemoryRouter><CareerSection career={c} born={null} totals={none} teams={{ fba: [], d2: [team('AUS', 'Austin'), team('MIA', 'Miami')], college: [] }} /></MemoryRouter>);
+    const links = screen.getAllByRole('link');
+    expect(links.map(l => [l.textContent, l.getAttribute('href')])).toEqual([[expect.stringContaining('Pearland'), '/history/fbad2/teams/AUS'], [expect.stringContaining('Orlando'), '/history/fbad2/teams/MIA']]);
+  });
 });
