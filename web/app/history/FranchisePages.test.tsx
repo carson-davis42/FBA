@@ -153,6 +153,42 @@ describe('Franchise pages', () => {
     expect(within(tile).getByRole('img').getAttribute('src')).toBe(logoUrl('San Antonio', 57));
   });
 
+  describe('a logo that starts in a later season', () => {
+    const manifest = (): LogoManifest => ({ folders: { 'San Antonio': [
+      { file: 'San Antonio S57-S79.png', from: 57, to: 79, variant: 0 },
+      { file: 'San Antonio S80-pres..png', from: 80, to: null, variant: 0 },
+    ] } });
+    const calendar = (season: number) => ({ '/api/state/calendar.json': { season, steps: [] } });
+    const tiles = () => screen.getAllByRole('listitem').filter(li => li.classList.contains('era-tile'));
+
+    it('gets its own "Future logo" tile first, and the current tile keeps the logo in use and "pres."', async () => {
+      stub({ logoFolder: 'San Antonio', manifest: manifest(), extra: calendar(79) });
+      renderFranchise();
+      await screen.findByRole('heading', { level: 1 });
+      const [future, current] = tiles();
+      expect(future.classList.contains('future-logo')).toBe(true);
+      expect(future.textContent).toContain('Future logo');
+      expect(future.textContent).toContain('Starts S80');
+      expect(within(future).getByRole('img').getAttribute('src')).toBe(logoUrl('San Antonio', 80));
+      expect(current.textContent).toContain('S57–pres.');
+      const imgs = within(current).getAllByRole('img');
+      expect(imgs).toHaveLength(1);
+      expect(imgs[0].getAttribute('src')).toBe(logoUrl('San Antonio', 57));
+      // the hero still wears the logo in use
+      expect(screen.getAllByRole('img').some(i => i.getAttribute('src') === logoUrl('San Antonio', 79))).toBe(true);
+    });
+
+    it('is the current logo once the season arrives: no Future tile, both logos in the era tile, hero switched', async () => {
+      stub({ logoFolder: 'San Antonio', manifest: manifest(), extra: calendar(80) });
+      renderFranchise();
+      await screen.findByRole('heading', { level: 1 });
+      expect(screen.queryByText('Future logo')).toBeNull();
+      const era = tiles().find(li => li.textContent?.includes('S57–pres.'))!;
+      expect(within(era).getAllByRole('img')).toHaveLength(2);
+      expect(screen.getAllByRole('img').some(i => i.getAttribute('src') === logoUrl('San Antonio', 80))).toBe(true);
+    });
+  });
+
   it('reports an unknown franchise', async () => {
     stub();
     renderFranchise('ZZZ');

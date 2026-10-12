@@ -86,7 +86,7 @@ export function FranchisePage() {
           { label: 'Tournaments', value: c.tournaments.length },
         ]}
       />
-      <EraStrip franchise={franchise} team={team} manifest={manifest.data ?? null} />
+      <EraStrip franchise={franchise} team={team} manifest={manifest.data ?? null} currentSeason={Math.max(79, calendar.data?.season ?? 0, ...seasons.map(s => s.season))} />
       <SubNav label="Franchise" items={[{ id: 'overview', label: 'Overview' }, { id: 'players', label: 'Players' }]} active={tab} onSelect={id => setParams(id === 'players' ? { tab: 'players' } : {})} />
       {tab === 'players' ? (
         <div id="panel-players" role="tabpanel" aria-labelledby="tab-players">
