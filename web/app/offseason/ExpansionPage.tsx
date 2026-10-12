@@ -30,7 +30,7 @@ type Run = (make: () => WritesResult) => void;
 
 /** The expansion (/league/fba/expansion): add the new teams, set protections, then the expansion draft. */
 export function ExpansionPage() {
-  const { addState, draftState, versions, mode, ready, error } = useExpansionState();
+  const { addState, draftState, versions, mode, ready, error, joined } = useExpansionState();
   const saving = useSaving();
   const busy = useRef(false);
   const [actionError, setActionError] = useState('');
@@ -83,6 +83,20 @@ export function ExpansionPage() {
   }
 
   if (mode !== 'draft' || !draftState) {
+    if (joined && joined.length > 0) {
+      const season = joined[0].fromSeason!;
+      return (
+        <section className="stack">
+          {header}
+          <div className="card">
+            <p>The S{season} expansion teams have been added; the expansion draft comes after the S{season} FBA draft.</p>
+            <ul className="plain">
+              {joined.map(t => <li key={t.teamId}><TeamName team={t} season={season} /></li>)}
+            </ul>
+          </div>
+        </section>
+      );
+    }
     return <section className="stack">{header}<p className="muted">No expansion this season</p></section>;
   }
 

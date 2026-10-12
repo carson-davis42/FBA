@@ -106,24 +106,28 @@ export function DraftSeasonPage() {
   const history = useDoc<DraftHistoryFile>('leagues/fba/draftHistory.json');
   const fb = useFbaTeams();
   const imported = (history.data?.drafts ?? []).filter(d => d.season === season);
-  const historySettled = docSettled(history);
-  const app = useDoc<DraftFile>(historySettled && imported.length === 0 && Number.isInteger(season) ? `leagues/fba/S${season}/draft.json` : null);
-  const failure = players.error ?? docFailure(history) ?? (imported.length === 0 ? docFailure(app) : undefined);
-  if (failure) return <p className="error">Couldn't load the draft: {failure.message}</p>;
-  if (!players.data || !historySettled || !fb.settled) return <p className="muted">Loading…</p>;
-  if (imported.length === 0 && Number.isInteger(season) && !docSettled(app)) return <p className="muted">Loading…</p>;
-
-  const header = <PageHeader title={`S${season} Draft`} actions={<Link to="/history/fba/drafts">← Drafts</Link>} />;
   const main = imported.find(d => d.kind === 'draft');
   const expansion = imported.find(d => d.kind === 'expansion');
+  const historySettled = docSettled(history);
+  // The app's own draft (draft.json) is read whenever the imported history has no regular draft for the season.
+  const needApp = historySettled && !main && Number.isInteger(season);
+  const app = useDoc<DraftFile>(needApp ? `leagues/fba/S${season}/draft.json` : null);
+  const failure = players.error ?? docFailure(history) ?? (needApp ? docFailure(app) : undefined);
+  if (failure) return <p className="error">Couldn't load the draft: {failure.message}</p>;
+  if (!players.data || !historySettled || !fb.settled) return <p className="muted">Loading…</p>;
+  if (needApp && !docSettled(app)) return <p className="muted">Loading…</p>;
+
+  const header = <PageHeader title={`S${season} Draft`} actions={<Link to="/history/fba/drafts">← Drafts</Link>} />;
   const undrafted = (main?.picks ?? []).filter(p => p.pick === null);
   const playerDoc = players.data;
+  const appDraft = !main && app.data && app.data.started ? app.data : null;
 
-  if (imported.length > 0) {
+  if (main || expansion || appDraft) {
     return (
       <section className="stack">
         {header}
         {main && <HistoryTable draft={main} players={playerDoc} fb={fb} />}
+        {appDraft && <AppTable doc={appDraft} players={playerDoc} fb={fb} />}
         {expansion && (
           <div>
             <h2 className="section-title">Expansion draft</h2>
@@ -142,10 +146,6 @@ export function DraftSeasonPage() {
         )}
       </section>
     );
-  }
-
-  if (app.data && app.data.started) {
-    return <section className="stack">{header}<AppTable doc={app.data} players={playerDoc} fb={fb} /></section>;
   }
   return <section className="stack">{header}<p className="muted">No S{season} draft on record.</p></section>;
 }

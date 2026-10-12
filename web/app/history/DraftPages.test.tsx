@@ -36,12 +36,12 @@ const appDraft: DraftFile = {
   picks: [{ slot: 1, owner: 'SEA', originalTeam: 'DEN', playerId: 'p00001' }, { slot: 2, owner: 'DEN', originalTeam: 'DEN', playerId: null }],
 };
 
-function stub(opts: { history?: boolean; app?: boolean } = {}) {
+function stub(opts: { history?: boolean; app?: boolean; extra?: DraftHistoryFile } = {}) {
   const docs: Record<string, unknown> = {
     '/api/state/players.json': players,
     '/api/state/meta.json': { currentSeason: 80 },
   };
-  if (opts.history !== false) docs['/api/state/leagues/fba/draftHistory.json'] = history;
+  if (opts.history !== false) docs['/api/state/leagues/fba/draftHistory.json'] = opts.extra ?? history;
   if (opts.app) docs['/api/state/leagues/fba/S80/draft.json'] = appDraft;
   vi.stubGlobal('fetch', vi.fn(async (url: string) =>
     url in docs ? new Response(JSON.stringify(docs[url]), { headers: { ETag: '"0000000000000001"' } }) : new Response('{}', { status: 404 })));
@@ -112,6 +112,17 @@ describe('Draft pages', () => {
     expect(row.textContent).toContain('SEA');
     expect(row.textContent).toContain('(via');
     expect(row.textContent).toContain('Sr');
+  });
+
+  it('shows the app draft and the imported expansion draft together', async () => {
+    stub({
+      app: true,
+      extra: { drafts: [{ season: 80, kind: 'expansion', picks: [pick(1, 'Dan Expo', 'p00003', { detail: '31' })] }] },
+    });
+    renderSeason(80);
+    await screen.findByRole('heading', { name: 'Expansion draft' });
+    expect(screen.getByRole('link', { name: 'Ray Allen' }).closest('tr')?.textContent).toContain('Duke');
+    expect(screen.getByRole('link', { name: 'Dan Expo' })).toBeTruthy();
   });
 
   it('reports an unknown season', async () => {

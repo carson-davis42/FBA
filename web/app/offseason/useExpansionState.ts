@@ -1,10 +1,11 @@
 import { expansionPath, type ExpansionState } from '../../engine/offseason/expansion';
 import type { AddTeamsState } from '../../engine/season/addExpansionTeams';
+import { teamsJoining } from '../../engine/shared/teams';
 import { addTeamsStepId, expansionDraftStepId } from '../../engine/shared/expansion';
 import type {
-  CalendarFile, DraftHistoryFile, ExpansionFile, MetaFile, PlayersFile, RostersFile, TeamsFile, TransactionsFile,
+  CalendarFile, DraftHistoryFile, ExpansionFile, MetaFile, PlayersFile, RostersFile, Team, TeamsFile, TransactionsFile,
 } from '../../engine/shared/types';
-import { useDoc, type DocState, type Versions } from '../api';
+import { docSettled, useDoc, type DocState, type Versions } from '../api';
 
 const HISTORY_PATH = 'leagues/fba/draftHistory.json';
 
@@ -15,6 +16,8 @@ const HISTORY_PATH = 'leagues/fba/draftHistory.json';
  */
 export function useExpansionState(): {
   addState?: AddTeamsState; draftState?: ExpansionState; versions: Versions; mode: 'add' | 'draft' | 'none'; ready: boolean; error?: Error;
+  /** In mode 'none': the teams already added that join next season (the add step is done, the draft is not on the calendar yet). */
+  joined?: Team[];
 } {
   const meta = useDoc<MetaFile>('meta.json');
   const n = meta.data?.currentSeason;
@@ -28,7 +31,7 @@ export function useExpansionState(): {
   const path = (draftOnly: boolean, p: (n: number) => string) =>
     (n === undefined || mode === 'none' || (draftOnly && mode !== 'draft') ? null : p(n));
 
-  const teams = useDoc<TeamsFile>(path(false, () => 'leagues/fba/teams.json'));
+  const teams = useDoc<TeamsFile>(n === undefined || !cal ? null : 'leagues/fba/teams.json');
   const tx = useDoc<TransactionsFile>(path(false, s => `leagues/fba/S${s}/transactions.json`));
   const rosters = useDoc<RostersFile>(path(true, s => `leagues/fba/S${s}/rosters.json`));
   const players = useDoc<PlayersFile>(path(true, () => 'players.json'));
@@ -53,7 +56,11 @@ export function useExpansionState(): {
     ?? required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
   const base = { versions, mode, error };
   if (n === undefined || !cal) return { ...base, ready: false };
-  if (mode === 'none') return { ...base, ready: true };
+  if (mode === 'none') {
+    if (!docSettled(teams)) return { ...base, ready: false };
+    const joined = n !== undefined && teams.data ? teamsJoining(teams.data, n + 1) : [];
+    return { ...base, ready: true, joined };
+  }
   if (required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { ...base, ready: false };
   if (mode === 'add') return { ...base, ready: true, addState: { season: n, calendar: cal, teams: teams.data!, tx: tx.data! } };
   return {

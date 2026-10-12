@@ -62,6 +62,20 @@ describe('ExpansionPage', () => {
     expect(log.batches).toHaveLength(1);
   });
 
+  it('after Add teams in S79: confirms the added teams instead of "No expansion"', async () => {
+    const cal = calendarFor(79);
+    const at = cal.steps.findIndex(s => s.id === 's80-add-expansion-teams');
+    stubApi({
+      'meta.json': { currentSeason: 79, rosterSeason: { fba: 79, fbad2: 79, fbajc: 79, fbawc: 79 }, lastSeason: { fba: 78, fbad2: 78, fbajc: 78, fbawc: 78 } },
+      'calendar.json': { ...cal, steps: cal.steps.map((s, i) => ({ ...s, done: i <= at })) },
+      'leagues/fba/teams.json': expansionState().teams,
+    });
+    renderPage();
+    expect(await screen.findByText(/The S80 expansion teams have been added; the expansion draft comes after the S80 FBA draft\./)).toBeTruthy();
+    expect(screen.getByText('Philly Phantoms')).toBeTruthy();
+    expect(screen.queryByText('No expansion this season')).toBeNull();
+  });
+
   it('says so when the season has no expansion', async () => {
     const cal = calendarFor(81);
     stubApi({
