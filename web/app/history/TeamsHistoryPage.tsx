@@ -35,7 +35,7 @@ export function TeamsHistoryPage() {
             const team = teams.find(t => t.teamId === f.teamId) ?? EXPANSION_TEAMS.find(t => t.teamId === f.teamId);
             const c = trophyCase(f.teamId, { summaries: seasons, teams, franchises, hallOfFame: null });
             return (
-              <Link key={f.teamId} className="card link" to={`/history/fba/teams/${f.teamId}`}>
+              <Link key={f.teamId} className="card link team-card" to={`/history/fba/teams/${f.teamId}`}>
                 {team ? <TeamName team={team} season={season} size={40} /> : <b>{f.eras[0].name}</b>}
                 <span className="muted">{count(c.championships.length, 'title', 'titles')} · {count(c.finals.length, 'Finals appearance', 'Finals appearances')} · {count(c.confTitles.length, 'conference title', 'conference titles')}</span>
               </Link>

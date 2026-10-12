@@ -2,6 +2,9 @@
 .feature { display: grid; gap: var(--s1); text-decoration: none; color: var(--text); }
 .feature-title { font-family: var(--font-head); font-size: var(--fs-lg); text-transform: var(--head-transform); letter-spacing: 0.02em; }
 
+/* The Teams grid card: name on its own line, the trophy counts underneath (a plain block let the counts run on after the name). */
+.team-card { display: grid; gap: var(--s2); align-content: start; }
+
 .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
 .timeline-row { display: flex; align-items: center; gap: var(--s4); flex-wrap: wrap; padding: var(--s3) var(--s4); background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: var(--r); box-shadow: var(--shadow-1); }
 .timeline-season { font-family: var(--font-head); font-size: var(--fs-display); line-height: 1; min-width: 2.2em; color: var(--text); text-decoration: none; }

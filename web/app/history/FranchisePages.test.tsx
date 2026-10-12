@@ -75,6 +75,8 @@ describe('Franchise pages', () => {
     expect(sas.textContent).toContain('1 title ·');
     expect(sas.textContent).toContain('1 Finals appearance ·');
     expect(sas.textContent).toContain('San Antonio Spirits');
+    // the name and the counts are stacked, not run together on one line
+    expect(sas.classList.contains('team-card')).toBe(true);
   });
 
   it('the Teams grid shows the current-season logo and the debut logos of expansion teams not yet in teams.json', async () => {
