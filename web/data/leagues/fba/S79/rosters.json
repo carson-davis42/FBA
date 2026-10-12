@@ -9,7 +9,7 @@
         "position": "PG",
         "rating": 83,
         "age": 23,
-        "points": 1251,
+        "points": 1320,
         "contractEnd": 81,
         "contractAmount": 6
       },
@@ -18,7 +18,7 @@
         "position": "SG",
         "rating": 78,
         "age": 22,
-        "points": 900,
+        "points": 944,
         "contractEnd": 80,
         "contractAmount": 4
       },
@@ -27,7 +27,7 @@
         "position": "SF",
         "rating": 81,
         "age": 22,
-        "points": 1186,
+        "points": 1257,
         "contractEnd": 80,
         "contractAmount": 4
       },
@@ -36,7 +36,7 @@
         "position": "PF",
         "rating": 75,
         "age": 20,
-        "points": 752,
+        "points": 804,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -46,7 +46,7 @@
         "position": "C",
         "rating": 85,
         "age": 26,
-        "points": 1487,
+        "points": 1560,
         "contractEnd": 81,
         "contractAmount": 7
       }
@@ -57,7 +57,7 @@
         "position": "PG",
         "rating": 94,
         "age": 28,
-        "points": 1972,
+        "points": 2099,
         "contractEnd": 80,
         "contractAmount": 8
       },
@@ -66,7 +66,7 @@
         "position": "SG",
         "rating": 90,
         "age": 28,
-        "points": 1590,
+        "points": 1671,
         "contractEnd": 81,
         "contractAmount": 7
       },
@@ -75,7 +75,7 @@
         "position": "SF",
         "rating": 73,
         "age": 24,
-        "points": 571,
+        "points": 604,
         "contractEnd": 80,
         "contractAmount": 3
       },
@@ -84,7 +84,7 @@
         "position": "PF",
         "rating": 68,
         "age": 28,
-        "points": 301,
+        "points": 307,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -94,7 +94,7 @@
         "position": "C",
         "rating": 93,
         "age": 27,
-        "points": 1908,
+        "points": 2029,
         "contractEnd": 80,
         "contractAmount": 8
       }
@@ -105,7 +105,7 @@
         "position": "PG",
         "rating": 92,
         "age": 24,
-        "points": 2028,
+        "points": 2116,
         "contractEnd": 82,
         "contractAmount": 8
       },
@@ -114,7 +114,7 @@
         "position": "SG",
         "rating": 67,
         "age": 28,
-        "points": 383,
+        "points": 399,
         "contractEnd": 79,
         "contractAmount": 1
       },
@@ -123,7 +123,7 @@
         "position": "SF",
         "rating": 93,
         "age": 23,
-        "points": 2069,
+        "points": 2140,
         "contractEnd": 80,
         "contractAmount": 7
       },
@@ -132,7 +132,7 @@
         "position": "PF",
         "rating": 75,
         "age": 29,
-        "points": 849,
+        "points": 895,
         "contractEnd": 80,
         "contractAmount": 7
       },
@@ -141,7 +141,7 @@
         "position": "C",
         "rating": 72,
         "age": 28,
-        "points": 723,
+        "points": 740,
         "contractEnd": 80,
         "contractAmount": 4
       }
@@ -152,7 +152,7 @@
         "position": "PG",
         "rating": 73,
         "age": 22,
-        "points": 808,
+        "points": 853,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -162,7 +162,7 @@
         "position": "SG",
         "rating": 78,
         "age": 23,
-        "points": 1363,
+        "points": 1423,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -171,7 +171,7 @@
         "position": "SF",
         "rating": 68,
         "age": 30,
-        "points": 429,
+        "points": 461,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": false
@@ -181,7 +181,7 @@
         "position": "PF",
         "rating": 71,
         "age": 19,
-        "points": 804,
+        "points": 831,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -191,7 +191,7 @@
         "position": "C",
         "rating": 74,
         "age": 24,
-        "points": 892,
+        "points": 935,
         "contractEnd": 81,
         "contractAmount": 5
       }
@@ -202,7 +202,7 @@
         "position": "PG",
         "rating": 76,
         "age": 26,
-        "points": 822,
+        "points": 836,
         "contractEnd": 81,
         "contractAmount": 6
       },
@@ -211,7 +211,7 @@
         "position": "SG",
         "rating": 95,
         "age": 24,
-        "points": 2357,
+        "points": 2404,
         "contractEnd": 81,
         "contractAmount": 8
       },
@@ -220,7 +220,7 @@
         "position": "SF",
         "rating": 68,
         "age": 32,
-        "points": 321,
+        "points": 323,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -230,7 +230,7 @@
         "position": "PF",
         "rating": 76,
         "age": 25,
-        "points": 886,
+        "points": 890,
         "contractEnd": 79,
         "contractAmount": 4
       },
@@ -239,7 +239,7 @@
         "position": "C",
         "rating": 81,
         "age": 24,
-        "points": 1303,
+        "points": 1316,
         "contractEnd": 80,
         "contractAmount": 6
       }
@@ -250,7 +250,7 @@
         "position": "PG",
         "rating": 72,
         "age": 27,
-        "points": 670,
+        "points": 674,
         "contractEnd": 80,
         "contractAmount": 4
       },
@@ -259,7 +259,7 @@
         "position": "SG",
         "rating": 94,
         "age": 31,
-        "points": 2538,
+        "points": 2575,
         "contractEnd": 80,
         "contractAmount": 8
       },
@@ -268,7 +268,7 @@
         "position": "SF",
         "rating": 73,
         "age": 31,
-        "points": 868,
+        "points": 886,
         "contractEnd": 80,
         "contractAmount": 4
       },
@@ -277,7 +277,7 @@
         "position": "PF",
         "rating": 74,
         "age": 29,
-        "points": 901,
+        "points": 913,
         "contractEnd": 79,
         "contractAmount": 6
       },
@@ -286,7 +286,7 @@
         "position": "C",
         "rating": 74,
         "age": 31,
-        "points": 846,
+        "points": 850,
         "contractEnd": 80,
         "contractAmount": 5
       }
@@ -297,7 +297,7 @@
         "position": "PG",
         "rating": 88,
         "age": 27,
-        "points": 1624,
+        "points": 1668,
         "contractEnd": 80,
         "contractAmount": 7
       },
@@ -306,7 +306,7 @@
         "position": "SG",
         "rating": 95,
         "age": 29,
-        "points": 2231,
+        "points": 2298,
         "contractEnd": 82,
         "contractAmount": 8
       },
@@ -315,7 +315,7 @@
         "position": "SF",
         "rating": 66,
         "age": 29,
-        "points": 220,
+        "points": 234,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -325,7 +325,7 @@
         "position": "PF",
         "rating": 90,
         "age": 30,
-        "points": 1690,
+        "points": 1732,
         "contractEnd": 80,
         "contractAmount": 8
       },
@@ -334,7 +334,7 @@
         "position": "C",
         "rating": 71,
         "age": 21,
-        "points": 543,
+        "points": 560,
         "contractEnd": 80,
         "contractAmount": 2
       }
@@ -345,7 +345,7 @@
         "position": "PG",
         "rating": 82,
         "age": 25,
-        "points": 1314,
+        "points": 1347,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -354,7 +354,7 @@
         "position": "SG",
         "rating": 86,
         "age": 24,
-        "points": 1510,
+        "points": 1550,
         "contractEnd": 82,
         "contractAmount": 6
       },
@@ -363,7 +363,7 @@
         "position": "SF",
         "rating": 76,
         "age": 30,
-        "points": 910,
+        "points": 928,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -372,7 +372,7 @@
         "position": "PF",
         "rating": 70,
         "age": 23,
-        "points": 596,
+        "points": 611,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -382,7 +382,7 @@
         "position": "C",
         "rating": 82,
         "age": 22,
-        "points": 1258,
+        "points": 1310,
         "contractEnd": 81,
         "contractAmount": 6
       }
@@ -393,7 +393,7 @@
         "position": "PG",
         "rating": 73,
         "age": 21,
-        "points": 608,
+        "points": 630,
         "contractEnd": 80,
         "contractAmount": 2
       },
@@ -402,7 +402,7 @@
         "position": "SG",
         "rating": 68,
         "age": 29,
-        "points": 334,
+        "points": 352,
         "contractEnd": 79,
         "contractAmount": 1
       },
@@ -411,7 +411,7 @@
         "position": "SF",
         "rating": 93,
         "age": 22,
-        "points": 2005,
+        "points": 2088,
         "contractEnd": 82,
         "contractAmount": 8
       },
@@ -420,7 +420,7 @@
         "position": "PF",
         "rating": 80,
         "age": 25,
-        "points": 1045,
+        "points": 1097,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -429,7 +429,7 @@
         "position": "C",
         "rating": 89,
         "age": 27,
-        "points": 1696,
+        "points": 1784,
         "contractEnd": 82,
         "contractAmount": 8
       }
@@ -440,7 +440,7 @@
         "position": "PG",
         "rating": 82,
         "age": 25,
-        "points": 1185,
+        "points": 1196,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -449,7 +449,7 @@
         "position": "SG",
         "rating": 71,
         "age": 26,
-        "points": 477,
+        "points": 484,
         "contractEnd": 79,
         "contractAmount": 4
       },
@@ -458,7 +458,7 @@
         "position": "SF",
         "rating": 95,
         "age": 28,
-        "points": 2274,
+        "points": 2314,
         "contractEnd": 81,
         "contractAmount": 8
       },
@@ -467,7 +467,7 @@
         "position": "PF",
         "rating": 70,
         "age": 27,
-        "points": 566,
+        "points": 571,
         "contractEnd": 80,
         "contractAmount": 3
       },
@@ -476,7 +476,7 @@
         "position": "C",
         "rating": 87,
         "age": 24,
-        "points": 1536,
+        "points": 1554,
         "contractEnd": 81,
         "contractAmount": 7
       }
@@ -487,7 +487,7 @@
         "position": "PG",
         "rating": 70,
         "age": 28,
-        "points": 525,
+        "points": 537,
         "contractEnd": 80,
         "contractAmount": 4
       },
@@ -496,7 +496,7 @@
         "position": "SG",
         "rating": 81,
         "age": 20,
-        "points": 1619,
+        "points": 1669,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -506,7 +506,7 @@
         "position": "SF",
         "rating": 76,
         "age": 27,
-        "points": 1121,
+        "points": 1171,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -515,7 +515,7 @@
         "position": "PF",
         "rating": 79,
         "age": 21,
-        "points": 1194,
+        "points": 1257,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -525,7 +525,7 @@
         "position": "C",
         "rating": 68,
         "age": 26,
-        "points": 312,
+        "points": 337,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -537,7 +537,7 @@
         "position": "PG",
         "rating": 71,
         "age": 27,
-        "points": 477,
+        "points": 509,
         "contractEnd": 80,
         "contractAmount": 3
       },
@@ -546,7 +546,7 @@
         "position": "SG",
         "rating": 96,
         "age": 28,
-        "points": 2482,
+        "points": 2640,
         "contractEnd": 80,
         "contractAmount": 8
       },
@@ -555,7 +555,7 @@
         "position": "SF",
         "rating": 77,
         "age": 29,
-        "points": 1017,
+        "points": 1075,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -564,7 +564,7 @@
         "position": "PF",
         "rating": 85,
         "age": 31,
-        "points": 1447,
+        "points": 1533,
         "contractEnd": 80,
         "contractAmount": 7
       },
@@ -573,7 +573,7 @@
         "position": "C",
         "rating": 68,
         "age": 32,
-        "points": 384,
+        "points": 415,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -585,7 +585,7 @@
         "position": "PG",
         "rating": 79,
         "age": 22,
-        "points": 1128,
+        "points": 1143,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -594,7 +594,7 @@
         "position": "SG",
         "rating": 83,
         "age": 27,
-        "points": 1429,
+        "points": 1453,
         "contractEnd": 81,
         "contractAmount": 6
       },
@@ -603,7 +603,7 @@
         "position": "SF",
         "rating": 72,
         "age": 21,
-        "points": 684,
+        "points": 699,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -613,7 +613,7 @@
         "position": "PF",
         "rating": 81,
         "age": 28,
-        "points": 1314,
+        "points": 1328,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -622,7 +622,7 @@
         "position": "C",
         "rating": 73,
         "age": 22,
-        "points": 784,
+        "points": 794,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -634,7 +634,7 @@
         "position": "PG",
         "rating": 65,
         "age": 32,
-        "points": 288,
+        "points": 290,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -644,7 +644,7 @@
         "position": "SG",
         "rating": 79,
         "age": 25,
-        "points": 1025,
+        "points": 1039,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -653,7 +653,7 @@
         "position": "SF",
         "rating": 82,
         "age": 23,
-        "points": 1231,
+        "points": 1249,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -662,7 +662,7 @@
         "position": "PF",
         "rating": 83,
         "age": 25,
-        "points": 1451,
+        "points": 1481,
         "contractEnd": 79,
         "contractAmount": 6
       },
@@ -671,7 +671,7 @@
         "position": "C",
         "rating": 88,
         "age": 21,
-        "points": 1839,
+        "points": 1858,
         "contractEnd": 80,
         "contractAmount": 6
       }
@@ -682,7 +682,7 @@
         "position": "PG",
         "rating": 88,
         "age": 27,
-        "points": 1601,
+        "points": 1665,
         "contractEnd": 81,
         "contractAmount": 7
       },
@@ -691,7 +691,7 @@
         "position": "SG",
         "rating": 71,
         "age": 21,
-        "points": 414,
+        "points": 431,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -701,7 +701,7 @@
         "position": "SF",
         "rating": 85,
         "age": 25,
-        "points": 1485,
+        "points": 1546,
         "contractEnd": 81,
         "contractAmount": 7
       },
@@ -710,7 +710,7 @@
         "position": "PF",
         "rating": 86,
         "age": 25,
-        "points": 1694,
+        "points": 1781,
         "contractEnd": 81,
         "contractAmount": 7
       },
@@ -719,7 +719,7 @@
         "position": "C",
         "rating": 69,
         "age": 30,
-        "points": 450,
+        "points": 459,
         "contractEnd": 79,
         "contractAmount": 2
       }
@@ -730,7 +730,7 @@
         "position": "PG",
         "rating": 98,
         "age": 25,
-        "points": 2586,
+        "points": 2637,
         "contractEnd": 79,
         "contractAmount": 8
       },
@@ -739,7 +739,7 @@
         "position": "SG",
         "rating": 71,
         "age": 26,
-        "points": 525,
+        "points": 543,
         "contractEnd": 79,
         "contractAmount": 3
       },
@@ -748,7 +748,7 @@
         "position": "SF",
         "rating": 67,
         "age": 21,
-        "points": 276,
+        "points": 285,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -758,7 +758,7 @@
         "position": "PF",
         "rating": 83,
         "age": 21,
-        "points": 1361,
+        "points": 1410,
         "contractEnd": 81,
         "contractAmount": 6
       },
@@ -767,7 +767,7 @@
         "position": "C",
         "rating": 75,
         "age": 26,
-        "points": 857,
+        "points": 892,
         "contractEnd": 80,
         "contractAmount": 6
       }
@@ -778,7 +778,7 @@
         "position": "PG",
         "rating": 72,
         "age": 27,
-        "points": 695,
+        "points": 731,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -787,7 +787,7 @@
         "position": "SG",
         "rating": 87,
         "age": 22,
-        "points": 2022,
+        "points": 2106,
         "contractEnd": 81,
         "contractAmount": 7
       },
@@ -796,7 +796,7 @@
         "position": "SF",
         "rating": 72,
         "age": 24,
-        "points": 659,
+        "points": 688,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -805,7 +805,7 @@
         "position": "PF",
         "rating": 66,
         "age": 31,
-        "points": 347,
+        "points": 360,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -815,7 +815,7 @@
         "position": "C",
         "rating": 78,
         "age": 25,
-        "points": 1127,
+        "points": 1162,
         "contractEnd": 80,
         "contractAmount": 5
       }
@@ -826,7 +826,7 @@
         "position": "PG",
         "rating": 84,
         "age": 19,
-        "points": 1442,
+        "points": 1489,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -836,7 +836,7 @@
         "position": "SG",
         "rating": 88,
         "age": 26,
-        "points": 1836,
+        "points": 1897,
         "contractEnd": 80,
         "contractAmount": 7
       },
@@ -845,7 +845,7 @@
         "position": "SF",
         "rating": 71,
         "age": 26,
-        "points": 578,
+        "points": 601,
         "contractEnd": 80,
         "contractAmount": 3
       },
@@ -854,7 +854,7 @@
         "position": "PF",
         "rating": 71,
         "age": 29,
-        "points": 555,
+        "points": 573,
         "contractEnd": 79,
         "contractAmount": 4
       },
@@ -863,7 +863,7 @@
         "position": "C",
         "rating": 77,
         "age": 20,
-        "points": 1071,
+        "points": 1099,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -875,7 +875,7 @@
         "position": "PG",
         "rating": 70,
         "age": 23,
-        "points": 361,
+        "points": 382,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -885,7 +885,7 @@
         "position": "SG",
         "rating": 74,
         "age": 27,
-        "points": 612,
+        "points": 649,
         "contractEnd": 81,
         "contractAmount": 5
       },
@@ -894,7 +894,7 @@
         "position": "SF",
         "rating": 96,
         "age": 26,
-        "points": 2325,
+        "points": 2434,
         "contractEnd": 80,
         "contractAmount": 8
       },
@@ -903,7 +903,7 @@
         "position": "PF",
         "rating": 92,
         "age": 23,
-        "points": 1980,
+        "points": 2108,
         "contractEnd": 83,
         "contractAmount": 8
       },
@@ -912,7 +912,7 @@
         "position": "C",
         "rating": 70,
         "age": 28,
-        "points": 629,
+        "points": 654,
         "contractEnd": 80,
         "contractAmount": 4
       }
@@ -923,7 +923,7 @@
         "position": "PG",
         "rating": 76,
         "age": 24,
-        "points": 1063,
+        "points": 1111,
         "contractEnd": 79,
         "contractAmount": 6
       },
@@ -932,7 +932,7 @@
         "position": "SG",
         "rating": 83,
         "age": 25,
-        "points": 1652,
+        "points": 1720,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -941,7 +941,7 @@
         "position": "SF",
         "rating": 68,
         "age": 19,
-        "points": 477,
+        "points": 504,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -951,7 +951,7 @@
         "position": "PF",
         "rating": 73,
         "age": 23,
-        "points": 708,
+        "points": 740,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -961,7 +961,7 @@
         "position": "C",
         "rating": 76,
         "age": 26,
-        "points": 1047,
+        "points": 1074,
         "contractEnd": 80,
         "contractAmount": 5
       }
@@ -972,7 +972,7 @@
         "position": "PG",
         "rating": 70,
         "age": 21,
-        "points": 420,
+        "points": 437,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -982,7 +982,7 @@
         "position": "SG",
         "rating": 79,
         "age": 27,
-        "points": 952,
+        "points": 999,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -991,7 +991,7 @@
         "position": "SF",
         "rating": 86,
         "age": 25,
-        "points": 1551,
+        "points": 1626,
         "contractEnd": 82,
         "contractAmount": 7
       },
@@ -1000,7 +1000,7 @@
         "position": "PF",
         "rating": 97,
         "age": 27,
-        "points": 2432,
+        "points": 2538,
         "contractEnd": 80,
         "contractAmount": 8
       },
@@ -1009,7 +1009,7 @@
         "position": "C",
         "rating": 67,
         "age": 28,
-        "points": 328,
+        "points": 342,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": false
@@ -1021,7 +1021,7 @@
         "position": "PG",
         "rating": 74,
         "age": 21,
-        "points": 811,
+        "points": 863,
         "contractEnd": 81,
         "contractAmount": 4
       },
@@ -1030,7 +1030,7 @@
         "position": "SG",
         "rating": 81,
         "age": 19,
-        "points": 1205,
+        "points": 1274,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -1040,7 +1040,7 @@
         "position": "SF",
         "rating": 76,
         "age": 20,
-        "points": 1163,
+        "points": 1207,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -1050,7 +1050,7 @@
         "position": "PF",
         "rating": 80,
         "age": 24,
-        "points": 1250,
+        "points": 1342,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -1059,7 +1059,7 @@
         "position": "C",
         "rating": 67,
         "age": 31,
-        "points": 352,
+        "points": 371,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": false
@@ -1071,7 +1071,7 @@
         "position": "PG",
         "rating": 78,
         "age": 24,
-        "points": 1084,
+        "points": 1111,
         "contractEnd": 81,
         "contractAmount": 5
       },
@@ -1080,7 +1080,7 @@
         "position": "SG",
         "rating": 69,
         "age": 23,
-        "points": 418,
+        "points": 434,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -1090,7 +1090,7 @@
         "position": "SF",
         "rating": 76,
         "age": 25,
-        "points": 891,
+        "points": 931,
         "contractEnd": 80,
         "contractAmount": 4
       },
@@ -1099,7 +1099,7 @@
         "position": "PF",
         "rating": 74,
         "age": 32,
-        "points": 722,
+        "points": 738,
         "contractEnd": 79,
         "contractAmount": 6
       },
@@ -1108,7 +1108,7 @@
         "position": "C",
         "rating": 95,
         "age": 23,
-        "points": 2362,
+        "points": 2430,
         "contractEnd": 81,
         "contractAmount": 8
       }
@@ -1119,7 +1119,7 @@
         "position": "PG",
         "rating": 68,
         "age": 23,
-        "points": 339,
+        "points": 352,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -1129,7 +1129,7 @@
         "position": "SG",
         "rating": 80,
         "age": 29,
-        "points": 989,
+        "points": 1050,
         "contractEnd": 80,
         "contractAmount": 7
       },
@@ -1138,7 +1138,7 @@
         "position": "SF",
         "rating": 67,
         "age": 30,
-        "points": 302,
+        "points": 316,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -1148,7 +1148,7 @@
         "position": "PF",
         "rating": 90,
         "age": 32,
-        "points": 1937,
+        "points": 2010,
         "contractEnd": 79,
         "contractAmount": 8
       },
@@ -1157,7 +1157,7 @@
         "position": "C",
         "rating": 97,
         "age": 28,
-        "points": 2296,
+        "points": 2423,
         "contractEnd": 81,
         "contractAmount": 8
       }
@@ -1168,7 +1168,7 @@
         "position": "PG",
         "rating": 85,
         "age": 20,
-        "points": 1512,
+        "points": 1586,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -1178,7 +1178,7 @@
         "position": "SG",
         "rating": 81,
         "age": 26,
-        "points": 1411,
+        "points": 1478,
         "contractEnd": 80,
         "contractAmount": 7
       },
@@ -1187,7 +1187,7 @@
         "position": "SF",
         "rating": 82,
         "age": 27,
-        "points": 1285,
+        "points": 1328,
         "contractEnd": 80,
         "contractAmount": 7
       },
@@ -1196,7 +1196,7 @@
         "position": "PF",
         "rating": 71,
         "age": 32,
-        "points": 481,
+        "points": 503,
         "contractEnd": 79,
         "contractAmount": 4
       },
@@ -1205,7 +1205,7 @@
         "position": "C",
         "rating": 75,
         "age": 25,
-        "points": 789,
+        "points": 826,
         "contractEnd": 80,
         "contractAmount": 5
       }
@@ -1216,7 +1216,7 @@
         "position": "PG",
         "rating": 77,
         "age": 22,
-        "points": 1033,
+        "points": 1102,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -1225,7 +1225,7 @@
         "position": "SG",
         "rating": 76,
         "age": 19,
-        "points": 934,
+        "points": 996,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -1235,7 +1235,7 @@
         "position": "SF",
         "rating": 68,
         "age": 27,
-        "points": 479,
+        "points": 491,
         "contractEnd": 79,
         "contractAmount": 4
       },
@@ -1244,7 +1244,7 @@
         "position": "PF",
         "rating": 81,
         "age": 22,
-        "points": 1249,
+        "points": 1301,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -1253,7 +1253,7 @@
         "position": "C",
         "rating": 81,
         "age": 22,
-        "points": 1342,
+        "points": 1396,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -1313,7 +1313,7 @@
         "position": "PG",
         "rating": 78,
         "age": 30,
-        "points": 1305,
+        "points": 1333,
         "contractEnd": 81,
         "contractAmount": 7
       },
@@ -1322,7 +1322,7 @@
         "position": "SG",
         "rating": 73,
         "age": 30,
-        "points": 939,
+        "points": 951,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -1331,7 +1331,7 @@
         "position": "SF",
         "rating": 67,
         "age": 25,
-        "points": 352,
+        "points": 362,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -1341,7 +1341,7 @@
         "position": "PF",
         "rating": 78,
         "age": 25,
-        "points": 1345,
+        "points": 1372,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -1350,7 +1350,7 @@
         "position": "C",
         "rating": 68,
         "age": 27,
-        "points": 445,
+        "points": 451,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": false
@@ -1362,7 +1362,7 @@
         "position": "PG",
         "rating": 83,
         "age": 25,
-        "points": 1604,
+        "points": 1643,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -1371,7 +1371,7 @@
         "position": "SG",
         "rating": 82,
         "age": 23,
-        "points": 1570,
+        "points": 1599,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -1380,7 +1380,7 @@
         "position": "SF",
         "rating": 73,
         "age": 21,
-        "points": 700,
+        "points": 731,
         "contractEnd": 80,
         "contractAmount": 2
       },
@@ -1389,7 +1389,7 @@
         "position": "PF",
         "rating": 74,
         "age": 24,
-        "points": 757,
+        "points": 779,
         "contractEnd": 80,
         "contractAmount": 3
       },
@@ -1398,7 +1398,7 @@
         "position": "C",
         "rating": 71,
         "age": 22,
-        "points": 594,
+        "points": 613,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -1410,7 +1410,7 @@
         "position": "PG",
         "rating": 81,
         "age": 26,
-        "points": 1312,
+        "points": 1372,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -1419,7 +1419,7 @@
         "position": "SG",
         "rating": 73,
         "age": 31,
-        "points": 806,
+        "points": 833,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -1428,7 +1428,7 @@
         "position": "SF",
         "rating": 77,
         "age": 32,
-        "points": 960,
+        "points": 1003,
         "contractEnd": 79,
         "contractAmount": 5
       },
@@ -1437,7 +1437,7 @@
         "position": "PF",
         "rating": 70,
         "age": 24,
-        "points": 573,
+        "points": 598,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": false
@@ -1447,7 +1447,7 @@
         "position": "C",
         "rating": 80,
         "age": 32,
-        "points": 1273,
+        "points": 1352,
         "contractEnd": 79,
         "contractAmount": 7
       }
