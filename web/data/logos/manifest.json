@@ -3186,8 +3186,14 @@
         "variant": 0
       },
       {
-        "file": "Oakland All-Stars S51-pres..png",
+        "file": "Oakland All-Stars S51-S79.png",
         "from": 51,
+        "to": 79,
+        "variant": 0
+      },
+      {
+        "file": "Oakland All-Stars S80-pres..png",
+        "from": 80,
         "to": null,
         "variant": 0
       }
