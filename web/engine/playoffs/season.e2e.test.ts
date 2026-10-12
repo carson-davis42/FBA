@@ -109,6 +109,8 @@ describe('a whole S79 in the engine: D2, finish, FBA, finish, the tail, then S80
     expect(fba.summary!.players!.find(p => p.playerId === paused.playerId && p.stint === 1)!.ratingStart).toBe(paused.oldRating);
 
     let cal = fba.calendar;
+    expect(cal.steps[currentStepIndex(cal)].id).toBe('s80-add-expansion-teams');
+    cal = markCurrentDone(cal);
     expect(cal.steps[currentStepIndex(cal)].id).toBe('s80-fba-draft-lottery');
     while (currentStepIndex(cal) >= 0) cal = markCurrentDone(cal);
 

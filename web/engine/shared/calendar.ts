@@ -1,4 +1,5 @@
 import type { CalendarFile, CalendarStep, LeagueId } from './types';
+import { EXPANSION_SEASON, addTeamsStepId, expansionDraftStepId } from './expansion';
 
 export function currentStepIndex(cal: CalendarFile): number {
   return cal.steps.findIndex(s => !s.done);
@@ -34,6 +35,7 @@ export function calendarFor(n: number): CalendarFile {
       step('adjust-age', 'Adjust Age', true),
       step('adjust-pro-ratings-reset', 'Adjust Pro Ratings(reset)', true),
       step(`s${n}-fba-draft`, `S${n} FBA Draft`),
+      ...(n === EXPANSION_SEASON ? [step(expansionDraftStepId(n), `S${n} Expansion Draft`)] : []),
       step('free-agency-offseason', 'Free Agency/Offseason'),
       step('fbad2-ratings-reset', 'FBAD2 Ratings(reset)', true),
       step('fbad2-draft', 'FBAD2 Draft', true),
@@ -41,6 +43,7 @@ export function calendarFor(n: number): CalendarFile {
       step(`make-s${n}-schedules`, `Make S${n} Schedules`),
       step('fba-d2', 'FBA D2', false, 'fbad2'),
       step('fba', 'FBA', false, 'fba'),
+      ...(n + 1 === EXPANSION_SEASON ? [step(addTeamsStepId(n + 1), `Add S${n + 1} Expansion Teams`)] : []),
       step(`s${n + 1}-fba-draft-lottery`, `S${n + 1} FBA Draft Lottery`),
       step(n % 2 === 0 ? `s${n}-world-cup` : `s${n}-qualifying`, n % 2 === 0 ? `S${n} World Cup` : `S${n} Qualifying`, false, 'fbawc'),
       step('retirement', 'Retirement'),
@@ -58,6 +61,16 @@ export function withQualifyingStep(cal: CalendarFile): CalendarFile {
   if (cal.season % 2 === 0 || cal.steps.some(s => s.id === id)) return cal;
   const at = cal.steps.findIndex(s => s.id === 'retirement');
   const added: CalendarStep = { id, label: `S${cal.season} Qualifying`, kind: 'league', league: 'fbawc', sub: false, done: false };
+  const steps = at < 0 ? [...cal.steps, added] : [...cal.steps.slice(0, at), added, ...cal.steps.slice(at)];
+  return { ...cal, steps };
+}
+
+/** Adds the add-teams step (before the lottery) to the calendar of the season before the expansion, if it lacks it. */
+export function withExpansionStep(cal: CalendarFile): CalendarFile {
+  const id = addTeamsStepId(EXPANSION_SEASON);
+  if (cal.season !== EXPANSION_SEASON - 1 || cal.steps.some(s => s.id === id)) return cal;
+  const at = cal.steps.findIndex(s => s.id === `s${EXPANSION_SEASON}-fba-draft-lottery`);
+  const added: CalendarStep = { id, label: `Add S${EXPANSION_SEASON} Expansion Teams`, kind: 'offseason', league: null, sub: false, done: false };
   const steps = at < 0 ? [...cal.steps, added] : [...cal.steps.slice(0, at), added, ...cal.steps.slice(at)];
   return { ...cal, steps };
 }

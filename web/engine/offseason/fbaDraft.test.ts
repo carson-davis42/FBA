@@ -50,7 +50,7 @@ describe('startDraftProblems', () => {
   });
 
   it('gives the calendar problem first', () => {
-    expect(startDraftProblems(withoutStep(baseState()))[0]).toBe('The draft starts at the S80 FBA Draft step (current step: Free Agency/Offseason)');
+    expect(startDraftProblems(withoutStep(baseState()))[0]).toBe('The draft starts at the S80 FBA Draft step (current step: S80 Expansion Draft)');
   });
 
   it('wants the pro ratings reset finished (missing or unlocked)', () => {
@@ -84,7 +84,7 @@ describe('startDraftProblems', () => {
     const s = baseState();
     const prospects = s.draft.prospects.map((p, i) => (i === 0 ? { ...p, fbaRating: null } : p));
     expect(startDraftProblems(withoutStep({ ...s, ratings: null, lottery: null, draft: { ...s.draft, prospects, started: true } }))).toEqual([
-      'The draft starts at the S80 FBA Draft step (current step: Free Agency/Offseason)',
+      'The draft starts at the S80 FBA Draft step (current step: S80 Expansion Draft)',
       'Finish the pro ratings reset first',
       'Prospect A has no FBA rating',
       "The S79 draft lottery hasn't been drawn",
@@ -186,7 +186,7 @@ describe('draftPick', () => {
 
   it('refuses away from the draft step', () => {
     expect(problems(draftPick(withoutStep(started()), 'p00040', ctx)))
-      .toEqual(['The draft starts at the S80 FBA Draft step (current step: Free Agency/Offseason)']);
+      .toEqual(['The draft starts at the S80 FBA Draft step (current step: S80 Expansion Draft)']);
   });
 
   it('refuses when no pick is left', () => {
@@ -232,7 +232,7 @@ describe('finishDraft', () => {
   });
 
   it('refuses out of calendar order', () => {
-    expect(problems(finishDraft(withoutStep(tenPicks()), ctx))).toEqual(['The draft is finished at the S80 FBA Draft step (current step: Free Agency/Offseason)']);
+    expect(problems(finishDraft(withoutStep(tenPicks()), ctx))).toEqual(['The draft is finished at the S80 FBA Draft step (current step: S80 Expansion Draft)']);
   });
 
   it('sends the undrafted prospects to free agency as rookies', () => {

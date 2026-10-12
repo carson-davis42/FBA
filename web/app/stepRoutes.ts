@@ -15,6 +15,7 @@ export const TOOL_STEPS: Record<string, string> = {
 /** The page that completes this step, or null when it is still a manual "Mark done" step. */
 export function toolTarget(step: CalendarStep): string | null {
   if (TOOL_STEPS[step.id]) return TOOL_STEPS[step.id];
+  if (/^s\d+-(add-expansion-teams|expansion-draft)$/.test(step.id)) return '/league/fba/expansion';
   if (/^make-s\d+-schedules$/.test(step.id)) return '/schedules';
   if (/^s\d+-fba-draft$/.test(step.id)) return '/league/fba/draft';
   if (/^s\d+-fba-draft-lottery$/.test(step.id)) return '/league/fba/lottery';

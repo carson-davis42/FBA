@@ -2,7 +2,8 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { CalendarFile, Franchise, FranchisesFile, HallOfFameFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
-import { withQualifyingStep } from '../engine/shared/calendar';
+import { withExpansionStep, withQualifyingStep } from '../engine/shared/calendar';
+import { EXPANSION_SEASON } from '../engine/shared/expansion';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
 import { buildD2History, buildLeagueHistory, d2LeagueMoves, D2_TABS } from './d2History';
@@ -718,7 +719,24 @@ export async function importWcQualifyingStep(): Promise<void> {
   console.log(`Added s${cal.season}-qualifying`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--check-trophies'];
+/** Adds the expansion's add-teams step to calendar.json in the --data folder; writes only when it changed. */
+export async function importExpansionStep(): Promise<void> {
+  const dir = requireDataDir('--expansion-step');
+  const cal = readDataJson<CalendarFile>(dir, 'calendar.json');
+  if (!cal) {
+    console.error('--expansion-step needs calendar.json in the data folder.');
+    process.exit(1);
+  }
+  const next = withExpansionStep(cal);
+  if (next === cal) {
+    console.log('Already has the expansion step');
+    return;
+  }
+  writeDoc(dir, 'calendar.json', next);
+  console.log(`Added s${EXPANSION_SEASON}-add-expansion-teams`);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--expansion-step', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -748,6 +766,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--d2-brackets')) return importBrackets('--d2-brackets', 'fbad2', 'd2Brackets.json');
   if (process.argv.includes('--d2-leagues')) return importD2Leagues();
   if (process.argv.includes('--wc-qualifying-step')) return importWcQualifyingStep();
+  if (process.argv.includes('--expansion-step')) return importExpansionStep();
   if (process.argv.includes('--check-trophies')) return checkTrophies();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');

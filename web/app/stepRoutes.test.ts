@@ -15,6 +15,11 @@ describe('step routes', () => {
     expect(toolTarget(step('fba', 'league', 'fba'))).toBe('/league/fba/scores');
       });
 
+  it('opens the expansion tool from both expansion steps', () => {
+    expect(toolTarget(step('s80-add-expansion-teams'))).toBe('/league/fba/expansion');
+    expect(toolTarget(step('s80-expansion-draft'))).toBe('/league/fba/expansion');
+  });
+
   it('opens Create Class on the recruiting page for that class', () => {
     expect(toolTarget(step('create-s80-class'))).toBe('/league/fbajc/recruiting?class=80&tab=class');
     expect(stepTarget(step('create-s81-class'))).toBe('/league/fbajc/recruiting?class=81&tab=class');

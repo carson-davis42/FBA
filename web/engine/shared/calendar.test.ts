@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calendarFor, currentStepIndex, markCurrentDone, markStepDone, reopenLast, reopenProblem, withQualifyingStep } from './calendar';
+import { calendarFor, currentStepIndex, markCurrentDone, markStepDone, reopenLast, reopenProblem, withExpansionStep, withQualifyingStep } from './calendar';
 import { CalendarFile } from './types';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -42,8 +42,8 @@ describe('calendar helpers', () => {
 describe('calendarFor', () => {
   it('matches the committed calendar for its season (golden)', () => {
     const committed = JSON.parse(readFileSync(path.join(__dirname, '..', '..', 'data', 'calendar.json'), 'utf8')) as CalendarFile;
-    // The committed S79 calendar predates the qualifying step (the user will migrate it), so compare after adding the step.
-    expect(calendarFor(committed.season)).toEqual(withQualifyingStep({ ...committed, steps: committed.steps.map(s => ({ ...s, done: false })) }));
+    // The committed S79 calendar predates the qualifying and expansion steps (the user will migrate it), so compare after adding them.
+    expect(calendarFor(committed.season)).toEqual(withExpansionStep(withQualifyingStep({ ...committed, steps: committed.steps.map(s => ({ ...s, done: false })) })));
     expect(committed.season).toBeGreaterThanOrEqual(79);
   });
 
@@ -109,5 +109,34 @@ describe('reopenProblem', () => {
     expect(reopenProblem(at([true, true, true]), new Set(['fba-d2', 'fba']))).toBeNull();
     expect(reopenProblem(at([true, false, false]), new Set())).toBeNull();
     expect(reopenProblem(at([false, false, false]), new Set(['fba-d2']))).toBeNull();
+  });
+});
+
+describe('expansion steps', () => {
+  it('S79 has the add-teams step right before the S80 lottery', () => {
+    const ids = calendarFor(79).steps.map(s => s.id);
+    expect(ids.indexOf('s80-add-expansion-teams')).toBe(ids.indexOf('s80-fba-draft-lottery') - 1);
+    expect(ids.indexOf('s80-add-expansion-teams')).toBeGreaterThan(ids.indexOf('fba'));
+  });
+  it('S80 has the expansion draft right after the S80 draft', () => {
+    const ids = calendarFor(80).steps.map(s => s.id);
+    expect(ids.indexOf('s80-expansion-draft')).toBe(ids.indexOf('s80-fba-draft') + 1);
+    expect(ids[ids.indexOf('s80-expansion-draft') + 1]).toBe('free-agency-offseason');
+  });
+  it('other seasons are unchanged', () => {
+    expect(calendarFor(78).steps.some(s => /expansion/.test(s.id))).toBe(false);
+    expect(calendarFor(81).steps.some(s => /expansion/.test(s.id))).toBe(false);
+  });
+  it('migrates an S79 calendar that lacks the step, once, keeping done flags', () => {
+    const old = { ...calendarFor(79), steps: calendarFor(79).steps.filter(s => !/expansion/.test(s.id)).map((s, i) => ({ ...s, done: i < 9 })) };
+    const next = withExpansionStep(old);
+    expect(next.steps).toHaveLength(old.steps.length + 1);
+    expect(next.steps.find(s => s.id === 's80-add-expansion-teams')!.done).toBe(false);
+    expect(next.steps.filter(s => s.done)).toHaveLength(9);
+    expect(withExpansionStep(next)).toBe(next);
+  });
+  it('leaves other seasons alone', () => {
+    const c = calendarFor(78);
+    expect(withExpansionStep(c)).toBe(c);
   });
 });
