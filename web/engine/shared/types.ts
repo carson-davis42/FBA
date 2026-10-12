@@ -51,6 +51,8 @@ export const Team = z.object({
   /** Where a club is based (the D2 clubs): shown under its name on the team history page. */
   city: z.string().min(1).optional(),
   country: z.string().min(1).optional(),
+  /** The first season the team plays; teams without it have always been in the league. Season-scoped code reads `teamsInSeason`. */
+  fromSeason: int.min(1).optional(),
 }).strict();
 export type Team = z.infer<typeof Team>;
 
