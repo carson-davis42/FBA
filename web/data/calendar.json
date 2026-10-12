@@ -82,6 +82,14 @@
       "done": false
     },
     {
+      "id": "s80-add-expansion-teams",
+      "label": "Add S80 Expansion Teams",
+      "kind": "offseason",
+      "league": null,
+      "sub": false,
+      "done": false
+    },
+    {
       "id": "s80-fba-draft-lottery",
       "label": "S80 FBA Draft Lottery",
       "kind": "offseason",
