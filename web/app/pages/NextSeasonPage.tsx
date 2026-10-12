@@ -21,6 +21,7 @@ export function NextSeasonPage() {
   const p = n === undefined ? null : nextSeasonPaths(n);
   const meta = useDoc<MetaFile>('meta.json');
   const d2Teams = useDoc<TeamsFile>(p && p.d2Teams);
+  const fbaTeams = useDoc<TeamsFile>(p && 'leagues/fba/teams.json');
   const fbaRosters = useDoc<RostersFile>(p && p.fba.rosters);
   const fbaFreeAgents = useDoc<FreeAgentsFile>(p && p.fba.freeAgents);
   const fbaTx = useDoc<TransactionsFile>(p && p.fba.tx);
@@ -44,7 +45,7 @@ export function NextSeasonPage() {
   if (calendar.error) return <p className="error">Couldn't load the calendar: {calendar.error.message}</p>;
   if (!p || n === undefined) return <p className="muted">Loading…</p>;
   const all: [string, DocState<unknown>][] = [
-    [p.calendar, calendar], [p.meta, meta], [p.d2Teams, d2Teams],
+    [p.calendar, calendar], [p.meta, meta], [p.d2Teams, d2Teams], ['leagues/fba/teams.json', fbaTeams],
     [p.fba.rosters, fbaRosters], [p.fba.freeAgents, fbaFreeAgents], [p.fba.tx, fbaTx], [p.fba.summary, fbaSummary],
     [p.fbad2.rosters, d2Rosters], [p.fbad2.reserves, d2Reserves], [p.fbad2.tx, d2Tx],
     [p.fbad2.ratings, d2Ratings], [p.fbad2.pool, d2Pool], [p.fbad2.draft, d2Draft], [p.fbad2.summary, d2Summary],
@@ -68,6 +69,7 @@ export function NextSeasonPage() {
       ratings: d2Ratings.data ?? null, pool: d2Pool.data ?? null, draft: d2Draft.data ?? null, summary: d2Summary.data ?? null,
     },
     fbajc: { recruiting: recruiting.data ?? null, rosters: collegeRosters.data ?? null },
+    fbaTeams: fbaTeams.data ?? { league: 'fba', teams: [] },
     nextStarted: Boolean(nextFbaRosters.data || nextD2Rosters.data),
   };
   const preview = nextSeasonDocs(input, { batchId: 'preview' });

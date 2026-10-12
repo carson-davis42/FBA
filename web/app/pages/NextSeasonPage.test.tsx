@@ -18,6 +18,7 @@ function readyDocs(): Record<string, unknown> {
     'meta.json': META,
     'calendar.json': { ...cal, steps: cal.steps.map(s => ({ ...s, done: true })) },
     'leagues/fbad2/teams.json': d2.teams,
+    'leagues/fba/teams.json': { league: 'fba', teams: [] },
     'leagues/fba/S79/rosters.json': fba.rosters,
     'leagues/fba/S79/transactions.json': fba.tx,
     'leagues/fba/S79/summary.json': { league: 'fba', season: 79, locked: true, host: null, champions: [] },

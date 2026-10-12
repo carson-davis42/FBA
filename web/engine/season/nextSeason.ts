@@ -1,8 +1,10 @@
 import { fbajcGateProblem } from '../college/recruiting';
 import { boardPath } from '../college/state';
 import { TIERS } from '../playoffs/promotion';
+import { normalizeRoster } from '../roster/rules';
 import { appendTx, type MoveContext } from '../roster/state';
 import { calendarFor } from '../shared/calendar';
+import { teamsJoining } from '../shared/teams';
 import type {
   CalendarFile, D2DraftFile, D2PoolFile, RankingFile, FreeAgentsFile, MetaFile, PromotionLine, RecruitingFile, ReservesFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile,
 } from '../shared/types';
@@ -81,6 +83,8 @@ export interface NextSeasonInput {
   fbajc: { recruiting: RecruitingFile | null; rosters: RostersFile | null };
   /** True when S{n+1} FBA or D2 rosters already exist. */
   nextStarted: boolean;
+  /** leagues/fba/teams.json: teams with `fromSeason === n + 1` get empty rosters in S{n+1}. */
+  fbaTeams: TeamsFile;
 }
 
 export type NextSeasonResult =
@@ -124,6 +128,10 @@ export function nextSeasonDocs(input: NextSeasonInput, ctx: MoveContext): NextSe
     ...r, season: next, locked: false,
     teams: Object.fromEntries(Object.entries(r.teams).map(([t, entries]) => [t, entries.map(e => ({ ...e, points: 0 }))])),
   });
+  const fbaNext = carry(input.fba.rosters);
+  for (const t of teamsJoining(input.fbaTeams, next)) {
+    if (!(t.teamId in fbaNext.teams)) fbaNext.teams[t.teamId] = normalizeRoster([], 'fba');
+  }
   const started = (league: 'fba' | 'fbad2'): TransactionsFile =>
     appendTx({ league, season: next, entries: [] }, ctx, 'season', [], [`S${next} season started`]);
   const reserves: ReservesFile = {
@@ -131,7 +139,7 @@ export function nextSeasonDocs(input: NextSeasonInput, ctx: MoveContext): NextSe
     players: (input.fbad2.reserves?.players ?? []).map(({ fromFba: _fromFba, fbaRating: _fbaRating, ...rest }) => rest),
   };
   writes.push(
-    { path: p.next.fbaRosters, doc: carry(input.fba.rosters) },
+    { path: p.next.fbaRosters, doc: fbaNext },
     { path: p.next.fbaFreeAgents, doc: { league: 'fba', season: next, locked: false, players: [] } },
     { path: p.next.fbaTx, doc: started('fba') },
     { path: p.next.d2Rosters, doc: carry(input.fbad2.rosters) },

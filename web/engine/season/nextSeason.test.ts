@@ -4,6 +4,7 @@ import { calendarFor } from '../shared/calendar';
 import { pathAgreementProblem, schemaForPath } from '../shared/schemaRegistry';
 import type { CalendarFile, PromotionLine, RecruitingFile, ReservesFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../shared/types';
 import { applyPromotion, nextSeasonDocs, type NextSeasonInput } from './nextSeason';
+import { EXPANSION_TEAMS } from '../shared/expansion';
 import { fbaSeasonState } from './testFixtures';
 
 const ctx = { batchId: 'roll' };
@@ -45,6 +46,7 @@ function ready(): NextSeasonInput {
     },
     nextStarted: false,
     fbajc: { recruiting: null, rosters: null },
+    fbaTeams: { league: 'fba', teams: [] },
   };
 }
 
@@ -55,6 +57,19 @@ const run = (input: NextSeasonInput) => {
 };
 
 describe('nextSeasonDocs', () => {
+  it('gives each team joining next season an empty five-slot roster and leaves the others alone', () => {
+    const input = ready();
+    const r = run({ ...input, fbaTeams: { league: 'fba', teams: EXPANSION_TEAMS } });
+    const next = r.writes.find(w => w.path === 'leagues/fba/S80/rosters.json')!.doc as RostersFile;
+    for (const id of ['PHI', 'LAL']) {
+      expect(next.teams[id].map(e => e.position)).toEqual(['PG', 'SG', 'SF', 'PF', 'C']);
+      expect(next.teams[id].every(e => e.playerId === null)).toBe(true);
+    }
+    const plain = run(input).writes.find(w => w.path === 'leagues/fba/S80/rosters.json')!.doc as RostersFile;
+    expect(plain.teams.PHI).toBeUndefined();
+    for (const id of Object.keys(plain.teams)) expect(next.teams[id]).toEqual(plain.teams[id]);
+  });
+
   it('locks the S78 board (the class playing S79) when there is one, and leaves S79 alone', () => {
     const recruiting: RecruitingFile = { league: 'fbajc', season: 78, classOf: 79, locked: false, classDraft: [], created: true, recruits: [], portal: [] };
     const r = run({ ...ready(), fbajc: { recruiting, rosters: null } });

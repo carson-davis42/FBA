@@ -6,6 +6,7 @@ import { finishRatingPause, startRatingPause } from '../season/ratingPause';
 import { blockingPause, gamesUntilStop, seasonOver, type SeasonResult, type SeasonState } from '../season/state';
 import { nextSeasonDocs } from '../season/nextSeason';
 import { finishSeason } from '../season/wrapUp';
+import { EXPANSION_TEAMS } from '../shared/expansion';
 import { calendarFor, currentStepIndex, markCurrentDone } from '../shared/calendar';
 import { pathAgreementProblem, schemaForPath } from '../shared/schemaRegistry';
 import { PlayoffsFile, SummaryFile, type RostersFile } from '../shared/types';
@@ -120,6 +121,7 @@ describe('a whole S79 in the engine: D2, finish, FBA, finish, the tail, then S80
       fbad2: { rosters: d2.rosters, reserves: null, tx: d2.tx, ratings: null, pool: null, draft: null, summary: d2.summary },
       nextStarted: false,
       fbajc: { recruiting: null, rosters: null },
+      fbaTeams: { league: 'fba', teams: EXPANSION_TEAMS },
     }, ctx);
     if (!next.ok) throw new Error(next.problems.join('; '));
     for (const w of next.writes) {

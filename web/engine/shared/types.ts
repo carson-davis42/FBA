@@ -247,7 +247,7 @@ export type PicksFile = z.infer<typeof PicksFile>;
 
 export const TransactionType = z.enum([
   'extended',
-  'signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards', 'season', 'class', 'commit', 'portal', 'lottery', 'retired', 'hall-of-fame', 'walk-on', 'college-ratings', 'adjust-age', 'declare', 'fba-ratings',
+  'signed', 'resigned', 'released', 'cut', 'trade', 'edit', 'fa-closed', 'drafted', 'd2-pool', 'd2-ratings', 'awards', 'season', 'class', 'commit', 'portal', 'lottery', 'retired', 'hall-of-fame', 'walk-on', 'college-ratings', 'adjust-age', 'declare', 'fba-ratings', 'expansion',
 ]);
 export type TransactionType = z.infer<typeof TransactionType>;
 
