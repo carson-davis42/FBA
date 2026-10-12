@@ -77,6 +77,34 @@ describe('Franchise pages', () => {
     expect(sas.textContent).toContain('San Antonio Spirits');
   });
 
+  it('the Teams grid shows the current-season logo and the debut logos of expansion teams not yet in teams.json', async () => {
+    const withExpansion: FranchisesFile = {
+      franchises: [
+        ...franchises.franchises,
+        { teamId: 'PHI', eras: [{ name: 'Philly Phantoms', abbr: 'PHI', city: 'Philadelphia, Pennsylvania', from: 80, to: null }] },
+        { teamId: 'LAL', eras: [{ name: 'Los Angeles Labradors', abbr: 'LAL', city: 'Los Angeles, California', from: 80, to: null }] },
+      ],
+    };
+    stub({
+      logoFolder: 'San Antonio Spirits',
+      extra: {
+        '/api/state/leagues/fba/franchises.json': withExpansion,
+        '/api/state/meta.json': { currentSeason: 80, rosterSeason: { fba: 80, fbad2: 80, fbajc: 80, fbawc: 80 }, lastSeason: { fba: 79, fbad2: 79, fbajc: 79, fbawc: 79 } },
+      },
+    });
+    render(<MemoryRouter><TeamsHistoryPage /></MemoryRouter>);
+    const cards = await screen.findAllByRole('link');
+    const card = (id: string) => cards.find(a => a.getAttribute('href') === `/history/fba/teams/${id}`)!;
+    // the logo season is the current season (80), not the last played one (79)
+    expect(within(card('SAS')).getByRole('img').getAttribute('src')).toBe(logoUrl('San Antonio Spirits', 80));
+    // expansion teams use their definitions: PHI's logo folder, and Team 32 with the generic FBA logo
+    expect(within(card('PHI')).getByRole('img').getAttribute('src')).toBe(logoUrl('Philly Phantoms', 80));
+    expect(card('PHI').textContent).toContain('Philly Phantoms');
+    expect(within(card('LAL')).getByRole('img').getAttribute('src')).toBe(logoUrl('FBA', 80, 'FBA_logo.png'));
+    expect(card('LAL').textContent).toContain('Team 32');
+    expect(card('LAL').textContent).not.toContain('Labradors');
+  });
+
   it('shows the franchise hero, era tiles and championship chips', async () => {
     stub();
     renderFranchise();
