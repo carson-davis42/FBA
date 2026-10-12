@@ -29,6 +29,7 @@ import { HallOfFamePage } from '../offseason/HallOfFamePage';
 import { LotteryPage } from '../offseason/LotteryPage';
 import { AdjustAgePage } from '../offseason/AdjustAgePage';
 import { FbaDraftPage } from '../offseason/FbaDraftPage';
+import { ExpansionPage } from '../offseason/ExpansionPage';
 import { ProRatingsPage } from '../offseason/ProRatingsPage';
 import { RetirementPage } from '../offseason/RetirementPage';
 import { AwardsByPlayerPage } from '../history/AwardsByPlayerPage';
@@ -97,6 +98,7 @@ const ROUTES = createRoutesFromElements(
   <Route path="/offseason/adjust-age" element={<AdjustAgePage />} />
   <Route path="/league/fba/ratings" element={<ProRatingsPage />} />
   <Route path="/league/fba/draft" element={<FbaDraftPage />} />
+  <Route path="/league/fba/expansion" element={<ExpansionPage />} />
   <Route path="/league/fba/hall-of-fame" element={<HallOfFamePage />} />
   <Route path="/league/fba/ratings-pause" element={<RatingPausePage />} />
   <Route path="/league/fba/all-star" element={<AllStarPage />} />
