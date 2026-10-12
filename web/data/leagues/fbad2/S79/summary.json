@@ -26,8 +26,8 @@
     },
     {
       "title": "United League Champion",
-      "champion": "Johannesburg",
-      "runnerUp": "Beijing",
+      "champion": "Johannesburg Gold",
+      "runnerUp": "Beijing Capital",
       "score": "4–2",
       "teamId": "JOH",
       "runnerUpId": "BEI",
@@ -36,8 +36,8 @@
     },
     {
       "title": "International League Champion",
-      "champion": "Florence",
-      "runnerUp": "Warsaw",
+      "champion": "US Firenze",
+      "runnerUp": "KS Warszawa",
       "score": "4–0",
       "teamId": "FLO",
       "runnerUpId": "WAR",
@@ -568,7 +568,7 @@
     },
     {
       "teamId": "BEL",
-      "name": "Belfast",
+      "name": "Belfast Athletic",
       "group": "UL",
       "rank": 1,
       "w": 25,
@@ -585,7 +585,7 @@
     },
     {
       "teamId": "MAN",
-      "name": "Manchester",
+      "name": "Manchester Athletic",
       "group": "UL",
       "rank": 2,
       "w": 22,
@@ -602,7 +602,7 @@
     },
     {
       "teamId": "SHAN",
-      "name": "Shanghai",
+      "name": "Shanghai Shencheng",
       "group": "UL",
       "rank": 3,
       "w": 21,
@@ -619,7 +619,7 @@
     },
     {
       "teamId": "JOH",
-      "name": "Johannesburg",
+      "name": "Johannesburg Gold",
       "group": "UL",
       "rank": 4,
       "w": 20,
@@ -636,7 +636,7 @@
     },
     {
       "teamId": "BARC",
-      "name": "Barcelona",
+      "name": "Barcelona Bàsquet",
       "group": "UL",
       "rank": 5,
       "w": 18,
@@ -653,7 +653,7 @@
     },
     {
       "teamId": "KIEV",
-      "name": "Kiev",
+      "name": "SK Kyiv",
       "group": "UL",
       "rank": 6,
       "w": 17,
@@ -670,7 +670,7 @@
     },
     {
       "teamId": "BEI",
-      "name": "Beijing",
+      "name": "Beijing Capital",
       "group": "UL",
       "rank": 7,
       "w": 17,
@@ -687,7 +687,7 @@
     },
     {
       "teamId": "PAR",
-      "name": "Paris",
+      "name": "Racing Paris",
       "group": "UL",
       "rank": 8,
       "w": 15,
@@ -704,7 +704,7 @@
     },
     {
       "teamId": "OSA",
-      "name": "Osaka",
+      "name": "Osaka BC",
       "group": "UL",
       "rank": 9,
       "w": 15,
@@ -718,7 +718,7 @@
     },
     {
       "teamId": "ROT",
-      "name": "Rotterdam",
+      "name": "Rotterdam United",
       "group": "UL",
       "rank": 10,
       "w": 14,
@@ -746,7 +746,7 @@
     },
     {
       "teamId": "NAP",
-      "name": "Naples",
+      "name": "Partenope Napoli",
       "group": "UL",
       "rank": 12,
       "w": 11,
@@ -760,7 +760,7 @@
     },
     {
       "teamId": "BRUS",
-      "name": "Brussels",
+      "name": "Bruxelles BC",
       "group": "UL",
       "rank": 13,
       "w": 10,
@@ -774,7 +774,7 @@
     },
     {
       "teamId": "DBA",
-      "name": "Dubai",
+      "name": "Dubai Falcons",
       "group": "UL",
       "rank": 14,
       "w": 9,
@@ -788,7 +788,7 @@
     },
     {
       "teamId": "SJ",
-      "name": "San Jose",
+      "name": "Deportivo San Jose",
       "group": "UL",
       "rank": 15,
       "w": 8,
@@ -802,7 +802,7 @@
     },
     {
       "teamId": "REC",
-      "name": "Recife",
+      "name": "Atlético Recife",
       "group": "UL",
       "rank": 16,
       "w": 5,
@@ -816,7 +816,7 @@
     },
     {
       "teamId": "FLO",
-      "name": "Florence",
+      "name": "US Firenze",
       "group": "IL",
       "rank": 1,
       "w": 24,
@@ -833,7 +833,7 @@
     },
     {
       "teamId": "WAR",
-      "name": "Warsaw",
+      "name": "KS Warszawa",
       "group": "IL",
       "rank": 2,
       "w": 21,
@@ -850,7 +850,7 @@
     },
     {
       "teamId": "GLAS",
-      "name": "Glasgow",
+      "name": "Glasgow Sporting",
       "group": "IL",
       "rank": 3,
       "w": 20,
@@ -867,7 +867,7 @@
     },
     {
       "teamId": "OSL",
-      "name": "Oslo",
+      "name": "Oslo Idrettslag",
       "group": "IL",
       "rank": 4,
       "w": 20,
@@ -884,7 +884,7 @@
     },
     {
       "teamId": "LAG",
-      "name": "Lagos",
+      "name": "Lagos Mariners",
       "group": "IL",
       "rank": 5,
       "w": 18,
@@ -901,7 +901,7 @@
     },
     {
       "teamId": "FRAN",
-      "name": "Frankfurt",
+      "name": "Frankfurter Turngemeinde",
       "group": "IL",
       "rank": 6,
       "w": 18,
@@ -918,7 +918,7 @@
     },
     {
       "teamId": "ATH",
-      "name": "Athens",
+      "name": "AO Athens",
       "group": "IL",
       "rank": 7,
       "w": 17,
@@ -935,7 +935,7 @@
     },
     {
       "teamId": "STO",
-      "name": "Stockholm",
+      "name": "Stockholm IF",
       "group": "IL",
       "rank": 8,
       "w": 15,
@@ -952,7 +952,7 @@
     },
     {
       "teamId": "TAM",
-      "name": "Tampa",
+      "name": "Tampa Bay Sporting",
       "group": "IL",
       "rank": 9,
       "w": 15,
@@ -966,7 +966,7 @@
     },
     {
       "teamId": "RIO",
-      "name": "Rio De Janeiro",
+      "name": "Guanabara SC",
       "group": "IL",
       "rank": 10,
       "w": 14,
@@ -980,7 +980,7 @@
     },
     {
       "teamId": "OMA",
-      "name": "Omaha",
+      "name": "Omaha Union",
       "group": "IL",
       "rank": 11,
       "w": 13,
@@ -994,7 +994,7 @@
     },
     {
       "teamId": "CAI",
-      "name": "Cairo",
+      "name": "Cairo SC",
       "group": "IL",
       "rank": 12,
       "w": 12,
@@ -1008,7 +1008,7 @@
     },
     {
       "teamId": "EDI",
-      "name": "Edinburgh",
+      "name": "Edinburgh Thistle",
       "group": "IL",
       "rank": 13,
       "w": 10,
@@ -1022,7 +1022,7 @@
     },
     {
       "teamId": "ACK",
-      "name": "Auckland",
+      "name": "Auckland Rovers",
       "group": "IL",
       "rank": 14,
       "w": 10,
@@ -1036,7 +1036,7 @@
     },
     {
       "teamId": "LUX",
-      "name": "Luxembourg",
+      "name": "Union Luxembourg",
       "group": "IL",
       "rank": 15,
       "w": 9,
@@ -1050,7 +1050,7 @@
     },
     {
       "teamId": "IST",
-      "name": "Istanbul",
+      "name": "Istanbul SK",
       "group": "IL",
       "rank": 16,
       "w": 4,

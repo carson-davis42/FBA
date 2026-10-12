@@ -47,7 +47,7 @@
       "group": "AM",
       "teams": [
         "Guadalajara CB",
-        "Tampa"
+        "Tampa Bay Sporting"
       ]
     },
     {
@@ -81,7 +81,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "6-4",
           "seed": 4
         },
@@ -94,7 +94,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "8-2",
           "seed": 2
         },
@@ -112,7 +112,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "9-1",
           "seed": 1
         },
@@ -189,7 +189,7 @@
           "seed": 1
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "6-4",
           "seed": 4
         },
@@ -207,7 +207,7 @@
           "seed": 2
         },
         "away": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "8-2",
           "seed": 3
         },
@@ -225,7 +225,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "8-2",
           "seed": 2
         },
@@ -238,7 +238,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "9-1",
           "seed": 1
         },
@@ -279,7 +279,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "8-2",
           "seed": 3
         },

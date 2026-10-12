@@ -1,4 +1,8 @@
 {
+ "AO Athens": {
+  "primary": "#0F2447",
+  "secondary": "#B88D3C"
+ },
  "Amsterdam BC": {
   "primary": "#A80A18",
   "secondary": "#111111"
@@ -7,13 +11,37 @@
   "primary": "#6B0A0F",
   "secondary": "#C9A04A"
  },
+ "Atlético Recife": {
+  "primary": "#0E4452",
+  "secondary": "#F26B21"
+ },
+ "Auckland Rovers": {
+  "primary": "#0E1114",
+  "secondary": "#0E8A99"
+ },
  "Austin BC": {
   "primary": "#0D0F11",
   "secondary": "#C3541D"
  },
+ "Barcelona Bàsquet": {
+  "primary": "#0F4155",
+  "secondary": "#F0B823"
+ },
+ "Beijing Capital": {
+  "primary": "#9A0613",
+  "secondary": "#D9B15A"
+ },
+ "Belfast Athletic": {
+  "primary": "#0B2349",
+  "secondary": "#C99A4A"
+ },
  "Berlin Bären BC": {
   "primary": "#D90302",
   "secondary": "#030202"
+ },
+ "Bruxelles BC": {
+  "primary": "#0B3D22",
+  "secondary": "#C9A43A"
  },
  "Budapesti SE": {
   "primary": "#0D3B1E",
@@ -23,6 +51,10 @@
   "primary": "#5BA8E4",
   "secondary": "#F2B93B"
  },
+ "Cairo SC": {
+  "primary": "#0F2552",
+  "secondary": "#D2A851"
+ },
  "Club Capital": {
   "primary": "#111314",
   "secondary": "#D9B55E"
@@ -31,29 +63,69 @@
   "primary": "#760510",
   "secondary": "#D9A044"
  },
+ "Deportivo San Jose": {
+  "primary": "#4A1448",
+  "secondary": "#C27A3C"
+ },
  "Dhaka Sporting": {
   "primary": "#0B3D1F",
   "secondary": "#C9A94E"
+ },
+ "Dubai Falcons": {
+  "primary": "#0C4A4A",
+  "secondary": "#E3B454"
  },
  "Dublin BC": {
   "primary": "#0B1D45",
   "secondary": "#E0B94F"
  },
+ "Edinburgh Thistle": {
+  "primary": "#3E0F4F",
+  "secondary": "#111111"
+ },
  "Edmonton Aurora": {
   "primary": "#0E4A33",
   "secondary": "#E0AE4A"
+ },
+ "Frankfurter Turngemeinde": {
+  "primary": "#0B3A8C",
+  "secondary": "#C8102E"
+ },
+ "Glasgow Sporting": {
+  "primary": "#0B3D1F",
+  "secondary": "#B8692C"
  },
  "Guadalajara CB": {
   "primary": "#0E5A3A",
   "secondary": "#D1AE5A"
  },
+ "Guanabara SC": {
+  "primary": "#0B4650",
+  "secondary": "#E8412E"
+ },
  "Hamburg Hanse": {
   "primary": "#A31616",
   "secondary": "#0F2347"
  },
+ "Istanbul SK": {
+  "primary": "#0E2250",
+  "secondary": "#B50E1C"
+ },
+ "Johannesburg Gold": {
+  "primary": "#101010",
+  "secondary": "#E0AE35"
+ },
+ "KS Warszawa": {
+  "primary": "#6E0A18",
+  "secondary": "#C9A24A"
+ },
  "Københavns BK": {
   "primary": "#A31214",
   "secondary": "#173F66"
+ },
+ "Lagos Mariners": {
+  "primary": "#0B4A22",
+  "secondary": "#D9A93A"
  },
  "Liverpool Maritime": {
   "primary": "#0C1B3A",
@@ -62,6 +134,10 @@
  "London Royal": {
   "primary": "#0B1A44",
   "secondary": "#EDC15A"
+ },
+ "Manchester Athletic": {
+  "primary": "#5A0A18",
+  "secondary": "#E3B341"
  },
  "Miami BC": {
   "primary": "#0B3B4C",
@@ -87,33 +163,81 @@
   "primary": "#9CCBF2",
   "secondary": "#0C2350"
  },
+ "Omaha Union": {
+  "primary": "#6A0A18",
+  "secondary": "#111111"
+ },
+ "Osaka BC": {
+  "primary": "#0A3A1C",
+  "secondary": "#E8828F"
+ },
+ "Oslo Idrettslag": {
+  "primary": "#0B2350",
+  "secondary": "#64C0F5"
+ },
+ "Partenope Napoli": {
+  "primary": "#0E1F4A",
+  "secondary": "#1AA3B8"
+ },
  "Paulistano": {
   "primary": "#101010",
   "secondary": "#B50E1A"
+ },
+ "Racing Paris": {
+  "primary": "#0E2250",
+  "secondary": "#B50E1C"
  },
  "Roma Pallacanestro": {
   "primary": "#7B0F1F",
   "secondary": "#D9A94F"
  },
+ "Rotterdam United": {
+  "primary": "#0B7A3A",
+  "secondary": "#F4F4F4"
+ },
+ "SK Kyiv": {
+  "primary": "#0E2A55",
+  "secondary": "#5BAEEB"
+ },
  "Salzburg BC": {
   "primary": "#0E2A55",
   "secondary": "#DDB448"
+ },
+ "Shanghai Shencheng": {
+  "primary": "#6B0F1E",
+  "secondary": "#C79A3F"
  },
  "Sporting Lyon": {
   "primary": "#8F0A1D",
   "secondary": "#0F2A5C"
  },
+ "Stockholm IF": {
+  "primary": "#0B3A85",
+  "secondary": "#DDAE2C"
+ },
  "Sydney Harbour": {
   "primary": "#0B2350",
   "secondary": "#D9AC3F"
+ },
+ "Tampa Bay Sporting": {
+  "primary": "#0E2E52",
+  "secondary": "#F25C26"
  },
  "Tokyo BC": {
   "primary": "#0B1A44",
   "secondary": "#D9AC4A"
  },
+ "US Firenze": {
+  "primary": "#A30B1C",
+  "secondary": "#D56A32"
+ },
  "Union Casablanca": {
   "primary": "#0B1D45",
   "secondary": "#D98A4A"
+ },
+ "Union Luxembourg": {
+  "primary": "#0B2C5A",
+  "secondary": "#5FB0E6"
  },
  "Union Ottawa": {
   "primary": "#5E0A18",

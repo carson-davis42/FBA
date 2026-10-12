@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion",
       "champion": "Milano BC",
-      "runnerUp": "Athens",
+      "runnerUp": "AO Athens",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02159",
@@ -32,7 +32,7 @@
     {
       "group": "EW",
       "teams": [
-        "Glasgow"
+        "Glasgow Sporting"
       ]
     },
     {
@@ -44,7 +44,7 @@
     {
       "group": "ES",
       "teams": [
-        "Athens"
+        "AO Athens"
       ]
     }
   ],
@@ -60,7 +60,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "6-4",
           "seed": 16
         },
@@ -96,7 +96,7 @@
           "seed": 5
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "8-2",
           "seed": 12
         },
@@ -109,12 +109,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "6-4",
           "seed": 13
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "9-1",
           "seed": 4
         },
@@ -127,7 +127,7 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "9-1",
           "seed": 3
         },
@@ -145,7 +145,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "7-3",
           "seed": 11
         },
@@ -168,7 +168,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "7-3",
           "seed": 10
         },
@@ -181,7 +181,7 @@
         "id": "R1-8",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "6-4",
           "seed": 15
         },
@@ -222,7 +222,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "9-1",
           "seed": 4
         },
@@ -235,12 +235,12 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "9-1",
           "seed": 3
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "7-3",
           "seed": 11
         },
@@ -253,7 +253,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "7-3",
           "seed": 10
         },
@@ -289,7 +289,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "9-1",
           "seed": 3
         },
@@ -312,7 +312,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "9-1",
           "seed": 3
         },

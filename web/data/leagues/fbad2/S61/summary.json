@@ -110,7 +110,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "6-4",
           "seed": 13
         },
@@ -169,7 +169,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "7-3",
           "seed": 10
         },
@@ -223,7 +223,7 @@
           "seed": 12
         },
         "away": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "6-4",
           "seed": 13
         },
@@ -254,7 +254,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "7-3",
           "seed": 10
         },

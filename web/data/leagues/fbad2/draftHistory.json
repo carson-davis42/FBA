@@ -6,7 +6,7 @@
         {
           "pick": 1,
           "teamId": "BRUS",
-          "teamName": "Brussels",
+          "teamName": "Bruxelles BC",
           "name": "Jonathan Rudd",
           "playerId": "p02298",
           "pos": "SG",
@@ -46,7 +46,7 @@
         {
           "pick": 5,
           "teamId": "MAN",
-          "teamName": "Manchester",
+          "teamName": "Manchester Athletic",
           "name": "JJ Wiley",
           "playerId": "p00469",
           "pos": "PF",
@@ -66,7 +66,7 @@
         {
           "pick": 7,
           "teamId": "TAM",
-          "teamName": "Tampa",
+          "teamName": "Tampa Bay Sporting",
           "name": "Morgan McBride",
           "playerId": "p00481",
           "pos": "PG",
@@ -76,7 +76,7 @@
         {
           "pick": 8,
           "teamId": "BARC",
-          "teamName": "Barcelona",
+          "teamName": "Barcelona Bàsquet",
           "name": "Tyler-Jay Park",
           "playerId": "p00459",
           "pos": "SG",
@@ -86,7 +86,7 @@
         {
           "pick": 9,
           "teamId": "TAM",
-          "teamName": "Tampa",
+          "teamName": "Tampa Bay Sporting",
           "name": "Dennis Bell",
           "playerId": "p00482",
           "pos": "SF",
@@ -96,7 +96,7 @@
         {
           "pick": 10,
           "teamId": "IST",
-          "teamName": "Istanbul",
+          "teamName": "Istanbul SK",
           "name": "Emmanuel Sykes",
           "playerId": "p00464",
           "pos": "PG",
@@ -126,7 +126,7 @@
         {
           "pick": 13,
           "teamId": "GLAS",
-          "teamName": "Glasgow",
+          "teamName": "Glasgow Sporting",
           "name": "Morris Cook",
           "playerId": "p00462",
           "pos": "C",
@@ -136,7 +136,7 @@
         {
           "pick": 14,
           "teamId": "BRUS",
-          "teamName": "Brussels",
+          "teamName": "Bruxelles BC",
           "name": "Baxter Michael",
           "playerId": "p00460",
           "pos": "SF",
@@ -176,7 +176,7 @@
         {
           "pick": 18,
           "teamId": "SJ",
-          "teamName": "San Jose",
+          "teamName": "Deportivo San Jose",
           "name": "Kallum Hodges",
           "playerId": "p02356",
           "pos": "SG",
@@ -186,7 +186,7 @@
         {
           "pick": 19,
           "teamId": "ATH",
-          "teamName": "Athens",
+          "teamName": "AO Athens",
           "name": "Buddy West",
           "playerId": "p02354",
           "pos": "PG",
@@ -211,7 +211,7 @@
         {
           "pick": 1,
           "teamId": "GLAS",
-          "teamName": "Glasgow",
+          "teamName": "Glasgow Sporting",
           "name": "Dennis Holloway",
           "playerId": "p02349",
           "pos": "PG",
@@ -241,7 +241,7 @@
         {
           "pick": 4,
           "teamId": "GLAS",
-          "teamName": "Glasgow",
+          "teamName": "Glasgow Sporting",
           "name": "Orlando Riley",
           "playerId": "p02247",
           "pos": "SG",
@@ -261,7 +261,7 @@
         {
           "pick": 6,
           "teamId": "SJ",
-          "teamName": "San Jose",
+          "teamName": "Deportivo San Jose",
           "name": "Ridley Blue",
           "playerId": "p02256",
           "pos": "C",
@@ -271,7 +271,7 @@
         {
           "pick": 7,
           "teamId": "PAR",
-          "teamName": "Paris",
+          "teamName": "Racing Paris",
           "name": "Roman Christie",
           "playerId": "p00380",
           "pos": "SF",
@@ -381,7 +381,7 @@
         {
           "pick": 18,
           "teamId": "BARC",
-          "teamName": "Barcelona",
+          "teamName": "Barcelona Bàsquet",
           "name": "Kye Kenny",
           "playerId": "p00471",
           "pos": "PG",
@@ -401,7 +401,7 @@
         {
           "pick": 20,
           "teamId": "BARC",
-          "teamName": "Barcelona",
+          "teamName": "Barcelona Bàsquet",
           "name": "Zac Baker",
           "playerId": "p00186",
           "pos": "C",
@@ -411,7 +411,7 @@
         {
           "pick": 21,
           "teamId": "ATH",
-          "teamName": "Athens",
+          "teamName": "AO Athens",
           "name": "Jamal Battle",
           "playerId": "p00170",
           "pos": "SF",
@@ -421,7 +421,7 @@
         {
           "pick": 22,
           "teamId": "PAR",
-          "teamName": "Paris",
+          "teamName": "Racing Paris",
           "name": "Kobie McKay",
           "playerId": "p00378",
           "pos": "PG",
@@ -441,7 +441,7 @@
         {
           "pick": 24,
           "teamId": "ATH",
-          "teamName": "Athens",
+          "teamName": "AO Athens",
           "name": "Rui Evans",
           "playerId": "p00171",
           "pos": "PF",
@@ -451,7 +451,7 @@
         {
           "pick": 25,
           "teamId": "FRAN",
-          "teamName": "Frankfurt",
+          "teamName": "Frankfurter Turngemeinde",
           "name": "Mylo Silva",
           "playerId": "p00265",
           "pos": "C",
@@ -471,7 +471,7 @@
         {
           "pick": 27,
           "teamId": "BRUS",
-          "teamName": "Brussels",
+          "teamName": "Bruxelles BC",
           "name": "Jaydan Oakley",
           "playerId": "p00202",
           "pos": "PG",
@@ -501,7 +501,7 @@
         {
           "pick": 30,
           "teamId": "IST",
-          "teamName": "Istanbul",
+          "teamName": "Istanbul SK",
           "name": "Bruno Mitchell",
           "playerId": "p00280",
           "pos": "PF",
@@ -521,7 +521,7 @@
         {
           "pick": 32,
           "teamId": "TAM",
-          "teamName": "Tampa",
+          "teamName": "Tampa Bay Sporting",
           "name": "Kody Fenton",
           "playerId": "p01880",
           "pos": "PF",
@@ -561,7 +561,7 @@
         {
           "pick": 36,
           "teamId": "BRUS",
-          "teamName": "Brussels",
+          "teamName": "Bruxelles BC",
           "name": "Graham Santiago",
           "playerId": "p00325",
           "pos": "PG",
@@ -571,7 +571,7 @@
         {
           "pick": 37,
           "teamId": "TAM",
-          "teamName": "Tampa",
+          "teamName": "Tampa Bay Sporting",
           "name": "Killian Crawford",
           "playerId": "p00433",
           "pos": "SG",
@@ -606,7 +606,7 @@
         {
           "pick": 1,
           "teamId": "MAN",
-          "teamName": "Manchester",
+          "teamName": "Manchester Athletic",
           "name": "Kirk Bridges",
           "playerId": "p00468",
           "pos": "SG",
@@ -616,7 +616,7 @@
         {
           "pick": 2,
           "teamId": "STO",
-          "teamName": "Stockholm",
+          "teamName": "Stockholm IF",
           "name": "Cillian Leblanc",
           "playerId": "p02300",
           "pos": "PF",
@@ -686,7 +686,7 @@
         {
           "pick": 9,
           "teamId": "SHAN",
-          "teamName": "Shanghai",
+          "teamName": "Shanghai Shencheng",
           "name": "Ian Griffin",
           "playerId": "p00479",
           "pos": "SF",
@@ -756,7 +756,7 @@
         {
           "pick": 16,
           "teamId": "LAG",
-          "teamName": "Lagos",
+          "teamName": "Lagos Mariners",
           "name": "Erik Waller",
           "playerId": "p00296",
           "pos": "C",
@@ -776,7 +776,7 @@
         {
           "pick": 18,
           "teamId": "SHAN",
-          "teamName": "Shanghai",
+          "teamName": "Shanghai Shencheng",
           "name": "Rafael Hurst",
           "playerId": "p00423",
           "pos": "C",
@@ -786,7 +786,7 @@
         {
           "pick": 19,
           "teamId": "LAG",
-          "teamName": "Lagos",
+          "teamName": "Lagos Mariners",
           "name": "Naeem Thomson",
           "playerId": "p00295",
           "pos": "PF",
@@ -806,7 +806,7 @@
         {
           "pick": 21,
           "teamId": "RIO",
-          "teamName": "Rio De Janeiro",
+          "teamName": "Guanabara SC",
           "name": "Kylan Cooper",
           "playerId": "p00389",
           "pos": "SG",
@@ -816,7 +816,7 @@
         {
           "pick": 22,
           "teamId": "RIO",
-          "teamName": "Rio De Janeiro",
+          "teamName": "Guanabara SC",
           "name": "Kylo Walker",
           "playerId": "p00388",
           "pos": "PG",
@@ -856,7 +856,7 @@
         {
           "pick": 26,
           "teamId": "SHAN",
-          "teamName": "Shanghai",
+          "teamName": "Shanghai Shencheng",
           "name": "Cade Poole",
           "playerId": "p01823",
           "pos": "SG",
@@ -876,7 +876,7 @@
         {
           "pick": 28,
           "teamId": "SHAN",
-          "teamName": "Shanghai",
+          "teamName": "Shanghai Shencheng",
           "name": "Cole Brewer",
           "playerId": "p01802",
           "pos": "PG",
@@ -896,7 +896,7 @@
         {
           "pick": 30,
           "teamId": "RIO",
-          "teamName": "Rio De Janeiro",
+          "teamName": "Guanabara SC",
           "name": "Forrest Bentley",
           "playerId": "p02357",
           "pos": "SF",
@@ -906,7 +906,7 @@
         {
           "pick": 31,
           "teamId": "STO",
-          "teamName": "Stockholm",
+          "teamName": "Stockholm IF",
           "name": "Zakir Knox",
           "playerId": "p01797",
           "pos": "PG",
@@ -936,7 +936,7 @@
         {
           "pick": 34,
           "teamId": "LAG",
-          "teamName": "Lagos",
+          "teamName": "Lagos Mariners",
           "name": "Phoenix McKenzie",
           "playerId": "p00293",
           "pos": "SG",
@@ -946,7 +946,7 @@
         {
           "pick": 35,
           "teamId": "STO",
-          "teamName": "Stockholm",
+          "teamName": "Stockholm IF",
           "name": "Ian Garza",
           "playerId": "p00428",
           "pos": "C",
@@ -956,7 +956,7 @@
         {
           "pick": 36,
           "teamId": "SHAN",
-          "teamName": "Shanghai",
+          "teamName": "Shanghai Shencheng",
           "name": "Mikhail Santos",
           "playerId": "p00422",
           "pos": "PF",
@@ -966,7 +966,7 @@
         {
           "pick": 37,
           "teamId": "LAG",
-          "teamName": "Lagos",
+          "teamName": "Lagos Mariners",
           "name": "Dani Whitehouse",
           "playerId": "p00292",
           "pos": "PG",
@@ -986,7 +986,7 @@
         {
           "pick": 39,
           "teamId": "RIO",
-          "teamName": "Rio De Janeiro",
+          "teamName": "Guanabara SC",
           "name": "Corbin Kemp",
           "playerId": "p01879",
           "pos": "PF",
@@ -996,7 +996,7 @@
         {
           "pick": 40,
           "teamId": "STO",
-          "teamName": "Stockholm",
+          "teamName": "Stockholm IF",
           "name": "Darren Gale",
           "playerId": "p01809",
           "pos": "PG",
@@ -1021,7 +1021,7 @@
         {
           "pick": 2,
           "teamId": "REC",
-          "teamName": "Recife",
+          "teamName": "Atlético Recife",
           "name": "Kyron Smart",
           "playerId": "p00146",
           "pos": "PG",
@@ -1031,7 +1031,7 @@
         {
           "pick": 3,
           "teamId": "REC",
-          "teamName": "Recife",
+          "teamName": "Atlético Recife",
           "name": "Isaac Middleton",
           "playerId": "p02315",
           "pos": "PF",
@@ -1151,7 +1151,7 @@
         {
           "pick": 15,
           "teamId": "JOH",
-          "teamName": "Johannesburg",
+          "teamName": "Johannesburg Gold",
           "name": "Johan Wood",
           "playerId": "p00284",
           "pos": "SF",
@@ -1161,7 +1161,7 @@
         {
           "pick": 16,
           "teamId": "JOH",
-          "teamName": "Johannesburg",
+          "teamName": "Johannesburg Gold",
           "name": "Malaki Krause",
           "playerId": "p00285",
           "pos": "PF",
@@ -1191,7 +1191,7 @@
         {
           "pick": 19,
           "teamId": "SJ",
-          "teamName": "San Jose",
+          "teamName": "Deportivo San Jose",
           "name": "Colin Yukimura",
           "playerId": "p00413",
           "pos": "PF",
@@ -1201,7 +1201,7 @@
         {
           "pick": 20,
           "teamId": "REC",
-          "teamName": "Recife",
+          "teamName": "Atlético Recife",
           "name": "Demetrius Bradley",
           "playerId": "p00385",
           "pos": "SF",
@@ -1211,7 +1211,7 @@
         {
           "pick": 21,
           "teamId": "JOH",
-          "teamName": "Johannesburg",
+          "teamName": "Johannesburg Gold",
           "name": "Arman Shaw",
           "playerId": "p00286",
           "pos": "C",
@@ -1231,7 +1231,7 @@
         {
           "pick": 23,
           "teamId": "RIO",
-          "teamName": "Rio De Janeiro",
+          "teamName": "Guanabara SC",
           "name": "Tyron Kumar",
           "playerId": "p00392",
           "pos": "C",
@@ -1241,7 +1241,7 @@
         {
           "pick": 24,
           "teamId": "FRAN",
-          "teamName": "Frankfurt",
+          "teamName": "Frankfurter Turngemeinde",
           "name": "Caleb Black",
           "playerId": "p00263",
           "pos": "SF",
@@ -1321,7 +1321,7 @@
         {
           "pick": 32,
           "teamId": "GLAS",
-          "teamName": "Glasgow",
+          "teamName": "Glasgow Sporting",
           "name": "Jean-Luc Harding",
           "playerId": "p00266",
           "pos": "PG",
@@ -1331,7 +1331,7 @@
         {
           "pick": 33,
           "teamId": "REC",
-          "teamName": "Recife",
+          "teamName": "Atlético Recife",
           "name": "Dylon Harmon",
           "playerId": "p00384",
           "pos": "SG",
@@ -1341,7 +1341,7 @@
         {
           "pick": 34,
           "teamId": "JOH",
-          "teamName": "Johannesburg",
+          "teamName": "Johannesburg Gold",
           "name": "Kris Dyer",
           "playerId": "p01780",
           "pos": "PG",
@@ -1371,7 +1371,7 @@
         {
           "pick": 37,
           "teamId": "BARC",
-          "teamName": "Barcelona",
+          "teamName": "Barcelona Bàsquet",
           "name": "Finn Clarkson",
           "playerId": "p00184",
           "pos": "SF",
@@ -1381,7 +1381,7 @@
         {
           "pick": 38,
           "teamId": "JOH",
-          "teamName": "Johannesburg",
+          "teamName": "Johannesburg Gold",
           "name": "Rami Frost",
           "playerId": "p00283",
           "pos": "SG",
@@ -1401,7 +1401,7 @@
         {
           "pick": 40,
           "teamId": "IST",
-          "teamName": "Istanbul",
+          "teamName": "Istanbul SK",
           "name": "Hilario Dragic",
           "playerId": "p01908",
           "pos": "C",
@@ -1431,7 +1431,7 @@
         {
           "pick": 43,
           "teamId": "ATH",
-          "teamName": "Athens",
+          "teamName": "AO Athens",
           "name": "Owen Dotson",
           "playerId": "p01835",
           "pos": "SG",
@@ -1441,7 +1441,7 @@
         {
           "pick": 44,
           "teamId": "KIEV",
-          "teamName": "Kiev",
+          "teamName": "SK Kyiv",
           "name": "Kellen Olsen",
           "playerId": "p00290",
           "pos": "PF",
@@ -1451,7 +1451,7 @@
         {
           "pick": 45,
           "teamId": "STO",
-          "teamName": "Stockholm",
+          "teamName": "Stockholm IF",
           "name": "Alan Herbert",
           "playerId": "p00427",
           "pos": "PF",
@@ -1471,7 +1471,7 @@
         {
           "pick": 47,
           "teamId": "IST",
-          "teamName": "Istanbul",
+          "teamName": "Istanbul SK",
           "name": "Georgie Houston",
           "playerId": "p01798",
           "pos": "PG",
@@ -1486,7 +1486,7 @@
         {
           "pick": 1,
           "teamId": "ROT",
-          "teamName": "Rotterdam",
+          "teamName": "Rotterdam United",
           "name": "Griffin Correa",
           "playerId": "p00032",
           "pos": "SF",
@@ -1596,7 +1596,7 @@
         {
           "pick": 12,
           "teamId": "BEI",
-          "teamName": "Beijing",
+          "teamName": "Beijing Capital",
           "name": "Shepherd Beckett",
           "playerId": "p00227",
           "pos": "SG",
@@ -1616,7 +1616,7 @@
         {
           "pick": 14,
           "teamId": "ACK",
-          "teamName": "Auckland",
+          "teamName": "Auckland Rovers",
           "name": "Wesley Wilder",
           "playerId": "p02333",
           "pos": "SG",
@@ -1626,7 +1626,7 @@
         {
           "pick": 15,
           "teamId": "OSA",
-          "teamName": "Osaka",
+          "teamName": "Osaka BC",
           "name": "Nadeem Akers",
           "playerId": "p00040",
           "pos": "SG",
@@ -1636,7 +1636,7 @@
         {
           "pick": 16,
           "teamId": "BEL",
-          "teamName": "Belfast",
+          "teamName": "Belfast Athletic",
           "name": "Dominique Hayward",
           "playerId": "p00189",
           "pos": "SF",
@@ -1646,7 +1646,7 @@
         {
           "pick": 17,
           "teamId": "DBA",
-          "teamName": "Dubai",
+          "teamName": "Dubai Falcons",
           "name": "Dimitri Quickley",
           "playerId": "p00236",
           "pos": "PG",
@@ -1656,7 +1656,7 @@
         {
           "pick": 18,
           "teamId": "DBA",
-          "teamName": "Dubai",
+          "teamName": "Dubai Falcons",
           "name": "Navaeh Sharpe",
           "playerId": "p00240",
           "pos": "C",
@@ -1666,7 +1666,7 @@
         {
           "pick": 19,
           "teamId": "OSL",
-          "teamName": "Oslo",
+          "teamName": "Oslo Idrettslag",
           "name": "Ezra Banes",
           "playerId": "p00369",
           "pos": "PG",
@@ -1686,7 +1686,7 @@
         {
           "pick": 21,
           "teamId": "NAP",
-          "teamName": "Naples",
+          "teamName": "Partenope Napoli",
           "name": "Zuberi Adebayo",
           "playerId": "p00356",
           "pos": "SG",
@@ -1696,7 +1696,7 @@
         {
           "pick": 22,
           "teamId": "LUX",
-          "teamName": "Luxembourg",
+          "teamName": "Union Luxembourg",
           "name": "Donovan Myers",
           "playerId": "p00312",
           "pos": "SF",
@@ -1706,7 +1706,7 @@
         {
           "pick": 23,
           "teamId": "OSA",
-          "teamName": "Osaka",
+          "teamName": "Osaka BC",
           "name": "Bruno Lebedev",
           "playerId": "p00367",
           "pos": "PF",
@@ -1716,7 +1716,7 @@
         {
           "pick": 24,
           "teamId": "BEL",
-          "teamName": "Belfast",
+          "teamName": "Belfast Athletic",
           "name": "Corey Bell",
           "playerId": "p00188",
           "pos": "SG",
@@ -1736,7 +1736,7 @@
         {
           "pick": 26,
           "teamId": "BEI",
-          "teamName": "Beijing",
+          "teamName": "Beijing Capital",
           "name": "Lamar Jung",
           "playerId": "p00199",
           "pos": "SF",
@@ -1746,7 +1746,7 @@
         {
           "pick": 27,
           "teamId": "DBA",
-          "teamName": "Dubai",
+          "teamName": "Dubai Falcons",
           "name": "Sadiq Suero",
           "playerId": "p00238",
           "pos": "SF",
@@ -1756,7 +1756,7 @@
         {
           "pick": 28,
           "teamId": "CAI",
-          "teamName": "Cairo",
+          "teamName": "Cairo SC",
           "name": "Adrian Napoletani",
           "playerId": "p01782",
           "pos": "PG",
@@ -1766,7 +1766,7 @@
         {
           "pick": 29,
           "teamId": "FLO",
-          "teamName": "Florence",
+          "teamName": "US Firenze",
           "name": "Adrien Moraeu",
           "playerId": "p00461",
           "pos": "PG",
@@ -1786,7 +1786,7 @@
         {
           "pick": 31,
           "teamId": "ROT",
-          "teamName": "Rotterdam",
+          "teamName": "Rotterdam United",
           "name": "Dannie Fischer",
           "playerId": "p00400",
           "pos": "C",
@@ -1796,7 +1796,7 @@
         {
           "pick": 32,
           "teamId": "EDI",
-          "teamName": "Edinburgh",
+          "teamName": "Edinburgh Thistle",
           "name": "Maverick Mayer",
           "playerId": "p00248",
           "pos": "SF",
@@ -1806,7 +1806,7 @@
         {
           "pick": 33,
           "teamId": "CAI",
-          "teamName": "Cairo",
+          "teamName": "Cairo SC",
           "name": "Dustin Greer",
           "playerId": "p01875",
           "pos": "PF",
@@ -1816,7 +1816,7 @@
         {
           "pick": 34,
           "teamId": "LUX",
-          "teamName": "Luxembourg",
+          "teamName": "Union Luxembourg",
           "name": "Rikki Nicholls",
           "playerId": "p01821",
           "pos": "SG",
@@ -1826,7 +1826,7 @@
         {
           "pick": 35,
           "teamId": "WAR",
-          "teamName": "Warsaw",
+          "teamName": "KS Warszawa",
           "name": "Wesley Zimmerman",
           "playerId": "p01827",
           "pos": "SG",
@@ -1836,7 +1836,7 @@
         {
           "pick": 36,
           "teamId": "ACK",
-          "teamName": "Auckland",
+          "teamName": "Auckland Rovers",
           "name": "Omar Lupo",
           "playerId": "p00176",
           "pos": "PF",
@@ -1846,7 +1846,7 @@
         {
           "pick": 37,
           "teamId": "BEI",
-          "teamName": "Beijing",
+          "teamName": "Beijing Capital",
           "name": "Camden Buchanan",
           "playerId": "p01876",
           "pos": "PF",
@@ -1856,7 +1856,7 @@
         {
           "pick": 38,
           "teamId": "NAP",
-          "teamName": "Naples",
+          "teamName": "Partenope Napoli",
           "name": "Willi Tyree",
           "playerId": "p00357",
           "pos": "PF",
@@ -1876,7 +1876,7 @@
         {
           "pick": 40,
           "teamId": "FLO",
-          "teamName": "Florence",
+          "teamName": "US Firenze",
           "name": "Otto Poole",
           "playerId": "p00257",
           "pos": "SG",
@@ -1886,7 +1886,7 @@
         {
           "pick": 41,
           "teamId": "EDI",
-          "teamName": "Edinburgh",
+          "teamName": "Edinburgh Thistle",
           "name": "Max McCaffrey",
           "playerId": "p01791",
           "pos": "PG",
@@ -1896,7 +1896,7 @@
         {
           "pick": 42,
           "teamId": "OSL",
-          "teamName": "Oslo",
+          "teamName": "Oslo Idrettslag",
           "name": "Thornton Porter",
           "playerId": "p01909",
           "pos": "C",
@@ -1906,7 +1906,7 @@
         {
           "pick": 43,
           "teamId": "ACK",
-          "teamName": "Auckland",
+          "teamName": "Auckland Rovers",
           "name": "Payton Gadsby",
           "playerId": "p00175",
           "pos": "SF",
@@ -1916,7 +1916,7 @@
         {
           "pick": 44,
           "teamId": "WAR",
-          "teamName": "Warsaw",
+          "teamName": "KS Warszawa",
           "name": "Braxton Booth",
           "playerId": "p00450",
           "pos": "C",
@@ -1926,7 +1926,7 @@
         {
           "pick": 45,
           "teamId": "WAR",
-          "teamName": "Warsaw",
+          "teamName": "KS Warszawa",
           "name": "Grayson Myles",
           "playerId": "p00179",
           "pos": "SG",
@@ -1951,7 +1951,7 @@
         {
           "pick": 2,
           "teamId": "BEL",
-          "teamName": "Belfast",
+          "teamName": "Belfast Athletic",
           "name": "Uchenna Okonkwu",
           "playerId": "p00190",
           "pos": "PF",
@@ -2011,7 +2011,7 @@
         {
           "pick": 8,
           "teamId": "ROT",
-          "teamName": "Rotterdam",
+          "teamName": "Rotterdam United",
           "name": "Kieran Lacey",
           "playerId": "p00396",
           "pos": "PG",
@@ -2021,7 +2021,7 @@
         {
           "pick": 9,
           "teamId": "CAI",
-          "teamName": "Cairo",
+          "teamName": "Cairo SC",
           "name": "Jaden Martin",
           "playerId": "p00217",
           "pos": "SG",
@@ -2041,7 +2041,7 @@
         {
           "pick": 11,
           "teamId": "NAP",
-          "teamName": "Naples",
+          "teamName": "Partenope Napoli",
           "name": "Tre French",
           "playerId": "p00355",
           "pos": "PG",
@@ -2051,7 +2051,7 @@
         {
           "pick": 12,
           "teamId": "EDI",
-          "teamName": "Edinburgh",
+          "teamName": "Edinburgh Thistle",
           "name": "Matej Novak",
           "playerId": "p00249",
           "pos": "PF",
@@ -2081,7 +2081,7 @@
         {
           "pick": 15,
           "teamId": "ROT",
-          "teamName": "Rotterdam",
+          "teamName": "Rotterdam United",
           "name": "Armani Mitchell",
           "playerId": "p00399",
           "pos": "PF",
@@ -2101,7 +2101,7 @@
         {
           "pick": 17,
           "teamId": "BEL",
-          "teamName": "Belfast",
+          "teamName": "Belfast Athletic",
           "name": "Jalil Grant",
           "playerId": "p00187",
           "pos": "PG",
@@ -2121,7 +2121,7 @@
         {
           "pick": 19,
           "teamId": "BEI",
-          "teamName": "Beijing",
+          "teamName": "Beijing Capital",
           "name": "Philip Horne",
           "playerId": "p00201",
           "pos": "C",
@@ -2131,7 +2131,7 @@
         {
           "pick": 20,
           "teamId": "DBA",
-          "teamName": "Dubai",
+          "teamName": "Dubai Falcons",
           "name": "Damon Moss",
           "playerId": "p01830",
           "pos": "SG",
@@ -2141,7 +2141,7 @@
         {
           "pick": 21,
           "teamId": "LUX",
-          "teamName": "Luxembourg",
+          "teamName": "Union Luxembourg",
           "name": "Ameer Woodward",
           "playerId": "p00313",
           "pos": "PF",
@@ -2151,7 +2151,7 @@
         {
           "pick": 22,
           "teamId": "OSL",
-          "teamName": "Oslo",
+          "teamName": "Oslo Idrettslag",
           "name": "Keith Campbell",
           "playerId": "p00371",
           "pos": "SF",
@@ -2161,7 +2161,7 @@
         {
           "pick": 23,
           "teamId": "OSA",
-          "teamName": "Osaka",
+          "teamName": "Osaka BC",
           "name": "Christopher Odeke",
           "playerId": "p00366",
           "pos": "SF",
@@ -2171,7 +2171,7 @@
         {
           "pick": 24,
           "teamId": "OSA",
-          "teamName": "Osaka",
+          "teamName": "Osaka BC",
           "name": "Angelo Torres",
           "playerId": "p01799",
           "pos": "PG",
@@ -2181,7 +2181,7 @@
         {
           "pick": 25,
           "teamId": "ROT",
-          "teamName": "Rotterdam",
+          "teamName": "Rotterdam United",
           "name": "Gabriel Uccello",
           "playerId": "p00397",
           "pos": "SG",
@@ -2201,7 +2201,7 @@
         {
           "pick": 27,
           "teamId": "EDI",
-          "teamName": "Edinburgh",
+          "teamName": "Edinburgh Thistle",
           "name": "Sampson Kane",
           "playerId": "p01902",
           "pos": "C",
@@ -2221,7 +2221,7 @@
         {
           "pick": 29,
           "teamId": "WAR",
-          "teamName": "Warsaw",
+          "teamName": "KS Warszawa",
           "name": "Obi Robert",
           "playerId": "p00449",
           "pos": "PF",
@@ -2231,7 +2231,7 @@
         {
           "pick": 30,
           "teamId": "MAN",
-          "teamName": "Manchester",
+          "teamName": "Manchester Athletic",
           "name": "Kobe Reed",
           "playerId": "p00327",
           "pos": "C",
@@ -2251,7 +2251,7 @@
         {
           "pick": 32,
           "teamId": "CAI",
-          "teamName": "Cairo",
+          "teamName": "Cairo SC",
           "name": "Kiran Bishop",
           "playerId": "p00220",
           "pos": "C",
@@ -2281,7 +2281,7 @@
         {
           "pick": 35,
           "teamId": "FLO",
-          "teamName": "Florence",
+          "teamName": "US Firenze",
           "name": "Willis Burke",
           "playerId": "p01911",
           "pos": "C",
@@ -2301,7 +2301,7 @@
         {
           "pick": 37,
           "teamId": "FLO",
-          "teamName": "Florence",
+          "teamName": "US Firenze",
           "name": "Dominic Rye",
           "playerId": "p01856",
           "pos": "SF",
@@ -2311,7 +2311,7 @@
         {
           "pick": 38,
           "teamId": "OSL",
-          "teamName": "Oslo",
+          "teamName": "Oslo Idrettslag",
           "name": "Seth Holland",
           "playerId": "p00370",
           "pos": "SG",
@@ -2321,7 +2321,7 @@
         {
           "pick": 39,
           "teamId": "NAP",
-          "teamName": "Naples",
+          "teamName": "Partenope Napoli",
           "name": "Ada Caldwell",
           "playerId": "p01853",
           "pos": "SF",
@@ -2331,7 +2331,7 @@
         {
           "pick": 40,
           "teamId": "ACK",
-          "teamName": "Auckland",
+          "teamName": "Auckland Rovers",
           "name": "Rickie Carver",
           "playerId": "p00173",
           "pos": "PG",
@@ -2376,7 +2376,7 @@
         {
           "pick": 4,
           "teamId": "SJ",
-          "teamName": "San Jose",
+          "teamName": "Deportivo San Jose",
           "name": "Kenneth Murphy",
           "playerId": "p02280",
           "pos": "PG",
@@ -2416,7 +2416,7 @@
         {
           "pick": 8,
           "teamId": "SJ",
-          "teamName": "San Jose",
+          "teamName": "Deportivo San Jose",
           "name": "Griffin Correa",
           "playerId": "p00032",
           "pos": "SF",
@@ -2446,7 +2446,7 @@
         {
           "pick": 11,
           "teamId": "REC",
-          "teamName": "Recife",
+          "teamName": "Atlético Recife",
           "name": "Kyson Hart",
           "playerId": "p00387",
           "pos": "C",
@@ -2476,7 +2476,7 @@
         {
           "pick": 14,
           "teamId": "KIEV",
-          "teamName": "Kiev",
+          "teamName": "SK Kyiv",
           "name": "Jalen Foster",
           "playerId": "p00289",
           "pos": "SF",
@@ -2486,7 +2486,7 @@
         {
           "pick": 15,
           "teamId": "EDI",
-          "teamName": "Edinburgh",
+          "teamName": "Edinburgh Thistle",
           "name": "Kofi Onyeama",
           "playerId": "p00247",
           "pos": "SG",
@@ -2506,7 +2506,7 @@
         {
           "pick": 17,
           "teamId": "MAN",
-          "teamName": "Manchester",
+          "teamName": "Manchester Athletic",
           "name": "Kaleb Henderson",
           "playerId": "p00326",
           "pos": "SF",
@@ -2546,7 +2546,7 @@
         {
           "pick": 21,
           "teamId": "TAM",
-          "teamName": "Tampa",
+          "teamName": "Tampa Bay Sporting",
           "name": "Samar Kumar",
           "playerId": "p00435",
           "pos": "C",
@@ -2566,7 +2566,7 @@
         {
           "pick": 23,
           "teamId": "GLAS",
-          "teamName": "Glasgow",
+          "teamName": "Glasgow Sporting",
           "name": "Tristan Peck",
           "playerId": "p00267",
           "pos": "SG",
@@ -2586,7 +2586,7 @@
         {
           "pick": 25,
           "teamId": "BEL",
-          "teamName": "Belfast",
+          "teamName": "Belfast Athletic",
           "name": "Amadou Diop",
           "playerId": "p00191",
           "pos": "C",
@@ -2606,7 +2606,7 @@
         {
           "pick": 27,
           "teamId": "LUX",
-          "teamName": "Luxembourg",
+          "teamName": "Union Luxembourg",
           "name": "Kaleb Davis",
           "playerId": "p00310",
           "pos": "PG",
@@ -2626,7 +2626,7 @@
         {
           "pick": 29,
           "teamId": "FLO",
-          "teamName": "Florence",
+          "teamName": "US Firenze",
           "name": "Damir Markovic",
           "playerId": "p00259",
           "pos": "PF",
@@ -2646,7 +2646,7 @@
         {
           "pick": 31,
           "teamId": "LUX",
-          "teamName": "Luxembourg",
+          "teamName": "Union Luxembourg",
           "name": "Espen Cabello",
           "playerId": "p01903",
           "pos": "C",
@@ -2676,7 +2676,7 @@
         {
           "pick": 34,
           "teamId": "OSA",
-          "teamName": "Osaka",
+          "teamName": "Osaka BC",
           "name": "Junior Strickland",
           "playerId": "p02275",
           "pos": "PF",
@@ -2696,7 +2696,7 @@
         {
           "pick": 36,
           "teamId": "BARC",
-          "teamName": "Barcelona",
+          "teamName": "Barcelona Bàsquet",
           "name": "Nasir Young",
           "playerId": "p00185",
           "pos": "PF",
@@ -2716,7 +2716,7 @@
         {
           "pick": 38,
           "teamId": "PAR",
-          "teamName": "Paris",
+          "teamName": "Racing Paris",
           "name": "Deodato Durant",
           "playerId": "p00381",
           "pos": "PF",
@@ -2741,7 +2741,7 @@
         {
           "pick": 1,
           "teamId": "DBA",
-          "teamName": "Dubai",
+          "teamName": "Dubai Falcons",
           "name": "Elliott Miller",
           "playerId": "p00239",
           "pos": "PF",
@@ -2761,7 +2761,7 @@
         {
           "pick": 3,
           "teamId": "OSA",
-          "teamName": "Osaka",
+          "teamName": "Osaka BC",
           "name": "Royce Willingham",
           "playerId": "p00368",
           "pos": "C",
@@ -2781,7 +2781,7 @@
         {
           "pick": 5,
           "teamId": "PAR",
-          "teamName": "Paris",
+          "teamName": "Racing Paris",
           "name": "Ignacio Cain",
           "playerId": "p00382",
           "pos": "C",
@@ -2801,7 +2801,7 @@
         {
           "pick": 7,
           "teamId": "ACK",
-          "teamName": "Auckland",
+          "teamName": "Auckland Rovers",
           "name": "Elijah Dixon",
           "playerId": "p00177",
           "pos": "C",
@@ -2841,7 +2841,7 @@
         {
           "pick": 11,
           "teamId": "BEI",
-          "teamName": "Beijing",
+          "teamName": "Beijing Capital",
           "name": "Jamie Fleming",
           "playerId": "p00198",
           "pos": "SG",
@@ -2851,7 +2851,7 @@
         {
           "pick": 12,
           "teamId": "CAI",
-          "teamName": "Cairo",
+          "teamName": "Cairo SC",
           "name": "Clay Walton",
           "playerId": "p00218",
           "pos": "SF",
@@ -2891,7 +2891,7 @@
         {
           "pick": 16,
           "teamId": "LAG",
-          "teamName": "Lagos",
+          "teamName": "Lagos Mariners",
           "name": "Louis Baker",
           "playerId": "p01843",
           "pos": "SF",
@@ -2921,7 +2921,7 @@
         {
           "pick": 19,
           "teamId": "NAP",
-          "teamName": "Naples",
+          "teamName": "Partenope Napoli",
           "name": "DeMarcus Harris",
           "playerId": "p00358",
           "pos": "C",
@@ -2961,7 +2961,7 @@
         {
           "pick": 23,
           "teamId": "GLAS",
-          "teamName": "Glasgow",
+          "teamName": "Glasgow Sporting",
           "name": "KJ Knight",
           "playerId": "p00268",
           "pos": "SF",
@@ -2981,7 +2981,7 @@
         {
           "pick": 25,
           "teamId": "OMA",
-          "teamName": "Omaha",
+          "teamName": "Omaha Union",
           "name": "Marquis Smith",
           "playerId": "p00362",
           "pos": "PF",
@@ -3001,7 +3001,7 @@
         {
           "pick": 27,
           "teamId": "WAR",
-          "teamName": "Warsaw",
+          "teamName": "KS Warszawa",
           "name": "Jermaine Turner",
           "playerId": "p01858",
           "pos": "SF",
@@ -3011,7 +3011,7 @@
         {
           "pick": 28,
           "teamId": "SJ",
-          "teamName": "San Jose",
+          "teamName": "Deportivo San Jose",
           "name": "Darryl Henry",
           "playerId": "p01912",
           "pos": "C",
@@ -3021,7 +3021,7 @@
         {
           "pick": 29,
           "teamId": "FRAN",
-          "teamName": "Frankfurt",
+          "teamName": "Frankfurter Turngemeinde",
           "name": "Heath Nunn",
           "playerId": "p00261",
           "pos": "PG",
@@ -3041,7 +3041,7 @@
         {
           "pick": 31,
           "teamId": "BEI",
-          "teamName": "Beijing",
+          "teamName": "Beijing Capital",
           "name": "Adrian Grant",
           "playerId": "p00197",
           "pos": "PG",
@@ -3051,7 +3051,7 @@
         {
           "pick": 32,
           "teamId": "KIEV",
-          "teamName": "Kiev",
+          "teamName": "SK Kyiv",
           "name": "Amara Adisa",
           "playerId": "p00287",
           "pos": "PG",
@@ -3061,7 +3061,7 @@
         {
           "pick": 33,
           "teamId": "ROT",
-          "teamName": "Rotterdam",
+          "teamName": "Rotterdam United",
           "name": "Marcus Foster",
           "playerId": "p01841",
           "pos": "SF",
@@ -3101,7 +3101,7 @@
         {
           "pick": 37,
           "teamId": "OSL",
-          "teamName": "Oslo",
+          "teamName": "Oslo Idrettslag",
           "name": "Keenan Cromer",
           "playerId": "p01873",
           "pos": "PF",
@@ -3126,7 +3126,7 @@
         {
           "pick": 1,
           "teamId": "KIEV",
-          "teamName": "Kiev",
+          "teamName": "SK Kyiv",
           "name": "Roman Findlay",
           "playerId": "p00151",
           "pos": "C",
@@ -3136,7 +3136,7 @@
         {
           "pick": 2,
           "teamId": "OMA",
-          "teamName": "Omaha",
+          "teamName": "Omaha Union",
           "name": "Kaylen Green",
           "playerId": "p00360",
           "pos": "SG",
@@ -3206,7 +3206,7 @@
         {
           "pick": 9,
           "teamId": "WAR",
-          "teamName": "Warsaw",
+          "teamName": "KS Warszawa",
           "name": "Haiden Mercado",
           "playerId": "p00446",
           "pos": "PG",
@@ -3216,7 +3216,7 @@
         {
           "pick": 10,
           "teamId": "STO",
-          "teamName": "Stockholm",
+          "teamName": "Stockholm IF",
           "name": "Asher Wainwright",
           "playerId": "p00426",
           "pos": "SF",
@@ -3296,7 +3296,7 @@
         {
           "pick": 18,
           "teamId": "BRUS",
-          "teamName": "Brussels",
+          "teamName": "Bruxelles BC",
           "name": "Matthias Schmitt",
           "playerId": "p00205",
           "pos": "C",
@@ -3316,7 +3316,7 @@
         {
           "pick": 20,
           "teamId": "SJ",
-          "teamName": "San Jose",
+          "teamName": "Deportivo San Jose",
           "name": "Silas Weaver",
           "playerId": "p00410",
           "pos": "PG",
@@ -3326,7 +3326,7 @@
         {
           "pick": 21,
           "teamId": "STO",
-          "teamName": "Stockholm",
+          "teamName": "Stockholm IF",
           "name": "D'Marius Blake",
           "playerId": "p00425",
           "pos": "SG",
@@ -3336,7 +3336,7 @@
         {
           "pick": 22,
           "teamId": "OSA",
-          "teamName": "Osaka",
+          "teamName": "Osaka BC",
           "name": "Jordie Lindsay",
           "playerId": "p00365",
           "pos": "SG",
@@ -3366,7 +3366,7 @@
         {
           "pick": 25,
           "teamId": "BARC",
-          "teamName": "Barcelona",
+          "teamName": "Barcelona Bàsquet",
           "name": "Dallas Park",
           "playerId": "p00183",
           "pos": "PG",
@@ -3396,7 +3396,7 @@
         {
           "pick": 28,
           "teamId": "MAN",
-          "teamName": "Manchester",
+          "teamName": "Manchester Athletic",
           "name": "Graham Santiago",
           "playerId": "p00325",
           "pos": "PG",
@@ -3416,7 +3416,7 @@
         {
           "pick": 30,
           "teamId": "BRUS",
-          "teamName": "Brussels",
+          "teamName": "Bruxelles BC",
           "name": "Finn Hayes",
           "playerId": "p01832",
           "pos": "SG",
@@ -3486,7 +3486,7 @@
         {
           "pick": 37,
           "teamId": "OMA",
-          "teamName": "Omaha",
+          "teamName": "Omaha Union",
           "name": "Zhao Wei",
           "playerId": "p00359",
           "pos": "PG",
@@ -3496,7 +3496,7 @@
         {
           "pick": 38,
           "teamId": "IST",
-          "teamName": "Istanbul",
+          "teamName": "Istanbul SK",
           "name": "Aiden Bell",
           "playerId": "p01860",
           "pos": "SF",
@@ -3516,7 +3516,7 @@
         {
           "pick": 40,
           "teamId": "IST",
-          "teamName": "Istanbul",
+          "teamName": "Istanbul SK",
           "name": "Alec Guy",
           "playerId": "p01828",
           "pos": "SG",
@@ -3526,7 +3526,7 @@
         {
           "pick": 41,
           "teamId": "PAR",
-          "teamName": "Paris",
+          "teamName": "Racing Paris",
           "name": "Henrik Larsen",
           "playerId": "p00379",
           "pos": "SG",
@@ -3536,7 +3536,7 @@
         {
           "pick": 42,
           "teamId": "ATH",
-          "teamName": "Athens",
+          "teamName": "AO Athens",
           "name": "Dru Clark",
           "playerId": "p00172",
           "pos": "C",
@@ -3571,7 +3571,7 @@
         {
           "pick": 3,
           "teamId": "NAP",
-          "teamName": "Naples",
+          "teamName": "Partenope Napoli",
           "name": "Hendrix Parks",
           "playerId": "p00473",
           "pos": "SF",
@@ -3691,7 +3691,7 @@
         {
           "pick": 15,
           "teamId": "BRUS",
-          "teamName": "Brussels",
+          "teamName": "Bruxelles BC",
           "name": "Fritz Mcintosh",
           "playerId": "p00203",
           "pos": "SG",
@@ -3701,7 +3701,7 @@
         {
           "pick": 16,
           "teamId": "FLO",
-          "teamName": "Florence",
+          "teamName": "US Firenze",
           "name": "JJ Meadows",
           "playerId": "p00260",
           "pos": "C",
@@ -3731,7 +3731,7 @@
         {
           "pick": 19,
           "teamId": "OSL",
-          "teamName": "Oslo",
+          "teamName": "Oslo Idrettslag",
           "name": "Dean Mays",
           "playerId": "p00373",
           "pos": "C",
@@ -3751,7 +3751,7 @@
         {
           "pick": 21,
           "teamId": "FLO",
-          "teamName": "Florence",
+          "teamName": "US Firenze",
           "name": "Claude Dailey",
           "playerId": "p00258",
           "pos": "SF",
@@ -3761,7 +3761,7 @@
         {
           "pick": 22,
           "teamId": "KIEV",
-          "teamName": "Kiev",
+          "teamName": "SK Kyiv",
           "name": "Julius Boyd",
           "playerId": "p00288",
           "pos": "SG",
@@ -3791,7 +3791,7 @@
         {
           "pick": 25,
           "teamId": "REC",
-          "teamName": "Recife",
+          "teamName": "Atlético Recife",
           "name": "Quintin Nguyen",
           "playerId": "p00383",
           "pos": "PG",
@@ -3801,7 +3801,7 @@
         {
           "pick": 26,
           "teamId": "SJ",
-          "teamName": "San Jose",
+          "teamName": "Deportivo San Jose",
           "name": "Keneth Friedman",
           "playerId": "p00414",
           "pos": "C",
@@ -3821,7 +3821,7 @@
         {
           "pick": 28,
           "teamId": "ATH",
-          "teamName": "Athens",
+          "teamName": "AO Athens",
           "name": "Barrett Cline",
           "playerId": "p00168",
           "pos": "PG",
@@ -3841,7 +3841,7 @@
         {
           "pick": 30,
           "teamId": "EDI",
-          "teamName": "Edinburgh",
+          "teamName": "Edinburgh Thistle",
           "name": "Bo Boone",
           "playerId": "p00246",
           "pos": "PG",
@@ -3851,7 +3851,7 @@
         {
           "pick": 31,
           "teamId": "OSA",
-          "teamName": "Osaka",
+          "teamName": "Osaka BC",
           "name": "Ki-Hoon Park",
           "playerId": "p00364",
           "pos": "PG",
@@ -3881,7 +3881,7 @@
         {
           "pick": 34,
           "teamId": "FRAN",
-          "teamName": "Frankfurt",
+          "teamName": "Frankfurter Turngemeinde",
           "name": "Lou House",
           "playerId": "p00262",
           "pos": "SG",
@@ -3901,7 +3901,7 @@
         {
           "pick": 36,
           "teamId": "WAR",
-          "teamName": "Warsaw",
+          "teamName": "KS Warszawa",
           "name": "Fabio Bianchi",
           "playerId": "p00447",
           "pos": "SG",
@@ -3911,7 +3911,7 @@
         {
           "pick": 37,
           "teamId": "STO",
-          "teamName": "Stockholm",
+          "teamName": "Stockholm IF",
           "name": "Bryson Curtis",
           "playerId": "p00424",
           "pos": "PG",
@@ -3921,7 +3921,7 @@
         {
           "pick": 38,
           "teamId": "REC",
-          "teamName": "Recife",
+          "teamName": "Atlético Recife",
           "name": "Ian Reid",
           "playerId": "p00386",
           "pos": "PF",
@@ -3931,7 +3931,7 @@
         {
           "pick": 39,
           "teamId": "LUX",
-          "teamName": "Luxembourg",
+          "teamName": "Union Luxembourg",
           "name": "Austin Rose",
           "playerId": "p00311",
           "pos": "SG",
@@ -3941,7 +3941,7 @@
         {
           "pick": 40,
           "teamId": "RIO",
-          "teamName": "Rio De Janeiro",
+          "teamName": "Guanabara SC",
           "name": "Ronnie Knapp",
           "playerId": "p00390",
           "pos": "SF",
@@ -3961,7 +3961,7 @@
         {
           "pick": 42,
           "teamId": "OSL",
-          "teamName": "Oslo",
+          "teamName": "Oslo Idrettslag",
           "name": "Robin Gay",
           "playerId": "p01862",
           "pos": "PF",
@@ -3981,7 +3981,7 @@
         {
           "pick": 44,
           "teamId": "WAR",
-          "teamName": "Warsaw",
+          "teamName": "KS Warszawa",
           "name": "Benito Montiel",
           "playerId": "p00448",
           "pos": "SF",
@@ -3991,7 +3991,7 @@
         {
           "pick": 45,
           "teamId": "DBA",
-          "teamName": "Dubai",
+          "teamName": "Dubai Falcons",
           "name": "Daquan Robinson",
           "playerId": "p00237",
           "pos": "SG",
@@ -4021,7 +4021,7 @@
         {
           "pick": 48,
           "teamId": "IST",
-          "teamName": "Istanbul",
+          "teamName": "Istanbul SK",
           "name": "Khalil Burton",
           "playerId": "p00279",
           "pos": "SG",
@@ -4031,7 +4031,7 @@
         {
           "pick": 49,
           "teamId": "FRAN",
-          "teamName": "Frankfurt",
+          "teamName": "Frankfurter Turngemeinde",
           "name": "Lachlan Blake",
           "playerId": "p00264",
           "pos": "PF",
@@ -4051,7 +4051,7 @@
         {
           "pick": 51,
           "teamId": "SJ",
-          "teamName": "San Jose",
+          "teamName": "Deportivo San Jose",
           "name": "Micah Beck",
           "playerId": "p00411",
           "pos": "SG",
@@ -4061,7 +4061,7 @@
         {
           "pick": 52,
           "teamId": "LUX",
-          "teamName": "Luxembourg",
+          "teamName": "Union Luxembourg",
           "name": "Idris Bah",
           "playerId": "p00314",
           "pos": "C",
@@ -4071,7 +4071,7 @@
         {
           "pick": 53,
           "teamId": "IST",
-          "teamName": "Istanbul",
+          "teamName": "Istanbul SK",
           "name": "Deangelo Rice",
           "playerId": "p01888",
           "pos": "C",
@@ -4081,7 +4081,7 @@
         {
           "pick": 54,
           "teamId": "SHAN",
-          "teamName": "Shanghai",
+          "teamName": "Shanghai Shencheng",
           "name": "Chandler Rice",
           "playerId": "p01812",
           "pos": "SG",
@@ -4101,7 +4101,7 @@
         {
           "pick": 56,
           "teamId": "EDI",
-          "teamName": "Edinburgh",
+          "teamName": "Edinburgh Thistle",
           "name": "Griffin Hale",
           "playerId": "p01887",
           "pos": "C",
@@ -4121,7 +4121,7 @@
         {
           "pick": 58,
           "teamId": "SHAN",
-          "teamName": "Shanghai",
+          "teamName": "Shanghai Shencheng",
           "name": "Ty Perry",
           "playerId": "p00420",
           "pos": "PG",
@@ -4186,7 +4186,7 @@
         {
           "pick": 6,
           "teamId": "LAG",
-          "teamName": "Lagos",
+          "teamName": "Lagos Mariners",
           "name": "Andre Evans",
           "playerId": "p00294",
           "pos": "SF",
@@ -4196,7 +4196,7 @@
         {
           "pick": 7,
           "teamId": "ROT",
-          "teamName": "Rotterdam",
+          "teamName": "Rotterdam United",
           "name": "Zaccai Janson",
           "playerId": "p00398",
           "pos": "SF",
@@ -4236,7 +4236,7 @@
         {
           "pick": 11,
           "teamId": "EDI",
-          "teamName": "Edinburgh",
+          "teamName": "Edinburgh Thistle",
           "name": "Arvidsson Olsen",
           "playerId": "p00250",
           "pos": "C",
@@ -4296,7 +4296,7 @@
         {
           "pick": 17,
           "teamId": "ACK",
-          "teamName": "Auckland",
+          "teamName": "Auckland Rovers",
           "name": "Kellen Brewer",
           "playerId": "p00174",
           "pos": "SG",
@@ -4326,7 +4326,7 @@
         {
           "pick": 20,
           "teamId": "KIEV",
-          "teamName": "Kiev",
+          "teamName": "SK Kyiv",
           "name": "Torin Jones",
           "playerId": "p00291",
           "pos": "C",
@@ -4346,7 +4346,7 @@
         {
           "pick": 22,
           "teamId": "GLAS",
-          "teamName": "Glasgow",
+          "teamName": "Glasgow Sporting",
           "name": "Elliott Kane",
           "playerId": "p00269",
           "pos": "PF",
@@ -4356,7 +4356,7 @@
         {
           "pick": 23,
           "teamId": "JOH",
-          "teamName": "Johannesburg",
+          "teamName": "Johannesburg Gold",
           "name": "Omari Bridges",
           "playerId": "p00282",
           "pos": "PG",
@@ -4446,7 +4446,7 @@
         {
           "pick": 32,
           "teamId": "BRUS",
-          "teamName": "Brussels",
+          "teamName": "Bruxelles BC",
           "name": "KJ Hanson",
           "playerId": "p00204",
           "pos": "PF",
@@ -4466,7 +4466,7 @@
         {
           "pick": 34,
           "teamId": "OSL",
-          "teamName": "Oslo",
+          "teamName": "Oslo Idrettslag",
           "name": "Pierce Williams",
           "playerId": "p00372",
           "pos": "PF",
@@ -4476,7 +4476,7 @@
         {
           "pick": 35,
           "teamId": "IST",
-          "teamName": "Istanbul",
+          "teamName": "Istanbul SK",
           "name": "Darnell Stone",
           "playerId": "p00281",
           "pos": "C",
@@ -4496,7 +4496,7 @@
         {
           "pick": 37,
           "teamId": "SJ",
-          "teamName": "San Jose",
+          "teamName": "Deportivo San Jose",
           "name": "Axel Bennington",
           "playerId": "p00412",
           "pos": "SF",
@@ -4516,7 +4516,7 @@
         {
           "pick": 39,
           "teamId": "SHAN",
-          "teamName": "Shanghai",
+          "teamName": "Shanghai Shencheng",
           "name": "Kyree Fields",
           "playerId": "p00421",
           "pos": "SG",
@@ -4526,7 +4526,7 @@
         {
           "pick": 40,
           "teamId": "CAI",
-          "teamName": "Cairo",
+          "teamName": "Cairo SC",
           "name": "Sterling Dupree",
           "playerId": "p00216",
           "pos": "PG",

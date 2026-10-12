@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion (1)",
       "champion": "Syracuse",
-      "runnerUp": "San Jose",
+      "runnerUp": "Deportivo San Jose",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02135",
@@ -15,7 +15,7 @@
     },
     {
       "title": "D2 International Champion (2)",
-      "champion": "Tampa",
+      "champion": "Tampa Bay Sporting",
       "runnerUp": "Atlanta",
       "score": null,
       "group": "D2",
@@ -40,7 +40,7 @@
       "group": "AM",
       "teams": [
         "Syracuse",
-        "Tampa"
+        "Tampa Bay Sporting"
       ]
     }
   ],

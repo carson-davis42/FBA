@@ -466,10 +466,10 @@
         "1x P12 TOUR Champion",
         "CHI-S70",
         "TOR-S71",
-        "D2(Rotterdam)-S72",
+        "D2(Rotterdam United)-S72",
         "WC(Netherlands)-S72",
         "MW-S73",
-        "D2(San Jose)-S74-S77",
+        "D2(Deportivo San Jose)-S74-S77",
         "1x PL RS Champion",
         "1x PL C-Ship app.",
         "1x PL Champion",
@@ -597,7 +597,7 @@
         "Texas A&M-S71",
         "1x SEC POY",
         "1x All-American(3rd)",
-        "D2(Osaka)-S72-S75",
+        "D2(Osaka BC)-S72-S75",
         "1x IL C-Ship app.",
         "1x IL Champion",
         "1x IL C-Ship MVP",
@@ -959,7 +959,7 @@
       "playerId": "p00066",
       "born": "Born-S54",
       "entries": [
-        "D2(Osaka)-S72",
+        "D2(Osaka BC)-S72",
         "WC(Japan)-S72",
         "1x World Cup C-Ship app.",
         "1x World Cup Champion",
@@ -1108,7 +1108,7 @@
       "playerId": "p00077",
       "born": "Born-S53",
       "entries": [
-        "D2(Paris)-S70-S71",
+        "D2(Racing Paris)-S70-S71",
         "1x WL C-Ship app.",
         "1x WL Champion",
         "1x WL C-Ship MVP",
@@ -1948,7 +1948,7 @@
         "2x DH Award",
         "2x All-American(1st)",
         "1x B12 POY",
-        "D2(Luxembourg)-S73",
+        "D2(Union Luxembourg)-S73",
         "1x IL MVP",
         "1x IL C-Ship app.",
         "CIN-S74",
@@ -2113,7 +2113,7 @@
         "1x A10 RS Champion",
         "1x A10 TOUR Champion",
         "HON-S68-S70",
-        "D2(Recife)-S71-S76",
+        "D2(Atlético Recife)-S71-S76",
         "2x UL MVP",
         "1x UL C-Ship app.",
         "1x UL Champion",
@@ -2201,7 +2201,7 @@
         "STL-S72",
         "PHX-S72-S74",
         "HON-S75",
-        "D2(Kiev)-S76-S77",
+        "D2(SK Kyiv)-S76-S77",
         "1x IL RS Champion",
         "1x IL MVP",
         "WC(Ukraine)-S76",
@@ -2476,7 +2476,7 @@
         "1x AAC RS Champion",
         "1x AAC TOUR Champion",
         "1x All-American(3rd)",
-        "D2(Athens)-S77-pres.",
+        "D2(AO Athens)-S77-pres.",
         "WC(Greece)-S78"
       ]
     },
@@ -2491,7 +2491,7 @@
         "UNLV-S73-S74",
         "UConn-S75",
         "1x BE RS Champion",
-        "D2(Athens)-S76-pres.",
+        "D2(AO Athens)-S76-pres.",
         "WC(Greece)-S76-S78"
       ]
     },
@@ -2502,7 +2502,7 @@
         "Wichita State-S65-S66",
         "Uconn-S67-S68",
         "1x AAC RS Champion",
-        "D2(Athens)-S69-pres.",
+        "D2(AO Athens)-S69-pres.",
         "WC(Greece)-S70-S78"
       ]
     },
@@ -2513,7 +2513,7 @@
         "Rutgers-S65-S67",
         "1x A10 TOUR Champion",
         "Auburn-S68",
-        "D2(Athens)-S69-pres.",
+        "D2(AO Athens)-S69-pres.",
         "WC(Greece)-S70-S78"
       ]
     },
@@ -2526,7 +2526,7 @@
         "1x COL TOUR Champion",
         "1x COL POY",
         "Iowa-S75",
-        "D2(Athens)-S76-pres.",
+        "D2(AO Athens)-S76-pres.",
         "WC(Greece)-S76-S78"
       ]
     },
@@ -2535,7 +2535,7 @@
       "born": "Born-S51",
       "entries": [
         "Georgetown-S69-S72",
-        "D2(Auckland)-S73-pres.",
+        "D2(Auckland Rovers)-S73-pres.",
         "WC(New Zealand)-S74-S78"
       ]
     },
@@ -2547,7 +2547,7 @@
         "1x PAT POY",
         "1x PAT RS Champion",
         "Baylor-S76-S77",
-        "D2(Auckland)-S78-pres.",
+        "D2(Auckland Rovers)-S78-pres.",
         "WC(New Zealand)-S78"
       ]
     },
@@ -2556,7 +2556,7 @@
       "born": "Born-S50",
       "entries": [
         "Georgetown-S68-S71",
-        "D2(Auckland)-S72-pres.",
+        "D2(Auckland Rovers)-S72-pres.",
         "WC(New Zealand)-S72-S78"
       ]
     },
@@ -2571,7 +2571,7 @@
         "1x NC app.",
         "1x National Champion",
         "1x ACC TOUR Champion",
-        "D2(Auckland)-S72-pres.",
+        "D2(Auckland Rovers)-S72-pres.",
         "WC(New Zealand)-S72-S78"
       ]
     },
@@ -2581,7 +2581,7 @@
       "entries": [
         "Virginia-S71-S74",
         "1x ACC RS Champion",
-        "D2(Auckland)-S75-pres.",
+        "D2(Auckland Rovers)-S75-pres.",
         "WC(New Zealand)-S76-S78"
       ]
     },
@@ -2609,7 +2609,7 @@
       "entries": [
         "Northwestern-S68-S69",
         "Tulane-S70-S71",
-        "D2(Warsaw)-S72-S75",
+        "D2(KS Warszawa)-S72-S75",
         "WC(Poland)-S72-S74",
         "D2(Austin BC)-S76-pres.",
         "2x PL RS Champion",
@@ -2666,7 +2666,7 @@
         "Texas Tech-S73-S75",
         "1x B12 RS Champion",
         "1x B12 TOUR Champion",
-        "D2(Barcelona)-S76-pres.",
+        "D2(Barcelona Bàsquet)-S76-pres.",
         "2x IL C-Ship app.",
         "2x IL Champion"
       ]
@@ -2678,7 +2678,7 @@
         "Penn State-S67-S68",
         "1x A10 TOUR Champion",
         "Oregon-S69-S70",
-        "D2(Barcelona)-S71-pres.",
+        "D2(Barcelona Bàsquet)-S71-pres.",
         "2x IL C-Ship app.",
         "2x IL Champion",
         "WC(Spain)-S76"
@@ -2691,7 +2691,7 @@
         "Kentucky-S70-S73",
         "2x SEC TOUR Champion",
         "2x SEC RS Champion",
-        "D2(Barcelona)-S74-pres.",
+        "D2(Barcelona Bàsquet)-S74-pres.",
         "2x IL C-Ship app.",
         "2x IL Champion",
         "2x IL C-Ship MVP",
@@ -2703,7 +2703,7 @@
       "born": "Born-S47",
       "entries": [
         "Alabama-S65-S68",
-        "D2(Barcelona)-S69-pres.",
+        "D2(Barcelona Bàsquet)-S69-pres.",
         "2x IL C-Ship app.",
         "2x IL Champion"
       ]
@@ -2714,7 +2714,7 @@
       "entries": [
         "Tennessee-S69-S72",
         "3x SEC RS Champion",
-        "D2(Belfast)-S73-pres.",
+        "D2(Belfast Athletic)-S73-pres.",
         "1x IL C-Ship app.",
         "WC(Northern Ireland)-S74-S78"
       ]
@@ -2726,7 +2726,7 @@
         "Buffalo-S68-S69",
         "1x HOR TOUR Champion",
         "Marquette-S70-S71",
-        "D2(Belfast)-S72-pres.",
+        "D2(Belfast Athletic)-S72-pres.",
         "1x IL C-Ship app.",
         "WC(Northern Ireland)-S72-S78"
       ]
@@ -2737,7 +2737,7 @@
       "entries": [
         "Gonzaga-S68-S69",
         "Indiana-S70-S71",
-        "D2(Belfast)-S72-pres.",
+        "D2(Belfast Athletic)-S72-pres.",
         "1x IL C-Ship app.",
         "WC(Northern Ireland)-S72-S78"
       ]
@@ -2751,7 +2751,7 @@
         "1x WC Champion",
         "1x Young-Star",
         "CHA-S72",
-        "D2(Belfast)-S73-pres.",
+        "D2(Belfast Athletic)-S73-pres.",
         "1x IL C-Ship app.",
         "WC(Northern Ireland)-S74-S78"
       ]
@@ -2762,7 +2762,7 @@
       "entries": [
         "North Carolina-S70-S72",
         "Tennessee-S73",
-        "D2(Belfast)-S74-pres.",
+        "D2(Belfast Athletic)-S74-pres.",
         "1x IL C-Ship app.",
         "WC(Northern Ireland)-S74-S78"
       ]
@@ -2841,7 +2841,7 @@
       "entries": [
         "Furman-S71",
         "Arizona State-S72-S74",
-        "D2(Beijing)-S75-pres.",
+        "D2(Beijing Capital)-S75-pres.",
         "WC(China)-S76"
       ]
     },
@@ -2855,7 +2855,7 @@
         "1x BE TOUR Champion",
         "1x All-American(3rd)",
         "1x BE POY",
-        "D2(Beijing)-S75-pres.",
+        "D2(Beijing Capital)-S75-pres.",
         "WC(China)-S76-S78"
       ]
     },
@@ -2866,7 +2866,7 @@
         "Brown-S68",
         "Tennessee-S69-S71",
         "2x SEC RS Champion",
-        "D2(Beijing)-S72-pres."
+        "D2(Beijing Capital)-S72-pres."
       ]
     },
     {
@@ -2881,7 +2881,7 @@
         "1x UL C-Ship app.",
         "1x WL RS Champion",
         "WC(Mexico)-S70;S76",
-        "D2(Beijing)-S76-pres.",
+        "D2(Beijing Capital)-S76-pres.",
         "WC(China)-S78"
       ]
     },
@@ -2892,7 +2892,7 @@
         "Iona-S69",
         "Iowa-S70-S72",
         "1x B10 TOUR Champion",
-        "D2(Beijing)-S73-pres."
+        "D2(Beijing Capital)-S73-pres."
       ]
     },
     {
@@ -2904,7 +2904,7 @@
         "1x National Champion",
         "3x B12 RS Champion",
         "2x B12 TOUR Champion",
-        "D2(Brussels)-S69-pres.",
+        "D2(Bruxelles BC)-S69-pres.",
         "WC(Belgium)-S70-S78"
       ]
     },
@@ -2919,7 +2919,7 @@
         "Nevada-S75-S76",
         "1x MWC RS Champion",
         "2x MWC TOUR Champion",
-        "D2(Brussels)-S77-pres.",
+        "D2(Bruxelles BC)-S77-pres.",
         "WC(Belgium)-S78"
       ]
     },
@@ -2929,7 +2929,7 @@
       "entries": [
         "Auburn-S74-S77",
         "3x SEC TOUR Champion",
-        "D2(Brussels)-S78-pres.",
+        "D2(Bruxelles BC)-S78-pres.",
         "WC(Belgium)-S78"
       ]
     },
@@ -2938,7 +2938,7 @@
       "born": "Born-S54",
       "entries": [
         "Xavier-S72-S75",
-        "D2(Brussels)-S76-pres.",
+        "D2(Bruxelles BC)-S76-pres.",
         "WC(Belgium)-S76-S78"
       ]
     },
@@ -3099,7 +3099,7 @@
         "1x IVY POY",
         "1x IVY RS Champion",
         "Duke-S77",
-        "D2(Cairo)-S78-pres.",
+        "D2(Cairo SC)-S78-pres.",
         "WC(Egypt)-S78"
       ]
     },
@@ -3110,7 +3110,7 @@
         "Gonzaga-S69-S72",
         "2x P12 RS Champion",
         "1x All-American(3rd)",
-        "D2(Cairo)-S73-pres.",
+        "D2(Cairo SC)-S73-pres.",
         "WC(Egypt)-S74-S78"
       ]
     },
@@ -3119,7 +3119,7 @@
       "born": "Born-S53",
       "entries": [
         "Xavier-S71-S74",
-        "D2(Cairo)-S75-pres.",
+        "D2(Cairo SC)-S75-pres.",
         "WC(Egypt)-S76-S78"
       ]
     },
@@ -3135,7 +3135,7 @@
         "1x UL C-Ship app.",
         "1x UL Champion",
         "WC(Croatia)-S72-S74",
-        "D2(Cairo)-S76-pres.",
+        "D2(Cairo SC)-S76-pres.",
         "WC(Egypt)-S76-S78"
       ]
     },
@@ -3145,7 +3145,7 @@
       "entries": [
         "New Mexico State-S69",
         "Texas Tech-S70-S72",
-        "D2(Cairo)-S73-pres.",
+        "D2(Cairo SC)-S73-pres.",
         "WC(Egypt)-S74-S78"
       ]
     },
@@ -3248,7 +3248,7 @@
         "2x AAC RS Champion",
         "1x AAC TOUR Champion",
         "1x All-American(1st)",
-        "D2(Beijing)-S72-S74",
+        "D2(Beijing Capital)-S72-S74",
         "WC(China)-S72-S74",
         "FLO-S75",
         "OAK-S76",
@@ -3402,7 +3402,7 @@
         "1x ACC RS Champion",
         "1x ACC POY",
         "1x All-American(1st)",
-        "D2(Dubai)-S72-pres.",
+        "D2(Dubai Falcons)-S72-pres.",
         "1x IL RS Champion",
         "1x IL C-Ship app.",
         "WC(UAE)-S72-S78"
@@ -3415,7 +3415,7 @@
         "Florida-S73-S76",
         "1x SEC RS Champion",
         "1x NC app.",
-        "D2(Dubai)-S77-pres.",
+        "D2(Dubai Falcons)-S77-pres.",
         "WC(UAE)-S78"
       ]
     },
@@ -3428,7 +3428,7 @@
         "Nevada-S69-S71",
         "2x AAC RS Champion",
         "1x AAC TOUR Champion",
-        "D2(Dubai)-S72-pres.",
+        "D2(Dubai Falcons)-S72-pres.",
         "1x IL RS Champion",
         "1x IL C-Ship app.",
         "WC(UAE)-S72-S78"
@@ -3446,7 +3446,7 @@
         "DEN-S72-S73",
         "MON-S74",
         "1x EC Champion",
-        "D2(Dubai)-S75-pres.",
+        "D2(Dubai Falcons)-S75-pres.",
         "1x IL RS Champion",
         "1x IL C-Ship app.",
         "WC(UAE)-S76-S78"
@@ -3460,7 +3460,7 @@
         "Kentucky-S71",
         "1x SEC RS Champion",
         "1x SEC TOUR Champion",
-        "D2(Dubai)-S72-pres.",
+        "D2(Dubai Falcons)-S72-pres.",
         "1x IL RS Champion",
         "1x IL C-Ship app.",
         "WC(UAE)-S72-S78"
@@ -3563,7 +3563,7 @@
         "Wichita State-S73-S76",
         "1x AAC TOUR Champion",
         "1x AAC RS Champion",
-        "D2(Edinburgh)-S77-pres."
+        "D2(Edinburgh Thistle)-S77-pres."
       ]
     },
     {
@@ -3574,7 +3574,7 @@
         "Michigan-S71-S72",
         "Georgia-S73",
         "1x SEC POY",
-        "D2(Edinburgh)-S74-pres."
+        "D2(Edinburgh Thistle)-S74-pres."
       ]
     },
     {
@@ -3584,7 +3584,7 @@
         "Delaware-S68",
         "Marquette-S69-S71",
         "1x BE TOUR Champion",
-        "D2(Edinburgh)-S72-pres.",
+        "D2(Edinburgh Thistle)-S72-pres.",
         "WC(Scotland)-S72-S74"
       ]
     },
@@ -3594,7 +3594,7 @@
       "entries": [
         "Oregon-S71",
         "MAN-S72",
-        "D2(Edinburgh)-S73-pres.",
+        "D2(Edinburgh Thistle)-S73-pres.",
         "WC(Scotland)-S74-S78"
       ]
     },
@@ -3606,7 +3606,7 @@
         "2x SEC RS Champion",
         "1x SEC TOUR Champion",
         "1x All-American(3rd)",
-        "D2(Edinburgh)-S78-pres.",
+        "D2(Edinburgh Thistle)-S78-pres.",
         "WC(Scotland)-S78"
       ]
     },
@@ -3687,7 +3687,7 @@
         "Harvard-S68",
         "Illinois-S69-S71",
         "1x B10 RS Champion",
-        "D2(Florence)-S72-pres."
+        "D2(US Firenze)-S72-pres."
       ]
     },
     {
@@ -3697,7 +3697,7 @@
         "Maryland-S68",
         "Syracuse-S69",
         "Baylor-S70-S71",
-        "D2(Florence)-S72-pres."
+        "D2(US Firenze)-S72-pres."
       ]
     },
     {
@@ -3705,7 +3705,7 @@
       "born": "Born-S55",
       "entries": [
         "Creighton-S73-S76",
-        "D2(Florence)-S77-pres."
+        "D2(US Firenze)-S77-pres."
       ]
     },
     {
@@ -3715,7 +3715,7 @@
         "Missouri-S70-S72",
         "Kansas-S73",
         "1x B12 RS Champion",
-        "D2(Florence)-S74-pres.",
+        "D2(US Firenze)-S74-pres.",
         "WC(Italy)-S74"
       ]
     },
@@ -3728,7 +3728,7 @@
         "Michigan-S74-S76",
         "1x B10 RS Champion",
         "1x B10 TOUR Champion",
-        "D2(Florence)-S77-pres."
+        "D2(US Firenze)-S77-pres."
       ]
     },
     {
@@ -3743,7 +3743,7 @@
         "1x BE RS Champion",
         "Alabama-S73-S74",
         "1x SEC TOUR Champion",
-        "D2(Frankfurt)-S75-pres."
+        "D2(Frankfurter Turngemeinde)-S75-pres."
       ]
     },
     {
@@ -3752,7 +3752,7 @@
       "entries": [
         "Texas A&M-S73-S76",
         "1x SEC RS Champion",
-        "D2(Frankfurt)-S77-pres."
+        "D2(Frankfurter Turngemeinde)-S77-pres."
       ]
     },
     {
@@ -3763,7 +3763,7 @@
         "1x IVY POY",
         "1x IVY RS Champion",
         "Michigan State-S68-S70",
-        "D2(Frankfurt)-S71-pres.",
+        "D2(Frankfurter Turngemeinde)-S71-pres.",
         "WC(Germany)-S76"
       ]
     },
@@ -3772,7 +3772,7 @@
       "born": "Born-S55",
       "entries": [
         "Notre Dame-S73-S76",
-        "D2(Frankfurt)-S77-pres."
+        "D2(Frankfurter Turngemeinde)-S77-pres."
       ]
     },
     {
@@ -3782,7 +3782,7 @@
         "Auburn-S65-S68",
         "1x SEC RS Champion",
         "1x SEC TOUR Champion",
-        "D2(Frankfurt)-S69-pres."
+        "D2(Frankfurter Turngemeinde)-S69-pres."
       ]
     },
     {
@@ -3793,7 +3793,7 @@
         "Houston-S70",
         "1x B12 RS Champion",
         "1x B12 TOUR Champion",
-        "D2(Glasgow)-S71-pres.",
+        "D2(Glasgow Sporting)-S71-pres.",
         "WC(Scotland)-S72-S78"
       ]
     },
@@ -3803,7 +3803,7 @@
       "entries": [
         "Indiana-S70",
         "Oklahoma State-S71-S73",
-        "D2(Glasgow)-S74-pres.",
+        "D2(Glasgow Sporting)-S74-pres.",
         "WC(Scotland)-S74-S78"
       ]
     },
@@ -3816,7 +3816,7 @@
         "Creighton-S72",
         "1x BE TOUR Champion",
         "San Diego State-S73-S74",
-        "D2(Glasgow)-S75-pres.",
+        "D2(Glasgow Sporting)-S75-pres.",
         "WC(Scotland)-S76-S78"
       ]
     },
@@ -3829,7 +3829,7 @@
         "1x IVY RS Champion",
         "Missouri-S76-S77",
         "1x All-American(3rd)",
-        "D2(Glasgow)-S78-pres."
+        "D2(Glasgow Sporting)-S78-pres."
       ]
     },
     {
@@ -3956,7 +3956,7 @@
         "UCF-S73-S76",
         "1x AAC RS Champion",
         "1x AAC POY",
-        "D2(Istanbul)-S77-pres.",
+        "D2(Istanbul SK)-S77-pres.",
         "WC(Turkey)-S78"
       ]
     },
@@ -3966,7 +3966,7 @@
       "entries": [
         "Vermont-S65",
         "Virginia Tech-S66-S68",
-        "D2(Istanbul)-S69-pres.",
+        "D2(Istanbul SK)-S69-pres.",
         "WC(Turkey)-S70-S78"
       ]
     },
@@ -3978,7 +3978,7 @@
         "1x B12 RS Champion",
         "1x NC app.",
         "1x National Champion",
-        "D2(Istanbul)-S78-pres.",
+        "D2(Istanbul SK)-S78-pres.",
         "WC(Turkey)-S78"
       ]
     },
@@ -3987,7 +3987,7 @@
       "born": "Born-S56",
       "entries": [
         "Iowa State-S74-S77",
-        "D2(Johannesburg)-S78-pres.",
+        "D2(Johannesburg Gold)-S78-pres.",
         "1x UL C-Ship app.",
         "WC(South Africa)-S78"
       ]
@@ -3998,7 +3998,7 @@
       "entries": [
         "Dartmouth-S67-S68",
         "USC-S69-S70",
-        "D2(Johannesburg)-S71-pres.",
+        "D2(Johannesburg Gold)-S71-pres.",
         "1x UL C-Ship app.",
         "WC(South Africa)-S72-S78"
       ]
@@ -4016,7 +4016,7 @@
         "1x All-American(3rd)",
         "1x SEC RS Champion",
         "NO-S70",
-        "D2(Johannesburg)-S71-pres.",
+        "D2(Johannesburg Gold)-S71-pres.",
         "1x UL C-Ship app.",
         "WC(South Africa)-S72-S78"
       ]
@@ -4030,7 +4030,7 @@
         "Virginia-S68-S70",
         "1x All-American(3rd)",
         "1x ACC RS Champion",
-        "D2(Johannesburg)-S71-pres.",
+        "D2(Johannesburg Gold)-S71-pres.",
         "1x UL C-Ship app.",
         "WC(South Africa)-S72-S78"
       ]
@@ -4042,7 +4042,7 @@
         "Duke-S67-S70",
         "2x ACC TOUR Champion",
         "1x ACC RS Champion",
-        "D2(Johannesburg)-S71-pres.",
+        "D2(Johannesburg Gold)-S71-pres.",
         "1x UL C-Ship app.",
         "WC(South Africa)-S72-S78"
       ]
@@ -4054,7 +4054,7 @@
         "Kennesaw State-S71",
         "Wake Forest-S72-S74",
         "1x ACC TOUR Champion",
-        "D2(Kiev)-S75-pres.",
+        "D2(SK Kyiv)-S75-pres.",
         "1x IL RS Champion",
         "WC(Ukraine)-S76-S78"
       ]
@@ -4065,7 +4065,7 @@
       "entries": [
         "Marquette-S73-S76",
         "1x BE RS Champion",
-        "D2(Kiev)-S77-pres.",
+        "D2(SK Kyiv)-S77-pres.",
         "WC(Ukraine)-S78"
       ]
     },
@@ -4078,7 +4078,7 @@
         "1x AAC POY",
         "1x AAC RS Champion",
         "1x AAC TOUR Champion",
-        "D2(Kiev)-S74-pres.",
+        "D2(SK Kyiv)-S74-pres.",
         "1x IL RS Champion",
         "WC(Ukraine)-S74-S78"
       ]
@@ -4094,7 +4094,7 @@
         "1x B12 TOUR Champion",
         "Miami-S70",
         "1x ACC RS Champion",
-        "D2(Kiev)-S71-pres.",
+        "D2(SK Kyiv)-S71-pres.",
         "1x IL RS Champion",
         "WC(Ukraine)-S72-S78"
       ]
@@ -4107,7 +4107,7 @@
         "2x AAC TOUR Champion",
         "2x AAC RS Champion",
         "1x NC app.",
-        "D2(Kiev)-S78-pres.",
+        "D2(SK Kyiv)-S78-pres.",
         "WC(Ukraine)-S78"
       ]
     },
@@ -4119,7 +4119,7 @@
         "Houston-S67-S69",
         "2x AAC RS Champion",
         "2x AAC TOUR Champion",
-        "D2(Lagos)-S70-pres.",
+        "D2(Lagos Mariners)-S70-pres.",
         "WC(Nigeria)-S70-S78"
       ]
     },
@@ -4129,7 +4129,7 @@
       "entries": [
         "Florida State-S66-S69",
         "1x ACC RS Champion",
-        "D2(Lagos)-S70-pres.",
+        "D2(Lagos Mariners)-S70-pres.",
         "WC(Nigeria)-S70-S78"
       ]
     },
@@ -4142,7 +4142,7 @@
         "1x All-American(3rd)",
         "1x BE TOUR Champion",
         "1x All-American(2nd)",
-        "D2(Lagos)-S78-pres.",
+        "D2(Lagos Mariners)-S78-pres.",
         "WC(Nigeria)-S78"
       ]
     },
@@ -4158,7 +4158,7 @@
         "Illinois-S68-S69",
         "1x B10 RS Champion",
         "1x DC DPOY",
-        "D2(Lagos)-S70-pres.",
+        "D2(Lagos Mariners)-S70-pres.",
         "WC(Nigeria)-S70-S78"
       ]
     },
@@ -4169,7 +4169,7 @@
         "Kentucky-S66-S69",
         "3x SEC RS Champion",
         "1x DC DPOY",
-        "D2(Lagos)-S70-pres.",
+        "D2(Lagos Mariners)-S70-pres.",
         "WC(Nigeria)-S70-S78"
       ]
     },
@@ -4346,7 +4346,7 @@
       "entries": [
         "Michigan-S70-S73",
         "1x NC app.",
-        "D2(Luxembourg)-S74-pres.",
+        "D2(Union Luxembourg)-S74-pres.",
         "WC(Luxembourg)-S74-S78"
       ]
     },
@@ -4356,7 +4356,7 @@
       "entries": [
         "Louisville-S73-S76",
         "1x ACC RS Champion",
-        "D2(Luxembourg)-S77-pres.",
+        "D2(Union Luxembourg)-S77-pres.",
         "WC(Luxembourg)-S78"
       ]
     },
@@ -4365,7 +4365,7 @@
       "born": "Born-S50",
       "entries": [
         "Louisville-S68-S71",
-        "D2(Luxembourg)-S72-pres.",
+        "D2(Union Luxembourg)-S72-pres.",
         "1x IL C-Ship app.",
         "WC(Luxembourg)-S72-S78"
       ]
@@ -4376,7 +4376,7 @@
       "entries": [
         "Tennessee-S69-S72",
         "3x SEC RS Champion",
-        "D2(Luxembourg)-S73-pres.",
+        "D2(Union Luxembourg)-S73-pres.",
         "1x IL C-Ship app.",
         "WC(Luxembourg)-S74-S78"
       ]
@@ -4387,7 +4387,7 @@
       "entries": [
         "Oral Roberts-S73-S76",
         "1x SOCON POY",
-        "D2(Luxembourg)-S77-pres.",
+        "D2(Union Luxembourg)-S77-pres.",
         "WC(Luxembourg)-S78"
       ]
     },
@@ -4520,9 +4520,9 @@
         "Iowa State-S66-S67",
         "BYU-S68",
         "1x A10 RS Champion",
-        "D2(Brussels)-S69-S75",
+        "D2(Bruxelles BC)-S69-S75",
         "WC(Belgium)-S70-S74",
-        "D2(Manchester)-S76-pres."
+        "D2(Manchester Athletic)-S76-pres."
       ]
     },
     {
@@ -4534,7 +4534,7 @@
         "1x National Champion",
         "1x B10 RS Champion",
         "1x B10 TOUR Champion",
-        "D2(Manchester)-S74-pres."
+        "D2(Manchester Athletic)-S74-pres."
       ]
     },
     {
@@ -4544,7 +4544,7 @@
         "Georgetown-S69-S71",
         "Pitt-S72",
         "1x A10 RS Champion",
-        "D2(Manchester)-S73-pres.",
+        "D2(Manchester Athletic)-S73-pres.",
         "WC(England)-S78"
       ]
     },
@@ -4922,7 +4922,7 @@
         "1x P12 POY",
         "1x All-American(1st)",
         "TEX-S71-S72",
-        "D2(Naples)-S73-pres.",
+        "D2(Partenope Napoli)-S73-pres.",
         "2x IL C-Ship app.",
         "1x IL RS Champion",
         "WC(Italy)-S74; S78",
@@ -4938,7 +4938,7 @@
         "VCU-S71",
         "1x A10 RS Champion",
         "1x A10 POY",
-        "D2(Naples)-S72-pres.",
+        "D2(Partenope Napoli)-S72-pres.",
         "2x IL C-Ship app.",
         "1x IL RS Champion"
       ]
@@ -4951,7 +4951,7 @@
         "Alabama-S69-S70",
         "1x SEC TOUR Champion",
         "Purdue-S71",
-        "D2(Naples)-S72-pres.",
+        "D2(Partenope Napoli)-S72-pres.",
         "2x IL C-Ship app.",
         "1x IL RS Champion"
       ]
@@ -4963,7 +4963,7 @@
         "Duke-S71-S74",
         "1x ACC RS Champion",
         "2x ACC TOUR Champion",
-        "D2(Naples)-S75-pres.",
+        "D2(Partenope Napoli)-S75-pres.",
         "2x IL C-Ship app.",
         "1x IL RS Champion"
       ]
@@ -4975,7 +4975,7 @@
         "Missouri-S72-S75",
         "1x NC app.",
         "1x SEC RS Champion",
-        "D2(Omaha)-S76-pres."
+        "D2(Omaha Union)-S76-pres."
       ]
     },
     {
@@ -4989,7 +4989,7 @@
         "1x Young-Star",
         "MEM-S71-S73",
         "PHX-S74-S75",
-        "D2(Omaha)-S76-pres.",
+        "D2(Omaha Union)-S76-pres.",
         "WC(USA)-S76"
       ]
     },
@@ -4999,7 +4999,7 @@
       "entries": [
         "Utah-S65-S67",
         "LSU-S68",
-        "D2(Omaha)-S69-pres."
+        "D2(Omaha Union)-S69-pres."
       ]
     },
     {
@@ -5007,7 +5007,7 @@
       "born": "Born-S53",
       "entries": [
         "North Carolina-S71-S74",
-        "D2(Omaha)-S75-pres."
+        "D2(Omaha Union)-S75-pres."
       ]
     },
     {
@@ -5019,7 +5019,7 @@
         "1x ACC RS Champion",
         "Miami-S70",
         "1x ACC RS Champion",
-        "D2(Omaha)-S71-pres."
+        "D2(Omaha Union)-S71-pres."
       ]
     },
     {
@@ -5031,7 +5031,7 @@
         "2x NC app.",
         "1x National Champion",
         "1x P12 TOUR Champion",
-        "D2(Osaka)-S77-pres."
+        "D2(Osaka BC)-S77-pres."
       ]
     },
     {
@@ -5046,7 +5046,7 @@
         "1x WL C-Ship app.",
         "1x WL Champion",
         "WC(Argentina)-S70-S76",
-        "D2(Osaka)-S76-pres.",
+        "D2(Osaka BC)-S76-pres.",
         "WC(Japan)-S78"
       ]
     },
@@ -5055,7 +5055,7 @@
       "born": "Born-S51",
       "entries": [
         "Auburn-S69-S72",
-        "D2(Osaka)-S73-pres.",
+        "D2(Osaka BC)-S73-pres.",
         "1x IL C-Ship app.",
         "1x IL Champion",
         "1x UL RS Champion",
@@ -5070,7 +5070,7 @@
       "entries": [
         "Wofford-S68",
         "Florida-S69-S71",
-        "D2(Osaka)-S72-pres.",
+        "D2(Osaka BC)-S72-pres.",
         "1x IL C-Ship app.",
         "1x IL Champion",
         "1x UL RS Champion",
@@ -5087,7 +5087,7 @@
         "Arizona-S72-S74",
         "2x P12 RS Champion",
         "1x NC app.",
-        "D2(Osaka)-S75-pres.",
+        "D2(Osaka BC)-S75-pres.",
         "1x UL RS Champion",
         "1x UL C-Ship app.",
         "1x UL Champion",
@@ -5106,7 +5106,7 @@
         "1x SEC POY",
         "2x All-American(2nd)",
         "2x SEC TOUR Champion",
-        "D2(Oslo)-S72-pres.",
+        "D2(Oslo Idrettslag)-S72-pres.",
         "WC(Norway)-S72-S78"
       ]
     },
@@ -5115,7 +5115,7 @@
       "born": "Born-S51",
       "entries": [
         "TCU-S69-S72",
-        "D2(Oslo)-S73-pres.",
+        "D2(Oslo Idrettslag)-S73-pres.",
         "WC(Norway)-S74-S78"
       ]
     },
@@ -5126,7 +5126,7 @@
         "Memphis-S69",
         "Texas-S70-S72",
         "1x NC app.",
-        "D2(Oslo)-S73-pres.",
+        "D2(Oslo Idrettslag)-S73-pres.",
         "WC(Norway)-S74-S78"
       ]
     },
@@ -5137,7 +5137,7 @@
         "Middle Tennessee-S74-S75",
         "Providence-S76",
         "Kansas-S77",
-        "D2(Oslo)-S78-pres.",
+        "D2(Oslo Idrettslag)-S78-pres.",
         "WC(Norway)-S78"
       ]
     },
@@ -5150,7 +5150,7 @@
         "BYU-S74-S76",
         "1x All-American(2nd)",
         "1x B12 TOUR Champion",
-        "D2(Oslo)-S77-pres.",
+        "D2(Oslo Idrettslag)-S77-pres.",
         "WC(Norway)-S78"
       ]
     },
@@ -5219,7 +5219,7 @@
         "Notre Dame-S66-S67",
         "Gonzaga-S68",
         "1x All-American(1st)",
-        "D2(Paris)-S69-pres.",
+        "D2(Racing Paris)-S69-pres.",
         "1x WL C-Ship app.",
         "1x WL Champion",
         "WC(France)-S70-S74"
@@ -5232,7 +5232,7 @@
         "Georgia Tech-S72",
         "Tennessee-S73-S75",
         "1x SEC RS Champion",
-        "D2(Paris)-S76-pres.",
+        "D2(Racing Paris)-S76-pres.",
         "WC(France)-S76"
       ]
     },
@@ -5245,7 +5245,7 @@
         "2x B12 RS Champion",
         "2x B12 TOUR Champion",
         "1x All-American(2nd)",
-        "D2(Paris)-S69-pres.",
+        "D2(Racing Paris)-S69-pres.",
         "1x WL C-Ship app.",
         "1x WL Champion",
         "WC(France)-S70;S74-S78"
@@ -5258,7 +5258,7 @@
         "Ohio State-S70",
         "Miami-S71-S72",
         "Iowa State-S73",
-        "D2(Paris)-S74-pres."
+        "D2(Racing Paris)-S74-pres."
       ]
     },
     {
@@ -5268,7 +5268,7 @@
         "UConn-S71-S72",
         "2x BE RS Champion",
         "North Carolina-S73-S74",
-        "D2(Paris)-S75-pres.",
+        "D2(Racing Paris)-S75-pres.",
         "1x UL MVP",
         "WC(France)-S76-S78"
       ]
@@ -5281,7 +5281,7 @@
         "1x SEC RS Champion",
         "Auburn-S75-S76",
         "2x SEC TOUR Champion",
-        "D2(Recife)-S77-pres.",
+        "D2(Atlético Recife)-S77-pres.",
         "WC(Brazil)-S78"
       ]
     },
@@ -5291,7 +5291,7 @@
       "entries": [
         "Alabama-S67-S70",
         "1x SEC TOUR Champion",
-        "D2(Recife)-S71-pres.",
+        "D2(Atlético Recife)-S71-pres.",
         "1x UL C-Ship app.",
         "1x UL Champion",
         "1x WL C-Ship app.",
@@ -5308,7 +5308,7 @@
         "1x All-American(3rd)",
         "1x B12 RS Champion",
         "1x B12 TOUR Champion",
-        "D2(Recife)-S71-pres.",
+        "D2(Atlético Recife)-S71-pres.",
         "1x UL C-Ship app.",
         "1x UL Champion",
         "1x WL C-Ship app.",
@@ -5321,7 +5321,7 @@
       "born": "Born-S55",
       "entries": [
         "Wake Forest-S73-S76",
-        "D2(Recife)-S77-pres."
+        "D2(Atlético Recife)-S77-pres."
       ]
     },
     {
@@ -5330,7 +5330,7 @@
       "entries": [
         "Illinois-S70-S73",
         "1x B10 RS Champion",
-        "D2(Recife)-S74-pres.",
+        "D2(Atlético Recife)-S74-pres.",
         "1x WL C-Ship app.",
         "1x WL Champion",
         "WC(Brazil)-S76"
@@ -5344,7 +5344,7 @@
         "Creighton-S69",
         "1x BE RS Champion",
         "1x NC app.",
-        "D2(Rio De Janeiro)-S70-pres.",
+        "D2(Guanabara SC)-S70-pres.",
         "WC(Brazil)-S70"
       ]
     },
@@ -5356,7 +5356,7 @@
         "1x NC app.",
         "2x ACC RS Champion",
         "2x ACC TOUR Champion",
-        "D2(Rio De Janeiro)-S70-pres.",
+        "D2(Guanabara SC)-S70-pres.",
         "WC(Brazil)-S70; S78"
       ]
     },
@@ -5367,7 +5367,7 @@
         "Oklahoma State-S73-S74",
         "Arizona-S75-S76",
         "2x P12 RS Champion",
-        "D2(Rio De Janeiro)-S77-pres."
+        "D2(Guanabara SC)-S77-pres."
       ]
     },
     {
@@ -5379,7 +5379,7 @@
         "1x B10 TOUR Champion",
         "D2(Union Ottawa)-S71-S75",
         "1x PL RS Champion",
-        "D2(Rio De Janeiro)-S76-pres."
+        "D2(Guanabara SC)-S76-pres."
       ]
     },
     {
@@ -5392,7 +5392,7 @@
         "1x B12 TOUR Champion",
         "Virginia-S69-S70",
         "1x ACC RS Champion",
-        "D2(Rio De Janeiro)-S71-pres."
+        "D2(Guanabara SC)-S71-pres."
       ]
     },
     {
@@ -5459,7 +5459,7 @@
         "1x Young-Star",
         "CHA-S68-S71",
         "LA-S72",
-        "D2(Rotterdam)-S73-pres.",
+        "D2(Rotterdam United)-S73-pres.",
         "1x IL C-Ship app.",
         "1x IL Champion",
         "1x IL C-Ship MVP",
@@ -5478,7 +5478,7 @@
         "Creighton-S70-S72",
         "1x BE RS Champion",
         "2x BE TOUR Champion",
-        "D2(Rotterdam)-S73-pres.",
+        "D2(Rotterdam United)-S73-pres.",
         "1x IL C-Ship app.",
         "1x IL Champion",
         "WC(Netherlands)-S76-S78"
@@ -5493,7 +5493,7 @@
         "Michigan State-S76-S77",
         "1x B10 RS Champion",
         "1x B10 TOUR Champion",
-        "D2(Rotterdam)-S78-pres.",
+        "D2(Rotterdam United)-S78-pres.",
         "WC(Netherlands)-S78"
       ]
     },
@@ -5503,7 +5503,7 @@
       "entries": [
         "Auburn-S69-S71",
         "Texas-S72",
-        "D2(Rotterdam)-S73-pres.",
+        "D2(Rotterdam United)-S73-pres.",
         "1x IL C-Ship app.",
         "1x IL Champion"
       ]
@@ -5513,7 +5513,7 @@
       "born": "Born-S50",
       "entries": [
         "Arizona State-S68-S71",
-        "D2(Rotterdam)-S72-pres.",
+        "D2(Rotterdam United)-S72-pres.",
         "1x IL C-Ship app.",
         "1x IL Champion",
         "WC(Netherlands)-S72"
@@ -5665,7 +5665,7 @@
         "1x P12 POY",
         "Houston-S75",
         "1x B12 RS Champion",
-        "D2(San Jose)-S76-pres."
+        "D2(Deportivo San Jose)-S76-pres."
       ]
     },
     {
@@ -5675,7 +5675,7 @@
         "Omaha-S73-S75",
         "1x OVC POY",
         "Duke-S76",
-        "D2(San Jose)-S77-pres."
+        "D2(Deportivo San Jose)-S77-pres."
       ]
     },
     {
@@ -5685,7 +5685,7 @@
         "Winthrop-S74-S76",
         "1x COL POY",
         "Arkansas-S77",
-        "D2(San Jose)-S78-pres."
+        "D2(Deportivo San Jose)-S78-pres."
       ]
     },
     {
@@ -5696,7 +5696,7 @@
         "1x B10 RS Champion",
         "2x B10 TOUR Champion",
         "1x DC DPOY",
-        "D2(San Jose)-S71-pres.",
+        "D2(Deportivo San Jose)-S71-pres.",
         "1x PL RS Champion",
         "1x PL C-Ship app.",
         "1x PL Champion"
@@ -5709,7 +5709,7 @@
         "UConn-S73-S76",
         "3x BE RS Champion",
         "1x BE TOUR Champion",
-        "D2(San Jose)-S77-pres."
+        "D2(Deportivo San Jose)-S77-pres."
       ]
     },
     {
@@ -5796,7 +5796,7 @@
         "1x SUN POY",
         "Houston-S76",
         "1x B12 RS Champion",
-        "D2(Shanghai)-S77-pres.",
+        "D2(Shanghai Shencheng)-S77-pres.",
         "WC(China)-S78"
       ]
     },
@@ -5805,7 +5805,7 @@
       "born": "Born-S56",
       "entries": [
         "St.John's-S74-S77",
-        "D2(Shanghai)-S78-pres."
+        "D2(Shanghai Shencheng)-S78-pres."
       ]
     },
     {
@@ -5814,7 +5814,7 @@
       "entries": [
         "Texas Tech-S66-S69",
         "1x B12 RS Champion",
-        "D2(Shanghai)-S70-pres.",
+        "D2(Shanghai Shencheng)-S70-pres.",
         "1x UL C-Ship app.",
         "WC(China)-S70"
       ]
@@ -5825,7 +5825,7 @@
       "entries": [
         "Wright State-S66",
         "Oklahoma-S67-S69",
-        "D2(Shanghai)-S70-pres.",
+        "D2(Shanghai Shencheng)-S70-pres.",
         "1x UL C-Ship app.",
         "WC(China)-S70-S78"
       ]
@@ -5838,7 +5838,7 @@
         "1x PAT RS Champion",
         "Pitt-S76",
         "1x A10 TOUR Champion",
-        "D2(Stockholm)-S77-pres.",
+        "D2(Stockholm IF)-S77-pres.",
         "WC(Sweden)-S78"
       ]
     },
@@ -5849,7 +5849,7 @@
         "Portland State-S72",
         "North Carolina-S73",
         "Creighton-S74-S75",
-        "D2(Stockholm)-S76-pres.",
+        "D2(Stockholm IF)-S76-pres.",
         "WC(Sweden)-S76-S78"
       ]
     },
@@ -5863,7 +5863,7 @@
         "2x AAC POY",
         "1x AAC RS Champion",
         "1x AAC TOUR Champion",
-        "D2(Stockholm)-S76-pres.",
+        "D2(Stockholm IF)-S76-pres.",
         "WC(Sweden)-S76-S78"
       ]
     },
@@ -5873,7 +5873,7 @@
       "entries": [
         "Northern Kentucky-S67",
         "Oregon-S68-S70",
-        "D2(Stockholm)-S71-pres.",
+        "D2(Stockholm IF)-S71-pres.",
         "1x UL C-Ship app.",
         "WC(Sweden)-S72-S78"
       ]
@@ -5885,7 +5885,7 @@
         "UC Irvine-S66",
         "Maryland-S67-S68",
         "Michigan State-S69",
-        "D2(Stockholm)-S70-pres.",
+        "D2(Stockholm IF)-S70-pres.",
         "1x UL C-Ship app.",
         "WC(Sweden)-S70-S78"
       ]
@@ -5961,7 +5961,7 @@
         "Baylor-S66-S67",
         "1x B12 RS Champion",
         "LSU-S68",
-        "D2(Tampa)-S69-pres."
+        "D2(Tampa Bay Sporting)-S69-pres."
       ]
     },
     {
@@ -5973,7 +5973,7 @@
         "Pitt-S73-S75",
         "1x A10 TOUR Champion",
         "1x A10 RS Champion",
-        "D2(Tampa)-S76-pres."
+        "D2(Tampa Bay Sporting)-S76-pres."
       ]
     },
     {
@@ -5984,7 +5984,7 @@
         "2x B12 RS Champion",
         "1x B12 TOUR Champion",
         "Miami-S73",
-        "D2(Tampa)-S74-pres."
+        "D2(Tampa Bay Sporting)-S74-pres."
       ]
     },
     {
@@ -6148,7 +6148,7 @@
         "MEM-S68-S72",
         "2x Young-Star",
         "MIL-S73-S75",
-        "D2(Warsaw)-S76-pres.",
+        "D2(KS Warszawa)-S76-pres.",
         "1x IL C-Ship app.",
         "WC(Poland)-S76-S78"
       ]
@@ -6162,7 +6162,7 @@
         "1x COL RS Champion",
         "FAU-S74-S75",
         "Texas Tech-S76",
-        "D2(Warsaw)-S77-pres.",
+        "D2(KS Warszawa)-S77-pres.",
         "WC(Poland)-S78"
       ]
     },
@@ -6173,7 +6173,7 @@
         "Florida-S73-S76",
         "1x SEC RS Champion",
         "1x NC app.",
-        "D2(Warsaw)-S77-pres.",
+        "D2(KS Warszawa)-S77-pres.",
         "WC(Poland)-S78"
       ]
     },
@@ -6188,7 +6188,7 @@
         "Kansas-S70-S72",
         "2x B12 RS Champion",
         "1x B12 TOUR Champion",
-        "D2(Warsaw)-S73-pres.",
+        "D2(KS Warszawa)-S73-pres.",
         "1x IL C-Ship app.",
         "WC(Poland)-S74-S78"
       ]
@@ -6200,7 +6200,7 @@
         "VCU-S68-S71",
         "2x A10 RS Champion",
         "1x A10 TOUR Champion",
-        "D2(Warsaw)-S72-pres.",
+        "D2(KS Warszawa)-S72-pres.",
         "1x IL C-Ship app.",
         "WC(Poland)-S72-S78"
       ]
@@ -6328,7 +6328,7 @@
       "born": "Born-S46",
       "entries": [
         "Virginia Tech-S64-S67",
-        "D2(Barcelona)-S68-S78",
+        "D2(Barcelona Bàsquet)-S68-S78",
         "2x IL C-Ship app.",
         "2x IL Champion",
         "WC(Spain)-S68;S72-S78"
@@ -6339,7 +6339,7 @@
       "born": "Born-S46",
       "entries": [
         "Purdue-S64-S67",
-        "D2(Brussels)-S68-S78",
+        "D2(Bruxelles BC)-S68-S78",
         "WC(Belgium)-S68-S78"
       ]
     },
@@ -6350,7 +6350,7 @@
         "Illinois-S64-S67",
         "1x B10 RS Champion",
         "1x B10 TOUR Champion",
-        "D2(Glasgow)-S68-S78",
+        "D2(Glasgow Sporting)-S68-S78",
         "1x UL RS Champion",
         "1x UL C-Ship app.",
         "1x UL Champion",
@@ -6384,7 +6384,7 @@
         "Tennessee-S65-S67",
         "1x SEC TOUR Champion",
         "1x SEC RS Champion",
-        "D2(Istanbul)-S68-S78",
+        "D2(Istanbul SK)-S68-S78",
         "WC(Turkey)-S68-S78"
       ]
     },
@@ -6397,7 +6397,7 @@
         "1x UL C-Ship app.",
         "1x WL C-Ship app.",
         "WC(Switzerland)-S68-S74",
-        "D2(Istanbul)-S76-S78",
+        "D2(Istanbul SK)-S76-S78",
         "WC(Turkey)-S76-S78"
       ]
     },
@@ -6433,7 +6433,7 @@
         "West Virginia-S64-S65",
         "DET-S66-S67",
         "NO-S68-S69",
-        "D2(Manchester)-S70-S78",
+        "D2(Manchester Athletic)-S70-S78",
         "WC(England)-S70-S78"
       ]
     },
@@ -6446,7 +6446,7 @@
         "1x PATRIOT RS Champion",
         "1x PATRIOT TOUR Champion",
         "Arizona-S65-S67",
-        "D2(Manchester)-S68-S78",
+        "D2(Manchester Athletic)-S68-S78",
         "WC(England)-S68-S70"
       ]
     },
@@ -6476,7 +6476,7 @@
         "1x BE RS Champion",
         "1x BE TOUR Champion",
         "DET-S67-S68",
-        "D2(Barcelona)-S69-S72",
+        "D2(Barcelona Bàsquet)-S69-S72",
         "WC(Spain)-S70-S72",
         "SAS-S73-S74",
         "1x WC Champion",
@@ -6525,7 +6525,7 @@
         "MEM-S72-S74",
         "SAS-S75-S76",
         "1x WC Champion",
-        "D2(Naples)-S77-S78",
+        "D2(Partenope Napoli)-S77-S78",
         "2x IL C-Ship app.",
         "1x IL RS Champion",
         "1x IL MVP",
@@ -6615,7 +6615,7 @@
         "1x FBA C-Ship app.",
         "1x FBA Champion",
         "1x EC Champion",
-        "D2(Shanghai)-S70-S78",
+        "D2(Shanghai Shencheng)-S70-S78",
         "1x UL C-Ship app.",
         "WC(China)-S70-S78"
       ]
@@ -6647,7 +6647,7 @@
         "Duke-S66-S67",
         "1x ACC RS Champion",
         "2x ACC TOUR Champion",
-        "D2(Tampa)-S68-S78",
+        "D2(Tampa Bay Sporting)-S68-S78",
         "WC(USA)-S70"
       ]
     },
@@ -6661,7 +6661,7 @@
         "Creighton-S66-S67",
         "1x BE RS Champion",
         "1x BE TOUR Champion",
-        "D2(Tampa)-S68-S78"
+        "D2(Tampa Bay Sporting)-S68-S78"
       ]
     },
     {
@@ -8693,7 +8693,7 @@
       "born": "Born-S49",
       "entries": [
         "Oklahoma-S67-S70",
-        "D2(Johannesburg)-S71-S77",
+        "D2(Johannesburg Gold)-S71-S77",
         "WC(South Africa)-S72-S76"
       ]
     },
@@ -8714,7 +8714,7 @@
       "born": "Born-S50",
       "entries": [
         "Arizona State-S68-S71",
-        "D2(Cairo)-S72-S77",
+        "D2(Cairo SC)-S72-S77",
         "WC(Egypt)-S72-S76"
       ]
     },
@@ -8797,7 +8797,7 @@
         "Purdue-S69-S71",
         "1x B10 RS Champion",
         "1x B10 TOUR Champion",
-        "D2(Edinburgh)-S72-S76"
+        "D2(Edinburgh Thistle)-S72-S76"
       ]
     },
     {
@@ -8807,7 +8807,7 @@
         "Purdue-S72-S73",
         "West Virginia-S74-S75",
         "1x B12 RS Champion",
-        "D2(Shanghai)-S76"
+        "D2(Shanghai Shencheng)-S76"
       ]
     },
     {
@@ -8862,7 +8862,7 @@
         "Seton Hall-S67-S68",
         "Marquette-S69",
         "1x BE TOUR Champion",
-        "D2(Stockholm)-S70-S76",
+        "D2(Stockholm IF)-S70-S76",
         "1x UL C-Ship app.",
         "WC(Sweden)-S70-S76"
       ]
@@ -8873,7 +8873,7 @@
       "entries": [
         "Providence-S67-S68",
         "Texas A&M-S69-S70",
-        "D2(Istanbul)-S71-S75",
+        "D2(Istanbul SK)-S71-S75",
         "WC(Turkey)-S72-S74",
         "D2(Münchner BC)-S76"
       ]
@@ -8884,7 +8884,7 @@
       "entries": [
         "Kansas State-S69-S70",
         "UCLA-S71-S72",
-        "D2(Osaka)-S73-S76",
+        "D2(Osaka BC)-S73-S76",
         "1x IL C-Ship app.",
         "1x IL Champion",
         "1x UL RS Champion",
@@ -8916,7 +8916,7 @@
         "UConn-S66-S69",
         "2x AAC RS Champion",
         "1x AAC TOUR Champion",
-        "D2(Shanghai)-S70-S75",
+        "D2(Shanghai Shencheng)-S70-S75",
         "1x UL C-Ship app.",
         "WC(China)-S70-S74"
       ]
@@ -8986,7 +8986,7 @@
         "North Texas-S66",
         "Texas-S67",
         "Memphis-S68-S69",
-        "D2(Stockholm)-S70-S75",
+        "D2(Stockholm IF)-S70-S75",
         "1x UL C-Ship app.",
         "WC(Sweden)-S70-S74"
       ]
@@ -9014,7 +9014,7 @@
       "born": "Born-S55",
       "entries": [
         "Penn State-S73-S76",
-        "D2(Shanghai)-S77"
+        "D2(Shanghai Shencheng)-S77"
       ]
     },
     {
@@ -9088,7 +9088,7 @@
       "entries": [
         "San Diego State-S68-S71",
         "1x AAC TOUR Champion",
-        "D2(Luxembourg)-S72-S76",
+        "D2(Union Luxembourg)-S72-S76",
         "1x IL C-Ship app.",
         "WC(Luxembourg)-S72-S76"
       ]
@@ -9108,7 +9108,7 @@
       "born": "Born-S48",
       "entries": [
         "Virginia-S66-S69",
-        "D2(Shanghai)-S70-S76",
+        "D2(Shanghai Shencheng)-S70-S76",
         "1x UL C-Ship app.",
         "WC(China)-S70"
       ]
@@ -9143,7 +9143,7 @@
       "born": "Born-S50",
       "entries": [
         "Louisville-S68-S71",
-        "D2(Warsaw)-S72-S76",
+        "D2(KS Warszawa)-S72-S76",
         "1x IL C-Ship app.",
         "WC(Poland)-S72-S76"
       ]
@@ -9157,7 +9157,7 @@
         "3x PL C-Ship app.",
         "1x PL RS Champion",
         "2x PL Champion",
-        "D2(Istanbul)-S76",
+        "D2(Istanbul SK)-S76",
         "WC(Turkey)-S76"
       ]
     },
@@ -9177,7 +9177,7 @@
         "Florida State-S70",
         "Nebraska-S71-S72",
         "1x A10 TOUR Champion",
-        "D2(Dubai)-S73-S76",
+        "D2(Dubai Falcons)-S73-S76",
         "1x IL RS Champion",
         "1x IL C-Ship app.",
         "WC(UAE)-S74-S76"
@@ -9199,7 +9199,7 @@
         "1x SOCON RS Champion",
         "1x SOCON POY",
         "Colorado-S73-S75",
-        "D2(Brussels)-S76",
+        "D2(Bruxelles BC)-S76",
         "WC(Belgium)-S76"
       ]
     },
@@ -9234,7 +9234,7 @@
         "VCU-S68-S70",
         "1x A10 RS Champion",
         "1x A10 TOUR Champion",
-        "D2(Athens)-S71-S75",
+        "D2(AO Athens)-S71-S75",
         "WC(Greece)-S72-S74"
       ]
     },
@@ -9298,7 +9298,7 @@
         "1x PAT POY",
         "Baylor-S72",
         "Butler-S73-S74",
-        "D2(Rotterdam)-S75-S77"
+        "D2(Rotterdam United)-S75-S77"
       ]
     },
     {
@@ -9318,7 +9318,7 @@
         "1x SUN RS Champion",
         "Florida State-S73-S74",
         "2x ACC RS Champion",
-        "D2(Lagos)-S75-S77",
+        "D2(Lagos Mariners)-S75-S77",
         "WC(Nigeria)-S76"
       ]
     },
@@ -9402,7 +9402,7 @@
       "entries": [
         "Texas A&M-S69-S72",
         "1x SEC TOUR Champion",
-        "D2(Naples)-S73-S76"
+        "D2(Partenope Napoli)-S73-S76"
       ]
     },
     {
@@ -9426,7 +9426,7 @@
       "entries": [
         "Yale-S69",
         "Texas Tech-S70-S72",
-        "D2(Florence)-S73-S76"
+        "D2(US Firenze)-S73-S76"
       ]
     },
     {
@@ -9445,7 +9445,7 @@
         "Memphis-S71-S72",
         "Arkansas-S73",
         "Ole Miss-S74",
-        "D2(Warsaw)-S75-S76",
+        "D2(KS Warszawa)-S75-S76",
         "1x IL C-Ship app.",
         "WC(Poland)-S76"
       ]
@@ -9482,7 +9482,7 @@
       "entries": [
         "South Dakota State-S73",
         "Kentucky-S74-S76",
-        "D2(Oslo)-S77"
+        "D2(Oslo Idrettslag)-S77"
       ]
     },
     {
@@ -9579,7 +9579,7 @@
       "entries": [
         "Iowa-S71-S74",
         "1x B10 TOUR Champion",
-        "D2(Oslo)-S75-S76",
+        "D2(Oslo Idrettslag)-S75-S76",
         "WC(Norway)-S76"
       ]
     },
@@ -9599,7 +9599,7 @@
         "Nevada-S68-S71",
         "2x AAC RS Champion",
         "1x AAC TOUR Champion",
-        "D2(Cairo)-S72-S75",
+        "D2(Cairo SC)-S72-S75",
         "WC(Egypt)-S72-S74"
       ]
     },
@@ -9610,7 +9610,7 @@
         "Arkansas-S68-S71",
         "1x A10 RS Champion",
         "1x A10 TOUR Champion",
-        "D2(Beijing)-S72-S75",
+        "D2(Beijing Capital)-S72-S75",
         "WC(China)-S72-S74"
       ]
     },
@@ -9637,7 +9637,7 @@
       "born": "Born-S48",
       "entries": [
         "Memphis-S66-S69",
-        "D2(Rio De Janeiro)-S70-S75",
+        "D2(Guanabara SC)-S70-S75",
         "WC(Brazil)-S70"
       ]
     },
@@ -9647,7 +9647,7 @@
       "entries": [
         "Stanford-S65-S66",
         "Wisconsin-S67-S68",
-        "D2(Tampa)-S69-S75"
+        "D2(Tampa Bay Sporting)-S69-S75"
       ]
     },
     {
@@ -9715,7 +9715,7 @@
         "Tulane-S73",
         "Ohio State-S74-S76",
         "1x B10 RS Champion",
-        "D2(Edinburgh)-S77"
+        "D2(Edinburgh Thistle)-S77"
       ]
     },
     {
@@ -9725,7 +9725,7 @@
         "Evansville-S73",
         "Iowa State-S74-S75",
         "Oregon-S76",
-        "D2(Istanbul)-S77"
+        "D2(Istanbul SK)-S77"
       ]
     },
     {
@@ -9848,7 +9848,7 @@
         "Nevada-S72",
         "1x AAC RS Champion",
         "1x AAC TOUR Champion",
-        "D2(Edinburgh)-S73-S76"
+        "D2(Edinburgh Thistle)-S73-S76"
       ]
     },
     {
@@ -9857,7 +9857,7 @@
       "entries": [
         "Texas A&M-S70-S73",
         "1x SEC TOUR Champion",
-        "D2(Luxembourg)-S74-S76",
+        "D2(Union Luxembourg)-S74-S76",
         "WC(Luxembourg)-S74-S76"
       ]
     },
@@ -9904,7 +9904,7 @@
       "entries": [
         "Butler-S67-S69",
         "Oklahoma-S70",
-        "D2(Istanbul)-S71-S76",
+        "D2(Istanbul SK)-S71-S76",
         "WC(Turkey)-S72-S76"
       ]
     },
@@ -9918,7 +9918,7 @@
         "1x B10 TOUR Champion",
         "1x NC app.",
         "1x National Champion",
-        "D2(Oslo)-S72-S76",
+        "D2(Oslo Idrettslag)-S72-S76",
         "WC(Norway)-S72-S76"
       ]
     },
@@ -9936,7 +9936,7 @@
       "entries": [
         "San Diego State-S69-S72",
         "1x AAC TOUR Champion",
-        "D2(Florence)-S73-S76"
+        "D2(US Firenze)-S73-S76"
       ]
     },
     {
@@ -9944,7 +9944,7 @@
       "born": "Born-S53",
       "entries": [
         "Purdue-S71-S74",
-        "D2(San Jose)-S75-S76"
+        "D2(Deportivo San Jose)-S75-S76"
       ]
     },
     {
@@ -11701,7 +11701,7 @@
       "entries": [
         "Virginia-S18;S48",
         "CIN-S49-S55",
-        "D2(San Jose)-S56-S60",
+        "D2(Deportivo San Jose)-S56-S60",
         "4x D2A Champion",
         "WC(USA)-S56-S60",
         "1x World Cup C-Ship app.",
@@ -11807,7 +11807,7 @@
       "entries": [
         "OV-S47-S48",
         "STL-S49-S54",
-        "D2(San Jose)-S55",
+        "D2(Deportivo San Jose)-S55",
         "1x D2 MVP",
         "D2(Sporting Lyon)-S56-S58",
         "2x EW Champion",
@@ -11845,7 +11845,7 @@
       "entries": [
         "FLO-S47-S52",
         "OV-S53-S55",
-        "D2(Paris)-S56-S58",
+        "D2(Racing Paris)-S56-S58",
         "WC(France)-S56-S58"
       ]
     },
@@ -11854,7 +11854,7 @@
       "born": "Born-S29",
       "entries": [
         "STL-S47-S55",
-        "D2(Athens)-S56-S58",
+        "D2(AO Athens)-S56-S58",
         "1x ES Champion",
         "WC(Greece)-S56-S58"
       ]
@@ -11864,7 +11864,7 @@
       "born": "Born-S29",
       "entries": [
         "USA-S47-S55",
-        "D2(Barcelona)-S56-S58",
+        "D2(Barcelona Bàsquet)-S56-S58",
         "WC(Spain)-S56-S58"
       ]
     },
@@ -11917,7 +11917,7 @@
       "born": "Born-S30",
       "entries": [
         "CT-S49-S54",
-        "D2(Tampa)-S55-S60"
+        "D2(Tampa Bay Sporting)-S55-S60"
       ]
     },
     {
@@ -12044,7 +12044,7 @@
       "entries": [
         "Stanford-S48-S52",
         "OAK-S53-S55",
-        "D2(Istanbul)-S56",
+        "D2(Istanbul SK)-S56",
         "1x D2 C-Ship app.",
         "1x D2 Champion",
         "1x D2 C-Ship MVP",
@@ -12164,7 +12164,7 @@
       "entries": [
         "Alabama-S49-S50",
         "DCB-S51-S55",
-        "D2(Frankfurt)-S56-S63",
+        "D2(Frankfurter Turngemeinde)-S56-S63",
         "1x D2 C-Ship app.",
         "WC(Germany)-S56-S58;S62",
         "1x World Cup C-Ship app."
@@ -12187,7 +12187,7 @@
       "born": "Born-S31",
       "entries": [
         "Texas-S49-S52",
-        "D2(Tampa)-S53-S56",
+        "D2(Tampa Bay Sporting)-S53-S56",
         "1x D2A Champion",
         "1x D2A C-Ship MVP",
         "D2(Atlético Lisboa)-S57-S63",
@@ -12199,13 +12199,13 @@
       "born": "Born-S31",
       "entries": [
         "West Virginia-S49-S52",
-        "D2(San Jose)-S53-S55",
+        "D2(Deportivo San Jose)-S53-S55",
         "1x D2A Champion",
         "1x D2A C-Ship MVP",
         "1x D2 MVP",
         "OV-S56-S59",
         "1x EC Champion",
-        "D2(Manchester)-S60",
+        "D2(Manchester Athletic)-S60",
         "WC(UK)-S60",
         "1x World Cup C-Ship app.",
         "BOS-S61-S62",
@@ -12218,7 +12218,7 @@
       "entries": [
         "Wichita State-S49-S52",
         "?-S53-S55",
-        "D2(Kiev)-S56-S63",
+        "D2(SK Kyiv)-S56-S63",
         "3x EE Champion",
         "1x D2 MVP",
         "1x EE MVP",
@@ -12256,7 +12256,7 @@
       "entries": [
         "Texas-S50",
         "MIL-S51-S55",
-        "D2(Barcelona)-S56-S61",
+        "D2(Barcelona Bàsquet)-S56-S61",
         "WC(Spain)-S56-S60",
         "D2(Milano BC)-S62-S64",
         "WC(Italy)-S62"
@@ -12353,7 +12353,7 @@
       "entries": [
         "Xavier-S50-S52",
         "MON-S53-S56",
-        "D2(Istanbul)-S57-S64",
+        "D2(Istanbul SK)-S57-S64",
         "WC(Turkey)-S58-S64"
       ]
     },
@@ -12364,7 +12364,7 @@
         "St.Bonaventure-S50-S54",
         "2x A10 POY",
         "1x A10 RS Champion",
-        "D2(Brussels)-S55-S64",
+        "D2(Bruxelles BC)-S55-S64",
         "WC(Belgium)-S56-S64"
       ]
     },
@@ -12557,7 +12557,7 @@
         "Villanova-S53-S54",
         "1x BE POY",
         "1x BE RS Champion",
-        "D2(Glasgow)-S55-S65",
+        "D2(Glasgow Sporting)-S55-S65",
         "1x EW Champion",
         "WC(UK)-S56-S58",
         "WC(Scotland)-S62-S64"
@@ -12572,7 +12572,7 @@
         "1x P12 POY",
         "1x P12 RS Champion",
         "STL-S55-S58",
-        "D2(Kiev)-S59-S65",
+        "D2(SK Kyiv)-S59-S65",
         "3x EE Champion",
         "WC(Ukraine)-S60-S64"
       ]
@@ -12729,7 +12729,7 @@
         "1x All-Star",
         "OAK-S60-S61",
         "SEA-S62-S64",
-        "D2(Brussels)-S65-S66",
+        "D2(Bruxelles BC)-S65-S66",
         "2x EW Champion",
         "WC(Belgium)-S66"
       ]
@@ -12771,7 +12771,7 @@
         "1x EW Champion",
         "WC(UK)-S58-S60",
         "1x World Cup C-Ship app.",
-        "D2(Glasgow)-S62-S66",
+        "D2(Glasgow Sporting)-S62-S66",
         "WC(Scotland)-S62-S66"
       ]
     },
@@ -12790,7 +12790,7 @@
         "1x FBA C-Ship MVP",
         "MIL-S58",
         "DET-S59-S63",
-        "D2(Glasgow)-S64-S66",
+        "D2(Glasgow Sporting)-S64-S66",
         "WC(Scotland)-S64-S66"
       ]
     },
@@ -12886,7 +12886,7 @@
         "1x ACC TOUR Champion",
         "TEX-S55-S59",
         "1x WC Champion",
-        "D2(Tampa)-S60-S67",
+        "D2(Tampa Bay Sporting)-S60-S67",
         "1x D2A Champion"
       ]
     },
@@ -12912,7 +12912,7 @@
       "born": "Born-S35",
       "entries": [
         "Iowa State-S53-S56",
-        "D2(Manchester)-S57-S67",
+        "D2(Manchester Athletic)-S57-S67",
         "1x EW Champion",
         "WC(UK)-S58-S60",
         "1x World Cup C-Ship app.",
@@ -12971,7 +12971,7 @@
         "DCB-S57-S61",
         "1x EC Champion",
         "1x FBA C-Ship app.",
-        "D2(San Jose)-S62-S67",
+        "D2(Deportivo San Jose)-S62-S67",
         "3x D2A Champion",
         "WC(USA)-S62-S66"
       ]
@@ -13040,7 +13040,7 @@
         "Gonzaga-S54",
         "1x PATRIOT RS Champion",
         "SOX-S55-S56",
-        "D2(Athens)-S57-S68",
+        "D2(AO Athens)-S57-S68",
         "1x ES Champion",
         "WC(Greece)-S58-S68"
       ]
@@ -13060,7 +13060,7 @@
         "USA-S56",
         "FLO-S57-S58",
         "CP-S59",
-        "D2(Brussels)-S60-S68",
+        "D2(Bruxelles BC)-S60-S68",
         "2x EW Champion",
         "WC(Belgium)-S60-S68"
       ]
@@ -13080,7 +13080,7 @@
         "MIL-S57-S61",
         "1x EC Champion",
         "CHI-S62-S65",
-        "D2(Glasgow)-S66-S68",
+        "D2(Glasgow Sporting)-S66-S68",
         "1x UL MVP",
         "1x UL RS Champion",
         "1x UL C-Ship app.",
@@ -13114,7 +13114,7 @@
       "born": "Born-S36",
       "entries": [
         "Georgetown-S54-S58",
-        "D2(Paris)-S59-S68",
+        "D2(Racing Paris)-S59-S68",
         "1x EW Champion",
         "1x D2 C-Ship app.",
         "WC(France)-S64-S68"
@@ -13215,7 +13215,7 @@
         "1x WC Champion",
         "1x FBA C-Ship app.",
         "1x FBA Champion",
-        "D2(Barcelona)-S62-S68",
+        "D2(Barcelona Bàsquet)-S62-S68",
         "WC(Spain)-S62-S68"
       ]
     },
@@ -13225,7 +13225,7 @@
       "entries": [
         "Virginia-S54-S58",
         "1x ACC RS Champion",
-        "D2(San Jose)-S59-S68",
+        "D2(Deportivo San Jose)-S59-S68",
         "5x D2A Champion",
         "1x D2 C-Ship app."
       ]
@@ -13366,7 +13366,7 @@
         "Duke-S55-S58",
         "1x ACC RS Champion",
         "1x ACC TOUR Champion",
-        "D2(Paris)-S59-S69",
+        "D2(Racing Paris)-S59-S69",
         "1x EW Champion",
         "1x D2 C-Ship app.",
         "WC(France)-S60-S64;S68"
@@ -13386,7 +13386,7 @@
       "born": "Born-S37",
       "entries": [
         "Oregon-S55-S58",
-        "D2(Barcelona)-S59-S69",
+        "D2(Barcelona Bàsquet)-S59-S69",
         "WC(Spain)-S60"
       ]
     },
@@ -13455,7 +13455,7 @@
         "1x FBA Champion",
         "1x All-Star",
         "MW-S61-S62",
-        "D2(Tampa)-S63-S67",
+        "D2(Tampa Bay Sporting)-S63-S67",
         "1x D2A Champion",
         "WC(USA)-S64-S66",
         "FLO-S68",
@@ -13569,7 +13569,7 @@
       "entries": [
         "Texas A&M-S56-S59",
         "1x All-American",
-        "D2(Istanbul)-S60-S70",
+        "D2(Istanbul SK)-S60-S70",
         "1x ES Champion",
         "1x D2 C-Ship app.",
         "WC(Turkey)-S60-S70"
@@ -13616,7 +13616,7 @@
       "entries": [
         "Wake Forest-S56-S59",
         "1x AAC RS Champion",
-        "D2(Frankfurt)-S60-S70"
+        "D2(Frankfurter Turngemeinde)-S60-S70"
       ]
     },
     {
@@ -13679,7 +13679,7 @@
         "2x IVY POY",
         "1x IVY RS Champion",
         "St.Joseph's-S59",
-        "D2(Athens)-S60-S70",
+        "D2(AO Athens)-S60-S70",
         "WC(Greece)-S60-S70"
       ]
     },
@@ -13697,7 +13697,7 @@
         "2x B12 RS Champion",
         "2x B12 TOUR Champion",
         "CIN-S59-S62",
-        "D2(Brussels)-S63-S66",
+        "D2(Bruxelles BC)-S63-S66",
         "2x EW Champion",
         "WC(Belgium)-S64-S66",
         "BOS-S67",
@@ -13740,7 +13740,7 @@
         "1x FBA C-Ship app.",
         "1x FBA Champion",
         "MON-S61",
-        "D2(Kiev)-S62-S71",
+        "D2(SK Kyiv)-S62-S71",
         "2x EE Champion",
         "WC(Ukraine)-S62-S70"
       ]
@@ -13803,7 +13803,7 @@
         "Michigan-S57-S60",
         "1x B10 RS Champion",
         "1x B10 TOUR Champion",
-        "D2(San Jose)-S61-S71",
+        "D2(Deportivo San Jose)-S61-S71",
         "3x D2A Champion",
         "WC(USA)-S68",
         "1x World Cup C-Ship app."
@@ -13816,7 +13816,7 @@
         "Kentucky-S57-S60",
         "2x SEC RS Champion",
         "3x SEC TOUR Champion",
-        "D2(Manchester)-S61-S71",
+        "D2(Manchester Athletic)-S61-S71",
         "WC(England)-S62;S68"
       ]
     },
@@ -13827,7 +13827,7 @@
         "Villanova-S57-S60",
         "1x BE RS Champion",
         "2x BE TOUR Champion",
-        "D2(Glasgow)-S61-S71",
+        "D2(Glasgow Sporting)-S61-S71",
         "1x UL RS Champion",
         "1x UL C-Ship app.",
         "1x UL Champion",
@@ -13858,7 +13858,7 @@
         "2x A10 TOUR Champion",
         "LA-S59-S60",
         "DEN-S61-S62",
-        "D2(Istanbul)-S63-S66",
+        "D2(Istanbul SK)-S63-S66",
         "3x ES MVP",
         "1x ES Champion",
         "1x D2 C-Ship app.",
@@ -13902,7 +13902,7 @@
         "1x BE TOUR Champion",
         "DET-S61-S64",
         "2x Young-Star",
-        "D2(Athens)-S65-S71",
+        "D2(AO Athens)-S65-S71",
         "WC(Greece)-S66-S70"
       ]
     },
@@ -14050,7 +14050,7 @@
         "2x A10 POY",
         "2x A10 RS Champion",
         "1x A10 TOUR Champion",
-        "D2(Manchester)-S62-S72",
+        "D2(Manchester Athletic)-S62-S72",
         "WC(England)-S62-S70"
       ]
     },
@@ -14130,7 +14130,7 @@
         "1x PATRIOT RS Champion",
         "Gonzaga-S59-S60",
         "Seton Hall-S61",
-        "D2(Tampa)-S62-S72",
+        "D2(Tampa Bay Sporting)-S62-S72",
         "1x D2A Champion"
       ]
     },
@@ -14236,7 +14236,7 @@
         "1x ACC RS Champion",
         "CT-S60-S62",
         "SAS-S63",
-        "D2(Paris)-S64-S73",
+        "D2(Racing Paris)-S64-S73",
         "1x WL C-Ship app.",
         "1x WL Champion",
         "WC(France)-S64-S72"
@@ -14316,7 +14316,7 @@
       "entries": [
         "Duke-S59-S62",
         "1x ACC RS Champion",
-        "D2(Barcelona)-S63-S73",
+        "D2(Barcelona Bàsquet)-S63-S73",
         "WC(Spain)-S72"
       ]
     },
@@ -14375,7 +14375,7 @@
         "BOS-S61-S63",
         "1x FBA C-Ship app.",
         "LA-S64",
-        "D2(San Jose)-S65-S73",
+        "D2(Deportivo San Jose)-S65-S73",
         "2x D2A Champion",
         "WC(USA)-S68-S72",
         "2x World Cup C-Ship app."
@@ -14412,7 +14412,7 @@
         "CP-S62",
         "PHX-S63-S66",
         "CHI-S67-S68",
-        "D2(Glasgow)-S69-S73",
+        "D2(Glasgow Sporting)-S69-S73",
         "1x WL C-Ship app.",
         "1x WL Champion",
         "1x WL RS Champion",
@@ -14429,7 +14429,7 @@
         "4x PATRIOT RS Champion",
         "3x PATRIOT TOUR Champion",
         "CP-S63",
-        "D2(Kiev)-S64-S73",
+        "D2(SK Kyiv)-S64-S73",
         "1x EE Champion",
         "WC(Ukraine)-S64-S72"
       ]
@@ -14601,7 +14601,7 @@
         "WC(Mexico)-S64-S66",
         "1x World Cup C-Ship app.",
         "MAN-S68",
-        "D2(San Jose)-S69-S74",
+        "D2(Deportivo San Jose)-S69-S74",
         "1x PL RS Champion",
         "1x PL C-Ship app.",
         "1x PL Champion",
@@ -14616,7 +14616,7 @@
         "Louisville-S60",
         "1x ACC TOUR Champion",
         "CGG-S61-S63",
-        "D2(Athens)-S64-S67",
+        "D2(AO Athens)-S64-S67",
         "WC(Greece)-S64-S66",
         "MW-S68",
         "D2(Club Madrid)-S69-S74",
@@ -14638,7 +14638,7 @@
         "1x B10 RS Champion",
         "1x B10 TOUR Champion",
         "MON-S61-S64",
-        "D2(Istanbul)-S65-S70",
+        "D2(Istanbul SK)-S65-S70",
         "1x ES Champion",
         "1x D2 C-Ship app.",
         "WC(Turkey)-S66-S70",
@@ -14687,7 +14687,7 @@
       "born": "Born-S42",
       "entries": [
         "Texas A&M-S60-S63",
-        "D2(Frankfurt)-S64-S74"
+        "D2(Frankfurter Turngemeinde)-S64-S74"
       ]
     },
     {
@@ -14802,7 +14802,7 @@
         "Arizona-S60-S63",
         "1x P12 RS Champion",
         "2x P12 TOUR Champion",
-        "D2(Omaha)-S64-S74"
+        "D2(Omaha Union)-S64-S74"
       ]
     },
     {
@@ -14860,7 +14860,7 @@
         "1x National Champion",
         "1x NC MVP",
         "1x B12 TOUR Champion",
-        "D2(Kiev)-S64-S74",
+        "D2(SK Kyiv)-S64-S74",
         "1x EE Champion",
         "WC(Ukraine)-S64-S74"
       ]
@@ -14884,7 +14884,7 @@
         "1x FBA Champion",
         "1x EC Champion",
         "BOS-S73",
-        "D2(Osaka)-S74",
+        "D2(Osaka BC)-S74",
         "1x IL C-Ship app.",
         "1x IL Champion",
         "WC(Japan)-S74"
@@ -14986,7 +14986,7 @@
         "1x Young-Star",
         "MAN-S68-S70",
         "OAK-S71-S73",
-        "D2(San Jose)-S74-S75",
+        "D2(Deportivo San Jose)-S74-S75",
         "1x PL MVP",
         "1x PL RS Champion",
         "1x PL C-Ship app.",
@@ -15077,7 +15077,7 @@
         "1x ACC TOUR Champion",
         "MEM-S62",
         "SAS-S63-S65",
-        "D2(Manchester)-S66-S75",
+        "D2(Manchester Athletic)-S66-S75",
         "1x EW MVP",
         "WC(England)-S66-S74"
       ]
@@ -15116,7 +15116,7 @@
       "born": "Born-S43",
       "entries": [
         "Louisville-S61-S62",
-        "D2(Omaha)-S63-S75",
+        "D2(Omaha Union)-S63-S75",
         "1x D2A Champion",
         "WC(USA)-S64"
       ]
@@ -15143,7 +15143,7 @@
       "born": "Born-S43",
       "entries": [
         "Wichita State-S61-S64",
-        "D2(Istanbul)-S65-S75",
+        "D2(Istanbul SK)-S65-S75",
         "1x ES Champion",
         "1x D2 C-Ship app.",
         "WC(Turkey)-S66-S74"
@@ -15154,7 +15154,7 @@
       "born": "Born-S43",
       "entries": [
         "Nevada-S61-S64",
-        "D2(Omaha)-S65-S75"
+        "D2(Omaha Union)-S65-S75"
       ]
     },
     {
@@ -15263,7 +15263,7 @@
         "1x All-American",
         "DEN-S63-S66",
         "MON-S67",
-        "D2(Brussels)-S68-S75",
+        "D2(Bruxelles BC)-S68-S75",
         "WC(Belgium)-S68-S74"
       ]
     },
@@ -15295,7 +15295,7 @@
         "1x Young-Star",
         "VEG-S68",
         "CHI-S69",
-        "D2(Stockholm)-S70-S75",
+        "D2(Stockholm IF)-S70-S75",
         "1x UL C-Ship app.",
         "WC(Sweden)-S70-S74"
       ]
@@ -15389,7 +15389,7 @@
         "Baylor-S62",
         "1x B12 TOUR Champion",
         "CGG-S63-S64",
-        "D2(Tampa)-S65-S68",
+        "D2(Tampa Bay Sporting)-S65-S68",
         "1x D2A Champion",
         "WC(USA)-S66-S68",
         "1x World Cup C-Ship app.",
@@ -15514,7 +15514,7 @@
         "1x SEC RS Champion",
         "1x SEC TOUR Champion",
         "TEX-S63",
-        "D2(Frankfurt)-S64-S76"
+        "D2(Frankfurter Turngemeinde)-S64-S76"
       ]
     },
     {
@@ -15523,7 +15523,7 @@
       "entries": [
         "Arizona State-S62-S65",
         "1x P12 TOUR Champion",
-        "D2(Frankfurt)-S66-S76"
+        "D2(Frankfurter Turngemeinde)-S66-S76"
       ]
     },
     {
@@ -15591,7 +15591,7 @@
         "2x B10 TOUR Champion",
         "SAS-S65-S69",
         "DCB-S69-S70",
-        "D2(Recife)-S71-S76",
+        "D2(Atlético Recife)-S71-S76",
         "1x UL C-Ship app.",
         "1x UL Champion",
         "1x WL C-Ship app.",
@@ -15685,7 +15685,7 @@
         "South Carolina-S62-S65",
         "1x A10 POY",
         "1x A10 RS Champion",
-        "D2(Paris)-S66-S75",
+        "D2(Racing Paris)-S66-S75",
         "1x WL C-Ship app.",
         "1x WL Champion"
       ]
@@ -15734,7 +15734,7 @@
       "playerId": "p02325",
       "born": "Born-S45",
       "entries": [
-        "D2(Paris)-S63",
+        "D2(Racing Paris)-S63",
         "1x EW Champion",
         "1x D2 C-Ship app.",
         "WC(France)-S62",
@@ -15943,7 +15943,7 @@
         "2x World Cup C-Ship app.",
         "2x World Cup Champion",
         "DCB-S71",
-        "D2(Auckland)-S72-S77",
+        "D2(Auckland Rovers)-S72-S77",
         "WC(New Zealand)-S72-S76"
       ]
     },
@@ -15958,7 +15958,7 @@
         "DEN-S64-S65",
         "1x Young-Star",
         "DET-S65",
-        "D2(Barcelona)-S66-S67",
+        "D2(Barcelona Bàsquet)-S66-S67",
         "WC(Spain)-S66",
         "OAK-S68-S70",
         "D2(Zagreb Košarka)-S71-S77",
@@ -15974,7 +15974,7 @@
       "entries": [
         "North Carolina-S63",
         "PHX-S64",
-        "D2(Brussels)-S65-S67",
+        "D2(Bruxelles BC)-S65-S67",
         "2x EW Champion",
         "WC(Belgium)-S66",
         "BOS-S68-S69",
@@ -16136,7 +16136,7 @@
         "Duke-S63-S66",
         "4x ACC RS Champion",
         "3x ACC TOUR Champion",
-        "D2(Brussels)-S67-S77",
+        "D2(Bruxelles BC)-S67-S77",
         "WC(Belgium)-S68-S76"
       ]
     },
@@ -16186,7 +16186,7 @@
       "entries": [
         "Michigan State-S63-S66",
         "1x B10 TOUR Champion",
-        "D2(Glasgow)-S67-S77",
+        "D2(Glasgow Sporting)-S67-S77",
         "1x UL RS Champion",
         "1x UL C-Ship app.",
         "1x UL Champion",
@@ -16218,7 +16218,7 @@
       "entries": [
         "Louisville-S63-S65",
         "OV-S66-S68",
-        "D2(Glasgow)-S69-S70",
+        "D2(Glasgow Sporting)-S69-S70",
         "1x WL MVP",
         "1x WL C-Ship app.",
         "1x WL Champion",
@@ -16305,7 +16305,7 @@
       "born": "Born-S46",
       "entries": [
         "Butler-S64-S67",
-        "D2(Athens)-S68-S76",
+        "D2(AO Athens)-S68-S76",
         "WC(Greece)-S68-S76"
       ]
     },
@@ -16315,7 +16315,7 @@
       "entries": [
         "East Carolina-S64-S65",
         "Arizona-S66-S67",
-        "D2(Kiev)-S68-S76",
+        "D2(SK Kyiv)-S68-S76",
         "1x IL RS Champion",
         "WC(Ukraine)-S68-S76"
       ]
@@ -16328,7 +16328,7 @@
         "BYU-S65-S67",
         "2x A10 RS Champion",
         "1x A10 TOUR Champion",
-        "D2(San Jose)-S68-S76",
+        "D2(Deportivo San Jose)-S68-S76",
         "1x PL RS Champion",
         "1x PL C-Ship app.",
         "1x PL Champion"
@@ -16340,7 +16340,7 @@
       "entries": [
         "San Francisco-S66",
         "Baylor-S67-S69",
-        "D2(Rio De Janeiro)-S70-S76",
+        "D2(Guanabara SC)-S70-S76",
         "WC(Brazil)-S70"
       ]
     },

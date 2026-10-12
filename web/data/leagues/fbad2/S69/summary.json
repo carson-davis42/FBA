@@ -16,7 +16,7 @@
     },
     {
       "title": "World League Champion",
-      "champion": "Glasgow",
+      "champion": "Glasgow Sporting",
       "runnerUp": "Zürich Helvetia",
       "score": null,
       "group": "WL",
@@ -62,7 +62,7 @@
     {
       "group": "WL",
       "teams": [
-        "Glasgow"
+        "Glasgow Sporting"
       ]
     },
     {
@@ -210,7 +210,7 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Glasgow",
+              "name": "Glasgow Sporting",
               "record": "11-3",
               "seed": 1
             },
@@ -232,7 +232,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Istanbul",
+              "name": "Istanbul SK",
               "record": "10-4",
               "seed": 2
             },
@@ -244,7 +244,7 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Glasgow",
+              "name": "Glasgow Sporting",
               "record": "11-3",
               "seed": 1
             },
@@ -286,7 +286,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Barcelona",
+              "name": "Barcelona Bàsquet",
               "record": "10-4",
               "seed": 3
             },

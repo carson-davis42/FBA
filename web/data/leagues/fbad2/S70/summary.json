@@ -15,7 +15,7 @@
     },
     {
       "title": "World League Champion",
-      "champion": "Paris",
+      "champion": "Racing Paris",
       "runnerUp": "Austin BC",
       "score": null,
       "group": "WL",
@@ -26,7 +26,7 @@
     {
       "title": "United League Champion",
       "champion": "Tokyo BC",
-      "runnerUp": "Shanghai",
+      "runnerUp": "Shanghai Shencheng",
       "score": null,
       "group": "UL",
       "finalsMvp": "p00439",
@@ -86,7 +86,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Glasgow",
+              "name": "Glasgow Sporting",
               "record": "16-14",
               "seed": 8
             },
@@ -238,12 +238,12 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Paris",
+              "name": "Racing Paris",
               "record": "17-5",
               "seed": 3
             },
             "away": {
-              "name": "Athens",
+              "name": "AO Athens",
               "record": "12-10",
               "seed": 6
             },
@@ -285,7 +285,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Paris",
+              "name": "Racing Paris",
               "record": "17-5",
               "seed": 3
             },
@@ -307,7 +307,7 @@
               "seed": 5
             },
             "away": {
-              "name": "Paris",
+              "name": "Racing Paris",
               "record": "17-5",
               "seed": 3
             },
@@ -362,7 +362,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Lagos",
+              "name": "Lagos Mariners",
               "record": "12-10",
               "seed": 6
             },
@@ -375,7 +375,7 @@
             "round": 1,
             "home": null,
             "away": {
-              "name": "Shanghai",
+              "name": "Shanghai Shencheng",
               "record": "17-5",
               "seed": 2
             },
@@ -409,7 +409,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Shanghai",
+              "name": "Shanghai Shencheng",
               "record": "17-5",
               "seed": 2
             },
@@ -426,7 +426,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Shanghai",
+              "name": "Shanghai Shencheng",
               "record": "17-5",
               "seed": 2
             },

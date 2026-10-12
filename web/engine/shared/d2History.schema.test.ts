@@ -7,7 +7,7 @@ const base = { season: 60, locked: true, host: null, champions: [] };
 
 describe('D2 history schemas', () => {
   it('accepts rsChampions and the new MVP ids on a D2 summary only', () => {
-    const d2 = { league: 'fbad2', ...base, rsChampions: [{ group: 'AM', teams: ['San Jose', 'Toronto'] }], awards: [{ award: 'MVP-D2', playerId: 'p00001', teamId: 'Roma Pallacanestro' }] };
+    const d2 = { league: 'fbad2', ...base, rsChampions: [{ group: 'AM', teams: ['Deportivo San Jose', 'Toronto'] }], awards: [{ award: 'MVP-D2', playerId: 'p00001', teamId: 'Roma Pallacanestro' }] };
     expect(SummaryFile.safeParse(d2).success).toBe(true);
     expect(SummaryFile.safeParse({ ...d2, league: 'fba', awards: [] }).success).toBe(false);
     expect(SummaryFile.safeParse({ ...d2, rsChampions: [{ group: 'AM', teams: [] }] }).success).toBe(false);

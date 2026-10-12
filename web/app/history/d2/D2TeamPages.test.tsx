@@ -18,7 +18,7 @@ const players: PlayersFile = {
   },
 };
 const team = (teamId: string, name: string, group: string) => ({ teamId, name, abbr: teamId, group, logoFolder: null, badge: { bg: '#112233', fg: '#ffffff' } });
-const teams: TeamsFile = { league: 'fbad2', teams: [{ ...team('LIS', 'Atlético Lisboa', 'PL'), city: 'Lisbon', country: 'Portugal' }, team('ROM', 'Roma Pallacanestro', 'PL'), team('OSL', 'Oslo', 'UL'), team('BER', 'Bern', 'WL')] };
+const teams: TeamsFile = { league: 'fbad2', teams: [{ ...team('LIS', 'Atlético Lisboa', 'PL'), city: 'Lisbon', country: 'Portugal' }, team('ROM', 'Roma Pallacanestro', 'PL'), team('OSL', 'Oslo Idrettslag', 'UL'), team('BER', 'Bern', 'WL')] };
 
 const s69: SummaryFile = {
   league: 'fbad2', season: 69, locked: true, host: null,

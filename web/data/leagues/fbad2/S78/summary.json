@@ -27,7 +27,7 @@
     {
       "title": "United League Champion",
       "champion": "Dublin BC",
-      "runnerUp": "Johannesburg",
+      "runnerUp": "Johannesburg Gold",
       "score": "4-0",
       "group": "UL",
       "teamId": "DUB",
@@ -36,8 +36,8 @@
     },
     {
       "title": "International League Champion",
-      "champion": "Barcelona",
-      "runnerUp": "Naples",
+      "champion": "Barcelona Bàsquet",
+      "runnerUp": "Partenope Napoli",
       "score": "4-3",
       "group": "IL",
       "teamId": "BARC",
@@ -89,7 +89,7 @@
     {
       "group": "IL",
       "teams": [
-        "Naples"
+        "Partenope Napoli"
       ]
     }
   ],
@@ -362,7 +362,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Beijing",
+              "name": "Beijing Capital",
               "record": "16-14",
               "seed": 8
             },
@@ -374,7 +374,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Paris",
+              "name": "Racing Paris",
               "record": "18-12",
               "seed": 5
             },
@@ -391,12 +391,12 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Dubai",
+              "name": "Dubai Falcons",
               "record": "20-10",
               "seed": 3
             },
             "away": {
-              "name": "Belfast",
+              "name": "Belfast Athletic",
               "record": "18-12",
               "seed": 6
             },
@@ -408,12 +408,12 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Johannesburg",
+              "name": "Johannesburg Gold",
               "record": "17-13",
               "seed": 7
             },
             "away": {
-              "name": "Kiev",
+              "name": "SK Kyiv",
               "record": "21-9",
               "seed": 2
             },
@@ -442,12 +442,12 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Dubai",
+              "name": "Dubai Falcons",
               "record": "20-10",
               "seed": 3
             },
             "away": {
-              "name": "Johannesburg",
+              "name": "Johannesburg Gold",
               "record": "17-13",
               "seed": 7
             },
@@ -464,7 +464,7 @@
               "seed": 4
             },
             "away": {
-              "name": "Johannesburg",
+              "name": "Johannesburg Gold",
               "record": "17-13",
               "seed": 7
             },
@@ -484,12 +484,12 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Naples",
+              "name": "Partenope Napoli",
               "record": "24-6",
               "seed": 1
             },
             "away": {
-              "name": "Warsaw",
+              "name": "KS Warszawa",
               "record": "16-14",
               "seed": 8
             },
@@ -501,12 +501,12 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Athens",
+              "name": "AO Athens",
               "record": "17-13",
               "seed": 5
             },
             "away": {
-              "name": "Oslo",
+              "name": "Oslo Idrettslag",
               "record": "18-12",
               "seed": 4
             },
@@ -518,12 +518,12 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Barcelona",
+              "name": "Barcelona Bàsquet",
               "record": "22-8",
               "seed": 3
             },
             "away": {
-              "name": "Rio De Janeiro",
+              "name": "Guanabara SC",
               "record": "17-13",
               "seed": 6
             },
@@ -535,12 +535,12 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Edinburgh",
+              "name": "Edinburgh Thistle",
               "record": "16-14",
               "seed": 7
             },
             "away": {
-              "name": "Florence",
+              "name": "US Firenze",
               "record": "24-6",
               "seed": 2
             },
@@ -552,12 +552,12 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Naples",
+              "name": "Partenope Napoli",
               "record": "24-6",
               "seed": 1
             },
             "away": {
-              "name": "Athens",
+              "name": "AO Athens",
               "record": "17-13",
               "seed": 5
             },
@@ -569,12 +569,12 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Barcelona",
+              "name": "Barcelona Bàsquet",
               "record": "22-8",
               "seed": 3
             },
             "away": {
-              "name": "Florence",
+              "name": "US Firenze",
               "record": "24-6",
               "seed": 2
             },
@@ -586,12 +586,12 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Naples",
+              "name": "Partenope Napoli",
               "record": "24-6",
               "seed": 1
             },
             "away": {
-              "name": "Barcelona",
+              "name": "Barcelona Bàsquet",
               "record": "22-8",
               "seed": 3
             },

@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion",
       "champion": "Roma Pallacanestro",
-      "runnerUp": "Paris",
+      "runnerUp": "Racing Paris",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02235",
@@ -52,13 +52,13 @@
     {
       "group": "EW",
       "teams": [
-        "Paris"
+        "Racing Paris"
       ]
     },
     {
       "group": "EE",
       "teams": [
-        "Kiev"
+        "SK Kyiv"
       ]
     },
     {
@@ -75,7 +75,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "10-0",
           "seed": 1
         },
@@ -111,12 +111,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 5
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "6-4",
           "seed": 12
         },
@@ -134,7 +134,7 @@
           "seed": 13
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "9-1",
           "seed": 4
         },
@@ -188,7 +188,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "8-2",
           "seed": 10
         },
@@ -219,7 +219,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "10-0",
           "seed": 1
         },
@@ -237,12 +237,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 5
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "9-1",
           "seed": 4
         },
@@ -296,7 +296,7 @@
           "seed": 9
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "9-1",
           "seed": 4
         },
@@ -327,7 +327,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "9-1",
           "seed": 4
         },

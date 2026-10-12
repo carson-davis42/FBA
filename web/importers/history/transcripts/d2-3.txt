@@ -16,7 +16,7 @@ G:WL
 # p005 FBA D2 Premier League Tournament
 S74
 G:PL
-1|San Jose|24-6
+1|Deportivo San Jose|24-6
 8|Vancouver|17-13
 5|Salzburg BC|21-9
 4|Tokyo BC|21-9
@@ -24,9 +24,9 @@ G:PL
 6|Union Ottawa|20-10
 7|Milano BC|20-10
 2|Austin BC|23-7
-= San Jose 4-0 | Salzburg BC 4-2 | Berlin Bären BC 4-1 | Austin BC 4-1
-= San Jose 4-2 | Austin BC 4-2
-= San Jose 4-0
+= Deportivo San Jose 4-0 | Salzburg BC 4-2 | Berlin Bären BC 4-1 | Austin BC 4-1
+= Deportivo San Jose 4-2 | Austin BC 4-2
+= Deportivo San Jose 4-0
 
 # p007 FBA D2 World League Tournament
 S78
@@ -51,7 +51,7 @@ G:WL
 5|Zürich Helvetia|17-13
 4|Sporting Lyon|18-12
 3|Liverpool Maritime|21-9
-6|Shanghai|17-13
+6|Shanghai Shencheng|17-13
 7|Club Madrid|16-14
 2|London Royal|22-8
 = Wien SV 4-3 | Sporting Lyon 4-1 | Liverpool Maritime 4-0 | London Royal 4-1
@@ -61,16 +61,16 @@ G:WL
 # p024 FBA D2 International League Tournament
 S75
 G:IL
-1|Dubai|29-1
-8|Glasgow|15-15
-5|Florence|21-9
-4|Belfast|25-5
-3|Rotterdam|27-3
-6|Naples|17-13
-7|Edinburgh|16-14
+1|Dubai Falcons|29-1
+8|Glasgow Sporting|15-15
+5|US Firenze|21-9
+4|Belfast Athletic|25-5
+3|Rotterdam United|27-3
+6|Partenope Napoli|17-13
+7|Edinburgh Thistle|16-14
 2|Mumbai BC|27-3
-= Dubai 4-0 | Florence 4-2 | Rotterdam 4-0 | Mumbai BC 4-1
-= Dubai 4-0 | Mumbai BC 4-3
+= Dubai Falcons 4-0 | US Firenze 4-2 | Rotterdam United 4-0 | Mumbai BC 4-1
+= Dubai Falcons 4-0 | Mumbai BC 4-3
 = Mumbai BC 4-3
 
 # p025 FBA D2 Premier League Tournament
@@ -96,7 +96,7 @@ G:PL
 5|Atlético Lisboa|16-14
 4|London Royal|19-11
 3|Budapesti SE|20-10
-6|Recife|16-14
+6|Atlético Recife|16-14
 7|Milano BC|16-14
 2|Berlin Bären BC|22-8
 = Guadalajara CB 4-3 | London Royal 4-3 | Budapesti SE 4-3 | Berlin Bären BC 4-3
@@ -107,13 +107,13 @@ G:PL
 S78
 G:UL
 1|Moskovskiy BK|23-7
-8|Beijing|16-14
-5|Paris|18-12
+8|Beijing Capital|16-14
+5|Racing Paris|18-12
 4|Dublin BC|19-11
-3|Dubai|20-10
-6|Belfast|18-12
-7|Johannesburg|17-13
-2|Kiev|21-9
-= Moskovskiy BK 4-0 | Dublin BC 4-3 | Dubai 4-3 | Johannesburg 4-2
-= Dublin BC 4-2 | Johannesburg 4-0
+3|Dubai Falcons|20-10
+6|Belfast Athletic|18-12
+7|Johannesburg Gold|17-13
+2|SK Kyiv|21-9
+= Moskovskiy BK 4-0 | Dublin BC 4-3 | Dubai Falcons 4-3 | Johannesburg Gold 4-2
+= Dublin BC 4-2 | Johannesburg Gold 4-0
 = Dublin BC 4-0

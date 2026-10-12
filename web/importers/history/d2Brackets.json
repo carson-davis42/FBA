@@ -727,7 +727,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 3
         },
@@ -745,7 +745,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "6-4",
           "seed": 7
         },
@@ -781,7 +781,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 3
         },
@@ -804,7 +804,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 3
         },
@@ -823,12 +823,12 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "7-3",
           "seed": null
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "8-2",
           "seed": null
         },
@@ -841,7 +841,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "8-2",
           "seed": null
         },
@@ -895,12 +895,12 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "7-3",
           "seed": null
         },
         "away": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "8-2",
           "seed": null
         },
@@ -931,7 +931,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "8-2",
           "seed": null
         },
@@ -960,7 +960,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "6-4",
           "seed": 16
         },
@@ -996,7 +996,7 @@
           "seed": 5
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "8-2",
           "seed": 12
         },
@@ -1009,12 +1009,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "6-4",
           "seed": 13
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "9-1",
           "seed": 4
         },
@@ -1027,7 +1027,7 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "9-1",
           "seed": 3
         },
@@ -1045,7 +1045,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "7-3",
           "seed": 11
         },
@@ -1068,7 +1068,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "7-3",
           "seed": 10
         },
@@ -1081,7 +1081,7 @@
         "id": "R1-8",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "6-4",
           "seed": 15
         },
@@ -1122,7 +1122,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "9-1",
           "seed": 4
         },
@@ -1135,12 +1135,12 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "9-1",
           "seed": 3
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "7-3",
           "seed": 11
         },
@@ -1153,7 +1153,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "7-3",
           "seed": 10
         },
@@ -1189,7 +1189,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "9-1",
           "seed": 3
         },
@@ -1212,7 +1212,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "9-1",
           "seed": 3
         },
@@ -1236,7 +1236,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "6-4",
           "seed": 16
         },
@@ -1254,7 +1254,7 @@
           "seed": 9
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "8-2",
           "seed": 8
         },
@@ -1285,7 +1285,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "6-4",
           "seed": 13
         },
@@ -1303,7 +1303,7 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "9-1",
           "seed": 3
         },
@@ -1321,7 +1321,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "8-2",
           "seed": 11
         },
@@ -1344,7 +1344,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "6-4",
           "seed": 10
         },
@@ -1362,7 +1362,7 @@
           "seed": 15
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "10-0",
           "seed": 2
         },
@@ -1380,7 +1380,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "8-2",
           "seed": 8
         },
@@ -1416,7 +1416,7 @@
           "seed": 14
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "8-2",
           "seed": 11
         },
@@ -1429,12 +1429,12 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "6-4",
           "seed": 10
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "10-0",
           "seed": 2
         },
@@ -1470,7 +1470,7 @@
           "seed": 14
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "10-0",
           "seed": 2
         },
@@ -1488,7 +1488,7 @@
           "seed": 5
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "10-0",
           "seed": 2
         },
@@ -1512,7 +1512,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "6-4",
           "seed": 16
         },
@@ -1548,7 +1548,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "7-3",
           "seed": 12
         },
@@ -1561,12 +1561,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "5-5",
           "seed": 13
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "8-2",
           "seed": 4
         },
@@ -1579,7 +1579,7 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "10-0",
           "seed": 3
         },
@@ -1674,7 +1674,7 @@
           "seed": 5
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "8-2",
           "seed": 4
         },
@@ -1687,7 +1687,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "10-0",
           "seed": 3
         },
@@ -1837,7 +1837,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "6-4",
           "seed": 13
         },
@@ -1896,7 +1896,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "7-3",
           "seed": 10
         },
@@ -1950,7 +1950,7 @@
           "seed": 12
         },
         "away": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "6-4",
           "seed": 13
         },
@@ -1981,7 +1981,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "7-3",
           "seed": 10
         },
@@ -2100,7 +2100,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "7-3",
           "seed": 12
         },
@@ -2131,12 +2131,12 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "9-1",
           "seed": 3
         },
         "away": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "7-3",
           "seed": 14
         },
@@ -2154,7 +2154,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "9-1",
           "seed": 6
         },
@@ -2239,7 +2239,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "9-1",
           "seed": 3
         },
@@ -2293,7 +2293,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "9-1",
           "seed": 3
         },
@@ -2335,7 +2335,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "10-0",
           "seed": 1
         },
@@ -2371,12 +2371,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 5
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "6-4",
           "seed": 12
         },
@@ -2394,7 +2394,7 @@
           "seed": 13
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "9-1",
           "seed": 4
         },
@@ -2448,7 +2448,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "8-2",
           "seed": 10
         },
@@ -2479,7 +2479,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "10-0",
           "seed": 1
         },
@@ -2497,12 +2497,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 5
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "9-1",
           "seed": 4
         },
@@ -2556,7 +2556,7 @@
           "seed": 9
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "9-1",
           "seed": 4
         },
@@ -2587,7 +2587,7 @@
         "id": "R4-1",
         "round": 4,
         "home": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "9-1",
           "seed": 4
         },
@@ -2616,7 +2616,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "5-5",
           "seed": 16
         },
@@ -2683,12 +2683,12 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "9-1",
           "seed": 3
         },
         "away": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "6-4",
           "seed": 14
         },
@@ -2706,7 +2706,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "8-2",
           "seed": 6
         },
@@ -2719,7 +2719,7 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 7
         },
@@ -2791,7 +2791,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "9-1",
           "seed": 3
         },
@@ -2809,7 +2809,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 7
         },
@@ -2850,7 +2850,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 7
         },
@@ -2887,7 +2887,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "10-0",
           "seed": 1
         },
@@ -2941,7 +2941,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "6-4",
           "seed": 13
         },
@@ -2959,12 +2959,12 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "9-1",
           "seed": 3
         },
         "away": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "6-4",
           "seed": 14
         },
@@ -3018,7 +3018,7 @@
           "seed": 15
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "10-0",
           "seed": 2
         },
@@ -3031,7 +3031,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "10-0",
           "seed": 1
         },
@@ -3067,7 +3067,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "9-1",
           "seed": 3
         },
@@ -3121,7 +3121,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "9-1",
           "seed": 3
         },
@@ -3144,7 +3144,7 @@
           "seed": 4
         },
         "away": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "9-1",
           "seed": 3
         },
@@ -3199,12 +3199,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 5
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "7-3",
           "seed": 12
         },
@@ -3222,7 +3222,7 @@
           "seed": 13
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "8-2",
           "seed": 4
         },
@@ -3235,7 +3235,7 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "9-1",
           "seed": 3
         },
@@ -3253,7 +3253,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "7-3",
           "seed": 11
         },
@@ -3325,7 +3325,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 5
         },
@@ -3343,7 +3343,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "9-1",
           "seed": 3
         },
@@ -3384,7 +3384,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 5
         },
@@ -3444,7 +3444,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "6-4",
           "seed": 4
         },
@@ -3457,7 +3457,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "8-2",
           "seed": 2
         },
@@ -3475,7 +3475,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "9-1",
           "seed": 1
         },
@@ -3552,7 +3552,7 @@
           "seed": 1
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "6-4",
           "seed": 4
         },
@@ -3570,7 +3570,7 @@
           "seed": 2
         },
         "away": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "8-2",
           "seed": 3
         },
@@ -3588,7 +3588,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "8-2",
           "seed": 2
         },
@@ -3601,7 +3601,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "9-1",
           "seed": 1
         },
@@ -3642,7 +3642,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "8-2",
           "seed": 3
         },
@@ -3738,7 +3738,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "22-8",
           "seed": 4
         },
@@ -3755,7 +3755,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "19-11",
           "seed": 6
         },
@@ -3789,7 +3789,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "22-8",
           "seed": 4
         },
@@ -3801,7 +3801,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "19-11",
           "seed": 6
         },
@@ -3847,7 +3847,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "7-7",
           "seed": 4
         },
@@ -3859,7 +3859,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-6",
           "seed": 3
         },
@@ -3900,12 +3900,12 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "13-1",
           "seed": 1
         },
         "away": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "8-6",
           "seed": 4
         },
@@ -3934,7 +3934,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "13-1",
           "seed": 1
         },
@@ -4084,7 +4084,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "11-3",
           "seed": 1
         },
@@ -4106,7 +4106,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "10-4",
           "seed": 2
         },
@@ -4118,7 +4118,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "11-3",
           "seed": 1
         },
@@ -4159,7 +4159,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "10-4",
           "seed": 3
         },
@@ -4205,7 +4205,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "16-14",
           "seed": 8
         },
@@ -4356,12 +4356,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "17-5",
           "seed": 3
         },
         "away": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "12-10",
           "seed": 6
         },
@@ -4403,7 +4403,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "17-5",
           "seed": 3
         },
@@ -4425,7 +4425,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "17-5",
           "seed": 3
         },
@@ -4479,7 +4479,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Lagos",
+          "name": "Lagos Mariners",
           "record": "12-10",
           "seed": 6
         },
@@ -4492,7 +4492,7 @@
         "round": 1,
         "home": null,
         "away": {
-          "name": "Shanghai",
+          "name": "Shanghai Shencheng",
           "record": "17-5",
           "seed": 2
         },
@@ -4526,7 +4526,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Shanghai",
+          "name": "Shanghai Shencheng",
           "record": "17-5",
           "seed": 2
         },
@@ -4543,7 +4543,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Shanghai",
+          "name": "Shanghai Shencheng",
           "record": "17-5",
           "seed": 2
         },
@@ -4596,7 +4596,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "22-8",
           "seed": 3
         },
@@ -4647,7 +4647,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "22-8",
           "seed": 3
         },
@@ -4693,7 +4693,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "14-16",
           "seed": 8
         },
@@ -4727,7 +4727,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "19-11",
           "seed": 6
         },
@@ -4827,12 +4827,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Johannesburg",
+          "name": "Johannesburg Gold",
           "record": "12-10",
           "seed": 5
         },
         "away": {
-          "name": "Recife",
+          "name": "Atlético Recife",
           "record": "14-8",
           "seed": 4
         },
@@ -4879,7 +4879,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Recife",
+          "name": "Atlético Recife",
           "record": "14-8",
           "seed": 4
         },
@@ -5092,7 +5092,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Shanghai",
+          "name": "Shanghai Shencheng",
           "record": "21-9",
           "seed": 3
         },
@@ -5143,7 +5143,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Shanghai",
+          "name": "Shanghai Shencheng",
           "record": "21-9",
           "seed": 3
         },
@@ -5189,7 +5189,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "16-14",
           "seed": 8
         },
@@ -5201,12 +5201,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Rio De Janeiro",
+          "name": "Guanabara SC",
           "record": "21-9",
           "seed": 5
         },
         "away": {
-          "name": "Johannesburg",
+          "name": "Johannesburg Gold",
           "record": "22-8",
           "seed": 4
         },
@@ -5223,7 +5223,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Stockholm",
+          "name": "Stockholm IF",
           "record": "18-12",
           "seed": 6
         },
@@ -5235,12 +5235,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Lagos",
+          "name": "Lagos Mariners",
           "record": "16-14",
           "seed": 7
         },
         "away": {
-          "name": "Recife",
+          "name": "Atlético Recife",
           "record": "24-6",
           "seed": 2
         },
@@ -5257,7 +5257,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Johannesburg",
+          "name": "Johannesburg Gold",
           "record": "22-8",
           "seed": 4
         },
@@ -5274,7 +5274,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Recife",
+          "name": "Atlético Recife",
           "record": "24-6",
           "seed": 2
         },
@@ -5291,7 +5291,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Recife",
+          "name": "Atlético Recife",
           "record": "24-6",
           "seed": 2
         },
@@ -5327,12 +5327,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Auckland",
+          "name": "Auckland Rovers",
           "record": "19-11",
           "seed": 5
         },
         "away": {
-          "name": "Rotterdam",
+          "name": "Rotterdam United",
           "record": "19-11",
           "seed": 4
         },
@@ -5344,7 +5344,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Osaka",
+          "name": "Osaka BC",
           "record": "22-8",
           "seed": 3
         },
@@ -5383,7 +5383,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Auckland",
+          "name": "Auckland Rovers",
           "record": "19-11",
           "seed": 5
         },
@@ -5395,7 +5395,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Osaka",
+          "name": "Osaka BC",
           "record": "22-8",
           "seed": 3
         },
@@ -5601,7 +5601,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Shanghai",
+          "name": "Shanghai Shencheng",
           "record": "17-13",
           "seed": 6
         },
@@ -5693,7 +5693,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Johannesburg",
+          "name": "Johannesburg Gold",
           "record": "17-13",
           "seed": 8
         },
@@ -5705,7 +5705,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Beijing",
+          "name": "Beijing Capital",
           "record": "18-12",
           "seed": 5
         },
@@ -5722,12 +5722,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Stockholm",
+          "name": "Stockholm IF",
           "record": "20-10",
           "seed": 3
         },
         "away": {
-          "name": "Rio De Janeiro",
+          "name": "Guanabara SC",
           "record": "17-13",
           "seed": 6
         },
@@ -5761,7 +5761,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Beijing",
+          "name": "Beijing Capital",
           "record": "18-12",
           "seed": 5
         },
@@ -5773,7 +5773,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Stockholm",
+          "name": "Stockholm IF",
           "record": "20-10",
           "seed": 3
         },
@@ -5795,7 +5795,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Stockholm",
+          "name": "Stockholm IF",
           "record": "20-10",
           "seed": 3
         },
@@ -5819,7 +5819,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Belfast",
+          "name": "Belfast Athletic",
           "record": "15-15",
           "seed": 8
         },
@@ -5831,12 +5831,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Dubai",
+          "name": "Dubai Falcons",
           "record": "20-10",
           "seed": 5
         },
         "away": {
-          "name": "Luxembourg",
+          "name": "Union Luxembourg",
           "record": "20-10",
           "seed": 4
         },
@@ -5853,7 +5853,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Rotterdam",
+          "name": "Rotterdam United",
           "record": "18-12",
           "seed": 6
         },
@@ -5887,7 +5887,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Luxembourg",
+          "name": "Union Luxembourg",
           "record": "20-10",
           "seed": 4
         },
@@ -5899,7 +5899,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Rotterdam",
+          "name": "Rotterdam United",
           "record": "18-12",
           "seed": 6
         },
@@ -5916,12 +5916,12 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Luxembourg",
+          "name": "Union Luxembourg",
           "record": "20-10",
           "seed": 4
         },
         "away": {
-          "name": "Rotterdam",
+          "name": "Rotterdam United",
           "record": "18-12",
           "seed": 6
         },
@@ -5940,7 +5940,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "24-6",
           "seed": 1
         },
@@ -6008,7 +6008,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "24-6",
           "seed": 1
         },
@@ -6042,7 +6042,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "24-6",
           "seed": 1
         },
@@ -6071,7 +6071,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Shanghai",
+          "name": "Shanghai Shencheng",
           "record": "16-14",
           "seed": 8
         },
@@ -6088,7 +6088,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Recife",
+          "name": "Atlético Recife",
           "record": "23-7",
           "seed": 4
         },
@@ -6139,7 +6139,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Recife",
+          "name": "Atlético Recife",
           "record": "23-7",
           "seed": 4
         },
@@ -6197,7 +6197,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Johannesburg",
+          "name": "Johannesburg Gold",
           "record": "16-14",
           "seed": 8
         },
@@ -6209,7 +6209,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "21-9",
           "seed": 5
         },
@@ -6243,7 +6243,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Beijing",
+          "name": "Beijing Capital",
           "record": "16-14",
           "seed": 7
         },
@@ -6265,7 +6265,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "21-9",
           "seed": 5
         },
@@ -6323,7 +6323,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "13-17",
           "seed": 8
         },
@@ -6335,12 +6335,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Florence",
+          "name": "US Firenze",
           "record": "23-7",
           "seed": 5
         },
         "away": {
-          "name": "Belfast",
+          "name": "Belfast Athletic",
           "record": "24-6",
           "seed": 4
         },
@@ -6357,7 +6357,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Edinburgh",
+          "name": "Edinburgh Thistle",
           "record": "19-11",
           "seed": 6
         },
@@ -6369,12 +6369,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "17-13",
           "seed": 7
         },
         "away": {
-          "name": "Osaka",
+          "name": "Osaka BC",
           "record": "26-4",
           "seed": 2
         },
@@ -6391,7 +6391,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Belfast",
+          "name": "Belfast Athletic",
           "record": "24-6",
           "seed": 4
         },
@@ -6408,7 +6408,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Osaka",
+          "name": "Osaka BC",
           "record": "26-4",
           "seed": 2
         },
@@ -6420,12 +6420,12 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Belfast",
+          "name": "Belfast Athletic",
           "record": "24-6",
           "seed": 4
         },
         "away": {
-          "name": "Osaka",
+          "name": "Osaka BC",
           "record": "26-4",
           "seed": 2
         },
@@ -6500,7 +6500,7 @@
           "seed": 7
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "22-8",
           "seed": 2
         },
@@ -6575,7 +6575,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Shanghai",
+          "name": "Shanghai Shencheng",
           "record": "16-14",
           "seed": 8
         },
@@ -6626,7 +6626,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Recife",
+          "name": "Atlético Recife",
           "record": "26-4",
           "seed": 2
         },
@@ -6660,7 +6660,7 @@
           "seed": 6
         },
         "away": {
-          "name": "Recife",
+          "name": "Atlético Recife",
           "record": "26-4",
           "seed": 2
         },
@@ -6677,7 +6677,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Recife",
+          "name": "Atlético Recife",
           "record": "26-4",
           "seed": 2
         },
@@ -6696,7 +6696,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Osaka",
+          "name": "Osaka BC",
           "record": "29-1",
           "seed": 1
         },
@@ -6718,7 +6718,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Beijing",
+          "name": "Beijing Capital",
           "record": "21-9",
           "seed": 4
         },
@@ -6735,7 +6735,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Johannesburg",
+          "name": "Johannesburg Gold",
           "record": "17-13",
           "seed": 6
         },
@@ -6747,7 +6747,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "16-14",
           "seed": 7
         },
@@ -6764,12 +6764,12 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Osaka",
+          "name": "Osaka BC",
           "record": "29-1",
           "seed": 1
         },
         "away": {
-          "name": "Beijing",
+          "name": "Beijing Capital",
           "record": "21-9",
           "seed": 4
         },
@@ -6798,7 +6798,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Osaka",
+          "name": "Osaka BC",
           "record": "29-1",
           "seed": 1
         },
@@ -6822,12 +6822,12 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Dubai",
+          "name": "Dubai Falcons",
           "record": "29-1",
           "seed": 1
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "15-15",
           "seed": 8
         },
@@ -6839,12 +6839,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Florence",
+          "name": "US Firenze",
           "record": "21-9",
           "seed": 5
         },
         "away": {
-          "name": "Belfast",
+          "name": "Belfast Athletic",
           "record": "25-5",
           "seed": 4
         },
@@ -6856,12 +6856,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Rotterdam",
+          "name": "Rotterdam United",
           "record": "27-3",
           "seed": 3
         },
         "away": {
-          "name": "Naples",
+          "name": "Partenope Napoli",
           "record": "17-13",
           "seed": 6
         },
@@ -6873,7 +6873,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Edinburgh",
+          "name": "Edinburgh Thistle",
           "record": "16-14",
           "seed": 7
         },
@@ -6890,12 +6890,12 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Dubai",
+          "name": "Dubai Falcons",
           "record": "29-1",
           "seed": 1
         },
         "away": {
-          "name": "Florence",
+          "name": "US Firenze",
           "record": "21-9",
           "seed": 5
         },
@@ -6907,7 +6907,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Rotterdam",
+          "name": "Rotterdam United",
           "record": "27-3",
           "seed": 3
         },
@@ -6924,7 +6924,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Dubai",
+          "name": "Dubai Falcons",
           "record": "29-1",
           "seed": 1
         },
@@ -6987,7 +6987,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Recife",
+          "name": "Atlético Recife",
           "record": "16-14",
           "seed": 6
         },
@@ -7205,7 +7205,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "14-16",
           "seed": 8
         },
@@ -7217,12 +7217,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "18-12",
           "seed": 5
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "18-12",
           "seed": 4
         },
@@ -7239,7 +7239,7 @@
           "seed": 3
         },
         "away": {
-          "name": "Dubai",
+          "name": "Dubai Falcons",
           "record": "17-13",
           "seed": 6
         },
@@ -7273,7 +7273,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "18-12",
           "seed": 4
         },
@@ -7326,12 +7326,12 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "25-5",
           "seed": 1
         },
         "away": {
-          "name": "Naples",
+          "name": "Partenope Napoli",
           "record": "16-14",
           "seed": 8
         },
@@ -7343,12 +7343,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Belfast",
+          "name": "Belfast Athletic",
           "record": "18-12",
           "seed": 5
         },
         "away": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "19-11",
           "seed": 4
         },
@@ -7360,7 +7360,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Warsaw",
+          "name": "KS Warszawa",
           "record": "19-11",
           "seed": 3
         },
@@ -7377,12 +7377,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Auckland",
+          "name": "Auckland Rovers",
           "record": "18-12",
           "seed": 7
         },
         "away": {
-          "name": "Rotterdam",
+          "name": "Rotterdam United",
           "record": "19-11",
           "seed": 2
         },
@@ -7394,12 +7394,12 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "25-5",
           "seed": 1
         },
         "away": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "19-11",
           "seed": 4
         },
@@ -7411,12 +7411,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Warsaw",
+          "name": "KS Warszawa",
           "record": "19-11",
           "seed": 3
         },
         "away": {
-          "name": "Auckland",
+          "name": "Auckland Rovers",
           "record": "18-12",
           "seed": 7
         },
@@ -7428,12 +7428,12 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "19-11",
           "seed": 4
         },
         "away": {
-          "name": "Warsaw",
+          "name": "KS Warszawa",
           "record": "19-11",
           "seed": 3
         },
@@ -7709,7 +7709,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Johannesburg",
+          "name": "Johannesburg Gold",
           "record": "13-17",
           "seed": 8
         },
@@ -7721,7 +7721,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "22-8",
           "seed": 5
         },
@@ -7738,12 +7738,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "24-6",
           "seed": 3
         },
         "away": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "19-11",
           "seed": 6
         },
@@ -7755,7 +7755,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "14-16",
           "seed": 7
         },
@@ -7777,7 +7777,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "22-8",
           "seed": 5
         },
@@ -7789,7 +7789,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "19-11",
           "seed": 6
         },
@@ -7835,7 +7835,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Auckland",
+          "name": "Auckland Rovers",
           "record": "16-14",
           "seed": 8
         },
@@ -7847,12 +7847,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "20-10",
           "seed": 5
         },
         "away": {
-          "name": "Warsaw",
+          "name": "KS Warszawa",
           "record": "21-9",
           "seed": 4
         },
@@ -7864,12 +7864,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Florence",
+          "name": "US Firenze",
           "record": "21-9",
           "seed": 3
         },
         "away": {
-          "name": "Naples",
+          "name": "Partenope Napoli",
           "record": "19-11",
           "seed": 6
         },
@@ -7881,12 +7881,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Oslo",
+          "name": "Oslo Idrettslag",
           "record": "18-12",
           "seed": 7
         },
         "away": {
-          "name": "Belfast",
+          "name": "Belfast Athletic",
           "record": "22-8",
           "seed": 2
         },
@@ -7903,7 +7903,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "20-10",
           "seed": 5
         },
@@ -7915,12 +7915,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Naples",
+          "name": "Partenope Napoli",
           "record": "19-11",
           "seed": 6
         },
         "away": {
-          "name": "Belfast",
+          "name": "Belfast Athletic",
           "record": "22-8",
           "seed": 2
         },
@@ -7937,7 +7937,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Naples",
+          "name": "Partenope Napoli",
           "record": "19-11",
           "seed": 6
         },
@@ -8213,7 +8213,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Beijing",
+          "name": "Beijing Capital",
           "record": "16-14",
           "seed": 8
         },
@@ -8225,7 +8225,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "18-12",
           "seed": 5
         },
@@ -8242,12 +8242,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Dubai",
+          "name": "Dubai Falcons",
           "record": "20-10",
           "seed": 3
         },
         "away": {
-          "name": "Belfast",
+          "name": "Belfast Athletic",
           "record": "18-12",
           "seed": 6
         },
@@ -8259,12 +8259,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Johannesburg",
+          "name": "Johannesburg Gold",
           "record": "17-13",
           "seed": 7
         },
         "away": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "21-9",
           "seed": 2
         },
@@ -8293,12 +8293,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Dubai",
+          "name": "Dubai Falcons",
           "record": "20-10",
           "seed": 3
         },
         "away": {
-          "name": "Johannesburg",
+          "name": "Johannesburg Gold",
           "record": "17-13",
           "seed": 7
         },
@@ -8315,7 +8315,7 @@
           "seed": 4
         },
         "away": {
-          "name": "Johannesburg",
+          "name": "Johannesburg Gold",
           "record": "17-13",
           "seed": 7
         },
@@ -8334,12 +8334,12 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Naples",
+          "name": "Partenope Napoli",
           "record": "24-6",
           "seed": 1
         },
         "away": {
-          "name": "Warsaw",
+          "name": "KS Warszawa",
           "record": "16-14",
           "seed": 8
         },
@@ -8351,12 +8351,12 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "17-13",
           "seed": 5
         },
         "away": {
-          "name": "Oslo",
+          "name": "Oslo Idrettslag",
           "record": "18-12",
           "seed": 4
         },
@@ -8368,12 +8368,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "22-8",
           "seed": 3
         },
         "away": {
-          "name": "Rio De Janeiro",
+          "name": "Guanabara SC",
           "record": "17-13",
           "seed": 6
         },
@@ -8385,12 +8385,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Edinburgh",
+          "name": "Edinburgh Thistle",
           "record": "16-14",
           "seed": 7
         },
         "away": {
-          "name": "Florence",
+          "name": "US Firenze",
           "record": "24-6",
           "seed": 2
         },
@@ -8402,12 +8402,12 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Naples",
+          "name": "Partenope Napoli",
           "record": "24-6",
           "seed": 1
         },
         "away": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "17-13",
           "seed": 5
         },
@@ -8419,12 +8419,12 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "22-8",
           "seed": 3
         },
         "away": {
-          "name": "Florence",
+          "name": "US Firenze",
           "record": "24-6",
           "seed": 2
         },
@@ -8436,12 +8436,12 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Naples",
+          "name": "Partenope Napoli",
           "record": "24-6",
           "seed": 1
         },
         "away": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "22-8",
           "seed": 3
         },

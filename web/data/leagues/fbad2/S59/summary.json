@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion",
       "champion": "Pearland",
-      "runnerUp": "San Jose",
+      "runnerUp": "Deportivo San Jose",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02127",
@@ -25,7 +25,7 @@
     {
       "group": "AM",
       "teams": [
-        "San Jose"
+        "Deportivo San Jose"
       ]
     },
     {
@@ -37,7 +37,7 @@
     {
       "group": "EE",
       "teams": [
-        "Kiev"
+        "SK Kyiv"
       ]
     },
     {
@@ -59,7 +59,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "6-4",
           "seed": 16
         },
@@ -77,7 +77,7 @@
           "seed": 9
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "8-2",
           "seed": 8
         },
@@ -108,7 +108,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "6-4",
           "seed": 13
         },
@@ -126,7 +126,7 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "9-1",
           "seed": 3
         },
@@ -144,7 +144,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "8-2",
           "seed": 11
         },
@@ -167,7 +167,7 @@
           "seed": 7
         },
         "away": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "6-4",
           "seed": 10
         },
@@ -185,7 +185,7 @@
           "seed": 15
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "10-0",
           "seed": 2
         },
@@ -203,7 +203,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "8-2",
           "seed": 8
         },
@@ -239,7 +239,7 @@
           "seed": 14
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "8-2",
           "seed": 11
         },
@@ -252,12 +252,12 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Barcelona",
+          "name": "Barcelona Bàsquet",
           "record": "6-4",
           "seed": 10
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "10-0",
           "seed": 2
         },
@@ -293,7 +293,7 @@
           "seed": 14
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "10-0",
           "seed": 2
         },
@@ -311,7 +311,7 @@
           "seed": 5
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "10-0",
           "seed": 2
         },

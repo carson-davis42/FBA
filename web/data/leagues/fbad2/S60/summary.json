@@ -26,13 +26,13 @@
     {
       "group": "AM",
       "teams": [
-        "San Jose"
+        "Deportivo San Jose"
       ]
     },
     {
       "group": "EW",
       "teams": [
-        "Manchester"
+        "Manchester Athletic"
       ]
     },
     {
@@ -60,7 +60,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "6-4",
           "seed": 16
         },
@@ -96,7 +96,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "7-3",
           "seed": 12
         },
@@ -109,12 +109,12 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "5-5",
           "seed": 13
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "8-2",
           "seed": 4
         },
@@ -127,7 +127,7 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "10-0",
           "seed": 3
         },
@@ -222,7 +222,7 @@
           "seed": 5
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "8-2",
           "seed": 4
         },
@@ -235,7 +235,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "10-0",
           "seed": 3
         },

@@ -25,7 +25,7 @@ const teams: TeamsFile = {
 const s55: SummaryFile = {
   league: 'fbad2', season: 55, locked: true, host: null,
   champions: [
-    { title: 'D2 International Champion (1)', champion: 'Oslo', runnerUp: 'Bern', score: '4-1', group: 'D2', finalsMvp: 'p00001' },
+    { title: 'D2 International Champion (1)', champion: 'Oslo Idrettslag', runnerUp: 'Bern', score: '4-1', group: 'D2', finalsMvp: 'p00001' },
     { title: 'D2 International Champion (2)', champion: 'Riga', runnerUp: null, score: null, group: 'D2' },
   ],
   awards: [{ award: 'MVP-D2', playerId: 'p00001', teamId: 'OSL' }, { award: 'MVP-D2', playerId: 'p00001', teamId: 'OSL' }],
@@ -34,7 +34,7 @@ const s69: SummaryFile = {
   league: 'fbad2', season: 69, locked: true, host: null,
   champions: [
     { title: 'Premier League Champion', champion: 'Atlético Lisboa', runnerUp: 'Roma Pallacanestro', score: '4-2', group: 'PL', finalsMvp: 'p00002' },
-    { title: 'Ultra League Champion', champion: 'Oslo', runnerUp: 'Bern', score: null, group: 'UL' },
+    { title: 'Ultra League Champion', champion: 'Oslo Idrettslag', runnerUp: 'Bern', score: null, group: 'UL' },
   ],
   awards: [{ award: 'MVP-PL', playerId: 'p00002', teamId: 'LIS' }],
   rsChampions: [{ group: 'PL', teams: ['Münchner BC', 'Roma Pallacanestro'] }],

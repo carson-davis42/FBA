@@ -37,7 +37,7 @@
     {
       "title": "International League Champion",
       "champion": "Dublin BC",
-      "runnerUp": "Naples",
+      "runnerUp": "Partenope Napoli",
       "score": null,
       "group": "IL",
       "finalsMvp": "p00241",
@@ -362,7 +362,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Johannesburg",
+              "name": "Johannesburg Gold",
               "record": "13-17",
               "seed": 8
             },
@@ -374,7 +374,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Paris",
+              "name": "Racing Paris",
               "record": "22-8",
               "seed": 5
             },
@@ -391,12 +391,12 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Kiev",
+              "name": "SK Kyiv",
               "record": "24-6",
               "seed": 3
             },
             "away": {
-              "name": "Brussels",
+              "name": "Bruxelles BC",
               "record": "19-11",
               "seed": 6
             },
@@ -408,7 +408,7 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Manchester",
+              "name": "Manchester Athletic",
               "record": "14-16",
               "seed": 7
             },
@@ -430,7 +430,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Paris",
+              "name": "Racing Paris",
               "record": "22-8",
               "seed": 5
             },
@@ -442,7 +442,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Brussels",
+              "name": "Bruxelles BC",
               "record": "19-11",
               "seed": 6
             },
@@ -489,7 +489,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Auckland",
+              "name": "Auckland Rovers",
               "record": "16-14",
               "seed": 8
             },
@@ -501,12 +501,12 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Barcelona",
+              "name": "Barcelona Bàsquet",
               "record": "20-10",
               "seed": 5
             },
             "away": {
-              "name": "Warsaw",
+              "name": "KS Warszawa",
               "record": "21-9",
               "seed": 4
             },
@@ -518,12 +518,12 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Florence",
+              "name": "US Firenze",
               "record": "21-9",
               "seed": 3
             },
             "away": {
-              "name": "Naples",
+              "name": "Partenope Napoli",
               "record": "19-11",
               "seed": 6
             },
@@ -535,12 +535,12 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Oslo",
+              "name": "Oslo Idrettslag",
               "record": "18-12",
               "seed": 7
             },
             "away": {
-              "name": "Belfast",
+              "name": "Belfast Athletic",
               "record": "22-8",
               "seed": 2
             },
@@ -557,7 +557,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Barcelona",
+              "name": "Barcelona Bàsquet",
               "record": "20-10",
               "seed": 5
             },
@@ -569,12 +569,12 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Naples",
+              "name": "Partenope Napoli",
               "record": "19-11",
               "seed": 6
             },
             "away": {
-              "name": "Belfast",
+              "name": "Belfast Athletic",
               "record": "22-8",
               "seed": 2
             },
@@ -591,7 +591,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Naples",
+              "name": "Partenope Napoli",
               "record": "19-11",
               "seed": 6
             },

@@ -16,30 +16,30 @@ G:PL
 # p119 FBA D2 International League Tournament
 S76
 G:IL
-1|Kiev|25-5
-8|Naples|16-14
-5|Belfast|18-12
-4|Barcelona|19-11
-3|Warsaw|19-11
+1|SK Kyiv|25-5
+8|Partenope Napoli|16-14
+5|Belfast Athletic|18-12
+4|Barcelona Bàsquet|19-11
+3|KS Warszawa|19-11
 6|Dublin BC|18-12
-7|Auckland|18-12
-2|Rotterdam|19-11
-= Kiev 4-1 | Barcelona 4-2 | Warsaw 4-3 | Auckland 4-1
-= Barcelona 4-2 | Warsaw 4-0
-= Barcelona 4-1
+7|Auckland Rovers|18-12
+2|Rotterdam United|19-11
+= SK Kyiv 4-1 | Barcelona Bàsquet 4-2 | KS Warszawa 4-3 | Auckland Rovers 4-1
+= Barcelona Bàsquet 4-2 | KS Warszawa 4-0
+= Barcelona Bàsquet 4-1
 
 # p120 FBA D2 World League Tournament
 S74
 G:WL
 1|Club Madrid|29-1
-8|Shanghai|16-14
+8|Shanghai Shencheng|16-14
 5|Guadalajara CB|22-8
-4|Recife|23-7
+4|Atlético Recife|23-7
 3|Paulistano|24-6
 6|Liverpool Maritime|22-8
 7|Amsterdam BC|18-12
 2|Budapesti SE|24-6
-= Club Madrid 4-1 | Recife 4-3 | Paulistano 4-1 | Amsterdam BC 4-2
+= Club Madrid 4-1 | Atlético Recife 4-3 | Paulistano 4-1 | Amsterdam BC 4-2
 = Club Madrid 4-0 | Amsterdam BC 4-1
 = Club Madrid 4-2
 
@@ -66,49 +66,49 @@ BYE
 5|Buenos Aires BC|13-9
 4|Sporting Lyon|14-8
 3|Københavns BK|14-8
-6|Lagos|12-10
+6|Lagos Mariners|12-10
 BYE
-2|Shanghai|17-5
-= Tokyo BC BYE | Buenos Aires BC 4-3 | Københavns BK 4-3 | Shanghai BYE
-= Tokyo BC 4-0 | Shanghai 4-3
+2|Shanghai Shencheng|17-5
+= Tokyo BC BYE | Buenos Aires BC 4-3 | Københavns BK 4-3 | Shanghai Shencheng BYE
+= Tokyo BC 4-0 | Shanghai Shencheng 4-3
 = Tokyo BC 4-1
 
 # p134 FBA D2 United League Tournament
 S68
 G:UL
-1|Glasgow|13-1
-4|Barcelona|8-6
+1|Glasgow Sporting|13-1
+4|Barcelona Bàsquet|8-6
 3|Vancouver|8-6
 2|Zürich Helvetia|10-4
-= Glasgow 4-3 | Zürich Helvetia 4-0
-= Glasgow 4-3
+= Glasgow Sporting 4-3 | Zürich Helvetia 4-0
+= Glasgow Sporting 4-3
 
 # p136 FBA D2 United League Tournament
 S73
 G:UL
 1|Paulistano|28-2
-8|Johannesburg|17-13
-5|Beijing|18-12
+8|Johannesburg Gold|17-13
+5|Beijing Capital|18-12
 4|Sydney Harbour|20-10
-3|Stockholm|20-10
-6|Rio De Janeiro|17-13
+3|Stockholm IF|20-10
+6|Guanabara SC|17-13
 7|Miami BC|17-13
 2|Budapesti SE|22-8
-= Paulistano 4-1 | Beijing 4-2 | Stockholm 4-3 | Budapesti SE 4-0
-= Paulistano 4-1 | Stockholm 4-3
+= Paulistano 4-1 | Beijing Capital 4-2 | Stockholm IF 4-3 | Budapesti SE 4-0
+= Paulistano 4-1 | Stockholm IF 4-3
 = Paulistano 4-0
 
 # p137 FBA D2 United League Tournament
 S75
 G:UL
-1|Osaka|29-1
+1|Osaka BC|29-1
 8|Moskovskiy BK|16-14
 5|Union Casablanca|20-10
-4|Beijing|21-9
+4|Beijing Capital|21-9
 3|Nevskiy|27-3
-6|Johannesburg|17-13
-7|Paris|16-14
+6|Johannesburg Gold|17-13
+7|Racing Paris|16-14
 2|Dhaka Sporting|28-2
-= Osaka 4-2 | Beijing 4-2 | Nevskiy 4-3 | Dhaka Sporting 4-1
-= Osaka 4-2 | Dhaka Sporting 4-2
-= Osaka 4-2
+= Osaka BC 4-2 | Beijing Capital 4-2 | Nevskiy 4-3 | Dhaka Sporting 4-1
+= Osaka BC 4-2 | Dhaka Sporting 4-2
+= Osaka BC 4-2

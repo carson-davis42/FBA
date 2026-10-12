@@ -35,8 +35,8 @@
     },
     {
       "title": "International League Champion",
-      "champion": "Barcelona",
-      "runnerUp": "Warsaw",
+      "champion": "Barcelona Bàsquet",
+      "runnerUp": "KS Warszawa",
       "score": null,
       "group": "IL",
       "finalsMvp": "p00185",
@@ -88,7 +88,7 @@
     {
       "group": "IL",
       "teams": [
-        "Kiev"
+        "SK Kyiv"
       ]
     }
   ],
@@ -141,7 +141,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Recife",
+              "name": "Atlético Recife",
               "record": "16-14",
               "seed": 6
             },
@@ -361,7 +361,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Manchester",
+              "name": "Manchester Athletic",
               "record": "14-16",
               "seed": 8
             },
@@ -373,12 +373,12 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Brussels",
+              "name": "Bruxelles BC",
               "record": "18-12",
               "seed": 5
             },
             "away": {
-              "name": "Paris",
+              "name": "Racing Paris",
               "record": "18-12",
               "seed": 4
             },
@@ -395,7 +395,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Dubai",
+              "name": "Dubai Falcons",
               "record": "17-13",
               "seed": 6
             },
@@ -429,7 +429,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Paris",
+              "name": "Racing Paris",
               "record": "18-12",
               "seed": 4
             },
@@ -483,12 +483,12 @@
             "id": "R1-1",
             "round": 1,
             "home": {
-              "name": "Kiev",
+              "name": "SK Kyiv",
               "record": "25-5",
               "seed": 1
             },
             "away": {
-              "name": "Naples",
+              "name": "Partenope Napoli",
               "record": "16-14",
               "seed": 8
             },
@@ -500,12 +500,12 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Belfast",
+              "name": "Belfast Athletic",
               "record": "18-12",
               "seed": 5
             },
             "away": {
-              "name": "Barcelona",
+              "name": "Barcelona Bàsquet",
               "record": "19-11",
               "seed": 4
             },
@@ -517,7 +517,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Warsaw",
+              "name": "KS Warszawa",
               "record": "19-11",
               "seed": 3
             },
@@ -534,12 +534,12 @@
             "id": "R1-4",
             "round": 1,
             "home": {
-              "name": "Auckland",
+              "name": "Auckland Rovers",
               "record": "18-12",
               "seed": 7
             },
             "away": {
-              "name": "Rotterdam",
+              "name": "Rotterdam United",
               "record": "19-11",
               "seed": 2
             },
@@ -551,12 +551,12 @@
             "id": "R2-1",
             "round": 2,
             "home": {
-              "name": "Kiev",
+              "name": "SK Kyiv",
               "record": "25-5",
               "seed": 1
             },
             "away": {
-              "name": "Barcelona",
+              "name": "Barcelona Bàsquet",
               "record": "19-11",
               "seed": 4
             },
@@ -568,12 +568,12 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Warsaw",
+              "name": "KS Warszawa",
               "record": "19-11",
               "seed": 3
             },
             "away": {
-              "name": "Auckland",
+              "name": "Auckland Rovers",
               "record": "18-12",
               "seed": 7
             },
@@ -585,12 +585,12 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Barcelona",
+              "name": "Barcelona Bàsquet",
               "record": "19-11",
               "seed": 4
             },
             "away": {
-              "name": "Warsaw",
+              "name": "KS Warszawa",
               "record": "19-11",
               "seed": 3
             },

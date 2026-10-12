@@ -3,13 +3,13 @@ S72
 G:IL
 1|Budapesti SE|30-0
 8|Nevskiy|18-12
-5|Auckland|19-11
-4|Rotterdam|19-11
-3|Osaka|22-8
+5|Auckland Rovers|19-11
+4|Rotterdam United|19-11
+3|Osaka BC|22-8
 6|Union Casablanca|19-11
 7|Dhaka Sporting|18-12
 2|Paulistano|23-7
-= Budapesti SE 4-0 | Auckland 4-2 | Osaka 4-3 | Paulistano 4-3
+= Budapesti SE 4-0 | Auckland Rovers 4-2 | Osaka BC 4-3 | Paulistano 4-3
 = Budapesti SE 4-0 | Paulistano 4-3
 = Budapesti SE 4-0
 
@@ -38,7 +38,7 @@ G:PL
 3|Tokyo BC|22-8
 6|Union Ottawa|19-11
 7|Milano BC|17-13
-2|San Jose|22-8
+2|Deportivo San Jose|22-8
 = Austin BC 4-2 | Budapesti SE 4-2 | Tokyo BC 4-3 | Milano BC 4-1
 = Budapesti SE 4-1 | Tokyo BC 4-2
 = Tokyo BC 4-1
@@ -47,15 +47,15 @@ G:PL
 S77
 G:IL
 1|Dublin BC|30-0
-8|Auckland|16-14
-5|Barcelona|20-10
-4|Warsaw|21-9
-3|Florence|21-9
-6|Naples|19-11
-7|Oslo|18-12
-2|Belfast|22-8
-= Dublin BC 4-0 | Barcelona 4-1 | Naples 4-3 | Belfast 4-0
-= Dublin BC 4-1 | Naples 4-3
+8|Auckland Rovers|16-14
+5|Barcelona Bàsquet|20-10
+4|KS Warszawa|21-9
+3|US Firenze|21-9
+6|Partenope Napoli|19-11
+7|Oslo Idrettslag|18-12
+2|Belfast Athletic|22-8
+= Dublin BC 4-0 | Barcelona Bàsquet 4-1 | Partenope Napoli 4-3 | Belfast Athletic 4-0
+= Dublin BC 4-1 | Partenope Napoli 4-3
 = Dublin BC 4-1
 
 # p057 FBA D2 United League Tournament
@@ -63,30 +63,30 @@ S71
 G:UL
 1|Zagreb Košarka|20-2
 BYE
-5|Johannesburg|12-10
-4|Recife|14-8
+5|Johannesburg Gold|12-10
+4|Atlético Recife|14-8
 3|Liverpool Maritime|15-7
 6|Sydney Harbour|12-10
 BYE
 2|Buenos Aires BC|19-3
-= Zagreb Košarka BYE | Recife 4-2 | Sydney Harbour 4-2 | Buenos Aires BC BYE
+= Zagreb Košarka BYE | Atlético Recife 4-2 | Sydney Harbour 4-2 | Buenos Aires BC BYE
 = Zagreb Košarka 4-2 | Buenos Aires BC 4-1
 = Zagreb Košarka 4-2
 
 # p061 FBA D2 International League Tournament
 S78
 G:IL
-1|Naples|24-6
-8|Warsaw|16-14
-5|Athens|17-13
-4|Oslo|18-12
-3|Barcelona|22-8
-6|Rio De Janeiro|17-13
-7|Edinburgh|16-14
-2|Florence|24-6
-= Naples 4-2 | Athens 4-2 | Barcelona 4-1 | Florence 4-0
-= Naples 4-0 | Barcelona 4-2
-= Barcelona 4-3
+1|Partenope Napoli|24-6
+8|KS Warszawa|16-14
+5|AO Athens|17-13
+4|Oslo Idrettslag|18-12
+3|Barcelona Bàsquet|22-8
+6|Guanabara SC|17-13
+7|Edinburgh Thistle|16-14
+2|US Firenze|24-6
+= Partenope Napoli 4-2 | AO Athens 4-2 | Barcelona Bàsquet 4-1 | US Firenze 4-0
+= Partenope Napoli 4-0 | Barcelona Bàsquet 4-2
+= Barcelona Bàsquet 4-3
 
 # p064 FBA D2 Premier League Tournament
 S69
@@ -107,13 +107,13 @@ G:PL
 S72
 G:UL
 1|Liverpool Maritime|25-5
-8|Manchester|16-14
-5|Rio De Janeiro|21-9
-4|Johannesburg|22-8
+8|Manchester Athletic|16-14
+5|Guanabara SC|21-9
+4|Johannesburg Gold|22-8
 3|Sydney Harbour|24-6
-6|Stockholm|18-12
-7|Lagos|16-14
-2|Recife|24-6
-= Liverpool Maritime 4-3 | Johannesburg 4-0 | Sydney Harbour 4-0 | Recife 4-1
-= Liverpool Maritime 4-2 | Recife 4-2
-= Recife 4-1
+6|Stockholm IF|18-12
+7|Lagos Mariners|16-14
+2|Atlético Recife|24-6
+= Liverpool Maritime 4-3 | Johannesburg Gold 4-0 | Sydney Harbour 4-0 | Atlético Recife 4-1
+= Liverpool Maritime 4-2 | Atlético Recife 4-2
+= Atlético Recife 4-1

@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion",
       "champion": "Salzburg BC",
-      "runnerUp": "Istanbul",
+      "runnerUp": "Istanbul SK",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02312",
@@ -46,13 +46,13 @@
     {
       "group": "AM",
       "teams": [
-        "San Jose"
+        "Deportivo San Jose"
       ]
     },
     {
       "group": "EW",
       "teams": [
-        "Brussels"
+        "Bruxelles BC"
       ]
     },
     {
@@ -64,7 +64,7 @@
     {
       "group": "ES",
       "teams": [
-        "Istanbul",
+        "Istanbul SK",
         "Roma Pallacanestro"
       ]
     }
@@ -76,7 +76,7 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "10-0",
           "seed": 1
         },
@@ -130,7 +130,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "6-4",
           "seed": 13
         },
@@ -148,12 +148,12 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "9-1",
           "seed": 3
         },
         "away": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "6-4",
           "seed": 14
         },
@@ -207,7 +207,7 @@
           "seed": 15
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "10-0",
           "seed": 2
         },
@@ -220,7 +220,7 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "10-0",
           "seed": 1
         },
@@ -256,7 +256,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "9-1",
           "seed": 3
         },
@@ -310,7 +310,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "9-1",
           "seed": 3
         },
@@ -333,7 +333,7 @@
           "seed": 4
         },
         "away": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "9-1",
           "seed": 3
         },

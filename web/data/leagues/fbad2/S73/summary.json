@@ -27,7 +27,7 @@
     {
       "title": "United League Champion",
       "champion": "Paulistano",
-      "runnerUp": "Stockholm",
+      "runnerUp": "Stockholm IF",
       "score": null,
       "group": "UL",
       "finalsMvp": "p02342",
@@ -36,8 +36,8 @@
     },
     {
       "title": "International League Champion",
-      "champion": "Rotterdam",
-      "runnerUp": "Luxembourg",
+      "champion": "Rotterdam United",
+      "runnerUp": "Union Luxembourg",
       "score": null,
       "group": "IL",
       "finalsMvp": "p00396",
@@ -270,7 +270,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Shanghai",
+              "name": "Shanghai Shencheng",
               "record": "17-13",
               "seed": 6
             },
@@ -363,7 +363,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Johannesburg",
+              "name": "Johannesburg Gold",
               "record": "17-13",
               "seed": 8
             },
@@ -375,7 +375,7 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Beijing",
+              "name": "Beijing Capital",
               "record": "18-12",
               "seed": 5
             },
@@ -392,12 +392,12 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "Stockholm",
+              "name": "Stockholm IF",
               "record": "20-10",
               "seed": 3
             },
             "away": {
-              "name": "Rio De Janeiro",
+              "name": "Guanabara SC",
               "record": "17-13",
               "seed": 6
             },
@@ -431,7 +431,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Beijing",
+              "name": "Beijing Capital",
               "record": "18-12",
               "seed": 5
             },
@@ -443,7 +443,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Stockholm",
+              "name": "Stockholm IF",
               "record": "20-10",
               "seed": 3
             },
@@ -465,7 +465,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Stockholm",
+              "name": "Stockholm IF",
               "record": "20-10",
               "seed": 3
             },
@@ -490,7 +490,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Belfast",
+              "name": "Belfast Athletic",
               "record": "15-15",
               "seed": 8
             },
@@ -502,12 +502,12 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Dubai",
+              "name": "Dubai Falcons",
               "record": "20-10",
               "seed": 5
             },
             "away": {
-              "name": "Luxembourg",
+              "name": "Union Luxembourg",
               "record": "20-10",
               "seed": 4
             },
@@ -524,7 +524,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Rotterdam",
+              "name": "Rotterdam United",
               "record": "18-12",
               "seed": 6
             },
@@ -558,7 +558,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Luxembourg",
+              "name": "Union Luxembourg",
               "record": "20-10",
               "seed": 4
             },
@@ -570,7 +570,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "Rotterdam",
+              "name": "Rotterdam United",
               "record": "18-12",
               "seed": 6
             },
@@ -587,12 +587,12 @@
             "id": "R3-1",
             "round": 3,
             "home": {
-              "name": "Luxembourg",
+              "name": "Union Luxembourg",
               "record": "20-10",
               "seed": 4
             },
             "away": {
-              "name": "Rotterdam",
+              "name": "Rotterdam United",
               "record": "18-12",
               "seed": 6
             },

@@ -26,7 +26,7 @@
     {
       "group": "AM",
       "teams": [
-        "San Jose",
+        "Deportivo San Jose",
         "Austin BC"
       ]
     },
@@ -99,7 +99,7 @@
           "seed": 5
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "7-3",
           "seed": 12
         },
@@ -130,12 +130,12 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "9-1",
           "seed": 3
         },
         "away": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "7-3",
           "seed": 14
         },
@@ -153,7 +153,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "9-1",
           "seed": 6
         },
@@ -238,7 +238,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "9-1",
           "seed": 3
         },
@@ -292,7 +292,7 @@
         "id": "R3-2",
         "round": 3,
         "home": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "9-1",
           "seed": 3
         },

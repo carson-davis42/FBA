@@ -116,7 +116,7 @@
             "id": "R1-3",
             "round": 1,
             "home": {
-              "name": "San Jose",
+              "name": "Deportivo San Jose",
               "record": "22-8",
               "seed": 3
             },
@@ -167,7 +167,7 @@
             "id": "R2-2",
             "round": 2,
             "home": {
-              "name": "San Jose",
+              "name": "Deportivo San Jose",
               "record": "22-8",
               "seed": 3
             },
@@ -214,7 +214,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Kiev",
+              "name": "SK Kyiv",
               "record": "14-16",
               "seed": 8
             },
@@ -248,7 +248,7 @@
               "seed": 3
             },
             "away": {
-              "name": "Paris",
+              "name": "Racing Paris",
               "record": "19-11",
               "seed": 6
             },
@@ -349,12 +349,12 @@
             "id": "R1-2",
             "round": 1,
             "home": {
-              "name": "Johannesburg",
+              "name": "Johannesburg Gold",
               "record": "12-10",
               "seed": 5
             },
             "away": {
-              "name": "Recife",
+              "name": "Atlético Recife",
               "record": "14-8",
               "seed": 4
             },
@@ -401,7 +401,7 @@
               "seed": 1
             },
             "away": {
-              "name": "Recife",
+              "name": "Atlético Recife",
               "record": "14-8",
               "seed": 4
             },

@@ -162,7 +162,25 @@
         "variant": 1
       },
       {
+        "file": "AO Athens.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Atlético Lisboa.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Atlético Recife.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Auckland Rovers.png",
         "from": null,
         "to": null,
         "variant": 1
@@ -174,7 +192,31 @@
         "variant": 1
       },
       {
+        "file": "Barcelona Bàsquet.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Beijing Capital.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Belfast Athletic.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Berlin Bären BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Bruxelles BC.png",
         "from": null,
         "to": null,
         "variant": 1
@@ -192,6 +234,12 @@
         "variant": 1
       },
       {
+        "file": "Cairo SC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Club Capital.png",
         "from": null,
         "to": null,
@@ -204,7 +252,19 @@
         "variant": 1
       },
       {
+        "file": "Deportivo San Jose.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Dhaka Sporting.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Dubai Falcons.png",
         "from": null,
         "to": null,
         "variant": 1
@@ -216,7 +276,25 @@
         "variant": 1
       },
       {
+        "file": "Edinburgh Thistle.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Edmonton Aurora.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Frankfurter Turngemeinde.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Glasgow Sporting.png",
         "from": null,
         "to": null,
         "variant": 1
@@ -228,13 +306,43 @@
         "variant": 1
       },
       {
+        "file": "Guanabara SC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Hamburg Hanse.png",
         "from": null,
         "to": null,
         "variant": 1
       },
       {
+        "file": "Istanbul SK.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Johannesburg Gold.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Københavns BK.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "KS Warszawa.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Lagos Mariners.png",
         "from": null,
         "to": null,
         "variant": 1
@@ -247,6 +355,12 @@
       },
       {
         "file": "London Royal.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Manchester Athletic.png",
         "from": null,
         "to": null,
         "variant": 1
@@ -288,7 +402,37 @@
         "variant": 1
       },
       {
+        "file": "Omaha Union.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Osaka BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Oslo Idrettslag.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Partenope Napoli.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Paulistano.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Racing Paris.png",
         "from": null,
         "to": null,
         "variant": 1
@@ -300,7 +444,25 @@
         "variant": 1
       },
       {
+        "file": "Rotterdam United.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Salzburg BC.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Shanghai Shencheng.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "SK Kyiv.png",
         "from": null,
         "to": null,
         "variant": 1
@@ -312,7 +474,19 @@
         "variant": 1
       },
       {
+        "file": "Stockholm IF.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Sydney Harbour.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "Tampa Bay Sporting.png",
         "from": null,
         "to": null,
         "variant": 1
@@ -330,7 +504,19 @@
         "variant": 1
       },
       {
+        "file": "Union Luxembourg.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
         "file": "Union Ottawa.png",
+        "from": null,
+        "to": null,
+        "variant": 1
+      },
+      {
+        "file": "US Firenze.png",
         "from": null,
         "to": null,
         "variant": 1

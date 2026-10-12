@@ -1,14 +1,14 @@
 # p008 FBA D2 Tournament
 S60
 1|Hamburg Hanse|10-0
-16|Brussels|6-4
+16|Bruxelles BC|6-4
 9|Zürich Helvetia|7-3
 8|Pearland|7-3
 5|Amsterdam BC|9-1
-12|Kiev|7-3
-13|Istanbul|5-5
-4|San Jose|8-2
-3|Manchester|10-0
+12|SK Kyiv|7-3
+13|Istanbul SK|5-5
+4|Deportivo San Jose|8-2
+3|Manchester Athletic|10-0
 14|Salzburg BC|6-4
 11|Toronto|7-3
 6|Roma Pallacanestro|9-1
@@ -16,55 +16,55 @@ S60
 10|Sporting Lyon|6-4
 15|Orlando|7-3
 2|Milano BC|10-0
-= Hamburg Hanse 52-40 | Pearland 47-31 | Amsterdam BC 55-34 | San Jose 43-40 | Manchester 70-19 | Roma Pallacanestro 49-29 | Moskovskiy BK 51-41 | Milano BC 61-43
+= Hamburg Hanse 52-40 | Pearland 47-31 | Amsterdam BC 55-34 | Deportivo San Jose 43-40 | Manchester Athletic 70-19 | Roma Pallacanestro 49-29 | Moskovskiy BK 51-41 | Milano BC 61-43
 = Hamburg Hanse 60-49 | Amsterdam BC 55-44 | Roma Pallacanestro 59-54 | Moskovskiy BK 50-49
 = Hamburg Hanse 60-54 | Roma Pallacanestro 59-32
 = Roma Pallacanestro 70-54
 
 # p020 FBA D2 Tournament
 S63
-1|Kiev|10-0
+1|SK Kyiv|10-0
 16|Dublin BC|6-4
 9|Atlético Lisboa|8-2
 8|Vancouver|7-3
-5|Istanbul|8-2
-12|San Jose|6-4
+5|Istanbul SK|8-2
+12|Deportivo San Jose|6-4
 13|Salzburg BC|6-4
-4|Paris|9-1
+4|Racing Paris|9-1
 3|Maine|9-1
 14|Milano BC|7-3
 11|Hamburg Hanse|6-4
 6|Amsterdam BC|8-2
 7|Berlin Bären BC|7-3
-10|Manchester|8-2
+10|Manchester Athletic|8-2
 15|Austin BC|6-4
 2|Roma Pallacanestro|9-1
-= Kiev 35-17 | Atlético Lisboa 37-21 | Istanbul 45-27 | Paris 46-28 | Maine 53-44 | Hamburg Hanse 37-30 | Berlin Bären BC 32-31 | Roma Pallacanestro 41-23
-= Atlético Lisboa 46-42 | Paris 42-30 | Hamburg Hanse 37-34 | Roma Pallacanestro 46-20
-= Paris 43-35 | Roma Pallacanestro 39-30
+= SK Kyiv 35-17 | Atlético Lisboa 37-21 | Istanbul SK 45-27 | Racing Paris 46-28 | Maine 53-44 | Hamburg Hanse 37-30 | Berlin Bären BC 32-31 | Roma Pallacanestro 41-23
+= Atlético Lisboa 46-42 | Racing Paris 42-30 | Hamburg Hanse 37-34 | Roma Pallacanestro 46-20
+= Racing Paris 43-35 | Roma Pallacanestro 39-30
 = Roma Pallacanestro 46-44
 
 # p036 FBA D2 Tournament
 S59
 1|Roma Pallacanestro|10-0
-16|Frankfurt|6-4
+16|Frankfurter Turngemeinde|6-4
 9|Orlando|7-3
-8|Glasgow|8-2
+8|Glasgow Sporting|8-2
 5|Pearland|8-2
 12|Salzburg BC|7-3
-13|Athens|6-4
+13|AO Athens|6-4
 4|Amsterdam BC|9-1
-3|Kiev|9-1
+3|SK Kyiv|9-1
 14|Maine|6-4
-11|Manchester|8-2
+11|Manchester Athletic|8-2
 6|Milano BC|9-1
 7|Hamburg Hanse|8-2
-10|Barcelona|6-4
+10|Barcelona Bàsquet|6-4
 15|Sporting Lyon|6-4
-2|San Jose|10-0
-= Roma Pallacanestro 51-24 | Glasgow 41-37 | Pearland 38-26 | Amsterdam BC 44-41 | Maine 61-52 | Manchester 53-47 | Barcelona 47-36 | San Jose 45-30
-= Roma Pallacanestro 50-30 | Pearland 42-35 | Maine 49-46 | San Jose 46-31
-= Pearland 52-42 | San Jose 50-49
+2|Deportivo San Jose|10-0
+= Roma Pallacanestro 51-24 | Glasgow Sporting 41-37 | Pearland 38-26 | Amsterdam BC 44-41 | Maine 61-52 | Manchester Athletic 53-47 | Barcelona Bàsquet 47-36 | Deportivo San Jose 45-30
+= Roma Pallacanestro 50-30 | Pearland 42-35 | Maine 49-46 | Deportivo San Jose 46-31
+= Pearland 52-42 | Deportivo San Jose 50-49
 = Pearland 52-50
 
 # p039 FBA D2 Tournament
@@ -73,20 +73,20 @@ S66
 16|Dublin BC|7-3
 9|Roma Pallacanestro|8-2
 8|Guadalajara CB|7-3
-5|Istanbul|8-2
-12|Manchester|7-3
+5|Istanbul SK|8-2
+12|Manchester Athletic|7-3
 13|Berlin Bären BC|6-4
-4|San Jose|8-2
-3|Brussels|9-1
+4|Deportivo San Jose|8-2
+3|Bruxelles BC|9-1
 14|Atlético Lisboa|6-4
-11|Tampa|7-3
+11|Tampa Bay Sporting|7-3
 6|Münchner BC|8-2
 7|Amsterdam BC|9-1
 10|Moskovskiy BK|6-4
 15|Toronto|6-4
 2|Milano BC|9-1
-= Salzburg BC 47-35 | Roma Pallacanestro 43-31 | Istanbul 54-53 | Berlin Bären BC 44-42 | Brussels 41-34 | Münchner BC 45-26 | Moskovskiy BK 46-41 | Milano BC 44-27
-= Salzburg BC 45-43 | Istanbul 45-32 | Münchner BC 53-45 | Milano BC 43-40
+= Salzburg BC 47-35 | Roma Pallacanestro 43-31 | Istanbul SK 54-53 | Berlin Bären BC 44-42 | Bruxelles BC 41-34 | Münchner BC 45-26 | Moskovskiy BK 46-41 | Milano BC 44-27
+= Salzburg BC 45-43 | Istanbul SK 45-32 | Münchner BC 53-45 | Milano BC 43-40
 = Salzburg BC 49-40 | Milano BC 45-43
 = Milano BC 43-35
 
@@ -98,17 +98,17 @@ S61
 8|Austin BC|7-3
 5|Dublin BC|7-3
 12|Milano BC|8-2
-13|Kiev|6-4
+13|SK Kyiv|6-4
 4|Maine|8-2
 3|Hamburg Hanse|9-1
 14|Sporting Lyon|6-4
 11|Club Capital|6-4
 6|Roma Pallacanestro|9-1
 7|Moskovskiy BK|8-2
-10|Manchester|7-3
+10|Manchester Athletic|7-3
 15|Toronto|6-4
 2|Club Madrid|9-1
-= Amsterdam BC 52-44 | Austin BC 38-35 | Milano BC 45-44 | Kiev 45-44 | Hamburg Hanse 60-52 | Roma Pallacanestro 38-23 | Manchester 51-41 | Club Madrid 61-20
+= Amsterdam BC 52-44 | Austin BC 38-35 | Milano BC 45-44 | SK Kyiv 45-44 | Hamburg Hanse 60-52 | Roma Pallacanestro 38-23 | Manchester Athletic 51-41 | Club Madrid 61-20
 = Austin BC 39-38 | Milano BC 49-28 | Hamburg Hanse 62-52 | Club Madrid 59-18
 = Austin BC 48-38 | Hamburg Hanse 46-42
 = Austin BC 70-69
@@ -116,24 +116,24 @@ S61
 # p063 FBA D2 Tournament
 S58
 1|Wien SV|10-0
-16|Paris|6-4
+16|Racing Paris|6-4
 9|Roma Pallacanestro|8-2
 8|Orlando|8-2
 5|Milano BC|8-2
-12|San Jose|8-2
-13|Kiev|6-4
-4|Glasgow|9-1
-3|Athens|9-1
+12|Deportivo San Jose|8-2
+13|SK Kyiv|6-4
+4|Glasgow Sporting|9-1
+3|AO Athens|9-1
 14|Maine|6-4
-11|Manchester|7-3
+11|Manchester Athletic|7-3
 6|Hamburg Hanse|8-2
 7|London Royal|8-2
-10|Frankfurt|7-3
-15|Istanbul|6-4
+10|Frankfurter Turngemeinde|7-3
+15|Istanbul SK|6-4
 2|Toronto|9-1
-= Wien SV 43-31 | Orlando 34-33 | Milano BC 40-39 | Glasgow 55-54 | Athens 39-20 | Manchester 40-38 | Frankfurt 26-19 | Toronto 50-19
-= Wien SV 39-16 | Milano BC 53-36 | Athens 52-49 | Toronto 28-27
-= Milano BC 63-53 | Athens 36-34
+= Wien SV 43-31 | Orlando 34-33 | Milano BC 40-39 | Glasgow Sporting 55-54 | AO Athens 39-20 | Manchester Athletic 40-38 | Frankfurter Turngemeinde 26-19 | Toronto 50-19
+= Wien SV 39-16 | Milano BC 53-36 | AO Athens 52-49 | Toronto 28-27
+= Milano BC 63-53 | AO Athens 36-34
 = Milano BC 49-37
 
 # p055 FBA D2 Tournament

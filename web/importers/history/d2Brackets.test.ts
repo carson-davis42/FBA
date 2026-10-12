@@ -11,8 +11,16 @@ const entries = data as unknown as Entry[];
 const ALLOWED_MISMATCH: string[] = [];
 /** Pages with no summary.json (the page prints S54, which has none). */
 const NO_SUMMARY: string[] = ['S54'];
-/** Old pages print team nicknames ("San Jose Express"); summaries use the city. */
-const sameTeam = (page: string, city: string) => normName(page) === normName(city) || normName(page).startsWith(normName(city) + ' ');
+/**
+ * Old pages print team nicknames ("San Jose Express"); summaries use the city or, once a club is renamed after its logo, the full
+ * name ("Deportivo San Jose"), which holds the page's city.
+ */
+const sameTeam = (page: string, city: string) => {
+  const p = normName(page);
+  const c = normName(city);
+  const pageCity = p.split(' ').slice(0, -1).join(' ');
+  return p === c || p.startsWith(c + ' ') || c.includes(p) || (pageCity !== '' && c.includes(pageCity));
+};
 /** League champions (season + group) in summaries whose bracket page is not among the scanned pages. */
 const NO_PAGE: string[] = [];
 const ORDER = ['PL', 'WL', 'UL', 'IL'];

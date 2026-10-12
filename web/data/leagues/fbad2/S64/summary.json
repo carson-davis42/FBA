@@ -58,7 +58,7 @@
     {
       "group": "EE",
       "teams": [
-        "Kiev",
+        "SK Kyiv",
         "Münchner BC"
       ]
     },
@@ -81,7 +81,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "5-5",
           "seed": 16
         },
@@ -148,12 +148,12 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "9-1",
           "seed": 3
         },
         "away": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "6-4",
           "seed": 14
         },
@@ -171,7 +171,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Glasgow",
+          "name": "Glasgow Sporting",
           "record": "8-2",
           "seed": 6
         },
@@ -184,7 +184,7 @@
         "id": "R1-7",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 7
         },
@@ -256,7 +256,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Kiev",
+          "name": "SK Kyiv",
           "record": "9-1",
           "seed": 3
         },
@@ -274,7 +274,7 @@
         "id": "R2-4",
         "round": 2,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 7
         },
@@ -315,7 +315,7 @@
           "seed": 11
         },
         "away": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 7
         },

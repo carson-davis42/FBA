@@ -46,13 +46,13 @@
     {
       "group": "AM",
       "teams": [
-        "San Jose"
+        "Deportivo San Jose"
       ]
     },
     {
       "group": "EW",
       "teams": [
-        "Brussels",
+        "Bruxelles BC",
         "Amsterdam BC"
       ]
     },
@@ -112,12 +112,12 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 5
         },
         "away": {
-          "name": "Manchester",
+          "name": "Manchester Athletic",
           "record": "7-3",
           "seed": 12
         },
@@ -135,7 +135,7 @@
           "seed": 13
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "8-2",
           "seed": 4
         },
@@ -148,7 +148,7 @@
         "id": "R1-5",
         "round": 1,
         "home": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "9-1",
           "seed": 3
         },
@@ -166,7 +166,7 @@
         "id": "R1-6",
         "round": 1,
         "home": {
-          "name": "Tampa",
+          "name": "Tampa Bay Sporting",
           "record": "7-3",
           "seed": 11
         },
@@ -238,7 +238,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 5
         },
@@ -256,7 +256,7 @@
         "id": "R2-3",
         "round": 2,
         "home": {
-          "name": "Brussels",
+          "name": "Bruxelles BC",
           "record": "9-1",
           "seed": 3
         },
@@ -297,7 +297,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 5
         },

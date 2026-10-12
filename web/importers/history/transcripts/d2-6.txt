@@ -2,14 +2,14 @@
 S74
 G:UL
 1|Miami BC|30-0
-8|Johannesburg|16-14
-5|Manchester|21-9
+8|Johannesburg Gold|16-14
+5|Manchester Athletic|21-9
 4|Moskovskiy BK|21-9
 3|Union Casablanca|25-5
 6|Nevskiy|16-14
-7|Beijing|16-14
+7|Beijing Capital|16-14
 2|Sydney Harbour|25-5
-= Miami BC 4-0 | Manchester 4-0 | Union Casablanca 4-3 | Sydney Harbour 4-3
+= Miami BC 4-0 | Manchester Athletic 4-0 | Union Casablanca 4-3 | Sydney Harbour 4-3
 = Miami BC 4-1 | Sydney Harbour 4-3
 = Miami BC 4-3
 
@@ -17,14 +17,14 @@ G:UL
 S76
 G:UL
 1|Union Casablanca|24-6
-8|Manchester|14-16
-5|Brussels|18-12
-4|Paris|18-12
+8|Manchester Athletic|14-16
+5|Bruxelles BC|18-12
+4|Racing Paris|18-12
 3|Moskovskiy BK|21-9
-6|Dubai|17-13
+6|Dubai Falcons|17-13
 7|Københavns BK|17-13
 2|Nevskiy|22-8
-= Union Casablanca 4-0 | Paris 4-3 | Moskovskiy BK 4-1 | Nevskiy 4-0
+= Union Casablanca 4-0 | Racing Paris 4-3 | Moskovskiy BK 4-1 | Nevskiy 4-0
 = Union Casablanca 4-1 | Moskovskiy BK 4-0
 = Union Casablanca 4-2
 
@@ -35,13 +35,13 @@ G:WL
 BYE
 5|Austin BC|12-10
 4|Zürich Helvetia|15-7
-3|Paris|17-5
-6|Athens|12-10
+3|Racing Paris|17-5
+6|AO Athens|12-10
 BYE
 2|Vancouver|17-5
-= Club Madrid BYE | Austin BC 4-2 | Paris 4-1 | Vancouver BYE
-= Austin BC 4-3 | Paris 4-1
-= Paris 4-1
+= Club Madrid BYE | Austin BC 4-2 | Racing Paris 4-1 | Vancouver BYE
+= Austin BC 4-3 | Racing Paris 4-1
+= Racing Paris 4-1
 
 # p103 FBA D2 World League Tournament
 S77
@@ -62,8 +62,8 @@ G:WL
 S68
 G:WL
 1|Amsterdam BC|12-2
-4|Paris|7-7
-3|Istanbul|8-6
+4|Racing Paris|7-7
+3|Istanbul SK|8-6
 2|Münchner BC|11-3
 = Amsterdam BC 4-0 | Münchner BC 4-0
 = Amsterdam BC 4-2
@@ -75,11 +75,11 @@ G:PL
 8|Milano BC|18-12
 5|Atlético Lisboa|20-10
 4|Roma Pallacanestro|21-9
-3|San Jose|22-8
+3|Deportivo San Jose|22-8
 6|Vancouver|19-11
 7|Toronto|19-11
 2|Club Madrid|22-8
-= Hamburg Hanse 4-2 | Atlético Lisboa 4-3 | San Jose 4-1 | Club Madrid 4-1
+= Hamburg Hanse 4-2 | Atlético Lisboa 4-3 | Deportivo San Jose 4-1 | Club Madrid 4-1
 = Hamburg Hanse 4-3 | Club Madrid 4-3
 = Hamburg Hanse 4-1
 
@@ -87,23 +87,23 @@ G:PL
 S73
 G:IL
 1|Union Casablanca|22-8
-8|Belfast|15-15
-5|Dubai|20-10
-4|Luxembourg|20-10
+8|Belfast Athletic|15-15
+5|Dubai Falcons|20-10
+4|Union Luxembourg|20-10
 3|Mumbai BC|20-10
-6|Rotterdam|18-12
+6|Rotterdam United|18-12
 7|Dhaka Sporting|17-13
 2|Nevskiy|22-8
-= Union Casablanca 4-1 | Luxembourg 4-1 | Rotterdam 4-2 | Dhaka Sporting 4-0
-= Luxembourg 4-1 | Rotterdam 4-3
-= Rotterdam 4-2
+= Union Casablanca 4-1 | Union Luxembourg 4-1 | Rotterdam United 4-2 | Dhaka Sporting 4-0
+= Union Luxembourg 4-1 | Rotterdam United 4-3
+= Rotterdam United 4-2
 
 # p117 FBA D2 United League Tournament
 S69
 G:UL
 1|Club Madrid|12-2
 4|Club Capital|8-6
-3|Barcelona|10-4
+3|Barcelona Bàsquet|10-4
 2|Vancouver|12-2
 = Club Capital 4-2 | Vancouver 4-1
 = Vancouver 4-2

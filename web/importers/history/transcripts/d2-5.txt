@@ -2,22 +2,22 @@
 S74
 G:IL
 1|Dhaka Sporting|28-2
-8|Frankfurt|13-17
-5|Florence|23-7
-4|Belfast|24-6
+8|Frankfurter Turngemeinde|13-17
+5|US Firenze|23-7
+4|Belfast Athletic|24-6
 3|Mumbai BC|24-6
-6|Edinburgh|19-11
-7|Kiev|17-13
-2|Osaka|26-4
-= Dhaka Sporting 4-3 | Belfast 4-3 | Mumbai BC 4-1 | Osaka 4-2
-= Belfast 4-2 | Osaka 4-3
-= Osaka 4-0
+6|Edinburgh Thistle|19-11
+7|SK Kyiv|17-13
+2|Osaka BC|26-4
+= Dhaka Sporting 4-3 | Belfast Athletic 4-3 | Mumbai BC 4-1 | Osaka BC 4-2
+= Belfast Athletic 4-2 | Osaka BC 4-3
+= Osaka BC 4-0
 
 # p074 FBA D2 Premier League Tournament
 S70
 G:PL
 1|Hamburg Hanse|24-6
-8|Glasgow|16-14
+8|Glasgow Sporting|16-14
 5|Milano BC|20-10
 4|Toronto|21-9
 3|Münchner BC|21-9
@@ -32,29 +32,29 @@ G:PL
 S75
 G:WL
 1|Guadalajara CB|28-2
-8|Shanghai|16-14
+8|Shanghai Shencheng|16-14
 5|Liverpool Maritime|22-8
 4|Miami BC|22-8
 3|Paulistano|26-4
 6|Amsterdam BC|21-9
 7|Hamburg Hanse|18-12
-2|Recife|26-4
-= Guadalajara CB 4-0 | Miami BC 4-2 | Amsterdam BC 4-2 | Recife 4-0
-= Guadalajara CB 4-1 | Recife 4-1
-= Recife 4-2
+2|Atlético Recife|26-4
+= Guadalajara CB 4-0 | Miami BC 4-2 | Amsterdam BC 4-2 | Atlético Recife 4-0
+= Guadalajara CB 4-1 | Atlético Recife 4-1
+= Atlético Recife 4-2
 
 # p077 FBA D2 United League Tournament
 S77
 G:UL
 1|Mumbai BC|26-4
-8|Johannesburg|13-17
-5|Paris|22-8
+8|Johannesburg Gold|13-17
+5|Racing Paris|22-8
 4|Moskovskiy BK|23-7
-3|Kiev|24-6
-6|Brussels|19-11
-7|Manchester|14-16
+3|SK Kyiv|24-6
+6|Bruxelles BC|19-11
+7|Manchester Athletic|14-16
 2|Københavns BK|25-5
-= Mumbai BC 4-3 | Paris 4-1 | Brussels 4-1 | Københavns BK 4-1
+= Mumbai BC 4-3 | Racing Paris 4-1 | Bruxelles BC 4-1 | Københavns BK 4-1
 = Mumbai BC 4-2 | Københavns BK 4-0
 = Mumbai BC 4-2
 
@@ -64,12 +64,12 @@ G:PL
 1|Roma Pallacanestro|25-5
 8|Hamburg Hanse|18-12
 5|Berlin Bären BC|20-10
-4|Manchester|22-8
+4|Manchester Athletic|22-8
 3|Salzburg BC|23-7
-6|Tampa|19-11
+6|Tampa Bay Sporting|19-11
 7|Atlético Lisboa|18-12
 2|Toronto|24-6
-= Roma Pallacanestro 4-1 | Manchester 4-3 | Tampa 4-2 | Toronto 4-1
+= Roma Pallacanestro 4-1 | Manchester Athletic 4-3 | Tampa Bay Sporting 4-2 | Toronto 4-1
 = Roma Pallacanestro 4-1 | Toronto 4-3
 = Toronto 4-3
 
@@ -77,11 +77,11 @@ G:PL
 S71
 G:WL
 1|Austin BC|28-2
-8|Kiev|14-16
+8|SK Kyiv|14-16
 5|Club Capital|20-10
 4|London Royal|20-10
 3|Wien SV|21-9
-6|Paris|19-11
+6|Racing Paris|19-11
 7|Københavns BK|15-15
 2|Tokyo BC|24-6
 = Austin BC 4-0 | London Royal 4-3 | Wien SV 4-2 | Tokyo BC 4-1
@@ -91,12 +91,12 @@ G:WL
 # p091 FBA D2 World League Tournament
 S69
 G:WL
-1|Glasgow|11-3
+1|Glasgow Sporting|11-3
 4|Austin BC|8-6
 3|Zürich Helvetia|9-5
-2|Istanbul|10-4
-= Glasgow 4-1 | Zürich Helvetia 4-2
-= Glasgow 4-0
+2|Istanbul SK|10-4
+= Glasgow Sporting 4-1 | Zürich Helvetia 4-2
+= Glasgow Sporting 4-0
 
 # p092 FBA D2 World League Tournament
 S72
@@ -105,10 +105,10 @@ G:WL
 8|Sporting Lyon|18-12
 5|Københavns BK|20-10
 4|London Royal|21-9
-3|Shanghai|21-9
+3|Shanghai Shencheng|21-9
 6|Wien SV|20-10
 7|Guadalajara CB|18-12
 2|Buenos Aires BC|23-7
-= Sporting Lyon 4-2 | London Royal 4-3 | Shanghai 4-1 | Buenos Aires BC 4-2
+= Sporting Lyon 4-2 | London Royal 4-3 | Shanghai Shencheng 4-1 | Buenos Aires BC 4-2
 = London Royal 4-3 | Buenos Aires BC 4-2
 = Buenos Aires BC 4-2

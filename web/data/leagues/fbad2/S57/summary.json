@@ -7,7 +7,7 @@
     {
       "title": "D2 International Champion",
       "champion": "Wien SV",
-      "runnerUp": "Frankfurt",
+      "runnerUp": "Frankfurter Turngemeinde",
       "score": null,
       "group": "D2",
       "finalsMvp": "p02147",
@@ -27,7 +27,7 @@
       "group": "AM",
       "teams": [
         "Toronto",
-        "San Jose"
+        "Deportivo San Jose"
       ]
     },
     {
@@ -57,12 +57,12 @@
         "id": "R1-1",
         "round": 1,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "7-3",
           "seed": null
         },
         "away": {
-          "name": "San Jose",
+          "name": "Deportivo San Jose",
           "record": "8-2",
           "seed": null
         },
@@ -75,7 +75,7 @@
         "id": "R1-2",
         "round": 1,
         "home": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "8-2",
           "seed": null
         },
@@ -129,12 +129,12 @@
         "id": "R2-1",
         "round": 2,
         "home": {
-          "name": "Athens",
+          "name": "AO Athens",
           "record": "7-3",
           "seed": null
         },
         "away": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "8-2",
           "seed": null
         },
@@ -165,7 +165,7 @@
         "id": "R3-1",
         "round": 3,
         "home": {
-          "name": "Frankfurt",
+          "name": "Frankfurter Turngemeinde",
           "record": "8-2",
           "seed": null
         },

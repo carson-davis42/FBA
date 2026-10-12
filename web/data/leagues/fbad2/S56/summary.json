@@ -6,7 +6,7 @@
   "champions": [
     {
       "title": "D2 International Champion",
-      "champion": "Istanbul",
+      "champion": "Istanbul SK",
       "runnerUp": "Roma Pallacanestro",
       "score": null,
       "group": "D2",
@@ -26,7 +26,7 @@
     {
       "group": "AM",
       "teams": [
-        "San Jose"
+        "Deportivo San Jose"
       ]
     },
     {
@@ -38,7 +38,7 @@
     {
       "group": "EE",
       "teams": [
-        "Kiev"
+        "SK Kyiv"
       ]
     },
     {
@@ -91,7 +91,7 @@
         "id": "R1-3",
         "round": 1,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 3
         },
@@ -109,7 +109,7 @@
         "id": "R1-4",
         "round": 1,
         "home": {
-          "name": "Paris",
+          "name": "Racing Paris",
           "record": "6-4",
           "seed": 7
         },
@@ -145,7 +145,7 @@
         "id": "R2-2",
         "round": 2,
         "home": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 3
         },
@@ -168,7 +168,7 @@
           "seed": 1
         },
         "away": {
-          "name": "Istanbul",
+          "name": "Istanbul SK",
           "record": "8-2",
           "seed": 3
         },
