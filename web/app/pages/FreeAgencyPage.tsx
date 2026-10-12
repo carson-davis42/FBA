@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { teamsInSeason } from '../../engine/shared/teams';
 import { useParams } from 'react-router-dom';
 import { marketRows, type MarketType, openPositions } from '../../engine/roster/market';
 import { closeFreeAgency, freeAgencyBlockers } from '../../engine/roster/moves';
@@ -66,7 +67,9 @@ export function FreeAgencyPage() {
   const { league = '' } = useParams();
   const { state, versions, error } = useRosterState();
   const phase = useSeasonPhase();
-  const { data: teams } = useDoc<TeamsFile>('leagues/fba/teams.json');
+  const { data: rawTeams } = useDoc<TeamsFile>('leagues/fba/teams.json');
+  const stateSeason = state?.season;
+  const teams = useMemo(() => (rawTeams && stateSeason !== undefined ? teamsInSeason(rawTeams, stateSeason) : undefined), [rawTeams, stateSeason]);
   const { data: cal, version: calVersion } = useDoc<CalendarFile>('calendar.json');
   const [pos, setPos] = useState<Position | 'ALL'>('ALL');
   const [type, setType] = useState<MarketType | 'ALL'>('ALL');

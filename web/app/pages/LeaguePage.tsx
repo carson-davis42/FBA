@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { groupLabel, isLeagueId, LEAGUE_LABEL, orderGroups } from '../../engine/shared/leagues';
+import { teamsInSeason } from '../../engine/shared/teams';
 import type { MetaFile, RostersFile, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
 import { useWcRosters } from '../wc/useWcRosters';
@@ -15,9 +17,10 @@ export function LeaguePage() {
   const valid = isLeagueId(league);
   const isWc = league === 'fbawc';
   const { data: meta } = useDoc<MetaFile>(valid ? 'meta.json' : null);
-  const { data: teams, error } = useDoc<TeamsFile>(valid ? `leagues/${league}/teams.json` : null);
+  const { data: rawTeams, error } = useDoc<TeamsFile>(valid ? `leagues/${league}/teams.json` : null);
   const wc = useWcRosters(isWc);
   const season = valid && meta ? (isWc ? wc.season : meta.rosterSeason[league]) : undefined;
+  const teams = useMemo(() => (rawTeams && season !== undefined ? teamsInSeason(rawTeams, season) : undefined), [rawTeams, season]);
   const { data: plainRosters } = useDoc<RostersFile>(season === undefined || isWc ? null : `leagues/${league}/S${season}/rosters.json`);
   const rosters = isWc ? wc.rosters ?? undefined : plainRosters;
 

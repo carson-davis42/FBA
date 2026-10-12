@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { teamsInSeason } from '../../engine/shared/teams';
 import { Link, useParams } from 'react-router-dom';
 import { releasePlayer } from '../../engine/roster/moves';
 import { isExpired, payroll } from '../../engine/roster/rules';
@@ -30,10 +31,11 @@ export function TeamPage() {
   const valid = isLeagueId(league);
   const isWc = league === 'fbawc';
   const { data: meta } = useDoc<MetaFile>(valid ? 'meta.json' : null);
-  const { data: teams } = useDoc<TeamsFile>(valid ? `leagues/${league}/teams.json` : null);
+  const { data: rawTeams } = useDoc<TeamsFile>(valid ? `leagues/${league}/teams.json` : null);
   const { data: players } = useDoc<PlayersFile>(valid ? 'players.json' : null);
   const wc = useWcRosters(isWc);
   const season = valid && meta ? (isWc ? wc.season : meta.rosterSeason[league]) : undefined;
+  const teams = useMemo(() => (rawTeams && season !== undefined ? teamsInSeason(rawTeams, season) : undefined), [rawTeams, season]);
   const { data: plainRosters } = useDoc<RostersFile>(season === undefined || isWc ? null : `leagues/${league}/S${season}/rosters.json`);
   const rosters = isWc ? wc.rosters ?? undefined : plainRosters;
   const seasonal = (league === 'fba' || league === 'fbad2') && season !== undefined;
@@ -42,7 +44,8 @@ export function TeamPage() {
   const editable = (league === 'fba' || league === 'fbad2') && meta !== undefined && season === meta.currentSeason && rosters?.locked === false;
   const { state, versions } = useRosterState();
   const phase = useSeasonPhase();
-  const { data: fbaTeams } = useDoc<TeamsFile>(editable ? 'leagues/fba/teams.json' : null);
+  const { data: rawFbaTeams } = useDoc<TeamsFile>(editable ? 'leagues/fba/teams.json' : null);
+  const fbaTeams = useMemo(() => (rawFbaTeams && season !== undefined ? teamsInSeason(rawFbaTeams, season) : undefined), [rawFbaTeams, season]);
   const [pending, setPending] = useState<{ playerId: string; kind: 'released' | 'cut' } | null>(null);
   const [editing, setEditing] = useState<string | null>(null);
   const [extending, setExtending] = useState<string | null>(null);

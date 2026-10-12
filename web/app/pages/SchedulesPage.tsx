@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { teamsInSeason } from '../../engine/shared/teams';
 import { makeSchedules, scheduleStepProblem } from '../../engine/season/moves';
 import { gameDays } from '../../engine/season/schedule';
 import type { CalendarFile, MetaFile, ResultsFile, ScheduleFile, TeamsFile } from '../../engine/shared/types';
@@ -23,6 +24,8 @@ export function SchedulesPage() {
   const d2Sched = useDoc<ScheduleFile>(p('fbad2', 'schedule'));
   const d2Res = useDoc<ResultsFile>(p('fbad2', 'results'));
   const [message, setMessage] = useState('');
+  const fbaIn = useMemo(() => (fbaTeams.data && season !== undefined ? teamsInSeason(fbaTeams.data, season) : undefined), [fbaTeams.data, season]);
+  const d2In = useMemo(() => (d2Teams.data && season !== undefined ? teamsInSeason(d2Teams.data, season) : undefined), [d2Teams.data, season]);
 
   const required = [meta, cal, fbaTeams, d2Teams];
   const optional = [fbaSched, fbaRes, d2Sched, d2Res];
@@ -30,12 +33,12 @@ export function SchedulesPage() {
   if (error) {
     return <p className="error">{error.message}</p>;
   }
-  if (season === undefined || !cal.data || !fbaTeams.data || !d2Teams.data || optional.some(d => !d.data && !d.missing)) {
+  if (season === undefined || !cal.data || !fbaIn || !d2In || optional.some(d => !d.data && !d.missing)) {
     return <p className="muted">Loading…</p>;
   }
   const leagues = [
-    { league: 'fba' as const, teams: fbaTeams.data, schedule: fbaSched.data ?? null, results: fbaRes.data ?? null },
-    { league: 'fbad2' as const, teams: d2Teams.data, schedule: d2Sched.data ?? null, results: d2Res.data ?? null },
+    { league: 'fba' as const, teams: fbaIn, schedule: fbaSched.data ?? null, results: fbaRes.data ?? null },
+    { league: 'fbad2' as const, teams: d2In, schedule: d2Sched.data ?? null, results: d2Res.data ?? null },
   ];
   const played = leagues.reduce((n, l) => n + (l.results?.games.length ?? 0), 0);
   const exists = leagues.some(l => l.schedule);

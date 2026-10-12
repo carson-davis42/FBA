@@ -45,6 +45,26 @@ describe('makeSchedules', () => {
     expect(cal.steps.find(s => s.id === 'make-s79-schedules')!.done).toBe(true);
   });
 
+  it('schedules only the teams in the season when the file holds teams joining later', () => {
+    const badge = { bg: 'hsl(1 55% 36%)', fg: '#ffffff' };
+    const mk = (id: string, group: string, fromSeason?: number) => ({ teamId: id, name: id, abbr: id, group, logoFolder: null, badge, ...(fromSeason ? { fromSeason } : {}) });
+    const base = Array.from({ length: 30 }, (_, k) => mk(`T${k}`, k < 15 ? 'East' : 'West'));
+    const teams = { league: 'fba' as const, teams: [...base, mk('PHI', 'East', 80), mk('LAL', 'West', 80)] };
+    const f = fbaSeasonState();
+    const d = d2SeasonState();
+    const run = (season: number) => {
+      const cal = { season, steps: [{ id: `make-s${season}-schedules`, label: `Make S${season} Schedules`, kind: 'offseason' as const, league: null, sub: false, done: false }] };
+      const r = makeSchedules({ season, calendar: cal, fba: { teams, schedule: null, results: null }, fbad2: { teams: d.teams, schedule: null, results: null } }, mulberry32(4));
+      if (!r.ok) throw new Error(r.problems.join('; '));
+      return (r.writes[0].doc as { games: { home: string; away: string }[] }).games;
+    };
+    const g79 = run(79);
+    expect(new Set(g79.flatMap(g => [g.home, g.away])).size).toBe(30);
+    const g80 = run(80);
+    expect(new Set(g80.flatMap(g => [g.home, g.away])).size).toBe(32);
+    expect(g80).toHaveLength((32 * 92) / 2);
+  });
+
   it('re-rolls only while no games are played', () => {
     const i = input();
     const f = fbaSeasonState();

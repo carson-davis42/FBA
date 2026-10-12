@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { isLeagueId, LEAGUE_LABEL } from '../../engine/shared/leagues';
+import { teamsInSeason } from '../../engine/shared/teams';
 import type { MetaFile, PlayersFile, TeamsFile, TransactionsFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
 import { linkTransactionLine, uniqueNameIndex } from '../components/LinkedPlayers';
@@ -12,7 +14,9 @@ export function TransactionsPage() {
   const valid = isLeagueId(league);
   const { data: meta } = useDoc<MetaFile>(valid ? 'meta.json' : null);
   const { data: tx, error } = useDoc<TransactionsFile>(valid && meta ? `leagues/${league}/S${meta.currentSeason}/transactions.json` : null);
-  const { data: teams } = useDoc<TeamsFile>(valid ? `leagues/${league}/teams.json` : null);
+  const { data: rawTeams } = useDoc<TeamsFile>(valid ? `leagues/${league}/teams.json` : null);
+  const currentSeason = meta?.currentSeason;
+  const teams = useMemo(() => (rawTeams && currentSeason !== undefined ? teamsInSeason(rawTeams, currentSeason) : rawTeams), [rawTeams, currentSeason]);
   const { data: players } = useDoc<PlayersFile>(valid ? 'players.json' : null);
   if (!valid) return <p className="error">Unknown league "{league}".</p>;
   if (error) return <p className="muted">No transactions yet this season.</p>;

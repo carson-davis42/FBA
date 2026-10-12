@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { teamsInSeason } from '../../engine/shared/teams';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { futureSeasons, owedFrom, pickLabel } from '../../engine/roster/picks';
 import { makeTrade, type TradeAsset } from '../../engine/roster/trade';
@@ -34,7 +35,9 @@ export function TradePage() {
   const { state, versions, error } = useRosterState();
   const lg = 'fba';
   const phase = useSeasonPhase();
-  const { data: teams } = useDoc<TeamsFile>(`leagues/${lg}/teams.json`);
+  const { data: rawTeams } = useDoc<TeamsFile>(`leagues/${lg}/teams.json`);
+  const stateSeason = state?.season;
+  const teams = useMemo(() => (rawTeams && stateSeason !== undefined ? teamsInSeason(rawTeams, stateSeason) : undefined), [rawTeams, stateSeason]);
   const [teamIds, setTeamIds] = useState<string[]>(search.get('team') ? [search.get('team')!] : []);
   const [assets, setAssets] = useState<TradeAsset[]>([]);
   const [pickOpts, setPickOpts] = useState<Record<string, { kind: Kind; n: number; text: string; betterTo: string }>>({});

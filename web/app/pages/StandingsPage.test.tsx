@@ -32,6 +32,19 @@ describe('StandingsPage', () => {
     expect(east[1]).toContain('BOS Club');
   });
 
+  it('ignores teams that join in a later season', async () => {
+    const s = fbaSeasonState();
+    const badge = s.teams.teams[0].badge;
+    const teams = { ...s.teams, teams: [...s.teams.teams,
+      { teamId: 'T32', name: 'Team 32', abbr: 'T32', group: 'East', logoFolder: null, badge, fromSeason: 80 },
+      { teamId: 'PHI', name: 'Philly Phantoms', abbr: 'PHI', group: 'West', logoFolder: null, badge, fromSeason: 80 }] };
+    stubApi(seasonDocs({ ...s, teams }));
+    renderAt('/league/fba/standings');
+    await screen.findAllByRole('table');
+    expect(screen.queryByText(/Team 32/)).toBeNull();
+    expect(screen.queryByText(/Philly Phantoms/)).toBeNull();
+  });
+
   it('shows one table per D2 league', async () => {
     stubApi(seasonDocs(d2SeasonState()));
     renderAt('/league/fbad2/standings');

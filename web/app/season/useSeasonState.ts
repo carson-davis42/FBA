@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+import { teamsInSeason } from '../../engine/shared/teams';
 import type { SeasonLeague } from '../../engine/season/schedule';
 import { nextPause, seasonDocPath, type SeasonDocKey, type SeasonState } from '../../engine/season/state';
 import type {
@@ -13,6 +15,7 @@ export function useSeasonState(league: SeasonLeague | null): { state?: SeasonSta
   const at = (key: SeasonDocKey) => (on ? seasonDocPath(key, league, season) : null);
   const teams = useDoc<TeamsFile>(league ? `leagues/${league}/teams.json` : null);
   const rosters = useDoc<RostersFile>(at('rosters'));
+  const seasonTeams = useMemo(() => (teams.data && season !== undefined ? teamsInSeason(teams.data, season) : undefined), [teams.data, season]);
   const players = useDoc<PlayersFile>(on ? 'players.json' : null);
   const calendar = useDoc<CalendarFile>(at('calendar'));
   const tx = useDoc<TransactionsFile>(at('tx'));
@@ -41,13 +44,13 @@ export function useSeasonState(league: SeasonLeague | null): { state?: SeasonSta
   const required: DocState<unknown>[] = [meta, teams, rosters, players, calendar, tx];
   const optional: DocState<unknown>[] = [schedule, results, playoffs, awards, summary, ...(league === 'fba' ? [allstar] : []), ...(pausePath ? [ratingPause] : [])];
   const error = required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
-  if (!on || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { versions, error, reload };
+  if (!on || required.some(d => !d.data) || !seasonTeams || optional.some(d => !d.data && !d.missing)) return { versions, error, reload };
   return {
     versions,
     reload,
     state: {
       league, season,
-      teams: teams.data!, rosters: rosters.data!, players: players.data!, calendar: calendar.data!, tx: tx.data!,
+      teams: seasonTeams!, rosters: rosters.data!, players: players.data!, calendar: calendar.data!, tx: tx.data!,
       schedule: schedule.data ?? null, results: results.data ?? null, playoffs: playoffs.data ?? null,
       awards: awards.data ?? null,
       summary: summary.data ?? null,
