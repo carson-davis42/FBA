@@ -12,7 +12,8 @@
       "group": "PL",
       "finalsMvp": "p02332",
       "teamId": "BUD",
-      "runnerUpId": "LON"
+      "runnerUpId": "LON",
+      "date": "2025-11-03"
     },
     {
       "title": "World League Champion",
@@ -21,7 +22,8 @@
       "score": null,
       "group": "WL",
       "finalsMvp": "p02329",
-      "runnerUpId": "ROME"
+      "runnerUpId": "ROME",
+      "date": "2025-11-03"
     },
     {
       "title": "United League Champion",
@@ -31,7 +33,8 @@
       "group": "UL",
       "finalsMvp": "p02308",
       "teamId": "CAS",
-      "runnerUpId": "MOS"
+      "runnerUpId": "MOS",
+      "date": "2025-11-03"
     },
     {
       "title": "International League Champion",
@@ -41,7 +44,8 @@
       "group": "IL",
       "finalsMvp": "p00185",
       "teamId": "BARC",
-      "runnerUpId": "WAR"
+      "runnerUpId": "WAR",
+      "date": "2025-11-03"
     }
   ],
   "awards": [

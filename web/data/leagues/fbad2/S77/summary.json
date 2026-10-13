@@ -12,7 +12,8 @@
       "group": "PL",
       "finalsMvp": "p00409",
       "teamId": "SALZ",
-      "runnerUpId": "AUS"
+      "runnerUpId": "AUS",
+      "date": "2026-03-16"
     },
     {
       "title": "World League Champion",
@@ -22,7 +23,8 @@
       "group": "WL",
       "finalsMvp": "p00418",
       "teamId": "SP",
-      "runnerUpId": "CAS"
+      "runnerUpId": "CAS",
+      "date": "2026-03-16"
     },
     {
       "title": "United League Champion",
@@ -32,7 +34,8 @@
       "group": "UL",
       "finalsMvp": "p00471",
       "teamId": "MUM",
-      "runnerUpId": "COP"
+      "runnerUpId": "COP",
+      "date": "2026-03-16"
     },
     {
       "title": "International League Champion",
@@ -42,7 +45,8 @@
       "group": "IL",
       "finalsMvp": "p00241",
       "teamId": "DUB",
-      "runnerUpId": "NAP"
+      "runnerUpId": "NAP",
+      "date": "2026-03-16"
     }
   ],
   "awards": [

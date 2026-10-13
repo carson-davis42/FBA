@@ -12,7 +12,8 @@
       "group": "PL",
       "finalsMvp": "p02281",
       "teamId": "SALZ",
-      "runnerUpId": "LIS"
+      "runnerUpId": "LIS",
+      "date": "2024-03-11"
     },
     {
       "title": "World League Champion",
@@ -22,7 +23,8 @@
       "group": "WL",
       "finalsMvp": "p00213",
       "teamId": "BA",
-      "runnerUpId": "LON"
+      "runnerUpId": "LON",
+      "date": "2024-03-11"
     },
     {
       "title": "United League Champion",
@@ -32,7 +34,8 @@
       "group": "UL",
       "finalsMvp": "p00146",
       "teamId": "REC",
-      "runnerUpId": "LIV"
+      "runnerUpId": "LIV",
+      "date": "2024-03-11"
     },
     {
       "title": "International League Champion",
@@ -42,7 +45,8 @@
       "group": "IL",
       "finalsMvp": "p02312",
       "teamId": "BUD",
-      "runnerUpId": "SP"
+      "runnerUpId": "SP",
+      "date": "2024-03-11"
     }
   ],
   "awards": [

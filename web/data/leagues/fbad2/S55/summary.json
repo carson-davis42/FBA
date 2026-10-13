@@ -11,7 +11,8 @@
       "score": null,
       "group": "D2",
       "finalsMvp": "p02135",
-      "runnerUpId": "SJ"
+      "runnerUpId": "SJ",
+      "date": null
     },
     {
       "title": "D2 International Champion (2)",
@@ -20,7 +21,8 @@
       "score": null,
       "group": "D2",
       "finalsMvp": "p02114",
-      "teamId": "TAM"
+      "teamId": "TAM",
+      "date": null
     }
   ],
   "awards": [

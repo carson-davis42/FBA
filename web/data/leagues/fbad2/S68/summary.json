@@ -11,7 +11,8 @@
       "score": null,
       "group": "PL",
       "finalsMvp": "p02193",
-      "runnerUpId": "ROME"
+      "runnerUpId": "ROME",
+      "date": "2022-12-22"
     },
     {
       "title": "World League Champion",
@@ -21,7 +22,8 @@
       "group": "WL",
       "finalsMvp": "p02163",
       "teamId": "AMS",
-      "runnerUpId": "MUN"
+      "runnerUpId": "MUN",
+      "date": "2022-12-22"
     },
     {
       "title": "United League Champion",
@@ -31,7 +33,8 @@
       "group": "UL",
       "finalsMvp": "p02166",
       "teamId": "GLAS",
-      "runnerUpId": "ZUR"
+      "runnerUpId": "ZUR",
+      "date": "2022-12-20"
     }
   ],
   "awards": [

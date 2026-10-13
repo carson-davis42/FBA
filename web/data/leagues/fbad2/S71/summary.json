@@ -12,7 +12,8 @@
       "group": "PL",
       "finalsMvp": "p02283",
       "teamId": "HAM",
-      "runnerUpId": "MAD"
+      "runnerUpId": "MAD",
+      "date": "2023-12-21"
     },
     {
       "title": "World League Champion",
@@ -22,7 +23,8 @@
       "group": "WL",
       "finalsMvp": "p00161",
       "teamId": "AUS",
-      "runnerUpId": "TOK"
+      "runnerUpId": "TOK",
+      "date": "2023-12-21"
     },
     {
       "title": "United League Champion",
@@ -32,7 +34,8 @@
       "group": "UL",
       "finalsMvp": "p02208",
       "teamId": "ZAG",
-      "runnerUpId": "BA"
+      "runnerUpId": "BA",
+      "date": "2023-12-21"
     }
   ],
   "awards": [

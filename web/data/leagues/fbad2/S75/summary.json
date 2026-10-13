@@ -12,7 +12,8 @@
       "group": "PL",
       "finalsMvp": "p02307",
       "teamId": "TOK",
-      "runnerUpId": "BUD"
+      "runnerUpId": "BUD",
+      "date": "2025-05-12"
     },
     {
       "title": "World League Champion",
@@ -22,7 +23,8 @@
       "group": "WL",
       "finalsMvp": "p00146",
       "teamId": "REC",
-      "runnerUpId": "GUAD"
+      "runnerUpId": "GUAD",
+      "date": "2025-05-12"
     },
     {
       "title": "United League Champion",
@@ -32,7 +34,8 @@
       "group": "UL",
       "finalsMvp": "p00040",
       "teamId": "OSA",
-      "runnerUpId": "DHA"
+      "runnerUpId": "DHA",
+      "date": "2025-05-12"
     },
     {
       "title": "International League Champion",
@@ -42,7 +45,8 @@
       "group": "IL",
       "finalsMvp": "p00350",
       "teamId": "MUM",
-      "runnerUpId": "DBA"
+      "runnerUpId": "DBA",
+      "date": "2025-05-12"
     }
   ],
   "awards": [

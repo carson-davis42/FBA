@@ -11,7 +11,8 @@
       "score": null,
       "group": "PL",
       "finalsMvp": "p02235",
-      "teamId": "ROME"
+      "teamId": "ROME",
+      "date": "2023-08-12"
     },
     {
       "title": "World League Champion",
@@ -21,7 +22,8 @@
       "group": "WL",
       "finalsMvp": "p00077",
       "teamId": "PAR",
-      "runnerUpId": "AUS"
+      "runnerUpId": "AUS",
+      "date": "2023-08-08"
     },
     {
       "title": "United League Champion",
@@ -31,7 +33,8 @@
       "group": "UL",
       "finalsMvp": "p00439",
       "teamId": "TOK",
-      "runnerUpId": "SHAN"
+      "runnerUpId": "SHAN",
+      "date": "2023-08-08"
     }
   ],
   "awards": [

@@ -12,7 +12,8 @@
       "group": "PL",
       "finalsMvp": "p02280",
       "teamId": "SJ",
-      "runnerUpId": "AUS"
+      "runnerUpId": "AUS",
+      "date": "2025-03-21"
     },
     {
       "title": "World League Champion",
@@ -22,7 +23,8 @@
       "group": "WL",
       "finalsMvp": "p00395",
       "teamId": "MAD",
-      "runnerUpId": "AMS"
+      "runnerUpId": "AMS",
+      "date": "2025-03-21"
     },
     {
       "title": "United League Champion",
@@ -32,7 +34,8 @@
       "group": "UL",
       "finalsMvp": "p02254",
       "teamId": "MIA",
-      "runnerUpId": "SYD"
+      "runnerUpId": "SYD",
+      "date": "2025-03-21"
     },
     {
       "title": "International League Champion",
@@ -42,7 +45,8 @@
       "group": "IL",
       "finalsMvp": "p00040",
       "teamId": "OSA",
-      "runnerUpId": "BEL"
+      "runnerUpId": "BEL",
+      "date": "2025-03-21"
     }
   ],
   "awards": [
