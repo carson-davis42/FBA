@@ -4,6 +4,7 @@ import { calendarProblem, toGameResult } from '../season/moves';
 import type { SimGame } from '../season/sim';
 import { fbajcGateProblem } from '../college/recruiting';
 import { markStepDone } from '../shared/calendar';
+import { spanField } from '../shared/dates';
 import type { Bracket, BracketGame, JcPostseasonFile, SummaryFile } from '../shared/types';
 import { awardsComplete } from './awards';
 import { playableGames, recordResult } from './bracket';
@@ -154,7 +155,7 @@ export function pastBracketOf(b: Bracket, nameOf: (teamId: string) => string): N
 }
 
 /** The finished season's record: champions, conference champions, awards, All-Americans, MVPs and the March Madness bracket. */
-export function buildJcSummary(state: JcState): SummaryFile {
+export function buildJcSummary(state: JcState, now?: string): SummaryFile {
   const ps = state.postseason!;
   const aw = state.awards!;
   const name = (id: string): string => state.teams.teams.find(t => t.teamId === id)?.name ?? id;
@@ -192,13 +193,14 @@ export function buildJcSummary(state: JcState): SummaryFile {
       mvp: aw.mvp,
       nit: { champion: nit.champion!, runnerUp: nit.champion === nitFinal.home ? nitFinal.away! : nitFinal.home! },
     },
+    ...spanField(state.calendar.startedAt, now),
   };
 }
 
 const lock = <T extends { locked: boolean }>(d: T | null): T | null => (d && !d.locked ? { ...d, locked: true } : d);
 
 /** "Finish the season": writes the locked summary, locks the season's docs and marks the `fbajc` calendar step done. */
-export function finishJcSeason(state: JcState): JcResult {
+export function finishJcSeason(state: JcState, ctx: { now?: string } = {}): JcResult {
   const problems: string[] = [];
   const step = calendarProblem(state.calendar, 'fbajc', 'The season is played');
   if (step) problems.push(step);
@@ -212,7 +214,7 @@ export function finishJcSeason(state: JcState): JcResult {
     ok: true,
     state: {
       ...state,
-      summary: buildJcSummary(state),
+      summary: buildJcSummary(state, ctx.now),
       postseason: lock(state.postseason),
       awards: lock(state.awards),
       results: lock(state.results),

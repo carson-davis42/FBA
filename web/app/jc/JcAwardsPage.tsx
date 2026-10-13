@@ -157,7 +157,7 @@ function FinishBar({ state, saving, run }: { state: JcState; saving: boolean; ru
   const why = stage === 'done' ? 'The season is finished.' : check && !check.ok ? check.problems.join(' ') : stage !== 'finish' ? 'Finish the awards, tournaments, All-American teams and MVP picks first.' : null;
   return (
     <div className="jc-actions">
-      <button className="btn primary" disabled={saving || !!why} title={why ?? undefined} onClick={() => void run(() => finishJcSeason(state))}>Finish S{state.season} season</button>
+      <button className="btn primary" disabled={saving || !!why} title={why ?? undefined} onClick={() => void run(() => finishJcSeason(state, { now: new Date().toISOString() }))}>Finish S{state.season} season</button>
       {why && <span className="muted">{why}</span>}
     </div>
   );

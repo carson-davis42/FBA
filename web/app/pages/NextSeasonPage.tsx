@@ -80,7 +80,7 @@ export function NextSeasonPage() {
     if (started.current) return;
     started.current = true;
     setSaveError('');
-    const r = nextSeasonDocs(input, { batchId: newBatchId() });
+    const r = nextSeasonDocs(input, { batchId: newBatchId(), now: new Date().toISOString() });
     if (!r.ok) {
       started.current = false;
       return;

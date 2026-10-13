@@ -39,7 +39,7 @@ export function FinishSeasonCard({ state, versions }: { state: SeasonState; vers
     setProblems([]);
     setSaveError('');
     try {
-      const r = finishSeason(state, await loadPauses(state), { batchId: newBatchId() });
+      const r = finishSeason(state, await loadPauses(state), { batchId: newBatchId(), now: new Date().toISOString() });
       if (!r.ok) {
         setProblems(r.problems);
         started.current = false;

@@ -33,7 +33,7 @@ export function MvpCard({ wc, state, players, byId, season, summary, blocked, ru
   }
 
   const rows = tournamentMvpCandidates(wc, names);
-  const finish = (): WcOkOrWrites | WcFail => (state && picked ? finishWorldCupWithMvp(state, picked, names, summary) : { ok: false, problems: ['Pick an MVP first'] });
+  const finish = (): WcOkOrWrites | WcFail => (state && picked ? finishWorldCupWithMvp(state, picked, names, summary, new Date().toISOString()) : { ok: false, problems: ['Pick an MVP first'] });
   return (
     <div className="card wc-mvp">
       <h3>Tournament MVP</h3>

@@ -71,6 +71,21 @@ describe('finishing the season', () => {
     expect(writes.map(w => w.path)).toContain('leagues/fbajc/S79/summary.json');
   });
 
+  it('writes the span from the calendar startedAt and now, only when both exist', () => {
+    const OPEN = '2026-10-01T12:00:00.000Z';
+    const NOW = '2026-10-12T15:00:00.000Z';
+    const withOpen = { ...finish, calendar: { ...finish.calendar, startedAt: OPEN } };
+    const both = finishJcSeason(withOpen, { now: NOW });
+    if (!both.ok) throw new Error('x');
+    expect(both.state.summary!.span).toEqual({ opened: OPEN, locked: NOW });
+    const noNow = finishJcSeason(withOpen);
+    if (!noNow.ok) throw new Error('x');
+    expect(noNow.state.summary!.span).toBeUndefined();
+    const noOpen = finishJcSeason(finish, { now: NOW });
+    if (!noOpen.ok) throw new Error('x');
+    expect(noOpen.state.summary!.span).toBeUndefined();
+  });
+
   it('refuses before the finish stage, a second time, and when the step is not current', () => {
     const early = { ...finish, awards: { ...finish.awards!, mvp: { mm: null, nit: null } } };
     expect(finishJcSeason(early).ok).toBe(false);

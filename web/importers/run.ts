@@ -37,6 +37,7 @@ import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterT
 import { parsePlayersTab } from './sheets/playersTab';
 import { parseClassSection } from './sheets/recruitingClass';
 import { parseDataArg } from './dataArg';
+import { withSeasonStart } from './seasonStart';
 import { downloadWorkbook, readTabs, readUnderlines } from './sheets/xlsx';
 import { parseBracketFile, parseD2Playoffs, parseFbaPlayoffs, parseFbaResults } from './txt/archives';
 import { parseRosterTxt } from './txt/rosters';
@@ -741,7 +742,31 @@ export async function importExpansionStep(): Promise<void> {
   console.log(`Added s${EXPANSION_SEASON}-add-expansion-teams`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--expansion-step', '--check-trophies'];
+/** `--season-start <season> <ISO datetime>`: writes calendar.startedAt on the calendar in the --data folder (for a season begun before the field existed). */
+export function importSeasonStart(): void {
+  const dir = requireDataDir('--season-start');
+  const i = process.argv.indexOf('--season-start');
+  const seasonArg = process.argv[i + 1];
+  const iso = process.argv[i + 2];
+  if (!seasonArg || !iso || seasonArg.startsWith('--') || iso.startsWith('--')) {
+    console.error('--season-start needs a season and an ISO datetime: --season-start 79 2026-10-01T18:30:00Z --data <dir>');
+    process.exit(1);
+  }
+  const cal = readDataJson<CalendarFile>(dir, 'calendar.json');
+  if (!cal) {
+    console.error('--season-start needs calendar.json in the data folder.');
+    process.exit(1);
+  }
+  const r = withSeasonStart(cal, /^\d+$/.test(seasonArg) ? Number(seasonArg) : NaN, iso);
+  if (!r.ok) {
+    console.error(r.error);
+    process.exit(1);
+  }
+  writeDoc(dir, 'calendar.json', r.calendar);
+  console.log(`S${cal.season} started at ${iso}`);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--expansion-step', '--season-start', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -772,6 +797,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--d2-leagues')) return importD2Leagues();
   if (process.argv.includes('--wc-qualifying-step')) return importWcQualifyingStep();
   if (process.argv.includes('--expansion-step')) return importExpansionStep();
+  if (process.argv.includes('--season-start')) return importSeasonStart();
   if (process.argv.includes('--check-trophies')) return checkTrophies();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
     console.error('web/data already holds an import. Re-run with "npm run import -- --force" to overwrite all league data.');

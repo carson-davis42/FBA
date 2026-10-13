@@ -1,6 +1,7 @@
 import type { WritesResult } from '../season/moves';
 import type { Champion, PastSeries, SummaryFile, WorldCupFile } from '../shared/types';
 import { PastBracket, SummaryFile as SummarySchema } from '../shared/types';
+import { seasonSpan } from '../shared/dates';
 import { tournamentMvpCandidates, type MvpCandidate, type MvpNames } from './mvp';
 import { finishWorldCup, type WorldCupState } from './worldcup';
 
@@ -32,7 +33,7 @@ function knockoutBracket(wc: WorldCupFile, names: MvpNames): PastBracket | null 
   return parsed.success ? parsed.data : null;
 }
 
-export function buildWcSummary(wc: WorldCupFile, names: MvpNames, mvp: MvpCandidate, existing: SummaryFile | null): SummaryFile {
+export function buildWcSummary(wc: WorldCupFile, names: MvpNames, mvp: MvpCandidate, existing: SummaryFile | null, span?: SummaryFile['span']): SummaryFile {
   const final = wc.knockout.find(k => k.round === 'F')?.game ?? null;
   const score = final ? `${Math.max(final.homePts, final.awayPts)}–${Math.min(final.homePts, final.awayPts)}` : null;
   const champion: Champion = {
@@ -54,17 +55,18 @@ export function buildWcSummary(wc: WorldCupFile, names: MvpNames, mvp: MvpCandid
     locked: true,
     host: names.team(wc.host),
     champions: [champion, ...(existing?.champions ?? []).filter(c => c.title !== TITLE)],
+    ...(span ? { span } : {}),
   };
 }
 
-export function finishWorldCupWithMvp(state: WorldCupState, mvpKey: string, names: MvpNames, existing: SummaryFile | null): WritesResult {
+export function finishWorldCupWithMvp(state: WorldCupState, mvpKey: string, names: MvpNames, existing: SummaryFile | null, now?: string): WritesResult {
   const wc = state.worldCup;
   if (!wc) return { ok: false, problems: ['The World Cup has not been started'] };
   const fin = finishWorldCup(state);
   if (!fin.ok) return fin;
   const mvp = tournamentMvpCandidates(wc, names).find(c => c.key === mvpKey);
   if (!mvp) return { ok: false, problems: ['That player is not an MVP candidate'] };
-  const summary = SummarySchema.parse(buildWcSummary(wc, names, mvp, existing));
+  const summary = SummarySchema.parse(buildWcSummary(wc, names, mvp, existing, seasonSpan(fin.state.calendar.startedAt, now)));
   return {
     ok: true,
     label: `World Cup finished: ${names.team(wc.champion!)}, MVP ${mvp.name}`,

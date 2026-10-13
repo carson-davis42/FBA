@@ -28,3 +28,14 @@ export function formatSpan(openedIso: string | null | undefined, lockedIso: stri
   if (a.y === b.y) return `${dayLabel(a, false)} – ${dayLabel(b, true)}`;
   return `${dayLabel(a, true)} – ${dayLabel(b, true)}`;
 }
+
+/** `{ opened: startedAt, locked: now }` when both exist (the span an app-played season shows), else undefined. */
+export function seasonSpan(startedAt: string | undefined, now: string | undefined): { opened: string; locked: string } | undefined {
+  return startedAt && now ? { opened: startedAt, locked: now } : undefined;
+}
+
+/** The `span` field to spread into a summary (nothing when either end is missing). */
+export const spanField = (startedAt: string | undefined, now: string | undefined): { span?: { opened: string; locked: string } } => {
+  const span = seasonSpan(startedAt, now);
+  return span ? { span } : {};
+};

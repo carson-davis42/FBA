@@ -73,4 +73,18 @@ describe('finishWorldCupWithMvp', () => {
     expect(cal.steps.find(s => s.id === 's80-world-cup')!.done).toBe(true);
     expect(SummaryFile.safeParse(r.writes[1].doc).success).toBe(true);
   });
+  it('writes the span from the calendar startedAt and now, only when both exist', () => {
+    const OPEN = '2026-10-01T12:00:00.000Z';
+    const NOW = '2026-10-12T15:00:00.000Z';
+    const key = tournamentMvpCandidates(wc, names)[0].key;
+    const spanOf = (state: typeof w, now?: string) => {
+      const r = finishWorldCupWithMvp(state, key, names, null, now);
+      if (!r.ok) throw new Error(r.problems.join());
+      return (r.writes[1].doc as SummaryFile).span;
+    };
+    const withOpen = { ...w, calendar: { ...w.calendar, startedAt: OPEN } };
+    expect(spanOf(withOpen, NOW)).toEqual({ opened: OPEN, locked: NOW });
+    expect(spanOf(withOpen)).toBeUndefined();
+    expect(spanOf(w, NOW)).toBeUndefined();
+  });
 });

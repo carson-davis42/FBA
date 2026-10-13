@@ -4,6 +4,7 @@ import { groupLabel } from '../shared/leagues';
 import type { BoxLine, GameResult, Position, RatingPauseFile, RostersFile, SeasonTotals, SummaryFile, SummaryPlayerLine } from '../shared/types';
 import { appendTx, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
+import { spanField } from '../shared/dates';
 import { leagueStepProblem } from './moves';
 import { CALENDAR_STEP, playerName, seasonFail, type SeasonDocKey, type SeasonResult, type SeasonState } from './state';
 
@@ -73,7 +74,7 @@ export function playerLines(games: { regular: GameResult[]; playoffs: GameResult
 }
 
 /** The locked record of a finished season (spec section 4), built from the league's season docs. */
-export function seasonRecord(state: SeasonState, pauses: RatingPauseFile[]): SummaryFile {
+export function seasonRecord(state: SeasonState, pauses: RatingPauseFile[], now?: string): SummaryFile {
   const pf = state.playoffs;
   const teamName = (id: string) => state.teams.teams.find(t => t.teamId === id)?.name ?? id;
   const champions = (pf?.outcome?.champions ?? []).map(c => ({
@@ -133,6 +134,7 @@ export function seasonRecord(state: SeasonState, pauses: RatingPauseFile[]): Sum
     bracket: pf ? { seeds: pf.seeds, series: pf.series } : null,
     promotion: state.league === 'fbad2' ? pf?.outcome?.promotion ?? null : null,
     players: playerLines({ regular: state.results?.games ?? [], playoffs: pf?.games ?? [] }, state.rosters, pauses),
+    ...spanField(state.calendar.startedAt, now),
   };
 }
 
@@ -169,7 +171,7 @@ export function finishSeason(state: SeasonState, pauses: RatingPauseFile[], ctx:
     ok: true,
     state: {
       ...state,
-      summary: seasonRecord(state, pauses),
+      summary: seasonRecord(state, pauses, ctx.now),
       schedule: locked(state.schedule),
       results: locked(state.results),
       playoffs: locked(state.playoffs),

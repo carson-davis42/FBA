@@ -179,6 +179,16 @@ describe('finishSeason', () => {
     expect(r.state.calendar.steps.find(x => x.id === 'fba-d2')!.done).toBe(true);
   });
 
+  it('writes the span from the calendar startedAt and ctx.now, only when both exist', () => {
+    const OPEN = '2026-10-01T12:00:00.000Z';
+    const NOW = '2026-10-12T15:00:00.000Z';
+    const s = d2Done();
+    const both = ok(finishSeason({ ...s, calendar: { ...s.calendar, startedAt: OPEN } }, [], { ...ctx, now: NOW }));
+    expect(both.state.summary!.span).toEqual({ opened: OPEN, locked: NOW });
+    expect(ok(finishSeason(s, [], { ...ctx, now: NOW })).state.summary!.span).toBeUndefined();
+    expect(ok(finishSeason({ ...s, calendar: { ...s.calendar, startedAt: OPEN } }, [], ctx)).state.summary!.span).toBeUndefined();
+  });
+
   it('locks an unlocked All-Star doc too, and skips docs that are already locked (FBA)', () => {
     const s = { ...fbaDone(), allstar: allStarDoc(false) };
     const r = ok(finishSeason(s, [pause(1290, [])], ctx));

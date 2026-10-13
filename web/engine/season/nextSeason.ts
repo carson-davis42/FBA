@@ -146,7 +146,7 @@ export function nextSeasonDocs(input: NextSeasonInput, ctx: MoveContext): NextSe
     { path: p.next.d2Reserves, doc: reserves },
     { path: p.next.d2Tx, doc: started('fbad2') },
     { path: p.d2Teams, doc: promo.teams },
-    { path: p.calendar, doc: calendarFor(next) },
+    { path: p.calendar, doc: { ...calendarFor(next), ...(ctx.now ? { startedAt: ctx.now } : {}) } },
     {
       path: p.meta,
       doc: {

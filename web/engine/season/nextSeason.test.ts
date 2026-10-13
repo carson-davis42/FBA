@@ -70,6 +70,18 @@ describe('nextSeasonDocs', () => {
     for (const id of Object.keys(plain.teams)) expect(next.teams[id]).toEqual(plain.teams[id]);
   });
 
+  it('stamps the new calendar with ctx.now, and leaves startedAt out without it', () => {
+    const NOW = '2026-10-12T15:00:00.000Z';
+    const stamped = nextSeasonDocs(ready(), { ...ctx, now: NOW });
+    if (!stamped.ok) throw new Error('x');
+    const cal = stamped.writes.find(w => w.path === 'calendar.json')!.doc as CalendarFile;
+    expect(cal.season).toBe(80);
+    expect(cal.startedAt).toBe(NOW);
+    expect(schemaForPath('calendar.json')!.safeParse(cal).success).toBe(true);
+    const bare = run(ready()).writes.find(w => w.path === 'calendar.json')!.doc as CalendarFile;
+    expect('startedAt' in bare).toBe(false);
+  });
+
   it('locks the S78 board (the class playing S79) when there is one, and leaves S79 alone', () => {
     const recruiting: RecruitingFile = { league: 'fbajc', season: 78, classOf: 79, locked: false, classDraft: [], created: true, recruits: [], portal: [] };
     const r = run({ ...ready(), fbajc: { recruiting, rosters: null } });
