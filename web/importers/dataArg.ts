@@ -17,3 +17,21 @@ export function parseDataArg(argv: string[], fallback: string): { dir: string } 
   if (!value || value.startsWith('--')) return missing;
   return { dir: path.resolve(value) };
 }
+
+/**
+ * The workbook named by `--file <path>` or `--file=<path>` (a local export of a sheet, used instead of downloading it), resolved; null when
+ * the flag is absent. An error when the flag has no value.
+ */
+export function parseFileArg(argv: string[]): { file: string | null } | { error: string } {
+  const missing = { error: '--file needs a path: the .xlsx export to read instead of downloading the sheet.' };
+  const eq = argv.find(a => a.startsWith('--file='));
+  if (eq !== undefined) {
+    const value = eq.slice('--file='.length);
+    return value ? { file: path.resolve(value) } : missing;
+  }
+  const i = argv.indexOf('--file');
+  if (i < 0) return { file: null };
+  const value = argv[i + 1];
+  if (!value || value.startsWith('--')) return missing;
+  return { file: path.resolve(value) };
+}

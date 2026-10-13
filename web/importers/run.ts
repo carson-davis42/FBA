@@ -36,7 +36,7 @@ import { TROPHY_AWARDS, trophyCase } from '../engine/history/trophies';
 import { parseCalendarTab, parseD2ReservesTab, parseD2RosterTab, parseFbaRosterTab, parseFreeAgentsTab, parsePickRows } from './sheets/parsers';
 import { parsePlayersTab } from './sheets/playersTab';
 import { parseClassSection } from './sheets/recruitingClass';
-import { parseDataArg } from './dataArg';
+import { parseDataArg, parseFileArg } from './dataArg';
 import { withSeasonStart } from './seasonStart';
 import { downloadWorkbook, readTabs, readUnderlines } from './sheets/xlsx';
 import { parseBracketFile, parseD2Playoffs, parseFbaPlayoffs, parseFbaResults } from './txt/archives';
@@ -376,9 +376,25 @@ async function importDraftHistory(): Promise<void> {
     console.error('--drafts needs players.json and leagues/fba/franchises.json in the data folder (run --franchises first).');
     process.exit(1);
   }
-  rmSync(path.join(CACHE, `${SHEETS.draft}.xlsx`), { force: true });
-  console.log('Downloading the draft history sheet...');
-  const tabs = await readTabs(await downloadWorkbook(SHEETS.draft, CACHE), n => { const k = draftTabKind(n); return !!k && k.season <= 79; });
+  const given = parseFileArg(process.argv);
+  if ('error' in given) {
+    console.error(given.error);
+    process.exit(1);
+  }
+  let workbook: string;
+  if (given.file) {
+    if (!existsSync(given.file)) {
+      console.error(`--file: ${given.file} doesn't exist.`);
+      process.exit(1);
+    }
+    console.log(`Reading the draft history from ${given.file}...`);
+    workbook = given.file;
+  } else {
+    rmSync(path.join(CACHE, `${SHEETS.draft}.xlsx`), { force: true });
+    console.log('Downloading the draft history sheet...');
+    workbook = await downloadWorkbook(SHEETS.draft, CACHE);
+  }
+  const tabs = await readTabs(workbook, n => { const k = draftTabKind(n); return !!k && k.season <= 79; });
   const report = new Report();
   const doc = buildDraftHistory(tabs, { players, franchises, lastSeason: 79 }, report);
   printReport(report);

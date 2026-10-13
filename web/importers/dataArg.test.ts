@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { parseDataArg } from './dataArg';
+import { parseDataArg, parseFileArg } from './dataArg';
 
 const FALLBACK = path.resolve('real-data');
 
@@ -22,5 +22,18 @@ describe('parseDataArg', () => {
   });
   it('falls back without the flag', () => {
     expect(parseDataArg(['--logos'], FALLBACK)).toEqual({ dir: FALLBACK });
+  });
+});
+
+describe('parseFileArg', () => {
+  it('reads --file and --file=, resolved, and null when absent', () => {
+    expect(parseFileArg(['--drafts'])).toEqual({ file: null });
+    expect(parseFileArg(['--drafts', '--file', 'draft.xlsx'])).toEqual({ file: path.resolve('draft.xlsx') });
+    expect(parseFileArg(['--file=a/b.xlsx'])).toEqual({ file: path.resolve('a/b.xlsx') });
+  });
+  it('is an error when the flag has no value', () => {
+    expect('error' in parseFileArg(['--file'])).toBe(true);
+    expect('error' in parseFileArg(['--file', '--data', 'x'])).toBe(true);
+    expect('error' in parseFileArg(['--file='])).toBe(true);
   });
 });
