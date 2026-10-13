@@ -11,6 +11,7 @@ import { GamePage } from '../pages/GamePage';
 import { Home } from '../pages/Home';
 import { NextSeasonPage } from '../pages/NextSeasonPage';
 import { LeaguePage } from '../pages/LeaguePage';
+import { PlayersPage } from '../pages/PlayersPage';
 import { AwardsPage } from '../awards/AwardsPage';
 import { PlayoffGamePage } from '../playoffs/PlayoffGamePage';
 import { PlayoffsPage } from '../playoffs/PlayoffsPage';
@@ -123,6 +124,7 @@ const ROUTES = createRoutesFromElements(
   <Route path="/league/:league/playoffs" element={<PlayoffsPage />} />
   <Route path="/league/:league/awards" element={<AwardsPage />} />
   <Route path="/league/:league/rankings" element={<RankingsPage />} />
+  <Route path="/league/:league/players" element={<PlayersPage />} />
   <Route path="/league/:league" element={<LeaguePage />} />
   <Route path="/league/:league/free-agency" element={<FreeAgencyPage />} />
   <Route path="/league/:league/team/:teamId" element={<TeamPage />} />

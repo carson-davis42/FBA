@@ -30,7 +30,7 @@ describe('SiteHeader', () => {
     const links = Array.from(nav.querySelectorAll('a')).map(a => [a.textContent, a.getAttribute('href')]);
     expect(links).toEqual([
       ['Scores', '/league/fbad2/scores'], ['Standings', '/league/fbad2/standings'], ['Playoffs', '/league/fbad2/playoffs'],
-      ['Awards', '/league/fbad2/awards'], ['Rankings', '/league/fbad2/rankings'], ['Teams', '/league/fbad2'], ['Transactions', '/league/fbad2/transactions'],
+      ['Awards', '/league/fbad2/awards'], ['Rankings', '/league/fbad2/rankings'], ['Teams', '/league/fbad2'], ['Players', '/league/fbad2/players'], ['Transactions', '/league/fbad2/transactions'],
       ['Calendar', '/calendar'], ['Offseason', '/offseason'], ['History', '/history'], ['Hall of Fame', '/history/fba/hall-of-fame'],
     ]);
     expect(screen.getByRole('link', { name: 'Standings' }).className).toContain('active');
@@ -40,10 +40,10 @@ describe('SiteHeader', () => {
   it('lists Qualifying, World Cup and Teams for the WC and the JC sections, with league hrefs', () => {
     const hrefs = () => Array.from(screen.getByRole('navigation', { name: 'Site sections' }).querySelectorAll('a')).map(a => a.getAttribute('href')).slice(0, -4);
     const wc = render(<MemoryRouter initialEntries={['/league/fbawc']}><SiteHeader /></MemoryRouter>);
-    expect(hrefs()).toEqual(['/league/fbawc/qualifying', '/league/fbawc/worldcup', '/league/fbawc']);
+    expect(hrefs()).toEqual(['/league/fbawc/qualifying', '/league/fbawc/worldcup', '/league/fbawc', '/league/fbawc/players']);
     wc.unmount();
     render(<MemoryRouter initialEntries={['/league/fbajc/recruiting']}><SiteHeader /></MemoryRouter>);
-    expect(hrefs()).toEqual(['/league/fbajc/scores', '/league/fbajc/standings', '/league/fbajc/rankings', '/league/fbajc/tournaments', '/league/fbajc/postseason', '/league/fbajc/awards', '/league/fbajc/leaders', '/league/fbajc', '/league/fbajc/recruiting', '/league/fbajc/portal']);
+    expect(hrefs()).toEqual(['/league/fbajc/scores', '/league/fbajc/standings', '/league/fbajc/rankings', '/league/fbajc/tournaments', '/league/fbajc/postseason', '/league/fbajc/awards', '/league/fbajc/leaders', '/league/fbajc/players', '/league/fbajc', '/league/fbajc/recruiting', '/league/fbajc/portal']);
   });
 
   it('scrolls the active link into view and keeps Teams active on team pages', () => {
