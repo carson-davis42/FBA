@@ -9,9 +9,10 @@
       "champion": "Italy",
       "runnerUp": "Turkey",
       "score": null,
-      "finalsMvp": "p02191",
       "teamId": "ITA",
-      "runnerUpId": "TUR"
+      "runnerUpId": "TUR",
+      "date": null,
+      "finalsMvp": "p02191"
     }
   ],
   "pastBracket": {

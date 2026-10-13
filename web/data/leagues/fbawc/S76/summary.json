@@ -9,9 +9,10 @@
       "champion": "Australia",
       "runnerUp": "Italy",
       "score": null,
-      "finalsMvp": "p02305",
       "teamId": "AUS",
-      "runnerUpId": "ITA"
+      "runnerUpId": "ITA",
+      "date": "2025-11-19",
+      "finalsMvp": "p02305"
     }
   ],
   "pastBracket": {

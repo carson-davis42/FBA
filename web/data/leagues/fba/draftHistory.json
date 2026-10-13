@@ -3,6 +3,7 @@
     {
       "season": 49,
       "kind": "draft",
+      "date": null,
       "picks": [
         {
           "pick": 1,
@@ -185,6 +186,7 @@
     {
       "season": 51,
       "kind": "draft",
+      "date": null,
       "picks": [
         {
           "pick": 1,
@@ -367,6 +369,7 @@
     {
       "season": 53,
       "kind": "draft",
+      "date": null,
       "picks": [
         {
           "pick": 1,
@@ -549,6 +552,7 @@
     {
       "season": 55,
       "kind": "draft",
+      "date": null,
       "picks": [
         {
           "pick": 1,
@@ -731,6 +735,7 @@
     {
       "season": 57,
       "kind": "draft",
+      "date": "2019-08-25",
       "picks": [
         {
           "pick": 1,
@@ -774,7 +779,7 @@
           "playerId": "p02191",
           "pos": "OUT",
           "detail": "S56",
-          "college": "D2(Roma Pallacanestro)"
+          "college": "D2(Rome)"
         },
         {
           "pick": 5,
@@ -829,7 +834,7 @@
           "playerId": "p02190",
           "pos": "IN",
           "detail": "S56",
-          "college": "D2(Salzburg BC)"
+          "college": "D2(Salzburg)"
         },
         {
           "pick": 10,
@@ -913,6 +918,7 @@
     {
       "season": 59,
       "kind": "draft",
+      "date": "2020-01-05",
       "picks": [
         {
           "pick": 1,
@@ -1139,6 +1145,7 @@
     {
       "season": 59,
       "kind": "expansion",
+      "date": "2020-01-05",
       "picks": [
         {
           "pick": 1,
@@ -1277,6 +1284,7 @@
     {
       "season": 60,
       "kind": "draft",
+      "date": "2020-03-25",
       "picks": [
         {
           "pick": 1,
@@ -1503,6 +1511,7 @@
     {
       "season": 61,
       "kind": "draft",
+      "date": "2020-06-05",
       "picks": [
         {
           "pick": 1,
@@ -1751,6 +1760,7 @@
     {
       "season": 61,
       "kind": "expansion",
+      "date": "2020-06-05",
       "picks": [
         {
           "pick": 1,
@@ -1823,6 +1833,7 @@
     {
       "season": 62,
       "kind": "draft",
+      "date": "2020-08-19",
       "picks": [
         {
           "pick": 1,
@@ -2071,6 +2082,7 @@
     {
       "season": 63,
       "kind": "draft",
+      "date": "2020-11-23",
       "picks": [
         {
           "pick": 1,
@@ -2341,6 +2353,7 @@
     {
       "season": 63,
       "kind": "expansion",
+      "date": "2020-11-23",
       "picks": [
         {
           "pick": 1,
@@ -2413,6 +2426,7 @@
     {
       "season": 64,
       "kind": "draft",
+      "date": "2021-02-28",
       "picks": [
         {
           "pick": 1,
@@ -2683,6 +2697,7 @@
     {
       "season": 65,
       "kind": "draft",
+      "date": "2022-01-14",
       "picks": [
         {
           "pick": 1,
@@ -2953,6 +2968,7 @@
     {
       "season": 66,
       "kind": "draft",
+      "date": "2022-06-06",
       "picks": [
         {
           "pick": 1,
@@ -3223,6 +3239,7 @@
     {
       "season": 67,
       "kind": "draft",
+      "date": "2022-07-30",
       "picks": [
         {
           "pick": 1,
@@ -3537,6 +3554,7 @@
     {
       "season": 68,
       "kind": "draft",
+      "date": "2022-11-25",
       "picks": [
         {
           "pick": 1,
@@ -3950,6 +3968,7 @@
     {
       "season": 68,
       "kind": "expansion",
+      "date": "2022-11-25",
       "picks": [
         {
           "pick": 1,
@@ -4132,6 +4151,7 @@
     {
       "season": 69,
       "kind": "draft",
+      "date": "2023-03-29",
       "picks": [
         {
           "pick": 1,
@@ -4600,6 +4620,7 @@
     {
       "season": 70,
       "kind": "draft",
+      "date": "2023-07-23",
       "picks": [
         {
           "pick": 1,
@@ -5090,6 +5111,7 @@
     {
       "season": 71,
       "kind": "draft",
+      "date": "2023-12-17",
       "picks": [
         {
           "pick": 1,
@@ -5232,7 +5254,7 @@
           "playerId": "p00030",
           "pos": "PG",
           "detail": "19 y/o",
-          "college": "D2(Atlético Lisboa)"
+          "college": "D2(Lisbon)"
         },
         {
           "pick": 14,
@@ -5613,6 +5635,7 @@
     {
       "season": 72,
       "kind": "draft",
+      "date": "2024-01-05",
       "picks": [
         {
           "pick": 1,
@@ -5689,7 +5712,7 @@
           "playerId": "p00077",
           "pos": "C",
           "detail": "19 y/o",
-          "college": "D2(Racing Paris)"
+          "college": "D2(Paris)"
         },
         {
           "pick": 8,
@@ -5796,7 +5819,7 @@
           "teamName": "Cypress",
           "viaTeamId": "NY",
           "name": "Nadeem Akers",
-          "playerId": null,
+          "playerId": "p00040",
           "pos": "SG",
           "detail": "Senior",
           "college": "Texas A&M"
@@ -6136,6 +6159,7 @@
     {
       "season": 73,
       "kind": "draft",
+      "date": "2024-04-25",
       "picks": [
         {
           "pick": 1,
@@ -6157,7 +6181,7 @@
           "playerId": "p00066",
           "pos": "PF",
           "detail": "19 y/o",
-          "college": "D2(Osaka BC)"
+          "college": "D2(Osaka)"
         },
         {
           "pick": 3,
@@ -6626,6 +6650,7 @@
     {
       "season": 74,
       "kind": "draft",
+      "date": "2025-03-15",
       "picks": [
         {
           "pick": 1,
@@ -7050,6 +7075,7 @@
     {
       "season": 75,
       "kind": "draft",
+      "date": "2025-04-26",
       "picks": [
         {
           "pick": 1,
@@ -7562,6 +7588,7 @@
     {
       "season": 75,
       "kind": "expansion",
+      "date": "2025-04-26",
       "picks": [
         {
           "pick": 1,
@@ -7656,6 +7683,7 @@
     {
       "season": 76,
       "kind": "draft",
+      "date": "2025-07-15",
       "picks": [
         {
           "pick": 1,
@@ -8300,6 +8328,7 @@
     {
       "season": 77,
       "kind": "draft",
+      "date": "2026-03-14",
       "picks": [
         {
           "pick": 1,
@@ -9175,6 +9204,7 @@
     {
       "season": 78,
       "kind": "draft",
+      "date": "2026-04-23",
       "picks": [
         {
           "pick": 1,
@@ -10116,6 +10146,7 @@
     {
       "season": 79,
       "kind": "draft",
+      "date": "2026-05-29",
       "picks": [
         {
           "pick": 1,
@@ -11058,7 +11089,7 @@
           "teamName": null,
           "viaTeamId": null,
           "name": "Jamari O’Neal",
-          "playerId": null,
+          "playerId": "p01913",
           "pos": "PF",
           "detail": "Senior",
           "college": "Creighton"

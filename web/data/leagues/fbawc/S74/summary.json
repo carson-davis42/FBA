@@ -9,9 +9,10 @@
       "champion": "USA",
       "runnerUp": "Germany",
       "score": null,
-      "finalsMvp": "p02280",
       "teamId": "USA",
-      "runnerUpId": "GER"
+      "runnerUpId": "GER",
+      "date": "2025-04-01",
+      "finalsMvp": "p02280"
     }
   ],
   "pastBracket": {

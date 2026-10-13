@@ -9,9 +9,10 @@
       "champion": "Japan",
       "runnerUp": "USA",
       "score": null,
-      "finalsMvp": "p00439",
       "teamId": "JAP",
-      "runnerUpId": "USA"
+      "runnerUpId": "USA",
+      "date": "2024-04-06",
+      "finalsMvp": "p00439"
     }
   ],
   "pastBracket": {

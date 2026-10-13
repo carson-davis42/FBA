@@ -9,9 +9,10 @@
       "champion": "USA",
       "runnerUp": "England",
       "score": null,
-      "finalsMvp": "p02077",
       "teamId": "USA",
-      "runnerUpId": "ENG"
+      "runnerUpId": "ENG",
+      "date": null,
+      "finalsMvp": "p02077"
     }
   ],
   "pastBracket": {

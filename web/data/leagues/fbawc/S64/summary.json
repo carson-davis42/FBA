@@ -9,9 +9,10 @@
       "champion": "Italy",
       "runnerUp": "Mexico",
       "score": null,
-      "finalsMvp": "p02235",
       "teamId": "ITA",
-      "runnerUpId": "MEX"
+      "runnerUpId": "MEX",
+      "date": "2021-08-28",
+      "finalsMvp": "p02235"
     }
   ],
   "pastBracket": {

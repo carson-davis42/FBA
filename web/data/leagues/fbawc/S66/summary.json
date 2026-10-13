@@ -9,9 +9,10 @@
       "champion": "Germany",
       "runnerUp": "Italy",
       "score": null,
-      "finalsMvp": "p02142",
       "teamId": "GER",
-      "runnerUpId": "ITA"
+      "runnerUpId": "ITA",
+      "date": "2022-06-28",
+      "finalsMvp": "p02142"
     }
   ],
   "pastBracket": {

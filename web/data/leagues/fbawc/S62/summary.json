@@ -9,9 +9,10 @@
       "champion": "Mexico",
       "runnerUp": "Germany",
       "score": null,
-      "finalsMvp": "p02134",
       "teamId": "MEX",
-      "runnerUpId": "GER"
+      "runnerUpId": "GER",
+      "date": "2020-09-13",
+      "finalsMvp": "p02134"
     }
   ],
   "pastBracket": {

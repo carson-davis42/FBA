@@ -9,9 +9,10 @@
       "champion": "Canada",
       "runnerUp": "Austria",
       "score": null,
-      "finalsMvp": "p02079",
       "teamId": "CAN",
-      "runnerUpId": "ARA"
+      "runnerUpId": "ARA",
+      "date": null,
+      "finalsMvp": "p02079"
     }
   ],
   "pastBracket": {

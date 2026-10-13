@@ -9,9 +9,10 @@
       "champion": "Germany",
       "runnerUp": "Scotland",
       "score": null,
-      "finalsMvp": "p02351",
       "teamId": "GER",
-      "runnerUpId": "SCOT"
+      "runnerUpId": "SCOT",
+      "date": "2023-12-13",
+      "finalsMvp": "p02351"
     }
   ],
   "pastBracket": {
