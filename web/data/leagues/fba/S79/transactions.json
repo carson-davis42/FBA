@@ -4181,6 +4181,22 @@
       "lines": [
         "Rating C-Clay Pitts: 80→79 (in-season)"
       ]
+    },
+    {
+      "seq": 379,
+      "batchId": "bmv64bu3ezigvh",
+      "type": "awards",
+      "teams": [
+        "HON",
+        "MON",
+        "OAK",
+        "BOS",
+        "CIN",
+        "DCB"
+      ],
+      "lines": [
+        "S79 FBA awards: MVP Reagan Butler (HON), ROTY Milo Lawrenz (MON), PPK Award Reagan Butler (HON), LP Award Harper Holland (OAK), MC Award Olufemi Cisneros (BOS), DPOY JT Ramsey (CIN), MIP Kendall Hatfield (DCB)"
+      ]
     }
   ]
 }
