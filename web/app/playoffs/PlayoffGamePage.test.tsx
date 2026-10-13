@@ -42,6 +42,30 @@ describe('PlayoffGamePage', () => {
     expect((await screen.findByRole('link', { name: 'Back to the playoffs ▸' })).getAttribute('href')).toBe('/league/fba/playoffs');
   });
 
+  it('shows the series score as the record of each team: 0-0 before the game, then the new score once it is saved', async () => {
+    stubApi(seasonDocs(seeded()));
+    renderAt('/league/fba/playoffs/game/1');
+    await screen.findByRole('button', { name: 'Sim to end' });
+    const recs = () => [...document.querySelectorAll('.scorebug .rec')].map(e => e.textContent);
+    expect(recs()).toEqual(['0-0', '0-0']);
+    fireEvent.click(screen.getByRole('button', { name: 'Sim to end' }));
+    await screen.findByRole('link', { name: 'Saved · back to the playoffs ▸' });
+    await waitFor(() => expect([...recs()].sort()).toEqual(['0-1', '1-0']));
+  });
+
+  it('a played game shows the series score through that game, not the series as it stands now', async () => {
+    const state = playPlayoffs(seeded(), 5, 40);
+    const g = state.playoffs!.games.find(x => x.gameInSeries >= 3)!;
+    stubApi(seasonDocs(state));
+    renderAt(`/league/fba/playoffs/game/${g.gameNo}`);
+    await screen.findByText(/^Final/);
+    const recs = [...document.querySelectorAll('.scorebug .rec')].map(e => e.textContent as string);
+    const [a, b] = recs.map(r => r.split('-').map(Number));
+    // through game k of the series: the two teams have played k games between them, and each record is the other's reversed
+    expect(a[0] + a[1]).toBe(g.gameInSeries);
+    expect(b).toEqual([a[1], a[0]]);
+  });
+
   it('refuses any other game', async () => {
     stubApi(seasonDocs(seeded()));
     renderAt('/league/fba/playoffs/game/3');

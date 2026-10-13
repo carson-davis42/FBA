@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { roundName } from '../../engine/playoffs/bracket';
-import { nextPlayoffGame, recordPlayoffGame } from '../../engine/playoffs/moves';
+import { nextPlayoffGame, recordPlayoffGame, seriesRecord } from '../../engine/playoffs/moves';
 import { leagueStepProblem, lineup } from '../../engine/season/moves';
 import { simGame, type SimGame } from '../../engine/season/sim';
+import type { PlayoffsFile } from '../../engine/shared/types';
 import { commitSeason } from '../season/commitSeason';
 import { FinalView } from '../season/GameViews';
 import { LiveGame } from '../season/LiveGame';
@@ -12,6 +13,12 @@ import '../pages/season.css';
 import './playoffs.css';
 
 /** Keyed on the game number, so changing the URL starts fresh instead of keeping another game's live sim. */
+/** Under each team's name the playoffs show the series score (as of `throughGameNo`) instead of the regular-season record. */
+function seriesSub(pf: PlayoffsFile, seriesId: string, throughGameNo: number): (teamId: string) => string | undefined {
+  const rec = seriesRecord(pf, seriesId, throughGameNo);
+  return id => { const r = rec.get(id); return r ? `${r.w}-${r.l}` : undefined; };
+}
+
 export function PlayoffGamePage() {
   const { n = '' } = useParams();
   return <PlayoffGame key={n} />;
@@ -51,7 +58,7 @@ function PlayoffGame() {
         {storedSeries && (
           <p className="page-kicker">Playoff game {gameNo} · {roundName(lg, storedSeries)}, game {stored.gameInSeries}</p>
         )}
-        <FinalView state={state} r={stored} />
+        <FinalView state={state} r={stored} sub={seriesSub(state.playoffs!, stored.seriesId, stored.gameNo)} />
         <p><Link className="btn" to={`/league/${lg}/playoffs`}>Back to the playoffs ▸</Link></p>
       </div>
     );
@@ -79,7 +86,7 @@ function PlayoffGame() {
   return (
     <div className="stack">
       {series && <p className="page-kicker">Playoff game {sim.gameNo} · {roundName(lg, series)}, game {gameInSeries}</p>}
-      <LiveGame state={state} sim={sim} save={save} back={{ to: `/league/${lg}/playoffs`, label: 'back to the playoffs ▸' }} />
+      <LiveGame state={state} sim={sim} save={save} sub={seriesId ? seriesSub(pf, seriesId, game ? sim.gameNo : sim.gameNo - 1) : undefined} back={{ to: `/league/${lg}/playoffs`, label: 'back to the playoffs ▸' }} />
     </div>
   );
 }

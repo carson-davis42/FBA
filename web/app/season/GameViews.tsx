@@ -32,11 +32,11 @@ export const ACCENT_SIDES: CSSProperties[] = [
 export interface BugSide { label: string; score: number | string; team?: Team; season?: number; style: CSSProperties; /** Small line under the label, such as a record. */ sub?: string }
 
 /** A side of the scorebug for a real team, in its colours. */
-export function bugSide(state: SeasonState, teamId: string, score: number, opts: { full?: boolean; record?: boolean } = {}): BugSide {
+export function bugSide(state: SeasonState, teamId: string, score: number, opts: { full?: boolean; record?: boolean; sub?: string } = {}): BugSide {
   const t = teamOf(state, teamId);
   const rec = opts.record && state.results ? records(state.teams.teams.map(x => ({ teamId: x.teamId, group: x.group })), state.results.games).get(teamId) : undefined;
   return t
-    ? { label: opts.full ? t.name : t.abbr, sub: rec ? `${rec.w}-${rec.l}` : undefined, score, team: t, season: state.season, style: teamVars(teamTheme(t, state.league, state.season)) }
+    ? { label: opts.full ? t.name : t.abbr, sub: opts.sub ?? (rec ? `${rec.w}-${rec.l}` : undefined), score, team: t, season: state.season, style: teamVars(teamTheme(t, state.league, state.season)) }
     : { label: teamId, score, style: ACCENT_SIDES[0] };
 }
 
@@ -99,14 +99,14 @@ export function BoxTable({ state, title, lines }: { state: SeasonState; title: R
   );
 }
 
-export function FinalView({ state, r }: { state: SeasonState; r: GameResult }) {
+export function FinalView({ state, r, sub }: { state: SeasonState; r: GameResult; sub?: (teamId: string) => string | undefined }) {
   const title = `Final${r.ot ? (r.ot > 1 ? ` (${r.ot}OT)` : ' (OT)') : ''}: ${r.away} ${r.awayPts} @ ${r.home} ${r.homePts}`;
   return (
     <section className="stack">
       <PageHeader kicker={`${LEAGUE_LABEL[state.league]} · S${state.season} · Game ${r.gameNo}`} title={title} />
       <ScoreBug
-        away={bugSide(state, r.away, r.awayPts)}
-        home={bugSide(state, r.home, r.homePts)}
+        away={bugSide(state, r.away, r.awayPts, { sub: sub?.(r.away) })}
+        home={bugSide(state, r.home, r.homePts, { sub: sub?.(r.home) })}
         middle={<Badge kind="final">{r.ot ? (r.ot > 1 ? `${r.ot}OT` : 'OT') : 'Full time'}</Badge>}
       />
       {r.periods && <LineScore home={teamLabel(state, r.home)} away={teamLabel(state, r.away)} periods={r.periods} />}

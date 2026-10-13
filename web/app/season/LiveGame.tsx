@@ -30,6 +30,8 @@ export interface LiveGameProps {
   back?: { to: string; label: string };
   /** An exhibition (All-Star) game: `sim.home.teamId` and `sim.away.teamId` are display names, not teams, and `kicker` heads the page. */
   exhibition?: { kicker: string };
+  /** Replaces the regular-season record under a team's name (the playoffs show the series score). */
+  sub?: (teamId: string) => string | undefined;
   /** Opens with every possession already shown (looking back at a finished game). */
   startDone?: boolean;
   /** Called once, when the last possession has been shown. */
@@ -37,7 +39,7 @@ export interface LiveGameProps {
 }
 
 /** The live viewer: possessions revealed one at a time, saved once at the final buzzer. */
-export function LiveGame({ state, sim, save, back, exhibition, startDone, onDone }: LiveGameProps) {
+export function LiveGame({ state, sim, save, back, exhibition, startDone, onDone, sub }: LiveGameProps) {
   const saving = useSaving();
   const [shown, setShown] = useState(startDone ? sim.possessions.length : 0);
   const [auto, setAuto] = useState(false);
@@ -112,8 +114,8 @@ export function LiveGame({ state, sim, save, back, exhibition, startDone, onDone
     <section className="stack">
       <p className="page-kicker">{exhibition?.kicker ?? [LEAGUE_LABEL[state.league] ?? state.league, ...groups, `S${state.season}`].join(' · ')}</p>
       <ScoreBug
-        away={exhibition ? { label: sim.away.teamId, score: last?.awayScore ?? 0, style: ACCENT_SIDES[1] } : bugSide(state, sim.away.teamId, last?.awayScore ?? 0, { full: true, record: true })}
-        home={exhibition ? { label: sim.home.teamId, score: last?.homeScore ?? 0, style: ACCENT_SIDES[0] } : bugSide(state, sim.home.teamId, last?.homeScore ?? 0, { full: true, record: true })}
+        away={exhibition ? { label: sim.away.teamId, score: last?.awayScore ?? 0, style: ACCENT_SIDES[1] } : bugSide(state, sim.away.teamId, last?.awayScore ?? 0, { full: true, record: true, sub: sub?.(sim.away.teamId) })}
+        home={exhibition ? { label: sim.home.teamId, score: last?.homeScore ?? 0, style: ACCENT_SIDES[0] } : bugSide(state, sim.home.teamId, last?.homeScore ?? 0, { full: true, record: true, sub: sub?.(sim.home.teamId) })}
         middle={done ? `Final${sim.ot ? ` (${sim.ot > 1 ? `${sim.ot}OT` : 'OT'})` : ''}` : `${periodName(last ? last.period : 1)} · ${end - shown} possessions left`}
       />
       <div className="card sim-controls">

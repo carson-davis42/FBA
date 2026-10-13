@@ -12,6 +12,28 @@ import { betterAcross } from './tiebreak';
 
 const LEAGUE_NAME = { fba: 'FBA', fbad2: 'D2' } as const;
 
+/**
+ * Each side's wins and losses in one series through game number `throughGameNo` (series wins as the score reads at that point).
+ * Both teams appear with 0-0 before the first game; unknown ids (a series whose teams aren't set yet) give an empty map.
+ */
+export function seriesRecord(pf: PlayoffsFile, seriesId: string, throughGameNo: number): Map<string, { w: number; l: number }> {
+  const series = pf.series.find(s => s.id === seriesId);
+  const out = new Map<string, { w: number; l: number }>();
+  if (!series?.home || !series.away) return out;
+  out.set(series.home, { w: 0, l: 0 });
+  out.set(series.away, { w: 0, l: 0 });
+  for (const g of pf.games) {
+    if (g.seriesId !== seriesId || g.gameNo > throughGameNo) continue;
+    const winner = g.homePts > g.awayPts ? g.home : g.away;
+    const loser = winner === g.home ? g.away : g.home;
+    const w = out.get(winner);
+    const l = out.get(loser);
+    if (w) w.w++;
+    if (l) l.l++;
+  }
+  return out;
+}
+
 export function seasonStandings(state: SeasonState): Standings {
   const teams = state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group }));
   return standings(state.league, teams, state.results?.games ?? [], seasonLength(state.league, teams), state.playoffs);
