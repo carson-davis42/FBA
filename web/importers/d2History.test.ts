@@ -143,6 +143,42 @@ describe('buildLeagueHistory', () => {
   });
 });
 
+describe('team names in the sheet are city names: renamed clubs match by their city', () => {
+  const renamed: TeamsFile = {
+    league: 'fbad2',
+    teams: [
+      { ...mkTeam('MUN', 'Münchner BC', 'WL'), city: 'Munich', country: 'Germany' },
+      { ...mkTeam('BER', 'Berlin', 'PL') },
+      { ...mkTeam('LON1', 'London Royal', 'PL'), city: 'London', country: 'England' },
+      { ...mkTeam('LON2', 'London Lions', 'UL'), city: 'London', country: 'England' },
+    ],
+  };
+  it('matches a sheet name to the club by its name first, then by a city only one club has', () => {
+    const report = new Report();
+    const out = buildLeagueHistory([['Munich', 'WL: S68-pres.'], ['Berlin', 'PL: S50-pres.']], renamed, report);
+    expect(out.teams.map(t => t.teamId)).toEqual(['BER', 'MUN']);
+    const errors = report.entries.filter(e => e.level === 'error').map(e => e.message);
+    expect(errors.some(m => m.includes('Munich'))).toBe(false);
+  });
+  it('reads the sheet spellings of Sao Paulo, Kiev and Rio', () => {
+    const t: TeamsFile = { league: 'fbad2', teams: [
+      { ...mkTeam('SP', 'Paulistano', 'UL'), city: 'São Paulo' },
+      { ...mkTeam('KIEV', 'SK Kyiv', 'IL'), city: 'Kyiv' },
+      { ...mkTeam('RIO', 'Guanabara SC', 'WL'), city: 'Rio de Janeiro' },
+    ] };
+    const report = new Report();
+    const out = buildLeagueHistory([['Sao Paolo', 'UL: S68-pres.'], ['Kiev', 'IL: S68-pres.'], ['Rio De Janeiro', 'WL: S68-pres.']], t, report);
+    expect(out.teams.map(x => x.teamId)).toEqual(['KIEV', 'RIO', 'SP']);
+    expect(report.entries.filter(e => e.level === 'error')).toEqual([]);
+  });
+  it('does not guess when two clubs share a city', () => {
+    const report = new Report();
+    buildLeagueHistory([['London', 'PL: S50-pres.']], renamed, report);
+    const errors = report.entries.filter(e => e.level === 'error').map(e => e.message);
+    expect(errors.some(m => m.includes('"London"'))).toBe(true);
+  });
+});
+
 describe('d2LeagueMoves', () => {
   const groups = ['PL', 'WL', 'UL', 'IL'];
   const big: TeamsFile = { league: 'fbad2', teams: Array.from({ length: 64 }, (_, i) => mkTeam(`t${String(i).padStart(2, '0')}`, `Team ${i}`, groups[Math.floor(i / 16)])) };

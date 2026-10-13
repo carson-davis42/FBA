@@ -14,14 +14,30 @@ export interface D2HistoryCtx { players: PlayersFile; teams: TeamsFile; existing
 
 const LEAGUES = ['PL', 'WL', 'UL', 'IL'];
 
-/** Sheet misspellings of D2 team names. */
-const SHEET_TEAM_ALIASES: Record<string, string> = { Luxemboug: 'Luxembourg' };
+/** Sheet spellings of D2 team names (or cities) that differ from the app's. */
+const SHEET_TEAM_ALIASES: Record<string, string> = {
+  Luxemboug: 'Luxembourg', 'Sao Paolo': 'São Paulo', 'Sao Paulo': 'São Paulo', Kiev: 'Kyiv', 'Rio De Janeiro': 'Rio de Janeiro',
+};
+
+/**
+ * Name (or sheet alias) → team id, then city → team id. The sheets name a club by its city ("Munich"), and clubs have been renamed after their logos
+ * ("Münchner BC"), so a name that isn't a team name falls back to the city of the one club that has it; a city shared by two clubs matches neither.
+ */
+export function d2TeamIds(teams: TeamsFile): (name: string) => string | undefined {
+  const byName = new Map(teams.teams.map(t => [t.name, t.teamId]));
+  const byCity = new Map<string, string | null>();
+  for (const t of teams.teams) {
+    if (!t.city) continue;
+    byCity.set(t.city, byCity.has(t.city) ? null : t.teamId);
+  }
+  return name => byName.get(SHEET_TEAM_ALIASES[name] ?? name) ?? byCity.get(SHEET_TEAM_ALIASES[name] ?? name) ?? undefined;
+}
 
 function teamIdLookup(teams: TeamsFile, report: Report): (name: string) => string | undefined {
-  const byName = new Map(teams.teams.map(t => [t.name, t.teamId]));
+  const find = d2TeamIds(teams);
   const seen = new Set<string>();
   return name => {
-    const id = byName.get(SHEET_TEAM_ALIASES[name] ?? name);
+    const id = find(name);
     if (id === undefined && !seen.has(name)) {
       seen.add(name);
       report.info('d2-teams', `No D2 team is named "${name}"`);
@@ -36,11 +52,11 @@ function titleOf(row: TitleRow): string {
 }
 
 export function buildLeagueHistory(rows: string[][], teams: TeamsFile, report: Report): D2LeagueHistoryFile {
-  const ids = new Map(teams.teams.map(t => [t.name, t.teamId]));
+  const find = d2TeamIds(teams);
   const out: D2TeamLeagueHistory[] = [];
   const seen = new Set<string>();
   for (const row of parseTeamLeagueHistory(rows)) {
-    const teamId = ids.get(row.name);
+    const teamId = find(row.name);
     if (teamId === undefined) {
       report.error('d2-leagues', `Team League History names "${row.name}", which isn't in the D2 teams.json`);
       continue;
