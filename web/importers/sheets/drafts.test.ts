@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { draftTabKind, parseDraftTab } from './drafts';
+import { dateCell } from './dates';
+import { draftTabKind, parseDraftDate, parseDraftTab } from './drafts';
 
 describe('parseDraftTab', () => {
   it('reads picks in order, splits "(via X)", skips the header and blanks', () => {
@@ -23,5 +24,24 @@ describe('draftTabKind', () => {
     expect(draftTabKind('S68 Exp')).toEqual({ season: 68, kind: 'expansion' });
     expect(draftTabKind('S78 D2')).toBeNull();
     expect(draftTabKind('S79 Draft Board')).toBeNull();
+  });
+});
+
+describe('parseDraftDate', () => {
+  it('takes the date cell of column F, and null when the tab has none', () => {
+    expect(parseDraftDate([['TEAM', 'PLAYER', 'POS', 'CLASS', 'COLLEGE'], ['A', 'B', 'PG', 'Fr', 'X', ''], ['C', 'D', 'SG', 'Jr', 'Y', '2026-09-21']])).toBe('2026-09-21');
+    expect(parseDraftDate([['A', 'B', 'PG', 'Fr', 'X', 'X']])).toBeNull();
+    expect(parseDraftDate([])).toBeNull();
+  });
+  it('ignores dates outside column F', () => {
+    expect(parseDraftDate([['A', 'B', 'PG', '2026-09-21', 'X']])).toBeNull();
+  });
+});
+
+describe('dateCell', () => {
+  it('accepts an ISO day or an Excel serial and rejects X, blanks, scores and impossible days', () => {
+    expect(dateCell('2019-10-25')).toBe('2019-10-25');
+    expect(dateCell('46154')).toBe('2026-05-12');
+    for (const t of ['X', '', undefined, '2-1', '2019-13-40', '2019-02-30', 'Oct 25']) expect(dateCell(t)).toBeNull();
   });
 });

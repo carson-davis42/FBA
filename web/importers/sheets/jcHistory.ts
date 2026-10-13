@@ -1,5 +1,6 @@
 import type { JcNationalAward } from '../../engine/shared/types';
 import type { Report } from '../report';
+import { dateCell } from './dates';
 
 /** Parsers for the FBAJC history workbook ("FBAJC"). Every cell is a trimmed string; `X` and blanks mean none. Seasons are the sheet's own numbers (S1–S18, then S48 on). */
 
@@ -13,8 +14,8 @@ const seasonOf = (v: string | undefined): number | null => {
   return m ? Number(m[1]) : null;
 };
 
-export interface JcChampionRow { season: number; champion: string; runnerUp: string | null; score: string | null; mvp: string | null }
-export interface JcNitRow { season: number; champion: string; runnerUp: string | null; mvp: string | null }
+export interface JcChampionRow { season: number; champion: string; runnerUp: string | null; score: string | null; mvp: string | null; date?: string | null }
+export interface JcNitRow { season: number; champion: string; runnerUp: string | null; mvp: string | null; date?: string | null }
 export interface JcAwardRow { season: number; award: JcNationalAward; name: string; school: string | null }
 export interface JcAaSlot { slot: string; name: string; school: string | null }
 export interface JcAaSeason { season: number; teams: { team: number; slots: JcAaSlot[] }[] }
@@ -23,7 +24,7 @@ export interface JcRsChampionRow { season: number; conf: string; school: string;
 export interface JcConfTourRow { season: number; conf: string; school: string }
 export interface JcPreseasonRow { season: number; event: string; champion: string }
 
-/** "National Championship History": Year | Champion | Runner-Up | Score | C-Ship MVP | Date (a "JC Era" row precedes S1; the date is not used). */
+/** "National Championship History": Year | Champion | Runner-Up | Score | C-Ship MVP | Date (a "JC Era" row precedes S1). */
 export function parseNationalChampions(rows: string[][], report?: Report): JcChampionRow[] {
   const out: JcChampionRow[] = [];
   for (const r of rows) {
@@ -31,7 +32,7 @@ export function parseNationalChampions(rows: string[][], report?: Report): JcCha
     if (season === null) continue;
     const champion = cell(r[1]);
     if (champion === null) { report?.warn('jc-history', `Skipped S${season}: no national champion`); continue; }
-    out.push({ season, champion, runnerUp: cell(r[2]), score: cell(r[3]), mvp: cell(r[4]) });
+    out.push({ season, champion, runnerUp: cell(r[2]), score: cell(r[3]), mvp: cell(r[4]), date: dateCell(r[5]) });
   }
   return out;
 }
@@ -44,7 +45,7 @@ export function parseNitChampions(rows: string[][], report?: Report): JcNitRow[]
     if (season === null) continue;
     const champion = cell(r[1]);
     if (champion === null) { report?.warn('jc-history', `Skipped NIT S${season}: no champion`); continue; }
-    out.push({ season, champion, runnerUp: cell(r[2]), mvp: cell(r[3]) });
+    out.push({ season, champion, runnerUp: cell(r[2]), mvp: cell(r[3]), date: dateCell(r[4]) });
   }
   return out;
 }

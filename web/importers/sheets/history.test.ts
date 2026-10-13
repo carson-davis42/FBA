@@ -37,10 +37,20 @@ describe('parseChampionships', () => {
   ];
   it('reads the champion columns', () => {
     expect(parseChampionships(rows)).toEqual([
-      { season: 1, champion: 'Cypress Green Guns', runnerUp: 'Former Pirates', score: '1–0', finalsMvp: 'Carson Davis' },
-      { season: 78, champion: 'Boston Bucks', runnerUp: 'Memphis Blues', score: '4–1', finalsMvp: 'Gabriel Greenwood' },
-      { season: 55, champion: 'Some Team', runnerUp: null, score: null, finalsMvp: null },
+      { season: 1, champion: 'Cypress Green Guns', runnerUp: 'Former Pirates', score: '1–0', finalsMvp: 'Carson Davis', date: null },
+      { season: 78, champion: 'Boston Bucks', runnerUp: 'Memphis Blues', score: '4–1', finalsMvp: 'Gabriel Greenwood', date: '2026-05-12' },
+      { season: 55, champion: 'Some Team', runnerUp: null, score: null, finalsMvp: null, date: null },
     ]);
+  });
+  it('reads the Date column (column H) only: a score cell that Excel made a date is not a date', () => {
+    const r = parseChampionships([
+      ['Year', '', 'Winner', 'Runner up', '', 'Series Score', 'Finals MVP', 'Date'],
+      ['S57', '', 'Cal Tech Golden Knights', 'San Antonio Spirits', '', '2020-02-01', 'Bennett Hartford', '2019-10-25'],
+      ['S58', '', 'New Orleans Seminoles', 'DCB', '', '2020-02-01', 'Timothy Cole', 'X'],
+      ['S59', '', 'Chicago Spartans', 'New Orleans Seminoles', '', '4-1', 'Jaylen Oden'],
+    ]);
+    expect(r.map(c => c.date)).toEqual(['2019-10-25', null, null]);
+    expect(r[1].score).toBe('2–1');
   });
 });
 

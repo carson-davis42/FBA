@@ -1,3 +1,5 @@
+import { dateCell } from './dates';
+
 export interface DraftRow { team: string; via: string | null; name: string; pos: string; detail: string | null; college: string | null }
 
 /** One draft tab: rows TEAM | PLAYER | POSITION | CLASS-or-AGE | COLLEGE in pick order; the header row may sit anywhere. */
@@ -17,4 +19,11 @@ export function parseDraftTab(rows: string[][]): DraftRow[] {
 export function draftTabKind(tab: string): { season: number; kind: 'draft' | 'expansion' } | null {
   const m = tab.trim().match(/^S(\d+)(?:\s+(exp))?$/i);
   return m ? { season: Number(m[1]), kind: m[2] ? 'expansion' : 'draft' } : null;
+}
+
+/** The tab's draft date: the Date cell in column F (on the row of the last pick). The last one wins if the tab has several; null if none. */
+export function parseDraftDate(rows: string[][]): string | null {
+  let date: string | null = null;
+  for (const r of rows) date = dateCell(r?.[5]) ?? date;
+  return date;
 }

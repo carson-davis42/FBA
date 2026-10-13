@@ -1,7 +1,8 @@
 import { formatScore } from '../../engine/history/format';
+import { dateCell } from './dates';
 
 export interface NameTeam { name: string; team: string | null }
-export interface ChampRow { season: number; champion: string; runnerUp: string | null; score: string | null; finalsMvp: string | null }
+export interface ChampRow { season: number; champion: string; runnerUp: string | null; score: string | null; finalsMvp: string | null; date?: string | null }
 export type AwardKey = 'MVP' | 'ROTY' | 'PPK' | 'LP' | 'MC' | 'DPOY' | 'MIP';
 export interface AwardsRow {
   season: number;
@@ -65,7 +66,7 @@ const nameTeam = (row: string[] | undefined, i: number): NameTeam | null => {
   return c === null ? null : splitNameTeam(c);
 };
 
-/** The Championships tab: columns A, C, D, F, G; row 0 is the header. */
+/** The Championships tab: columns A, C, D, F, G and H (the FBA Finals date, S57 on); row 0 is the header. */
 export function parseChampionships(rows: string[][]): ChampRow[] {
   const out: ChampRow[] = [];
   for (let i = 1; i < rows.length; i++) {
@@ -80,6 +81,7 @@ export function parseChampionships(rows: string[][]): ChampRow[] {
       runnerUp: cell(rows[i], 3),
       score: score === null ? null : decodeScore(score),
       finalsMvp: cell(rows[i], 6),
+      date: dateCell(rows[i][7]),
     });
   }
   return out;

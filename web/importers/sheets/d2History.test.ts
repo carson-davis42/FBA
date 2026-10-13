@@ -28,11 +28,16 @@ describe('D2 sheet parsers', () => {
     expect(parseIntlChampionships([
       ['Year', 'Champion', 'Runner-Up', 'Series MVP', 'Date'],
       ['S55(1)', 'Syracuse', 'San Jose', 'Myles Hamilton', 'X'],
-    ])).toEqual([{ season: 55, half: 1, group: 'D2', champion: 'Syracuse', runnerUp: 'San Jose', seriesMvp: 'Myles Hamilton' }]);
+      ['S57', 'Vienna', 'Frankfurt', 'Dominic Forster', '2019-09-08'],
+    ])).toEqual([
+      { season: 55, half: 1, group: 'D2', champion: 'Syracuse', runnerUp: 'San Jose', seriesMvp: 'Myles Hamilton', date: null },
+      { season: 57, half: null, group: 'D2', champion: 'Vienna', runnerUp: 'Frankfurt', seriesMvp: 'Dominic Forster', date: '2019-09-08' },
+    ]);
     const league = parseLeagueChampionships([
       ['Year', 'PL Champion', 'PL Runner-Up', 'Series MVP', 'Date', '', 'WL Champion', 'WL Runner-Up', 'Series MVP', 'Date', '', 'UL Champion', 'UL Runner-Up', 'Series MVP', 'Date', '', 'IL Champion', 'IL Runner-Up', 'Series MVP', 'Date'],
-      ['S71', 'Hamburg', 'Madrid', 'Derrick Burns', 'd', '', 'Austin', 'Tokyo', 'Bobbie Allen', 'd', '', 'Zagreb', 'Buenos Aires', 'Milo Blanchard', 'd', '', 'X', 'X', 'X', 'X'],
+      ['S71', 'Hamburg', 'Madrid', 'Derrick Burns', '2023-12-21', '', 'Austin', 'Tokyo', 'Bobbie Allen', '2023-12-20', '', 'Zagreb', 'Buenos Aires', 'Milo Blanchard', 'd', '', 'X', 'X', 'X', 'X'],
     ]);
+    expect(league.map(t => t.date)).toEqual(['2023-12-21', '2023-12-20', null]);
     expect(league.map(t => `${t.group}:${t.champion}>${t.runnerUp}:${t.seriesMvp}`)).toEqual(['PL:Hamburg>Madrid:Derrick Burns', 'WL:Austin>Tokyo:Bobbie Allen', 'UL:Zagreb>Buenos Aires:Milo Blanchard']);
   });
 

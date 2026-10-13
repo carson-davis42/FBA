@@ -66,6 +66,17 @@ describe('buildJcHistory', () => {
     expect(SummaryFileSchema.safeParse(s).success).toBe(true);
   });
 
+  it('puts the sheet dates on the national champion, the NIT champion and the NIT block', () => {
+    const { season } = run({
+      champions: [{ season: 72, champion: 'Duke', runnerUp: 'TCU', score: null, mvp: null, date: '2024-04-15' }, { season: 5, champion: 'Duke', runnerUp: 'TCU', score: null, mvp: null, date: null }],
+      nit: [{ season: 72, champion: 'Seton Hall', runnerUp: 'Purdue', mvp: null, date: '2024-04-17' }],
+    });
+    expect(season(72).champions.map(c => c.date)).toEqual(['2024-04-15', '2024-04-17']);
+    expect(season(72).jc!.nit).toEqual({ champion: 'SHU', runnerUp: 'PUR', date: '2024-04-17' });
+    expect(season(5).champions[0].date).toBeNull();
+    expect(SummaryFileSchema.safeParse(season(72)).success).toBe(true);
+  });
+
   it('keeps an MVP name as text when no player matches or two match', () => {
     const { season, report } = run({ champions: [
       { season: 5, champion: 'Duke', runnerUp: 'TCU', score: null, mvp: 'Nobody Known' },

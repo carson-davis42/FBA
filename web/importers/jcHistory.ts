@@ -104,7 +104,7 @@ export function buildJcHistory(parsed: JcParsed, ctx: JcHistoryCtx, report: Repo
     const nit = nits.get(season)?.[0];
     if (!nc) report.info('jc-history', `${where} has no national champion row`);
 
-    const champion = (title: string, name: string, runnerUp: string | null, score: string | null, mvp: string | null): Champion => {
+    const champion = (title: string, name: string, runnerUp: string | null, score: string | null, mvp: string | null, date?: string | null): Champion => {
       const mvpId = playerOf(mvp, `${where} ${title} MVP`);
       const c: Champion = { title, champion: name, runnerUp, score };
       const id = teamOf(name, `${where} ${title}`);
@@ -112,12 +112,13 @@ export function buildJcHistory(parsed: JcParsed, ctx: JcHistoryCtx, report: Repo
       if (id !== null) c.teamId = id;
       if (rid !== null) c.runnerUpId = rid;
       c.finalsMvp = mvpId;
+      if (date !== undefined) c.date = date;
       if (mvp && mvpId === null) c.mvpName = mvp;
       return c;
     };
     const built: Champion[] = [];
-    if (nc) built.push(champion(TITLE_NATIONAL, nc.champion, nc.runnerUp, nc.score, nc.mvp));
-    if (nit) built.push(champion(TITLE_NIT, nit.champion, nit.runnerUp, null, nit.mvp));
+    if (nc) built.push(champion(TITLE_NATIONAL, nc.champion, nc.runnerUp, nc.score, nc.mvp, nc.date));
+    if (nit) built.push(champion(TITLE_NIT, nit.champion, nit.runnerUp, null, nit.mvp, nit.date));
 
     const who = (name: string | null, school: string | null, w: string) => {
       const playerId = playerOf(name, w);
@@ -182,6 +183,7 @@ export function buildJcHistory(parsed: JcParsed, ctx: JcHistoryCtx, report: Repo
       mvp: { mm: mvpMm, nit: mvpNit },
       nit: nit && nit.runnerUp ? { champion: idOrName(nit.champion, `${where} NIT`), runnerUp: idOrName(nit.runnerUp, `${where} NIT`) } : null,
     };
+    if (jc.nit && nit?.date !== undefined) jc.nit.date = nit.date;
     if (allAmericanLegacy) jc.allAmericanLegacy = allAmericanLegacy;
     if (nameMm || nameNit) jc.mvpNames = { mm: nameMm, nit: nameNit };
     const preseason = (pre.get(season) ?? []).map(p => {

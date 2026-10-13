@@ -171,6 +171,8 @@ export function buildHistory(input: HistoryInput, report: Report): HistoryOutput
         score: champ.score,
         finalsMvp: (champ.finalsMvp === null ? null : resolveFinalsMvp(champ.finalsMvp, n)) ?? prev.finalsMvp ?? null,
       };
+      // The sheet's date wins; without one the existing date stays.
+      if (champ.date !== undefined) entry.date = champ.date ?? prev.date ?? null;
       const teamId = teamByName.get(champ.champion);
       if (teamId) entry.teamId = teamId;
       const runnerUpId = champ.runnerUp === null ? undefined : teamByName.get(champ.runnerUp);

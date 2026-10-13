@@ -16,10 +16,10 @@ describe('parseNationalChampions', () => {
   ];
   it('reads champion, runner-up, score and MVP, treating X as none, and skips header rows', () => {
     expect(parseNationalChampions(rows)).toEqual([
-      { season: 1, champion: 'Duke', runnerUp: 'Virginia', score: null, mvp: 'Charles Latley' },
-      { season: 12, champion: 'Duke', runnerUp: 'TCU', score: '28-27', mvp: 'Demarcus Allen' },
-      { season: 78, champion: 'North Carolina', runnerUp: 'Syracuse', score: '100-93', mvp: 'Rylan Rush' },
-      { season: 73, champion: 'Ohio State', runnerUp: 'Michigan', score: null, mvp: null },
+      { season: 1, champion: 'Duke', runnerUp: 'Virginia', score: null, mvp: 'Charles Latley', date: null },
+      { season: 12, champion: 'Duke', runnerUp: 'TCU', score: '28-27', mvp: 'Demarcus Allen', date: null },
+      { season: 78, champion: 'North Carolina', runnerUp: 'Syracuse', score: '100-93', mvp: 'Rylan Rush', date: '2026-05-22' },
+      { season: 73, champion: 'Ohio State', runnerUp: 'Michigan', score: null, mvp: null, date: '2024-07-09' },
     ]);
   });
   it('reports a row with no champion instead of dropping it silently', () => {
@@ -33,8 +33,8 @@ describe('parseNitChampions', () => {
   it('reads champion, runner-up and MVP', () => {
     const rows = [['Year', 'Champion', 'Runner-Up', 'C-Ship MVP', 'Date'], ['S72', 'Seton Hall', 'Purdue', 'Rhys Creed', '2024-04-17'], ['S78', 'Creighton', 'Oklahoma', 'Camden Sutter', '2026-05-22']];
     expect(parseNitChampions(rows)).toEqual([
-      { season: 72, champion: 'Seton Hall', runnerUp: 'Purdue', mvp: 'Rhys Creed' },
-      { season: 78, champion: 'Creighton', runnerUp: 'Oklahoma', mvp: 'Camden Sutter' },
+      { season: 72, champion: 'Seton Hall', runnerUp: 'Purdue', mvp: 'Rhys Creed', date: '2024-04-17' },
+      { season: 78, champion: 'Creighton', runnerUp: 'Oklahoma', mvp: 'Camden Sutter', date: '2026-05-22' },
     ]);
   });
 });

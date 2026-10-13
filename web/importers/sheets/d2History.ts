@@ -1,6 +1,8 @@
+import { dateCell } from './dates';
+
 export type PastGroup = 'AM' | 'EW' | 'EE' | 'ES' | 'PL' | 'WL' | 'UL' | 'IL';
 export interface TeamLeagueRow { name: string; founded: number | null; spells: { group: PastGroup; from: number; to: number | null }[] }
-export interface TitleRow { season: number; half: 1 | 2 | null; group: 'D2' | 'PL' | 'WL' | 'UL' | 'IL'; champion: string; runnerUp: string | null; seriesMvp: string | null }
+export interface TitleRow { season: number; half: 1 | 2 | null; group: 'D2' | 'PL' | 'WL' | 'UL' | 'IL'; champion: string; runnerUp: string | null; seriesMvp: string | null; date?: string | null }
 export interface MvpCell { name: string; team: string }
 export interface AwardsRow { season: number; half: 1 | 2 | null; mvps: { award: 'MVP-D2' | 'MVP-AM' | 'MVP-EW' | 'MVP-EE' | 'MVP-ES' | 'MVP-PL' | 'MVP-WL' | 'MVP-UL' | 'MVP-IL'; cell: MvpCell }[]; rsChampions: { group: PastGroup; teams: string[] }[] }
 export interface D2DraftRow { team: string; name: string; pos: string; age: number | null; rating: number | null }
@@ -66,7 +68,7 @@ export function parseIntlChampionships(rows: string[][]): TitleRow[] {
     if (!s) continue;
     const champion = cellAt(row, 1);
     if (blank(champion)) continue;
-    out.push({ ...s, group: 'D2', champion, runnerUp: orNull(cellAt(row, 2)), seriesMvp: orNull(cellAt(row, 3)) });
+    out.push({ ...s, group: 'D2', champion, runnerUp: orNull(cellAt(row, 2)), seriesMvp: orNull(cellAt(row, 3)), date: dateCell(cellAt(row, 4)) });
   }
   return out;
 }
@@ -86,7 +88,7 @@ export function parseLeagueChampionships(rows: string[][]): TitleRow[] {
     for (const { c, group } of blocks) {
       const champion = cellAt(row, c);
       if (blank(champion)) continue;
-      out.push({ ...s, group, champion, runnerUp: orNull(cellAt(row, c + 1)), seriesMvp: orNull(cellAt(row, c + 2)) });
+      out.push({ ...s, group, champion, runnerUp: orNull(cellAt(row, c + 1)), seriesMvp: orNull(cellAt(row, c + 2)), date: dateCell(cellAt(row, c + 3)) });
     }
   }
   return out;

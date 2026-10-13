@@ -18,6 +18,7 @@ function mergeChampion(built: Champion, existing: Champion | undefined): Champio
   const merged: Champion = { ...rest, champion: built.champion, runnerUp: built.runnerUp };
   if (built.teamId !== undefined) merged.teamId = built.teamId;
   if (built.runnerUpId !== undefined) merged.runnerUpId = built.runnerUpId;
+  if (built.date !== undefined) merged.date = built.date ?? existing.date ?? null;
   const mvp = built.finalsMvp ?? finalsMvp;
   if (mvp !== undefined) merged.finalsMvp = mvp;
   return merged;
@@ -41,6 +42,7 @@ export function buildWcHistory(rows: string[][], ctx: WcCtx, report: Report): { 
     const champion = SHEET_TEAM_ALIASES[r.champion] ?? r.champion;
     const runnerUp = r.runnerUp === null ? null : SHEET_TEAM_ALIASES[r.runnerUp] ?? r.runnerUp;
     const built: Champion = { title: 'World Cup Champion', champion, runnerUp, score: null, finalsMvp: r.mvp === null ? null : resolve(r.mvp, `${where} Tournament MVP`) };
+    if (r.date !== undefined) built.date = r.date;
     const id = teamId(r.champion, `${where} champion`);
     if (id !== undefined) built.teamId = id;
     if (r.runnerUp !== null) {

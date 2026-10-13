@@ -7,14 +7,16 @@ describe('parseWorldCups', () => {
     const rows = [
       ['Year', 'Host City', 'Host Country', 'Champions', 'Runner-Up', 'Tournament MVP', 'Date'],
       ['S56', 'San Jose', 'USA', 'Italy', 'Turkey', "Ignazio D'Angelo", 'X'],
+      ['S62', 'Rome', 'Italy', 'Mexico', 'Germany', 'Webb Allen', '2020-09-13'],
       ['S80', 'Mumbai', 'India'],
       ['S82', 'London', 'England', '', '', '', ''],
       ['Notes'],
     ];
     expect(parseWorldCups(rows)).toEqual([
-      { season: 56, city: 'San Jose', country: 'USA', champion: 'Italy', runnerUp: 'Turkey', mvp: "Ignazio D'Angelo" },
-      { season: 80, city: 'Mumbai', country: 'India', champion: null, runnerUp: null, mvp: null },
-      { season: 82, city: 'London', country: 'England', champion: null, runnerUp: null, mvp: null },
+      { season: 56, city: 'San Jose', country: 'USA', champion: 'Italy', runnerUp: 'Turkey', mvp: "Ignazio D'Angelo", date: null },
+      { season: 62, city: 'Rome', country: 'Italy', champion: 'Mexico', runnerUp: 'Germany', mvp: 'Webb Allen', date: '2020-09-13' },
+      { season: 80, city: 'Mumbai', country: 'India', champion: null, runnerUp: null, mvp: null, date: null },
+      { season: 82, city: 'London', country: 'England', champion: null, runnerUp: null, mvp: null, date: null },
     ]);
   });
 

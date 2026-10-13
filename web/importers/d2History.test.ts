@@ -85,6 +85,40 @@ describe('buildD2History', () => {
     expect(rebuilt.champions[0].score).toBe('4-0');
   });
 
+  it('puts the sheet dates on the international and league champions, matched by season and league', () => {
+    const dated = {
+      ...tabs,
+      [D2_TABS.intl]: [['Year', 'Champion', 'Runner-up', 'Series MVP', 'Date'], ['S55(1)', 'Hawks', 'Owls', 'Ann Able', '2019-01-05'], ['S55(2)', 'Toronto', 'Bears', 'Nobody Known', 'X']],
+      [D2_TABS.league]: [
+        ['Year', 'PL Champion', 'PL Runner-Up', 'Series MVP', 'Date', '', 'UL Champion', 'UL Runner-Up', 'Series MVP', 'Date'],
+        ['S69', 'Hawks', 'Bears', 'Bo Baker', '2023-04-24', '', 'Owls', 'Toronto', 'Cy Cole', '2023-04-07'],
+      ],
+    };
+    const { summaries } = buildD2History(dated, {}, { players, teams, existing: new Map() }, new Report());
+    expect(summaries[0].champions.map(c => c.date)).toEqual(['2019-01-05', null]);
+    expect(summaries[1].champions.map(c => [c.title, c.date])).toEqual([['Premier League Champion', '2023-04-24'], ['United League Champion', '2023-04-07']]);
+    for (const s of summaries) expect(SummaryFile.safeParse(s).success).toBe(true);
+  });
+
+  it('a sheet date overwrites an existing one and a missing date keeps it', () => {
+    const existing = new Map([[69, SummaryFile.parse({
+      league: 'fbad2', season: 69, locked: true, host: null,
+      champions: [
+        { title: 'Premier League Champion', champion: 'Hawks', runnerUp: 'Bears', score: null, date: '2023-01-01' },
+        { title: 'United League Champion', champion: 'Owls', runnerUp: 'Toronto', score: null, date: '2023-02-02' },
+      ],
+    })]]);
+    const dated = {
+      ...tabs,
+      [D2_TABS.league]: [
+        ['Year', 'PL Champion', 'PL Runner-Up', 'Series MVP', 'Date', '', 'UL Champion', 'UL Runner-Up', 'Series MVP', 'Date'],
+        ['S69', 'Hawks', 'Bears', 'Bo Baker', '2023-04-24', '', 'Owls', 'Toronto', 'Cy Cole', 'X'],
+      ],
+    };
+    const c = buildD2History(dated, {}, { players, teams, existing }, new Report()).summaries.find(s => s.season === 69)!.champions;
+    expect(c.map(x => x.date)).toEqual(['2023-04-24', '2023-02-02']);
+  });
+
   it('passes the schemas', () => {
     const { summaries, leagueHistory, drafts } = buildD2History(
       { ...tabs, [D2_TABS.leagues]: [['Hawks', 'Est: S50', 'PL: S50-pres.'], ['Owls', 'UL: S50-pres.'], ['Bears', 'PL: S50-pres.']] },

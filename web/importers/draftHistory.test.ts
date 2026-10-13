@@ -46,6 +46,17 @@ describe('buildDraftHistory', () => {
   });
 });
 
+describe('buildDraftHistory dates', () => {
+  it("puts each tab's date on its draft, null when the tab has none", () => {
+    const doc = buildDraftHistory({
+      S78: [['Seattle', 'Soren Lindberg', 'PG', 'Freshman', 'Arizona', '2026-06-20']],
+      'S75 exp': [['Cal Tech', 'Soren Lindberg', 'PG', '25', '', '2025-05-02']],
+      S60: [['Seattle', 'Soren Lindberg', 'PG', 'Freshman', 'Arizona']],
+    }, { players, franchises: file, lastSeason: 79 }, new Report());
+    expect(doc.drafts.map(d => `${d.season}${d.kind}:${d.date}`)).toEqual(['60draft:null', '75expansion:2025-05-02', '78draft:2026-06-20']);
+  });
+});
+
 describe('keepLaterDrafts', () => {
   const d = (season: number, kind: 'draft' | 'expansion') => ({ season, kind, picks: [] });
   const built = { drafts: [d(78, 'draft'), d(79, 'draft')] };

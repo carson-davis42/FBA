@@ -56,6 +56,25 @@ const run = (i: HistoryInput) => {
 };
 const warnings = (r: Report, topic: string) => r.entries.filter(e => e.level === 'warn' && e.topic === topic).map(e => e.message);
 
+describe('buildHistory dates', () => {
+  it('writes the sheet date on the FBA Champion entry, null when the sheet has none', () => {
+    const r = run(input({ champs: [champ(78, { date: '2026-05-12' }), champ(5, { date: null })] }));
+    expect(r.summaries.find(s => s.season === 78)!.champions[0].date).toBe('2026-05-12');
+    expect(r.summaries.find(s => s.season === 5)!.champions[0].date).toBeNull();
+  });
+  it('keeps an existing date when the sheet has none, and the sheet wins when it has one', () => {
+    const existing: SummaryFile = { league: 'fba', season: 78, locked: true, host: null, champions: [{ title: 'FBA Champion', champion: 'Old', runnerUp: null, score: null, date: '2026-01-01' }] };
+    const keep = run(input({ existing: new Map([[78, existing]]), champs: [champ(78, { date: null })] }));
+    expect(keep.summaries.find(s => s.season === 78)!.champions[0].date).toBe('2026-01-01');
+    const win = run(input({ existing: new Map([[78, existing]]), champs: [champ(78, { date: '2026-05-12' })] }));
+    expect(win.summaries.find(s => s.season === 78)!.champions[0].date).toBe('2026-05-12');
+  });
+  it('writes no date key when the champion row has no date field at all', () => {
+    const r = run(input({ champs: [champ(78)] }));
+    expect('date' in r.summaries.find(s => s.season === 78)!.champions[0]).toBe(false);
+  });
+});
+
 describe('normName', () => {
   it('trims, straightens apostrophes, strips accents and lowercases', () => {
     expect(normName('  José D’Arcy ')).toBe("jose d'arcy");

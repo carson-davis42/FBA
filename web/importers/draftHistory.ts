@@ -2,7 +2,7 @@ import { franchiseAt, franchiseByAbbr } from '../engine/shared/franchises';
 import type { DraftHistoryDraft, DraftHistoryFile, FranchisesFile, PlayersFile } from '../engine/shared/types';
 import { nameResolver } from './history';
 import type { Report } from './report';
-import { draftTabKind, parseDraftTab } from './sheets/drafts';
+import { draftTabKind, parseDraftDate, parseDraftTab } from './sheets/drafts';
 
 /** Sheet shorthands that no era name starts with. */
 const SHEET_TEAM_ALIASES: Record<string, string> = { 'Cypress G': 'Cypress Green Guns', 'Cypress B': 'Cypress Black Sox' };
@@ -41,7 +41,7 @@ export function buildDraftHistory(
       if (r.via && !viaTeamId) report.warn('drafts', `Unresolved via "${r.via}" (${where})`);
       return { pick: ++n, teamId, teamName: r.team, viaTeamId, name: r.name, playerId: resolve(r.name, where), pos: r.pos, detail: r.detail, college: r.college };
     });
-    drafts.push({ season: kind.season, kind: kind.kind, picks });
+    drafts.push({ season: kind.season, kind: kind.kind, date: parseDraftDate(rows), picks });
   }
   drafts.sort((a, b) => a.season - b.season || (a.kind === b.kind ? 0 : a.kind === 'draft' ? -1 : 1));
   return { drafts };

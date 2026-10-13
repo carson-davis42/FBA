@@ -1,5 +1,6 @@
 import type { Report } from '../report';
-export interface WcRow { season: number; city: string; country: string; champion: string | null; runnerUp: string | null; mvp: string | null }
+import { dateCell } from './dates';
+export interface WcRow { season: number; city: string; country: string; champion: string | null; runnerUp: string | null; mvp: string | null; date?: string | null }
 
 const cell = (v: string | undefined): string | null => {
   const t = (v ?? '').trim();
@@ -18,7 +19,7 @@ export function parseWorldCups(rows: string[][], report?: Report): WcRow[] {
       report?.warn('wc-history', `Skipped S${m[1]}: the host city or country is blank`);
       continue;
     }
-    out.push({ season: Number(m[1]), city, country, champion: cell(r[3]), runnerUp: cell(r[4]), mvp: cell(r[5]) });
+    out.push({ season: Number(m[1]), city, country, champion: cell(r[3]), runnerUp: cell(r[4]), mvp: cell(r[5]), date: dateCell(r[6]) });
   }
   return out;
 }

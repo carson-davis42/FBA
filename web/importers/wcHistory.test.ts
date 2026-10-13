@@ -30,6 +30,16 @@ describe('buildWcHistory', () => {
     expect(report.entries.some(e => e.level === 'warn' && e.message.includes('Winston Holden'))).toBe(true);
   });
 
+  it('puts the sheet date on the champion, keeps an existing date when the sheet has none', () => {
+    const dated = [rows[0], ['S60', 'Manchester', 'England', 'USA', 'UK', 'Winston Holden', '2020-05-02'], ['S78', 'Zagreb', 'Croatia', 'Germany', 'Italy', 'Rowan Hawthorne', 'X']];
+    const existing = new Map<number, SummaryFile>([[78, { league: 'fbawc', season: 78, locked: true, host: 'Croatia', champions: [{ title: 'World Cup Champion', champion: 'Germany', runnerUp: 'Italy', score: null, date: '2026-05-16' }] }]]);
+    const out = buildWcHistory(dated, { players, teams, existing }, new Report());
+    expect(out.summaries[0].champions[0].date).toBe('2020-05-02');
+    expect(out.summaries[1].champions[0].date).toBe('2026-05-16');
+    const fresh = buildWcHistory(dated, { players, teams, existing: new Map() }, new Report());
+    expect(fresh.summaries[1].champions[0].date).toBeNull();
+  });
+
   it('errors on a country the teams file does not have (host countries need not be teams)', () => {
     const report = new Report();
     buildWcHistory([rows[0], ['S62', 'Rome', 'Italy', 'Narnia', 'Italy', 'X', 'X']], { players, teams, existing: new Map() }, report);

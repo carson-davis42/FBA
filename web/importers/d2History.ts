@@ -66,6 +66,7 @@ function mergeSummary(built: SummaryFile, existing: SummaryFile | undefined): Su
     if (b.teamId !== undefined) merged.teamId = b.teamId;
     if (b.runnerUpId !== undefined) merged.runnerUpId = b.runnerUpId;
     if (b.finalsMvp !== undefined) merged.finalsMvp = b.finalsMvp;
+    if (b.date !== undefined) merged.date = b.date ?? c.date ?? null;
     return merged;
   });
   for (const b of built.champions) if (!existing.champions.some(c => c.title === b.title)) champions.push(b);
@@ -98,6 +99,7 @@ export function buildD2History(
         finalsMvp: t.seriesMvp === null ? null : resolve(t.seriesMvp, `S${season} ${t.group} Series MVP`),
       };
       const id = teamId(t.champion);
+      if (t.date !== undefined) c.date = t.date;
       if (id !== undefined) c.teamId = id;
       if (t.runnerUp !== null) {
         const rid = teamId(t.runnerUp);
