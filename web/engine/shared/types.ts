@@ -1209,6 +1209,8 @@ export const SummaryFile = z.object({
   champions: z.array(Champion),
   /** Seasons played in the app: when the season was started and when this league locked it. */
   span: z.object({ opened: isoDateTime, locked: isoDateTime }).strict().optional(),
+  /** Dated events of the season (the draft, the rating pauses, the playoffs…); a bound is null when unknown. */
+  events: z.array(z.object({ label: z.string().min(1), start: isoDay.nullable(), end: isoDay.nullable() }).strict()).optional(),
   awards: z.array(AwardEntry).optional(),
   /** FBA only. */
   allFba: PastAllFbaTeams.nullable().optional(),

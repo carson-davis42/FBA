@@ -8,7 +8,7 @@ import { useDoc, useHistory } from '../../api';
 import { Hero } from '../../components/Hero';
 import { clinchKind, ClinchLegend, RankCell } from '../../components/Clinch';
 import { Bracket } from '../../playoffs/Bracket';
-import { DayStamp, SpanLine } from '../HistoryDates';
+import { DayStamp, SpanLine, EventDates } from '../HistoryDates';
 import { PastBracket } from '../PastBracket';
 import { PlayerLink, SkippedWarning } from '../PlayerLink';
 import '../history.css';
@@ -59,6 +59,7 @@ export function D2SeasonPage() {
         <div>
           <h2 className="section-title">Titles</h2>
           <SpanLine span={season.span} />
+          <EventDates events={season.events} />
           <ul className="plain-list">
             {titles.map((r, i) => (
               <li key={i}>

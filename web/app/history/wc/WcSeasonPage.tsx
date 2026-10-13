@@ -5,7 +5,7 @@ import { useDoc, useHistory } from '../../api';
 import { Badge } from '../../components/Badge';
 import { PageHeader } from '../../components/PageHeader';
 import { HistoryLeagueSwitch } from '../d2/HistoryLeagueSwitch';
-import { DayStamp, SpanLine } from '../HistoryDates';
+import { DayStamp, SpanLine, EventDates } from '../HistoryDates';
 import { PastBracket } from '../PastBracket';
 import { PlayerLink, SkippedWarning } from '../PlayerLink';
 import '../history.css';
@@ -42,6 +42,7 @@ export function WcSeasonPage() {
     <section className="stack">
       {head}
       <SpanLine span={summary.span} />
+      <EventDates events={summary.events} />
       {row && (
         <ul className="plain-list">
           <li><b>Champion</b> <WcTeam teams={teams} teamId={row.championId} name={row.champion} season={n} /><DayStamp date={summary.champions.find(c => c.title === 'World Cup Champion')?.date} label="Final" /></li>

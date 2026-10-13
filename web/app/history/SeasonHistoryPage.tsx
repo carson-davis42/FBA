@@ -12,7 +12,7 @@ import { TeamMark } from '../components/TeamMark';
 import { teamTheme } from '../components/teamColors';
 import { Bracket } from '../playoffs/Bracket';
 import { FinalsCard } from './FinalsCard';
-import { DayLine, SpanLine } from './HistoryDates';
+import { DayLine, EventDates, SpanLine } from './HistoryDates';
 import { PastBracket } from './PastBracket';
 import { PlayerLink, SkippedWarning } from './PlayerLink';
 import { TeamAbbr, TeamFull } from './useTeams';
@@ -92,6 +92,7 @@ function Playoffs({ season, teams, players, franchises }: { season: SummaryFile;
     <div className="stack">
       <DayLine label="Finals" date={champion?.date} />
       <SpanLine span={season.span} />
+      <EventDates events={season.events} />
       {season.bracket ? (
         <Bracket league="fba" series={season.bracket.series} teams={new Map(teams.map(t => [t.teamId, t]))} season={season.season} group={null} open={null} />
       ) : season.pastBracket ? (

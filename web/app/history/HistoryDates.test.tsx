@@ -56,6 +56,24 @@ describe('FBA season page', () => {
     expect(await screen.findByText(`Finals: ${DAY}`)).toBeTruthy();
     expect(text()).not.toContain('Season ran');
   });
+  it('lists the dated events of the season: one day, a range, and nothing without a date', async () => {
+    await page(summary('fba', 72, [champ('FBA Champion')], {
+      events: [
+        { label: 'FBA draft', start: null, end: '2026-05-29' },
+        { label: 'Regular season', start: '2026-10-01', end: '2026-10-12' },
+        { label: 'Unknown event', start: null, end: null },
+      ],
+    }));
+    const list = await screen.findByRole('list', { name: 'Dated events' });
+    expect(list.textContent).toContain('FBA draft · May 29, 2026');
+    expect(list.textContent).toContain('Regular season · Oct 1 – Oct 12, 2026');
+    expect(list.textContent).not.toContain('Unknown event');
+  });
+  it('shows no events list without events', async () => {
+    await page(summary('fba', 72, [champ('FBA Champion')]));
+    await screen.findByRole('tab', { name: 'Playoffs' });
+    expect(screen.queryByRole('list', { name: 'Dated events' })).toBeNull();
+  });
   it('shows the span of an app season', async () => {
     await page(summary('fba', 72, [champ('FBA Champion')], { span: SPAN_IN }));
     expect(await screen.findByText(`Season ran ${SPAN}`)).toBeTruthy();

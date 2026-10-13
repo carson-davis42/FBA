@@ -7,7 +7,7 @@ import type { Champion, PlayersFile, SummaryFile, Team } from '../../../engine/s
 import { useDoc, useHistory } from '../../api';
 import { Badge } from '../../components/Badge';
 import { Hero } from '../../components/Hero';
-import { DayStamp, SpanLine } from '../HistoryDates';
+import { DayStamp, SpanLine, EventDates } from '../HistoryDates';
 import { PastBracket } from '../PastBracket';
 import { SkippedWarning } from '../PlayerLink';
 import '../history.css';
@@ -50,6 +50,7 @@ function Sections({ season, teams, players }: { season: SummaryFile; teams: Team
         <div>
           <h2 className="section-title">Champions</h2>
           <SpanLine span={season.span} />
+          <EventDates events={season.events} />
           <ul className="plain-list">
             {national && <Title c={national} label="National Champion" teams={teams} players={players} season={n} />}
             {nit && <Title c={nit} label="NIT Champion" teams={teams} players={players} season={n} date={nit.date ?? jc?.nit?.date} />}

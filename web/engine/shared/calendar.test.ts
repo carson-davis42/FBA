@@ -43,7 +43,8 @@ describe('calendarFor', () => {
   it('matches the committed calendar for its season (golden)', () => {
     const committed = JSON.parse(readFileSync(path.join(__dirname, '..', '..', 'data', 'calendar.json'), 'utf8')) as CalendarFile;
     // The committed S79 calendar predates the qualifying and expansion steps (the user will migrate it), so compare after adding them.
-    expect(calendarFor(committed.season)).toEqual(withExpansionStep(withQualifyingStep({ ...committed, steps: committed.steps.map(s => ({ ...s, done: false })) })));
+    const { startedAt: _startedAt, ...rest } = committed; // the start time is stamped when the season is started, not by calendarFor
+    expect(calendarFor(committed.season)).toEqual(withExpansionStep(withQualifyingStep({ ...rest, steps: committed.steps.map(s => ({ ...s, done: false })) })));
     expect(committed.season).toBeGreaterThanOrEqual(79);
   });
 
