@@ -132,8 +132,14 @@
     ],
     "Denver Heights": [
       {
-        "file": "Denver Heights S61-pres..png",
+        "file": "Denver Heights S61-S79.png",
         "from": 61,
+        "to": 79,
+        "variant": 0
+      },
+      {
+        "file": "Denver Heights S80-pres..png",
+        "from": 80,
         "to": null,
         "variant": 0
       }
