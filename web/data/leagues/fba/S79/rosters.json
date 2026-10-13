@@ -7,18 +7,18 @@
       {
         "playerId": "p00001",
         "position": "PG",
-        "rating": 83,
+        "rating": 81,
         "age": 23,
-        "points": 1445,
+        "points": 1614,
         "contractEnd": 81,
         "contractAmount": 6
       },
       {
         "playerId": "p00002",
         "position": "SG",
-        "rating": 78,
+        "rating": 77,
         "age": 22,
-        "points": 1014,
+        "points": 1145,
         "contractEnd": 80,
         "contractAmount": 4
       },
@@ -27,16 +27,16 @@
         "position": "SF",
         "rating": 81,
         "age": 22,
-        "points": 1369,
+        "points": 1566,
         "contractEnd": 80,
         "contractAmount": 4
       },
       {
         "playerId": "p00004",
         "position": "PF",
-        "rating": 75,
+        "rating": 77,
         "age": 20,
-        "points": 873,
+        "points": 1018,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -46,7 +46,7 @@
         "position": "C",
         "rating": 85,
         "age": 26,
-        "points": 1662,
+        "points": 1841,
         "contractEnd": 81,
         "contractAmount": 7
       }
@@ -57,7 +57,7 @@
         "position": "PG",
         "rating": 94,
         "age": 28,
-        "points": 2254,
+        "points": 2457,
         "contractEnd": 80,
         "contractAmount": 8
       },
@@ -66,25 +66,25 @@
         "position": "SG",
         "rating": 90,
         "age": 28,
-        "points": 1819,
+        "points": 2068,
         "contractEnd": 81,
         "contractAmount": 7
       },
       {
         "playerId": "p00085",
         "position": "SF",
-        "rating": 73,
+        "rating": 71,
         "age": 24,
-        "points": 650,
+        "points": 682,
         "contractEnd": 80,
         "contractAmount": 3
       },
       {
         "playerId": "p00009",
         "position": "PF",
-        "rating": 68,
+        "rating": 67,
         "age": 28,
-        "points": 329,
+        "points": 352,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -94,7 +94,7 @@
         "position": "C",
         "rating": 93,
         "age": 27,
-        "points": 2215,
+        "points": 2457,
         "contractEnd": 80,
         "contractAmount": 8
       }
@@ -105,7 +105,7 @@
         "position": "PG",
         "rating": 92,
         "age": 24,
-        "points": 2318,
+        "points": 2612,
         "contractEnd": 82,
         "contractAmount": 8
       },
@@ -114,7 +114,7 @@
         "position": "SG",
         "rating": 67,
         "age": 28,
-        "points": 417,
+        "points": 469,
         "contractEnd": 79,
         "contractAmount": 1
       },
@@ -123,25 +123,25 @@
         "position": "SF",
         "rating": 93,
         "age": 23,
-        "points": 2336,
+        "points": 2677,
         "contractEnd": 80,
         "contractAmount": 7
       },
       {
         "playerId": "p00014",
         "position": "PF",
-        "rating": 75,
+        "rating": 74,
         "age": 29,
-        "points": 962,
+        "points": 1058,
         "contractEnd": 80,
         "contractAmount": 7
       },
       {
         "playerId": "p00135",
         "position": "C",
-        "rating": 72,
+        "rating": 74,
         "age": 28,
-        "points": 789,
+        "points": 888,
         "contractEnd": 80,
         "contractAmount": 4
       }
@@ -152,7 +152,7 @@
         "position": "PG",
         "rating": 73,
         "age": 22,
-        "points": 931,
+        "points": 1049,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -160,9 +160,9 @@
       {
         "playerId": "p00016",
         "position": "SG",
-        "rating": 78,
+        "rating": 80,
         "age": 23,
-        "points": 1589,
+        "points": 1784,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -171,7 +171,7 @@
         "position": "SF",
         "rating": 68,
         "age": 30,
-        "points": 504,
+        "points": 585,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": false
@@ -179,9 +179,9 @@
       {
         "playerId": "p00018",
         "position": "PF",
-        "rating": 71,
+        "rating": 70,
         "age": 19,
-        "points": 940,
+        "points": 1057,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -189,9 +189,9 @@
       {
         "playerId": "p00019",
         "position": "C",
-        "rating": 74,
+        "rating": 73,
         "age": 24,
-        "points": 1043,
+        "points": 1187,
         "contractEnd": 81,
         "contractAmount": 5
       }
@@ -200,9 +200,9 @@
       {
         "playerId": "p00020",
         "position": "PG",
-        "rating": 76,
+        "rating": 78,
         "age": 26,
-        "points": 968,
+        "points": 1094,
         "contractEnd": 81,
         "contractAmount": 6
       },
@@ -211,7 +211,7 @@
         "position": "SG",
         "rating": 95,
         "age": 24,
-        "points": 2672,
+        "points": 2970,
         "contractEnd": 81,
         "contractAmount": 8
       },
@@ -220,7 +220,7 @@
         "position": "SF",
         "rating": 68,
         "age": 32,
-        "points": 367,
+        "points": 414,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -228,18 +228,18 @@
       {
         "playerId": "p00023",
         "position": "PF",
-        "rating": 76,
+        "rating": 75,
         "age": 25,
-        "points": 1005,
+        "points": 1093,
         "contractEnd": 79,
         "contractAmount": 4
       },
       {
         "playerId": "p00024",
         "position": "C",
-        "rating": 81,
+        "rating": 79,
         "age": 24,
-        "points": 1463,
+        "points": 1613,
         "contractEnd": 80,
         "contractAmount": 6
       }
@@ -248,18 +248,18 @@
       {
         "playerId": "p00025",
         "position": "PG",
-        "rating": 72,
+        "rating": 71,
         "age": 27,
-        "points": 724,
+        "points": 777,
         "contractEnd": 80,
         "contractAmount": 4
       },
       {
         "playerId": "p00026",
         "position": "SG",
-        "rating": 94,
+        "rating": 95,
         "age": 31,
-        "points": 2832,
+        "points": 3160,
         "contractEnd": 80,
         "contractAmount": 8
       },
@@ -268,25 +268,25 @@
         "position": "SF",
         "rating": 73,
         "age": 31,
-        "points": 953,
+        "points": 1054,
         "contractEnd": 80,
         "contractAmount": 4
       },
       {
         "playerId": "p00028",
         "position": "PF",
-        "rating": 74,
+        "rating": 73,
         "age": 29,
-        "points": 1020,
+        "points": 1085,
         "contractEnd": 79,
         "contractAmount": 6
       },
       {
         "playerId": "p00029",
         "position": "C",
-        "rating": 74,
+        "rating": 73,
         "age": 31,
-        "points": 934,
+        "points": 1035,
         "contractEnd": 80,
         "contractAmount": 5
       }
@@ -297,7 +297,7 @@
         "position": "PG",
         "rating": 88,
         "age": 27,
-        "points": 1819,
+        "points": 2069,
         "contractEnd": 80,
         "contractAmount": 7
       },
@@ -306,16 +306,16 @@
         "position": "SG",
         "rating": 95,
         "age": 29,
-        "points": 2494,
+        "points": 2815,
         "contractEnd": 82,
         "contractAmount": 8
       },
       {
         "playerId": "p00032",
         "position": "SF",
-        "rating": 66,
+        "rating": 68,
         "age": 29,
-        "points": 255,
+        "points": 290,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -325,16 +325,16 @@
         "position": "PF",
         "rating": 90,
         "age": 30,
-        "points": 1872,
+        "points": 2119,
         "contractEnd": 80,
         "contractAmount": 8
       },
       {
         "playerId": "p00053",
         "position": "C",
-        "rating": 71,
+        "rating": 72,
         "age": 21,
-        "points": 594,
+        "points": 680,
         "contractEnd": 80,
         "contractAmount": 2
       }
@@ -345,7 +345,7 @@
         "position": "PG",
         "rating": 82,
         "age": 25,
-        "points": 1481,
+        "points": 1667,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -354,25 +354,25 @@
         "position": "SG",
         "rating": 86,
         "age": 24,
-        "points": 1713,
+        "points": 1930,
         "contractEnd": 82,
         "contractAmount": 6
       },
       {
         "playerId": "p00036",
         "position": "SF",
-        "rating": 76,
+        "rating": 75,
         "age": 30,
-        "points": 1024,
+        "points": 1151,
         "contractEnd": 80,
         "contractAmount": 6
       },
       {
         "playerId": "p00037",
         "position": "PF",
-        "rating": 70,
+        "rating": 71,
         "age": 23,
-        "points": 663,
+        "points": 718,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -380,9 +380,9 @@
       {
         "playerId": "p00038",
         "position": "C",
-        "rating": 82,
+        "rating": 81,
         "age": 22,
-        "points": 1420,
+        "points": 1583,
         "contractEnd": 81,
         "contractAmount": 6
       }
@@ -391,18 +391,18 @@
       {
         "playerId": "p00039",
         "position": "PG",
-        "rating": 73,
+        "rating": 74,
         "age": 21,
-        "points": 708,
+        "points": 783,
         "contractEnd": 80,
         "contractAmount": 2
       },
       {
         "playerId": "p00040",
         "position": "SG",
-        "rating": 68,
+        "rating": 69,
         "age": 29,
-        "points": 380,
+        "points": 427,
         "contractEnd": 79,
         "contractAmount": 1
       },
@@ -411,25 +411,25 @@
         "position": "SF",
         "rating": 93,
         "age": 22,
-        "points": 2282,
+        "points": 2569,
         "contractEnd": 82,
         "contractAmount": 8
       },
       {
         "playerId": "p00042",
         "position": "PF",
-        "rating": 80,
+        "rating": 81,
         "age": 25,
-        "points": 1198,
+        "points": 1364,
         "contractEnd": 80,
         "contractAmount": 6
       },
       {
         "playerId": "p00043",
         "position": "C",
-        "rating": 89,
+        "rating": 88,
         "age": 27,
-        "points": 1963,
+        "points": 2220,
         "contractEnd": 82,
         "contractAmount": 8
       }
@@ -438,18 +438,18 @@
       {
         "playerId": "p00044",
         "position": "PG",
-        "rating": 82,
+        "rating": 83,
         "age": 25,
-        "points": 1356,
+        "points": 1500,
         "contractEnd": 80,
         "contractAmount": 5
       },
       {
         "playerId": "p00045",
         "position": "SG",
-        "rating": 71,
+        "rating": 72,
         "age": 26,
-        "points": 556,
+        "points": 606,
         "contractEnd": 79,
         "contractAmount": 4
       },
@@ -458,7 +458,7 @@
         "position": "SF",
         "rating": 95,
         "age": 28,
-        "points": 2611,
+        "points": 2874,
         "contractEnd": 81,
         "contractAmount": 8
       },
@@ -467,16 +467,16 @@
         "position": "PF",
         "rating": 70,
         "age": 27,
-        "points": 620,
+        "points": 680,
         "contractEnd": 80,
         "contractAmount": 3
       },
       {
         "playerId": "p00048",
         "position": "C",
-        "rating": 87,
+        "rating": 86,
         "age": 24,
-        "points": 1747,
+        "points": 1923,
         "contractEnd": 81,
         "contractAmount": 7
       }
@@ -485,18 +485,18 @@
       {
         "playerId": "p00049",
         "position": "PG",
-        "rating": 70,
+        "rating": 68,
         "age": 28,
-        "points": 578,
+        "points": 643,
         "contractEnd": 80,
         "contractAmount": 4
       },
       {
         "playerId": "p00050",
         "position": "SG",
-        "rating": 81,
+        "rating": 80,
         "age": 20,
-        "points": 1854,
+        "points": 2044,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -506,16 +506,16 @@
         "position": "SF",
         "rating": 76,
         "age": 27,
-        "points": 1305,
+        "points": 1441,
         "contractEnd": 80,
         "contractAmount": 6
       },
       {
         "playerId": "p00052",
         "position": "PF",
-        "rating": 79,
+        "rating": 77,
         "age": 21,
-        "points": 1424,
+        "points": 1585,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -523,9 +523,9 @@
       {
         "playerId": "p00382",
         "position": "C",
-        "rating": 68,
+        "rating": 67,
         "age": 26,
-        "points": 382,
+        "points": 421,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -535,9 +535,9 @@
       {
         "playerId": "p00054",
         "position": "PG",
-        "rating": 71,
+        "rating": 72,
         "age": 27,
-        "points": 545,
+        "points": 612,
         "contractEnd": 80,
         "contractAmount": 3
       },
@@ -546,34 +546,34 @@
         "position": "SG",
         "rating": 96,
         "age": 28,
-        "points": 2830,
+        "points": 3205,
         "contractEnd": 80,
         "contractAmount": 8
       },
       {
         "playerId": "p00056",
         "position": "SF",
-        "rating": 77,
+        "rating": 78,
         "age": 29,
-        "points": 1140,
+        "points": 1265,
         "contractEnd": 80,
         "contractAmount": 6
       },
       {
         "playerId": "p00057",
         "position": "PF",
-        "rating": 85,
+        "rating": 86,
         "age": 31,
-        "points": 1641,
+        "points": 1855,
         "contractEnd": 80,
         "contractAmount": 7
       },
       {
         "playerId": "p00058",
         "position": "C",
-        "rating": 68,
+        "rating": 69,
         "age": 32,
-        "points": 446,
+        "points": 493,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -585,25 +585,25 @@
         "position": "PG",
         "rating": 79,
         "age": 22,
-        "points": 1289,
+        "points": 1437,
         "contractEnd": 80,
         "contractAmount": 5
       },
       {
         "playerId": "p00060",
         "position": "SG",
-        "rating": 83,
+        "rating": 84,
         "age": 27,
-        "points": 1634,
+        "points": 1807,
         "contractEnd": 81,
         "contractAmount": 6
       },
       {
         "playerId": "p00061",
         "position": "SF",
-        "rating": 72,
+        "rating": 71,
         "age": 21,
-        "points": 783,
+        "points": 852,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -611,9 +611,9 @@
       {
         "playerId": "p00062",
         "position": "PF",
-        "rating": 81,
+        "rating": 82,
         "age": 28,
-        "points": 1495,
+        "points": 1677,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -622,7 +622,7 @@
         "position": "C",
         "rating": 73,
         "age": 22,
-        "points": 853,
+        "points": 934,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -632,9 +632,9 @@
       {
         "playerId": "p00146",
         "position": "PG",
-        "rating": 65,
+        "rating": 66,
         "age": 32,
-        "points": 312,
+        "points": 357,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -642,27 +642,27 @@
       {
         "playerId": "p00064",
         "position": "SG",
-        "rating": 79,
+        "rating": 80,
         "age": 25,
-        "points": 1161,
+        "points": 1340,
         "contractEnd": 80,
         "contractAmount": 6
       },
       {
         "playerId": "p00065",
         "position": "SF",
-        "rating": 82,
+        "rating": 83,
         "age": 23,
-        "points": 1403,
+        "points": 1552,
         "contractEnd": 80,
         "contractAmount": 6
       },
       {
         "playerId": "p00066",
         "position": "PF",
-        "rating": 83,
+        "rating": 85,
         "age": 25,
-        "points": 1620,
+        "points": 1877,
         "contractEnd": 79,
         "contractAmount": 6
       },
@@ -671,7 +671,7 @@
         "position": "C",
         "rating": 88,
         "age": 21,
-        "points": 2058,
+        "points": 2320,
         "contractEnd": 80,
         "contractAmount": 6
       }
@@ -680,18 +680,18 @@
       {
         "playerId": "p00068",
         "position": "PG",
-        "rating": 88,
+        "rating": 89,
         "age": 27,
-        "points": 1864,
+        "points": 2125,
         "contractEnd": 81,
         "contractAmount": 7
       },
       {
         "playerId": "p00069",
         "position": "SG",
-        "rating": 71,
+        "rating": 72,
         "age": 21,
-        "points": 488,
+        "points": 564,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -699,18 +699,18 @@
       {
         "playerId": "p00070",
         "position": "SF",
-        "rating": 85,
+        "rating": 83,
         "age": 25,
-        "points": 1685,
+        "points": 1896,
         "contractEnd": 81,
         "contractAmount": 7
       },
       {
         "playerId": "p00071",
         "position": "PF",
-        "rating": 86,
+        "rating": 88,
         "age": 25,
-        "points": 1968,
+        "points": 2157,
         "contractEnd": 81,
         "contractAmount": 7
       },
@@ -719,7 +719,7 @@
         "position": "C",
         "rating": 69,
         "age": 30,
-        "points": 517,
+        "points": 559,
         "contractEnd": 79,
         "contractAmount": 2
       }
@@ -730,7 +730,7 @@
         "position": "PG",
         "rating": 98,
         "age": 25,
-        "points": 2880,
+        "points": 3263,
         "contractEnd": 79,
         "contractAmount": 8
       },
@@ -739,16 +739,16 @@
         "position": "SG",
         "rating": 71,
         "age": 26,
-        "points": 600,
+        "points": 680,
         "contractEnd": 79,
         "contractAmount": 3
       },
       {
         "playerId": "p00075",
         "position": "SF",
-        "rating": 67,
+        "rating": 65,
         "age": 21,
-        "points": 306,
+        "points": 333,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -758,7 +758,7 @@
         "position": "PF",
         "rating": 83,
         "age": 21,
-        "points": 1576,
+        "points": 1782,
         "contractEnd": 81,
         "contractAmount": 6
       },
@@ -767,7 +767,7 @@
         "position": "C",
         "rating": 75,
         "age": 26,
-        "points": 956,
+        "points": 1076,
         "contractEnd": 80,
         "contractAmount": 6
       }
@@ -776,36 +776,36 @@
       {
         "playerId": "p00078",
         "position": "PG",
-        "rating": 72,
+        "rating": 74,
         "age": 27,
-        "points": 824,
+        "points": 939,
         "contractEnd": 80,
         "contractAmount": 5
       },
       {
         "playerId": "p00079",
         "position": "SG",
-        "rating": 87,
+        "rating": 85,
         "age": 22,
-        "points": 2296,
+        "points": 2585,
         "contractEnd": 81,
         "contractAmount": 7
       },
       {
         "playerId": "p00080",
         "position": "SF",
-        "rating": 72,
+        "rating": 71,
         "age": 24,
-        "points": 770,
+        "points": 872,
         "contractEnd": 80,
         "contractAmount": 5
       },
       {
         "playerId": "p00047",
         "position": "PF",
-        "rating": 66,
+        "rating": 67,
         "age": 31,
-        "points": 393,
+        "points": 445,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -813,9 +813,9 @@
       {
         "playerId": "p00082",
         "position": "C",
-        "rating": 78,
+        "rating": 77,
         "age": 25,
-        "points": 1313,
+        "points": 1497,
         "contractEnd": 80,
         "contractAmount": 5
       }
@@ -824,9 +824,9 @@
       {
         "playerId": "p00083",
         "position": "PG",
-        "rating": 84,
+        "rating": 83,
         "age": 19,
-        "points": 1619,
+        "points": 1839,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -836,7 +836,7 @@
         "position": "SG",
         "rating": 88,
         "age": 26,
-        "points": 2088,
+        "points": 2390,
         "contractEnd": 80,
         "contractAmount": 7
       },
@@ -845,25 +845,25 @@
         "position": "SF",
         "rating": 71,
         "age": 26,
-        "points": 664,
+        "points": 714,
         "contractEnd": 80,
         "contractAmount": 3
       },
       {
         "playerId": "p00086",
         "position": "PF",
-        "rating": 71,
+        "rating": 72,
         "age": 29,
-        "points": 645,
+        "points": 745,
         "contractEnd": 79,
         "contractAmount": 4
       },
       {
         "playerId": "p00087",
         "position": "C",
-        "rating": 77,
+        "rating": 78,
         "age": 20,
-        "points": 1222,
+        "points": 1375,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -873,9 +873,9 @@
       {
         "playerId": "p00088",
         "position": "PG",
-        "rating": 70,
+        "rating": 69,
         "age": 23,
-        "points": 406,
+        "points": 453,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -883,9 +883,9 @@
       {
         "playerId": "p00089",
         "position": "SG",
-        "rating": 74,
+        "rating": 73,
         "age": 27,
-        "points": 698,
+        "points": 812,
         "contractEnd": 81,
         "contractAmount": 5
       },
@@ -894,7 +894,7 @@
         "position": "SF",
         "rating": 96,
         "age": 26,
-        "points": 2616,
+        "points": 2909,
         "contractEnd": 80,
         "contractAmount": 8
       },
@@ -903,16 +903,16 @@
         "position": "PF",
         "rating": 92,
         "age": 23,
-        "points": 2333,
+        "points": 2694,
         "contractEnd": 83,
         "contractAmount": 8
       },
       {
         "playerId": "p00106",
         "position": "C",
-        "rating": 70,
+        "rating": 68,
         "age": 28,
-        "points": 690,
+        "points": 743,
         "contractEnd": 80,
         "contractAmount": 4
       }
@@ -921,27 +921,27 @@
       {
         "playerId": "p00092",
         "position": "PG",
-        "rating": 76,
+        "rating": 75,
         "age": 24,
-        "points": 1214,
+        "points": 1359,
         "contractEnd": 79,
         "contractAmount": 6
       },
       {
         "playerId": "p00093",
         "position": "SG",
-        "rating": 83,
+        "rating": 84,
         "age": 25,
-        "points": 1866,
+        "points": 2182,
         "contractEnd": 80,
         "contractAmount": 6
       },
       {
         "playerId": "p00094",
         "position": "SF",
-        "rating": 68,
+        "rating": 67,
         "age": 19,
-        "points": 526,
+        "points": 581,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -949,9 +949,9 @@
       {
         "playerId": "p00095",
         "position": "PF",
-        "rating": 73,
+        "rating": 74,
         "age": 23,
-        "points": 822,
+        "points": 957,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -961,7 +961,7 @@
         "position": "C",
         "rating": 76,
         "age": 26,
-        "points": 1159,
+        "points": 1304,
         "contractEnd": 80,
         "contractAmount": 5
       }
@@ -970,9 +970,9 @@
       {
         "playerId": "p00097",
         "position": "PG",
-        "rating": 70,
+        "rating": 68,
         "age": 21,
-        "points": 474,
+        "points": 526,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -980,9 +980,9 @@
       {
         "playerId": "p00098",
         "position": "SG",
-        "rating": 79,
+        "rating": 78,
         "age": 27,
-        "points": 1136,
+        "points": 1250,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -991,7 +991,7 @@
         "position": "SF",
         "rating": 86,
         "age": 25,
-        "points": 1804,
+        "points": 2019,
         "contractEnd": 82,
         "contractAmount": 7
       },
@@ -1000,7 +1000,7 @@
         "position": "PF",
         "rating": 97,
         "age": 27,
-        "points": 2810,
+        "points": 3112,
         "contractEnd": 80,
         "contractAmount": 8
       },
@@ -1009,7 +1009,7 @@
         "position": "C",
         "rating": 67,
         "age": 28,
-        "points": 389,
+        "points": 423,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": false
@@ -1019,18 +1019,18 @@
       {
         "playerId": "p00102",
         "position": "PG",
-        "rating": 74,
+        "rating": 73,
         "age": 21,
-        "points": 923,
+        "points": 1029,
         "contractEnd": 81,
         "contractAmount": 4
       },
       {
         "playerId": "p00103",
         "position": "SG",
-        "rating": 81,
+        "rating": 82,
         "age": 19,
-        "points": 1383,
+        "points": 1651,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -1038,9 +1038,9 @@
       {
         "playerId": "p00104",
         "position": "SF",
-        "rating": 76,
+        "rating": 77,
         "age": 20,
-        "points": 1304,
+        "points": 1464,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -1050,16 +1050,16 @@
         "position": "PF",
         "rating": 80,
         "age": 24,
-        "points": 1423,
+        "points": 1637,
         "contractEnd": 80,
         "contractAmount": 5
       },
       {
         "playerId": "p00145",
         "position": "C",
-        "rating": 67,
+        "rating": 68,
         "age": 31,
-        "points": 397,
+        "points": 470,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": false
@@ -1069,18 +1069,18 @@
       {
         "playerId": "p00107",
         "position": "PG",
-        "rating": 78,
+        "rating": 77,
         "age": 24,
-        "points": 1213,
+        "points": 1340,
         "contractEnd": 81,
         "contractAmount": 5
       },
       {
         "playerId": "p00108",
         "position": "SG",
-        "rating": 69,
+        "rating": 70,
         "age": 23,
-        "points": 475,
+        "points": 553,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -1088,9 +1088,9 @@
       {
         "playerId": "p00109",
         "position": "SF",
-        "rating": 76,
+        "rating": 77,
         "age": 25,
-        "points": 1010,
+        "points": 1197,
         "contractEnd": 80,
         "contractAmount": 4
       },
@@ -1099,7 +1099,7 @@
         "position": "PF",
         "rating": 74,
         "age": 32,
-        "points": 817,
+        "points": 905,
         "contractEnd": 79,
         "contractAmount": 6
       },
@@ -1108,7 +1108,7 @@
         "position": "C",
         "rating": 95,
         "age": 23,
-        "points": 2712,
+        "points": 3057,
         "contractEnd": 81,
         "contractAmount": 8
       }
@@ -1119,7 +1119,7 @@
         "position": "PG",
         "rating": 68,
         "age": 23,
-        "points": 399,
+        "points": 440,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -1127,18 +1127,18 @@
       {
         "playerId": "p00113",
         "position": "SG",
-        "rating": 80,
+        "rating": 81,
         "age": 29,
-        "points": 1161,
+        "points": 1300,
         "contractEnd": 80,
         "contractAmount": 7
       },
       {
         "playerId": "p00114",
         "position": "SF",
-        "rating": 67,
+        "rating": 66,
         "age": 30,
-        "points": 344,
+        "points": 367,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -1148,7 +1148,7 @@
         "position": "PF",
         "rating": 90,
         "age": 32,
-        "points": 2234,
+        "points": 2500,
         "contractEnd": 79,
         "contractAmount": 8
       },
@@ -1157,7 +1157,7 @@
         "position": "C",
         "rating": 97,
         "age": 28,
-        "points": 2665,
+        "points": 2993,
         "contractEnd": 81,
         "contractAmount": 8
       }
@@ -1166,9 +1166,9 @@
       {
         "playerId": "p00117",
         "position": "PG",
-        "rating": 85,
+        "rating": 87,
         "age": 20,
-        "points": 1762,
+        "points": 2020,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -1176,36 +1176,36 @@
       {
         "playerId": "p00118",
         "position": "SG",
-        "rating": 81,
+        "rating": 82,
         "age": 26,
-        "points": 1571,
+        "points": 1780,
         "contractEnd": 80,
         "contractAmount": 7
       },
       {
         "playerId": "p00119",
         "position": "SF",
-        "rating": 82,
+        "rating": 83,
         "age": 27,
-        "points": 1433,
+        "points": 1663,
         "contractEnd": 80,
         "contractAmount": 7
       },
       {
         "playerId": "p00120",
         "position": "PF",
-        "rating": 71,
+        "rating": 69,
         "age": 32,
-        "points": 533,
+        "points": 597,
         "contractEnd": 79,
         "contractAmount": 4
       },
       {
         "playerId": "p00121",
         "position": "C",
-        "rating": 75,
+        "rating": 76,
         "age": 25,
-        "points": 887,
+        "points": 987,
         "contractEnd": 80,
         "contractAmount": 5
       }
@@ -1216,16 +1216,16 @@
         "position": "PG",
         "rating": 77,
         "age": 22,
-        "points": 1225,
+        "points": 1356,
         "contractEnd": 80,
         "contractAmount": 5
       },
       {
         "playerId": "p00123",
         "position": "SG",
-        "rating": 76,
+        "rating": 77,
         "age": 19,
-        "points": 1112,
+        "points": 1220,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -1233,9 +1233,9 @@
       {
         "playerId": "p00124",
         "position": "SF",
-        "rating": 68,
+        "rating": 67,
         "age": 27,
-        "points": 527,
+        "points": 576,
         "contractEnd": 79,
         "contractAmount": 4
       },
@@ -1244,7 +1244,7 @@
         "position": "PF",
         "rating": 81,
         "age": 22,
-        "points": 1493,
+        "points": 1659,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -1253,7 +1253,7 @@
         "position": "C",
         "rating": 81,
         "age": 22,
-        "points": 1570,
+        "points": 1753,
         "contractEnd": 79,
         "contractAmount": 2,
         "restricted": true
@@ -1265,25 +1265,25 @@
         "position": "PG",
         "rating": 92,
         "age": 29,
-        "points": 2432,
+        "points": 2761,
         "contractEnd": 80,
         "contractAmount": 8
       },
       {
         "playerId": "p00128",
         "position": "SG",
-        "rating": 79,
+        "rating": 78,
         "age": 24,
-        "points": 1278,
+        "points": 1419,
         "contractEnd": 80,
         "contractAmount": 6
       },
       {
         "playerId": "p00162",
         "position": "SF",
-        "rating": 69,
+        "rating": 70,
         "age": 28,
-        "points": 458,
+        "points": 525,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -1293,16 +1293,16 @@
         "position": "PF",
         "rating": 87,
         "age": 31,
-        "points": 1968,
+        "points": 2217,
         "contractEnd": 80,
         "contractAmount": 8
       },
       {
         "playerId": "p00130",
         "position": "C",
-        "rating": 69,
+        "rating": 70,
         "age": 25,
-        "points": 521,
+        "points": 599,
         "contractEnd": 79,
         "contractAmount": 2
       }
@@ -1313,16 +1313,16 @@
         "position": "PG",
         "rating": 78,
         "age": 30,
-        "points": 1479,
+        "points": 1674,
         "contractEnd": 81,
         "contractAmount": 7
       },
       {
         "playerId": "p00132",
         "position": "SG",
-        "rating": 73,
+        "rating": 72,
         "age": 30,
-        "points": 1040,
+        "points": 1167,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -1331,7 +1331,7 @@
         "position": "SF",
         "rating": 67,
         "age": 25,
-        "points": 403,
+        "points": 481,
         "contractEnd": 79,
         "contractAmount": 1,
         "restricted": false
@@ -1339,18 +1339,18 @@
       {
         "playerId": "p00134",
         "position": "PF",
-        "rating": 78,
+        "rating": 77,
         "age": 25,
-        "points": 1528,
+        "points": 1751,
         "contractEnd": 80,
         "contractAmount": 6
       },
       {
         "playerId": "p00160",
         "position": "C",
-        "rating": 68,
+        "rating": 69,
         "age": 27,
-        "points": 515,
+        "points": 594,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": false
@@ -1360,18 +1360,18 @@
       {
         "playerId": "p00136",
         "position": "PG",
-        "rating": 83,
+        "rating": 81,
         "age": 25,
-        "points": 1786,
+        "points": 1969,
         "contractEnd": 80,
         "contractAmount": 6
       },
       {
         "playerId": "p00137",
         "position": "SG",
-        "rating": 82,
+        "rating": 81,
         "age": 23,
-        "points": 1764,
+        "points": 1945,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -1380,16 +1380,16 @@
         "position": "SF",
         "rating": 73,
         "age": 21,
-        "points": 818,
+        "points": 922,
         "contractEnd": 80,
         "contractAmount": 2
       },
       {
         "playerId": "p00139",
         "position": "PF",
-        "rating": 74,
+        "rating": 73,
         "age": 24,
-        "points": 874,
+        "points": 993,
         "contractEnd": 80,
         "contractAmount": 3
       },
@@ -1398,7 +1398,7 @@
         "position": "C",
         "rating": 71,
         "age": 22,
-        "points": 681,
+        "points": 762,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": true
@@ -1408,9 +1408,9 @@
       {
         "playerId": "p00141",
         "position": "PG",
-        "rating": 81,
+        "rating": 80,
         "age": 26,
-        "points": 1506,
+        "points": 1693,
         "contractEnd": 80,
         "contractAmount": 6
       },
@@ -1419,7 +1419,7 @@
         "position": "SG",
         "rating": 73,
         "age": 31,
-        "points": 907,
+        "points": 1007,
         "contractEnd": 80,
         "contractAmount": 5
       },
@@ -1428,16 +1428,16 @@
         "position": "SF",
         "rating": 77,
         "age": 32,
-        "points": 1104,
+        "points": 1303,
         "contractEnd": 79,
         "contractAmount": 5
       },
       {
         "playerId": "p00153",
         "position": "PF",
-        "rating": 70,
+        "rating": 71,
         "age": 24,
-        "points": 663,
+        "points": 735,
         "contractEnd": 80,
         "contractAmount": 2,
         "restricted": false
@@ -1445,9 +1445,9 @@
       {
         "playerId": "p00144",
         "position": "C",
-        "rating": 80,
+        "rating": 79,
         "age": 32,
-        "points": 1471,
+        "points": 1649,
         "contractEnd": 79,
         "contractAmount": 7
       }

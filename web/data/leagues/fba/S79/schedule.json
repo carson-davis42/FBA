@@ -6483,7 +6483,7 @@
     {
       "afterGame": 1290,
       "kind": "ratings",
-      "done": false
+      "done": true
     }
   ]
 }
