@@ -36,6 +36,8 @@ export interface MoveContext {
   batchId: string;
   /** The season phase for roster locks; omitted means the offseason (nothing locked). */
   phase?: SeasonPhase;
+  /** The real-life moment of the move (ISO datetime); callers that stamp history pass it, omitted writes no date. */
+  now?: string;
 }
 
 export type MoveResult =

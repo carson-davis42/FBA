@@ -88,6 +88,10 @@ export const RostersFile = z.object({
 export type RostersFile = z.infer<typeof RostersFile>;
 
 const playerId = z.string().regex(/^p\d{5}$/);
+/** A real-life calendar day, `YYYY-MM-DD` (UTC). */
+const isoDay = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
+/** A real-life moment, ISO 8601 UTC datetime. */
+const isoDateTime = z.string().datetime();
 
 export const Champion = z.object({
   title: z.string(),
@@ -102,6 +106,8 @@ export const Champion = z.object({
   finalsMvp: playerId.nullable().optional(),
   /** A generated player's name when `finalsMvp` is null (World Cup). */
   mvpName: z.string().min(1).optional(),
+  /** The real-life day of the final (imported history); null when the sheet has none. */
+  date: isoDay.nullable().optional(),
 }).strict();
 export type Champion = z.infer<typeof Champion>;
 
@@ -171,7 +177,12 @@ export const CalendarStep = z.object({
 }).strict();
 export type CalendarStep = z.infer<typeof CalendarStep>;
 
-export const CalendarFile = z.object({ season: int, steps: z.array(CalendarStep) }).strict();
+export const CalendarFile = z.object({
+  season: int,
+  steps: z.array(CalendarStep),
+  /** When "Go to next season" started this season. */
+  startedAt: isoDateTime.optional(),
+}).strict();
 export type CalendarFile = z.infer<typeof CalendarFile>;
 
 export const MetaFile = z.object({ currentSeason: int, rosterSeason: perLeague(int), lastSeason: perLeague(int) }).strict();
@@ -734,7 +745,7 @@ export const JcSummary = z.object({
     slots: z.array(z.object({ slot: z.enum(['G', 'F', 'C', 'ANY']), playerId: playerId.nullable(), teamId: z.string().min(1).nullable(), ...importedWho }).strict()),
   }).strict()).nullable(),
   mvp: z.object({ mm: playerId.nullable(), nit: playerId.nullable() }).strict(),
-  nit: z.object({ champion: z.string().min(1), runnerUp: z.string().min(1) }).strict().nullable(),
+  nit: z.object({ champion: z.string().min(1), runnerUp: z.string().min(1), date: isoDay.nullable().optional() }).strict().nullable(),
   /** Imported history: the MVPs' names when no player matched. */
   mvpNames: z.object({ mm: z.string().min(1).nullable(), nit: z.string().min(1).nullable() }).strict().optional(),
   /** Imported history (S64 on): each preseason tournament's champion. */
@@ -1196,6 +1207,8 @@ export const SummaryFile = z.object({
   locked: z.boolean(),
   host: z.string().nullable(),
   champions: z.array(Champion),
+  /** Seasons played in the app: when the season was started and when this league locked it. */
+  span: z.object({ opened: isoDateTime, locked: isoDateTime }).strict().optional(),
   awards: z.array(AwardEntry).optional(),
   /** FBA only. */
   allFba: PastAllFbaTeams.nullable().optional(),
@@ -1351,7 +1364,7 @@ export const DraftHistoryPick = z.object({
   college: z.string().min(1).nullable(),
 }).strict();
 export type DraftHistoryPick = z.infer<typeof DraftHistoryPick>;
-export const DraftHistoryDraft = z.object({ season: int.min(1), kind: z.enum(['draft', 'expansion']), picks: z.array(DraftHistoryPick) }).strict()
+export const DraftHistoryDraft = z.object({ season: int.min(1), kind: z.enum(['draft', 'expansion']), date: isoDay.nullable().optional(), picks: z.array(DraftHistoryPick) }).strict()
   .refine(d => d.picks.filter(p => p.pick !== null).every((p, i) => p.pick === i + 1), 'Drafted picks must be numbered 1..n in order');
 export type DraftHistoryDraft = z.infer<typeof DraftHistoryDraft>;
 export const DraftHistoryFile = z.object({ drafts: z.array(DraftHistoryDraft) }).strict()
