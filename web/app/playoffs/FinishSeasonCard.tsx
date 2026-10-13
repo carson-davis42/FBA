@@ -58,12 +58,12 @@ export function FinishSeasonCard({ state, versions }: { state: SeasonState; vers
     <div className="card headed finish-season">
       <div className="card-head"><h3>Wrap up the season</h3></div>
       {allFbaOpen && (
-        <p>
-          The All-FBA teams are picked after the playoffs, so they count playoff performance. Lock them first.{' '}
-          <Link className="btn" to="/league/fba/awards">All-FBA teams ▸</Link>
-        </p>
+        <>
+          <p>The All-FBA teams are picked after the playoffs, so they count playoff performance. Lock them first.</p>
+          <p><Link className="btn" to="/league/fba/awards">All-FBA teams ▸</Link></p>
+        </>
       )}
-      {!saveError && <button className="btn primary" disabled={saving} onClick={finish}>Finish S{state.season} {name} season ▸</button>}
+      {!saveError && <button className="btn primary" disabled={saving || allFbaOpen} onClick={finish}>Finish S{state.season} {name} season ▸</button>}
       {problems.length > 0 && <ul>{problems.map(p => <li key={p} className="error">{p}</li>)}</ul>}
       {saveError && (
         <p className="error">

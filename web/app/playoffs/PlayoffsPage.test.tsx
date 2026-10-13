@@ -116,6 +116,8 @@ describe('PlayoffsPage', () => {
     renderAt('/league/fba/playoffs');
     expect(await screen.findByText(/All-FBA teams are picked after the playoffs/)).toBeTruthy();
     expect(screen.getByRole('link', { name: 'All-FBA teams ▸' }).getAttribute('href')).toBe('/league/fba/awards');
+    // Finish waits for them, so there is no error to click into
+    expect((screen.getByRole('button', { name: 'Finish S79 FBA season ▸' }) as HTMLButtonElement).disabled).toBe(true);
     // locked All-FBA: no pointer
     cleanup();
     stubApi(seasonDocs({ ...done, awards: { league: 'fba', season: 79, locked: true, awards: [], allFba: null } }));
