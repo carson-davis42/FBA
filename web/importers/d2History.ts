@@ -2,6 +2,7 @@ import { groupLabel } from '../engine/shared/leagues';
 import type { AwardEntry, Champion, D2DraftDraft, D2DraftHistoryFile, D2LeagueHistoryFile, D2TeamLeagueHistory, PlayersFile, SummaryFile, TeamsFile } from '../engine/shared/types';
 import { nameResolver } from './history';
 import type { Report } from './report';
+import { d2TeamIds, SHEET_TEAM_ALIASES } from '../engine/shared/d2TeamIds';
 import {
   d2DraftTabSeason, parseAwardsTab, parseD2DraftTab, parseIntlChampionships, parseLeagueChampionships, parseTeamLeagueHistory,
   type AwardsRow, type TitleRow,
@@ -13,25 +14,6 @@ export const D2_TABS = { leagues: 'Team League History', intl: 'D2 International
 export interface D2HistoryCtx { players: PlayersFile; teams: TeamsFile; existing: Map<number, SummaryFile> }
 
 const LEAGUES = ['PL', 'WL', 'UL', 'IL'];
-
-/** Sheet spellings of D2 team names (or cities) that differ from the app's. */
-const SHEET_TEAM_ALIASES: Record<string, string> = {
-  Luxemboug: 'Luxembourg', 'Sao Paolo': 'São Paulo', 'Sao Paulo': 'São Paulo', Kiev: 'Kyiv', 'Rio De Janeiro': 'Rio de Janeiro',
-};
-
-/**
- * Name (or sheet alias) → team id, then city → team id. The sheets name a club by its city ("Munich"), and clubs have been renamed after their logos
- * ("Münchner BC"), so a name that isn't a team name falls back to the city of the one club that has it; a city shared by two clubs matches neither.
- */
-export function d2TeamIds(teams: TeamsFile): (name: string) => string | undefined {
-  const byName = new Map(teams.teams.map(t => [t.name, t.teamId]));
-  const byCity = new Map<string, string | null>();
-  for (const t of teams.teams) {
-    if (!t.city) continue;
-    byCity.set(t.city, byCity.has(t.city) ? null : t.teamId);
-  }
-  return name => byName.get(SHEET_TEAM_ALIASES[name] ?? name) ?? byCity.get(SHEET_TEAM_ALIASES[name] ?? name) ?? undefined;
-}
 
 function teamIdLookup(teams: TeamsFile, report: Report): (name: string) => string | undefined {
   const find = d2TeamIds(teams);

@@ -44,4 +44,10 @@ describe('CareerSection national teams', () => {
     const links = screen.getAllByRole('link');
     expect(links.map(l => [l.textContent, l.getAttribute('href')])).toEqual([[expect.stringContaining('Pearland'), '/history/fbad2/teams/AUS'], [expect.stringContaining('Orlando'), '/history/fbad2/teams/MIA']]);
   });
+  it('links a D2 team the bio names by city to the club renamed after its logo, with the sheet spellings', () => {
+    const c = parseBio({ born: 'Born-S40', entries: ['D2(Lyon)-S71-S78', 'D2(Kiev)-S79', 'D2(Pearland)-S53'] });
+    const t = (id: string, name: string, city: string) => ({ ...team(id, name), city });
+    render(<MemoryRouter><CareerSection career={c} born={null} totals={none} teams={{ fba: [], d2: [t('LYON', 'Sporting Lyon', 'Lyon'), t('KIEV', 'SK Kyiv', 'Kyiv'), t('AUS', 'Austin BC', 'Austin')], college: [] }} /></MemoryRouter>);
+    expect(screen.getAllByRole('link').map(l => l.getAttribute('href'))).toEqual(['/history/fbad2/teams/LYON', '/history/fbad2/teams/KIEV', '/history/fbad2/teams/AUS']);
+  });
 });

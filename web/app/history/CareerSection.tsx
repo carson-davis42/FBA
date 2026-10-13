@@ -1,6 +1,7 @@
 import type { Career, Honour, Stint } from '../../engine/history/career';
 import type { AwardKey, FranchisesFile, Team } from '../../engine/shared/types';
 import { AWARD_KEYS } from '../../engine/shared/types';
+import { d2TeamIds } from '../../engine/shared/d2TeamIds';
 import { franchiseByAbbr } from '../../engine/shared/franchises';
 import { TeamName } from '../components/TeamName';
 
@@ -41,6 +42,13 @@ export const findSchool = (teams: Team[], name: string): Team | undefined => {
   return teams.find(t => t.name.toLowerCase() === want);
 };
 
+/** A D2 team by the name a bio prints: its own name, or the city of the club renamed since (the successor map covers clubs that moved or folded). */
+export function findD2Team(teams: Team[], name: string): Team | undefined {
+  const find = d2TeamIds({ teams });
+  const id = find(name) ?? find(D2_SUCCESSORS[name] ?? '');
+  return teams.find(t => t.teamId === id);
+}
+
 /** A stint's team as a link to its history page (franchise, D2 team or school) with its logo; text when the team is unknown or has no page. */
 export function StintTeam({ stint, teams, currentSeason }: { stint: Stint; teams: StintTeams; currentSeason?: number }) {
   const season = stint.to === 'pres' && currentSeason !== undefined ? currentSeason
@@ -59,7 +67,7 @@ export function StintTeam({ stint, teams, currentSeason }: { stint: Stint; teams
   }
   if (stint.kind === 'd2') {
     const name = /^D2\((.*)\)$/.exec(stint.team)?.[1] ?? stint.team;
-    const t = teams.d2.find(x => x.name === name) ?? teams.d2.find(x => x.name === D2_SUCCESSORS[name]);
+    const t = findD2Team(teams.d2, name);
     return t ? <TeamName team={t} season={season} size={18} name={name} to={`/history/fbad2/teams/${t.teamId}`} /> : <>{name}</>;
   }
   if (stint.kind === 'college') {
