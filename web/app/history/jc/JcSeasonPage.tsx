@@ -7,6 +7,7 @@ import type { Champion, PlayersFile, SummaryFile, Team } from '../../../engine/s
 import { useDoc, useHistory } from '../../api';
 import { Badge } from '../../components/Badge';
 import { Hero } from '../../components/Hero';
+import { DayStamp, SpanLine } from '../HistoryDates';
 import { PastBracket } from '../PastBracket';
 import { SkippedWarning } from '../PlayerLink';
 import '../history.css';
@@ -25,13 +26,14 @@ function Entry({ w, teams, players, season }: { w: Who; teams: Team[]; players: 
   );
 }
 
-function Title({ c, label, teams, players, season }: { c: Champion; label: string; teams: Team[]; players: PlayersFile; season: number }) {
+function Title({ c, label, teams, players, season, date }: { c: Champion; label: string; teams: Team[]; players: PlayersFile; season: number; date?: string | null }) {
   return (
     <li>
       <b>{label}</b> <JcTeam teams={teams} teamId={c.teamId} name={c.champion} season={season} /> over{' '}
       {c.runnerUp ? <JcTeam teams={teams} teamId={c.runnerUpId} name={c.runnerUp} season={season} /> : '—'}
       {c.score && <span className="muted"> {formatScore(c.score)}</span>}
       {(c.finalsMvp || c.mvpName) && <> <Badge kind="finals-mvp">C-Ship MVP <JcPerson id={c.finalsMvp} name={c.mvpName} players={players} /></Badge></>}
+      <DayStamp date={date ?? c.date} />
     </li>
   );
 }
@@ -47,9 +49,10 @@ function Sections({ season, teams, players }: { season: SummaryFile; teams: Team
       {(national || nit) && (
         <div>
           <h2 className="section-title">Champions</h2>
+          <SpanLine span={season.span} />
           <ul className="plain-list">
             {national && <Title c={national} label="National Champion" teams={teams} players={players} season={n} />}
-            {nit && <Title c={nit} label="NIT Champion" teams={teams} players={players} season={n} />}
+            {nit && <Title c={nit} label="NIT Champion" teams={teams} players={players} season={n} date={nit.date ?? jc?.nit?.date} />}
           </ul>
         </div>
       )}

@@ -8,6 +8,7 @@ import { useDoc, useHistory } from '../../api';
 import { Hero } from '../../components/Hero';
 import { clinchKind, ClinchLegend, RankCell } from '../../components/Clinch';
 import { Bracket } from '../../playoffs/Bracket';
+import { DayStamp, SpanLine } from '../HistoryDates';
 import { PastBracket } from '../PastBracket';
 import { PlayerLink, SkippedWarning } from '../PlayerLink';
 import '../history.css';
@@ -57,6 +58,7 @@ export function D2SeasonPage() {
       {titles.length > 0 && (
         <div>
           <h2 className="section-title">Titles</h2>
+          <SpanLine span={season.span} />
           <ul className="plain-list">
             {titles.map((r, i) => (
               <li key={i}>
@@ -64,6 +66,8 @@ export function D2SeasonPage() {
                 <D2Team teams={teams} teamId={r.teamId} name={r.champion} season={n} /> over{' '}
                 {r.runnerUp ? <D2Team teams={teams} teamId={r.runnerUpId} name={r.runnerUp} season={n} /> : '—'}
                 {r.score && <span className="muted"> {formatScore(r.score)}</span>}
+                {/* d2TitleRows keeps the champions order, so row i is champions[i]. */}
+                <DayStamp date={season.champions[i]?.date} />
               </li>
             ))}
           </ul>

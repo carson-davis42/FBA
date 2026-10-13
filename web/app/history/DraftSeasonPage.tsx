@@ -4,6 +4,7 @@ import { resolveHistoryTeam } from '../../engine/shared/franchises';
 import type { FranchisesFile, Team } from '../../engine/shared/types';
 import { docFailure, docSettled, useDoc } from '../api';
 import { PageHeader } from '../components/PageHeader';
+import { DayLine } from './HistoryDates';
 import { PlayerLink } from './PlayerLink';
 import { findTeam, TeamFull, useFbaTeams } from './useTeams';
 import './history.css';
@@ -126,11 +127,12 @@ export function DraftSeasonPage() {
     return (
       <section className="stack">
         {header}
-        {main && <HistoryTable draft={main} players={playerDoc} fb={fb} />}
+        {main && <><DayLine label="Draft" date={main.date} /><HistoryTable draft={main} players={playerDoc} fb={fb} /></>}
         {appDraft && <AppTable doc={appDraft} players={playerDoc} fb={fb} />}
         {expansion && (
           <div>
             <h2 className="section-title">Expansion draft</h2>
+            <DayLine label="Expansion draft" date={expansion.date} />
             <HistoryTable draft={expansion} players={playerDoc} fb={fb} />
           </div>
         )}

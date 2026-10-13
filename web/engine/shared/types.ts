@@ -1435,7 +1435,7 @@ export const D2DraftPick = z.object({
   rating: int.min(0).max(150).nullable(),
 }).strict();
 export type D2DraftPick = z.infer<typeof D2DraftPick>;
-export const D2DraftDraft = z.object({ season: int.min(1), picks: z.array(D2DraftPick) }).strict()
+export const D2DraftDraft = z.object({ season: int.min(1), date: isoDay.nullable().optional(), picks: z.array(D2DraftPick) }).strict()
   .refine(d => d.picks.every((p, i) => p.pick === i + 1), 'Picks must be numbered 1..n in order');
 export type D2DraftDraft = z.infer<typeof D2DraftDraft>;
 /** leagues/fbad2/draftHistory.json: the draft sheet's "S68 D2"…"S78 D2" tabs (imported, part 4). */

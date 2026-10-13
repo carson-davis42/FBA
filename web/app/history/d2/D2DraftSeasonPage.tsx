@@ -3,6 +3,7 @@ import type { D2DraftHistoryFile, PlayersFile } from '../../../engine/shared/typ
 import { docFailure, useDoc } from '../../api';
 import { PageHeader } from '../../components/PageHeader';
 import { HistoryLeagueSwitch } from './HistoryLeagueSwitch';
+import { DayLine } from '../HistoryDates';
 import { PlayerLink } from '../PlayerLink';
 import { D2Team, useD2Teams } from './useD2';
 import '../history.css';
@@ -33,6 +34,7 @@ export function D2DraftSeasonPage() {
     <section className="stack">
       <PageHeader kicker="FBAD2 drafts" title={`S${season} D2 Draft`} actions={actions} />
       <HistoryLeagueSwitch />
+      <DayLine label="Draft" date={draft.date} />
       <div className="table-wrap">
         <table className="stat-table">
           <thead><tr><th className="n">Pick</th><th>Team</th><th>Player</th><th>Pos</th><th className="n">Age</th><th className="n">Rating</th></tr></thead>
