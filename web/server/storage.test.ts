@@ -44,6 +44,17 @@ describe('Storage', () => {
     expect(await status(storage.write('leagues/fba/S78/summary.json', { ...summary, locked: false }))).toBe(409);
   });
 
+  it('lets awards with unlocked All-FBA teams be rewritten, then refuses once they are locked', async () => {
+    const { storage } = fresh();
+    const doc = { league: 'fba', season: 79, locked: true, awards: [], allFba: null, allFbaLocked: false };
+    await storage.write('leagues/fba/S79/awards.json', doc);
+    const slots = (id: string) => ['G', 'F', 'C', 'ANY', 'ANY'].map((slot, k) => ({ slot, playerId: `${id}${k}`, teamId: 'BOS' }));
+    const allFba = { team1: slots('a'), team2: slots('b') };
+    await storage.write('leagues/fba/S79/awards.json', { ...doc, allFba });
+    await storage.write('leagues/fba/S79/awards.json', { ...doc, allFba, allFbaLocked: true });
+    expect(await status(storage.write('leagues/fba/S79/awards.json', { ...doc, allFba, allFbaLocked: true }))).toBe(409);
+  });
+
   it('keeps only the newest backups and leaves no temp files', async () => {
     const { dir, storage } = fresh();
     for (let i = 0; i < 13; i++) await storage.write('calendar.json', cal(i % 2 === 0));

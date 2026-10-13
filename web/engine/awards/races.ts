@@ -65,9 +65,11 @@ export function mipScore(boost: number, rating: number): number {
 }
 
 /** Rated rostered players with at least MIN_RACE_GAMES regular-season games. */
-function baseLines(state: SeasonState): Base[] {
+function baseLines(state: SeasonState, includePlayoffs: boolean): Base[] {
   const recs = records(state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group })), state.results?.games ?? []);
-  const stats = playerSeasonStats(state.results);
+  // The All-FBA suggestion pools the playoff box scores with the regular season; rating and win% stay regular-season.
+  const pooled = state.results && includePlayoffs ? { ...state.results, games: [...state.results.games, ...(state.playoffs?.games ?? [])] } : state.results;
+  const stats = playerSeasonStats(pooled);
   const def = seasonDefense(state.results);
   const out: Base[] = [];
   for (const [teamId, entries] of Object.entries(state.rosters.teams)) {
@@ -110,9 +112,12 @@ function ranked(award: AwardId, rows: RaceRow[], keys: (r: RaceRow) => number[])
 
 const byAwardScore = (r: RaceRow) => [r.score, r.ppg, r.rating];
 
-/** Every race for this league, from regular-season results. `lastSeason` is last season's FBA roster (null for the D2). */
-export function races(state: SeasonState, lastSeason: RostersFile | null): Race[] {
-  const base = baseLines(state);
+/**
+ * Every race for this league, from regular-season results (with `includePlayoffs`, games and PPG also count playoff box scores).
+ * `lastSeason` is last season's FBA roster (null for the D2).
+ */
+export function races(state: SeasonState, lastSeason: RostersFile | null, opts: { includePlayoffs?: boolean } = {}): Race[] {
+  const base = baseLines(state, opts.includePlayoffs === true);
   const scored = (b: Base) => row(b, awardScore(b.ppg, b.rating, b.winPct));
   if (state.league === 'fbad2') {
     const groupOf = new Map(state.teams.teams.map(t => [t.teamId, t.group]));

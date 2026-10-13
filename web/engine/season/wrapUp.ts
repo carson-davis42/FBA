@@ -153,6 +153,7 @@ export function finishSeason(state: SeasonState, pauses: RatingPauseFile[], ctx:
   if (step) problems.push(step);
   if (!state.playoffs?.outcome) problems.push('Finish the playoffs first');
   if (!state.awards?.locked) problems.push(`Lock the S${state.season} awards first`);
+  else if (state.league === 'fba' && !(state.awards.allFbaLocked ?? state.awards.locked)) problems.push(`Lock the S${state.season} All-FBA teams first`);
   if (state.summary) problems.push(`The S${state.season} ${name} season is already finished`);
   const champs = state.playoffs?.outcome?.champions ?? [];
   // A pick is only required when the champion has candidates (box scores in the final) to choose from.

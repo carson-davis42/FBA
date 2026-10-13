@@ -32,6 +32,10 @@ const allStarDoc = (locked: boolean): AllStarFile => ({
 const fbaPlayed = () => playPlayoffs(ok(lockSeeds(regularSeasonDone(fullFbaState()))).state, 5);
 const d2Played = () => playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6);
 const fbaDone = () => pickAllFinalsMvps(fbaPlayed());
+const allFbaStub = {
+  team1: ['G', 'F', 'C', 'ANY', 'ANY'].map((slot, k) => ({ slot: slot as 'G', playerId: `p0000${k + 1}`, teamId: 'E01' })),
+  team2: ['G', 'F', 'C', 'ANY', 'ANY'].map((slot, k) => ({ slot: slot as 'G', playerId: `p0001${k + 1}`, teamId: 'E01' })),
+};
 const d2Done = () => pickAllFinalsMvps(d2Played());
 
 describe('playerLines', () => {
@@ -214,6 +218,10 @@ describe('finishSeason', () => {
     const partway = playPlayoffs(ok(lockSeeds(regularSeasonDone(fullD2State()))).state, 6, 10);
     expect(problems(partway)).toEqual(['Finish the playoffs first']);
     expect(problems({ ...s, awards: { ...s.awards!, locked: false } })).toEqual(['Lock the S79 awards first']);
+    const fbaAwaiting = fbaDone();
+    expect(problems({ ...fbaAwaiting, awards: { ...fbaAwaiting.awards!, allFbaLocked: false } })).toEqual(['Lock the S79 All-FBA teams first']);
+    expect(problems({ ...fbaAwaiting, awards: { ...fbaAwaiting.awards!, allFbaLocked: true, allFba: allFbaStub } })).toEqual([]);
+    expect(problems(fbaAwaiting)).toEqual([]);
     const finished = ok(finishSeason(s, [], ctx));
     expect(problems({ ...finished.state, calendar: s.calendar })).toEqual(['The S79 D2 season is already finished']);
     expect(problems({ ...s, calendar: finished.state.calendar })[0]).toMatch(/^The season is played at the FBA D2 step/);

@@ -3,7 +3,7 @@ import { mulberry32 } from '../d2/random';
 import { recordGames, simNextGames } from '../season/moves';
 import type { SeasonState } from '../season/state';
 import { fullD2State, fullFbaState } from '../playoffs/testFixtures';
-import type { RostersFile } from '../shared/types';
+import type { BoxLine, RostersFile } from '../shared/types';
 import { isRookie, lastSeasonRatings, mipScore, races, SLOT_POSITIONS, suggestAllFba } from './races';
 
 /** Plays `n` games through the real moves (so box scores carry defensive stats), ignoring pauses. */
@@ -69,6 +69,49 @@ describe('races (FBA)', () => {
     const roty = races(withRookies, last).find(r => r.award === 'ROTY')!.rows;
     expect(roty.length).toBeGreaterThan(0);
     expect(roty.every(r => r.teamId === 'E01')).toBe(true);
+  });
+});
+
+describe('races with playoff games pooled', () => {
+  const last = lastSeasonOf(fba);
+  const playoffsFor = (state: SeasonState, playerId: string, n: number, pts: number): SeasonState => ({
+    ...state,
+    playoffs: {
+      league: 'fba', season: state.season, locked: false, seeds: [], series: [], queue: [], outcome: null,
+      games: Array.from({ length: n }, (_, k) => ({
+        gameNo: k + 1, home: 'E01', away: 'W01', homePts: 100, awayPts: 90, seriesId: 'S', gameInSeries: k + 1,
+        box: { home: [{ playerId, pts }], away: [] },
+      })),
+    },
+  });
+
+  it('adds playoff games and points to games and PPG, and can change the rank; rating and win% stay', () => {
+    const plain = races(fba, last).find(r => r.award === 'MVP')!;
+    const who = plain.rows[8];
+    const s = playoffsFor(fba, who.playerId, 6, 90);
+    expect(races(s, last).find(r => r.award === 'MVP')!.rows.find(r => r.playerId === who.playerId)).toEqual(who);
+    const pooled = races(s, last, { includePlayoffs: true }).find(r => r.award === 'MVP')!;
+    const row = pooled.rows.find(r => r.playerId === who.playerId)!;
+    expect(row.games).toBe(who.games + 6);
+    expect(row.ppg).toBeCloseTo((who.ppg * who.games + 540) / (who.games + 6));
+    expect(row.ppg).toBeGreaterThan(who.ppg);
+    expect(row.rating).toBe(who.rating);
+    expect(row.winPct).toBe(who.winPct);
+    expect(pooled.rows.findIndex(r => r.playerId === who.playerId)).toBeLessThan(8);
+  });
+
+  it('applies the 5-game minimum to the pooled games', () => {
+    const who = races(fba, last).find(r => r.award === 'MVP')!.rows[8];
+    let seen = 0;
+    const games = fba.results!.games.map(g => {
+      const strip = (side: BoxLine[]) => side.filter(l => l.playerId !== who.playerId || ++seen <= 3);
+      return g.box ? { ...g, box: { home: strip(g.box.home), away: strip(g.box.away) } } : g;
+    });
+    const few = { ...fba, results: { ...fba.results!, games } };
+    const ids = (s: SeasonState, o?: { includePlayoffs?: boolean }) => races(s, last, o).find(r => r.award === 'MVP')!.rows.map(r => r.playerId);
+    expect(ids(few)).not.toContain(who.playerId);
+    expect(ids(playoffsFor(few, who.playerId, 1, 20), { includePlayoffs: true })).not.toContain(who.playerId);
+    expect(ids(playoffsFor(few, who.playerId, 2, 20), { includePlayoffs: true })).toContain(who.playerId);
   });
 });
 

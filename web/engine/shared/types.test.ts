@@ -256,6 +256,31 @@ describe('AwardsFile', () => {
   });
 });
 
+describe('AwardsFile allFbaLocked', () => {
+  const slot = (s: string, playerId: string | null) => ({ slot: s, playerId, teamId: playerId ? 'BOS' : null });
+  const team = (ids: (string | null)[]) => ['G', 'F', 'C', 'ANY', 'ANY'].map((s, k) => slot(s, ids[k]));
+  const base = { league: 'fba', season: 79, locked: true, awards: [{ award: 'MVP', playerId: 'p00001', teamId: 'HON' }] };
+  const filled = { team1: team(['a1', 'a2', 'a3', 'a4', 'a5']), team2: team(['b1', 'b2', 'b3', 'b4', 'b5']) };
+  const dup = { team1: team(['a1', 'a2', 'a3', 'a4', 'a5']), team2: team(['a1', 'a2', 'b3', 'b4', 'b5']) };
+
+  it('accepts locked awards with no All-FBA yet, and a drafted but unlocked All-FBA', () => {
+    expect(AwardsFile.safeParse({ ...base, allFba: null, allFbaLocked: false }).success).toBe(true);
+    expect(AwardsFile.safeParse({ ...base, allFba: filled, allFbaLocked: false }).success).toBe(true);
+    expect(AwardsFile.safeParse({ ...base, allFba: filled, allFbaLocked: true }).success).toBe(true);
+  });
+
+  it('applies the duplicate rule by the All-FBA lock (allFbaLocked ?? locked)', () => {
+    expect(AwardsFile.safeParse({ ...base, allFba: dup, allFbaLocked: false }).success).toBe(true);
+    expect(AwardsFile.safeParse({ ...base, allFba: dup, allFbaLocked: true }).success).toBe(false);
+    expect(AwardsFile.safeParse({ ...base, allFba: dup }).success).toBe(false);
+  });
+
+  it('rejects a locked All-FBA with no teams, and allFbaLocked on a D2 doc', () => {
+    expect(AwardsFile.safeParse({ ...base, allFba: null, allFbaLocked: true }).success).toBe(false);
+    expect(AwardsFile.safeParse({ league: 'fbad2', season: 79, locked: true, awards: [], allFba: null, allFbaLocked: false }).success).toBe(false);
+  });
+});
+
 describe('SummaryFile season record', () => {
   const totals = { g: 50, pts: 1100, def: 3000, stops: 1700, allowed: 2600, exp: 264100 };
   const line = (over: Record<string, unknown> = {}) => ({

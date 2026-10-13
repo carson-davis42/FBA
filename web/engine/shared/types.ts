@@ -1021,8 +1021,10 @@ export const AwardsFile = z.object({
   season: int,
   locked: z.boolean(),
   awards: z.array(AwardEntry),
-  /** FBA only. */
+  /** FBA only. Drafted and locked after the playoffs; null until then. */
   allFba: AllFbaTeams.nullable(),
+  /** FBA only: whether the All-FBA teams are locked. Absent on older docs, where they lock with the awards (`allFbaLocked ?? locked`). */
+  allFbaLocked: z.boolean().optional(),
 }).strict().superRefine((doc, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const ids = doc.awards.map(a => a.award);
@@ -1031,13 +1033,16 @@ export const AwardsFile = z.object({
     if ((doc.league === 'fba') !== FBA_AWARD_IDS.includes(id)) issue(`${id} isn't an ${doc.league === 'fba' ? 'FBA' : 'D2'} award`);
   }
   if (doc.league === 'fbad2' && doc.allFba !== null) issue('The D2 has no All-FBA teams');
+  if (doc.league === 'fbad2' && doc.allFbaLocked !== undefined) issue('The D2 has no All-FBA teams');
+  if (doc.allFbaLocked === true && !doc.allFba) issue('Locked All-FBA teams must be filled in');
+  const allFbaLocked = doc.allFbaLocked ?? doc.locked;
   if (doc.allFba) {
     const seen = new Set<string>();
     for (const team of [doc.allFba.team1, doc.allFba.team2]) {
       team.forEach((s, k) => {
         if (s.slot !== ALL_FBA_ORDER[k]) issue(`All-FBA slot ${k + 1} must be ${ALL_FBA_ORDER[k]}`);
         if (s.playerId) {
-          if (doc.locked && seen.has(s.playerId)) issue(`${s.playerId} is on the All-FBA teams twice`);
+          if (allFbaLocked && seen.has(s.playerId)) issue(`${s.playerId} is on the All-FBA teams twice`);
           seen.add(s.playerId);
         }
       });

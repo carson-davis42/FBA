@@ -19,15 +19,14 @@ function readyProblems(state: SeasonState): string[] {
   return out;
 }
 
-/** Drafts awards.json with every race leader and (FBA) the suggested All-FBA teams. */
+/** Drafts awards.json with every race leader. The FBA's All-FBA teams are picked after the playoffs (startAllFba). */
 export function startAwards(state: SeasonState, lastSeason: RostersFile | null): SeasonResult {
   const problems = readyProblems(state);
   if (state.awards) problems.push('The awards have already been started');
   if (problems.length) return seasonFail(problems);
   const rs = races(state, lastSeason);
   const awards = rs.filter(r => r.rows.length).map(r => ({ award: r.award, playerId: r.rows[0].playerId, teamId: r.rows[0].teamId }));
-  const allFba = state.league === 'fba' ? suggestAllFba(rs.find(r => r.award === 'MVP')!) : null;
-  const doc: AwardsFile = { league: state.league, season: state.season, locked: false, awards, allFba };
+  const doc: AwardsFile = { league: state.league, season: state.season, locked: false, awards, allFba: null };
   return { ok: true, state: { ...state, awards: doc }, changed: ['awards'], label: `Start S${state.season} ${LEAGUE_NAME[state.league]} awards` };
 }
 
@@ -42,7 +41,7 @@ export function setAllFbaSlot(doc: AwardsFile, team: 'team1' | 'team2', index: n
   return { ...doc, allFba: { ...doc.allFba, [team]: doc.allFba[team].map((s, i) => (i === index ? { ...s, playerId, teamId } : s)) } };
 }
 
-/** Everything that stops Lock awards: missing or ineligible winners, and incomplete or invalid All-FBA teams. */
+/** Everything that stops Lock awards: missing or ineligible winners. */
 export function awardProblems(state: SeasonState, lastSeason: RostersFile | null, doc: AwardsFile): string[] {
   const rs = races(state, lastSeason);
   const name = (id: string) => playerName(state, id);
@@ -58,25 +57,30 @@ export function awardProblems(state: SeasonState, lastSeason: RostersFile | null
     if (!pick) out.push(`Pick a winner for ${race.label}`);
     else if (!race.rows.some(r => r.playerId === pick.playerId)) out.push(`${name(pick.playerId)} isn't eligible for ${race.label}`);
   }
-  if (state.league === 'fba') {
-    const mvp = rs.find(r => r.award === 'MVP')!;
-    if (!doc.allFba) out.push('Fill in the All-FBA teams');
-    else {
-      const seen = new Map<string, 'team1' | 'team2'>();
-      for (const [t, team] of (['team1', 'team2'] as const).entries()) {
-        const label = `All-FBA team ${t + 1}`;
-        for (const s of doc.allFba[team]) {
-          if (!s.playerId) {
-            out.push(`${label} needs a player in the ${s.slot} slot`);
-            continue;
-          }
-          const r = mvp.rows.find(x => x.playerId === s.playerId);
-          if (!r) out.push(`${name(s.playerId)} isn't eligible for All-FBA`);
-          else if (!SLOT_POSITIONS[s.slot].includes(r.position)) out.push(`${label} needs ${SLOT_NEED[s.slot]} in the ${s.slot} slot`);
-          const before = seen.get(s.playerId);
-          if (before) out.push(before === team ? `${name(s.playerId)} is listed twice on ${label}` : `${name(s.playerId)} is on both All-FBA teams`);
-          seen.set(s.playerId, team);
+  return out;
+}
+
+/** Everything that stops Lock All-FBA teams: incomplete or invalid slots, judged against the regular season plus playoffs. */
+export function allFbaProblems(state: SeasonState, lastSeason: RostersFile | null, doc: AwardsFile): string[] {
+  const out: string[] = [];
+  const mvp = races(state, lastSeason, { includePlayoffs: true }).find(r => r.award === 'MVP')!;
+  const name = (id: string) => playerName(state, id);
+  if (!doc.allFba) out.push('Fill in the All-FBA teams');
+  else {
+    const seen = new Map<string, 'team1' | 'team2'>();
+    for (const [t, team] of (['team1', 'team2'] as const).entries()) {
+      const label = `All-FBA team ${t + 1}`;
+      for (const s of doc.allFba[team]) {
+        if (!s.playerId) {
+          out.push(`${label} needs a player in the ${s.slot} slot`);
+          continue;
         }
+        const r = mvp.rows.find(x => x.playerId === s.playerId);
+        if (!r) out.push(`${name(s.playerId)} isn't eligible for All-FBA`);
+        else if (!SLOT_POSITIONS[s.slot].includes(r.position)) out.push(`${label} needs ${SLOT_NEED[s.slot]} in the ${s.slot} slot`);
+        const before = seen.get(s.playerId);
+        if (before) out.push(before === team ? `${name(s.playerId)} is listed twice on ${label}` : `${name(s.playerId)} is on both All-FBA teams`);
+        seen.set(s.playerId, team);
       }
     }
   }
@@ -94,22 +98,64 @@ export function lockAwards(state: SeasonState, lastSeason: RostersFile | null, c
 
   const teamOf = new Map(Object.entries(state.rosters.teams).flatMap(([t, es]) => es.filter(e => e.playerId).map(e => [e.playerId!, t] as const)));
   const awards = doc.awards.map(a => ({ ...a, teamId: teamOf.get(a.playerId) ?? a.teamId }));
-  const slot = (s: AllFbaSlot): AllFbaSlot => (s.playerId ? { ...s, teamId: teamOf.get(s.playerId) ?? s.teamId } : s);
-  const allFba = doc.allFba && { team1: doc.allFba.team1.map(slot), team2: doc.allFba.team2.map(slot) };
-  const locked: AwardsFile = { ...doc, locked: true, awards, allFba };
+  // Any All-FBA suggestion from before the playoffs is discarded: those teams are re-drafted after them.
+  const locked: AwardsFile = { ...doc, locked: true, awards, allFba: null, ...(state.league === 'fba' ? { allFbaLocked: false } : {}) };
 
   const who = (id: string, team: string | null) => `${playerName(state, id)} (${team ?? '?'})`;
   const lines = [`S${state.season} ${LEAGUE_NAME[state.league]} awards: ${awards.map(a => `${AWARD_LABEL[a.award]} ${who(a.playerId, a.teamId)}`).join(', ')}`];
-  if (allFba) {
-    lines.push(`All-FBA 1st team: ${allFba.team1.map(s => `${s.slot} ${who(s.playerId!, s.teamId)}`).join(', ')}`);
-    lines.push(`All-FBA 2nd team: ${allFba.team2.map(s => `${s.slot} ${who(s.playerId!, s.teamId)}`).join(', ')}`);
-  }
-  const teams = [...new Set([...awards.map(a => a.teamId), ...(allFba ? [...allFba.team1, ...allFba.team2].map(s => s.teamId!) : [])])];
+  const teams = [...new Set(awards.map(a => a.teamId))];
   const tx = appendTx(state.tx, ctx, 'awards', teams, lines);
   return {
     ok: true,
     state: { ...state, awards: locked, tx },
     changed: ['awards', 'tx'],
     label: `Lock S${state.season} ${LEAGUE_NAME[state.league]} awards`,
+  };
+}
+
+/** Why the All-FBA teams can't be drafted or locked now: FBA only, after the locked awards and the finished playoffs. */
+function allFbaReadyProblems(state: SeasonState): string[] {
+  const out: string[] = [];
+  if (state.league !== 'fba') return ['The D2 has no All-FBA teams'];
+  const step = leagueStepProblem(state.calendar, state.league);
+  if (step) out.push(step);
+  const doc = state.awards;
+  if (!doc?.locked) out.push(`Lock the S${state.season} awards first`);
+  if (!state.playoffs?.outcome) out.push('Finish the playoffs first');
+  if (doc?.locked && (doc.allFbaLocked ?? doc.locked)) out.push('The All-FBA teams are already locked');
+  return out;
+}
+
+/** Drafts the All-FBA teams from the regular season plus playoffs. It can be re-run until they are locked. */
+export function startAllFba(state: SeasonState, lastSeason: RostersFile | null): SeasonResult {
+  const problems = allFbaReadyProblems(state);
+  if (problems.length || !state.awards) return seasonFail(problems);
+  const mvp = races(state, lastSeason, { includePlayoffs: true }).find(r => r.award === 'MVP')!;
+  const awards: AwardsFile = { ...state.awards, allFba: suggestAllFba(mvp), allFbaLocked: false };
+  return { ok: true, state: { ...state, awards }, changed: ['awards'], label: `Suggest S${state.season} All-FBA teams` };
+}
+
+/** Locks the All-FBA teams, records each player's team at lock time, and logs one 'awards' transaction. */
+export function lockAllFba(state: SeasonState, lastSeason: RostersFile | null, ctx: MoveContext): SeasonResult {
+  const problems = allFbaReadyProblems(state);
+  const doc = state.awards;
+  if (doc && problems.length === 0) problems.push(...allFbaProblems(state, lastSeason, doc));
+  if (problems.length || !doc || !doc.allFba) return seasonFail(problems.length ? problems : ['Fill in the All-FBA teams']);
+
+  const teamOf = new Map(Object.entries(state.rosters.teams).flatMap(([t, es]) => es.filter(e => e.playerId).map(e => [e.playerId!, t] as const)));
+  const slot = (s: AllFbaSlot): AllFbaSlot => (s.playerId ? { ...s, teamId: teamOf.get(s.playerId) ?? s.teamId } : s);
+  const allFba = { team1: doc.allFba.team1.map(slot), team2: doc.allFba.team2.map(slot) };
+  const who = (id: string, team: string | null) => `${playerName(state, id)} (${team ?? '?'})`;
+  const lines = [
+    `All-FBA 1st team: ${allFba.team1.map(s => `${s.slot} ${who(s.playerId!, s.teamId)}`).join(', ')}`,
+    `All-FBA 2nd team: ${allFba.team2.map(s => `${s.slot} ${who(s.playerId!, s.teamId)}`).join(', ')}`,
+  ];
+  const teams = [...new Set([...allFba.team1, ...allFba.team2].map(s => s.teamId!))];
+  const tx = appendTx(state.tx, ctx, 'awards', teams, lines);
+  return {
+    ok: true,
+    state: { ...state, awards: { ...doc, allFba, allFbaLocked: true }, tx },
+    changed: ['awards', 'tx'],
+    label: `Lock S${state.season} All-FBA teams`,
   };
 }

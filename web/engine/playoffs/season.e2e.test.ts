@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { lockAwards, startAwards } from '../awards/awardMoves';
+import { lockAllFba, lockAwards, startAllFba, startAwards } from '../awards/awardMoves';
 import { mulberry32, type Rng } from '../d2/random';
 import { completePause, recordGames, simNextGames } from '../season/moves';
 import { finishRatingPause, startRatingPause } from '../season/ratingPause';
@@ -103,6 +103,10 @@ describe('a whole S79 in the engine: D2, finish, FBA, finish, the tail, then S80
     expect(pf.outcome!.champions).toHaveLength(1);
     expect(fba.rosters).toBe(pointsBefore);
     expect(fba.calendar.steps.find(x => x.id === 'fba')!.done).toBe(false);
+    expect(finishSeason(pickAllFinalsMvps(fba), [fba.ratingPause!], ctx).ok).toBe(false);
+    fba = ok(startAllFba(fba, lastSeasonOf(fba))).state;
+    fba = ok(lockAllFba(fba, lastSeasonOf(fba), ctx)).state;
+    expect(fba.awards!.allFbaLocked).toBe(true);
     fba = ok(finishSeason(pickAllFinalsMvps(fba), [fba.ratingPause!], ctx)).state;
     expect(SummaryFile.safeParse(fba.summary).success).toBe(true);
     expect(fba.summary!.players!.length).toBeGreaterThanOrEqual(150);

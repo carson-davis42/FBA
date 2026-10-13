@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { awardProblems, lockAwards, setAllFbaSlot, setAward, startAwards } from '../../engine/awards/awardMoves';
+import { allFbaProblems, awardProblems, lockAllFba, lockAwards, setAllFbaSlot, setAward, startAllFba, startAwards } from '../../engine/awards/awardMoves';
 import { ALL_FBA_SLOTS, races, SLOT_POSITIONS, type Race, type RaceRow } from '../../engine/awards/races';
 import { leagueStepProblem } from '../../engine/season/moves';
 import { blockingPause, PAUSE_LABEL, playerName, seasonDocPath, seasonOver, type SeasonResult } from '../../engine/season/state';
@@ -148,12 +148,13 @@ export function AwardsPage() {
     }
   };
 
+  // The All-FBA teams are judged on the regular season plus the playoffs.
+  const pooledMvp = () => races(view, lastSeason, { includePlayoffs: true }).find(r => r.award === 'MVP');
   const allFbaTable = (d: AwardsFile, editable: boolean) => {
     if (!d.allFba) return null;
-    const mvp = rs.find(r => r.award === 'MVP');
+    const mvp = editable ? pooledMvp() : undefined;
     return (
       <div className="stack">
-        <h2>All-FBA teams</h2>
         <div className="grid-2">
           {(['team1', 'team2'] as const).map(team => (
             <div key={team} className="card headed">
@@ -203,6 +204,37 @@ export function AwardsPage() {
     );
   };
 
+  const playoffsDone = Boolean(state.playoffs?.outcome);
+  const stepProblem = leagueStepProblem(state.calendar, lg);
+
+  /** FBA only: waiting for the playoffs, the pick-and-lock controls after them, then the locked teams. */
+  const allFbaSection = (d: AwardsFile) => {
+    if (lg !== 'fba') return null;
+    if (d.allFbaLocked ?? d.locked) return d.allFba ? <div className="stack"><h2>All-FBA teams</h2>{allFbaTable(d, false)}</div> : null;
+    if (!d.locked || !playoffsDone) {
+      return <div className="stack"><h2>All-FBA teams</h2><p className="muted">The All-FBA teams are picked after the playoffs.</p></div>;
+    }
+    const problems = allFbaProblems(view, lastSeason, d);
+    return (
+      <div className="stack">
+        <h2>All-FBA teams</h2>
+        {stepProblem ? <p className="muted">{stepProblem}</p> : (
+          <>
+            <p className="muted">Regular season and playoffs count together. Suggest the teams, adjust any slot, then lock them. Picks save as you go.</p>
+            {allFbaTable(d, true)}
+            {d.allFba && problems.length > 0 && <ul className="problems">{problems.map(p => <li key={p}>{p}</li>)}</ul>}
+            <div>
+              <button className="btn" disabled={saving} onClick={() => run(startAllFba(view, lastSeason))}>Suggest All-FBA teams</button>{' '}
+              <button className="btn primary" disabled={saving || !d.allFba || problems.length > 0} onClick={() => run(lockAllFba(view, lastSeason, { batchId: newBatchId() }))}>Lock All-FBA teams</button>
+            </div>
+          </>
+        )}
+        {autosave.error && <p className="error">{autosave.error}</p>}
+        {message && <p className="error">{message}</p>}
+      </div>
+    );
+  };
+
   if (doc?.locked) {
     return (
       <section className="stack">
@@ -218,7 +250,7 @@ export function AwardsPage() {
             ))}
           </ul>
         </div>
-        {allFbaTable(doc, false)}
+        {allFbaSection(doc)}
         <h2>Final races</h2>
         {cards(doc.awards)}
       </section>
@@ -227,7 +259,6 @@ export function AwardsPage() {
 
   const over = seasonOver(state);
   const pause = blockingPause(state);
-  const stepProblem = leagueStepProblem(state.calendar, lg);
   const ready = over && !pause && !stepProblem;
 
   if (!doc) {
@@ -275,7 +306,7 @@ export function AwardsPage() {
           })}
         </div>
       </div>
-      {allFbaTable(doc, true)}
+      {allFbaSection(doc)}
       {problems.length > 0 && <ul className="problems">{problems.map(p => <li key={p}>{p}</li>)}</ul>}
       <div><button className="btn primary" disabled={saving || lastMissing || problems.length > 0} onClick={() => run(lockAwards(view, lastSeason, { batchId: newBatchId() }))}>Lock awards</button></div>
       {autosave.error && <p className="error">{autosave.error}</p>}

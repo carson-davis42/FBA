@@ -2,9 +2,10 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { setAward, startAwards } from '../../engine/awards/awardMoves';
+import { lockAllFba, lockAwards, setAward, startAllFba, startAwards } from '../../engine/awards/awardMoves';
 import { races } from '../../engine/awards/races';
-import { fullD2State, fullFbaState, regularSeasonDone } from '../../engine/playoffs/testFixtures';
+import { lockSeeds } from '../../engine/playoffs/moves';
+import { fullD2State, fullFbaState, playPlayoffs, regularSeasonDone } from '../../engine/playoffs/testFixtures';
 import type { SeasonResult, SeasonState } from '../../engine/season/state';
 import { stubApi } from '../d2/testDocs';
 import { seasonDocs } from '../season/testDocs';
@@ -72,13 +73,67 @@ describe('AwardsPage', () => {
     expect(log.batches[0].writes.map(w => w.path).sort()).toEqual(['leagues/fba/S79/awards.json', 'leagues/fba/S79/transactions.json']);
   });
 
-  it('shows the winners once locked', async () => {
-    const started = ok(startAwards(ready(), null)).state;
-    stubApi(fbaDocs({ ...started, awards: { ...started.awards!, locked: true } }));
+  it('shows the winners once locked, with the All-FBA teams waiting for the playoffs', async () => {
+    const s = ready();
+    const locked = ok(lockAwards(ok(startAwards(s, { ...s.rosters, season: 78 })).state, { ...s.rosters, season: 78 }, { batchId: 'a' })).state;
+    stubApi(fbaDocs(locked));
     renderAt('/league/fba/awards');
     expect(await screen.findByRole('heading', { name: 'S79 FBA award winners' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'All-FBA teams' })).toBeTruthy();
+    expect(screen.getByText('The All-FBA teams are picked after the playoffs.')).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Lock awards' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Suggest All-FBA teams' })).toBeNull();
+    expect(screen.queryByRole('combobox', { name: /^All-FBA/ })).toBeNull();
+  });
+
+  it('says the All-FBA teams come after the playoffs while the awards are still a draft, with no pickers', async () => {
+    const s = ready();
+    stubApi(fbaDocs(ok(startAwards(s, { ...s.rosters, season: 78 })).state));
+    renderAt('/league/fba/awards');
+    expect(await screen.findByRole('combobox', { name: 'MVP' })).toBeTruthy();
+    expect(screen.getByText('The All-FBA teams are picked after the playoffs.')).toBeTruthy();
+    expect(screen.queryByRole('combobox', { name: /^All-FBA/ })).toBeNull();
+  });
+
+  describe('after the playoffs', () => {
+    const last = (s: SeasonState) => ({ ...s.rosters, season: 78 });
+    const played = () => {
+      const s = ready();
+      const locked = ok(lockAwards(ok(startAwards(s, last(s))).state, last(s), { batchId: 'a' })).state;
+      return playPlayoffs(ok(lockSeeds(locked)).state, 5);
+    };
+
+    it('suggests the teams, then locks them in one batch with the transaction', async () => {
+      const s = played();
+      const log = stubApi(fbaDocs(s));
+      renderAt('/league/fba/awards');
+      expect(await screen.findByRole('heading', { name: 'All-FBA teams' })).toBeTruthy();
+      expect(screen.queryByText('The All-FBA teams are picked after the playoffs.')).toBeNull();
+      expect((screen.getByRole('button', { name: 'Lock All-FBA teams' }) as HTMLButtonElement).disabled).toBe(true);
+      fireEvent.click(screen.getByRole('button', { name: 'Suggest All-FBA teams' }));
+      await waitFor(() => expect(log.batches).toHaveLength(1));
+      expect(log.batches[0].label).toBe('Suggest S79 All-FBA teams');
+      expect(log.batches[0].writes.map(w => w.path)).toEqual(['leagues/fba/S79/awards.json']);
+      expect(await screen.findByRole('combobox', { name: 'All-FBA 1st team G' })).toBeTruthy();
+      const lock = screen.getByRole('button', { name: 'Lock All-FBA teams' }) as HTMLButtonElement;
+      await waitFor(() => expect(lock.disabled).toBe(false));
+      fireEvent.click(lock);
+      await waitFor(() => expect(log.batches).toHaveLength(2));
+      expect(log.batches[1].label).toBe('Lock S79 All-FBA teams');
+      expect(log.batches[1].writes.map(w => w.path).sort()).toEqual(['leagues/fba/S79/awards.json', 'leagues/fba/S79/transactions.json']);
+    });
+
+    it('shows the locked teams read-only', async () => {
+      const s = played();
+      const drafted = ok(startAllFba(s, last(s))).state;
+      const locked = ok(lockAllFba(drafted, last(s), { batchId: 'b' })).state;
+      stubApi(fbaDocs(locked));
+      renderAt('/league/fba/awards');
+      expect(await screen.findByRole('heading', { name: 'All-FBA teams' })).toBeTruthy();
+      expect(screen.getAllByText('All-FBA').length).toBe(2);
+      expect(screen.queryByRole('button', { name: 'Lock All-FBA teams' })).toBeNull();
+      expect(screen.queryByRole('combobox', { name: /^All-FBA/ })).toBeNull();
+    });
   });
 
   it("warns and disables Start awards when last season's FBA roster is missing", async () => {
