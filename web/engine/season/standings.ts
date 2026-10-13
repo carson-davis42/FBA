@@ -132,6 +132,13 @@ export function javaOrder<T>(list: T[], better: (a: T, b: T) => boolean, reverse
 const played = (r: ClinchRecord) => r.w + r.l;
 const confPlayed = (r: ClinchRecord) => r.confW + r.confL;
 
+/**
+ * A tie on both wins and conference wins that games can still decide is open: the later tiebreakers (head-to-head, point differential,
+ * power rankings) aren't evaluated here, so neither a clinch nor an elimination is declared. Once both teams have finished, the sorted order
+ * is final and settles it.
+ */
+const openTie = (a: ClinchRecord, b: ClinchRecord, len: { games: number }) => !(played(a) === len.games && played(b) === len.games);
+
 function clinchStar(conf: ClinchRecord[], i: number, len: { games: number; confGames: number }): boolean {
   if (i >= 1) return false;
   const t = conf[i];
@@ -144,7 +151,7 @@ function clinchStar(conf: ClinchRecord[], i: number, len: { games: number; confG
       const maxCW = temp.confW + (len.confGames - confPlayed(temp));
       if (t.confW <= maxCW) {
         if (t.confW < maxCW) return false;
-        if (played(t) === len.games && played(temp) === len.games && j < i) return false;
+        if (openTie(t, temp, len) || j < i) return false;
       }
     }
   }
@@ -163,7 +170,7 @@ function clinchX(conf: ClinchRecord[], i: number, len: { games: number; confGame
       const maxCW = temp.confW + (len.confGames - confPlayed(temp));
       if (t.confW <= maxCW) {
         if (t.confW < maxCW) return false;
-        if (played(t) === len.games && played(temp) === len.games && j < i) return false;
+        if (openTie(t, temp, len) || j < i) return false;
       }
     }
   }
@@ -183,7 +190,7 @@ function clinchOut(conf: ClinchRecord[], i: number, len: { games: number; confGa
       if (temp.w < maxW) return false;
       if (temp.confW <= maxCW) {
         if (temp.confW < maxCW) return false;
-        if (played(t) === len.games && played(temp) === len.games && j > i) return false;
+        if (openTie(t, temp, len) || j > i) return false;
       }
     }
   }
