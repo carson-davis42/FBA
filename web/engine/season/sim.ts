@@ -73,9 +73,16 @@ export interface SimProfile {
   rollOffset: number;
   /** Make-chance points lost per percentage point of touch share above an even share, so a star who takes the ball more shoots a little worse. */
   usagePenalty: number;
+  /** Make-chance points added to the home side's offense (home-court edge); 0 for a neutral court. */
+  homeEdge: number;
 }
-export const FBA_PROFILE: SimProfile = { handlerBase: 60, handlerTotalOffset: 300, rollOffset: 1, usagePenalty: 0.1 };
-export const JC_PROFILE: SimProfile = { handlerBase: 40, handlerTotalOffset: 200, rollOffset: 0, usagePenalty: 0 };
+export const FBA_PROFILE: SimProfile = { handlerBase: 60, handlerTotalOffset: 300, rollOffset: 1, usagePenalty: 0.1, homeEdge: 1 };
+/** FBAJC on a neutral court (tournaments, postseason). */
+export const JC_PROFILE: SimProfile = { handlerBase: 40, handlerTotalOffset: 200, rollOffset: 0, usagePenalty: 0, homeEdge: 0 };
+/** FBAJC regular-season conference and challenge days, which have a home side. */
+export const JC_HOME_PROFILE: SimProfile = { ...JC_PROFILE, homeEdge: 1 };
+/** FBA numbers with no home edge: the World Cup and the All-Star events. */
+export const NEUTRAL_PROFILE: SimProfile = { ...FBA_PROFILE, homeEdge: 0 };
 
 /** Java: whoGetsBall = (int)(random * (Σratings − 300)) + 1, then the first cumulative (rating − 60) ≥ whoGetsBall. */
 export function pickHandler(team: SimTeam, rng: Rng, profile: SimProfile = FBA_PROFILE): number {
@@ -134,16 +141,17 @@ export function makeChance(handlerRating: number, defenderRating: number): numbe
 }
 
 /**
- * The make chance the sim uses for one shot: the matchup odds less the shooter's usage penalty, in whole points (the roll is a whole number, so the fraction never changes a result).
+ * The make chance the sim uses for one shot: the matchup odds less the shooter's usage penalty, plus the home-court edge when `home` (the offense is the home side), in whole points (the roll is a whole number, so the fraction never changes a result).
  * The rating pause's expected points call this too, so expectations always match the sim.
  */
-export function shotOdds(offense: SimTeam, handler: number, defense: SimTeam, defender: number, profile: SimProfile = FBA_PROFILE): number {
-  return shotOddsAgainst(offense, handler, defense.players[defender].rating, profile);
+export function shotOdds(offense: SimTeam, handler: number, defense: SimTeam, defender: number, profile: SimProfile = FBA_PROFILE, home = false): number {
+  return shotOddsAgainst(offense, handler, defense.players[defender].rating, profile, home);
 }
 
 /** `shotOdds` against a defender of a given rating (the reference defender behind points saved). */
-export function shotOddsAgainst(offense: SimTeam, handler: number, defenderRating: number, profile: SimProfile = FBA_PROFILE): number {
-  return Math.floor(makeChance(offense.players[handler].rating, defenderRating) - usagePenalty(touchShare(offense, handler, profile), profile));
+export function shotOddsAgainst(offense: SimTeam, handler: number, defenderRating: number, profile: SimProfile = FBA_PROFILE, home = false): number {
+  const edge = home ? profile.homeEdge : 0;
+  return Math.floor(makeChance(offense.players[handler].rating, defenderRating) - usagePenalty(touchShare(offense, handler, profile), profile) + edge);
 }
 
 /** roll is 1–100 (0–99 in the FBAJC); made when odds ≥ roll, and a margin of 30 or more scores 3. */
@@ -162,7 +170,7 @@ function playOne(home: SimTeam, away: SimTeam, c: Cursor, rng: Rng, profile: Sim
   const handler = pickHandler(off, rng, profile);
   const defender = pickDefender(def, off, handler, rng);
   const roll = Math.floor(rng() * 100) + profile.rollOffset;
-  const points = shotPoints(shotOdds(off, handler, def, defender, profile), roll);
+  const points = shotPoints(shotOdds(off, handler, def, defender, profile, offense === 'home'), roll);
   if (offense === 'home') c.home += points;
   else c.away += points;
   const i = c.i;

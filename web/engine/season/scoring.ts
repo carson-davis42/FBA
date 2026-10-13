@@ -26,7 +26,7 @@ export function scoringLines(g: SimGame): { home: ScoringLine[]; away: ScoringLi
     const offense = g[p.offense];
     const defense = g[p.offense === 'home' ? 'away' : 'home'];
     const line = out[p.offense][p.handler];
-    const moments = shotMoments(shotOdds(offense, p.handler, defense, p.defender, profile), profile.rollOffset);
+    const moments = shotMoments(shotOdds(offense, p.handler, defense, p.defender, profile, p.offense === 'home'), profile.rollOffset);
     line.att++;
     line.offExp += moments.exp;
     line.offVar += moments.variance;

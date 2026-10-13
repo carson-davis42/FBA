@@ -30,9 +30,17 @@ describe('defenseLines', () => {
   it('credits each possession to its defender, with exp against the reference rating', () => {
     // Ref 80: the 90 takes 27% of H's touches, so makeChance(90, 80) = 64 less a 0.7 usage penalty is 63 → 159; makeChance(70, 80) = 44 → 102.
     const d = defenseLines(game([poss('home', 0, 0, 2), poss('away', 1, 2, 0), poss('home', 0, 0, 3)]), 80);
-    expect(d.away[0]).toEqual({ def: 2, stops: 0, allowed: 5, exp: 318 });
+    expect(d.away[0]).toEqual({ def: 2, stops: 0, allowed: 5, exp: 324 });
     expect(d.home[2]).toEqual({ def: 1, stops: 1, allowed: 0, exp: 102 });
     expect(d.home[0]).toEqual({ def: 0, stops: 0, allowed: 0, exp: 0 });
+  });
+});
+
+describe('defenseLines home edge', () => {
+  it('expects the home offense shots to have one more make-chance point, and the road offense none', () => {
+    // The home 90 (63 after usage) gets 64 with the edge -> 162 against the reference defender; the road 70 stays at 44 -> 102.
+    expect(defenseLines(game([poss('home', 0, 0, 0)]), 80).away[0].exp).toBe(162);
+    expect(defenseLines(game([poss('away', 0, 0, 0)]), 80).home[0].exp).toBe(102);
   });
 });
 

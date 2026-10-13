@@ -117,3 +117,36 @@ describe('playToEnd', () => {
     expect(playDay(r.state, mulberry32(1)).ok).toBe(false);
   });
 });
+
+describe('home-court edge', () => {
+  // Every player a 70, so each possession's odds are identical except for the edge.
+  const flat = () => {
+    const s = jcStateFixture();
+    const teams = { ...s.rosters.teams };
+    for (const id of Object.keys(teams)) teams[id] = teams[id].map(e => ({ ...e, rating: 70 }));
+    return { ...s, rosters: { ...s.rosters, teams } };
+  };
+
+  it('a tournament day is neutral and a challenge day gives the home side the edge', () => {
+    let s = flat();
+    const rng = mulberry32(3);
+    for (let day = 1; day <= 4; day++) {
+      const r = playDay(s, rng);
+      if (!r.ok) throw new Error(r.problems.join());
+      s = r.state;
+    }
+    const all = s.results!.games;
+    const sides = (day: number) => {
+      const games = all.filter(g => g.gameNo > (day - 1) * 108 && g.gameNo <= day * 108);
+      const sum = (side: 'home' | 'away') => games.reduce((n, g) => n + g.box![side].reduce((m, l) => m + (l.offExp ?? 0), 0), 0);
+      return { home: sum('home'), away: sum('away') };
+    };
+    const kind = (day: number) => s.schedule!.days.find(d => d.day === day)!.kind;
+    expect(kind(1)).toBe('tournament');
+    expect(kind(4)).toBe('challenge');
+    const t = sides(1);
+    expect(t.home).toBe(t.away);
+    const c = sides(4);
+    expect(c.home).toBeGreaterThan(c.away);
+  });
+});

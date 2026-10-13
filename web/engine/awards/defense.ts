@@ -19,7 +19,7 @@ export function defenseLines(g: SimGame, refRating: number): { home: DefenseLine
     d.def++;
     if (!p.made) d.stops++;
     d.allowed += p.points;
-    d.exp += expHundredths(shotOddsAgainst(offense, p.handler, refRating, g.profile ?? FBA_PROFILE));
+    d.exp += expHundredths(shotOddsAgainst(offense, p.handler, refRating, g.profile ?? FBA_PROFILE, p.offense === 'home'));
   }
   return out;
 }

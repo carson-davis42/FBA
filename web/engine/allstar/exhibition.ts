@@ -1,6 +1,6 @@
 import type { Rng } from '../d2/random';
 import { POSITIONS } from '../roster/rules';
-import { replayPossessions, simRotationGame, type Rotation, type SimGame, type SimPlayer, type SimTeam } from '../season/sim';
+import { NEUTRAL_PROFILE, replayPossessions, simRotationGame, type Rotation, type SimGame, type SimPlayer, type SimTeam } from '../season/sim';
 import type { ExhibitionGame } from '../shared/types';
 
 /** A side's whole roster in a fixed order; the lineups name players by their place in it. */
@@ -18,6 +18,7 @@ export function playExhibition(teams: [number, number], rosters: [Roster, Roster
     { teamId: String(teams[1]), players: rosters[1] },
     { home: rotation[0], away: rotation[1] },
     rng,
+    NEUTRAL_PROFILE,
   );
   const periods = sim.periods.home.length;
   const idsAt = (side: 'home' | 'away', q: number) => {

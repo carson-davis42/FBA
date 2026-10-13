@@ -6,6 +6,7 @@ import { ASG_PICKS, asgAvailable, asgPick, asgTeams, startAsgDraft } from './asg
 import { asgLineups, runAsg } from './asgGame';
 import { type AllStarResult, fbaPlayers } from './common';
 import { contestTurn, drawCounts, drawFilled, drawOnClock, startContestDraw } from './contestDraw';
+import { NEUTRAL_PROFILE, simRotationGame } from '../season/sim';
 import { playExhibition, pointsFor, toSimGame, topScorer, type Roster } from './exhibition';
 import { winProbability } from '../season/sim';
 import { cutField, runContest, runDunk, runFivePoint } from './contests';
@@ -144,6 +145,16 @@ describe('exhibition games', () => {
       expect(g.winner).toBe(g.scores[0] > g.scores[1] ? 2 : 3);
     }
     expect(games.some(g => g.ot > 0)).toBe(true);
+  });
+
+  it('plays with no home edge (the same game as a neutral-profile sim)', () => {
+    const a = side('a', 70);
+    const b = side('b', 70);
+    for (let i = 0; i < 5; i++) {
+      const g = playExhibition([2, 3], [a, b], [five, five], mulberry32(i));
+      const sim = simRotationGame(1, { teamId: '2', players: a }, { teamId: '3', players: b }, { home: five, away: five }, mulberry32(i), NEUTRAL_PROFILE);
+      expect(g.scores).toEqual([sim.homePts, sim.awayPts]);
+    }
   });
 
   it('changes lineups by quarter and goes back to the first lineup in overtime', () => {

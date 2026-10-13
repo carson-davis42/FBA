@@ -3,7 +3,7 @@ import { mulberry32 } from '../d2/random';
 import { GameResult } from '../shared/types';
 import { toGameResult } from './moves';
 import { scoringLines, shotMoments } from './scoring';
-import { JC_PROFILE, makeChance, shotPoints, simGame, type SimTeam } from './sim';
+import { FBA_PROFILE, JC_PROFILE, makeChance, shotPoints, simGame, type SimTeam } from './sim';
 
 const team = (teamId: string, rating: number): SimTeam => ({ teamId, players: ['PG', 'SG', 'SF', 'PF', 'C'].map((position, i) =>
   ({ playerId: `${teamId}${i}`, position: position as SimTeam['players'][number]['position'], rating })),
@@ -28,7 +28,8 @@ describe('scoring expectations', () => {
       expect(stats[side].reduce((sum, p) => sum + p.att, 0)).toBe(possessions.length);
       for (let i = 0; i < 5; i++) {
         const count = possessions.filter(p => p.handler === i).length;
-        const expectation = shotMoments(makeChance(side === 'home' ? 80 : 90, side === 'home' ? 90 : 80));
+        // The home side's shots carry the +1 home-court edge.
+        const expectation = shotMoments(makeChance(side === 'home' ? 80 : 90, side === 'home' ? 90 : 80) + (side === 'home' ? 1 : 0));
         expect(stats[side][i]).toEqual({ att: count, offExp: count * expectation.exp, offVar: count * expectation.variance });
       }
     }
@@ -36,6 +37,21 @@ describe('scoring expectations', () => {
     expect(GameResult.safeParse(saved).success).toBe(true);
     expect(saved.box!.home[0]).toMatchObject(stats.home[0]);
     expect(saved.box!.home[0].def).toBeTypeOf('number');
+  });
+
+  it('expects one more make-chance point on the home side possessions only', () => {
+    // All 80s: an even touch share, so no usage penalty.
+    const g = simGame(1, team('A', 80), team('B', 80), mulberry32(11));
+    const lines = scoringLines(g);
+    const base = shotMoments(makeChance(80, 80), FBA_PROFILE.rollOffset);
+    const edge = shotMoments(makeChance(80, 80) + 1, FBA_PROFILE.rollOffset);
+    for (const side of ['home', 'away'] as const) {
+      const m = side === 'home' ? edge : base;
+      lines[side].forEach((l, i) => {
+        const n = g.possessions.filter(p => p.offense === side && p.handler === i).length;
+        expect(l.offExp).toBe(n * m.exp);
+      });
+    }
   });
 
   it('uses the college shot-roll convention when saving college games', () => {

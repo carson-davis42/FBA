@@ -14,6 +14,15 @@ function simFor(rosters: Parameters<typeof simWcGame>[0], next: { gameNo: number
   return sim;
 }
 
+describe('home edge', () => {
+  it('World Cup games are simmed with no home edge', () => {
+    const s = stages.qStart;
+    const next = nextQualifyingGame(s);
+    if (typeof next === 'string') throw new Error(next);
+    expect(simFor(s.rosters, next, 1).profile!.homeEdge).toBe(0);
+  });
+});
+
 describe('recording a watched game', () => {
   it('qualifying: records the next game, and refuses a different one', () => {
     const s = stages.qStart;

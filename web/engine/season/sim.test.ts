@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { mulberry32, type Rng } from '../d2/random';
 import { POSITIONS } from '../roster/rules';
 import {
-  defenderWeights, FBA_PROFILE, isClutch, JC_PROFILE, makeChance, periodOf, pickDefender, pickHandler, REGULATION, shotPoints, simGame, touchShare, type SimTeam, usagePenalty, winProbability,
+  defenderWeights, FBA_PROFILE, isClutch, JC_HOME_PROFILE, JC_PROFILE, makeChance, NEUTRAL_PROFILE, shotOdds, shotOddsAgainst, periodOf, pickDefender, pickHandler, REGULATION, shotPoints, simGame, touchShare, type SimTeam, usagePenalty, winProbability,
 } from './sim';
 
 const team = (id: string, ratings: number[]): SimTeam => ({
@@ -138,18 +138,18 @@ describe('FBAJC profile', () => {
     expect(jc).toBeGreaterThan(0);
     expect(fba).toBe(0);
   });
-  it('rolls 0..99 for the JC (odds 65 makes roll 65) and 1..100 for the FBA (roll 66 misses)', () => {
+  it('rolls 0..99 for the JC (odds 65 makes roll 65) and 1..100 for the FBA numbers (roll 66 misses without a home edge)', () => {
     const hi = team('H', [99, 99, 99, 99, 99]);
     const lo = team('L', [40, 40, 40, 40, 40]);
     const r = (): Rng => { const rest = mulberry32(9); const first = [0, 0, 0.65]; let k = 0; return () => (k < 3 ? first[k++] : rest()); };
     expect(simGame(1, hi, lo, r(), JC_PROFILE).possessions[0].made).toBe(true);
-    expect(simGame(1, hi, lo, r()).possessions[0].made).toBe(false);
+    expect(simGame(1, hi, lo, r(), NEUTRAL_PROFILE).possessions[0].made).toBe(false);
   });
   it('FBA results do not depend on passing the profile explicitly', () => {
     const t = (id: string, r: number[]) => team(id, r);
     const g = simGame(1, t('A', [90, 80, 70, 65, 58]), t('B', [85, 75, 72, 60, 55]), mulberry32(42));
-    expect([g.homePts, g.awayPts, g.possessions.length]).toEqual([95, 70, 120]);
-    expect(g.box).toEqual({ home: [58, 27, 8, 2, 0], away: [42, 14, 14, 0, 0] });
+    expect([g.homePts, g.awayPts, g.possessions.length]).toEqual([97, 70, 120]);
+    expect(g.box).toEqual({ home: [60, 27, 8, 2, 0], away: [42, 14, 14, 0, 0] });
     const e = simGame(1, t('A', [90, 80, 70, 65, 58]), t('B', [85, 75, 72, 60, 55]), mulberry32(42), FBA_PROFILE);
     expect(e).toEqual(g);
   });
@@ -206,5 +206,58 @@ describe('usage penalty', () => {
       for (const side of ['home', 'away'] as const) for (let i = 0; i < 4; i++) q[i] += r.periods[side][i];
     }
     expect(Math.max(...q) / Math.min(...q)).toBeLessThan(1.05);
+  });
+});
+
+describe('home-court edge', () => {
+  const a = team('A', [85, 80, 78, 76, 74]);
+  const b = team('B', [84, 82, 77, 75, 72]);
+
+  it('adds exactly one make-chance point for the home offense under FBA_PROFILE', () => {
+    for (let h = 0; h < 5; h++) {
+      for (let d = 0; d < 5; d++) {
+        expect(shotOdds(a, h, b, d, FBA_PROFILE, true)).toBe(shotOdds(a, h, b, d, FBA_PROFILE, false) + 1);
+      }
+    }
+    expect(shotOdds(a, 0, b, 0, FBA_PROFILE)).toBe(shotOdds(a, 0, b, 0, FBA_PROFILE, false));
+  });
+  it('still counts at the 65 cap and the 35 floor', () => {
+    const hi = team('H', [99, 99, 99, 99, 99]);
+    const lo = team('L', [40, 40, 40, 40, 40]);
+    expect(makeChance(99, 40)).toBe(65);
+    expect(shotOddsAgainst(hi, 0, 40, FBA_PROFILE, false)).toBe(65);
+    expect(shotOddsAgainst(hi, 0, 40, FBA_PROFILE, true)).toBe(66);
+    expect(shotOddsAgainst(lo, 0, 99, FBA_PROFILE, true)).toBe(36);
+  });
+  it('is the same home or away for the neutral profiles', () => {
+    for (const profile of [JC_PROFILE, NEUTRAL_PROFILE]) {
+      expect(shotOdds(a, 0, b, 1, profile, true)).toBe(shotOdds(a, 0, b, 1, profile, false));
+    }
+    expect(JC_PROFILE.homeEdge).toBe(0);
+    expect(NEUTRAL_PROFILE).toEqual({ ...FBA_PROFILE, homeEdge: 0 });
+    expect(shotOdds(a, 0, b, 1, JC_HOME_PROFILE, true)).toBe(shotOdds(a, 0, b, 1, JC_HOME_PROFILE, false) + 1);
+  });
+  it('gives equal teams about 53-55% at home with FBA_PROFILE and about 50% neutral', () => {
+    const t1 = team('H', [85, 80, 78, 76, 74]);
+    const t2 = team('A', [85, 80, 78, 76, 74]);
+    const rate = (profile: typeof FBA_PROFILE) => {
+      const rng = mulberry32(2026);
+      let wins = 0;
+      for (let i = 0; i < 4000; i++) {
+        const g = simGame(i, t1, t2, rng, profile);
+        if (g.homePts > g.awayPts) wins++;
+      }
+      return wins / 4000;
+    };
+    const edge = rate(FBA_PROFILE);
+    const neutral = rate(NEUTRAL_PROFILE);
+    expect(edge).toBeGreaterThan(0.52);
+    expect(edge).toBeLessThan(0.58);
+    expect(neutral).toBeGreaterThan(0.47);
+    expect(neutral).toBeLessThan(0.53);
+  });
+  it('simGame records the profile it used', () => {
+    expect(simGame(1, a, b, mulberry32(1), NEUTRAL_PROFILE).profile!.homeEdge).toBe(0);
+    expect(simGame(1, a, b, mulberry32(1)).profile!.homeEdge).toBe(1);
   });
 });

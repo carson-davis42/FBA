@@ -1,7 +1,7 @@
 import { randInt, type Rng } from '../d2/random';
 import { leagueRefRating } from '../awards/defense';
 import { calendarProblem, toGameResult } from '../season/moves';
-import { JC_PROFILE, simGame, type SimGame, type SimTeam } from '../season/sim';
+import { JC_HOME_PROFILE, JC_PROFILE, simGame, type SimGame, type SimTeam } from '../season/sim';
 import { POSITIONS } from '../roster/rules';
 import type { GameResult, JcScheduleFile, RosterEntry } from '../shared/types';
 import { blendRankings, teamRating } from './rankings';
@@ -93,12 +93,12 @@ export function addBoxPoints(book: Book, sim: SimGame): Record<string, number> {
  * Sims one game on the book: adds the box points to both rosters and, when `progress` is set, lets every starter's rating rise
  * (team ratings and the league average are recomputed after each game, as the Java does). Returns the result, or a problem.
  */
-export function playOne(book: Book, gameNo: number, homeId: string, awayId: string, rng: Rng, refRating: number, progress: boolean): GameResult | string {
+export function playOne(book: Book, gameNo: number, homeId: string, awayId: string, rng: Rng, refRating: number, progress: boolean, neutral = true): GameResult | string {
   const home = lineupOf(book.rosters[homeId], homeId);
   const away = lineupOf(book.rosters[awayId], awayId);
   if (typeof home === 'string') return home;
   if (typeof away === 'string') return away;
-  return applySim(book, simGame(gameNo, home, away, rng, JC_PROFILE), rng, refRating, progress);
+  return applySim(book, simGame(gameNo, home, away, rng, neutral ? JC_PROFILE : JC_HOME_PROFILE), rng, refRating, progress);
 }
 
 /** Applies an already simmed (or watched) game to the book, as `playOne` does after the sim. */
@@ -153,7 +153,7 @@ function step(state: JcState, rng: Rng): Step {
   const results: GameResult[] = [];
   const done = new Set((state.results?.games ?? []).map(g => g.gameNo));
   for (const g of games.filter(x => !done.has(x.gameNo))) {
-    const r = playOne(book, g.gameNo, g.home, g.away, rng, refRating, true);
+    const r = playOne(book, g.gameNo, g.home, g.away, rng, refRating, true, sched.kind === 'tournament');
     if (typeof r === 'string') return { problems: [r] };
     results.push(r);
   }

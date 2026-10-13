@@ -6,7 +6,7 @@ import { nextPostGame, postseasonStage, recordPostGame, tournamentProblem } from
 import { nextConfGame, nextJcGame, recordConfGame, recordJcGame } from '../../engine/jc/watch';
 import { TOTAL_GAMES, jcWrites, type JcResult, type JcState } from '../../engine/jc/state';
 import type { SeasonLeague } from '../../engine/season/schedule';
-import { JC_PROFILE, simGame, type SimGame } from '../../engine/season/sim';
+import { JC_HOME_PROFILE, JC_PROFILE, simGame, type SimGame } from '../../engine/season/sim';
 import type { SeasonState } from '../../engine/season/state';
 import type { Bracket, BracketGame, GameResult } from '../../engine/shared/types';
 import { PageHeader } from '../components/PageHeader';
@@ -77,7 +77,9 @@ function JcGame() {
       setMessage(typeof home === 'string' ? home : (away as string));
       return;
     }
-    setSim(simGame(n, home, away, Math.random, JC_PROFILE));
+    // Only regular-season conference and challenge days have a home side; tournaments and the postseason are neutral.
+    const kind = n >= 1 && n <= TOTAL_GAMES ? state.schedule?.days.find(d => d.games.some(g => g.gameNo === n))?.kind : undefined;
+    setSim(simGame(n, home, away, Math.random, kind === 'conference' || kind === 'challenge' ? JC_HOME_PROFILE : JC_PROFILE));
   }, [state, sim, !!live, n]);
 
   if (season === null || docs.error) return <p className={docs.error ? 'error' : 'muted'}>{docs.error || 'Loading…'}</p>;

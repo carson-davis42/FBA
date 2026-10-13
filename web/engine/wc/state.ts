@@ -1,6 +1,6 @@
 import type { GameResult, RosterEntry } from '../shared/types';
 import { POSITIONS } from '../roster/rules';
-import { simGame, type SimGame, type SimTeam } from '../season/sim';
+import { NEUTRAL_PROFILE, simGame, type SimGame, type SimTeam } from '../season/sim';
 import type { Rng } from '../d2/random';
 
 export const qualifyingStepId = (season: number) => `s${season}-qualifying`;
@@ -43,7 +43,7 @@ export function simWcGame(rosters: { teams: Record<string, RosterEntry[]> }, nex
   if (!home || !away) return `${next.home} or ${next.away} has no roster`;
   const problem = lineupProblem(next.home, home) ?? lineupProblem(next.away, away);
   if (problem) return problem;
-  return simGame(next.gameNo, simTeam(next.home, home), simTeam(next.away, away), rng);
+  return simGame(next.gameNo, simTeam(next.home, home), simTeam(next.away, away), rng, NEUTRAL_PROFILE);
 }
 
 /** A problem when a (live) sim isn't the game that is up next. */
