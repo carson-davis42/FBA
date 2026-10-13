@@ -438,3 +438,17 @@ export function applyPlacement(career: Career, now: Placement | null, season: nu
   stints.push({ kind: now.kind, team: now.team, range: `S${season}-pres.`, from: season, to: 'pres', honours: [] });
   return { ...career, stints };
 }
+
+/**
+ * A player on no roster but in a reserve pool or free-agent list has left his team: any stint still open ("pres") ended the season before.
+ * National-team call-ups don't count. Returns a new career.
+ */
+export function applyUnsigned(career: Career, season: number): Career {
+  const stints = career.stints.map(s => ({ ...s }));
+  for (const s of stints) {
+    if (s.to !== 'pres') continue;
+    s.to = Math.max(s.from ?? 0, season - 1);
+    setRange(s);
+  }
+  return { ...career, stints };
+}
