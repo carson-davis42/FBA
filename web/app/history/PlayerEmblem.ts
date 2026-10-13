@@ -1,6 +1,6 @@
 import type { Stint } from '../../engine/history/career';
 import type { PlayerStatus } from '../../engine/history/career';
-import { findSchool } from './CareerSection';
+import { findD2Team, findSchool } from './CareerSection';
 import { franchiseByAbbr } from '../../engine/shared/franchises';
 import type { FranchisesFile, Team } from '../../engine/shared/types';
 
@@ -18,7 +18,7 @@ function lastStintTeam(stint: Stint, teams: EmblemTeams): Team | undefined {
     const season = typeof stint.to === 'number' ? stint.to : typeof stint.from === 'number' ? stint.from : 1;
     return teams.fba.find(t => t.teamId === (franchiseByAbbr(teams.franchises, code, season)?.teamId ?? code));
   }
-  if (stint.kind === 'd2') return teams.d2.find(t => t.name === (/^D2\((.*)\)$/.exec(stint.team)?.[1] ?? stint.team));
+  if (stint.kind === 'd2') return findD2Team(teams.d2, /^D2\((.*)\)$/.exec(stint.team)?.[1] ?? stint.team);
   if (stint.kind === 'college') return findSchool(teams.college, stint.team);
   return teams.wc.find(t => t.name === (/^WC\((.*)\)$/.exec(stint.team)?.[1] ?? stint.team));
 }
