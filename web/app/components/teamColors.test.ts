@@ -64,8 +64,11 @@ describe('colours follow the logo era', () => {
     const missing: string[] = [];
     for (const t of teams) {
       if (!t.logoFolder) continue;
-      for (const e of manifest.folders[t.logoFolder] ?? []) {
-        if (e.variant === 0 && e.from !== null && e.from >= 80 && !(COLOR_ERAS[t.teamId] ?? []).some(c => c.from === e.from)) missing.push(`${t.teamId} S${e.from}`);
+      const entries = (manifest.folders[t.logoFolder] ?? []).filter(e => e.variant === 0 && e.from !== null);
+      for (const e of entries) {
+        // A team's first logo comes with its base pair in TEAM_COLORS; only a change of logo needs a colour era.
+        const changed = entries.some(o => o.from! < e.from!);
+        if (changed && e.from! >= 80 && !(COLOR_ERAS[t.teamId] ?? []).some(c => c.from === e.from)) missing.push(`${t.teamId} S${e.from}`);
       }
     }
     expect(missing).toEqual([]);
