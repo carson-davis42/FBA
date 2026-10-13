@@ -49,3 +49,10 @@
 .pick-order li.now { box-shadow: inset 4px 0 0 var(--accent); border-radius: 0; }
 .pick-order .rank { font-family: var(--font-head); font-weight: 800; min-width: 2.2em; color: var(--muted); }
 .pick-order .chip { margin: 0; }
+
+.move-up { color: var(--good); }
+.move-down { color: var(--warn); }
+.move-flat { color: var(--muted); }
+.lottery-layout { display: grid; gap: var(--s4); align-items: start; }
+@media (min-width: 900px) { .lottery-layout.with-stats { grid-template-columns: minmax(0, 20rem) minmax(0, 1fr); } }
+.card > h3 { margin: var(--s4) 0 var(--s2); }
