@@ -39,6 +39,61 @@
       "teamId": "DCB"
     }
   ],
-  "allFba": null,
-  "allFbaLocked": false
+  "allFba": {
+    "team1": [
+      {
+        "slot": "G",
+        "playerId": "p00055",
+        "teamId": "HON"
+      },
+      {
+        "slot": "F",
+        "playerId": "p00100",
+        "teamId": "OAK"
+      },
+      {
+        "slot": "C",
+        "playerId": "p00010",
+        "teamId": "BOS"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p00116",
+        "teamId": "SAS"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p00006",
+        "teamId": "BOS"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "G",
+        "playerId": "p00073",
+        "teamId": "MEM"
+      },
+      {
+        "slot": "F",
+        "playerId": "p00046",
+        "teamId": "DET"
+      },
+      {
+        "slot": "C",
+        "playerId": "p00111",
+        "teamId": "PHX"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p00031",
+        "teamId": "CGG"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p00021",
+        "teamId": "CIN"
+      }
+    ]
+  },
+  "allFbaLocked": true
 }

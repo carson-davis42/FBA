@@ -1,7 +1,7 @@
 {
   "league": "fba",
   "season": 79,
-  "locked": false,
+  "locked": true,
   "games": [
     {
       "gameNo": 1,

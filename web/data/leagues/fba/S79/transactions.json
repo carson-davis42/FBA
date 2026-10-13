@@ -4197,6 +4197,58 @@
       "lines": [
         "S79 FBA awards: MVP Reagan Butler (HON), ROTY Milo Lawrenz (MON), PPK Award Reagan Butler (HON), LP Award Harper Holland (OAK), MC Award Olufemi Cisneros (BOS), DPOY JT Ramsey (CIN), MIP Kendall Hatfield (DCB)"
       ]
+    },
+    {
+      "seq": 380,
+      "batchId": "bmv65mv27ql98o",
+      "type": "awards",
+      "teams": [
+        "HON",
+        "OAK",
+        "BOS",
+        "SAS",
+        "MEM",
+        "DET",
+        "PHX",
+        "CGG",
+        "CIN"
+      ],
+      "lines": [
+        "All-FBA 1st team: G Reagan Butler (HON), F Harper Holland (OAK), C Olufemi Cisneros (BOS), ANY Katleho Cisneros (SAS), ANY Gabriel Greenwood (BOS)",
+        "All-FBA 2nd team: G Ivory Huntley (MEM), F Cameron Lučić (DET), C Merritt Donovan (PHX), ANY Mitchell Hope (CGG), ANY JT Ramsey (CIN)"
+      ]
+    },
+    {
+      "seq": 381,
+      "batchId": "bmv65nkh69cp3c",
+      "type": "season",
+      "teams": [],
+      "lines": [
+        "S79 FBA season finished"
+      ]
+    },
+    {
+      "seq": 382,
+      "batchId": "bmv65pt1gr9b80",
+      "type": "expansion",
+      "teams": [
+        "PHI",
+        "LAL"
+      ],
+      "lines": [
+        "Philly Phantoms and Team 32 join the league in S80"
+      ]
+    },
+    {
+      "seq": 383,
+      "batchId": "bmv65qpqqp2bu2",
+      "type": "lottery",
+      "teams": [
+        "LA"
+      ],
+      "lines": [
+        "S80 Draft Lottery: LA wins the first pick"
+      ]
     }
   ]
 }

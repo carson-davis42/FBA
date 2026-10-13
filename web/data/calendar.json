@@ -79,7 +79,7 @@
       "kind": "league",
       "league": "fba",
       "sub": false,
-      "done": false
+      "done": true
     },
     {
       "id": "s80-add-expansion-teams",
@@ -87,7 +87,7 @@
       "kind": "offseason",
       "league": null,
       "sub": false,
-      "done": false
+      "done": true
     },
     {
       "id": "s80-fba-draft-lottery",
@@ -95,7 +95,7 @@
       "kind": "offseason",
       "league": null,
       "sub": false,
-      "done": false
+      "done": true
     },
     {
       "id": "s79-qualifying",
@@ -145,5 +145,6 @@
       "sub": false,
       "done": false
     }
-  ]
+  ],
+  "startedAt": "2026-09-25T12:00:00Z"
 }

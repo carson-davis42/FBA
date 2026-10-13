@@ -330,6 +330,33 @@
         "bg": "hsl(156 55% 36%)",
         "fg": "#ffffff"
       }
+    },
+    {
+      "teamId": "PHI",
+      "name": "Philly Phantoms",
+      "abbr": "PHI",
+      "group": "E",
+      "logoFolder": "Philly Phantoms",
+      "badge": {
+        "bg": "#173C74",
+        "fg": "#ffffff",
+        "accent": "#D23434"
+      },
+      "fromSeason": 80
+    },
+    {
+      "teamId": "LAL",
+      "name": "Team 32",
+      "abbr": "T32",
+      "group": "W",
+      "logoFolder": "FBA",
+      "logoFile": "FBA_logo.png",
+      "badge": {
+        "bg": "#16346F",
+        "fg": "#ffffff",
+        "accent": "#C8102E"
+      },
+      "fromSeason": 80
     }
   ]
 }

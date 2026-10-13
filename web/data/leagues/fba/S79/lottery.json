@@ -1,0 +1,398 @@
+{
+  "league": "fba",
+  "season": 79,
+  "draftSeason": 80,
+  "locked": true,
+  "odds": [
+    {
+      "teamId": "PHI",
+      "slot": 1,
+      "w": 0,
+      "l": 0,
+      "pct": 14
+    },
+    {
+      "teamId": "LAL",
+      "slot": 2,
+      "w": 0,
+      "l": 0,
+      "pct": 14
+    },
+    {
+      "teamId": "CHI",
+      "slot": 3,
+      "w": 13,
+      "l": 73,
+      "pct": 10.08
+    },
+    {
+      "teamId": "TOR",
+      "slot": 4,
+      "w": 16,
+      "l": 70,
+      "pct": 10.08
+    },
+    {
+      "teamId": "FLO",
+      "slot": 5,
+      "w": 21,
+      "l": 65,
+      "pct": 9.54
+    },
+    {
+      "teamId": "MIL",
+      "slot": 6,
+      "w": 21,
+      "l": 65,
+      "pct": 9.54
+    },
+    {
+      "teamId": "VEG",
+      "slot": 7,
+      "w": 22,
+      "l": 64,
+      "pct": 7.56
+    },
+    {
+      "teamId": "OV",
+      "slot": 8,
+      "w": 24,
+      "l": 62,
+      "pct": 6.48
+    },
+    {
+      "teamId": "STL",
+      "slot": 9,
+      "w": 27,
+      "l": 59,
+      "pct": 4.86
+    },
+    {
+      "teamId": "NY",
+      "slot": 10,
+      "w": 27,
+      "l": 59,
+      "pct": 4.86
+    },
+    {
+      "teamId": "VAN",
+      "slot": 11,
+      "w": 30,
+      "l": 56,
+      "pct": 3.24
+    },
+    {
+      "teamId": "LA",
+      "slot": 12,
+      "w": 33,
+      "l": 53,
+      "pct": 2.16
+    },
+    {
+      "teamId": "CP",
+      "slot": 13,
+      "w": 37,
+      "l": 49,
+      "pct": 1.44
+    },
+    {
+      "teamId": "DCB",
+      "slot": 14,
+      "w": 42,
+      "l": 44,
+      "pct": 1.08
+    },
+    {
+      "teamId": "PHX",
+      "slot": 15,
+      "w": 43,
+      "l": 43,
+      "pct": 0.72
+    },
+    {
+      "teamId": "SEA",
+      "slot": 16,
+      "w": 44,
+      "l": 42,
+      "pct": 0.36
+    }
+  ],
+  "lottery": [
+    "LA",
+    "OV",
+    "CHI",
+    "PHX",
+    "LAL",
+    "PHI",
+    "FLO",
+    "SEA",
+    "CP",
+    "NY",
+    "VEG",
+    "MIL",
+    "STL",
+    "VAN",
+    "TOR",
+    "DCB"
+  ],
+  "order": [
+    "LA",
+    "OV",
+    "CHI",
+    "PHX",
+    "LAL",
+    "PHI",
+    "FLO",
+    "SEA",
+    "CP",
+    "NY",
+    "VEG",
+    "MIL",
+    "STL",
+    "VAN",
+    "TOR",
+    "DCB",
+    "MON",
+    "ATL",
+    "NO",
+    "MEM",
+    "CIN",
+    "CAR",
+    "DEN",
+    "OAK",
+    "TEX",
+    "DET",
+    "MAN",
+    "SAS",
+    "MW",
+    "HON",
+    "BOS",
+    "CGG"
+  ],
+  "picks": [
+    {
+      "slot": 1,
+      "originalTeam": "LA",
+      "owner": "LA",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 2,
+      "originalTeam": "OV",
+      "owner": "OV",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 3,
+      "originalTeam": "CHI",
+      "owner": "CHI",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 4,
+      "originalTeam": "PHX",
+      "owner": "PHX",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 5,
+      "originalTeam": "LAL",
+      "owner": "LAL",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 6,
+      "originalTeam": "PHI",
+      "owner": "PHI",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 7,
+      "originalTeam": "FLO",
+      "owner": "FLO",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 8,
+      "originalTeam": "SEA",
+      "owner": "SEA",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 9,
+      "originalTeam": "CP",
+      "owner": "CP",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 10,
+      "originalTeam": "NY",
+      "owner": "NY",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 11,
+      "originalTeam": "VEG",
+      "owner": "VEG",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 12,
+      "originalTeam": "MIL",
+      "owner": "MIL",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 13,
+      "originalTeam": "STL",
+      "owner": "STL",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 14,
+      "originalTeam": "VAN",
+      "owner": "VAN",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 15,
+      "originalTeam": "TOR",
+      "owner": "TOR",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 16,
+      "originalTeam": "DCB",
+      "owner": "OV",
+      "obligationId": "imp-S80-DCB-1",
+      "flag": null
+    },
+    {
+      "slot": 17,
+      "originalTeam": "MON",
+      "owner": "MON",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 18,
+      "originalTeam": "ATL",
+      "owner": "ATL",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 19,
+      "originalTeam": "NO",
+      "owner": "OV",
+      "obligationId": "bmuw7tsou3lxld-1",
+      "flag": null
+    },
+    {
+      "slot": 20,
+      "originalTeam": "MEM",
+      "owner": "MEM",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 21,
+      "originalTeam": "CIN",
+      "owner": "CIN",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 22,
+      "originalTeam": "CAR",
+      "owner": "CAR",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 23,
+      "originalTeam": "DEN",
+      "owner": "DEN",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 24,
+      "originalTeam": "OAK",
+      "owner": "OAK",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 25,
+      "originalTeam": "TEX",
+      "owner": "TEX",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 26,
+      "originalTeam": "DET",
+      "owner": "DET",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 27,
+      "originalTeam": "MAN",
+      "owner": "MAN",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 28,
+      "originalTeam": "SAS",
+      "owner": "SAS",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 29,
+      "originalTeam": "MW",
+      "owner": "MW",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 30,
+      "originalTeam": "HON",
+      "owner": "HON",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 31,
+      "originalTeam": "BOS",
+      "owner": "BOS",
+      "obligationId": null,
+      "flag": null
+    },
+    {
+      "slot": 32,
+      "originalTeam": "CGG",
+      "owner": "CGG",
+      "obligationId": null,
+      "flag": null
+    }
+  ]
+}

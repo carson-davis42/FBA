@@ -2,59 +2,6 @@
   "league": "fba",
   "obligations": [
     {
-      "id": "imp-S80-DCB-1",
-      "season": 80,
-      "originalTeam": "DCB",
-      "owner": "OV",
-      "condition": {
-        "kind": "top",
-        "n": 9
-      },
-      "originalCondition": {
-        "kind": "lottery"
-      },
-      "originSeason": 75,
-      "priority": 1,
-      "rolls": [],
-      "note": ""
-    },
-    {
-      "id": "imp-S80-DCB-2",
-      "season": 80,
-      "originalTeam": "DCB",
-      "owner": "NY",
-      "condition": {
-        "kind": "top",
-        "n": 11
-      },
-      "originalCondition": {
-        "kind": "top",
-        "n": 12
-      },
-      "originSeason": 79,
-      "priority": 2,
-      "rolls": [],
-      "note": ""
-    },
-    {
-      "id": "imp-S80-LA-1",
-      "season": 80,
-      "originalTeam": "LA",
-      "owner": "CHI",
-      "condition": {
-        "kind": "top",
-        "n": 5
-      },
-      "originalCondition": {
-        "kind": "top",
-        "n": 5
-      },
-      "originSeason": 80,
-      "priority": 1,
-      "rolls": [],
-      "note": ""
-    },
-    {
       "id": "imp-S81-SAS-1",
       "season": 81,
       "originalTeam": "SAS",
@@ -265,40 +212,6 @@
       "note": ""
     },
     {
-      "id": "bmuw7tsou3lxld-1",
-      "season": 80,
-      "originalTeam": "NO",
-      "owner": "OV",
-      "condition": {
-        "kind": "lottery"
-      },
-      "originalCondition": {
-        "kind": "lottery"
-      },
-      "originSeason": 80,
-      "priority": 1,
-      "rolls": [],
-      "note": ""
-    },
-    {
-      "id": "bmuw82gvicnldk-1",
-      "season": 80,
-      "originalTeam": "CP",
-      "owner": "CHI",
-      "condition": {
-        "kind": "top",
-        "n": 10
-      },
-      "originalCondition": {
-        "kind": "top",
-        "n": 10
-      },
-      "originSeason": 80,
-      "priority": 1,
-      "rolls": [],
-      "note": ""
-    },
-    {
       "id": "bmuw8771n2a0fg-1",
       "season": 81,
       "originalTeam": "TEX",
@@ -316,6 +229,75 @@
       "originSeason": 81,
       "priority": 1,
       "rolls": [],
+      "note": ""
+    },
+    {
+      "id": "imp-S80-LA-1",
+      "season": 81,
+      "originalTeam": "LA",
+      "owner": "CHI",
+      "condition": {
+        "kind": "top",
+        "n": 4
+      },
+      "originalCondition": {
+        "kind": "top",
+        "n": 5
+      },
+      "originSeason": 80,
+      "priority": 2,
+      "rolls": [
+        {
+          "fromSeason": 80,
+          "reason": "protected"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "bmuw82gvicnldk-1",
+      "season": 81,
+      "originalTeam": "CP",
+      "owner": "CHI",
+      "condition": {
+        "kind": "top",
+        "n": 9
+      },
+      "originalCondition": {
+        "kind": "top",
+        "n": 10
+      },
+      "originSeason": 80,
+      "priority": 1,
+      "rolls": [
+        {
+          "fromSeason": 80,
+          "reason": "protected"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "imp-S80-DCB-2",
+      "season": 81,
+      "originalTeam": "DCB",
+      "owner": "NY",
+      "condition": {
+        "kind": "top",
+        "n": 10
+      },
+      "originalCondition": {
+        "kind": "top",
+        "n": 12
+      },
+      "originSeason": 79,
+      "priority": 1,
+      "rolls": [
+        {
+          "fromSeason": 80,
+          "reason": "already-owed"
+        }
+      ],
       "note": ""
     }
   ]
