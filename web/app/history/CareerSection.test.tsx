@@ -50,4 +50,11 @@ describe('CareerSection national teams', () => {
     render(<MemoryRouter><CareerSection career={c} born={null} totals={none} teams={{ fba: [], d2: [t('LYON', 'Sporting Lyon', 'Lyon'), t('KIEV', 'SK Kyiv', 'Kyiv'), t('AUS', 'Austin BC', 'Austin')], college: [] }} /></MemoryRouter>);
     expect(screen.getAllByRole('link').map(l => l.getAttribute('href'))).toEqual(['/history/fbad2/teams/LYON', '/history/fbad2/teams/KIEV', '/history/fbad2/teams/AUS']);
   });
+  it('shows one row for a D2 club that was renamed during his run, under the newer name', () => {
+    const c = parseBio({ born: 'Born-S40', entries: ['Oregon-S69', 'D2(Lyon)-S71-S78', '1x D2 Champion', 'D2(Sporting Lyon)-S79-pres.', '2x D2 MVP'] });
+    const lyon = { ...team('LYON', 'Sporting Lyon'), city: 'Lyon' };
+    render(<MemoryRouter><CareerSection career={c} born={null} totals={none} teams={{ fba: [], d2: [lyon], college: [] }} /></MemoryRouter>);
+    const rows = within(screen.getAllByRole('table')[0]).getAllByRole('row').slice(1).map(r => [...r.querySelectorAll('td')].map(td => td.textContent));
+    expect(rows).toEqual([['College', 'Oregon', 'S69', ''], ['D2', expect.stringContaining('Sporting Lyon'), 'S71-pres.', '1x D2 Champion, 2x D2 MVP']]);
+  });
 });

@@ -49,6 +49,28 @@ export function findD2Team(teams: Team[], name: string): Team | undefined {
   return teams.find(t => t.teamId === id);
 }
 
+/**
+ * Back-to-back D2 stints that are the same club under two names (the bio's "Lyon" and the renamed "Sporting Lyon") are one run: one row, under the
+ * newer name, from the first season to the last.
+ */
+export function mergeRenamedD2(stints: Stint[], d2: Team[]): Stint[] {
+  const out: Stint[] = [];
+  const idOf = (s: Stint) => (s.kind === 'd2' ? findD2Team(d2, /^D2\((.*)\)$/.exec(s.team)?.[1] ?? s.team)?.teamId : undefined);
+  for (const s of stints) {
+    const prev = out[out.length - 1];
+    const id = idOf(s);
+    if (prev && id !== undefined && idOf(prev) === id && prev.team !== s.team && prev.from !== null && s.to !== null && !prev.range.includes(';') && !s.range.includes(';')) {
+      out[out.length - 1] = {
+        ...s, from: prev.from, honours: [...prev.honours, ...s.honours],
+        range: s.to === 'pres' ? `S${prev.from}-pres.` : prev.from === s.to ? `S${prev.from}` : `S${prev.from}-S${s.to}`,
+      };
+      continue;
+    }
+    out.push(s);
+  }
+  return out;
+}
+
 /** A stint's team as a link to its history page (franchise, D2 team or school) with its logo; text when the team is unknown or has no page. */
 export function StintTeam({ stint, teams, currentSeason }: { stint: Stint; teams: StintTeams; currentSeason?: number }) {
   const season = stint.to === 'pres' && currentSeason !== undefined ? currentSeason
@@ -80,7 +102,7 @@ export function StintTeam({ stint, teams, currentSeason }: { stint: Stint; teams
 }
 
 export function CareerSection({ career, born, age, currentSeason, totals, teams }: { career: Career; born: string | null; age?: number | null; currentSeason?: number; totals: Record<AwardKey, number>; teams: StintTeams }) {
-  const pro = career.stints;
+  const pro = mergeRenamedD2(career.stints, teams.d2);
   const chips = AWARD_KEYS.filter(k => totals[k] > 0);
   return (
     <>
