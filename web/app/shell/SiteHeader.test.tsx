@@ -30,7 +30,7 @@ describe('SiteHeader', () => {
     const links = Array.from(nav.querySelectorAll('a')).map(a => [a.textContent, a.getAttribute('href')]);
     expect(links).toEqual([
       ['Scores', '/league/fbad2/scores'], ['Standings', '/league/fbad2/standings'], ['Playoffs', '/league/fbad2/playoffs'],
-      ['Awards', '/league/fbad2/awards'], ['Rankings', '/league/fbad2/rankings'], ['Teams', '/league/fbad2'], ['Transactions', '/league/fbad2/transactions'],
+      ['Awards', '/league/fbad2/awards'], ['Rankings', '/league/fbad2/rankings'], ['Teams', '/league/fbad2'], ['Players', '/league/fbad2/players'], ['Transactions', '/league/fbad2/transactions'],
       ['Calendar', '/calendar'], ['Offseason', '/offseason'], ['History', '/history'], ['Hall of Fame', '/history/fba/hall-of-fame'],
     ]);
     expect(screen.getByRole('link', { name: 'Standings' }).className).toContain('active');
