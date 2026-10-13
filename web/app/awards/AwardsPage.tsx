@@ -18,6 +18,7 @@ import { useAutosaveDoc } from '../useAutosaveDoc';
 import '../pages/season.css';
 import '../playoffs/playoffs.css';
 import { PlayerName } from '../components/PlayerName';
+import { pickableRow } from '../components/pickableRow';
 
 const signed = (n: number) => (n > 0 ? `+${n}` : String(n));
 
@@ -40,11 +41,14 @@ interface RaceCardProps {
   teams: Map<string, Team>;
   season: number;
   league: 'fba' | 'fbad2';
-  /** The locked winner of this award, when the awards are locked. */
+  /** The winner of this award: the locked winner, or the current pick while the awards are a draft. */
   winnerId?: string;
+  /** Present while the awards are a draft: clicking a row makes that player the current pick. */
+  onPick?: (row: RaceRow) => void;
 }
 
-function RaceCard({ race, name, teams, season, league, winnerId }: RaceCardProps) {
+function RaceCard({ race, name, teams, season, league, winnerId, onPick }: RaceCardProps) {
+  const winnerLabel = onPick ? 'Selected' : 'Winner';
   const top = race.rows.slice(0, 10);
   const lead = top.find(r => r.playerId === winnerId) ?? top[0];
   const leadTeam = lead ? teams.get(lead.teamId) : undefined;
@@ -61,7 +65,7 @@ function RaceCard({ race, name, teams, season, league, winnerId }: RaceCardProps
             <span className="who"><PlayerName id={lead.playerId} name={name(lead.playerId)} /></span>
             <span className="badges">
               {teamCell(lead.teamId)}
-              {winnerId && lead.playerId === winnerId && <Badge kind="mvp">Winner</Badge>}
+              {winnerId && lead.playerId === winnerId && <Badge kind="mvp">{winnerLabel}</Badge>}
             </span>
             <span className="stat">{lead.position} · {lead.ppg.toFixed(1)} PPG · {lead.rating} rtg{lead.odds ? ` · ${lead.odds}` : ''}</span>
           </div>
@@ -72,9 +76,9 @@ function RaceCard({ race, name, teams, season, league, winnerId }: RaceCardProps
                 {top.map((r, i) => {
                   const pct = impliedPct(r.odds);
                   return (
-                    <tr key={r.playerId}>
+                    <tr key={r.playerId} {...pickableRow(onPick ? () => onPick(r) : null, winnerId === r.playerId ? 'picked' : '')}>
                       <td className="rank">{i + 1}</td>
-                      <td><PlayerName id={r.playerId} name={name(r.playerId)} />{winnerId === r.playerId && <> <Badge kind="mvp">Winner</Badge></>}<div className="muted why">{why(race, r)}</div></td>
+                      <td><PlayerName id={r.playerId} name={name(r.playerId)} />{winnerId === r.playerId && <> <Badge kind="mvp">{winnerLabel}</Badge></>}<div className="muted why">{why(race, r)}</div></td>
                       <td>{teamCell(r.teamId)}</td><td>{r.position}</td>
                       <td className="n">{r.ppg.toFixed(1)}</td><td className="n">{r.rating}</td>
                       <td className="odds-cell">
@@ -121,10 +125,14 @@ export function AwardsPage() {
   const doc = autosave.doc ?? state.awards ?? undefined;
   const view = doc ? { ...state, awards: doc } : state;
   const rs = races(view, lastSeason);
-  const cards = (winners?: AwardsFile['awards']) => (
+  const cards = (winners?: AwardsFile['awards'], pickable = false) => (
     <div className="race-grid">
       {rs.map(r => (
-        <RaceCard key={r.award} race={r} name={name} teams={teams} season={state.season} league={lg} winnerId={winners?.find(a => a.award === r.award)?.playerId} />
+        <RaceCard
+          key={r.award} race={r} name={name} teams={teams} season={state.season} league={lg}
+          winnerId={winners?.find(a => a.award === r.award)?.playerId}
+          onPick={pickable ? row => autosave.update(cur => setAward(cur, r.award, row.playerId, row.teamId)) : undefined}
+        />
       ))}
     </div>
   );
@@ -312,7 +320,8 @@ export function AwardsPage() {
       {autosave.error && <p className="error">{autosave.error}</p>}
       {message && <p className="error">{message}</p>}
       <h2>Races</h2>
-      {cards()}
+      <p className="muted">Click a player in a race to select him as the winner.</p>
+      {cards(doc.awards, true)}
     </section>
   );
 }

@@ -1,3 +1,4 @@
+import { pickableRow } from '../components/pickableRow';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -57,7 +58,7 @@ export function JcAwardsPage() {
             <thead><tr><th>#</th><th>Player</th><th>Pos</th><th>PPG</th><th>Rtg</th>{race.id === 'DPOY' && <th>Saved/G</th>}<th>Odds</th><th /></tr></thead>
             <tbody>
               {race.rows.slice(0, race.limit).map((r, i) => (
-                <tr key={r.playerId} className={r.playerId === winner ? 'jc-champion' : undefined}>
+                <tr key={r.playerId} {...pickableRow(saving || finished || picksLocked || r.playerId === winner ? null : pick(r.playerId), r.playerId === winner ? 'jc-champion' : '')}>
                   <td>{i + 1}</td>
                   <td><PlayerName id={r.playerId} name={who(r.playerId, r.teamId)} /></td>
                   <td>{r.position}</td>

@@ -70,6 +70,15 @@ describe('JcAwardsPage', () => {
     expect(batches[0].writes.map(w => w.path)).toEqual(['leagues/fbajc/S79/awards.json']);
   });
 
+  it('clicking a player row picks him, the same as the Pick button', async () => {
+    mount(ready);
+    const poy = await screen.findByRole('region', { name: 'Trae York Player of the Year' });
+    const pickable = within(poy).getAllByRole('row').find(r => r.classList.contains('pickable'))!;
+    fireEvent.click(pickable);
+    await waitFor(() => expect(batches).toHaveLength(1));
+    expect(batches[0].writes.map(w => w.path)).toEqual(['leagues/fbajc/S79/awards.json']);
+  });
+
   it('after both tournaments: the All-American picker offers 15 slots and the MVP lists the champion roster', async () => {
     mount(tournamentsDone);
     expect(await screen.findByRole('button', { name: 'Suggest all three teams' })).toBeTruthy();

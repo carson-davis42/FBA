@@ -1,3 +1,4 @@
+import { pickableRow } from '../components/pickableRow';
 import { useRef, useState } from 'react';
 import { finalsMvpCandidates, pickFinalsMvp } from '../../engine/playoffs/moves';
 import { playerName, type SeasonState } from '../../engine/season/state';
@@ -53,7 +54,7 @@ export function FinalsMvpCard({ state, versions, group }: { state: SeasonState; 
           <thead><tr><th>Player</th><th className="n">GP</th><th className="n">PPG</th><th /></tr></thead>
           <tbody>
             {rows.map(c => (
-              <tr key={c.playerId}>
+              <tr key={c.playerId} {...pickableRow(saving || c.playerId === picked ? null : () => pick(c.playerId), c.playerId === picked ? 'picked' : '')}>
                 <td><PlayerName id={c.playerId} name={c.name} /></td>
                 <td className="n">{c.gp}</td>
                 <td className="n">{c.ppg.toFixed(1)}</td>

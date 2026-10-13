@@ -177,6 +177,19 @@ describe('Finals MVP card', () => {
     expect(log.batches).toHaveLength(1);
   });
 
+  it('clicking a Finals MVP candidate row picks him once', async () => {
+    const state = fbaDone();
+    const cands = finalsMvpCandidates(state, null);
+    const log = stubApi(seasonDocs(state));
+    renderAt('/league/fba/playoffs');
+    await screen.findByRole('heading', { name: 'Finals MVP' });
+    const rows = screen.getAllByRole('row').slice(1);
+    fireEvent.click(rows[2]);
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    const saved = log.batches[0].writes[0].doc as { outcome: { champions: { finalsMvp?: string }[] } };
+    expect(saved.outcome.champions[0].finalsMvp).toBe(cands[2].playerId);
+  });
+
   it('refuses Finish without a pick', async () => {
     stubApi(seasonDocs(fbaDone()));
     renderAt('/league/fba/playoffs');

@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { lockAllFba, lockAwards, setAward, startAllFba, startAwards } from '../../engine/awards/awardMoves';
@@ -71,6 +71,34 @@ describe('AwardsPage', () => {
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].label).toBe('Lock S79 FBA awards');
     expect(log.batches[0].writes.map(w => w.path).sort()).toEqual(['leagues/fba/S79/awards.json', 'leagues/fba/S79/transactions.json']);
+  });
+
+  it('clicking a player in a race list makes him the current, unlocked winner', async () => {
+    const s = ready();
+    const started = ok(startAwards(s, { ...s.rosters, season: 78 })).state;
+    const log = stubApi(fbaDocs(started));
+    renderAt('/league/fba/awards');
+    const mvp = (await screen.findByRole('combobox', { name: 'MVP' })) as HTMLSelectElement;
+    const third = mvp.options[3].value;
+    const card = screen.getByRole('heading', { name: 'MVP' }).closest('.race-card') as HTMLElement;
+    const row = within(card).getAllByRole('row')[3]; // header, #1, #2, #3
+    fireEvent.click(row);
+    await waitFor(() => expect(log.puts).toHaveLength(1));
+    expect(log.puts[0].path).toBe('leagues/fba/S79/awards.json');
+    await waitFor(() => expect(mvp.value).toBe(third));
+    expect(within(row).getByText('Selected')).toBeTruthy();
+    // the awards are still a draft: nothing was locked
+    expect(screen.getByRole('button', { name: 'Lock awards' })).toBeTruthy();
+  });
+
+  it('race rows are not clickable before the awards are started', async () => {
+    const log = stubApi(fbaDocs(ready()));
+    renderAt('/league/fba/awards');
+    const card = (await screen.findByRole('heading', { name: 'MVP' })).closest('.race-card') as HTMLElement;
+    fireEvent.click(within(card).getAllByRole('row')[2]);
+    await new Promise(r => setTimeout(r, 30));
+    expect(log.puts).toHaveLength(0);
+    expect(log.batches).toHaveLength(0);
   });
 
   it('shows the winners once locked, with the All-FBA teams waiting for the playoffs', async () => {
