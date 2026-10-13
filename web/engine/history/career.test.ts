@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { AwardCountsFile, HallOfFameFile, ResultsFile, SummaryFile, SummaryPlayerLine } from '../shared/types';
-import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll, careerSpan, playerStatus, applyPlacement, applyPlayed, teamsPlayedFor } from './career';
+import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll, careerSpan, playerStatus, applyPlacement, applyPlayed, applyUnsigned, teamsPlayedFor } from './career';
 
 describe('parseBio', () => {
   it('keeps one stint when a World Cup call-up sits between two stints with the same team', () => {
@@ -401,5 +401,20 @@ describe('games played in a season that has no summary yet', () => {
   it('leaves a career alone when he has played no game', () => {
     const c = parseBio({ born: 'Born-S55', entries: ['OAK-S78-pres.'] });
     expect(applyPlayed(c, [], 79)).toEqual(c);
+  });
+});
+
+describe('applyUnsigned', () => {
+  it('ends a school stint left open when the player is in a reserve pool, the season before', () => {
+    const input = parseBio({ born: 'Born-S57', entries: ['Lehigh-S75-pres.', '3x PAT TOUR Champion'] });
+    const c = applyUnsigned(input, 79);
+    expect(c.stints.map(s => [s.team, s.range, s.to])).toEqual([['Lehigh', 'S75-S78', 78]]);
+    expect(c.stints[0].honours).toHaveLength(1);
+    expect(input.stints[0].range).toBe('S75-pres.');
+  });
+  it('ends a one-season open stint at its own season and leaves closed stints and national teams alone', () => {
+    const c = applyUnsigned(parseBio({ born: 'Born-S57', entries: ['Duke-S60-S63', 'Lehigh-S79-pres.', 'WC(Brazil)-S78-pres.'] }), 79);
+    expect(c.stints.map(s => s.range)).toEqual(['S60-S63', 'S79']);
+    expect(c.nationalTeams[0].to).toBe('pres');
   });
 });

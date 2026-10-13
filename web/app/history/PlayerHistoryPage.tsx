@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { applyPlacement, applyPlayed, awardTotals, careerSpan, careerStats, liveCareer, playerStatus, teamsPlayedFor, type Placement } from '../../engine/history/career';
+import { applyPlacement, applyPlayed, applyUnsigned, awardTotals, careerSpan, careerStats, liveCareer, playerStatus, teamsPlayedFor, type Placement } from '../../engine/history/career';
 import { d2PlayerHonours } from '../../engine/history/d2';
 import { playerHonours } from '../../engine/history/honours';
 import { relativesOf } from '../../engine/history/relatives';
@@ -115,7 +115,10 @@ export function PlayerHistoryPage() {
   })();
   const unsummarised = results.data && !seasons.some(x => x.season === results.data!.season) ? results.data : null;
   const playedFor = unsummarised ? teamsPlayedFor(unsummarised, playerId) : [];
-  const career = applyPlacement(applyPlayed(liveCareer(bio, playerId, seasons, hall.data ?? null), playedFor, unsummarised?.season ?? 0), placement?.now ?? null, placement?.season ?? 0);
+  const unsignedNow = placement === null && unsigned.some(d => JSON.stringify(d.data ?? null).includes(`"${playerId}"`));
+  const placed = applyPlacement(applyPlayed(liveCareer(bio, playerId, seasons, hall.data ?? null), playedFor, unsummarised?.season ?? 0), placement?.now ?? null, placement?.season ?? 0);
+  // Out of his school or club into a reserve pool or the free-agent list: no stint stays "present".
+  const career = unsignedNow && meta.data ? applyUnsigned(placed, meta.data.rosterSeason.fba) : placed;
   const totals = awardTotals(playerId, counts.data ?? null, seasons);
   const stats = careerStats(playerId, seasons);
   const hasAwards = Object.values(totals).some(n => n > 0);
@@ -127,7 +130,7 @@ export function PlayerHistoryPage() {
   const recentTeam = findTeam(teams, franchiseByAbbr(franchises, recent ?? '', latestSeasonOfStints(career))?.teamId ?? recent);
   const latestFba = seasons.reduce((m, x) => Math.max(m, x.season), 0);
   // The summaries lag a season behind the play: a player whose last stint ended before the current season, and who is on no roster or unsigned list, has retired.
-  const active = placement !== null || unsigned.some(d => JSON.stringify(d.data ?? null).includes(`"${playerId}"`));
+  const active = placement !== null || unsignedNow;
   const status = playerStatus(career, !!player.retired, active ? latestFba : Math.max(latestFba, meta.data?.currentSeason ?? 0));
   const emblemTeams = { fba: teams, d2: d2Teams.teams, college: jcTeams.teams, wc: wcTeams.data?.teams ?? [], franchises };
   const emblem = playerEmblem(status, career.stints[career.stints.length - 1], emblemTeams, recentTeam);
