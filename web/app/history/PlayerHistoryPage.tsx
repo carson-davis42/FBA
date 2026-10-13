@@ -133,7 +133,7 @@ export function PlayerHistoryPage() {
   const active = placement !== null || unsignedNow;
   const status = playerStatus(career, !!player.retired, active ? latestFba : Math.max(latestFba, meta.data?.currentSeason ?? 0));
   const emblemTeams = { fba: teams, d2: d2Teams.teams, college: jcTeams.teams, wc: wcTeams.data?.teams ?? [], franchises };
-  const emblem = playerEmblem(status, career.stints[career.stints.length - 1], emblemTeams, recentTeam);
+  const emblem = playerEmblem(status, career.stints[career.stints.length - 1], emblemTeams, recentTeam, unsignedNow);
   const latestSeason = stats.rows.length > 0 ? stats.rows[stats.rows.length - 1].season : 0;
   const position = seasons.flatMap(s => (s.players ?? []).filter(l => l.playerId === playerId).map(l => ({ season: s.season, position: l.position })))
     .sort((a, b) => b.season - a.season)[0]?.position;

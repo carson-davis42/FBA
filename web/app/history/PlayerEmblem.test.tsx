@@ -96,6 +96,15 @@ describe('player page follows the live rosters', () => {
     expect([...released.querySelectorAll('table.stat-table tbody tr')].pop()!.textContent).toContain('S77-pres.');
   });
 
+  it('shows the FBA logo, not his old team, when he is unsigned in a reserve pool', async () => {
+    const c = await open('p00001', {
+      '/api/state/meta.json': meta,
+      '/api/state/leagues/fbad2/S79/pool.json': { league: 'fbad2', season: 79, players: [{ playerId: 'p00001' }] },
+    });
+    expect(heroSrc(c)).toBe(logoUrl(FBA_EMBLEM.logoFolder!, 79, FBA_EMBLEM.logoFile));
+    expect([...c.querySelectorAll('table.stat-table tbody tr')].pop()!.textContent).toContain('S77-S78');
+  });
+
   it('puts a player found on a D2 roster in D2', async () => {
     const c = await open('p00001', {
       '/api/state/meta.json': meta,
