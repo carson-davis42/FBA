@@ -3,6 +3,7 @@ import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-li
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mulberry32 } from '../../engine/d2/random';
+import { lotteryProjection } from '../../engine/offseason/lotteryProjection';
 import { lotteryPath, runLottery, type LotteryState } from '../../engine/offseason/lottery';
 import { calendar, ctx, state, teamsFile32 } from '../../engine/offseason/testFixtures';
 import type { LotteryFile } from '../../engine/shared/types';
@@ -110,6 +111,75 @@ describe('LotteryPage', () => {
     expect(list.textContent).toContain(teamsFile32().teams.find(t => t.teamId === lot.lottery[0])!.name);
     expect(screen.queryByRole('button', { name: 'Reveal all' })).toBeNull();
     expect(await screen.findByRole('heading', { name: /Full S80 draft order/ })).toBeTruthy();
+  });
+
+  it('shows no odds card before the draw exists', async () => {
+    stubApi(docsFor(state({ teams: teamsFile32() })));
+    renderPage();
+    await screen.findByRole('button', { name: 'Run lottery' });
+    expect(screen.queryByRole('heading', { name: 'Odds as it unfolds' })).toBeNull();
+    expect(screen.queryByRole('heading', { name: 'Where teams landed' })).toBeNull();
+  });
+
+  it('projects the hidden teams as picks are revealed, then shows where teams landed', async () => {
+    const log = stubApi(docsFor(state({ teams: teamsFile32() })));
+    renderPage();
+    const run = await screen.findByRole('button', { name: 'Run lottery' });
+    await waitFor(() => expect((run as HTMLButtonElement).disabled).toBe(false));
+    fireEvent.click(run);
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    const lot = log.batches[0].writes[0].doc as LotteryFile;
+    await screen.findByRole('heading', { name: 'Odds as it unfolds' });
+    const hiddenTable = () => screen.getByRole('table', { name: 'Odds for the teams still hidden' });
+    const nameOf = (id: string) => teamsFile32().teams.find(t => t.teamId === id)!.name;
+    const rowFor = (id: string) => within(hiddenTable()).getAllByRole('row').find(r => r.querySelector('.team-name-text')?.textContent === nameOf(id))!;
+    const fmt = (p: number) => `${(p * 100).toFixed(1)}%`;
+
+    // No reveals yet: all 16 teams hidden, Now equals the plain weighted odds.
+    expect(screen.getByText(/16 teams left/)).toBeTruthy();
+    expect(within(hiddenTable()).getAllByRole('row')).toHaveLength(17);
+    const p0 = lotteryProjection(lot.odds, []);
+    const first = p0.hidden[0];
+    expect(within(rowFor(first.teamId)).getAllByRole('cell')[2].textContent).toBe(fmt(first.pFirst));
+
+    // One reveal: the last pick leaves the table and Now comes from the conditional odds.
+    fireEvent.click(screen.getByRole('button', { name: 'Reveal next' }));
+    expect(screen.getByText(/15 teams left/)).toBeTruthy();
+    const p1 = lotteryProjection(lot.odds, [lot.lottery[15]]);
+    expect(within(hiddenTable()).getAllByRole('row')).toHaveLength(16);
+    const t = p1.hidden[0];
+    const prev = p0.hidden.find(x => x.teamId === t.teamId)!;
+    const cells = within(rowFor(t.teamId)).getAllByRole('cell');
+    expect(cells[2].textContent).toBe(fmt(t.pFirst));
+    const d = (t.pFirst - prev.pFirst) * 100;
+    expect(cells[3].textContent).toBe(Math.abs(d) < 0.05 ? '—' : d > 0 ? `▲ +${d.toFixed(1)}` : `▼ −${(-d).toFixed(1)}`);
+
+    // All but one revealed: one team left, certain to pick first.
+    for (let i = 0; i < 14; i++) fireEvent.click(screen.getByRole('button', { name: 'Reveal next' }));
+    expect(screen.getByText(/1 team left/)).toBeTruthy();
+    expect(within(hiddenTable()).getAllByRole('row')).toHaveLength(2);
+    expect(within(rowFor(lot.lottery[0])).getAllByRole('cell')[2].textContent).toBe('100.0%');
+
+    // Last reveal: the card gives way to the landing table.
+    fireEvent.click(screen.getByRole('button', { name: 'Reveal next' }));
+    expect(screen.queryByRole('heading', { name: 'Odds as it unfolds' })).toBeNull();
+    const landed = screen.getByRole('table', { name: 'Where teams landed' });
+    const rows = within(landed).getAllByRole('row').slice(1);
+    expect(rows).toHaveLength(16);
+    const winner = lot.odds.find(o => o.teamId === lot.lottery[0])!;
+    const row = rows[0].querySelectorAll('td');
+    expect(row[1].textContent).toBe(String(winner.slot));
+    expect(row[2].textContent).toBe('1');
+    expect(row[3].textContent).toBe(winner.slot === 1 ? '—' : `▲ ${winner.slot - 1}`);
+    expect(row[4].textContent).toBe(`${winner.pct.toFixed(1)}%`);
+  });
+
+  it('shows no stats card for a reloaded lottery that is already fully shown', async () => {
+    stubApi(docsFor(state({ teams: teamsFile32(), lottery: saved(), calendar: calendar('never') })));
+    renderPage();
+    await screen.findByRole('heading', { name: /Full S80 draft order/ });
+    expect(screen.queryByRole('heading', { name: 'Odds as it unfolds' })).toBeNull();
+    expect(screen.queryByRole('heading', { name: 'Where teams landed' })).toBeNull();
   });
 
   it('lists the full order with "via" for traded picks and shows flags', async () => {

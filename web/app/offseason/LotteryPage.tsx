@@ -5,6 +5,7 @@ import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import { useSaving } from '../api';
 import { commitDocs, newBatchId } from '../roster/commit';
+import { LotteryStats } from './LotteryStats';
 import { useLotteryState } from './useLotteryState';
 import './offseason.css';
 
@@ -91,6 +92,7 @@ export function LotteryPage() {
   return (
     <section className="stack">
       {title}
+      <div className={`lottery-layout${done ? '' : ' with-stats'}`}>
       <div className="card">
         <h2>Lottery</h2>
         <ol className="order-list" reversed start={size} aria-label="Lottery">
@@ -108,6 +110,9 @@ export function LotteryPage() {
             <button className="btn" onClick={() => setRevealed(size)}>Reveal all</button>
           </p>
         )}
+      </div>
+      {/* The odds card while the reveal runs; the landing table once it ends (only for a reveal run in this mount). */}
+      {(!done || revealed !== null) && <LotteryStats doc={doc} shown={shown} teams={state.teams.teams} />}
       </div>
       {done && (
         <div className="card">
