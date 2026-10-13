@@ -27,6 +27,26 @@ const docs: Record<string, unknown> = {
     { gameNo: 1, home: 'BOS', away: 'MEM', homePts: 30, awayPts: 20, box: { home: [line('p00001', 20), line('p00003', 10)], away: [line('p00002', 12), line('p00004', 8)] } },
     { gameNo: 2, home: 'BOS', away: 'MEM', homePts: 30, awayPts: 20, box: { home: [line('p00001', 10), line('p00003', 20)], away: [line('p00002', 18)] } },
   ] },
+  'calendar.json': { season: 79 },
+  'leagues/fbajc/teams.json': { league: 'fbajc', teams: [
+    { teamId: 'AAA', name: 'Alpha College', abbr: 'AAA', group: 'C1', logoFolder: null, badge },
+    { teamId: 'BBB', name: 'Beta College', abbr: 'BBB', group: 'C1', logoFolder: null, badge },
+  ] },
+  'leagues/fbajc/S79/rosters.json': { league: 'fbajc', season: 79, locked: false, teams: {
+    AAA: [r('p00001', 'PG', 70, null, { classYear: 'Sr', stars: 5 }), r('p00002', 'SG', 60, null, { classYear: 'Fr', stars: 3 })],
+    BBB: [r('p00003', 'C', 65, null, { classYear: 'So', stars: 4 }), r('p00004', 'PF', 62, null, { classYear: 'Jr', stars: null })],
+  } },
+  'leagues/fbajc/S79/results.json': { league: 'fbajc', season: 79, locked: false, games: [
+    { gameNo: 1, home: 'AAA', away: 'BBB', homePts: 30, awayPts: 20, box: { home: [line('p00001', 25), line('p00002', 5)], away: [line('p00003', 20)] } },
+  ] },
+  'leagues/fbawc/teams.json': { league: 'fbawc', teams: [
+    { teamId: 'BRA', name: 'Brazil', abbr: 'BRA', group: null, logoFolder: null, badge },
+    { teamId: 'FRA', name: 'France', abbr: 'FRA', group: null, logoFolder: null, badge },
+  ] },
+  'leagues/fbawc/S79/rosters.json': { league: 'fbawc', season: 79, locked: false, teams: {
+    BRA: [r('p00001', 'PG', 88, 27), r(null, 'SG', 70, null)],
+    FRA: [r('p00002', 'C', 91, 30)],
+  } },
   'leagues/fbad2/teams.json': { league: 'fbad2', teams: [{ teamId: 'ACK', name: 'Auckland', abbr: 'ACK', group: 'IL', logoFolder: null, badge }] },
   'leagues/fbad2/S79/rosters.json': { league: 'fbad2', season: 79, locked: false, teams: { ACK: [r('p00004', 'PG', 80, 25)] } },
 };
@@ -106,5 +126,41 @@ describe('PlayersPage', () => {
     expect(screen.queryByRole('button', { name: /^Contract/ })).toBeNull();
     const cells = within(screen.getAllByRole('row')[1]).getAllByRole('cell').map(c => c.textContent);
     expect(cells.slice(3)).toEqual(['PG', '80', '25', '—', '—', '—']);
+  });
+
+  it('shows class and stars for FBAJC, sorts them, and has no Age column', async () => {
+    renderAt('/league/fbajc/players');
+    await screen.findByText('Gabriel Greenwood');
+    expect(screen.queryByRole('button', { name: /^Age/ })).toBeNull();
+    expect(screen.getByRole('button', { name: /^School/ })).toBeTruthy();
+    expect(names()).toEqual(['Gabriel Greenwood', 'Alan Zed', 'Cal Young', 'Ivory Huntley']);
+    const cells = within(screen.getAllByRole('row')[1]).getAllByRole('cell').map(c => c.textContent);
+    expect(cells.slice(3)).toEqual(['PG', 'Sr', '★★★★★', '70', '1', '25.0', '25']);
+    fireEvent.click(screen.getByRole('button', { name: /^Class/ }));
+    expect(names()).toEqual(['Ivory Huntley', 'Alan Zed', 'Cal Young', 'Gabriel Greenwood']);
+    fireEvent.click(screen.getByRole('button', { name: /^Stars/ }));
+    expect(names()).toEqual(['Gabriel Greenwood', 'Alan Zed', 'Ivory Huntley', 'Cal Young']);
+  });
+
+  it('lists the country rosters for FBAWC with blank GP and PPG when no games exist', async () => {
+    renderAt('/league/fbawc/players');
+    await screen.findByText('Ivory Huntley');
+    expect(screen.getByRole('button', { name: /^Country/ })).toBeTruthy();
+    expect(names()).toEqual(['Ivory Huntley', 'Gabriel Greenwood']);
+    const cells = within(screen.getAllByRole('row')[1]).getAllByRole('cell').map(c => c.textContent);
+    expect(cells[2]).toContain('France');
+    expect(cells.slice(3)).toEqual(['C', '91', '30', '—', '—', '—']);
+  });
+
+  it('counts World Cup games for FBAWC when the season has them', async () => {
+    docs['leagues/fbawc/S79/worldcup.json'] = { groupGames: [{ gameNo: 1, home: 'BRA', away: 'FRA', homePts: 10, awayPts: 12, box: { home: [line('p00001', 10)], away: [line('p00002', 12)] } }], knockout: [] };
+    try {
+      renderAt('/league/fbawc/players');
+      await screen.findByText('Ivory Huntley');
+      const cells = within(screen.getAllByRole('row')[1]).getAllByRole('cell').map(c => c.textContent);
+      expect(cells.slice(3)).toEqual(['C', '91', '30', '1', '12.0', '12']);
+    } finally {
+      delete docs['leagues/fbawc/S79/worldcup.json'];
+    }
   });
 });
