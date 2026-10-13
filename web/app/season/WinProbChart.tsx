@@ -46,7 +46,7 @@ export function WinProbChart({ state, sim, history, prob }: { state: SeasonState
   const total = sim.possessions.length;
   const colour = (side: 'home' | 'away'): CSSProperties => {
     const t = state.teams.teams.find(x => x.teamId === sim[side].teamId);
-    return { color: t ? teamTheme(t, state.league).primary : side === 'home' ? 'var(--accent)' : 'var(--hero-to)' };
+    return { color: t ? teamTheme(t, state.league, state.season).primary : side === 'home' ? 'var(--accent)' : 'var(--hero-to)' };
   };
   const starts: { period: number; at: number }[] = [];
   sim.possessions.forEach((p, i) => { if (!starts.some(s => s.period === p.period)) starts.push({ period: p.period, at: i }); });

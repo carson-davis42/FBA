@@ -1,3 +1,6 @@
+import { useDoc } from '../api';
+import { setCurrentSeason } from '../components/teamColors';
+import type { MetaFile } from '../../engine/shared/types';
 import { createRoutesFromElements, matchRoutes, Route, useLocation, useRoutes } from 'react-router-dom';
 import { AllStarPage } from '../allstar/AllStarPage';
 import { CalendarPage } from '../pages/CalendarPage';
@@ -167,6 +170,9 @@ const ROUTES = createRoutesFromElements(
 
 export function Layout() {
   const location = useLocation();
+  // Team colours default to the current season's, so they flip with the logo the day the season starts. Set while rendering so the pages below see it.
+  const meta = useDoc<MetaFile>('meta.json');
+  if (meta.data) setCurrentSeason(meta.data.currentSeason);
   const page = useRoutes(ROUTES, location);
   // Key on the route pattern, not the pathname: the page fades in when you move to another page,
   // but a param-only change (another season, team or game) keeps the page mounted and its state.

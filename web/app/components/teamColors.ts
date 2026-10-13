@@ -42,10 +42,33 @@ export const TEAM_COLORS: Record<string, { primary: string; secondary: string }>
 
 export { inkFor };
 
-export function teamTheme(team: Team, league: LeagueId): TeamTheme {
-  const hit = league === 'fba' ? TEAM_COLORS[team.teamId] : undefined;
+/**
+ * A new logo comes with new colours: from this season on, the team wears this pair (the logo era's start season, as in the logo manifest).
+ * Before the first entry the pair in TEAM_COLORS applies. A test fails when the manifest has a logo from S80 on that has no entry here.
+ */
+export const COLOR_ERAS: Record<string, { from: number; primary: string; secondary: string }[]> = {
+  OAK: [{ from: 80, primary: '#0B7A3E', secondary: '#F5B800' }],
+  DEN: [{ from: 80, primary: '#2A1610', secondary: '#E09A1F' }],
+};
+
+let currentSeason = 79;
+
+/** The season colours default to; the shell sets it from the calendar's season so every page flips with the logo. */
+export function setCurrentSeason(season: number): void {
+  currentSeason = season;
+}
+
+/** The pair a team wears in a season: the latest era entry that has started, else the base pair. */
+export function colorsFor(teamId: string, season: number): { primary: string; secondary: string } | undefined {
+  const era = (COLOR_ERAS[teamId] ?? []).filter(e => e.from <= season).sort((a, b) => b.from - a.from)[0];
+  return era ?? TEAM_COLORS[teamId];
+}
+
+/** `season` is the season the page shows (a past champion, a box score); without it, the current season. */
+export function teamTheme(team: Team, league: LeagueId, season: number = currentSeason): TeamTheme {
+  const hit = league === 'fba' ? colorsFor(team.teamId, season) : undefined;
   if (!hit) return { primary: team.badge.bg, secondary: team.badge.accent ?? team.badge.bg, ink: team.badge.fg };
-  return { ...hit, ink: inkFor(hit.primary) };
+  return { primary: hit.primary, secondary: hit.secondary, ink: inkFor(hit.primary) };
 }
 
 export function teamVars(theme: TeamTheme): CSSProperties {

@@ -146,7 +146,7 @@ export function PlayoffsPage() {
                 title={name(c.teamId)}
                 level="h2"
                 logo={team ? <TeamMark team={team} season={state.season} size={96} /> : undefined}
-                theme={team ? teamTheme(team, lg) : undefined}
+                theme={team ? teamTheme(team, lg, state.season) : undefined}
               >
                 <span className="champ-line">{c.score} over {name(c.runnerUp)}</span>
                 {mvp && <span className="champ-line"><Badge kind="finals-mvp">{c.group === null ? 'Finals MVP' : 'Series MVP'}</Badge><span>{mvp}</span></span>}

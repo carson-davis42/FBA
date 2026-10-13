@@ -213,7 +213,7 @@ export function SeasonHistoryPage() {
       <Hero
         kicker={`Season ${season.season}`}
         title={champion ? champion.champion : `S${season.season} FBA season`}
-        theme={champTeam ? teamTheme(champTeam, 'fba') : undefined}
+        theme={champTeam ? teamTheme(champTeam, 'fba', season.season) : undefined}
         logo={champTeam ? <TeamMark team={champTeam} season={season.season} size={72} /> : undefined}
         stats={heroStats}
       >

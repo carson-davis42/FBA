@@ -36,7 +36,7 @@ export function bugSide(state: SeasonState, teamId: string, score: number, opts:
   const t = teamOf(state, teamId);
   const rec = opts.record && state.results ? records(state.teams.teams.map(x => ({ teamId: x.teamId, group: x.group })), state.results.games).get(teamId) : undefined;
   return t
-    ? { label: opts.full ? t.name : t.abbr, sub: rec ? `${rec.w}-${rec.l}` : undefined, score, team: t, season: state.season, style: teamVars(teamTheme(t, state.league)) }
+    ? { label: opts.full ? t.name : t.abbr, sub: rec ? `${rec.w}-${rec.l}` : undefined, score, team: t, season: state.season, style: teamVars(teamTheme(t, state.league, state.season)) }
     : { label: teamId, score, style: ACCENT_SIDES[0] };
 }
 

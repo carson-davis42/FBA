@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import type { Team } from '../../engine/shared/types';
-import { inkFor, teamTheme, teamVars } from './teamColors';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { COLOR_ERAS, inkFor, setCurrentSeason, teamTheme, teamVars } from './teamColors';
 
 const team = (teamId: string): Team => ({ teamId, name: teamId, abbr: teamId, group: 'E', logoFolder: null, badge: { bg: 'hsl(10 55% 36%)', fg: '#ffffff' } });
 
@@ -32,5 +34,40 @@ describe('teamTheme for a team without hand-picked colours', () => {
     const team = { teamId: 'DUKE', name: 'Duke', abbr: 'DUKE', group: 'ACC', logoFolder: null, badge: { bg: '#0A3FA6', fg: '#fff', accent: '#C8102E' } };
     expect(teamTheme(team, 'fbajc')).toEqual({ primary: '#0A3FA6', secondary: '#C8102E', ink: '#fff' });
     expect(teamTheme({ ...team, badge: { bg: '#0A3FA6', fg: '#fff' } }, 'fbajc').secondary).toBe('#0A3FA6');
+  });
+});
+
+describe('colours follow the logo era', () => {
+  const oak = team('OAK');
+  it('keeps the old pair until the new logo starts, then switches', () => {
+    expect(teamTheme(oak, 'fba', 79)).toMatchObject({ primary: '#3F7F3F', secondary: '#F2B416' });
+    expect(teamTheme(oak, 'fba', 80)).toMatchObject({ primary: '#0B7A3E', secondary: '#F5B800' });
+    expect(teamTheme(oak, 'fba', 95).primary).toBe('#0B7A3E');
+  });
+  it('uses the season of a past page: before the first era entry the base pair applies', () => {
+    expect(teamTheme(oak, 'fba', 20).primary).toBe('#3F7F3F');
+  });
+  it('defaults to the current season, which the shell sets', () => {
+    setCurrentSeason(79);
+    expect(teamTheme(oak, 'fba').primary).toBe('#3F7F3F');
+    setCurrentSeason(80);
+    expect(teamTheme(oak, 'fba').primary).toBe('#0B7A3E');
+    setCurrentSeason(79);
+  });
+  it('picks the ink for the primary of the era', () => {
+    expect(teamTheme(team('DEN'), 'fba', 80)).toMatchObject({ primary: '#2A1610', ink: '#fff' });
+  });
+  it('has colours for every future logo in the committed manifest (a new logo must come with its colours)', () => {
+    const dir = path.join(__dirname, '..', '..', 'data');
+    const manifest = JSON.parse(readFileSync(path.join(dir, 'logos', 'manifest.json'), 'utf8')) as { folders: Record<string, { from: number | null; variant: number }[]> };
+    const teams = (JSON.parse(readFileSync(path.join(dir, 'leagues', 'fba', 'teams.json'), 'utf8')) as { teams: { teamId: string; logoFolder: string | null }[] }).teams;
+    const missing: string[] = [];
+    for (const t of teams) {
+      if (!t.logoFolder) continue;
+      for (const e of manifest.folders[t.logoFolder] ?? []) {
+        if (e.variant === 0 && e.from !== null && e.from >= 80 && !(COLOR_ERAS[t.teamId] ?? []).some(c => c.from === e.from)) missing.push(`${t.teamId} S${e.from}`);
+      }
+    }
+    expect(missing).toEqual([]);
   });
 });

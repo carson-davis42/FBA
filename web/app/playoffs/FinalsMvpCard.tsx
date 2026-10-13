@@ -20,7 +20,7 @@ export function FinalsMvpCard({ state, versions, group }: { state: SeasonState; 
   const picked = champion?.finalsMvp ?? null;
 
   const champTeam = champion ? state.teams.teams.find(t => t.teamId === champion.teamId) : undefined;
-  const style = champTeam ? teamVars(teamTheme(champTeam, state.league)) : undefined;
+  const style = champTeam ? teamVars(teamTheme(champTeam, state.league, state.season)) : undefined;
 
   if (state.summary) return picked ? <div className="card headed" style={style}><p>{title}: <PlayerName id={picked} name={playerName(state, picked)} /></p></div> : null;
 

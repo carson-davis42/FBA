@@ -75,7 +75,7 @@ export function FranchisePage() {
   return (
     <section className="stack">
       <Hero
-        theme={team ? teamTheme(team, 'fba') : undefined}
+        theme={team ? teamTheme(team, 'fba', latest) : undefined}
         logo={team ? <TeamMark team={team} season={latest} size={96} /> : undefined}
         kicker="FBA franchise"
         title={name}
