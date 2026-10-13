@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { leagueStepProblem } from '../../engine/season/moves';
 import { seasonDocPath, type SeasonState } from '../../engine/season/state';
 import { finishSeason } from '../../engine/season/wrapUp';
@@ -51,9 +52,17 @@ export function FinishSeasonCard({ state, versions }: { state: SeasonState; vers
     }
   };
 
+  // The All-FBA teams are picked on the Awards page after the playoffs, and the season can't finish until they are locked.
+  const allFbaOpen = state.league === 'fba' && state.awards?.locked === true && !(state.awards.allFbaLocked ?? state.awards.locked);
   return (
     <div className="card headed finish-season">
       <div className="card-head"><h3>Wrap up the season</h3></div>
+      {allFbaOpen && (
+        <p>
+          The All-FBA teams are picked after the playoffs, so they count playoff performance. Lock them first.{' '}
+          <Link className="btn" to="/league/fba/awards">All-FBA teams ▸</Link>
+        </p>
+      )}
       {!saveError && <button className="btn primary" disabled={saving} onClick={finish}>Finish S{state.season} {name} season ▸</button>}
       {problems.length > 0 && <ul>{problems.map(p => <li key={p} className="error">{p}</li>)}</ul>}
       {saveError && (

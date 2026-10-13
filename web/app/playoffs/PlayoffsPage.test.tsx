@@ -109,6 +109,21 @@ describe('PlayoffsPage', () => {
     expect(screen.queryByRole('button', { name: 'Finish S79 D2 season ▸' })).toBeNull();
   });
 
+  it('points to the Awards page for the All-FBA teams, which have to be locked before the season can finish', async () => {
+    const seeded = ok(lockSeeds(regularSeasonDone(fullFbaState()))).state;
+    const done = playPlayoffs(seeded, 5);
+    stubApi(seasonDocs({ ...done, awards: { league: 'fba', season: 79, locked: true, awards: [], allFba: null, allFbaLocked: false } }));
+    renderAt('/league/fba/playoffs');
+    expect(await screen.findByText(/All-FBA teams are picked after the playoffs/)).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'All-FBA teams ▸' }).getAttribute('href')).toBe('/league/fba/awards');
+    // locked All-FBA: no pointer
+    cleanup();
+    stubApi(seasonDocs({ ...done, awards: { league: 'fba', season: 79, locked: true, awards: [], allFba: null } }));
+    renderAt('/league/fba/playoffs');
+    await screen.findByRole('button', { name: 'Finish S79 FBA season ▸' });
+    expect(screen.queryByRole('link', { name: 'All-FBA teams ▸' })).toBeNull();
+  });
+
   it('offers Finish for the FBA once the Finals are over, but not before', async () => {
     const seeded = ok(lockSeeds(regularSeasonDone(fullFbaState()))).state;
     const done = playPlayoffs(seeded, 5);
