@@ -1,0 +1,4583 @@
+{
+  "league": "fba",
+  "season": 79,
+  "locked": true,
+  "host": null,
+  "champions": [
+    {
+      "title": "FBA Champion",
+      "champion": "Cypress Green Guns",
+      "runnerUp": "Boston Bucks",
+      "score": "4–3",
+      "teamId": "CGG",
+      "runnerUpId": "BOS",
+      "group": null,
+      "finalsMvp": "p00031",
+      "date": "2026-10-12"
+    }
+  ],
+  "awards": [
+    {
+      "award": "MVP",
+      "playerId": "p00055",
+      "teamId": "HON"
+    },
+    {
+      "award": "ROTY",
+      "playerId": "p00083",
+      "teamId": "MON"
+    },
+    {
+      "award": "PPK",
+      "playerId": "p00055",
+      "teamId": "HON"
+    },
+    {
+      "award": "LP",
+      "playerId": "p00100",
+      "teamId": "OAK"
+    },
+    {
+      "award": "MC",
+      "playerId": "p00010",
+      "teamId": "BOS"
+    },
+    {
+      "award": "DPOY",
+      "playerId": "p00021",
+      "teamId": "CIN"
+    },
+    {
+      "award": "MIP",
+      "playerId": "p00035",
+      "teamId": "DCB"
+    }
+  ],
+  "allFba": {
+    "team1": [
+      {
+        "slot": "G",
+        "playerId": "p00055",
+        "teamId": "HON"
+      },
+      {
+        "slot": "F",
+        "playerId": "p00100",
+        "teamId": "OAK"
+      },
+      {
+        "slot": "C",
+        "playerId": "p00010",
+        "teamId": "BOS"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p00116",
+        "teamId": "SAS"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p00006",
+        "teamId": "BOS"
+      }
+    ],
+    "team2": [
+      {
+        "slot": "G",
+        "playerId": "p00073",
+        "teamId": "MEM"
+      },
+      {
+        "slot": "F",
+        "playerId": "p00046",
+        "teamId": "DET"
+      },
+      {
+        "slot": "C",
+        "playerId": "p00111",
+        "teamId": "PHX"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p00031",
+        "teamId": "CGG"
+      },
+      {
+        "slot": "ANY",
+        "playerId": "p00021",
+        "teamId": "CIN"
+      }
+    ]
+  },
+  "allStar": {
+    "allStars": [
+      "p00073",
+      "p00100",
+      "p00116",
+      "p00055",
+      "p00090",
+      "p00111",
+      "p00021",
+      "p00046",
+      "p00031",
+      "p00026",
+      "p00006",
+      "p00013",
+      "p00041",
+      "p00010",
+      "p00127",
+      "p00091",
+      "p00011",
+      "p00115",
+      "p00033",
+      "p00007",
+      "p00043",
+      "p00084",
+      "p00067",
+      "p00030",
+      "p00068",
+      "p00079",
+      "p00129",
+      "p00048"
+    ],
+    "youngStars": [
+      "p00117",
+      "p00083",
+      "p00050",
+      "p00126",
+      "p00103",
+      "p00052",
+      "p00087",
+      "p00104",
+      "p00123",
+      "p00004",
+      "p00015",
+      "p00063",
+      "p00095",
+      "p00061",
+      "p00018",
+      "p00140",
+      "p00069",
+      "p00037",
+      "p00097",
+      "p00088"
+    ],
+    "asgMvp": "p00090",
+    "fivePoint": "p00026",
+    "dunk": "p00105",
+    "asgWinner": "Team Harper Holland",
+    "asgLoser": "Team Ivory Huntley",
+    "ysgWinner": "Team Kayan Kidd",
+    "ysgMvp": "p00117"
+  },
+  "standings": [
+    {
+      "teamId": "BOS",
+      "name": "Boston Bucks",
+      "group": "E",
+      "rank": 1,
+      "w": 78,
+      "l": 8,
+      "confW": 52,
+      "confL": 4,
+      "diff": 1411,
+      "marker": "*",
+      "seed": 1,
+      "playoff": {
+        "round": 4,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "MW",
+      "name": "Maine Wildcats",
+      "group": "E",
+      "rank": 2,
+      "w": 60,
+      "l": 26,
+      "confW": 41,
+      "confL": 15,
+      "diff": 506,
+      "marker": "x",
+      "seed": 2,
+      "playoff": {
+        "round": 3,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "MAN",
+      "name": "Manhattan Magic",
+      "group": "E",
+      "rank": 3,
+      "w": 59,
+      "l": 27,
+      "confW": 38,
+      "confL": 18,
+      "diff": 443,
+      "marker": "x",
+      "seed": 3,
+      "playoff": {
+        "round": 1,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "DET",
+      "name": "Detroit Motors",
+      "group": "E",
+      "rank": 4,
+      "w": 58,
+      "l": 28,
+      "confW": 43,
+      "confL": 13,
+      "diff": 636,
+      "marker": "x",
+      "seed": 4,
+      "playoff": {
+        "round": 2,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "CAR",
+      "name": "Carolina Knights",
+      "group": "E",
+      "rank": 5,
+      "w": 53,
+      "l": 33,
+      "confW": 32,
+      "confL": 24,
+      "diff": 531,
+      "marker": "x",
+      "seed": 5,
+      "playoff": {
+        "round": 1,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "CIN",
+      "name": "Cincinnati Blue Stripes",
+      "group": "E",
+      "rank": 6,
+      "w": 50,
+      "l": 36,
+      "confW": 32,
+      "confL": 24,
+      "diff": 392,
+      "marker": "x",
+      "seed": 6,
+      "playoff": {
+        "round": 2,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "ATL",
+      "name": "Atlanta Venom",
+      "group": "E",
+      "rank": 7,
+      "w": 44,
+      "l": 42,
+      "confW": 31,
+      "confL": 25,
+      "diff": 148,
+      "marker": "x",
+      "seed": 7,
+      "playoff": {
+        "round": 1,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "MON",
+      "name": "Montreal Chevaliers",
+      "group": "E",
+      "rank": 8,
+      "w": 43,
+      "l": 43,
+      "confW": 25,
+      "confL": 31,
+      "diff": 31,
+      "marker": "x",
+      "seed": 8,
+      "playoff": {
+        "round": 1,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "DCB",
+      "name": "DCB",
+      "group": "E",
+      "rank": 9,
+      "w": 42,
+      "l": 44,
+      "confW": 29,
+      "confL": 27,
+      "diff": -2,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "CP",
+      "name": "Columbus Pirates",
+      "group": "E",
+      "rank": 10,
+      "w": 37,
+      "l": 49,
+      "confW": 26,
+      "confL": 30,
+      "diff": -211,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "NY",
+      "name": "New York Icons",
+      "group": "E",
+      "rank": 11,
+      "w": 27,
+      "l": 59,
+      "confW": 18,
+      "confL": 38,
+      "diff": -829,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "OV",
+      "name": "Ohio Valley Sharks",
+      "group": "E",
+      "rank": 12,
+      "w": 24,
+      "l": 62,
+      "confW": 18,
+      "confL": 38,
+      "diff": -722,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "MIL",
+      "name": "Milwaukee Warriors",
+      "group": "E",
+      "rank": 13,
+      "w": 21,
+      "l": 65,
+      "confW": 14,
+      "confL": 42,
+      "diff": -831,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "TOR",
+      "name": "Toronto Wolves",
+      "group": "E",
+      "rank": 14,
+      "w": 16,
+      "l": 70,
+      "confW": 13,
+      "confL": 43,
+      "diff": -1038,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "CHI",
+      "name": "Chicago Spartans",
+      "group": "E",
+      "rank": 15,
+      "w": 13,
+      "l": 73,
+      "confW": 8,
+      "confL": 48,
+      "diff": -1286,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "CGG",
+      "name": "Cypress Green Guns",
+      "group": "W",
+      "rank": 1,
+      "w": 62,
+      "l": 24,
+      "confW": 41,
+      "confL": 15,
+      "diff": 939,
+      "marker": "*",
+      "seed": 1,
+      "playoff": {
+        "round": 4,
+        "champion": true
+      }
+    },
+    {
+      "teamId": "HON",
+      "name": "Honolulu Rays",
+      "group": "W",
+      "rank": 2,
+      "w": 60,
+      "l": 26,
+      "confW": 38,
+      "confL": 18,
+      "diff": 540,
+      "marker": "x",
+      "seed": 2,
+      "playoff": {
+        "round": 1,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "SAS",
+      "name": "San Antonio Spirits",
+      "group": "W",
+      "rank": 3,
+      "w": 59,
+      "l": 27,
+      "confW": 39,
+      "confL": 17,
+      "diff": 712,
+      "marker": "x",
+      "seed": 3,
+      "playoff": {
+        "round": 1,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "TEX",
+      "name": "Texas Outlaws",
+      "group": "W",
+      "rank": 4,
+      "w": 57,
+      "l": 29,
+      "confW": 36,
+      "confL": 20,
+      "diff": 601,
+      "marker": "x",
+      "seed": 4,
+      "playoff": {
+        "round": 1,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "OAK",
+      "name": "Oakland All-Stars",
+      "group": "W",
+      "rank": 5,
+      "w": 56,
+      "l": 30,
+      "confW": 38,
+      "confL": 18,
+      "diff": 513,
+      "marker": "x",
+      "seed": 5,
+      "playoff": {
+        "round": 2,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "DEN",
+      "name": "Denver Heights",
+      "group": "W",
+      "rank": 6,
+      "w": 54,
+      "l": 32,
+      "confW": 35,
+      "confL": 21,
+      "diff": 417,
+      "marker": "x",
+      "seed": 6,
+      "playoff": {
+        "round": 3,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "MEM",
+      "name": "Memphis Blues",
+      "group": "W",
+      "rank": 7,
+      "w": 49,
+      "l": 37,
+      "confW": 29,
+      "confL": 27,
+      "diff": 147,
+      "marker": "x",
+      "seed": 7,
+      "playoff": {
+        "round": 2,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "NO",
+      "name": "New Orleans Seminoles",
+      "group": "W",
+      "rank": 8,
+      "w": 48,
+      "l": 38,
+      "confW": 31,
+      "confL": 25,
+      "diff": 382,
+      "marker": "x",
+      "seed": 8,
+      "playoff": {
+        "round": 1,
+        "champion": false
+      }
+    },
+    {
+      "teamId": "SEA",
+      "name": "Seattle Shock",
+      "group": "W",
+      "rank": 9,
+      "w": 44,
+      "l": 42,
+      "confW": 29,
+      "confL": 27,
+      "diff": -59,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "PHX",
+      "name": "Phoenix Badgers",
+      "group": "W",
+      "rank": 10,
+      "w": 43,
+      "l": 43,
+      "confW": 25,
+      "confL": 31,
+      "diff": 3,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "LA",
+      "name": "Los Angeles Hawks",
+      "group": "W",
+      "rank": 11,
+      "w": 33,
+      "l": 53,
+      "confW": 19,
+      "confL": 37,
+      "diff": -321,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "VAN",
+      "name": "Vancouver Orcas",
+      "group": "W",
+      "rank": 12,
+      "w": 30,
+      "l": 56,
+      "confW": 15,
+      "confL": 41,
+      "diff": -628,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "STL",
+      "name": "St.Louis Kings",
+      "group": "W",
+      "rank": 13,
+      "w": 27,
+      "l": 59,
+      "confW": 16,
+      "confL": 40,
+      "diff": -599,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "VEG",
+      "name": "Vegas Volts",
+      "group": "W",
+      "rank": 14,
+      "w": 22,
+      "l": 64,
+      "confW": 16,
+      "confL": 40,
+      "diff": -931,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    },
+    {
+      "teamId": "FLO",
+      "name": "Florida Panthers",
+      "group": "W",
+      "rank": 15,
+      "w": 21,
+      "l": 65,
+      "confW": 13,
+      "confL": 43,
+      "diff": -895,
+      "marker": "n",
+      "seed": null,
+      "playoff": null
+    }
+  ],
+  "bracket": {
+    "seeds": [
+      {
+        "group": "E",
+        "teams": [
+          "BOS",
+          "MW",
+          "MAN",
+          "DET",
+          "CAR",
+          "CIN",
+          "ATL",
+          "MON"
+        ],
+        "notes": []
+      },
+      {
+        "group": "W",
+        "teams": [
+          "CGG",
+          "HON",
+          "SAS",
+          "TEX",
+          "OAK",
+          "DEN",
+          "MEM",
+          "NO"
+        ],
+        "notes": []
+      }
+    ],
+    "series": [
+      {
+        "id": "E-R1-1",
+        "group": "E",
+        "round": 1,
+        "home": "BOS",
+        "away": "MON",
+        "homeSeed": 1,
+        "awaySeed": 8,
+        "homeWins": 4,
+        "awayWins": 3,
+        "winner": "BOS",
+        "next": "E-SF-1"
+      },
+      {
+        "id": "E-R1-2",
+        "group": "E",
+        "round": 1,
+        "home": "MW",
+        "away": "ATL",
+        "homeSeed": 2,
+        "awaySeed": 7,
+        "homeWins": 4,
+        "awayWins": 0,
+        "winner": "MW",
+        "next": "E-SF-2"
+      },
+      {
+        "id": "E-R1-3",
+        "group": "E",
+        "round": 1,
+        "home": "MAN",
+        "away": "CIN",
+        "homeSeed": 3,
+        "awaySeed": 6,
+        "homeWins": 3,
+        "awayWins": 4,
+        "winner": "CIN",
+        "next": "E-SF-2"
+      },
+      {
+        "id": "E-R1-4",
+        "group": "E",
+        "round": 1,
+        "home": "DET",
+        "away": "CAR",
+        "homeSeed": 4,
+        "awaySeed": 5,
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "DET",
+        "next": "E-SF-1"
+      },
+      {
+        "id": "E-SF-1",
+        "group": "E",
+        "round": 2,
+        "home": "BOS",
+        "away": "DET",
+        "homeSeed": 1,
+        "awaySeed": 4,
+        "homeWins": 4,
+        "awayWins": 0,
+        "winner": "BOS",
+        "next": "E-CF"
+      },
+      {
+        "id": "E-SF-2",
+        "group": "E",
+        "round": 2,
+        "home": "MW",
+        "away": "CIN",
+        "homeSeed": 2,
+        "awaySeed": 6,
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "MW",
+        "next": "E-CF"
+      },
+      {
+        "id": "E-CF",
+        "group": "E",
+        "round": 3,
+        "home": "BOS",
+        "away": "MW",
+        "homeSeed": 1,
+        "awaySeed": 2,
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "BOS",
+        "next": "FINALS"
+      },
+      {
+        "id": "W-R1-1",
+        "group": "W",
+        "round": 1,
+        "home": "CGG",
+        "away": "NO",
+        "homeSeed": 1,
+        "awaySeed": 8,
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "CGG",
+        "next": "W-SF-1"
+      },
+      {
+        "id": "W-R1-2",
+        "group": "W",
+        "round": 1,
+        "home": "HON",
+        "away": "MEM",
+        "homeSeed": 2,
+        "awaySeed": 7,
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "MEM",
+        "next": "W-SF-2"
+      },
+      {
+        "id": "W-R1-3",
+        "group": "W",
+        "round": 1,
+        "home": "SAS",
+        "away": "DEN",
+        "homeSeed": 3,
+        "awaySeed": 6,
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "DEN",
+        "next": "W-SF-2"
+      },
+      {
+        "id": "W-R1-4",
+        "group": "W",
+        "round": 1,
+        "home": "TEX",
+        "away": "OAK",
+        "homeSeed": 4,
+        "awaySeed": 5,
+        "homeWins": 2,
+        "awayWins": 4,
+        "winner": "OAK",
+        "next": "W-SF-1"
+      },
+      {
+        "id": "W-SF-1",
+        "group": "W",
+        "round": 2,
+        "home": "CGG",
+        "away": "OAK",
+        "homeSeed": 1,
+        "awaySeed": 5,
+        "homeWins": 4,
+        "awayWins": 1,
+        "winner": "CGG",
+        "next": "W-CF"
+      },
+      {
+        "id": "W-SF-2",
+        "group": "W",
+        "round": 2,
+        "home": "DEN",
+        "away": "MEM",
+        "homeSeed": 6,
+        "awaySeed": 7,
+        "homeWins": 4,
+        "awayWins": 2,
+        "winner": "DEN",
+        "next": "W-CF"
+      },
+      {
+        "id": "W-CF",
+        "group": "W",
+        "round": 3,
+        "home": "CGG",
+        "away": "DEN",
+        "homeSeed": 1,
+        "awaySeed": 6,
+        "homeWins": 4,
+        "awayWins": 0,
+        "winner": "CGG",
+        "next": "FINALS"
+      },
+      {
+        "id": "FINALS",
+        "group": null,
+        "round": 4,
+        "home": "BOS",
+        "away": "CGG",
+        "homeSeed": 1,
+        "awaySeed": 1,
+        "homeWins": 3,
+        "awayWins": 4,
+        "winner": "CGG",
+        "next": null
+      }
+    ]
+  },
+  "promotion": null,
+  "players": [
+    {
+      "playerId": "p00001",
+      "teamId": "ATL",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 84,
+      "ratingEnd": 81,
+      "rs": {
+        "g": 86,
+        "pts": 1614,
+        "def": 1010,
+        "stops": 472,
+        "allowed": 1314,
+        "exp": 139875
+      },
+      "po": {
+        "g": 4,
+        "pts": 75,
+        "def": 21,
+        "stops": 8,
+        "allowed": 32,
+        "exp": 2691
+      }
+    },
+    {
+      "playerId": "p00002",
+      "teamId": "ATL",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 79,
+      "ratingEnd": 77,
+      "rs": {
+        "g": 86,
+        "pts": 1145,
+        "def": 1154,
+        "stops": 515,
+        "allowed": 1584,
+        "exp": 158892
+      },
+      "po": {
+        "g": 4,
+        "pts": 28,
+        "def": 48,
+        "stops": 17,
+        "allowed": 76,
+        "exp": 6462
+      }
+    },
+    {
+      "playerId": "p00003",
+      "teamId": "ATL",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 81,
+      "ratingEnd": 81,
+      "rs": {
+        "g": 86,
+        "pts": 1566,
+        "def": 1058,
+        "stops": 467,
+        "allowed": 1466,
+        "exp": 142833
+      },
+      "po": {
+        "g": 4,
+        "pts": 78,
+        "def": 50,
+        "stops": 18,
+        "allowed": 78,
+        "exp": 7089
+      }
+    },
+    {
+      "playerId": "p00004",
+      "teamId": "ATL",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 75,
+      "ratingEnd": 77,
+      "rs": {
+        "g": 86,
+        "pts": 1018,
+        "def": 1066,
+        "stops": 464,
+        "allowed": 1485,
+        "exp": 140250
+      },
+      "po": {
+        "g": 4,
+        "pts": 50,
+        "def": 52,
+        "stops": 17,
+        "allowed": 90,
+        "exp": 7839
+      }
+    },
+    {
+      "playerId": "p00005",
+      "teamId": "ATL",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 84,
+      "ratingEnd": 85,
+      "rs": {
+        "g": 86,
+        "pts": 1841,
+        "def": 887,
+        "stops": 401,
+        "allowed": 1187,
+        "exp": 118779
+      },
+      "po": {
+        "g": 4,
+        "pts": 76,
+        "def": 69,
+        "stops": 22,
+        "allowed": 116,
+        "exp": 10755
+      }
+    },
+    {
+      "playerId": "p00006",
+      "teamId": "BOS",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 95,
+      "ratingEnd": 94,
+      "rs": {
+        "g": 86,
+        "pts": 2457,
+        "def": 1019,
+        "stops": 538,
+        "allowed": 1140,
+        "exp": 139548
+      },
+      "po": {
+        "g": 23,
+        "pts": 620,
+        "def": 266,
+        "stops": 113,
+        "allowed": 376,
+        "exp": 39063
+      }
+    },
+    {
+      "playerId": "p00007",
+      "teamId": "BOS",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 88,
+      "ratingEnd": 90,
+      "rs": {
+        "g": 86,
+        "pts": 2068,
+        "def": 1186,
+        "stops": 579,
+        "allowed": 1474,
+        "exp": 163053
+      },
+      "po": {
+        "g": 23,
+        "pts": 535,
+        "def": 331,
+        "stops": 133,
+        "allowed": 494,
+        "exp": 49044
+      }
+    },
+    {
+      "playerId": "p00008",
+      "teamId": "TEX",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 67,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 42,
+        "pts": 201,
+        "def": 498,
+        "stops": 211,
+        "allowed": 720,
+        "exp": 65835
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00008",
+      "teamId": "TOR",
+      "stint": 2,
+      "position": "SF",
+      "ratingStart": 67,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 43,
+        "pts": 280,
+        "def": 474,
+        "stops": 200,
+        "allowed": 684,
+        "exp": 63456
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00008",
+      "teamId": null,
+      "stint": null,
+      "position": "SF",
+      "ratingStart": 67,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 85,
+        "pts": 481,
+        "def": 972,
+        "stops": 411,
+        "allowed": 1404,
+        "exp": 129291
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00009",
+      "teamId": "BOS",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 68,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 86,
+        "pts": 352,
+        "def": 1024,
+        "stops": 462,
+        "allowed": 1382,
+        "exp": 133449
+      },
+      "po": {
+        "g": 23,
+        "pts": 77,
+        "def": 258,
+        "stops": 99,
+        "allowed": 394,
+        "exp": 35820
+      }
+    },
+    {
+      "playerId": "p00010",
+      "teamId": "BOS",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 94,
+      "ratingEnd": 93,
+      "rs": {
+        "g": 86,
+        "pts": 2457,
+        "def": 873,
+        "stops": 451,
+        "allowed": 1011,
+        "exp": 117126
+      },
+      "po": {
+        "g": 23,
+        "pts": 654,
+        "def": 259,
+        "stops": 131,
+        "allowed": 321,
+        "exp": 37173
+      }
+    },
+    {
+      "playerId": "p00011",
+      "teamId": "CAR",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 92,
+      "ratingEnd": 92,
+      "rs": {
+        "g": 86,
+        "pts": 2612,
+        "def": 1013,
+        "stops": 458,
+        "allowed": 1305,
+        "exp": 139557
+      },
+      "po": {
+        "g": 6,
+        "pts": 163,
+        "def": 64,
+        "stops": 22,
+        "allowed": 104,
+        "exp": 9018
+      }
+    },
+    {
+      "playerId": "p00012",
+      "teamId": "CAR",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 69,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 86,
+        "pts": 469,
+        "def": 1131,
+        "stops": 476,
+        "allowed": 1645,
+        "exp": 151152
+      },
+      "po": {
+        "g": 6,
+        "pts": 25,
+        "def": 61,
+        "stops": 20,
+        "allowed": 101,
+        "exp": 8712
+      }
+    },
+    {
+      "playerId": "p00013",
+      "teamId": "CAR",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 93,
+      "ratingEnd": 93,
+      "rs": {
+        "g": 86,
+        "pts": 2677,
+        "def": 1023,
+        "stops": 522,
+        "allowed": 1206,
+        "exp": 138501
+      },
+      "po": {
+        "g": 6,
+        "pts": 151,
+        "def": 83,
+        "stops": 34,
+        "allowed": 118,
+        "exp": 12741
+      }
+    },
+    {
+      "playerId": "p00014",
+      "teamId": "CAR",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 77,
+      "ratingEnd": 74,
+      "rs": {
+        "g": 86,
+        "pts": 1058,
+        "def": 1114,
+        "stops": 508,
+        "allowed": 1492,
+        "exp": 147138
+      },
+      "po": {
+        "g": 6,
+        "pts": 91,
+        "def": 74,
+        "stops": 34,
+        "allowed": 96,
+        "exp": 10632
+      }
+    },
+    {
+      "playerId": "p00015",
+      "teamId": "CHI",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 72,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 86,
+        "pts": 1049,
+        "def": 982,
+        "stops": 403,
+        "allowed": 1433,
+        "exp": 134784
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00016",
+      "teamId": "CHI",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 77,
+      "ratingEnd": 80,
+      "rs": {
+        "g": 86,
+        "pts": 1784,
+        "def": 1217,
+        "stops": 540,
+        "allowed": 1685,
+        "exp": 167871
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00017",
+      "teamId": "CHI",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 73,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 43,
+        "pts": 575,
+        "def": 528,
+        "stops": 243,
+        "allowed": 699,
+        "exp": 72315
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00017",
+      "teamId": "CP",
+      "stint": 2,
+      "position": "SF",
+      "ratingStart": 73,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 43,
+        "pts": 479,
+        "def": 525,
+        "stops": 242,
+        "allowed": 681,
+        "exp": 69123
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00017",
+      "teamId": null,
+      "stint": null,
+      "position": "SF",
+      "ratingStart": 73,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 86,
+        "pts": 1054,
+        "def": 1053,
+        "stops": 485,
+        "allowed": 1380,
+        "exp": 141438
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00018",
+      "teamId": "CHI",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 72,
+      "ratingEnd": 70,
+      "rs": {
+        "g": 86,
+        "pts": 1057,
+        "def": 1072,
+        "stops": 463,
+        "allowed": 1502,
+        "exp": 142887
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00019",
+      "teamId": "CHI",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 73,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 86,
+        "pts": 1187,
+        "def": 872,
+        "stops": 386,
+        "allowed": 1210,
+        "exp": 117057
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00020",
+      "teamId": "CIN",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 79,
+      "ratingEnd": 78,
+      "rs": {
+        "g": 86,
+        "pts": 1094,
+        "def": 1034,
+        "stops": 469,
+        "allowed": 1384,
+        "exp": 139632
+      },
+      "po": {
+        "g": 13,
+        "pts": 184,
+        "def": 110,
+        "stops": 55,
+        "allowed": 134,
+        "exp": 15678
+      }
+    },
+    {
+      "playerId": "p00021",
+      "teamId": "CIN",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 94,
+      "ratingEnd": 95,
+      "rs": {
+        "g": 86,
+        "pts": 2970,
+        "def": 1150,
+        "stops": 573,
+        "allowed": 1364,
+        "exp": 160551
+      },
+      "po": {
+        "g": 13,
+        "pts": 529,
+        "def": 131,
+        "stops": 63,
+        "allowed": 158,
+        "exp": 18624
+      }
+    },
+    {
+      "playerId": "p00022",
+      "teamId": "CIN",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 68,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 86,
+        "pts": 414,
+        "def": 1009,
+        "stops": 419,
+        "allowed": 1480,
+        "exp": 134109
+      },
+      "po": {
+        "g": 13,
+        "pts": 65,
+        "def": 171,
+        "stops": 78,
+        "allowed": 231,
+        "exp": 24339
+      }
+    },
+    {
+      "playerId": "p00023",
+      "teamId": "CIN",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 77,
+      "ratingEnd": 75,
+      "rs": {
+        "g": 86,
+        "pts": 1093,
+        "def": 1091,
+        "stops": 505,
+        "allowed": 1430,
+        "exp": 145830
+      },
+      "po": {
+        "g": 13,
+        "pts": 119,
+        "def": 217,
+        "stops": 85,
+        "allowed": 335,
+        "exp": 31995
+      }
+    },
+    {
+      "playerId": "p00024",
+      "teamId": "CIN",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 83,
+      "ratingEnd": 79,
+      "rs": {
+        "g": 86,
+        "pts": 1613,
+        "def": 896,
+        "stops": 434,
+        "allowed": 1134,
+        "exp": 120543
+      },
+      "po": {
+        "g": 13,
+        "pts": 210,
+        "def": 156,
+        "stops": 62,
+        "allowed": 233,
+        "exp": 23052
+      }
+    },
+    {
+      "playerId": "p00025",
+      "teamId": "CP",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 71,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 86,
+        "pts": 777,
+        "def": 940,
+        "stops": 351,
+        "allowed": 1465,
+        "exp": 128049
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00026",
+      "teamId": "CP",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 92,
+      "ratingEnd": 95,
+      "rs": {
+        "g": 86,
+        "pts": 3160,
+        "def": 1152,
+        "stops": 567,
+        "allowed": 1429,
+        "exp": 159903
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00027",
+      "teamId": "CP",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 69,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 43,
+        "pts": 264,
+        "def": 534,
+        "stops": 214,
+        "allowed": 784,
+        "exp": 71862
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00027",
+      "teamId": "CHI",
+      "stint": 2,
+      "position": "SF",
+      "ratingStart": 69,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 43,
+        "pts": 321,
+        "def": 504,
+        "stops": 213,
+        "allowed": 730,
+        "exp": 66426
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00027",
+      "teamId": null,
+      "stint": null,
+      "position": "SF",
+      "ratingStart": 69,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 86,
+        "pts": 585,
+        "def": 1038,
+        "stops": 427,
+        "allowed": 1514,
+        "exp": 138288
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00028",
+      "teamId": "CP",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 74,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 86,
+        "pts": 1085,
+        "def": 1128,
+        "stops": 533,
+        "allowed": 1456,
+        "exp": 149421
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00029",
+      "teamId": "CP",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 75,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 86,
+        "pts": 1035,
+        "def": 891,
+        "stops": 411,
+        "allowed": 1196,
+        "exp": 118803
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00030",
+      "teamId": "CGG",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 89,
+      "ratingEnd": 88,
+      "rs": {
+        "g": 86,
+        "pts": 2069,
+        "def": 1005,
+        "stops": 451,
+        "allowed": 1338,
+        "exp": 135999
+      },
+      "po": {
+        "g": 21,
+        "pts": 495,
+        "def": 192,
+        "stops": 92,
+        "allowed": 239,
+        "exp": 27546
+      }
+    },
+    {
+      "playerId": "p00031",
+      "teamId": "CGG",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 96,
+      "ratingEnd": 95,
+      "rs": {
+        "g": 86,
+        "pts": 2815,
+        "def": 1099,
+        "stops": 555,
+        "allowed": 1296,
+        "exp": 151815
+      },
+      "po": {
+        "g": 21,
+        "pts": 683,
+        "def": 269,
+        "stops": 122,
+        "allowed": 360,
+        "exp": 39372
+      }
+    },
+    {
+      "playerId": "p00032",
+      "teamId": "CGG",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 68,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 86,
+        "pts": 290,
+        "def": 1020,
+        "stops": 426,
+        "allowed": 1465,
+        "exp": 135861
+      },
+      "po": {
+        "g": 21,
+        "pts": 106,
+        "def": 258,
+        "stops": 110,
+        "allowed": 363,
+        "exp": 37314
+      }
+    },
+    {
+      "playerId": "p00033",
+      "teamId": "CGG",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 92,
+      "ratingEnd": 90,
+      "rs": {
+        "g": 86,
+        "pts": 2119,
+        "def": 1132,
+        "stops": 546,
+        "allowed": 1433,
+        "exp": 155613
+      },
+      "po": {
+        "g": 21,
+        "pts": 492,
+        "def": 331,
+        "stops": 153,
+        "allowed": 444,
+        "exp": 50412
+      }
+    },
+    {
+      "playerId": "p00034",
+      "teamId": "DCB",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 81,
+      "ratingEnd": 82,
+      "rs": {
+        "g": 86,
+        "pts": 1667,
+        "def": 1006,
+        "stops": 447,
+        "allowed": 1358,
+        "exp": 138564
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00035",
+      "teamId": "DCB",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 83,
+      "ratingEnd": 86,
+      "rs": {
+        "g": 86,
+        "pts": 1930,
+        "def": 1209,
+        "stops": 560,
+        "allowed": 1578,
+        "exp": 167265
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00036",
+      "teamId": "DCB",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 77,
+      "ratingEnd": 75,
+      "rs": {
+        "g": 86,
+        "pts": 1151,
+        "def": 1036,
+        "stops": 450,
+        "allowed": 1423,
+        "exp": 138306
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00037",
+      "teamId": "DCB",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 73,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 86,
+        "pts": 718,
+        "def": 1040,
+        "stops": 429,
+        "allowed": 1486,
+        "exp": 138360
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00038",
+      "teamId": "DCB",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 82,
+      "ratingEnd": 81,
+      "rs": {
+        "g": 86,
+        "pts": 1583,
+        "def": 899,
+        "stops": 410,
+        "allowed": 1206,
+        "exp": 121215
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00039",
+      "teamId": "DEN",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 73,
+      "ratingEnd": 74,
+      "rs": {
+        "g": 86,
+        "pts": 783,
+        "def": 996,
+        "stops": 407,
+        "allowed": 1454,
+        "exp": 136596
+      },
+      "po": {
+        "g": 16,
+        "pts": 132,
+        "def": 193,
+        "stops": 77,
+        "allowed": 284,
+        "exp": 28614
+      }
+    },
+    {
+      "playerId": "p00040",
+      "teamId": "DEN",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 69,
+      "ratingEnd": 69,
+      "rs": {
+        "g": 86,
+        "pts": 427,
+        "def": 1113,
+        "stops": 478,
+        "allowed": 1580,
+        "exp": 149466
+      },
+      "po": {
+        "g": 16,
+        "pts": 86,
+        "def": 200,
+        "stops": 90,
+        "allowed": 270,
+        "exp": 27432
+      }
+    },
+    {
+      "playerId": "p00041",
+      "teamId": "DEN",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 95,
+      "ratingEnd": 93,
+      "rs": {
+        "g": 86,
+        "pts": 2569,
+        "def": 1036,
+        "stops": 515,
+        "allowed": 1261,
+        "exp": 141543
+      },
+      "po": {
+        "g": 16,
+        "pts": 455,
+        "def": 154,
+        "stops": 71,
+        "allowed": 204,
+        "exp": 21798
+      }
+    },
+    {
+      "playerId": "p00042",
+      "teamId": "DEN",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 81,
+      "ratingEnd": 81,
+      "rs": {
+        "g": 86,
+        "pts": 1364,
+        "def": 1147,
+        "stops": 517,
+        "allowed": 1546,
+        "exp": 153294
+      },
+      "po": {
+        "g": 16,
+        "pts": 315,
+        "def": 227,
+        "stops": 84,
+        "allowed": 359,
+        "exp": 33660
+      }
+    },
+    {
+      "playerId": "p00043",
+      "teamId": "DEN",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 90,
+      "ratingEnd": 88,
+      "rs": {
+        "g": 86,
+        "pts": 2220,
+        "def": 873,
+        "stops": 416,
+        "allowed": 1105,
+        "exp": 117816
+      },
+      "po": {
+        "g": 16,
+        "pts": 387,
+        "def": 186,
+        "stops": 72,
+        "allowed": 282,
+        "exp": 28029
+      }
+    },
+    {
+      "playerId": "p00044",
+      "teamId": "DET",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 82,
+      "ratingEnd": 83,
+      "rs": {
+        "g": 86,
+        "pts": 1500,
+        "def": 993,
+        "stops": 439,
+        "allowed": 1363,
+        "exp": 136476
+      },
+      "po": {
+        "g": 10,
+        "pts": 176,
+        "def": 146,
+        "stops": 60,
+        "allowed": 207,
+        "exp": 23079
+      }
+    },
+    {
+      "playerId": "p00045",
+      "teamId": "DET",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 71,
+      "ratingEnd": 72,
+      "rs": {
+        "g": 86,
+        "pts": 606,
+        "def": 1144,
+        "stops": 488,
+        "allowed": 1628,
+        "exp": 154920
+      },
+      "po": {
+        "g": 10,
+        "pts": 66,
+        "def": 138,
+        "stops": 61,
+        "allowed": 191,
+        "exp": 21015
+      }
+    },
+    {
+      "playerId": "p00046",
+      "teamId": "DET",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 95,
+      "ratingEnd": 95,
+      "rs": {
+        "g": 86,
+        "pts": 2874,
+        "def": 1046,
+        "stops": 548,
+        "allowed": 1184,
+        "exp": 142224
+      },
+      "po": {
+        "g": 10,
+        "pts": 288,
+        "def": 118,
+        "stops": 51,
+        "allowed": 163,
+        "exp": 17472
+      }
+    },
+    {
+      "playerId": "p00047",
+      "teamId": "DET",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 68,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 41,
+        "pts": 235,
+        "def": 490,
+        "stops": 206,
+        "allowed": 708,
+        "exp": 63549
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00047",
+      "teamId": "MIL",
+      "stint": 2,
+      "position": "PF",
+      "ratingStart": 68,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 45,
+        "pts": 210,
+        "def": 558,
+        "stops": 236,
+        "allowed": 805,
+        "exp": 72459
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00047",
+      "teamId": null,
+      "stint": null,
+      "position": "PF",
+      "ratingStart": 68,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 86,
+        "pts": 445,
+        "def": 1048,
+        "stops": 442,
+        "allowed": 1513,
+        "exp": 136008
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00048",
+      "teamId": "DET",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 87,
+      "ratingEnd": 86,
+      "rs": {
+        "g": 86,
+        "pts": 1923,
+        "def": 902,
+        "stops": 441,
+        "allowed": 1102,
+        "exp": 120210
+      },
+      "po": {
+        "g": 10,
+        "pts": 229,
+        "def": 90,
+        "stops": 33,
+        "allowed": 143,
+        "exp": 12723
+      }
+    },
+    {
+      "playerId": "p00049",
+      "teamId": "FLO",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 70,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 86,
+        "pts": 643,
+        "def": 933,
+        "stops": 378,
+        "allowed": 1359,
+        "exp": 127092
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00050",
+      "teamId": "FLO",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 81,
+      "ratingEnd": 80,
+      "rs": {
+        "g": 86,
+        "pts": 2044,
+        "def": 1147,
+        "stops": 536,
+        "allowed": 1508,
+        "exp": 156867
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00051",
+      "teamId": "FLO",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 77,
+      "ratingEnd": 76,
+      "rs": {
+        "g": 86,
+        "pts": 1441,
+        "def": 1072,
+        "stops": 486,
+        "allowed": 1458,
+        "exp": 144729
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00052",
+      "teamId": "FLO",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 77,
+      "ratingEnd": 77,
+      "rs": {
+        "g": 86,
+        "pts": 1585,
+        "def": 1120,
+        "stops": 487,
+        "allowed": 1572,
+        "exp": 154242
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00053",
+      "teamId": "FLO",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 70,
+      "ratingEnd": 72,
+      "rs": {
+        "g": 42,
+        "pts": 378,
+        "def": 457,
+        "stops": 176,
+        "allowed": 717,
+        "exp": 62997
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00053",
+      "teamId": "CGG",
+      "stint": 2,
+      "position": "C",
+      "ratingStart": 70,
+      "ratingEnd": 72,
+      "rs": {
+        "g": 44,
+        "pts": 302,
+        "def": 458,
+        "stops": 199,
+        "allowed": 640,
+        "exp": 60681
+      },
+      "po": {
+        "g": 21,
+        "pts": 129,
+        "def": 210,
+        "stops": 88,
+        "allowed": 301,
+        "exp": 31326
+      }
+    },
+    {
+      "playerId": "p00053",
+      "teamId": null,
+      "stint": null,
+      "position": "C",
+      "ratingStart": 70,
+      "ratingEnd": 72,
+      "rs": {
+        "g": 86,
+        "pts": 680,
+        "def": 915,
+        "stops": 375,
+        "allowed": 1357,
+        "exp": 123678
+      },
+      "po": {
+        "g": 21,
+        "pts": 129,
+        "def": 210,
+        "stops": 88,
+        "allowed": 301,
+        "exp": 31326
+      }
+    },
+    {
+      "playerId": "p00054",
+      "teamId": "HON",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 71,
+      "ratingEnd": 72,
+      "rs": {
+        "g": 86,
+        "pts": 612,
+        "def": 957,
+        "stops": 410,
+        "allowed": 1366,
+        "exp": 130671
+      },
+      "po": {
+        "g": 6,
+        "pts": 57,
+        "def": 99,
+        "stops": 47,
+        "allowed": 135,
+        "exp": 15231
+      }
+    },
+    {
+      "playerId": "p00055",
+      "teamId": "HON",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 96,
+      "ratingEnd": 96,
+      "rs": {
+        "g": 86,
+        "pts": 3205,
+        "def": 1147,
+        "stops": 601,
+        "allowed": 1319,
+        "exp": 159222
+      },
+      "po": {
+        "g": 6,
+        "pts": 196,
+        "def": 88,
+        "stops": 38,
+        "allowed": 127,
+        "exp": 12825
+      }
+    },
+    {
+      "playerId": "p00056",
+      "teamId": "HON",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 79,
+      "ratingEnd": 78,
+      "rs": {
+        "g": 86,
+        "pts": 1265,
+        "def": 1080,
+        "stops": 476,
+        "allowed": 1511,
+        "exp": 145932
+      },
+      "po": {
+        "g": 6,
+        "pts": 95,
+        "def": 43,
+        "stops": 19,
+        "allowed": 60,
+        "exp": 5529
+      }
+    },
+    {
+      "playerId": "p00057",
+      "teamId": "HON",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 84,
+      "ratingEnd": 86,
+      "rs": {
+        "g": 86,
+        "pts": 1855,
+        "def": 1119,
+        "stops": 514,
+        "allowed": 1453,
+        "exp": 153324
+      },
+      "po": {
+        "g": 6,
+        "pts": 120,
+        "def": 79,
+        "stops": 37,
+        "allowed": 100,
+        "exp": 10833
+      }
+    },
+    {
+      "playerId": "p00058",
+      "teamId": "HON",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 68,
+      "ratingEnd": 69,
+      "rs": {
+        "g": 86,
+        "pts": 493,
+        "def": 862,
+        "stops": 362,
+        "allowed": 1241,
+        "exp": 114738
+      },
+      "po": {
+        "g": 6,
+        "pts": 28,
+        "def": 61,
+        "stops": 18,
+        "allowed": 105,
+        "exp": 7788
+      }
+    },
+    {
+      "playerId": "p00059",
+      "teamId": "LA",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 78,
+      "ratingEnd": 79,
+      "rs": {
+        "g": 86,
+        "pts": 1437,
+        "def": 997,
+        "stops": 445,
+        "allowed": 1356,
+        "exp": 136779
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00060",
+      "teamId": "LA",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 80,
+      "ratingEnd": 84,
+      "rs": {
+        "g": 86,
+        "pts": 1807,
+        "def": 1144,
+        "stops": 518,
+        "allowed": 1526,
+        "exp": 156696
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00061",
+      "teamId": "LA",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 71,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 86,
+        "pts": 852,
+        "def": 1038,
+        "stops": 424,
+        "allowed": 1512,
+        "exp": 140595
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00062",
+      "teamId": "LA",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 80,
+      "ratingEnd": 82,
+      "rs": {
+        "g": 86,
+        "pts": 1677,
+        "def": 1086,
+        "stops": 523,
+        "allowed": 1377,
+        "exp": 149013
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00063",
+      "teamId": "LA",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 74,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 86,
+        "pts": 934,
+        "def": 915,
+        "stops": 404,
+        "allowed": 1257,
+        "exp": 122829
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00064",
+      "teamId": "MW",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 79,
+      "ratingEnd": 80,
+      "rs": {
+        "g": 86,
+        "pts": 1340,
+        "def": 1236,
+        "stops": 515,
+        "allowed": 1765,
+        "exp": 170433
+      },
+      "po": {
+        "g": 15,
+        "pts": 217,
+        "def": 228,
+        "stops": 94,
+        "allowed": 336,
+        "exp": 33909
+      }
+    },
+    {
+      "playerId": "p00065",
+      "teamId": "MW",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 83,
+      "ratingEnd": 83,
+      "rs": {
+        "g": 86,
+        "pts": 1552,
+        "def": 1064,
+        "stops": 483,
+        "allowed": 1398,
+        "exp": 142800
+      },
+      "po": {
+        "g": 15,
+        "pts": 255,
+        "def": 166,
+        "stops": 78,
+        "allowed": 223,
+        "exp": 22779
+      }
+    },
+    {
+      "playerId": "p00066",
+      "teamId": "MW",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 82,
+      "ratingEnd": 85,
+      "rs": {
+        "g": 86,
+        "pts": 1877,
+        "def": 1079,
+        "stops": 507,
+        "allowed": 1396,
+        "exp": 142620
+      },
+      "po": {
+        "g": 15,
+        "pts": 330,
+        "def": 159,
+        "stops": 73,
+        "allowed": 209,
+        "exp": 21852
+      }
+    },
+    {
+      "playerId": "p00067",
+      "teamId": "MW",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 89,
+      "ratingEnd": 88,
+      "rs": {
+        "g": 86,
+        "pts": 2320,
+        "def": 868,
+        "stops": 454,
+        "allowed": 994,
+        "exp": 115815
+      },
+      "po": {
+        "g": 15,
+        "pts": 438,
+        "def": 156,
+        "stops": 65,
+        "allowed": 223,
+        "exp": 22707
+      }
+    },
+    {
+      "playerId": "p00068",
+      "teamId": "MAN",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 86,
+      "ratingEnd": 89,
+      "rs": {
+        "g": 86,
+        "pts": 2125,
+        "def": 994,
+        "stops": 482,
+        "allowed": 1253,
+        "exp": 137166
+      },
+      "po": {
+        "g": 7,
+        "pts": 148,
+        "def": 101,
+        "stops": 49,
+        "allowed": 135,
+        "exp": 15072
+      }
+    },
+    {
+      "playerId": "p00069",
+      "teamId": "MAN",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 70,
+      "ratingEnd": 72,
+      "rs": {
+        "g": 86,
+        "pts": 564,
+        "def": 1106,
+        "stops": 452,
+        "allowed": 1615,
+        "exp": 148944
+      },
+      "po": {
+        "g": 7,
+        "pts": 46,
+        "def": 108,
+        "stops": 42,
+        "allowed": 168,
+        "exp": 15711
+      }
+    },
+    {
+      "playerId": "p00070",
+      "teamId": "MAN",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 84,
+      "ratingEnd": 83,
+      "rs": {
+        "g": 86,
+        "pts": 1896,
+        "def": 1106,
+        "stops": 542,
+        "allowed": 1349,
+        "exp": 148248
+      },
+      "po": {
+        "g": 7,
+        "pts": 144,
+        "def": 76,
+        "stops": 28,
+        "allowed": 119,
+        "exp": 10317
+      }
+    },
+    {
+      "playerId": "p00071",
+      "teamId": "MAN",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 88,
+      "ratingEnd": 88,
+      "rs": {
+        "g": 86,
+        "pts": 2157,
+        "def": 1061,
+        "stops": 496,
+        "allowed": 1379,
+        "exp": 142947
+      },
+      "po": {
+        "g": 7,
+        "pts": 222,
+        "def": 78,
+        "stops": 32,
+        "allowed": 109,
+        "exp": 9837
+      }
+    },
+    {
+      "playerId": "p00072",
+      "teamId": "MAN",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 71,
+      "ratingEnd": 69,
+      "rs": {
+        "g": 86,
+        "pts": 559,
+        "def": 898,
+        "stops": 386,
+        "allowed": 1262,
+        "exp": 118377
+      },
+      "po": {
+        "g": 7,
+        "pts": 35,
+        "def": 57,
+        "stops": 27,
+        "allowed": 74,
+        "exp": 7410
+      }
+    },
+    {
+      "playerId": "p00073",
+      "teamId": "MEM",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 96,
+      "ratingEnd": 98,
+      "rs": {
+        "g": 86,
+        "pts": 3263,
+        "def": 925,
+        "stops": 467,
+        "allowed": 1093,
+        "exp": 128397
+      },
+      "po": {
+        "g": 12,
+        "pts": 443,
+        "def": 116,
+        "stops": 62,
+        "allowed": 126,
+        "exp": 16059
+      }
+    },
+    {
+      "playerId": "p00074",
+      "teamId": "MEM",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 71,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 86,
+        "pts": 680,
+        "def": 1212,
+        "stops": 505,
+        "allowed": 1769,
+        "exp": 164019
+      },
+      "po": {
+        "g": 12,
+        "pts": 95,
+        "def": 153,
+        "stops": 66,
+        "allowed": 213,
+        "exp": 21237
+      }
+    },
+    {
+      "playerId": "p00075",
+      "teamId": "MEM",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 69,
+      "ratingEnd": 65,
+      "rs": {
+        "g": 86,
+        "pts": 333,
+        "def": 982,
+        "stops": 422,
+        "allowed": 1380,
+        "exp": 131016
+      },
+      "po": {
+        "g": 12,
+        "pts": 23,
+        "def": 154,
+        "stops": 59,
+        "allowed": 238,
+        "exp": 22485
+      }
+    },
+    {
+      "playerId": "p00076",
+      "teamId": "MEM",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 84,
+      "ratingEnd": 83,
+      "rs": {
+        "g": 86,
+        "pts": 1782,
+        "def": 1157,
+        "stops": 530,
+        "allowed": 1524,
+        "exp": 160209
+      },
+      "po": {
+        "g": 12,
+        "pts": 304,
+        "def": 176,
+        "stops": 77,
+        "allowed": 243,
+        "exp": 25803
+      }
+    },
+    {
+      "playerId": "p00077",
+      "teamId": "MEM",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 77,
+      "ratingEnd": 75,
+      "rs": {
+        "g": 86,
+        "pts": 1076,
+        "def": 894,
+        "stops": 392,
+        "allowed": 1221,
+        "exp": 120570
+      },
+      "po": {
+        "g": 12,
+        "pts": 172,
+        "def": 131,
+        "stops": 49,
+        "allowed": 198,
+        "exp": 18783
+      }
+    },
+    {
+      "playerId": "p00078",
+      "teamId": "MIL",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 71,
+      "ratingEnd": 74,
+      "rs": {
+        "g": 86,
+        "pts": 939,
+        "def": 947,
+        "stops": 375,
+        "allowed": 1434,
+        "exp": 129468
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00079",
+      "teamId": "MIL",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 84,
+      "ratingEnd": 85,
+      "rs": {
+        "g": 86,
+        "pts": 2585,
+        "def": 1220,
+        "stops": 558,
+        "allowed": 1620,
+        "exp": 168774
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00080",
+      "teamId": "MIL",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 71,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 86,
+        "pts": 872,
+        "def": 980,
+        "stops": 432,
+        "allowed": 1360,
+        "exp": 130617
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00081",
+      "teamId": "MIL",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 71,
+      "ratingEnd": 70,
+      "rs": {
+        "g": 41,
+        "pts": 386,
+        "def": 553,
+        "stops": 218,
+        "allowed": 843,
+        "exp": 75345
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00081",
+      "teamId": "DET",
+      "stint": 2,
+      "position": "PF",
+      "ratingStart": 71,
+      "ratingEnd": 70,
+      "rs": {
+        "g": 45,
+        "pts": 294,
+        "def": 590,
+        "stops": 258,
+        "allowed": 811,
+        "exp": 77352
+      },
+      "po": {
+        "g": 10,
+        "pts": 69,
+        "def": 108,
+        "stops": 55,
+        "allowed": 129,
+        "exp": 14718
+      }
+    },
+    {
+      "playerId": "p00081",
+      "teamId": null,
+      "stint": null,
+      "position": "PF",
+      "ratingStart": 71,
+      "ratingEnd": 70,
+      "rs": {
+        "g": 86,
+        "pts": 680,
+        "def": 1143,
+        "stops": 476,
+        "allowed": 1654,
+        "exp": 152697
+      },
+      "po": {
+        "g": 10,
+        "pts": 69,
+        "def": 108,
+        "stops": 55,
+        "allowed": 129,
+        "exp": 14718
+      }
+    },
+    {
+      "playerId": "p00082",
+      "teamId": "MIL",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 77,
+      "ratingEnd": 77,
+      "rs": {
+        "g": 86,
+        "pts": 1497,
+        "def": 917,
+        "stops": 404,
+        "allowed": 1258,
+        "exp": 123624
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00083",
+      "teamId": "MON",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 81,
+      "ratingEnd": 83,
+      "rs": {
+        "g": 86,
+        "pts": 1839,
+        "def": 981,
+        "stops": 461,
+        "allowed": 1262,
+        "exp": 134541
+      },
+      "po": {
+        "g": 7,
+        "pts": 157,
+        "def": 124,
+        "stops": 66,
+        "allowed": 149,
+        "exp": 20298
+      }
+    },
+    {
+      "playerId": "p00084",
+      "teamId": "MON",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 85,
+      "ratingEnd": 88,
+      "rs": {
+        "g": 86,
+        "pts": 2390,
+        "def": 1180,
+        "stops": 529,
+        "allowed": 1592,
+        "exp": 163416
+      },
+      "po": {
+        "g": 7,
+        "pts": 198,
+        "def": 105,
+        "stops": 39,
+        "allowed": 169,
+        "exp": 17067
+      }
+    },
+    {
+      "playerId": "p00085",
+      "teamId": "MON",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 70,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 36,
+        "pts": 296,
+        "def": 408,
+        "stops": 178,
+        "allowed": 568,
+        "exp": 54504
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00085",
+      "teamId": "BOS",
+      "stint": 2,
+      "position": "SF",
+      "ratingStart": 70,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 51,
+        "pts": 386,
+        "def": 629,
+        "stops": 290,
+        "allowed": 835,
+        "exp": 83100
+      },
+      "po": {
+        "g": 23,
+        "pts": 175,
+        "def": 266,
+        "stops": 128,
+        "allowed": 340,
+        "exp": 36987
+      }
+    },
+    {
+      "playerId": "p00085",
+      "teamId": null,
+      "stint": null,
+      "position": "SF",
+      "ratingStart": 70,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 87,
+        "pts": 682,
+        "def": 1037,
+        "stops": 468,
+        "allowed": 1403,
+        "exp": 137604
+      },
+      "po": {
+        "g": 23,
+        "pts": 175,
+        "def": 266,
+        "stops": 128,
+        "allowed": 340,
+        "exp": 36987
+      }
+    },
+    {
+      "playerId": "p00086",
+      "teamId": "MON",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 71,
+      "ratingEnd": 72,
+      "rs": {
+        "g": 86,
+        "pts": 745,
+        "def": 1075,
+        "stops": 487,
+        "allowed": 1475,
+        "exp": 141705
+      },
+      "po": {
+        "g": 7,
+        "pts": 86,
+        "def": 61,
+        "stops": 16,
+        "allowed": 113,
+        "exp": 8271
+      }
+    },
+    {
+      "playerId": "p00087",
+      "teamId": "MON",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 78,
+      "ratingEnd": 78,
+      "rs": {
+        "g": 86,
+        "pts": 1375,
+        "def": 904,
+        "stops": 411,
+        "allowed": 1225,
+        "exp": 121329
+      },
+      "po": {
+        "g": 7,
+        "pts": 111,
+        "def": 74,
+        "stops": 25,
+        "allowed": 118,
+        "exp": 11937
+      }
+    },
+    {
+      "playerId": "p00088",
+      "teamId": "NO",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 69,
+      "ratingEnd": 69,
+      "rs": {
+        "g": 86,
+        "pts": 453,
+        "def": 985,
+        "stops": 403,
+        "allowed": 1462,
+        "exp": 134718
+      },
+      "po": {
+        "g": 5,
+        "pts": 17,
+        "def": 77,
+        "stops": 28,
+        "allowed": 128,
+        "exp": 12180
+      }
+    },
+    {
+      "playerId": "p00089",
+      "teamId": "NO",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 74,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 86,
+        "pts": 812,
+        "def": 1218,
+        "stops": 530,
+        "allowed": 1709,
+        "exp": 164325
+      },
+      "po": {
+        "g": 5,
+        "pts": 30,
+        "def": 65,
+        "stops": 22,
+        "allowed": 112,
+        "exp": 10035
+      }
+    },
+    {
+      "playerId": "p00090",
+      "teamId": "NO",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 97,
+      "ratingEnd": 96,
+      "rs": {
+        "g": 86,
+        "pts": 2909,
+        "def": 1010,
+        "stops": 522,
+        "allowed": 1162,
+        "exp": 137718
+      },
+      "po": {
+        "g": 5,
+        "pts": 155,
+        "def": 60,
+        "stops": 24,
+        "allowed": 90,
+        "exp": 8922
+      }
+    },
+    {
+      "playerId": "p00091",
+      "teamId": "NO",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 91,
+      "ratingEnd": 92,
+      "rs": {
+        "g": 86,
+        "pts": 2694,
+        "def": 1039,
+        "stops": 519,
+        "allowed": 1247,
+        "exp": 143028
+      },
+      "po": {
+        "g": 5,
+        "pts": 158,
+        "def": 67,
+        "stops": 23,
+        "allowed": 106,
+        "exp": 10206
+      }
+    },
+    {
+      "playerId": "p00092",
+      "teamId": "NY",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 75,
+      "ratingEnd": 75,
+      "rs": {
+        "g": 86,
+        "pts": 1359,
+        "def": 968,
+        "stops": 414,
+        "allowed": 1359,
+        "exp": 133413
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00093",
+      "teamId": "NY",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 80,
+      "ratingEnd": 84,
+      "rs": {
+        "g": 86,
+        "pts": 2182,
+        "def": 1246,
+        "stops": 564,
+        "allowed": 1681,
+        "exp": 172746
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00094",
+      "teamId": "NY",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 69,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 86,
+        "pts": 581,
+        "def": 1061,
+        "stops": 454,
+        "allowed": 1519,
+        "exp": 141966
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00095",
+      "teamId": "NY",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 70,
+      "ratingEnd": 74,
+      "rs": {
+        "g": 86,
+        "pts": 957,
+        "def": 996,
+        "stops": 421,
+        "allowed": 1414,
+        "exp": 131940
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00096",
+      "teamId": "NY",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 75,
+      "ratingEnd": 76,
+      "rs": {
+        "g": 86,
+        "pts": 1304,
+        "def": 894,
+        "stops": 394,
+        "allowed": 1239,
+        "exp": 120588
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00097",
+      "teamId": "OAK",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 70,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 86,
+        "pts": 526,
+        "def": 934,
+        "stops": 393,
+        "allowed": 1363,
+        "exp": 126585
+      },
+      "po": {
+        "g": 11,
+        "pts": 51,
+        "def": 138,
+        "stops": 42,
+        "allowed": 240,
+        "exp": 21645
+      }
+    },
+    {
+      "playerId": "p00098",
+      "teamId": "OAK",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 76,
+      "ratingEnd": 78,
+      "rs": {
+        "g": 86,
+        "pts": 1250,
+        "def": 1192,
+        "stops": 538,
+        "allowed": 1616,
+        "exp": 162138
+      },
+      "po": {
+        "g": 11,
+        "pts": 163,
+        "def": 163,
+        "stops": 64,
+        "allowed": 245,
+        "exp": 24249
+      }
+    },
+    {
+      "playerId": "p00099",
+      "teamId": "OAK",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 86,
+      "ratingEnd": 86,
+      "rs": {
+        "g": 86,
+        "pts": 2019,
+        "def": 1119,
+        "stops": 550,
+        "allowed": 1389,
+        "exp": 152739
+      },
+      "po": {
+        "g": 11,
+        "pts": 246,
+        "def": 142,
+        "stops": 64,
+        "allowed": 190,
+        "exp": 20187
+      }
+    },
+    {
+      "playerId": "p00100",
+      "teamId": "OAK",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 98,
+      "ratingEnd": 97,
+      "rs": {
+        "g": 86,
+        "pts": 3112,
+        "def": 994,
+        "stops": 535,
+        "allowed": 1099,
+        "exp": 134580
+      },
+      "po": {
+        "g": 11,
+        "pts": 425,
+        "def": 116,
+        "stops": 65,
+        "allowed": 131,
+        "exp": 17154
+      }
+    },
+    {
+      "playerId": "p00101",
+      "teamId": "OAK",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 68,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 86,
+        "pts": 423,
+        "def": 946,
+        "stops": 400,
+        "allowed": 1350,
+        "exp": 126111
+      },
+      "po": {
+        "g": 11,
+        "pts": 38,
+        "def": 101,
+        "stops": 44,
+        "allowed": 140,
+        "exp": 13062
+      }
+    },
+    {
+      "playerId": "p00102",
+      "teamId": "OV",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 76,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 86,
+        "pts": 1029,
+        "def": 1042,
+        "stops": 443,
+        "allowed": 1486,
+        "exp": 142197
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00103",
+      "teamId": "OV",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 78,
+      "ratingEnd": 82,
+      "rs": {
+        "g": 86,
+        "pts": 1651,
+        "def": 1124,
+        "stops": 476,
+        "allowed": 1609,
+        "exp": 153951
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00104",
+      "teamId": "OV",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 77,
+      "ratingEnd": 77,
+      "rs": {
+        "g": 86,
+        "pts": 1464,
+        "def": 1028,
+        "stops": 455,
+        "allowed": 1416,
+        "exp": 139209
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00105",
+      "teamId": "OV",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 80,
+      "ratingEnd": 80,
+      "rs": {
+        "g": 86,
+        "pts": 1637,
+        "def": 1061,
+        "stops": 504,
+        "allowed": 1372,
+        "exp": 142392
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00106",
+      "teamId": "OV",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 72,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 42,
+        "pts": 469,
+        "def": 450,
+        "stops": 190,
+        "allowed": 641,
+        "exp": 59589
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00106",
+      "teamId": "NO",
+      "stint": 2,
+      "position": "C",
+      "ratingStart": 72,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 45,
+        "pts": 274,
+        "def": 472,
+        "stops": 201,
+        "allowed": 665,
+        "exp": 61773
+      },
+      "po": {
+        "g": 5,
+        "pts": 30,
+        "def": 31,
+        "stops": 17,
+        "allowed": 30,
+        "exp": 4125
+      }
+    },
+    {
+      "playerId": "p00106",
+      "teamId": null,
+      "stint": null,
+      "position": "C",
+      "ratingStart": 72,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 87,
+        "pts": 743,
+        "def": 922,
+        "stops": 391,
+        "allowed": 1306,
+        "exp": 121362
+      },
+      "po": {
+        "g": 5,
+        "pts": 30,
+        "def": 31,
+        "stops": 17,
+        "allowed": 30,
+        "exp": 4125
+      }
+    },
+    {
+      "playerId": "p00107",
+      "teamId": "PHX",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 80,
+      "ratingEnd": 77,
+      "rs": {
+        "g": 86,
+        "pts": 1340,
+        "def": 981,
+        "stops": 436,
+        "allowed": 1337,
+        "exp": 135306
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00108",
+      "teamId": "PHX",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 70,
+      "ratingEnd": 70,
+      "rs": {
+        "g": 86,
+        "pts": 553,
+        "def": 1094,
+        "stops": 452,
+        "allowed": 1591,
+        "exp": 149745
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00109",
+      "teamId": "PHX",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 77,
+      "ratingEnd": 77,
+      "rs": {
+        "g": 86,
+        "pts": 1197,
+        "def": 1075,
+        "stops": 473,
+        "allowed": 1493,
+        "exp": 147021
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00110",
+      "teamId": "PHX",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 75,
+      "ratingEnd": 74,
+      "rs": {
+        "g": 86,
+        "pts": 905,
+        "def": 1190,
+        "stops": 500,
+        "allowed": 1704,
+        "exp": 160236
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00111",
+      "teamId": "PHX",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 95,
+      "ratingEnd": 95,
+      "rs": {
+        "g": 86,
+        "pts": 3057,
+        "def": 820,
+        "stops": 428,
+        "allowed": 924,
+        "exp": 110241
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00112",
+      "teamId": "SAS",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 69,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 86,
+        "pts": 440,
+        "def": 954,
+        "stops": 399,
+        "allowed": 1393,
+        "exp": 131010
+      },
+      "po": {
+        "g": 6,
+        "pts": 26,
+        "def": 43,
+        "stops": 22,
+        "allowed": 53,
+        "exp": 5298
+      }
+    },
+    {
+      "playerId": "p00113",
+      "teamId": "SAS",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 79,
+      "ratingEnd": 81,
+      "rs": {
+        "g": 86,
+        "pts": 1300,
+        "def": 1300,
+        "stops": 589,
+        "allowed": 1769,
+        "exp": 178350
+      },
+      "po": {
+        "g": 6,
+        "pts": 108,
+        "def": 65,
+        "stops": 31,
+        "allowed": 86,
+        "exp": 8481
+      }
+    },
+    {
+      "playerId": "p00114",
+      "teamId": "SAS",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 68,
+      "ratingEnd": 66,
+      "rs": {
+        "g": 86,
+        "pts": 367,
+        "def": 1018,
+        "stops": 417,
+        "allowed": 1513,
+        "exp": 137313
+      },
+      "po": {
+        "g": 6,
+        "pts": 14,
+        "def": 67,
+        "stops": 25,
+        "allowed": 106,
+        "exp": 9972
+      }
+    },
+    {
+      "playerId": "p00115",
+      "teamId": "SAS",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 90,
+      "ratingEnd": 90,
+      "rs": {
+        "g": 86,
+        "pts": 2500,
+        "def": 1063,
+        "stops": 525,
+        "allowed": 1305,
+        "exp": 143853
+      },
+      "po": {
+        "g": 6,
+        "pts": 169,
+        "def": 96,
+        "stops": 32,
+        "allowed": 163,
+        "exp": 14577
+      }
+    },
+    {
+      "playerId": "p00116",
+      "teamId": "SAS",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 97,
+      "ratingEnd": 97,
+      "rs": {
+        "g": 86,
+        "pts": 2993,
+        "def": 825,
+        "stops": 435,
+        "allowed": 908,
+        "exp": 109404
+      },
+      "po": {
+        "g": 6,
+        "pts": 200,
+        "def": 89,
+        "stops": 36,
+        "allowed": 132,
+        "exp": 13683
+      }
+    },
+    {
+      "playerId": "p00117",
+      "teamId": "SEA",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 83,
+      "ratingEnd": 87,
+      "rs": {
+        "g": 86,
+        "pts": 2020,
+        "def": 943,
+        "stops": 422,
+        "allowed": 1273,
+        "exp": 129333
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00118",
+      "teamId": "SEA",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 85,
+      "ratingEnd": 82,
+      "rs": {
+        "g": 86,
+        "pts": 1780,
+        "def": 1124,
+        "stops": 532,
+        "allowed": 1438,
+        "exp": 152349
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00119",
+      "teamId": "SEA",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 82,
+      "ratingEnd": 83,
+      "rs": {
+        "g": 86,
+        "pts": 1663,
+        "def": 1055,
+        "stops": 485,
+        "allowed": 1393,
+        "exp": 143787
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00120",
+      "teamId": "SEA",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 70,
+      "ratingEnd": 69,
+      "rs": {
+        "g": 86,
+        "pts": 597,
+        "def": 1099,
+        "stops": 434,
+        "allowed": 1658,
+        "exp": 147525
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00121",
+      "teamId": "SEA",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 75,
+      "ratingEnd": 76,
+      "rs": {
+        "g": 86,
+        "pts": 987,
+        "def": 949,
+        "stops": 402,
+        "allowed": 1344,
+        "exp": 127902
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00122",
+      "teamId": "STL",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 77,
+      "ratingEnd": 77,
+      "rs": {
+        "g": 86,
+        "pts": 1356,
+        "def": 981,
+        "stops": 412,
+        "allowed": 1415,
+        "exp": 135456
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00123",
+      "teamId": "STL",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 76,
+      "ratingEnd": 77,
+      "rs": {
+        "g": 86,
+        "pts": 1220,
+        "def": 1161,
+        "stops": 522,
+        "allowed": 1583,
+        "exp": 160149
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00124",
+      "teamId": "STL",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 71,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 86,
+        "pts": 576,
+        "def": 1014,
+        "stops": 419,
+        "allowed": 1487,
+        "exp": 137025
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00125",
+      "teamId": "STL",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 79,
+      "ratingEnd": 81,
+      "rs": {
+        "g": 86,
+        "pts": 1659,
+        "def": 1120,
+        "stops": 504,
+        "allowed": 1507,
+        "exp": 152565
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00126",
+      "teamId": "STL",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 80,
+      "ratingEnd": 81,
+      "rs": {
+        "g": 86,
+        "pts": 1753,
+        "def": 889,
+        "stops": 415,
+        "allowed": 1171,
+        "exp": 121995
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00127",
+      "teamId": "TEX",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 90,
+      "ratingEnd": 92,
+      "rs": {
+        "g": 86,
+        "pts": 2761,
+        "def": 903,
+        "stops": 457,
+        "allowed": 1073,
+        "exp": 123390
+      },
+      "po": {
+        "g": 6,
+        "pts": 189,
+        "def": 34,
+        "stops": 17,
+        "allowed": 40,
+        "exp": 4035
+      }
+    },
+    {
+      "playerId": "p00128",
+      "teamId": "TEX",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 81,
+      "ratingEnd": 78,
+      "rs": {
+        "g": 86,
+        "pts": 1419,
+        "def": 1150,
+        "stops": 522,
+        "allowed": 1523,
+        "exp": 154692
+      },
+      "po": {
+        "g": 6,
+        "pts": 75,
+        "def": 77,
+        "stops": 32,
+        "allowed": 111,
+        "exp": 10275
+      }
+    },
+    {
+      "playerId": "p00129",
+      "teamId": "TEX",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 85,
+      "ratingEnd": 87,
+      "rs": {
+        "g": 86,
+        "pts": 2217,
+        "def": 1108,
+        "stops": 552,
+        "allowed": 1367,
+        "exp": 153114
+      },
+      "po": {
+        "g": 6,
+        "pts": 145,
+        "def": 99,
+        "stops": 39,
+        "allowed": 151,
+        "exp": 14799
+      }
+    },
+    {
+      "playerId": "p00130",
+      "teamId": "TEX",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 70,
+      "ratingEnd": 70,
+      "rs": {
+        "g": 86,
+        "pts": 599,
+        "def": 967,
+        "stops": 403,
+        "allowed": 1417,
+        "exp": 127068
+      },
+      "po": {
+        "g": 6,
+        "pts": 50,
+        "def": 64,
+        "stops": 30,
+        "allowed": 83,
+        "exp": 9135
+      }
+    },
+    {
+      "playerId": "p00131",
+      "teamId": "TOR",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 75,
+      "ratingEnd": 78,
+      "rs": {
+        "g": 86,
+        "pts": 1674,
+        "def": 1050,
+        "stops": 450,
+        "allowed": 1483,
+        "exp": 145344
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00132",
+      "teamId": "TOR",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 73,
+      "ratingEnd": 72,
+      "rs": {
+        "g": 86,
+        "pts": 1167,
+        "def": 1179,
+        "stops": 519,
+        "allowed": 1624,
+        "exp": 162924
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00133",
+      "teamId": "TOR",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 70,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 35,
+        "pts": 348,
+        "def": 402,
+        "stops": 170,
+        "allowed": 577,
+        "exp": 53574
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00133",
+      "teamId": "MON",
+      "stint": 2,
+      "position": "SF",
+      "ratingStart": 70,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 50,
+        "pts": 366,
+        "def": 632,
+        "stops": 281,
+        "allowed": 858,
+        "exp": 83412
+      },
+      "po": {
+        "g": 7,
+        "pts": 52,
+        "def": 56,
+        "stops": 18,
+        "allowed": 90,
+        "exp": 7767
+      }
+    },
+    {
+      "playerId": "p00133",
+      "teamId": null,
+      "stint": null,
+      "position": "SF",
+      "ratingStart": 70,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 85,
+        "pts": 714,
+        "def": 1034,
+        "stops": 451,
+        "allowed": 1435,
+        "exp": 136986
+      },
+      "po": {
+        "g": 7,
+        "pts": 52,
+        "def": 56,
+        "stops": 18,
+        "allowed": 90,
+        "exp": 7767
+      }
+    },
+    {
+      "playerId": "p00134",
+      "teamId": "TOR",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 77,
+      "ratingEnd": 77,
+      "rs": {
+        "g": 86,
+        "pts": 1751,
+        "def": 1099,
+        "stops": 499,
+        "allowed": 1459,
+        "exp": 147840
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00135",
+      "teamId": "TOR",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 72,
+      "ratingEnd": 74,
+      "rs": {
+        "g": 41,
+        "pts": 505,
+        "def": 412,
+        "stops": 178,
+        "allowed": 567,
+        "exp": 55650
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00135",
+      "teamId": "CAR",
+      "stint": 2,
+      "position": "C",
+      "ratingStart": 72,
+      "ratingEnd": 74,
+      "rs": {
+        "g": 44,
+        "pts": 383,
+        "def": 454,
+        "stops": 194,
+        "allowed": 639,
+        "exp": 59136
+      },
+      "po": {
+        "g": 6,
+        "pts": 45,
+        "def": 78,
+        "stops": 36,
+        "allowed": 105,
+        "exp": 11328
+      }
+    },
+    {
+      "playerId": "p00135",
+      "teamId": null,
+      "stint": null,
+      "position": "C",
+      "ratingStart": 72,
+      "ratingEnd": 74,
+      "rs": {
+        "g": 85,
+        "pts": 888,
+        "def": 866,
+        "stops": 372,
+        "allowed": 1206,
+        "exp": 114786
+      },
+      "po": {
+        "g": 6,
+        "pts": 45,
+        "def": 78,
+        "stops": 36,
+        "allowed": 105,
+        "exp": 11328
+      }
+    },
+    {
+      "playerId": "p00136",
+      "teamId": "VAN",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 82,
+      "ratingEnd": 81,
+      "rs": {
+        "g": 86,
+        "pts": 1969,
+        "def": 982,
+        "stops": 474,
+        "allowed": 1247,
+        "exp": 134721
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00137",
+      "teamId": "VAN",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 82,
+      "ratingEnd": 81,
+      "rs": {
+        "g": 86,
+        "pts": 1945,
+        "def": 1163,
+        "stops": 510,
+        "allowed": 1602,
+        "exp": 160899
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00138",
+      "teamId": "VAN",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 74,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 86,
+        "pts": 922,
+        "def": 1086,
+        "stops": 456,
+        "allowed": 1555,
+        "exp": 146778
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00139",
+      "teamId": "VAN",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 74,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 86,
+        "pts": 993,
+        "def": 1095,
+        "stops": 468,
+        "allowed": 1562,
+        "exp": 149241
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00140",
+      "teamId": "VAN",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 71,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 86,
+        "pts": 762,
+        "def": 859,
+        "stops": 363,
+        "allowed": 1253,
+        "exp": 116823
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00141",
+      "teamId": "VEG",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 80,
+      "ratingEnd": 80,
+      "rs": {
+        "g": 86,
+        "pts": 1693,
+        "def": 1006,
+        "stops": 447,
+        "allowed": 1365,
+        "exp": 139626
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00142",
+      "teamId": "VEG",
+      "stint": 1,
+      "position": "SG",
+      "ratingStart": 73,
+      "ratingEnd": 73,
+      "rs": {
+        "g": 86,
+        "pts": 1007,
+        "def": 1134,
+        "stops": 470,
+        "allowed": 1627,
+        "exp": 154899
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00143",
+      "teamId": "VEG",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 74,
+      "ratingEnd": 77,
+      "rs": {
+        "g": 86,
+        "pts": 1303,
+        "def": 1043,
+        "stops": 426,
+        "allowed": 1522,
+        "exp": 142509
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00144",
+      "teamId": "VEG",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 76,
+      "ratingEnd": 79,
+      "rs": {
+        "g": 86,
+        "pts": 1649,
+        "def": 916,
+        "stops": 402,
+        "allowed": 1273,
+        "exp": 123864
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00145",
+      "teamId": "NO",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 69,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 41,
+        "pts": 210,
+        "def": 451,
+        "stops": 162,
+        "allowed": 725,
+        "exp": 60924
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00145",
+      "teamId": "OV",
+      "stint": 2,
+      "position": "C",
+      "ratingStart": 69,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 44,
+        "pts": 260,
+        "def": 465,
+        "stops": 183,
+        "allowed": 708,
+        "exp": 62058
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00145",
+      "teamId": null,
+      "stint": null,
+      "position": "C",
+      "ratingStart": 69,
+      "ratingEnd": 68,
+      "rs": {
+        "g": 85,
+        "pts": 470,
+        "def": 916,
+        "stops": 345,
+        "allowed": 1433,
+        "exp": 122982
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00146",
+      "teamId": "MW",
+      "stint": 1,
+      "position": "PG",
+      "ratingStart": 68,
+      "ratingEnd": 66,
+      "rs": {
+        "g": 86,
+        "pts": 357,
+        "def": 933,
+        "stops": 382,
+        "allowed": 1387,
+        "exp": 127827
+      },
+      "po": {
+        "g": 15,
+        "pts": 45,
+        "def": 196,
+        "stops": 83,
+        "allowed": 281,
+        "exp": 29316
+      }
+    },
+    {
+      "playerId": "p00153",
+      "teamId": "VEG",
+      "stint": 1,
+      "position": "PF",
+      "ratingStart": 69,
+      "ratingEnd": 71,
+      "rs": {
+        "g": 86,
+        "pts": 735,
+        "def": 1086,
+        "stops": 468,
+        "allowed": 1531,
+        "exp": 148317
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00160",
+      "teamId": "CAR",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 68,
+      "ratingEnd": 69,
+      "rs": {
+        "g": 42,
+        "pts": 229,
+        "def": 445,
+        "stops": 202,
+        "allowed": 610,
+        "exp": 60342
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00160",
+      "teamId": "TOR",
+      "stint": 2,
+      "position": "C",
+      "ratingStart": 68,
+      "ratingEnd": 69,
+      "rs": {
+        "g": 45,
+        "pts": 365,
+        "def": 448,
+        "stops": 190,
+        "allowed": 637,
+        "exp": 59163
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00160",
+      "teamId": null,
+      "stint": null,
+      "position": "C",
+      "ratingStart": 68,
+      "ratingEnd": 69,
+      "rs": {
+        "g": 87,
+        "pts": 594,
+        "def": 893,
+        "stops": 392,
+        "allowed": 1247,
+        "exp": 119505
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00162",
+      "teamId": "BOS",
+      "stint": 1,
+      "position": "SF",
+      "ratingStart": 69,
+      "ratingEnd": 70,
+      "rs": {
+        "g": 35,
+        "pts": 182,
+        "def": 444,
+        "stops": 183,
+        "allowed": 649,
+        "exp": 59214
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00162",
+      "teamId": "TOR",
+      "stint": 2,
+      "position": "SF",
+      "ratingStart": 69,
+      "ratingEnd": 70,
+      "rs": {
+        "g": 8,
+        "pts": 55,
+        "def": 101,
+        "stops": 40,
+        "allowed": 152,
+        "exp": 13335
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00162",
+      "teamId": "TEX",
+      "stint": 3,
+      "position": "SF",
+      "ratingStart": 69,
+      "ratingEnd": 70,
+      "rs": {
+        "g": 44,
+        "pts": 288,
+        "def": 554,
+        "stops": 239,
+        "allowed": 784,
+        "exp": 74742
+      },
+      "po": {
+        "g": 6,
+        "pts": 40,
+        "def": 86,
+        "stops": 32,
+        "allowed": 135,
+        "exp": 12621
+      }
+    },
+    {
+      "playerId": "p00162",
+      "teamId": null,
+      "stint": null,
+      "position": "SF",
+      "ratingStart": 69,
+      "ratingEnd": 70,
+      "rs": {
+        "g": 87,
+        "pts": 525,
+        "def": 1099,
+        "stops": 462,
+        "allowed": 1585,
+        "exp": 147291
+      },
+      "po": {
+        "g": 6,
+        "pts": 40,
+        "def": 86,
+        "stops": 32,
+        "allowed": 135,
+        "exp": 12621
+      }
+    },
+    {
+      "playerId": "p00382",
+      "teamId": "CGG",
+      "stint": 1,
+      "position": "C",
+      "ratingStart": 68,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 42,
+        "pts": 161,
+        "def": 456,
+        "stops": 189,
+        "allowed": 645,
+        "exp": 61734
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00382",
+      "teamId": "FLO",
+      "stint": 2,
+      "position": "C",
+      "ratingStart": 68,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 44,
+        "pts": 260,
+        "def": 436,
+        "stops": 181,
+        "allowed": 632,
+        "exp": 57120
+      },
+      "po": null
+    },
+    {
+      "playerId": "p00382",
+      "teamId": null,
+      "stint": null,
+      "position": "C",
+      "ratingStart": 68,
+      "ratingEnd": 67,
+      "rs": {
+        "g": 86,
+        "pts": 421,
+        "def": 892,
+        "stops": 370,
+        "allowed": 1277,
+        "exp": 118854
+      },
+      "po": null
+    }
+  ],
+  "span": {
+    "opened": "2026-09-25T12:00:00Z",
+    "locked": "2026-10-12T12:00:00Z"
+  },
+  "events": [
+    {
+      "label": "FBA draft",
+      "start": null,
+      "end": "2026-05-29"
+    },
+    {
+      "label": "Free agency",
+      "start": null,
+      "end": "2026-10-01"
+    },
+    {
+      "label": "Rating adjustment 1 (game 322)",
+      "start": null,
+      "end": "2026-10-03"
+    },
+    {
+      "label": "Rating adjustment 2 (game 645)",
+      "start": null,
+      "end": "2026-10-06"
+    },
+    {
+      "label": "Rating adjustment 3 (game 967)",
+      "start": null,
+      "end": "2026-10-06"
+    },
+    {
+      "label": "All-Star weekend",
+      "start": null,
+      "end": "2026-10-08"
+    },
+    {
+      "label": "Final rating adjustment",
+      "start": null,
+      "end": "2026-10-12"
+    },
+    {
+      "label": "Playoffs",
+      "start": null,
+      "end": "2026-10-12"
+    },
+    {
+      "label": "Awards",
+      "start": null,
+      "end": "2026-10-12"
+    },
+    {
+      "label": "S80 draft lottery",
+      "start": null,
+      "end": "2026-10-12"
+    }
+  ]
+}

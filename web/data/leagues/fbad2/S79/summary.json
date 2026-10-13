@@ -12,7 +12,8 @@
       "teamId": "SALZ",
       "runnerUpId": "MIL",
       "group": "PL",
-      "finalsMvp": "p00409"
+      "finalsMvp": "p00409",
+      "date": "2026-10-02"
     },
     {
       "title": "World League Champion",
@@ -22,7 +23,8 @@
       "teamId": "MOS",
       "runnerUpId": "COP",
       "group": "WL",
-      "finalsMvp": "p00344"
+      "finalsMvp": "p00344",
+      "date": "2026-10-02"
     },
     {
       "title": "United League Champion",
@@ -32,7 +34,8 @@
       "teamId": "JOH",
       "runnerUpId": "BEI",
       "group": "UL",
-      "finalsMvp": "p00284"
+      "finalsMvp": "p00284",
+      "date": "2026-10-02"
     },
     {
       "title": "International League Champion",
@@ -42,7 +45,8 @@
       "teamId": "FLO",
       "runnerUpId": "WAR",
       "group": "IL",
-      "finalsMvp": "p00259"
+      "finalsMvp": "p00259",
+      "date": "2026-10-02"
     }
   ],
   "awards": [
@@ -8104,6 +8108,37 @@
         "allowed": 81,
         "exp": 7182
       }
+    }
+  ],
+  "span": {
+    "opened": "2026-09-25T12:00:00Z",
+    "locked": "2026-10-12T12:00:00Z"
+  },
+  "events": [
+    {
+      "label": "D2 ratings reset",
+      "start": null,
+      "end": "2026-10-01"
+    },
+    {
+      "label": "D2 draft",
+      "start": null,
+      "end": "2026-10-01"
+    },
+    {
+      "label": "D2 season and playoffs",
+      "start": null,
+      "end": "2026-10-02"
+    },
+    {
+      "label": "D2 awards",
+      "start": null,
+      "end": "2026-10-02"
+    },
+    {
+      "label": "D2 season finished",
+      "start": null,
+      "end": "2026-10-12"
     }
   ]
 }
