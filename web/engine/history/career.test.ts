@@ -316,6 +316,26 @@ describe('parseBio week suffixes', () => {
   });
 });
 
+describe('a rookie closes his college stint', () => {
+  const rookie = () => parseBio({ born: 'Born-S58', entries: ['Houston-S76-pres.', '3x B12 RS Champion'] });
+  it('has played games for his FBA team this season: college ends the season before, FBA is open', () => {
+    const c = applyPlacement(applyPlayed(rookie(), ['MEM'], 79), { kind: 'fba', team: 'MEM' }, 79);
+    expect(c.stints.map(s => [s.kind, s.team, s.range])).toEqual([['college', 'Houston', 'S76-S78'], ['fba', 'MEM', 'S79-pres.']]);
+  });
+  it('is only on a roster so far (drafted, no games): college still ends the season before', () => {
+    const c = applyPlacement(rookie(), { kind: 'fba', team: 'MEM' }, 79);
+    expect(c.stints.map(s => s.range)).toEqual(['S76-S78', 'S79-pres.']);
+  });
+  it('has a finished season summary: his college stint ends before his first FBA season', () => {
+    const c = liveCareer({ born: 'Born-S58', entries: ['Houston-S76-pres.', '3x B12 RS Champion'] }, 'p00075', [summary(79, { players: [line('p00075', 'MEM', 1, 70, 1400)] })], null);
+    expect(c.stints.map(s => [s.kind, s.range])).toEqual([['college', 'S76-S78'], ['fba', 'S79']]);
+  });
+  it('keeps the college honours on the college stint', () => {
+    const c = applyPlacement(applyPlayed(rookie(), ['MEM'], 79), { kind: 'fba', team: 'MEM' }, 79);
+    expect(c.stints[0].honours.map(h => h.label)).toContain('B12 RS Champion');
+  });
+});
+
 describe('applyPlacement', () => {
   const base = () => parseBio({ born: 'Born-S51', entries: ['Penn-S69', 'Iowa-S70-S71', 'VEG-S72-pres.', '2x Young-Star'] });
   it('ends the open stint the season before and starts the new team when he signed elsewhere', () => {

@@ -196,6 +196,18 @@ function setRange(stint: Stint) {
   stint.range = stint.to === stint.from ? `S${stint.from}` : `S${stint.from}-S${stint.to}`;
 }
 
+/**
+ * A player is in one league at a time: when `current` is the stint he holds from `season`, any other stint still open ("pres") ended the season
+ * before. A drafted rookie's college years end the season before his first FBA season; national-team call-ups don't interrupt anything.
+ */
+function closeOtherOpen(stints: Stint[], current: Stint, season: number): void {
+  for (const s of stints) {
+    if (s === current || s.to !== 'pres' || s.kind === 'wc') continue;
+    s.to = Math.max(s.from ?? 0, season - 1);
+    setRange(s);
+  }
+}
+
 function addHonour(stint: Stint, e: HonourEvent, season: number) {
   const label = e.key === 'CONF_CHAMPION' ? (e.conf === 'E' ? 'EC Champion' : 'WC Champion') : KEY_LABEL[e.key];
   if (!label) return;
@@ -229,6 +241,7 @@ export function liveCareer(bio: { born: string; entries: string[] } | null, play
         career.stints.push(stint);
       }
       setRange(stint);
+      closeOtherOpen(career.stints, stint, s.season);
       held.set(team, stint);
       last = stint;
     }
@@ -387,12 +400,14 @@ export function applyPlayed(career: Career, teams: string[], season: number): Ca
       last.from ??= season;
       last.to = season;
       setRange(last);
+      closeOtherOpen(stints, last, season);
       continue;
     }
     if (last && last.to === 'pres') { last.to = season - 1; setRange(last); }
     const stint: Stint = { kind: 'fba', team, range: '', from: season, to: season, honours: [] };
     setRange(stint);
     stints.push(stint);
+    closeOtherOpen(stints, stint, season);
   }
   return { ...career, stints };
 }
