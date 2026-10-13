@@ -167,11 +167,11 @@ describe('PlayerHistoryPage', () => {
       expect(screen.queryByRole('img', { name: 'FBA logo' })).toBeNull();
     });
 
-    it('keeps his team while he sits in the D2 reserves', async () => {
+    it('shows the FBA logo, not his old team, while he sits in the D2 reserves', async () => {
       stub({ currentSeason: 79, bios: gone, extra: { '/api/state/leagues/fbad2/S79/reserves.json': { league: 'fbad2', season: 79, locked: false, players: [{ playerId: 'p00001', position: 'PG', age: 30, rating: null }] } } });
       renderAt('/history/fba/players/p00001');
       await screen.findByText(/Born:/);
-      expect(screen.queryByRole('img', { name: 'FBA logo' })).toBeNull();
+      expect(screen.getByRole('img', { name: 'FBA logo' })).toBeTruthy();
     });
   });
 

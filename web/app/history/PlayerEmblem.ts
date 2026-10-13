@@ -24,11 +24,11 @@ function lastStintTeam(stint: Stint, teams: EmblemTeams): Team | undefined {
 }
 
 /**
- * The mark and colours a player page leads with: the gold FBA logo in the Hall of Fame, the FBA logo once retired, and otherwise the team he plays
+ * The mark and colours a player page leads with: the gold FBA logo in the Hall of Fame, the FBA logo once retired or while unsigned (in a reserve pool or the free-agent list), and otherwise the team he plays
  * for now (FBA team, D2 team, school or national team). `fallback` is the team a page would use anyway when the status gives none.
  */
-export function playerEmblem(status: PlayerStatus, lastStint: Stint | undefined, teams: EmblemTeams, fallback: Team | undefined): Team | undefined {
+export function playerEmblem(status: PlayerStatus, lastStint: Stint | undefined, teams: EmblemTeams, fallback: Team | undefined, unsigned = false): Team | undefined {
   if (status === 'hof') return HOF_EMBLEM;
-  if (status === 'retired') return FBA_EMBLEM;
+  if (status === 'retired' || unsigned) return FBA_EMBLEM;
   return (lastStint ? lastStintTeam(lastStint, teams) : undefined) ?? fallback;
 }
