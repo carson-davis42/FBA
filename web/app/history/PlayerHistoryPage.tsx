@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { linkHallByName } from '../../engine/offseason/hallOfFame';
 import { applyPlacement, applyPlayed, applyUnsigned, awardTotals, careerSpan, careerStats, liveCareer, playerStatus, teamsPlayedFor, type Placement } from '../../engine/history/career';
 import { d2PlayerHonours } from '../../engine/history/d2';
 import { playerHonours } from '../../engine/history/honours';
@@ -116,7 +117,7 @@ export function PlayerHistoryPage() {
   const unsummarised = results.data && !seasons.some(x => x.season === results.data!.season) ? results.data : null;
   const playedFor = unsummarised ? teamsPlayedFor(unsummarised, playerId) : [];
   const unsignedNow = placement === null && unsigned.some(d => JSON.stringify(d.data ?? null).includes(`"${playerId}"`));
-  const placed = applyPlacement(applyPlayed(liveCareer(bio, playerId, seasons, hall.data ?? null), playedFor, unsummarised?.season ?? 0), placement?.now ?? null, placement?.season ?? 0);
+  const placed = applyPlacement(applyPlayed(liveCareer(bio, playerId, seasons, hall.data ? linkHallByName(hall.data, players.data) : null), playedFor, unsummarised?.season ?? 0), placement?.now ?? null, placement?.season ?? 0);
   // Out of his school or club into a reserve pool or the free-agent list: no stint stays "present".
   const career = unsignedNow && meta.data ? applyUnsigned(placed, meta.data.rosterSeason.fba) : placed;
   const totals = awardTotals(playerId, counts.data ?? null, seasons);

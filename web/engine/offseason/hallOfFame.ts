@@ -2,6 +2,7 @@ import { careerLines, liveCareer } from '../history/career';
 import { appendTx, type MoveContext } from '../roster/state';
 import { calendarProblem, type WritesResult } from '../season/moves';
 import { markStepDone } from '../shared/calendar';
+import { idForName, uniqueNameIndex } from '../shared/playerNames';
 import type { CalendarFile, HallOfFameFile, HofCard, PlayerBio, PlayersFile, RetiredInfo, SummaryFile, TransactionsFile } from '../shared/types';
 
 /** D17: the nominee list never holds more than this. */
@@ -22,6 +23,24 @@ const same = (a: NameRef, b: NameRef): boolean =>
 
 const known = (hof: HallOfFameFile): NameRef[] => [...hof.nominees, ...hof.classes.flatMap(c => c.inductees), ...hof.removed];
 const hofWrite = (hof: HallOfFameFile, label: string): WritesResult => ({ ok: true, label, writes: [{ path: HOF_PATH, doc: hof }] });
+
+/**
+ * The Hall of Fame with every card that has no player id linked to the one player who has its name. The sheet import left most cards
+ * unlinked, and a profile finds its Hall of Fame status by id. Returns the same object when nothing changes; a name two players share stays unlinked.
+ */
+export function linkHallByName(hof: HallOfFameFile, players: PlayersFile): HallOfFameFile {
+  const index = uniqueNameIndex(players);
+  let changed = false;
+  const link = (c: HofCard): HofCard => {
+    if (c.playerId !== null) return c;
+    const id = idForName(index, c.name);
+    if (id === null || !players.players[id]) return c;
+    changed = true;
+    return { ...c, playerId: id };
+  };
+  const out = { ...hof, classes: hof.classes.map(k => ({ ...k, inductees: k.inductees.map(link) })), nominees: hof.nominees.map(link) };
+  return changed ? out : hof;
+}
 
 /** Named retirees who aren't a nominee, an inductee or removed, newest retirement first, then by name. */
 export function candidates(hof: HallOfFameFile, players: PlayersFile): Candidate[] {
@@ -110,7 +129,9 @@ export function induct(state: HofState, indexes: number[], ctx: MoveContext): Wr
     return { ok: false, problems: [`Pick exactly ${need} ${need === 1 ? 'nominee' : 'nominees'}`] };
   }
   const chosen = new Set(distinct);
-  const inductees = hof.nominees.filter((_, i) => chosen.has(i));
+  const index = uniqueNameIndex(state.players);
+  // A nominee the sheet import left without an id is linked to the one player with his name, so his profile turns gold.
+  const inductees = hof.nominees.filter((_, i) => chosen.has(i)).map(c => (c.playerId === null && idForName(index, c.name) !== null ? { ...c, playerId: idForName(index, c.name) } : c));
   const doc: HallOfFameFile = {
     ...hof,
     classes: [...hof.classes, { season, inductees }],

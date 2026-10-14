@@ -1,4 +1,5 @@
 import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { linkHallByName } from '../../engine/offseason/hallOfFame';
 import { franchiseIndex } from '../../engine/history/franchiseRoster';
 import { rosterFromBios } from '../../engine/history/seasonRoster';
 import { resolveHistoryTeam } from '../../engine/shared/franchises';
@@ -94,7 +95,7 @@ export function BoxScorePage() {
     : teams.find(t => t.name === side.name));
   const fbaIndex = (teamId: string) => {
     const franchise = franchises.data?.franchises.find(f => f.teamId === teamId);
-    return franchise ? franchiseIndex({ franchise, players: players.data!, bios: bios.data ?? null, summaries: [], hof: hof.data ?? null, rosters: rosterDoc.data ? [rosterDoc.data] : [] }) : null;
+    return franchise ? franchiseIndex({ franchise, players: players.data!, bios: bios.data ?? null, summaries: [], hof: hof.data ? linkHallByName(hof.data, players.data!) : null, rosters: rosterDoc.data ? [rosterDoc.data] : [] }) : null;
   };
   const rosterOf = (side: PastSide): { rows: Row[]; showSlot: boolean } => {
     const team = teamOf(side);

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { linkHallByName } from '../../engine/offseason/hallOfFame';
 import { trophyCase, TROPHY_AWARDS } from '../../engine/history/trophies';
 import type { CalendarFile, DraftHistoryFile, Franchise, HallOfFameFile, LogoManifest, PlayerBiosFile, PlayersFile, ResultsFile, RostersFile } from '../../engine/shared/types';
 import { docFailure, docSettled, useDoc, useHistory } from '../api';
@@ -55,7 +56,7 @@ export function FranchisePage() {
 
   // The logo is the team's current one: the calendar's season, which runs ahead of the last finished season's summary.
   const latest = Math.max(79, calendar.data?.season ?? 0, ...seasons.map(s => s.season), ...franchise.eras.map(e => e.from));
-  const c = trophyCase(teamId, { summaries: seasons, teams, franchises, hallOfFame: hof.data ?? null });
+  const c = trophyCase(teamId, { summaries: seasons, teams, franchises, hallOfFame: hof.data ? linkHallByName(hof.data, players.data) : null });
   const name = team?.name ?? franchise.eras[0].name;
   const chips = (title: string, list: number[]) => (
     <div>
@@ -90,7 +91,7 @@ export function FranchisePage() {
       <SubNav label="Franchise" items={[{ id: 'overview', label: 'Overview' }, { id: 'players', label: 'Players' }]} active={tab} onSelect={id => setParams(id === 'players' ? { tab: 'players' } : {})} />
       {tab === 'players' ? (
         <div id="panel-players" role="tabpanel" aria-labelledby="tab-players">
-          <FranchisePlayers franchise={franchise} players={playerDoc} bios={bios.data ?? null} summaries={seasons} hof={hof.data ?? null} rosters={seasonFiles?.rosters ?? []} results={seasonFiles?.results ?? null} latest={latest} />
+          <FranchisePlayers franchise={franchise} players={playerDoc} bios={bios.data ?? null} summaries={seasons} hof={hof.data ? linkHallByName(hof.data, players.data) : null} rosters={seasonFiles?.rosters ?? []} results={seasonFiles?.results ?? null} latest={latest} />
         </div>
       ) : (
         <>
