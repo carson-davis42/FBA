@@ -11,8 +11,11 @@ import './history.css';
 
 const LETTERS = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
 
-interface Row { playerId: string; name: string; seasons: number; pts: number; ppg78: number | null; born: number | null }
-const sortValue = (r: Row, key: string): SortValue => (key === 'name' ? r.name : key === 'seasons' ? r.seasons : key === 'born' ? r.born : key === 'ppg78' ? r.ppg78 : r.pts);
+/** S78 stored points per game only (no totals); every player's S78 line is taken as this many games. */
+const S78_GAMES = 86;
+
+interface Row { playerId: string; name: string; seasons: number; pts: number; ppg: number | null; born: number | null }
+const sortValue = (r: Row, key: string): SortValue => (key === 'name' ? r.name : key === 'seasons' ? r.seasons : key === 'born' ? r.born : key === 'ppg' ? r.ppg : r.pts);
 
 /** The season a player was born: the player record, else the bio's "Born-S51" / "FFL S2(-3)". */
 function birthSeason(birth: number | null | undefined, born: string | undefined): number | null {
@@ -42,14 +45,20 @@ export function PlayersHistoryPage() {
       if (s.season < 79) continue;
       for (const l of s.players ?? []) if (l.teamId !== null && l.stint !== null) played.set(l.playerId, (played.get(l.playerId) ?? new Set<number>()).add(s.season));
     }
-    // S78 and earlier have no box scores; S78 stored each player's points per game only.
+    // S78 has no box scores, only each player's points per game: its points are that average over 86 games, added to the S79+ totals.
     const ppg78 = new Map<string, number>();
     for (const s of seasons) if (s.season === 78) for (const l of s.legacyPpg ?? []) ppg78.set(l.playerId, l.ppg);
     const bioOf = new Map((biosData?.bios ?? []).map(b => [b.playerId, b.born]));
-    return playerIndex(seasons, biosData, players.data).map(p => ({
-      ...p, seasons: played.get(p.playerId)?.size ?? 0, pts: totals.get(p.playerId)?.pts ?? 0,
-      ppg78: ppg78.get(p.playerId) ?? null, born: birthSeason(players.data!.players[p.playerId]?.birthSeason, bioOf.get(p.playerId)),
-    }));
+    return playerIndex(seasons, biosData, players.data).map(p => {
+      const live = totals.get(p.playerId) ?? { gp: 0, pts: 0 };
+      const old = ppg78.get(p.playerId);
+      const gp = live.gp + (old !== undefined ? S78_GAMES : 0);
+      const pts = live.pts + (old !== undefined ? Math.round(old * S78_GAMES) : 0);
+      return {
+        ...p, seasons: played.get(p.playerId)?.size ?? 0, pts, ppg: gp > 0 ? Math.round((pts / gp) * 10) / 10 : null,
+        born: birthSeason(players.data!.players[p.playerId]?.birthSeason, bioOf.get(p.playerId)),
+      };
+    });
   }, [seasons, players.data, biosData]);
   const shown = useMemo(() => (searchPlayers(index, q) as Row[]).filter(p => letter === '' || initial(p.name) === letter), [index, q, letter]);
   const { rows: sorted, sortProps } = useSort<Row>(shown, sortValue, 'name', 'asc');
@@ -75,8 +84,8 @@ export function PlayersHistoryPage() {
             <tr>
               <SortTh label="Player" {...sortProps('name', 'asc')} />
               <SortTh label="Seasons (S79+)" className="n" {...sortProps('seasons')} />
-              <SortTh label="PTS (S79+)" className="n" {...sortProps('pts')} />
-              <SortTh label="PPG (S78)" className="n" {...sortProps('ppg78')} />
+              <SortTh label="PTS (S78+)" className="n" {...sortProps('pts')} />
+              <SortTh label="PPG (S78+)" className="n" {...sortProps('ppg')} />
               <SortTh label="Born" className="n" {...sortProps('born', 'asc')} />
             </tr>
           </thead>
@@ -86,7 +95,7 @@ export function PlayersHistoryPage() {
                 <td><PlayerLink id={p.playerId} players={players.data as PlayersFile} /></td>
                 <td className="n">{p.seasons > 0 ? p.seasons : ''}</td>
                 <td className="n">{p.pts > 0 ? p.pts : ''}</td>
-                <td className="n">{p.ppg78 !== null ? p.ppg78.toFixed(1) : ''}</td>
+                <td className="n">{p.ppg !== null ? p.ppg.toFixed(1) : ''}</td>
                 <td className="n">{p.born !== null ? `S${p.born}` : ''}</td>
               </tr>
             ))}

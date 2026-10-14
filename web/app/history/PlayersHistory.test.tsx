@@ -109,15 +109,24 @@ describe('PlayersHistoryPage', () => {
     const table = screen.getByRole('table');
     const rows = () => within(table).getAllByRole('row').slice(1).map(r => [...r.querySelectorAll('td')].map(td => td.textContent));
     expect(rows()).toEqual([
-      ['Cameron Lučić', '', '', '24.5', 'S40'],
-      ['Ray Allen', '', '', '30.3', 'S41'],
+      ['Cameron Lučić', '', '2107', '24.5', 'S40'],
+      ['Ray Allen', '', '2602', '30.3', 'S41'],
     ]);
     fireEvent.click(within(table).getByRole('button', { name: /Born/ }));
     expect(rows().map(r => r[4])).toEqual(['S40', 'S41']);
     fireEvent.click(within(table).getByRole('button', { name: /Born/ }));
     expect(rows().map(r => r[4])).toEqual(['S41', 'S40']);
-    fireEvent.click(within(table).getByRole('button', { name: /PPG \(S78\)/ }));
+    fireEvent.click(within(table).getByRole('button', { name: /PPG \(S78\+\)/ }));
     expect(rows().map(r => r[0])).toEqual(['Ray Allen', 'Cameron Lučić']);
+  });
+
+  it('combines S78 (points per game over 86 games) with the S79+ totals, and goes on from there', async () => {
+    stub({ seasons: [s78, s79], bios: { league: 'fba', bios: [] } });
+    renderAt('/history/fba/players');
+    await screen.findByText('1 player');
+    const cells = within(screen.getByRole('table')).getAllByRole('row')[1].querySelectorAll('td');
+    // S78: 24.5 x 86 = 2107 points; S79: 1000 points in 50 games; (2107 + 1000) / (86 + 50) = 22.8.
+    expect([cells[1].textContent, cells[2].textContent, cells[3].textContent]).toEqual(['1', '3107', '22.8']);
   });
 
   it('reads the birth season from the bio when the player record has none', async () => {
