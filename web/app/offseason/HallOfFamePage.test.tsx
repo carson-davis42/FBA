@@ -132,10 +132,10 @@ describe('HallOfFamePage', () => {
     const log = stubApi(docs(hof()));
     renderPage('nominees');
     const list = await screen.findByRole('list', { name: 'Candidates' });
-    // Bo Baker is not retired, so only two candidates; newest retirement first.
+    // Bo Baker is not retired, so only two candidates; the one with an MVP is listed first, whoever retired later.
     expect(within(list).getAllByRole('listitem').filter(li => li.closest('ul, ol') === list).map(li => li.textContent)).toEqual([
-      expect.stringContaining('Zed Zephyr'),
       expect.stringContaining('Al Able'),
+      expect.stringContaining('Zed Zephyr'),
     ]);
     expect(within(list).getByText('1x MVP')).toBeTruthy();
     fireEvent.click(screen.getByLabelText('Select Zed Zephyr'));
@@ -144,8 +144,8 @@ describe('HallOfFamePage', () => {
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].writes.map(w => w.path)).toEqual([HOF_PATH]);
     const doc = log.batches[0].writes[0].doc as HallOfFameFile;
-    expect(doc.nominees.map(n => n.name)).toEqual(['Zed Zephyr', 'Al Able']);
-    expect(doc.nominees[1].lines).toContain('1x MVP');
+    expect(doc.nominees.map(n => n.name)).toEqual(['Al Able', 'Zed Zephyr']);
+    expect(doc.nominees[0].lines).toContain('1x MVP');
   });
 
   it('shows the cap problem and posts nothing past the cap', async () => {
