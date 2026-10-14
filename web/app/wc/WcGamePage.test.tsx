@@ -77,7 +77,7 @@ describe('WcGamePage', () => {
     mount(79, qDocs(r.state), 1);
     expect(await screen.findByText('Qualifying')).toBeTruthy();
     expect(document.querySelectorAll('table.box-score').length).toBe(2);
-    expect(screen.getByRole('link', { name: /Back to qualifying/ })).toBeTruthy();
+    expect(screen.getByRole('link', { name: /Back to qualifying/ }).getAttribute('href')).toBe('/league/fbawc/qualifying?tab=scores');
   });
 
   it('shows a played group game and lets the next one be watched', async () => {

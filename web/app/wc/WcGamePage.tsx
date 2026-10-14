@@ -98,7 +98,7 @@ function WcGame() {
   const ranks = new Map(wcRankings(docs.teams!.teams.map(t => t.teamId), docs.rosters!.teams).map(r => [r.teamId, r.rank]));
   const rankOf = (id: string) => (ranks.has(id) ? `Rank #${ranks.get(id)}` : undefined);
   const found = findWcGame(docs, season, n);
-  const back = { to: odd ? '/league/fbawc/qualifying' : '/league/fbawc/worldcup', label: odd ? 'back to qualifying ▸' : 'back to the World Cup ▸' };
+  const back = { to: odd ? '/league/fbawc/qualifying?tab=scores' : '/league/fbawc/worldcup', label: odd ? 'back to qualifying ▸' : 'back to the World Cup ▸' };
 
   if (found && !sim) {
     return (
