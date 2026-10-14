@@ -4,6 +4,7 @@ import type { SeasonLeague } from '../../engine/season/schedule';
 import type { SimGame } from '../../engine/season/sim';
 import type { SeasonState } from '../../engine/season/state';
 import type { GameResult, MetaFile, PlayersFile } from '../../engine/shared/types';
+import { wcRankings } from '../../engine/wc/rankings';
 import { nextQualifyingGame, recordQualifyingGame, type QualifyingState } from '../../engine/wc/qualifying';
 import { simWcGame, type NextWcGame, type WcResult } from '../../engine/wc/state';
 import { wcWrites } from '../../engine/wc/writes';
@@ -93,14 +94,17 @@ function WcGame() {
   if (docs.error) return <p className="error">{docs.error.message}</p>;
   if (season === null || !ready) return <p className="muted">Loading…</p>;
   const view = viewState(docs, season);
+  // Where each country stands in the Rankings tab (by country rating), shown small under its name like FotMob's FIFA ranking.
+  const ranks = new Map(wcRankings(docs.teams!.teams.map(t => t.teamId), docs.rosters!.teams).map(r => [r.teamId, r.rank]));
+  const rankOf = (id: string) => (ranks.has(id) ? `Rank #${ranks.get(id)}` : undefined);
   const found = findWcGame(docs, season, n);
-  const back = { to: odd ? '/league/fbawc/qualifying' : '/league/fbawc/worldcup', label: odd ? 'back to qualifying ▸' : 'back to the World Cup ▸' };
+  const back = { to: odd ? '/league/fbawc/qualifying?tab=scores' : '/league/fbawc/worldcup', label: odd ? 'back to qualifying ▸' : 'back to the World Cup ▸' };
 
   if (found && !sim) {
     return (
       <div className="stack">
         <p className="page-kicker">{found.label}</p>
-        <FinalView state={view} r={found.result} />
+        <FinalView state={view} r={found.result} sub={rankOf} />
         <p><Link className="btn" to={back.to}>{back.label.replace('back', 'Back')}</Link></p>
       </div>
     );
@@ -121,5 +125,5 @@ function WcGame() {
     if (!r.ok) throw new Error(r.problems.join('; '));
     await commitDocs(r.label, wcWrites(r), docs.versions);
   };
-  return <LiveGame state={view} sim={sim} save={save} back={back} />;
+  return <LiveGame state={view} sim={sim} save={save} back={back} sub={rankOf} />;
 }
