@@ -4,7 +4,8 @@ import {
   addNominees, candidates, CLASS_SIZE, editNominee, freeNameCard, HOF_PATH, HOF_STEP, induct, NOMINEE_CAP, prefillCard, removeNominee,
 } from '../../engine/offseason/hallOfFame';
 import { calendarProblem, type WritesResult } from '../../engine/season/moves';
-import type { CalendarFile, HallOfFameFile, HofCard, MetaFile, PlayerBiosFile, PlayersFile, TransactionsFile } from '../../engine/shared/types';
+import { rankCandidates } from '../../engine/offseason/deserving';
+import type { AwardCountsFile, CalendarFile, HallOfFameFile, HofCard, MetaFile, PlayerBiosFile, PlayersFile, TransactionsFile } from '../../engine/shared/types';
 import { useDoc, useHistory, useSaving } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { SkippedWarning } from '../history/PlayerLink';
@@ -45,6 +46,7 @@ export function HallOfFamePage() {
   const txPath = n === undefined ? null : `leagues/fba/S${n}/transactions.json`;
   const tx = useDoc<TransactionsFile>(txPath);
   const bios = useDoc<PlayerBiosFile>('leagues/fba/playerBios.json');
+  const counts = useDoc<AwardCountsFile>('leagues/fba/awardCounts.json');
   const history = useHistory('fba');
   const saving = useSaving();
   const [picked, setPicked] = useState<string[]>([]);
@@ -56,16 +58,18 @@ export function HallOfFamePage() {
   const list = useMemo(() => (hof.data && players.data ? candidates(hof.data, players.data) : []), [hof.data, players.data]);
   const nameIndex = useMemo(() => (players.data ? uniqueNameIndex(players.data) : new Map<string, string>()), [players.data]);
 
-  const err = meta.error ?? calendar.error ?? players.error ?? tx.error ?? (hof.missing ? undefined : hof.error) ?? (bios.missing ? undefined : bios.error) ?? history.error;
+  const err = meta.error ?? calendar.error ?? players.error ?? tx.error ?? (hof.missing ? undefined : hof.error) ?? (bios.missing ? undefined : bios.error) ?? (counts.missing ? undefined : counts.error) ?? history.error;
   if (err) return <p className="error">Couldn't load the Hall of Fame: {err.message}</p>;
   if (hof.missing) {
     return <section className="stack"><PageHeader kicker="FBA" title="Hall of Fame" /><div className="card"><p>Import the Hall of Fame first: run "npm run import -- --hall-of-fame" in web/.</p></div></section>;
   }
-  if (n === undefined || !calendar.data || !players.data || !hof.data || !tx.data || (!bios.data && !bios.missing) || !history.seasons) return <p className="muted">Loading…</p>;
+  if (n === undefined || !calendar.data || !players.data || !hof.data || !tx.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing) || !history.seasons) return <p className="muted">Loading…</p>;
   const doc = hof.data;
   const cal = calendar.data;
   const summaries = history.seasons;
   const bioOf = (id: string) => bios.data?.bios.find(b => b.playerId === id) ?? null;
+  // Candidates from most to least deserving: personal awards, then team awards, then seasons in the FBA.
+  const ranked = rankCandidates(list, counts.data ?? null, summaries, bioOf, doc);
   const asked = params.get('tab');
   const tab: Tab = asked === 'hall' ? 'hall' : 'nominees';
   const tabLink = (id: Tab, label: string) => (
@@ -142,12 +146,13 @@ export function HallOfFamePage() {
       {list.length === 0 ? <p className="muted">No retired players are waiting to be nominated.</p> : (
         <>
           <ul className="plain-list" aria-label="Candidates">
-            {list.map(c => {
+            {ranked.map(({ candidate: c, score }) => {
               const card = prefillCard(c, summaries, bioOf(c.playerId), doc);
               return (
                 <li key={c.playerId}>
                   <label><input type="checkbox" aria-label={`Select ${c.name}`} checked={picked.includes(c.playerId)} onChange={() => toggle(picked, setPicked, c.playerId)} /> <strong>{c.name}</strong></label>{' '}
                   <span className="muted">Retired {card.retiredSeason}</span>
+                  <span className="muted" title="Personal award points · team award points · seasons in the FBA"> · Awards {score.personal} · Team {score.team} · {score.seasons} {score.seasons === 1 ? 'season' : 'seasons'}</span>
                   <ul className="plain-list">{card.lines.map((l, j) => <li key={j}>{l}</li>)}</ul>
                 </li>
               );
@@ -155,7 +160,7 @@ export function HallOfFamePage() {
           </ul>
           <p>
             <button className="btn" disabled={saving || picked.length === 0} onClick={() => {
-              const cards = list.filter(c => picked.includes(c.playerId)).map(c => prefillCard(c, summaries, bioOf(c.playerId), doc));
+              const cards = ranked.filter(r => picked.includes(r.candidate.playerId)).map(r => prefillCard(r.candidate, summaries, bioOf(r.candidate.playerId), doc));
               void run(addNominees(doc, cards)).then(ok => { if (ok) settle(); });
             }}>Add selected</button>
           </p>
