@@ -81,6 +81,7 @@ import { ScoresPage as JcScoresPage } from '../jc/ScoresPage';
 import { StandingsPage as JcStandingsPage } from '../jc/StandingsPage';
 import { TournamentsPage as JcTournamentsPage } from '../jc/TournamentsPage';
 import { QualifyingPage } from '../wc/QualifyingPage';
+import { RankingsPage as WcRankingsPage } from '../wc/RankingsPage';
 import { WorldCupPage } from '../wc/WorldCupPage';
 import { SiteHeader } from './SiteHeader';
 
@@ -117,6 +118,7 @@ const ROUTES = createRoutesFromElements(
   <Route path="/league/fbajc/awards" element={<JcAwardsPage />} />
   <Route path="/league/fbawc/qualifying" element={<QualifyingPage />} />
   <Route path="/league/fbawc/worldcup" element={<WorldCupPage />} />
+  <Route path="/league/fbawc/rankings" element={<WcRankingsPage />} />
   <Route path="/league/:league/scores" element={<ScoresPage />} />
   <Route path="/league/:league/game/:gameNo" element={<GamePage />} />
   <Route path="/league/:league/playoffs/game/:n" element={<PlayoffGamePage />} />
