@@ -2,10 +2,12 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { classBlockers, classRankingPath, finishClassRanking, setConsensus, startClassRanking, type ClassRankState } from '../../engine/college/classRanking';
 import { boardPath, collegeName, emptyRecruiting, nextClassBoardSeason } from '../../engine/college/state';
+import { hasPositionStep, positionStepDone, resetPositionStep } from '../../engine/rank/positionRanking';
 import { rankingBlockers } from '../../engine/rank/ranking';
 import type { CalendarFile, MetaFile, PlayersFile, RankingFile, RecruitingFile, TransactionsFile } from '../../engine/shared/types';
 import type { WritesResult } from '../../engine/season/moves';
 import { useDoc, useSaving, type Versions } from '../api';
+import { PositionStage } from '../rank/PositionStage';
 import { RankingTable } from '../rank/RankingTable';
 import { PageHeader } from '../components/PageHeader';
 import { commitDocs, newBatchId } from '../roster/commit';
@@ -107,12 +109,32 @@ export function ClassRankingPage() {
   // The table lists its own ranking blockers; only the class-specific ones (consensus, star mix) come from here.
   const own = new Set(rankingBlockers(doc, name));
   const extra = classBlockers(state).filter(b => !own.has(b));
+  // Position step: rank each position first; the whole ranking then merges those lists. A ranking already under way keeps the one-pass flow.
+  const stepOn = hasPositionStep(doc);
+  const stage = !doc.locked && stepOn && !positionStepDone(doc);
+  if (stage) {
+    return (
+      <section className="stack">
+        {title}
+        {autosave.error && <p className="error">{autosave.error}</p>}
+        <PositionStage doc={doc} name={name} teamLabel={team => team ?? '—'} onChange={autosave.update} />
+      </section>
+    );
+  }
   return (
     <section className="stack">
       {title}
       {doc.locked && <div className="card"><p className="muted">The S{boardDoc.classOf} class is ranked. <Link to={`/league/fbajc/recruiting?class=${boardDoc.classOf}&tab=board`}>Open the board ▸</Link></p></div>}
       {autosave.error && <p className="error">{autosave.error}</p>}
       {error && <p className="error">{error}</p>}
+      {!doc.locked && doc.order.length === 0 && (
+        <div className="card toolbar">
+          <span className="muted">{stepOn ? 'Step 2 of 2: build the whole ranking from the position rankings.' : 'Rank each position first, then merge them into the whole ranking.'}</span>
+          <button className="btn" onClick={() => autosave.update(cur => resetPositionStep(stepOn ? cur : { ...cur, byPosition: {} }))}>
+            {stepOn ? 'Redo position rankings' : 'Rank by position first'}
+          </button>
+        </div>
+      )}
       <RankingTable
         doc={doc}
         name={name}
@@ -125,6 +147,7 @@ export function ClassRankingPage() {
         onFinish={() => run(finishClassRanking(state, { batchId: newBatchId() }))}
         busy={saving}
         consensus={{ onSet: (id, v) => autosave.update(cur => setConsensus(cur, id, v)) }}
+        positionMerge={stepOn}
       />
     </section>
   );
