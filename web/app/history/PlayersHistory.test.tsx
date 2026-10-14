@@ -102,6 +102,31 @@ describe('PlayersHistoryPage', () => {
     expect(screen.getByTestId('where').textContent).toBe('/history/fba/players/p00001');
   });
 
+  it('shows the S78 points per game of each player and birth season, and sorts by either', async () => {
+    stub({ seasons: [s72, s71, { ...s78, legacyPpg: [{ playerId: 'p00001', teamId: 'SEA', ppg: 24.5 }, { playerId: 'p00002', teamId: 'BOS', ppg: 30.25 }] }], players, bios: { league: 'fba', bios: [] } });
+    renderAt('/history/fba/players');
+    await screen.findByText('2 players');
+    const table = screen.getByRole('table');
+    const rows = () => within(table).getAllByRole('row').slice(1).map(r => [...r.querySelectorAll('td')].map(td => td.textContent));
+    expect(rows()).toEqual([
+      ['Cameron Lučić', '', '', '24.5', 'S40'],
+      ['Ray Allen', '', '', '30.3', 'S41'],
+    ]);
+    fireEvent.click(within(table).getByRole('button', { name: /Born/ }));
+    expect(rows().map(r => r[4])).toEqual(['S40', 'S41']);
+    fireEvent.click(within(table).getByRole('button', { name: /Born/ }));
+    expect(rows().map(r => r[4])).toEqual(['S41', 'S40']);
+    fireEvent.click(within(table).getByRole('button', { name: /PPG \(S78\)/ }));
+    expect(rows().map(r => r[0])).toEqual(['Ray Allen', 'Cameron Lučić']);
+  });
+
+  it('reads the birth season from the bio when the player record has none', async () => {
+    stub({ players: { nextId: 4, players: { p00001: { id: 'p00001', name: 'Cameron Lučić', birthSeason: null }, p00002: { id: 'p00002', name: 'Ray Allen', birthSeason: 41 } } }, bios: { league: 'fba', bios: [{ playerId: 'p00001', born: 'Born-S51', entries: [] }] } });
+    renderAt('/history/fba/players');
+    await screen.findByText('2 players');
+    expect(within(screen.getByRole('table')).getAllByRole('row').slice(1).map(r => r.querySelectorAll('td')[4].textContent)).toEqual(['S51', 'S41']);
+  });
+
   it('still lists players when playerBios.json is missing', async () => {
     stub({ bios: null });
     renderAt('/history/fba/players');
