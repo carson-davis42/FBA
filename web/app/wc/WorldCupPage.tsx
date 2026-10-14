@@ -1,6 +1,6 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import { mulberry32 } from '../../engine/d2/random';
-import type { MetaFile, Team, WcHostsFile } from '../../engine/shared/types';
+import type { MetaFile, QualifyingFile, Team, TeamsFile, WcHostsFile } from '../../engine/shared/types';
 import { calendarProblem } from '../../engine/season/moves';
 import { worldCupStepId } from '../../engine/wc/state';
 import { wcWrites } from '../../engine/wc/writes';
@@ -10,6 +10,7 @@ import { PageHeader } from '../components/PageHeader';
 import { SubNav } from '../components/SubNav';
 import { GroupsTab } from './GroupsTab';
 import { KnockoutTab } from './KnockoutTab';
+import { QualifiedField } from './QualifiedField';
 import { TeamsTab } from './TeamsTab';
 import { useWcDocs } from './useWcDocs';
 import { useWcRun, type WcFail, type WcOkOrWrites } from './useWcRun';
@@ -24,6 +25,9 @@ export function WorldCupPage() {
   const docs = useWcDocs(season !== null && season % 2 === 0 ? season : null);
   const { saving, error, run } = useWcRun(docs.versions, docs.reload);
   const nextHosts = useDoc<WcHostsFile>(season !== null && season % 2 !== 0 ? 'leagues/fbawc/hosts.json' : null);
+  // Odd season: this season's qualifying, once finished, names the next World Cup's 64 teams.
+  const oddQualifying = useDoc<QualifyingFile>(season !== null && season % 2 !== 0 ? `leagues/fbawc/S${season}/qualifying.json` : null);
+  const oddTeams = useDoc<TeamsFile>(season !== null && season % 2 !== 0 ? 'leagues/fbawc/teams.json' : null);
   const [params, setParams] = useSearchParams();
 
   const head = (title: string) => <PageHeader kicker="World Cup" title={title} />;
@@ -36,6 +40,7 @@ export function WorldCupPage() {
         {head(`S${next} World Cup`)}
         {nextHost && <p className="muted">Host: {nextHost.city}, {nextHost.country}</p>}
         <p className="muted">The World Cup is played in even seasons, after qualifying. This season is <Link to="/league/fbawc/qualifying">qualifying</Link>.</p>
+        {oddQualifying.data && oddTeams.data && <QualifiedField q={oddQualifying.data} byId={new Map(oddTeams.data.teams.map(t => [t.teamId, t]))} season={season} />}
       </section>
     );
   }
@@ -145,6 +150,7 @@ export function WorldCupPage() {
       {startProblem && !wc && <p className="muted">{startProblem}</p>}
       {stepProblem && !finished && <p className="muted">{stepProblem}</p>}
       {error && <p className="error">{error}</p>}
+      {!wc && q && <QualifiedField q={q} byId={byId} season={season} />}
       {wc && rosters && (
         <>
           <SubNav label="World Cup sections" items={TABS} active={tab} onSelect={id => setParams({ tab: id }, { replace: true })} />

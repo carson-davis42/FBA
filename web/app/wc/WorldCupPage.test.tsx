@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -130,5 +130,35 @@ describe('WorldCupPage', () => {
     expect(screen.queryByText('S79 World Cup')).toBeNull();
     expect(await screen.findByText(/Host: Rome, Italy/)).toBeTruthy();
     expect(screen.getByRole('link', { name: /qualifying/i }).getAttribute('href')).toBe('/league/fbawc/qualifying');
+  });
+});
+
+describe('the 64 teams of the next World Cup', () => {
+  const field = () => full.q.qualifying!;
+  it('lists them in the World Cup tab once qualifying has finished, in an odd season', async () => {
+    mount({
+      'meta.json': { currentSeason: 79, rosterSeason: { fba: 79, fbad2: 79, fbajc: 79, fbawc: 78 }, lastSeason: { fba: 78, fbad2: 78, fbajc: 78, fbawc: 78 } },
+      'leagues/fbawc/teams.json': teams,
+      'leagues/fbawc/hosts.json': { hosts: [{ season: 80, city: 'Rome', country: 'Italy' }] },
+      'leagues/fbawc/S79/qualifying.json': field(),
+    });
+    const section = await screen.findByRole('region', { name: 'World Cup field' });
+    expect(within(section).getByRole('heading', { name: 'The 64 teams in the World Cup' })).toBeTruthy();
+    expect(within(section).getAllByRole('listitem')).toHaveLength(64);
+  });
+  it('shows nothing of the field while qualifying is unfinished', async () => {
+    mount({
+      'meta.json': { currentSeason: 79, rosterSeason: { fba: 79, fbad2: 79, fbajc: 79, fbawc: 78 }, lastSeason: { fba: 78, fbad2: 78, fbajc: 78, fbawc: 78 } },
+      'leagues/fbawc/teams.json': teams,
+      'leagues/fbawc/hosts.json': { hosts: [{ season: 80, city: 'Rome', country: 'Italy' }] },
+      'leagues/fbawc/S79/qualifying.json': { ...field(), advanced: [] },
+    });
+    await screen.findByText(/played in even seasons/);
+    expect(screen.queryByRole('region', { name: 'World Cup field' })).toBeNull();
+  });
+  it('lists them before the World Cup is started, in the even season', async () => {
+    mount(docsFor(null));
+    const section = await screen.findByRole('region', { name: 'World Cup field' });
+    expect(within(section).getAllByRole('listitem')).toHaveLength(64);
   });
 });
