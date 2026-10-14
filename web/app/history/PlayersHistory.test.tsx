@@ -109,13 +109,13 @@ describe('PlayersHistoryPage', () => {
     const table = screen.getByRole('table');
     const rows = () => within(table).getAllByRole('row').slice(1).map(r => [...r.querySelectorAll('td')].map(td => td.textContent));
     expect(rows()).toEqual([
-      ['Cameron Lučić', '', '2107', '24.5', 'S40'],
-      ['Ray Allen', '', '2602', '30.3', 'S41'],
+      ['Cameron Lučić', '2107', '24.5', 'S40'],
+      ['Ray Allen', '2602', '30.3', 'S41'],
     ]);
     fireEvent.click(within(table).getByRole('button', { name: /Born/ }));
-    expect(rows().map(r => r[4])).toEqual(['S40', 'S41']);
+    expect(rows().map(r => r[3])).toEqual(['S40', 'S41']);
     fireEvent.click(within(table).getByRole('button', { name: /Born/ }));
-    expect(rows().map(r => r[4])).toEqual(['S41', 'S40']);
+    expect(rows().map(r => r[3])).toEqual(['S41', 'S40']);
     fireEvent.click(within(table).getByRole('button', { name: /PPG \(S78\+\)/ }));
     expect(rows().map(r => r[0])).toEqual(['Ray Allen', 'Cameron Lučić']);
   });
@@ -126,14 +126,14 @@ describe('PlayersHistoryPage', () => {
     await screen.findByText('1 player');
     const cells = within(screen.getByRole('table')).getAllByRole('row')[1].querySelectorAll('td');
     // S78: 24.5 x 86 = 2107 points; S79: 1000 points in 50 games; (2107 + 1000) / (86 + 50) = 22.8.
-    expect([cells[1].textContent, cells[2].textContent, cells[3].textContent]).toEqual(['1', '3107', '22.8']);
+    expect([cells[1].textContent, cells[2].textContent]).toEqual(['3107', '22.8']);
   });
 
   it('reads the birth season from the bio when the player record has none', async () => {
     stub({ players: { nextId: 4, players: { p00001: { id: 'p00001', name: 'Cameron Lučić', birthSeason: null }, p00002: { id: 'p00002', name: 'Ray Allen', birthSeason: 41 } } }, bios: { league: 'fba', bios: [{ playerId: 'p00001', born: 'Born-S51', entries: [] }] } });
     renderAt('/history/fba/players');
     await screen.findByText('2 players');
-    expect(within(screen.getByRole('table')).getAllByRole('row').slice(1).map(r => r.querySelectorAll('td')[4].textContent)).toEqual(['S51', 'S41']);
+    expect(within(screen.getByRole('table')).getAllByRole('row').slice(1).map(r => r.querySelectorAll('td')[3].textContent)).toEqual(['S51', 'S41']);
   });
 
   it('still lists players when playerBios.json is missing', async () => {
