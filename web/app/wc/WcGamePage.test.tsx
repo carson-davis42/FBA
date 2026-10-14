@@ -51,6 +51,22 @@ describe('WcGamePage', () => {
     expect(batches[0].writes.map(w => w.path)).toEqual(['leagues/fbawc/S79/qualifying.json']);
   });
 
+  it('shows the ranking under each country name, live and in the box score', async () => {
+    mount(79, qDocs(stages.qStart), 1);
+    await screen.findByRole('button', { name: 'Sim to end' });
+    expect([...document.querySelectorAll('.scorebug .rec')].map(e => e.textContent)).toEqual([expect.stringMatching(/^Rank #\d+$/), expect.stringMatching(/^Rank #\d+$/)]);
+    cleanup();
+    const next = nextQualifyingGame(stages.qStart);
+    if (typeof next === 'string') throw new Error(next);
+    const sim = simWcGame(stages.qStart.rosters, next, mulberry32(1));
+    if (typeof sim === 'string') throw new Error(sim);
+    const r = recordQualifyingGame(stages.qStart, sim);
+    if (!r.ok) throw new Error('x');
+    mount(79, qDocs(r.state), 1);
+    await screen.findByText('Qualifying');
+    expect([...document.querySelectorAll('.scorebug .rec')].map(e => e.textContent)).toEqual([expect.stringMatching(/^Rank #\d+$/), expect.stringMatching(/^Rank #\d+$/)]);
+  });
+
   it('shows a played qualifying game as a box score', async () => {
     const next = nextQualifyingGame(stages.qStart);
     if (typeof next === 'string') throw new Error(next);
