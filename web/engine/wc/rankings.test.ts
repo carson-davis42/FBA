@@ -12,6 +12,11 @@ describe('wcRankings', () => {
     })
     expect(rows.map(r => [r.teamId, r.rank, r.rating])).toEqual([['BRA', 1, 80], ['ARG', 2, 70], ['FRA', 2, 70], ['ESP', 4, 60]])
   })
+  it('gives a run of three or more tied countries the same rank', () => {
+    const r = roster(60, 60, 60, 60, 60)
+    const rows = wcRankings(['A', 'B', 'C', 'D', 'E'], { A: roster(70, 70, 70, 70, 70), B: r, C: r, D: r, E: roster(50, 50, 50, 50, 50) })
+    expect(rows.map(x => [x.teamId, x.rank])).toEqual([['A', 1], ['B', 2], ['C', 2], ['D', 2], ['E', 5]])
+  })
   it('lists the slot ratings by position and counts generated players', () => {
     const r = [entry('PG', 70), entry('SG', 71, null), entry('SF', 72), entry('PF', 73, null), entry('C', null, null)]
     const [row] = wcRankings(['X'], { X: [r[4], r[1], r[3], r[0], r[2]] })

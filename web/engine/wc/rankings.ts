@@ -26,6 +26,7 @@ export function wcRankings(teamIds: string[], rosters: Record<string, RosterEntr
     }
   })
   rows.sort((a, b) => b.rating - a.rating || a.teamId.localeCompare(b.teamId))
-  return rows.map((r, i) => ({ ...r, rank: i > 0 && rows[i - 1].rating === r.rating ? 0 : i + 1 }))
-    .map((r, i, all) => ({ ...r, rank: r.rank === 0 ? all[i - 1].rank : r.rank }))
+  const out: WcRankRow[] = []
+  rows.forEach((r, i) => out.push({ ...r, rank: i > 0 && out[i - 1].rating === r.rating ? out[i - 1].rank : i + 1 }))
+  return out
 }
