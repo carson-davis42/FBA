@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { calendarFor } from '../shared/calendar';
 import type { CalendarFile, HallOfFameFile, HofCard, PlayersFile, SummaryFile, TransactionsFile } from '../shared/types';
 import {
-  addNominees, candidates, CLASS_SIZE, editNominee, freeNameCard, HOF_PATH, HOF_STEP, induct, NOMINEE_CAP, prefillCard, removeNominee,
+  addNominees, candidates, CLASS_SIZE, editNominee, freeNameCard, HOF_PATH, HOF_STEP, induct, linkHallByName, NOMINEE_CAP, prefillCard, removeNominee,
   type HofState,
 } from './hallOfFame';
 
@@ -254,5 +254,32 @@ describe('induct', () => {
     expect(tx.entries).toEqual([{ seq: 1, batchId: 'b1', type: 'hall-of-fame', teams: [], lines: ['S79 Hall of Fame class: A, C, D'] }]);
     const cal = w['calendar.json'] as CalendarFile;
     expect(cal.steps.find(s => s.id === HOF_STEP)!.done).toBe(true);
+  });
+});
+
+describe('linking Hall of Fame cards by name', () => {
+  const named = (): HallOfFameFile => hof({
+    classes: [{ season: 'S78', inductees: [card('Zed Zephyr'), card('Al Able', pid(2)), card('Nobody Known')] }],
+    nominees: [card('Cy Cole')],
+  });
+  it('fills a missing player id when exactly one player has the name, and touches nothing else', () => {
+    const linked = linkHallByName(named(), players());
+    expect(linked.classes[0].inductees.map(i => i.playerId)).toEqual([pid(1), pid(2), null]);
+    expect(linked.nominees[0].playerId).toBe(pid(4));
+  });
+  it('leaves a name two players share unlinked', () => {
+    const p = players();
+    p.players[pid(9)] = { id: pid(9), name: 'zed zephyr', birthSeason: 50 };
+    expect(linkHallByName(named(), p).classes[0].inductees[0].playerId).toBeNull();
+  });
+  it('returns the same object when there is nothing to link', () => {
+    const done = hof({ classes: [{ season: 'S78', inductees: [card('Al Able', pid(2))] }] });
+    expect(linkHallByName(done, players())).toBe(done);
+  });
+  it('induct writes the player id of a name-only nominee into the class', () => {
+    const r = induct(state({ hof: hof({ nominees: [card('Zed Zephyr'), card('Cy Cole'), card('Unknown Guy')] }) }), [0, 1, 2], ctx);
+    if (!r.ok) throw new Error(r.problems.join());
+    const doc = writeMap(r)[HOF_PATH] as HallOfFameFile;
+    expect(doc.classes[0].inductees.map(i => i.playerId)).toEqual([pid(1), pid(4), null]);
   });
 });

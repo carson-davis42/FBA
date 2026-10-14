@@ -159,6 +159,11 @@ describe('player page career and emblem', () => {
     expect(HOF_EMBLEM.logoFolder).toBe('FBA_Gold');
   });
 
+  it('shows the gold FBA logo for an inductee whose Hall of Fame card has no player id, matched by name', async () => {
+    const c = await open('p00001', { '/api/state/leagues/fba/hallOfFame.json': { league: 'fba', classes: [{ season: 'S79', inductees: [{ name: 'Andre Active', playerId: null, retiredSeason: 'S68', lines: [] }] }], nominees: [], removed: [] } });
+    expect(heroSrc(c)).toBe(logoUrl(HOF_EMBLEM.logoFolder!, 79, HOF_EMBLEM.logoFile));
+  });
+
   it('shows the school logo for a player still in college', async () => {
     const c = await open('p00004');
     expect(heroSrc(c)).toBe(logoUrl('FBAJC_Final', 79, 'Army.png'));
