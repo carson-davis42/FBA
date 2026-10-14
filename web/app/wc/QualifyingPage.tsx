@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { mulberry32 } from '../../engine/d2/random';
 import type { MetaFile, Team } from '../../engine/shared/types';
 import { calendarProblem } from '../../engine/season/moves';
@@ -10,18 +10,22 @@ import { wcWrites } from '../../engine/wc/writes';
 import { useDoc } from '../api';
 import { ClinchLegend, RankCell } from '../components/Clinch';
 import { PageHeader } from '../components/PageHeader';
+import { SubNav } from '../components/SubNav';
 import { TeamName } from '../components/TeamName';
+import { QualifyingScores } from './QualifyingScores';
 import { useWcDocs } from './useWcDocs';
 import { useWcRun, type WcFail, type WcOkOrWrites } from './useWcRun';
 import './wc.css';
 
 const GAMES = 210;
+const TABS = [{ id: 'table', label: 'Table' }, { id: 'scores', label: 'Scores' }];
 
 export function QualifyingPage() {
   const meta = useDoc<MetaFile>('meta.json');
   const season = meta.data?.currentSeason ?? null;
   const docs = useWcDocs(season !== null && season % 2 === 1 ? season : null);
   const { saving, error, run } = useWcRun(docs.versions, docs.reload);
+  const [params, setParams] = useSearchParams();
 
   if (season === null) return <section className="wc-page"><PageHeader kicker="World Cup" title="Qualifying" /></section>;
   if (season % 2 === 0) {
@@ -73,14 +77,19 @@ export function QualifyingPage() {
 
   const status = !q ? null : finished ? 'Finished' : `${played} of ${GAMES} games played · ${GAMES - played} to go`;
 
+  const requested = params.get('tab');
+  const tab = TABS.some(t => t.id === requested) ? (requested as string) : 'table';
   let body: JSX.Element | null = null;
   if (q) {
     const table = qualifyingTable(q);
     const clinch = qualifyingClinch(q);
     const rows = finished ? table.rows.slice(0, 49) : table.rows;
-    const label = (id: string) => byId.get(id)?.name ?? id;
     body = (
       <>
+        <SubNav label="Qualifying sections" items={TABS} active={tab} onSelect={id => setParams({ tab: id }, { replace: true })} />
+        <div className="tab-panel" id={`panel-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`}>
+        {tab === 'scores' ? <QualifyingScores q={q} byId={byId} season={season} canWatch={!finished && !stepProblem} /> : (
+        <>
         <section>
           <h2>Automatic qualifiers</h2>
           <ul className="wc-auto">
@@ -119,22 +128,9 @@ export function QualifyingPage() {
           {q.games.length > 0 && table.ties.length > 0 && <ul className="wc-ties muted">{table.ties.map(n => <li key={n}>{n}</li>)}</ul>}
           <ClinchLegend kinds={rows.map(r => clinch[r.teamId] ?? null)} league="fbawc" />
         </section>
-        <section>
-          <h2>Games</h2>
-          <ol className="wc-games">
-            {[...q.schedule].reverse().map(g => {
-              const r = q.games[g.gameNo - 1];
-              const watch = !r && !finished && !stepProblem && g.gameNo === played + 1;
-              return (
-                <li key={g.gameNo} className={r ? undefined : 'wc-unplayed'}>
-                  {`G${g.gameNo} ${label(g.home)} ${r ? `${r.homePts}–${r.awayPts}` : 'vs'} ${label(g.away)}`}
-                  {r && <>{' '}<Link to={`/league/fbawc/game/${g.gameNo}`}>Box score</Link></>}
-                  {watch && <>{' '}<Link to={`/league/fbawc/game/${g.gameNo}`}>Watch</Link></>}
-                </li>
-              );
-            })}
-          </ol>
-        </section>
+        </>
+        )}
+        </div>
       </>
     );
   }

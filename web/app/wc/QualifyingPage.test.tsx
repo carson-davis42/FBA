@@ -141,4 +141,31 @@ describe('QualifyingPage', () => {
     expect(screen.queryByText('S80 Qualifying')).toBeNull();
     expect(screen.getByText(/next is S81/)).toBeTruthy();
   });
+  it('has a Table tab and a Scores tab: the table by default, game cards by day on Scores', async () => {
+    const s = started(7);
+    mount(base(calOpen, s));
+    const tabs = await screen.findByRole('tablist', { name: 'Qualifying sections' });
+    expect(within(tabs).getAllByRole('tab').map(t => t.textContent)).toEqual(['Table', 'Scores']);
+    expect(screen.getByRole('heading', { name: 'Qualifying table' })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: 'Games' })).toBeNull();
+    fireEvent.click(within(tabs).getByRole('tab', { name: 'Scores' }));
+    expect(screen.queryByRole('heading', { name: 'Qualifying table' })).toBeNull();
+    expect(screen.getByText(/^Day \d+ of \d+$/)).toBeTruthy();
+    const finals = screen.getAllByText(/^Game \d+ · Final/);
+    expect(finals.length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('link', { name: 'Box score' }).length).toBe(finals.length);
+  });
+
+  it('opens on the day with the next game, and the day strip moves between days', async () => {
+    const s = started(40);
+    mount(base(calOpen, s));
+    fireEvent.click(await screen.findByRole('tab', { name: 'Scores' }));
+    const label = () => screen.getByText(/^Day \d+ of \d+$/).textContent!;
+    const today = label();
+    expect(screen.getByText(/^Game 41 · Next$/)).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Previous day' }));
+    expect(label()).not.toBe(today);
+    fireEvent.click(screen.getByRole('button', { name: 'Today' }));
+    expect(label()).toBe(today);
+  });
 });
