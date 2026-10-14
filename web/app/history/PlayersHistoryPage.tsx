@@ -14,14 +14,20 @@ const LETTERS = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)
 /** S78 stored points per game only (no totals); every player's S78 line is taken as this many games. */
 const S78_GAMES = 86;
 
-interface Row { playerId: string; name: string; pts: number; ppg: number | null; born: number | null }
+interface Row { playerId: string; name: string; pts: number; ppg: number | null; born: number | null; bornLabel: string }
 const sortValue = (r: Row, key: string): SortValue => (key === 'name' ? r.name : key === 'born' ? r.born : key === 'ppg' ? r.ppg : r.pts);
 
-/** The season a player was born: the player record, else the bio's "Born-S51" / "FFL S2(-3)". */
-function birthSeason(birth: number | null | undefined, born: string | undefined): number | null {
-  if (birth !== undefined && birth !== null) return birth;
-  const m = born ? /^(?:Born-)?S(-?\d+)$/.exec(born.trim()) ?? /^FFL S\d+\((-?\d+)\)$/.exec(born.trim()) : null;
-  return m ? Number(m[1]) : null;
+/**
+ * When a player was born: `season` is the number he sorts by and `label` what the table shows. A season birth is "S51"; an FFL-era
+ * birth is "FFL S1(-53)", sorted by the number in brackets so FFL S1(-53) comes before FFL S2(-52) and every S-era birth.
+ */
+function birthOf(birth: number | null | undefined, born: string | undefined): { season: number; label: string } | null {
+  const text = born?.trim().replace(/^Born-/, '') ?? '';
+  const ffl = /^FFL S\d+\((-?\d+)\)$/.exec(text);
+  if (ffl) return { season: Number(ffl[1]), label: text };
+  if (birth !== undefined && birth !== null) return { season: birth, label: `S${birth}` };
+  const m = /^S(-?\d+)$/.exec(text);
+  return m ? { season: Number(m[1]), label: `S${m[1]}` } : null;
 }
 
 /** The first letter of the last name, without accents. */
@@ -46,12 +52,13 @@ export function PlayersHistoryPage() {
     const bioOf = new Map((biosData?.bios ?? []).map(b => [b.playerId, b.born]));
     return playerIndex(seasons, biosData, players.data).map(p => {
       const live = totals.get(p.playerId) ?? { gp: 0, pts: 0 };
+      const birth = birthOf(players.data!.players[p.playerId]?.birthSeason, bioOf.get(p.playerId));
       const old = ppg78.get(p.playerId);
       const gp = live.gp + (old !== undefined ? S78_GAMES : 0);
       const pts = live.pts + (old !== undefined ? Math.round(old * S78_GAMES) : 0);
       return {
         ...p, pts, ppg: gp > 0 ? Math.round((pts / gp) * 10) / 10 : null,
-        born: birthSeason(players.data!.players[p.playerId]?.birthSeason, bioOf.get(p.playerId)),
+        born: birth?.season ?? null, bornLabel: birth?.label ?? '',
       };
     });
   }, [seasons, players.data, biosData]);
@@ -89,7 +96,7 @@ export function PlayersHistoryPage() {
                 <td><PlayerLink id={p.playerId} players={players.data as PlayersFile} /></td>
                 <td className="n">{p.pts > 0 ? p.pts : ''}</td>
                 <td className="n">{p.ppg !== null ? p.ppg.toFixed(1) : ''}</td>
-                <td className="n">{p.born !== null ? `S${p.born}` : ''}</td>
+                <td className="n">{p.bornLabel}</td>
               </tr>
             ))}
           </tbody>

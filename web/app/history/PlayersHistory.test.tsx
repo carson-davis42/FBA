@@ -136,6 +136,25 @@ describe('PlayersHistoryPage', () => {
     expect(within(screen.getByRole('table')).getAllByRole('row').slice(1).map(r => r.querySelectorAll('td')[3].textContent)).toEqual(['S51', 'S41']);
   });
 
+  it('lists FFL-era births by the number in brackets, so FFL S1(-53) sorts before FFL S2(-52) and before S-era births', async () => {
+    stub({
+      players: { nextId: 5, players: {
+        p00001: { id: 'p00001', name: 'Cameron Lučić', birthSeason: null }, p00002: { id: 'p00002', name: 'Ray Allen', birthSeason: null }, p00003: { id: 'p00003', name: 'Sam Nobody', birthSeason: 40 },
+      } },
+      bios: { league: 'fba', bios: [
+        { playerId: 'p00001', born: 'Born-FFL S2(-52)', entries: [] }, { playerId: 'p00002', born: 'Born-FFL S1(-53)', entries: [] },
+        { playerId: 'p00003', born: 'Born-S40', entries: [] },
+      ] },
+      seasons: [s72, s71, { ...s78, legacyPpg: [{ playerId: 'p00001', teamId: 'SEA', ppg: 10 }, { playerId: 'p00002', teamId: 'SEA', ppg: 10 }, { playerId: 'p00003', teamId: 'SEA', ppg: 10 }] }],
+    });
+    renderAt('/history/fba/players');
+    await screen.findByText('3 players');
+    const table = screen.getByRole('table');
+    const rows = () => within(table).getAllByRole('row').slice(1).map(r => [...r.querySelectorAll('td')].map(td => td.textContent));
+    fireEvent.click(within(table).getByRole('button', { name: /Born/ }));
+    expect(rows().map(r => [r[0], r[3]])).toEqual([['Ray Allen', 'FFL S1(-53)'], ['Cameron Lučić', 'FFL S2(-52)'], ['Sam Nobody', 'S40']]);
+  });
+
   it('still lists players when playerBios.json is missing', async () => {
     stub({ bios: null });
     renderAt('/history/fba/players');
