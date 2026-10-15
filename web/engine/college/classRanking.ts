@@ -173,10 +173,13 @@ export function finishClassRanking(state: ClassRankState, ctx: MoveContext): Wri
   const blockers = classBlockers(state);
   if (blockers.length) return fail(blockers);
   const consensus = doc.consensus ?? {};
-  const ranked = state.board.recruits.map(p => {
+  const rated = state.board.recruits.map(p => {
     const c = consensus[p.playerId];
     return c === undefined ? p : { ...p, rating: doc.ratings[p.playerId] ?? p.rating, consensus: c, stars: starsFor(c) };
   });
+  // The board lists the class best first: its rank column is the place in this array.
+  const place = new Map(doc.order.map((id, i) => [id, i]));
+  const ranked = [...rated].sort((a, b) => (place.get(a.playerId) ?? Infinity) - (place.get(b.playerId) ?? Infinity));
   const tx = appendTx(state.tx, ctx, 'class', [], [`S${state.board.classOf} class ranked: ${recruits(ranked.length)}`]);
   return {
     ok: true,

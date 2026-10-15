@@ -196,6 +196,23 @@ describe('finishClassRanking', () => {
     expect(cal.steps.find(x => x.id === 'rank-s80-class')?.done).toBe(true);
   });
 
+  it('puts the board in ranking order, so the recruiting page lists the class best first', () => {
+    const s = filled();
+    const doc = s.ranking!;
+    // The second recruit is ranked first: swap the two places, with their ratings and consensus.
+    const [a, b] = [idOf(0), idOf(1)];
+    const swapped = {
+      ...doc,
+      order: [b, a, ...doc.order.slice(2)],
+      ratings: { ...doc.ratings, [b]: doc.ratings[a], [a]: doc.ratings[b] },
+      consensus: { ...doc.consensus, [b]: doc.consensus![a], [a]: doc.consensus![b] },
+    };
+    const r = ok(finishClassRanking({ ...s, ranking: swapped }, ctx));
+    const board = r.writes[1].doc as RecruitingFile;
+    expect(board.recruits.map(p => p.playerId)).toEqual(swapped.order);
+    expect(board.recruits[0]).toMatchObject({ playerId: b, consensus: 99, stars: 5 });
+  });
+
   it('is refused with blockers, out of calendar order, when already ranked and when not started', () => {
     const s = filled();
     expect(problems(finishClassRanking({ ...s, ranking: setConsensus(s.ranking!, idOf(3), null) }, ctx))).toEqual(['1 player still needs a consensus']);
