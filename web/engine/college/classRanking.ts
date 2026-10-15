@@ -108,7 +108,7 @@ export function startClassRanking(state: ClassRankState): WritesResult {
     playerId: p.playerId, position: p.position, age: null, team: p.committedTo, prevRating: null, otherRating: null, stat: null,
   }));
   const ranking: RankingFile = {
-    league: 'fbajc', season: board.season, kind: 'college-class', locked: false, rows, order: [], ratings: {}, consensus: {}, ...curves(state.prevRanking),
+    league: 'fbajc', season: board.season, kind: 'college-class', locked: false, rows, order: [], ratings: {}, consensus: {}, byPosition: {}, ...curves(state.prevRanking),
   };
   return { ok: true, writes: [{ path: classRankingPath(board.season), doc: ranking }], label: `Start S${board.classOf} class ranking` };
 }

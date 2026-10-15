@@ -342,6 +342,8 @@ export const RankingFile = z.object({
   /** college-class only: each player's consensus, and the suggestion ladder (high to low). */
   consensus: z.record(playerId, consensus).optional(),
   consensusCurve: z.array(consensus).optional(),
+  /** college-class only: each position's own ranking, best first, made before the whole ranking (which merges them). */
+  byPosition: z.object({ PG: idList, SG: idList, SF: idList, PF: idList, C: idList }).partial().strict().optional(),
 }).strict().superRefine((doc, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const ids = new Set(doc.rows.map(r => r.playerId));
@@ -364,6 +366,17 @@ export const RankingFile = z.object({
     if (unrated.length) issue('A finished ranking must rate every player');
   }
   if (doc.kind !== 'college-class' && (doc.consensus || doc.consensusCurve)) issue('Only a class ranking has consensus');
+  if (doc.byPosition) {
+    if (doc.kind !== 'college-class') issue('Only a class ranking has position rankings');
+    const where = new Map(doc.rows.map(r => [r.playerId, r.position]));
+    for (const [pos, list] of Object.entries(doc.byPosition)) {
+      if (new Set(list).size !== list.length) issue(`A player is listed twice in the ${pos} ranking`);
+      for (const id of list) if (where.get(id) !== pos) issue(`${id} is in the ${pos} ranking but doesn't play ${pos}`);
+      // The whole ranking is a merge: at every position it follows that position's own order.
+      const ranked = doc.order.filter(id => where.get(id) === pos);
+      if (ranked.some((id, k) => list[k] !== id)) issue(`The whole ranking contradicts the ${pos} ranking`);
+    }
+  }
   for (const id of Object.keys(doc.consensus ?? {})) if (!ids.has(id)) issue(`${id} has a consensus but isn't in the rows`);
   if ((doc.consensusCurve ?? []).some((v, k, a) => k > 0 && v > a[k - 1])) issue('The consensus curve must run from high to low');
   if (doc.locked && doc.kind === 'college-class' && doc.order.some(id => doc.consensus?.[id] === undefined)) {

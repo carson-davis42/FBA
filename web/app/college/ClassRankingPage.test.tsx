@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { classRankingPath, setConsensus, startClassRanking, type ClassRankState } from '../../engine/college/classRanking';
 import { boardPath, collegeName } from '../../engine/college/state';
 import { collegeClassState } from '../../engine/college/testFixtures';
+import { takeRestAtPosition } from '../../engine/rank/positionRanking';
 import { setRating, takeRest } from '../../engine/rank/ranking';
 import type { CalendarFile, RankingFile, RecruitingFile } from '../../engine/shared/types';
 import { stubApi } from '../d2/testDocs';
@@ -40,11 +41,17 @@ function classState(rankCurrent = true): ClassRankState {
   });
   return { board: { ...base.recruiting, recruits }, ranking: null, prevRanking: null, players, tx: base.tx, season: 79, calendar: CALENDAR(rankCurrent) };
 }
-const started = (prev: RankingFile | null = null, rankCurrent = true): ClassRankState => {
+/** Just started: the position step is still to do. */
+const justStarted = (prev: RankingFile | null = null, rankCurrent = true): ClassRankState => {
   const s = { ...classState(rankCurrent), prevRanking: prev };
   const r = startClassRanking(s);
   if (!r.ok) throw new Error(r.problems.join('; '));
   return { ...s, ranking: r.writes[0].doc as RankingFile };
+};
+/** Started with the position step done, so the whole ranking is what is left. */
+const started = (prev: RankingFile | null = null, rankCurrent = true): ClassRankState => {
+  const s = justStarted(prev, rankCurrent);
+  return { ...s, ranking: takeRestAtPosition(s.ranking!, id => collegeName(s.players, id)) };
 };
 /** 12 5-star (99 down to 93.5), 14 4-star, 4 3-star. */
 const CONSENSUS = [
@@ -221,5 +228,41 @@ describe('ClassRankingPage', () => {
     expect(await screen.findByText(/The S80 class is ranked/)).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Finish ranking' })).toBeNull();
     expect((screen.getByLabelText('Consensus for Kid 01') as HTMLInputElement).disabled).toBe(true);
+  });
+
+  it('starts with the position step: rank each position, then the whole ranking offers the best remaining player at each position', async () => {
+    const s = justStarted();
+    const log = stubApi(docsFor(s));
+    renderPage();
+    expect(await screen.findByText(/Step 1 of 2/)).toBeTruthy();
+    expect(screen.getByText('0 of 30 placed.', { exact: false })).toBeTruthy();
+    expect(screen.queryByRole('table', { name: 'Unranked' })).toBeNull();
+    // Rank PG: Kid 06 before Kid 01.
+    fireEvent.click(await screen.findByRole('button', { name: 'Rank Kid 06 next at PG' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Rank Kid 01 next at PG' }));
+    const pg = await screen.findByRole('table', { name: 'PG ranking' });
+    expect(within(pg).getAllByRole('row').slice(1).map(r => within(r).getAllByRole('cell')[1].textContent)).toEqual(['Kid 06', 'Kid 01']);
+    // Place everyone left, then the merge stage shows only each position's next player.
+    fireEvent.click(screen.getByRole('button', { name: 'Place everyone left, in order' }));
+    expect(await screen.findByText(/Step 2 of 2/)).toBeTruthy();
+    const unranked = await screen.findByRole('table', { name: 'Unranked' });
+    const names = within(unranked).getAllByRole('row').slice(1).flatMap(r => { const c = within(r).getAllByRole('cell'); return c.length > 1 ? [c[1].textContent] : []; });
+    expect(names).toHaveLength(5);
+    expect(names).toContain('Kid 06');
+    expect(names).not.toContain('Kid 01');
+    expect(log.batches).toHaveLength(0);
+  });
+
+  it('ranking the head of a position brings the next player at that position forward', async () => {
+    const s = justStarted();
+    stubApi(docsFor(s));
+    renderPage();
+    fireEvent.click(await screen.findByRole('button', { name: 'Place everyone left, in order' }));
+    await screen.findByText(/Step 2 of 2/);
+    const unranked = () => within(screen.getByRole('table', { name: 'Unranked' }));
+    expect(unranked().getByRole('button', { name: 'Rank Kid 01 next' })).toBeTruthy();
+    fireEvent.click(unranked().getByRole('button', { name: 'Rank Kid 01 next' }));
+    expect(await unranked().findByRole('button', { name: 'Rank Kid 06 next' })).toBeTruthy();
+    expect(unranked().queryByRole('button', { name: 'Rank Kid 01 next' })).toBeNull();
   });
 });
