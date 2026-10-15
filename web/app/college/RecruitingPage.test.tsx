@@ -138,7 +138,7 @@ describe('RecruitingPage', () => {
       renderAt('/league/fbajc/recruiting');
       expect(await screen.findByRole('heading', { name: 'FBAJC recruiting · Class of S79' })).toBeTruthy();
       expect((screen.getByRole('combobox', { name: 'Class' }) as HTMLSelectElement).value).toBe('79');
-      expect(screen.getAllByRole('option').map(o => o.textContent)).toEqual(['S79 class (plays S79)', 'S80 class']);
+      expect(screen.getAllByRole('option').map(o => o.textContent)).toEqual(['S79 class', 'S80 class']);
     });
 
     it('defaults to the next class when the S78 board does not exist', async () => {

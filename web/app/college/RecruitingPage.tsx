@@ -52,7 +52,7 @@ export function RecruitingPage() {
         <label className="muted">
           Class{' '}
           <select aria-label="Class" value={classOf} onChange={e => setParams({ class: e.target.value })}>
-            <option value={n}>S{n} class (plays S{n})</option>
+            <option value={n}>S{n} class</option>
             <option value={n + 1}>S{n + 1} class</option>
           </select>
         </label>
