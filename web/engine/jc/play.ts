@@ -232,8 +232,8 @@ export function conferencesOf(state: JcState): string[] {
 }
 
 /**
- * Plays every conference game one conference has left, across all the remaining conference days, in memory; one result. Other
- * conferences' games are left alone, so a day is finished (and gets its ranking snapshot) once every conference has played it.
+ * Plays the games one conference has left on the open day (the first day not finished), in memory; one result. Other conferences'
+ * games are left alone, so the day is finished (and gets its ranking snapshot) once every conference has played it.
  */
 export function playConference(state: JcState, conference: string, rng: Rng): JcResult {
   const problem = calendarProblem(state.calendar, 'fbajc', 'The season is played');
@@ -244,8 +244,10 @@ export function playConference(state: JcState, conference: string, rng: Rng): Jc
   if (members.size === 0) return jcFail([`There is no conference ${conference}`]);
   const done = new Set((state.results?.games ?? []).map(g => g.gameNo));
   const days = [...state.schedule.days].sort((a, b) => a.day - b.day);
-  const todo = days.filter(d => d.kind === 'conference').flatMap(d => d.games.filter(g => !done.has(g.gameNo) && members.has(g.home) && members.has(g.away)));
-  if (todo.length === 0) return jcFail([`${conference} has no conference games left`]);
+  const open = days.find(d => d.day === dayPlayed(state) + 1);
+  if (!open || open.kind !== 'conference') return jcFail(['Conference play has not started: the open day is not a conference day']);
+  const todo = open.games.filter(g => !done.has(g.gameNo) && members.has(g.home) && members.has(g.away));
+  if (todo.length === 0) return jcFail([`${conference} has no games left on day ${open.day}`]);
 
   const book = newBook(state);
   const refRating = leagueRefRating(state.rosters);
@@ -274,5 +276,5 @@ export function playConference(state: JcState, conference: string, rng: Rng): Jc
     results: { league: 'fbajc', season: state.season, locked: state.results?.locked ?? false, games: allGames },
     rankings: { ...rankings, snapshots },
   };
-  return { ok: true, state: next, changed: ['results', 'rosters', 'rankings'], label: `Sim rest of ${conference}: ${results.length} games` };
+  return { ok: true, state: next, changed: ['results', 'rosters', 'rankings'], label: `Sim rest of ${conference} on day ${open.day}: ${results.length} games` };
 }

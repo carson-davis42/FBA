@@ -209,26 +209,33 @@ describe('rating changes', () => {
 });
 
 describe('playConference', () => {
-  it("plays one conference's remaining conference games on their own, then the day snapshots appear once every conference has played", () => {
+  function atConferencePlay() {
     let s = jcStateFixture();
     for (let d = 0; d < 7; d++) {
       const r = playDay(s, mulberry32(100 + d));
       if (!r.ok) throw new Error(r.problems.join());
       s = r.state;
     }
+    return s;
+  }
+
+  it("plays one conference's games for the open day only, then the day finishes once every conference has played it", () => {
+    const s = atConferencePlay();
     const confs = conferencesOf(s);
     expect(confs).toHaveLength(18);
-    const before = s.results!.games.length;
+    const day8 = s.schedule!.days.find(d => d.day === 8)!;
+    const members = new Set(s.teams.teams.filter(t => t.group === confs[0]).map(t => t.teamId));
+    const mine = day8.games.filter(g => members.has(g.home) && members.has(g.away)).map(g => g.gameNo);
+    expect(mine).toHaveLength(6);
+
     const one = playConference(s, confs[0], mulberry32(1));
     if (!one.ok) throw new Error(one.problems.join());
-    const members = new Set(s.teams.teams.filter(t => t.group === confs[0]).map(t => t.teamId));
-    const added = one.state.results!.games.slice().filter(g => g.gameNo > 756);
-    // 12 teams, 22 conference days, 6 games a day.
-    expect(one.state.results!.games.length - before).toBe(132);
-    expect(added.every(g => members.has(g.home) && members.has(g.away))).toBe(true);
-    // Not a single day is finished yet, so no new snapshot and no day counted as played.
-    expect(one.state.rankings!.snapshots.map(x => x.afterDay)).toEqual([0, 1, 2, 3, 4, 5, 6, 7].filter(d => s.rankings!.snapshots.some(x => x.afterDay === d)));
+    const played = one.state.results!.games.filter(g => g.gameNo > 756).map(g => g.gameNo).sort((a, b) => a - b);
+    expect(played).toEqual([...mine].sort((a, b) => a - b));
+    // Day 8 is not finished (the other conferences still have games), so no snapshot and no extra day played.
+    expect(one.state.rankings!.snapshots.some(x => x.afterDay === 8)).toBe(false);
     expect(dayPlayedOf(one.state)).toBe(7);
+    // Nothing left for that conference today.
     expect(playConference(one.state, confs[0], mulberry32(2)).ok).toBe(false);
 
     let all = one.state;
@@ -237,15 +244,18 @@ describe('playConference', () => {
       if (!r.ok) throw new Error(r.problems.join());
       all = r.state;
     }
-    expect(all.results!.games.length - before).toBe(132 * 18);
-    for (let day = 8; day <= 29; day++) expect(all.rankings!.snapshots.some(x => x.afterDay === day)).toBe(true);
-    expect(regularSeasonOver(all)).toBe(true);
+    expect(all.rankings!.snapshots.some(x => x.afterDay === 8)).toBe(true);
+    expect(dayPlayedOf(all)).toBe(8);
     expect(new Set(all.results!.games.map(g => g.gameNo)).size).toBe(all.results!.games.length);
+    // The next open day is day 9: the same conference can be simmed again.
+    expect(playConference(all, confs[0], mulberry32(4)).ok).toBe(true);
   }, 120000);
 
-  it('refuses an unknown conference and when the season is over', () => {
+  it('refuses an unknown conference, and before conference play', () => {
     const s = jcStateFixture();
-    const r = playConference(s, 'NOPE', mulberry32(1));
-    expect(r.ok).toBe(false);
+    expect(playConference(s, 'NOPE', mulberry32(1)).ok).toBe(false);
+    const early = playConference(s, conferencesOf(s)[0], mulberry32(1));
+    expect(early.ok).toBe(false);
+    if (!early.ok) expect(early.problems[0]).toMatch(/Conference play has not started/);
   });
 });

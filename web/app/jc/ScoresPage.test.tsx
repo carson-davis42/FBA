@@ -280,7 +280,7 @@ describe('ScoresPage', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Go to day 2' }));
     expect(screen.getByRole('region', { name: 'Rating changes' }).textContent).toContain('No games have been played on day 2 yet.');
   });
-  it('offers "Sim rest of conference" only once conference play is reached, and sims the chosen conference in one batch', async () => {
+  it('offers "Sim rest of conference" only once conference play is reached, and sims the chosen conference for that day in one batch', async () => {
     // Before conference play (day 1 is a tournament day) the button is absent.
     const early = jcStateFixture();
     mount(early);
@@ -302,7 +302,7 @@ describe('ScoresPage', () => {
     expect(select.options.length).toBe(18);
     fireEvent.click(screen.getByRole('button', { name: 'Sim rest of conference' }));
     await waitFor(() => expect(batches.length).toBe(1));
-    expect((batches[0] as unknown as { label: string }).label).toMatch(/^Sim rest of .+: 132 games$/);
+    expect((batches[0] as unknown as { label: string }).label).toMatch(/^Sim rest of .+ on day 8: 6 games$/);
     expect(batches[0].writes.map((w: { path: string }) => w.path).sort()).toEqual(
       ['leagues/fbajc/S79/rankings.json', 'leagues/fbajc/S79/results.json', 'leagues/fbajc/S79/rosters.json']);
   }, 60000);
