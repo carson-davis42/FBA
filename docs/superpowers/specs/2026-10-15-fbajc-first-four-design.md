@@ -20,7 +20,7 @@ For each group (power: `isMajor(conf)`, other: not):
 6. **First Four In:** the 4 teams of the group in the 64 ranked just above the spot holders: they do not play.
 7. **First Four Out:** the next 4 teams of the group in `leftover` after the challengers.
 
-The 16 play-in teams are removed from `leftover`, so the NIT is picked from what remains. Play-in losers are out of the postseason (not NIT). A conference tournament champion never plays the First Four (a title guarantees the Round of 64), and neither does a regular-season champion (it keeps a direct spot or stays in the leftover for the NIT). Both are skipped when the spot holders and challengers are chosen.
+The 16 play-in teams are removed from `leftover`, so the NIT is picked from what remains. Play-in losers are out of the postseason (not NIT). A conference tournament champion never plays the First Four (a title guarantees the Round of 64) and is skipped when the spot holders and challengers are chosen. A regular-season champion has no such protection: being picked for the 72-team field is its guarantee, and one that misses the field entirely is still guaranteed the NIT.
 
 ## One shared function
 

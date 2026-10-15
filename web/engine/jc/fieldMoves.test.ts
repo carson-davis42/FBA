@@ -1,8 +1,8 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
-import { playAllConf, startConfTournaments } from './confTourney';
+import { latestRanking, playAllConf, startConfTournaments } from './confTourney';
 import { selectNit } from './field';
-import { setFields, swapField } from './fieldMoves';
+import { computeField, setFields, swapField } from './fieldMoves';
 import { buildNit } from './regions';
 import { jcPlayedFixture } from './testFixtures';
 import type { JcState } from './state';
@@ -136,6 +136,18 @@ describe('First Four in the fields', () => {
       expect(f.mm.teams).toContain(c);
       expect(standIns.has(c as string)).toBe(false);
     }
+  });
+  it('lets a regular-season champion play the First Four: only tournament champions are protected', () => {
+    const s = fields();
+    const f = s.postseason!.field!;
+    const ranking = latestRanking(s)!;
+    const confOf = (id: string): string => s.teams.teams.find(t => t.teamId === id)!.group!;
+    const champions = s.postseason!.conf.map(b => b.champion!);
+    const holder = f.mm.firstFour[0].teams[0];
+    // Make the first play-in team a regular-season champion: it still plays, and the result is the same field.
+    const withRs = computeField(ranking, champions, [holder], confOf);
+    expect(withRs.firstFour.pairs.some(p => p.teams.includes(holder))).toBe(true);
+    expect(withRs.mmTeams).toEqual(f.mm.teams);
   });
   it('swaps a challenger for a leftover team and updates the pair', () => {
     const s = fields();
