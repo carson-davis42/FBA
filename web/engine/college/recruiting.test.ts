@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { RecruitingFile, type ClassDraftRow } from '../shared/types';
 import {
-  addDraftRow, appendDraftRows, createClass, draftCounts, editDraftRow, editRecruit, parseClassList, removeDraftRow, removeRecruit,
+  addDraftRow, appendDraftRows, classByRanking, createClass, draftCounts, editDraftRow, editRecruit, parseClassList, removeDraftRow, removeRecruit,
 } from './recruiting';
 import { boardPath, currentClassBoardSeason, emptyRecruiting, nextClassBoardSeason, playsThisSeason, recruitingDocPath, recruitingWrites, type RecruitingResult, type RecruitingState } from './state';
 import { collegeBaseState, collegeClassState } from './testFixtures';
@@ -164,5 +164,17 @@ describe('editRecruit and removeRecruit', () => {
       .toEqual({ ok: false, problems: ["Remove Malik Ford's projections first"] });
     expect(removeRecruit(withRecruit(s, 'p01915', { committedTo: 'TEX' }), 'p01915'))
       .toEqual({ ok: false, problems: ['Malik Ford has committed; decommit them first'] });
+  });
+});
+
+describe('classByRanking', () => {
+  const p = (playerId: string, consensus: number | null) => ({ playerId, position: 'PG' as const, classYear: 'Fr' as const, rating: 80, stars: null, consensus, projections: {}, committedTo: null });
+  it('lists the ranked class best first by consensus and keeps unranked recruits in creation order after them', () => {
+    const list = [p('p00001', 85), p('p00002', null), p('p00003', 99), p('p00004', null), p('p00005', 90.5)];
+    expect(classByRanking(list).map(r => r.playerId)).toEqual(['p00003', 'p00005', 'p00001', 'p00002', 'p00004']);
+  });
+  it('keeps an unranked class in creation order', () => {
+    const list = [p('p00002', null), p('p00001', null)];
+    expect(classByRanking(list).map(r => r.playerId)).toEqual(['p00002', 'p00001']);
   });
 });
