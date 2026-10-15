@@ -1,7 +1,7 @@
 /* Junior College pages. */
 .jc-page { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
 .jc-page > * { min-width: 0; }
-.jc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); }
+.jc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3, 12px); margin-bottom: var(--s3, 12px); }
 .jc-fields { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: var(--s2); }
 .jc-field h3 { margin: 0 0 var(--s2); font-size: var(--fs-sm); }
 .jc-field ol { margin: 0; padding-left: 18px; font-size: var(--fs-sm); }
@@ -20,7 +20,7 @@
 tr.jc-champion td { font-weight: 700; }
 
 /* Postseason */
-.jc-tabs { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.jc-tabs { display: flex; flex-wrap: wrap; gap: var(--s3, 12px); margin-bottom: var(--s3, 12px); }
 .jc-tabs .btn[aria-pressed="true"] { font-weight: 700; border-color: var(--accent, currentColor); }
 /* A bracket tree: one column per round; every game sits in an equal slot, so a later round's game is centred between the two games feeding it. */
 .jc-tree { display: flex; gap: var(--s3, 16px); overflow-x: auto; padding-bottom: 8px; }
