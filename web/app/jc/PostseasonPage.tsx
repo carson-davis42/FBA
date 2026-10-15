@@ -233,7 +233,11 @@ function TournamentPanel({ which, state, teamCell, busy, stage, run, slow }: {
 }) {
   const b = state.postseason?.[which] ?? null;
   const label = which === 'nit' ? 'NIT' : 'March Madness';
-  const [region, setRegion] = useState(0);
+  // The region lives in the URL, so a game watched from a region returns to that region.
+  const [params, setParams] = useSearchParams();
+  const asked = Number(params.get('region'));
+  const region = params.get('tab') === which && Number.isInteger(asked) && asked >= -1 && asked <= 3 && params.get('region') !== null ? asked : 0;
+  const setRegion = (r: number): void => setParams({ tab: which, region: String(r) });
   if (!b) return <p className="muted">The fields have not been set yet.</p>;
   if (!fieldRevealed(state)) return <p className="muted">Reveal the field on the Field tab first.</p>;
   const reason = tournamentProblem(state, which);

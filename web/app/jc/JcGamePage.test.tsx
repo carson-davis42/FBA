@@ -7,7 +7,7 @@ import { playPostRound } from '../../engine/jc/postseason';
 import { playConfRound, startConfTournaments } from '../../engine/jc/confTourney';
 import { jcPlayedFixture, jcReadyForNit, jcStateFixture } from '../../engine/jc/testFixtures';
 import type { JcState } from '../../engine/jc/state';
-import { JcGamePage } from './JcGamePage';
+import { JcGamePage, backRegion } from './JcGamePage';
 import { docsOf } from './postseasonTestDocs';
 
 let batches: { writes: { path: string }[] }[] = [];
@@ -51,7 +51,16 @@ describe('JcGamePage', () => {
     expect(await screen.findByText(/NIT · Round of 32/)).toBeTruthy();
     expect(screen.getByText(/FBAJC · S79 · Game/)).toBeTruthy();
     expect(document.querySelectorAll('table.box-score').length).toBe(2);
-    expect(screen.getByRole('link', { name: /Back to the postseason/ })).toBeTruthy();
+    const back = screen.getByRole('link', { name: /Back to the postseason/ });
+    // Back to the NIT tab, on the region the game is in.
+    expect(back.getAttribute('href')).toBe(`/league/fbajc/postseason?tab=nit&region=${first.region}`);
+  });
+
+  it('goes back to the Final tab for a late NIT round', () => {
+    // Round 5 of the NIT is the Final, shown on its own tab.
+    expect(backRegion({ round: 5, region: 1 })).toBe(-1);
+    expect(backRegion({ round: 4, region: 1 })).toBe(1);
+    expect(backRegion({ round: 0, region: 2 })).toBe(2);
   });
 
   it('shows a regular-season game with a link back to the scores', async () => {

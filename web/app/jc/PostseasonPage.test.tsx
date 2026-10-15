@@ -128,6 +128,16 @@ describe('PostseasonPage', () => {
     expect(screen.getByRole('button', { name: 'Swap' })).toBeTruthy();
   });
 
+  it('opens the region named in the URL, as when coming back from a watched game', async () => {
+    mount(ready, '/league/fbajc/postseason?tab=nit&region=1');
+    const region2 = await screen.findByRole('button', { name: 'Region 2' });
+    expect(region2.getAttribute('aria-pressed')).toBe('true');
+    expect(screen.getByRole('button', { name: 'Region 1' }).getAttribute('aria-pressed')).toBe('false');
+    cleanup();
+    mount(ready, '/league/fbajc/postseason?tab=nit&region=-1');
+    expect((await screen.findByRole('button', { name: 'Final' })).getAttribute('aria-pressed')).toBe('true');
+  });
+
   it('plays an NIT round: 16 first-round games, then a save of the postseason and rosters', async () => {
     mount(ready);
     await screen.findByText(/NIT is next/);
