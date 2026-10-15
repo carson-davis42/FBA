@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { CLASS_DRAFT, collegeBaseState, collegeClassState, collegeCurrentClassState } from '../../engine/college/testFixtures';
@@ -124,6 +124,23 @@ describe('RecruitingPage', () => {
     renderAt('/league/fbajc/recruiting?tab=class');
     expect(await screen.findByLabelText('Name of Zion Carter')).toBeTruthy();
     expect(screen.getByRole('tab', { name: 'Class' }).getAttribute('aria-selected')).toBe('true');
+  });
+
+  it('has a Team scores tab ranking schools by what they have landed: new class, portal and combined', async () => {
+    const base = collegeClassState();
+    const rated = base.recruiting.recruits.map((r, i) => (i === 0 ? { ...r, rating: 90, stars: 5 as const, committedTo: 'DUKE' } : i === 1 ? { ...r, rating: 70, stars: 3 as const, committedTo: 'BAY' } : r));
+    const portal = [{ playerId: 'p00503', position: 'PF' as const, classYear: 'Jr' as const, rating: 80, stars: null, projections: {}, committedTo: 'BAY', fromTeam: 'DUKE' }];
+    const docs = recruitingDocs({ ...base, recruiting: { ...base.recruiting, recruits: rated, portal } });
+    stubApi(docs);
+    renderAt('/league/fbajc/recruiting?class=80&tab=scores');
+    const table = await screen.findByRole('table', { name: 'Team recruiting scores' });
+    const rows = within(table).getAllByRole('row').slice(2).map(r => [...r.querySelectorAll('td')].map(td => td.textContent));
+    // Combined: BAY 70 -> 10 + 80 -> 20 = 30 points, DUKE 90 -> 30 points, so Duke's higher average (90 against 75) puts it first.
+    expect(rows.map(r => [r[0], r[1]])).toEqual([['1', expect.stringContaining('Duke')], ['2', expect.stringContaining('Baylor')]]);
+    expect(screen.getByRole('tab', { name: 'Team scores' }).getAttribute('aria-selected')).toBe('true');
+    fireEvent.click(screen.getByRole('button', { name: 'Transfer portal' }));
+    const portalFirst = within(screen.getByRole('table', { name: 'Team recruiting scores' })).getAllByRole('row')[2];
+    expect(portalFirst.textContent).toContain('Baylor');
   });
 
   describe('the class picker', () => {

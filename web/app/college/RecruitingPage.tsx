@@ -9,6 +9,7 @@ import { useAutosaveDoc } from '../useAutosaveDoc';
 import { BoardTab } from './BoardTab';
 import { ClassTab } from './ClassTab';
 import { SetupPanel } from './SetupPanel';
+import { TeamScoresTab } from './TeamScoresTab';
 import { useRecruitingState } from './useRecruitingState';
 import '../pages/roster.css';
 import './college.css';
@@ -79,11 +80,11 @@ export function RecruitingPage() {
       setActionError((e as Error).message);
     }
   };
-  // The class that plays this season was created last season: it only has a Board.
+  // The class that plays this season was created last season: it has a Board (and the team scores), but no Class tab.
   const boardOnly = classOf === n;
   const wanted = params.get('tab');
-  const tab = boardOnly ? 'board' : wanted === 'class' || wanted === 'board' ? wanted : recruiting.created ? 'board' : 'class';
-  const tabLink = (id: 'board' | 'class', label: string) => (
+  const tab = wanted === 'scores' ? 'scores' : boardOnly ? 'board' : wanted === 'class' || wanted === 'board' ? wanted : recruiting.created ? 'board' : 'class';
+  const tabLink = (id: 'board' | 'class' | 'scores', label: string) => (
     <Link role="tab" aria-selected={tab === id} className={tab === id ? 'active' : ''} to={`/league/fbajc/recruiting?class=${classOf}&tab=${id}`}>{label}</Link>
   );
 
@@ -92,14 +93,16 @@ export function RecruitingPage() {
       {head}
       {readOnly && <SetupPanel season={n} setup={load.setup!} versions={load.versions} />}
       {readOnly && <p className="muted">This board is read-only until the S{n} college rosters are set up.</p>}
-      <div className="subnav" role="tablist">{tabLink('board', 'Board')}{!boardOnly && tabLink('class', 'Class')}</div>
+      <div className="subnav" role="tablist">{tabLink('board', 'Board')}{!boardOnly && tabLink('class', 'Class')}{tabLink('scores', 'Team scores')}</div>
       {recruiting.locked && <p className="muted">Recruiting for this class is finished.</p>}
       {autosave.error && <p className="error">{autosave.error}</p>}
       {actionError && <p className="error">{actionError}</p>}
       <fieldset className="readonly" disabled={readOnly}>
         {tab === 'class'
           ? <ClassTab state={state} saving={saving} onDraft={readOnly ? () => undefined : autosave.update} onRun={run} />
-          : <BoardTab state={state} saving={saving} onRun={run} rng={Math.random} />}
+          : tab === 'scores'
+            ? <TeamScoresTab state={state} />
+            : <BoardTab state={state} saving={saving} onRun={run} rng={Math.random} />}
       </fieldset>
     </section>
   );
