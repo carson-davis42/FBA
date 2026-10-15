@@ -152,7 +152,11 @@ describe('ClassRankingPage', () => {
     await screen.findByLabelText('Consensus for Kid 01');
     const headers = within(screen.getByRole('table', { name: 'New ranking' })).getAllByRole('columnheader').map(h => h.textContent);
     expect(headers).toContain('Consensus');
-    expect(screen.getByRole('button', { name: 'Use suggested consensus 99 for Kid 01' }).textContent).toBe('suggested 99');
+    // Consensus is suggested only at the star borders (ranks 12|13 and 27|28), from last class's consensus at those ranks.
+    const rows = within(screen.getByRole('table', { name: 'New ranking' })).getAllByRole('row').slice(1);
+    const chips = rows.map(r => within(r).queryAllByRole('button', { name: /^Use suggested consensus/ }).map(c => c.textContent));
+    const withChip = chips.flatMap((c, i) => (c.length ? [[i + 1, c[0]]] : []));
+    expect(withChip).toEqual([[12, 'suggested 93.5'], [13, 'suggested 89'], [27, 'suggested 78'], [28, 'suggested 77']]);
   });
 
   it('autosaves a typed consensus with the loaded version and shows its stars', async () => {

@@ -106,9 +106,13 @@ describe('startClassRanking', () => {
 });
 
 describe('consensus helpers', () => {
-  it('suggests the consensus that held rank k', () => {
-    const doc = { ...started(3).ranking!, consensusCurve: [99, 95.5] };
-    expect([consensusSuggestion(doc, 1), consensusSuggestion(doc, 2), consensusSuggestion(doc, 3)]).toEqual([99, 95.5, null]);
+  it('suggests the consensus that held rank k, only at the star borders (12|13 and 27|28)', () => {
+    const curve = Array.from({ length: 30 }, (_, i) => 99 - i * 0.5);
+    const doc = { ...started(3).ranking!, consensusCurve: curve };
+    const at = (k: number) => consensusSuggestion(doc, k);
+    expect([12, 13, 27, 28].map(at)).toEqual([curve[11], curve[12], curve[26], curve[27]]);
+    expect([1, 2, 11, 14, 26, 29, 30].map(at)).toEqual([null, null, null, null, null, null, null]);
+    expect(consensusSuggestion({ ...doc, consensusCurve: curve.slice(0, 12) }, 13)).toBeNull();
   });
 
   it('sets, rounds and clears a consensus, and refuses anything else', () => {
@@ -131,7 +135,8 @@ describe('consensus helpers', () => {
     doc = setConsensus(doc, idOf(1), 95);
     const out = applyClassSuggestions(doc);
     expect(out.ratings).toEqual({ [idOf(0)]: 90, [idOf(1)]: 93, [idOf(2)]: 92 });
-    expect(out.consensus).toEqual({ [idOf(0)]: 99, [idOf(1)]: 95, [idOf(2)]: 97 });
+    // Ranks 1-3 are not at a star border, so no consensus is suggested for them.
+    expect(out.consensus).toEqual({ [idOf(1)]: 95 });
     expect(applyClassSuggestions(out)).toBe(out);
     const locked = applyClassSuggestions({ ...doc, locked: true });
     expect(locked.consensus).toEqual({ [idOf(1)]: 95 });

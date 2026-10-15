@@ -19,9 +19,22 @@ export const classRankingPath = (boardSeason: number) => `leagues/fbajc/S${board
 /** Stars follow the consensus: 90+ 5, 80+ 4, 70+ 3. */
 export const starsFor = (consensus: number): 3 | 4 | 5 | null => (consensus >= 90 ? 5 : consensus >= 80 ? 4 : consensus >= 70 ? 3 : null);
 
-/** The suggested consensus for rank k (1-based): the consensus that held rank k in the previous class. */
+/** A class of 30 splits 12 five-star, 15 four-star and 3 three-star. */
+export const STAR_SPLIT = [12, 15, 3] as const;
+
+/** The ranks on either side of a star border: the last 5★ and first 4★ (12, 13), the last 4★ and first 3★ (27, 28). */
+export const isStarBorderRank = (k: number): boolean => {
+  const fiveEnd = STAR_SPLIT[0];
+  const fourEnd = STAR_SPLIT[0] + STAR_SPLIT[1];
+  return k === fiveEnd || k === fiveEnd + 1 || k === fourEnd || k === fourEnd + 1;
+};
+
+/**
+ * The suggested consensus for rank k (1-based): the consensus that held rank k in the previous class. Only the ranks at a star border are
+ * suggested; everything between is the commissioner's call.
+ */
 export function consensusSuggestion(doc: RankingFile, k: number): number | null {
-  return doc.consensusCurve?.[k - 1] ?? null;
+  return isStarBorderRank(k) ? doc.consensusCurve?.[k - 1] ?? null : null;
 }
 
 const round2 = (v: number) => Math.round(v * 100) / 100;
