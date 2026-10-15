@@ -10,7 +10,7 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
   if (!p) return <p className="muted">There is no ranking yet. Bracketology appears once the first rankings are out.</p>;
   const champ = new Map(Object.values(p.champions).map(c => [c.teamId, c.projected]));
   const mark = (id: string): ReactNode => (champ.has(id)
-    ? <span className="muted"> ({champ.get(id) ? 'projected conference champion' : 'conference champion'})</span> : null);
+    ? (champ.get(id) ? <span> *</span> : <span className="muted"> (conference champion)</span>) : null);
   const real = Object.values(p.champions).filter(c => !c.projected).length;
   return (
     <section>
@@ -20,12 +20,13 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
       </p>
       {p.warnings.map(w => <p key={w} className="error">{w}</p>)}
       <h2>Projected bracket</h2>
+      <p className="muted">* Projected conference champion: the best-ranked team in a conference whose tournament has not been played. The real champion replaces it once the tournament is finished.</p>
       <div className="jc-regions">
         {p.regions.map((reg, k) => (
           <div key={k} className="card jc-field">
             <h3>Region {k + 1}</h3>
             <ol>
-              {[...reg].sort((a, b) => p.seeds[a] - p.seeds[b]).map(id => <li key={id}>{p.seeds[id]}. {teamCell(id)}{mark(id)}</li>)}
+              {[...reg].sort((a, b) => p.seeds[a] - p.seeds[b]).map(id => <li key={id}>{teamCell(id)}{mark(id)}</li>)}
             </ol>
           </div>
         ))}
@@ -33,7 +34,7 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
       <div className="jc-regions">
         <div className="card jc-field">
           <h3>Last four in</h3>
-          <ol>{p.lastFourIn.map(id => <li key={id}>{p.seeds[id]}. {teamCell(id)}</li>)}</ol>
+          <ol>{p.lastFourIn.map(id => <li key={id}>{teamCell(id)}<span className="muted"> (seed {p.seeds[id]})</span>{mark(id)}</li>)}</ol>
         </div>
         <div className="card jc-field">
           <h3>First four out</h3>
@@ -43,7 +44,7 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
       <h2>Seed lines</h2>
       <div className="card jc-field">
         <ol>{p.seedLines.map((line, i) => (
-          <li key={i}>{i + 1}: {line.map((id, j) => <span key={id}>{j > 0 && ', '}{teamCell(id)}</span>)}</li>
+          <li key={i}>{line.map((id, j) => <span key={id}>{j > 0 && ', '}{teamCell(id)}</span>)}</li>
         ))}</ol>
       </div>
       <h2>Bids by conference</h2>
