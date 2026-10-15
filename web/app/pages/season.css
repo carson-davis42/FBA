@@ -114,3 +114,9 @@ tr.picked td { background: color-mix(in srgb, var(--accent) 16%, transparent); }
 .game-card.ranked-one { box-shadow: inset 3px 0 0 var(--accent-soft, var(--accent)); }
 .game-card.ranked-both { border-color: var(--accent); box-shadow: inset 4px 0 0 var(--accent); }
 .game-ranked { margin-left: 6px; padding: 0 6px; border-radius: 999px; background: var(--accent-soft, var(--surface-2)); color: var(--accent); font-size: var(--fs-xs); font-weight: 800; white-space: nowrap; }
+
+/* College games: a white scorebug with the team colour as an accent behind the score. */
+.scorebug-light { background: var(--surface); }
+.scorebug-light .scorebug-side { background: linear-gradient(270deg, color-mix(in srgb, var(--team) 38%, var(--surface)) 0%, var(--surface) 70%); color: var(--text); }
+.scorebug-light .scorebug-side.home { background: linear-gradient(90deg, color-mix(in srgb, var(--team) 38%, var(--surface)) 0%, var(--surface) 70%); }
+.scorebug-light .scorebug-side .rec { color: var(--muted); opacity: 1; }

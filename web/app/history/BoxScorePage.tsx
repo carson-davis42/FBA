@@ -110,7 +110,7 @@ export function BoxScorePage() {
   const res = resultOf(s);
   const bugSide = (side: PastSide, score: string, i: number): BugSide => {
     const team = teamOf(side);
-    return { label: side.name, sub: side.record ?? undefined, score, team, season: n, style: team ? teamVars(teamTheme(team, lg, n)) : ACCENT_SIDES[i] };
+    return { label: side.name, sub: side.record ?? undefined, score, team, season: n, light: !!team && lg === 'fbajc', style: team ? teamVars(teamTheme(team, lg, n)) : ACCENT_SIDES[i] };
   };
   const away = rosterOf(s.away);
   const home = rosterOf(s.home);
