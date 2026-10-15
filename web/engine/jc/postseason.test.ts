@@ -55,16 +55,37 @@ describe('NIT and March Madness play', () => {
     expect(playPostRound(s, 'nit', mulberry32(1)).ok).toBe(false);
   });
 
-  it('plays the NIT, then March Madness, to the end: 31 and 63 games, deterministic for a seed', () => {
+  it('plays the NIT, then March Madness, to the end: 31 and 71 games (First Four included), deterministic for a seed', () => {
     const nit = must(playPostToEnd(ready, 'nit', mulberry32(40)));
     const again = must(playPostToEnd(ready, 'nit', mulberry32(40)));
     expect(nit.postseason).toEqual(again.postseason);
     expect(postseasonGames(nit.postseason).length - postseasonGames(ready.postseason).length).toBe(31);
     const mm = must(playPostToEnd(nit, 'mm', mulberry32(41)));
-    expect(postseasonGames(mm.postseason).length - postseasonGames(nit.postseason).length).toBe(63);
+    expect(postseasonGames(mm.postseason).length - postseasonGames(nit.postseason).length).toBe(71);
     expect(mm.postseason!.mm!.champion).not.toBeNull();
     expect(postseasonStage(mm)).toBe('allAmerican');
     expect(playPostToEnd(mm, 'mm', mulberry32(1)).ok).toBe(false);
+  });
+
+  it('plays the First Four first: 71 games, winners fill their slots at the pair seed, a champion at the end', () => {
+    const nit = must(playPostToEnd(ready, 'nit', mulberry32(40)));
+    const mm0 = nit.postseason!.mm!;
+    expect(mm0.games).toHaveLength(71);
+    const ff = mm0.games.filter(g => g.round === 0);
+    expect(ff).toHaveLength(8);
+    expect(nextPostGame(nit, 'mm')!.round).toBe(0);
+    const r1 = must(playPostRound(nit, 'mm', mulberry32(50)));
+    const mm1 = r1.postseason!.mm!;
+    for (const g of mm1.games.filter(x => x.round === 0)) {
+      expect(g.result).toBeDefined();
+      const winner = g.result!.homePts > g.result!.awayPts ? g.home : g.away;
+      const target = mm1.games.find(x => x.id === g.next!.id)!;
+      expect(target[g.next!.side]).toBe(winner);
+      expect(target[g.next!.side === 'home' ? 'homeSeed' : 'awaySeed']).toBe(g.homeSeed);
+    }
+    expect(mm1.games.filter(x => x.round === 1 && x.result).length).toBe(0);
+    const end = must(playPostToEnd(r1, 'mm', mulberry32(51)));
+    expect(end.postseason!.mm!.champion).not.toBeNull();
   });
 
   it('records one live game, which must be the next one', () => {

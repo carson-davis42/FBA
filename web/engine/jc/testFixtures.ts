@@ -3,6 +3,7 @@ import type { JcNationalAward, JcScheduleFile, RosterEntry } from '../shared/typ
 import { challengeSets, conferenceDays } from './schedule';
 import { jcRaces, pickConference, pickNational, startAwards } from './awards';
 import { playAllConf, startConfTournaments } from './confTourney';
+import { MAJOR_CONFERENCES } from './field';
 import { setFields } from './fieldMoves';
 import type { JcResult, JcState } from './state';
 import { playToEnd } from './play';
@@ -20,7 +21,8 @@ export function jcStateFixture(seed = 7, season = 79): JcState {
   const names: Record<string, { id: string; name: string | null; birthSeason: null }> = {};
   let id = 1;
   for (let c = 0; c < 18; c++) {
-    const group = `Conf ${String(c + 1).padStart(2, '0')}`;
+    // The last nine conferences carry the power-conference codes so the First Four has both groups.
+    const group = c >= 9 ? MAJOR_CONFERENCES[c - 9] : `Conf ${String(c + 1).padStart(2, '0')}`;
     confs[group] = [];
     for (let t = 0; t < 12; t++) {
       const teamId = `C${String(c).padStart(2, '0')}T${String(t).padStart(2, '0')}`;

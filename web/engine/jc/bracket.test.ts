@@ -47,6 +47,7 @@ describe('bracket helpers', () => {
   it('names the rounds of each kind', () => {
     expect(roundName('conf', 1)).toBe('First Round');
     expect(roundName('conf', 4)).toBe('Final');
+    expect(roundName('mm', 0)).toBe('First Four');
     expect(roundName('mm', 5)).toBe('Final Four');
     expect(roundName('nit', 1)).toBe('Round of 32');
   });

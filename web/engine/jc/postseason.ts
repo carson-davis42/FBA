@@ -128,8 +128,9 @@ const scoreText = (winner: number, loser: number): string => `${winner}–${lose
 /** The March Madness bracket as a transcribed-style `PastBracket` (a full binary tree R1-1 … R6-1, home feeder first). */
 export function pastBracketOf(b: Bracket, nameOf: (teamId: string) => string): NonNullable<SummaryFile['pastBracket']> {
   const final = b.games.find(g => g.next === null)!;
+  const tree = b.games.filter(g => g.round >= 1);
   const feeders = (g: BracketGame): BracketGame[] =>
-    b.games.filter(x => x.next?.id === g.id).sort((x, y) => (x.next!.side === 'home' ? -1 : 1) - (y.next!.side === 'home' ? -1 : 1));
+    tree.filter(x => x.next?.id === g.id).sort((x, y) => (x.next!.side === 'home' ? -1 : 1) - (y.next!.side === 'home' ? -1 : 1));
   const levels: BracketGame[][] = [[final]];
   for (;;) {
     const up = levels[levels.length - 1].flatMap(feeders);

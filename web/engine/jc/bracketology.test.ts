@@ -1,7 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
-import { projectBracket } from './bracketology';
-import { isMajor } from './field';
+import { projectBracket, type PlayInGame } from './bracketology';
 import { playAllConf, startConfTournaments } from './confTourney';
 import { setFields } from './fieldMoves';
 import { jcPlayedFixture, jcStateFixture } from './testFixtures';
@@ -32,6 +31,7 @@ describe('projectBracket', () => {
     expect(p.seeds).toEqual(f.mm.seeds);
     expect(p.regions).toEqual(f.mm.regions);
     expect(p.nit).toEqual(f.nit.teams);
+    expect(p.playIn.map(g => ({ id: g.id, teams: g.teams }))).toEqual(f.mm.firstFour.map(g => ({ id: g.id, teams: g.teams })));
     expect(Object.values(p.champions).every(c => !c.projected)).toBe(true);
   });
 
@@ -46,24 +46,28 @@ describe('projectBracket', () => {
     expect(p.mmTeams).toEqual(expect.arrayContaining(Object.values(p.champions).map(c => c.teamId)));
   });
 
-  it('has four teams on every seed line, four bubble teams each side, and bids that add up to 64', () => {
+  it('has four teams on every seed line, a First Four with two bubbles, and 72 bids', () => {
     const p = projectBracket(played)!;
     expect(p.seedLines).toHaveLength(16);
     expect(p.seedLines.every(l => l.length === 4)).toBe(true);
+    expect(p.mmTeams).toHaveLength(64);
+    expect(p.playIn).toHaveLength(8);
+    for (const g of p.playIn) expect(g.seed).toBe(p.seeds[g.teams[0]]);
+    const rank = new Map(played.rankings!.snapshots.at(-1)!.order.map((id, i) => [id, i]));
     for (const group of [p.power, p.other]) {
-      // The fixture's conferences are not the real power conferences, so a group can be short or empty.
-      expect(group.lastFourIn.length).toBeLessThanOrEqual(4);
-      expect(group.firstFourOut.length).toBeLessThanOrEqual(4);
+      expect(group.firstFourIn).toHaveLength(4);
+      expect(group.lastEight.top).toHaveLength(2);
+      expect(group.lastEight.bottom).toHaveLength(2);
+      expect(group.firstFourOut).toHaveLength(4);
+      const worst = (gs: PlayInGame[]): number => Math.max(...gs.flatMap(g => g.teams).map(t => rank.get(t)!));
+      const best = (gs: PlayInGame[]): number => Math.min(...gs.flatMap(g => g.teams).map(t => rank.get(t)!));
+      expect(worst(group.lastEight.top)).toBeLessThan(best(group.lastEight.bottom));
+      const inField = new Set([...p.mmTeams, ...p.playIn.flatMap(g => g.teams)]);
+      expect(group.firstFourIn.every(t => p.mmTeams.includes(t))).toBe(true);
+      expect(group.firstFourOut.some(t => inField.has(t))).toBe(false);
     }
-    const champs = new Set(Object.values(p.champions).map(c => c.teamId));
-    for (const [group, major] of [[p.power, true], [p.other, false]] as const) {
-      expect(group.lastFourIn.some(t => champs.has(t))).toBe(false);
-      expect(group.lastFourIn.every(t => p.mmTeams.includes(t))).toBe(true);
-      expect(group.firstFourOut.some(t => p.mmTeams.includes(t))).toBe(false);
-      for (const t of [...group.lastFourIn, ...group.firstFourOut]) expect(isMajor(conferenceOf(played.teams, t))).toBe(major);
-    }
-    expect(p.power.lastFourIn.length + p.other.lastFourIn.length).toBeGreaterThan(0);
-    expect(p.bids.reduce((n, b) => n + b.count, 0)).toBe(64);
+    expect('lastFourIn' in p.power).toBe(false);
+    expect(p.bids.reduce((n, b) => n + b.count, 0)).toBe(72);
     expect(p.bids.map(b => b.count)).toEqual([...p.bids.map(b => b.count)].sort((a, b) => b - a));
   });
 

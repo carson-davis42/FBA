@@ -1,5 +1,5 @@
 import { useMemo, useState, type ReactNode } from 'react';
-import { projectBracket, type Bubble } from '../../engine/jc/bracketology';
+import { projectBracket, type GroupBubble, type PlayInGame } from '../../engine/jc/bracketology';
 import type { JcState } from '../../engine/jc/state';
 import { BracketView } from './BracketView';
 
@@ -12,18 +12,10 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
   const mark = (id: string): ReactNode => (champ.has(id)
     ? (champ.get(id) ? <span> *</span> : <span className="muted"> (conference champion)</span>) : null);
   const real = Object.values(p.champions).filter(c => !c.projected).length;
-  const BubbleCards = ({ bubble }: { bubble: Bubble }) => (
-    <div className="jc-regions">
-      <div className="card jc-field">
-        <h3>Last four in</h3>
-        <ol>{bubble.lastFourIn.map(id => <li key={id}>{teamCell(id)}<span className="muted"> (seed {p.seeds[id]})</span>{mark(id)}</li>)}</ol>
-      </div>
-      <div className="card jc-field">
-        <h3>First four out</h3>
-        <ol>{bubble.firstFourOut.map(id => <li key={id}>{teamCell(id)}</li>)}</ol>
-      </div>
-    </div>
+  const game = (g: PlayInGame) => (
+    <li key={g.id}>{teamCell(g.teams[0])} vs {teamCell(g.teams[1])}<span className="muted"> (seed {g.seed})</span></li>
   );
+  const groups: [string, GroupBubble][] = [['Power conferences', p.power], ['Other conferences', p.other]];
   return (
     <section>
       <p className="muted">
@@ -43,12 +35,33 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
           </div>
         ))}
       </div>
-      <h2>Bubble: power conferences</h2>
-      <p className="muted">Power-conference teams fill no place after the 51st pick, so these are the last of them in and the first left out.</p>
-      <BubbleCards bubble={p.power} />
-      <h2>Bubble: other conferences</h2>
-      <p className="muted">The last 13 places can only go to the other conferences.</p>
-      <BubbleCards bubble={p.other} />
+      <h2>First Four In</h2>
+      <p className="muted">The four best teams of each group that are safely in, just above the play-in games.</p>
+      <div className="jc-regions">
+        {groups.map(([name, b]) => (
+          <div key={name} className="card jc-field">
+            <h3>{name}</h3>
+            <ol>{b.firstFourIn.map(id => <li key={id}>{teamCell(id)}<span className="muted"> (seed {p.seeds[id]})</span>{mark(id)}</li>)}</ol>
+          </div>
+        ))}
+      </div>
+      <h2>Last Eight In</h2>
+      <p className="muted">The eight teams of each group in the First Four games; the winners take the seed line shown.</p>
+      <div className="jc-regions">
+        {groups.flatMap(([name, b]) => [
+          <div key={`${name} top`} className="card jc-field"><h3>{name}, top four</h3><ol>{b.lastEight.top.map(game)}</ol></div>,
+          <div key={`${name} bottom`} className="card jc-field"><h3>{name}, bottom four</h3><ol>{b.lastEight.bottom.map(game)}</ol></div>,
+        ])}
+      </div>
+      <h2>First Four Out</h2>
+      <div className="jc-regions">
+        {groups.map(([name, b]) => (
+          <div key={name} className="card jc-field">
+            <h3>{name}</h3>
+            <ol>{b.firstFourOut.map(id => <li key={id}>{teamCell(id)}</li>)}</ol>
+          </div>
+        ))}
+      </div>
       <h2>Seed lines</h2>
       <div className="card jc-field">
         <ol>{p.seedLines.map((line, i) => (
@@ -66,7 +79,7 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
         {[0, 1, 2, 3].map(r => <button key={r} type="button" className="btn" aria-pressed={region === r} onClick={() => setRegion(r)}>Region {r + 1}</button>)}
         <button type="button" className="btn" aria-pressed={region === -1} onClick={() => setRegion(-1)}>Final Four</button>
       </div>
-      <BracketView bracket={p.mm} teamCell={teamCell} filter={g => (region === -1 ? g.round >= 5 : g.region === region && g.round < 5)} />
+      <BracketView bracket={p.mm} teamCell={teamCell} filter={g => (region === -1 ? g.round >= 5 : g.region === region && g.round >= 1 && g.round < 5)} />
       <h2>NIT teams</h2>
       <div className="card jc-field">
         <ol>{p.nit.map(id => <li key={id}>{teamCell(id)}</li>)}</ol>
