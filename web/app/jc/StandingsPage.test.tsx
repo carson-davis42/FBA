@@ -39,7 +39,7 @@ function sweep(s: JcState): void {
   s.results = { ...s.results!, games };
 }
 
-afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); localStorage.clear(); });
 
 describe('StandingsPage', () => {
   it('shows 12 rows for the default conference, sorted by conference record', async () => {
@@ -67,6 +67,7 @@ describe('StandingsPage', () => {
     const s = jcStateFixture();
     sweep(s);
     s.postseason = { field: { mm: { teams: ['C00T05'] }, nit: { teams: ['C00T06'] } } } as unknown as JcState['postseason'];
+    localStorage.setItem('fba.jc.reveal.S79', JSON.stringify({ done: true }));
     mount(s);
     await screen.findByRole('combobox');
     expect(document.querySelectorAll('td.clinch-marchmadness').length).toBe(1);
@@ -76,10 +77,21 @@ describe('StandingsPage', () => {
     expect(document.querySelectorAll('td.clinch-champion').length).toBe(1);
   });
 
+  it('hides the bids until the field has been revealed', async () => {
+    const s = jcStateFixture();
+    sweep(s);
+    s.postseason = { field: { mm: { teams: ['C00T05'], firstFour: [], regions: [], seeds: {} }, nit: { teams: ['C00T06'] } } } as unknown as JcState['postseason'];
+    mount(s);
+    await screen.findByRole('combobox');
+    expect(document.querySelectorAll('td.clinch-marchmadness').length).toBe(0);
+    expect(document.querySelectorAll('td.clinch-nit').length).toBe(0);
+  });
+
   it('counts a First Four challenger as in March Madness', async () => {
     const s = jcStateFixture();
     sweep(s);
     s.postseason = { field: { mm: { teams: ['C00T05'], firstFour: [{ id: 'P1', teams: ['C00T05', 'C00T07'] }] }, nit: { teams: ['C00T06'] } } } as unknown as JcState['postseason'];
+    localStorage.setItem('fba.jc.reveal.S79', JSON.stringify({ done: true }));
     mount(s);
     await screen.findByRole('combobox');
     expect(document.querySelectorAll('td.clinch-marchmadness').length).toBe(2);
