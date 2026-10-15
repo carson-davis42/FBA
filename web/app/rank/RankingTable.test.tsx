@@ -23,7 +23,11 @@ function Harness({ initial, extra = [], onFinish = () => {}, withConsensus = fal
   );
 }
 
-const leftNames = () => within(screen.getByRole('table', { name: "Last season's order" })).queryAllByRole('button').map(b => b.textContent);
+// Once everyone is ranked the unranked column is gone (the new ranking takes the page), which reads as an empty list.
+const leftNames = () => {
+  const table = screen.queryByRole('table', { name: "Last season's order" });
+  return table ? within(table).queryAllByRole('button').map(b => b.textContent) : [];
+};
 const rightNames = () => within(screen.getByRole('table', { name: 'New ranking' })).queryAllByRole('row').slice(1)
   .map(r => (r as HTMLTableRowElement).cells[1].textContent);
 const box = (name: string) => screen.getByLabelText(`New rating for ${name}`) as HTMLInputElement;
@@ -70,6 +74,7 @@ describe('RankingTable', () => {
     expect(rightNames()).toEqual(['Ben Cole', 'Ada Stone', 'Cal Reyes', 'Finn Lowe', 'Dev Hart', 'Eli Park']);
     expect(leftNames()).toEqual([]);
     expect(screen.queryByRole('button', { name: 'Take the rest in order' })).toBeNull();
+    expect(screen.queryByRole('table', { name: "Last season's order" })).toBeNull();
   });
 
   it('shows empty rating boxes, with a separate suggestion chip, only once everyone is ranked', () => {
@@ -247,18 +252,16 @@ describe('RankingTable', () => {
       expect(screen.queryByLabelText('Consensus for Ben Cole')).toBeNull();
     });
 
-    it('shows a Consensus box, the stars and a suggested chip once everyone is ranked', () => {
+    it('shows a Consensus box and the stars once everyone is ranked, with no suggested chip away from the star borders', () => {
       render(<Harness initial={classDoc({ consensus: { p00002: 95 } })} withConsensus />);
       expect(headers()).toContain('Consensus');
       expect(cbox('Ben Cole').value).toBe('95');
       expect(cbox('Ada Stone').value).toBe('');
       expect(screen.getByLabelText('5 stars')).toBeTruthy();
       expect(screen.getAllByLabelText(/stars$/)).toHaveLength(1);
-      expect(screen.getByRole('button', { name: 'Use suggested consensus 91 for Ada Stone' }).textContent).toBe('suggested 91');
-      expect(screen.getByRole('button', { name: 'Use suggested consensus 98.8 for Ben Cole' }).textContent).toBe('suggested 98.8');
-      fireEvent.click(screen.getByRole('button', { name: 'Use suggested consensus 91 for Ada Stone' }));
-      expect(cbox('Ada Stone').value).toBe('91');
-      expect(screen.getAllByLabelText('5 stars')).toHaveLength(2);
+      // Ranks 1-3 are not at a star border (12|13, 27|28), so only the rating has a suggestion.
+      expect(screen.queryAllByRole('button', { name: /^Use suggested consensus/ })).toHaveLength(0);
+      expect(screen.getByRole('button', { name: 'Use suggested 90 for Ben Cole' })).toBeTruthy();
     });
 
     it('hides the column until everyone is ranked', () => {
@@ -286,10 +289,10 @@ describe('RankingTable', () => {
       expect(screen.queryByLabelText(/stars$/)).toBeNull();
     });
 
-    it('uses all suggestions for the ratings and the consensus, without overwriting', () => {
+    it('uses all suggestions for the ratings, without overwriting, and leaves consensus alone away from the star borders', () => {
       render(<Harness initial={classDoc({ ratings: { p00001: 84 }, consensus: { p00002: 96 } })} withConsensus />);
       fireEvent.click(screen.getByRole('button', { name: 'Use all suggestions' }));
-      expect(['Ben Cole', 'Ada Stone', 'Cal Reyes'].map(n => cbox(n).value)).toEqual(['96', '91', '79.5']);
+      expect(['Ben Cole', 'Ada Stone', 'Cal Reyes'].map(n => cbox(n).value)).toEqual(['96', '', '']);
       expect(box('Ada Stone').value).toBe('84');
     });
 

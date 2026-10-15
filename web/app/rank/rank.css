@@ -20,3 +20,7 @@
 .rank-col .rank-best .table-wrap { max-height: none; overflow: visible; }
 .reserve-x { font-weight: 700; color: var(--muted); }
 .rank-actions { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.rank-move { white-space: nowrap; display: flex; gap: var(--s1); }
+/* Everyone is ranked: the unranked column is gone, so the new ranking (ratings, consensus) gets the whole width. */
+.rank-cols.full { grid-template-columns: minmax(0, 1fr); }
+.rank-cols.full .rank-col .table-wrap { max-height: none; }

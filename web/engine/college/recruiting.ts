@@ -327,6 +327,14 @@ export function decommit(state: RecruitingState, playerId: string, ctx: MoveCont
   return { ok: true, state: { ...state, recruiting, rosters, tx }, changed: ['recruiting', 'rosters', 'tx'], label: line };
 }
 
+/**
+ * The class best first once it is ranked: by consensus, high to low (a finished ranking keeps consensus non-increasing down its order).
+ * Recruits with no consensus yet keep their place after the ranked ones, so an unranked class stays in creation order.
+ */
+export function classByRanking(recruits: Prospect[]): Prospect[] {
+  return recruits.map((p, i) => ({ p, i })).sort((a, b) => (b.p.consensus ?? -1) - (a.p.consensus ?? -1) || a.i - b.i).map(x => x.p);
+}
+
 /** Recruits and portal players with no commitment yet. */
 export function uncommitted(doc: RecruitingFile): { recruits: Prospect[]; portal: PortalPlayer[] } {
   return { recruits: doc.recruits.filter(p => !p.committedTo), portal: doc.portal.filter(p => !p.committedTo) };

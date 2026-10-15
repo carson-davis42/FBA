@@ -344,6 +344,8 @@ export const RankingFile = z.object({
   consensusCurve: z.array(consensus).optional(),
   /** college-class only: each position's own ranking, best first, made before the whole ranking (which merges them). */
   byPosition: z.object({ PG: idList, SG: idList, SF: idList, PF: idList, C: idList }).partial().strict().optional(),
+  /** college-class only: the order the five players on offer (each position's next) are held in; the top one joins the ranking next. */
+  pool: idList.optional(),
 }).strict().superRefine((doc, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const ids = new Set(doc.rows.map(r => r.playerId));
@@ -366,6 +368,11 @@ export const RankingFile = z.object({
     if (unrated.length) issue('A finished ranking must rate every player');
   }
   if (doc.kind !== 'college-class' && (doc.consensus || doc.consensusCurve)) issue('Only a class ranking has consensus');
+  if (doc.pool) {
+    if (doc.kind !== 'college-class') issue('Only a class ranking has a pool');
+    if (new Set(doc.pool).size !== doc.pool.length) issue('A player is in the pool twice');
+    for (const id of doc.pool) if (!ids.has(id)) issue(`${id} is in the pool but isn't in the rows`);
+  }
   if (doc.byPosition) {
     if (doc.kind !== 'college-class') issue('Only a class ranking has position rankings');
     const where = new Map(doc.rows.map(r => [r.playerId, r.position]));

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { RankingFile } from '../shared/types'
 import {
-  mergeHeads, positionList, positionStepDone, positionUnranked, resetPositionStep, sendBackAtPosition, sendBackMerged, takeAtPosition, takeRestAtPosition,
+  mergeHeads, mergeOptions, movePool, promoteTop, positionList, positionStepDone, positionUnranked, resetPositionStep, sendBackAtPosition, sendBackMerged, takeAtPosition, takeRestAtPosition,
   takeRestMerged,
 } from './positionRanking'
 import { rankName, rankingDoc } from './testFixtures'
@@ -62,6 +62,22 @@ describe('merging into the whole ranking', () => {
     expect(d.order.filter(id => ['p00001', 'p00003', 'p00004', 'p00005'].includes(id))).toEqual(positionList(d, 'PG'))
   })
 
+  it('lists the heads in PG, SG, SF, PF, C order, however the rows are ordered', () => {
+    const d = stepped()
+    expect(mergeOptions(d).map(r => r.position)).toEqual(['PG', 'SG', 'C'])
+    // New rows listed with the center first and a point guard last: still PG first.
+    const shuffled = { ...d, rows: [...d.rows].reverse() }
+    expect(mergeOptions(shuffled).map(r => r.position)).toEqual(['PG', 'SG', 'C'])
+    expect(mergeOptions({ ...d, order: ['p00001', 'p00003', 'p00004', 'p00005'] }).map(r => r.position)).toEqual(['SG', 'C'])
+  })
+
+  it('takes the rest by rating among the heads, equal ratings in PG, SG, SF, PF, C order', () => {
+    const rows = ([['p00001', 'C'], ['p00002', 'PF'], ['p00003', 'SF'], ['p00004', 'SG'], ['p00005', 'PG']] as const).map(([playerId, position]) => (
+      { playerId, position, age: null, team: null, prevRating: null, otherRating: null, stat: null }))
+    const d = takeRestAtPosition(rankingDoc({ kind: 'college-class', league: 'fbajc', byPosition: {}, rows }), rankName)
+    expect(takeRestMerged(d, rankName).order).toEqual(['p00005', 'p00004', 'p00003', 'p00002', 'p00001'])
+  })
+
   it('does not merge before the position step is done', () => {
     const d = doc()
     expect(takeRestMerged(d, rankName)).toBe(d)
@@ -72,6 +88,58 @@ describe('merging into the whole ranking', () => {
     const back = sendBackMerged(d, 'p00003')
     expect(back.order).toEqual(['p00001', 'p00002'])
     expect(sendBackMerged(d, 'p00002').order).toEqual(['p00001', 'p00003', 'p00004'])
+  })
+})
+
+describe('the pool of five', () => {
+  const stepped = () => takeRestAtPosition(doc(), rankName)
+  const ids = (d: Parameters<typeof mergeOptions>[0]) => mergeOptions(d).map(r => r.playerId)
+
+  it('holds the players on offer in the order they are moved to, and the top one joins the ranking', () => {
+    let d = stepped()
+    expect(ids(d)).toEqual(['p00001', 'p00002', 'p00006'])
+    d = movePool(d, 'p00006', -1)
+    d = movePool(d, 'p00006', -1)
+    expect(ids(d)).toEqual(['p00006', 'p00001', 'p00002'])
+    expect(movePool(d, 'p00006', -1)).toBe(d)
+    d = promoteTop(d)
+    expect(d.order).toEqual(['p00006'])
+    // Finn is in; the pool keeps Ada and Ben in their order. Nobody else joins (Finn was the only C).
+    expect(ids(d)).toEqual(['p00001', 'p00002'])
+  })
+
+  it('a new player joins the pool at the bottom, in position order when several join', () => {
+    let d = stepped()
+    d = promoteTop(d) // Ada (PG) joins; Cal (PG) is next at PG
+    expect(d.order).toEqual(['p00001'])
+    expect(ids(d)).toEqual(['p00002', 'p00006', 'p00003'])
+    d = movePool(d, 'p00003', -1)
+    expect(ids(d)).toEqual(['p00002', 'p00003', 'p00006'])
+    d = promoteTop(d)
+    expect(d.order).toEqual(['p00001', 'p00002'])
+    // Ben was the only SG, so nobody joins in his place.
+    expect(ids(d)).toEqual(['p00003', 'p00006'])
+  })
+
+  it('runs to the end: every player ranked, each position in its own order', () => {
+    let d = stepped()
+    while (mergeOptions(d).length > 0) d = promoteTop(d)
+    expect(d.order).toHaveLength(6)
+    expect(d.order.filter(id => positionList(d, 'PG').includes(id))).toEqual(positionList(d, 'PG'))
+  })
+
+  it('does nothing before the position step is done or on a locked doc', () => {
+    const d = doc()
+    expect(promoteTop(d)).toBe(d)
+    const locked = { ...stepped(), locked: true }
+    expect(promoteTop(locked)).toBe(locked)
+    expect(movePool(locked, 'p00001', 1)).toBe(locked)
+  })
+
+  it('the schema accepts a pool of known players and rejects strangers or repeats', () => {
+    expect(RankingFile.safeParse({ ...stepped(), pool: ['p00006', 'p00001'] }).success).toBe(true)
+    expect(RankingFile.safeParse({ ...stepped(), pool: ['p09999'] }).success).toBe(false)
+    expect(RankingFile.safeParse({ ...stepped(), pool: ['p00001', 'p00001'] }).success).toBe(false)
   })
 })
 

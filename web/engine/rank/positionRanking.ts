@@ -1,6 +1,6 @@
 import { POSITIONS } from '../roster/rules'
 import type { Position, RankingFile, RankingRow } from '../shared/types'
-import { leftRows, type NameOf } from './ranking'
+import { isNewRow, leftRows, type NameOf } from './ranking'
 
 /**
  * The class ranking's position step: each position is ranked on its own (`doc.byPosition`), then the whole ranking is a merge of those
@@ -66,15 +66,54 @@ export function mergeHeads(doc: RankingFile): Set<string> {
   return heads
 }
 
-/** Ranks everyone left by repeatedly taking, of the position heads, the one that comes first in `leftRows` order. */
-export function takeRestMerged(doc: RankingFile, name: NameOf): RankingFile {
+const positionAt = (pos: Position): number => POSITIONS.indexOf(pos)
+
+/**
+ * The players on offer for the next rank, in the order they are being held: the commissioner's order of the pool (`doc.pool`), then anyone
+ * who just joined it (the next player at a position whose head was ranked), in PG, SG, SF, PF, C order.
+ */
+export function mergeOptions(doc: RankingFile): RankingRow[] {
+  const heads = mergeHeads(doc)
+  const byId = new Map(doc.rows.map(r => [r.playerId, r]))
+  const held = (doc.pool ?? []).filter(id => heads.has(id))
+  const joined = doc.rows.filter(r => heads.has(r.playerId) && !held.includes(r.playerId)).sort((a, b) => positionAt(a.position) - positionAt(b.position))
+  return [...held.map(id => byId.get(id)!), ...joined]
+}
+
+/** Moves a player of the pool up (-1) or down (+1) one place. */
+export function movePool(doc: RankingFile, playerId: string, delta: -1 | 1): RankingFile {
+  if (doc.locked) return doc
+  const ids = mergeOptions(doc).map(r => r.playerId)
+  const at = ids.indexOf(playerId)
+  const to = at + delta
+  if (at < 0 || to < 0 || to >= ids.length) return doc
+  ;[ids[at], ids[to]] = [ids[to], ids[at]]
+  return { ...doc, pool: ids }
+}
+
+/** The pool's first place joins the whole ranking next; the rest stay held in order, and his position's next player joins at the bottom. */
+export function promoteTop(doc: RankingFile): RankingFile {
+  if (doc.locked || !positionStepDone(doc)) return doc
+  const options = mergeOptions(doc)
+  if (options.length === 0) return doc
+  const top = options[0].playerId
+  return { ...doc, order: [...doc.order, top], pool: options.slice(1).map(r => r.playerId) }
+}
+
+/**
+ * Ranks everyone left by repeatedly taking the best of the position heads: players with a last-class rating before new ones, higher
+ * rating first (the other league's rating for new players), and equal ratings in PG, SG, SF, PF, C order.
+ */
+export function takeRestMerged(doc: RankingFile, _name?: NameOf): RankingFile {
   if (doc.locked || !positionStepDone(doc)) return doc
   let cur = doc
   for (;;) {
-    const heads = mergeHeads(cur)
-    if (heads.size === 0) return cur
-    const pick = leftRows(cur, name).find(r => heads.has(r.playerId))
-    if (!pick) return cur
+    const options = mergeOptions(cur)
+    if (options.length === 0) return cur
+    const isNew = (r: RankingRow) => isNewRow(cur, r)
+    const score = (r: RankingRow) => (isNew(r) ? r.otherRating : r.prevRating) ?? -1
+    // Array.sort is stable and `mergeOptions` is in position order, so equal ratings stay PG, SG, SF, PF, C.
+    const pick = [...options].sort((a, b) => Number(isNew(a)) - Number(isNew(b)) || score(b) - score(a))[0]
     cur = { ...cur, order: [...cur.order, pick.playerId] }
   }
 }

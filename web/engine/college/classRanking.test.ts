@@ -106,9 +106,13 @@ describe('startClassRanking', () => {
 });
 
 describe('consensus helpers', () => {
-  it('suggests the consensus that held rank k', () => {
-    const doc = { ...started(3).ranking!, consensusCurve: [99, 95.5] };
-    expect([consensusSuggestion(doc, 1), consensusSuggestion(doc, 2), consensusSuggestion(doc, 3)]).toEqual([99, 95.5, null]);
+  it('suggests the consensus that held rank k, only at the star borders (12|13 and 27|28)', () => {
+    const curve = Array.from({ length: 30 }, (_, i) => 99 - i * 0.5);
+    const doc = { ...started(3).ranking!, consensusCurve: curve };
+    const at = (k: number) => consensusSuggestion(doc, k);
+    expect([12, 13, 27, 28].map(at)).toEqual([curve[11], curve[12], curve[26], curve[27]]);
+    expect([1, 2, 11, 14, 26, 29, 30].map(at)).toEqual([null, null, null, null, null, null, null]);
+    expect(consensusSuggestion({ ...doc, consensusCurve: curve.slice(0, 12) }, 13)).toBeNull();
   });
 
   it('sets, rounds and clears a consensus, and refuses anything else', () => {
@@ -131,7 +135,8 @@ describe('consensus helpers', () => {
     doc = setConsensus(doc, idOf(1), 95);
     const out = applyClassSuggestions(doc);
     expect(out.ratings).toEqual({ [idOf(0)]: 90, [idOf(1)]: 93, [idOf(2)]: 92 });
-    expect(out.consensus).toEqual({ [idOf(0)]: 99, [idOf(1)]: 95, [idOf(2)]: 97 });
+    // Ranks 1-3 are not at a star border, so no consensus is suggested for them.
+    expect(out.consensus).toEqual({ [idOf(1)]: 95 });
     expect(applyClassSuggestions(out)).toBe(out);
     const locked = applyClassSuggestions({ ...doc, locked: true });
     expect(locked.consensus).toEqual({ [idOf(1)]: 95 });
@@ -189,6 +194,23 @@ describe('finishClassRanking', () => {
     expect(board.recruits[29]).toMatchObject({ rating: 69, consensus: 75, stars: 3 });
     expect(tx.entries.at(-1)).toMatchObject({ batchId: 'b1', type: 'class', teams: [], lines: ['S80 class ranked: 30 recruits'] });
     expect(cal.steps.find(x => x.id === 'rank-s80-class')?.done).toBe(true);
+  });
+
+  it('puts the board in ranking order, so the recruiting page lists the class best first', () => {
+    const s = filled();
+    const doc = s.ranking!;
+    // The second recruit is ranked first: swap the two places, with their ratings and consensus.
+    const [a, b] = [idOf(0), idOf(1)];
+    const swapped = {
+      ...doc,
+      order: [b, a, ...doc.order.slice(2)],
+      ratings: { ...doc.ratings, [b]: doc.ratings[a], [a]: doc.ratings[b] },
+      consensus: { ...doc.consensus, [b]: doc.consensus![a], [a]: doc.consensus![b] },
+    };
+    const r = ok(finishClassRanking({ ...s, ranking: swapped }, ctx));
+    const board = r.writes[1].doc as RecruitingFile;
+    expect(board.recruits.map(p => p.playerId)).toEqual(swapped.order);
+    expect(board.recruits[0]).toMatchObject({ playerId: b, consensus: 99, stars: 5 });
   });
 
   it('is refused with blockers, out of calendar order, when already ranked and when not started', () => {
