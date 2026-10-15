@@ -57,7 +57,8 @@ export interface ComputedField {
 /** The one place the March Madness and NIT fields are chosen and placed: the real "Set the fields" and Bracketology both use it. */
 export function computeField(ranking: string[], champions: string[], rsChampions: string[], confOf: (id: string) => string): ComputedField {
   const picked = selectMarchMadness(ranking, champions, confOf);
-  const ff = selectFirstFour(ranking, picked.field, picked.leftover, confOf, new Set(rsChampions));
+  // A conference tournament title guarantees the Round of 64, and a regular-season title at least the NIT: neither plays the First Four.
+  const ff = selectFirstFour(ranking, picked.field, picked.leftover, confOf, new Set([...champions, ...rsChampions]));
   const nit = selectNit(ff.leftover, rsChampions);
   const placed = placeRegions(ff.slots, confOf);
   const entries = firstFourEntries(ff.pairs, placed.regions, placed.seeds);
