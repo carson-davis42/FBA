@@ -2,7 +2,7 @@ import { AWARD_LABEL } from '../../engine/awards/races';
 import { gameDays } from '../../engine/season/schedule';
 import type { SeasonState } from '../../engine/season/state';
 import { currentStepIndex } from '../../engine/shared/calendar';
-import type { AwardEntry, CalendarFile, LeagueId, SummaryFile } from '../../engine/shared/types';
+import type { AwardEntry, CalendarFile, GameResult, JcScheduleFile, LeagueId, SummaryFile } from '../../engine/shared/types';
 import { stepTarget } from '../stepRoutes';
 
 export interface TickerSide { teamId: string; value: string; won: boolean }
@@ -85,4 +85,29 @@ export function tickerItems(input: TickerInput): Ticker {
     return { label: `${label} · S${sum.season} final`, items: [...items, ...tail] };
   }
   return empty(label);
+}
+
+/** How many of the latest college results the header shows (a day has 108 games). */
+export const JC_TICKER_GAMES = 40;
+
+/**
+ * The FBAJC header ticker: the most recent results, newest first, from the latest day that has a played game. Falls back to the next
+ * calendar step before a game is played.
+ */
+export function jcTickerItems(input: { label: string; results: GameResult[]; schedule: JcScheduleFile | null; calendar?: CalendarFile }): Ticker {
+  const next = nextItem(input.calendar);
+  const tail = next ? [next] : [];
+  const { results, schedule } = input;
+  if (!schedule || results.length === 0) return { label: input.label, items: tail.length ? tail : [text('empty', null, 'No results yet', null)] };
+  const dayOf = new Map<number, number>();
+  for (const d of schedule.days) for (const g of d.games) dayOf.set(g.gameNo, d.day);
+  const latest = results.reduce((m, g) => Math.max(m, dayOf.get(g.gameNo) ?? 0), 0);
+  const recent = results.filter(g => (dayOf.get(g.gameNo) ?? 0) === latest).sort((a, b) => b.gameNo - a.gameNo).slice(0, JC_TICKER_GAMES);
+  const items: TickerItem[] = recent.map(g => ({
+    kind: 'score', key: `g${g.gameNo}`, to: `/league/fbajc/game/${g.gameNo}`,
+    away: { teamId: g.away, value: String(g.awayPts), won: g.awayPts > g.homePts },
+    home: { teamId: g.home, value: String(g.homePts), won: g.homePts > g.awayPts },
+    note: g.ot ? (g.ot > 1 ? `Final/${g.ot}OT` : 'Final/OT') : 'Final',
+  }));
+  return { label: `${input.label} · Day ${latest}`, items: [...items, ...tail] };
 }

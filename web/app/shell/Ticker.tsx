@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { seasonDocPath } from '../../engine/season/state';
-import type { CalendarFile, LeagueId, SummaryFile, Team } from '../../engine/shared/types';
+import type { CalendarFile, JcScheduleFile, LeagueId, ResultsFile, SummaryFile, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc } from '../api';
 import { TeamMark } from '../components/TeamMark';
 import { useSeasonState } from '../season/useSeasonState';
-import { tickerItems, type TickerItem, type TickerSide } from './tickerItems';
+import { jcTickerItems, tickerItems, type TickerItem, type TickerSide } from './tickerItems';
 import { SHORT_LABEL } from './useCurrentLeague';
 
 function Side({ side, team, season }: { side: TickerSide; team?: Team; season: number }) {
@@ -32,7 +32,15 @@ export function Ticker({ league }: { league: LeagueId }) {
   const { state } = useSeasonState(lg);
   const { data: calendar } = useDoc<CalendarFile>('calendar.json');
   const { data: lastSummary } = useDoc<SummaryFile>(lg && state ? seasonDocPath('summary', lg, state.season - 1) : null);
-  const t = tickerItems({ league, label: SHORT_LABEL[league], state, lastSummary, calendar });
+  // FBAJC has no season state: its latest results come straight from its own results and schedule files.
+  const jc = league === 'fbajc';
+  const jcSeason = jc ? calendar?.season ?? null : null;
+  const jcTeams = useDoc<TeamsFile>(jc ? 'leagues/fbajc/teams.json' : null);
+  const jcResults = useDoc<ResultsFile>(jcSeason === null ? null : `leagues/fbajc/S${jcSeason}/results.json`);
+  const jcSchedule = useDoc<JcScheduleFile>(jcSeason === null ? null : `leagues/fbajc/S${jcSeason}/schedule.json`);
+  const t = jc
+    ? jcTickerItems({ label: SHORT_LABEL[league], results: jcResults.data?.games ?? [], schedule: jcSchedule.data ?? null, calendar: calendar ?? undefined })
+    : tickerItems({ league, label: SHORT_LABEL[league], state, lastSummary, calendar });
   const row = useRef<HTMLDivElement>(null);
   const [overflow, setOverflow] = useState(false);
   useEffect(() => {
@@ -44,8 +52,8 @@ export function Ticker({ league }: { league: LeagueId }) {
     return () => window.removeEventListener('resize', check);
   }, [t.items.length]);
   const scroll = (dx: number) => row.current?.scrollBy?.({ left: dx, behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-  const teams = state?.teams.teams ?? [];
-  const season = state?.season ?? calendar?.season ?? 1;
+  const teams = jc ? jcTeams.data?.teams ?? [] : state?.teams.teams ?? [];
+  const season = jc ? jcSeason ?? 1 : state?.season ?? calendar?.season ?? 1;
   return (
     <section className="ticker" aria-label="Latest results">
       <div className="ticker-label">{t.label}</div>

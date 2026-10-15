@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { SeasonState } from '../../engine/season/state';
-import type { CalendarFile, SummaryFile } from '../../engine/shared/types';
-import { tickerItems } from './tickerItems';
+import type { CalendarFile, JcScheduleFile, SummaryFile } from '../../engine/shared/types';
+import { jcTickerItems, tickerItems } from './tickerItems';
 
 const cal: CalendarFile = { season: 80, steps: [
   { id: 'a', label: 'Free agency', kind: 'offseason', league: null, sub: false, done: true },
@@ -61,5 +61,35 @@ describe('tickerItems', () => {
   it('shows only the next step (or an empty chip) without a season state', () => {
     expect(tickerItems({ league: 'fbajc', label: 'JC', calendar: cal }).items.map(i => i.kind === 'text' && i.text)).toEqual(['Retirement']);
     expect(tickerItems({ league: 'fbajc', label: 'JC' }).items.map(i => i.kind === 'text' && i.text)).toEqual(['No results yet']);
+  });
+});
+
+describe('jcTickerItems', () => {
+  const schedule = { days: [
+    { day: 1, kind: 'tournament', games: [{ gameNo: 1, home: 'A', away: 'B' }, { gameNo: 2, home: 'C', away: 'D' }] },
+    { day: 2, kind: 'tournament', games: [{ gameNo: 3, home: 'A', away: 'C' }, { gameNo: 4, home: 'B', away: 'D' }] },
+  ] } as unknown as JcScheduleFile;
+  const g = (gameNo: number, home: string, away: string, homePts: number, awayPts: number) => ({ gameNo, home, away, homePts, awayPts });
+
+  it('shows the latest day with a played game, newest first, with links to the games', () => {
+    const t = jcTickerItems({ label: 'FBAJC', schedule, calendar: cal, results: [g(1, 'A', 'B', 80, 70), g(2, 'C', 'D', 60, 65), g(3, 'A', 'C', 90, 88)] });
+    expect(t.label).toBe('FBAJC · Day 2');
+    expect(t.items.slice(0, 1)).toEqual([{ kind: 'score', key: 'g3', to: '/league/fbajc/game/3',
+      away: { teamId: 'C', value: '88', won: false }, home: { teamId: 'A', value: '90', won: true }, note: 'Final' }]);
+    expect(t.items[1]).toMatchObject({ kind: 'text', badge: 'Next' });
+  });
+
+  it('falls back to the next step before a game is played', () => {
+    const t = jcTickerItems({ label: 'FBAJC', schedule, calendar: cal, results: [] });
+    expect(t.items).toEqual([expect.objectContaining({ kind: 'text', badge: 'Next', text: 'Retirement' })]);
+  });
+
+  it('caps a day of 108 games to the latest 40', () => {
+    const games = Array.from({ length: 108 }, (_, i) => ({ gameNo: i + 1, home: `H${i}`, away: `A${i}` }));
+    const big = { days: [{ day: 1, kind: 'tournament', games }] } as unknown as JcScheduleFile;
+    const results = games.map(x => g(x.gameNo, x.home, x.away, 70, 60));
+    const t = jcTickerItems({ label: 'FBAJC', schedule: big, results });
+    expect(t.items).toHaveLength(40);
+    expect(t.items[0].key).toBe('g108');
   });
 });
