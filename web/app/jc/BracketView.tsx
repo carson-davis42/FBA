@@ -27,18 +27,19 @@ export function BracketView({ bracket, teamCell, filter, hrefFor }: {
   const games = bracket.games.filter(g => !filter || filter(g));
   const rounds = [...new Set(games.map(g => g.round))].sort((a, b) => a - b);
   return (
-    <div className="jc-bracket" role="group" aria-label={`${bracket.name} bracket`}>
+    <div className="jc-tree" role="group" aria-label={`${bracket.name} bracket`}>
       {rounds.map(round => (
         <div key={round} className="jc-bround">
           <h3>{roundName(bracket.kind, round)}</h3>
           {games.filter(g => g.round === round).map(g => (
-            <div key={g.id} className="jc-bgame card" data-game={g.id}>
+            <div key={g.id} className="jc-bslot"><div className="jc-bgame card" data-game={g.id}>
               <Side game={g} side="home" teamCell={teamCell} />
               <Side game={g} side="away" teamCell={teamCell} />
               {(() => {
                 const link = hrefFor?.(g);
                 return link ? <Link className="jc-blink" to={link.to}>{link.label}</Link> : null;
               })()}
+            </div>
             </div>
           ))}
         </div>
