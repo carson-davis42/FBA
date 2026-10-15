@@ -113,6 +113,16 @@ describe('PostseasonPage', () => {
     expect(await screen.findByText('Finish the NIT first')).toBeTruthy();
     expect((screen.getByRole('button', { name: 'Play round' }) as HTMLButtonElement).disabled).toBe(true);
   });
+  it('lists the two play-in teams of a spot together in the projected regions', async () => {
+    const { container } = mount(played, '/league/fbajc/postseason?tab=bracketology');
+    await screen.findByRole('heading', { name: 'Projected bracket' });
+    const cards = [1, 2, 3, 4].map(n => screen.getByRole('heading', { name: `Region ${n}` }).parentElement!);
+    const slots = cards.flatMap(c => [...c.querySelectorAll('li')].filter(li => (li.textContent ?? '').includes('/')));
+    expect(slots).toHaveLength(8);
+    expect(cards.every(c => c.querySelectorAll('li').length === 16)).toBe(true);
+    expect(container.textContent).toBeTruthy();
+  });
+
   it('shows the two play-in teams in a Round of 64 slot instead of TBD', async () => {
     const { container } = mount(played, '/league/fbajc/postseason?tab=bracketology');
     await screen.findByRole('heading', { name: 'First Four In' });

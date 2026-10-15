@@ -12,6 +12,8 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
   const champ = new Map(Object.values(p.champions).map(c => [c.teamId, c.projected]));
   const mark = (id: string): ReactNode => (champ.has(id)
     ? (champ.get(id) ? <span> *</span> : <span className="muted"> (conference champion)</span>) : null);
+  /** A play-in spot holds its better team; the pair is shown together. */
+  const playIn = new Map(p.playIn.map(g => [g.teams[0], g.teams] as const));
   const real = Object.values(p.champions).filter(c => !c.projected).length;
   const ranked = (games: PlayInGame[]) => games.flatMap(g => g.teams.map(id => (
     <li key={id}>{teamCell(id)}<span className="muted"> (seed {g.seed})</span></li>
@@ -31,7 +33,12 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
           <div key={k} className="card jc-field">
             <h3>Region {k + 1}</h3>
             <ol>
-              {[...reg].sort((a, b) => p.seeds[a] - p.seeds[b]).map(id => <li key={id}>{teamCell(id)}{mark(id)}</li>)}
+              {[...reg].sort((a, b) => p.seeds[a] - p.seeds[b]).map(id => {
+                const pair = playIn.get(id);
+                return pair
+                  ? <li key={id}>{teamCell(pair[0])}{mark(pair[0])}<span className="muted"> / </span>{teamCell(pair[1])}{mark(pair[1])}</li>
+                  : <li key={id}>{teamCell(id)}{mark(id)}</li>;
+              })}
             </ol>
           </div>
         ))}
