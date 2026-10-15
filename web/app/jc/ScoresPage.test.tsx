@@ -99,9 +99,9 @@ describe('ScoresPage', () => {
     expect(screen.getByText(/Day 2 of 29/)).toBeTruthy();
   });
 
-  it('Play day saves once even when double-clicked', async () => {
+  it('Sim rest of day saves once even when double-clicked', async () => {
     mount(jcStateFixture());
-    const btn = await screen.findByRole('button', { name: 'Play day' });
+    const btn = await screen.findByRole('button', { name: 'Sim rest of day' });
     fireEvent.click(btn);
     fireEvent.click(btn);
     await waitFor(() => expect(batches.length).toBeGreaterThan(0));
@@ -204,5 +204,29 @@ describe('ScoresPage', () => {
     expect(round2[0].textContent).toContain('TBD');
     expect(round2[2].textContent).toContain(abbr(first.away));
     expect(round2[1].textContent!.match(/TBD/g)).toHaveLength(2);
+  });
+  it('has the FBA sim controls: quick-sim the next game, sim the rest of the day, and Sim to a chosen day', async () => {
+    mount(jcStateFixture());
+    expect(await screen.findByRole('button', { name: 'Quick-sim next game' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Sim rest of day' })).toBeTruthy();
+    const select = screen.getByRole('combobox', { name: 'Sim to' }) as HTMLSelectElement;
+    expect([...select.options].map(o => o.textContent).slice(0, 3)).toEqual(['the end of the regular season', 'the end of day 1', 'the end of day 2']);
+    expect(screen.getByRole('button', { name: 'Sim' })).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Play day' })).toBeNull();
+  });
+
+  it('Quick-sim next game saves one game', async () => {
+    mount(jcStateFixture());
+    fireEvent.click(await screen.findByRole('button', { name: 'Quick-sim next game' }));
+    await waitFor(() => expect(batches.length).toBe(1));
+    expect(batches[0].writes.map((w: { path: string }) => w.path).sort()).toEqual(['leagues/fbajc/S79/results.json', 'leagues/fbajc/S79/rosters.json']);
+  });
+
+  it('Sim to the end of day 1 saves that day as one batch', async () => {
+    mount(jcStateFixture());
+    const select = await screen.findByRole('combobox', { name: 'Sim to' });
+    fireEvent.change(select, { target: { value: '1' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Sim' }));
+    await waitFor(() => expect(batches.length).toBe(1));
   });
 });

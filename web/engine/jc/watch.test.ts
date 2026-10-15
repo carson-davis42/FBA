@@ -5,7 +5,7 @@ import { confDone, playConfRound, startConfTournaments } from './confTourney';
 import { lineupOf, playDay } from './play';
 import { jcPlayedFixture, jcStateFixture } from './testFixtures';
 import type { JcResult, JcState } from './state';
-import { nextConfGame, nextJcGame, recordConfGame, recordJcGame } from './watch';
+import { nextConfGame, nextJcGame, quickSimNext, recordConfGame, recordJcGame } from './watch';
 
 const must = (r: JcResult): JcState => {
   if (!r.ok) throw new Error(r.problems.join());
@@ -156,5 +156,22 @@ describe('watching conference tournament games', () => {
     if (typeof next === 'string') throw new Error(next);
     expect(recordConfGame(started, simOf(started, { ...next, gameNo: next.gameNo + 1 }, 1), mulberry32(1)).ok).toBe(false);
     expect(typeof nextConfGame(played)).toBe('string');
+  });
+});
+
+describe('quick-simming the next game', () => {
+  it('plays and records the next game without watching it', () => {
+    const r = quickSimNext(jcStateFixture(), mulberry32(5));
+    if (!r.ok) throw new Error(r.problems.join());
+    expect(r.state.results!.games.map(g => g.gameNo)).toEqual([1]);
+    expect(r.changed).toEqual(['results', 'rosters']);
+  });
+  it("plays the next game of one tournament when given its id", () => {
+    const s0 = jcStateFixture();
+    const t = s0.schedule!.days[0].games[50].tournament!;
+    const want = s0.schedule!.days[0].games.find(g => g.tournament === t)!.gameNo;
+    const r = quickSimNext(s0, mulberry32(5), t);
+    if (!r.ok) throw new Error(r.problems.join());
+    expect(r.state.results!.games.map(g => g.gameNo)).toEqual([want]);
   });
 });

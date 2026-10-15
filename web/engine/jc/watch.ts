@@ -1,11 +1,11 @@
 import type { Rng } from '../d2/random';
 import { leagueRefRating } from '../awards/defense';
 import { calendarProblem } from '../season/moves';
-import type { SimGame } from '../season/sim';
+import { JC_HOME_PROFILE, JC_PROFILE, simGame, type SimGame } from '../season/sim';
 import type { JcPostseasonFile } from '../shared/types';
 import { playableGames, recordResult } from './bracket';
 import { postseasonGames } from './confTourney';
-import { applySim, newBook, regularSeasonOver } from './play';
+import { applySim, isNeutralDay, lineupOf, newBook, regularSeasonOver } from './play';
 import { blendRankings } from './rankings';
 import { TEAMS_PER_DAY, TOTAL_GAMES, jcFail, type JcKey, type JcResult, type JcState } from './state';
 import { dayGames } from './tournaments';
@@ -85,6 +85,18 @@ export function recordJcGame(state: JcState, sim: SimGame, rng: Rng): JcResult {
     changed,
     label: `Game ${next.gameNo}: ${next.away} ${result.awayPts}-${result.homePts} ${next.home}`,
   };
+}
+
+/** Sims the next open game (or the next game of one tournament) without watching it, and records it like a watched game. */
+export function quickSimNext(state: JcState, rng: Rng, tournamentId?: string): JcResult {
+  const next = nextJcGame(state, tournamentId);
+  if (typeof next === 'string') return jcFail([next]);
+  const home = lineupOf(state.rosters.teams[next.home], next.home);
+  const away = lineupOf(state.rosters.teams[next.away], next.away);
+  if (typeof home === 'string') return jcFail([home]);
+  if (typeof away === 'string') return jcFail([away]);
+  const kind = state.schedule!.days.find(d => d.day === next.day)?.kind;
+  return recordJcGame(state, simGame(next.gameNo, home, away, rng, isNeutralDay(kind) ? JC_PROFILE : JC_HOME_PROFILE), rng);
 }
 
 export interface NextConfGame { bracketId: string; gameId: string; gameNo: number; home: string; away: string; round: number }

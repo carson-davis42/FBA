@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { mulberry32 } from '../../engine/d2/random';
 import { fbajcGateProblem } from '../../engine/college/recruiting';
 import { openSpots } from '../../engine/college/walkOns';
-import { playDay, playToEnd, regularSeasonOver } from '../../engine/jc/play';
-import { nextJcGame } from '../../engine/jc/watch';
+import { playDay, regularSeasonOver } from '../../engine/jc/play';
+import { nextJcGame, quickSimNext } from '../../engine/jc/watch';
 import { namesNeeded, redrawFields, startSeason } from '../../engine/jc/start';
-import { DAYS, dayPlayed, type JcState } from '../../engine/jc/state';
+import { DAYS, dayPlayed, jcWrites, type JcState } from '../../engine/jc/state';
 import { calendarProblem } from '../../engine/season/moves';
 import { records } from '../../engine/season/standings';
 import { collegeName } from '../../engine/college/state';
@@ -14,6 +14,7 @@ import { pollRanks } from '../../engine/jc/rankings';
 import { groupLabel } from '../../engine/shared/leagues';
 import type { CalendarFile, SummaryFile, Team } from '../../engine/shared/types';
 import { useDoc } from '../api';
+import { commitDocs } from '../roster/commit';
 import { Badge } from '../components/Badge';
 import { PageHeader } from '../components/PageHeader';
 import { PlayerName } from '../components/PlayerName';
@@ -42,7 +43,12 @@ export function ScoresPage() {
   const docs = useJcDocs(season);
   const { saving, error, run } = useJcRun(docs.versions, docs.reload);
   const [picked, setPicked] = useState<number | null>(null);
-  const [playing, setPlaying] = useState(false);
+  const [simTo, setSimTo] = useState('end');
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
+  const [message, setMessage] = useState('');
+  const stop = useRef(false);
+  const simming = useRef(false);
+  const playing = progress !== null;
   const kicker = 'Junior College';
 
   if (season === null) return <section className="jc-page"><PageHeader kicker={kicker} title="Scores" /></section>;
@@ -93,6 +99,33 @@ export function ScoresPage() {
   const nextNo = typeof nextGame === 'string' || stepProblem ? null : nextGame.gameNo;
   const notStarted = (state.results?.games.length ?? 0) === 0;
 
+  /** Sims whole days until `target` is played, saving after each one so a stop (or a failure) keeps what was done. */
+  const simDays = async (target: number): Promise<void> => {
+    if (simming.current) return;
+    simming.current = true;
+    let s: JcState = state;
+    let v = docs.versions;
+    stop.current = false;
+    setMessage('');
+    const start = dayPlayed(s);
+    setProgress({ done: 0, total: Math.max(0, target - start) });
+    try {
+      while (!stop.current && dayPlayed(s) < target && !regularSeasonOver(s)) {
+        const r = playDay(s, newRng());
+        if (!r.ok) { setMessage(r.problems.join('; ')); break; }
+        v = { ...v, ...(await commitDocs(r.label, jcWrites(r), v)) };
+        s = r.state;
+        setProgress({ done: dayPlayed(s) - start, total: Math.max(0, target - start) });
+      }
+    } catch (e) {
+      setMessage(`${(e as Error).message} (stopped after day ${dayPlayed(s)})`);
+    } finally {
+      simming.current = false;
+      setProgress(null);
+      docs.reload();
+    }
+  };
+
   return (
     <section className="jc-page">
       <PageHeader kicker={kicker} title={title} />
@@ -109,14 +142,30 @@ export function ScoresPage() {
           ))}
         </div>
       </div>
-      <div className="jc-actions">
-        {nextNo !== null && !saving && !playing
-          ? <Link className="btn primary" to={`/league/fbajc/game/${nextNo}`}>Watch next game</Link>
-          : <button className="btn primary" disabled title={playReason ?? undefined}>Watch next game</button>}
-        <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => void run(() => playDay(state, newRng()))}>Play day</button>
-        <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => { setPlaying(true); setTimeout(() => { void run(() => playToEnd(state, newRng())).finally(() => setPlaying(false)); }, 0); }}>{playing ? 'Playing...' : 'Play to end of regular season'}</button>
-      </div>
+      {!over && (
+        <div className="card sim-controls">
+          {nextNo !== null && !saving && !playing
+            ? <Link className="btn primary" to={`/league/fbajc/game/${nextNo}`}>Watch next game</Link>
+            : <button className="btn primary" disabled title={playReason ?? undefined}>Watch next game</button>}
+          <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => void run(() => quickSimNext(state, newRng()))}>Quick-sim next game</button>
+          <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => void simDays(Math.max(played + 1, 1))}>Sim rest of day</button>
+          <label>Sim to
+            <select aria-label="Sim to" value={simTo} onChange={e => setSimTo(e.target.value)}>
+              <option value="end">the end of the regular season</option>
+              {Array.from({ length: DAYS }, (_, i) => i + 1).filter(d => d >= played + 1).map(d => <option key={d} value={String(d)}>the end of day {d}</option>)}
+            </select>
+          </label>
+          <button className="btn primary" disabled={blocked} title={playReason ?? undefined} onClick={() => void simDays(simTo === 'end' ? DAYS : Number(simTo))}>Sim</button>
+          {progress && (
+            <span className="sim-progress">
+              <progress max={progress.total || 1} value={progress.done} /> {progress.done}/{progress.total} days
+              <button className="btn" onClick={() => { stop.current = true; }}>Stop</button>
+            </span>
+          )}
+        </div>
+      )}
       {playReason && <p className="muted">{playReason}</p>}
+      {message && <p className="error">{message}</p>}
       {over && <p><Link to="/league/fbajc/postseason">The regular season is over: on to the postseason</Link></p>}
       {error && <p className="error">{error}</p>}
       {dayDoc?.kind === 'tournament' ? null : dayDoc && dayDoc.games.length === 0 ? (
