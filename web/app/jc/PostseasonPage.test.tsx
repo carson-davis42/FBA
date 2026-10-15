@@ -106,14 +106,16 @@ describe('PostseasonPage', () => {
     mount(played);
     const tab = await screen.findByRole('tab', { name: 'Bracketology' });
     expect(tab.getAttribute('aria-pressed')).toBe('true');
-    expect(screen.getByRole('heading', { name: 'Last four in' })).toBeTruthy();
-    expect(screen.getByRole('heading', { name: 'First four out' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Bubble: power conferences' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Bubble: other conferences' })).toBeTruthy();
+    expect(screen.getAllByRole('heading', { name: 'Last four in' })).toHaveLength(2);
+    expect(screen.getAllByRole('heading', { name: 'First four out' })).toHaveLength(2);
     expect(screen.queryByRole('link', { name: 'Watch' })).toBeNull();
   });
 
   it('keeps Bracketology reachable after the conference tournaments but hides it once the fields are set', async () => {
     mount(afterConf, '/league/fbajc/postseason?tab=bracketology');
-    expect(await screen.findByRole('heading', { name: 'Last four in' })).toBeTruthy();
+    expect((await screen.findAllByRole('heading', { name: 'Last four in' })).length).toBe(2);
     cleanup();
     const set = setFields(afterConf);
     if (!set.ok) throw new Error(set.problems.join());
