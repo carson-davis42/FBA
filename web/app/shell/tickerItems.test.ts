@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { SeasonState } from '../../engine/season/state';
 import type { CalendarFile, JcScheduleFile, SummaryFile } from '../../engine/shared/types';
-import { jcTickerItems, tickerItems } from './tickerItems';
+import { addedKey, jcTickerItems, tickerItems, type TickerItem } from './tickerItems';
 
 const cal: CalendarFile = { season: 80, steps: [
   { id: 'a', label: 'Free agency', kind: 'offseason', league: null, sub: false, done: true },
@@ -79,6 +79,12 @@ describe('jcTickerItems', () => {
     expect(t.items[1]).toMatchObject({ kind: 'text', badge: 'Next' });
   });
 
+  it('carries the poll rank of a ranked team on each side', () => {
+    const t = jcTickerItems({ label: 'FBAJC', schedule, calendar: cal, results: [g(1, 'A', 'B', 80, 70)], ranks: new Map([['A', 3]]) });
+    expect(t.items[0]).toMatchObject({ away: { teamId: 'B' }, home: { teamId: 'A', rank: 3 } });
+    expect((t.items[0] as { away: { rank?: number } }).away.rank).toBeUndefined();
+  });
+
   it('falls back to the next step before a game is played', () => {
     const t = jcTickerItems({ label: 'FBAJC', schedule, calendar: cal, results: [] });
     expect(t.items).toEqual([expect.objectContaining({ kind: 'text', badge: 'Next', text: 'Retirement' })]);
@@ -91,5 +97,19 @@ describe('jcTickerItems', () => {
     const t = jcTickerItems({ label: 'FBAJC', schedule: big, results });
     expect(t.items).toHaveLength(40);
     expect(t.items[0].key).toBe('g108');
+  });
+});
+
+describe('addedKey', () => {
+  const item = (key: string): TickerItem => ({ kind: 'text', key, to: null, badge: null, text: key, teamId: null });
+  const items = ['g1', 'g2', 'g3'].map(item);
+
+  it('does nothing on the first load or when nothing was added', () => {
+    expect(addedKey(null, items, false)).toBeNull();
+    expect(addedKey(new Set(['g1', 'g2', 'g3']), items, false)).toBeNull();
+  });
+  it('picks the newest new chip: the last one when results are appended, the first when newest first', () => {
+    expect(addedKey(new Set(['g1']), items, false)).toBe('g3');
+    expect(addedKey(new Set(['g3']), items, true)).toBe('g1');
   });
 });

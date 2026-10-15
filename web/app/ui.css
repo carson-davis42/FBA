@@ -185,3 +185,4 @@ td.rank.clinch { position: relative; }
 .clinch-legend li { display: flex; align-items: center; gap: 8px; }
 .clinch-swatch { width: 4px; height: 14px; border-radius: 2px; background: var(--clinch-color); }
 .standings .champ-glyph { margin-left: 6px; }
+.ticker-chip .side .rank { font-size: 0.75em; font-weight: 700; color: var(--muted); min-width: 1.2em; text-align: right; font-variant-numeric: tabular-nums; }
