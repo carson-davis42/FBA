@@ -62,3 +62,64 @@ export function selectNit(leftover: string[], rsChampions: string[]): { teams: s
   const keep = new Set(picked);
   return { teams: leftover.filter(t => keep.has(t)), warnings };
 }
+
+export interface FirstFourPair { id: string; group: 'power' | 'other'; teams: [string, string]; spot: number /* index in the 64-slot pick order */ }
+export interface FirstFourPick {
+  /** The 64 slots in pick order, a play-in spot holding the better-ranked team of its pair. */
+  slots: string[];
+  pairs: FirstFourPair[];
+  firstFourIn: { power: string[]; other: string[] };
+  firstFourOut: { power: string[]; other: string[] };
+  /** Per group, the eight in ranking order. */
+  lastEight: { power: string[]; other: string[] };
+  /** Teams of `leftover` that remain after the 8 challengers. */
+  leftover: string[];
+  warnings: string[];
+}
+
+/**
+ * The First Four: per group (power / other) the 4 worst spot holders of the 64 meet the first 4 of `leftover`, paired
+ * adjacent by rank. A group with too few teams means no First Four (a 64-team field) and a warning.
+ */
+export function selectFirstFour(ranking: string[], field: string[], leftover: string[], confOf: (id: string) => string): FirstFourPick {
+  const rankOf = new Map(ranking.map((t, i) => [t, i]));
+  const byRank = (a: string, b: string): number => (rankOf.get(a) ?? Infinity) - (rankOf.get(b) ?? Infinity);
+  const slots = [...field];
+  const groups: ('power' | 'other')[] = ['power', 'other'];
+  const inGroup = (t: string, g: 'power' | 'other'): boolean => isMajor(confOf(t)) === (g === 'power');
+  const picked = {} as Record<'power' | 'other', { holders: string[]; challengers: string[]; above: string[]; out: string[] }>;
+  for (const g of groups) {
+    const members = field.filter(t => inGroup(t, g)).sort(byRank);
+    const pool = leftover.filter(t => inGroup(t, g));
+    if (members.length < 8 || pool.length < 4) {
+      return {
+        slots, pairs: [], firstFourIn: { power: [], other: [] }, firstFourOut: { power: [], other: [] },
+        lastEight: { power: [], other: [] }, leftover: [...leftover],
+        warnings: [`There are too few ${g === 'power' ? 'power-conference' : 'other-conference'} teams for a First Four; March Madness has 64 teams`],
+      };
+    }
+    picked[g] = { holders: members.slice(-4), challengers: pool.slice(0, 4), above: members.slice(-8, -4), out: pool.slice(4, 8) };
+  }
+  const pairs: FirstFourPair[] = [];
+  const lastEight: FirstFourPick['lastEight'] = { power: [], other: [] };
+  const spotsOf: Record<string, number[]> = {};
+  for (const g of groups) spotsOf[g] = picked[g].holders.map(t => field.indexOf(t)).sort((a, b) => a - b);
+  for (const g of groups) {
+    const eight = [...picked[g].holders, ...picked[g].challengers].sort(byRank);
+    lastEight[g] = eight;
+    for (let k = 0; k < 4; k++) {
+      pairs.push({ id: '', group: g, teams: [eight[2 * k], eight[2 * k + 1]], spot: spotsOf[g][k] });
+      slots[spotsOf[g][k]] = eight[2 * k];
+    }
+  }
+  pairs.forEach((p, i) => { p.id = `P${i + 1}`; });
+  const taken = new Set(groups.flatMap(g => picked[g].challengers));
+  return {
+    slots, pairs,
+    firstFourIn: { power: picked.power.above, other: picked.other.above },
+    firstFourOut: { power: picked.power.out, other: picked.other.out },
+    lastEight,
+    leftover: leftover.filter(t => !taken.has(t)),
+    warnings: [],
+  };
+}

@@ -84,9 +84,10 @@ describe('setFields', () => {
     const f = s.postseason!.field!;
     expect(f.mm.teams).toHaveLength(64);
     expect(f.nit.teams).toHaveLength(32);
-    expect(new Set([...f.mm.teams, ...f.nit.teams]).size).toBe(96);
-    for (const b of s.postseason!.conf) expect(f.mm.teams).toContain(b.champion);
-    for (const t of Object.values(s.postseason!.rsChampions).flat()) expect([...f.mm.teams, ...f.nit.teams]).toContain(t);
+    const mmAll = [...f.mm.teams, ...f.mm.firstFour.map(g => g.teams[1])];
+    expect(new Set([...mmAll, ...f.nit.teams]).size).toBe(104);
+    for (const b of s.postseason!.conf) expect(mmAll).toContain(b.champion);
+    for (const t of Object.values(s.postseason!.rsChampions).flat()) expect([...mmAll, ...f.nit.teams]).toContain(t);
     expect(s.postseason!.mm!.games).toHaveLength(63);
     expect(s.postseason!.nit!.games).toHaveLength(31);
   });
@@ -102,6 +103,55 @@ describe('setFields', () => {
     const g = playableGames(s.postseason!.nit!)[0];
     const nit = recordResult(s.postseason!.nit!, g.id, { gameNo: 3400, home: g.home!, away: g.away!, homePts: 70, awayPts: 60 });
     expect(setFields({ ...s, postseason: { ...s.postseason!, nit } }).ok).toBe(false);
+  });
+});
+
+describe('First Four in the fields', () => {
+  it('holds 8 pairs and 72 distinct teams, all conference champions among them, and the NIT excludes the 16 play-in teams', () => {
+    const s = fields();
+    const f = s.postseason!.field!;
+    const challengers = f.mm.firstFour.map(g => g.teams[1]);
+    expect(f.mm.firstFour).toHaveLength(8);
+    const all = [...f.mm.teams, ...challengers];
+    expect(new Set(all).size).toBe(72);
+    for (const g of f.mm.firstFour) {
+      expect(f.mm.teams).toContain(g.teams[0]);
+      expect(f.mm.seeds[g.teams[1]]).toBe(f.mm.seeds[g.teams[0]]);
+      expect(g.seed).toBe(f.mm.seeds[g.teams[0]]);
+      expect(f.mm.regions[g.region]).toContain(g.teams[0]);
+    }
+    for (const b of s.postseason!.conf) expect(all).toContain(b.champion);
+    expect(f.nit.teams.some(t => all.includes(t))).toBe(false);
+    expect(f.mm.teams).toHaveLength(64);
+  });
+  it('swaps a challenger for a leftover team and updates the pair', () => {
+    const s = fields();
+    const f = s.postseason!.field!;
+    const champions = new Set(s.postseason!.conf.map(b => b.champion));
+    const pair = f.mm.firstFour.find(g => !champions.has(g.teams[1]))!;
+    const into = f.nit.teams[0];
+    const r = swapField(s, 'mm', pair.teams[1], into);
+    if (!r.ok) throw new Error(r.problems.join());
+    const g = r.state.postseason!.field!;
+    expect(g.mm.firstFour.find(x => x.id === pair.id)!.teams[1]).toBe(into);
+    expect(g.nit.teams).toContain(pair.teams[1]);
+    expect(g.mm.firstFour).toHaveLength(8);
+  });
+  it('still swaps in an old-shape postseason with no First Four', () => {
+    const s = fields();
+    const f = s.postseason!.field!;
+    // The old shape: 64 teams, the champions among them (a champion challenger takes its placeholder's slot).
+    const champions = new Set(s.postseason!.conf.map(b => b.champion));
+    const sub = new Map(f.mm.firstFour.filter(g => champions.has(g.teams[1])).map(g => [g.teams[0], g.teams[1]]));
+    const fix = (t: string): string => sub.get(t) ?? t;
+    const mm = { ...f.mm, teams: f.mm.teams.map(fix), regions: f.mm.regions.map(r => r.map(fix)), firstFour: [] };
+    const kept = new Set(mm.teams);
+    const conf = s.postseason!.conf.map(b => (kept.has(b.champion!) ? b : { ...b, champion: f.mm.firstFour.find(g => g.teams.includes(b.champion!))!.teams.find(t => kept.has(t))! }));
+    const old = { ...s, postseason: { ...s.postseason!, conf, field: { ...f, mm } } };
+    const out = mm.teams.find(t => !conf.some(b => b.champion === t))!;
+    const r = swapField(old, 'mm', out, f.nit.teams[0]);
+    if (!r.ok) throw new Error(r.problems.join());
+    expect(r.state.postseason!.field!.mm.firstFour).toEqual([]);
   });
 });
 

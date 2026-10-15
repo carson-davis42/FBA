@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isMajor, selectMarchMadness } from './field';
+import { isMajor, selectFirstFour, selectMarchMadness } from './field';
 
 const CODES = ['B12', 'ACC', 'BE', 'SEC', 'B10', 'AAC', 'P12', 'A10', 'MWC', 'PAT', 'COL', 'HOR', 'IVY', 'SOCON', 'SUN', 'SKY', 'OVC', 'NEC'];
 const ranking = Array.from({ length: 216 }, (_, i) => `t${String(i).padStart(3, '0')}`);
@@ -41,5 +41,61 @@ describe('selectMarchMadness', () => {
   it('is a permutation split: field plus leftover is every team once', () => {
     const { field, leftover } = selectMarchMadness(ranking, at(...range(150, 168)), confOf);
     expect([...field, ...leftover].sort()).toEqual([...ranking].sort());
+  });
+});
+
+describe('selectFirstFour', () => {
+  // 80 ranked teams t00..t79; every third team is power (B12), the rest SKY.
+  const ranking = Array.from({ length: 80 }, (_, i) => `t${String(i).padStart(2, '0')}`);
+  const confOf = (id: string): string => (Number(id.slice(1)) % 3 === 0 ? 'B12' : 'SKY');
+  const field = ranking.slice(0, 64);
+  const leftover = ranking.slice(64);
+
+  it('pairs the last eight of each group, adjacent by ranking', () => {
+    const r = selectFirstFour(ranking, field, leftover, confOf);
+    expect(r.pairs).toHaveLength(8);
+    expect(r.slots).toHaveLength(64);
+    expect(new Set(r.slots).size).toBe(64);
+    const power = r.pairs.filter(p => p.group === 'power');
+    expect(power).toHaveLength(4);
+    const eight = r.lastEight.power;
+    expect(eight).toHaveLength(8);
+    expect(power.map(p => p.teams)).toEqual([[eight[0], eight[1]], [eight[2], eight[3]], [eight[4], eight[5]], [eight[6], eight[7]]]);
+  });
+  it('takes the spot holders from the 64 and the challengers from the leftover, per group', () => {
+    const r = selectFirstFour(ranking, field, leftover, confOf);
+    for (const g of ['power', 'other'] as const) {
+      const eight = r.lastEight[g];
+      expect(eight.every(t => (confOf(t) === 'B12') === (g === 'power'))).toBe(true);
+      expect(eight.filter(t => field.includes(t))).toHaveLength(4);
+      expect(eight.filter(t => leftover.includes(t))).toHaveLength(4);
+    }
+  });
+  it('puts the better team of a pair in its spot and removes the challengers from the leftover', () => {
+    const r = selectFirstFour(ranking, field, leftover, confOf);
+    for (const p of r.pairs) expect(r.slots[p.spot]).toBe(p.teams[0]);
+    const challengers = [...r.lastEight.power, ...r.lastEight.other].filter(t => leftover.includes(t));
+    expect(challengers).toHaveLength(8);
+    expect(r.leftover.some(t => challengers.includes(t))).toBe(false);
+    expect(r.leftover[0]).toBe(leftover.find(t => !challengers.includes(t)));
+  });
+  it('lists First Four In above the spot holders and First Four Out below the challengers', () => {
+    const r = selectFirstFour(ranking, field, leftover, confOf);
+    expect(r.firstFourIn.power).toHaveLength(4);
+    expect(r.firstFourOut.other).toHaveLength(4);
+    for (const g of ['power', 'other'] as const) {
+      const worstIn = Math.max(...r.firstFourIn[g].map(t => ranking.indexOf(t)));
+      const bestEight = Math.min(...r.lastEight[g].map(t => ranking.indexOf(t)));
+      expect(worstIn).toBeLessThan(bestEight);
+      const bestOut = Math.min(...r.firstFourOut[g].map(t => ranking.indexOf(t)));
+      const worstEight = Math.max(...r.lastEight[g].map(t => ranking.indexOf(t)));
+      expect(bestOut).toBeGreaterThan(worstEight);
+    }
+  });
+  it('plays no First Four, with a warning, when a group has too few challengers', () => {
+    const r = selectFirstFour(ranking, field, leftover.slice(0, 3), confOf);
+    expect(r.pairs).toHaveLength(0);
+    expect(r.slots).toEqual(field);
+    expect(r.warnings.length).toBeGreaterThan(0);
   });
 });

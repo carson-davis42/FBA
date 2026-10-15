@@ -127,6 +127,19 @@ describe('postseason schemas', () => {
     expect(JcPostseasonFile.safeParse({ ...ok, field: regions }).success).toBe(false);
   });
 
+  it('treats a missing firstFour as none, and accepts only 0 or 8 pairs with valid teams', () => {
+    const ok = { ...post(), field: field(), mm: mmBracket(), nit: nitBracket() };
+    const parsed = JcPostseasonFile.safeParse(ok);
+    expect(parsed.success && parsed.data.field!.mm.firstFour).toEqual([]);
+    const pairs = (n: number, challenger = (i: number) => `c${i}`) => Array.from({ length: n }, (_, i) => ({
+      id: `P${i + 1}`, group: (i < 4 ? 'power' : 'other') as 'power' | 'other', teams: [`t${50 + i}`, challenger(i)], seed: 12, region: 0,
+    }));
+    const withFf = (firstFour: unknown) => ({ ...ok, field: { ...field(), mm: { ...field().mm, firstFour } } });
+    expect(JcPostseasonFile.safeParse(withFf(pairs(8))).success).toBe(true);
+    expect(JcPostseasonFile.safeParse(withFf(pairs(3))).success).toBe(false);
+    expect(JcPostseasonFile.safeParse(withFf(pairs(8, i => `t${i}`))).success).toBe(false);
+  });
+
   const awards = () => ({
     league: 'fbajc', season: 79, locked: false,
     national: ['POY', 'FOY', 'GOY', 'FWD', 'COY', 'DPOY'].map(award => ({ award, playerId: null })),

@@ -555,7 +555,8 @@ export type JcRankingsFile = z.infer<typeof JcRankingsFile>;
 /** One game of a postseason bracket. `home` is the first-listed team (no home advantage). */
 export const BracketGame = z.object({
   id: z.string().min(1),
-  round: int.min(1).max(6),
+  /** 0 is the March Madness First Four. */
+  round: int.min(0).max(6),
   /** 0-3 for the March Madness and NIT regions; 0 elsewhere. */
   region: int.min(0).max(3),
   home: z.string().min(1).nullable(),
@@ -604,6 +605,16 @@ export type Bracket = z.infer<typeof Bracket>;
 /** Postseason games are numbered from 3133 (after the 3132 regular-season games). */
 export const JC_FIRST_POST_GAME = 3133;
 
+/** One First Four game: `teams` is [the placeholder holding the spot in `field.mm.teams`, the challenger]. */
+export const FirstFourGame = z.object({
+  id: z.string().min(1),
+  group: z.enum(['power', 'other']),
+  teams: z.tuple([z.string().min(1), z.string().min(1)]),
+  seed: int.min(1).max(16),
+  region: int.min(0).max(3),
+}).strict();
+export type FirstFourGame = z.infer<typeof FirstFourGame>;
+
 export const JcPostseasonFile = z.object({
   league: z.literal('fbajc'),
   season: int,
@@ -620,6 +631,8 @@ export const JcPostseasonFile = z.object({
       seeds: z.record(z.string(), int.min(1).max(16)),
       /** Four regions of 16 in the Java's slot order. */
       regions: z.array(z.array(z.string().min(1))),
+      /** The 8 play-in games (none in saves from before the First Four). */
+      firstFour: z.array(FirstFourGame).default([]),
     }).strict(),
     /** The 32 NIT teams, best seed first. */
     nit: z.object({ teams: z.array(z.string().min(1)) }).strict(),
@@ -644,6 +657,15 @@ export const JcPostseasonFile = z.object({
     const regions = d.field.mm.regions;
     if (regions.length !== 4 || regions.some(r => r.length !== 16)) issue('March Madness has four regions of 16');
     else if (new Set(regions.flat()).size !== 64 || regions.flat().some(t => !mm.includes(t))) issue('The regions must hold exactly the 64 teams');
+    const ff = d.field.mm.firstFour;
+    if (ff.length !== 0 && ff.length !== 8) issue('March Madness has 0 or 8 First Four games');
+    const ffTeams = ff.flatMap(g => g.teams);
+    if (new Set(ffTeams).size !== ffTeams.length) issue('A team is in two First Four games');
+    for (const g of ff) {
+      if (!mm.includes(g.teams[0])) issue(`${g.id}: the placeholder must be in the field`);
+      if (mm.includes(g.teams[1])) issue(`${g.id}: the challenger is already in the field`);
+    }
+    if (nit.some(t => ffTeams.includes(t))) issue('A team is in both the First Four and the NIT');
   }
 });
 export type JcPostseasonFile = z.infer<typeof JcPostseasonFile>;
