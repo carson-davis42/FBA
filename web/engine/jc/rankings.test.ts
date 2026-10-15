@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
 import type { GameResult, RosterEntry } from '../shared/types';
-import { blendRankings, dropped, footballRank, frWeight, rankChanges, teamRating } from './rankings';
+import { blendRankings, dropped, footballRank, frWeight, rankChanges, receivingVotes, teamRating } from './rankings';
 
 const g = (gameNo: number, home: string, away: string, homePts: number, awayPts: number): GameResult => ({ gameNo, home, away, homePts, awayPts });
 const entry = (rating: number | null): RosterEntry => ({ playerId: 'p', position: 'PG', rating, age: 20, points: 0 });
@@ -76,5 +76,19 @@ describe('rankChanges and dropped', () => {
   it('lists teams that left the top 25', () => {
     expect(dropped(prev, ['T25', ...ids.slice(1, 25)])).toEqual(['T0']);
     expect(dropped(null, cur)).toEqual([]);
+  });
+});
+
+describe('receivingVotes', () => {
+  const order = Array.from({ length: 40 }, (_, i) => `T${i + 1}`);
+  it('takes the ten teams below the Top 25, with a standing from 10 down to 1', () => {
+    const v = receivingVotes(order);
+    expect(v).toHaveLength(10);
+    expect(v[0]).toEqual({ teamId: 'T26', rank: 26, votes: 10 });
+    expect(v[9]).toEqual({ teamId: 'T35', rank: 35, votes: 1 });
+  });
+  it('shortens with the field and is empty when nobody is below the Top 25', () => {
+    expect(receivingVotes(order.slice(0, 28)).map(v => v.teamId)).toEqual(['T26', 'T27', 'T28']);
+    expect(receivingVotes(order.slice(0, 25))).toEqual([]);
   });
 });
