@@ -13,12 +13,13 @@ import type { Team } from '../../engine/shared/types';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import { BracketView } from './BracketView';
+import { Bracketology } from './Bracketology';
 import { jcGate } from './JcGate';
 import { newRng, usePostseasonDocs } from './usePostseasonDocs';
 import './jc.css';
 
-type Tab = 'conference' | 'field' | 'nit' | 'mm';
-const TABS: [Tab, string][] = [['conference', 'Conference tournaments'], ['field', 'Field'], ['nit', 'NIT'], ['mm', 'March Madness']];
+type Tab = 'bracketology' | 'conference' | 'field' | 'nit' | 'mm';
+const TABS: [Tab, string][] = [['bracketology', 'Bracketology'], ['conference', 'Conference tournaments'], ['field', 'Field'], ['nit', 'NIT'], ['mm', 'March Madness']];
 const DEFAULT_TAB: Record<PostStage, Tab> = {
   regular: 'conference', conf: 'conference', fields: 'field', awards: 'field', nit: 'nit', mm: 'mm', allAmerican: 'mm', mvp: 'mm', finish: 'mm', done: 'mm',
 };
@@ -47,7 +48,9 @@ export function PostseasonPage() {
   if (gate) return <>{gate}</>;
   const state = docs.state!;
   const stage = postseasonStage(state);
-  const tab = (TABS.find(([id]) => id === params.get('tab'))?.[0]) ?? DEFAULT_TAB[stage];
+  const fieldsSet = !!state.postseason?.field;
+  const visibleTabs = TABS.filter(([id]) => id !== 'bracketology' || !fieldsSet);
+  const tab = (visibleTabs.find(([id]) => id === params.get('tab'))?.[0]) ?? (fieldsSet ? DEFAULT_TAB[stage] : stage === 'regular' || (stage === 'conf' && !state.postseason) ? 'bracketology' : DEFAULT_TAB[stage]);
   const byId = new Map<string, Team>(state.teams.teams.map(t => [t.teamId, t]));
   const teamCell = (id: string): ReactNode => {
     const t = byId.get(id);
@@ -69,7 +72,7 @@ export function PostseasonPage() {
         {(stage === 'awards' || stage === 'allAmerican' || stage === 'mvp' || stage === 'finish') && <Link to="/league/fbajc/awards">Open the awards page</Link>}
       </p>
       <div className="jc-tabs" role="tablist" aria-label="Postseason sections">
-        {TABS.map(([id, label]) => (
+        {visibleTabs.map(([id, label]) => (
           <button key={id} type="button" className="btn" role="tab" aria-pressed={tab === id} aria-selected={tab === id} onClick={() => setParams({ tab: id })}>{label}</button>
         ))}
       </div>
@@ -114,6 +117,8 @@ export function PostseasonPage() {
           )}
         </section>
       )}
+
+      {tab === 'bracketology' && <Bracketology state={state} teamCell={teamCell} />}
 
       {tab === 'field' && <FieldPanel state={state} teamCell={teamCell} busy={busy} stepProblem={stepProblem} run={run} />}
 

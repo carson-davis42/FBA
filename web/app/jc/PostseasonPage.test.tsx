@@ -42,7 +42,7 @@ afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
 describe('PostseasonPage', () => {
   it('starts the conference tournaments once the season is played', async () => {
-    mount(played);
+    mount(played, '/league/fbajc/postseason?tab=conference');
     const start = await screen.findByRole('button', { name: 'Start conference tournaments' });
     expect(screen.getByText(/S79 FBAJC Postseason/)).toBeTruthy();
     fireEvent.click(start);
@@ -101,5 +101,25 @@ describe('PostseasonPage', () => {
     mount(ready, '/league/fbajc/postseason?tab=mm');
     expect(await screen.findByText('Finish the NIT first')).toBeTruthy();
     expect((screen.getByRole('button', { name: 'Play round' }) as HTMLButtonElement).disabled).toBe(true);
+  });
+  it('shows Bracketology as the first tab and opens on it before the conference tournaments', async () => {
+    mount(played);
+    const tab = await screen.findByRole('tab', { name: 'Bracketology' });
+    expect(tab.getAttribute('aria-pressed')).toBe('true');
+    expect(screen.getByRole('heading', { name: 'Last four in' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'First four out' })).toBeTruthy();
+    expect(screen.queryByRole('link', { name: 'Watch' })).toBeNull();
+  });
+
+  it('keeps Bracketology reachable after the conference tournaments but hides it once the fields are set', async () => {
+    mount(afterConf, '/league/fbajc/postseason?tab=bracketology');
+    expect(await screen.findByRole('heading', { name: 'Last four in' })).toBeTruthy();
+    cleanup();
+    const set = setFields(afterConf);
+    if (!set.ok) throw new Error(set.problems.join());
+    mount(set.state, '/league/fbajc/postseason?tab=bracketology');
+    await screen.findByRole('tab', { name: 'Field' });
+    expect(screen.queryByRole('tab', { name: 'Bracketology' })).toBeNull();
+    expect(screen.queryByRole('heading', { name: 'Last four in' })).toBeNull();
   });
 });
