@@ -115,10 +115,10 @@ describe('ClassRankingPage', () => {
     expect(screen.queryByText(/Couldn't load/)).toBeNull();
   });
 
-  it('labels the unranked list "Unranked"', async () => {
+  it('offers the next players in a "Next up" pool once the position step is done', async () => {
     stubApi(docsFor(started()));
     renderPage();
-    expect(await screen.findByRole('table', { name: 'Unranked' })).toBeTruthy();
+    expect(await screen.findByRole('table', { name: 'Next up' })).toBeTruthy();
     expect(screen.queryByRole('table', { name: "Last season's order" })).toBeNull();
   });
 
@@ -236,7 +236,7 @@ describe('ClassRankingPage', () => {
     renderPage();
     expect(await screen.findByText(/Step 1 of 2/)).toBeTruthy();
     expect(screen.getByText('0 of 30 placed.', { exact: false })).toBeTruthy();
-    expect(screen.queryByRole('table', { name: 'Unranked' })).toBeNull();
+    expect(screen.queryByRole('table', { name: 'Next up' })).toBeNull();
     // Rank PG: Kid 06 before Kid 01.
     fireEvent.click(await screen.findByRole('button', { name: 'Rank Kid 06 next at PG' }));
     fireEvent.click(screen.getByRole('button', { name: 'Rank Kid 01 next at PG' }));
@@ -245,7 +245,7 @@ describe('ClassRankingPage', () => {
     // Place everyone left, then the merge stage shows only each position's next player.
     fireEvent.click(screen.getByRole('button', { name: 'Place everyone left, in order' }));
     expect(await screen.findByText(/Step 2 of 2/)).toBeTruthy();
-    const unranked = await screen.findByRole('table', { name: 'Unranked' });
+    const unranked = await screen.findByRole('table', { name: 'Next up' });
     const names = within(unranked).getAllByRole('row').slice(1).flatMap(r => { const c = within(r).getAllByRole('cell'); return c.length > 1 ? [c[1].textContent] : []; });
     expect(names).toHaveLength(5);
     expect(names).toContain('Kid 06');
@@ -253,16 +253,23 @@ describe('ClassRankingPage', () => {
     expect(log.batches).toHaveLength(0);
   });
 
-  it('ranking the head of a position brings the next player at that position forward', async () => {
-    const s = justStarted();
-    stubApi(docsFor(s));
+  it('moves players within the pool, adds the top one to the ranking, and brings the next player at that position in at the bottom', async () => {
+    const s0 = justStarted();
+    stubApi(docsFor(s0));
     renderPage();
     fireEvent.click(await screen.findByRole('button', { name: 'Place everyone left, in order' }));
     await screen.findByText(/Step 2 of 2/);
-    const unranked = () => within(screen.getByRole('table', { name: 'Unranked' }));
-    expect(unranked().getByRole('button', { name: 'Rank Kid 01 next' })).toBeTruthy();
-    fireEvent.click(unranked().getByRole('button', { name: 'Rank Kid 01 next' }));
-    expect(await unranked().findByRole('button', { name: 'Rank Kid 06 next' })).toBeTruthy();
-    expect(unranked().queryByRole('button', { name: 'Rank Kid 01 next' })).toBeNull();
+    const pool = () => within(screen.getByRole('table', { name: 'Next up' }));
+    const poolNames = () => pool().getAllByRole('row').slice(1).map(r => within(r).getAllByRole('cell')[1].textContent);
+    // The five on offer start in PG, SG, SF, PF, C order.
+    expect(poolNames()).toEqual(['Kid 01', 'Kid 02', 'Kid 03', 'Kid 04', 'Kid 05']);
+    fireEvent.click(pool().getByRole('button', { name: 'Move Kid 03 up' }));
+    fireEvent.click(pool().getByRole('button', { name: 'Move Kid 03 up' }));
+    expect(poolNames()).toEqual(['Kid 03', 'Kid 01', 'Kid 02', 'Kid 04', 'Kid 05']);
+    fireEvent.click(screen.getByRole('button', { name: 'Add Kid 03 to the ranking' }));
+    const ranking = await screen.findByRole('table', { name: 'New ranking' });
+    expect(within(ranking).getAllByRole('row').slice(1).map(r => within(r).getAllByRole('cell')[1].textContent)).toEqual(['Kid 03']);
+    // Kid 03 was the SF head; the next SF (Kid 08) joins at the bottom, the rest keep their order.
+    expect(poolNames()).toEqual(['Kid 01', 'Kid 02', 'Kid 04', 'Kid 05', 'Kid 08']);
   });
 });

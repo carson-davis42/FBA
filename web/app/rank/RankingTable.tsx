@@ -3,7 +3,7 @@ import { applyClassSuggestions, consensusSuggestion, parseConsensusInput, starsF
 import {
   applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, clearRatings, outOfOrder, rankedRows, rankingBlockers, reserveBound, sendBack, setRating, suggestion, take, takeRest, type NameOf,
 } from '../../engine/rank/ranking';
-import { mergeHeads, sendBackMerged, takeRestMerged } from '../../engine/rank/positionRanking';
+import { mergeOptions, movePool, promoteTop, sendBackMerged, takeRestMerged } from '../../engine/rank/positionRanking';
 import { POSITIONS } from '../../engine/roster/rules';
 import type { Position, RankingFile, RankingRow } from '../../engine/shared/types';
 import { RatingInput } from '../components/RatingInput';
@@ -79,9 +79,8 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   const fullPositions = new Set(positionCap ? POSITIONS.filter(pos => rankedRows(doc).filter(r => r.position === pos).length >= positionCap.spots) : []);
   const shownLeft = (r: RankingRow) => shown(r) && !fullPositions.has(r.position);
   const leftAll = leftRows(doc, name);
-  const heads = positionMerge ? mergeHeads(doc) : null;
-  // After the position step only each position's next player is on offer; the rest wait behind him.
-  const left = heads ? leftAll.filter(r => heads.has(r.playerId)) : leftAll;
+  // After the position step only each position's next player is on offer (PG, SG, SF, PF, C); the rest wait behind him.
+  const left = positionMerge ? mergeOptions(doc) : leftAll;
   const allPlaced = leftAll.length === 0;
   // D2 reset: players ranked past their position's spots go to the Reserve pool; they show an X and need no rating.
   const reserve = positionCap ? reserveBound(doc, positionCap.spots) : new Set<string>();
@@ -185,7 +184,53 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
         </p>
       )}
       <div className={`rank-cols${split ? ' split' : ''}`}>
-        {split ? (
+        {positionMerge ? (
+          <div className="rank-col card">
+            <div className="toolbar rank-head">
+              <h3>Next up · {left.length} of {leftAll.length} left</h3>
+              {!locked && left.length > 0 && (
+                <button type="button" className="btn" onClick={() => onChange(cur => takeRestMerged(cur, name))}>Take the rest in order</button>
+              )}
+            </div>
+            {!locked && left.length > 0 && (
+              <p className="muted">
+                Order these best first; the top one joins the ranking as #{doc.order.length + 1}. His position's next player then joins at the bottom.
+              </p>
+            )}
+            <div className="table-wrap">
+              <table className="stat-table rank-table" aria-label="Next up">
+                <thead><tr><th className="rank">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th><th></th></tr></thead>
+                <tbody>
+                  {left.map((r, i) => (
+                    <tr key={r.playerId} className={i === 0 ? 'rank-take' : undefined}>
+                      <td className="rank">{i + 1}</td>
+                      <td>{name(r.playerId)}</td>
+                      <td>{r.position}</td>
+                      <td className="n">{r.age ?? '—'}</td>
+                      <td>{teamLabel(r.team, r)}</td>
+                      <td className="n">{prev(r)}</td>
+                      <td className="rank-move">
+                        {!locked && (
+                          <>
+                            <button type="button" className="btn" disabled={i === 0} aria-label={`Move ${name(r.playerId)} up`} onClick={() => onChange(cur => movePool(cur, r.playerId, -1))}>↑</button>
+                            <button type="button" className="btn" disabled={i === left.length - 1} aria-label={`Move ${name(r.playerId)} down`} onClick={() => onChange(cur => movePool(cur, r.playerId, 1))}>↓</button>
+                          </>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {!locked && left.length > 0 && (
+              <p>
+                <button type="button" className="btn primary" aria-label={`Add ${name(left[0].playerId)} to the ranking`} onClick={() => onChange(promoteTop)}>
+                  Add #1 ({name(left[0].playerId)}) to the ranking
+                </button>
+              </p>
+            )}
+          </div>
+        ) : split ? (
           <>
             <div className="rank-col card">
               {leftHead('Already in the league', existing, r => !isNewRow(doc, r))}
