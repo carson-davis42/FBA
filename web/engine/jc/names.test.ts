@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { jcStateFixture } from './testFixtures'
 import { BIOS_PATH, completeNamed, incompleteNamed, namePlayers, type NameState } from './names'
+import { namesNeeded } from './start'
 
 /** An S79 college with one unnamed Jr rated 90 (needs a name) and one unnamed Fr rated 60 (doesn't). */
 function setup() {
@@ -16,6 +17,47 @@ function setup() {
   const state: NameState = { season: s.season, players: s.players, bios: null, rosters: s.rosters, teams: s.teams }
   return { state, team, jr: jr.playerId!, fr: fr.playerId! }
 }
+
+describe('conference player of the year', () => {
+  /** `setup()` plus an unnamed Sr rated 70 (below every naming line) who won his conference's player of the year. */
+  function winner() {
+    const { state, team, fr } = setup()
+    const sr = state.rosters.teams[team.teamId].find(e => e.playerId !== null && e.playerId !== fr && state.players.players[e.playerId!])!
+    sr.classYear = 'Sr'; sr.rating = 70
+    state.players.players[sr.playerId!] = { ...state.players.players[sr.playerId!], name: null, birthSeason: null }
+    const awards = {
+      league: 'fbajc' as const, season: state.season, locked: false, national: [],
+      conference: [{ conf: team.group as string, playerId: sr.playerId! }], allAmerican: null, mvp: { mm: null, nit: null },
+    }
+    return { state: { ...state, awards } as NameState & { awards: typeof awards }, sr: sr.playerId!, team }
+  }
+
+  it('asks for the name of an unnamed winner even below the naming lines, and says why', () => {
+    const { state, sr } = winner()
+    const needed = namesNeeded({ rosters: state.rosters, players: state.players, awards: state.awards } as never)
+    const row = needed.find(n => n.playerId === sr)
+    expect(row).toBeTruthy()
+    expect(row!.reason).toBe('poty')
+    expect(row!.classYear).toBe('Sr')
+  })
+
+  it('lets him be named, with a birth season and a bio like any named player', () => {
+    const { state, sr, team } = winner()
+    const r = namePlayers(state, [{ playerId: sr, name: 'Sam Senior' }])
+    if (!r.ok) throw new Error(r.problems.join())
+    const [players, bios] = r.writes.map(w => w.doc) as [typeof state.players, { bios: { playerId: string; born: string; entries: string[] }[] }]
+    expect(players.players[sr].name).toBe('Sam Senior')
+    expect(players.players[sr].birthSeason).toBe(state.season - 21)
+    expect(bios.bios.find(b => b.playerId === sr)!.entries).toEqual([`${team.name}-S76-pres.`])
+  })
+
+  it('does not ask again once the winner has a name', () => {
+    const { state, sr } = winner()
+    state.players.players[sr] = { ...state.players.players[sr], name: 'Sam Senior' }
+    const needed = namesNeeded({ rosters: state.rosters, players: state.players, awards: state.awards } as never)
+    expect(needed.some(n => n.playerId === sr)).toBe(false)
+  })
+})
 
 describe('namePlayers birth seasons', () => {
   it('gives a named player a birth season from his class when he has none', () => {

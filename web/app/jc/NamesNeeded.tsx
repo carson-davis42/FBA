@@ -29,7 +29,7 @@ export function NamesNeeded({ state, onSaved }: { state: JcState; onSaved: () =>
     setError('');
     if (!players.data) return;
     const r = namePlayers(
-      { season: state.season, players: players.data, bios: bios.data ?? null, rosters: state.rosters, teams: state.teams },
+      { season: state.season, players: players.data, bios: bios.data ?? null, rosters: state.rosters, teams: state.teams, awards: state.awards },
       typed.map(n => ({ playerId: n.playerId, name: text[n.playerId] })),
     );
     if (!r.ok) { setError(r.problems.join('; ')); return; }
@@ -84,7 +84,7 @@ export function NamesNeeded({ state, onSaved }: { state: JcState; onSaved: () =>
                 <td>{school(n.teamId)}</td>
                 <td>{n.position}</td>
                 <td>{n.classYear}</td>
-                <td className="num">{n.rating}</td>
+                <td className="num">{n.rating}{n.reason === 'poty' && <span className="muted"> (conference player of the year)</span>}</td>
                 <td>
                   <input
                     type="text" aria-label={`Name for ${school(n.teamId)} ${n.position} (${n.classYear}, ${n.rating})`} maxLength={40}

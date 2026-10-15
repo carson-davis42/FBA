@@ -67,15 +67,27 @@ export function redrawFields(state: JcState, rng: Rng, last: { champion: string 
 
 const THRESHOLD: Record<string, number> = { Jr: 80, So: 78, Fr: 76 };
 
-/** Unnamed players past the Java naming thresholds (Jr 80, So 78, Fr 76; Sr never). */
-export function namesNeeded(state: JcState): { teamId: string; playerId: string; position: string; classYear: string; rating: number }[] {
-  const out: { teamId: string; playerId: string; position: string; classYear: string; rating: number }[] = [];
+export interface NameNeed { teamId: string; playerId: string; position: string; classYear: string; rating: number; reason: 'rating' | 'poty' }
+
+/**
+ * Unnamed players past the Java naming thresholds (Jr 80, So 78, Fr 76; Sr never), and every unnamed winner of a conference
+ * player of the year award, whatever his rating or class.
+ */
+export function namesNeeded(state: Pick<JcState, 'rosters' | 'players'> & { awards?: JcState['awards'] }): NameNeed[] {
+  const out: NameNeed[] = [];
   for (const [teamId, entries] of Object.entries(state.rosters.teams)) {
     for (const e of entries) {
       if (e.playerId === null || e.rating === null || !e.classYear) continue;
       if (state.players.players[e.playerId]?.name !== null) continue;
       const min = THRESHOLD[e.classYear];
-      if (min !== undefined && e.rating >= min) out.push({ teamId, playerId: e.playerId, position: e.position, classYear: e.classYear, rating: e.rating });
+      if (min !== undefined && e.rating >= min) out.push({ teamId, playerId: e.playerId, position: e.position, classYear: e.classYear, rating: e.rating, reason: 'rating' });
+    }
+  }
+  for (const a of state.awards?.conference ?? []) {
+    if (a.playerId === null || out.some(n => n.playerId === a.playerId) || state.players.players[a.playerId]?.name !== null) continue;
+    for (const [teamId, entries] of Object.entries(state.rosters.teams)) {
+      const e = entries.find(x => x.playerId === a.playerId);
+      if (e) { out.push({ teamId, playerId: a.playerId, position: e.position, classYear: e.classYear ?? 'Sr', rating: e.rating ?? 0, reason: 'poty' }); break; }
     }
   }
   return out;
