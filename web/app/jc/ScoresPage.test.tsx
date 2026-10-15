@@ -169,4 +169,40 @@ describe('ScoresPage', () => {
     expect(round1).toHaveLength(4);
     expect(games.slice(4).every(g => g.textContent!.includes('TBD'))).toBe(true);
   });
+  it('shows who advanced as soon as a tournament finishes a round, without making the next round playable early', async () => {
+    const s = jcStateFixture();
+    const f = s.schedule!.tournaments[0];
+    const games = s.schedule!.days[0].games.filter(g => g.tournament === f.id);
+    s.results!.games = games.map(g => ({ gameNo: g.gameNo, home: g.home, away: g.away, homePts: 80, awayPts: 70 }));
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const card = [...document.querySelectorAll('.jc-tournament')][0] as HTMLElement;
+    const rounds = [...card.querySelectorAll('.jc-mini-round')];
+    // Round 2 shows the four games (winners meet, losers meet) with real teams, not TBD; the placement round stays TBD.
+    const round2 = [...rounds[1].querySelectorAll('.jc-mini-game')];
+    expect(round2).toHaveLength(4);
+    expect(round2.every(g => !g.textContent!.includes('TBD'))).toBe(true);
+    const winners = games.map(g => g.home);
+    expect(round2[0].textContent).toContain(s.teams.teams.find(t => t.teamId === winners[0])!.abbr);
+    expect([...rounds[2].querySelectorAll('.jc-mini-game')].every(g => g.textContent!.includes('TBD'))).toBe(true);
+    // Those matchups have no game number yet, so there is nothing to watch for this tournament until its day.
+    expect(card.querySelectorAll('a[title="Box score"]').length).toBe(4);
+    expect(screen.queryByRole('link', { name: `Watch next game in ${f.name}` })).toBeNull();
+  });
+  it('shows a winner in the next round the moment his game is played, with the other side still TBD', async () => {
+    const s = jcStateFixture();
+    const f = s.schedule!.tournaments[0];
+    const first = s.schedule!.days[0].games.find(g => g.tournament === f.id)!;
+    s.results!.games = [{ gameNo: first.gameNo, home: first.home, away: first.away, homePts: 80, awayPts: 70 }];
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const card = [...document.querySelectorAll('.jc-tournament')][0] as HTMLElement;
+    const round2 = [...card.querySelectorAll('.jc-mini-round')][1].querySelectorAll('.jc-mini-game');
+    const abbr = (id: string) => s.teams.teams.find(t => t.teamId === id)!.abbr;
+    // The winners game (first) holds the winner and a TBD; the losers game (third) holds the loser and a TBD.
+    expect(round2[0].textContent).toContain(abbr(first.home));
+    expect(round2[0].textContent).toContain('TBD');
+    expect(round2[2].textContent).toContain(abbr(first.away));
+    expect(round2[1].textContent!.match(/TBD/g)).toHaveLength(2);
+  });
 });
