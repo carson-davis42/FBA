@@ -258,4 +258,24 @@ describe('ScoresPage', () => {
     expect(card(g2.gameNo).classList.contains('ranked-one')).toBe(true);
     expect(card(g3.gameNo).classList.contains('ranked-one') || card(g3.gameNo).classList.contains('ranked-both')).toBe(false);
   });
+  it('lists the rating changes of the shown day at the bottom, biggest rise first, and says so when there are none', async () => {
+    const s = jcStateFixture();
+    const [g1, g2] = s.schedule!.days[0].games;
+    const p1 = s.rosters.teams[g1.home].find(e => e.playerId !== null)!;
+    const p2 = s.rosters.teams[g2.home].find(e => e.playerId !== null)!;
+    s.results!.games = [
+      { gameNo: g1.gameNo, home: g1.home, away: g1.away, homePts: 80, awayPts: 70, ratingChanges: [{ playerId: p1.playerId!, teamId: g1.home, from: 70, to: 71 }] },
+      { gameNo: g2.gameNo, home: g2.home, away: g2.away, homePts: 80, awayPts: 70, ratingChanges: [{ playerId: p2.playerId!, teamId: g2.home, from: 60, to: 63 }] },
+    ];
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const section = screen.getByRole('region', { name: 'Rating changes' });
+    const rows = [...section.querySelectorAll('tbody tr')].map(r => [...r.querySelectorAll('td')].map(td => td.textContent));
+    expect(rows).toHaveLength(2);
+    expect(rows[0][3]).toBe('60 → 63');
+    expect(rows[0][4]).toBe('+3');
+    expect(rows[1][3]).toBe('70 → 71');
+    fireEvent.click(screen.getByRole('button', { name: 'Go to day 2' }));
+    expect(screen.getByRole('region', { name: 'Rating changes' }).textContent).toContain('No games have been played on day 2 yet.');
+  });
 });

@@ -112,13 +112,23 @@ export function applySim(book: Book, sim: SimGame, rng: Rng, refRating: number, 
   const homeId = sim.home.teamId;
   const awayId = sim.away.teamId;
   const pts = addBoxPoints(book, sim);
+  const ratingChanges: NonNullable<GameResult['ratingChanges']> = [];
   if (progress) {
     const homeWon = sim.homePts > sim.awayPts;
     const avg = book.total / book.teamIds.length;
+    const before = { [homeId]: book.rosters[homeId], [awayId]: book.rosters[awayId] };
     setBookRoster(book, homeId, progressRatings(book.rosters[homeId], pts, homeWon, book.ratings[awayId], avg, rng));
     setBookRoster(book, awayId, progressRatings(book.rosters[awayId], pts, !homeWon, book.ratings[homeId], avg, rng));
+    for (const id of [homeId, awayId]) {
+      before[id].forEach((e, k) => {
+        const now = book.rosters[id][k];
+        if (e.playerId !== null && e.rating !== null && now.rating !== null && now.rating !== e.rating) {
+          ratingChanges.push({ playerId: e.playerId, teamId: id, from: e.rating, to: now.rating });
+        }
+      });
+    }
   }
-  return toGameResult(sim, refRating);
+  return { ...toGameResult(sim, refRating), ...(ratingChanges.length ? { ratingChanges } : {}) };
 }
 
 type Step = { state: JcState; filledSchedule: boolean } | { problems: string[] };

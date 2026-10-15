@@ -241,9 +241,42 @@ export function ScoresPage() {
           </div>
         </section>
       )}
+      {(() => {
+        // Every rating that moved in the day's games, biggest rise first.
+        const played = (dayDoc?.games ?? []).filter(g => results.has(g.gameNo));
+        const changes = played.flatMap(g => (results.get(g.gameNo)!.ratingChanges ?? []).map(c => ({ ...c, gameNo: g.gameNo })))
+          .sort((a, b) => b.to - b.from - (a.to - a.from) || b.to - a.to);
+        const position = (teamId: string, playerId: string) => state.rosters.teams[teamId]?.find(e => e.playerId === playerId)?.position ?? '';
+        return (
+          <section className="card" aria-label="Rating changes">
+            <h2>Rating changes · day {day}</h2>
+            {played.length === 0 ? <p className="muted">No games have been played on day {day} yet.</p>
+              : changes.length === 0 ? <p className="muted">No ratings changed in day {day}'s games so far.</p> : (
+                <div className="table-wrap tall">
+                  <table className="stat-table">
+                    <thead><tr><th>Player</th><th>Pos</th><th>School</th><th className="n">Rating</th><th className="n">Change</th><th>Game</th></tr></thead>
+                    <tbody>
+                      {changes.map(c => (
+                        <tr key={`${c.gameNo}-${c.playerId}`}>
+                          <td><PlayerName id={c.playerId} name={collegeName(state.players, c.playerId)} /></td>
+                          <td>{position(c.teamId, c.playerId)}</td>
+                          <td>{teamCell(c.teamId)}</td>
+                          <td className="n">{c.from} → {c.to}</td>
+                          <td className="n">+{c.to - c.from}</td>
+                          <td><Link to={`/league/fbajc/game/${c.gameNo}`}>Game {c.gameNo}</Link></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+          </section>
+        );
+      })()}
       {needed.length > 0 && (
         <section className="card">
           <h2>Names needed</h2>
+          <p className="muted">These players need a name. <Link to="/league/fbajc/players">Name them on the Players page ▸</Link></p>
           <div className="table-wrap">
             <table>
               <thead><tr><th>Team</th><th>Pos</th><th>Class</th><th>Rating</th></tr></thead>
