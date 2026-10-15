@@ -9,6 +9,12 @@ import { DAYS, TEAMS_PER_DAY, TOTAL_GAMES, dayPlayed, jcFail, type JcKey, type J
 import { dayGames } from './tournaments';
 
 
+/**
+ * Only the regular season's conference and challenge days have a real home side. Preseason tournaments (and the postseason, which has no
+ * schedule day) are on a neutral court: the first-listed team gets no home-court edge.
+ */
+export const isNeutralDay = (kind: 'tournament' | 'challenge' | 'conference' | undefined): boolean => kind !== 'conference' && kind !== 'challenge';
+
 export const regularSeasonOver = (state: JcState): boolean => dayPlayed(state) >= DAYS;
 
 /** Port of `updatePlayerRatings` (Main.java:1639), integer arithmetic as the Java. */
@@ -153,7 +159,7 @@ function step(state: JcState, rng: Rng): Step {
   const results: GameResult[] = [];
   const done = new Set((state.results?.games ?? []).map(g => g.gameNo));
   for (const g of games.filter(x => !done.has(x.gameNo))) {
-    const r = playOne(book, g.gameNo, g.home, g.away, rng, refRating, true, sched.kind === 'tournament');
+    const r = playOne(book, g.gameNo, g.home, g.away, rng, refRating, true, isNeutralDay(sched.kind));
     if (typeof r === 'string') return { problems: [r] };
     results.push(r);
   }
