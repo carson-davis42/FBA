@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { fieldFingerprint, revealPlan } from './reveal';
 
-const region = (k: number) => Array.from({ length: 16 }, (_, i) => `r${k}s${16 - i}`);
+// A region's slots in the Java order: index i holds seed i + 1.
+const region = (k: number) => Array.from({ length: 16 }, (_, i) => `r${k}s${i + 1}`);
 const field = {
   mm: {
     teams: [0, 1, 2, 3].flatMap(region),
@@ -14,11 +15,13 @@ const field = {
 } as unknown as Parameters<typeof revealPlan>[0];
 
 describe('revealPlan', () => {
-  it('goes region by region, seed 1 to 16, then the bubble lists, then the NIT', () => {
+  it('goes region 1 to 4, each region top to bottom of the bracket (1, 16, 8, 9, 5, 12, ...), then the bubble lists, then the NIT', () => {
     const plan = revealPlan(field);
     expect(plan).toHaveLength(64 + 3 + 32);
-    expect(plan.slice(0, 16).map(s => (s.kind === 'spot' ? s.id : ''))).toEqual(Array.from({ length: 16 }, (_, i) => `r0s${i + 1}`));
+    const seeds = [1, 16, 8, 9, 5, 12, 4, 13, 3, 14, 6, 11, 7, 10, 2, 15];
+    expect(plan.slice(0, 16).map(s => (s.kind === 'spot' ? s.id : ''))).toEqual(seeds.map(n => `r0s${n}`));
     expect(plan[16]).toEqual({ kind: 'spot', region: 1, id: 'r1s1' });
+    expect(plan[17]).toEqual({ kind: 'spot', region: 1, id: 'r1s16' });
     expect(plan.slice(64, 67).map(s => (s.kind === 'bubble' ? s.section : ''))).toEqual(['in', 'eight', 'out']);
     expect(plan[67]).toEqual({ kind: 'nit', id: 'n0' });
   });

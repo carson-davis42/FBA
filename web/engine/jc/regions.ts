@@ -89,8 +89,9 @@ export function placeRegions(field: string[], confOf: (id: string) => string): {
   return { seeds, regions };
 }
 
-const TOP = [0, 7, 4, 3, 2, 5, 6, 1];
-const BOTTOM = [15, 8, 11, 12, 13, 10, 9, 14];
+/** The slot (index in a region) of the top and bottom team of each Round of 64 game, game 1 at the top of the bracket. */
+export const TOP = [0, 7, 4, 3, 2, 5, 6, 1];
+export const BOTTOM = [15, 8, 11, 12, 13, 10, 9, 14];
 const NEXT: [number, 'home' | 'away'][] = [
   [8, 'home'], [8, 'away'], [9, 'away'], [9, 'home'], [10, 'home'], [10, 'away'], [11, 'away'], [11, 'home'],
   [12, 'home'], [12, 'away'], [13, 'away'], [13, 'home'], [14, 'home'], [14, 'away'],
