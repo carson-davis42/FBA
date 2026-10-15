@@ -52,6 +52,10 @@ describe('JcGamePage', () => {
     expect(screen.getByText(/FBAJC · S79 · Game/)).toBeTruthy();
     expect(document.querySelectorAll('table.box-score').length).toBe(2);
     const back = screen.getByRole('link', { name: /Back to the postseason/ });
+    // The number before a team is its NIT seed, not its poll rank.
+    const seeds = [...document.querySelectorAll('.scorebug .bug-rank')].map(e => e.getAttribute('title'));
+    expect(seeds.every(t => /^Seed \d+$/.test(t ?? ''))).toBe(true);
+    expect(seeds.length).toBeGreaterThan(0);
     // Back to the NIT tab, on the region the game is in.
     expect(back.getAttribute('href')).toBe(`/league/fbajc/postseason?tab=nit&region=${first.region}`);
   });

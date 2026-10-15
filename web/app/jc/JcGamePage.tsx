@@ -18,8 +18,22 @@ import { usePostseasonDocs } from './usePostseasonDocs';
 import '../pages/season.css';
 
 /** The slice of a college season the shared game views read (names, teams, colours). */
-export function viewState(s: JcState): SeasonState {
-  return { league: 'fbajc' as unknown as SeasonLeague, season: s.season, teams: s.teams, rosters: s.rosters, players: s.players, results: s.results, pollRanks: pollRanks(s.rankings?.snapshots) } as unknown as SeasonState;
+export function viewState(s: JcState, seeds: Map<string, number> | null = null): SeasonState {
+  // In the NIT and March Madness the number before a team is its seed, not its poll rank.
+  return {
+    league: 'fbajc' as unknown as SeasonLeague, season: s.season, teams: s.teams, rosters: s.rosters, players: s.players, results: s.results,
+    pollRanks: seeds ?? pollRanks(s.rankings?.snapshots), ...(seeds ? { rankKind: 'seed' } : {}),
+  } as unknown as SeasonState;
+}
+
+/** The seed each team of an NIT or March Madness bracket was given (a play-in team shares its spot's seed). */
+export function bracketSeeds(b: Bracket): Map<string, number> {
+  const out = new Map<string, number>();
+  for (const g of b.games) {
+    if (g.home && g.homeSeed !== null) out.set(g.home, g.homeSeed);
+    if (g.away && g.awaySeed !== null) out.set(g.away, g.awaySeed);
+  }
+  return out;
 }
 
 export interface GameInfo { result: GameResult; bracket: Bracket | null; game: BracketGame | null }
@@ -90,7 +104,6 @@ function JcGame() {
   if (season === null || docs.error) return <p className={docs.error ? 'error' : 'muted'}>{docs.error || 'Loading…'}</p>;
   if (docs.missing) return <p className="muted">{docs.missing}</p>;
   if (!state) return <p className="muted">Loading…</p>;
-  const view = viewState(state);
   const regular = n >= 1 && n <= TOTAL_GAMES;
   const found = findGame(state, n);
   // A conference tournament game goes back to its own conference, so the picker stays where the game was watched.
@@ -102,6 +115,8 @@ function JcGame() {
   const post = found?.bracket && found.game && found.bracket.kind !== 'conf'
     ? { kind: found.bracket.kind, region: backRegion(found.game) }
     : upcoming ? { kind: stage as 'nit' | 'mm', region: backRegion(upcoming) } : null;
+  const seedBracket = found?.bracket && found.bracket.kind !== 'conf' ? found.bracket : upcoming ? state.postseason![stage as 'nit' | 'mm'] : null;
+  const view = viewState(state, seedBracket ? bracketSeeds(seedBracket) : null);
   const postUrl = post ? `/league/fbajc/postseason?tab=${post.kind}&region=${post.region}` : '/league/fbajc/postseason';
   const back = regular
     ? { to: '/league/fbajc/scores', label: 'back to scores ▸' }
