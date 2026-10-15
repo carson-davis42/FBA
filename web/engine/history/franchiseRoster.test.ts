@@ -54,6 +54,18 @@ describe('franchiseIndex', () => {
     expect(idx.players.find(r => r.playerId === 'p00007')?.hof).toBe('S90');
   });
 
+  it('lists the honours a season summary gives out on that season, next to the bio ones', () => {
+    const summary = {
+      league: 'fba' as const, season: 7, locked: true, host: null, champions: [],
+      awards: [{ award: 'MVP' as const, playerId: 'p00001', teamId: 'TEX' }, { award: 'DPOY' as const, playerId: 'p00001', teamId: 'TEX' }],
+      allFba: { team1: [{ slot: 'OUT' as const, playerId: 'p00001', teamId: 'TEX' }], team2: [] },
+    };
+    const idx = franchiseIndex({ franchise, players, bios, summaries: [summary], hof: null, rosters: [] });
+    // The bio already says "S7 MVP"; it is not repeated.
+    expect(idx.rosterFor(7).find(r => r.playerId === 'p00001')?.honours).toEqual(['MVP', 'DPOY', 'All-FBA T1']);
+    expect(idx.rosterFor(8).find(r => r.playerId === 'p00001')?.honours).toEqual([]);
+  });
+
   it('adds roster-file players, with their slot, even when they have no bio', () => {
     const idx = build([roster(78, ['p00006', 'p00007'])]);
     expect(idx.players.find(r => r.playerId === 'p00006')?.seasons).toEqual([78]);

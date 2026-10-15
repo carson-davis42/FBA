@@ -1,5 +1,5 @@
 import type { Franchise, HallOfFameFile, PlayerBiosFile, PlayersFile, RosterEntry, ResultsFile, RostersFile, SummaryFile } from '../shared/types';
-import { applyPlayed, liveCareer, teamsPlayedFor } from './career';
+import { applyPlayed, liveCareer, seasonHonourLabels, teamsPlayedFor } from './career';
 
 export interface FranchiseHonour { label: string; count: number; seasons: number[] }
 export interface FranchisePlayer { playerId: string; name: string; seasons: number[]; honours: FranchiseHonour[]; hof: string | null }
@@ -108,12 +108,18 @@ export function franchiseIndex(input: FranchiseRosterInput): { players: Franchis
   }
   rows.sort((a, b) => a.seasons[0] - b.seasons[0] || a.name.localeCompare(b.name));
 
+  // What each season's summary gave out (awards, All-FBA, All-Star, Finals MVP...), which the bios only count ("1x MVP") without the year.
+  const summaryHonours = new Map<number, Map<string, string[]>>();
+  for (const s of summaries) if (s.league === 'fba') summaryHonours.set(s.season, seasonHonourLabels(s));
+
   const rosterFor = (n: number): SeasonRosterRow[] => {
     const bySeason = slots.get(n);
+    const given = summaryHonours.get(n);
+    const merge = (labels: string[]) => labels.filter((l, i) => labels.findIndex(x => x.toLowerCase() === l.toLowerCase()) === i);
     const out = rows.filter(p => p.seasons.includes(n)).map(p => ({
       playerId: p.playerId,
       name: p.name,
-      honours: [...new Set(p.honours.filter(h => h.seasons.includes(n)).map(h => h.label))],
+      honours: merge([...p.honours.filter(h => h.seasons.includes(n)).map(h => h.label), ...(given?.get(p.playerId) ?? [])]),
       slot: bySeason?.get(p.playerId) ?? null,
     }));
     if (bySeason) out.sort((a, b) => (b.slot?.rating ?? -1) - (a.slot?.rating ?? -1) || a.name.localeCompare(b.name));

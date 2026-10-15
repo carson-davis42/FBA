@@ -138,6 +138,24 @@ const isAwardKey = (s: string): s is AwardKey => (AWARD_KEYS as readonly string[
 
 interface HonourEvent { playerId: string; key: AwardKey; teamId: string | null; conf?: 'E' | 'W' }
 
+/** The label an honour carries on a career ("MVP", "All-FBA T1", "EC Champion"), or undefined for ones with no label. */
+function honourLabel(e: HonourEvent): string | undefined {
+  return e.key === 'CONF_CHAMPION' ? (e.conf === 'E' ? 'EC Champion' : 'WC Champion') : KEY_LABEL[e.key];
+}
+
+/** The honours each player earned in one finished season, as career labels, in the order the summary lists them. */
+export function seasonHonourLabels(summary: SummaryFile): Map<string, string[]> {
+  const out = new Map<string, string[]>();
+  for (const e of honourEvents(summary)) {
+    const label = honourLabel(e);
+    if (!label) continue;
+    const list = out.get(e.playerId) ?? [];
+    if (!list.some(l => l.toLowerCase() === label.toLowerCase())) list.push(label);
+    out.set(e.playerId, list);
+  }
+  return out;
+}
+
 /** Every honour a finished FBA season gives out. `teamId` is the team it belongs to, when the summary says. */
 function honourEvents(s: SummaryFile): HonourEvent[] {
   const out: HonourEvent[] = [];
@@ -209,7 +227,7 @@ function closeOtherOpen(stints: Stint[], current: Stint, season: number): void {
 }
 
 function addHonour(stint: Stint, e: HonourEvent, season: number) {
-  const label = e.key === 'CONF_CHAMPION' ? (e.conf === 'E' ? 'EC Champion' : 'WC Champion') : KEY_LABEL[e.key];
+  const label = honourLabel(e);
   if (!label) return;
   const same = stint.honours.find(h => h.label.toLowerCase() === label.toLowerCase());
   if (SINGLE_SEASON.has(e.key)) {
