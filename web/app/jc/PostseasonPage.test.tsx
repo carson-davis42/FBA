@@ -101,7 +101,8 @@ describe('PostseasonPage', () => {
     }
     const cards = [1, 2, 3, 4].map(n => screen.getByRole('heading', { name: `Region ${n}` }).parentElement!);
     // A conference title guarantees the Round of 64, so all 18 champions hold a plain spot in a region and carry the marker.
-    expect(cards.flatMap(c => [...c.querySelectorAll('li')]).filter(li => /\(conference champion\)/.test(li.textContent ?? '')).length).toBe(18);
+    expect(cards.flatMap(c => [...c.querySelectorAll('li')]).filter(li => /\*/.test(li.textContent ?? '')).length).toBe(18);
+    expect(screen.queryByText(/\(conference champion\)/)).toBeNull();
     // A play-in spot lists both teams, like the bracket.
     expect(cards.flatMap(c => [...c.querySelectorAll('li')]).filter(li => (li.textContent ?? '').includes('/')).length).toBe(8);
     expect(screen.getByRole('heading', { name: 'NIT teams' }).nextElementSibling!.querySelectorAll('li').length).toBe(32);

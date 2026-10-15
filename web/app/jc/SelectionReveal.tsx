@@ -29,13 +29,13 @@ export function SelectionReveal({ field, p, teamCell, count, onCount }: {
   const last = shown[shown.length - 1];
   const playIn = new Map(p.playIn.map(g => [g.teams[0], g.teams] as const));
   const champ = new Map(Object.values(p.champions).map(c => [c.teamId, c.projected]));
-  const mark = (id: string): ReactNode => (champ.has(id) ? <span className="muted"> (conference champion)</span> : null);
+  const mark = (id: string): ReactNode => (champ.has(id) ? <span className="jc-star" title="Conference champion">*</span> : null);
   const current = (id: string): string => (last && ((last.kind === 'spot' && last.id === id) || (last.kind === 'nit' && last.id === id)) ? 'jc-reveal-now' : '');
   const groups: [string, Projection['power']][] = [['Power conferences', p.power], ['Other conferences', p.other]];
 
   return (
     <section aria-label="Selection Sunday">
-      <div className="jc-actions">
+      <div className="jc-actions jc-reveal-controls">
         <button className="btn primary" disabled={count >= plan.length} onClick={() => { setPlaying(false); onCount(count + 1); }}>
           {count === 0 ? 'Start the reveal' : 'Next spot'}
         </button>
@@ -43,7 +43,7 @@ export function SelectionReveal({ field, p, teamCell, count, onCount }: {
         <button className="btn" onClick={() => { setPlaying(false); onCount(plan.length); }}>Skip to the end</button>
         <span className="muted">{count} of {plan.length}</span>
       </div>
-      <p className="muted">The field is set. Reveal it spot by spot, region by region, then the bubble and the NIT.</p>
+      <p className="muted">The field is set. Reveal it spot by spot, region by region, then the bubble and the NIT. * Conference champion.</p>
       <h2>March Madness field</h2>
       <div className="jc-regions">
         {field.mm.regions.map((reg, k) => (

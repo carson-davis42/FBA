@@ -70,3 +70,9 @@ tr.jc-champion td { font-weight: 700; }
 
 /* The spot just revealed on Selection Sunday. */
 .jc-reveal-now { font-weight: 700; }
+
+/* The conference champion star: raised after the name, like a footnote mark. */
+.jc-star { position: relative; top: -0.35em; margin-left: 3px; font-weight: 700; }
+
+/* The reveal controls sit apart from the buttons above them, with room between each other. */
+.jc-reveal-controls { margin-top: var(--s4, 20px); gap: var(--s3, 12px); align-items: center; }
