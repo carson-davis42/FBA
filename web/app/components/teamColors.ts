@@ -71,6 +71,17 @@ export function teamTheme(team: Team, league: LeagueId, season: number = current
   return { primary: hit.primary, secondary: hit.secondary, ink: inkFor(hit.primary) };
 }
 
+const lum = (hex: string): number => {
+  const n = parseInt(hex.replace('#', '').padEnd(6, '0').slice(0, 6), 16);
+  return (0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255;
+};
+const NEAR_WHITE = 0.85;
+
+/** The colour a white scorebug tints with: the primary, or the secondary when the primary is near white (many schools' badge background is). */
+export function lightAccent(theme: TeamTheme): string {
+  return lum(theme.primary) > NEAR_WHITE && lum(theme.secondary) <= NEAR_WHITE ? theme.secondary : theme.primary;
+}
+
 export function teamVars(theme: TeamTheme): CSSProperties {
   return { '--team': theme.primary, '--team-2': theme.secondary, '--team-ink': theme.ink } as CSSProperties;
 }
