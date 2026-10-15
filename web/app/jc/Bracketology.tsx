@@ -25,7 +25,7 @@ export function ProjectionView({ p, teamCell, heading, intro, rs }: {
   const [region, setRegion] = useState(-2);
   const champ = new Map(Object.values(p.champions).map(c => [c.teamId, c.projected]));
   const mark = (id: string): ReactNode => (champ.has(id)
-    ? (champ.get(id) ? <span> *</span> : <span className="muted"> (conference champion)</span>) : null);
+    ? <span className="jc-star" title="Conference champion">*</span> : null);
   /** A play-in spot holds its better team; the pair is shown together. */
   const playIn = new Map(p.playIn.map(g => [g.teams[0], g.teams] as const));
   const anyProjected = Object.values(p.champions).some(c => c.projected);
@@ -38,7 +38,9 @@ export function ProjectionView({ p, teamCell, heading, intro, rs }: {
       <p className="muted">{intro}</p>
       {p.warnings.map(w => <p key={w} className="error">{w}</p>)}
       <h2>{heading}</h2>
-      {anyProjected && <p className="muted">* Projected conference champion: the best-ranked team in a conference whose tournament has not been played. The real champion replaces it once the tournament is finished.</p>}
+      <p className="muted">
+        * Conference champion{anyProjected ? ': the real champion once its tournament is finished, until then the best-ranked team of the conference.' : '.'}
+      </p>
       <div className="jc-regions">
         {p.regions.map((reg, k) => (
           <div key={k} className="card jc-field">

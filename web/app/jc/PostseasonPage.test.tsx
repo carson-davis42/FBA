@@ -10,7 +10,7 @@ import { jcPlayedFixture, jcReadyForNit } from '../../engine/jc/testFixtures';
 import type { JcState } from '../../engine/jc/state';
 import { PostseasonPage } from './PostseasonPage';
 import { docsOf } from './postseasonTestDocs';
-import { markRevealed } from './revealStore';
+import { markRevealed, setRevealCount } from './revealStore';
 
 let batches: { writes: { path: string; baseVersion: string | null }[] }[] = [];
 let played: JcState;
@@ -67,15 +67,16 @@ describe('PostseasonPage', () => {
     if (!withField.ok) throw new Error('x');
     mount(withField.state, '/league/fbajc/postseason?tab=field', { reveal: false });
     expect(await screen.findByRole('button', { name: 'Start the reveal' })).toBeTruthy();
-    // Nothing is named yet: every region line is a dash, and the swap controls are not there.
-    const first = screen.getByRole('heading', { name: 'Region 1' }).parentElement!;
-    expect(first.querySelectorAll('li').length).toBe(16);
-    expect(first.textContent).not.toMatch(/[A-Z]{2,}/);
+    // An empty bracket: Region 1's Round of 64 has its eight games, every team a dash, and the swap controls are not there.
+    fireEvent.click(screen.getByRole('button', { name: 'Region 1' }));
+    const teams = () => [...document.querySelectorAll('.jc-tree .jc-bround')[0].querySelectorAll('.jc-bteam')].map(t => t.textContent);
+    expect(teams()).toHaveLength(16);
+    expect(teams().every(t => t === '—')).toBe(true);
     expect(screen.queryByRole('button', { name: 'Swap' })).toBeNull();
     fireEvent.click(screen.getByRole('button', { name: 'Start the reveal' }));
-    const spots = [...screen.getByRole('heading', { name: 'Region 1' }).parentElement!.querySelectorAll('li')];
-    expect(spots[0].textContent).toMatch(/[A-Z]/);
-    expect(spots[1].textContent).toBe('—');
+    // The first spot (the 1 seed of Region 1) is named; the rest are still open.
+    expect(teams()[0]).toMatch(/[A-Z]/);
+    expect(teams().slice(1).filter(t => t !== '—').length).toBe(0);
     // The other tabs wait for it.
     fireEvent.click(screen.getByRole('tab', { name: 'NIT' }));
     expect(screen.getByText('Reveal the field on the Field tab first.')).toBeTruthy();
@@ -83,6 +84,23 @@ describe('PostseasonPage', () => {
     fireEvent.click(await screen.findByRole('button', { name: 'Skip to the end' }));
     expect(await screen.findByRole('button', { name: 'Swap' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'First Four Out' })).toBeTruthy();
+  });
+
+  it('shows a play-in spot as both teams in the reveal bracket, like the real bracket', async () => {
+    const withField = setFields(afterConf);
+    if (!withField.ok) throw new Error('x');
+    // All 64 spots revealed (the reveal is not finished: the bubble lists and the NIT are still to come).
+    setRevealCount(withField.state, 64);
+    const { container } = mount(withField.state, '/league/fbajc/postseason?tab=field', { reveal: false });
+    await screen.findByRole('button', { name: 'Next spot' });
+    let pairs = 0;
+    for (const n of [1, 2, 3, 4]) {
+      fireEvent.click(screen.getByRole('button', { name: `Region ${n}` }));
+      const round = container.querySelectorAll('.jc-tree .jc-bround')[0];
+      pairs += [...round.querySelectorAll('.jc-bteam')].filter(t => (t.textContent ?? '').includes('/')).length;
+      expect([...round.querySelectorAll('.jc-bteam')].some(t => t.textContent === '—')).toBe(false);
+    }
+    expect(pairs).toBe(8);
   });
 
   it('sets the fields, then lists March Madness regions and the NIT', async () => {
@@ -101,7 +119,8 @@ describe('PostseasonPage', () => {
     }
     const cards = [1, 2, 3, 4].map(n => screen.getByRole('heading', { name: `Region ${n}` }).parentElement!);
     // A conference title guarantees the Round of 64, so all 18 champions hold a plain spot in a region and carry the marker.
-    expect(cards.flatMap(c => [...c.querySelectorAll('li')]).filter(li => /\(conference champion\)/.test(li.textContent ?? '')).length).toBe(18);
+    expect(cards.flatMap(c => [...c.querySelectorAll('li')]).filter(li => /\*/.test(li.textContent ?? '')).length).toBe(18);
+    expect(screen.queryByText(/\(conference champion\)/)).toBeNull();
     // A play-in spot lists both teams, like the bracket.
     expect(cards.flatMap(c => [...c.querySelectorAll('li')]).filter(li => (li.textContent ?? '').includes('/')).length).toBe(8);
     expect(screen.getByRole('heading', { name: 'NIT teams' }).nextElementSibling!.querySelectorAll('li').length).toBe(32);

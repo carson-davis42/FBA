@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { roundName } from '../../engine/jc/bracket';
 import type { Bracket, BracketGame } from '../../engine/shared/types';
 
-function Side({ game, side, teamCell, playIn }: { game: BracketGame; side: 'home' | 'away'; teamCell: (id: string) => ReactNode; playIn?: [string, string] | null }) {
+function Side({ game, side, teamCell, playIn, empty }: { game: BracketGame; side: 'home' | 'away'; teamCell: (id: string) => ReactNode; playIn?: [string, string] | null; empty: string }) {
   const id = game[side];
   const seed = side === 'home' ? game.homeSeed : game.awaySeed;
   const r = game.result;
@@ -12,7 +12,7 @@ function Side({ game, side, teamCell, playIn }: { game: BracketGame; side: 'home
   return (
     <div className={`jc-bside${won ? ' jc-winner' : ''}`}>
       <span className="jc-bseed muted">{seed ?? ''}</span>
-      <span className="jc-bteam">{id ? teamCell(id) : playIn ? <span className="jc-bplayin">{teamCell(playIn[0])}<span className="muted"> / </span>{teamCell(playIn[1])}</span> : <span className="muted">TBD</span>}</span>
+      <span className="jc-bteam">{id ? teamCell(id) : playIn ? <span className="jc-bplayin">{teamCell(playIn[0])}<span className="muted"> / </span>{teamCell(playIn[1])}</span> : <span className="muted">{empty}</span>}</span>
       <span className="jc-bpts">{pts ?? ''}</span>
     </div>
   );
@@ -26,8 +26,10 @@ function playInOf(bracket: Bracket, game: BracketGame, side: 'home' | 'away'): [
 }
 
 /** A bracket as columns of games, one column per round. `filter` limits it to some games (a region, or the final rounds). */
-export function BracketView({ bracket, teamCell, filter, hrefFor }: {
+export function BracketView({ bracket, teamCell, filter, hrefFor, empty = 'TBD' }: {
   bracket: Bracket; teamCell: (id: string) => ReactNode; filter?: (g: BracketGame) => boolean;
+  /** What an open side shows (the reveal uses a dash). */
+  empty?: string;
   /** A link for a game (its box score once played, Watch when it is up next), or null. */
   hrefFor?: (g: BracketGame) => { label: string; to: string } | null;
 }) {
@@ -40,8 +42,8 @@ export function BracketView({ bracket, teamCell, filter, hrefFor }: {
           <h3>{roundName(bracket.kind, round)}</h3>
           {games.filter(g => g.round === round).map(g => (
             <div key={g.id} className="jc-bslot"><div className="jc-bgame card" data-game={g.id}>
-              <Side game={g} side="home" teamCell={teamCell} playIn={playInOf(bracket, g, 'home')} />
-              <Side game={g} side="away" teamCell={teamCell} playIn={playInOf(bracket, g, 'away')} />
+              <Side game={g} side="home" teamCell={teamCell} playIn={playInOf(bracket, g, 'home')} empty={empty} />
+              <Side game={g} side="away" teamCell={teamCell} playIn={playInOf(bracket, g, 'away')} empty={empty} />
               {(() => {
                 const link = hrefFor?.(g);
                 return link ? <Link className="jc-blink" to={link.to}>{link.label}</Link> : null;
