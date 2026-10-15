@@ -89,8 +89,13 @@ function JcGame() {
   if (!state) return <p className="muted">Loading…</p>;
   const view = viewState(state);
   const regular = n >= 1 && n <= TOTAL_GAMES;
-  const back = regular ? { to: '/league/fbajc/scores', label: 'back to scores ▸' } : { to: '/league/fbajc/postseason', label: 'back to the postseason ▸' };
   const found = findGame(state, n);
+  // A conference tournament game goes back to its own conference, so the picker stays where the game was watched.
+  const nextConf = !regular && !found && postseasonStage(state) === 'conf' ? nextConfGame(state) : null;
+  const confId = found?.bracket?.kind === 'conf' ? found.bracket.id : nextConf && typeof nextConf !== 'string' && nextConf.gameNo === n ? nextConf.bracketId : null;
+  const back = regular
+    ? { to: '/league/fbajc/scores', label: 'back to scores ▸' }
+    : { to: confId ? `/league/fbajc/postseason?tab=conference&conf=${encodeURIComponent(confId)}` : '/league/fbajc/postseason', label: 'back to the postseason ▸' };
 
   if (found && !sim) {
     const { bracket, game } = found;

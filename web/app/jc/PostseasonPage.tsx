@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { bracketResults } from '../../engine/jc/bracket';
 import { confDone, playAllConf, playConfRound, startConfTournaments } from '../../engine/jc/confTourney';
@@ -9,10 +9,11 @@ import { nextPostGame, playPostRound, playPostToEnd, postseasonStage, recordPost
 import type { JcState } from '../../engine/jc/state';
 import { JC_PROFILE, simGame } from '../../engine/season/sim';
 import { calendarProblem } from '../../engine/season/moves';
-import type { BracketGame, Team } from '../../engine/shared/types';
+import type { Bracket, BracketGame, Team } from '../../engine/shared/types';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import { BracketView } from './BracketView';
+import { preTournamentProjection, teamOutlook } from '../../engine/jc/bracketology';
 import { Bracketology } from './Bracketology';
 import { jcGate } from './JcGate';
 import { newRng, usePostseasonDocs } from './usePostseasonDocs';
@@ -40,7 +41,10 @@ export function PostseasonPage() {
   const { season, docs, saving, error, run } = usePostseasonDocs();
   const [params, setParams] = useSearchParams();
   const [playing, setPlaying] = useState(false);
-  const [conf, setConf] = useState<string | null>(null);
+  const conf = params.get('conf');
+  /** The conference the page shows: the one in the URL when it exists, else the first. */
+  const pickedConf = (list: Bracket[]): string => (list.some(b => b.id === conf) ? conf! : list[0].id);
+  const setConf = (id: string): void => setParams({ tab: 'conference', conf: id });
   const kicker = 'Junior College';
 
   if (season === null) return <section className="jc-page"><PageHeader kicker={kicker} title="Postseason" /></section>;
@@ -97,19 +101,22 @@ export function PostseasonPage() {
           {ps && (
             <>
               <label className="jc-conf-pick">Conference{' '}
-                <select value={conf ?? ps.conf[0].id} onChange={e => setConf(e.target.value)}>
+                <select value={pickedConf(ps.conf)} onChange={e => setConf(e.target.value)}>
                   {ps.conf.map(b => <option key={b.id} value={b.id}>{b.id}{b.champion ? ` (${byId.get(b.champion)?.abbr ?? b.champion})` : ''}</option>)}
                 </select>
               </label>
               {(() => {
-                const b = ps.conf.find(x => x.id === (conf ?? ps.conf[0].id))!;
+                const b = ps.conf.find(x => x.id === (pickedConf(ps.conf)))!;
                 const rs = ps.rsChampions[b.id] ?? [];
                 return (
                   <>
                     <p>Regular-season champion{rs.length > 1 ? 's' : ''}: {rs.map((id, i) => <span key={id}>{i > 0 && ', '}{teamCell(id)}</span>)}</p>
                     {b.champion && <p className="jc-banner">Tournament champion: {teamCell(b.champion)}</p>}
-                    <BracketView bracket={b} teamCell={teamCell} hrefFor={g => (g.result ? { label: 'Box score', to: `/league/fbajc/game/${g.result.gameNo}` }
-                      : nextConf && typeof nextConf !== 'string' && nextConf.bracketId === b.id && nextConf.gameId === g.id ? { label: 'Watch', to: `/league/fbajc/game/${nextConf.gameNo}` } : null)} />
+                    <div className="jc-conf-layout">
+                      <BracketView bracket={b} teamCell={teamCell} hrefFor={g => (g.result ? { label: 'Box score', to: `/league/fbajc/game/${g.result.gameNo}` }
+                        : nextConf && typeof nextConf !== 'string' && nextConf.bracketId === b.id && nextConf.gameId === g.id ? { label: 'Watch', to: `/league/fbajc/game/${nextConf.gameNo}` } : null)} />
+                      <ConfOutlook state={state} bracket={b} teamCell={teamCell} />
+                    </div>
                   </>
                 );
               })()}
@@ -126,6 +133,32 @@ export function PostseasonPage() {
         <TournamentPanel which={tab} state={state} teamCell={teamCell} busy={busy} stage={stage} run={run} slow={slow} />
       )}
     </section>
+  );
+}
+
+/** Each team of one conference, with where the bracketology had it right before the conference tournaments. */
+function ConfOutlook({ state, bracket, teamCell }: { state: JcState; bracket: Bracket; teamCell: (id: string) => ReactNode }) {
+  const pre = useMemo(() => preTournamentProjection(state), [state]);
+  if (!pre) return null;
+  const seedOf = new Map<string, number>();
+  for (const g of bracket.games) {
+    if (g.home && g.homeSeed !== null) seedOf.set(g.home, g.homeSeed);
+    if (g.away && g.awaySeed !== null) seedOf.set(g.away, g.awaySeed);
+  }
+  const teams = [...seedOf.keys()].sort((a, b) => (seedOf.get(a) ?? 99) - (seedOf.get(b) ?? 99));
+  const text = (id: string): string => {
+    const o = teamOutlook(pre, id);
+    return o.kind === 'seed' ? `Seed ${o.seed}${o.firstFour ? ' (First Four)' : ''}` : o.kind === 'nit' ? 'NIT' : 'Out';
+  };
+  return (
+    <aside className="card jc-conf-outlook">
+      <h3>Bracketology before the tournaments</h3>
+      <p className="muted">From the ranking after day {pre.afterDay}, with every conference champion projected.</p>
+      <table className="stat-table">
+        <thead><tr><th>Team</th><th>Outlook</th></tr></thead>
+        <tbody>{teams.map(id => <tr key={id}><td>{teamCell(id)}</td><td>{text(id)}</td></tr>)}</tbody>
+      </table>
+    </aside>
   );
 }
 

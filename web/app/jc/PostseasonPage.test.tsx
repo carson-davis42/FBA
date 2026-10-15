@@ -113,6 +113,28 @@ describe('PostseasonPage', () => {
     expect(await screen.findByText('Finish the NIT first')).toBeTruthy();
     expect((screen.getByRole('button', { name: 'Play round' }) as HTMLButtonElement).disabled).toBe(true);
   });
+  it('shows the conference named in the URL, and falls back to the first for an unknown one', async () => {
+    const ids = afterConf.postseason!.conf.map(b => b.id);
+    const pick = ids[3];
+    mount(afterConf, `/league/fbajc/postseason?tab=conference&conf=${pick}`);
+    const select = (await screen.findByRole('combobox', { name: /Conference/ })) as HTMLSelectElement;
+    expect(select.value).toBe(pick);
+    cleanup();
+    mount(afterConf, '/league/fbajc/postseason?tab=conference&conf=NOPE');
+    const again = (await screen.findByRole('combobox', { name: /Conference/ })) as HTMLSelectElement;
+    expect(again.value).toBe(ids[0]);
+  });
+
+  it('shows each team of the conference where it stood before the conference tournaments', async () => {
+    const { container } = mount(afterConf, '/league/fbajc/postseason?tab=conference');
+    const panel = (await screen.findByRole('heading', { name: 'Bracketology before the tournaments' })).parentElement!;
+    const rows = [...panel.querySelectorAll('tbody tr')];
+    expect(rows).toHaveLength(12);
+    expect(rows.every(r => /Seed \d+|NIT|Out/.test(r.textContent ?? ''))).toBe(true);
+    expect(panel.textContent).toContain('after day 29');
+    expect(container.querySelector('.jc-conf-layout')).toBeTruthy();
+  });
+
   it('lists the two play-in teams of a spot together in the projected regions', async () => {
     const { container } = mount(played, '/league/fbajc/postseason?tab=bracketology');
     await screen.findByRole('heading', { name: 'Projected bracket' });

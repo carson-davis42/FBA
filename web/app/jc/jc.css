@@ -62,3 +62,8 @@ tr.jc-champion td { font-weight: 700; }
 .jc-mini-pts { flex: 0 0 auto; }
 .jc-mini-game.jc-mini-ranked { box-shadow: inset 3px 0 0 var(--accent-soft, var(--accent)); }
 .jc-mini-game.jc-mini-ranked-both { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+
+/* A conference tournament bracket with each team's pre-tournament bracketology on its right. */
+.jc-conf-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: var(--s3); align-items: start; }
+.jc-conf-outlook h3 { margin: 0 0 var(--s2); font-size: var(--fs-sm); }
+@media (max-width: 900px) { .jc-conf-layout { grid-template-columns: minmax(0, 1fr); } }

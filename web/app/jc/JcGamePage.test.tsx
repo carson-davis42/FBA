@@ -4,7 +4,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { mulberry32 } from '../../engine/d2/random';
 import { playPostRound } from '../../engine/jc/postseason';
-import { startConfTournaments } from '../../engine/jc/confTourney';
+import { playConfRound, startConfTournaments } from '../../engine/jc/confTourney';
 import { jcPlayedFixture, jcReadyForNit, jcStateFixture } from '../../engine/jc/testFixtures';
 import type { JcState } from '../../engine/jc/state';
 import { JcGamePage } from './JcGamePage';
@@ -108,6 +108,15 @@ describe('JcGamePage', () => {
   it("does not let a later regular-season game be watched before the one before it", async () => {
     mount(jcStateFixture(), 2);
     expect(await screen.findByText(/hasn't been played, and it isn't up next/)).toBeTruthy();
+  });
+
+  it('goes back to the conference of a conference tournament game', async () => {
+    const first = confStarted.postseason!.conf.flatMap(b => b.games.map(g => ({ b, g }))).find(x => x.g.round === 1 && x.g.home && x.g.away)!;
+    const played = playConfRound(confStarted, mulberry32(3));
+    if (!played.ok) throw new Error(played.problems.join());
+    mount(played.state, 3133);
+    const link = await screen.findByRole('link', { name: /Back to the postseason/ });
+    expect(link.getAttribute('href')).toBe(`/league/fbajc/postseason?tab=conference&conf=${encodeURIComponent(first.b.id)}`);
   });
 
   it('watches the next conference tournament game live', async () => {
