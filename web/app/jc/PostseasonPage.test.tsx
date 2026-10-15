@@ -69,17 +69,17 @@ describe('PostseasonPage', () => {
     const withField = setFields(afterConf);
     if (!withField.ok) throw new Error('x');
     mount(withField.state, '/league/fbajc/postseason?tab=field');
-    expect(await screen.findByText('Region 4')).toBeTruthy();
+    await screen.findByRole('heading', { name: 'March Madness field' });
+    // The Field tab has the sections Bracketology has.
+    for (const name of ['First Four In', 'Last Eight In', 'First Four Out', 'Seed lines', 'Bids by conference', 'NIT teams']) {
+      expect(screen.getByRole('heading', { name })).toBeTruthy();
+    }
+    const cards = [1, 2, 3, 4].map(n => screen.getByRole('heading', { name: `Region ${n}` }).parentElement!);
     // A conference title guarantees the Round of 64, so all 18 champions hold a plain spot in a region and carry the marker.
-    const post = withField.state.postseason!;
-    const ff = post.field!.mm.firstFour;
-    const listed = post.conf.map(b => b.champion!).filter(id => post.field!.mm.teams.includes(id) && !ff.some(g => g.teams[0] === id));
-    expect(listed.length).toBe(18);
-    expect(screen.getAllByText(/\(conf\. champion\)/).length).toBe(listed.length);
-    expect(screen.getByRole('heading', { name: 'First Four' })).toBeTruthy();
-    expect(screen.getAllByText(/^Winner of P\d$/).length).toBe(8);
-    expect(screen.getAllByText(/^P\d: /).length).toBe(8);
-    expect(document.querySelectorAll('h2 + .card ol li').length).toBe(32);
+    expect(cards.flatMap(c => [...c.querySelectorAll('li')]).filter(li => /\(conference champion\)/.test(li.textContent ?? '')).length).toBe(18);
+    // A play-in spot lists both teams, like the bracket.
+    expect(cards.flatMap(c => [...c.querySelectorAll('li')]).filter(li => (li.textContent ?? '').includes('/')).length).toBe(8);
+    expect(screen.getByRole('heading', { name: 'NIT teams' }).nextElementSibling!.querySelectorAll('li').length).toBe(32);
     expect(screen.getByRole('button', { name: 'Re-draw the fields' })).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Swap' })).toBeTruthy();
   });
@@ -188,7 +188,7 @@ describe('PostseasonPage', () => {
     mount(set.state, '/league/fbajc/postseason?tab=bracketology');
     await screen.findByRole('tab', { name: 'Field' });
     expect(screen.queryByRole('tab', { name: 'Bracketology' })).toBeNull();
-    expect(screen.queryByRole('heading', { name: 'Last Eight In' })).toBeNull();
+    expect(await screen.findByRole('heading', { name: 'March Madness field' })).toBeTruthy();
   });
 
   it('March Madness shows a First Four list above the regions and plays it first', async () => {

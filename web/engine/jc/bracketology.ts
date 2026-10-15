@@ -1,5 +1,6 @@
 import type { Bracket } from '../shared/types';
 import { confTables, latestRanking, regularRanking } from './confTourney';
+import { isMajor } from './field';
 import { computeField } from './fieldMoves';
 import { conferenceOf, type JcState } from './state';
 
@@ -98,4 +99,53 @@ export function teamOutlook(p: Projection, teamId: string): Outlook {
   if (p.mmTeams.includes(teamId)) return { kind: 'seed', seed: p.seeds[teamId], firstFour: false };
   if (p.nit.includes(teamId)) return { kind: 'nit' };
   return { kind: 'out' };
+}
+
+/** The fields as saved (picked by "Set the fields" and any swaps), in the shape of the projection so the Field tab can look like Bracketology. */
+export function fieldProjection(state: JcState): Projection | null {
+  const ps = state.postseason;
+  const field = ps?.field;
+  if (!ps || !field || !ps.mm) return null;
+  const ranking = latestRanking(state) ?? [];
+  const rank = new Map(ranking.map((t, i) => [t, i]));
+  const byRank = (a: string, b: string): number => (rank.get(a) ?? Infinity) - (rank.get(b) ?? Infinity);
+  const confOf = (id: string): string => conferenceOf(state.teams, id);
+  const ff = field.mm.firstFour;
+  const challengers = ff.map(g => g.teams[1]);
+  const inMm = new Set([...field.mm.teams, ...challengers]);
+  const standIns = new Set(ff.map(g => g.teams[0]));
+  const champions: Projection['champions'] = {};
+  for (const b of ps.conf) if (b.champion) champions[b.id] = { teamId: b.champion, projected: false };
+  const playIn: PlayInGame[] = ff.map(g => ({ id: g.id, teams: g.teams, seed: g.seed }));
+  const bubble = (group: 'power' | 'other'): GroupBubble => {
+    const games = ff.filter(g => g.group === group);
+    const playing = games.flatMap(g => g.teams);
+    const best = Math.min(...playing.map(t => rank.get(t) ?? Infinity));
+    const direct = field.mm.teams.filter(t => !standIns.has(t) && isMajor(confOf(t)) === (group === 'power')).sort(byRank);
+    const slice = games.map(g => ({ id: g.id, teams: g.teams, seed: g.seed }));
+    return {
+      firstFourIn: direct.filter(t => (rank.get(t) ?? Infinity) < best).slice(-4),
+      lastEight: { top: slice.slice(0, 2), bottom: slice.slice(2, 4) },
+      firstFourOut: ranking.filter(t => !inMm.has(t) && isMajor(confOf(t)) === (group === 'power')).slice(0, 4),
+    };
+  };
+  const byConf = new Map<string, string[]>();
+  for (const t of inMm) byConf.set(confOf(t), [...(byConf.get(confOf(t)) ?? []), t]);
+  const bids = [...byConf].map(([conf, teams]) => ({ conf, count: teams.length, teams }))
+    .sort((a, b) => b.count - a.count || a.conf.localeCompare(b.conf));
+  return {
+    afterDay: state.rankings?.snapshots.at(-1)?.afterDay ?? 0,
+    champions,
+    seeds: field.mm.seeds,
+    regions: field.mm.regions,
+    mmTeams: field.mm.teams,
+    mm: ps.mm,
+    seedLines: Array.from({ length: 16 }, (_, i) => field.mm.teams.filter(t => field.mm.seeds[t] === i + 1)),
+    power: bubble('power'),
+    other: bubble('other'),
+    playIn,
+    bids,
+    nit: field.nit.teams,
+    warnings: field.warnings,
+  };
 }
