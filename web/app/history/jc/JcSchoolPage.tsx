@@ -1,16 +1,19 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { jcSchoolCase, jcSeasonLabel, type MmRound } from '../../../engine/history/jc';
 import { NATIONAL_LABEL } from '../../../engine/jc/awards';
 import { groupLabel } from '../../../engine/shared/leagues';
-import type { PlayersFile } from '../../../engine/shared/types';
-import { useDoc, useHistory } from '../../api';
+import { linkHallByName } from '../../../engine/offseason/hallOfFame';
+import type { CalendarFile, HallOfFameFile, PlayerBiosFile, PlayersFile } from '../../../engine/shared/types';
+import { docSettled, useDoc, useHistory } from '../../api';
+import { SubNav } from '../../components/SubNav';
 import { Hero } from '../../components/Hero';
 import { TeamMark } from '../../components/TeamMark';
 import { teamTheme } from '../../components/teamColors';
 import { SkippedWarning } from '../PlayerLink';
 import '../history.css';
 import { HistoryLeagueSwitch } from '../d2/HistoryLeagueSwitch';
-import { JcPerson, useJcSchoolHistory, useJcTeams } from './useJc';
+import { SchoolPlayers } from './SchoolPlayers';
+import { JcPerson, useJcSchoolHistory, useJcSeasonFiles, useJcTeams } from './useJc';
 
 const ROUND_LABEL: Record<MmRound, string> = { app: 'Appearance', sweet16: 'Sweet 16', elite8: 'Elite 8', final4: 'Final Four', titleGame: 'Title game', champion: 'Champion' };
 
@@ -22,11 +25,18 @@ export function JcSchoolPage() {
   const { teamId = '' } = useParams();
   const { seasons, errors, error } = useHistory('fbajc');
   const players = useDoc<PlayersFile>('players.json');
+  const [params, setParams] = useSearchParams();
+  const tab = params.get('tab') === 'players' ? 'players' : 'overview';
+  const bios = useDoc<PlayerBiosFile>(tab === 'players' ? 'leagues/fba/playerBios.json' : null);
+  const hof = useDoc<HallOfFameFile>(tab === 'players' ? 'leagues/fba/hallOfFame.json' : null);
+  const calendar = useDoc<CalendarFile>(tab === 'players' ? 'calendar.json' : null);
+  const latestSeason = Math.max(79, calendar.data?.season ?? 0, ...(seasons ?? []).map(s => s.season));
+  const seasonFiles = useJcSeasonFiles(tab === 'players' && seasons ? latestSeason : null);
   const { settled, teams } = useJcTeams();
   const sh = useJcSchoolHistory();
   const failure = error ?? players.error;
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
-  if (!seasons || !players.data || !settled || !sh.settled) return <p className="muted">Loading…</p>;
+  if (!seasons || !players.data || !settled || !sh.settled || (tab === 'players' && (!docSettled(bios) || !docSettled(hof) || !docSettled(calendar) || seasonFiles === null))) return <p className="muted">Loading…</p>;
   const team = teams.find(t => t.teamId === teamId);
   if (!team) return <p className="muted">Not found</p>;
   const doc = sh.file?.schools.find(s => s.teamId === team.teamId) ?? null;
@@ -57,6 +67,13 @@ export function JcSchoolPage() {
       />
       <HistoryLeagueSwitch />
       <SkippedWarning errors={errors} />
+      <SubNav label="School" items={[{ id: 'overview', label: 'Overview' }, { id: 'players', label: 'Players' }]} active={tab} onSelect={id => setParams(id === 'players' ? { tab: 'players' } : {})} />
+      {tab === 'players' ? (
+        <div id="panel-players" role="tabpanel" aria-labelledby="tab-players">
+          <SchoolPlayers team={team} players={players.data} bios={bios.data ?? null} hof={hof.data ? linkHallByName(hof.data, players.data) : null} rosters={seasonFiles?.rosters ?? []} results={seasonFiles?.results ?? null} latest={latestSeason} />
+        </div>
+      ) : (
+      <>
       {!doc && <p className="muted">The imported school history has no entry for this school, so March Madness runs and older conference titles come from the season records only.</p>}
       <div>
         <h2 className="section-title">Titles</h2>
@@ -97,6 +114,8 @@ export function JcSchoolPage() {
             ))}
           </ul>
         </div>
+      )}
+      </>
       )}
     </section>
   );

@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import type { JcRecruitingHistoryFile, JcSchoolHistoryFile, PlayersFile, Team, TeamsFile } from '../../../engine/shared/types';
+import type { JcRecruitingHistoryFile, JcSchoolHistoryFile, PlayersFile, ResultsFile, RostersFile, Team, TeamsFile } from '../../../engine/shared/types';
 import { useDoc } from '../../api';
 import { TeamName } from '../../components/TeamName';
 import { findTeam } from '../useTeams';
@@ -36,4 +37,19 @@ export function JcTeam({ teams, teamId, name, season, size }: {
 export function JcPerson({ id, name, players }: { id: string | null | undefined; name?: string | null; players: PlayersFile }) {
   if (id) return <Link to={`/history/fba/players/${id}`}>{players.players[id]?.name ?? name ?? id}</Link>;
   return <>{name ?? '—'}</>;
+}
+
+/** The FBAJC season roster files from S78 (the first with full rosters) through `latest`, and the games of `latest`, once the Players tab asks for them. */
+export function useJcSeasonFiles(latest: number | null): { rosters: RostersFile[]; results: ResultsFile | null } | null {
+  const [state, setState] = useState<{ latest: number; rosters: RostersFile[]; results: ResultsFile | null } | null>(null);
+  useEffect(() => {
+    if (latest === null) return;
+    let live = true;
+    const read = <T,>(rel: string) => fetch(`/api/state/leagues/fbajc/${rel}`).then(res => (res.ok ? res.json() as Promise<T> : null), () => null);
+    const seasons = Array.from({ length: Math.max(0, latest - 77) }, (_, i) => 78 + i);
+    Promise.all([Promise.all(seasons.map(n => read<RostersFile>(`S${n}/rosters.json`))), read<ResultsFile>(`S${latest}/results.json`)])
+      .then(([files, results]) => { if (live) setState({ latest, rosters: files.filter((f): f is RostersFile => f !== null), results }); });
+    return () => { live = false; };
+  }, [latest]);
+  return latest !== null && state?.latest === latest ? state : null;
 }
