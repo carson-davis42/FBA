@@ -6,7 +6,8 @@ import { BracketView } from './BracketView';
 /** The projected March Madness bracket, derived from the latest ranking. Read-only; nothing is saved. */
 export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (id: string) => ReactNode }) {
   const p = useMemo(() => projectBracket(state), [state]);
-  const [region, setRegion] = useState(0);
+  /** -2 the First Four, 0-3 a region, -1 the Final Four. */
+  const [region, setRegion] = useState(-2);
   if (!p) return <p className="muted">There is no ranking yet. Bracketology appears once the first rankings are out.</p>;
   const champ = new Map(Object.values(p.champions).map(c => [c.teamId, c.projected]));
   const mark = (id: string): ReactNode => (champ.has(id)
@@ -76,10 +77,11 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
       </div>
       <h2>Bracket</h2>
       <div className="jc-tabs">
+        <button type="button" className="btn" aria-pressed={region === -2} onClick={() => setRegion(-2)}>First Four</button>
         {[0, 1, 2, 3].map(r => <button key={r} type="button" className="btn" aria-pressed={region === r} onClick={() => setRegion(r)}>Region {r + 1}</button>)}
         <button type="button" className="btn" aria-pressed={region === -1} onClick={() => setRegion(-1)}>Final Four</button>
       </div>
-      <BracketView bracket={p.mm} teamCell={teamCell} filter={g => (region === -1 ? g.round >= 5 : g.region === region && g.round >= 1 && g.round < 5)} />
+      <BracketView bracket={p.mm} teamCell={teamCell} filter={g => (region === -2 ? g.round === 0 : region === -1 ? g.round >= 5 : g.region === region && g.round >= 1 && g.round < 5)} />
       <h2>NIT teams</h2>
       <div className="card jc-field">
         <ol>{p.nit.map(id => <li key={id}>{teamCell(id)}</li>)}</ol>
