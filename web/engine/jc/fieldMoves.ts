@@ -1,5 +1,5 @@
 import { calendarProblem } from '../season/moves';
-import type { JcPostseasonFile } from '../shared/types';
+import type { Bracket, JcPostseasonFile } from '../shared/types';
 import { bracketResults } from './bracket';
 import { confDone, latestRanking } from './confTourney';
 import { selectMarchMadness, selectNit } from './field';
@@ -28,6 +28,28 @@ function withField(ps: JcPostseasonFile, state: JcState, mmTeams: string[], nitT
   };
 }
 
+export interface ComputedField {
+  mmTeams: string[];
+  leftover: string[];
+  nitTeams: string[];
+  warnings: string[];
+  seeds: Record<string, number>;
+  regions: string[][];
+  mm: Bracket;
+  nit: Bracket;
+}
+
+/** The one place the March Madness and NIT fields are chosen and placed: the real "Set the fields" and Bracketology both use it. */
+export function computeField(ranking: string[], champions: string[], rsChampions: string[], confOf: (id: string) => string): ComputedField {
+  const { field, leftover } = selectMarchMadness(ranking, champions, confOf);
+  const nit = selectNit(leftover, rsChampions);
+  const placed = placeRegions(field, confOf);
+  return {
+    mmTeams: field, leftover, nitTeams: nit.teams, warnings: nit.warnings, seeds: placed.seeds, regions: placed.regions,
+    mm: buildMarchMadness(placed.regions, placed.seeds), nit: buildNit(nit.teams),
+  };
+}
+
 /** Picks the March Madness and NIT fields from the post-tournament ranking. Running it again re-draws them (until a game is played). */
 export function setFields(state: JcState): JcResult {
   const problem = problemFor(state);
@@ -35,9 +57,13 @@ export function setFields(state: JcState): JcResult {
   const ps = state.postseason!;
   const ranking = latestRanking(state);
   if (!ranking) return jcFail(['There is no ranking yet']);
-  const { field, leftover } = selectMarchMadness(ranking, ps.conf.map(b => b.champion!), confOfTeam(state));
-  const nit = selectNit(leftover, Object.values(ps.rsChampions).flat());
-  const postseason = withField(ps, state, field, nit.teams, nit.warnings);
+  const c = computeField(ranking, ps.conf.map(b => b.champion!), Object.values(ps.rsChampions).flat(), confOfTeam(state));
+  const postseason: JcPostseasonFile = {
+    ...ps,
+    field: { mm: { teams: c.mmTeams, seeds: c.seeds, regions: c.regions }, nit: { teams: c.nitTeams }, warnings: c.warnings },
+    mm: c.mm,
+    nit: c.nit,
+  };
   return { ok: true, state: { ...state, postseason }, changed: ['postseason'], label: ps.field ? 'Re-draw the fields' : 'Set the fields' };
 }
 
