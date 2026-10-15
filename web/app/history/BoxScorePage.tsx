@@ -6,8 +6,8 @@ import { resolveHistoryTeam } from '../../engine/shared/franchises';
 import type { FranchisesFile, HallOfFameFile, PastBracket as PastBracketDoc, PastSeries, PastSide, PlayerBiosFile, PlayersFile, RostersFile, SummaryFile, Team, TeamsFile } from '../../engine/shared/types';
 import { docFailure, docSettled, useDoc } from '../api';
 import { PageHeader } from '../components/PageHeader';
-import { teamTheme, teamVars } from '../components/teamColors';
-import { ACCENT_SIDES, ScoreBug, type BugSide } from '../season/GameViews';
+import { teamTheme } from '../components/teamColors';
+import { ACCENT_SIDES, lightStyle, ScoreBug, type BugSide } from '../season/GameViews';
 import { roundLabel } from './PastBracket';
 import './history.css';
 
@@ -110,7 +110,7 @@ export function BoxScorePage() {
   const res = resultOf(s);
   const bugSide = (side: PastSide, score: string, i: number): BugSide => {
     const team = teamOf(side);
-    return { label: side.name, sub: side.record ?? undefined, score, team, season: n, light: !!team && lg === 'fbajc', style: team ? teamVars(teamTheme(team, lg, n)) : ACCENT_SIDES[i] };
+    return { label: side.name, sub: side.record ?? undefined, score, team, season: n, light: !!team && lg === 'fbajc', style: team ? lightStyle(lg === 'fbajc', teamTheme(team, lg, n)) : ACCENT_SIDES[i] };
   };
   const away = rosterOf(s.away);
   const home = rosterOf(s.home);

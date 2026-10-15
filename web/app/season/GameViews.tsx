@@ -6,7 +6,7 @@ import { Badge } from '../components/Badge';
 import { PageHeader } from '../components/PageHeader';
 import { TeamMark } from '../components/TeamMark';
 import { TeamName } from '../components/TeamName';
-import { teamTheme, teamVars } from '../components/teamColors';
+import { lightAccent, teamTheme, teamVars, type TeamTheme } from '../components/teamColors';
 import { useSort } from '../components/useSort';
 import { SortTh } from '../components/SortTh';
 import { LEAGUE_LABEL } from '../../engine/shared/leagues';
@@ -31,12 +31,15 @@ export const ACCENT_SIDES: CSSProperties[] = [
 
 export interface BugSide { label: string; score: number | string; team?: Team; season?: number; style: CSSProperties; /** Small line under the label, such as a record. */ sub?: string; /** Poll ranking shown before the label. */ rank?: number; /** College games use the white scorebug with a team-colour accent. */ light?: boolean }
 
+/** College sides tint a white bar, so a near-white primary gives way to the secondary colour. */
+export const lightStyle = (light: boolean, theme: TeamTheme): CSSProperties => teamVars(light ? { ...theme, primary: lightAccent(theme) } : theme);
+
 /** A side of the scorebug for a real team, in its colours. */
 export function bugSide(state: SeasonState, teamId: string, score: number, opts: { full?: boolean; record?: boolean; sub?: string } = {}): BugSide {
   const t = teamOf(state, teamId);
   const rec = opts.record && state.results ? records(state.teams.teams.map(x => ({ teamId: x.teamId, group: x.group })), state.results.games).get(teamId) : undefined;
   return t
-    ? { label: opts.full ? t.name : t.abbr, sub: opts.sub ?? (rec ? `${rec.w}-${rec.l}` : undefined), score, team: t, season: state.season, rank: state.pollRanks?.get(teamId), light: (state.league as string) === 'fbajc', style: teamVars(teamTheme(t, state.league, state.season)) }
+    ? { label: opts.full ? t.name : t.abbr, sub: opts.sub ?? (rec ? `${rec.w}-${rec.l}` : undefined), score, team: t, season: state.season, rank: state.pollRanks?.get(teamId), light: (state.league as string) === 'fbajc', style: lightStyle((state.league as string) === 'fbajc', teamTheme(t, state.league, state.season)) }
     : { label: teamId, score, style: ACCENT_SIDES[0] };
 }
 
