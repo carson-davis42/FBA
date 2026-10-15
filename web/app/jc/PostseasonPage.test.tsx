@@ -138,10 +138,10 @@ describe('PostseasonPage', () => {
     expect(screen.getByRole('heading', { name: 'First Four In' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Last Eight In' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'First Four Out' })).toBeTruthy();
-    for (const name of ['Power conferences, top four', 'Power conferences, bottom four', 'Other conferences, top four', 'Other conferences, bottom four']) {
+    for (const name of ['Power conferences, 1-4', 'Power conferences, 5-8', 'Other conferences, 1-4', 'Other conferences, 5-8']) {
       const box = screen.getByRole('heading', { name }).parentElement!;
-      expect(box.querySelectorAll('li').length).toBe(2);
-      expect(box.textContent).toMatch(/ vs .*\(seed \d+\)/);
+      expect(box.querySelectorAll('li').length).toBe(4);
+      expect(box.textContent).toMatch(/\(seed \d+\)/);
     }
     expect(screen.getAllByRole('heading', { name: 'Power conferences' })).toHaveLength(2);
     expect(screen.getAllByRole('heading', { name: 'Other conferences' })).toHaveLength(2);

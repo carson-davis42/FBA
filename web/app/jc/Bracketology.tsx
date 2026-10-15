@@ -13,9 +13,9 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
   const mark = (id: string): ReactNode => (champ.has(id)
     ? (champ.get(id) ? <span> *</span> : <span className="muted"> (conference champion)</span>) : null);
   const real = Object.values(p.champions).filter(c => !c.projected).length;
-  const game = (g: PlayInGame) => (
-    <li key={g.id}>{teamCell(g.teams[0])} vs {teamCell(g.teams[1])}<span className="muted"> (seed {g.seed})</span></li>
-  );
+  const ranked = (games: PlayInGame[]) => games.flatMap(g => g.teams.map(id => (
+    <li key={id}>{teamCell(id)}<span className="muted"> (seed {g.seed})</span></li>
+  )));
   const groups: [string, GroupBubble][] = [['Power conferences', p.power], ['Other conferences', p.other]];
   return (
     <section>
@@ -47,11 +47,11 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
         ))}
       </div>
       <h2>Last Eight In</h2>
-      <p className="muted">The eight teams of each group in the First Four games; the winners take the seed line shown.</p>
+      <p className="muted">The eight teams of each group that play the First Four, in ranking order. Pairs 1-2, 3-4, 5-6 and 7-8 play each other; the seed shown is the line the winner takes.</p>
       <div className="jc-regions">
         {groups.flatMap(([name, b]) => [
-          <div key={`${name} top`} className="card jc-field"><h3>{name}, top four</h3><ol>{b.lastEight.top.map(game)}</ol></div>,
-          <div key={`${name} bottom`} className="card jc-field"><h3>{name}, bottom four</h3><ol>{b.lastEight.bottom.map(game)}</ol></div>,
+          <div key={`${name} top`} className="card jc-field"><h3>{name}, 1-4</h3><ol>{ranked(b.lastEight.top)}</ol></div>,
+          <div key={`${name} bottom`} className="card jc-field"><h3>{name}, 5-8</h3><ol start={5}>{ranked(b.lastEight.bottom)}</ol></div>,
         ])}
       </div>
       <h2>First Four Out</h2>
