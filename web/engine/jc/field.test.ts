@@ -92,6 +92,18 @@ describe('selectFirstFour', () => {
       expect(bestOut).toBeGreaterThan(worstEight);
     }
   });
+  it('never puts a protected team (a regular-season champion) in a play-in game', () => {
+    const worstOther = field.filter(t => confOf(t) === 'SKY').slice(-1)[0];
+    const nextChallenger = leftover.find(t => confOf(t) === 'SKY')!;
+    const r = selectFirstFour(ranking, field, leftover, confOf, new Set([worstOther, nextChallenger]));
+    const eight = [...r.lastEight.power, ...r.lastEight.other];
+    expect(eight).not.toContain(worstOther);
+    expect(eight).not.toContain(nextChallenger);
+    expect(r.slots).toContain(worstOther);
+    expect(r.leftover).toContain(nextChallenger);
+    expect(r.pairs).toHaveLength(8);
+    expect(r.lastEight.other).toHaveLength(8);
+  });
   it('plays no First Four, with a warning, when a group has too few challengers', () => {
     const r = selectFirstFour(ranking, field, leftover.slice(0, 3), confOf);
     expect(r.pairs).toHaveLength(0);

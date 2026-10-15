@@ -81,7 +81,9 @@ export interface FirstFourPick {
  * The First Four: per group (power / other) the 4 worst spot holders of the 64 meet the first 4 of `leftover`, paired
  * adjacent by rank. A group with too few teams means no First Four (a 64-team field) and a warning.
  */
-export function selectFirstFour(ranking: string[], field: string[], leftover: string[], confOf: (id: string) => string): FirstFourPick {
+export function selectFirstFour(
+  ranking: string[], field: string[], leftover: string[], confOf: (id: string) => string, protectedTeams: Set<string> = new Set(),
+): FirstFourPick {
   const rankOf = new Map(ranking.map((t, i) => [t, i]));
   const byRank = (a: string, b: string): number => (rankOf.get(a) ?? Infinity) - (rankOf.get(b) ?? Infinity);
   const slots = [...field];
@@ -90,15 +92,19 @@ export function selectFirstFour(ranking: string[], field: string[], leftover: st
   const picked = {} as Record<'power' | 'other', { holders: string[]; challengers: string[]; above: string[]; out: string[] }>;
   for (const g of groups) {
     const members = field.filter(t => inGroup(t, g)).sort(byRank);
-    const pool = leftover.filter(t => inGroup(t, g));
-    if (members.length < 8 || pool.length < 4) {
+    // A protected team (a regular-season champion) never plays in: it keeps its direct spot, or stays in the leftover for the NIT.
+    const playable = members.filter(t => !protectedTeams.has(t));
+    const pool = leftover.filter(t => inGroup(t, g) && !protectedTeams.has(t));
+    if (members.length < 8 || playable.length < 4 || pool.length < 4) {
       return {
         slots, pairs: [], firstFourIn: { power: [], other: [] }, firstFourOut: { power: [], other: [] },
         lastEight: { power: [], other: [] }, leftover: [...leftover],
         warnings: [`There are too few ${g === 'power' ? 'power-conference' : 'other-conference'} teams for a First Four; March Madness has 64 teams`],
       };
     }
-    picked[g] = { holders: members.slice(-4), challengers: pool.slice(0, 4), above: members.slice(-8, -4), out: pool.slice(4, 8) };
+    const holders = playable.slice(-4);
+    const worst = members.indexOf(holders[0]);
+    picked[g] = { holders, challengers: pool.slice(0, 4), above: members.slice(Math.max(0, worst - 4), worst), out: pool.slice(4, 8) };
   }
   const pairs: FirstFourPair[] = [];
   const lastEight: FirstFourPick['lastEight'] = { power: [], other: [] };
