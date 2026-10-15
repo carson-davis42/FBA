@@ -15,6 +15,8 @@ import { TeamName } from '../components/TeamName';
 import { BracketView } from './BracketView';
 import { fieldProjection, preTournamentProjection, teamOutlook } from '../../engine/jc/bracketology';
 import { Bracketology, ProjectionView } from './Bracketology';
+import { clearReveal, fieldRevealed, revealCount, setRevealCount } from './revealStore';
+import { SelectionReveal } from './SelectionReveal';
 import { jcGate } from './JcGate';
 import { newRng, usePostseasonDocs } from './usePostseasonDocs';
 import './jc.css';
@@ -174,6 +176,9 @@ function FieldPanel({ state, teamCell, busy, stepProblem, run }: {
   const rs = new Set(Object.values(state.postseason?.rsChampions ?? {}).flat());
   const nameOf = (id: string) => state.teams.teams.find(t => t.teamId === id)?.name ?? id;
   const projection = useMemo(() => fieldProjection(state), [state]);
+  const [, setTick] = useState(0);
+  const revealed = fieldRevealed(state);
+  const onCount = (n: number): void => { setRevealCount(state, n); setTick(t => t + 1); };
   const inField = new Set([...(field?.mm.teams ?? []), ...(field?.mm.firstFour ?? []).flatMap(g => g.teams), ...(field?.nit.teams ?? [])]);
   const mine = field ? (which === 'mm' ? [...field.mm.teams, ...field.mm.firstFour.map(g => g.teams[1])] : field.nit.teams) : [];
   const candidates = state.teams.teams.map(t => t.teamId).filter(id => !mine.includes(id));
@@ -181,11 +186,14 @@ function FieldPanel({ state, teamCell, busy, stepProblem, run }: {
     <section>
       <div className="jc-actions">
         <button className="btn primary" disabled={busy || !ready || locked || !!stepProblem} title={!ready ? 'Finish the conference tournaments first' : undefined}
-          onClick={() => void run(() => setFields(state))}>{field ? 'Re-draw the fields' : 'Set the fields'}</button>
+          onClick={() => { clearReveal(state.season); void run(() => setFields(state)); }}>{field ? 'Re-draw the fields' : 'Set the fields'}</button>
       </div>
       {!field ? <p className="muted">The fields are picked from the ranking after the conference tournaments.</p> : (
         <>
-          {!locked && (
+          {field && projection && !revealed && (
+            <SelectionReveal field={field} p={projection} teamCell={teamCell} count={revealCount(state)} onCount={onCount} />
+          )}
+          {revealed && !locked && (
             <div className="jc-actions">
               <label>Field{' '}
                 <select aria-label="Field" value={which} onChange={e => { setWhich(e.target.value as 'mm' | 'nit'); setOut(''); }}>
@@ -209,7 +217,7 @@ function FieldPanel({ state, teamCell, busy, stepProblem, run }: {
             </div>
           )}
           {locked && <p className="muted">A tournament game has been played: the fields are final.</p>}
-          {projection && (
+          {projection && revealed && (
             <ProjectionView p={projection} teamCell={teamCell} heading="March Madness field" rs={rs}
               intro={`The fields as set, from the ranking after day ${projection.afterDay}.`} />
           )}
@@ -227,6 +235,7 @@ function TournamentPanel({ which, state, teamCell, busy, stage, run, slow }: {
   const label = which === 'nit' ? 'NIT' : 'March Madness';
   const [region, setRegion] = useState(0);
   if (!b) return <p className="muted">The fields have not been set yet.</p>;
+  if (!fieldRevealed(state)) return <p className="muted">Reveal the field on the Field tab first.</p>;
   const reason = tournamentProblem(state, which);
   const next = nextPostGame(state, which);
   const playNext = (): void => {

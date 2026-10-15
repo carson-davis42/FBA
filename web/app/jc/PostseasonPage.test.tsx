@@ -10,6 +10,7 @@ import { jcPlayedFixture, jcReadyForNit } from '../../engine/jc/testFixtures';
 import type { JcState } from '../../engine/jc/state';
 import { PostseasonPage } from './PostseasonPage';
 import { docsOf } from './postseasonTestDocs';
+import { markRevealed } from './revealStore';
 
 let batches: { writes: { path: string; baseVersion: string | null }[] }[] = [];
 let played: JcState;
@@ -25,8 +26,9 @@ beforeAll(() => {
   ready = jcReadyForNit();
 }, 240000);
 
-function mount(s: JcState, entry = '/league/fbajc/postseason') {
+function mount(s: JcState, entry = '/league/fbajc/postseason', opts: { reveal?: boolean } = {}) {
   batches = [];
+  if (opts.reveal !== false && s.postseason?.field) markRevealed(s);
   const docs = docsOf(s);
   vi.stubGlobal('fetch', vi.fn(async (url: string, init?: RequestInit) => {
     if (url === '/api/batch') {
@@ -39,7 +41,7 @@ function mount(s: JcState, entry = '/league/fbajc/postseason') {
   return render(<MemoryRouter initialEntries={[entry]}><PostseasonPage /></MemoryRouter>);
 }
 
-afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); localStorage.clear(); });
 
 describe('PostseasonPage', () => {
   it('starts the conference tournaments once the season is played', async () => {
@@ -58,6 +60,29 @@ describe('PostseasonPage', () => {
     expect(screen.getByText(/Regular-season champion/)).toBeTruthy();
     expect(screen.getByText(/Tournament champion/)).toBeTruthy();
     expect(screen.getAllByText('Quarterfinals').length).toBeGreaterThan(0);
+  });
+
+  it('reveals the field spot by spot, then shows the full field', async () => {
+    const withField = setFields(afterConf);
+    if (!withField.ok) throw new Error('x');
+    mount(withField.state, '/league/fbajc/postseason?tab=field', { reveal: false });
+    expect(await screen.findByRole('button', { name: 'Start the reveal' })).toBeTruthy();
+    // Nothing is named yet: every region line is a dash, and the swap controls are not there.
+    const first = screen.getByRole('heading', { name: 'Region 1' }).parentElement!;
+    expect(first.querySelectorAll('li').length).toBe(16);
+    expect(first.textContent).not.toMatch(/[A-Z]{2,}/);
+    expect(screen.queryByRole('button', { name: 'Swap' })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'Start the reveal' }));
+    const spots = [...screen.getByRole('heading', { name: 'Region 1' }).parentElement!.querySelectorAll('li')];
+    expect(spots[0].textContent).toMatch(/[A-Z]/);
+    expect(spots[1].textContent).toBe('—');
+    // The other tabs wait for it.
+    fireEvent.click(screen.getByRole('tab', { name: 'NIT' }));
+    expect(screen.getByText('Reveal the field on the Field tab first.')).toBeTruthy();
+    fireEvent.click(screen.getByRole('tab', { name: 'Field' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'Skip to the end' }));
+    expect(await screen.findByRole('button', { name: 'Swap' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'First Four Out' })).toBeTruthy();
   });
 
   it('sets the fields, then lists March Madness regions and the NIT', async () => {

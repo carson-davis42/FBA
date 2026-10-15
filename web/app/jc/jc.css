@@ -67,3 +67,6 @@ tr.jc-champion td { font-weight: 700; }
 .jc-conf-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: var(--s3); align-items: start; }
 .jc-conf-outlook h3 { margin: 0 0 var(--s2); font-size: var(--fs-sm); }
 @media (max-width: 900px) { .jc-conf-layout { grid-template-columns: minmax(0, 1fr); } }
+
+/* The spot just revealed on Selection Sunday. */
+.jc-reveal-now { font-weight: 700; }
