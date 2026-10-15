@@ -33,3 +33,9 @@ tr.jc-champion td { font-weight: 700; }
 .jc-race { display: grid; gap: 6px; }
 .jc-race .table-wrap { margin: 0; }
 .jc-blink { font-size: var(--fs-xs); justify-self: end; }
+/* One preseason tournament: the three rounds side by side, a column of game cards each. */
+.jc-bracket { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); align-items: start; }
+@media (max-width: 900px) { .jc-bracket { grid-template-columns: minmax(0, 1fr); } }
+.jc-bracket-round { display: grid; gap: var(--s2); }
+.jc-bracket-round h2 { font-size: var(--fs-md); margin: 0; }
+.jc-tournament h2 a { color: inherit; }

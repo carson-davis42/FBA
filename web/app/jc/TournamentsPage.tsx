@@ -1,4 +1,5 @@
-import { teamRating } from '../../engine/jc/rankings';
+import { Link } from 'react-router-dom';
+import { pollRanks, teamRating } from '../../engine/jc/rankings';
 import { tournamentChampion, tournamentTable } from '../../engine/jc/tournaments';
 import type { CalendarFile, Team } from '../../engine/shared/types';
 import { useDoc } from '../api';
@@ -24,9 +25,10 @@ export function TournamentsPage() {
   if (!state.schedule) return <section className="jc-page"><PageHeader kicker={kicker} title={title} /><p className="muted">The season has not started.</p></section>;
 
   const byId = new Map<string, Team>(state.teams.teams.map(t => [t.teamId, t]));
+  const ranks = pollRanks(state.rankings?.snapshots);
   const teamCell = (id: string) => {
     const t = byId.get(id);
-    return t ? <TeamName team={t} season={season} variant="abbr" to={`/league/fbajc/team/${id}`} /> : <span>{id}</span>;
+    return t ? <TeamName team={t} season={season} variant="abbr" to={`/league/fbajc/team/${id}`} rank={ranks.get(id) ?? null} /> : <span>{id}</span>;
   };
   const rating = (id: string) => teamRating(state.rosters.teams[id] ?? []).toFixed(1);
   const sched = state.schedule.days.flatMap(d => d.games);
@@ -44,7 +46,7 @@ export function TournamentsPage() {
           const played = mine.some(g => done.has(g.gameNo));
           return (
             <section key={f.id} className="card jc-tournament">
-              <h2>{f.name}</h2>
+              <h2><Link to={`/league/fbajc/tournaments/${f.id}`}>{f.name}</Link></h2>
               {!played ? (
                 <ol className="jc-seeds">
                   {f.teams.map(id => <li key={id}>{teamCell(id)} <span className="muted">{rating(id)}</span></li>)}
@@ -72,6 +74,7 @@ export function TournamentsPage() {
                       </div>
                     );
                   })}
+                  <p><Link to={`/league/fbajc/tournaments/${f.id}`}>Open the bracket ▸</Link></p>
                   <div className="table-wrap">
                     <table>
                       <thead><tr><th>Place</th><th>Team</th><th>W-L</th></tr></thead>

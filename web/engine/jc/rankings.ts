@@ -131,3 +131,9 @@ export const VOTE_TEAMS = 10;
 export function receivingVotes(order: string[], top = 25, count = VOTE_TEAMS): VoteGetter[] {
   return order.slice(top, top + count).map((teamId, i) => ({ teamId, rank: top + i + 1, votes: count - i }));
 }
+
+/** Team id -> poll rank (1-25) from the latest snapshot; empty before the first poll. */
+export function pollRanks(snapshots: { order: string[] }[] | undefined | null, top = 25): Map<string, number> {
+  const latest = snapshots?.[snapshots.length - 1];
+  return new Map((latest?.order ?? []).slice(0, top).map((teamId, i) => [teamId, i + 1]));
+}

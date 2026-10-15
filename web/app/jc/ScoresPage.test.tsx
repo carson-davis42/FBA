@@ -80,11 +80,15 @@ describe('ScoresPage', () => {
     expect(document.querySelectorAll('.jc-field').length).toBe(27);
   });
 
-  it('shows 108 games for day 1 and the day label', async () => {
+  it('shows 108 game cards for day 1, like the other leagues: a day strip, status, records and box-score links', async () => {
     mount(jcStateFixture());
     await screen.findByText(/Day 1 of 29/);
     expect(screen.getByText(/Preseason tournament/)).toBeTruthy();
-    expect(document.querySelectorAll('.jc-game').length).toBe(108);
+    expect(document.querySelectorAll('.game-card').length).toBe(108);
+    expect(screen.getAllByText(/^Game \d+ · (Next|Upcoming)$/).length).toBe(108);
+    expect(screen.getByRole('group', { name: 'Game days' }).querySelectorAll('button').length).toBe(29);
+    fireEvent.click(screen.getByRole('button', { name: 'Go to day 2' }));
+    expect(screen.getByText(/Day 2 of 29/)).toBeTruthy();
   });
 
   it('Play day saves once even when double-clicked', async () => {
@@ -105,5 +109,15 @@ describe('ScoresPage', () => {
     mount(s);
     expect(await screen.findByText('Names needed')).toBeTruthy();
     expect(screen.getAllByRole('link', { name: /C00T00/ }).length).toBeGreaterThan(0);
+  });
+
+  it('shows the poll rank before each ranked team on the game cards', async () => {
+    const s = jcStateFixture();
+    s.rankings = { league: 'fbajc', season: s.season, locked: false, snapshots: [{ afterDay: 1, order: s.teams.teams.map(t => t.teamId) }] };
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const ranks = [...document.querySelectorAll('.game-card .team-rank')].map(e => Number(e.textContent));
+    expect(ranks.length).toBeGreaterThan(0);
+    expect(Math.max(...ranks)).toBeLessThanOrEqual(25);
   });
 });

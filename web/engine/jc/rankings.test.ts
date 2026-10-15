@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
 import type { GameResult, RosterEntry } from '../shared/types';
-import { blendRankings, dropped, footballRank, frWeight, rankChanges, receivingVotes, teamRating } from './rankings';
+import { blendRankings, dropped, footballRank, frWeight, rankChanges, pollRanks, receivingVotes, teamRating } from './rankings';
 
 const g = (gameNo: number, home: string, away: string, homePts: number, awayPts: number): GameResult => ({ gameNo, home, away, homePts, awayPts });
 const entry = (rating: number | null): RosterEntry => ({ playerId: 'p', position: 'PG', rating, age: 20, points: 0 });
@@ -90,5 +90,17 @@ describe('receivingVotes', () => {
   it('shortens with the field and is empty when nobody is below the Top 25', () => {
     expect(receivingVotes(order.slice(0, 28)).map(v => v.teamId)).toEqual(['T26', 'T27', 'T28']);
     expect(receivingVotes(order.slice(0, 25))).toEqual([]);
+  });
+});
+
+describe('pollRanks', () => {
+  it('maps the latest snapshot\'s Top 25 to their ranks, and is empty before a poll', () => {
+    const order = Array.from({ length: 30 }, (_, i) => `T${i + 1}`);
+    const ranks = pollRanks([{ order: ['X'] }, { order }]);
+    expect(ranks.get('T1')).toBe(1);
+    expect(ranks.get('T25')).toBe(25);
+    expect(ranks.has('T26')).toBe(false);
+    expect(pollRanks([]).size).toBe(0);
+    expect(pollRanks(null).size).toBe(0);
   });
 });

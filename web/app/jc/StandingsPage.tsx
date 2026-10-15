@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { jcClinch } from '../../engine/jc/clinch';
 import { regularRanking } from '../../engine/jc/confTourney';
-import { teamRating } from '../../engine/jc/rankings';
+import { pollRanks, teamRating } from '../../engine/jc/rankings';
 import { jcStandings } from '../../engine/jc/standings';
 import type { CalendarFile, Team } from '../../engine/shared/types';
 import { useDoc } from '../api';
@@ -29,9 +29,10 @@ export function StandingsPage() {
 
   const teams = state.teams.teams;
   const byId = new Map<string, Team>(teams.map(t => [t.teamId, t]));
+  const ranks = pollRanks(state.rankings?.snapshots);
   const teamCell = (id: string) => {
     const t = byId.get(id);
-    return t ? <TeamName team={t} season={season} to={`/league/fbajc/team/${id}`} /> : <span>{id}</span>;
+    return t ? <TeamName team={t} season={season} to={`/league/fbajc/team/${id}`} rank={ranks.get(id) ?? null} /> : <span>{id}</span>;
   };
   const conferences: string[] = [];
   for (const t of teams) if (t.group != null && !conferences.includes(t.group)) conferences.push(t.group);
@@ -90,7 +91,7 @@ export function StandingsPage() {
             <h2>{conference}</h2>
             <div className="table-wrap">
               <table className="standings">
-                <thead><tr><th>#</th><th>RK</th><th>Team</th><th>W-L</th><th>Conf</th><th>Pct</th><th>GB</th><th>Rating</th></tr></thead>
+                <thead><tr><th>#</th><th>Team</th><th>W-L</th><th>Conf</th><th>Pct</th><th>GB</th><th>Rating</th></tr></thead>
                 <tbody>
                   {rows.map((r, i) => {
                     const gp = r.w + r.l;
@@ -98,7 +99,6 @@ export function StandingsPage() {
                     return (
                       <tr key={r.teamId}>
                         <RankCell kind={kindOf(r.teamId)} league="fbajc">{i + 1}</RankCell>
-                        <td>{r.rank ?? '–'}</td>
                         <td>{teamCell(r.teamId)}</td>
                         <td>{r.w}-{r.l}</td>
                         <td>{r.confW}-{r.confL}</td>
