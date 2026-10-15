@@ -120,4 +120,27 @@ describe('ScoresPage', () => {
     expect(ranks.length).toBeGreaterThan(0);
     expect(Math.max(...ranks)).toBeLessThanOrEqual(25);
   });
+  it('shows every tournament on a tournament day, each with a link to watch its own next game', async () => {
+    const s = jcStateFixture();
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    expect(document.querySelectorAll('.jc-tournament').length).toBe(27);
+    const f = s.schedule!.tournaments[10];
+    const first = s.schedule!.days[0].games.find(g => g.tournament === f.id)!;
+    const link = screen.getByRole('link', { name: `Watch next game in ${f.name}` });
+    expect(link.getAttribute('href')).toBe(`/league/fbajc/game/${first.gameNo}`);
+  });
+
+  it('keeps showing the brackets, with scores and box-score links, once games are played', async () => {
+    const s = jcStateFixture();
+    const f = s.schedule!.tournaments[0];
+    const games = s.schedule!.days[0].games.filter(g => g.tournament === f.id);
+    s.results!.games = games.map(g => ({ gameNo: g.gameNo, home: g.home, away: g.away, homePts: 80, awayPts: 70 }));
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const card = [...document.querySelectorAll('.jc-tournament')][0] as HTMLElement;
+    expect(card.querySelectorAll('.jc-tgame').length).toBe(4);
+    expect(card.querySelectorAll('a[title="Box score"]').length).toBe(4);
+    expect(card.textContent).toContain('70–80');
+  });
 });

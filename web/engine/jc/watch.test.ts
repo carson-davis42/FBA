@@ -43,12 +43,42 @@ describe('watching regular-season games', () => {
     expect(typeof after2 !== 'string' && after2.gameNo).toBe(2);
   });
 
-  it('refuses a game that is not the next one', () => {
+  it('refuses a game that is not open (another day, already played) and one with the wrong teams', () => {
     const s0 = jcStateFixture();
-    const g = s0.schedule!.days[0].games[5];
-    expect(recordJcGame(s0, simOf(s0, g, 1), mulberry32(1)).ok).toBe(false);
     const first = s0.schedule!.days[0].games[0];
     expect(recordJcGame(s0, simOf(s0, { ...first, home: first.away, away: first.home }, 1), mulberry32(1)).ok).toBe(false);
+    const later = { gameNo: 109, home: first.home, away: first.away };
+    expect(recordJcGame(s0, simOf(s0, later, 1), mulberry32(1)).ok).toBe(false);
+    const s1 = watchNext(s0, 5);
+    expect(recordJcGame(s1, simOf(s1, first, 1), mulberry32(1)).ok).toBe(false);
+  });
+
+  it("any game of the open day can be watched, so one tournament's next game is its own", () => {
+    const s0 = jcStateFixture();
+    const day = s0.schedule!.days[0];
+    const tournament = day.games[50].tournament!;
+    const mine = day.games.filter(g => g.tournament === tournament).map(g => g.gameNo);
+    const next = nextJcGame(s0, tournament);
+    expect(typeof next !== 'string' && next.gameNo).toBe(mine[0]);
+    expect(typeof nextJcGame(s0)).not.toBe('string');
+    // Watch two of that tournament's games before game 1: the day's other games are untouched and the results stay in game order.
+    let s = must(recordJcGame(s0, simOf(s0, next as never, 7), mulberry32(8)));
+    const second = nextJcGame(s, tournament);
+    expect(typeof second !== 'string' && second.gameNo).toBe(mine[1]);
+    s = must(recordJcGame(s, simOf(s, second as never, 9), mulberry32(10)));
+    expect(s.results!.games.map(g => g.gameNo)).toEqual([mine[0], mine[1]]);
+    expect(nextJcGame(s, tournament)).toMatchObject({ gameNo: mine[2] });
+    expect(nextJcGame(s)).toMatchObject({ gameNo: 1 });
+  });
+
+  it('a tournament with no games left today says so', () => {
+    let s = jcStateFixture();
+    const day = s.schedule!.days[0];
+    const tournament = day.games[0].tournament!;
+    for (const g of day.games.filter(x => x.tournament === tournament)) {
+      s = must(recordJcGame(s, simOf(s, g, g.gameNo), mulberry32(g.gameNo)));
+    }
+    expect(nextJcGame(s, tournament)).toBe('That tournament has no games left today');
   });
 
   it('finishing a day by watching adds its ranking snapshot and draws day 2', () => {

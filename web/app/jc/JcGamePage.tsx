@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { roundName } from '../../engine/jc/bracket';
 import { lineupOf } from '../../engine/jc/play';
 import { nextPostGame, postseasonStage, recordPostGame, tournamentProblem } from '../../engine/jc/postseason';
-import { nextConfGame, nextJcGame, recordConfGame, recordJcGame } from '../../engine/jc/watch';
+import { nextConfGame, openJcGame, recordConfGame, recordJcGame } from '../../engine/jc/watch';
 import { TOTAL_GAMES, jcWrites, type JcResult, type JcState } from '../../engine/jc/state';
 import type { SeasonLeague } from '../../engine/season/schedule';
 import { JC_HOME_PROFILE, JC_PROFILE, simGame, type SimGame } from '../../engine/season/sim';
@@ -37,12 +37,13 @@ export function findGame(state: JcState, gameNo: number): GameInfo | null {
 
 export interface LiveGameInfo { next: { gameNo: number; home: string; away: string }; record: (sim: SimGame) => JcResult }
 
-/** What can be watched live right now under this game number: the next game of the current stage, if it is this one. */
+/** What can be watched live right now under this game number: an open game of the regular season's day, or the next game of the postseason stage. */
 export function liveGame(state: JcState, gameNo: number): LiveGameInfo | null {
   const stage = postseasonStage(state);
   if (stage === 'regular') {
-    const next = nextJcGame(state);
-    return typeof next !== 'string' && next.gameNo === gameNo ? { next, record: sim => recordJcGame(state, sim, Math.random) } : null;
+    // Any unplayed game of the open day can be watched, so a tournament can be followed on its own.
+    const next = openJcGame(state, gameNo);
+    return typeof next !== 'string' ? { next, record: sim => recordJcGame(state, sim, Math.random) } : null;
   }
   if (stage === 'conf') {
     const next = nextConfGame(state);

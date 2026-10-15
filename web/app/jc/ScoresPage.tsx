@@ -19,6 +19,7 @@ import { PageHeader } from '../components/PageHeader';
 import { PlayerName } from '../components/PlayerName';
 import { TeamName } from '../components/TeamName';
 import { jcGate } from './JcGate';
+import { TournamentCard } from './TournamentCard';
 import { useJcDocs } from './useJcDocs';
 import { useJcRun } from './useJcRun';
 import '../pages/season.css';
@@ -96,22 +97,6 @@ export function ScoresPage() {
     <section className="jc-page">
       <PageHeader kicker={kicker} title={title} />
       <p className="muted">Day {played} of {DAYS} played</p>
-      {notStarted && (
-        <section>
-          <h2>Tournament fields</h2>
-          <div className="jc-fields">
-            {schedule.tournaments.map(f => (
-              <div key={f.id} className="card jc-field">
-                <h3>{f.name}</h3>
-                <ol>{f.teams.map(id => <li key={id}>{name(id)}</li>)}</ol>
-              </div>
-            ))}
-          </div>
-          <div className="jc-actions">
-            <button className="btn" disabled={saving} onClick={() => void run(() => redrawFields(state, newRng(), last))}>Re-draw tournament fields</button>
-          </div>
-        </section>
-      )}
       <div className="day-strip">
         <button className="btn" aria-label="Previous day" disabled={day <= 1} onClick={() => setPicked(day - 1)}>‹</button>
         <strong>Day {day} of {DAYS}</strong>
@@ -178,6 +163,23 @@ export function ScoresPage() {
             );
           })}
         </div>
+      )}
+      {dayDoc?.kind === 'tournament' && (
+        <section>
+          <h2>Tournaments</h2>
+          <p className="muted">The fields before play, then each bracket as it is played. Watch any tournament's next game on its own.</p>
+          {notStarted && (
+            <div className="jc-actions">
+              <button className="btn" disabled={saving} onClick={() => void run(() => redrawFields(state, newRng(), last))}>Re-draw tournament fields</button>
+            </div>
+          )}
+          <div className="jc-tournaments">
+            {schedule.tournaments.map(f => {
+              const next = stepProblem || playing || saving ? null : nextJcGame(state, f.id);
+              return <TournamentCard key={f.id} field={f} state={state} season={season} ranks={ranks} watchNo={next && typeof next !== 'string' ? next.gameNo : null} />;
+            })}
+          </div>
+        </section>
       )}
       {needed.length > 0 && (
         <section className="card">
