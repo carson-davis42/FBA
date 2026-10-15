@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { roundName } from '../../engine/jc/bracket';
-import { lineupOf } from '../../engine/jc/play';
+import { isNeutralDay, lineupOf } from '../../engine/jc/play';
 import { nextPostGame, postseasonStage, recordPostGame, tournamentProblem } from '../../engine/jc/postseason';
 import { pollRanks } from '../../engine/jc/rankings';
 import { nextConfGame, openJcGame, recordConfGame, recordJcGame } from '../../engine/jc/watch';
@@ -81,7 +81,7 @@ function JcGame() {
     }
     // Only regular-season conference and challenge days have a home side; tournaments and the postseason are neutral.
     const kind = n >= 1 && n <= TOTAL_GAMES ? state.schedule?.days.find(d => d.games.some(g => g.gameNo === n))?.kind : undefined;
-    setSim(simGame(n, home, away, Math.random, kind === 'conference' || kind === 'challenge' ? JC_HOME_PROFILE : JC_PROFILE));
+    setSim(simGame(n, home, away, Math.random, isNeutralDay(kind) ? JC_PROFILE : JC_HOME_PROFILE));
   }, [state, sim, !!live, n]);
 
   if (season === null || docs.error) return <p className={docs.error ? 'error' : 'muted'}>{docs.error || 'Loading…'}</p>;

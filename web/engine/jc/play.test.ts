@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
 import type { RosterEntry } from '../shared/types';
-import { playDay, playToEnd, progressRatings, regularSeasonOver } from './play';
+import { isNeutralDay, playDay, playToEnd, progressRatings, regularSeasonOver } from './play';
 import { jcStateFixture } from './testFixtures';
 
 const entry = (rating: number, id = 'p00001'): RosterEntry => ({ playerId: id, position: 'PG', rating, age: null, points: 0 });
@@ -148,5 +148,40 @@ describe('home-court edge', () => {
     expect(t.home).toBe(t.away);
     const c = sides(4);
     expect(c.home).toBeGreaterThan(c.away);
+  });
+});
+
+describe('home-court advantage', () => {
+  it('only conference and challenge days have a home side; tournaments and the postseason are neutral', () => {
+    expect(isNeutralDay('tournament')).toBe(true);
+    expect(isNeutralDay(undefined)).toBe(true);
+    expect(isNeutralDay('conference')).toBe(false);
+    expect(isNeutralDay('challenge')).toBe(false);
+  });
+
+  it('a preseason tournament day plays on a neutral court: the same seed gives the home sides no edge, a conference day does', () => {
+    const homePoints = (kind: 'tournament' | 'conference'): number => {
+      const s = jcStateFixture();
+      s.schedule!.days[0].kind = kind;
+      const r = playDay(s, mulberry32(11));
+      if (!r.ok) throw new Error(r.problems.join());
+      return r.state.results!.games.reduce((n, g) => n + g.homePts - g.awayPts, 0);
+    };
+    // With the same random stream, the home edge turns some misses into makes for the home side, so its margin only grows.
+    expect(homePoints('conference')).toBeGreaterThan(homePoints('tournament'));
+  });
+
+  it('a long run of tournament days shows no home side advantage', () => {
+    // Same lineups, 108 x 25 games: the first-listed side wins about half of them (it only differs from 50% by chance).
+    let homeWins = 0, total = 0;
+    for (let seed = 1; seed <= 25; seed++) {
+      const s = jcStateFixture();
+      for (const id of Object.keys(s.rosters.teams)) s.rosters.teams[id] = s.rosters.teams[id].map(e => ({ ...e, rating: 75 }));
+      const r = playDay(s, mulberry32(seed));
+      if (!r.ok) throw new Error(r.problems.join());
+      for (const g of r.state.results!.games) { total++; if (g.homePts > g.awayPts) homeWins++; }
+    }
+    expect(homeWins / total).toBeGreaterThan(0.46);
+    expect(homeWins / total).toBeLessThan(0.54);
   });
 });
