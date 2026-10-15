@@ -1,5 +1,5 @@
 import { useMemo, useState, type ReactNode } from 'react';
-import { projectBracket } from '../../engine/jc/bracketology';
+import { projectBracket, type Bubble } from '../../engine/jc/bracketology';
 import type { JcState } from '../../engine/jc/state';
 import { BracketView } from './BracketView';
 
@@ -12,6 +12,18 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
   const mark = (id: string): ReactNode => (champ.has(id)
     ? (champ.get(id) ? <span> *</span> : <span className="muted"> (conference champion)</span>) : null);
   const real = Object.values(p.champions).filter(c => !c.projected).length;
+  const BubbleCards = ({ bubble }: { bubble: Bubble }) => (
+    <div className="jc-regions">
+      <div className="card jc-field">
+        <h3>Last four in</h3>
+        <ol>{bubble.lastFourIn.map(id => <li key={id}>{teamCell(id)}<span className="muted"> (seed {p.seeds[id]})</span>{mark(id)}</li>)}</ol>
+      </div>
+      <div className="card jc-field">
+        <h3>First four out</h3>
+        <ol>{bubble.firstFourOut.map(id => <li key={id}>{teamCell(id)}</li>)}</ol>
+      </div>
+    </div>
+  );
   return (
     <section>
       <p className="muted">
@@ -31,16 +43,12 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
           </div>
         ))}
       </div>
-      <div className="jc-regions">
-        <div className="card jc-field">
-          <h3>Last four in</h3>
-          <ol>{p.lastFourIn.map(id => <li key={id}>{teamCell(id)}<span className="muted"> (seed {p.seeds[id]})</span>{mark(id)}</li>)}</ol>
-        </div>
-        <div className="card jc-field">
-          <h3>First four out</h3>
-          <ol>{p.firstFourOut.map(id => <li key={id}>{teamCell(id)}</li>)}</ol>
-        </div>
-      </div>
+      <h2>Bubble: power conferences</h2>
+      <p className="muted">Power-conference teams fill no place after the 51st pick, so these are the last of them in and the first left out.</p>
+      <BubbleCards bubble={p.power} />
+      <h2>Bubble: other conferences</h2>
+      <p className="muted">The last 13 places can only go to the other conferences.</p>
+      <BubbleCards bubble={p.other} />
       <h2>Seed lines</h2>
       <div className="card jc-field">
         <ol>{p.seedLines.map((line, i) => (
