@@ -3,6 +3,7 @@ import { applyClassSuggestions, consensusSuggestion, parseConsensusInput, starsF
 import {
   applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, clearRatings, outOfOrder, rankedRows, rankingBlockers, reserveBound, sendBack, setRating, suggestion, take, takeRest, type NameOf,
 } from '../../engine/rank/ranking';
+import { mergeHeads, sendBackMerged, takeRestMerged } from '../../engine/rank/positionRanking';
 import { POSITIONS } from '../../engine/roster/rules';
 import type { Position, RankingFile, RankingRow } from '../../engine/shared/types';
 import { RatingInput } from '../components/RatingInput';
@@ -34,6 +35,8 @@ export interface RankingTableProps {
   /** D2 reset: roster spots per position (the pool cutoff). Shows how many are left as players are ranked; ranking past it puts a player in the Reserve pool. */
   positionCap?: { spots: number; label: string };
   consensus?: { onSet: (playerId: string, value: number | null) => void };
+  /** Class ranking after its position step: only the best remaining player at each position can be ranked next, so the whole ranking is a merge of the position rankings. */
+  positionMerge?: boolean;
 }
 
 /** A consensus box that saves on blur (or Enter): blank clears it, otherwise 70 to 100 with up to 2 decimals. */
@@ -68,15 +71,18 @@ function ConsensusInput({ value, name, disabled, onSave }: { value: number | nul
  * the league). Right: the new ranking. Rating boxes appear once everyone is ranked; each starts empty, with the
  * suggestion as a separate chip. The position filter is for reading only.
  */
-export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "Last season's order", onChange, extraBlockers, finishLabel, onFinish, busy, consensus, positionCap }: RankingTableProps) {
+export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "Last season's order", onChange, extraBlockers, finishLabel, onFinish, busy, consensus, positionCap, positionMerge }: RankingTableProps) {
   const [filter, setFilter] = useState<Filter>('ALL');
   const locked = doc.locked;
   const shown = (r: RankingRow) => filter === 'ALL' || r.position === filter;
   // D2 reset: a position whose spots are all taken drops out of the unranked lists (and reappears if someone is sent back).
   const fullPositions = new Set(positionCap ? POSITIONS.filter(pos => rankedRows(doc).filter(r => r.position === pos).length >= positionCap.spots) : []);
   const shownLeft = (r: RankingRow) => shown(r) && !fullPositions.has(r.position);
-  const left = leftRows(doc, name);
-  const allPlaced = left.length === 0;
+  const leftAll = leftRows(doc, name);
+  const heads = positionMerge ? mergeHeads(doc) : null;
+  // After the position step only each position's next player is on offer; the rest wait behind him.
+  const left = heads ? leftAll.filter(r => heads.has(r.playerId)) : leftAll;
+  const allPlaced = leftAll.length === 0;
   // D2 reset: players ranked past their position's spots go to the Reserve pool; they show an X and need no rating.
   const reserve = positionCap ? reserveBound(doc, positionCap.spots) : new Set<string>();
   const flagged = outOfOrder(doc, reserve);
@@ -86,7 +92,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   const fresh = left.filter(r => isNewRow(doc, r));
   const [split, setSplit] = useState(false);
   // Offered while both groups exist; once switched on it stays on, even if a list empties.
-  const canSplit = split || (existing.length > 0 && fresh.length > 0);
+  const canSplit = !positionMerge && (split || (existing.length > 0 && fresh.length > 0));
   let dividerShown = false;
 
   const leftHeadRow = <tr><th className="rank">#</th><th>Player</th><th>Pos</th><th className="n">Age</th><th>Team</th><th className="n">Prev</th><th>Stat</th></tr>;
@@ -127,7 +133,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   const bestNew = bestNewByPosition(doc, name);
   const bestNewList = POSITIONS.map(pos => bestNew[pos]).filter((r): r is RankingRow => r !== undefined && !fullPositions.has(r.position));
   // A mini copy of the list above its scrolling table, so the best new player at each position stays in view however far the list is scrolled.
-  const bestStrip = !locked && bestNewList.length > 0 && (
+  const bestStrip = !locked && !positionMerge && bestNewList.length > 0 && (
     <div className="rank-best">
       <h4>Best new at each position</h4>
       <div className="table-wrap">
@@ -140,9 +146,9 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   );
   const leftHead = (title: string, rows: RankingRow[], only?: (r: RankingRow) => boolean) => (
     <div className="toolbar rank-head">
-      <h3>{title} · {rows.length}</h3>
+      <h3>{title} · {positionMerge ? `${rows.length} of ${leftAll.length} left` : rows.length}</h3>
       {!locked && rows.length > 0 && (
-        <button type="button" className="btn" onClick={() => onChange(cur => takeRest(cur, name, only))}>Take the rest in order</button>
+        <button type="button" className="btn" onClick={() => onChange(cur => (positionMerge ? takeRestMerged(cur, name) : takeRest(cur, name, only)))}>Take the rest in order</button>
       )}
     </div>
   );
@@ -273,7 +279,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
                       )}
                       <td>
                         {!locked && (
-                          <button type="button" className="btn" aria-label={`Send ${name(r.playerId)} back`} onClick={() => onChange(cur => sendBack(cur, r.playerId))}>↩</button>
+                          <button type="button" className="btn" aria-label={`Send ${name(r.playerId)} back`} onClick={() => onChange(cur => (positionMerge ? sendBackMerged(cur, r.playerId) : sendBack(cur, r.playerId)))}>↩</button>
                         )}
                       </td>
                     </tr>
