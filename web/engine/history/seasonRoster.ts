@@ -5,10 +5,10 @@ import { stintSeasons } from './franchiseRoster';
 export interface BiosRosterRow { playerId: string; name: string; honours: string[] }
 
 /** "Wake Forest", "wake-forest" and "WAKE FOREST." are the same team. */
-const key = (s: string): string => s.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/gi, ' ').trim().toLowerCase();
+export const key = (s: string): string => s.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/gi, ' ').trim().toLowerCase();
 
 /** The name inside "D2(San Jose)" or "WC(UK)"; a college stint is already its school's name. */
-const placeOf = (team: string): string => /^[A-Z0-9]+\((.+)\)$/.exec(team)?.[1] ?? team;
+export const placeOf = (team: string): string => /^[A-Z0-9]+\((.+)\)$/.exec(team)?.[1] ?? team;
 
 /**
  * The players the career bios place on a D2 club ('d2'), a national team ('wc') or a college ('college') in a season, with the honours dated that season.

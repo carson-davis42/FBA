@@ -129,3 +129,36 @@ describe('JcSchoolPage', () => {
     expect(await screen.findByText('Not found')).toBeTruthy();
   });
 });
+
+describe('JcSchoolPage players', () => {
+  const bios = { league: 'fba', bios: [{ playerId: 'p00001', born: 'Born-S40', entries: ['Duke-S74-S76', 'S75 ACC POY', 'BOS-S77-pres.'] }] };
+  const rosters = { league: 'fbajc', season: 78, locked: false, teams: { DUKE: [{ playerId: 'p00002', position: 'PG', rating: 77, age: 20, points: 400 }] } };
+  const withPlayers = () => {
+    stub();
+    const base = globalThis.fetch as unknown as (url: string) => Promise<Response>;
+    const extra: Record<string, unknown> = {
+      '/api/state/leagues/fba/playerBios.json': bios,
+      '/api/state/calendar.json': { season: 79 },
+      '/api/state/leagues/fbajc/S78/rosters.json': rosters,
+    };
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => (url in extra ? new Response(JSON.stringify(extra[url]), { headers: { ETag: '"0000000000000009"' } }) : base(url))));
+  };
+  it('has a Players tab listing the players its bios and roster files place at the school', async () => {
+    withPlayers();
+    players.players.p00002 = { id: 'p00002', name: 'Sam Slot', birthSeason: 45 };
+    render(
+      <MemoryRouter initialEntries={['/history/fbajc/schools/DUKE?tab=players']}><Routes><Route path="/history/fbajc/schools/:teamId" element={<JcSchoolPage />} /></Routes></MemoryRouter>,
+    );
+    expect(await screen.findByRole('link', { name: 'Rylan Rush' })).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Sam Slot' })).toBeTruthy();
+    expect(screen.getByText(/ACC POY \(S75\)/)).toBeTruthy();
+    expect(screen.queryByText('Titles')).toBeNull();
+    delete players.players.p00002;
+  });
+  it('keeps the overview as the default tab', async () => {
+    stub();
+    school('DUKE');
+    expect(await screen.findByRole('heading', { name: 'Titles' })).toBeTruthy();
+    expect(screen.getByRole('tab', { name: 'Players' })).toBeTruthy();
+  });
+});
