@@ -1,4 +1,5 @@
 import type { PlayerBio, PlayerBiosFile, PlayersFile, RostersFile, TeamsFile } from '../shared/types'
+import type { JcState } from './state'
 import { namesNeeded } from './start'
 
 export const BIOS_PATH = 'leagues/fba/playerBios.json'
@@ -6,7 +7,7 @@ const MAX_NAME = 40
 /** Seasons a college player has already spent at his school, by class year (a Fr is in his first). */
 const YEARS_IN: Record<string, number> = { Fr: 0, So: 1, Jr: 2, Sr: 3 }
 
-export interface NameState { season: number; players: PlayersFile; bios: PlayerBiosFile | null; rosters: RostersFile; teams: TeamsFile }
+export interface NameState { season: number; players: PlayersFile; bios: PlayerBiosFile | null; rosters: RostersFile; teams: TeamsFile; awards?: JcState['awards'] }
 export type NameResult = { ok: true; writes: { path: string; doc: unknown }[]; label: string } | { ok: false; problems: string[] }
 
 const squash = (s: string): string => s.trim().replace(/\s+/g, ' ')
@@ -17,7 +18,7 @@ const squash = (s: string): string => s.trim().replace(/\s+/g, ' ')
  * with a career. Names must be new: one a player already has would make name lookups ambiguous.
  */
 export function namePlayers(state: NameState, entries: { playerId: string; name: string }[]): NameResult {
-  const needed = new Map(namesNeeded({ rosters: state.rosters, players: state.players } as never).map(n => [n.playerId, n]));
+  const needed = new Map(namesNeeded({ rosters: state.rosters, players: state.players, awards: state.awards }).map(n => [n.playerId, n]));
   const problems: string[] = [];
   if (entries.length === 0) return { ok: false, problems: ['Type at least one name'] };
   const taken = new Set(Object.values(state.players.players).filter(p => p.name !== null).map(p => squash(p.name!).toLowerCase()));
