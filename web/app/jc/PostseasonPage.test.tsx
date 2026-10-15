@@ -113,6 +113,24 @@ describe('PostseasonPage', () => {
     expect(await screen.findByText('Finish the NIT first')).toBeTruthy();
     expect((screen.getByRole('button', { name: 'Play round' }) as HTMLButtonElement).disabled).toBe(true);
   });
+  it('shows the two play-in teams in a Round of 64 slot instead of TBD', async () => {
+    const { container } = mount(played, '/league/fbajc/postseason?tab=bracketology');
+    await screen.findByRole('heading', { name: 'First Four In' });
+    const tabs = screen.getAllByRole('button').map(b => b.textContent);
+    expect(tabs.indexOf('First Four')).toBeGreaterThanOrEqual(0);
+    expect(tabs.indexOf('First Four')).toBeLessThan(tabs.indexOf('Region 1'));
+    expect(container.querySelectorAll('.jc-tree [data-game^="P"]')).toHaveLength(8);
+    let slots = 0;
+    for (const n of [1, 2, 3, 4]) {
+      fireEvent.click(screen.getByRole('button', { name: `Region ${n}` }));
+      const sides = [...container.querySelectorAll('.jc-tree .jc-bteam')].map(t => t.textContent ?? '');
+      slots += sides.filter(t => t.includes('/')).length;
+      // Round of 64 has no TBD left: a play-in slot shows its two teams, separated by a slash.
+      expect(container.querySelectorAll('.jc-tree .jc-bround')[0].textContent).not.toContain('TBD');
+    }
+    expect(slots).toBe(8);
+  });
+
   it('shows Bracketology as the first tab and opens on it before the conference tournaments', async () => {
     mount(played);
     const tab = await screen.findByRole('tab', { name: 'Bracketology' });
