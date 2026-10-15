@@ -24,6 +24,9 @@ export function viewState(s: JcState): SeasonState {
 
 export interface GameInfo { result: GameResult; bracket: Bracket | null; game: BracketGame | null }
 
+/** The region tab a game is shown on: its region, or -1 (the Final / Final Four tab) from round 5 on. */
+export const backRegion = (g: { round: number; region: number }): number => (g.round >= 5 ? -1 : g.region);
+
 /** A played game by number: regular season, conference tournament, NIT or March Madness. */
 export function findGame(state: JcState, gameNo: number): GameInfo | null {
   const regular = state.results?.games.find(g => g.gameNo === gameNo);
@@ -93,9 +96,16 @@ function JcGame() {
   // A conference tournament game goes back to its own conference, so the picker stays where the game was watched.
   const nextConf = !regular && !found && postseasonStage(state) === 'conf' ? nextConfGame(state) : null;
   const confId = found?.bracket?.kind === 'conf' ? found.bracket.id : nextConf && typeof nextConf !== 'string' && nextConf.gameNo === n ? nextConf.bracketId : null;
+  // An NIT or March Madness game goes back to its tournament tab, on the region (or the final rounds) it was in.
+  const stage = postseasonStage(state);
+  const upcoming = !regular && !found && (stage === 'nit' || stage === 'mm') && state.postseason?.nextGameNo === n ? nextPostGame(state, stage) : null;
+  const post = found?.bracket && found.game && found.bracket.kind !== 'conf'
+    ? { kind: found.bracket.kind, region: backRegion(found.game) }
+    : upcoming ? { kind: stage as 'nit' | 'mm', region: backRegion(upcoming) } : null;
+  const postUrl = post ? `/league/fbajc/postseason?tab=${post.kind}&region=${post.region}` : '/league/fbajc/postseason';
   const back = regular
     ? { to: '/league/fbajc/scores', label: 'back to scores ▸' }
-    : { to: confId ? `/league/fbajc/postseason?tab=conference&conf=${encodeURIComponent(confId)}` : '/league/fbajc/postseason', label: 'back to the postseason ▸' };
+    : { to: confId ? `/league/fbajc/postseason?tab=conference&conf=${encodeURIComponent(confId)}` : postUrl, label: 'back to the postseason ▸' };
 
   if (found && !sim) {
     const { bracket, game } = found;
