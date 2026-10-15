@@ -13,7 +13,7 @@ export function clinchLabel(kind: ClinchKind, league: ClinchLeague): string {
     case 'advanced': return 'Advanced to knockouts';
     case 'promoted': return 'Promoted';
     case 'relegated': return 'Relegated';
-    case 'champion': return 'Clinched conference title';
+    case 'champion': return 'Clinched conference title (at least the NIT)';
     case 'marchmadness': return 'March Madness bid';
     case 'nit': return 'NIT bid';
     case 'conference': return 'Conference champion';

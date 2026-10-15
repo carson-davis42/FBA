@@ -60,7 +60,7 @@ describe('StandingsPage', () => {
     mount(s);
     await screen.findByRole('combobox');
     expect(document.querySelectorAll('td.clinch-champion').length).toBe(1);
-    expect(screen.getByText('Clinched conference title')).toBeTruthy();
+    expect(screen.getByText('Clinched conference title (at least the NIT)')).toBeTruthy();
   });
 
   it('after the fields are set, March Madness and NIT teams show bid bars and the key says so', async () => {
