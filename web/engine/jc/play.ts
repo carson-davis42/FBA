@@ -223,3 +223,56 @@ export function playToEnd(state: JcState, rng: Rng): JcResult {
   } while (!regularSeasonOver(cur));
   return { ok: true, state: cur, changed: changedKeys(filled), label: 'Play to end of regular season' };
 }
+
+/** The conference codes that have a team in the league, in the teams file's order. */
+export function conferencesOf(state: JcState): string[] {
+  const out: string[] = [];
+  for (const t of state.teams.teams) if (t.group && !out.includes(t.group)) out.push(t.group);
+  return out;
+}
+
+/**
+ * Plays every conference game one conference has left, across all the remaining conference days, in memory; one result. Other
+ * conferences' games are left alone, so a day is finished (and gets its ranking snapshot) once every conference has played it.
+ */
+export function playConference(state: JcState, conference: string, rng: Rng): JcResult {
+  const problem = calendarProblem(state.calendar, 'fbajc', 'The season is played');
+  if (problem) return jcFail([problem]);
+  if (!state.schedule) return jcFail(['Make the schedule first']);
+  if (regularSeasonOver(state)) return jcFail(['The regular season is over']);
+  const members = new Set(state.teams.teams.filter(t => t.group === conference).map(t => t.teamId));
+  if (members.size === 0) return jcFail([`There is no conference ${conference}`]);
+  const done = new Set((state.results?.games ?? []).map(g => g.gameNo));
+  const days = [...state.schedule.days].sort((a, b) => a.day - b.day);
+  const todo = days.filter(d => d.kind === 'conference').flatMap(d => d.games.filter(g => !done.has(g.gameNo) && members.has(g.home) && members.has(g.away)));
+  if (todo.length === 0) return jcFail([`${conference} has no conference games left`]);
+
+  const book = newBook(state);
+  const refRating = leagueRefRating(state.rosters);
+  const results: GameResult[] = [];
+  for (const g of todo) {
+    const r = playOne(book, g.gameNo, g.home, g.away, rng, refRating, true, false);
+    if (typeof r === 'string') return jcFail([r]);
+    results.push(r);
+  }
+  const allGames = [...(state.results?.games ?? []), ...results].sort((a, b) => a.gameNo - b.gameNo);
+  const have = new Set(allGames.map(g => g.gameNo));
+  const dayOf = new Map<number, number>();
+  for (const d of days) for (const g of d.games) dayOf.set(g.gameNo, d.day);
+  // A day this finished gets the ranking snapshot a played day always has.
+  const rankings = state.rankings ?? { league: 'fbajc' as const, season: state.season, locked: false, snapshots: [] };
+  const snapshots = [...rankings.snapshots];
+  for (const d of days) {
+    if (d.games.length === 0 || !d.games.every(g => have.has(g.gameNo)) || snapshots.some(s => s.afterDay === d.day)) continue;
+    const upTo = allGames.filter(g => (dayOf.get(g.gameNo) ?? 0) <= d.day);
+    snapshots.push({ afterDay: d.day, order: blendRankings({ teams: book.teamIds, ratings: book.ratings, games: upTo, totalGames: TOTAL_GAMES }, rng) });
+  }
+  snapshots.sort((a, b) => a.afterDay - b.afterDay);
+  const next: JcState = {
+    ...state,
+    rosters: { ...state.rosters, teams: book.rosters },
+    results: { league: 'fbajc', season: state.season, locked: state.results?.locked ?? false, games: allGames },
+    rankings: { ...rankings, snapshots },
+  };
+  return { ok: true, state: next, changed: ['results', 'rosters', 'rankings'], label: `Sim rest of ${conference}: ${results.length} games` };
+}

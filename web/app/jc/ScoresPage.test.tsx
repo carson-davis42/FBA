@@ -2,6 +2,8 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { mulberry32 } from '../../engine/d2/random';
+import { playDay } from '../../engine/jc/play';
 import { jcStateFixture, jcUnstartedFixture } from '../../engine/jc/testFixtures';
 import type { JcState } from '../../engine/jc/state';
 import { ScoresPage } from './ScoresPage';
@@ -278,4 +280,30 @@ describe('ScoresPage', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Go to day 2' }));
     expect(screen.getByRole('region', { name: 'Rating changes' }).textContent).toContain('No games have been played on day 2 yet.');
   });
+  it('offers "Sim rest of conference" only once conference play is reached, and sims the chosen conference in one batch', async () => {
+    // Before conference play (day 1 is a tournament day) the button is absent.
+    const early = jcStateFixture();
+    mount(early);
+    await screen.findByText(/Day 1 of 29/);
+    expect(screen.queryByRole('button', { name: 'Sim rest of conference' })).toBeNull();
+    cleanup();
+    vi.unstubAllGlobals();
+
+    // Days 1-7 played: the open day is the first conference day.
+    let s = jcStateFixture();
+    for (let d = 0; d < 7; d++) {
+      const r = playDay(s, mulberry32(50 + d));
+      if (!r.ok) throw new Error(r.problems.join());
+      s = r.state;
+    }
+    mount(s);
+    await screen.findByText(/Day 8 of 29/);
+    const select = screen.getByRole('combobox', { name: 'Conference' }) as HTMLSelectElement;
+    expect(select.options.length).toBe(18);
+    fireEvent.click(screen.getByRole('button', { name: 'Sim rest of conference' }));
+    await waitFor(() => expect(batches.length).toBe(1));
+    expect((batches[0] as unknown as { label: string }).label).toMatch(/^Sim rest of .+: 132 games$/);
+    expect(batches[0].writes.map((w: { path: string }) => w.path).sort()).toEqual(
+      ['leagues/fbajc/S79/rankings.json', 'leagues/fbajc/S79/results.json', 'leagues/fbajc/S79/rosters.json']);
+  }, 60000);
 });

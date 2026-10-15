@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { mulberry32 } from '../../engine/d2/random';
 import { fbajcGateProblem } from '../../engine/college/recruiting';
 import { openSpots } from '../../engine/college/walkOns';
-import { playDay, regularSeasonOver } from '../../engine/jc/play';
+import { conferencesOf, playConference, playDay, regularSeasonOver } from '../../engine/jc/play';
 import { nextJcGame, quickSimNext } from '../../engine/jc/watch';
 import { namesNeeded, redrawFields, startSeason } from '../../engine/jc/start';
 import { DAYS, dayPlayed, jcWrites, type JcState } from '../../engine/jc/state';
@@ -45,6 +45,7 @@ export function ScoresPage() {
   const { saving, error, run } = useJcRun(docs.versions, docs.reload);
   const [picked, setPicked] = useState<number | null>(null);
   const [simTo, setSimTo] = useState('end');
+  const [simConf, setSimConf] = useState<string | null>(null);
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
   const [message, setMessage] = useState('');
   const stop = useRef(false);
@@ -99,6 +100,11 @@ export function ScoresPage() {
   const nextGame = nextJcGame(state);
   const nextNo = typeof nextGame === 'string' || stepProblem ? null : nextGame.gameNo;
   const notStarted = (state.results?.games.length ?? 0) === 0;
+  // Once conference play is reached a conference can be simmed on its own, ahead of the other conferences.
+  const conferencePlay = schedule.days.find(d => d.day === played + 1)?.kind === 'conference';
+  const conferences = conferencesOf(state);
+  const nextConf = typeof nextGame === 'string' ? undefined : byId.get(nextGame.home)?.group ?? undefined;
+  const confPick = simConf !== null && conferences.includes(simConf) ? simConf : nextConf && conferences.includes(nextConf) ? nextConf : conferences[0] ?? '';
 
   /** Sims whole days until `target` is played, saving after each one so a stop (or a failure) keeps what was done. */
   const simDays = async (target: number): Promise<void> => {
@@ -157,6 +163,16 @@ export function ScoresPage() {
             </select>
           </label>
           <button className="btn primary" disabled={blocked} title={playReason ?? undefined} onClick={() => void simDays(simTo === 'end' ? DAYS : Number(simTo))}>Sim</button>
+          {conferencePlay && (
+            <>
+              <label>Conference
+                <select aria-label="Conference" value={confPick} onChange={e => setSimConf(e.target.value)}>
+                  {conferences.map(c => <option key={c} value={c}>{groupLabel('fbajc', c)}</option>)}
+                </select>
+              </label>
+              <button className="btn" disabled={blocked || !confPick} title={playReason ?? undefined} onClick={() => void run(() => playConference(state, confPick, newRng()))}>Sim rest of conference</button>
+            </>
+          )}
           {progress && (
             <span className="sim-progress">
               <progress max={progress.total || 1} value={progress.done} /> {progress.done}/{progress.total} days

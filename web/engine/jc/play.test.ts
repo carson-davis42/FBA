@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
 import type { RosterEntry } from '../shared/types';
-import { isNeutralDay, playDay, playToEnd, progressRatings, regularSeasonOver } from './play';
+import { conferencesOf, isNeutralDay, playConference, playDay, playToEnd, progressRatings, regularSeasonOver } from './play';
+import { dayPlayed as dayPlayedOf } from './state';
 import { jcStateFixture } from './testFixtures';
 
 const entry = (rating: number, id = 'p00001'): RosterEntry => ({ playerId: id, position: 'PG', rating, age: null, points: 0 });
@@ -204,5 +205,47 @@ describe('rating changes', () => {
       expect(c.from).toBe(before.rating);
       expect(c.to).toBe(after.rating);
     }
+  });
+});
+
+describe('playConference', () => {
+  it("plays one conference's remaining conference games on their own, then the day snapshots appear once every conference has played", () => {
+    let s = jcStateFixture();
+    for (let d = 0; d < 7; d++) {
+      const r = playDay(s, mulberry32(100 + d));
+      if (!r.ok) throw new Error(r.problems.join());
+      s = r.state;
+    }
+    const confs = conferencesOf(s);
+    expect(confs).toHaveLength(18);
+    const before = s.results!.games.length;
+    const one = playConference(s, confs[0], mulberry32(1));
+    if (!one.ok) throw new Error(one.problems.join());
+    const members = new Set(s.teams.teams.filter(t => t.group === confs[0]).map(t => t.teamId));
+    const added = one.state.results!.games.slice().filter(g => g.gameNo > 756);
+    // 12 teams, 22 conference days, 6 games a day.
+    expect(one.state.results!.games.length - before).toBe(132);
+    expect(added.every(g => members.has(g.home) && members.has(g.away))).toBe(true);
+    // Not a single day is finished yet, so no new snapshot and no day counted as played.
+    expect(one.state.rankings!.snapshots.map(x => x.afterDay)).toEqual([0, 1, 2, 3, 4, 5, 6, 7].filter(d => s.rankings!.snapshots.some(x => x.afterDay === d)));
+    expect(dayPlayedOf(one.state)).toBe(7);
+    expect(playConference(one.state, confs[0], mulberry32(2)).ok).toBe(false);
+
+    let all = one.state;
+    for (const c of confs.slice(1)) {
+      const r = playConference(all, c, mulberry32(3));
+      if (!r.ok) throw new Error(r.problems.join());
+      all = r.state;
+    }
+    expect(all.results!.games.length - before).toBe(132 * 18);
+    for (let day = 8; day <= 29; day++) expect(all.rankings!.snapshots.some(x => x.afterDay === day)).toBe(true);
+    expect(regularSeasonOver(all)).toBe(true);
+    expect(new Set(all.results!.games.map(g => g.gameNo)).size).toBe(all.results!.games.length);
+  }, 120000);
+
+  it('refuses an unknown conference and when the season is over', () => {
+    const s = jcStateFixture();
+    const r = playConference(s, 'NOPE', mulberry32(1));
+    expect(r.ok).toBe(false);
   });
 });
