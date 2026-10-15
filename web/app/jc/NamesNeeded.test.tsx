@@ -68,4 +68,20 @@ describe('NamesNeeded', () => {
     expect(await screen.findByText(/already a player's name/)).toBeTruthy();
     expect(batches).toHaveLength(0);
   });
+
+  it('offers to complete named players that have no birth season or bio, and saves both files', async () => {
+    const s = jcStateFixture();
+    const team = s.teams.teams[0];
+    const keep = s.rosters.teams[team.teamId].find(x => x.playerId !== null)!;
+    keep.classYear = 'So';
+    s.players.players[keep.playerId!] = { ...s.players.players[keep.playerId!], birthSeason: null };
+    mount(s);
+    const button = await screen.findByRole('button', { name: /Complete \d+ players?/ });
+    await waitFor(() => expect((button as HTMLButtonElement).disabled).toBe(false));
+    fireEvent.click(button);
+    await waitFor(() => expect(batches).toHaveLength(1));
+    expect(batches[0].writes.map(w => w.path)).toEqual(['players.json', 'leagues/fba/playerBios.json']);
+    const players = batches[0].writes[0].doc as { players: Record<string, { birthSeason: number | null }> };
+    expect(players.players[keep.playerId!].birthSeason).toBe(s.season - 19);
+  });
 });
