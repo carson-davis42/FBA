@@ -58,3 +58,5 @@ tr.jc-champion td { font-weight: 700; }
 .jc-mini-team .team-name { max-width: 100%; min-width: 0; }
 .jc-mini-team .team-name-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .jc-mini-pts { flex: 0 0 auto; }
+.jc-mini-game.jc-mini-ranked { box-shadow: inset 3px 0 0 var(--accent-soft, var(--accent)); }
+.jc-mini-game.jc-mini-ranked-both { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }

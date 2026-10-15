@@ -99,9 +99,9 @@ describe('ScoresPage', () => {
     expect(screen.getByText(/Day 2 of 29/)).toBeTruthy();
   });
 
-  it('Play day saves once even when double-clicked', async () => {
+  it('Sim rest of day saves once even when double-clicked', async () => {
     mount(jcStateFixture());
-    const btn = await screen.findByRole('button', { name: 'Play day' });
+    const btn = await screen.findByRole('button', { name: 'Sim rest of day' });
     fireEvent.click(btn);
     fireEvent.click(btn);
     await waitFor(() => expect(batches.length).toBeGreaterThan(0));
@@ -204,5 +204,78 @@ describe('ScoresPage', () => {
     expect(round2[0].textContent).toContain('TBD');
     expect(round2[2].textContent).toContain(abbr(first.away));
     expect(round2[1].textContent!.match(/TBD/g)).toHaveLength(2);
+  });
+  it('has the FBA sim controls: quick-sim the next game, sim the rest of the day, and Sim to a chosen day', async () => {
+    mount(jcStateFixture());
+    expect(await screen.findByRole('button', { name: 'Quick-sim next game' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Sim rest of day' })).toBeTruthy();
+    const select = screen.getByRole('combobox', { name: 'Sim to' }) as HTMLSelectElement;
+    expect([...select.options].map(o => o.textContent).slice(0, 3)).toEqual(['the end of the regular season', 'the end of day 1', 'the end of day 2']);
+    expect(screen.getByRole('button', { name: 'Sim' })).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Play day' })).toBeNull();
+  });
+
+  it('Quick-sim next game saves one game', async () => {
+    mount(jcStateFixture());
+    fireEvent.click(await screen.findByRole('button', { name: 'Quick-sim next game' }));
+    await waitFor(() => expect(batches.length).toBe(1));
+    expect(batches[0].writes.map((w: { path: string }) => w.path).sort()).toEqual(['leagues/fbajc/S79/results.json', 'leagues/fbajc/S79/rosters.json']);
+  });
+
+  it('Sim to the end of day 1 saves that day as one batch', async () => {
+    mount(jcStateFixture());
+    const select = await screen.findByRole('combobox', { name: 'Sim to' });
+    fireEvent.change(select, { target: { value: '1' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Sim' }));
+    await waitFor(() => expect(batches.length).toBe(1));
+  });
+  it('moves a finished game to the bottom of the day, in schedule order otherwise', async () => {
+    const s = jcStateFixture();
+    s.schedule!.days[0].kind = 'conference';
+    const first = s.schedule!.days[0].games[0];
+    s.results!.games = [{ gameNo: first.gameNo, home: first.home, away: first.away, homePts: 80, awayPts: 70 }];
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const order = [...document.querySelectorAll('.game-card .game-status')].map(e => Number(/Game (\d+)/.exec(e.textContent!)![1]));
+    expect(order).toHaveLength(108);
+    expect(order[order.length - 1]).toBe(first.gameNo);
+    expect(order.slice(0, 3)).toEqual([2, 3, 4]);
+    expect(order[0]).not.toBe(first.gameNo);
+  });
+
+  it('highlights games with a ranked team, and tags a game between two ranked teams', async () => {
+    const s = jcStateFixture();
+    s.schedule!.days[0].kind = 'conference';
+    const [g1, g2, g3] = s.schedule!.days[0].games;
+    const rest = s.teams.teams.map(t => t.teamId).filter(id => ![g1.home, g1.away, g2.home].includes(id));
+    // g1: both ranked (#1, #2); g2: only the home team ranked (#3); g3 stays unranked.
+    s.rankings = { league: 'fbajc', season: s.season, locked: false, snapshots: [{ afterDay: 0, order: [g1.home, g1.away, g2.home, ...rest] }] };
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const card = (no: number) => [...document.querySelectorAll('.game-card')].find(c => c.textContent!.includes(`Game ${no} ·`))!;
+    expect(card(g1.gameNo).classList.contains('ranked-both')).toBe(true);
+    expect(card(g1.gameNo).textContent).toContain('#1 vs #2');
+    expect(card(g2.gameNo).classList.contains('ranked-one')).toBe(true);
+    expect(card(g3.gameNo).classList.contains('ranked-one') || card(g3.gameNo).classList.contains('ranked-both')).toBe(false);
+  });
+  it('lists the rating changes of the shown day at the bottom, biggest rise first, and says so when there are none', async () => {
+    const s = jcStateFixture();
+    const [g1, g2] = s.schedule!.days[0].games;
+    const p1 = s.rosters.teams[g1.home].find(e => e.playerId !== null)!;
+    const p2 = s.rosters.teams[g2.home].find(e => e.playerId !== null)!;
+    s.results!.games = [
+      { gameNo: g1.gameNo, home: g1.home, away: g1.away, homePts: 80, awayPts: 70, ratingChanges: [{ playerId: p1.playerId!, teamId: g1.home, from: 70, to: 71 }] },
+      { gameNo: g2.gameNo, home: g2.home, away: g2.away, homePts: 80, awayPts: 70, ratingChanges: [{ playerId: p2.playerId!, teamId: g2.home, from: 60, to: 63 }] },
+    ];
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const section = screen.getByRole('region', { name: 'Rating changes' });
+    const rows = [...section.querySelectorAll('tbody tr')].map(r => [...r.querySelectorAll('td')].map(td => td.textContent));
+    expect(rows).toHaveLength(2);
+    expect(rows[0][3]).toBe('60 → 63');
+    expect(rows[0][4]).toBe('+3');
+    expect(rows[1][3]).toBe('70 → 71');
+    fireEvent.click(screen.getByRole('button', { name: 'Go to day 2' }));
+    expect(screen.getByRole('region', { name: 'Rating changes' }).textContent).toContain('No games have been played on day 2 yet.');
   });
 });

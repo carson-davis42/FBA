@@ -161,6 +161,8 @@ export const GameResult = z.object({
   periods: z.object({ home: z.array(pts), away: z.array(pts) }).strict().optional(),
   /** Points per player, in roster order at tip-off. */
   box: z.object({ home: z.array(BoxLine), away: z.array(BoxLine) }).strict().optional(),
+  /** FBAJC: the starters whose rating changed after this game (the Java's progression), with the team they play for. */
+  ratingChanges: z.array(z.object({ playerId: z.string().min(1), teamId: z.string().min(1), from: int, to: int }).strict()).optional(),
 }).strict();
 export type GameResult = z.infer<typeof GameResult>;
 

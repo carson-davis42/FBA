@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { mulberry32 } from '../../engine/d2/random';
 import { fbajcGateProblem } from '../../engine/college/recruiting';
 import { openSpots } from '../../engine/college/walkOns';
-import { playDay, playToEnd, regularSeasonOver } from '../../engine/jc/play';
-import { nextJcGame } from '../../engine/jc/watch';
+import { playDay, regularSeasonOver } from '../../engine/jc/play';
+import { nextJcGame, quickSimNext } from '../../engine/jc/watch';
 import { namesNeeded, redrawFields, startSeason } from '../../engine/jc/start';
-import { DAYS, dayPlayed, type JcState } from '../../engine/jc/state';
+import { DAYS, dayPlayed, jcWrites, type JcState } from '../../engine/jc/state';
+import { tournamentChampion } from '../../engine/jc/tournaments';
 import { calendarProblem } from '../../engine/season/moves';
 import { records } from '../../engine/season/standings';
 import { collegeName } from '../../engine/college/state';
@@ -14,6 +15,7 @@ import { pollRanks } from '../../engine/jc/rankings';
 import { groupLabel } from '../../engine/shared/leagues';
 import type { CalendarFile, SummaryFile, Team } from '../../engine/shared/types';
 import { useDoc } from '../api';
+import { commitDocs } from '../roster/commit';
 import { Badge } from '../components/Badge';
 import { PageHeader } from '../components/PageHeader';
 import { PlayerName } from '../components/PlayerName';
@@ -42,7 +44,12 @@ export function ScoresPage() {
   const docs = useJcDocs(season);
   const { saving, error, run } = useJcRun(docs.versions, docs.reload);
   const [picked, setPicked] = useState<number | null>(null);
-  const [playing, setPlaying] = useState(false);
+  const [simTo, setSimTo] = useState('end');
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
+  const [message, setMessage] = useState('');
+  const stop = useRef(false);
+  const simming = useRef(false);
+  const playing = progress !== null;
   const kicker = 'Junior College';
 
   if (season === null) return <section className="jc-page"><PageHeader kicker={kicker} title="Scores" /></section>;
@@ -93,6 +100,33 @@ export function ScoresPage() {
   const nextNo = typeof nextGame === 'string' || stepProblem ? null : nextGame.gameNo;
   const notStarted = (state.results?.games.length ?? 0) === 0;
 
+  /** Sims whole days until `target` is played, saving after each one so a stop (or a failure) keeps what was done. */
+  const simDays = async (target: number): Promise<void> => {
+    if (simming.current) return;
+    simming.current = true;
+    let s: JcState = state;
+    let v = docs.versions;
+    stop.current = false;
+    setMessage('');
+    const start = dayPlayed(s);
+    setProgress({ done: 0, total: Math.max(0, target - start) });
+    try {
+      while (!stop.current && dayPlayed(s) < target && !regularSeasonOver(s)) {
+        const r = playDay(s, newRng());
+        if (!r.ok) { setMessage(r.problems.join('; ')); break; }
+        v = { ...v, ...(await commitDocs(r.label, jcWrites(r), v)) };
+        s = r.state;
+        setProgress({ done: dayPlayed(s) - start, total: Math.max(0, target - start) });
+      }
+    } catch (e) {
+      setMessage(`${(e as Error).message} (stopped after day ${dayPlayed(s)})`);
+    } finally {
+      simming.current = false;
+      setProgress(null);
+      docs.reload();
+    }
+  };
+
   return (
     <section className="jc-page">
       <PageHeader kicker={kicker} title={title} />
@@ -109,26 +143,46 @@ export function ScoresPage() {
           ))}
         </div>
       </div>
-      <div className="jc-actions">
-        {nextNo !== null && !saving && !playing
-          ? <Link className="btn primary" to={`/league/fbajc/game/${nextNo}`}>Watch next game</Link>
-          : <button className="btn primary" disabled title={playReason ?? undefined}>Watch next game</button>}
-        <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => void run(() => playDay(state, newRng()))}>Play day</button>
-        <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => { setPlaying(true); setTimeout(() => { void run(() => playToEnd(state, newRng())).finally(() => setPlaying(false)); }, 0); }}>{playing ? 'Playing...' : 'Play to end of regular season'}</button>
-      </div>
+      {!over && (
+        <div className="card sim-controls">
+          {nextNo !== null && !saving && !playing
+            ? <Link className="btn primary" to={`/league/fbajc/game/${nextNo}`}>Watch next game</Link>
+            : <button className="btn primary" disabled title={playReason ?? undefined}>Watch next game</button>}
+          <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => void run(() => quickSimNext(state, newRng()))}>Quick-sim next game</button>
+          <button className="btn" disabled={blocked} title={playReason ?? undefined} onClick={() => void simDays(Math.max(played + 1, 1))}>Sim rest of day</button>
+          <label>Sim to
+            <select aria-label="Sim to" value={simTo} onChange={e => setSimTo(e.target.value)}>
+              <option value="end">the end of the regular season</option>
+              {Array.from({ length: DAYS }, (_, i) => i + 1).filter(d => d >= played + 1).map(d => <option key={d} value={String(d)}>the end of day {d}</option>)}
+            </select>
+          </label>
+          <button className="btn primary" disabled={blocked} title={playReason ?? undefined} onClick={() => void simDays(simTo === 'end' ? DAYS : Number(simTo))}>Sim</button>
+          {progress && (
+            <span className="sim-progress">
+              <progress max={progress.total || 1} value={progress.done} /> {progress.done}/{progress.total} days
+              <button className="btn" onClick={() => { stop.current = true; }}>Stop</button>
+            </span>
+          )}
+        </div>
+      )}
       {playReason && <p className="muted">{playReason}</p>}
+      {message && <p className="error">{message}</p>}
       {over && <p><Link to="/league/fbajc/postseason">The regular season is over: on to the postseason</Link></p>}
       {error && <p className="error">{error}</p>}
       {dayDoc?.kind === 'tournament' ? null : dayDoc && dayDoc.games.length === 0 ? (
         <p className="muted">The games for this day are drawn when the day before is played.</p>
       ) : (
         <div className="card-grid game-cards">
-          {(dayDoc?.games ?? []).map(g => {
+          {/* Games still to play first, in schedule order; finished games drop to the bottom. */}
+          {[...(dayDoc?.games ?? [])].sort((a, b) => Number(results.has(a.gameNo)) - Number(results.has(b.gameNo))).map(g => {
             const r = results.get(g.gameNo);
             const away = byId.get(g.away);
             const home = byId.get(g.home);
             if (!away || !home) return null;
             const isNext = !r && g.gameNo === nextNo;
+            const awayRank = ranks.get(g.away);
+            const homeRank = ranks.get(g.home);
+            const rankedTag = awayRank !== undefined && homeRank !== undefined ? 'both' : awayRank !== undefined || homeRank !== undefined ? 'one' : null;
             const lines = r?.box ? [...r.box.home, ...r.box.away] : [];
             const top = lines.length ? lines.reduce((a, b) => (b.pts > a.pts ? b : a)) : null;
             const codes = [...new Set([away.group, home.group].filter((c): c is string => !!c))];
@@ -144,10 +198,11 @@ export function ScoresPage() {
               );
             };
             return (
-              <div key={g.gameNo} className={`card game-card${isNext ? ' next' : ''}`}>
+              <div key={g.gameNo} className={`card game-card${isNext ? ' next' : ''}${rankedTag === 'both' ? ' ranked-both' : rankedTag === 'one' ? ' ranked-one' : ''}`}>
                 <div className="game-head">
                   <div className="game-status">
                     Game {g.gameNo} · {status}
+                    {rankedTag === 'both' && <span className="game-ranked" title="Both teams are ranked">#{Math.min(awayRank!, homeRank!)} vs #{Math.max(awayRank!, homeRank!)}</span>}
                     {codes.length > 0 && <span className="game-conf" title={codes.map(c => groupLabel('fbajc', c)).join(' / ')}>{codes.join('/')}</span>}
                   </div>
                   {r ? <Badge kind="final">final</Badge> : isNext ? <Badge kind="current">next</Badge> : null}
@@ -174,16 +229,54 @@ export function ScoresPage() {
             </div>
           )}
           <div className="jc-tournaments">
-            {schedule.tournaments.map(f => {
+            {/* Tournaments that are still being played first; finished ones (placement games played) drop to the bottom. */}
+            {[...schedule.tournaments].sort((a, b) => {
+              const all = schedule.days.flatMap(d => d.games);
+              const done = (f: typeof a) => Number(tournamentChampion(f, all, state.results?.games ?? []) !== null);
+              return done(a) - done(b);
+            }).map(f => {
               const next = stepProblem || playing || saving ? null : nextJcGame(state, f.id);
               return <TournamentCard key={f.id} mini field={f} state={state} season={season} ranks={ranks} watchNo={next && typeof next !== 'string' ? next.gameNo : null} />;
             })}
           </div>
         </section>
       )}
+      {(() => {
+        // Every rating that moved in the day's games, biggest rise first.
+        const played = (dayDoc?.games ?? []).filter(g => results.has(g.gameNo));
+        const changes = played.flatMap(g => (results.get(g.gameNo)!.ratingChanges ?? []).map(c => ({ ...c, gameNo: g.gameNo })))
+          .sort((a, b) => b.to - b.from - (a.to - a.from) || b.to - a.to);
+        const position = (teamId: string, playerId: string) => state.rosters.teams[teamId]?.find(e => e.playerId === playerId)?.position ?? '';
+        return (
+          <section className="card" aria-label="Rating changes">
+            <h2>Rating changes · day {day}</h2>
+            {played.length === 0 ? <p className="muted">No games have been played on day {day} yet.</p>
+              : changes.length === 0 ? <p className="muted">No ratings changed in day {day}'s games so far.</p> : (
+                <div className="table-wrap tall">
+                  <table className="stat-table">
+                    <thead><tr><th>Player</th><th>Pos</th><th>School</th><th className="n">Rating</th><th className="n">Change</th><th>Game</th></tr></thead>
+                    <tbody>
+                      {changes.map(c => (
+                        <tr key={`${c.gameNo}-${c.playerId}`}>
+                          <td><PlayerName id={c.playerId} name={collegeName(state.players, c.playerId)} /></td>
+                          <td>{position(c.teamId, c.playerId)}</td>
+                          <td>{teamCell(c.teamId)}</td>
+                          <td className="n">{c.from} → {c.to}</td>
+                          <td className="n">+{c.to - c.from}</td>
+                          <td><Link to={`/league/fbajc/game/${c.gameNo}`}>Game {c.gameNo}</Link></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+          </section>
+        );
+      })()}
       {needed.length > 0 && (
         <section className="card">
           <h2>Names needed</h2>
+          <p className="muted">These players need a name. <Link to="/league/fbajc/players">Name them on the Players page ▸</Link></p>
           <div className="table-wrap">
             <table>
               <thead><tr><th>Team</th><th>Pos</th><th>Class</th><th>Rating</th></tr></thead>

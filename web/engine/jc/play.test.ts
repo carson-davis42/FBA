@@ -185,3 +185,24 @@ describe('home-court advantage', () => {
     expect(homeWins / total).toBeLessThan(0.54);
   });
 });
+
+describe('rating changes', () => {
+  it('records on each game the starters whose rating moved, and they add up to the roster changes over the day', () => {
+    const s0 = jcStateFixture();
+    const r = playDay(s0, mulberry32(3));
+    if (!r.ok) throw new Error(r.problems.join());
+    const changes = r.state.results!.games.flatMap(g => g.ratingChanges ?? []);
+    expect(changes.length).toBeGreaterThan(0);
+    for (const c of changes) {
+      expect(c.to).toBeGreaterThan(c.from);
+      expect([...r.state.results!.games.flatMap(g => [g.home, g.away])]).toContain(c.teamId);
+    }
+    // One game per team on a day, so the final roster rating is exactly the last recorded `to`.
+    for (const c of changes) {
+      const after = r.state.rosters.teams[c.teamId].find(e => e.playerId === c.playerId)!;
+      const before = s0.rosters.teams[c.teamId].find(e => e.playerId === c.playerId)!;
+      expect(c.from).toBe(before.rating);
+      expect(c.to).toBe(after.rating);
+    }
+  });
+});

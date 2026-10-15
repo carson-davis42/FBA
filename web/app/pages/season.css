@@ -110,3 +110,7 @@ tr.picked td { background: color-mix(in srgb, var(--accent) 16%, transparent); }
 /* A poll ranking before a team's name: small, like the numbers beside a ranked team in a college scoreboard. */
 .team-rank { font-size: 0.7em; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 1.4em; text-align: right; margin-right: -2px; }
 .scorebug-side .bug-rank { font-size: 0.55em; font-weight: 700; margin-right: 4px; opacity: 0.9; vertical-align: baseline; position: relative; top: -0.55em; font-variant-numeric: tabular-nums; }
+/* A game with a ranked team gets an accent edge; both ranked gets a stronger one and a "#7 vs #12" tag. */
+.game-card.ranked-one { box-shadow: inset 3px 0 0 var(--accent-soft, var(--accent)); }
+.game-card.ranked-both { border-color: var(--accent); box-shadow: inset 4px 0 0 var(--accent); }
+.game-ranked { margin-left: 6px; padding: 0 6px; border-radius: 999px; background: var(--accent-soft, var(--surface-2)); color: var(--accent); font-size: var(--fs-xs); font-weight: 800; white-space: nowrap; }

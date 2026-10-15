@@ -11,6 +11,7 @@ import { SortTh } from '../components/SortTh';
 import { TeamName } from '../components/TeamName';
 import { useSort, type SortValue } from '../components/useSort';
 import { jcGate } from '../jc/JcGate';
+import { NamesNeeded } from '../jc/NamesNeeded';
 import { useJcDocs } from '../jc/useJcDocs';
 import { useWcRosters } from '../wc/useWcRosters';
 import './roster.css';
@@ -166,7 +167,12 @@ function JcLoader() {
   const gate = jcGate(docs, kicker, 'Players');
   if (gate) return <>{gate}</>;
   const s = docs.state!;
-  return <PlayersView league="fbajc" season={season} teams={s.teams} rosters={s.rosters} results={s.results} players={s.players} />;
+  return (
+    <>
+      <NamesNeeded state={s} onSaved={docs.reload} />
+      <PlayersView league="fbajc" season={season} teams={s.teams} rosters={s.rosters} results={s.results} players={s.players} />
+    </>
+  );
 }
 
 function WcLoader() {
