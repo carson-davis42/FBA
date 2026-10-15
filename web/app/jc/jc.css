@@ -51,3 +51,10 @@ tr.jc-champion td { font-weight: 700; }
 .jc-mini-pts { font-weight: 700; }
 .jc-mini-box { position: absolute; inset: 0; opacity: 0; }
 .jc-champion-line { margin: var(--s2) 0 0; }
+/* Keep a long abbreviation (STJOHNS) inside its box: it is cut off with an ellipsis instead of running into the next round. */
+.jc-mini-game { min-width: 0; overflow: hidden; }
+.jc-mini-side > * { min-width: 0; }
+.jc-mini-team { flex: 1 1 auto; min-width: 0; overflow: hidden; }
+.jc-mini-team .team-name { max-width: 100%; min-width: 0; }
+.jc-mini-team .team-name-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.jc-mini-pts { flex: 0 0 auto; }
