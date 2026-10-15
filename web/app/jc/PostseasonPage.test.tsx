@@ -70,12 +70,11 @@ describe('PostseasonPage', () => {
     if (!withField.ok) throw new Error('x');
     mount(withField.state, '/league/fbajc/postseason?tab=field');
     expect(await screen.findByText('Region 4')).toBeTruthy();
-    // Of the 18 champions, only those holding a plain spot in a region are listed with the marker: a champion who plays a
-    // First Four game shows as 'Winner of P<n>', and one who is the challenger sits in no region.
+    // A conference title guarantees the Round of 64, so all 18 champions hold a plain spot in a region and carry the marker.
     const post = withField.state.postseason!;
     const ff = post.field!.mm.firstFour;
     const listed = post.conf.map(b => b.champion!).filter(id => post.field!.mm.teams.includes(id) && !ff.some(g => g.teams[0] === id));
-    expect(listed.length).toBeLessThan(18);
+    expect(listed.length).toBe(18);
     expect(screen.getAllByText(/\(conf\. champion\)/).length).toBe(listed.length);
     expect(screen.getByRole('heading', { name: 'First Four' })).toBeTruthy();
     expect(screen.getAllByText(/^Winner of P\d$/).length).toBe(8);
