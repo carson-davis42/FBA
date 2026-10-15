@@ -127,7 +127,58 @@ export function makeFields(
     }
     fields.push({ id: fieldId(k + 1), name: TOURNAMENT_NAMES[k], teams: cur });
   }
-  return fields;
+  // The finalists placed in the Champions Classic stay there.
+  const fixed = new Set(fields[0].teams.filter(id => id === input.lastChampion || id === input.lastRunnerUp));
+  return separateConferences(fields, confOf, isRanked, fixed, rng);
+}
+
+/**
+ * The draw above takes the best-looking team at each step, so by the last fields only a few conferences have teams left and a field is
+ * forced to take two from one (the rule is relaxed, as in the Java). No field may hold two teams of a conference: swap a duplicate with
+ * a team of another field until none is left. A swap keeps each field's count of ranked teams whenever it can.
+ */
+function separateConferences(fields: Field[], confOf: Map<string, string>, isRanked: Set<string>, fixed: Set<string>, rng: Rng): Field[] {
+  const teams = fields.map(f => [...f.teams]);
+  const clash = (i: number): { index: number; team: string } | null => {
+    const seen = new Set<string>();
+    for (let k = 0; k < teams[i].length; k++) {
+      const c = confOf.get(teams[i][k]);
+      if (seen.has(c!)) return { index: k, team: teams[i][k] };
+      seen.add(c!);
+    }
+    return null;
+  };
+  const hasConf = (i: number, conf: string | undefined, except: string): boolean =>
+    teams[i].some(t => t !== except && confOf.get(t) === conf);
+
+  for (let guard = 0; guard < 5000; guard++) {
+    const at = teams.findIndex((_, i) => clash(i) !== null);
+    if (at < 0) break;
+    let { index, team: a } = clash(at)!;
+    // Never move a fixed team: if the repeat is one, move the other team of that conference instead.
+    if (fixed.has(a)) {
+      const other = teams[at].findIndex(t => t !== a && confOf.get(t) === confOf.get(a) && !fixed.has(t));
+      if (other < 0) break;
+      index = other;
+      a = teams[at][other];
+    }
+    const options: { field: number; index: number; strict: boolean }[] = [];
+    teams.forEach((list, j) => {
+      if (j === at) return;
+      list.forEach((b, k) => {
+        // a goes to field j and b comes to field `at`: neither field may end up with a repeated conference.
+        if (fixed.has(b) || hasConf(j, confOf.get(a), b) || hasConf(at, confOf.get(b), a)) return;
+        options.push({ field: j, index: k, strict: isRanked.has(a) === isRanked.has(b) });
+      });
+    });
+    if (options.length === 0) break;
+    const strict = options.filter(o => o.strict);
+    const chosen = pick(strict.length ? strict : options, rng);
+    const b = teams[chosen.field][chosen.index];
+    teams[chosen.field][chosen.index] = a;
+    teams[at][index] = b;
+  }
+  return fields.map((f, i) => ({ ...f, teams: teams[i] }));
 }
 
 const pairKey = (a: string, b: string): string => (a < b ? `${a}|${b}` : `${b}|${a}`);
