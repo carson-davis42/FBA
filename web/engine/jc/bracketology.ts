@@ -1,11 +1,17 @@
 import type { Bracket } from '../shared/types';
 import { confTables, latestRanking } from './confTourney';
-import { isMajor } from './field';
 import { computeField } from './fieldMoves';
 import { conferenceOf, type JcState } from './state';
 
-/** The last four at-large teams in and the first four out of one group of conferences. */
-export interface Bubble { lastFourIn: string[]; firstFourOut: string[] }
+/** One First Four game: two teams for the seed of the slot the better-ranked one holds. */
+export interface PlayInGame { id: string; teams: [string, string]; seed: number }
+/** One group of conferences at the bubble: four teams safely in, eight in the play-in games, four just out. */
+export interface GroupBubble {
+  firstFourIn: string[];
+  /** top = the two games of the four best-ranked of the eight, bottom = the other two. */
+  lastEight: { top: PlayInGame[]; bottom: PlayInGame[] };
+  firstFourOut: string[];
+}
 
 export interface Projection {
   /** The last regular-season or tournament day the ranking was published after. */
@@ -18,9 +24,10 @@ export interface Projection {
   mm: Bracket;
   /** Seed 1..16, four teams each. */
   seedLines: string[][];
-  /** Power-conference teams are capped: they fill no place after the 51st pick, so the last 13 places go to the other conferences. */
-  power: Bubble;
-  other: Bubble;
+  power: GroupBubble;
+  other: GroupBubble;
+  /** The eight First Four games, power conferences first. */
+  playIn: PlayInGame[];
   bids: { conf: string; count: number; teams: string[] }[];
   nit: string[];
   warnings: string[];
@@ -47,13 +54,14 @@ export function projectBracket(state: JcState): Projection | null {
   const rsChampions = state.postseason ? Object.values(state.postseason.rsChampions).flat() : confTables(state).flatMap(t => t.champions);
 
   const c = computeField(ranking, championIds, rsChampions, confOf);
-  const champSet = new Set(championIds);
-  const bubble = (major: boolean): Bubble => ({
-    lastFourIn: c.mmTeams.filter(t => !champSet.has(t) && isMajor(confOf(t)) === major).slice(-4),
-    firstFourOut: c.leftover.filter(t => isMajor(confOf(t)) === major).slice(0, 4),
-  });
+  const ff = c.firstFour;
+  const playIn: PlayInGame[] = ff.pairs.map(p => ({ id: p.id, teams: p.teams, seed: c.seeds[p.teams[0]] }));
+  const bubble = (g: 'power' | 'other'): GroupBubble => {
+    const games = playIn.filter((_, i) => ff.pairs[i].group === g);
+    return { firstFourIn: ff.firstFourIn[g], lastEight: { top: games.slice(0, 2), bottom: games.slice(2, 4) }, firstFourOut: ff.firstFourOut[g] };
+  };
   const byConf = new Map<string, string[]>();
-  for (const t of c.mmTeams) byConf.set(confOf(t), [...(byConf.get(confOf(t)) ?? []), t]);
+  for (const t of [...c.mmTeams, ...playIn.map(g => g.teams[1])]) byConf.set(confOf(t), [...(byConf.get(confOf(t)) ?? []), t]);
   const bids = [...byConf].map(([conf, teams]) => ({ conf, count: teams.length, teams }))
     .sort((a, b) => b.count - a.count || a.conf.localeCompare(b.conf));
 
@@ -65,8 +73,9 @@ export function projectBracket(state: JcState): Projection | null {
     mmTeams: c.mmTeams,
     mm: c.mm,
     seedLines: Array.from({ length: 16 }, (_, i) => c.mmTeams.filter(t => c.seeds[t] === i + 1)),
-    power: bubble(true),
-    other: bubble(false),
+    power: bubble('power'),
+    other: bubble('other'),
+    playIn,
     bids,
     nit: c.nitTeams,
     warnings: c.warnings,

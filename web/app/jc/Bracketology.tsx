@@ -1,5 +1,5 @@
 import { useMemo, useState, type ReactNode } from 'react';
-import { projectBracket, type Bubble } from '../../engine/jc/bracketology';
+import { projectBracket, type GroupBubble } from '../../engine/jc/bracketology';
 import type { JcState } from '../../engine/jc/state';
 import { BracketView } from './BracketView';
 
@@ -12,11 +12,11 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
   const mark = (id: string): ReactNode => (champ.has(id)
     ? (champ.get(id) ? <span> *</span> : <span className="muted"> (conference champion)</span>) : null);
   const real = Object.values(p.champions).filter(c => !c.projected).length;
-  const BubbleCards = ({ bubble }: { bubble: Bubble }) => (
+  const BubbleCards = ({ bubble }: { bubble: GroupBubble }) => (
     <div className="jc-regions">
       <div className="card jc-field">
         <h3>Last four in</h3>
-        <ol>{bubble.lastFourIn.map(id => <li key={id}>{teamCell(id)}<span className="muted"> (seed {p.seeds[id]})</span>{mark(id)}</li>)}</ol>
+        <ol>{bubble.firstFourIn.map(id => <li key={id}>{teamCell(id)}<span className="muted"> (seed {p.seeds[id]})</span>{mark(id)}</li>)}</ol>
       </div>
       <div className="card jc-field">
         <h3>First four out</h3>
