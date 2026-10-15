@@ -124,6 +124,19 @@ describe('First Four in the fields', () => {
     expect(f.nit.teams.some(t => all.includes(t))).toBe(false);
     expect(f.mm.teams).toHaveLength(64);
   });
+  it('never puts a conference tournament champion in the First Four: a title guarantees the Round of 64', () => {
+    const s = fields();
+    const f = s.postseason!.field!;
+    const champions = new Set(s.postseason!.conf.map(b => b.champion));
+    const playing = f.mm.firstFour.flatMap(g => g.teams);
+    expect(playing.some(t => champions.has(t))).toBe(false);
+    // Each champion holds a direct spot: it is on a region line and is not the stand-in of a play-in spot.
+    const standIns = new Set(f.mm.firstFour.map(g => g.teams[0]));
+    for (const c of champions) {
+      expect(f.mm.teams).toContain(c);
+      expect(standIns.has(c as string)).toBe(false);
+    }
+  });
   it('swaps a challenger for a leftover team and updates the pair', () => {
     const s = fields();
     const f = s.postseason!.field!;
