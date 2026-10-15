@@ -6,6 +6,8 @@ import type { SeasonLeague } from './schedule';
 export interface SeasonState {
   league: SeasonLeague;
   season: number;
+  /** A poll ranking (1-25) by team id, shown beside a ranked team on the scorebug; college only. */
+  pollRanks?: ReadonlyMap<string, number>;
   teams: TeamsFile;
   rosters: RostersFile;
   players: PlayersFile;

@@ -95,6 +95,16 @@ describe('JcGamePage', () => {
     expect(saved.getAttribute('href')).toBe('/league/fbajc/scores');
   });
 
+  it('shows the poll rank of each ranked team before its name on the scorebug', async () => {
+    const s = jcStateFixture();
+    const g = s.schedule!.days[0].games[0];
+    const rest = s.teams.teams.map(t => t.teamId).filter(id => id !== g.home && id !== g.away);
+    s.rankings = { league: 'fbajc', season: s.season, locked: false, snapshots: [{ afterDay: 0, order: [g.home, ...rest.slice(0, 5), g.away, ...rest.slice(5)] }] };
+    mount(s, 1);
+    await screen.findByRole('button', { name: 'Sim to end' });
+    expect([...document.querySelectorAll('.scorebug .bug-rank')].map(e => e.textContent)).toEqual(['7', '1']);
+  });
+
   it("does not let a later regular-season game be watched before the one before it", async () => {
     mount(jcStateFixture(), 2);
     expect(await screen.findByText(/hasn't been played, and it isn't up next/)).toBeTruthy();

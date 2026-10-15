@@ -29,14 +29,14 @@ export const ACCENT_SIDES: CSSProperties[] = [
   { '--team': 'var(--hero-to)', '--team-2': 'var(--accent)', '--team-ink': 'var(--masthead-text)' } as CSSProperties,
 ];
 
-export interface BugSide { label: string; score: number | string; team?: Team; season?: number; style: CSSProperties; /** Small line under the label, such as a record. */ sub?: string }
+export interface BugSide { label: string; score: number | string; team?: Team; season?: number; style: CSSProperties; /** Small line under the label, such as a record. */ sub?: string; /** Poll ranking shown before the label. */ rank?: number }
 
 /** A side of the scorebug for a real team, in its colours. */
 export function bugSide(state: SeasonState, teamId: string, score: number, opts: { full?: boolean; record?: boolean; sub?: string } = {}): BugSide {
   const t = teamOf(state, teamId);
   const rec = opts.record && state.results ? records(state.teams.teams.map(x => ({ teamId: x.teamId, group: x.group })), state.results.games).get(teamId) : undefined;
   return t
-    ? { label: opts.full ? t.name : t.abbr, sub: opts.sub ?? (rec ? `${rec.w}-${rec.l}` : undefined), score, team: t, season: state.season, style: teamVars(teamTheme(t, state.league, state.season)) }
+    ? { label: opts.full ? t.name : t.abbr, sub: opts.sub ?? (rec ? `${rec.w}-${rec.l}` : undefined), score, team: t, season: state.season, rank: state.pollRanks?.get(teamId), style: teamVars(teamTheme(t, state.league, state.season)) }
     : { label: teamId, score, style: ACCENT_SIDES[0] };
 }
 
@@ -44,7 +44,7 @@ function Half({ side, cls }: { side: BugSide; cls: string }) {
   return (
     <div className={`scorebug-side ${cls}`} style={side.style}>
       {side.team && side.season !== undefined && <TeamMark team={side.team} season={side.season} size={36} />}
-      <span className="abbr">{side.label}{side.sub && <small className="rec">{side.sub}</small>}</span>
+      <span className="abbr"><span>{side.rank !== undefined && <sup className="bug-rank" title={`Ranked #${side.rank}`}>{side.rank}</sup>}{side.label}</span>{side.sub && <small className="rec">{side.sub}</small>}</span>
       <span className="score">{side.score}</span>
     </div>
   );
