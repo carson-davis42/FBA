@@ -230,16 +230,33 @@ export function dayGames(day: 1 | 2 | 3, fields: Field[], results: GameResult[],
   return out;
 }
 
+/** A matchup of a later round as far as it is known: a side is null until the game that feeds it has been played. */
+export interface ProjectedGame { home: string | null; away: string | null }
+
 /**
- * The matchups of a tournament's round 2 or 3 as soon as the round before it is finished, even though the day's games are drawn only when
- * the whole day is done. For display (who advanced); null while the games it depends on are unplayed. The games get no game number.
+ * Rounds 2 and 3 of one tournament, filled in game by game: every played game puts its winner (and loser) into the slot it feeds, so
+ * advancement shows right away rather than when the whole round, or day, is done. For display only: the games get no game number.
  */
-export function projectedRound(round: 2 | 3, field: Field, results: GameResult[]): { home: string; away: string }[] | null {
-  try {
-    return dayGames(round, [field], results, 0, () => 0).map(g => ({ home: g.home, away: g.away }));
-  } catch {
-    return null;
-  }
+export function projectedBracket(field: Field, results: GameResult[]): { round2: ProjectedGame[]; round3: ProjectedGame[] } {
+  const byPair = new Map<string, GameResult>();
+  for (const r of results) byPair.set(pairKey(r.home, r.away), r);
+  const outcome = (a: string | null, b: string | null): { w: string | null; l: string | null } => {
+    if (a === null || b === null) return { w: null, l: null };
+    const r = byPair.get(pairKey(a, b));
+    return r ? winnerLoser(r) : { w: null, l: null };
+  };
+  const t = field.teams;
+  const r1 = [0, 1, 2, 3].map(i => outcome(t[i], t[7 - i]));
+  const round2: ProjectedGame[] = [
+    { home: r1[0].w, away: r1[1].w }, { home: r1[2].w, away: r1[3].w },
+    { home: r1[0].l, away: r1[1].l }, { home: r1[2].l, away: r1[3].l },
+  ];
+  const r2 = round2.map(g => outcome(g.home, g.away));
+  const round3: ProjectedGame[] = [
+    { home: r2[0].w, away: r2[1].w }, { home: r2[0].l, away: r2[1].l },
+    { home: r2[2].w, away: r2[3].w }, { home: r2[2].l, away: r2[3].l },
+  ];
+  return { round2, round3 };
 }
 
 export interface TournamentRow {

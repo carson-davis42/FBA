@@ -34,7 +34,8 @@ export function TournamentPage() {
 
   const byId = new Map<string, Team>(state.teams.teams.map(t => [t.teamId, t]));
   const ranks = pollRanks(state.rankings?.snapshots);
-  const team = (teamId: string) => {
+  const team = (teamId: string | null) => {
+    if (teamId === null) return <span className="muted">TBD</span>;
     const t = byId.get(teamId);
     return t ? <TeamName team={t} season={season} variant="abbr" to={`/league/fbajc/team/${teamId}`} rank={ranks.get(teamId) ?? null} /> : <span>{teamId}</span>;
   };
@@ -46,7 +47,7 @@ export function TournamentPage() {
   const table = tournamentTable(field, sched, results);
   const played = mine.some(g => done.has(g.gameNo));
   const rounds = tournamentRounds(field, state);
-  const line = (teamId: string, pts: number | null, won: boolean) => (
+  const line = (teamId: string | null, pts: number | null, won: boolean) => (
     <div className={`team-line${won ? ' won' : ''}`}>
       {team(teamId)}
       <span className="rec" />

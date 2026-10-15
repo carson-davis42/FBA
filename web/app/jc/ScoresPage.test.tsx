@@ -189,4 +189,20 @@ describe('ScoresPage', () => {
     expect(card.querySelectorAll('a[title="Box score"]').length).toBe(4);
     expect(screen.queryByRole('link', { name: `Watch next game in ${f.name}` })).toBeNull();
   });
+  it('shows a winner in the next round the moment his game is played, with the other side still TBD', async () => {
+    const s = jcStateFixture();
+    const f = s.schedule!.tournaments[0];
+    const first = s.schedule!.days[0].games.find(g => g.tournament === f.id)!;
+    s.results!.games = [{ gameNo: first.gameNo, home: first.home, away: first.away, homePts: 80, awayPts: 70 }];
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const card = [...document.querySelectorAll('.jc-tournament')][0] as HTMLElement;
+    const round2 = [...card.querySelectorAll('.jc-mini-round')][1].querySelectorAll('.jc-mini-game');
+    const abbr = (id: string) => s.teams.teams.find(t => t.teamId === id)!.abbr;
+    // The winners game (first) holds the winner and a TBD; the losers game (third) holds the loser and a TBD.
+    expect(round2[0].textContent).toContain(abbr(first.home));
+    expect(round2[0].textContent).toContain('TBD');
+    expect(round2[2].textContent).toContain(abbr(first.away));
+    expect(round2[1].textContent!.match(/TBD/g)).toHaveLength(2);
+  });
 });

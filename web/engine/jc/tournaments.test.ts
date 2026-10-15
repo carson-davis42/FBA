@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
 import type { GameResult } from '../shared/types';
-import { dayGames, makeFields, projectedRound, tournamentChampion, tournamentTable, TOURNAMENT_NAMES } from './tournaments';
+import { dayGames, makeFields, projectedBracket, tournamentChampion, tournamentTable, TOURNAMENT_NAMES } from './tournaments';
 
 const confs: Record<string, string[]> = {};
 for (let c = 0; c < 18; c++) confs[`C${c}`] = Array.from({ length: 12 }, (_, i) => `C${c}T${i}`);
@@ -112,25 +112,39 @@ describe('dayGames', () => {
   });
 });
 
-describe('projectedRound', () => {
+describe('projectedBracket', () => {
   const field = { id: 'PT01', name: 'Test', teams: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'] };
   const res = (gameNo: number, home: string, away: string, homePts = 80, awayPts = 70): GameResult => ({ gameNo, home, away, homePts, awayPts });
   // Round 1 pairs: A-H, B-G, C-F, D-E; the home side (first listed) wins every game here.
   const r1 = [res(1, 'A', 'H'), res(2, 'B', 'G'), res(3, 'C', 'F'), res(4, 'D', 'E')];
+  const none = { home: null, away: null };
 
-  it('is null until round 1 is finished', () => {
-    expect(projectedRound(2, field, [])).toBeNull();
-    expect(projectedRound(2, field, r1.slice(0, 3))).toBeNull();
+  it('is empty before any game is played', () => {
+    const b = projectedBracket(field, []);
+    expect(b.round2).toEqual([none, none, none, none]);
+    expect(b.round3).toEqual([none, none, none, none]);
   });
-  it('gives the winner games and the loser games of round 2 once round 1 is done', () => {
-    expect(projectedRound(2, field, r1)).toEqual([
-      { home: 'A', away: 'B' }, { home: 'C', away: 'D' }, { home: 'H', away: 'G' }, { home: 'F', away: 'E' },
+
+  it('puts each winner and loser into the slot it feeds as soon as its game is played', () => {
+    // A beat H: A waits in the winners game, H in the losers game; the other sides stay open.
+    expect(projectedBracket(field, [r1[0]]).round2).toEqual([
+      { home: 'A', away: null }, none, { home: 'H', away: null }, none,
+    ]);
+    // B-G too: A and B now meet in the winners game, H and G in the losers game.
+    expect(projectedBracket(field, [r1[0], r1[1]]).round2).toEqual([
+      { home: 'A', away: 'B' }, none, { home: 'H', away: 'G' }, none,
     ]);
   });
-  it('gives round 3 only after round 2 is played', () => {
-    expect(projectedRound(3, field, r1)).toBeNull();
+
+  it('gives all of round 2 once round 1 is done, and round 3 fills in game by game', () => {
+    expect(projectedBracket(field, r1).round2).toEqual([
+      { home: 'A', away: 'B' }, { home: 'C', away: 'D' }, { home: 'H', away: 'G' }, { home: 'F', away: 'E' },
+    ]);
+    expect(projectedBracket(field, r1).round3).toEqual([none, none, none, none]);
+    const afterOne = projectedBracket(field, [...r1, res(5, 'A', 'B')]).round3;
+    expect(afterOne).toEqual([{ home: 'A', away: null }, { home: 'B', away: null }, none, none]);
     const r2 = [res(5, 'A', 'B'), res(6, 'C', 'D'), res(7, 'H', 'G'), res(8, 'F', 'E')];
-    expect(projectedRound(3, field, [...r1, ...r2])).toEqual([
+    expect(projectedBracket(field, [...r1, ...r2]).round3).toEqual([
       { home: 'A', away: 'C' }, { home: 'B', away: 'D' }, { home: 'H', away: 'F' }, { home: 'G', away: 'E' },
     ]);
   });

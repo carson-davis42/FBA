@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import { teamRating } from '../../engine/jc/rankings';
 import type { JcState } from '../../engine/jc/state';
-import { projectedRound, tournamentChampion, tournamentTable } from '../../engine/jc/tournaments';
+import { projectedBracket, tournamentChampion, tournamentTable } from '../../engine/jc/tournaments';
 import type { Team } from '../../engine/shared/types';
 import { TeamName } from '../components/TeamName';
 
 export const TOURNAMENT_ROUND_LABELS = ['Round 1', 'Round 2', 'Placement'];
 
-/** One matchup of a round: `gameNo` is null for a matchup that is known (its feeder games are played) but not drawn into the schedule yet. */
-export interface RoundGame { gameNo: number | null; home: string; away: string }
+/** One matchup of a round: `gameNo` is null for a matchup that is not drawn into the schedule yet, whose sides are null until the game feeding them is played. */
+export interface RoundGame { gameNo: number | null; home: string | null; away: string | null }
 
 /**
  * A tournament's three rounds of four games. A round the schedule has drawn shows its games; a later round whose feeder games are all
@@ -20,7 +20,8 @@ export function tournamentRounds(field: { id: string; name: string; teams: strin
   return [0, 1, 2].map(ri => {
     const drawn = sched.slice(ri * 4, ri * 4 + 4);
     if (drawn.length === 4 || ri === 0) return drawn.map(g => ({ gameNo: g.gameNo, home: g.home, away: g.away }));
-    return (projectedRound((ri + 1) as 2 | 3, field, results) ?? []).map(g => ({ gameNo: null, home: g.home, away: g.away }));
+    const { round2, round3 } = projectedBracket(field, results);
+    return (ri === 1 ? round2 : round3).map(g => ({ gameNo: null, home: g.home, away: g.away }));
   });
 }
 
@@ -38,7 +39,8 @@ export function TournamentCard({ field, state, season, ranks, watchNo = null, mi
   mini?: boolean;
 }) {
   const byId = new Map<string, Team>(state.teams.teams.map(t => [t.teamId, t]));
-  const teamCell = (id: string, size = 20) => {
+  const teamCell = (id: string | null, size = 20) => {
+    if (id === null) return <span className="muted">TBD</span>;
     const t = byId.get(id);
     return t ? <TeamName team={t} season={season} variant="abbr" size={size} to={`/league/fbajc/team/${id}`} rank={ranks.get(id) ?? null} /> : <span>{id}</span>;
   };
