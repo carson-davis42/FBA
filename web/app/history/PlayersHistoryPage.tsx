@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
 import { careerTotalsAll } from '../../engine/history/career';
 import { playerIndex, searchPlayers } from '../../engine/history/views';
-import type { PlayerBiosFile, PlayersFile } from '../../engine/shared/types';
-import { useDoc, useHistory } from '../api';
+import type { MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile } from '../../engine/shared/types';
+import { boardPath } from '../../engine/college/state';
+import { docSettled, useDoc, useHistory } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { SortTh } from '../components/SortTh';
 import { useSort, type SortValue } from '../components/useSort';
@@ -43,6 +44,12 @@ export function PlayersHistoryPage() {
   const players = useDoc<PlayersFile>('players.json');
   const bios = useDoc<PlayerBiosFile>('leagues/fba/playerBios.json');
   const biosData = bios.data ?? null;
+  // The recruiting classes under way (the class that plays this season and the next one) have no bio or season yet, but they are players.
+  const meta = useDoc<MetaFile>('meta.json');
+  const n = meta.data?.currentSeason;
+  const nextClass = useDoc<RecruitingFile>(n === undefined ? null : boardPath(n));
+  const thisClass = useDoc<RecruitingFile>(n === undefined ? null : boardPath(n - 1));
+  const recruitIds = useMemo(() => [nextClass.data, thisClass.data].flatMap(b => (b?.created ? b.recruits.map(r => r.playerId) : [])), [nextClass.data, thisClass.data]);
   const index = useMemo<Row[]>(() => {
     if (!seasons || !players.data) return [];
     const totals = careerTotalsAll(seasons);
@@ -50,7 +57,7 @@ export function PlayersHistoryPage() {
     const ppg78 = new Map<string, number>();
     for (const s of seasons) if (s.season === 78) for (const l of s.legacyPpg ?? []) ppg78.set(l.playerId, l.ppg);
     const bioOf = new Map((biosData?.bios ?? []).map(b => [b.playerId, b.born]));
-    return playerIndex(seasons, biosData, players.data).map(p => {
+    return playerIndex(seasons, biosData, players.data, recruitIds).map(p => {
       const live = totals.get(p.playerId) ?? { gp: 0, pts: 0 };
       const birth = birthOf(players.data!.players[p.playerId]?.birthSeason, bioOf.get(p.playerId));
       const old = ppg78.get(p.playerId);
@@ -61,12 +68,13 @@ export function PlayersHistoryPage() {
         born: birth?.season ?? null, bornLabel: birth?.label ?? '',
       };
     });
-  }, [seasons, players.data, biosData]);
+  }, [seasons, players.data, biosData, recruitIds]);
   const shown = useMemo(() => (searchPlayers(index, q) as Row[]).filter(p => letter === '' || initial(p.name) === letter), [index, q, letter]);
   const { rows: sorted, sortProps } = useSort<Row>(shown, sortValue, 'name', 'asc');
   const failure = error ?? players.error ?? (bios.missing ? undefined : bios.error);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
-  if (!seasons || !players.data || (!bios.data && !bios.missing)) return <p className="muted">Loading…</p>;
+  const boardsSettled = docSettled(meta) && (!meta.data || (docSettled(nextClass) && docSettled(thisClass)));
+  if (!seasons || !players.data || (!bios.data && !bios.missing) || !boardsSettled) return <p className="muted">Loading…</p>;
   return (
     <section className="stack">
       <PageHeader kicker="FBA history" title="FBA Players" />

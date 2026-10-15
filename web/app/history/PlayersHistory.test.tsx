@@ -155,6 +155,23 @@ describe('PlayersHistoryPage', () => {
     expect(rows().map(r => [r[0], r[3]])).toEqual([['Ray Allen', 'FFL S1(-53)'], ['Cameron Lučić', 'FFL S2(-52)'], ['Sam Nobody', 'S40']]);
   });
 
+  it('lists the recruits of the next class (and the current one) before they have a bio or a season', async () => {
+    const recruit = (id: string, n: number) => ({ playerId: id, position: 'PG', classYear: 'Fr', rating: null, stars: null, projections: {}, committedTo: null, name: `Kid ${n}` });
+    const board = (season: number, ids: string[]) => ({ league: 'fbajc', season, classOf: season + 1, locked: false, classDraft: [], created: true, recruits: ids.map((id, i) => recruit(id, i)), portal: [] });
+    stub({
+      currentSeason: 79,
+      players: { nextId: 9, players: { ...players.players, p00007: { id: 'p00007', name: 'Zed Recruit', birthSeason: 62 }, p00008: { id: 'p00008', name: 'Abe Freshman', birthSeason: 61 } } },
+      extra: {
+        '/api/state/leagues/fbajc/S79/recruiting.json': board(79, ['p00007']),
+        '/api/state/leagues/fbajc/S78/recruiting.json': board(78, ['p00008']),
+      },
+    });
+    renderAt('/history/fba/players');
+    await screen.findByText('4 players');
+    expect(screen.getByRole('link', { name: 'Zed Recruit' })).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Abe Freshman' })).toBeTruthy();
+  });
+
   it('still lists players when playerBios.json is missing', async () => {
     stub({ bios: null });
     renderAt('/history/fba/players');

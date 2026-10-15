@@ -54,9 +54,9 @@ export function awardRows(seasons: SummaryFile[]): AwardRow[] {
 
 export interface IndexedPlayer { playerId: string; name: string }
 
-/** Every player named in the history, with a name in players.json, sorted by name. */
-export function playerIndex(seasons: SummaryFile[], bios: PlayerBiosFile | null, players: PlayersFile): IndexedPlayer[] {
-  const ids = new Set<string>((bios?.bios ?? []).map(b => b.playerId));
+/** Every player named in the history, with a name in players.json, sorted by name. `extraIds` are players with no history yet (an incoming class). */
+export function playerIndex(seasons: SummaryFile[], bios: PlayerBiosFile | null, players: PlayersFile, extraIds: string[] = []): IndexedPlayer[] {
+  const ids = new Set<string>([...(bios?.bios ?? []).map(b => b.playerId), ...extraIds]);
   const add = (id: string | null | undefined) => { if (id) ids.add(id); };
   for (const s of seasons) {
     for (const a of s.awards ?? []) add(a.playerId);
