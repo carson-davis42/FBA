@@ -1,11 +1,28 @@
 import { Link } from 'react-router-dom';
 import { teamRating } from '../../engine/jc/rankings';
 import type { JcState } from '../../engine/jc/state';
-import { tournamentChampion, tournamentTable } from '../../engine/jc/tournaments';
+import { projectedRound, tournamentChampion, tournamentTable } from '../../engine/jc/tournaments';
 import type { Team } from '../../engine/shared/types';
 import { TeamName } from '../components/TeamName';
 
 export const TOURNAMENT_ROUND_LABELS = ['Round 1', 'Round 2', 'Placement'];
+
+/** One matchup of a round: `gameNo` is null for a matchup that is known (its feeder games are played) but not drawn into the schedule yet. */
+export interface RoundGame { gameNo: number | null; home: string; away: string }
+
+/**
+ * A tournament's three rounds of four games. A round the schedule has drawn shows its games; a later round whose feeder games are all
+ * played shows who advanced right away, as undrawn matchups (they can't be played until their day).
+ */
+export function tournamentRounds(field: { id: string; name: string; teams: string[] }, state: JcState): RoundGame[][] {
+  const sched = state.schedule!.days.flatMap(d => d.games).filter(g => g.tournament === field.id).sort((a, b) => a.gameNo - b.gameNo);
+  const results = state.results?.games ?? [];
+  return [0, 1, 2].map(ri => {
+    const drawn = sched.slice(ri * 4, ri * 4 + 4);
+    if (drawn.length === 4 || ri === 0) return drawn.map(g => ({ gameNo: g.gameNo, home: g.home, away: g.away }));
+    return (projectedRound((ri + 1) as 2 | 3, field, results) ?? []).map(g => ({ gameNo: null, home: g.home, away: g.away }));
+  });
+}
 
 /**
  * One preseason tournament: its field before a game is played, then its rounds, games and table as they are played. `watchNo` is the
@@ -33,6 +50,7 @@ export function TournamentCard({ field, state, season, ranks, watchNo = null, mi
   const champion = tournamentChampion(field, sched, results);
   const table = tournamentTable(field, sched, results);
   const played = mine.some(g => done.has(g.gameNo));
+  const rounds = tournamentRounds(field, state);
 
   if (mini) {
     const side = (id: string | null, pts: number | null, won: boolean) => (
@@ -50,8 +68,8 @@ export function TournamentCard({ field, state, season, ranks, watchNo = null, mi
             <div key={label} className="jc-mini-round">
               <h3>{label}</h3>
               {Array.from({ length: 4 }, (_, gi) => {
-                const g = mine[ri * 4 + gi];
-                const r = g ? done.get(g.gameNo) : undefined;
+                const g = rounds[ri][gi];
+                const r = g && g.gameNo !== null ? done.get(g.gameNo) : undefined;
                 return (
                   <div key={gi} className={`jc-mini-game jc-tgame${r ? '' : ' jc-unplayed'}`}>
                     {side(g?.away ?? null, r ? r.awayPts : null, !!r && r.awayPts > r.homePts)}
@@ -79,16 +97,16 @@ export function TournamentCard({ field, state, season, ranks, watchNo = null, mi
       ) : (
         <>
           {TOURNAMENT_ROUND_LABELS.map((label, ri) => {
-            const games = mine.slice(ri * 4, ri * 4 + 4);
+            const games = rounds[ri];
             if (games.length === 0) return null;
             return (
               <div key={label}>
                 <h3>{label}</h3>
                 <ul className="jc-games">
-                  {games.map(g => {
-                    const r = done.get(g.gameNo);
+                  {games.map((g, gi) => {
+                    const r = g.gameNo !== null ? done.get(g.gameNo) : undefined;
                     return (
-                      <li key={g.gameNo} className={`jc-game jc-tgame${r ? '' : ' jc-unplayed'}`}>
+                      <li key={gi} className={`jc-game jc-tgame${r ? '' : ' jc-unplayed'}`}>
                         <span className={r && r.awayPts > r.homePts ? 'jc-winner' : undefined}>{teamCell(g.away)}</span>
                         <span className="jc-score">{r ? <Link to={`/league/fbajc/game/${g.gameNo}`} title="Box score">{r.awayPts}–{r.homePts}</Link> : 'vs'}</span>
                         <span className={r && r.homePts > r.awayPts ? 'jc-winner' : undefined}>{teamCell(g.home)}</span>

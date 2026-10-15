@@ -7,6 +7,7 @@ import { Badge } from '../components/Badge';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import { jcGate } from './JcGate';
+import { tournamentRounds } from './TournamentCard';
 import { useJcDocs } from './useJcDocs';
 import '../pages/season.css';
 import './jc.css';
@@ -44,6 +45,7 @@ export function TournamentPage() {
   const champion = tournamentChampion(field, sched, results);
   const table = tournamentTable(field, sched, results);
   const played = mine.some(g => done.has(g.gameNo));
+  const rounds = tournamentRounds(field, state);
   const line = (teamId: string, pts: number | null, won: boolean) => (
     <div className={`team-line${won ? ' won' : ''}`}>
       {team(teamId)}
@@ -59,17 +61,17 @@ export function TournamentPage() {
       {champion && <p><strong>Champion:</strong> {team(champion)}</p>}
       <div className="jc-bracket" aria-label={`${field.name} bracket`}>
         {TOURNAMENT_ROUNDS.map((label, ri) => {
-          const games = mine.slice(ri * 4, ri * 4 + 4);
+          const games = rounds[ri];
           if (games.length === 0) return null;
           return (
             <div key={label} className="jc-bracket-round">
               <h2>{label}</h2>
-              {games.map(g => {
-                const r = done.get(g.gameNo);
+              {games.map((g, gi) => {
+                const r = g.gameNo !== null ? done.get(g.gameNo) : undefined;
                 return (
-                  <div key={g.gameNo} className="card game-card">
+                  <div key={gi} className="card game-card">
                     <div className="game-head">
-                      <div className="game-status">Game {g.gameNo} · {r ? 'Final' : 'Upcoming'}</div>
+                      <div className="game-status">{g.gameNo !== null ? `Game ${g.gameNo} · ` : ''}{r ? 'Final' : 'Upcoming'}</div>
                       {r ? <Badge kind="final">final</Badge> : null}
                     </div>
                     {line(g.away, r ? r.awayPts : null, !!r && r.awayPts > r.homePts)}

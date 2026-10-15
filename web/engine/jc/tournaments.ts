@@ -230,6 +230,18 @@ export function dayGames(day: 1 | 2 | 3, fields: Field[], results: GameResult[],
   return out;
 }
 
+/**
+ * The matchups of a tournament's round 2 or 3 as soon as the round before it is finished, even though the day's games are drawn only when
+ * the whole day is done. For display (who advanced); null while the games it depends on are unplayed. The games get no game number.
+ */
+export function projectedRound(round: 2 | 3, field: Field, results: GameResult[]): { home: string; away: string }[] | null {
+  try {
+    return dayGames(round, [field], results, 0, () => 0).map(g => ({ home: g.home, away: g.away }));
+  } catch {
+    return null;
+  }
+}
+
 export interface TournamentRow {
   teamId: string;
   w: number;

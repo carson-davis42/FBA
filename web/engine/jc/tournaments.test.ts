@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
 import type { GameResult } from '../shared/types';
-import { dayGames, makeFields, tournamentChampion, tournamentTable, TOURNAMENT_NAMES } from './tournaments';
+import { dayGames, makeFields, projectedRound, tournamentChampion, tournamentTable, TOURNAMENT_NAMES } from './tournaments';
 
 const confs: Record<string, string[]> = {};
 for (let c = 0; c < 18; c++) confs[`C${c}`] = Array.from({ length: 12 }, (_, i) => `C${c}T${i}`);
@@ -109,5 +109,29 @@ describe('dayGames', () => {
     expect(table.map(r => r.place)).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
     expect(tournamentChampion(f0, all, r3)).toBe(table[0].teamId);
     expect(tournamentChampion(f0, all, r2)).toBeNull();
+  });
+});
+
+describe('projectedRound', () => {
+  const field = { id: 'PT01', name: 'Test', teams: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'] };
+  const res = (gameNo: number, home: string, away: string, homePts = 80, awayPts = 70): GameResult => ({ gameNo, home, away, homePts, awayPts });
+  // Round 1 pairs: A-H, B-G, C-F, D-E; the home side (first listed) wins every game here.
+  const r1 = [res(1, 'A', 'H'), res(2, 'B', 'G'), res(3, 'C', 'F'), res(4, 'D', 'E')];
+
+  it('is null until round 1 is finished', () => {
+    expect(projectedRound(2, field, [])).toBeNull();
+    expect(projectedRound(2, field, r1.slice(0, 3))).toBeNull();
+  });
+  it('gives the winner games and the loser games of round 2 once round 1 is done', () => {
+    expect(projectedRound(2, field, r1)).toEqual([
+      { home: 'A', away: 'B' }, { home: 'C', away: 'D' }, { home: 'H', away: 'G' }, { home: 'F', away: 'E' },
+    ]);
+  });
+  it('gives round 3 only after round 2 is played', () => {
+    expect(projectedRound(3, field, r1)).toBeNull();
+    const r2 = [res(5, 'A', 'B'), res(6, 'C', 'D'), res(7, 'H', 'G'), res(8, 'F', 'E')];
+    expect(projectedRound(3, field, [...r1, ...r2])).toEqual([
+      { home: 'A', away: 'C' }, { home: 'B', away: 'D' }, { home: 'H', away: 'F' }, { home: 'G', away: 'E' },
+    ]);
   });
 });
