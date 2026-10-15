@@ -235,7 +235,26 @@ describe('home-court edge', () => {
     }
     expect(JC_PROFILE.homeEdge).toBe(0);
     expect(NEUTRAL_PROFILE).toEqual({ ...FBA_PROFILE, homeEdge: 0 });
-    expect(shotOdds(a, 0, b, 1, JC_HOME_PROFILE, true)).toBe(shotOdds(a, 0, b, 1, JC_HOME_PROFILE, false) + 1);
+    expect(shotOdds(a, 0, b, 1, JC_HOME_PROFILE, true)).toBe(shotOdds(a, 0, b, 1, JC_HOME_PROFILE, false) + 2);
+  });
+  it('the FBAJC home side gets +2 and wins about 60% between equal teams (about 51% neutral)', () => {
+    expect(JC_HOME_PROFILE.homeEdge).toBe(2);
+    const t1 = team('H', [75, 75, 75, 75, 75]);
+    const t2 = team('A', [75, 75, 75, 75, 75]);
+    const rate = (profile: typeof JC_PROFILE) => {
+      const rng = mulberry32(2026);
+      let wins = 0;
+      const n = 6000;
+      for (let g = 0; g < n; g++) {
+        const r = simGame(g, t1, t2, rng, profile);
+        if (r.homePts > r.awayPts) wins++;
+      }
+      return wins / n;
+    };
+    expect(rate(JC_HOME_PROFILE)).toBeGreaterThan(0.56);
+    expect(rate(JC_HOME_PROFILE)).toBeLessThan(0.64);
+    expect(rate(JC_PROFILE)).toBeGreaterThan(0.46);
+    expect(rate(JC_PROFILE)).toBeLessThan(0.54);
   });
   it('gives equal teams about 53-55% at home with FBA_PROFILE and about 50% neutral', () => {
     const t1 = team('H', [85, 80, 78, 76, 74]);

@@ -79,8 +79,8 @@ export interface SimProfile {
 export const FBA_PROFILE: SimProfile = { handlerBase: 60, handlerTotalOffset: 300, rollOffset: 1, usagePenalty: 0.1, homeEdge: 1 };
 /** FBAJC on a neutral court (tournaments, postseason). */
 export const JC_PROFILE: SimProfile = { handlerBase: 40, handlerTotalOffset: 200, rollOffset: 0, usagePenalty: 0, homeEdge: 0 };
-/** FBAJC regular-season conference and challenge days, which have a home side. */
-export const JC_HOME_PROFILE: SimProfile = { ...JC_PROFILE, homeEdge: 1 };
+/** FBAJC regular-season conference and challenge days, which have a home side: +2 make-chance points, about a 60% home win rate between equal teams. */
+export const JC_HOME_PROFILE: SimProfile = { ...JC_PROFILE, homeEdge: 2 };
 /** FBA numbers with no home edge: the World Cup and the All-Star events. */
 export const NEUTRAL_PROFILE: SimProfile = { ...FBA_PROFILE, homeEdge: 0 };
 
