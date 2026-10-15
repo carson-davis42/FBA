@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { roundName } from '../../engine/jc/bracket';
 import { lineupOf } from '../../engine/jc/play';
 import { nextPostGame, postseasonStage, recordPostGame, tournamentProblem } from '../../engine/jc/postseason';
+import { pollRanks } from '../../engine/jc/rankings';
 import { nextConfGame, openJcGame, recordConfGame, recordJcGame } from '../../engine/jc/watch';
 import { TOTAL_GAMES, jcWrites, type JcResult, type JcState } from '../../engine/jc/state';
 import type { SeasonLeague } from '../../engine/season/schedule';
@@ -18,7 +19,7 @@ import '../pages/season.css';
 
 /** The slice of a college season the shared game views read (names, teams, colours). */
 export function viewState(s: JcState): SeasonState {
-  return { league: 'fbajc' as unknown as SeasonLeague, season: s.season, teams: s.teams, rosters: s.rosters, players: s.players, results: s.results } as unknown as SeasonState;
+  return { league: 'fbajc' as unknown as SeasonLeague, season: s.season, teams: s.teams, rosters: s.rosters, players: s.players, results: s.results, pollRanks: pollRanks(s.rankings?.snapshots) } as unknown as SeasonState;
 }
 
 export interface GameInfo { result: GameResult; bracket: Bracket | null; game: BracketGame | null }
