@@ -183,8 +183,8 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
           {POSITIONS.filter(pos => fullPositions.has(pos)).map(pos => `${pos} full`).join(' · ')}: those players are hidden below; send someone back to see them again.
         </p>
       )}
-      <div className={`rank-cols${split ? ' split' : ''}`}>
-        {positionMerge ? (
+      <div className={`rank-cols${allPlaced ? ' full' : split ? ' split' : ''}`}>
+        {allPlaced ? null : positionMerge ? (
           <div className="rank-col card">
             <div className="toolbar rank-head">
               <h3>Next up · {left.length} of {leftAll.length} left</h3>
