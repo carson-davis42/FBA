@@ -73,7 +73,7 @@ export function TournamentCard({ field, state, season, ranks, watchNo = null, mi
                 const g = rounds[ri][gi];
                 const r = g && g.gameNo !== null ? done.get(g.gameNo) : undefined;
                 return (
-                  <div key={gi} className={`jc-mini-game jc-tgame${r ? '' : ' jc-unplayed'}`}>
+                  <div key={gi} className={`jc-mini-game jc-tgame${r ? '' : ' jc-unplayed'}${g && g.home !== null && g.away !== null && ranks.has(g.home) && ranks.has(g.away) ? ' jc-mini-ranked-both' : g && ((g.home !== null && ranks.has(g.home)) || (g.away !== null && ranks.has(g.away))) ? ' jc-mini-ranked' : ''}`}>
                     {side(g?.away ?? null, r ? r.awayPts : null, !!r && r.awayPts > r.homePts)}
                     {side(g?.home ?? null, r ? r.homePts : null, !!r && r.homePts > r.awayPts)}
                     {r && <Link className="jc-mini-box" to={`/league/fbajc/game/${g!.gameNo}`} title="Box score" aria-label={`Box score of game ${g!.gameNo}`}>Box</Link>}

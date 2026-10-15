@@ -229,4 +229,33 @@ describe('ScoresPage', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Sim' }));
     await waitFor(() => expect(batches.length).toBe(1));
   });
+  it('moves a finished game to the bottom of the day, in schedule order otherwise', async () => {
+    const s = jcStateFixture();
+    s.schedule!.days[0].kind = 'conference';
+    const first = s.schedule!.days[0].games[0];
+    s.results!.games = [{ gameNo: first.gameNo, home: first.home, away: first.away, homePts: 80, awayPts: 70 }];
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const order = [...document.querySelectorAll('.game-card .game-status')].map(e => Number(/Game (\d+)/.exec(e.textContent!)![1]));
+    expect(order).toHaveLength(108);
+    expect(order[order.length - 1]).toBe(first.gameNo);
+    expect(order.slice(0, 3)).toEqual([2, 3, 4]);
+    expect(order[0]).not.toBe(first.gameNo);
+  });
+
+  it('highlights games with a ranked team, and tags a game between two ranked teams', async () => {
+    const s = jcStateFixture();
+    s.schedule!.days[0].kind = 'conference';
+    const [g1, g2, g3] = s.schedule!.days[0].games;
+    const rest = s.teams.teams.map(t => t.teamId).filter(id => ![g1.home, g1.away, g2.home].includes(id));
+    // g1: both ranked (#1, #2); g2: only the home team ranked (#3); g3 stays unranked.
+    s.rankings = { league: 'fbajc', season: s.season, locked: false, snapshots: [{ afterDay: 0, order: [g1.home, g1.away, g2.home, ...rest] }] };
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const card = (no: number) => [...document.querySelectorAll('.game-card')].find(c => c.textContent!.includes(`Game ${no} ·`))!;
+    expect(card(g1.gameNo).classList.contains('ranked-both')).toBe(true);
+    expect(card(g1.gameNo).textContent).toContain('#1 vs #2');
+    expect(card(g2.gameNo).classList.contains('ranked-one')).toBe(true);
+    expect(card(g3.gameNo).classList.contains('ranked-one') || card(g3.gameNo).classList.contains('ranked-both')).toBe(false);
+  });
 });

@@ -7,6 +7,7 @@ import { playDay, regularSeasonOver } from '../../engine/jc/play';
 import { nextJcGame, quickSimNext } from '../../engine/jc/watch';
 import { namesNeeded, redrawFields, startSeason } from '../../engine/jc/start';
 import { DAYS, dayPlayed, jcWrites, type JcState } from '../../engine/jc/state';
+import { tournamentChampion } from '../../engine/jc/tournaments';
 import { calendarProblem } from '../../engine/season/moves';
 import { records } from '../../engine/season/standings';
 import { collegeName } from '../../engine/college/state';
@@ -172,12 +173,16 @@ export function ScoresPage() {
         <p className="muted">The games for this day are drawn when the day before is played.</p>
       ) : (
         <div className="card-grid game-cards">
-          {(dayDoc?.games ?? []).map(g => {
+          {/* Games still to play first, in schedule order; finished games drop to the bottom. */}
+          {[...(dayDoc?.games ?? [])].sort((a, b) => Number(results.has(a.gameNo)) - Number(results.has(b.gameNo))).map(g => {
             const r = results.get(g.gameNo);
             const away = byId.get(g.away);
             const home = byId.get(g.home);
             if (!away || !home) return null;
             const isNext = !r && g.gameNo === nextNo;
+            const awayRank = ranks.get(g.away);
+            const homeRank = ranks.get(g.home);
+            const rankedTag = awayRank !== undefined && homeRank !== undefined ? 'both' : awayRank !== undefined || homeRank !== undefined ? 'one' : null;
             const lines = r?.box ? [...r.box.home, ...r.box.away] : [];
             const top = lines.length ? lines.reduce((a, b) => (b.pts > a.pts ? b : a)) : null;
             const codes = [...new Set([away.group, home.group].filter((c): c is string => !!c))];
@@ -193,10 +198,11 @@ export function ScoresPage() {
               );
             };
             return (
-              <div key={g.gameNo} className={`card game-card${isNext ? ' next' : ''}`}>
+              <div key={g.gameNo} className={`card game-card${isNext ? ' next' : ''}${rankedTag === 'both' ? ' ranked-both' : rankedTag === 'one' ? ' ranked-one' : ''}`}>
                 <div className="game-head">
                   <div className="game-status">
                     Game {g.gameNo} · {status}
+                    {rankedTag === 'both' && <span className="game-ranked" title="Both teams are ranked">#{Math.min(awayRank!, homeRank!)} vs #{Math.max(awayRank!, homeRank!)}</span>}
                     {codes.length > 0 && <span className="game-conf" title={codes.map(c => groupLabel('fbajc', c)).join(' / ')}>{codes.join('/')}</span>}
                   </div>
                   {r ? <Badge kind="final">final</Badge> : isNext ? <Badge kind="current">next</Badge> : null}
@@ -223,7 +229,12 @@ export function ScoresPage() {
             </div>
           )}
           <div className="jc-tournaments">
-            {schedule.tournaments.map(f => {
+            {/* Tournaments that are still being played first; finished ones (placement games played) drop to the bottom. */}
+            {[...schedule.tournaments].sort((a, b) => {
+              const all = schedule.days.flatMap(d => d.games);
+              const done = (f: typeof a) => Number(tournamentChampion(f, all, state.results?.games ?? []) !== null);
+              return done(a) - done(b);
+            }).map(f => {
               const next = stepProblem || playing || saving ? null : nextJcGame(state, f.id);
               return <TournamentCard key={f.id} mini field={f} state={state} season={season} ranks={ranks} watchNo={next && typeof next !== 'string' ? next.gameNo : null} />;
             })}
