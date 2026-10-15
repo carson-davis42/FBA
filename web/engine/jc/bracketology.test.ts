@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
-import { projectBracket, type PlayInGame } from './bracketology';
+import { preTournamentProjection, projectBracket, teamOutlook, type PlayInGame } from './bracketology';
 import { playAllConf, startConfTournaments } from './confTourney';
 import { setFields } from './fieldMoves';
 import { jcPlayedFixture, jcStateFixture } from './testFixtures';
@@ -78,5 +78,29 @@ describe('projectBracket', () => {
     const p = projectBracket(partial)!;
     expect(p.champions[keep.id]).toEqual({ teamId: keep.champion, projected: false });
     expect(Object.entries(p.champions).filter(([id]) => id !== keep.id).every(([, c]) => c.projected)).toBe(true);
+  });
+});
+
+describe('preTournamentProjection', () => {
+  it('uses the ranking after the regular season and ignores conference tournament results', () => {
+    const pre = preTournamentProjection(afterConf)!;
+    const regular = projectBracket(played)!;
+    expect(pre.mmTeams).toEqual(regular.mmTeams);
+    expect(pre.afterDay).toBe(29);
+    expect(Object.values(pre.champions).every(c => c.projected)).toBe(true);
+  });
+
+  it('is null before the regular season is over', () => {
+    expect(preTournamentProjection(jcStateFixture())).toBeNull();
+  });
+
+  it('says where each team stands: a seed, the First Four, the NIT, or out', () => {
+    const p = projectBracket(played)!;
+    const direct = p.mmTeams.find(t => !p.playIn.some(g => g.teams[0] === t))!;
+    expect(teamOutlook(p, direct)).toEqual({ kind: 'seed', seed: p.seeds[direct], firstFour: false });
+    const pair = p.playIn[0];
+    for (const t of pair.teams) expect(teamOutlook(p, t)).toEqual({ kind: 'seed', seed: pair.seed, firstFour: true });
+    expect(teamOutlook(p, p.nit[0])).toEqual({ kind: 'nit' });
+    expect(teamOutlook(p, 'nobody')).toEqual({ kind: 'out' });
   });
 });

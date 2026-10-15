@@ -1,5 +1,5 @@
 import type { Bracket } from '../shared/types';
-import { confTables, latestRanking } from './confTourney';
+import { confTables, latestRanking, regularRanking } from './confTourney';
 import { computeField } from './fieldMoves';
 import { conferenceOf, type JcState } from './state';
 
@@ -34,15 +34,15 @@ export interface Projection {
 }
 
 /** The bracket as it would be picked now. Uses `computeField`, the same code as "Set the fields". Null before the first ranking. */
-export function projectBracket(state: JcState): Projection | null {
-  const ranking = latestRanking(state);
+export function projectBracket(state: JcState, opts: { ranking?: string[] | null; afterDay?: number; ignoreResults?: boolean } = {}): Projection | null {
+  const ranking = opts.ranking === undefined ? latestRanking(state) : opts.ranking;
   if (!ranking || ranking.length < 96) return null;
   const confOf = (id: string): string => conferenceOf(state.teams, id);
 
   const conferences = [...new Set(state.teams.teams.map(t => t.group))].filter((g): g is string => !!g).sort();
   const champions: Projection['champions'] = {};
   for (const conf of conferences) {
-    const real = state.postseason?.conf.find(b => b.id === conf)?.champion ?? null;
+    const real = opts.ignoreResults ? null : state.postseason?.conf.find(b => b.id === conf)?.champion ?? null;
     if (real) {
       champions[conf] = { teamId: real, projected: false };
       continue;
@@ -66,7 +66,7 @@ export function projectBracket(state: JcState): Projection | null {
     .sort((a, b) => b.count - a.count || a.conf.localeCompare(b.conf));
 
   return {
-    afterDay: state.rankings!.snapshots.at(-1)!.afterDay,
+    afterDay: opts.afterDay ?? state.rankings!.snapshots.at(-1)!.afterDay,
     champions,
     seeds: c.seeds,
     regions: c.regions,
@@ -80,4 +80,22 @@ export function projectBracket(state: JcState): Projection | null {
     nit: c.nitTeams,
     warnings: c.warnings,
   };
+}
+
+/** The projection as it stood right before the conference tournaments: the ranking after the regular season, no tournament results. */
+export function preTournamentProjection(state: JcState): Projection | null {
+  const last = [...(state.rankings?.snapshots ?? [])].filter(x => x.afterDay <= 29).sort((a, b) => a.afterDay - b.afterDay).at(-1);
+  if (!last || last.afterDay < 29) return null;
+  return projectBracket(state, { ranking: regularRanking(state), afterDay: last.afterDay, ignoreResults: true });
+}
+
+export type Outlook = { kind: 'seed'; seed: number; firstFour: boolean } | { kind: 'nit' } | { kind: 'out' };
+
+/** Where a team stood in a projection: on a seed line (and whether it plays the First Four), in the NIT, or out. */
+export function teamOutlook(p: Projection, teamId: string): Outlook {
+  const game = p.playIn.find(g => g.teams.includes(teamId));
+  if (game) return { kind: 'seed', seed: game.seed, firstFour: true };
+  if (p.mmTeams.includes(teamId)) return { kind: 'seed', seed: p.seeds[teamId], firstFour: false };
+  if (p.nit.includes(teamId)) return { kind: 'nit' };
+  return { kind: 'out' };
 }
