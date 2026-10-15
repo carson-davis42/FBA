@@ -1,33 +1,44 @@
 import { useMemo, useState, type ReactNode } from 'react';
-import { projectBracket, type GroupBubble, type PlayInGame } from '../../engine/jc/bracketology';
+import { projectBracket, type GroupBubble, type PlayInGame, type Projection } from '../../engine/jc/bracketology';
 import type { JcState } from '../../engine/jc/state';
 import { BracketView } from './BracketView';
 
 /** The projected March Madness bracket, derived from the latest ranking. Read-only; nothing is saved. */
 export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (id: string) => ReactNode }) {
   const p = useMemo(() => projectBracket(state), [state]);
+  if (!p) return <p className="muted">There is no ranking yet. Bracketology appears once the first rankings are out.</p>;
+  const real = Object.values(p.champions).filter(c => !c.projected).length;
+  return (
+    <ProjectionView p={p} teamCell={teamCell} heading="Projected bracket"
+      intro={`Projected with the same selection rules as the real fields, from the ranking after day ${p.afterDay}. ${real} of ${Object.keys(p.champions).length} conference champions are decided; the rest are the best-ranked team in their conference.`} />
+  );
+}
+
+/**
+ * The sections shared by Bracketology and the Field tab: regions with play-in spots, First Four In, Last Eight In, First Four Out,
+ * seed lines, bids by conference, the bracket and the NIT teams. `rs` marks regular-season champions in the NIT list.
+ */
+export function ProjectionView({ p, teamCell, heading, intro, rs }: {
+  p: Projection; teamCell: (id: string) => ReactNode; heading: string; intro: string; rs?: Set<string>;
+}) {
   /** -2 the First Four, 0-3 a region, -1 the Final Four. */
   const [region, setRegion] = useState(-2);
-  if (!p) return <p className="muted">There is no ranking yet. Bracketology appears once the first rankings are out.</p>;
   const champ = new Map(Object.values(p.champions).map(c => [c.teamId, c.projected]));
   const mark = (id: string): ReactNode => (champ.has(id)
     ? (champ.get(id) ? <span> *</span> : <span className="muted"> (conference champion)</span>) : null);
   /** A play-in spot holds its better team; the pair is shown together. */
   const playIn = new Map(p.playIn.map(g => [g.teams[0], g.teams] as const));
-  const real = Object.values(p.champions).filter(c => !c.projected).length;
+  const anyProjected = Object.values(p.champions).some(c => c.projected);
   const ranked = (games: PlayInGame[]) => games.flatMap(g => g.teams.map(id => (
     <li key={id}>{teamCell(id)}<span className="muted"> (seed {g.seed})</span></li>
   )));
   const groups: [string, GroupBubble][] = [['Power conferences', p.power], ['Other conferences', p.other]];
   return (
     <section>
-      <p className="muted">
-        Projected with the same selection rules as the real fields, from the ranking after day {p.afterDay}.
-        {' '}{real} of {Object.keys(p.champions).length} conference champions are decided; the rest are the best-ranked team in their conference.
-      </p>
+      <p className="muted">{intro}</p>
       {p.warnings.map(w => <p key={w} className="error">{w}</p>)}
-      <h2>Projected bracket</h2>
-      <p className="muted">* Projected conference champion: the best-ranked team in a conference whose tournament has not been played. The real champion replaces it once the tournament is finished.</p>
+      <h2>{heading}</h2>
+      {anyProjected && <p className="muted">* Projected conference champion: the best-ranked team in a conference whose tournament has not been played. The real champion replaces it once the tournament is finished.</p>}
       <div className="jc-regions">
         {p.regions.map((reg, k) => (
           <div key={k} className="card jc-field">
@@ -91,7 +102,7 @@ export function Bracketology({ state, teamCell }: { state: JcState; teamCell: (i
       <BracketView bracket={p.mm} teamCell={teamCell} filter={g => (region === -2 ? g.round === 0 : region === -1 ? g.round >= 5 : g.region === region && g.round >= 1 && g.round < 5)} />
       <h2>NIT teams</h2>
       <div className="card jc-field">
-        <ol>{p.nit.map(id => <li key={id}>{teamCell(id)}</li>)}</ol>
+        <ol>{p.nit.map(id => <li key={id}>{teamCell(id)}{rs?.has(id) && <span className="muted"> (regular-season champion)</span>}</li>)}</ol>
       </div>
     </section>
   );

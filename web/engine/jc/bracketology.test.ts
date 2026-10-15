@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
-import { preTournamentProjection, projectBracket, teamOutlook, type PlayInGame } from './bracketology';
+import { fieldProjection, preTournamentProjection, projectBracket, teamOutlook, type PlayInGame } from './bracketology';
 import { playAllConf, startConfTournaments } from './confTourney';
 import { setFields } from './fieldMoves';
 import { jcPlayedFixture, jcStateFixture } from './testFixtures';
@@ -102,5 +102,30 @@ describe('preTournamentProjection', () => {
     for (const t of pair.teams) expect(teamOutlook(p, t)).toEqual({ kind: 'seed', seed: pair.seed, firstFour: true });
     expect(teamOutlook(p, p.nit[0])).toEqual({ kind: 'nit' });
     expect(teamOutlook(p, 'nobody')).toEqual({ kind: 'out' });
+  });
+});
+
+describe('fieldProjection', () => {
+  it('is null until the fields are set', () => {
+    expect(fieldProjection(afterConf)).toBeNull();
+  });
+
+  it('shows the saved field in the shape of the projection, with real champions', () => {
+    const set = setFields(afterConf);
+    if (!set.ok) throw new Error(set.problems.join());
+    const f = set.state.postseason!.field!;
+    const p = fieldProjection(set.state)!;
+    expect(p.mmTeams).toEqual(f.mm.teams);
+    expect(p.seeds).toEqual(f.mm.seeds);
+    expect(p.regions).toEqual(f.mm.regions);
+    expect(p.nit).toEqual(f.nit.teams);
+    expect(p.playIn.map(g => g.teams)).toEqual(f.mm.firstFour.map(g => g.teams));
+    expect(Object.values(p.champions).every(c => !c.projected)).toBe(true);
+    for (const g of [p.power, p.other]) {
+      expect(g.firstFourIn.length).toBeLessThanOrEqual(4);
+      expect(g.firstFourOut.every(t => !p.mmTeams.includes(t) && !p.playIn.some(x => x.teams.includes(t)))).toBe(true);
+      expect(g.lastEight.top.length + g.lastEight.bottom.length).toBeLessThanOrEqual(4);
+    }
+    expect(p.bids.reduce((n, b) => n + b.count, 0)).toBe(72);
   });
 });

@@ -13,8 +13,8 @@ import type { Bracket, BracketGame, Team } from '../../engine/shared/types';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import { BracketView } from './BracketView';
-import { preTournamentProjection, teamOutlook } from '../../engine/jc/bracketology';
-import { Bracketology } from './Bracketology';
+import { fieldProjection, preTournamentProjection, teamOutlook } from '../../engine/jc/bracketology';
+import { Bracketology, ProjectionView } from './Bracketology';
 import { jcGate } from './JcGate';
 import { newRng, usePostseasonDocs } from './usePostseasonDocs';
 import './jc.css';
@@ -172,9 +172,8 @@ function FieldPanel({ state, teamCell, busy, stepProblem, run }: {
   const locked = bracketResults(state.postseason?.nit ?? null).length + bracketResults(state.postseason?.mm ?? null).length > 0;
   const ready = !!state.postseason && confDone(state);
   const rs = new Set(Object.values(state.postseason?.rsChampions ?? {}).flat());
-  const champs = new Set((state.postseason?.conf ?? []).map(b => b.champion));
   const nameOf = (id: string) => state.teams.teams.find(t => t.teamId === id)?.name ?? id;
-  const playIn = new Map((field?.mm.firstFour ?? []).map(g => [g.teams[0], g.id] as const));
+  const projection = useMemo(() => fieldProjection(state), [state]);
   const inField = new Set([...(field?.mm.teams ?? []), ...(field?.mm.firstFour ?? []).flatMap(g => g.teams), ...(field?.nit.teams ?? [])]);
   const mine = field ? (which === 'mm' ? [...field.mm.teams, ...field.mm.firstFour.map(g => g.teams[1])] : field.nit.teams) : [];
   const candidates = state.teams.teams.map(t => t.teamId).filter(id => !mine.includes(id));
@@ -186,36 +185,6 @@ function FieldPanel({ state, teamCell, busy, stepProblem, run }: {
       </div>
       {!field ? <p className="muted">The fields are picked from the ranking after the conference tournaments.</p> : (
         <>
-          {field.warnings.map(w => <p key={w} className="error">{w}</p>)}
-          <h2>March Madness</h2>
-          {field.mm.firstFour.length > 0 && (
-            <>
-              <h3>First Four</h3>
-              <div className="card jc-field">
-                <ul>
-                  {field.mm.firstFour.map(g => (
-                    <li key={g.id}>{g.id}: {teamCell(g.teams[0])} vs {teamCell(g.teams[1])}<span className="muted"> (seed {g.seed}, Region {g.region + 1}, {g.group})</span></li>
-                  ))}
-                </ul>
-              </div>
-            </>
-          )}
-          <div className="jc-regions">
-            {field.mm.regions.map((region, k) => (
-              <div key={k} className="card jc-field">
-                <h3>Region {k + 1}</h3>
-                <ol>
-                  {region.map(id => (playIn.has(id)
-                    ? <li key={id}>{field.mm.seeds[id]}. <span className="muted">Winner of {playIn.get(id)}</span></li>
-                    : <li key={id}>{field.mm.seeds[id]}. {teamCell(id)}{champs.has(id) && <span className="muted"> (conf. champion)</span>}</li>))}
-                </ol>
-              </div>
-            ))}
-          </div>
-          <h2>NIT</h2>
-          <div className="card jc-field">
-            <ol>{field.nit.teams.map(id => <li key={id}>{teamCell(id)}{rs.has(id) && <span className="muted"> (regular-season champion)</span>}</li>)}</ol>
-          </div>
           {!locked && (
             <div className="jc-actions">
               <label>Field{' '}
@@ -240,6 +209,10 @@ function FieldPanel({ state, teamCell, busy, stepProblem, run }: {
             </div>
           )}
           {locked && <p className="muted">A tournament game has been played: the fields are final.</p>}
+          {projection && (
+            <ProjectionView p={projection} teamCell={teamCell} heading="March Madness field" rs={rs}
+              intro={`The fields as set, from the ranking after day ${projection.afterDay}.`} />
+          )}
         </>
       )}
     </section>
