@@ -33,3 +33,21 @@ tr.jc-champion td { font-weight: 700; }
 .jc-race { display: grid; gap: 6px; }
 .jc-race .table-wrap { margin: 0; }
 .jc-blink { font-size: var(--fs-xs); justify-self: end; }
+/* One preseason tournament: the three rounds side by side, a column of game cards each. */
+.jc-bracket { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); align-items: start; }
+@media (max-width: 900px) { .jc-bracket { grid-template-columns: minmax(0, 1fr); } }
+.jc-bracket-round { display: grid; gap: var(--s2); }
+.jc-bracket-round h2 { font-size: var(--fs-md); margin: 0; }
+.jc-tournament h2 a { color: inherit; }
+/* A mini bracket on the Scores page: three rounds of small matchups side by side. */
+.jc-mini-bracket { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s2); }
+.jc-mini-round { display: grid; gap: 6px; align-content: start; }
+.jc-mini-round h3 { margin: 0 0 2px; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.jc-mini-game { position: relative; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); padding: 2px 6px; font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+.jc-mini-game.jc-unplayed { color: var(--muted); }
+.jc-mini-side { display: flex; justify-content: space-between; align-items: center; gap: var(--s1); min-height: 24px; }
+.jc-mini-side + .jc-mini-side { border-top: 1px solid var(--border); }
+.jc-mini-team { min-width: 0; overflow: hidden; }
+.jc-mini-pts { font-weight: 700; }
+.jc-mini-box { position: absolute; inset: 0; opacity: 0; }
+.jc-champion-line { margin: var(--s2) 0 0; }

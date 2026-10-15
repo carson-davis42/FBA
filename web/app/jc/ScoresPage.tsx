@@ -8,13 +8,21 @@ import { nextJcGame } from '../../engine/jc/watch';
 import { namesNeeded, redrawFields, startSeason } from '../../engine/jc/start';
 import { DAYS, dayPlayed, type JcState } from '../../engine/jc/state';
 import { calendarProblem } from '../../engine/season/moves';
+import { records } from '../../engine/season/standings';
+import { collegeName } from '../../engine/college/state';
+import { pollRanks } from '../../engine/jc/rankings';
+import { groupLabel } from '../../engine/shared/leagues';
 import type { CalendarFile, SummaryFile, Team } from '../../engine/shared/types';
 import { useDoc } from '../api';
+import { Badge } from '../components/Badge';
 import { PageHeader } from '../components/PageHeader';
+import { PlayerName } from '../components/PlayerName';
 import { TeamName } from '../components/TeamName';
 import { jcGate } from './JcGate';
+import { TournamentCard } from './TournamentCard';
 import { useJcDocs } from './useJcDocs';
 import { useJcRun } from './useJcRun';
+import '../pages/season.css';
 import './jc.css';
 
 const KIND = { tournament: 'Preseason tournament', challenge: 'Conference challenge', conference: 'Conference play' } as const;
@@ -46,9 +54,10 @@ export function ScoresPage() {
   const byId = new Map<string, Team>(state.teams.teams.map(t => [t.teamId, t]));
   const name = (id: string) => byId.get(id)?.name ?? id;
   const link = (id: string) => `/league/fbajc/team/${id}`;
+  const ranks = pollRanks(state.rankings?.snapshots);
   const teamCell = (id: string) => {
     const t = byId.get(id);
-    return t ? <TeamName team={t} season={season} variant="abbr" to={link(id)} /> : <span>{id}</span>;
+    return t ? <TeamName team={t} season={season} variant="abbr" to={link(id)} rank={ranks.get(id) ?? null} /> : <span>{id}</span>;
   };
   const last = lastFinalists(state, docs.lastSummary);
   const stepProblem = calendarProblem(state.calendar, 'fbajc', 'The season is played');
@@ -75,6 +84,7 @@ export function ScoresPage() {
   const day = Math.min(Math.max(picked ?? Math.min(played + 1, DAYS), 1), DAYS);
   const dayDoc = schedule.days.find(d => d.day === day);
   const results = new Map((state.results?.games ?? []).map(g => [g.gameNo, g]));
+  const recs = records(state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group })), state.results?.games ?? []);
   const over = regularSeasonOver(state);
   const playReason = stepProblem ?? (over ? 'The regular season is over' : null);
   const blocked = saving || playing || !!playReason;
@@ -87,27 +97,17 @@ export function ScoresPage() {
     <section className="jc-page">
       <PageHeader kicker={kicker} title={title} />
       <p className="muted">Day {played} of {DAYS} played</p>
-      {notStarted && (
-        <section>
-          <h2>Tournament fields</h2>
-          <div className="jc-fields">
-            {schedule.tournaments.map(f => (
-              <div key={f.id} className="card jc-field">
-                <h3>{f.name}</h3>
-                <ol>{f.teams.map(id => <li key={id}>{name(id)}</li>)}</ol>
-              </div>
-            ))}
-          </div>
-          <div className="jc-actions">
-            <button className="btn" disabled={saving} onClick={() => void run(() => redrawFields(state, newRng(), last))}>Re-draw tournament fields</button>
-          </div>
-        </section>
-      )}
-      <div className="jc-actions">
-        <button className="btn" disabled={day <= 1} onClick={() => setPicked(day - 1)}>Prev</button>
+      <div className="day-strip">
+        <button className="btn" aria-label="Previous day" disabled={day <= 1} onClick={() => setPicked(day - 1)}>‹</button>
         <strong>Day {day} of {DAYS}</strong>
+        <button className="btn" aria-label="Next day" disabled={day >= DAYS} onClick={() => setPicked(day + 1)}>›</button>
         <span className="muted">{dayDoc ? KIND[dayDoc.kind] : ''}</span>
-        <button className="btn" disabled={day >= DAYS} onClick={() => setPicked(day + 1)}>Next</button>
+        {picked !== null && picked !== Math.min(played + 1, DAYS) && <button className="btn" onClick={() => setPicked(null)}>Today</button>}
+        <div className="chips day-chips" role="group" aria-label="Game days">
+          {Array.from({ length: DAYS }, (_, i) => i + 1).map(d => (
+            <button key={d} type="button" className={`chip${d === day ? ' active' : ''}${d === Math.min(played + 1, DAYS) ? ' today' : ''}`} aria-pressed={d === day} aria-label={`Go to day ${d}`} onClick={() => setPicked(d)}>{d}</button>
+          ))}
+        </div>
       </div>
       <div className="jc-actions">
         {nextNo !== null && !saving && !playing
@@ -119,24 +119,67 @@ export function ScoresPage() {
       {playReason && <p className="muted">{playReason}</p>}
       {over && <p><Link to="/league/fbajc/postseason">The regular season is over: on to the postseason</Link></p>}
       {error && <p className="error">{error}</p>}
-      {dayDoc && dayDoc.games.length === 0 ? (
+      {dayDoc?.kind === 'tournament' ? null : dayDoc && dayDoc.games.length === 0 ? (
         <p className="muted">The games for this day are drawn when the day before is played.</p>
       ) : (
-        <ul className="jc-games">
+        <div className="card-grid game-cards">
           {(dayDoc?.games ?? []).map(g => {
             const r = results.get(g.gameNo);
-            const awayWon = !!r && r.awayPts > r.homePts;
-            const homeWon = !!r && r.homePts > r.awayPts;
+            const away = byId.get(g.away);
+            const home = byId.get(g.home);
+            if (!away || !home) return null;
+            const isNext = !r && g.gameNo === nextNo;
+            const lines = r?.box ? [...r.box.home, ...r.box.away] : [];
+            const top = lines.length ? lines.reduce((a, b) => (b.pts > a.pts ? b : a)) : null;
+            const codes = [...new Set([away.group, home.group].filter((c): c is string => !!c))];
+            const status = r ? `Final${r.ot ? (r.ot > 1 ? ` (${r.ot}OT)` : ' (OT)') : ''}` : isNext ? 'Next' : 'Upcoming';
+            const line = (t: Team, pts: number | null, won: boolean) => {
+              const rec = recs.get(t.teamId);
+              return (
+                <div className={`team-line${won ? ' won' : ''}`}>
+                  {teamCell(t.teamId)}
+                  <span className="rec">{rec ? `${rec.w}-${rec.l}` : ''}</span>
+                  <span className="pts">{pts ?? ''}</span>
+                </div>
+              );
+            };
             return (
-              <li key={g.gameNo} className={`jc-game${r ? '' : ' jc-unplayed'}`}>
-                <span className={awayWon ? 'jc-winner' : undefined}>{teamCell(g.away)}</span>
-                <span className="jc-score">{r ? <Link to={`/league/fbajc/game/${r.gameNo}`} title="Box score">{r.awayPts}–{r.homePts}</Link> : 'vs'}</span>
-                <span className={homeWon ? 'jc-winner' : undefined}>{teamCell(g.home)}</span>
-                {!r && g.gameNo === nextNo && <Link className="jc-blink" to={`/league/fbajc/game/${g.gameNo}`}>Watch</Link>}
-              </li>
+              <div key={g.gameNo} className={`card game-card${isNext ? ' next' : ''}`}>
+                <div className="game-head">
+                  <div className="game-status">
+                    Game {g.gameNo} · {status}
+                    {codes.length > 0 && <span className="game-conf" title={codes.map(c => groupLabel('fbajc', c)).join(' / ')}>{codes.join('/')}</span>}
+                  </div>
+                  {r ? <Badge kind="final">final</Badge> : isNext ? <Badge kind="current">next</Badge> : null}
+                </div>
+                {line(away, r ? r.awayPts : null, !!r && r.awayPts > r.homePts)}
+                {line(home, r ? r.homePts : null, !!r && r.homePts > r.awayPts)}
+                {top && <div className="muted">Top: <PlayerName id={top.playerId} name={collegeName(state.players, top.playerId)} /> {top.pts}</div>}
+                <div className="game-links">
+                  {r && <Link to={`/league/fbajc/game/${g.gameNo}`}>Box score</Link>}
+                  {isNext && <Link to={`/league/fbajc/game/${g.gameNo}`}>Watch</Link>}
+                </div>
+              </div>
             );
           })}
-        </ul>
+        </div>
+      )}
+      {dayDoc?.kind === 'tournament' && (
+        <section>
+          <h2>Tournaments</h2>
+          <p className="muted">Each tournament's bracket as it is played. Watch any tournament's next game on its own, from its card.</p>
+          {notStarted && (
+            <div className="jc-actions">
+              <button className="btn" disabled={saving} onClick={() => void run(() => redrawFields(state, newRng(), last))}>Re-draw tournament fields</button>
+            </div>
+          )}
+          <div className="jc-tournaments">
+            {schedule.tournaments.map(f => {
+              const next = stepProblem || playing || saving ? null : nextJcGame(state, f.id);
+              return <TournamentCard key={f.id} mini field={f} state={state} season={season} ranks={ranks} watchNo={next && typeof next !== 'string' ? next.gameNo : null} />;
+            })}
+          </div>
+        </section>
       )}
       {needed.length > 0 && (
         <section className="card">

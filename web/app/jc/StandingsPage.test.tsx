@@ -106,4 +106,15 @@ describe('StandingsPage', () => {
     expect(screen.queryByText(/S79 FBAJC/)).toBeNull();
     expect(screen.getByRole('heading', { level: 1, name: 'Standings' })).toBeTruthy();
   });
+
+  it('shows the poll rank as a small number before a ranked team, and has no RK column', async () => {
+    const s = jcStateFixture();
+    sweep(s);
+    s.rankings = { league: 'fbajc', season: s.season, locked: false, snapshots: [{ afterDay: 1, order: s.teams.teams.map(t => t.teamId) }] };
+    mount(s);
+    await screen.findByRole('combobox');
+    expect([...document.querySelectorAll('th')].map(h => h.textContent)).not.toContain('RK');
+    const first = document.querySelector('tbody tr')!;
+    expect(first.querySelector('.team-rank')?.textContent).toBe('1');
+  });
 });

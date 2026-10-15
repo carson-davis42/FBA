@@ -63,6 +63,17 @@ describe('RankingsPage', () => {
     expect(line.textContent).toContain('C02T00 U');
   });
 
+  it('lists the next ten teams under the Top 25 as also receiving votes, and hides it when everything is shown', async () => {
+    const { s, after1 } = withSnaps();
+    mount(s);
+    const name = (id: string) => s.teams.teams.find(t => t.teamId === id)!.name;
+    const line = (await screen.findByText(/Also receiving votes/)).closest('p')!;
+    const expected = after1.slice(25, 35).map((id, i) => `${name(id)} ${10 - i}`).join(', ');
+    expect(line.textContent).toBe(`Also receiving votes: ${expected}`);
+    fireEvent.click(screen.getByLabelText('Show all 216'));
+    expect(screen.queryByText(/Also receiving votes/)).toBeNull();
+  });
+
   it('Show all 216 lists the full order', async () => {
     const { s } = withSnaps();
     mount(s);

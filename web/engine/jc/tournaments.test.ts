@@ -43,6 +43,29 @@ describe('makeFields', () => {
   it('uses 8 distinct conferences in every field', () => {
     for (const f of fields) expect(new Set(f.teams.map(confOf)).size).toBe(8);
   });
+  it('never puts two teams from one conference in a field, whatever the draw', () => {
+    const bad: number[] = [];
+    for (let seed = 1; seed <= 300; seed++) {
+      const drawn = makeFields(input, mulberry32(seed));
+      expect(drawn).toHaveLength(27);
+      expect(new Set(drawn.flatMap(f => f.teams)).size).toBe(216);
+      if (drawn.some(f => new Set(f.teams.map(confOf)).size !== f.teams.length)) bad.push(seed);
+    }
+    expect(bad).toEqual([]);
+  });
+  it('keeps the top-25 counts of fields 2-9 when it repairs a draw', () => {
+    for (let seed = 1; seed <= 100; seed++) {
+      const drawn = makeFields(input, mulberry32(seed));
+      expect([1, 2, 3, 4, 5, 6, 7, 8].map(i => drawn[i].teams.filter(t => top25.includes(t)).length)).toEqual([4, 3, 3, 3, 2, 2, 2, 2]);
+    }
+  });
+  it('keeps the last champion and runner-up in the Champions Classic through the repair', () => {
+    for (let seed = 1; seed <= 150; seed++) {
+      const f = makeFields(input, mulberry32(seed));
+      expect(f[0].teams).toContain('C0T5');
+      expect(f[0].teams).toContain('C1T5');
+    }
+  });
   it('is deterministic per seed', () => {
     expect(makeFields(input, mulberry32(7))).toEqual(fields);
     expect(makeFields(input, mulberry32(8))).not.toEqual(fields);

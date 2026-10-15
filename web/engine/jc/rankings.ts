@@ -118,3 +118,22 @@ export function dropped(prev: string[] | null, cur: string[]): string[] {
   const now = new Set(cur.slice(0, 25));
   return prev.slice(0, 25).filter(t => !now.has(t));
 }
+
+export interface VoteGetter { teamId: string; rank: number; votes: number }
+
+/** How many teams just outside the Top 25 get a mention, as the polls' "Others receiving votes". */
+export const VOTE_TEAMS = 10;
+
+/**
+ * "Also receiving votes": the teams ranked right below the poll's Top 25, best first. A poll here is an order, not a ballot count, so the
+ * votes are a standing: the 26th team gets 10, the next 9, down to 1 for the 35th.
+ */
+export function receivingVotes(order: string[], top = 25, count = VOTE_TEAMS): VoteGetter[] {
+  return order.slice(top, top + count).map((teamId, i) => ({ teamId, rank: top + i + 1, votes: count - i }));
+}
+
+/** Team id -> poll rank (1-25) from the latest snapshot; empty before the first poll. */
+export function pollRanks(snapshots: { order: string[] }[] | undefined | null, top = 25): Map<string, number> {
+  const latest = snapshots?.[snapshots.length - 1];
+  return new Map((latest?.order ?? []).slice(0, top).map((teamId, i) => [teamId, i + 1]));
+}

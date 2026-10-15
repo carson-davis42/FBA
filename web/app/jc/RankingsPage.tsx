@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { dropped, rankChanges, teamRating } from '../../engine/jc/rankings';
+import { dropped, rankChanges, receivingVotes, teamRating } from '../../engine/jc/rankings';
 import type { CalendarFile, Team } from '../../engine/shared/types';
 import { useDoc } from '../api';
 import { PageHeader } from '../components/PageHeader';
@@ -44,6 +44,7 @@ export function RankingsPage() {
   const changeOf = (teamId: string, rank: number): string => (rank > 25 ? '' : prev ? changes.get(teamId) ?? '' : '--');
   const out = dropped(prev, snap.order);
   const order = all ? snap.order : snap.order.slice(0, 25);
+  const votes = receivingVotes(snap.order);
   const label = (afterDay: number) => (afterDay === 0 ? 'Preseason' : `After day ${afterDay}`);
 
   return (
@@ -81,6 +82,12 @@ export function RankingsPage() {
           </table>
         </div>
         {out.length > 0 && <p className="muted">Dropped out: {out.map(id => byId.get(id)?.name ?? id).join(', ')}</p>}
+        {!all && votes.length > 0 && (
+          <p className="muted jc-votes">
+            <strong>Also receiving votes:</strong>{' '}
+            {votes.map((v, i) => <span key={v.teamId}>{i > 0 && ', '}{byId.get(v.teamId)?.name ?? v.teamId} {v.votes}</span>)}
+          </p>
+        )}
       </section>
     </section>
   );
