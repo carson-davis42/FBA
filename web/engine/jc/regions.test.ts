@@ -88,6 +88,27 @@ describe('buildMarchMadness', () => {
     expect(cur.champion).toBe(regions[0][0]);
   });
 
+  it('adds eight round-0 First Four games that feed the open Round of 64 slots', () => {
+    const placeholders = [regions[0][15], regions[1][14], regions[2][13], regions[3][12], regions[0][8], regions[1][3], regions[2][1], regions[3][7]];
+    const firstFour = placeholders.map((p, i) => ({
+      id: `P${i + 1}`, group: 'other' as const, teams: [p, `x${i}`] as [string, string],
+      seed: seeds[p], region: regions.findIndex(rg => rg.includes(p)),
+    }));
+    const ff = buildMarchMadness(regions, seeds, firstFour);
+    expect(ff.games).toHaveLength(71);
+    expect(ff.games.filter(g => g.round === 0)).toHaveLength(8);
+    for (const f of firstFour) {
+      const game = ff.games.find(g => g.id === f.id)!;
+      expect([game.home, game.away]).toEqual(f.teams);
+      expect([game.homeSeed, game.awaySeed]).toEqual([f.seed, f.seed]);
+      const target = ff.games.find(g => g.id === game.next!.id)!;
+      expect(target[game.next!.side]).toBeNull();
+      expect(target[game.next!.side === 'home' ? 'homeSeed' : 'awaySeed']).toBe(f.seed);
+    }
+    expect(buildMarchMadness(regions, seeds, firstFour.slice(0, 4)).games).toHaveLength(67);
+    expect(() => buildMarchMadness(regions, seeds)).not.toThrow();
+  });
+
   it('puts region 1 and region 4 in one Final Four game and regions 2 and 3 in the other', () => {
     const e1 = b.games.find(g => g.id === 'R1-15')!;
     const e4 = b.games.find(g => g.id === 'R4-15')!;

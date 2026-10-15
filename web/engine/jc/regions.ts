@@ -1,4 +1,4 @@
-import type { Bracket } from '../shared/types';
+import type { Bracket, FirstFourGame } from '../shared/types';
 import { buildBracket, type NewGame } from './bracket';
 
 /** Port of `MarchMadness.addToRegions` (lines 313-560): puts one seed line (four teams) into the four regions, keeping same-conference teams apart. `seed` is the 0-based seed index (seed number - 1). */
@@ -99,8 +99,8 @@ const roundOf = (g: number): number => (g < 8 ? 1 : g < 12 ? 2 : g < 14 ? 3 : 4)
 /** Which Final Four game (and side) each region's champion goes to: regions 1 and 4 meet, and regions 2 and 3. */
 const FINAL_FOUR: [string, 'home' | 'away'][] = [['FF1', 'home'], ['FF2', 'home'], ['FF2', 'away'], ['FF1', 'away']];
 
-/** The 63-game bracket in the Java layout (`bracket1`..`bracket4`, `decideWhereGo`). Game ids R<region>-<1..15>, FF1, FF2, NC. */
-export function buildMarchMadness(regions: string[][], seeds: Record<string, number>): Bracket {
+/** The 63-game bracket in the Java layout, plus the First Four games (round 0, ids P1..P8) that feed the open Round of 64 slots (`bracket1`..`bracket4`, `decideWhereGo`). Game ids R<region>-<1..15>, FF1, FF2, NC. */
+export function buildMarchMadness(regions: string[][], seeds: Record<string, number>, firstFour: FirstFourGame[] = []): Bracket {
   const games: NewGame[] = [];
   regions.forEach((reg, k) => {
     for (let g = 0; g < 15; g++) {
@@ -113,6 +113,16 @@ export function buildMarchMadness(regions: string[][], seeds: Record<string, num
       });
     }
   });
+  for (const f of firstFour) {
+    const i = regions[f.region].indexOf(f.teams[0]);
+    const top = TOP.indexOf(i);
+    const g = top >= 0 ? top : BOTTOM.indexOf(i);
+    const side: 'home' | 'away' = top >= 0 ? 'home' : 'away';
+    const target = games.find(x => x.id === `R${f.region + 1}-${g + 1}`)!;
+    target[side] = null;
+    target[side === 'home' ? 'homeSeed' : 'awaySeed'] = f.seed;
+    games.push({ id: f.id, round: 0, region: f.region, home: f.teams[0], away: f.teams[1], homeSeed: f.seed, awaySeed: f.seed, next: { id: target.id, side } });
+  }
   const open = { home: null, away: null, homeSeed: null, awaySeed: null, region: 0 };
   games.push({ id: 'FF1', round: 5, ...open, next: { id: 'NC', side: 'home' } });
   games.push({ id: 'FF2', round: 5, ...open, next: { id: 'NC', side: 'away' } });

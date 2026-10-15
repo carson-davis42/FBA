@@ -35,7 +35,7 @@ function withField(ps: JcPostseasonFile, state: JcState, mmTeams: string[], nitT
   return {
     ...ps,
     field: { mm: { teams: mmTeams, seeds: ff.seeds, regions: placed.regions, firstFour: ff.games }, nit: { teams: nitTeams }, warnings },
-    mm: buildMarchMadness(placed.regions, placed.seeds),
+    mm: buildMarchMadness(placed.regions, placed.seeds, ff.games),
     nit: buildNit(nitTeams),
   };
 }
@@ -64,7 +64,7 @@ export function computeField(ranking: string[], champions: string[], rsChampions
   return {
     mmTeams: ff.slots, firstFour: ff, firstFourGames: entries.games, leftover: ff.leftover, nitTeams: nit.teams,
     warnings: [...ff.warnings, ...nit.warnings], seeds: entries.seeds, regions: placed.regions,
-    mm: buildMarchMadness(placed.regions, placed.seeds), nit: buildNit(nit.teams),
+    mm: buildMarchMadness(placed.regions, placed.seeds, entries.games), nit: buildNit(nit.teams),
   };
 }
 

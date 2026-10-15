@@ -47,7 +47,8 @@ const NAMES: Record<BracketKind, string[]> = {
   nit: ['Round of 32', 'Round of 16', 'Quarterfinals', 'Semifinals', 'Final'],
 };
 
-export const roundName = (kind: BracketKind, round: number): string => NAMES[kind][round - 1] ?? `Round ${round}`;
+export const roundName = (kind: BracketKind, round: number): string =>
+  kind === 'mm' && round === 0 ? 'First Four' : NAMES[kind][round - 1] ?? `Round ${round}`;
 
 export const bracketResults = (b: Bracket | null): GameResult[] =>
   (b?.games ?? []).flatMap(g => (g.result ? [g.result] : []));

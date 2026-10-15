@@ -88,7 +88,7 @@ describe('setFields', () => {
     expect(new Set([...mmAll, ...f.nit.teams]).size).toBe(104);
     for (const b of s.postseason!.conf) expect(mmAll).toContain(b.champion);
     for (const t of Object.values(s.postseason!.rsChampions).flat()) expect([...mmAll, ...f.nit.teams]).toContain(t);
-    expect(s.postseason!.mm!.games).toHaveLength(63);
+    expect(s.postseason!.mm!.games).toHaveLength(71);
     expect(s.postseason!.nit!.games).toHaveLength(31);
   });
   it('refuses before the conference tournaments are done and when the step is not current', () => {
