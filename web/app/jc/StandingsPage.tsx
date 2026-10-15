@@ -82,7 +82,7 @@ export function StandingsPage() {
       {shown.map(({ conference, rows, ties }) => {
         const clinch = jcClinch(rows);
         const top = Math.max(...rows.map(r => r.confW));
-        const mm = new Set(state.postseason?.field?.mm.teams ?? []);
+        const mm = new Set([...(state.postseason?.field?.mm.teams ?? []), ...(state.postseason?.field?.mm.firstFour ?? []).flatMap(g => g.teams)]);
         const nit = new Set(state.postseason?.field?.nit.teams ?? []);
         const kindOf = (id: string): ClinchKind | null => clinch[id] ?? (mm.has(id) ? 'marchmadness' : nit.has(id) ? 'nit' : null);
         const kinds = rows.map(r => kindOf(r.teamId));

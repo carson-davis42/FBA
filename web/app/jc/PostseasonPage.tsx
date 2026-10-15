@@ -9,7 +9,7 @@ import { nextPostGame, playPostRound, playPostToEnd, postseasonStage, recordPost
 import type { JcState } from '../../engine/jc/state';
 import { JC_PROFILE, simGame } from '../../engine/season/sim';
 import { calendarProblem } from '../../engine/season/moves';
-import type { Team } from '../../engine/shared/types';
+import type { BracketGame, Team } from '../../engine/shared/types';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import { BracketView } from './BracketView';
@@ -141,8 +141,9 @@ function FieldPanel({ state, teamCell, busy, stepProblem, run }: {
   const rs = new Set(Object.values(state.postseason?.rsChampions ?? {}).flat());
   const champs = new Set((state.postseason?.conf ?? []).map(b => b.champion));
   const nameOf = (id: string) => state.teams.teams.find(t => t.teamId === id)?.name ?? id;
-  const inField = new Set([...(field?.mm.teams ?? []), ...(field?.nit.teams ?? [])]);
-  const mine = field ? (which === 'mm' ? field.mm.teams : field.nit.teams) : [];
+  const playIn = new Map((field?.mm.firstFour ?? []).map(g => [g.teams[0], g.id] as const));
+  const inField = new Set([...(field?.mm.teams ?? []), ...(field?.mm.firstFour ?? []).flatMap(g => g.teams), ...(field?.nit.teams ?? [])]);
+  const mine = field ? (which === 'mm' ? [...field.mm.teams, ...field.mm.firstFour.map(g => g.teams[1])] : field.nit.teams) : [];
   const candidates = state.teams.teams.map(t => t.teamId).filter(id => !mine.includes(id));
   return (
     <section>
@@ -154,12 +155,26 @@ function FieldPanel({ state, teamCell, busy, stepProblem, run }: {
         <>
           {field.warnings.map(w => <p key={w} className="error">{w}</p>)}
           <h2>March Madness</h2>
+          {field.mm.firstFour.length > 0 && (
+            <>
+              <h3>First Four</h3>
+              <div className="card jc-field">
+                <ul>
+                  {field.mm.firstFour.map(g => (
+                    <li key={g.id}>{g.id}: {teamCell(g.teams[0])} vs {teamCell(g.teams[1])}<span className="muted"> (seed {g.seed}, Region {g.region + 1}, {g.group})</span></li>
+                  ))}
+                </ul>
+              </div>
+            </>
+          )}
           <div className="jc-regions">
             {field.mm.regions.map((region, k) => (
               <div key={k} className="card jc-field">
                 <h3>Region {k + 1}</h3>
                 <ol>
-                  {region.map(id => <li key={id}>{field.mm.seeds[id]}. {teamCell(id)}{champs.has(id) && <span className="muted"> (conf. champion)</span>}</li>)}
+                  {region.map(id => (playIn.has(id)
+                    ? <li key={id}>{field.mm.seeds[id]}. <span className="muted">Winner of {playIn.get(id)}</span></li>
+                    : <li key={id}>{field.mm.seeds[id]}. {teamCell(id)}{champs.has(id) && <span className="muted"> (conf. champion)</span>}</li>))}
                 </ol>
               </div>
             ))}
@@ -220,6 +235,9 @@ function TournamentPanel({ which, state, teamCell, busy, stage, run, slow }: {
     });
   };
   const regions = which === 'mm' ? [0, 1, 2, 3] : [0, 1];
+  const hasFirstFour = which === 'mm' && b.games.some(g => g.round === 0);
+  const hrefFor = (g: BracketGame) => (g.result ? { label: 'Box score', to: `/league/fbajc/game/${g.result.gameNo}` }
+    : next && !reason && g.id === next.id ? { label: 'Watch', to: `/league/fbajc/game/${state.postseason!.nextGameNo}` } : null);
   return (
     <section>
       <div className="jc-actions">
@@ -232,14 +250,18 @@ function TournamentPanel({ which, state, teamCell, busy, stage, run, slow }: {
       </div>
       {reason && stage !== 'done' && <p className="muted">{reason}</p>}
       {b.champion && <p className="jc-banner">{label} champion: {teamCell(b.champion)}</p>}
+      {hasFirstFour && (
+        <>
+          <h2>First Four</h2>
+          <BracketView bracket={b} teamCell={teamCell} hrefFor={hrefFor} filter={g => g.round === 0} />
+        </>
+      )}
       <div className="jc-tabs">
         {regions.map(r => <button key={r} type="button" className="btn" aria-pressed={region === r} onClick={() => setRegion(r)}>Region {r + 1}</button>)}
         <button type="button" className="btn" aria-pressed={region === -1} onClick={() => setRegion(-1)}>{which === 'mm' ? 'Final Four' : 'Final'}</button>
       </div>
-      <BracketView bracket={b} teamCell={teamCell}
-        hrefFor={g => (g.result ? { label: 'Box score', to: `/league/fbajc/game/${g.result.gameNo}` }
-          : next && !reason && g.id === next.id ? { label: 'Watch', to: `/league/fbajc/game/${state.postseason!.nextGameNo}` } : null)}
-        filter={g => (region === -1 ? g.round >= 5 : g.region === region && g.round < 5)} />
+      <BracketView bracket={b} teamCell={teamCell} hrefFor={hrefFor}
+        filter={g => (region === -1 ? g.round >= 5 : g.region === region && g.round >= 1 && g.round < 5)} />
     </section>
   );
 }

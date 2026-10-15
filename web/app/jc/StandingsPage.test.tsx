@@ -76,6 +76,15 @@ describe('StandingsPage', () => {
     expect(document.querySelectorAll('td.clinch-champion').length).toBe(1);
   });
 
+  it('counts a First Four challenger as in March Madness', async () => {
+    const s = jcStateFixture();
+    sweep(s);
+    s.postseason = { field: { mm: { teams: ['C00T05'], firstFour: [{ id: 'P1', teams: ['C00T05', 'C00T07'] }] }, nit: { teams: ['C00T06'] } } } as unknown as JcState['postseason'];
+    mount(s);
+    await screen.findByRole('combobox');
+    expect(document.querySelectorAll('td.clinch-marchmadness').length).toBe(2);
+  });
+
   it('All conferences shows 18 tables', async () => {
     mount(jcStateFixture());
     await screen.findByRole('combobox');
