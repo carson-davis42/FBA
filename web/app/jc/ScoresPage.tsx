@@ -119,7 +119,7 @@ export function ScoresPage() {
       {playReason && <p className="muted">{playReason}</p>}
       {over && <p><Link to="/league/fbajc/postseason">The regular season is over: on to the postseason</Link></p>}
       {error && <p className="error">{error}</p>}
-      {dayDoc && dayDoc.games.length === 0 ? (
+      {dayDoc?.kind === 'tournament' ? null : dayDoc && dayDoc.games.length === 0 ? (
         <p className="muted">The games for this day are drawn when the day before is played.</p>
       ) : (
         <div className="card-grid game-cards">
@@ -167,7 +167,7 @@ export function ScoresPage() {
       {dayDoc?.kind === 'tournament' && (
         <section>
           <h2>Tournaments</h2>
-          <p className="muted">The fields before play, then each bracket as it is played. Watch any tournament's next game on its own.</p>
+          <p className="muted">Each tournament's bracket as it is played. Watch any tournament's next game on its own, from its card.</p>
           {notStarted && (
             <div className="jc-actions">
               <button className="btn" disabled={saving} onClick={() => void run(() => redrawFields(state, newRng(), last))}>Re-draw tournament fields</button>
@@ -176,7 +176,7 @@ export function ScoresPage() {
           <div className="jc-tournaments">
             {schedule.tournaments.map(f => {
               const next = stepProblem || playing || saving ? null : nextJcGame(state, f.id);
-              return <TournamentCard key={f.id} field={f} state={state} season={season} ranks={ranks} watchNo={next && typeof next !== 'string' ? next.gameNo : null} />;
+              return <TournamentCard key={f.id} mini field={f} state={state} season={season} ranks={ranks} watchNo={next && typeof next !== 'string' ? next.gameNo : null} />;
             })}
           </div>
         </section>

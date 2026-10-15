@@ -66,12 +66,17 @@ describe('ScoresPage', () => {
     expect(screen.getByText(/haven't committed yet/)).toBeTruthy();
   });
 
-  it('offers Watch next game for game 1, a Watch link on it, and box-score links on played scores', async () => {
+  it('offers Watch next game for game 1', async () => {
     mount(jcStateFixture());
     const watch = await screen.findByRole('link', { name: 'Watch next game' });
     expect(watch.getAttribute('href')).toBe('/league/fbajc/game/1');
-    expect(screen.getAllByRole('link', { name: 'Watch' }).length).toBe(1);
-    expect(screen.getByRole('link', { name: 'Watch' }).getAttribute('href')).toBe('/league/fbajc/game/1');
+  });
+
+  it('has no game-card list on a preseason tournament day: the tournament cards handle watching', async () => {
+    mount(jcStateFixture());
+    await screen.findByText(/Day 1 of 29/);
+    expect(document.querySelectorAll('.game-card').length).toBe(0);
+    expect(document.querySelectorAll('.jc-tournament').length).toBe(27);
   });
 
   it('a started season at day 0 shows the 27 fields and a re-draw button', async () => {
@@ -80,12 +85,15 @@ describe('ScoresPage', () => {
     expect(document.querySelectorAll('.jc-field').length).toBe(27);
   });
 
-  it('shows 108 game cards for day 1, like the other leagues: a day strip, status, records and box-score links', async () => {
-    mount(jcStateFixture());
+  it('shows game cards on a conference day, like the other leagues: a day strip, status, records and watch links', async () => {
+    const s = jcStateFixture();
+    s.schedule!.days[0].kind = 'conference';
+    mount(s);
     await screen.findByText(/Day 1 of 29/);
-    expect(screen.getByText(/Preseason tournament/)).toBeTruthy();
+    expect(screen.getByText(/Conference play/)).toBeTruthy();
     expect(document.querySelectorAll('.game-card').length).toBe(108);
     expect(screen.getAllByText(/^Game \d+ · (Next|Upcoming)$/).length).toBe(108);
+    expect(screen.getAllByRole('link', { name: 'Watch' })).toHaveLength(1);
     expect(screen.getByRole('group', { name: 'Game days' }).querySelectorAll('button').length).toBe(29);
     fireEvent.click(screen.getByRole('button', { name: 'Go to day 2' }));
     expect(screen.getByText(/Day 2 of 29/)).toBeTruthy();
@@ -113,6 +121,7 @@ describe('ScoresPage', () => {
 
   it('shows the poll rank before each ranked team on the game cards', async () => {
     const s = jcStateFixture();
+    s.schedule!.days[0].kind = 'conference';
     s.rankings = { league: 'fbajc', season: s.season, locked: false, snapshots: [{ afterDay: 1, order: s.teams.teams.map(t => t.teamId) }] };
     mount(s);
     await screen.findByText(/Day 1 of 29/);
@@ -139,8 +148,25 @@ describe('ScoresPage', () => {
     mount(s);
     await screen.findByText(/Day 1 of 29/);
     const card = [...document.querySelectorAll('.jc-tournament')][0] as HTMLElement;
-    expect(card.querySelectorAll('.jc-tgame').length).toBe(4);
+    // Round 1 is played (four matchups with scores and box-score links); round 2 and the placement round are still TBD.
+    expect(card.querySelectorAll('.jc-mini-game').length).toBe(12);
+    expect(card.querySelectorAll('.jc-mini-game:not(.jc-unplayed)').length).toBe(4);
     expect(card.querySelectorAll('a[title="Box score"]').length).toBe(4);
-    expect(card.textContent).toContain('70–80');
+    expect([...card.querySelectorAll('.jc-mini-pts')].map(e => e.textContent).filter(Boolean).sort()).toEqual(['70', '70', '70', '70', '80', '80', '80', '80']);
+    expect(card.textContent).toContain('TBD');
+  });
+  it('shows a mini bracket instead of the field list before play: round 1 matchups, then TBD rounds', async () => {
+    const s = jcStateFixture();
+    mount(s);
+    await screen.findByText(/Day 1 of 29/);
+    const f = s.schedule!.tournaments[0];
+    const card = [...document.querySelectorAll('.jc-tournament')][0] as HTMLElement;
+    expect(card.querySelector('ol.jc-seeds')).toBeNull();
+    const round1 = s.schedule!.days[0].games.filter(g => g.tournament === f.id);
+    const games = [...card.querySelectorAll('.jc-mini-game')];
+    expect(games).toHaveLength(12);
+    expect(games.slice(0, 4).map(g => g.querySelectorAll('.team-name').length)).toEqual([2, 2, 2, 2]);
+    expect(round1).toHaveLength(4);
+    expect(games.slice(4).every(g => g.textContent!.includes('TBD'))).toBe(true);
   });
 });
