@@ -71,6 +71,22 @@ export function take(doc: RankingFile, playerId: string): RankingFile {
   return { ...doc, order: [...doc.order, playerId] };
 }
 
+/**
+ * Moves a ranked player one place up (-1) or down (1) by swapping with the neighbour in that direction. With `visible`, the neighbour is the
+ * nearest ranked player it accepts (a position filter), so the move is one step in the list as shown. Unranked players, the ends of the list
+ * and locked files leave the doc unchanged. Entered ratings stay with their players.
+ */
+export function moveRanked(doc: RankingFile, playerId: string, delta: -1 | 1, visible: (playerId: string) => boolean = () => true): RankingFile {
+  const i = doc.order.indexOf(playerId);
+  if (doc.locked || i < 0) return doc;
+  let j = i + delta;
+  while (j >= 0 && j < doc.order.length && !visible(doc.order[j])) j += delta;
+  if (j < 0 || j >= doc.order.length) return doc;
+  const order = [...doc.order];
+  [order[i], order[j]] = [order[j], order[i]];
+  return { ...doc, order };
+}
+
 /** Returns a ranked player to the left column. Their entered rating stays in `ratings`. */
 export function sendBack(doc: RankingFile, playerId: string): RankingFile {
   if (doc.locked || !doc.order.includes(playerId)) return doc;
