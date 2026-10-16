@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { PLAYOFF_SEEDS, standings, type StandingRow } from '../../engine/season/standings';
+import { divisionName } from '../../engine/shared/divisions';
 import { groupLabel, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import type { Team } from '../../engine/shared/types';
 import { clinchKind, ClinchLegend, RankCell } from '../components/Clinch';
@@ -14,7 +15,7 @@ const signed = (x: number) => (x > 0 ? `+${x}` : String(x));
 
 const rowKind = (r: StandingRow) => clinchKind({ marker: r.marker, status: r.status, conference: r.badge === 'C' });
 
-function Table({ rows, teams, season, league, showConf, lottery }: { rows: StandingRow[]; teams: Map<string, Team>; season: number; league: 'fba' | 'fbad2'; showConf: boolean; lottery?: boolean }) {
+function Table({ rows, teams, season, league, showConf, lottery, lineAt = PLAYOFF_SEEDS }: { rows: StandingRow[]; teams: Map<string, Team>; season: number; league: 'fba' | 'fbad2'; showConf: boolean; lottery?: boolean; lineAt?: number }) {
   return (
     <div className="table-wrap">
       <table className="stat-table standings">
@@ -30,7 +31,7 @@ function Table({ rows, teams, season, league, showConf, lottery }: { rows: Stand
           {rows.map(r => {
             const t = teams.get(r.teamId);
             return (
-              <tr key={r.teamId} className={!lottery && r.seed === PLAYOFF_SEEDS ? 'playoff-line' : undefined}>
+              <tr key={r.teamId} className={!lottery && r.seed === lineAt ? 'playoff-line' : undefined}>
                 <RankCell kind={lottery ? null : rowKind(r)} league={league}>{r.seed}</RankCell>
                 <td>
                   {t ? <TeamName team={t} season={season} to={`/league/${league}/team/${t.teamId}`} /> : r.teamId}
@@ -57,11 +58,23 @@ export function StandingsPage() {
   if (error) return <p className="error">Couldn't load the season: {error.message}</p>;
   if (!state) return <p className="muted">Loading…</p>;
   const teams = new Map(state.teams.teams.map(t => [t.teamId, t]));
-  const s = standings(lg, state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group })), state.results?.games ?? [], undefined, state.playoffs);
+  const s = standings(lg, state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group, division: t.division })), state.results?.games ?? [], undefined, state.playoffs);
   return (
     <section className="stack standings-page">
       <PageHeader kicker={`${LEAGUE_LABEL[lg]} · S${state.season}`} title="Standings" />
-      {s.groups.map(g => (
+      {s.groups.map(g => g.divisions ? (
+        <div key={g.group} className="stand-group">
+          <h2>{groupLabel(lg, g.group)}</h2>
+          {g.divisions.map(d => (
+            <div key={d.division}>
+              <h3>{divisionName(d.division)}</h3>
+              <Table rows={d.rows} teams={teams} season={state.season} league={lg} showConf lineAt={3} />
+            </div>
+          ))}
+          <h3>Wild card</h3>
+          <Table rows={g.wildCard ?? []} teams={teams} season={state.season} league={lg} showConf lineAt={2} />
+        </div>
+      ) : (
         <div key={g.group} className="stand-group">
           <h2>{groupLabel(lg, g.group)}</h2>
           <Table rows={g.rows} teams={teams} season={state.season} league={lg} showConf={lg === 'fba'} />

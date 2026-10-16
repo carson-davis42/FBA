@@ -110,7 +110,7 @@ export const lotteryStepId = (season: number) => `s${season + 1}-fba-draft-lotte
 export const lotteryPath = (season: number) => `leagues/fba/S${season}/lottery.json`;
 
 /** The teams that played season n (the expansion teams, which join in n + 1, have no record). */
-const teamInfo = (s: LotteryState): ScheduleTeamInfo[] => teamsInSeason(s.teams, s.season).teams.map(t => ({ teamId: t.teamId, group: t.group }));
+const teamInfo = (s: LotteryState): ScheduleTeamInfo[] => teamsInSeason(s.teams, s.season).teams.map(t => ({ teamId: t.teamId, group: t.group, division: t.division }));
 
 /** The odds table from the final standings (the page shows it before the draw). */
 export function lotteryPreview(state: LotteryState): ReturnType<typeof lotteryOdds> {

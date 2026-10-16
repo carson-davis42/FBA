@@ -3,10 +3,10 @@ import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/re
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { finalsMvpCandidates, lockSeeds, pickFinalsMvp } from '../../engine/playoffs/moves';
-import { fullD2State, fullFbaState, pickAllFinalsMvps, playPlayoffs, regularSeasonDone } from '../../engine/playoffs/testFixtures';
+import { fullD2State, fullDivisionState, fullFbaState, pickAllFinalsMvps, playPlayoffs, regularSeasonDone } from '../../engine/playoffs/testFixtures';
 import type { SeasonResult } from '../../engine/season/state';
 import { finishSeason } from '../../engine/season/wrapUp';
-import { stubApi } from '../d2/testDocs';
+import { META, stubApi } from '../d2/testDocs';
 import { seasonDocs } from '../season/testDocs';
 import { groupLabel } from '../../engine/shared/leagues';
 import { PlayoffsPage } from './PlayoffsPage';
@@ -243,5 +243,23 @@ describe('Finals MVP card', () => {
     renderAt('/league/fba/playoffs');
     expect(await screen.findByText('The S79 FBA season is finished.')).toBeTruthy();
     expect(screen.queryByText(/Finals MVP/)).toBeNull();
+  });
+});
+
+describe('PlayoffsPage with divisions', () => {
+  const at80 = (state: ReturnType<typeof fullDivisionState>) => stubApi({ ...seasonDocs(state), 'meta.json': { ...META, currentSeason: 80 } });
+  it('marks how each team qualified on the seed tables', async () => {
+    at80(regularSeasonDone(fullDivisionState()));
+    renderAt('/league/fba/playoffs');
+    expect((await screen.findAllByText(/Atlantic champion|Great Lakes champion|Pacific champion|Gulf champion/)).length).toBe(4);
+    expect(screen.getAllByText(/Wild card 1/)).toHaveLength(2);
+  });
+  it('names round 2 the division finals once the bracket is open', async () => {
+    const locked = ok(lockSeeds(regularSeasonDone(fullDivisionState()))).state;
+    let played = locked;
+    while (played.playoffs!.series.some(x => x.round === 1 && !x.winner)) played = playPlayoffs(played, 5, 1);
+    at80(played);
+    renderAt('/league/fba/playoffs');
+    expect(await screen.findByText(/East division finals|West division finals/)).toBeTruthy();
   });
 });

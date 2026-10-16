@@ -1,3 +1,4 @@
+import { isDivisional } from '../../engine/playoffs/bracket';
 import { useState, type ReactNode } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AWARD_LABEL } from '../../engine/awards/races';
@@ -94,7 +95,7 @@ function Playoffs({ season, teams, players, franchises }: { season: SummaryFile;
       <SpanLine span={season.span} />
       <EventDates events={season.events} />
       {season.bracket ? (
-        <Bracket league="fba" series={season.bracket.series} teams={new Map(teams.map(t => [t.teamId, t]))} season={season.season} group={null} open={null} />
+        <Bracket league="fba" series={season.bracket.series} teams={new Map(teams.map(t => [t.teamId, t]))} season={season.season} group={null} open={null} divisional={isDivisional(season.bracket.seeds)} />
       ) : season.pastBracket ? (
         <PastBracket bracket={season.pastBracket} teams={teams} season={season.season} franchises={franchises} gameLink={id => `/history/fba/season/${season.season}/game/${id}`} />
       ) : champion ? (

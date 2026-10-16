@@ -98,6 +98,9 @@ export function advance(
   return { series, queue };
 }
 
+/** True for a bracket built from divisions (S80 on): round 2 is the division finals. */
+export const isDivisional = (seeds: Pick<PlayoffSeed, 'divisions'>[]): boolean => seeds.some(s => !!s.divisions);
+
 const ROUND = ['first round', 'semifinals'];
 
 /** "East first round", "West conference finals", "FBA Finals", "Premier League final". */
