@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { DIVISION_LAYOUT, divisionName } from '../../engine/shared/divisions';
 import { groupLabel, isLeagueId, LEAGUE_LABEL, orderGroups } from '../../engine/shared/leagues';
 import { teamsInSeason } from '../../engine/shared/teams';
 import type { MetaFile, RostersFile, Team, TeamsFile } from '../../engine/shared/types';
@@ -11,6 +12,14 @@ import { teamTheme, teamVars } from '../components/teamColors';
 import { TeamMark } from '../components/TeamMark';
 import './league.css';
 import './roster.css';
+
+/** A group's teams split by division (in the league's division order); one unnamed block when the teams have none (before S80, other leagues). */
+function divisionsOf(list: Team[]): [string | null, Team[]][] {
+  if (!list.some(t => t.division)) return [[null, list]];
+  const order = DIVISION_LAYOUT.map(d => d.division);
+  const codes = [...new Set(list.map(t => t.division ?? ''))].sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  return codes.map(c => [c || null, list.filter(t => (t.division ?? '') === c)]);
+}
 
 export function LeaguePage() {
   const { league = '' } = useParams();
@@ -48,20 +57,25 @@ export function LeaguePage() {
       {orderGroups(league, [...groups.keys()]).map(code => [code, groups.get(code)!] as const).map(([code, list]) => (
         <div className="group" key={code ?? 'all'}>
           <h2 className="group-title">{groupLabel(league, code)}</h2>
-          <div className="card-grid">
-            {[...list].sort((a, b) => a.name.localeCompare(b.name)).map(t => {
-              const rating = teamRating(rosters.teams[t.teamId] ?? []);
-              return (
-                <Link key={t.teamId} className="card link headed team-tile" style={teamVars(teamTheme(t, league))} to={`/league/${league}/team/${t.teamId}`}>
-                  <TeamMark team={t} season={season} size={48} />
-                  <span className="team-tile-body">
-                    <span className="name">{t.name}</span>
-                    <span className="rtg muted">Rating <b>{rating ?? "—"}</b></span>
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+          {divisionsOf(list).map(([division, inDivision]) => (
+            <div key={division ?? 'all'}>
+              {division && <h3 className="division-title">{divisionName(division)}</h3>}
+              <div className="card-grid">
+                {[...inDivision].sort((a, b) => a.name.localeCompare(b.name)).map(t => {
+                  const rating = teamRating(rosters.teams[t.teamId] ?? []);
+                  return (
+                    <Link key={t.teamId} className="card link headed team-tile" style={teamVars(teamTheme(t, league))} to={`/league/${league}/team/${t.teamId}`}>
+                      <TeamMark team={t} season={season} size={48} />
+                      <span className="team-tile-body">
+                        <span className="name">{t.name}</span>
+                        <span className="rtg muted">Rating <b>{rating ?? "—"}</b></span>
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </div>
       ))}
     </section>

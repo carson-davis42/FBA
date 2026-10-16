@@ -5,3 +5,4 @@
 .team-tile-body { display: flex; flex-direction: column; min-width: 0; }
 .team-tile .name { font-family: var(--font-head); font-size: var(--fs-lg); font-weight: 700; line-height: 1.1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .team-tile .rtg { font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+.division-title { font-family: var(--font-head); font-size: var(--fs-md); letter-spacing: 0.02em; margin: var(--s3) 0 var(--s2); }
