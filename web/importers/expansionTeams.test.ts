@@ -23,7 +23,7 @@ describe('refreshExpansionTeams', () => {
   it('renames the Team 32 placeholder to the definition, but only the placeholder', () => {
     const placeholder = { ...old(EXPANSION_TEAMS[1]), name: 'Team 32', abbr: 'T32' };
     const out = refreshExpansionTeams({ league: 'fba', teams: [placeholder] } as TeamsFile);
-    expect(out.teams.teams[0]).toMatchObject({ teamId: 'LAL', name: 'Boise Raptors', abbr: 'BOI', logoFolder: 'Team 32' });
+    expect(out.teams.teams[0]).toMatchObject({ teamId: 'LAL', name: 'Boise Raptors', abbr: 'BOI', logoFolder: 'Boise Raptors' });
   });
   it('changes nothing when the teams are not there or already current', () => {
     const none = { league: 'fba', teams: [base] } as TeamsFile;
