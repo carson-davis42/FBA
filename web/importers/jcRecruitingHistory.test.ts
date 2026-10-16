@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { JcRecruitingHistoryFile, type PlayersFile, type TeamsFile } from '../engine/shared/types';
-import { buildRecruitingHistory, planJcRecruitingHistory } from './jcRecruitingHistory';
+import { buildRecruitingHistory, keepSavedClasses, planJcRecruitingHistory } from './jcRecruitingHistory';
 import { Report } from './report';
 import { parseRecruitingHistory, parseTransferHistory } from './sheets/jcRecruitingHistory';
 
@@ -73,5 +73,20 @@ describe('buildRecruitingHistory', () => {
     const r = planJcRecruitingHistory({ players, teams, tabs: { 'FBA JC Recruiting': recruiting, 'FBA JC Transfer Portal': portal } }, new Report());
     expect(r.problems).toEqual([]);
     expect(r.docs.map(d => d[0])).toEqual(['leagues/fbajc/recruitingHistory.json']);
+  });
+});
+
+describe('keepSavedClasses', () => {
+  const cls = (season: number) => ({ season, recruits: [], portal: [] });
+  const built: JcRecruitingHistoryFile = { league: 'fbajc', throughSeason: 78, classes: [cls(77), cls(78)] };
+  it('keeps the classes the app saved after the import when the sheet is imported again', () => {
+    const existing: JcRecruitingHistoryFile = { league: 'fbajc', throughSeason: 78, classes: [cls(70), cls(78), cls(79), cls(80)] };
+    const out = keepSavedClasses(built, existing);
+    expect(out.classes.map(c => c.season)).toEqual([77, 78, 79, 80]);
+    expect(out.throughSeason).toBe(78);
+  });
+  it('changes nothing without an existing file or saved classes', () => {
+    expect(keepSavedClasses(built, null)).toEqual(built);
+    expect(keepSavedClasses(built, { ...built, classes: [cls(78)] })).toEqual(built);
   });
 });

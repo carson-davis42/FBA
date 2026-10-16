@@ -25,7 +25,7 @@ export function JcRecruitingPage() {
   if (!rec.file || rec.file.classes.length === 0) {
     return <section className="stack">{header}<p className="muted">The past recruiting classes haven't been imported yet.</p></section>;
   }
-  const liveClasses = players.data ? liveRecruitingClasses(live.boards, { league: 'fbajc', teams }, players.data, rec.file.throughSeason) : [];
+  const liveClasses = players.data ? liveRecruitingClasses(live.boards, { league: 'fbajc', teams }, players.data, { have: new Set(rec.file.classes.map(c => c.season)), before: live.current }) : [];
   const classes = [...rec.file.classes, ...liveClasses].sort((a, b) => b.season - a.season);
   const asked = Number(params.get('class'));
   const cls = classes.find(c => c.season === asked) ?? classes[0];

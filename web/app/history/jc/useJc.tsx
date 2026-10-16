@@ -21,7 +21,7 @@ export function useJcSchoolHistory(): { settled: boolean; file: JcSchoolHistoryF
  * The recruiting boards the app ran after the imported history (seasons `through` to the current one); a missing or unreadable board is skipped.
  * `settled` is false until every board has been tried.
  */
-export function useJcLiveBoards(through: number | null): { settled: boolean; boards: RecruitingFile[] } {
+export function useJcLiveBoards(through: number | null): { settled: boolean; boards: RecruitingFile[]; current: number } {
   const meta = useDoc<MetaFile>('meta.json');
   const current = meta.data?.currentSeason;
   const [state, setState] = useState<{ key: string; boards: RecruitingFile[] } | null>(null);
@@ -35,8 +35,8 @@ export function useJcLiveBoards(through: number | null): { settled: boolean; boa
     });
     return () => { live = false; };
   }, [through, current, key]);
-  if (through === null) return { settled: true, boards: [] };
-  return { settled: (meta.error !== undefined || meta.missing) || (key !== null && state?.key === key), boards: state?.key === key ? state.boards : [] };
+  if (through === null) return { settled: true, boards: [], current: 0 };
+  return { settled: (meta.error !== undefined || meta.missing) || (key !== null && state?.key === key), boards: state?.key === key ? state.boards : [], current: current ?? 0 };
 }
 
 /** The imported recruiting classes and transfer portals (S52-S78). Optional, like the school history. */

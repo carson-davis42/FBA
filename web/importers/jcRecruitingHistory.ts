@@ -51,6 +51,15 @@ export function buildRecruitingHistory(input: JcRecruitingInput, report: Report)
   return { league: 'fbajc', throughSeason: JC_LAST_SEASON, classes };
 }
 
+/**
+ * The freshly imported file plus the classes the app saved after the import (seasons later than `JC_LAST_SEASON`, added when a season is finished),
+ * so importing the sheet again never drops them.
+ */
+export function keepSavedClasses(built: JcRecruitingHistoryFile, existing: JcRecruitingHistoryFile | null): JcRecruitingHistoryFile {
+  const saved = (existing?.classes ?? []).filter(c => c.season > JC_LAST_SEASON);
+  return saved.length ? { ...built, classes: [...built.classes, ...saved].sort((a, b) => a.season - b.season) } : built;
+}
+
 export function planJcRecruitingHistory(input: JcRecruitingInput, report: Report): { docs: [string, unknown][]; problems: string[] } {
   const file = buildRecruitingHistory(input, report);
   if (report.hasErrors) return { docs: [], problems: [] };

@@ -1,4 +1,4 @@
-import type { CalendarFile, JcAwardsFile, JcPostseasonFile, JcRankingsFile, JcScheduleFile, PlayersFile, RecruitingFile, ResultsFile, RostersFile, SummaryFile, TeamsFile } from '../shared/types';
+import type { CalendarFile, JcAwardsFile, JcPostseasonFile, JcRankingsFile, JcRecruitingHistoryFile, JcScheduleFile, PlayersFile, RecruitingFile, ResultsFile, RostersFile, SummaryFile, TeamsFile } from '../shared/types';
 
 export const DAYS = 29;
 export const TEAMS_PER_DAY = 108;
@@ -19,13 +19,15 @@ export interface JcState {
   summary: SummaryFile | null;
   /** The recruiting board of the class that plays this season (null when it doesn't exist). */
   board: RecruitingFile | null;
+  /** The past recruiting classes (imported through S78; finishing a season adds its class). Null when the file doesn't exist. */
+  recruitingHistory: JcRecruitingHistoryFile | null;
 }
 
-export type JcKey = 'rosters' | 'schedule' | 'results' | 'rankings' | 'postseason' | 'awards' | 'summary' | 'calendar';
+export type JcKey = 'rosters' | 'schedule' | 'results' | 'rankings' | 'postseason' | 'awards' | 'summary' | 'calendar' | 'recruitingHistory';
 export type JcResult = { ok: true; state: JcState; changed: JcKey[]; label: string } | { ok: false; problems: string[] };
 export const jcFail = (problems: string[]): { ok: false; problems: string[] } => ({ ok: false, problems });
 
-export const jcDocPath = (key: JcKey, season: number): string => (key === 'calendar' ? 'calendar.json' : `leagues/fbajc/S${season}/${key}.json`);
+export const jcDocPath = (key: JcKey, season: number): string => (key === 'calendar' ? 'calendar.json' : key === 'recruitingHistory' ? 'leagues/fbajc/recruitingHistory.json' : `leagues/fbajc/S${season}/${key}.json`);
 
 export function jcWrites(r: Extract<JcResult, { ok: true }>): { path: string; doc: unknown }[] {
   return r.changed.map(key => ({ path: jcDocPath(key, r.state.season), doc: r.state[key] }));

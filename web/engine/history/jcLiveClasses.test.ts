@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { PlayersFile, RecruitingFile, TeamsFile } from '../shared/types';
-import { liveRecruitingClasses } from './jcLiveClasses';
+import { archiveRecruitingClass, liveRecruitingClasses } from './jcLiveClasses';
 
 const badge = { bg: '#000', fg: '#fff' };
 const teams: TeamsFile = { league: 'fbajc', teams: [
@@ -22,9 +22,11 @@ const board = (season: number, over: Partial<RecruitingFile> = {}): RecruitingFi
   ...over,
 });
 
+const have = (...seasons: number[]) => new Set(seasons);
+
 describe('liveRecruitingClasses', () => {
-  it('turns a locked board after the imported history into a class: ranked recruits and the portal', () => {
-    const [c] = liveRecruitingClasses([board(78)], teams, players, 78);
+  it('turns a locked board for a played season into a class: ranked recruits and the portal', () => {
+    const [c] = liveRecruitingClasses([board(78)], teams, players, { have: have(78), before: 80 });
     expect(c.season).toBe(79);
     expect(c.recruits).toEqual([
       { rank: 1, stars: 4, pos: 'PG', name: 'Ann Ace', playerId: 'p00001', rating: 94, consensus: 98.8, school: 'North Carolina', teamId: 'UNC' },
@@ -34,15 +36,36 @@ describe('liveRecruitingClasses', () => {
       { rank: 1, pos: 'SF', name: 'Cy Mover', playerId: 'p00003', rating: 85, fromSchool: 'North Carolina', fromTeamId: 'UNC', toSchool: 'Duke', toTeamId: 'DUK' },
     ]);
   });
-  it('skips boards already in the imported history, unlocked boards and boards before the class is created', () => {
-    expect(liveRecruitingClasses([board(77)], teams, players, 78)).toEqual([]);
-    expect(liveRecruitingClasses([board(79, { locked: false })], teams, players, 78)).toEqual([]);
-    expect(liveRecruitingClasses([board(79, { created: false, recruits: [], classDraft: [] })], teams, players, 78)).toEqual([]);
+  it('skips classes already in the history, unlocked boards, boards with no class yet and seasons not played yet', () => {
+    expect(liveRecruitingClasses([board(77)], teams, players, { have: have(78), before: 80 })).toEqual([]);
+    expect(liveRecruitingClasses([board(78)], teams, players, { have: have(78, 79), before: 80 })).toEqual([]);
+    expect(liveRecruitingClasses([board(78, { locked: false })], teams, players, { have: have(), before: 80 })).toEqual([]);
+    expect(liveRecruitingClasses([board(78, { created: false, recruits: [], classDraft: [] })], teams, players, { have: have(), before: 80 })).toEqual([]);
+    expect(liveRecruitingClasses([board(79)], teams, players, { have: have(78), before: 80 })).toEqual([]);
   });
   it('lists several classes oldest first and keeps an uncommitted recruit without a school', () => {
     const open = board(79, { recruits: [prospect('p00001', 94, 98.8, null)], portal: [] });
-    const out = liveRecruitingClasses([open, board(78)], teams, players, 78);
+    const out = liveRecruitingClasses([open, board(78)], teams, players, { have: have(78), before: 81 });
     expect(out.map(c => c.season)).toEqual([79, 80]);
     expect(out[1].recruits[0]).toMatchObject({ school: null, teamId: null });
+  });
+});
+
+describe('archiveRecruitingClass', () => {
+  const history = { league: 'fbajc' as const, throughSeason: 78, classes: [{ season: 78, recruits: [], portal: [] }] };
+  it("adds the board's class to the history, keeping the imported ones", () => {
+    const out = archiveRecruitingClass(history, board(78), teams, players)!;
+    expect(out.classes.map(c => c.season)).toEqual([78, 79]);
+    expect(out.classes[1].recruits[0].name).toBe('Ann Ace');
+    expect(out.throughSeason).toBe(78);
+  });
+  it('creates the history when there is none', () => {
+    expect(archiveRecruitingClass(null, board(78), teams, players)!.classes.map(c => c.season)).toEqual([79]);
+  });
+  it('does nothing when the class is already there, the board is unlocked or has no class', () => {
+    expect(archiveRecruitingClass({ ...history, classes: [{ season: 79, recruits: [], portal: [] }] }, board(78), teams, players)).toBeNull();
+    expect(archiveRecruitingClass(history, board(78, { locked: false }), teams, players)).toBeNull();
+    expect(archiveRecruitingClass(history, board(78, { created: false, recruits: [], classDraft: [] }), teams, players)).toBeNull();
+    expect(archiveRecruitingClass(history, null, teams, players)).toBeNull();
   });
 });

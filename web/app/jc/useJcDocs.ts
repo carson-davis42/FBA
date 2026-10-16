@@ -1,4 +1,4 @@
-import type { CalendarFile, JcAwardsFile, JcPostseasonFile, JcRankingsFile, JcScheduleFile, PlayersFile, RecruitingFile, ResultsFile, RostersFile, SummaryFile, TeamsFile } from '../../engine/shared/types';
+import type { CalendarFile, JcAwardsFile, JcPostseasonFile, JcRankingsFile, JcScheduleFile, PlayersFile, JcRecruitingHistoryFile, RecruitingFile, ResultsFile, RostersFile, SummaryFile, TeamsFile } from '../../engine/shared/types';
 import { boardPath } from '../../engine/college/state';
 import { jcDocPath, type JcState } from '../../engine/jc/state';
 import { docSettled, useDoc, type Versions } from '../api';
@@ -31,7 +31,8 @@ export function useJcDocs(season: number | null): JcDocs {
   const summary = useDoc<SummaryFile>(on ? path('summary.json') : null);
   const board = useDoc<RecruitingFile>(on ? boardPath(s - 1) : null);
   const previous = useDoc<SummaryFile>(on ? `leagues/fbajc/S${s - 1}/summary.json` : null);
-  const all = [calendar, teams, players, rosters, schedule, results, rankings, postseason, awards, summary, board, previous];
+  const recruitingHistory = useDoc<JcRecruitingHistoryFile>(on ? 'leagues/fbajc/recruitingHistory.json' : null);
+  const all = [calendar, teams, players, rosters, schedule, results, rankings, postseason, awards, summary, board, previous, recruitingHistory];
 
   const reload = (): void => { for (const d of all) d.reload(); };
 
@@ -45,6 +46,7 @@ export function useJcDocs(season: number | null): JcDocs {
     versions[jcDocPath('awards', s)] = awards.version;
     versions[jcDocPath('summary', s)] = summary.version;
     versions[jcDocPath('calendar', s)] = calendar.version;
+    versions[jcDocPath('recruitingHistory', s)] = recruitingHistory.version;
   }
 
   const failed = all.find(d => d.error && !d.missing)?.error;
@@ -71,6 +73,7 @@ export function useJcDocs(season: number | null): JcDocs {
         awards: awards.data ?? null,
         summary: summary.data ?? null,
         board: board.data ?? null,
+        recruitingHistory: recruitingHistory.data ?? null,
       }
     : null;
   return { state, versions, loading, error: failed?.message ?? '', missing, reload, lastSummary: previous.data ?? null };
