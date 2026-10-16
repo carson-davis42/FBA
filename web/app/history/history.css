@@ -1,5 +1,12 @@
 /* history: hub, championships timeline, award cards, leaders, plaques */
-.feature { display: grid; gap: var(--s1); text-decoration: none; color: var(--text); }
+.feature { display: grid; justify-items: center; align-content: center; gap: var(--s3); padding: var(--s5) var(--s4); text-align: center; text-decoration: none; color: var(--text); }
+.feature-icon { display: block; width: 88px; height: 64px; color: var(--text); fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.feature-icon .fill { fill: var(--accent); stroke: var(--accent); }
+.feature-icon .fill-line { stroke: var(--accent); }
+.feature-icon .thick { stroke-width: 6; }
+.feature-logos { position: relative; width: 132px; }
+.feature-logo { position: absolute; line-height: 0; }
+.feature:hover .feature-icon { color: var(--accent); }
 .feature-title { font-family: var(--font-head); font-size: var(--fs-lg); text-transform: var(--head-transform); letter-spacing: 0.02em; }
 
 /* The Teams grid card: name on its own line, the trophy counts underneath (a plain block let the counts run on after the name). */
