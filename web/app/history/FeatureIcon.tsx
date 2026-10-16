@@ -1,4 +1,5 @@
-import type { Team } from '../../engine/shared/types';
+import type { MetaFile, Team } from '../../engine/shared/types';
+import { useDoc } from '../api';
 import { TeamMark } from '../components/TeamMark';
 
 export type IconName =
@@ -17,14 +18,18 @@ export function spreadTeams(teams: Team[]): Team[] {
   return [0.05, 0.3, 0.55, 0.8].map(f => teams[Math.floor(f * teams.length)]).filter(Boolean);
 }
 
-/** The given teams' logos (the first four), tilted and overlapping; empty until the teams load. */
+/**
+ * The given teams' logos (the first four), tilted and apart; empty until the teams load. Each is the logo of the current season, so a team
+ * that changed its logo since it made the list shows the new one. `season` is used until the current season is known.
+ */
 function TeamsIcon({ teams, season }: { teams: Team[]; season: number }) {
+  const { data: meta } = useDoc<MetaFile>('meta.json');
   const picks = teams.slice(0, 4);
   return (
     <span className="feature-icon feature-logos" data-icon="teams" aria-hidden="true">
       {picks.map((t, i) => (
         <span key={t.teamId} className="feature-logo" style={{ left: SPOTS[i].left, top: SPOTS[i].top, transform: `rotate(${SPOTS[i].rot}deg)` }}>
-          <TeamMark team={t} season={season} size={SPOTS[i].size} silent />
+          <TeamMark team={t} season={meta?.currentSeason ?? season} size={SPOTS[i].size} silent />
         </span>
       ))}
     </span>
