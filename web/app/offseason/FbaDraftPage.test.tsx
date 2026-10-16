@@ -129,6 +129,21 @@ describe('FbaDraftPage', () => {
     expect(await within(await screen.findByRole('table', { name: 'Prospects' })).findByRole('link', { name: 'Sophie So' })).toBeTruthy();
   });
 
+  it('lets an eligible player enter the portal straight from the declare list, in one batch', async () => {
+    const log = stubApi(docs());
+    renderPage();
+    const list = await screen.findByRole('list', { name: 'School One early entrants' });
+    const sophie = within(list).getByText(/Sophie So/).closest('li') as HTMLElement;
+    const button = within(sophie).getByRole('button', { name: 'Portal' }) as HTMLButtonElement;
+    await waitFor(() => expect(button.disabled).toBe(false));
+    fireEvent.click(button);
+    fireEvent.click(button);
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    expect(log.batches[0].label).toBe('Sophie So enters the transfer portal');
+    expect(log.batches[0].writes.map(w => w.path).sort()).toEqual([boardPath(79), 'leagues/fbajc/S80/rosters.json', 'leagues/fbajc/S80/transactions.json'].sort());
+    expect(log.batches).toHaveLength(1);
+  });
+
   it('sends an early entrant back to school or into the portal', async () => {
     const log = stubApi(docs());
     renderPage();
