@@ -407,7 +407,7 @@ describe('finishExpansion', () => {
       pick: 1, teamId: 'PHI', teamName: 'Philly Phantoms', viaTeamId: null, name: 'A PG', playerId: pid('A', 'PG'),
       pos: 'PG', detail: '25', college: null,
     });
-    expect(entry.picks[1]).toMatchObject({ pick: 2, teamId: 'LAL', teamName: 'Team 32', name: 'B PG' });
+    expect(entry.picks[1]).toMatchObject({ pick: 2, teamId: 'LAL', teamName: 'Boise Raptors', name: 'B PG' });
     expect(done.history.drafts.find(d => d.season === 79)).toBeDefined();
     expect(DraftHistoryFile.safeParse(done.history).success).toBe(true);
 
