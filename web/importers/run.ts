@@ -5,6 +5,7 @@ import type { CalendarFile, Franchise, FranchisesFile, HallOfFameFile, JcRecruit
 import { withExpansionStep, withQualifyingStep } from '../engine/shared/calendar';
 import { EXPANSION_SEASON } from '../engine/shared/expansion';
 import { refreshExpansionTeams } from './expansionTeams';
+import { repairClassYears } from './classYears';
 import { applyDivisions } from './divisions';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
@@ -821,7 +822,36 @@ export async function importDivisions(): Promise<void> {
   console.log('Wrote the S80 divisions to leagues/fba/teams.json');
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--expansion-step', '--expansion-teams', '--divisions', '--season-start', '--check-trophies'];
+/**
+ * `--fix-class-years`: sets each returning college player's class in the current season's rosters to one above last season's (a Fr in the
+ * previous season is a So now). `--dry-run` lists the changes without writing. Writes only leagues/fbajc/S{n}/rosters.json.
+ */
+export async function fixClassYears(): Promise<void> {
+  const dir = requireDataDir('--fix-class-years');
+  const meta = readDataJson<MetaFile>(dir, 'meta.json');
+  const n = meta?.rosterSeason.fbajc;
+  const prev = n === undefined ? null : readDataJson<RostersFile>(dir, `leagues/fbajc/S${n - 1}/rosters.json`);
+  const cur = n === undefined ? null : readDataJson<RostersFile>(dir, `leagues/fbajc/S${n}/rosters.json`);
+  if (n === undefined || !prev || !cur) {
+    console.error('--fix-class-years needs meta.json and the last two seasons of leagues/fbajc rosters in the data folder.');
+    process.exit(1);
+  }
+  const players = readDataJson<PlayersFile>(dir, 'players.json');
+  const r = repairClassYears(prev, cur);
+  for (const c of r.changed) console.log(`${players?.players[c.playerId]?.name ?? c.playerId} (${c.teamId}): ${c.from ?? '—'} -> ${c.to}`);
+  if (r.changed.length === 0) {
+    console.log(`Every S${n} class year is already one above S${n - 1}`);
+    return;
+  }
+  if (process.argv.includes('--dry-run')) {
+    console.log(`${r.changed.length} change(s) found; nothing was written (--dry-run)`);
+    return;
+  }
+  writeDoc(dir, `leagues/fbajc/S${n}/rosters.json`, r.rosters);
+  console.log(`Fixed ${r.changed.length} class year(s) in S${n}`);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--expansion-step', '--expansion-teams', '--divisions', '--fix-class-years', '--season-start', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -854,6 +884,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--expansion-step')) return importExpansionStep();
   if (process.argv.includes('--expansion-teams')) return importExpansionTeams();
   if (process.argv.includes('--divisions')) return importDivisions();
+  if (process.argv.includes('--fix-class-years')) return fixClassYears();
   if (process.argv.includes('--season-start')) return importSeasonStart();
   if (process.argv.includes('--check-trophies')) return checkTrophies();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
