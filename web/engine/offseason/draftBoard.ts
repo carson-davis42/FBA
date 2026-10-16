@@ -151,6 +151,35 @@ export function draftToPortal(state: DraftBoardState, playerId: string, ctx: Mov
   };
 }
 
+/** A rostered player (the same list that can declare) goes straight into the transfer portal without declaring for the draft. */
+export function enterPortal(state: DraftBoardState, playerId: string, ctx: MoveContext): WritesResult {
+  const started = draftBoardProblem(state.draft);
+  if (started) return fail(started);
+  const name = collegeName(state.players, playerId);
+  const c = declareCandidates(state).find(x => x.playerId === playerId);
+  if (!c) return fail(`${name} can't enter the portal from here`);
+  const entries = state.rosters.teams[c.teamId];
+  const index = entries.findIndex(e => e.playerId === playerId);
+  const entry = entries[index];
+  const rosters = withTeam(state.rosters, c.teamId, entries.map((e, i) => (i === index ? collegeHole(e.position) : e)));
+  const portalPlayer: PortalPlayer = {
+    playerId, position: c.position, classYear: c.classYear, rating: c.rating, stars: entry.stars ?? null,
+    projections: {}, committedTo: null, fromTeam: c.teamId,
+  };
+  const board = { ...state.board, portal: [...state.board.portal, portalPlayer] };
+  const line = `${name} (${c.classYear} ${c.position}${ratingNote(c.rating)}) leaves ${school(state, c.teamId)} and enters the transfer portal`;
+  const tx = appendTx(state.collegeTx, ctx, 'portal', [c.teamId], [line]);
+  return {
+    ok: true,
+    writes: [
+      { path: rostersPath(state.season), doc: rosters },
+      { path: boardPath(state.season - 1), doc: board },
+      { path: collegeTxPath(state.season), doc: tx },
+    ],
+    label: `${name} enters the transfer portal`,
+  };
+}
+
 export function setProspectRating(state: DraftBoardState, playerId: string, value: number): WritesResult {
   const started = draftBoardProblem(state.draft);
   if (started) return fail(started);

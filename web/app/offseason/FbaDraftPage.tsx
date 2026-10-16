@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { boardPath, collegeName, emptyRecruiting } from '../../engine/college/state';
 import { draftPath } from '../../engine/offseason/adjustAge';
 import {
-  backToSchool, boardOrder, declare, declareCandidates, draftToPortal, setProspectRating, type DraftBoardState,
+  backToSchool, boardOrder, declare, declareCandidates, draftToPortal, enterPortal, setProspectRating, type DraftBoardState,
 } from '../../engine/offseason/draftBoard';
 import {
   draftPick, draftStepId, finishDraft, finishDraftProblems, onTheClock, startDraft, startDraftProblems, type FbaDraftState,
@@ -311,6 +311,8 @@ export function FbaDraftPage() {
                   <li key={c.playerId}>
                     <PlayerName id={c.playerId} name={nameOf(c.playerId)} />, {c.classYear} {c.position}{c.rating !== null && `, ${c.rating}`}{' '}
                     <button className="btn" disabled={saving} onClick={() => run(() => declare(boardState, c.playerId, ctx()))}>Declare</button>
+                    {' '}
+                    <button className="btn" disabled={saving} onClick={() => run(() => enterPortal(boardState, c.playerId, ctx()))}>Portal</button>
                   </li>
                 ))}
               </ul>

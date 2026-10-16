@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { DraftFile, PlayersFile, RecruitingFile, RostersFile, TransactionsFile } from '../shared/types';
-import { backToSchool, boardOrder, declare, declareCandidates, draftBoardProblem, draftToPortal, setProspectRating } from './draftBoard';
+import { backToSchool, boardOrder, declare, declareCandidates, draftBoardProblem, draftToPortal, enterPortal, setProspectRating } from './draftBoard';
 import { draftBoardBoard, draftBoardDraft, draftBoardRatings, draftBoardState } from './testFixtures';
 
 const ctx = { batchId: 'b1' };
@@ -100,6 +100,30 @@ describe('backToSchool', () => {
     expect(problems(backToSchool(draftBoardState(), 'p00001', ctx))).toEqual(["Seniors can't go back to school"]);
     expect(problems(backToSchool(draftBoardState(), 'p00003', ctx))).toEqual(["Cal Center isn't on the draft board"]);
     expect(problems(backToSchool(started(), 'p00034', ctx))).toEqual(['The S80 draft has started']);
+  });
+});
+
+describe('enterPortal', () => {
+  it('opens his slot, puts him in the portal and logs it, without touching the draft', () => {
+    const r = ok(enterPortal(draftBoardState(), 'p00003', ctx));
+    expect(r.writes.map(w => w.path)).toEqual([paths.rosters, paths.board, paths.tx]);
+    expect(r.label).toBe('Cal Center enters the transfer portal');
+    expect(doc<RostersFile>(r, paths.rosters).teams.t1[4]).toEqual({ playerId: null, position: 'C', rating: null, age: null, points: 0, stars: null, classYear: null });
+    expect(doc<RecruitingFile>(r, paths.board).portal.at(-1)).toEqual({
+      playerId: 'p00003', position: 'C', classYear: 'Jr', rating: 74, stars: 3, projections: {}, committedTo: null, fromTeam: 't1',
+    });
+    expect(doc<TransactionsFile>(r, paths.tx).entries[0]).toMatchObject({
+      type: 'portal', teams: ['t1'], lines: ['Cal Center (Jr C, 74) leaves School One and enters the transfer portal'],
+    });
+  });
+  it('refuses a non-candidate (a prospect, a freshman) and a started draft', () => {
+    expect(problems(enterPortal(draftBoardState(), 'p00034', ctx))).toEqual(["Dan Draftee can't enter the portal from here"]);
+    expect(problems(enterPortal(started(), 'p00003', ctx))).toEqual(['The S80 draft has started']);
+  });
+  it('leaves the input state untouched', () => {
+    const s = draftBoardState();
+    ok(enterPortal(s, 'p00003', ctx));
+    expect(s.board).toEqual(draftBoardBoard());
   });
 });
 
