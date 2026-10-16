@@ -11,9 +11,27 @@ import type {
   CalendarFile, GameResult, LotteryFile, LotteryOdds, PicksFile, PlayoffsFile, ResultsFile, TeamsFile, TransactionsFile,
 } from '../shared/types';
 
-/** Pick-1 odds (percent) by lottery slot, worst team first, keyed by lottery size. The S74 table. */
+/**
+ * The same shape for another lottery size: the cumulative odds curve of `base` is read at n evenly spaced points (linear interpolation)
+ * and differenced, so each slot gets the share of the lottery it would have had on the base table.
+ */
+export function stretchOdds(base: number[], n: number): number[] {
+  const cum = [0];
+  for (const p of base) cum.push(cum[cum.length - 1] + p);
+  const at = (x: number) => {
+    const i = Math.min(Math.floor(x), base.length - 1);
+    return cum[i] + (cum[i + 1] - cum[i]) * (x - i);
+  };
+  const step = base.length / n;
+  return Array.from({ length: n }, (_, j) => at((j + 1) * step) - at(j * step));
+}
+
+const ODDS_14 = [14, 14, 14, 12.5, 10.5, 9, 7.5, 6, 4.5, 3, 2, 1.5, 1, 0.5];
+
+/** Pick-1 odds (percent) by lottery slot, worst team first, keyed by lottery size. 14 is the S74 table; 16 is that table stretched (S81 on, no expansion teams). */
 export const LOTTERY_ODDS: Record<number, number[]> = {
-  14: [14, 14, 14, 12.5, 10.5, 9, 7.5, 6, 4.5, 3, 2, 1.5, 1, 0.5],
+  14: ODDS_14,
+  16: stretchOdds(ODDS_14, 16),
 };
 
 export interface LotteryTeam { teamId: string; w: number; l: number; expansion?: boolean }
