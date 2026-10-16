@@ -52,6 +52,16 @@ describe('JcHistoryHome', () => {
     expect(screen.getByRole('link', { name: 'North Carolina' }).getAttribute('href')).toBe('/history/fbajc/schools/UNC');
   });
 
+  it('the hub cards are a title and a symbol, with no description text', async () => {
+    stub([sum(78, 'North Carolina', 'UNC')]);
+    render(<MemoryRouter><JcHistoryHome /></MemoryRouter>);
+    await screen.findByRole('heading', { name: 'History' });
+    expect(screen.queryByText(/Every national champion|Every past recruiting class/)).toBeNull();
+    for (const name of ['Championships', 'Awards', 'Seasons', 'Recruiting', 'Schools']) {
+      expect(screen.getByRole('link', { name }).querySelector('[data-icon]'), name).not.toBeNull();
+    }
+  });
+
   it('renders without any seasons', async () => {
     stub([]);
     render(<MemoryRouter><JcHistoryHome /></MemoryRouter>);

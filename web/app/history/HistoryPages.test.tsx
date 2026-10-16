@@ -56,6 +56,16 @@ describe('History pages', () => {
     expect(href('Players')).toBe('/history/fba/players');
   });
 
+  it('the hub cards are a title and a symbol, with no description text', async () => {
+    stub();
+    renderAt(<HistoryHome />);
+    await screen.findByRole('heading', { name: 'History' });
+    expect(screen.queryByText(/Every champion|Every draft board|Search and browse/)).toBeNull();
+    for (const name of ['Championships', 'Teams', 'Drafts', 'Awards', 'Awards by player', 'Career leaders', 'Streaks', 'Players', 'Hall of Fame', 'Transactions', 'Timeline', 'Seasons']) {
+      expect(screen.getByRole('link', { name }).querySelector('[data-icon]'), name).not.toBeNull();
+    }
+  });
+
   it('lists championships newest first with the en-dash score and a Finals MVP link', async () => {
     stub();
     renderAt(<ChampionshipsPage />);

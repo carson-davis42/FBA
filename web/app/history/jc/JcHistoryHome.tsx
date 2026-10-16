@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
+import type { Team } from '../../../engine/shared/types';
 import { isJcNationalTitle, jcSeasonLabel } from '../../../engine/history/jc';
 import { useHistory } from '../../api';
 import { PageHeader } from '../../components/PageHeader';
+import { jcFinalFour } from '../../../engine/history/hubTeams';
+import { FeatureIcon, spreadTeams, type IconName } from '../FeatureIcon';
+import { findTeam } from '../useTeams';
 import { SkippedWarning } from '../PlayerLink';
 import '../history.css';
 import { HistoryLeagueSwitch } from '../d2/HistoryLeagueSwitch';
@@ -15,12 +19,15 @@ export function JcHistoryHome() {
   const ordered = [...seasons].sort((a, b) => b.season - a.season);
   const latest = ordered[0];
   const champ = latest?.champions.find(c => isJcNationalTitle(c.title));
-  const cards: { to: string; title: string; text: string }[] = [
-    { to: '/history/fbajc/championships', title: 'Championships', text: 'Every national champion, NIT champion and title count.' },
-    { to: '/history/fbajc/awards', title: 'Awards', text: 'National and conference awards, season by season.' },
-    ...(latest ? [{ to: `/history/fbajc/season/${latest.season}`, title: 'Seasons', text: 'Champions, awards, All-Americans and brackets for any season.' }] : []),
-    { to: '/history/fbajc/recruiting', title: 'Recruiting', text: 'Every past recruiting class and transfer portal, with where each player went.' },
-    { to: '/history/fbajc/schools', title: 'Schools', text: 'Every school: titles, March Madness runs and awards.' },
+  /** The latest March Madness's Final Four, else a spread of the schools. */
+  const found = latest ? jcFinalFour(latest).map(name => findTeam(teams, null, name)).filter((t): t is Team => !!t) : [];
+  const finalFour = found.length ? found : spreadTeams(teams);
+  const cards: { to: string; title: string; icon: IconName }[] = [
+    { to: '/history/fbajc/championships', title: 'Championships', icon: 'trophy' },
+    { to: '/history/fbajc/awards', title: 'Awards', icon: 'awards' },
+    ...(latest ? [{ to: `/history/fbajc/season/${latest.season}`, title: 'Seasons', icon: 'seasons' as const }] : []),
+    { to: '/history/fbajc/recruiting', title: 'Recruiting', icon: 'recruiting' },
+    { to: '/history/fbajc/schools', title: 'Schools', icon: 'teams' },
   ];
   return (
     <section className="stack">
@@ -35,8 +42,8 @@ export function JcHistoryHome() {
       <div className="card-grid">
         {cards.map(c => (
           <Link key={c.title} to={c.to} className="card link headed feature" aria-label={c.title}>
+            <FeatureIcon name={c.icon} teams={finalFour} season={latest?.season ?? 78} />
             <span className="feature-title">{c.title}</span>
-            <span className="muted">{c.text}</span>
           </Link>
         ))}
       </div>

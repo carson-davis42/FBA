@@ -1,32 +1,40 @@
 import { Link } from 'react-router-dom';
+import type { Team } from '../../engine/shared/types';
 import { useHistory } from '../api';
 import { PageHeader } from '../components/PageHeader';
+import { fbaSemifinalists } from '../../engine/history/hubTeams';
+import { FeatureIcon, spreadTeams, type IconName } from './FeatureIcon';
 import { HistoryLeagueSwitch } from './d2/HistoryLeagueSwitch';
+import { findTeam, useFbaTeams } from './useTeams';
 import { SkippedWarning } from './PlayerLink';
 import './history.css';
 
-const FEATURES: { to: string; title: string; text: string }[] = [
-  { to: '/history/fba/championships', title: 'Championships', text: 'Every champion, runner-up and Finals MVP.' },
-  { to: '/history/fba/teams', title: 'Teams', text: 'Every franchise: eras, logos and trophy case.' },
-  { to: '/history/fba/drafts', title: 'Drafts', text: 'Every draft board since S49.' },
-  { to: '/history/fba/awards', title: 'Awards', text: 'The winners of each award, season by season.' },
-  { to: '/history/fba/awards/players', title: 'Awards by player', text: 'Award counts for every player, sortable.' },
-  { to: '/history/fba/leaders', title: 'Career leaders', text: 'Points, games and points per game.' },
-  { to: '/history/fba/streaks', title: 'Streaks', text: 'The longest winning and losing streaks ever, with the ones running now.' },
-  { to: '/history/fba/players', title: 'Players', text: 'Search and browse every player in the record.' },
-  { to: '/history/fba/hall-of-fame', title: 'Hall of Fame', text: 'The inducted classes, newest first.' },
-  { to: '/history/fba/transactions', title: 'Transactions', text: 'Trades, signings and cuts by season.' },
-  { to: '/history/fba/events', title: 'Timeline', text: 'Milestones, name changes and rule changes by season.' },
+const FEATURES: { to: string; title: string; icon: IconName }[] = [
+  { to: '/history/fba/championships', title: 'Championships', icon: 'trophy' },
+  { to: '/history/fba/teams', title: 'Teams', icon: 'teams' },
+  { to: '/history/fba/drafts', title: 'Drafts', icon: 'draft' },
+  { to: '/history/fba/awards', title: 'Awards', icon: 'awards' },
+  { to: '/history/fba/awards/players', title: 'Awards by player', icon: 'awardsByPlayer' },
+  { to: '/history/fba/leaders', title: 'Career leaders', icon: 'leaders' },
+  { to: '/history/fba/streaks', title: 'Streaks', icon: 'streaks' },
+  { to: '/history/fba/players', title: 'Players', icon: 'players' },
+  { to: '/history/fba/hall-of-fame', title: 'Hall of Fame', icon: 'hall' },
+  { to: '/history/fba/transactions', title: 'Transactions', icon: 'transactions' },
+  { to: '/history/fba/events', title: 'Timeline', icon: 'timeline' },
 ];
 
 export function HistoryHome() {
   const { seasons, errors, error } = useHistory('fba');
+  const { teams } = useFbaTeams();
   if (error) return <p className="error">Couldn't load the history: {error.message}</p>;
   if (!seasons) return <p className="muted">Loading…</p>;
   const latest = seasons.reduce((m, s) => Math.max(m, s.season), 0);
   const ordered = [...seasons].sort((a, b) => b.season - a.season);
+  /** The previous season's last four (conference finalists), else a spread of the league. */
+  const finalists = ordered[0] ? fbaSemifinalists(ordered[0]).map(id => findTeam(teams, id)).filter((t): t is Team => !!t) : [];
+  const lastFour = finalists.length ? finalists : spreadTeams(teams);
   const cards = latest > 0
-    ? [FEATURES[0], FEATURES[1], FEATURES[2], FEATURES[3], { to: `/history/fba/season/${latest}`, title: 'Seasons', text: 'Standings, playoffs and awards for any season.' }, ...FEATURES.slice(4)]
+    ? [FEATURES[0], FEATURES[1], FEATURES[2], FEATURES[3], { to: `/history/fba/season/${latest}`, title: 'Seasons', icon: 'seasons' as const }, ...FEATURES.slice(4)]
     : FEATURES;
   return (
     <section className="stack">
@@ -36,8 +44,8 @@ export function HistoryHome() {
       <div className="card-grid">
         {cards.map(c => (
           <Link key={c.title} to={c.to} className="card link headed feature" aria-label={c.title}>
+            <FeatureIcon name={c.icon} teams={lastFour} season={latest} />
             <span className="feature-title">{c.title}</span>
-            <span className="muted">{c.text}</span>
           </Link>
         ))}
       </div>

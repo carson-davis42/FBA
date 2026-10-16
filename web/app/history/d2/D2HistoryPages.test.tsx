@@ -66,6 +66,16 @@ describe('D2 history pages', () => {
     expect(href('D2')).toBe('/history/fbad2');
   });
 
+  it('the hub cards are a title and a symbol, with no description text', async () => {
+    stub();
+    renderAt(<D2HistoryHome />);
+    await screen.findByRole('heading', { name: 'History' });
+    expect(screen.queryByText(/Every D2 champion|Every D2 draft board/)).toBeNull();
+    for (const name of ['Championships', 'Awards', 'Seasons', 'Teams', 'Drafts']) {
+      expect(screen.getByRole('link', { name }).querySelector('[data-icon]'), name).not.toBeNull();
+    }
+  });
+
   it('lists the titles newest first with linked known teams', async () => {
     stub();
     const { container } = renderAt(<D2ChampionshipsPage />);

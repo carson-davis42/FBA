@@ -1,22 +1,31 @@
 import { Link } from 'react-router-dom';
 import { useHistory } from '../../api';
 import { PageHeader } from '../../components/PageHeader';
+import { d2LeagueChampions } from '../../../engine/history/hubTeams';
+import type { Team } from '../../../engine/shared/types';
+import { FeatureIcon, spreadTeams, type IconName } from '../FeatureIcon';
+import { findTeam } from '../useTeams';
 import { SkippedWarning } from '../PlayerLink';
 import '../history.css';
 import { HistoryLeagueSwitch } from './HistoryLeagueSwitch';
+import { useD2Teams } from './useD2';
 
 export function D2HistoryHome() {
   const { seasons, errors, error } = useHistory('fbad2');
+  const { teams } = useD2Teams();
   if (error) return <p className="error">Couldn't load the history: {error.message}</p>;
   if (!seasons) return <p className="muted">Loading…</p>;
   const latest = seasons.reduce((m, s) => Math.max(m, s.season), 0);
   const ordered = [...seasons].sort((a, b) => b.season - a.season);
-  const cards: { to: string; title: string; text: string }[] = [
-    { to: '/history/fbad2/championships', title: 'Championships', text: 'Every D2 champion, runner-up and Series MVP.' },
-    { to: '/history/fbad2/awards', title: 'Awards', text: 'MVPs and regular-season champions, season by season.' },
-    ...(latest > 0 ? [{ to: `/history/fbad2/season/${latest}`, title: 'Seasons', text: 'Standings, playoffs and awards for any season.' }] : []),
-    { to: '/history/fbad2/teams', title: 'Teams', text: 'Every D2 team: leagues, titles and draft picks.' },
-    { to: '/history/fbad2/drafts', title: 'Drafts', text: 'Every D2 draft board.' },
+  /** The latest season's four league champions, else a spread of the league. */
+  const found = ordered[0] ? d2LeagueChampions(ordered[0]).map(id => findTeam(teams, id)).filter((t): t is Team => !!t) : [];
+  const champions = found.length ? found : spreadTeams(teams);
+  const cards: { to: string; title: string; icon: IconName }[] = [
+    { to: '/history/fbad2/championships', title: 'Championships', icon: 'trophy' },
+    { to: '/history/fbad2/awards', title: 'Awards', icon: 'awards' },
+    ...(latest > 0 ? [{ to: `/history/fbad2/season/${latest}`, title: 'Seasons', icon: 'seasons' as const }] : []),
+    { to: '/history/fbad2/teams', title: 'Teams', icon: 'teams' },
+    { to: '/history/fbad2/drafts', title: 'Drafts', icon: 'draft' },
   ];
   return (
     <section className="stack">
@@ -26,8 +35,8 @@ export function D2HistoryHome() {
       <div className="card-grid">
         {cards.map(c => (
           <Link key={c.title} to={c.to} className="card link headed feature" aria-label={c.title}>
+            <FeatureIcon name={c.icon} teams={champions} season={latest} />
             <span className="feature-title">{c.title}</span>
-            <span className="muted">{c.text}</span>
           </Link>
         ))}
       </div>
