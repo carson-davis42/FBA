@@ -35,20 +35,26 @@ export function draftBoardProblem(draft: DraftFile): string | null {
 
 const fail = (...problems: string[]): WritesResult => ({ ok: false, problems });
 
-export function declareCandidates(state: DraftBoardState): { playerId: string; teamId: string; position: Position; classYear: ClassYear; rating: number | null }[] {
+/** Adjust Age moves everyone up a class; a draft prospect keeps the class he was in the season before (a graduate is a Sr). */
+const LAST_YEAR: Record<ClassYear, ClassYear> = { Fr: 'Fr', So: 'Fr', Jr: 'So', Sr: 'Jr' };
+const NEXT_YEAR: Record<ClassYear, ClassYear> = { Fr: 'So', So: 'Jr', Jr: 'Sr', Sr: 'Sr' };
+
+/** `classYear` is last season's class (shown and kept on the draft board); `rosterYear` is the class the roster holds now. */
+export function declareCandidates(state: DraftBoardState): { playerId: string; teamId: string; position: Position; classYear: ClassYear; rosterYear: ClassYear; rating: number | null }[] {
   const onBoard = new Set([...state.board.recruits, ...state.board.portal].map(p => p.playerId));
   const out: ReturnType<typeof declareCandidates> = [];
   for (const [teamId, entries] of Object.entries(state.rosters.teams)) {
     for (const e of entries) {
       if (!e.playerId || !e.classYear || e.classYear === 'Fr') continue;
       if (state.players.players[e.playerId]?.name == null || onBoard.has(e.playerId)) continue;
-      out.push({ playerId: e.playerId, teamId, position: e.position, classYear: e.classYear, rating: e.rating });
+      out.push({ playerId: e.playerId, teamId, position: e.position, classYear: LAST_YEAR[e.classYear], rosterYear: e.classYear, rating: e.rating });
     }
   }
   return out.sort((a, b) => school(state, a.teamId).localeCompare(school(state, b.teamId)) || POSITIONS.indexOf(a.position) - POSITIONS.indexOf(b.position));
 }
 
-const EARLY_AGE: Record<ClassYear, number> = { Fr: 18, So: 19, Jr: 20, Sr: 21 };
+/** The age in the draft year of a player who was in this class last season (a Fr turns 19). */
+const EARLY_AGE: Record<ClassYear, number> = { Fr: 19, So: 20, Jr: 21, Sr: 21 };
 
 export function declare(state: DraftBoardState, playerId: string, ctx: MoveContext): WritesResult {
   const started = draftBoardProblem(state.draft);
@@ -65,7 +71,7 @@ export function declare(state: DraftBoardState, playerId: string, ctx: MoveConte
     collegeRating: c.rating, stars: entries[index].stars ?? null, fbaRating: locked ?? null,
   };
   const rosters = withTeam(state.rosters, c.teamId, entries.map((e, i) => (i === index ? collegeHole(e.position) : e)));
-  // An early entrant with no birth season is dated from his class year: So 19, Jr 20, Sr 21 in the draft year.
+  // An early entrant with no birth season is dated from the class he was in last season: Fr 19, So 20, Jr 21 in the draft year.
   const person = state.players.players[playerId];
   const players: PlayersFile | null = person.birthSeason === null
     ? { ...state.players, players: { ...state.players.players, [playerId]: { ...person, birthSeason: state.season - EARLY_AGE[c.classYear] } } }
@@ -95,7 +101,7 @@ function leave(state: DraftBoardState, playerId: string, what: string): { p: Dra
 }
 
 const toPortal = (p: DraftProspect): PortalPlayer => ({
-  playerId: p.playerId, position: p.position, classYear: p.classYear, rating: p.collegeRating, stars: p.stars,
+  playerId: p.playerId, position: p.position, classYear: NEXT_YEAR[p.classYear], rating: p.collegeRating, stars: p.stars,
   projections: {}, committedTo: null, fromTeam: p.college,
 });
 
@@ -106,7 +112,7 @@ export function backToSchool(state: DraftBoardState, playerId: string, ctx: Move
   const entries = state.rosters.teams[p.college] ?? [];
   const index = entries.findIndex(e => e.playerId === null && e.position === p.position);
   if (index >= 0) {
-    const entry: RosterEntry = { playerId, position: p.position, rating: p.collegeRating, age: null, points: 0, stars: p.stars, classYear: p.classYear };
+    const entry: RosterEntry = { playerId, position: p.position, rating: p.collegeRating, age: null, points: 0, stars: p.stars, classYear: NEXT_YEAR[p.classYear] };
     const rosters = withTeam(state.rosters, p.college, entries.map((e, i) => (i === index ? entry : e)));
     const tx = appendTx(state.collegeTx, ctx, 'declare', [p.college], [`${name} returns to ${school(state, p.college)}`]);
     return {
@@ -163,7 +169,7 @@ export function enterPortal(state: DraftBoardState, playerId: string, ctx: MoveC
   const entry = entries[index];
   const rosters = withTeam(state.rosters, c.teamId, entries.map((e, i) => (i === index ? collegeHole(e.position) : e)));
   const portalPlayer: PortalPlayer = {
-    playerId, position: c.position, classYear: c.classYear, rating: c.rating, stars: entry.stars ?? null,
+    playerId, position: c.position, classYear: c.rosterYear, rating: c.rating, stars: entry.stars ?? null,
     projections: {}, committedTo: null, fromTeam: c.teamId,
   };
   const board = { ...state.board, portal: [...state.board.portal, portalPlayer] };

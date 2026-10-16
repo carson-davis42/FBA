@@ -22,11 +22,18 @@ describe('draftBoardProblem', () => {
 });
 
 describe('declareCandidates', () => {
-  it('lists named So/Jr/Sr, by school then position, without X, Fr, or board players', () => {
-    expect(declareCandidates(draftBoardState()).map(c => [c.playerId, c.teamId, c.position, c.classYear, c.rating])).toEqual([
-      ['p00031', 't1', 'SG', 'So', 70],
-      ['p00003', 't1', 'C', 'Jr', 74],
-      ['p00033', 't2', 'SF', 'So', 61],
+  it('lists named So/Jr/Sr on the rosters, by school then position, without X, Fr, or board players', () => {
+    expect(declareCandidates(draftBoardState()).map(c => [c.playerId, c.teamId, c.position, c.rating])).toEqual([
+      ['p00031', 't1', 'SG', 70],
+      ['p00003', 't1', 'C', 74],
+      ['p00033', 't2', 'SF', 61],
+    ]);
+  });
+  it('shows the class they were in last season, not the one Adjust Age moved them into', () => {
+    expect(declareCandidates(draftBoardState()).map(c => [c.playerId, c.classYear, c.rosterYear])).toEqual([
+      ['p00031', 'Fr', 'So'],
+      ['p00003', 'So', 'Jr'],
+      ['p00033', 'Fr', 'So'],
     ]);
   });
 });
@@ -37,11 +44,11 @@ describe('declare', () => {
     expect(r.writes.map(w => w.path)).toEqual([paths.draft, paths.rosters, paths.tx, 'players.json']);
     expect(r.label).toBe('Cal Center declares for the draft');
     expect(doc<DraftFile>(r, paths.draft).prospects.at(-1)).toEqual({
-      playerId: 'p00003', position: 'C', college: 't1', classYear: 'Jr', senior: false, collegeRating: 74, stars: 3, fbaRating: null,
+      playerId: 'p00003', position: 'C', college: 't1', classYear: 'So', senior: false, collegeRating: 74, stars: 3, fbaRating: null,
     });
     expect(doc<RostersFile>(r, paths.rosters).teams.t1[4]).toEqual({ playerId: null, position: 'C', rating: null, age: null, points: 0, stars: null, classYear: null });
     expect(doc<TransactionsFile>(r, paths.tx).entries).toEqual([
-      { seq: 1, batchId: 'b1', type: 'declare', teams: ['t1'], lines: ['Cal Center (Jr C, School One) declares for the S80 draft'] },
+      { seq: 1, batchId: 'b1', type: 'declare', teams: ['t1'], lines: ['Cal Center (So C, School One) declares for the S80 draft'] },
     ]);
   });
   it('fills a missing birth season from his class year (So 19, Jr 20), and keeps an existing one', () => {
@@ -80,7 +87,8 @@ describe('backToSchool', () => {
     const r = ok(backToSchool(draftBoardState(), 'p00034', ctx));
     expect(r.writes.map(w => w.path)).toEqual([paths.draft, paths.rosters, paths.tx]);
     expect(doc<DraftFile>(r, paths.draft).prospects.map(p => p.playerId)).toEqual(['p00001', 'p00035', 'p00036']);
-    expect(doc<RostersFile>(r, paths.rosters).teams.t1[3]).toEqual({ playerId: 'p00034', position: 'PF', rating: 70, age: null, points: 0, stars: 3, classYear: 'Jr' });
+    // He was a Jr last season, so he returns as a Sr.
+    expect(doc<RostersFile>(r, paths.rosters).teams.t1[3]).toEqual({ playerId: 'p00034', position: 'PF', rating: 70, age: null, points: 0, stars: 3, classYear: 'Sr' });
     expect(doc<TransactionsFile>(r, paths.tx).entries[0]).toMatchObject({ type: 'declare', teams: ['t1'], lines: ['Dan Draftee returns to School One'] });
     expect(r.label).toBe('Dan Draftee returns to School One');
   });
@@ -89,7 +97,7 @@ describe('backToSchool', () => {
     expect(r.writes.map(w => w.path)).toEqual([paths.draft, paths.board, paths.tx]);
     expect(doc<DraftFile>(r, paths.draft).prospects.map(p => p.playerId)).not.toContain('p00036');
     expect(doc<RecruitingFile>(r, paths.board).portal.at(-1)).toEqual({
-      playerId: 'p00036', position: 'SG', classYear: 'Jr', rating: 72, stars: 3, projections: {}, committedTo: null, fromTeam: 't1',
+      playerId: 'p00036', position: 'SG', classYear: 'Sr', rating: 72, stars: 3, projections: {}, committedTo: null, fromTeam: 't1',
     });
     expect(doc<TransactionsFile>(r, paths.tx).entries[0]).toMatchObject({
       type: 'portal', teams: ['t1'],
@@ -113,7 +121,7 @@ describe('enterPortal', () => {
       playerId: 'p00003', position: 'C', classYear: 'Jr', rating: 74, stars: 3, projections: {}, committedTo: null, fromTeam: 't1',
     });
     expect(doc<TransactionsFile>(r, paths.tx).entries[0]).toMatchObject({
-      type: 'portal', teams: ['t1'], lines: ['Cal Center (Jr C, 74) leaves School One and enters the transfer portal'],
+      type: 'portal', teams: ['t1'], lines: ['Cal Center (So C, 74) leaves School One and enters the transfer portal'],
     });
   });
   it('refuses a non-candidate (a prospect, a freshman) and a started draft', () => {
@@ -133,7 +141,7 @@ describe('draftToPortal', () => {
     expect(r.writes.map(w => w.path)).toEqual([paths.draft, paths.board, paths.tx]);
     expect(doc<DraftFile>(r, paths.draft).prospects.map(p => p.playerId)).toEqual(['p00001', 'p00035', 'p00036']);
     expect(doc<RecruitingFile>(r, paths.board).portal.at(-1)).toEqual({
-      playerId: 'p00034', position: 'PF', classYear: 'Jr', rating: 70, stars: 3, projections: {}, committedTo: null, fromTeam: 't1',
+      playerId: 'p00034', position: 'PF', classYear: 'Sr', rating: 70, stars: 3, projections: {}, committedTo: null, fromTeam: 't1',
     });
     expect(doc<TransactionsFile>(r, paths.tx).entries[0]).toMatchObject({
       type: 'portal', teams: ['t1'], lines: ['Dan Draftee (Jr PF, 70) leaves the draft and enters the transfer portal from School One'],
