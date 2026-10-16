@@ -225,3 +225,16 @@ describe('bestNewByPosition', () => {
     expect(bestNewByPosition(rankingDoc({ order: ['p00004', 'p00005', 'p00006'] }), rankName)).toEqual({});
   });
 });
+
+describe('leftRows age weighting (the FBA pro reset)', () => {
+  const newRow = (playerId: string, age: number | null, otherRating: number) => ({ playerId, position: 'PG' as const, age, team: null, prevRating: null, otherRating, stat: null });
+  const rows = [newRow('p00001', 21, 87), newRow('p00002', 18, 85), newRow('p00003', null, 86)];
+  it('lists a younger prospect with a slightly lower rating first', () => {
+    const doc = rankingDoc({ kind: 'fba-reset', league: 'fba', rows, curve: [90] });
+    expect(ids(leftRows(doc, rankName))).toEqual(['p00002', 'p00001', 'p00003']);
+  });
+  it('leaves the other resets ordered by the other rating alone', () => {
+    const doc = rankingDoc({ kind: 'd2-reset', rows, curve: [90] });
+    expect(ids(leftRows(doc, rankName))).toEqual(['p00001', 'p00003', 'p00002']);
+  });
+});

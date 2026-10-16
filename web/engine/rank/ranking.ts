@@ -1,4 +1,5 @@
 import type { Position, RankingFile, RankingRow } from '../shared/types';
+import { ageAdjusted } from './ageScore';
 
 /** The display name for a player id. */
 export type NameOf = (playerId: string) => string;
@@ -12,6 +13,7 @@ const tieBreak = (name: NameOf) => (a: RankingRow, b: RankingRow) =>
 /**
  * The rows not ranked yet, in last season's order: players with a previous rating (high to low), then the
  * "New" group by the other league's rating (high to low, none last). Ties break on name, then id.
+ * In the FBA pro reset the New group is the draft class, whose ratings get an age bonus (younger counts more; see `ageAdjusted`).
  */
 /** True for a player new to the league being ranked. An unrated D2 Reserve already in the pool (`inLeague`) counts as existing and sorts after the rated players. */
 export function isNewRow(_doc: RankingFile, r: RankingRow): boolean {
@@ -25,7 +27,8 @@ export function leftRows(doc: RankingFile, name: NameOf): RankingRow[] {
   const known = left.filter(r => !isNewRow(doc, r)).sort((a, b) => (b.prevRating ?? -1) - (a.prevRating ?? -1) || tie(a, b));
   // Equal (or missing) other ratings keep the doc's row order, which for unrated D2 rookies is the free-agent list order (the draft order).
   const at = new Map(doc.rows.map((r, i) => [r.playerId, i]));
-  const fresh = left.filter(r => isNewRow(doc, r)).sort((a, b) => (b.otherRating ?? -1) - (a.otherRating ?? -1) || at.get(a.playerId)! - at.get(b.playerId)!);
+  const score = (r: RankingRow) => (doc.kind === 'fba-reset' ? ageAdjusted(r.otherRating, r.age) : r.otherRating) ?? -Infinity;
+  const fresh = left.filter(r => isNewRow(doc, r)).sort((a, b) => score(b) - score(a) || at.get(a.playerId)! - at.get(b.playerId)!);
   return [...known, ...fresh];
 }
 
