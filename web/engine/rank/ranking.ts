@@ -1,4 +1,5 @@
 import type { Position, RankingFile, RankingRow } from '../shared/types';
+import { ageAdjusted } from './ageScore';
 
 /** The display name for a player id. */
 export type NameOf = (playerId: string) => string;
@@ -12,6 +13,7 @@ const tieBreak = (name: NameOf) => (a: RankingRow, b: RankingRow) =>
 /**
  * The rows not ranked yet, in last season's order: players with a previous rating (high to low), then the
  * "New" group by the other league's rating (high to low, none last). Ties break on name, then id.
+ * In the FBA pro reset the New group is the draft class, whose ratings get an age bonus (younger counts more; see `ageAdjusted`).
  */
 /** True for a player new to the league being ranked. An unrated D2 Reserve already in the pool (`inLeague`) counts as existing and sorts after the rated players. */
 export function isNewRow(_doc: RankingFile, r: RankingRow): boolean {
@@ -25,7 +27,8 @@ export function leftRows(doc: RankingFile, name: NameOf): RankingRow[] {
   const known = left.filter(r => !isNewRow(doc, r)).sort((a, b) => (b.prevRating ?? -1) - (a.prevRating ?? -1) || tie(a, b));
   // Equal (or missing) other ratings keep the doc's row order, which for unrated D2 rookies is the free-agent list order (the draft order).
   const at = new Map(doc.rows.map((r, i) => [r.playerId, i]));
-  const fresh = left.filter(r => isNewRow(doc, r)).sort((a, b) => (b.otherRating ?? -1) - (a.otherRating ?? -1) || at.get(a.playerId)! - at.get(b.playerId)!);
+  const score = (r: RankingRow) => (doc.kind === 'fba-reset' ? ageAdjusted(r.otherRating, r.age) : r.otherRating) ?? -Infinity;
+  const fresh = left.filter(r => isNewRow(doc, r)).sort((a, b) => score(b) - score(a) || at.get(a.playerId)! - at.get(b.playerId)!);
   return [...known, ...fresh];
 }
 
@@ -66,6 +69,22 @@ export function rankedRows(doc: RankingFile): RankingRow[] {
 export function take(doc: RankingFile, playerId: string): RankingFile {
   if (doc.locked || doc.order.includes(playerId) || !doc.rows.some(r => r.playerId === playerId)) return doc;
   return { ...doc, order: [...doc.order, playerId] };
+}
+
+/**
+ * Moves a ranked player one place up (-1) or down (1) by swapping with the neighbour in that direction. With `visible`, the neighbour is the
+ * nearest ranked player it accepts (a position filter), so the move is one step in the list as shown. Unranked players, the ends of the list
+ * and locked files leave the doc unchanged. Entered ratings stay with their players.
+ */
+export function moveRanked(doc: RankingFile, playerId: string, delta: -1 | 1, visible: (playerId: string) => boolean = () => true): RankingFile {
+  const i = doc.order.indexOf(playerId);
+  if (doc.locked || i < 0) return doc;
+  let j = i + delta;
+  while (j >= 0 && j < doc.order.length && !visible(doc.order[j])) j += delta;
+  if (j < 0 || j >= doc.order.length) return doc;
+  const order = [...doc.order];
+  [order[i], order[j]] = [order[j], order[i]];
+  return { ...doc, order };
 }
 
 /** Returns a ranked player to the left column. Their entered rating stays in `ratings`. */

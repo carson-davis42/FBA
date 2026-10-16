@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import { applyClassSuggestions, consensusSuggestion, parseConsensusInput, starsFor } from '../../engine/college/classRanking';
 import {
-  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, clearRatings, outOfOrder, rankedRows, rankingBlockers, reserveBound, sendBack, setRating, suggestion, take, takeRest, type NameOf,
+  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, clearRatings, moveRanked, outOfOrder, rankedRows, rankingBlockers, reserveBound, sendBack, setRating, suggestion, take, takeRest, type NameOf,
 } from '../../engine/rank/ranking';
 import { mergeOptions, movePool, promoteTop, sendBackMerged, takeRestMerged } from '../../engine/rank/positionRanking';
 import { POSITIONS } from '../../engine/roster/rules';
@@ -75,6 +75,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   const [filter, setFilter] = useState<Filter>('ALL');
   const locked = doc.locked;
   const shown = (r: RankingRow) => filter === 'ALL' || r.position === filter;
+  const shownId = (cur: RankingFile, id: string) => { const row = cur.rows.find(x => x.playerId === id); return !row || shown(row); };
   // D2 reset: a position whose spots are all taken drops out of the unranked lists (and reappears if someone is sent back).
   const fullPositions = new Set(positionCap ? POSITIONS.filter(pos => rankedRows(doc).filter(r => r.position === pos).length >= positionCap.spots) : []);
   const shownLeft = (r: RankingRow) => shown(r) && !fullPositions.has(r.position);
@@ -268,7 +269,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
                   {allPlaced && <th>Rating</th>}
                   {allPlaced && consensus && <th>Consensus</th>}
                   {allPlaced && consensus && <th>Stars</th>}
-                  <th><span className="muted">Back</span></th>
+                  <th><span className="muted">Move</span></th>
                 </tr>
               </thead>
               <tbody>
@@ -322,7 +323,13 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
                       {allPlaced && consensus && (
                         <td>{stars !== null && <span aria-label={`${stars} stars`}>{'★'.repeat(stars)}</span>}</td>
                       )}
-                      <td>
+                      <td className="rank-move">
+                        {!locked && !positionMerge && (
+                          <>
+                            <button type="button" className="btn" disabled={i === 0} aria-label={`Move ${name(r.playerId)} up`} onClick={() => onChange(cur => moveRanked(cur, r.playerId, -1, id => shownId(cur, id)))}>↑</button>
+                            <button type="button" className="btn" disabled={i === doc.order.length - 1} aria-label={`Move ${name(r.playerId)} down`} onClick={() => onChange(cur => moveRanked(cur, r.playerId, 1, id => shownId(cur, id)))}>↓</button>
+                          </>
+                        )}
                         {!locked && (
                           <button type="button" className="btn" aria-label={`Send ${name(r.playerId)} back`} onClick={() => onChange(cur => (positionMerge ? sendBackMerged(cur, r.playerId) : sendBack(cur, r.playerId)))}>↩</button>
                         )}

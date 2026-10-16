@@ -429,3 +429,23 @@ describe('RankingTable', () => {
     });
   });
 });
+
+describe('RankingTable manual order', () => {
+  it('moves a ranked player up and down with arrows', () => {
+    render(<Harness initial={rankingDoc({ order: ALL })} />);
+    expect(rightNames()).toEqual(['Ben Cole', 'Ada Stone', 'Cal Reyes', 'Finn Lowe', 'Dev Hart', 'Eli Park']);
+    fireEvent.click(screen.getByRole('button', { name: 'Move Cal Reyes up' }));
+    expect(rightNames()).toEqual(['Ben Cole', 'Cal Reyes', 'Ada Stone', 'Finn Lowe', 'Dev Hart', 'Eli Park']);
+    fireEvent.click(screen.getByRole('button', { name: 'Move Ben Cole down' }));
+    expect(rightNames()).toEqual(['Cal Reyes', 'Ben Cole', 'Ada Stone', 'Finn Lowe', 'Dev Hart', 'Eli Park']);
+  });
+  it('has no up arrow on the first row or down arrow on the last', () => {
+    render(<Harness initial={rankingDoc({ order: ALL })} />);
+    expect((screen.getByRole('button', { name: 'Move Ben Cole up' }) as HTMLButtonElement).disabled).toBe(true);
+    expect((screen.getByRole('button', { name: 'Move Eli Park down' }) as HTMLButtonElement).disabled).toBe(true);
+  });
+  it('has no arrows once the ranking is locked', () => {
+    render(<Harness initial={rankingDoc({ order: ALL, locked: true })} />);
+    expect(screen.queryByRole('button', { name: /^Move .* (up|down)$/ })).toBeNull();
+  });
+});

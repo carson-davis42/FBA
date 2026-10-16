@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { RankingFile } from '../shared/types';
 import {
-  applyAllSuggestions, bestNewByPosition, clearRatings, isNewRow, reserveBound, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
+  applyAllSuggestions, bestNewByPosition, moveRanked, clearRatings, isNewRow, reserveBound, leftRows, outOfOrder, rankedRows, rankingBlockers, sendBack, setRating, suggestion, suggestionsTaken, syncRows, take, takeRest,
 } from './ranking';
 import { rankingDoc, rankName } from './testFixtures';
 
@@ -223,5 +223,44 @@ describe('bestNewByPosition', () => {
 
   it('ignores players who are not new', () => {
     expect(bestNewByPosition(rankingDoc({ order: ['p00004', 'p00005', 'p00006'] }), rankName)).toEqual({});
+  });
+});
+
+describe('leftRows age weighting (the FBA pro reset)', () => {
+  const newRow = (playerId: string, age: number | null, otherRating: number) => ({ playerId, position: 'PG' as const, age, team: null, prevRating: null, otherRating, stat: null });
+  const rows = [newRow('p00001', 21, 87), newRow('p00002', 18, 85), newRow('p00003', null, 86)];
+  it('lists a younger prospect with a slightly lower rating first', () => {
+    const doc = rankingDoc({ kind: 'fba-reset', league: 'fba', rows, curve: [90] });
+    expect(ids(leftRows(doc, rankName))).toEqual(['p00002', 'p00001', 'p00003']);
+  });
+  it('leaves the other resets ordered by the other rating alone', () => {
+    const doc = rankingDoc({ kind: 'd2-reset', rows, curve: [90] });
+    expect(ids(leftRows(doc, rankName))).toEqual(['p00001', 'p00003', 'p00002']);
+  });
+});
+
+describe('moveRanked', () => {
+  const ranked = () => rankingDoc({ order: ['p00001', 'p00002', 'p00003', 'p00004'] });
+  it('moves a ranked player up or down one place', () => {
+    expect(moveRanked(ranked(), 'p00003', -1).order).toEqual(['p00001', 'p00003', 'p00002', 'p00004']);
+    expect(moveRanked(ranked(), 'p00002', 1).order).toEqual(['p00001', 'p00003', 'p00002', 'p00004']);
+  });
+  it('does nothing at the top or bottom, for an unranked player, or when locked', () => {
+    const doc = ranked();
+    expect(moveRanked(doc, 'p00001', -1)).toBe(doc);
+    expect(moveRanked(doc, 'p00004', 1)).toBe(doc);
+    expect(moveRanked(doc, 'p00005', -1)).toBe(doc);
+    const locked = { ...doc, locked: true };
+    expect(moveRanked(locked, 'p00002', -1)).toBe(locked);
+  });
+  it('keeps entered ratings with their players', () => {
+    const doc = { ...ranked(), ratings: { p00002: 80 } };
+    expect(moveRanked(doc, 'p00002', -1).ratings).toEqual({ p00002: 80 });
+  });
+  it('with a filter, swaps with the nearest ranked player the filter shows', () => {
+    // Showing only p00001 and p00004: moving p00004 up swaps it with p00001, past the hidden p00002 and p00003.
+    const shown = (id: string) => id === 'p00001' || id === 'p00004';
+    expect(moveRanked(ranked(), 'p00004', -1, shown).order).toEqual(['p00004', 'p00002', 'p00003', 'p00001']);
+    expect(moveRanked(ranked(), 'p00001', -1, shown).order).toEqual(['p00001', 'p00002', 'p00003', 'p00004']);
   });
 });
