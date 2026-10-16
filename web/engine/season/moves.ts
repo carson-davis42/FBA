@@ -50,7 +50,7 @@ export function makeSchedules(input: MakeSchedulesInput, rng: Rng): WritesResult
   if (played > 0) return { ok: false, problems: ["Games have been played; the schedules can't be re-rolled"] };
   const writes: { path: string; doc: unknown }[] = [];
   for (const league of ['fba', 'fbad2'] as SeasonLeague[]) {
-    const teams = teamsInSeason(input[league].teams, input.season).teams.map(t => ({ teamId: t.teamId, group: t.group }));
+    const teams = teamsInSeason(input[league].teams, input.season).teams.map(t => ({ teamId: t.teamId, group: t.group, division: t.division }));
     const games = buildSchedule(league, teams, rng);
     writes.push({ path: `leagues/${league}/S${input.season}/schedule.json`, doc: { league, season: input.season, locked: false, games, pauses: defaultPauses(league, games.length) } });
     writes.push({ path: `leagues/${league}/S${input.season}/results.json`, doc: { league, season: input.season, locked: false, games: [] } });

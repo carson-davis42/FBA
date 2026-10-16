@@ -2,7 +2,7 @@ import type { GameResult, PlayoffsFile } from '../shared/types';
 import { powerRankings } from '../playoffs/ranker';
 import { orderTeams, type TieNote } from '../playoffs/tiebreak';
 import { PLAYOFF_SEEDS } from '../shared/league';
-import { PAIRINGS, type ScheduleTeamInfo, type SeasonLeague } from './schedule';
+import { DIVISION_GAMES, hasDivisions, PAIRINGS, type ScheduleTeamInfo, type SeasonLeague } from './schedule';
 
 export { PLAYOFF_SEEDS };
 
@@ -10,6 +10,17 @@ export const GROUP_ORDER: Record<SeasonLeague, string[]> = { fba: ['E', 'W'], fb
 
 /** Games per team and conference games per team, from the real group sizes (each pairing is played home and away). */
 export function seasonLength(league: SeasonLeague, teams: ScheduleTeamInfo[]): { games: number; confGames: number } {
+  if (hasDivisions(league, teams)) {
+    const biggest = (pick: (t: ScheduleTeamInfo) => string | null | undefined) => {
+      const size = new Map<string | null | undefined, number>();
+      for (const t of teams) size.set(pick(t), (size.get(pick(t)) ?? 0) + 1);
+      return Math.max(...size.values());
+    };
+    const div = biggest(t => t.division);
+    const conf = biggest(t => t.group);
+    const confGames = (div - 1) * DIVISION_GAMES.division + (conf - div) * DIVISION_GAMES.conference;
+    return { games: confGames + (teams.length - conf) * DIVISION_GAMES.cross, confGames };
+  }
   const { sameGroup, otherGroup } = PAIRINGS[league];
   const size = new Map<string | null, number>();
   for (const t of teams) size.set(t.group, (size.get(t.group) ?? 0) + 1);

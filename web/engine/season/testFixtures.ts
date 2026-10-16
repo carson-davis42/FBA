@@ -6,11 +6,11 @@ import type { SeasonState } from './state';
 const POS = ['PG', 'SG', 'SF', 'PF', 'C'] as const;
 const badge = { bg: 'hsl(1 55% 36%)', fg: '#ffffff' };
 
-function teamsFile(league: SeasonLeague, list: [string, string][]): TeamsFile {
-  return { league, teams: list.map(([teamId, group]) => ({ teamId, name: `${teamId} Club`, abbr: teamId, group, logoFolder: null, badge })) };
+function teamsFile(league: SeasonLeague, list: [string, string][], divisions: Record<string, string> = {}): TeamsFile {
+  return { league, teams: list.map(([teamId, group]) => ({ teamId, name: `${teamId} Club`, abbr: teamId, group, logoFolder: null, badge, ...(divisions[teamId] ? { division: divisions[teamId] } : {}) })) };
 }
 
-function rosters(league: SeasonLeague, ratings: Record<string, number[]>, firstId: number) {
+function rosters(league: SeasonLeague, ratings: Record<string, number[]>, firstId: number, season: number) {
   let id = firstId;
   const names: Record<string, { id: string; name: string; birthSeason: null }> = {};
   const teams: Record<string, RosterEntry[]> = {};
@@ -26,33 +26,34 @@ function rosters(league: SeasonLeague, ratings: Record<string, number[]>, firstI
       return e;
     });
   }
-  return { rosters: { league, season: 79, locked: false, teams }, names };
+  return { rosters: { league, season, locked: false, teams }, names };
 }
 
 /** Sits at the given league's calendar step (D2 before FBA, per the real season order). */
-const calendar = (league: SeasonLeague) => ({
-  season: 79,
+const calendar = (league: SeasonLeague, season: number) => ({
+  season,
   steps: [
-    { id: 'make-s79-schedules', label: 'Make S79 Schedules', kind: 'offseason' as const, league: null, sub: false, done: true },
+    { id: `make-s${season}-schedules`, label: `Make S${season} Schedules`, kind: 'offseason' as const, league: null, sub: false, done: true },
     { id: 'fba-d2', label: 'FBA D2', kind: 'league' as const, league: 'fbad2' as const, sub: false, done: league === 'fba' },
     { id: 'fba', label: 'FBA', kind: 'league' as const, league: 'fba' as const, sub: false, done: false },
   ],
 });
 
-export function seasonStateFor(league: SeasonLeague, list: [string, string][], ratings: Record<string, number[]>, firstId: number): SeasonState {
-  const teams = teamsFile(league, list);
-  const r = rosters(league, ratings, firstId);
-  const games = buildSchedule(league, teams.teams.map(t => ({ teamId: t.teamId, group: t.group })), mulberry32(1));
+export function seasonStateFor(league: SeasonLeague, list: [string, string][], ratings: Record<string, number[]>, firstId: number, opts: { season?: number; divisions?: Record<string, string> } = {}): SeasonState {
+  const season = opts.season ?? 79;
+  const teams = teamsFile(league, list, opts.divisions);
+  const r = rosters(league, ratings, firstId, season);
+  const games = buildSchedule(league, teams.teams.map(t => ({ teamId: t.teamId, group: t.group, division: t.division })), mulberry32(1));
   return {
     league,
-    season: 79,
+    season,
     teams,
     rosters: r.rosters,
     players: { nextId: firstId + Math.max(100, Object.keys(r.names).length), players: r.names },
-    calendar: calendar(league),
-    tx: { league, season: 79, entries: [] },
-    schedule: { league, season: 79, locked: false, games, pauses: defaultPauses(league, games.length) },
-    results: { league, season: 79, locked: false, games: [] },
+    calendar: calendar(league, season),
+    tx: { league, season, entries: [] },
+    schedule: { league, season, locked: false, games, pauses: defaultPauses(league, games.length) },
+    results: { league, season, locked: false, games: [] },
     ratingPause: null,
     allstar: null,
     playoffs: null,

@@ -2,6 +2,7 @@ import { mulberry32 } from '../d2/random';
 import { lineup } from '../season/moves';
 import type { SeasonLeague } from '../season/schedule';
 import { simGame } from '../season/sim';
+import { DIVISION_LAYOUT } from '../shared/divisions';
 import { GROUP_ORDER } from '../season/standings';
 import type { SeasonState } from '../season/state';
 import { seasonStateFor } from '../season/testFixtures';
@@ -20,6 +21,20 @@ function ratingsFor(list: [string, string][], seed: number, lo: number, hi: numb
 export function fullFbaState(seed = 7): SeasonState {
   const list = teamsFor('fba', 15);
   return seasonStateFor('fba', list, ratingsFor(list, seed, 70, 99), 1);
+}
+
+/** The S80 shape: 32 teams, 16 per conference, 8 per division (ids `E01`… / `W01`…), 84 games each (1344 in all). */
+export function fullDivisionState(seed = 9): SeasonState {
+  const list: [string, string][] = [];
+  const divisions: Record<string, string> = {};
+  for (const g of ['E', 'W'] as const) {
+    DIVISION_LAYOUT.filter(d => d.group === g).forEach((d, di) => d.teams.forEach((_, k) => {
+      const id = `${g}${String(di * 8 + k + 1).padStart(2, '0')}`;
+      list.push([id, g]);
+      divisions[id] = d.division;
+    }));
+  }
+  return seasonStateFor('fba', list, ratingsFor(list, seed, 70, 99), 1, { season: 80, divisions });
 }
 
 /** The real D2 shape: 16 teams in each of PL, WL, UL and IL, 30 games each (960 in all). */
