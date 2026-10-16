@@ -34,6 +34,8 @@ export function seasonLength(league: SeasonLeague, teams: ScheduleTeamInfo[]): {
 export interface TeamRecord {
   teamId: string;
   group: string;
+  /** FBA division (S80 on); absent in the two-conference format. */
+  division?: string;
   w: number;
   l: number;
   confW: number;
@@ -48,6 +50,7 @@ export interface TeamRecord {
 export interface StandingRow {
   teamId: string;
   group: string;
+  division?: string;
   seed: number;
   w: number;
   l: number;
@@ -65,8 +68,22 @@ export interface StandingRow {
   badge: '🏆' | 'C' | null;
 }
 
+/** Division format: who qualifies from a conference. `teams` is the seed (home-court) order of the 8; divisions list their top 3. */
+export interface Qualifiers { teams: string[]; divisions: { division: string; teams: string[] }[]; wildCards: string[] }
+
+export interface StandingsGroup {
+  group: string;
+  /** The whole group (conference) in order. */
+  rows: StandingRow[];
+  notes: TieNote[];
+  /** Division format only: the conference's divisions in order, the non-top-3 teams in order, and who qualifies. */
+  divisions?: { division: string; rows: StandingRow[] }[];
+  wildCard?: StandingRow[];
+  qualifiers?: Qualifiers;
+}
+
 export interface Standings {
-  groups: { group: string; rows: StandingRow[]; notes: TieNote[] }[];
+  groups: StandingsGroup[];
   /** FBA only: non-playoff teams, worst first. */
   lottery: StandingRow[];
 }
@@ -76,7 +93,7 @@ export interface ClinchRecord { w: number; l: number; confW: number; confL: numb
 export function records(teams: ScheduleTeamInfo[], games: GameResult[]): Map<string, TeamRecord> {
   const out = new Map<string, TeamRecord>();
   for (const t of teams) {
-    out.set(t.teamId, { teamId: t.teamId, group: t.group ?? '', w: 0, l: 0, confW: 0, confL: 0, pf: 0, pa: 0, h2h: new Map(), log: [] });
+    out.set(t.teamId, { teamId: t.teamId, group: t.group ?? '', ...(t.division ? { division: t.division } : {}), w: 0, l: 0, confW: 0, confL: 0, pf: 0, pa: 0, h2h: new Map(), log: [] });
   }
   for (const g of games) {
     const home = out.get(g.home);
@@ -169,10 +186,10 @@ function clinchStar(conf: ClinchRecord[], i: number, len: { games: number; confG
   return true;
 }
 
-function clinchX(conf: ClinchRecord[], i: number, len: { games: number; confGames: number }): boolean {
-  if (i >= PLAYOFF_SEEDS) return false;
+function clinchX(conf: ClinchRecord[], i: number, len: { games: number; confGames: number }, spots = PLAYOFF_SEEDS): boolean {
+  if (i >= spots) return false;
   const t = conf[i];
-  for (let j = PLAYOFF_SEEDS; j < conf.length; j++) {
+  for (let j = spots; j < conf.length; j++) {
     if (j === i) continue;
     const temp = conf[j];
     const maxW = temp.w + (len.games - played(temp));
@@ -256,11 +273,12 @@ function badgeOf(league: SeasonLeague, group: string, teamId: string, playoffs: 
   return won(`${group}-F`) ? '🏆' : null;
 }
 
-function toRows(league: SeasonLeague, group: string, ordered: TeamRecord[], len: { games: number; confGames: number }, playoffs: PlayoffsFile | null): StandingRow[] {
+function toRows(league: SeasonLeague, group: string, ordered: TeamRecord[], len: { games: number; confGames: number }, playoffs: PlayoffsFile | null, marker?: (r: TeamRecord, i: number) => StandingRow['marker']): StandingRow[] {
   const top = ordered[0];
   return ordered.map((r, i) => ({
     teamId: r.teamId,
     group: r.group,
+    ...(r.division ? { division: r.division } : {}),
     seed: i + 1,
     w: r.w,
     l: r.l,
@@ -271,14 +289,77 @@ function toRows(league: SeasonLeague, group: string, ordered: TeamRecord[], len:
     diff: diffOf(r),
     l10: lastTen(r.log),
     streak: streakOf(r.log),
-    marker: markerFor(ordered, i, len),
+    marker: marker ? marker(r, i) : markerFor(ordered, i, len),
     status: statusOf(league, group, ordered, i, len, playoffs),
     badge: badgeOf(league, group, r.teamId, playoffs),
   }));
 }
 
+/** Division spots per division, wild cards per conference. */
+const DIVISION_SPOTS = 3;
+const WILD_CARDS = 2;
+
+/**
+ * The division format: each division is ordered (top 3 qualify), the 2 best of the rest of the conference are the wild cards.
+ * Markers: '*' division title clinched, 'x' top 3 of the division clinched, 'n' only once the regular season is over and the team missed out.
+ */
+function divisionGroup(
+  group: string, recs: TeamRecord[], len: { games: number; confGames: number }, playoffs: PlayoffsFile | null, ranks: () => string[],
+): { out: StandingsGroup; records: Map<string, TeamRecord> } {
+  const notes: TieNote[] = [];
+  const addNotes = (n: TieNote[]) => { for (const x of n) if (!notes.some(y => y.text === x.text)) notes.push(x); };
+  const conf = orderTeams(recs, { conference: true, ranks });
+  addNotes(conf.notes);
+  const codes = [...new Set(recs.map(r => r.division!))];
+  const divOrders = codes.map(code => {
+    const o = orderTeams(recs.filter(r => r.division === code), { conference: true, ranks });
+    addNotes(o.notes);
+    return { division: code, order: o.order };
+  });
+  const top = new Set(divOrders.flatMap(d => d.order.slice(0, DIVISION_SPOTS).map(r => r.teamId)));
+  const rest = conf.order.filter(r => !top.has(r.teamId));
+  const wild = rest.slice(0, WILD_CARDS);
+  const qualified = new Set([...top, ...wild.map(r => r.teamId)]);
+  const over = recs.every(r => r.w + r.l >= len.games);
+  const byTeam = new Map(recs.map(r => [r.teamId, r]));
+  const markers = new Map<string, StandingRow['marker']>();
+  for (const d of divOrders) {
+    d.order.forEach((r, i) => {
+      markers.set(r.teamId, clinchStar(d.order, i, len) ? '*' : clinchX(d.order, i, len, DIVISION_SPOTS) ? 'x' : over && !qualified.has(r.teamId) ? 'n' : null);
+    });
+  }
+  const mark = (r: TeamRecord) => markers.get(r.teamId) ?? null;
+  const rowOf = (order: TeamRecord[]) => toRows('fba', group, order, len, playoffs, r => mark(r));
+  const seedOrder = orderTeams(recs.filter(r => qualified.has(r.teamId)), { conference: true, ranks });
+  addNotes(seedOrder.notes);
+  const divisions = divOrders.map(d => ({ division: d.division, rows: rowOf(d.order) }));
+  const out: StandingsGroup = {
+    group,
+    rows: rowOf(conf.order),
+    notes,
+    divisions,
+    wildCard: rowOf(rest),
+    qualifiers: {
+      teams: seedOrder.order.map(r => r.teamId),
+      divisions: divOrders.map(d => ({ division: d.division, teams: d.order.slice(0, DIVISION_SPOTS).map(r => r.teamId) })),
+      wildCards: wild.map(r => r.teamId),
+    },
+  };
+  return { out, records: byTeam };
+}
+
 export function standings(league: SeasonLeague, teams: ScheduleTeamInfo[], games: GameResult[], len = seasonLength(league, teams), playoffs: PlayoffsFile | null = null): Standings {
   const recs = records(teams, games);
+  if (hasDivisions(league, teams)) {
+    let rk: string[] | null = null;
+    const ranks = () => (rk ??= powerRankings(games));
+    const groups = GROUP_ORDER[league].filter(code => teams.some(t => t.group === code)).map(g => divisionGroup(g, [...recs.values()].filter(r => r.group === g), len, playoffs, ranks).out);
+    const ok = new Set(groups.flatMap(g => g.qualifiers!.teams));
+    const outside = [...recs.values()].filter(r => !ok.has(r.teamId));
+    const byId = new Map(groups.flatMap(g => g.rows).map(r => [r.teamId, r]));
+    const lottery = javaOrder(outside, (a, b) => betterThan(league, a, b), true).map((r, i) => ({ ...byId.get(r.teamId)!, seed: i + 1 }));
+    return { groups, lottery };
+  }
   const better = (a: TeamRecord, b: TeamRecord) => betterThan(league, a, b);
   let ranked: string[] | null = null;
   const ranks = () => {
