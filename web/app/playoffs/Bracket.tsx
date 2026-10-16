@@ -14,6 +14,8 @@ interface Props {
   /** The FBA shows E, then the Finals, then W mirrored; the D2 shows the one picked league. */
   group: string | null;
   open: string | null;
+  /** Division bracket (S80 on): changes the order of the first-round boxes. */
+  divisional?: boolean;
   onOpen?: (id: string | null) => void;
 }
 
@@ -63,15 +65,15 @@ function SeriesBox({ s, teams, season, open, onOpen, finals }: { s: PlayoffSerie
 }
 
 /** The bracket as columns; scrolls sideways inside its own box on narrow screens. */
-export function Bracket({ league, series, teams, season, group, open, onOpen }: Props) {
+export function Bracket({ league, series, teams, season, group, open, onOpen, divisional = false }: Props) {
   const byId = new Map(series.map(s => [s.id, s]));
-  const east = league === 'fba' ? bracketColumns('fba', 'E') : [];
+  const east = league === 'fba' ? bracketColumns('fba', 'E', divisional) : [];
   const d2 = league === 'fba' ? [] : bracketColumns('fbad2', group ?? 'PL');
   const columns: { ids: string[]; dir: 'l' | 'mid' | 'r' | 'end' }[] = league === 'fba'
     ? [
         ...east.map(ids => ({ ids, dir: 'l' as const })),
         { ids: [FINALS], dir: 'mid' as const },
-        ...bracketColumns('fba', 'W').reverse().map(ids => ({ ids, dir: 'r' as const })),
+        ...bracketColumns('fba', 'W', divisional).reverse().map(ids => ({ ids, dir: 'r' as const })),
       ]
     : d2.map((ids, k) => ({ ids, dir: k === d2.length - 1 ? 'end' as const : 'l' as const }));
   return (

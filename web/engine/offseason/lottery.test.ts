@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
 import type { GameResult, PicksFile, TransactionsFile } from '../shared/types';
-import { draftOrder, drawLottery, LOTTERY_ODDS, lotteryOdds, lotteryPath, lotteryPreview, lotteryStepId, oddsTable, runLottery, type LotteryState } from './lottery';
+import { draftOrder, drawLottery, LOTTERY_ODDS, lotteryOdds, stretchOdds, lotteryPath, lotteryPreview, lotteryStepId, oddsTable, runLottery, type LotteryState } from './lottery';
 import { calendar, ctx, ob, playoffs, state, teamsFile32 } from './testFixtures';
 
 const TABLE = LOTTERY_ODDS[14];
@@ -144,8 +144,8 @@ describe('16-team lottery with 2 expansion teams', () => {
     expect(r.odds[2]).toMatchObject({ teamId: 'T0', slot: 3 });
     expect(r.odds.reduce((s, o) => s + o.pct, 0)).toBeCloseTo(100, 10);
   });
-  it('has no table for 16 real teams yet', () => {
-    expect(lotteryOdds(Array.from({ length: 16 }, (_, i) => team(i)))).toEqual({ ok: false, problem: 'No lottery odds for a 16-team lottery' });
+  it('has a table for 16 real teams (S81 on)', () => {
+    expect(lotteryOdds(Array.from({ length: 16 }, (_, i) => team(i))).ok).toBe(true);
   });
 });
 
@@ -171,5 +171,24 @@ describe('runLottery with expansion teams in teams.json', () => {
     expect(doc.order).toHaveLength(32);
     expect(new Set(doc.order).size).toBe(32);
     expect(doc.order[31]).toBe('T00');
+  });
+});
+
+describe('the 16-team table', () => {
+  const t16 = LOTTERY_ODDS[16];
+  it('stretches the 14-team curve: flat top three, non-increasing, sums to 100', () => {
+    expect(t16.map(p => Number(p.toFixed(2)))).toEqual([12.25, 12.25, 12.25, 11.5, 10.19, 8.81, 7.69, 6.56, 5.25, 4.13, 3, 2.13, 1.56, 1.19, 0.81, 0.44]);
+    expect(t16.reduce((a, b) => a + b, 0)).toBeCloseTo(100, 9);
+    for (let i = 1; i < 16; i++) expect(t16[i]).toBeLessThanOrEqual(t16[i - 1] + 1e-12);
+  });
+  it('stretching to the same size gives the table back; oddsTable(16, 0) is the new table; 14 + 2 expansion is unchanged', () => {
+    expect(stretchOdds(TABLE, 14).map(p => Number(p.toFixed(9)))).toEqual(TABLE);
+    expect(oddsTable(16, 0)).toEqual(t16);
+    expect(oddsTable(14, 2)![0]).toBe(14);
+  });
+  it('lotteryOdds works for 16 real teams', () => {
+    const r = lotteryOdds(Array.from({ length: 16 }, (_, i) => team(i, i, 80 - i)));
+    if (!r.ok) throw new Error(r.problem);
+    expect(r.odds.map(o => o.pct)).toEqual(t16);
   });
 });

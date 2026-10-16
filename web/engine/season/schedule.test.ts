@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
 import type { ScheduleGame } from '../shared/types';
 import { buildSchedule, defaultPauses, gameDays } from './schedule';
+import { seasonLength } from './standings';
 
 const fbaTeams = Array.from({ length: 30 }, (_, k) => ({ teamId: `T${k}`, group: k < 15 ? 'E' : 'W' }));
 const d2Groups = ['PL', 'WL', 'UL', 'IL'];
@@ -94,5 +95,38 @@ describe('defaultPauses', () => {
       { afterGame: 1290, kind: 'ratings', done: false },
     ]);
     expect(defaultPauses('fbad2', 960)).toEqual([]);
+  });
+});
+
+const divCodes = ['AT', 'GL', 'PA', 'GU'];
+const divTeams = Array.from({ length: 32 }, (_, k) => ({ teamId: `T${k}`, group: k < 16 ? 'E' : 'W', division: divCodes[Math.floor(k / 8)] }));
+
+describe('buildSchedule with divisions', () => {
+  for (const seed of [1, 2, 3, 4, 5, 6, 7, 8]) {
+    it(`seed ${seed}: 84 games and 42 home per team, 4/3/2 per opponent class`, () => {
+      const games = buildSchedule('fba', divTeams, mulberry32(seed));
+      expect(games).toHaveLength(1344);
+      const { per, pairs } = tally(games);
+      for (const t of divTeams) expect(per.get(t.teamId)).toEqual({ games: 84, home: 42 });
+      const hostsTwice = new Map<string, number>();
+      for (const [key, p] of pairs) {
+        const [a, b] = key.split('|').map(id => divTeams.find(t => t.teamId === id)!);
+        const want = a.division === b.division ? 4 : a.group === b.group ? 3 : 2;
+        expect(p.total).toBe(want);
+        if (want === 3) for (const t of [a, b]) if (p.homeOf.get(t.teamId) === 2) hostsTwice.set(t.teamId, (hostsTwice.get(t.teamId) ?? 0) + 1);
+        if (want !== 3) expect(p.homeOf.get(a.teamId)).toBe(want / 2);
+      }
+      for (const t of divTeams) expect(hostsTwice.get(t.teamId)).toBe(4);
+    });
+  }
+  it('is the same for the same seed', () => {
+    expect(buildSchedule('fba', divTeams, mulberry32(3))).toEqual(buildSchedule('fba', divTeams, mulberry32(3)));
+  });
+  it('pauses fall at the quarter points of the games (21, 42, 63, 84 per team)', () => {
+    expect(defaultPauses('fba', 84).map(p => p.afterGame)).toEqual([21, 42, 42, 63, 63, 84]);
+  });
+  it('seasonLength is 84 games, 52 in the conference', () => {
+    expect(seasonLength('fba', divTeams)).toEqual({ games: 84, confGames: 52 });
+    expect(seasonLength('fba', fbaTeams)).toEqual({ games: 86, confGames: 56 });
   });
 });

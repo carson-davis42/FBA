@@ -3,9 +3,10 @@ import { defenseLines, leagueRefRating } from '../awards/defense';
 import { scoringLines } from './scoring';
 import { POSITIONS } from '../roster/rules';
 import { currentStepIndex, markStepDone } from '../shared/calendar';
+import { DIVISIONS_SEASON } from '../shared/divisions';
 import { teamsInSeason } from '../shared/teams';
-import type { CalendarFile, CalendarStep, GameResult, PauseKind, ResultsFile, ScheduleFile, TeamsFile } from '../shared/types';
-import { buildSchedule, defaultPauses, type SeasonLeague } from './schedule';
+import type { CalendarFile, CalendarStep, GameResult, PauseKind, ResultsFile, ScheduleFile, ScheduleGame, TeamsFile } from '../shared/types';
+import { buildSchedule, defaultPauses, hasDivisions, type SeasonLeague } from './schedule';
 import { simGame, type SimGame, type SimTeam } from './sim';
 import {
   CALENDAR_STEP, blockingPause, gamesPlayed, PAUSE_LABEL, schedulesStepId, seasonFail, type SeasonDocKey, type SeasonResult, type SeasonState,
@@ -50,8 +51,16 @@ export function makeSchedules(input: MakeSchedulesInput, rng: Rng): WritesResult
   if (played > 0) return { ok: false, problems: ["Games have been played; the schedules can't be re-rolled"] };
   const writes: { path: string; doc: unknown }[] = [];
   for (const league of ['fba', 'fbad2'] as SeasonLeague[]) {
-    const teams = teamsInSeason(input[league].teams, input.season).teams.map(t => ({ teamId: t.teamId, group: t.group }));
-    const games = buildSchedule(league, teams, rng);
+    const teams = teamsInSeason(input[league].teams, input.season).teams.map(t => ({ teamId: t.teamId, group: t.group, division: t.division }));
+    if (league === 'fba' && input.season >= DIVISIONS_SEASON && teams.length > 0 && !hasDivisions(league, teams)) {
+      return { ok: false, problems: [`The S${input.season} FBA schedule needs every team in a division: run the importer's --divisions first`] };
+    }
+    let games: ScheduleGame[];
+    try {
+      games = buildSchedule(league, teams, rng);
+    } catch (e) {
+      return { ok: false, problems: [(e as Error).message] };
+    }
     writes.push({ path: `leagues/${league}/S${input.season}/schedule.json`, doc: { league, season: input.season, locked: false, games, pauses: defaultPauses(league, games.length) } });
     writes.push({ path: `leagues/${league}/S${input.season}/results.json`, doc: { league, season: input.season, locked: false, games: [] } });
   }

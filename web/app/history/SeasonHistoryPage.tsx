@@ -1,3 +1,5 @@
+import { DIVISIONS_SEASON } from '../../engine/shared/divisions';
+import { isDivisional } from '../../engine/playoffs/bracket';
 import { useState, type ReactNode } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AWARD_LABEL } from '../../engine/awards/races';
@@ -46,7 +48,7 @@ function StandingsTable({ rows, teams, season, showConf, showDiff, showSeed }: {
         <tbody>
           {rows.map(r => (
             <tr key={r.teamId}>
-              <RankCell kind={clinchKind(r)} league="fba">{r.rank}</RankCell>
+              <RankCell kind={clinchKind({ ...r, division: season >= DIVISIONS_SEASON })} league="fba">{r.rank}</RankCell>
               <td>
                 <TeamFull teams={teams} teamId={r.teamId} name={r.name} season={season} />
                 {r.playoff?.champion && <span className="champ-glyph" role="img" aria-label="FBA champion">🏆</span>}
@@ -81,7 +83,7 @@ function Standings({ season, teams }: { season: SummaryFile; teams: Team[] }) {
       <StandingsTable rows={byRank('E')} teams={teams} season={season.season} {...flags} />
       <h2 className="section-title">Western Conference</h2>
       <StandingsTable rows={byRank('W')} teams={teams} season={season.season} {...flags} />
-      <ClinchLegend kinds={rows.map(r => clinchKind(r))} league="fba" />
+      <ClinchLegend kinds={rows.map(r => clinchKind({ ...r, division: season.season >= DIVISIONS_SEASON }))} league="fba" />
     </div>
   );
 }
@@ -94,7 +96,7 @@ function Playoffs({ season, teams, players, franchises }: { season: SummaryFile;
       <SpanLine span={season.span} />
       <EventDates events={season.events} />
       {season.bracket ? (
-        <Bracket league="fba" series={season.bracket.series} teams={new Map(teams.map(t => [t.teamId, t]))} season={season.season} group={null} open={null} />
+        <Bracket league="fba" series={season.bracket.series} teams={new Map(teams.map(t => [t.teamId, t]))} season={season.season} group={null} open={null} divisional={isDivisional(season.bracket.seeds)} />
       ) : season.pastBracket ? (
         <PastBracket bracket={season.pastBracket} teams={teams} season={season.season} franchises={franchises} gameLink={id => `/history/fba/season/${season.season}/game/${id}`} />
       ) : champion ? (

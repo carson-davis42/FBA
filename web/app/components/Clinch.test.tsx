@@ -16,6 +16,13 @@ describe('clinch bars', () => {
     expect(clinchKind({ marker: null })).toBeNull();
   });
 
+  it('in a division season a * means the division title, not the #1 seed', () => {
+    expect(clinchKind({ marker: '*', division: true })).toBe('division');
+    expect(clinchKind({ marker: 'x', division: true })).toBe('playoff');
+    render(<table><tbody><tr><RankCell kind="division" league="fba">1</RankCell></tr></tbody></table>);
+    expect(screen.getByRole('img', { name: 'Clinched the division title' })).toBeTruthy();
+  });
+
   it('draws a labelled bar on the rank cell, and a plain cell without a state', () => {
     render(<table><tbody><tr><RankCell kind="first" league="fba">1</RankCell><RankCell kind={null} league="fba">2</RankCell></tr></tbody></table>);
     const bar = screen.getByRole('img', { name: 'Clinched the #1 seed' });

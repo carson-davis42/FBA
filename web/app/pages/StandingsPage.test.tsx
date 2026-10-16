@@ -2,9 +2,9 @@
 import { cleanup, render, screen, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { fullD2State, regularSeasonDone } from '../../engine/playoffs/testFixtures';
+import { fullD2State, fullDivisionState, regularSeasonDone } from '../../engine/playoffs/testFixtures';
 import { d2SeasonState, fbaSeasonState } from '../../engine/season/testFixtures';
-import { stubApi } from '../d2/testDocs';
+import { META, stubApi } from '../d2/testDocs';
 import { seasonDocs } from '../season/testDocs';
 import { StandingsPage } from './StandingsPage';
 
@@ -59,5 +59,24 @@ describe('StandingsPage', () => {
     expect(key.textContent).toContain('Relegated');
     expect(screen.getAllByRole('img', { name: 'Relegated' }).length).toBeGreaterThanOrEqual(6);
     expect(screen.queryByText(/▼/)).toBeNull();
+  });
+});
+
+describe('StandingsPage with divisions', () => {
+  it('shows both divisions and a wild-card table for each conference', async () => {
+    stubApi({ ...seasonDocs(regularSeasonDone(fullDivisionState())), 'meta.json': { ...META, currentSeason: 80 } });
+    renderAt('/league/fba/standings');
+    await screen.findAllByRole('table');
+    for (const name of ['Atlantic', 'Great Lakes', 'Pacific', 'Gulf']) expect(screen.getByRole('heading', { name })).toBeTruthy();
+    expect(screen.getAllByRole('heading', { name: 'Wild card' })).toHaveLength(2);
+    expect(screen.getAllByRole('table')).toHaveLength(4 + 2 + 1);
+  });
+  it('keeps the two conference tables before S80', async () => {
+    const s = fbaSeasonState();
+    stubApi(seasonDocs(s));
+    renderAt('/league/fba/standings');
+    await screen.findAllByRole('table');
+    expect(screen.queryByRole('heading', { name: 'Wild card' })).toBeNull();
+    expect(screen.getByRole('heading', { name: 'Eastern Conference' })).toBeTruthy();
   });
 });

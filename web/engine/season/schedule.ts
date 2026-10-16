@@ -1,15 +1,21 @@
-import type { Rng } from '../d2/random';
+import { shuffle, type Rng } from '../d2/random';
 import type { ScheduleGame, SchedulePause } from '../shared/types';
 
 export type SeasonLeague = 'fba' | 'fbad2';
 
-export interface ScheduleTeamInfo { teamId: string; group: string | null }
+export interface ScheduleTeamInfo { teamId: string; group: string | null; division?: string | null }
 
 /** Home games against each opponent (the same number away). FBA: 2+2 in-conference, 1+1 cross; D2: 1+1 in-league only. */
 export const PAIRINGS: Record<SeasonLeague, { sameGroup: number; otherGroup: number }> = {
   fba: { sameGroup: 2, otherGroup: 1 },
   fbad2: { sameGroup: 1, otherGroup: 0 },
 };
+
+/** Division format (FBA from S80): games against each division opponent, each other-division conference opponent, each other-conference team. */
+export const DIVISION_GAMES = { division: 4, conference: 3, cross: 2 } as const;
+
+/** True when every team carries a division: the schedule and the standings then use the division format. */
+export const hasDivisions = (league: SeasonLeague, teams: ScheduleTeamInfo[]): boolean => league === 'fba' && teams.length > 0 && teams.every(t => !!t.division);
 
 interface Slot {
   teamId: string;
@@ -37,14 +43,60 @@ function pickKey(map: Map<string, number>, rng: Rng): string {
  * Port of Java makeSchedule/ScheduleTeam: repeatedly take a team with the most games left (random among ties),
  * flip for home/away (forced when one side is used up), and pick a random remaining opponent for that side.
  */
+/**
+ * Division format: of the 3 games between teams of the two divisions of a conference, one side hosts twice. Each division's teams are
+ * shuffled, then team i of one division hosts twice against teams i..i+n/2-1 (mod n) of the other, so every team hosts twice against
+ * exactly half of its other-division opponents. Returns "host>guest" keys for the side that hosts twice.
+ */
+function hostsTwice(teams: ScheduleTeamInfo[], rng: Rng): Set<string> {
+  const out = new Set<string>();
+  const groups = new Map<string, Map<string, string[]>>();
+  for (const t of teams) {
+    const divs = groups.get(t.group ?? '') ?? new Map<string, string[]>();
+    divs.set(t.division!, [...(divs.get(t.division!) ?? []), t.teamId]);
+    groups.set(t.group ?? '', divs);
+  }
+  for (const divs of groups.values()) {
+    const lists = [...divs.values()].map(l => shuffle(l, rng));
+    for (let a = 0; a < lists.length; a++) {
+      for (let b = a + 1; b < lists.length; b++) {
+        const [A, B] = [lists[a], lists[b]];
+        if (A.length !== B.length || A.length % 2) throw new Error('Divisions of a conference need the same even size');
+        for (let i = 0; i < A.length; i++) {
+          const aHosts = new Set<number>();
+          for (let j = 0; j < A.length / 2; j++) aHosts.add((i + j) % B.length);
+          B.forEach((guest, k) => out.add(aHosts.has(k) ? `${A[i]}>${guest}` : `${guest}>${A[i]}`));
+        }
+      }
+    }
+  }
+  return out;
+}
+
 export function buildSchedule(league: SeasonLeague, teams: ScheduleTeamInfo[], rng: Rng): ScheduleGame[] {
   const { sameGroup, otherGroup } = PAIRINGS[league];
+  const divisional = hasDivisions(league, teams);
+  const twice = divisional ? hostsTwice(teams, rng) : new Set<string>();
   const slots = new Map<string, Slot>();
   for (const t of teams) {
     const home = new Map<string, number>();
     const away = new Map<string, number>();
     for (const o of teams) {
       if (o.teamId === t.teamId) continue;
+      if (divisional) {
+        if (o.division === t.division) {
+          home.set(o.teamId, DIVISION_GAMES.division / 2);
+          away.set(o.teamId, DIVISION_GAMES.division / 2);
+        } else if (o.group === t.group) {
+          const mine = twice.has(`${t.teamId}>${o.teamId}`);
+          home.set(o.teamId, mine ? 2 : 1);
+          away.set(o.teamId, mine ? 1 : 2);
+        } else {
+          home.set(o.teamId, DIVISION_GAMES.cross / 2);
+          away.set(o.teamId, DIVISION_GAMES.cross / 2);
+        }
+        continue;
+      }
       const n = o.group === t.group ? sameGroup : otherGroup;
       if (n > 0) {
         home.set(o.teamId, n);

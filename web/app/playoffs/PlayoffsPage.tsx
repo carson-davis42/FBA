@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { roundName } from '../../engine/playoffs/bracket';
+import { isDivisional, roundName } from '../../engine/playoffs/bracket';
+import { divisionName } from '../../engine/shared/divisions';
 import { lockSeeds, nextPlayoffGame, seasonStandings, seedPreview } from '../../engine/playoffs/moves';
 import { leagueStepProblem } from '../../engine/season/moves';
 import type { SeasonLeague } from '../../engine/season/schedule';
@@ -23,6 +24,14 @@ import '../pages/season.css';
 import './playoffs.css';
 import { PlayerName } from '../components/PlayerName';
 
+/** How a team got in under divisions: "Atlantic champion", "Great Lakes 2nd", "Wild card 1". */
+function berth(s: PlayoffsFile['seeds'][number], id: string): string {
+  const d = s.divisions?.find(x => x.teams.includes(id));
+  if (d) return `${divisionName(d.division)} ${['champion', '2nd', '3rd'][d.teams.indexOf(id)]}`;
+  const w = s.wildCards?.indexOf(id) ?? -1;
+  return w >= 0 ? `Wild card ${w + 1}` : '';
+}
+
 function SeedTables({ lg, state, seeds, teams }: { lg: SeasonLeague; state: SeasonState; seeds: PlayoffsFile['seeds']; teams: Map<string, Team> }) {
   const st = seasonStandings(state);
   return (
@@ -42,7 +51,7 @@ function SeedTables({ lg, state, seeds, teams }: { lg: SeasonLeague; state: Seas
                     return (
                       <tr key={id}>
                         <td className="rank">{i + 1}</td>
-                        <td>{t ? <TeamName team={t} season={state.season} size={20} /> : id}</td>
+                        <td>{t ? <TeamName team={t} season={state.season} size={20} /> : id}{berth(s, id) && <span className="muted"> · {berth(s, id)}</span>}</td>
                         <td className="n rec">{r ? `${r.w}-${r.l}` : ''}</td>
                       </tr>
                     );
@@ -171,7 +180,7 @@ export function PlayoffsPage() {
       )}
       {next && nextSeries && (
         <div className="card next-game">
-          <span>Playoff game {next.gameNo} · {roundName(lg, nextSeries)}, game {next.gameInSeries} · {abbr(next.away)} at {abbr(next.home)} · {lead}</span>{' '}
+          <span>Playoff game {next.gameNo} · {roundName(lg, nextSeries, isDivisional(pf.seeds))}, game {next.gameInSeries} · {abbr(next.away)} at {abbr(next.home)} · {lead}</span>{' '}
           <Link className="btn primary" to={`/league/${lg}/playoffs/game/${next.gameNo}`}>Watch ▸</Link>
         </div>
       )}
@@ -182,10 +191,10 @@ export function PlayoffsPage() {
           ))}
         </div>
       )}
-      <Bracket league={lg} series={pf.series} teams={teams} season={state.season} group={lg === 'fbad2' ? pick : null} open={open} onOpen={setOpen} />
+      <Bracket league={lg} series={pf.series} teams={teams} season={state.season} group={lg === 'fbad2' ? pick : null} open={open} onOpen={setOpen} divisional={isDivisional(pf.seeds)} />
       {open && (
         <div className="card headed">
-          <h3>{roundName(lg, pf.series.find(s => s.id === open)!)}</h3>
+          <h3>{roundName(lg, pf.series.find(s => s.id === open)!, isDivisional(pf.seeds))}</h3>
           {openGames.length === 0 && <p className="muted">No games yet.</p>}
           <ul className="series-games">
             {openGames.map(g => (

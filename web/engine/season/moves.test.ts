@@ -4,6 +4,7 @@ import type { CalendarFile } from '../shared/types';
 import { closeTradeDeadline, lineup, makeSchedules, recordGames, simNextGames } from './moves';
 import { blockingPause, gamesPlayed, gamesUntilStop, seasonDocPath, seasonWrites, type SeasonResult, type SeasonState } from './state';
 import { d2SeasonState, fbaSeasonState } from './testFixtures';
+import { fullDivisionState } from '../playoffs/testFixtures';
 
 const ok = (r: SeasonResult) => {
   if (!r.ok) throw new Error(r.problems.join('; '));
@@ -17,6 +18,18 @@ const play = (s: SeasonState, n: number, seed = 1): SeasonState => {
   if (problem) throw new Error(problem);
   return ok(recordGames(s, games)).state;
 };
+
+describe('makeSchedules in the division season', () => {
+  it('refuses to build the S80 FBA schedule while the teams have no divisions', () => {
+    const f = fullDivisionState();
+    const d = d2SeasonState();
+    const noDivs = { ...f.teams, teams: f.teams.teams.map(({ division: _d, ...t }) => t) };
+    const cal = { ...f.calendar, steps: f.calendar.steps.map(s => ({ ...s, done: false })) };
+    const r = makeSchedules({ season: 80, calendar: cal, fba: { teams: noDivs, schedule: null, results: null }, fbad2: { teams: d.teams, schedule: null, results: null } }, mulberry32(1));
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.problems.join(' ')).toMatch(/divisions/);
+  });
+});
 
 describe('makeSchedules', () => {
   const input = () => {
@@ -47,9 +60,9 @@ describe('makeSchedules', () => {
 
   it('schedules only the teams in the season when the file holds teams joining later', () => {
     const badge = { bg: 'hsl(1 55% 36%)', fg: '#ffffff' };
-    const mk = (id: string, group: string, fromSeason?: number) => ({ teamId: id, name: id, abbr: id, group, logoFolder: null, badge, ...(fromSeason ? { fromSeason } : {}) });
-    const base = Array.from({ length: 30 }, (_, k) => mk(`T${k}`, k < 15 ? 'East' : 'West'));
-    const teams = { league: 'fba' as const, teams: [...base, mk('PHI', 'East', 80), mk('LAL', 'West', 80)] };
+    const mk = (id: string, group: string, division: string, fromSeason?: number) => ({ teamId: id, name: id, abbr: id, group, division, logoFolder: null, badge, ...(fromSeason ? { fromSeason } : {}) });
+    const base = Array.from({ length: 30 }, (_, k) => mk(`T${k}`, k < 15 ? 'East' : 'West', k < 8 ? 'AT' : k < 15 ? 'GL' : k < 23 ? 'PA' : 'GU'));
+    const teams = { league: 'fba' as const, teams: [...base, mk('PHI', 'East', 'GL', 80), mk('LAL', 'West', 'GU', 80)] };
     const f = fbaSeasonState();
     const d = d2SeasonState();
     const run = (season: number) => {
@@ -62,7 +75,7 @@ describe('makeSchedules', () => {
     expect(new Set(g79.flatMap(g => [g.home, g.away])).size).toBe(30);
     const g80 = run(80);
     expect(new Set(g80.flatMap(g => [g.home, g.away])).size).toBe(32);
-    expect(g80).toHaveLength((32 * 92) / 2);
+    expect(g80).toHaveLength((32 * 84) / 2);
   });
 
   it('re-rolls only while no games are played', () => {
