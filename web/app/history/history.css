@@ -4,7 +4,7 @@
 .feature-icon .fill { fill: var(--accent); stroke: var(--accent); }
 .feature-icon .fill-line { stroke: var(--accent); }
 .feature-icon .thick { stroke-width: 6; }
-.feature-logos { position: relative; width: 132px; }
+.feature-logos { position: relative; width: 168px; }
 .feature-logo { position: absolute; line-height: 0; }
 .feature:hover .feature-icon { color: var(--accent); }
 .feature-title { font-family: var(--font-head); font-size: var(--fs-lg); text-transform: var(--head-transform); letter-spacing: 0.02em; }

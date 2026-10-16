@@ -4,11 +4,12 @@ import { TeamMark } from '../components/TeamMark';
 export type IconName =
   | 'trophy' | 'teams' | 'draft' | 'awards' | 'awardsByPlayer' | 'seasons' | 'leaders' | 'streaks' | 'players' | 'hall' | 'transactions' | 'timeline' | 'recruiting';
 
+/** Four 34px logos on a zigzag, 44px apart, so even tilted none touches the next. */
 const SPOTS = [
-  { left: '0%', top: '36%', size: 38, rot: -12 },
-  { left: '24%', top: '0%', size: 42, rot: 8 },
-  { left: '50%', top: '34%', size: 40, rot: -6 },
-  { left: '74%', top: '2%', size: 36, rot: 14 },
+  { left: 0, top: 28, size: 34, rot: -6 },
+  { left: 44, top: 2, size: 34, rot: 5 },
+  { left: 88, top: 28, size: 34, rot: -5 },
+  { left: 132, top: 2, size: 34, rot: 6 },
 ];
 
 /** Four teams spread across a list, for when no teams are singled out. */
