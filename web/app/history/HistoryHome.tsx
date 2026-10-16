@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
+import type { Team } from '../../engine/shared/types';
 import { useHistory } from '../api';
 import { PageHeader } from '../components/PageHeader';
-import { FeatureIcon, type IconName } from './FeatureIcon';
+import { fbaSemifinalists } from '../../engine/history/hubTeams';
+import { FeatureIcon, spreadTeams, type IconName } from './FeatureIcon';
 import { HistoryLeagueSwitch } from './d2/HistoryLeagueSwitch';
-import { useFbaTeams } from './useTeams';
+import { findTeam, useFbaTeams } from './useTeams';
 import { SkippedWarning } from './PlayerLink';
 import './history.css';
 
@@ -28,6 +30,9 @@ export function HistoryHome() {
   if (!seasons) return <p className="muted">Loading…</p>;
   const latest = seasons.reduce((m, s) => Math.max(m, s.season), 0);
   const ordered = [...seasons].sort((a, b) => b.season - a.season);
+  /** The previous season's last four (conference finalists), else a spread of the league. */
+  const finalists = ordered[0] ? fbaSemifinalists(ordered[0]).map(id => findTeam(teams, id)).filter((t): t is Team => !!t) : [];
+  const lastFour = finalists.length ? finalists : spreadTeams(teams);
   const cards = latest > 0
     ? [FEATURES[0], FEATURES[1], FEATURES[2], FEATURES[3], { to: `/history/fba/season/${latest}`, title: 'Seasons', icon: 'seasons' as const }, ...FEATURES.slice(4)]
     : FEATURES;
@@ -39,7 +44,7 @@ export function HistoryHome() {
       <div className="card-grid">
         {cards.map(c => (
           <Link key={c.title} to={c.to} className="card link headed feature" aria-label={c.title}>
-            <FeatureIcon name={c.icon} teams={teams} />
+            <FeatureIcon name={c.icon} teams={lastFour} season={latest} />
             <span className="feature-title">{c.title}</span>
           </Link>
         ))}

@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
+import type { Team } from '../../../engine/shared/types';
 import { isJcNationalTitle, jcSeasonLabel } from '../../../engine/history/jc';
 import { useHistory } from '../../api';
 import { PageHeader } from '../../components/PageHeader';
-import { FeatureIcon, type IconName } from '../FeatureIcon';
+import { jcFinalFour } from '../../../engine/history/hubTeams';
+import { FeatureIcon, spreadTeams, type IconName } from '../FeatureIcon';
+import { findTeam } from '../useTeams';
 import { SkippedWarning } from '../PlayerLink';
 import '../history.css';
 import { HistoryLeagueSwitch } from '../d2/HistoryLeagueSwitch';
@@ -16,12 +19,15 @@ export function JcHistoryHome() {
   const ordered = [...seasons].sort((a, b) => b.season - a.season);
   const latest = ordered[0];
   const champ = latest?.champions.find(c => isJcNationalTitle(c.title));
+  /** The latest March Madness's Final Four, else a spread of the schools. */
+  const found = latest ? jcFinalFour(latest).map(name => findTeam(teams, null, name)).filter((t): t is Team => !!t) : [];
+  const finalFour = found.length ? found : spreadTeams(teams);
   const cards: { to: string; title: string; icon: IconName }[] = [
     { to: '/history/fbajc/championships', title: 'Championships', icon: 'trophy' },
     { to: '/history/fbajc/awards', title: 'Awards', icon: 'awards' },
     ...(latest ? [{ to: `/history/fbajc/season/${latest.season}`, title: 'Seasons', icon: 'seasons' as const }] : []),
     { to: '/history/fbajc/recruiting', title: 'Recruiting', icon: 'recruiting' },
-    { to: '/history/fbajc/schools', title: 'Schools', icon: 'schools' },
+    { to: '/history/fbajc/schools', title: 'Schools', icon: 'teams' },
   ];
   return (
     <section className="stack">
@@ -36,7 +42,7 @@ export function JcHistoryHome() {
       <div className="card-grid">
         {cards.map(c => (
           <Link key={c.title} to={c.to} className="card link headed feature" aria-label={c.title}>
-            <FeatureIcon name={c.icon} />
+            <FeatureIcon name={c.icon} teams={finalFour} season={latest?.season ?? 78} />
             <span className="feature-title">{c.title}</span>
           </Link>
         ))}

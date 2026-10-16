@@ -2,7 +2,7 @@ import type { Team } from '../../engine/shared/types';
 import { TeamMark } from '../components/TeamMark';
 
 export type IconName =
-  | 'trophy' | 'teams' | 'draft' | 'awards' | 'awardsByPlayer' | 'seasons' | 'leaders' | 'streaks' | 'players' | 'hall' | 'transactions' | 'timeline' | 'recruiting' | 'schools';
+  | 'trophy' | 'teams' | 'draft' | 'awards' | 'awardsByPlayer' | 'seasons' | 'leaders' | 'streaks' | 'players' | 'hall' | 'transactions' | 'timeline' | 'recruiting';
 
 const SPOTS = [
   { left: '0%', top: '36%', size: 38, rot: -12 },
@@ -11,9 +11,14 @@ const SPOTS = [
   { left: '74%', top: '2%', size: 36, rot: 14 },
 ];
 
-/** A few team logos, tilted and overlapping, spread across the teams list; empty until the teams load. */
+/** Four teams spread across a list, for when no teams are singled out. */
+export function spreadTeams(teams: Team[]): Team[] {
+  return [0.05, 0.3, 0.55, 0.8].map(f => teams[Math.floor(f * teams.length)]).filter(Boolean);
+}
+
+/** The given teams' logos (the first four), tilted and overlapping; empty until the teams load. */
 function TeamsIcon({ teams, season }: { teams: Team[]; season: number }) {
-  const picks = [0.05, 0.3, 0.55, 0.8].map(f => teams[Math.floor(f * teams.length)]).filter(Boolean);
+  const picks = teams.slice(0, 4);
   return (
     <span className="feature-icon feature-logos" data-icon="teams" aria-hidden="true">
       {picks.map((t, i) => (
@@ -117,14 +122,6 @@ const SHAPES: Record<Exclude<IconName, 'teams'>, JSX.Element> = {
       <path d="M22 18h28M22 27h28M22 36h16" />
       <circle className="fill" cx="46" cy="46" r="8" />
       <path d="M42 54l-2 8 6-3 6 3-2-8" />
-    </>
-  ),
-  schools: (
-    <>
-      <path d="M36 10L4 24l32 14 32-14z" />
-      <path d="M16 31v14c0 5 9 9 20 9s20-4 20-9V31" />
-      <path className="fill-line" d="M64 26v18" />
-      <circle className="fill" cx="64" cy="47" r="3" />
     </>
   ),
   timeline: (
