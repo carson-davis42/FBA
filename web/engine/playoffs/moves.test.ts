@@ -8,7 +8,7 @@ import { fbaSeasonState } from '../season/testFixtures';
 import { PlayoffsFile } from '../shared/types';
 import { FINALS } from './bracket';
 import { finalsMvpCandidates, lockSeeds, nextPlayoffGame, pickFinalsMvp, recordPlayoffGame, seedPreview } from './moves';
-import { fullD2State, fullFbaState, playPlayoffs, regularSeasonDone } from './testFixtures';
+import { fullD2State, fullDivisionState, fullFbaState, playPlayoffs, regularSeasonDone } from './testFixtures';
 
 const ok = (r: SeasonResult) => {
   if (!r.ok) throw new Error(r.problems.join('; '));
@@ -207,5 +207,26 @@ describe('finalsMvpCandidates and pickFinalsMvp', () => {
     const pl = finalsMvpCandidates(s, 'PL');
     expect(pl.some(c => c.playerId === wl[0].playerId)).toBe(false);
     expect(pickFinalsMvp(s, 'PL', wl[0].playerId).ok).toBe(false);
+  });
+});
+
+describe('division playoffs', () => {
+  const done = () => regularSeasonDone(fullDivisionState());
+  it('locks 8 qualifiers per conference with their divisions and wild cards', () => {
+    const r = ok(lockSeeds(done()));
+    const seeds = r.state.playoffs!.seeds;
+    expect(seeds.map(s => s.group)).toEqual(['E', 'W']);
+    for (const s of seeds) {
+      expect(s.teams).toHaveLength(8);
+      expect(s.divisions!.flatMap(d => d.teams)).toHaveLength(6);
+      expect(s.wildCards).toHaveLength(2);
+      expect(new Set([...s.divisions!.flatMap(d => d.teams), ...s.wildCards!])).toEqual(new Set(s.teams));
+    }
+    expect(PlayoffsFile.safeParse(r.state.playoffs).success).toBe(true);
+    expect(r.state.playoffs!.series).toHaveLength(15);
+  });
+  it('plays through to a champion', () => {
+    const s = playPlayoffs(ok(lockSeeds(done())).state);
+    expect(s.playoffs!.outcome!.champions).toHaveLength(1);
   });
 });

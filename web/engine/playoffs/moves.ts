@@ -35,15 +35,17 @@ export function seriesRecord(pf: PlayoffsFile, seriesId: string, throughGameNo: 
 }
 
 export function seasonStandings(state: SeasonState): Standings {
-  const teams = state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group }));
+  const teams = state.teams.teams.map(t => ({ teamId: t.teamId, group: t.group, division: t.division }));
   return standings(state.league, teams, state.results?.games ?? [], seasonLength(state.league, teams), state.playoffs);
 }
 
 /** Each group's top 8 from the current standings, with the notes for ties that involve them. */
 export function seedPreview(state: SeasonState): PlayoffsFile['seeds'] {
   return seasonStandings(state).groups.map(g => {
-    const teams = g.rows.slice(0, PLAYOFF_SEEDS).map(r => r.teamId);
-    return { group: g.group, teams, notes: g.notes.filter(n => n.teams.some(t => teams.includes(t))).map(n => n.text) };
+    const q = g.qualifiers;
+    const teams = q ? q.teams : g.rows.slice(0, PLAYOFF_SEEDS).map(r => r.teamId);
+    const notes = g.notes.filter(n => n.teams.some(t => teams.includes(t))).map(n => n.text);
+    return q ? { group: g.group, teams, notes, divisions: q.divisions, wildCards: q.wildCards } : { group: g.group, teams, notes };
   });
 }
 

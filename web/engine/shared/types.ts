@@ -1002,7 +1002,17 @@ export type PlayoffGame = z.infer<typeof PlayoffGame>;
 export const PromotionLine = z.object({ league: z.string().min(1), promoted: z.array(teamRef), relegated: z.array(teamRef) }).strict();
 export type PromotionLine = z.infer<typeof PromotionLine>;
 
-export const PlayoffSeed = z.object({ group: z.string().min(1), teams: z.array(teamRef).length(8), notes: z.array(z.string()) }).strict();
+/**
+ * `teams` are the 8 qualifiers in seed (home-court) order. From S80 `divisions` (each division's top 3, best first) and `wildCards`
+ * (best first) say how they qualified and who plays whom; older seasons have neither and use the 1v8 / 2v7 / 3v6 / 4v5 bracket.
+ */
+export const PlayoffSeed = z.object({
+  group: z.string().min(1),
+  teams: z.array(teamRef).length(8),
+  notes: z.array(z.string()),
+  divisions: z.array(z.object({ division: z.string().min(1), teams: z.array(teamRef).length(3) }).strict()).length(2).optional(),
+  wildCards: z.array(teamRef).length(2).optional(),
+}).strict();
 export type PlayoffSeed = z.infer<typeof PlayoffSeed>;
 
 export const PlayoffsFile = z.object({

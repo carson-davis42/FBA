@@ -91,3 +91,37 @@ describe('labels and columns', () => {
     expect(bracketColumns('fba', 'E')).toEqual([['E-R1-1', 'E-R1-4', 'E-R1-2', 'E-R1-3'], ['E-SF-1', 'E-SF-2'], ['E-CF']]);
   });
 });
+
+describe('division bracket (S80 on)', () => {
+  // Seed order: E1 is the best record. WC1 (E3) has a better record than the Great Lakes winner (E4).
+  const seed = {
+    group: 'E',
+    teams: ['E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8'],
+    divisions: [{ division: 'AT', teams: ['E1', 'E6', 'E7'] }, { division: 'GL', teams: ['E4', 'E2', 'E8'] }],
+    wildCards: ['E3', 'E5'],
+  };
+  const b = () => buildBracket('fba', [seed, { ...seed, group: 'W', teams: seed.teams.map(t => t.replace('E', 'W')), divisions: seed.divisions.map(d => ({ ...d, teams: d.teams.map(t => t.replace('E', 'W')) })), wildCards: ['W3', 'W5'] }]);
+  it('best division winner plays WC2, the other WC1, 2nd plays 3rd in each division', () => {
+    const x = b();
+    expect(find(x, 'E-R1-1')).toMatchObject({ home: 'E1', away: 'E5', homeSeed: 1, awaySeed: 5, next: 'E-SF-1' });
+    expect(find(x, 'E-R1-2')).toMatchObject({ home: 'E3', away: 'E4', next: 'E-SF-2' });
+    expect(find(x, 'E-R1-3')).toMatchObject({ home: 'E6', away: 'E7', next: 'E-SF-1' });
+    expect(find(x, 'E-R1-4')).toMatchObject({ home: 'E2', away: 'E8', next: 'E-SF-2' });
+    expect(x.series).toHaveLength(15);
+    expect(find(x, 'E-SF-1')).toMatchObject({ round: 2, next: 'E-CF' });
+  });
+  it('queues the first round in the same rotation', () => {
+    expect(b().queue).toEqual(['E-R1-1', 'W-R1-1', 'E-R1-2', 'W-R1-2', 'E-R1-3', 'W-R1-3', 'E-R1-4', 'W-R1-4']);
+  });
+  it('fills the division final with the lower seed number at home', () => {
+    let x = b();
+    for (let k = 0; k < 4; k++) x = advance(x, 'E-R1-3', 'E7', never);
+    for (let k = 0; k < 4; k++) x = advance(x, 'E-R1-1', 'E1', never);
+    expect(find(x, 'E-SF-1')).toMatchObject({ home: 'E1', away: 'E7' });
+  });
+  it('names round 2 the division finals and lays out the columns', () => {
+    expect(roundName('fba', find(b(), 'E-SF-1'), true)).toBe('East division finals');
+    expect(roundName('fba', find(b(), 'E-SF-1'))).toBe('East semifinals');
+    expect(bracketColumns('fba', 'E', true)[0]).toEqual(['E-R1-1', 'E-R1-3', 'E-R1-2', 'E-R1-4']);
+  });
+});
