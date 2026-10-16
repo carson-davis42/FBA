@@ -79,9 +79,13 @@ tr.jc-champion td { font-weight: 700; }
 
 /* The All-American board: a slot per row, the suggestions for the chosen slot below. */
 .jc-aa-slots { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
-.jc-aa-slot { display: grid; grid-template-columns: 3.2em minmax(0, 1fr) auto auto; align-items: center; gap: var(--s2); padding: var(--s2); border-radius: var(--r-sm); }
+.jc-aa-slot { display: grid; grid-template-columns: 2.6em minmax(0, 1fr) auto; align-items: center; gap: var(--s2); padding: var(--s2); border-radius: var(--r-sm); }
 .jc-aa-selected { background: var(--surface-2); outline: 2px solid var(--accent, currentColor); }
 .jc-aa-pos { font-weight: 700; }
 .jc-aa-panel h3 { margin: 0 0 var(--s2); }
 .jc-aa-picked { display: inline-flex; align-items: center; gap: var(--s2); min-width: 0; }
 .jc-aa-who { min-width: 0; }
+.jc-aa-actions { display: inline-flex; gap: var(--s2); }
+.jc-aa-clear { padding-left: var(--s2); padding-right: var(--s2); }
+.jc-aa-picked .team-mark, .jc-aa-picked img { flex: none; }
+.jc-aa-picked { overflow-wrap: anywhere; }
