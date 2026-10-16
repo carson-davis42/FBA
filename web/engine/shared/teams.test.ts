@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { Team, TeamsFile } from './types';
-import { teamsInSeason, teamsJoining } from './teams';
+import { groupInSeason, teamsInSeason, teamsJoining } from './teams';
 import { EXPANSION_TEAMS } from './expansion';
 import { lotterySizeFor } from './league';
 
@@ -39,5 +39,25 @@ describe('schema and definition', () => {
   });
   it('derives the lottery size from the team count', () => {
     expect([lotterySizeFor(30), lotterySizeFor(32)]).toEqual([14, 16]);
+  });
+});
+
+describe('divisions and conference changes', () => {
+  const moved = { ...t('ATL'), group: 'W', division: 'GU', formerGroup: { through: 79, group: 'E' } };
+  const f = { league: 'fba' as const, teams: [moved] };
+  it('resolves the conference per season', () => {
+    expect(groupInSeason(moved, 79)).toBe('E');
+    expect(groupInSeason(moved, 80)).toBe('W');
+  });
+  it('drops the division before S80 and keeps it from S80', () => {
+    const old = teamsInSeason(f, 79).teams[0];
+    expect(old.group).toBe('E');
+    expect(old.division).toBeUndefined();
+    const now = teamsInSeason(f, 80).teams[0];
+    expect(now.group).toBe('W');
+    expect(now.division).toBe('GU');
+  });
+  it('rejects a malformed formerGroup', () => {
+    expect(Team.safeParse({ ...moved, formerGroup: { through: 79 } }).success).toBe(false);
   });
 });

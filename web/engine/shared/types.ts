@@ -53,6 +53,10 @@ export const Team = z.object({
   country: z.string().min(1).optional(),
   /** The first season the team plays; teams without it have always been in the league. Season-scoped code reads `teamsInSeason`. */
   fromSeason: int.min(1).optional(),
+  /** FBA division (from S80); the conference stays `group`. */
+  division: z.string().min(1).optional(),
+  /** The conference the team played in through season `through` (a team that changed conference keeps its history). */
+  formerGroup: z.object({ through: int, group: z.string().min(1) }).strict().optional(),
 }).strict();
 export type Team = z.infer<typeof Team>;
 
