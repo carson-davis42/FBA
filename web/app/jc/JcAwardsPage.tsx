@@ -10,6 +10,7 @@ import type { JcState } from '../../engine/jc/state';
 import { calendarProblem } from '../../engine/season/moves';
 import { JC_ALL_AMERICAN_SLOTS, type JcNationalAward } from '../../engine/shared/types';
 import { PageHeader } from '../components/PageHeader';
+import { TeamMark } from '../components/TeamMark';
 import { TeamName } from '../components/TeamName';
 import { AllAmericanBoard } from './AllAmericanBoard';
 import { jcGate } from './JcGate';
@@ -107,6 +108,7 @@ export function JcAwardsPage() {
                 awards={awards.allAmerican ?? ([1, 2, 3] as const).map(team => ({ team, slots: JC_ALL_AMERICAN_SLOTS.map(slot => ({ slot, playerId: null })) }))}
                 suggestions={suggestions} disabled={saving || finished} who={who}
                 teamCell={id => <TeamName team={state.teams.teams.find(t => t.teamId === id)!} season={season} variant="abbr" size={18} />}
+                logo={id => <TeamMark team={state.teams.teams.find(t => t.teamId === id)!} season={season} size={26} />}
                 onPick={(team, k, playerId) => void run(() => pickAllAmerican(state, team, k, playerId))} />
             </>
           )}

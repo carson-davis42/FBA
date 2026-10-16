@@ -12,12 +12,14 @@ type Team = 1 | 2 | 3;
  * The three All-American teams as a board: each slot shows who is picked, and clicking a slot opens the ranked suggestions for it
  * with the award score and where it comes from. Picking moves on to the next empty slot.
  */
-export function AllAmericanBoard({ awards, suggestions, disabled, who, teamCell, onPick }: {
+export function AllAmericanBoard({ awards, suggestions, disabled, who, teamCell, logo, onPick }: {
   awards: NonNullable<JcAwardsFile['allAmerican']>;
   suggestions: AllAmericanSuggestion[];
   disabled: boolean;
   who: (playerId: string, teamId: string | null) => string;
   teamCell: (teamId: string) => ReactNode;
+  /** Just the team's logo, for a filled slot. */
+  logo: (teamId: string) => ReactNode;
   onPick: (team: Team, slotIndex: number, playerId: string | null) => void;
 }) {
   const [selected, setSelected] = useState<{ team: Team; k: number } | null>(null);
@@ -55,7 +57,7 @@ export function AllAmericanBoard({ awards, suggestions, disabled, who, teamCell,
                     <span className="jc-aa-pos">{JC_ALL_AMERICAN_SLOTS[k]}</span>
                     <span className="jc-aa-who">
                       {s.playerId
-                        ? <><PlayerName id={s.playerId} name={who(s.playerId, p?.teamId ?? null)} />{p && <span className="muted"> {p.position} · {p.ppg.toFixed(1)} PPG · {p.rating} rtg · score {p.score.toFixed(1)}</span>}</>
+                        ? <span className="jc-aa-picked">{p && logo(p.teamId)}<PlayerName id={s.playerId} name={who(s.playerId, p?.teamId ?? null).replace(/ \([^)]*\)$/, '')} /></span>
                         : <span className="muted">Not picked</span>}
                     </span>
                     <button type="button" className="btn" disabled={disabled} aria-pressed={sel} aria-label={`Choose Team ${t.team} ${JC_ALL_AMERICAN_SLOTS[k]} ${k + 1}`}

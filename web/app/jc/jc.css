@@ -83,3 +83,5 @@ tr.jc-champion td { font-weight: 700; }
 .jc-aa-selected { background: var(--surface-2); outline: 2px solid var(--accent, currentColor); }
 .jc-aa-pos { font-weight: 700; }
 .jc-aa-panel h3 { margin: 0 0 var(--s2); }
+.jc-aa-picked { display: inline-flex; align-items: center; gap: var(--s2); min-width: 0; }
+.jc-aa-who { min-width: 0; }
