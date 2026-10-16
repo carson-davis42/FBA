@@ -158,12 +158,12 @@ describe('standings with divisions', () => {
     expect(s.lottery.some(r => q.has(r.teamId))).toBe(false);
     expect(s.lottery[0].w).toBeLessThanOrEqual(s.lottery[15].w);
   });
-  it('markers: division winners and top 3 clinched, a wild card has none, the rest are eliminated once the season is over', () => {
+  it('markers: division winners and top 3 clinched, a wild card shows qualified once the season is over, the rest are eliminated once the season is over', () => {
     const row = (id: string) => east.rows.find(r => r.teamId === id)!;
     expect(row('T00').marker).toBe('*');
     expect(row('T01').marker).toBe('x');
     expect(row('T05').marker).toBe('n');
-    expect(row('T03').marker).toBeNull();
+    expect(row('T03').marker).toBe('x');
   });
   it('without divisions the result keeps the two-conference shape', () => {
     const old = standings('fba', teams.map(t => ({ teamId: t.teamId, group: t.group })), []);

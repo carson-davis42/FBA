@@ -301,7 +301,7 @@ const WILD_CARDS = 2;
 
 /**
  * The division format: each division is ordered (top 3 qualify), the 2 best of the rest of the conference are the wild cards.
- * Markers: '*' division title clinched, 'x' top 3 of the division clinched, 'n' only once the regular season is over and the team missed out.
+ * Markers: '*' division title clinched, 'x' top 3 of the division clinched (or, once the regular season is over, any qualifier), 'n' once it is over and the team missed out.
  */
 function divisionGroup(
   group: string, recs: TeamRecord[], len: { games: number; confGames: number }, playoffs: PlayoffsFile | null, ranks: () => string[],
@@ -325,7 +325,7 @@ function divisionGroup(
   const markers = new Map<string, StandingRow['marker']>();
   for (const d of divOrders) {
     d.order.forEach((r, i) => {
-      markers.set(r.teamId, clinchStar(d.order, i, len) ? '*' : clinchX(d.order, i, len, DIVISION_SPOTS) ? 'x' : over && !qualified.has(r.teamId) ? 'n' : null);
+      markers.set(r.teamId, clinchStar(d.order, i, len) ? '*' : clinchX(d.order, i, len, DIVISION_SPOTS) || (over && qualified.has(r.teamId)) ? 'x' : over ? 'n' : null);
     });
   }
   const mark = (r: TeamRecord) => markers.get(r.teamId) ?? null;

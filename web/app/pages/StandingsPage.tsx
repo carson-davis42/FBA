@@ -13,7 +13,7 @@ const pct = (x: number) => (x === 1 ? '1.000' : x.toFixed(3).replace(/^0/, ''));
 const gb = (x: number) => (x === 0 ? '—' : String(x));
 const signed = (x: number) => (x > 0 ? `+${x}` : String(x));
 
-const rowKind = (r: StandingRow) => clinchKind({ marker: r.marker, status: r.status, conference: r.badge === 'C' });
+const rowKind = (r: StandingRow) => clinchKind({ marker: r.marker, status: r.status, conference: r.badge === 'C', division: !!r.division });
 
 function Table({ rows, teams, season, league, showConf, lottery, lineAt = PLAYOFF_SEEDS }: { rows: StandingRow[]; teams: Map<string, Team>; season: number; league: 'fba' | 'fbad2'; showConf: boolean; lottery?: boolean; lineAt?: number }) {
   return (

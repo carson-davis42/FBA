@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 
 /** What a standings row has clinched, shown as a coloured bar on the rank cell (FotMob style) with a legend below. */
-export type ClinchKind = 'promoted' | 'relegated' | 'conference' | 'first' | 'playoff' | 'eliminated' | 'qualified' | 'advanced' | 'champion' | 'marchmadness' | 'nit';
+export type ClinchKind = 'promoted' | 'relegated' | 'conference' | 'first' | 'division' | 'playoff' | 'eliminated' | 'qualified' | 'advanced' | 'champion' | 'marchmadness' | 'nit';
 type ClinchLeague = 'fba' | 'fbad2' | 'fbawc' | 'fbajc';
 
 /** Legend order. */
-const ORDER: ClinchKind[] = ['qualified', 'advanced', 'champion', 'marchmadness', 'nit', 'conference', 'first', 'playoff', 'promoted', 'relegated', 'eliminated'];
+const ORDER: ClinchKind[] = ['qualified', 'advanced', 'champion', 'marchmadness', 'nit', 'conference', 'first', 'division', 'playoff', 'promoted', 'relegated', 'eliminated'];
 
 export function clinchLabel(kind: ClinchKind, league: ClinchLeague): string {
   switch (kind) {
@@ -18,17 +18,18 @@ export function clinchLabel(kind: ClinchKind, league: ClinchLeague): string {
     case 'nit': return 'NIT bid';
     case 'conference': return 'Conference champion';
     case 'first': return league === 'fba' ? 'Clinched the #1 seed' : 'Clinched first place';
+    case 'division': return 'Clinched the division title';
     case 'playoff': return 'Clinched a playoff spot';
     case 'eliminated': return 'Eliminated';
   }
 }
 
 /** The one state a row shows: promotion and relegation first, then conference champion, then the clinch marker. */
-export function clinchKind(row: { marker?: '*' | 'x' | 'n' | null; status?: '▲' | '▼' | null; conference?: boolean }): ClinchKind | null {
+export function clinchKind(row: { marker?: '*' | 'x' | 'n' | null; status?: '▲' | '▼' | null; conference?: boolean; division?: boolean }): ClinchKind | null {
   if (row.status === '▲') return 'promoted';
   if (row.status === '▼') return 'relegated';
   if (row.conference) return 'conference';
-  if (row.marker === '*') return 'first';
+  if (row.marker === '*') return row.division ? 'division' : 'first';
   if (row.marker === 'x') return 'playoff';
   if (row.marker === 'n') return 'eliminated';
   return null;
