@@ -122,7 +122,7 @@ describe('buildSchedule with divisions', () => {
   it('is the same for the same seed', () => {
     expect(buildSchedule('fba', divTeams, mulberry32(3))).toEqual(buildSchedule('fba', divTeams, mulberry32(3)));
   });
-  it('pauses fall at games 21, 42, 63 and 84', () => {
+  it('pauses fall at the quarter points of the games (21, 42, 63, 84 per team)', () => {
     expect(defaultPauses('fba', 84).map(p => p.afterGame)).toEqual([21, 42, 42, 63, 63, 84]);
   });
   it('seasonLength is 84 games, 52 in the conference', () => {
