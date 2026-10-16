@@ -79,11 +79,33 @@ describe('JcAwardsPage', () => {
     expect(batches[0].writes.map(w => w.path)).toEqual(['leagues/fbajc/S79/awards.json']);
   });
 
+  it('shows ranked suggestions for a chosen slot, with the score and where it comes from, and a click picks', async () => {
+    mount(tournamentsDone);
+    expect(await screen.findByText(/Pick a slot to see the suggestions/)).toBeTruthy();
+    fireEvent.click(screen.getByLabelText('Choose Team 1 C 3'));
+    const heading = await screen.findByRole('heading', { name: 'Suggestions for Team 1 C' });
+    const panel = heading.parentElement!;
+    const rows = [...panel.querySelectorAll('tbody tr')];
+    expect(rows.length).toBeGreaterThan(0);
+    expect(rows.length).toBeLessThanOrEqual(25);
+    // Only centers are offered for C, best score first, each with its breakdown.
+    expect(rows.every(r => r.children[3].textContent === 'C')).toBe(true);
+    expect(rows[0].textContent).toMatch(/score [\d.]+ = [\d.]+ PPG \+ [\d.]+ rtg \+ [\d.]+ team/);
+    const scores = rows.map(r => Number(/score ([\d.]+) =/.exec(r.textContent ?? '')![1]));
+    expect(scores).toEqual([...scores].sort((a, b) => b - a));
+    fireEvent.click(rows[0]);
+    await waitFor(() => expect(batches).toHaveLength(1));
+    expect(batches[0].writes[0].path).toBe('leagues/fbajc/S79/awards.json');
+    const doc = (batches[0].writes[0] as unknown as { doc: { allAmerican: { team: number; slots: { slot: string; playerId: string | null }[] }[] } }).doc;
+    const aa = doc.allAmerican;
+    expect(aa[0].slots[2]).toEqual({ slot: 'C', playerId: expect.any(String) });
+  });
+
   it('after both tournaments: the All-American picker offers 15 slots and the MVP lists the champion roster', async () => {
     mount(tournamentsDone);
     expect(await screen.findByRole('button', { name: 'Suggest all three teams' })).toBeTruthy();
-    expect(screen.getByLabelText('Team 1 G 1')).toBeTruthy();
-    expect(screen.getByLabelText('Team 3 ANY 5')).toBeTruthy();
+    expect(screen.getByLabelText('Choose Team 1 G 1')).toBeTruthy();
+    expect(screen.getByLabelText('Choose Team 3 ANY 5')).toBeTruthy();
     const mvp = screen.getByLabelText('March Madness MVP') as HTMLSelectElement;
     expect(mvp.options.length).toBe(6);
     fireEvent.click(screen.getByRole('button', { name: 'Suggest all three teams' }));

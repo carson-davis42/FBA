@@ -2,27 +2,27 @@ import { pickableRow } from '../components/pickableRow';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  allAmericanCandidates, awardsComplete, jcRaces, mvpCandidates, pickAllAmerican, pickConference, pickMvp, pickNational,
+  allAmericanSuggestions, awardsComplete, jcRaces, mvpCandidates, pickAllAmerican, pickConference, pickMvp, pickNational,
   racePicksLocked, startAwards, suggestAllAmerican, type JcRace,
 } from '../../engine/jc/awards';
 import { finishJcSeason, postseasonStage } from '../../engine/jc/postseason';
 import type { JcState } from '../../engine/jc/state';
 import { calendarProblem } from '../../engine/season/moves';
-import { JC_ALL_AMERICAN_SLOTS, type JcNationalAward, type Position } from '../../engine/shared/types';
+import { JC_ALL_AMERICAN_SLOTS, type JcNationalAward } from '../../engine/shared/types';
 import { PageHeader } from '../components/PageHeader';
+import { TeamName } from '../components/TeamName';
+import { AllAmericanBoard } from './AllAmericanBoard';
 import { jcGate } from './JcGate';
 import { usePostseasonDocs } from './usePostseasonDocs';
 import './jc.css';
 import { PlayerName } from '../components/PlayerName';
-
-const SLOT_POSITIONS: Record<string, Position[]> = { G: ['PG', 'SG'], F: ['SF', 'PF'], C: ['C'], ANY: ['PG', 'SG', 'SF', 'PF', 'C'] };
 
 export function JcAwardsPage() {
   const { season, docs, saving, error, run } = usePostseasonDocs();
   const [open, setOpen] = useState(false);
   const races = useMemo(() => (docs.state?.awards ? jcRaces(docs.state) : []), [docs.state]);
   const afterTournaments = !!docs.state && ['allAmerican', 'mvp', 'finish', 'done'].includes(postseasonStage(docs.state));
-  const candidates = useMemo(() => (docs.state && afterTournaments ? allAmericanCandidates(docs.state) : []), [docs.state, afterTournaments]);
+  const suggestions = useMemo(() => (docs.state && afterTournaments ? allAmericanSuggestions(docs.state) : []), [docs.state, afterTournaments]);
   const mvps = useMemo(() => (docs.state && afterTournaments ? { mm: mvpCandidates(docs.state, 'mm'), nit: mvpCandidates(docs.state, 'nit') } : { mm: [], nit: [] }), [docs.state, afterTournaments]);
   const kicker = 'Junior College';
   if (season === null) return <section className="jc-page"><PageHeader kicker={kicker} title="Awards" /></section>;
@@ -103,28 +103,11 @@ export function JcAwardsPage() {
               <div className="jc-actions">
                 <button className="btn" disabled={saving || finished} onClick={() => void run(() => suggestAllAmerican(state))}>Suggest all three teams</button>
               </div>
-              <div className="jc-regions">
-                {([1, 2, 3] as const).map(team => (
-                  <div key={team} className="card jc-field">
-                    <h3>Team {team}</h3>
-                    {JC_ALL_AMERICAN_SLOTS.map((slot, k) => {
-                      const current = awards.allAmerican?.find(t => t.team === team)?.slots[k].playerId ?? '';
-                      return (
-                        <label key={k} className="jc-conf-pick">{slot}{' '}
-                          <select aria-label={`Team ${team} ${slot} ${k + 1}`} value={current} disabled={saving || finished}
-                            onChange={e => void run(() => pickAllAmerican(state, team, k, e.target.value || null))}>
-                            <option value="">Not picked</option>
-                            {current && !candidates.some(c => c.playerId === current) && <option value={current}>{who(current)}</option>}
-                            {[...candidates.filter(c => c.playerId === current), ...candidates.filter(c => c.playerId !== current && SLOT_POSITIONS[slot].includes(c.position)).slice(0, 80)].map(c => (
-                              <option key={c.playerId} value={c.playerId}>{who(c.playerId, c.teamId)} {c.position} {c.ppg.toFixed(1)} ppg{c.tournamentPpg ? ` / ${c.tournamentPpg.toFixed(1)} postseason` : ''}</option>
-                            ))}
-                          </select>
-                        </label>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
+              <AllAmericanBoard
+                awards={awards.allAmerican ?? ([1, 2, 3] as const).map(team => ({ team, slots: JC_ALL_AMERICAN_SLOTS.map(slot => ({ slot, playerId: null })) }))}
+                suggestions={suggestions} disabled={saving || finished} who={who}
+                teamCell={id => <TeamName team={state.teams.teams.find(t => t.teamId === id)!} season={season} variant="abbr" size={18} />}
+                onPick={(team, k, playerId) => void run(() => pickAllAmerican(state, team, k, playerId))} />
             </>
           )}
 

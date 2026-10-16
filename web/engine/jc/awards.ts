@@ -26,9 +26,15 @@ const NATIONAL_POSITIONS: Record<JcNationalAward, Position[] | null> = {
 
 /** Port of `getAwardScore` (Main.java:3467): each part on a 0-100 scale, then 40 / 35 / 25. */
 export function jcAwardScore(ppg: number, rating: number, teamScore: number): number {
+  const p = jcAwardParts(ppg, rating, teamScore);
+  return p.ppg + p.rating + p.team;
+}
+
+/** The three weighted parts of the award score, so a page can show where a score comes from. */
+export function jcAwardParts(ppg: number, rating: number, teamScore: number): { ppg: number; rating: number; team: number } {
   const ppgScore = ((Number.isNaN(ppg) ? 0 : ppg) / 30) * 100;
   const ratingScore = ((rating - 60) / 39) * 100;
-  return ppgScore * 0.4 + ratingScore * 0.35 + teamScore * 0.25;
+  return { ppg: ppgScore * 0.4, rating: ratingScore * 0.35, team: teamScore * 0.25 };
 }
 
 /** Port of `getTeamSuccessScore`. `rank` is the 1-based national rank (null = no ranking yet); `conf` is the team's place in its conference table. */
@@ -58,6 +64,8 @@ export interface JcRaceRow {
   ppg: number;
   /** The award score, or points saved per game for the Defensive POY. */
   score: number;
+  /** What the score is made of (null for the Defensive POY, which is points saved per game). */
+  parts: { ppg: number; rating: number; team: number } | null;
   odds: string;
   defense: { perGame: number; stopRate: number; saved: number } | null;
 }
@@ -123,7 +131,7 @@ export function jcRaces(state: JcState, all = false): JcRace[] {
     const team = conference
       ? teamSuccess(null, 0, 0, confPos.get(c.teamId) ?? null)
       : teamSuccess(ranking ? (rankOf.get(c.teamId) ?? null) : null, ratings.get(c.teamId) ?? 0, avg, null);
-    return { playerId: c.playerId, teamId: c.teamId, position: c.position, rating: c.rating, games: c.games, ppg: c.ppg, score: jcAwardScore(c.ppg, c.rating, team), odds: '', defense: null };
+    return { playerId: c.playerId, teamId: c.teamId, position: c.position, rating: c.rating, games: c.games, ppg: c.ppg, score: jcAwardScore(c.ppg, c.rating, team), parts: jcAwardParts(c.ppg, c.rating, team), odds: '', defense: null };
   };
   const race = (id: string, kind: JcRace['kind'], label: string, limit: number, rows: JcRaceRow[], odds: (scores: number[]) => string[]): JcRace => {
     const sorted = [...rows].sort(bySort);
@@ -135,7 +143,7 @@ export function jcRaces(state: JcState, all = false): JcRace[] {
     if (award === 'DPOY') {
       const rows = cands.filter(c => c.def && c.def.games >= MIN_JC_RACE_GAMES).map(c => {
         const saved = pointsSavedPerGame(c.def!);
-        return { ...scored(c, false), score: saved, defense: { perGame: c.def!.def / c.def!.games, stopRate: c.def!.def ? c.def!.stops / c.def!.def : 0, saved } };
+        return { ...scored(c, false), score: saved, parts: null, defense: { perGame: c.def!.def / c.def!.games, stopRate: c.def!.def ? c.def!.stops / c.def!.def : 0, saved } };
       });
       return race(award, 'national', NATIONAL_LABEL[award], NATIONAL_LIMIT[award], rows, raceOdds);
     }
@@ -254,6 +262,32 @@ export function allAmericanCandidates(state: JcState): AllAmericanCandidate[] {
       return { playerId: c.playerId, teamId: c.teamId, position: c.position, rating: c.rating, games: c.games, ppg: c.ppg, tournamentPpg: t ? t.pts / t.games : 0 };
     })
     .sort((a, b) => b.ppg - a.ppg || b.rating - a.rating || (a.playerId < b.playerId ? -1 : 1));
+}
+
+export interface AllAmericanSuggestion {
+  playerId: string;
+  teamId: string;
+  position: Position;
+  rating: number;
+  games: number;
+  ppg: number;
+  tournamentPpg: number;
+  score: number;
+  /** Odds for the leaders only (the Player of the Year race's top rows); empty after them. */
+  odds: string;
+  parts: { ppg: number; rating: number; team: number };
+}
+
+/** Everyone with enough games ranked by the award score over the regular season, conference tournaments, NIT and March Madness: what the picker suggests. */
+export function allAmericanSuggestions(state: JcState): AllAmericanSuggestion[] {
+  const tour = tournamentStats(state.postseason?.nit ?? null, state.postseason?.mm ?? null);
+  return jcRaces(state, true)[0].rows.map(r => {
+    const t = tour.get(r.playerId);
+    return {
+      playerId: r.playerId, teamId: r.teamId, position: r.position, rating: r.rating, games: r.games, ppg: r.ppg,
+      tournamentPpg: t ? t.pts / t.games : 0, score: r.score, odds: r.odds, parts: r.parts!,
+    };
+  });
 }
 
 const SLOT_POSITIONS: Record<'G' | 'F' | 'C' | 'ANY', Position[]> = { G: ['PG', 'SG'], F: ['SF', 'PF'], C: ['C'], ANY: ['PG', 'SG', 'SF', 'PF', 'C'] };

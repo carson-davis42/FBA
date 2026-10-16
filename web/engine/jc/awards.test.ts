@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { mulberry32 } from '../d2/random';
-import { awardsComplete, jcAwardScore, jcOdds, jcRaces, pickConference, pickNational, startAwards, teamSuccess } from './awards';
+import { allAmericanSuggestions, awardsComplete, jcAwardParts, jcAwardScore, jcOdds, jcRaces, pickConference, pickNational, startAwards, teamSuccess } from './awards';
 import { playAllConf, startConfTournaments } from './confTourney';
 import { setFields } from './fieldMoves';
 import { playPostRound } from './postseason';
@@ -53,6 +53,35 @@ describe('scoring', () => {
     expect(odds.slice(0, 8).map(prob).reduce((a, b) => a + b, 0)).toBeLessThan(1.1);
     expect(prob(odds[0])).toBeGreaterThan(prob(odds[1]));
     expect(jcOdds([])).toEqual([]);
+  });
+});
+
+describe('award score parts', () => {
+  it('splits the score into its three weighted parts, which add up to it', () => {
+    const parts = jcAwardParts(21.8, 85, 91);
+    expect(parts.ppg + parts.rating + parts.team).toBeCloseTo(jcAwardScore(21.8, 85, 91), 10);
+    expect(parts.ppg).toBeCloseTo((21.8 / 30) * 100 * 0.4, 10);
+    expect(parts.team).toBeCloseTo(91 * 0.25, 10);
+  });
+  it('gives every race row its parts, except the Defensive POY', () => {
+    const races = jcRaces(withFields);
+    const poy = races.find(r => r.id === 'POY')!;
+    expect(poy.rows[0].parts).toBeTruthy();
+    const row = poy.rows[0];
+    expect(row.parts!.ppg + row.parts!.rating + row.parts!.team).toBeCloseTo(row.score, 8);
+    expect(races.find(r => r.id === 'DPOY')!.rows[0]?.parts ?? null).toBeNull();
+  });
+});
+
+describe('allAmericanSuggestions', () => {
+  it('ranks everyone by award score with the parts, odds and postseason scoring', () => {
+    const list = allAmericanSuggestions(withFields);
+    expect(list.length).toBeGreaterThan(50);
+    expect(list.map(s => s.score)).toEqual([...list.map(s => s.score)].sort((a, b) => b - a));
+    const top = list[0];
+    expect(top.parts.ppg + top.parts.rating + top.parts.team).toBeCloseTo(top.score, 8);
+    expect(top.odds).not.toBe('');
+    expect(typeof top.tournamentPpg).toBe('number');
   });
 });
 
