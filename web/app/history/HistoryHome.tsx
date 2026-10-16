@@ -3,6 +3,7 @@ import { useHistory } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { FeatureIcon, type IconName } from './FeatureIcon';
 import { HistoryLeagueSwitch } from './d2/HistoryLeagueSwitch';
+import { useFbaTeams } from './useTeams';
 import { SkippedWarning } from './PlayerLink';
 import './history.css';
 
@@ -22,6 +23,7 @@ const FEATURES: { to: string; title: string; icon: IconName }[] = [
 
 export function HistoryHome() {
   const { seasons, errors, error } = useHistory('fba');
+  const { teams } = useFbaTeams();
   if (error) return <p className="error">Couldn't load the history: {error.message}</p>;
   if (!seasons) return <p className="muted">Loading…</p>;
   const latest = seasons.reduce((m, s) => Math.max(m, s.season), 0);
@@ -37,7 +39,7 @@ export function HistoryHome() {
       <div className="card-grid">
         {cards.map(c => (
           <Link key={c.title} to={c.to} className="card link headed feature" aria-label={c.title}>
-            <FeatureIcon name={c.icon} />
+            <FeatureIcon name={c.icon} teams={teams} />
             <span className="feature-title">{c.title}</span>
           </Link>
         ))}
