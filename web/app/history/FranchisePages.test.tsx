@@ -99,10 +99,10 @@ describe('Franchise pages', () => {
     const card = (id: string) => cards.find(a => a.getAttribute('href') === `/history/fba/teams/${id}`)!;
     // the logo season is the current season (80), not the last played one (79)
     expect(within(card('SAS')).getByRole('img').getAttribute('src')).toBe(logoUrl('San Antonio Spirits', 80));
-    // expansion teams use their definitions: PHI's logo folder, and Team 32 with the generic FBA logo
+    // expansion teams use their definitions: PHI's logo folder, and Team 32's own logo folder
     expect(within(card('PHI')).getByRole('img').getAttribute('src')).toBe(logoUrl('Philly Phantoms', 80));
     expect(card('PHI').textContent).toContain('Philly Phantoms');
-    expect(within(card('LAL')).getByRole('img').getAttribute('src')).toBe(logoUrl('FBA', 80, 'FBA_logo.png'));
+    expect(within(card('LAL')).getByRole('img').getAttribute('src')).toBe(logoUrl('Team 32', 80));
     expect(card('LAL').textContent).toContain('Team 32');
     expect(card('LAL').textContent).not.toContain('Labradors');
   });

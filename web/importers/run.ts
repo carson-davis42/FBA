@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import type { CalendarFile, Franchise, FranchisesFile, HallOfFameFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { withExpansionStep, withQualifyingStep } from '../engine/shared/calendar';
 import { EXPANSION_SEASON } from '../engine/shared/expansion';
+import { refreshExpansionTeams } from './expansionTeams';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
 import { buildD2History, buildLeagueHistory, d2LeagueMoves, D2_TABS } from './d2History';
@@ -782,7 +783,24 @@ export function importSeasonStart(): void {
   console.log(`S${cal.season} started at ${iso}`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--expansion-step', '--season-start', '--check-trophies'];
+/** `--expansion-teams`: points the expansion teams in leagues/fba/teams.json at their current logo folder and colours. Run after `--logos`. */
+export async function importExpansionTeams(): Promise<void> {
+  const dir = requireDataDir('--expansion-teams');
+  const teams = readDataJson<TeamsFile>(dir, 'leagues/fba/teams.json');
+  if (!teams) {
+    console.error('--expansion-teams needs leagues/fba/teams.json in the data folder.');
+    process.exit(1);
+  }
+  const r = refreshExpansionTeams(teams);
+  if (r.changed.length === 0) {
+    console.log('The expansion teams already have their current logo and colours');
+    return;
+  }
+  writeDoc(dir, 'leagues/fba/teams.json', r.teams);
+  console.log(`Updated ${r.changed.join(', ')}`);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--expansion-step', '--expansion-teams', '--season-start', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -813,6 +831,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--d2-leagues')) return importD2Leagues();
   if (process.argv.includes('--wc-qualifying-step')) return importWcQualifyingStep();
   if (process.argv.includes('--expansion-step')) return importExpansionStep();
+  if (process.argv.includes('--expansion-teams')) return importExpansionTeams();
   if (process.argv.includes('--season-start')) return importSeasonStart();
   if (process.argv.includes('--check-trophies')) return checkTrophies();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {

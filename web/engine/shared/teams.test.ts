@@ -34,7 +34,7 @@ describe('schema and definition', () => {
     expect(EXPANSION_TEAMS.map(x => [x.teamId, x.group, x.fromSeason])).toEqual([['PHI', 'E', 80], ['LAL', 'W', 80]]);
     expect(TeamsFile.safeParse({ league: 'fba', teams: EXPANSION_TEAMS }).success).toBe(true);
     const lal = EXPANSION_TEAMS[1];
-    expect([lal.name, lal.abbr, lal.logoFolder, lal.logoFile]).toEqual(['Team 32', 'T32', 'FBA', 'FBA_logo.png']);
+    expect([lal.name, lal.abbr, lal.logoFolder, lal.logoFile]).toEqual(['Team 32', 'T32', 'Team 32', undefined]);
     expect(EXPANSION_TEAMS[0].logoFolder).toBe('Philly Phantoms');
   });
   it('derives the lottery size from the team count', () => {
