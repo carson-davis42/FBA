@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import type { JcRecruitingHistoryFile, JcSchoolHistoryFile, PlayersFile, ResultsFile, RostersFile, Team, TeamsFile } from '../../../engine/shared/types';
-import { useDoc } from '../../api';
+import type { JcRecruitingHistoryFile, JcSchoolHistoryFile, MetaFile, PlayersFile, RecruitingFile, ResultsFile, RostersFile, Team, TeamsFile } from '../../../engine/shared/types';
+import { getDoc, useDoc } from '../../api';
 import { TeamName } from '../../components/TeamName';
 import { findTeam } from '../useTeams';
 
@@ -15,6 +15,28 @@ export function useJcTeams(): { settled: boolean; teams: Team[] } {
 export function useJcSchoolHistory(): { settled: boolean; file: JcSchoolHistoryFile | null } {
   const doc = useDoc<JcSchoolHistoryFile>('leagues/fbajc/schoolHistory.json');
   return { settled: !!doc.data || doc.missing || !!doc.error, file: doc.data ?? null };
+}
+
+/**
+ * The recruiting boards the app ran after the imported history (seasons `through` to the current one); a missing or unreadable board is skipped.
+ * `settled` is false until every board has been tried.
+ */
+export function useJcLiveBoards(through: number | null): { settled: boolean; boards: RecruitingFile[]; current: number } {
+  const meta = useDoc<MetaFile>('meta.json');
+  const current = meta.data?.currentSeason;
+  const [state, setState] = useState<{ key: string; boards: RecruitingFile[] } | null>(null);
+  const key = through !== null && current !== undefined ? `${through}-${current}` : null;
+  useEffect(() => {
+    if (through === null || current === undefined || key === null) return;
+    let live = true;
+    const seasons = Array.from({ length: Math.max(0, current - through + 1) }, (_, k) => through + k);
+    void Promise.all(seasons.map(n => getDoc<RecruitingFile>(`leagues/fbajc/S${n}/recruiting.json`).catch(() => null))).then(all => {
+      if (live) setState({ key, boards: all.filter((b): b is RecruitingFile => b !== null) });
+    });
+    return () => { live = false; };
+  }, [through, current, key]);
+  if (through === null) return { settled: true, boards: [], current: 0 };
+  return { settled: (meta.error !== undefined || meta.missing) || (key !== null && state?.key === key), boards: state?.key === key ? state.boards : [], current: current ?? 0 };
 }
 
 /** The imported recruiting classes and transfer portals (S52-S78). Optional, like the school history. */

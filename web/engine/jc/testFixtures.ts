@@ -64,6 +64,7 @@ export function jcStateFixture(seed = 7, season = 79): JcState {
     awards: null,
     summary: null,
     board: null,
+    recruitingHistory: null,
   };
 }
 

@@ -2,7 +2,7 @@
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { JcRecruitingHistoryFile, TeamsFile } from '../../../engine/shared/types';
+import type { JcRecruitingHistoryFile, RecruitingFile, TeamsFile } from '../../../engine/shared/types';
 import { JcRecruitingPage } from './JcRecruitingPage';
 
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
@@ -17,10 +17,18 @@ const file: JcRecruitingHistoryFile = {
   ],
 };
 
-function stub(has: boolean) {
+const liveBoard = (locked: boolean): RecruitingFile => ({
+  league: 'fbajc', season: 78, classOf: 79, locked, classDraft: [], created: true,
+  recruits: [{ playerId: 'p00001', position: 'SF', classYear: 'Fr', rating: 93, stars: 5, consensus: 98.1, projections: {}, committedTo: 'DUKE' }],
+  portal: [],
+});
+
+function stub(has: boolean, board: RecruitingFile | null = null) {
   vi.stubGlobal('fetch', vi.fn(async (url: string) => {
     if (url === '/api/state/leagues/fbajc/teams.json') return new Response(JSON.stringify(teams), { headers: { ETag: '"0000000000000001"' } });
     if (url === '/api/state/leagues/fbajc/recruitingHistory.json' && has) return new Response(JSON.stringify(file), { headers: { ETag: '"0000000000000001"' } });
+    if (url === '/api/state/meta.json') return new Response(JSON.stringify({ currentSeason: 80, rosterSeason: { fba: 80, fbad2: 80, fbajc: 80, fbawc: 78 }, lastSeason: { fba: 79, fbad2: 79, fbajc: 78, fbawc: 78 } }), { headers: { ETag: '"0000000000000001"' } });
+    if (url === '/api/state/leagues/fbajc/S78/recruiting.json' && board) return new Response(JSON.stringify(board), { headers: { ETag: '"0000000000000001"' } });
     if (url === '/api/state/players.json') return new Response(JSON.stringify({ nextId: 2, players: { p00001: { id: 'p00001', name: 'Milo Lawrenz', birthSeason: null } } }), { headers: { ETag: '"0000000000000001"' } });
     return new Response(JSON.stringify({ error: 'Not found' }), { status: 404 });
   }));
@@ -38,6 +46,20 @@ describe('JcRecruitingPage', () => {
     const old = await screen.findByRole('table', { name: 'Class of S52' });
     expect(within(old).getByText('Old Timer')).toBeTruthy();
     expect(within(old).queryByText('Rtg')).toBeNull();
+  });
+  it('adds the class the app ran after the import (a locked board) as the newest past class', async () => {
+    stub(true, liveBoard(true));
+    at();
+    const table = await screen.findByRole('table', { name: 'Class of S79' });
+    expect(within(table).getByText('Milo Lawrenz')).toBeTruthy();
+    expect(within(table).getByText('Duke')).toBeTruthy();
+    expect([...screen.getByLabelText('Class').querySelectorAll('option')].map(o => o.textContent)).toEqual(['S79', 'S78', 'S52']);
+  });
+  it('leaves out a board that is not locked yet', async () => {
+    stub(true, liveBoard(false));
+    at();
+    await screen.findByRole('table', { name: 'Class of S78' });
+    expect(screen.queryByRole('table', { name: 'Class of S79' })).toBeNull();
   });
   it('says so when nothing is imported', async () => {
     stub(false);

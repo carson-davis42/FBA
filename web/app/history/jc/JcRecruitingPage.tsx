@@ -5,15 +5,17 @@ import { PageHeader } from '../../components/PageHeader';
 import { PlayerName } from '../../components/PlayerName';
 import '../history.css';
 import { HistoryLeagueSwitch } from '../d2/HistoryLeagueSwitch';
-import { JcTeam, useJcRecruitingHistory, useJcTeams } from './useJc';
+import { liveRecruitingClasses } from '../../../engine/history/jcLiveClasses';
+import { JcTeam, useJcLiveBoards, useJcRecruitingHistory, useJcTeams } from './useJc';
 
 /** Past recruiting classes and transfer portals: pick a season, see its class and its portal as the history sheet lists them. */
 export function JcRecruitingPage() {
   const { settled, teams } = useJcTeams();
   const rec = useJcRecruitingHistory();
+  const live = useJcLiveBoards(rec.file?.throughSeason ?? null);
   const [params, setParams] = useSearchParams();
   const players = useDoc<PlayersFile>(rec.file ? 'players.json' : null);
-  if (!settled || !rec.settled) return <p className="muted">Loading…</p>;
+  if (!settled || !rec.settled || !live.settled) return <p className="muted">Loading…</p>;
   const header = (
     <>
       <PageHeader kicker="FBAJC history" title="Recruiting classes" />
@@ -23,7 +25,8 @@ export function JcRecruitingPage() {
   if (!rec.file || rec.file.classes.length === 0) {
     return <section className="stack">{header}<p className="muted">The past recruiting classes haven't been imported yet.</p></section>;
   }
-  const classes = [...rec.file.classes].sort((a, b) => b.season - a.season);
+  const liveClasses = players.data ? liveRecruitingClasses(live.boards, { league: 'fbajc', teams }, players.data, { have: new Set(rec.file.classes.map(c => c.season)), before: live.current }) : [];
+  const classes = [...rec.file.classes, ...liveClasses].sort((a, b) => b.season - a.season);
   const asked = Number(params.get('class'));
   const cls = classes.find(c => c.season === asked) ?? classes[0];
   const nameOf = (id: string | null, name: string) => (id ? players.data?.players[id]?.name ?? name : name);

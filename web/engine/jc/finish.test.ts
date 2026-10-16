@@ -71,6 +71,29 @@ describe('finishing the season', () => {
     expect(writes.map(w => w.path)).toContain('leagues/fbajc/S79/summary.json');
   });
 
+  it('saves the finished season\'s recruiting class into the history, and only once', () => {
+    const board = { league: 'fbajc' as const, season: 78, classOf: 79, locked: true, classDraft: [], created: true, recruits: [], portal: [] };
+    const old = { league: 'fbajc' as const, throughSeason: 78, classes: [{ season: 78, recruits: [], portal: [] }] };
+    const r = finishJcSeason({ ...finish, board, recruitingHistory: old });
+    if (!r.ok) throw new Error(r.problems.join());
+    expect(r.changed).toEqual(['summary', 'postseason', 'awards', 'results', 'rankings', 'schedule', 'calendar', 'recruitingHistory']);
+    expect(r.state.recruitingHistory!.classes.map(c => c.season)).toEqual([78, 79]);
+    expect(jcWrites(r).find(w => w.path === 'leagues/fbajc/recruitingHistory.json')).toBeTruthy();
+    const again = finishJcSeason({ ...finish, board, recruitingHistory: r.state.recruitingHistory });
+    if (!again.ok) throw new Error(again.problems.join());
+    expect(again.changed).not.toContain('recruitingHistory');
+  });
+
+  it('creates the history file when there is none, and leaves it alone when there is no board', () => {
+    const board = { league: 'fbajc' as const, season: 78, classOf: 79, locked: true, classDraft: [], created: true, recruits: [], portal: [] };
+    const made = finishJcSeason({ ...finish, board, recruitingHistory: null });
+    if (!made.ok) throw new Error(made.problems.join());
+    expect(made.state.recruitingHistory!.classes.map(c => c.season)).toEqual([79]);
+    const none = finishJcSeason({ ...finish, board: null, recruitingHistory: null });
+    if (!none.ok) throw new Error(none.problems.join());
+    expect(none.changed).not.toContain('recruitingHistory');
+  });
+
   it('writes the span from the calendar startedAt and now, only when both exist', () => {
     const OPEN = '2026-10-01T12:00:00.000Z';
     const NOW = '2026-10-12T15:00:00.000Z';

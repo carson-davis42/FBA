@@ -3,6 +3,7 @@ import { leagueRefRating } from '../awards/defense';
 import { calendarProblem, toGameResult } from '../season/moves';
 import type { SimGame } from '../season/sim';
 import { fbajcGateProblem } from '../college/recruiting';
+import { archiveRecruitingClass } from '../history/jcLiveClasses';
 import { markStepDone } from '../shared/calendar';
 import { spanField } from '../shared/dates';
 import type { Bracket, BracketGame, JcPostseasonFile, SummaryFile } from '../shared/types';
@@ -200,7 +201,7 @@ export function buildJcSummary(state: JcState, now?: string): SummaryFile {
 
 const lock = <T extends { locked: boolean }>(d: T | null): T | null => (d && !d.locked ? { ...d, locked: true } : d);
 
-/** "Finish the season": writes the locked summary, locks the season's docs and marks the `fbajc` calendar step done. */
+/** "Finish the season": writes the locked summary, locks the season's docs, saves the season's recruiting class into the history and marks the `fbajc` calendar step done. */
 export function finishJcSeason(state: JcState, ctx: { now?: string } = {}): JcResult {
   const problems: string[] = [];
   const step = calendarProblem(state.calendar, 'fbajc', 'The season is played');
@@ -211,6 +212,8 @@ export function finishJcSeason(state: JcState, ctx: { now?: string } = {}): JcRe
   const gate = fbajcGateProblem(state.board, state.rosters);
   if (gate) problems.push(gate);
   if (problems.length) return jcFail(problems);
+  // The class that played this season is complete (the gate above needs every commit placed): save it into the past recruiting classes.
+  const archived = archiveRecruitingClass(state.recruitingHistory, state.board, state.teams, state.players);
   return {
     ok: true,
     state: {
@@ -222,8 +225,9 @@ export function finishJcSeason(state: JcState, ctx: { now?: string } = {}): JcRe
       rankings: lock(state.rankings),
       schedule: lock(state.schedule),
       calendar: markStepDone(state.calendar, 'fbajc'),
+      recruitingHistory: archived ?? state.recruitingHistory,
     },
-    changed: ['summary', 'postseason', 'awards', 'results', 'rankings', 'schedule', 'calendar'],
+    changed: ['summary', 'postseason', 'awards', 'results', 'rankings', 'schedule', 'calendar', ...(archived ? ['recruitingHistory' as const] : [])],
     label: `Finish S${state.season} FBAJC season`,
   };
 }

@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { CalendarFile, Franchise, FranchisesFile, HallOfFameFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
+import type { CalendarFile, Franchise, FranchisesFile, HallOfFameFile, JcRecruitingHistoryFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { withExpansionStep, withQualifyingStep } from '../engine/shared/calendar';
 import { EXPANSION_SEASON } from '../engine/shared/expansion';
 import { refreshExpansionTeams } from './expansionTeams';
@@ -17,7 +17,7 @@ import { runBracketImport } from './history/mergeBrackets';
 import type { BracketEntry } from './history/convertBrackets';
 import { buildWcHistory, WC_SHEET_TAB } from './wcHistory';
 import { JC_HISTORY_TABS, planJcHistory } from './jcHistoryRun';
-import { JC_RECRUITING_TABS, planJcRecruitingHistory } from './jcRecruitingHistory';
+import { JC_RECRUITING_TABS, keepSavedClasses, planJcRecruitingHistory } from './jcRecruitingHistory';
 import { JC_LAST_SEASON } from './jcHistory';
 import { D2_LOGO_FOLDER, wireD2Logos, type D2LogoColors } from './d2Logos';
 import { JC_LOGO_FOLDER, wireJcLogos, type JcLogoColors } from './jcLogos';
@@ -671,7 +671,10 @@ async function importJcRecruitingHistory(): Promise<void> {
   console.log('Downloading the FBAJC history sheet...');
   const tabs = await readTabs(await downloadWorkbook(SHEETS.collegeHistory, CACHE), Object.values(JC_RECRUITING_TABS));
   const report = new Report();
-  const { docs, problems } = planJcRecruitingHistory({ players, teams, tabs }, report);
+  const planned = planJcRecruitingHistory({ players, teams, tabs }, report);
+  const { problems } = planned;
+  const existing = readDataJson<JcRecruitingHistoryFile>(dir, 'leagues/fbajc/recruitingHistory.json');
+  const docs = planned.docs.map(([rel, doc]): [string, unknown] => [rel, keepSavedClasses(doc as JcRecruitingHistoryFile, existing)]);
   printReport(report);
   for (const e of report.entries.filter(x => x.level === 'info' && x.topic === 'jc-recruiting')) console.log(e.message);
   if (report.count('error') > 0 || problems.length) {
