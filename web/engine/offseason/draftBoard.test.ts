@@ -210,22 +210,23 @@ describe('boardOrder', () => {
   });
 });
 
-describe('boardOrder age weighting', () => {
-  const prospect = (playerId: string, collegeRating: number, fbaRating: number | null) => ({
-    playerId, position: 'PG' as const, college: 't1', classYear: 'So' as const, senior: false, collegeRating, stars: null, fbaRating,
+describe('boardOrder class boost', () => {
+  const prospect = (playerId: string, classYear: 'Fr' | 'So' | 'Jr' | 'Sr', collegeRating: number, fbaRating: number | null) => ({
+    playerId, position: 'PG' as const, college: 't1', classYear, senior: classYear === 'Sr', collegeRating, stars: null, fbaRating,
   });
-  const players = (born: Record<string, number | null>): PlayersFile => ({ nextId: 99, players: Object.fromEntries(Object.entries(born).map(([id, birthSeason]) => [id, { id, name: id, birthSeason }])) });
-  const order = (prospects: DraftFile['prospects'], born: Record<string, number | null>) =>
-    boardOrder(draftBoardState({ ratings: null, players: players(born), draft: { ...draftBoardDraft(), prospects } })).map(p => p.playerId);
-  it('puts a younger prospect ahead of an older one with a slightly higher college rating', () => {
-    // S80: born 62 is 18, born 59 is 21. 85 + 4 = 89 beats 87 + 1 = 88.
-    expect(order([prospect('pOld', 87, null), prospect('pYoung', 85, null)], { pOld: 59, pYoung: 62 })).toEqual(['pYoung', 'pOld']);
+  const order = (prospects: DraftFile['prospects']) =>
+    boardOrder(draftBoardState({ ratings: null, draft: { ...draftBoardDraft(), prospects } })).map(p => p.playerId);
+  it('puts a freshman ahead of a junior with a slightly higher college rating (85 + 4 against 87 + 1)', () => {
+    expect(order([prospect('pJr', 'Jr', 87, null), prospect('pFr', 'Fr', 85, null)])).toEqual(['pFr', 'pJr']);
+  });
+  it('boosts a sophomore by 2 and leaves a senior as is', () => {
+    expect(order([prospect('pSr', 'Sr', 87, null), prospect('pSo', 'So', 86, null)])).toEqual(['pSo', 'pSr']);
+    expect(order([prospect('pSr', 'Sr', 87, null), prospect('pSo', 'So', 84, null)])).toEqual(['pSr', 'pSo']);
   });
   it('weighs the FBA rating the same way when both have one', () => {
-    expect(order([prospect('pOld', 70, 82), prospect('pYoung', 70, 80)], { pOld: 59, pYoung: 62 })).toEqual(['pYoung', 'pOld']);
+    expect(order([prospect('pJr', 'Jr', 70, 82), prospect('pFr', 'Fr', 70, 80)])).toEqual(['pFr', 'pJr']);
   });
-  it('still goes by rating when the ages are the same or unknown', () => {
-    expect(order([prospect('pA', 85, null), prospect('pB', 87, null)], { pA: 60, pB: 60 })).toEqual(['pB', 'pA']);
-    expect(order([prospect('pA', 85, null), prospect('pB', 87, null)], { pA: null, pB: null })).toEqual(['pB', 'pA']);
+  it('still goes by rating in the same class', () => {
+    expect(order([prospect('pA', 'So', 85, null), prospect('pB', 'So', 87, null)])).toEqual(['pB', 'pA']);
   });
 });

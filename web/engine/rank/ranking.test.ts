@@ -226,10 +226,11 @@ describe('bestNewByPosition', () => {
   });
 });
 
-describe('leftRows age weighting (the FBA pro reset)', () => {
-  const newRow = (playerId: string, age: number | null, otherRating: number) => ({ playerId, position: 'PG' as const, age, team: null, prevRating: null, otherRating, stat: null });
-  const rows = [newRow('p00001', 21, 87), newRow('p00002', 18, 85), newRow('p00003', null, 86)];
-  it('lists a younger prospect with a slightly lower rating first', () => {
+describe('leftRows class boost (the FBA pro reset)', () => {
+  const newRow = (playerId: string, stat: string | null, otherRating: number) => ({ playerId, position: 'PG' as const, age: 20, team: null, prevRating: null, otherRating, stat });
+  // Boosted: p00002 Fr 85 + 4 = 89, p00001 Jr 87 + 1 = 88, p00003 no class 86.
+  const rows = [newRow('p00001', 'Jr \u00b7 DUKE', 87), newRow('p00002', 'Fr \u00b7 UNC', 85), newRow('p00003', null, 86)];
+  it('lists a freshman with a slightly lower rating ahead of an older prospect', () => {
     const doc = rankingDoc({ kind: 'fba-reset', league: 'fba', rows, curve: [90] });
     expect(ids(leftRows(doc, rankName))).toEqual(['p00002', 'p00001', 'p00003']);
   });
