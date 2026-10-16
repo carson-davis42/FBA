@@ -60,12 +60,11 @@ export function AllAmericanBoard({ awards, suggestions, disabled, who, teamCell,
                         ? <span className="jc-aa-picked">{p && logo(p.teamId)}<PlayerName id={s.playerId} name={who(s.playerId, p?.teamId ?? null).replace(/ \([^)]*\)$/, '')} /></span>
                         : <span className="muted">Not picked</span>}
                     </span>
-                    <span className="jc-aa-actions">
-                      <button type="button" className="btn" disabled={disabled} aria-pressed={sel} aria-label={`Choose Team ${t.team} ${JC_ALL_AMERICAN_SLOTS[k]} ${k + 1}`}
-                        onClick={() => setSelected(sel ? null : { team: t.team as Team, k })}>{s.playerId ? 'Change' : 'Pick'}</button>
-                      {s.playerId && <button type="button" className="btn jc-aa-clear" disabled={disabled} title="Clear this slot" aria-label={`Clear Team ${t.team} ${JC_ALL_AMERICAN_SLOTS[k]} ${k + 1}`}
-                        onClick={() => onPick(t.team as Team, k, null)}>&times;</button>}
-                    </span>
+                    {s.playerId
+                      ? <button type="button" className="btn jc-aa-undo" disabled={disabled} title="Undo this pick" aria-label={`Clear Team ${t.team} ${JC_ALL_AMERICAN_SLOTS[k]} ${k + 1}`}
+                          onClick={() => { onPick(t.team as Team, k, null); setSelected({ team: t.team as Team, k }); }}>&#8630;</button>
+                      : <button type="button" className="btn" disabled={disabled} aria-pressed={sel} aria-label={`Choose Team ${t.team} ${JC_ALL_AMERICAN_SLOTS[k]} ${k + 1}`}
+                          onClick={() => setSelected(sel ? null : { team: t.team as Team, k })}>Pick</button>}
                   </li>
                 );
               })}
