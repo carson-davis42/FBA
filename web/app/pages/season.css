@@ -70,6 +70,8 @@
 /* standings */
 .stand-group { display: grid; gap: var(--s2); }
 .stand-group h2 { margin: 0; }
+/* Conference names and "Lottery standings" read as the page's section headings; the division names under them stay smaller. */
+.standings-page h2 { font-size: 32px; }
 .standings .team-name { font-weight: 700; }
 .standings tr.playoff-line td { border-bottom: 2px solid var(--accent); }
 
