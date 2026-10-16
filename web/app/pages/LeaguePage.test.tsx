@@ -105,3 +105,16 @@ describe('TeamPage', () => {
     expect(screen.getByRole('img', { name: 'Boston Bucks logo' }).getAttribute('src')).toBe(logoUrl('Boston Bucks', 79));
   });
 });
+
+describe('LeaguePage divisions', () => {
+  it('splits a conference into its divisions from S80, and keeps one grid before', async () => {
+    const team = (teamId: string, name: string, group: string, division: string) => ({ teamId, name, abbr: teamId, group, division, logoFolder: null, badge });
+    docs['meta.json'] = { currentSeason: 80, rosterSeason: { fba: 80, fbad2: 79, fbajc: 78, fbawc: 78 }, lastSeason: { fba: 79, fbad2: 78, fbajc: 78, fbawc: 78 } };
+    docs['leagues/fba/teams.json'] = { league: 'fba', teams: [team('BOS', 'Boston Bucks', 'E', 'AT'), team('CHI', 'Chicago Spartans', 'E', 'GL'), team('MEM', 'Memphis Blues', 'W', 'GU')] };
+    docs['leagues/fba/S80/rosters.json'] = { league: 'fba', season: 80, locked: false, teams: {} };
+    renderAt('/league/fba');
+    expect(await screen.findByRole('heading', { name: 'Atlantic' })).toBeTruthy();
+    for (const name of ['Great Lakes', 'Gulf']) expect(screen.getByRole('heading', { name })).toBeTruthy();
+    expect(screen.queryByRole('heading', { name: 'Pacific' })).toBeNull();
+  });
+});
