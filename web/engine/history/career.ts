@@ -1,4 +1,4 @@
-import { AWARD_KEYS, type AwardCountsFile, type AwardKey, type HallOfFameFile, type ResultsFile, type SummaryFile } from '../shared/types';
+import { AWARD_KEYS, type AwardCountsFile, type AwardKey, type ClassYear, type HallOfFameFile, type ResultsFile, type SummaryFile } from '../shared/types';
 
 export type StintKind = 'college' | 'fba' | 'd2' | 'wc';
 export interface Honour { label: string; count: number; seasons: number[] }
@@ -428,6 +428,52 @@ export function applyPlayed(career: Career, teams: string[], season: number): Ca
     closeOtherOpen(stints, stint, season);
   }
   return { ...career, stints };
+}
+
+const COLLEGE_YEARS_BEFORE: Record<ClassYear, number> = { Fr: 0, So: 1, Jr: 2, Sr: 3 };
+
+/**
+ * A college player's earlier school stints (before `season`, the season he is on a roster now), from the earlier seasons' rosters, nearest first:
+ * each season whose roster has him gives his school, and the run stops at the first roster that exists without him. Where the rosters run out
+ * (an older season has none) his class says how many more years he has played, at the school of the last roster that had him. Each stint ends
+ * at a season before `season`; the stint he is in now is left to `applyPlacement`.
+ */
+export function collegeLead(o: { season: number; classYear: ClassYear | null; team: string; past: { season: number; exists: boolean; team: string | null }[] }): Stint[] {
+  const years: { season: number; team: string }[] = [];
+  const nearest = [...o.past].sort((a, b) => b.season - a.season);
+  let last = o.team;
+  for (const p of nearest) {
+    if (p.exists) {
+      if (!p.team) break;
+      years.push({ season: p.season, team: p.team });
+      last = p.team;
+      continue;
+    }
+    const remaining = (o.classYear ? COLLEGE_YEARS_BEFORE[o.classYear] : 0) - (o.season - 1 - p.season);
+    if (remaining > 0) years.push({ season: p.season, team: last });
+    break;
+  }
+  const stints: Stint[] = [];
+  for (const y of years.reverse()) {
+    const prev = stints[stints.length - 1];
+    if (prev && prev.team === y.team && prev.to === y.season - 1) {
+      prev.to = y.season;
+      setRange(prev);
+    } else {
+      const st: Stint = { kind: 'college', team: y.team, range: '', from: y.season, to: y.season, honours: [] };
+      setRange(st);
+      stints.push(st);
+    }
+  }
+  return stints;
+}
+
+/** The career's college stints replaced, where `lead` covers them, by the roster-based `lead`; older college years and other leagues stay. No lead: unchanged. */
+export function mergeCollegeLead(stints: Stint[], lead: Stint[], season: number): Stint[] {
+  if (lead.length === 0) return stints;
+  const first = Math.min(...lead.map(s => s.from ?? season));
+  const overlaps = (s: Stint) => s.kind === 'college' && (s.from ?? 0) <= season - 1 && (s.to === 'pres' ? season : s.to ?? 0) >= first;
+  return [...stints.filter(s => !overlaps(s)), ...lead];
 }
 
 /** Where a player is on the live rosters right now: an FBA team code, a D2 team as "D2(Name)", or a school name. */

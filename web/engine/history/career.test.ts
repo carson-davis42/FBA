@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { AwardCountsFile, HallOfFameFile, ResultsFile, SummaryFile, SummaryPlayerLine } from '../shared/types';
-import { parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll, careerSpan, playerStatus, applyPlacement, applyPlayed, applyUnsigned, teamsPlayedFor } from './career';
+import { type Stint, collegeLead, mergeCollegeLead, parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll, careerSpan, playerStatus, applyPlacement, applyPlayed, applyUnsigned, teamsPlayedFor } from './career';
 
 describe('parseBio', () => {
   it('keeps one stint when a World Cup call-up sits between two stints with the same team', () => {
@@ -416,5 +416,50 @@ describe('applyUnsigned', () => {
     const c = applyUnsigned(parseBio({ born: 'Born-S57', entries: ['Duke-S60-S63', 'Lehigh-S79-pres.', 'WC(Brazil)-S78-pres.'] }), 79);
     expect(c.stints.map(s => s.range)).toEqual(['S60-S63', 'S79']);
     expect(c.nationalTeams[0].to).toBe('pres');
+  });
+});
+
+describe('collegeLead', () => {
+  const doc = (season: number, team: string | null) => ({ season, exists: true, team });
+  const gone = (season: number) => ({ season, exists: false, team: null });
+  const lead = (o: Parameters<typeof collegeLead>[0]) => collegeLead(o).map(x => [x.team, x.from, x.to, x.range]);
+  it('starts at the first season the earlier rosters show him: a S79 freshman is S79-pres, whatever class the roster says now', () => {
+    const l = lead({ season: 80, classYear: 'Jr', team: 'Arizona', past: [doc(79, 'Arizona'), doc(78, null), gone(77)] });
+    expect(l).toEqual([['Arizona', 79, 79, 'S79']]);
+  });
+  it('has no earlier college years for a freshman', () => {
+    expect(collegeLead({ season: 80, classYear: 'Fr', team: 'Arkansas', past: [doc(79, null), doc(78, null), doc(77, null)] })).toEqual([]);
+  });
+  it('goes back by class where the rosters run out: a Sr is in his fourth year', () => {
+    const l = lead({ season: 80, classYear: 'Sr', team: 'Arizona', past: [doc(79, 'Arizona'), doc(78, 'Arizona'), gone(77)] });
+    expect(l).toEqual([['Arizona', 77, 79, 'S77-S79']]);
+  });
+  it('keeps a transfer\'s earlier school as its own stint', () => {
+    const l = lead({ season: 80, classYear: 'Jr', team: 'Arizona', past: [doc(79, 'Duke'), doc(78, 'Duke'), gone(77)] });
+    expect(l).toEqual([['Duke', 78, 79, 'S78-S79']]);
+  });
+  it('uses the class alone when no earlier roster exists, with the current school', () => {
+    expect(lead({ season: 80, classYear: 'So', team: 'Arizona', past: [gone(79), gone(78), gone(77)] })).toEqual([['Arizona', 79, 79, 'S79']]);
+    expect(collegeLead({ season: 80, classYear: null, team: 'Arizona', past: [gone(79), gone(78), gone(77)] })).toEqual([]);
+  });
+});
+
+describe('mergeCollegeLead', () => {
+  const stint = (team: string, from: number, to: number | 'pres'): Stint => ({ kind: 'college', team, range: '', from, to, honours: [] });
+  const show = (l: Stint[]) => l.map(x => [x.team, x.from, x.to]);
+  it('lets the earlier rosters correct a transfer: Arizona in S78 and Arizona State in S79, not Arizona through S79', () => {
+    const lead = collegeLead({ season: 80, classYear: 'Jr', team: 'Arizona State', past: [{ season: 79, exists: true, team: 'Arizona State' }, { season: 78, exists: true, team: 'Arizona' }, { season: 77, exists: false, team: null }] });
+    const merged = mergeCollegeLead([stint('Arizona', 78, 79)], lead, 80);
+    expect(show(merged)).toEqual([['Arizona', 78, 78], ['Arizona State', 79, 79]]);
+  });
+  it('keeps older imported college years the rosters do not cover', () => {
+    const lead = collegeLead({ season: 80, classYear: 'Sr', team: 'Duke', past: [{ season: 79, exists: true, team: 'Duke' }, { season: 78, exists: true, team: 'Duke' }, { season: 77, exists: false, team: null }] });
+    expect(show(mergeCollegeLead([stint('Kansas', 75, 76), stint('Duke', 77, 79)], lead, 80))).toEqual([['Kansas', 75, 76], ['Duke', 77, 79]]);
+  });
+  it('changes nothing without a lead, and leaves other leagues alone', () => {
+    const stints = [stint('Arizona', 78, 79)];
+    expect(mergeCollegeLead(stints, [], 80)).toBe(stints);
+    const d2: Stint = { kind: 'd2', team: 'D2(BUD)', range: 'S70-S72', from: 70, to: 72, honours: [] };
+    expect(mergeCollegeLead([d2], [stint('Arizona', 79, 79)], 80)).toEqual([d2, expect.objectContaining({ team: 'Arizona' })]);
   });
 });
