@@ -170,6 +170,7 @@ describe('Franchise pages', () => {
       expect(future.textContent).toContain('Future logo');
       expect(future.textContent).toContain('Starts S80');
       expect(within(future).getByRole('img').getAttribute('src')).toBe(logoUrl('San Antonio', 80));
+      // The logo in use now has its own tile and still reads "pres." until the new one arrives.
       expect(current.textContent).toContain('S57–pres.');
       const imgs = within(current).getAllByRole('img');
       expect(imgs).toHaveLength(1);
@@ -178,13 +179,19 @@ describe('Franchise pages', () => {
       expect(screen.getAllByRole('img').some(i => i.getAttribute('src') === logoUrl('San Antonio', 79))).toBe(true);
     });
 
-    it('is the current logo once the season arrives: no Future tile, both logos in the era tile, hero switched', async () => {
+    it('is the current logo once the season arrives: no Future tile, each logo in its own tile with its own seasons, hero switched', async () => {
       stub({ logoFolder: 'San Antonio', manifest: manifest(), extra: calendar(80) });
       renderFranchise();
       await screen.findByRole('heading', { level: 1 });
       expect(screen.queryByText('Future logo')).toBeNull();
-      const era = tiles().find(li => li.textContent?.includes('S57–pres.'))!;
-      expect(within(era).getAllByRole('img')).toHaveLength(2);
+      const [now, before, oldEra] = tiles();
+      expect(now.textContent).toContain('S80–pres.');
+      expect(within(now).getAllByRole('img')).toHaveLength(1);
+      expect(within(now).getByRole('img').getAttribute('src')).toBe(logoUrl('San Antonio', 80));
+      expect(before.textContent).toContain('S57–S79');
+      expect(within(before).getByRole('img').getAttribute('src')).toBe(logoUrl('San Antonio', 57));
+      expect(oldEra.textContent).toContain('S1–S56');
+      expect(tiles()).toHaveLength(3);
       expect(screen.getAllByRole('img').some(i => i.getAttribute('src') === logoUrl('San Antonio', 80))).toBe(true);
     });
   });
