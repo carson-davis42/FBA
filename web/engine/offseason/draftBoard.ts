@@ -1,6 +1,6 @@
 import { collegeHole } from '../college/setup';
 import { boardPath, collegeName } from '../college/state';
-import { ageAdjusted } from '../rank/ageScore';
+import { boosted } from '../rank/classBoost';
 import { POSITIONS } from '../roster/rules';
 import { appendTx, withTeam, type MoveContext } from '../roster/state';
 import type { WritesResult } from '../season/moves';
@@ -201,7 +201,7 @@ export function setProspectRating(state: DraftBoardState, playerId: string, valu
 
 /**
  * Prospects in pro-reset rank order when ranked, then the rest by FBA rating, then college rating (nulls last), then name.
- * The ratings carry an age bonus (`ageAdjusted`: younger counts more); an unknown age adds nothing.
+ * The ratings carry the class boost (`classBoost`: a prospect who was a Fr last season +4, So +2, Jr +1, Sr 0).
  */
 export function boardOrder(state: DraftBoardState): DraftProspect[] {
   const byId = new Map(state.draft.prospects.map(p => [p.playerId, p]));
@@ -214,12 +214,8 @@ export function boardOrder(state: DraftBoardState): DraftProspect[] {
     }
   }
   const desc = (a: number | null, b: number | null) => (a === b ? 0 : a === null ? 1 : b === null ? -1 : b - a);
-  const ageOf = (p: DraftProspect): number | null => {
-    const born = state.players.players[p.playerId]?.birthSeason;
-    return born === null || born === undefined ? null : state.season - born;
-  };
   const rest = [...byId.values()].sort((a, b) =>
-    desc(ageAdjusted(a.fbaRating, ageOf(a)), ageAdjusted(b.fbaRating, ageOf(b))) || desc(ageAdjusted(a.collegeRating, ageOf(a)), ageAdjusted(b.collegeRating, ageOf(b)))
+    desc(boosted(a.fbaRating, a.classYear), boosted(b.fbaRating, b.classYear)) || desc(boosted(a.collegeRating, a.classYear), boosted(b.collegeRating, b.classYear))
     || collegeName(state.players, a.playerId).localeCompare(collegeName(state.players, b.playerId)));
   return [...ranked, ...rest];
 }
