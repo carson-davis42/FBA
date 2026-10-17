@@ -89,16 +89,15 @@ describe('ProRatingsPage', () => {
     expect((log.batches[0].writes[0].doc as RankingFile).curve).toEqual([88, 77]);
   });
 
-  it('shows team names, Prospect for draft prospects and last season points', async () => {
+  it('shows team names and last season points, and no draft prospects', async () => {
     stubApi(docsFor(started()));
     renderPage();
     await screen.findByRole('button', { name: 'Rank Pro A next' });
-    expect(screen.getAllByRole('button', { name: /^Rank .* next$/ }).map(b => b.textContent).sort()).toEqual(['Pro A', 'Pro E', 'Ron Three', 'Sam Senior']);
+    expect(screen.getAllByRole('button', { name: /^Rank .* next$/ }).map(b => b.textContent).sort()).toEqual(['Pro A', 'Pro E']);
     const list = within(screen.getByRole('table', { name: "Last season's order" }));
     expect(list.getAllByText('Boston')).toHaveLength(2);
-    expect(list.getAllByText('Prospect')).toHaveLength(2);
+    expect(screen.queryByText('Prospect')).toBeNull();
     expect(screen.getByText('S79: 412 pts')).toBeTruthy();
-    expect(list.getByText(/College 80/)).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Sync list' })).toBeNull();
   });
 
@@ -113,15 +112,15 @@ describe('ProRatingsPage', () => {
 
   it('offers Sync list only while the pool differs from the list, and posts the sync', async () => {
     const s = started();
-    const stale = { ...s.ratings!, rows: s.ratings!.rows.filter(r => r.playerId !== 'p00012') };
+    const stale = { ...s.ratings!, rows: s.ratings!.rows.filter(r => r.playerId !== 'p00024') };
     const log = stubApi(docsFor({ ...s, ratings: stale }));
     renderPage();
-    expect(await screen.findByText(/Ron Three isn't in the ratings list/)).toBeTruthy();
+    expect(await screen.findByText(/Pro E isn't in the ratings list/)).toBeTruthy();
     fireEvent.click(await enabled('Sync list'));
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].label).toBe('Sync the pro ratings list');
     expect(log.batches[0].writes.map(w => [w.path, w.baseVersion])).toEqual([['leagues/fba/S80/ratings.json', '0000000000000001']]);
-    expect((log.batches[0].writes[0].doc as RankingFile).rows.map(r => r.playerId)).toContain('p00012');
+    expect((log.batches[0].writes[0].doc as RankingFile).rows.map(r => r.playerId)).toContain('p00024');
     await waitFor(() => expect(screen.queryByRole('button', { name: 'Sync list' })).toBeNull());
   });
 
@@ -132,7 +131,7 @@ describe('ProRatingsPage', () => {
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].label).toBe('Finish the pro ratings reset');
     expect(log.batches[0].writes.map(w => w.path).sort()).toEqual([
-      'calendar.json', 'leagues/fba/S80/draft.json', 'leagues/fba/S80/ratings.json', 'leagues/fba/S80/rosters.json', 'leagues/fba/S80/transactions.json',
+      'calendar.json', 'leagues/fba/S80/ratings.json', 'leagues/fba/S80/rosters.json', 'leagues/fba/S80/transactions.json',
     ]);
     expect(log.batches[0].writes.every(w => w.baseVersion === '0000000000000001')).toBe(true);
   });
