@@ -172,6 +172,9 @@ a.ticker-chip:hover { background: var(--row-hover); }
 .clinch-champion { --clinch-color: var(--clinch-conference); }
 .clinch-first { --clinch-color: var(--clinch-first); }
 .clinch-division { --clinch-color: var(--clinch-division); }
+.clinch-stay { --clinch-color: #16a34a; }
+.clinch-close { --clinch-color: #f59e0b; }
+.clinch-withdraw { --clinch-color: #dc2626; }
 .clinch-marchmadness { --clinch-color: #ea580c; }
 .clinch-nit { --clinch-color: #ca8a04; }
 .clinch-playoff { --clinch-color: var(--clinch-playoff); }

@@ -51,3 +51,19 @@ describe('clinch bars', () => {
     expect(bar.closest('td')?.className).toContain('clinch-advanced');
   });
 });
+
+describe('draft outlook bars', () => {
+  it('draws a stay bar with its own label and a custom hover text', () => {
+    render(<table><tbody><tr><RankCell kind="stay" league="fba" title="Position rank 1 of 4 spots; overall rank 3 of 12">3</RankCell></tr></tbody></table>);
+    const bar = screen.getByRole('img', { name: 'Likely to make an FBA roster' });
+    expect(bar.closest('td')?.className).toBe('rank clinch clinch-stay');
+    expect(bar.closest('td')?.getAttribute('title')).toBe('Position rank 1 of 4 spots; overall rank 3 of 12');
+  });
+  it('labels close and withdraw, and lists the states that appear in order', () => {
+    render(<ClinchLegend kinds={['withdraw', 'stay', null]} league="fba" />);
+    expect(screen.getAllByRole('listitem').map(li => li.textContent)).toEqual(['Likely to make an FBA roster', 'Unlikely to make an FBA roster']);
+    cleanup();
+    render(<table><tbody><tr><RankCell kind="close" league="fba">9</RankCell></tr></tbody></table>);
+    expect(screen.getByRole('img', { name: 'A close call' })).toBeTruthy();
+  });
+});
