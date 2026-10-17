@@ -21,8 +21,6 @@ export interface DraftBoardState {
   collegeTeams: TeamsFile;
   players: PlayersFile;
   collegeTx: TransactionsFile;
-  /** The fba-reset ranking for S{n}, when it exists. */
-  ratings: RankingFile | null;
 }
 
 const rostersPath = (n: number) => `leagues/fbajc/S${n}/rosters.json`;
@@ -66,11 +64,9 @@ export function declare(state: DraftBoardState, playerId: string, ctx: MoveConte
   if (!c) return fail(`${name} can't declare`);
   const entries = state.rosters.teams[c.teamId];
   const index = entries.findIndex(e => e.playerId === playerId);
-  // After the pro reset is locked, a player who was rated in it (and left the board since) keeps that rating.
-  const locked = state.ratings?.locked && state.ratings.rows.some(r => r.playerId === playerId) ? state.ratings.ratings[playerId] : undefined;
   const prospect: DraftProspect = {
     playerId, position: c.position, college: c.teamId, classYear: c.classYear, senior: false,
-    collegeRating: c.rating, stars: entries[index].stars ?? null, fbaRating: locked ?? null,
+    collegeRating: c.rating, stars: entries[index].stars ?? null, fbaRating: null,
   };
   const rosters = withTeam(state.rosters, c.teamId, entries.map((e, i) => (i === index ? collegeHole(e.position) : e)));
   // An early entrant with no birth season is dated from the class he was in last season: Fr 19, So 20, Jr 21 in the draft year.
@@ -210,35 +206,13 @@ export function moveProspectRank(state: DraftBoardState, playerId: string, delta
   };
 }
 
-export function setProspectRating(state: DraftBoardState, playerId: string, value: number): WritesResult {
-  const started = draftBoardProblem(state.draft);
-  if (started) return fail(started);
-  if (!state.ratings?.locked) return fail('Finish the pro ratings reset first');
-  const name = collegeName(state.players, playerId);
-  if (!state.draft.prospects.some(p => p.playerId === playerId)) return fail(`${name} isn't on the draft board`);
-  if (state.ratings.rows.some(r => r.playerId === playerId)) return fail(`${name} was rated in the pro reset`);
-  if (!Number.isInteger(value) || value < 1 || value > 99) return fail('Enter a whole number from 1 to 99');
-  const draft = { ...state.draft, prospects: state.draft.prospects.map(p => (p.playerId === playerId ? { ...p, fbaRating: value } : p)) };
-  return { ok: true, writes: [{ path: draftPath(state.season), doc: draft }], label: `${name}: FBA rating ${value}` };
-}
-
 /**
- * Prospects in pro-reset rank order when ranked, then the rest by FBA rating, then college rating (nulls last), then name.
- * The ratings carry the class boost (`classBoost`: a prospect who was a Fr last season +4, So +2, Jr +1, Sr 0).
+ * The prospects by college rating plus the class boost (`classBoost`: a prospect who was a Fr last season +4, So +2, Jr +1, Sr 0), a missing
+ * rating last, then by name. Prospects have no FBA rating on the board: the draft class is rated after the draft.
  */
 export function boardOrder(state: DraftBoardState): DraftProspect[] {
-  const byId = new Map(state.draft.prospects.map(p => [p.playerId, p]));
-  const ranked: DraftProspect[] = [];
-  for (const id of state.ratings?.order ?? []) {
-    const p = byId.get(id);
-    if (p) {
-      ranked.push(p);
-      byId.delete(id);
-    }
-  }
   const desc = (a: number | null, b: number | null) => (a === b ? 0 : a === null ? 1 : b === null ? -1 : b - a);
-  const rest = [...byId.values()].sort((a, b) =>
-    desc(boosted(a.fbaRating, a.classYear), boosted(b.fbaRating, b.classYear)) || desc(boosted(a.collegeRating, a.classYear), boosted(b.collegeRating, b.classYear))
+  return [...state.draft.prospects].sort((a, b) =>
+    desc(boosted(a.collegeRating, a.classYear), boosted(b.collegeRating, b.classYear))
     || collegeName(state.players, a.playerId).localeCompare(collegeName(state.players, b.playerId)));
-  return [...ranked, ...rest];
 }

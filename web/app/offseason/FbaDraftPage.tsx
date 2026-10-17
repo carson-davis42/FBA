@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { boardPath, collegeName, emptyRecruiting } from '../../engine/college/state';
 import { draftPath } from '../../engine/offseason/adjustAge';
 import {
-  backToSchool, boardOrder, declare, declareCandidates, draftToPortal, enterPortal, moveProspectRank, setProspectRating, type DraftBoardState,
+  backToSchool, boardOrder, declare, declareCandidates, draftToPortal, enterPortal, moveProspectRank, type DraftBoardState,
 } from '../../engine/offseason/draftBoard';
 import {
   draftPick, draftStepId, finishDraft, finishDraftProblems, onTheClock, startDraft, startDraftProblems, type FbaDraftState,
@@ -28,7 +28,7 @@ import './offseason.css';
 import { PlayerName } from '../components/PlayerName';
 
 /**
- * The draft board and the FBA draft (/league/fba/draft). Before the start: the prospects (with late-entrant ratings), the early
+ * The draft board and the FBA draft (/league/fba/draft). Before the start: the prospects, the early
  * entrants who can still declare and "Start the draft". After it: the pick on the clock, the prospects left and the picks made.
  */
 export function FbaDraftPage() {
@@ -63,7 +63,6 @@ export function FbaDraftPage() {
   const saving = useSaving();
   const busy = useRef(false);
   const [error, setError] = useState('');
-  const [typed, setTyped] = useState<Record<string, string>>({});
   const [tab, setTab] = useState<'ALL' | Position>('ALL');
 
   const required = [players, calendar, collegeTeams];
@@ -96,7 +95,6 @@ export function FbaDraftPage() {
     collegeTeams: collegeTeams.data!,
     players: players.data!,
     collegeTx: collegeTx.data ?? emptyCollegeTx!,
-    ratings: ratings.data ?? null,
   };
   const draftState: FbaDraftState = {
     season: n,
@@ -155,14 +153,6 @@ export function FbaDraftPage() {
   };
   const ctx = () => ({ batchId: newBatchId() });
 
-  const saveRating = async (p: DraftProspect, text: string) => {
-    if (text.trim() === String(p.fbaRating ?? '')) return;
-    const value = text.trim() === '' ? NaN : Number(text);
-    if (await run(() => setProspectRating(boardState, p.playerId, value))) {
-      setTyped(t => Object.fromEntries(Object.entries(t).filter(([id]) => id !== p.playerId)));
-    }
-  };
-
   const d = draft.data;
   const started = d.started;
   const finished = d.locked;
@@ -179,13 +169,12 @@ export function FbaDraftPage() {
   const move = (p: DraftProspect, delta: -1 | 1) => run(() => moveProspectRank(boardState, p.playerId, delta, id => ordered.some(x => x.playerId === id && inTab(x))));
   const drafted = new Set(d.picks.flatMap(p => (p.playerId ? [p.playerId] : [])));
   const remaining = ordered.filter(p => !drafted.has(p.playerId));
-  const canRate = (p: DraftProspect) => !started && setProspectRating(boardState, p.playerId, 50).ok;
 
   const prospectTable = (rows: DraftProspect[], actions: (p: DraftProspect) => React.ReactNode) => (
     <div className="table-wrap tall">
       <table className="stat-table" aria-label="Prospects">
         <thead>
-          <tr><th>Name</th><th>Pos</th><th>School</th><th>Class</th><th className="num">Rank</th><th className="num">Pos rank</th><th className="num">College</th><th className="num">FBA</th>{!started && <th><span className="muted">Move</span></th>}<th /></tr>
+          <tr><th>Name</th><th>Pos</th><th>School</th><th>Class</th><th className="num">Rank</th><th className="num">Pos rank</th><th className="num">College</th>{!started && <th><span className="muted">Move</span></th>}<th /></tr>
         </thead>
         <tbody>
           {rows.map(p => (
@@ -205,17 +194,6 @@ export function FbaDraftPage() {
                 );
               })()}
               <td className="num">{p.collegeRating ?? '—'}</td>
-              <td className="num">
-                {canRate(p) ? (
-                  <input
-                    type="number" min={1} max={99} className={`rating-input${typed[p.playerId] !== undefined ? ' changed' : ''}`} aria-label={`FBA rating for ${nameOf(p.playerId)}`}
-                    value={typed[p.playerId] ?? String(p.fbaRating ?? '')}
-                    onChange={e => setTyped(t => ({ ...t, [p.playerId]: e.target.value }))}
-                    onBlur={e => saveRating(p, e.currentTarget.value)}
-                    onKeyDown={e => { if (e.key === 'Enter') void saveRating(p, e.currentTarget.value); }}
-                  />
-                ) : (p.fbaRating ?? '—')}
-              </td>
               {!started && (
                 <td className="rank-move">
                   <button type="button" className="btn" disabled={saving || p.playerId === rows[0]?.playerId} aria-label={`Move ${nameOf(p.playerId)} up`} onClick={() => move(p, -1)}>↑</button>

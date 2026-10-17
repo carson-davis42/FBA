@@ -46,9 +46,6 @@ export function startDraftProblems(state: FbaDraftState): string[] {
   const step = calendarProblem(state.calendar, draftStepId(state.season), 'The draft starts');
   if (step) out.push(step);
   if (!state.ratings?.locked) out.push('Finish the pro ratings reset first');
-  for (const p of state.draft.prospects) {
-    if (p.fbaRating === null) out.push(`${collegeName(state.players, p.playerId)} has no FBA rating`);
-  }
   if (!state.lottery?.locked) out.push(`The S${state.season - 1} draft lottery hasn't been drawn`);
   else if (state.lottery.draftSeason !== state.season) out.push(`The S${state.season - 1} lottery is for the S${state.lottery.draftSeason} draft`);
   if (state.draft.started) out.push('The draft has already started');
@@ -126,19 +123,16 @@ export function finishDraft(state: FbaDraftState, ctx: MoveContext): WritesResul
   if (step) return { ok: false, problems: [step] };
   const problems = finishDraftProblems(state);
   if (problems.length) return { ok: false, problems };
+  // Undrafted prospects wait for the rookie ratings step: those rated join free agency there, the rest go to the D2 draft pool.
   const left = undrafted(state.draft);
-  const agents: FreeAgent[] = left.map(p => ({
-    playerId: p.playerId, position: p.position, age: ageOf(state, p.playerId), rating: p.fbaRating, rookie: true, note: 'Undrafted',
-  }));
   const lines = [
-    `The S${n} draft is finished: ${left.length} undrafted ${left.length === 1 ? 'prospect joins' : 'prospects join'} free agency`,
+    `The S${n} draft is finished: ${left.length} undrafted ${left.length === 1 ? 'prospect waits' : 'prospects wait'} for the rookie ratings`,
     ...emptyPicks(state.draft).map(p => `#${p.slot}: ${teamName(state, p.owner)} makes no selection`),
   ];
   return {
     ok: true,
     writes: [
       { path: draftPath(n), doc: { ...state.draft, locked: true } },
-      { path: docPath('freeAgents', n), doc: { ...state.freeAgents, players: [...state.freeAgents.players, ...agents] } },
       { path: 'calendar.json', doc: markStepDone(state.calendar, draftStepId(n)) },
       { path: docPath('fbaTx', n), doc: appendTx(state.tx, ctx, 'drafted', [], lines) },
     ],
