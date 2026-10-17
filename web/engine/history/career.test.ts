@@ -444,6 +444,14 @@ describe('collegeLead', () => {
     // A freshman who declared right away played one season, S79, which the S79 roster confirms.
     expect(lead({ season: 80, classYear: null, yearsBefore: 1, team: 'Arizona', past: [doc(79, 'Arizona'), doc(78, null), gone(77)] })).toEqual([['Arizona', 79, 79, 'S79']]);
   });
+  it('takes the school for a season with no roster from his bio, so a transfer is not placed at his latest school the whole way back', () => {
+    const bio: Stint[] = [
+      { kind: 'college', team: 'Iowa State', range: 'S76', from: 76, to: 76, honours: [] },
+      { kind: 'college', team: 'San Diego State', range: 'S77-pres.', from: 77, to: 'pres', honours: [] },
+    ];
+    const l = lead({ season: 79, classYear: 'Sr', yearsBefore: 3, team: 'San Diego State', known: bio, past: [doc(78, 'San Diego State'), gone(77), gone(76)] });
+    expect(l).toEqual([['Iowa State', 76, 76, 'S76'], ['San Diego State', 77, 78, 'S77-S78']]);
+  });
   it('uses the class alone when no earlier roster exists, with the current school', () => {
     expect(lead({ season: 80, classYear: 'So', team: 'Arizona', past: [gone(79), gone(78), gone(77)] })).toEqual([['Arizona', 79, 79, 'S79']]);
     expect(collegeLead({ season: 80, classYear: null, team: 'Arizona', past: [gone(79), gone(78), gone(77)] })).toEqual([]);

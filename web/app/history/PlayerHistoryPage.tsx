@@ -134,6 +134,7 @@ export function PlayerHistoryPage() {
         // A prospect played last season in the class on the board, so he has that many years behind him, last season included.
         ...(prospect ? { yearsBefore: ['Fr', 'So', 'Jr', 'Sr'].indexOf(prospect.classYear) + 1 } : {}),
         team: collegeTeam,
+        known: lived.stints.filter(s => s.kind === 'college'),
         past: jcPastRosters.map((d, i) => ({
           season: leadSeason - 1 - i,
           exists: !!d.data,

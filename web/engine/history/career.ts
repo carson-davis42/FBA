@@ -437,9 +437,9 @@ const COLLEGE_YEARS_BEFORE: Record<ClassYear, number> = { Fr: 0, So: 1, Jr: 2, S
  * each season whose roster has him gives his school, and the run stops at the first roster that exists without him. Where the rosters run out
  * (an older season has none) his class says how many more years he has played, at the school of the last roster that had him. Each stint ends
  * at a season before `season`; the stint he is in now is left to `applyPlacement`. `yearsBefore` (default: from his class) is how many seasons
- * before `season` he has played.
+ * before `season` he has played. `known` (his bio's college stints) names his school in a season with no roster.
  */
-export function collegeLead(o: { season: number; classYear: ClassYear | null; yearsBefore?: number; team: string; past: { season: number; exists: boolean; team: string | null }[] }): Stint[] {
+export function collegeLead(o: { season: number; classYear: ClassYear | null; yearsBefore?: number; team: string; known?: Stint[]; past: { season: number; exists: boolean; team: string | null }[] }): Stint[] {
   const years: { season: number; team: string }[] = [];
   const nearest = [...o.past].sort((a, b) => b.season - a.season);
   let last = o.team;
@@ -451,7 +451,13 @@ export function collegeLead(o: { season: number; classYear: ClassYear | null; ye
       continue;
     }
     const remaining = (o.yearsBefore ?? (o.classYear ? COLLEGE_YEARS_BEFORE[o.classYear] : 0)) - (o.season - 1 - p.season);
-    for (let k = 0; k < remaining; k++) years.push({ season: p.season - k, team: last });
+    for (let k = 0; k < remaining; k++) {
+      // The bio's own college stints say where he was in a season with no roster; only a season they don't cover takes the nearest known school.
+      const season = p.season - k;
+      const inBio = (o.known ?? []).find(s => s.kind === 'college' && s.from !== null && s.from <= season && (s.to === 'pres' || (s.to ?? s.from) >= season));
+      if (inBio) last = inBio.team;
+      years.push({ season, team: last });
+    }
     break;
   }
   const stints: Stint[] = [];
