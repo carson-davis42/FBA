@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { ClassYear, DraftProspect, Position, RosterEntry, RostersFile } from '../shared/types';
-import { DEFAULT_OUTLOOK, positionSpots, prospectOutlook } from './prospectOutlook';
+import { DEFAULT_OUTLOOK, positionSpots, prospectOutlook, rankedProspects } from './prospectOutlook';
 
 const entry = (position: Position, rating: number | null): RosterEntry => ({
   playerId: rating === null ? null : `x${Math.random()}`, position, rating, age: null, points: 0, stars: null,
@@ -97,5 +97,31 @@ describe('prospectOutlook', () => {
     const all = [prospect('a', 'PG', 'Jr', 90), prospect('b', 'PG', 'Jr', 85), prospect('c', 'PG', 'Jr', 80)];
     expect(prospectOutlook(all, fba, wide).get('c')!.overallRank).toBe(3);
     expect(prospectOutlook(all.filter(p => p.playerId !== 'a'), fba, wide).get('c')!.overallRank).toBe(2);
+  });
+});
+
+describe('rankedProspects', () => {
+  const ids = (l: DraftProspect[]) => l.map(p => p.playerId);
+  const a = prospect('a', 'PG', 'Sr', 95, true);
+  const b = prospect('b', 'PG', 'Sr', 90, true);
+  const c = prospect('c', 'PG', 'Sr', 85, true);
+  const d = prospect('d', 'PG', 'Sr', 80, true);
+  it('is the score order without a manual order', () => {
+    expect(ids(rankedProspects([d, b, a, c]))).toEqual(['a', 'b', 'c', 'd']);
+  });
+  it('puts the manually ordered players in their own order, in the places they hold', () => {
+    expect(ids(rankedProspects([a, b, c, d], ['c', 'a']))).toEqual(['c', 'b', 'a', 'd']);
+  });
+  it('keeps a new prospect at his score place and ignores listed players who have left', () => {
+    const e = prospect('e', 'PG', 'Sr', 99, true);
+    expect(ids(rankedProspects([a, b, c, d, e], ['c', 'a']))).toEqual(['e', 'c', 'b', 'a', 'd']);
+    expect(ids(rankedProspects([a, b, c], ['c', 'gone', 'a']))).toEqual(['c', 'b', 'a']);
+  });
+  it('feeds the outlook ranks: a manual order changes the overall and position ranks', () => {
+    const fba = rosters([entry('PG', null), entry('PG', null)]);
+    const o = prospectOutlook([a, b, c, d], fba, { ...DEFAULT_OUTLOOK, d2Reserve: 0 }, ['d', 'a']);
+    expect(o.get('d')!.overallRank).toBe(1);
+    expect(o.get('d')!.positionRank).toBe(1);
+    expect(o.get('a')!.overallRank).toBe(4);
   });
 });
