@@ -438,6 +438,12 @@ describe('collegeLead', () => {
     const l = lead({ season: 80, classYear: 'Jr', team: 'Arizona', past: [doc(79, 'Duke'), doc(78, 'Duke'), gone(77)] });
     expect(l).toEqual([['Duke', 78, 79, 'S78-S79']]);
   });
+  it('takes the years played from yearsBefore when given (a draft prospect has played last season too)', () => {
+    const l = lead({ season: 80, classYear: null, yearsBefore: 2, team: 'Arizona', past: [gone(79), gone(78), gone(77)] });
+    expect(l).toEqual([['Arizona', 78, 79, 'S78-S79']]);
+    // A freshman who declared right away played one season, S79, which the S79 roster confirms.
+    expect(lead({ season: 80, classYear: null, yearsBefore: 1, team: 'Arizona', past: [doc(79, 'Arizona'), doc(78, null), gone(77)] })).toEqual([['Arizona', 79, 79, 'S79']]);
+  });
   it('uses the class alone when no earlier roster exists, with the current school', () => {
     expect(lead({ season: 80, classYear: 'So', team: 'Arizona', past: [gone(79), gone(78), gone(77)] })).toEqual([['Arizona', 79, 79, 'S79']]);
     expect(collegeLead({ season: 80, classYear: null, team: 'Arizona', past: [gone(79), gone(78), gone(77)] })).toEqual([]);
