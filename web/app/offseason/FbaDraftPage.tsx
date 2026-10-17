@@ -3,19 +3,20 @@ import { Link } from 'react-router-dom';
 import { boardPath, collegeName, emptyRecruiting } from '../../engine/college/state';
 import { draftPath } from '../../engine/offseason/adjustAge';
 import {
-  backToSchool, boardOrder, declare, declareCandidates, draftToPortal, enterPortal, setProspectRating, type DraftBoardState,
+  backToSchool, boardOrder, declare, declareCandidates, draftToPortal, enterPortal, moveProspectRank, setProspectRating, type DraftBoardState,
 } from '../../engine/offseason/draftBoard';
 import {
   draftPick, draftStepId, finishDraft, finishDraftProblems, onTheClock, startDraft, startDraftProblems, type FbaDraftState,
 } from '../../engine/offseason/fbaDraft';
 import { lotteryPath } from '../../engine/offseason/lottery';
-import { prospectOutlook } from '../../engine/offseason/prospectOutlook';
+import { DEFAULT_OUTLOOK, prospectOutlook, rankedProspects } from '../../engine/offseason/prospectOutlook';
 import { proRatingsPath } from '../../engine/offseason/proRatings';
+import { POSITIONS } from '../../engine/roster/rules';
 import { docPath } from '../../engine/roster/state';
 import type { WritesResult } from '../../engine/season/moves';
 import { currentStepIndex } from '../../engine/shared/calendar';
 import type {
-  CalendarFile, DraftFile, DraftProspect, FreeAgentsFile, LotteryFile, MetaFile, PlayersFile, RankingFile, RecruitingFile, RostersFile,
+  CalendarFile, DraftFile, DraftProspect, FreeAgentsFile, LotteryFile, MetaFile, PlayersFile, Position, RankingFile, RecruitingFile, RostersFile,
   TeamsFile, TransactionsFile,
 } from '../../engine/shared/types';
 import { useDoc, useSaving, type Versions } from '../api';
@@ -23,7 +24,6 @@ import { ClinchLegend, RankCell } from '../components/Clinch';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import { commitDocs, newBatchId } from '../roster/commit';
-import { useOutlookSettings } from './outlookSettings';
 import './offseason.css';
 import { PlayerName } from '../components/PlayerName';
 
@@ -64,7 +64,7 @@ export function FbaDraftPage() {
   const busy = useRef(false);
   const [error, setError] = useState('');
   const [typed, setTyped] = useState<Record<string, string>>({});
-  const [outlookSettings, setOutlook] = useOutlookSettings();
+  const [tab, setTab] = useState<'ALL' | Position>('ALL');
 
   const required = [players, calendar, collegeTeams];
   const optional = [draft, ratings, lottery, fba, freeAgents, fbaTx, fbaTeams, jcRosters, board, collegeTx];
@@ -169,11 +169,14 @@ export function FbaDraftPage() {
   const onDraftStep = calendar.data!.steps[currentStepIndex(calendar.data!)]?.id === draftStepId(n);
   const ordered = boardOrder(boardState);
   // Overall and position rank among everyone on the board; early entrants get a stay / close / withdraw bar until the draft starts.
-  const outlook = prospectOutlook(ordered, draftState.fba, outlookSettings);
+  const outlook = prospectOutlook(ordered, draftState.fba, undefined, d.rankOrder);
+  const ranked = rankedProspects(ordered, d.rankOrder);
   const outlookTitle = (id: string) => {
     const o = outlook.get(id)!;
-    return `Position rank ${o.positionRank} of ${o.spots} ${o.spots === 1 ? 'spot' : 'spots'}; overall rank ${o.overallRank} of ${outlookSettings.historyCutoff}`;
+    return `Position rank ${o.positionRank} of ${o.spots} ${o.spots === 1 ? 'spot' : 'spots'}; overall rank ${o.overallRank} of ${DEFAULT_OUTLOOK.historyCutoff}`;
   };
+  const inTab = (p: DraftProspect) => tab === 'ALL' || p.position === tab;
+  const move = (p: DraftProspect, delta: -1 | 1) => run(() => moveProspectRank(boardState, p.playerId, delta, id => ordered.some(x => x.playerId === id && inTab(x))));
   const drafted = new Set(d.picks.flatMap(p => (p.playerId ? [p.playerId] : [])));
   const remaining = ordered.filter(p => !drafted.has(p.playerId));
   const canRate = (p: DraftProspect) => !started && setProspectRating(boardState, p.playerId, 50).ok;
@@ -182,7 +185,7 @@ export function FbaDraftPage() {
     <div className="table-wrap tall">
       <table className="stat-table" aria-label="Prospects">
         <thead>
-          <tr><th>Name</th><th>Pos</th><th>School</th><th>Class</th><th className="num">Rank</th><th className="num">Pos rank</th><th className="num">College</th><th className="num">FBA</th><th /></tr>
+          <tr><th>Name</th><th>Pos</th><th>School</th><th>Class</th><th className="num">Rank</th><th className="num">Pos rank</th><th className="num">College</th><th className="num">FBA</th>{!started && <th><span className="muted">Move</span></th>}<th /></tr>
         </thead>
         <tbody>
           {rows.map(p => (
@@ -213,6 +216,12 @@ export function FbaDraftPage() {
                   />
                 ) : (p.fbaRating ?? '—')}
               </td>
+              {!started && (
+                <td className="rank-move">
+                  <button type="button" className="btn" disabled={saving || p.playerId === rows[0]?.playerId} aria-label={`Move ${nameOf(p.playerId)} up`} onClick={() => move(p, -1)}>↑</button>
+                  <button type="button" className="btn" disabled={saving || p.playerId === rows[rows.length - 1]?.playerId} aria-label={`Move ${nameOf(p.playerId)} down`} onClick={() => move(p, 1)}>↓</button>
+                </td>
+              )}
               <td>{actions(p)}</td>
             </tr>
           ))}
@@ -307,14 +316,14 @@ export function FbaDraftPage() {
       {error && <p className="error">{error}</p>}
       <div className="card">
         <h2>Prospects</h2>
-        <div className="outlook-settings toolbar">
-          <label>Replaceable at or below <input type="number" min={1} max={99} className="rating-input" value={outlookSettings.replaceableAtOrBelow} onChange={e => setOutlook({ replaceableAtOrBelow: Number(e.target.value) })} /></label>
-          <label>Overall picks that usually make it <input type="number" min={1} max={60} className="rating-input" value={outlookSettings.historyCutoff} onChange={e => setOutlook({ historyCutoff: Number(e.target.value) })} /></label>
-          <label>Spots for D2 players <input type="number" min={0} max={30} className="rating-input" value={outlookSettings.d2Reserve} onChange={e => setOutlook({ d2Reserve: Number(e.target.value) })} /></label>
+        <div className="chips" role="group" aria-label="Position filter">
+          {(['ALL', ...POSITIONS] as const).map(t => (
+            <button key={t} type="button" className="chip" aria-pressed={tab === t} onClick={() => setTab(t)}>{t === 'ALL' ? 'All' : t}</button>
+          ))}
         </div>
         {ordered.length === 0
           ? <p className="muted">Nobody has declared yet.</p>
-          : prospectTable(ordered, p => (p.senior
+          : prospectTable(ranked.filter(inTab), p => (p.senior
             ? null
             : (
               <>

@@ -64,18 +64,19 @@ describe('FbaDraftPage', () => {
     expect(screen.getByRole('link', { name: 'Adjust Age ▸' }).getAttribute('href')).toBe('/offseason/adjust-age');
   });
 
-  it('lists the prospects in board order, with buttons only for early entrants', async () => {
+  it('lists the prospects in ranking order, with buttons only for early entrants', async () => {
     stubApi(docs());
     renderPage();
     expect(await screen.findByRole('heading', { name: 'S80 draft' })).toBeTruthy();
     await screen.findByRole('table', { name: 'Prospects' });
-    expect(names('Prospects')).toEqual(['Dan Draftee', 'Sam Senior', 'Tim Taken', 'Eve Early']);
+    expect(names('Prospects')).toEqual(['Sam Senior', 'Tim Taken', 'Dan Draftee', 'Eve Early']);
     const dan = rowOf('Dan Draftee');
     expect(within(dan).getByText('School One')).toBeTruthy();
     expect(within(dan).getByText('Jr')).toBeTruthy();
     expect(within(dan).getByRole('button', { name: 'Back to school' })).toBeTruthy();
     expect(within(dan).getByRole('button', { name: 'Portal' })).toBeTruthy();
-    expect(within(rowOf('Sam Senior')).queryByRole('button')).toBeNull();
+    expect(within(rowOf('Sam Senior')).queryByRole('button', { name: 'Back to school' })).toBeNull();
+    expect(within(rowOf('Sam Senior')).queryByRole('button', { name: 'Portal' })).toBeNull();
     // Only the two who were not rated in the pro reset take a typed rating.
     expect(screen.getAllByLabelText(/^FBA rating for /).map(i => i.getAttribute('aria-label'))).toEqual(['FBA rating for Tim Taken', 'FBA rating for Eve Early']);
   });
@@ -272,16 +273,15 @@ describe('FbaDraftPage', () => {
 });
 
 describe('FbaDraftPage prospect outlook', () => {
-  const KEY = 'fba-prospect-outlook';
   const slot = (position: 'PG' | 'SG' | 'SF' | 'PF' | 'C', rating: number | null): RosterEntry => ({
     playerId: rating === null ? null : `f${position}${rating}`, position, rating, age: 25, points: 0, stars: null,
   } as RosterEntry);
-  /** FBA spots: PF 1 open, C 1 open, SG none (rated 90), PG none. Prospects: Sam Senior PG 80 (Sr), Tim Taken SG 72 (Jr), Dan Draftee PF 70 (Jr), Eve Early C 68 (So). */
-  const fbaWithSpots = () => ({ league: 'fba', season: 80, locked: false, teams: { T00: [slot('PF', null), slot('C', null), slot('SG', 90), slot('PG', 90)] } });
-  const render80 = (settings: Record<string, number> = {}) => {
-    localStorage.clear();
-    localStorage.setItem(KEY, JSON.stringify({ d2Reserve: 0, ...settings }));
-    stubApi({ ...docs(), 'leagues/fba/S80/rosters.json': fbaWithSpots() });
+  const open = (position: 'PF' | 'C', n: number) => Array.from({ length: n }, () => slot(position, null));
+  /** FBA spots: PF 8 open and C 8 open (the 5 D2 spots leave PF 5 and C 6), SG and PG none (rated 90). Prospects: Sam Senior PG 80 (Sr), Tim Taken SG 72 (Jr), Dan Draftee PF 70 (Jr), Eve Early C 68 (So). */
+  const fbaWithSpots = () => ({ league: 'fba', season: 80, locked: false, teams: { T00: [...open('PF', 8), ...open('C', 8), slot('SG', 90), slot('PG', 90)] } });
+  const filler = (n: number) => Array.from({ length: n }, (_, k) => ({ playerId: `p9${String(k).padStart(4, '0')}`, position: 'SG' as const, college: 't1', classYear: 'Sr' as const, senior: true, collegeRating: 99, stars: null, fbaRating: null }));
+  const render80 = (draft?: DraftFile) => {
+    stubApi({ ...docs(draft ? { draft } : {}), 'leagues/fba/S80/rosters.json': fbaWithSpots() });
     renderPage();
   };
   const cells = (name: string) => (rowOf(name) as HTMLTableRowElement).cells;
@@ -292,7 +292,8 @@ describe('FbaDraftPage prospect outlook', () => {
     await screen.findByRole('table', { name: 'Prospects' });
     const head = within(screen.getByRole('table', { name: 'Prospects' })).getAllByRole('columnheader').map(h => h.textContent);
     expect(head.slice(0, 7)).toEqual(['Name', 'Pos', 'School', 'Class', 'Rank', 'Pos rank', 'College']);
-    // Scores: Sam 80, Tim 73, Dan 71, Eve 70.
+    // Scores: Sam 80, Tim 73, Dan 71, Eve 70; the table is in that order.
+    expect(names('Prospects')).toEqual(['Sam Senior', 'Tim Taken', 'Dan Draftee', 'Eve Early']);
     expect([cells('Sam Senior')[4].textContent, cells('Tim Taken')[4].textContent, cells('Dan Draftee')[4].textContent, cells('Eve Early')[4].textContent]).toEqual(['1', '2', '3', '4']);
     expect(cells('Dan Draftee')[5].textContent).toBe('1');
   });
@@ -304,11 +305,12 @@ describe('FbaDraftPage prospect outlook', () => {
     expect(barOf('Eve Early')).toContain('clinch-stay');
     expect(barOf('Tim Taken')).toContain('clinch-close');
     expect(barOf('Sam Senior')).not.toContain('clinch-');
-    expect(cells('Dan Draftee')[4].getAttribute('title')).toBe('Position rank 1 of 1 spot; overall rank 3 of 12');
+    expect(cells('Dan Draftee')[4].getAttribute('title')).toBe('Position rank 1 of 5 spots; overall rank 3 of 12');
   });
 
   it('is red inside neither check, and the legend lists the states that appear', async () => {
-    render80({ historyCutoff: 1 });
+    const base = draftBoardState().draft;
+    render80({ ...base, prospects: [...base.prospects, ...filler(12)] });
     await screen.findByRole('table', { name: 'Prospects' });
     expect(barOf('Tim Taken')).toContain('clinch-withdraw');
     expect(barOf('Dan Draftee')).toContain('clinch-close');
@@ -316,19 +318,11 @@ describe('FbaDraftPage prospect outlook', () => {
     expect(within(key).getAllByRole('listitem').map(li => li.textContent)).toEqual(['A close call', 'Unlikely to make an FBA roster']);
   });
 
-  it('has three adjustable numbers that start at 67, 12 and 5 and change the colours', async () => {
-    localStorage.clear();
-    stubApi({ ...docs(), 'leagues/fba/S80/rosters.json': fbaWithSpots() });
-    renderPage();
+  it('has no adjustable numbers: the calculation is the engine\'s', async () => {
+    render80();
     await screen.findByRole('table', { name: 'Prospects' });
-    const box = (label: string) => screen.getByLabelText(label) as HTMLInputElement;
-    expect([box('Replaceable at or below').value, box('Overall picks that usually make it').value, box('Spots for D2 players').value]).toEqual(['67', '12', '5']);
-    // Two open spots and a reserve of 5: no spots are left, so Dan fails the position check.
-    expect(barOf('Dan Draftee')).toContain('clinch-close');
-    fireEvent.change(box('Spots for D2 players'), { target: { value: '0' } });
-    expect(barOf('Dan Draftee')).toContain('clinch-stay');
-    fireEvent.change(box('Replaceable at or below'), { target: { value: '95' } });
-    expect(barOf('Tim Taken')).toContain('clinch-stay');
+    expect(screen.queryByLabelText('Replaceable at or below')).toBeNull();
+    expect(screen.queryByLabelText('Spots for D2 players')).toBeNull();
   });
 
   it('recalculates the ranks and colours when a prospect goes back to school', async () => {
@@ -339,8 +333,38 @@ describe('FbaDraftPage prospect outlook', () => {
     expect(cells('Dan Draftee')[4].textContent).toBe('2');
   });
 
-  it('keeps the rank columns after the draft starts, without the colour bars', async () => {
-    localStorage.clear();
+  it('moves a prospect with the arrows: one batch that saves the ranking, and the table follows', async () => {
+    const log = stubApi({ ...docs(), 'leagues/fba/S80/rosters.json': fbaWithSpots() });
+    renderPage();
+    await screen.findByRole('table', { name: 'Prospects' });
+    fireEvent.click(await enabled('Move Eve Early up'));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    expect(log.batches[0].label).toBe('Eve Early moves up the rankings');
+    expect(log.batches[0].writes.map(w => w.path)).toEqual([draftPath(80)]);
+    await waitFor(() => expect(names('Prospects')).toEqual(['Sam Senior', 'Tim Taken', 'Eve Early', 'Dan Draftee']));
+    expect(cells('Eve Early')[4].textContent).toBe('3');
+  });
+
+  it('has no up arrow on the top row or down arrow on the bottom row', async () => {
+    render80();
+    await screen.findByRole('table', { name: 'Prospects' });
+    expect((screen.getByRole('button', { name: 'Move Sam Senior up' }) as HTMLButtonElement).disabled).toBe(true);
+    expect((screen.getByRole('button', { name: 'Move Eve Early down' }) as HTMLButtonElement).disabled).toBe(true);
+    expect((await enabled('Move Sam Senior down') as HTMLButtonElement).disabled).toBe(false);
+  });
+
+  it('has position tabs that show one position, keeping the overall ranks', async () => {
+    render80();
+    await screen.findByRole('table', { name: 'Prospects' });
+    expect(screen.getByRole('button', { name: 'All', pressed: true })).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'PF' }));
+    expect(names('Prospects')).toEqual(['Dan Draftee']);
+    expect(cells('Dan Draftee')[4].textContent).toBe('3');
+    fireEvent.click(screen.getByRole('button', { name: 'All' }));
+    expect(names('Prospects')).toHaveLength(4);
+  });
+
+  it('keeps the rank columns after the draft starts, without the colour bars or arrows', async () => {
     stubApi({ ...docs({ draft: startedDraft() }), 'leagues/fba/S80/rosters.json': fbaWithSpots() });
     renderPage();
     await screen.findByRole('table', { name: 'Prospects' });
@@ -348,5 +372,6 @@ describe('FbaDraftPage prospect outlook', () => {
     expect(rows.length).toBeGreaterThan(0);
     for (const r of rows) expect(r.cells[4].className).not.toContain('clinch-');
     expect(within(screen.getByRole('table', { name: 'Prospects' })).getAllByRole('columnheader').map(h => h.textContent)).toContain('Pos rank');
+    expect(screen.queryByRole('button', { name: /^Move .* (up|down)$/ })).toBeNull();
   });
 });
