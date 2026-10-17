@@ -1375,9 +1375,12 @@ export const DraftFile = z.object({
   picks: z.array(DraftPick),
   /** The commissioner's own order of the prospects' rankings, best first (set by the up and down arrows); absent until he moves someone. */
   rankOrder: z.array(playerId).optional(),
+  /** The rookie ratings typed in the step after the draft (55 to 99), until the step is finished. */
+  rookieRatings: z.record(playerId, int.min(55).max(99)).optional(),
 }).strict().superRefine((doc, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const ids = new Set(doc.prospects.map(p => p.playerId));
+  for (const id of Object.keys(doc.rookieRatings ?? {})) if (!ids.has(id)) issue(`${id} is rated but isn't a prospect`);
   if (ids.size !== doc.prospects.length) issue('A prospect is listed twice');
   const picked = new Set<string>();
   for (const p of doc.picks) {

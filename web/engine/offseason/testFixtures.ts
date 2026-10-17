@@ -186,7 +186,6 @@ export const draftBoardState = (over: Partial<DraftBoardState> = {}): DraftBoard
   collegeTeams: ageCollegeTeams(),
   players: draftBoardPlayers(),
   collegeTx: { league: 'fbajc', season: 80, entries: [] },
-  ratings: draftBoardRatings(),
   ...over,
 });
 

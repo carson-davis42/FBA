@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { DraftFile as DraftFileSchema, type DraftFile, type FreeAgentsFile, type RostersFile, type TransactionsFile } from '../shared/types';
+import { DraftFile as DraftFileSchema, type DraftFile, type RostersFile, type TransactionsFile } from '../shared/types';
 import {
   draftPick, draftStepId, finishDraft, finishDraftProblems, onTheClock, startDraft, startDraftProblems, type FbaDraftState,
 } from './fbaDraft';
@@ -45,12 +45,12 @@ describe('draftStepId', () => {
 });
 
 describe('startDraftProblems', () => {
-  it('has none when the step is current, the reset is finished, everyone is rated and the lottery is drawn', () => {
+  it('has none when the step is current, the reset is finished and the lottery is drawn (the prospects need no FBA rating)', () => {
     expect(startDraftProblems(baseState())).toEqual([]);
   });
 
   it('gives the calendar problem first', () => {
-    expect(startDraftProblems(withoutStep(baseState()))[0]).toBe('The draft starts at the S80 FBA Draft step (current step: S80 Expansion Draft)');
+    expect(startDraftProblems(withoutStep(baseState()))[0]).toBe('The draft starts at the S80 FBA Draft step (current step: Rate S80 Rookies)');
   });
 
   it('wants the pro ratings reset finished (missing or unlocked)', () => {
@@ -59,10 +59,10 @@ describe('startDraftProblems', () => {
     expect(startDraftProblems({ ...s, ratings: { ...s.ratings!, locked: false } })).toEqual(['Finish the pro ratings reset first']);
   });
 
-  it('names each unrated prospect', () => {
+  it('does not ask for FBA ratings: the class is rated after the draft', () => {
     const s = baseState();
-    const prospects = s.draft.prospects.map(p => (['p00041', 'p00043'].includes(p.playerId) ? { ...p, fbaRating: null } : p));
-    expect(startDraftProblems({ ...s, draft: { ...s.draft, prospects } })).toEqual(['Prospect B has no FBA rating', 'Prospect D has no FBA rating']);
+    const prospects = s.draft.prospects.map(p => ({ ...p, fbaRating: null }));
+    expect(startDraftProblems({ ...s, draft: { ...s.draft, prospects } })).toEqual([]);
   });
 
   it("wants last season's lottery drawn (missing or unlocked)", () => {
@@ -82,11 +82,9 @@ describe('startDraftProblems', () => {
 
   it('lists the problems in order', () => {
     const s = baseState();
-    const prospects = s.draft.prospects.map((p, i) => (i === 0 ? { ...p, fbaRating: null } : p));
-    expect(startDraftProblems(withoutStep({ ...s, ratings: null, lottery: null, draft: { ...s.draft, prospects, started: true } }))).toEqual([
-      'The draft starts at the S80 FBA Draft step (current step: S80 Expansion Draft)',
+    expect(startDraftProblems(withoutStep({ ...s, ratings: null, lottery: null, draft: { ...s.draft, started: true } }))).toEqual([
+      'The draft starts at the S80 FBA Draft step (current step: Rate S80 Rookies)',
       'Finish the pro ratings reset first',
-      'Prospect A has no FBA rating',
       "The S79 draft lottery hasn't been drawn",
       'The draft has already started',
     ]);
@@ -186,7 +184,7 @@ describe('draftPick', () => {
 
   it('refuses away from the draft step', () => {
     expect(problems(draftPick(withoutStep(started()), 'p00040', ctx)))
-      .toEqual(['The draft starts at the S80 FBA Draft step (current step: S80 Expansion Draft)']);
+      .toEqual(['The draft starts at the S80 FBA Draft step (current step: Rate S80 Rookies)']);
   });
 
   it('refuses when no pick is left', () => {
@@ -232,23 +230,14 @@ describe('finishDraft', () => {
   });
 
   it('refuses out of calendar order', () => {
-    expect(problems(finishDraft(withoutStep(tenPicks()), ctx))).toEqual(['The draft is finished at the S80 FBA Draft step (current step: S80 Expansion Draft)']);
+    expect(problems(finishDraft(withoutStep(tenPicks()), ctx))).toEqual(['The draft is finished at the S80 FBA Draft step (current step: Rate S80 Rookies)']);
   });
 
-  it('sends the undrafted prospects to free agency as rookies', () => {
-    const fa = doc<FreeAgentsFile>(ok(finishDraft(tenPicks(), ctx)), 'leagues/fba/S80/freeAgents.json');
-    expect(fa.players).toEqual([
-      { playerId: 'p00050', position: 'C', age: 19, rating: 70, rookie: true, note: 'Undrafted' },
-      { playerId: 'p00051', position: 'SG', age: 19, rating: 69, rookie: true, note: 'Undrafted' },
-    ]);
-  });
-
-  it('adds to the free agents already there', () => {
+  it('leaves free agency alone: the undrafted wait for the rookie ratings', () => {
     const s = tenPicks();
     const existing = { playerId: 'p00021', position: 'C' as const, age: 21, rating: 60, rookie: false, note: '' };
-    const fa = doc<FreeAgentsFile>(ok(finishDraft({ ...s, freeAgents: { ...s.freeAgents, players: [existing] } }, ctx)), 'leagues/fba/S80/freeAgents.json');
-    expect(fa.players).toHaveLength(3);
-    expect(fa.players[0]).toEqual(existing);
+    const w = ok(finishDraft({ ...s, freeAgents: { ...s.freeAgents, players: [existing] } }, ctx));
+    expect(w.writes.some(x => x.path === 'leagues/fba/S80/freeAgents.json')).toBe(false);
   });
 
   it('locks the draft and marks the step done', () => {
@@ -263,7 +252,7 @@ describe('finishDraft', () => {
   it('logs the finish', () => {
     const tx = doc<TransactionsFile>(ok(finishDraft(tenPicks(), ctx)), 'leagues/fba/S80/transactions.json');
     expect(tx.entries.at(-1)).toEqual({
-      seq: 11, batchId: 'b1', type: 'drafted', teams: [], lines: ['The S80 draft is finished: 2 undrafted prospects join free agency'],
+      seq: 11, batchId: 'b1', type: 'drafted', teams: [], lines: ['The S80 draft is finished: 2 undrafted prospects wait for the rookie ratings'],
     });
   });
 
@@ -271,21 +260,20 @@ describe('finishDraft', () => {
     const s = tenPicks();
     const one = { ...s, draft: { ...s.draft, prospects: s.draft.prospects.slice(0, 11) } };
     const tx = doc<TransactionsFile>(ok(finishDraft(one, ctx)), 'leagues/fba/S80/transactions.json');
-    expect(tx.entries.at(-1)!.lines[0]).toBe('The S80 draft is finished: 1 undrafted prospect joins free agency');
+    expect(tx.entries.at(-1)!.lines[0]).toBe('The S80 draft is finished: 1 undrafted prospect waits for the rookie ratings');
   });
 
   it('adds a line for each empty pick when every prospect is gone', () => {
     const tx = doc<TransactionsFile>(ok(finishDraft(allDrafted(), ctx)), 'leagues/fba/S80/transactions.json');
     const lines = tx.entries.at(-1)!.lines;
     expect(lines).toHaveLength(19);
-    expect(lines[0]).toBe('The S80 draft is finished: 0 undrafted prospects join free agency');
+    expect(lines[0]).toBe('The S80 draft is finished: 0 undrafted prospects wait for the rookie ratings');
     expect(lines[1]).toBe('#13: City 17 makes no selection');
     expect(lines[18]).toBe('#30: City 00 makes no selection');
-    expect(doc<FreeAgentsFile>(ok(finishDraft(allDrafted(), ctx)), 'leagues/fba/S80/freeAgents.json').players).toEqual([]);
   });
 
-  it('writes the draft, free agents, calendar and transactions', () => {
+  it('writes the draft, calendar and transactions', () => {
     expect(ok(finishDraft(tenPicks(), ctx)).writes.map(w => w.path))
-      .toEqual(['leagues/fba/S80/draft.json', 'leagues/fba/S80/freeAgents.json', 'calendar.json', 'leagues/fba/S80/transactions.json']);
+      .toEqual(['leagues/fba/S80/draft.json', 'calendar.json', 'leagues/fba/S80/transactions.json']);
   });
 });

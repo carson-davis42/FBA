@@ -38,7 +38,7 @@ function docs(over: { draft?: DraftFile | null; withCalendar?: boolean; withoutB
     'leagues/fba/teams.json': draftFbaTeams(),
     'leagues/fbajc/S80/rosters.json': b.rosters,
     [boardPath(79)]: b.board,
-    [proRatingsPath(80)]: b.ratings,
+    [proRatingsPath(80)]: f.ratings,
     [lotteryPath(79)]: draftLottery(),
     'leagues/fba/S80/rosters.json': draftRosters(),
     'leagues/fba/S80/freeAgents.json': f.freeAgents,
@@ -77,33 +77,7 @@ describe('FbaDraftPage', () => {
     expect(within(dan).getByRole('button', { name: 'Portal' })).toBeTruthy();
     expect(within(rowOf('Sam Senior')).queryByRole('button', { name: 'Back to school' })).toBeNull();
     expect(within(rowOf('Sam Senior')).queryByRole('button', { name: 'Portal' })).toBeNull();
-    // Only the two who were not rated in the pro reset take a typed rating.
-    expect(screen.getAllByLabelText(/^FBA rating for /).map(i => i.getAttribute('aria-label'))).toEqual(['FBA rating for Tim Taken', 'FBA rating for Eve Early']);
-  });
-
-  it('saves a typed rating on blur and on Enter, and refuses a bad one', async () => {
-    const log = stubApi(docs());
-    renderPage();
-    const tim = await screen.findByLabelText('FBA rating for Tim Taken');
-    fireEvent.change(tim, { target: { value: '100' } });
-    fireEvent.blur(tim);
-    expect(await screen.findByText('Enter a whole number from 1 to 99')).toBeTruthy();
-    expect(log.batches).toHaveLength(0);
-
-    fireEvent.change(tim, { target: { value: '70' } });
-    fireEvent.blur(tim);
-    await waitFor(() => expect(log.batches).toHaveLength(1));
-    expect(log.batches[0].label).toBe('Tim Taken: FBA rating 70');
-    expect(log.batches[0].writes.map(w => [w.path, w.baseVersion])).toEqual([[draftPath(80), '0000000000000001']]);
-    expect((log.batches[0].writes[0].doc as DraftFile).prospects.find(p => p.playerId === 'p00036')!.fbaRating).toBe(70);
-    await waitFor(() => expect((screen.getByLabelText('FBA rating for Tim Taken') as HTMLInputElement).value).toBe('70'));
-
-    const eve = screen.getByLabelText('FBA rating for Eve Early');
-    fireEvent.change(eve, { target: { value: '55' } });
-    fireEvent.keyDown(eve, { key: 'Enter' });
-    await waitFor(() => expect(log.batches).toHaveLength(2));
-    expect(log.batches[1].label).toBe('Eve Early: FBA rating 55');
-    expect(log.batches[1].writes[0].baseVersion).toBe('0000000000000002');
+    expect(screen.queryByLabelText(/^FBA rating for /)).toBeNull();
   });
 
   it('declares an early entrant, grouped by school, in one batch', async () => {
@@ -174,13 +148,12 @@ describe('FbaDraftPage', () => {
     expect(w.baseVersion).toBeNull();
   });
 
-  it('lists what blocks the start, and disables it', async () => {
+  it('can start with no FBA ratings: the class is rated after the draft', async () => {
     const log = stubApi(docs());
     renderPage();
-    const start = await screen.findByRole('button', { name: 'Start the draft' }) as HTMLButtonElement;
-    expect(start.disabled).toBe(true);
-    expect(screen.getByText('Eve Early has no FBA rating')).toBeTruthy();
-    expect(screen.getByText('Tim Taken has no FBA rating')).toBeTruthy();
+    const start = await enabled('Start the draft');
+    expect(start.disabled).toBe(false);
+    expect(screen.queryByText(/has no FBA rating/)).toBeNull();
     expect(log.batches).toHaveLength(0);
   });
 
@@ -213,7 +186,7 @@ describe('FbaDraftPage', () => {
     renderPage();
     await screen.findByRole('table', { name: 'Prospects' });
     expect((await screen.findByText(/On the clock:/)).textContent).toBe('On the clock: #3 City 05 (from T27)');
-    expect(names('Prospects')).toEqual(['Eve Early', 'Tim Taken']);
+    expect(names('Prospects')).toEqual(['Tim Taken', 'Eve Early']);
     expect(within(rowOf('Tim Taken')).getByRole('button', { name: 'Draft' })).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Back to school' })).toBeNull();
     expect(names('Picks')).toEqual(['1', '2']);
@@ -255,7 +228,6 @@ describe('FbaDraftPage', () => {
     expect(log.batches[0].writes.map(w => [w.path, w.baseVersion]).sort()).toEqual([
       ['calendar.json', '0000000000000001'],
       [draftPath(80), '0000000000000001'],
-      ['leagues/fba/S80/freeAgents.json', '0000000000000001'],
       ['leagues/fba/S80/transactions.json', '0000000000000001'],
     ].sort());
     expect(await screen.findByText('The S80 draft is finished.')).toBeTruthy();

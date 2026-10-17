@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { DraftFile, PlayersFile, RecruitingFile, RostersFile, TransactionsFile } from '../shared/types';
-import { backToSchool, boardOrder, declare, declareCandidates, draftBoardProblem, draftToPortal, enterPortal, moveProspectRank, setProspectRating } from './draftBoard';
-import { draftBoardBoard, draftBoardDraft, draftBoardRatings, draftBoardState } from './testFixtures';
+import { backToSchool, boardOrder, declare, declareCandidates, draftBoardProblem, draftToPortal, enterPortal, moveProspectRank } from './draftBoard';
+import { draftBoardBoard, draftBoardDraft, draftBoardState } from './testFixtures';
 
 const ctx = { batchId: 'b1' };
 const paths = { draft: 'leagues/fba/S80/draft.json', rosters: 'leagues/fbajc/S80/rosters.json', board: 'leagues/fbajc/S79/recruiting.json', tx: 'leagues/fbajc/S80/transactions.json' };
@@ -62,18 +62,6 @@ describe('declare', () => {
     players.players.p00003 = { ...players.players.p00003, birthSeason: 55 };
     const kept = ok(declare(draftBoardState({ players }), 'p00003', ctx));
     expect(kept.writes.map(w => w.path)).toEqual([paths.draft, paths.rosters, paths.tx]);
-  });
-  it('keeps the pro-reset rating of a player who left the board and declares again', () => {
-    const back = ok(backToSchool(draftBoardState(), 'p00034', ctx));
-    const s = draftBoardState({
-      draft: doc<DraftFile>(back, paths.draft), rosters: doc<RostersFile>(back, paths.rosters),
-    });
-    const r = ok(declare(s, 'p00034', ctx));
-    expect(doc<DraftFile>(r, paths.draft).prospects.at(-1)).toMatchObject({ playerId: 'p00034', fbaRating: 65 });
-    // Without a locked reset (or without his row) he stays unrated.
-    const open = draftBoardState({ draft: s.draft, rosters: s.rosters, ratings: { ...draftBoardRatings(), locked: false } });
-    expect(doc<DraftFile>(ok(declare(open, 'p00034', ctx)), paths.draft).prospects.at(-1)?.fbaRating).toBeNull();
-    expect(doc<DraftFile>(ok(declare({ ...s, ratings: null }, 'p00034', ctx)), paths.draft).prospects.at(-1)?.fbaRating).toBeNull();
   });
   it('refuses a non-candidate and a started draft', () => {
     expect(problems(declare(draftBoardState(), 'p00002', ctx))).toEqual(["X can't declare"]);
@@ -159,54 +147,22 @@ describe('draftToPortal', () => {
   });
 });
 
-describe('setProspectRating', () => {
-  it('writes only the draft', () => {
-    const r = ok(setProspectRating(draftBoardState(), 'p00035', 71));
-    expect(r.writes.map(w => w.path)).toEqual([paths.draft]);
-    expect(doc<DraftFile>(r, paths.draft).prospects.find(p => p.playerId === 'p00035')?.fbaRating).toBe(71);
-    expect(r.label).toBe('Eve Early: FBA rating 71');
-  });
-  it('waits for the pro reset', () => {
-    expect(problems(setProspectRating(draftBoardState({ ratings: null }), 'p00035', 71))).toEqual(['Finish the pro ratings reset first']);
-    const open = draftBoardState();
-    expect(problems(setProspectRating({ ...open, ratings: { ...open.ratings!, locked: false } }, 'p00035', 71))).toEqual(['Finish the pro ratings reset first']);
-  });
-  it('refuses a prospect rated in the reset', () => {
-    expect(problems(setProspectRating(draftBoardState(), 'p00034', 71))).toEqual(['Dan Draftee was rated in the pro reset']);
-  });
-  it('refuses values outside 1-99 or not whole', () => {
-    for (const v of [0, 100, 70.5, NaN]) expect(problems(setProspectRating(draftBoardState(), 'p00035', v))).toEqual(['Enter a whole number from 1 to 99']);
-    ok(setProspectRating(draftBoardState(), 'p00035', 1));
-    ok(setProspectRating(draftBoardState(), 'p00035', 99));
-  });
-  it('refuses a stranger and a started draft', () => {
-    expect(problems(setProspectRating(draftBoardState(), 'p00003', 71))).toEqual(["Cal Center isn't on the draft board"]);
-    expect(problems(setProspectRating(started(), 'p00035', 71))).toEqual(['The S80 draft has started']);
-  });
-});
-
 describe('boardOrder', () => {
-  it('puts the pro-reset ranking first, then the rest by ratings and name', () => {
-    expect(boardOrder(draftBoardState()).map(p => p.playerId)).toEqual(['p00034', 'p00001', 'p00036', 'p00035']);
-  });
-  it('orders unranked prospects by FBA rating, then college rating, then name, nulls last', () => {
+  it('orders by college rating plus the class boost, then name, nulls last, and ignores any FBA rating', () => {
     const base = draftBoardDraft();
     const mk = (playerId: string, fbaRating: number | null, collegeRating: number | null) =>
-      ({ ...base.prospects[2], playerId, fbaRating, collegeRating });
+      ({ ...base.prospects[2], playerId, classYear: 'Sr' as const, fbaRating, collegeRating });
     const draft = {
       ...base,
       prospects: [
         mk('p00035', null, 70), // Eve
         mk('p00036', null, null), // Tim
-        mk('p00034', 50, 60), // Dan
-        mk('p00001', 50, 60), // Sam: ties Dan, so name order
+        mk('p00034', 99, 60), // Dan: a high FBA rating counts for nothing
+        mk('p00001', 1, 60), // Sam: ties Dan, so name order
         mk('p00003', 50, 65), // Cal
-        mk('p00010', 80, null), // Rick
       ],
     };
-    expect(boardOrder(draftBoardState({ draft, ratings: null })).map(p => p.playerId)).toEqual(
-      ['p00010', 'p00003', 'p00034', 'p00001', 'p00035', 'p00036'],
-    );
+    expect(boardOrder(draftBoardState({ draft })).map(p => p.playerId)).toEqual(['p00035', 'p00003', 'p00034', 'p00001', 'p00036']);
   });
 });
 
@@ -215,16 +171,13 @@ describe('boardOrder class boost', () => {
     playerId, position: 'PG' as const, college: 't1', classYear, senior: classYear === 'Sr', collegeRating, stars: null, fbaRating,
   });
   const order = (prospects: DraftFile['prospects']) =>
-    boardOrder(draftBoardState({ ratings: null, draft: { ...draftBoardDraft(), prospects } })).map(p => p.playerId);
+    boardOrder(draftBoardState({ draft: { ...draftBoardDraft(), prospects } })).map(p => p.playerId);
   it('puts a freshman ahead of a junior with a slightly higher college rating (85 + 4 against 87 + 1)', () => {
     expect(order([prospect('pJr', 'Jr', 87, null), prospect('pFr', 'Fr', 85, null)])).toEqual(['pFr', 'pJr']);
   });
   it('boosts a sophomore by 2 and leaves a senior as is', () => {
     expect(order([prospect('pSr', 'Sr', 87, null), prospect('pSo', 'So', 86, null)])).toEqual(['pSo', 'pSr']);
     expect(order([prospect('pSr', 'Sr', 87, null), prospect('pSo', 'So', 84, null)])).toEqual(['pSr', 'pSo']);
-  });
-  it('weighs the FBA rating the same way when both have one', () => {
-    expect(order([prospect('pJr', 'Jr', 70, 82), prospect('pFr', 'Fr', 70, 80)])).toEqual(['pFr', 'pJr']);
   });
   it('still goes by rating in the same class', () => {
     expect(order([prospect('pA', 'So', 85, null), prospect('pB', 'So', 87, null)])).toEqual(['pB', 'pA']);

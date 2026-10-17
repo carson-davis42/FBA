@@ -9,6 +9,9 @@ describe('step routes', () => {
     expect(TOOL_STEPS['fbad2-ratings-reset']).toBe('/league/fbad2/ratings');
     expect(TOOL_STEPS['fbad2-draft']).toBe('/league/fbad2/draft');
   });
+  it('opens the rookie ratings page from its step', () => {
+    expect(toolTarget(step('s80-rate-rookies'))).toBe('/league/fba/rookies');
+  });
   it('routes schedules and season play to their pages', () => {
     expect(toolTarget(step('make-s79-schedules'))).toBe('/schedules');
     expect(toolTarget(step('fba-d2', 'league', 'fbad2'))).toBe('/league/fbad2/scores');

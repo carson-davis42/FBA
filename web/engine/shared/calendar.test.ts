@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calendarFor, currentStepIndex, markCurrentDone, markStepDone, reopenLast, reopenProblem, withExpansionStep, withQualifyingStep } from './calendar';
+import { calendarFor, currentStepIndex, markCurrentDone, markStepDone, reopenLast, reopenProblem, withExpansionStep, withQualifyingStep, withRookieStep, rookieStepId } from './calendar';
 import { CalendarFile } from './types';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -44,7 +44,7 @@ describe('calendarFor', () => {
     const committed = JSON.parse(readFileSync(path.join(__dirname, '..', '..', 'data', 'calendar.json'), 'utf8')) as CalendarFile;
     // The committed S79 calendar predates the qualifying and expansion steps (the user will migrate it), so compare after adding them.
     const { startedAt: _startedAt, ...rest } = committed; // the start time is stamped when the season is started, not by calendarFor
-    expect(calendarFor(committed.season)).toEqual(withExpansionStep(withQualifyingStep({ ...rest, steps: committed.steps.map(s => ({ ...s, done: false })) })));
+    expect(calendarFor(committed.season)).toEqual(withRookieStep(withExpansionStep(withQualifyingStep({ ...rest, steps: committed.steps.map(s => ({ ...s, done: false })) }))));
     expect(committed.season).toBeGreaterThanOrEqual(79);
   });
 
@@ -119,9 +119,9 @@ describe('expansion steps', () => {
     expect(ids.indexOf('s80-add-expansion-teams')).toBe(ids.indexOf('s80-fba-draft-lottery') - 1);
     expect(ids.indexOf('s80-add-expansion-teams')).toBeGreaterThan(ids.indexOf('fba'));
   });
-  it('S80 has the expansion draft right after the S80 draft', () => {
+  it('S80 has the expansion draft right after the S80 draft and its rookie ratings', () => {
     const ids = calendarFor(80).steps.map(s => s.id);
-    expect(ids.indexOf('s80-expansion-draft')).toBe(ids.indexOf('s80-fba-draft') + 1);
+    expect(ids.indexOf('s80-expansion-draft')).toBe(ids.indexOf('s80-rate-rookies') + 1);
     expect(ids[ids.indexOf('s80-expansion-draft') + 1]).toBe('free-agency-offseason');
   });
   it('other seasons are unchanged', () => {
@@ -147,5 +147,31 @@ describe('expansion steps', () => {
   it('leaves other seasons alone', () => {
     const c = calendarFor(78);
     expect(withExpansionStep(c)).toBe(c);
+  });
+});
+
+describe('rookie ratings step', () => {
+  it('sits right after the FBA draft and before free agency in every season', () => {
+    for (const n of [79, 80, 81]) {
+      const ids = calendarFor(n).steps.map(s => s.id);
+      expect(ids[ids.indexOf(`s${n}-fba-draft`) + 1]).toBe(rookieStepId(n));
+      expect(ids.indexOf(rookieStepId(n))).toBeLessThan(ids.indexOf('free-agency-offseason'));
+    }
+    expect(rookieStepId(80)).toBe('s80-rate-rookies');
+    expect(calendarFor(80).steps.find(s => s.id === 's80-rate-rookies')).toEqual({ id: 's80-rate-rookies', label: 'Rate S80 Rookies', kind: 'offseason', league: null, sub: false, done: false });
+  });
+  it('is added to a live calendar right after the draft, once', () => {
+    const live = { ...calendarFor(80), steps: calendarFor(80).steps.filter(s => s.id !== 's80-rate-rookies') };
+    const next = withRookieStep(live);
+    const ids = next.steps.map(s => s.id);
+    expect(ids[ids.indexOf('s80-fba-draft') + 1]).toBe('s80-rate-rookies');
+    expect(withRookieStep(next)).toBe(next);
+  });
+  it('leaves a calendar whose draft is already done, or that has no draft step, as it is', () => {
+    const live = { ...calendarFor(80), steps: calendarFor(80).steps.filter(s => s.id !== 's80-rate-rookies') };
+    const done = { ...live, steps: live.steps.map(s => (s.id === 's80-fba-draft' ? { ...s, done: true } : s)) };
+    expect(withRookieStep(done)).toBe(done);
+    const none = { ...live, steps: live.steps.filter(s => s.id !== 's80-fba-draft') };
+    expect(withRookieStep(none)).toBe(none);
   });
 });

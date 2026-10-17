@@ -20,8 +20,8 @@ import '../pages/roster.css';
 import '../offseason/offseason.css';
 
 /**
- * Adjust Pro Ratings (/league/fba/ratings): rank every FBA roster player and every draft prospect, best first, then give each a new
- * rating. Suggestions come from last season's finished reset, else its first ratings pause, else the current roster ratings.
+ * Adjust Pro Ratings (/league/fba/ratings): rank every FBA roster player, best first, then give each a new
+ * rating. Suggestions come from last season's finished reset, else its last ratings pause (the ratings after the season was played), else the current roster ratings.
  */
 export function ProRatingsPage() {
   const meta = useDoc<MetaFile>('meta.json');
@@ -42,7 +42,7 @@ export function ProRatingsPage() {
   const collegeTeams = useDoc<TeamsFile>(at('leagues/fbajc/teams.json'));
   const fbaTeams = useDoc<TeamsFile>(at('leagues/fba/teams.json'));
   const schedule = useDoc<ScheduleFile>(n === undefined ? null : seasonDocPath('schedule', 'fba', n - 1));
-  const afterGame = schedule.data?.pauses.find(p => p.kind === 'ratings')?.afterGame;
+  const afterGame = schedule.data?.pauses.filter(p => p.kind === 'ratings').at(-1)?.afterGame;
   const pauseDoc = useDoc<RatingPauseFile>(n === undefined || afterGame === undefined ? null : seasonDocPath('ratingPause', 'fba', n - 1, afterGame));
   const emptyTx = useMemo<TransactionsFile | undefined>(() => (n === undefined ? undefined : { league: 'fba', season: n, entries: [] }), [n]);
   const autosave = useAutosaveDoc<RankingFile>(ratingsPath, ratings.data, ratings.version);
@@ -110,7 +110,7 @@ export function ProRatingsPage() {
         {title}
         <div className="card">
           <p className="muted">
-            Rank every FBA player and every draft prospect, best first, starting from last season's ratings. Once everyone is ranked, give each
+            Rank every FBA player, best first, starting from last season's ratings. Once everyone is ranked, give each
             a new rating; the app suggests the rating that held the same rank in last season's reset.
           </p>
           <button className="btn primary" disabled={saving} onClick={() => run(() => startProRatings(state))}>Start the pro ratings reset</button>

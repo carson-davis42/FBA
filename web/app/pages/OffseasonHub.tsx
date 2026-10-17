@@ -19,6 +19,7 @@ const TOOLS: Partial<Record<LeagueId, Tool[]>> = {
     { title: 'Hall of Fame', note: 'Review nominees and induct new members.', to: TOOL_STEPS['hall-of-fame-induction'] },
     { title: 'Draft lottery', note: 'Run the FBA draft lottery.', to: '/league/fba/lottery' },
     { title: 'FBA draft', note: 'Make the picks of the FBA draft.', to: '/league/fba/draft' },
+    { title: 'Rookie ratings', note: 'Rate the draft class after the draft; the rest go to the D2 pool.', to: '/league/fba/rookies' },
   ],
   fbad2: [
     { title: 'Ratings reset', note: 'Adjust D2 ratings for the new season.', to: TOOL_STEPS['fbad2-ratings-reset'] },
