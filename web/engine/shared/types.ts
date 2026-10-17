@@ -1373,6 +1373,8 @@ export const DraftFile = z.object({
   started: z.boolean(),
   prospects: z.array(DraftProspect),
   picks: z.array(DraftPick),
+  /** The commissioner's own order of the prospects' rankings, best first (set by the up and down arrows); absent until he moves someone. */
+  rankOrder: z.array(playerId).optional(),
 }).strict().superRefine((doc, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const ids = new Set(doc.prospects.map(p => p.playerId));

@@ -1,6 +1,7 @@
 import { collegeHole } from '../college/setup';
 import { boardPath, collegeName } from '../college/state';
 import { boosted } from '../rank/classBoost';
+import { rankedProspects } from './prospectOutlook';
 import { POSITIONS } from '../roster/rules';
 import { appendTx, withTeam, type MoveContext } from '../roster/state';
 import type { WritesResult } from '../season/moves';
@@ -184,6 +185,28 @@ export function enterPortal(state: DraftBoardState, playerId: string, ctx: MoveC
       { path: collegeTxPath(state.season), doc: tx },
     ],
     label: `${name} enters the transfer portal`,
+  };
+}
+
+/**
+ * Moves a prospect one place up (-1) or down (1) in the rankings by swapping with the neighbour in that direction (with `visible`, the nearest
+ * prospect it accepts, for a position view) and saves the whole ranking in the draft as the commissioner's own order.
+ */
+export function moveProspectRank(state: DraftBoardState, playerId: string, delta: -1 | 1, visible: (playerId: string) => boolean = () => true): WritesResult {
+  const started = draftBoardProblem(state.draft);
+  if (started) return fail(started);
+  const name = collegeName(state.players, playerId);
+  const order = rankedProspects(boardOrder(state), state.draft.rankOrder).map(p => p.playerId);
+  const i = order.indexOf(playerId);
+  if (i < 0) return fail(`${name} isn't on the draft board`);
+  let j = i + delta;
+  while (j >= 0 && j < order.length && !visible(order[j])) j += delta;
+  if (j < 0 || j >= order.length) return fail(`${name} is already at the ${delta < 0 ? 'top' : 'bottom'} of the rankings`);
+  [order[i], order[j]] = [order[j], order[i]];
+  return {
+    ok: true,
+    writes: [{ path: draftPath(state.season), doc: { ...state.draft, rankOrder: order } }],
+    label: `${name} moves ${delta < 0 ? 'up' : 'down'} the rankings`,
   };
 }
 

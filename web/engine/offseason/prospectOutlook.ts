@@ -54,15 +54,34 @@ export function positionSpots(fba: RostersFile, settings: OutlookSettings): Reco
   return Object.fromEntries(POSITIONS.map((p, i) => [p, Math.max(0, raw[p] - take[i])])) as Record<Position, number>;
 }
 
+const scoreOf = (p: DraftProspect) => boosted(p.collegeRating, p.classYear) ?? -Infinity;
+
+/**
+ * The prospects in ranking order: by college rating plus the class boost (a missing rating last, equal scores keep the input order, so pass them
+ * in the draft board's order), then the commissioner's own order applied: the players in `manualOrder` take the places the listed players hold, in
+ * that order. A prospect who isn't listed (a late entrant) keeps his score place; a listed player who is gone is ignored.
+ */
+export function rankedProspects(prospects: DraftProspect[], manualOrder: string[] = []): DraftProspect[] {
+  const base = prospects.map((p, i) => ({ p, i })).sort((a, b) => scoreOf(b.p) - scoreOf(a.p) || a.i - b.i).map(x => x.p);
+  const present = new Map(base.map(p => [p.playerId, p]));
+  const listed = manualOrder.filter((id, k) => present.has(id) && manualOrder.indexOf(id) === k);
+  if (listed.length < 2) return base;
+  const listedSet = new Set(listed);
+  const fill = listed.map(id => present.get(id)!);
+  let next = 0;
+  return base.map(p => (listedSet.has(p.playerId) ? fill[next++] : p));
+}
+
 /**
  * Each prospect's overall and position rank (by college rating plus the class boost; a missing rating last; equal scores keep the input order,
  * so pass them in the draft board's order) and, for an early entrant, the stay / close / withdraw signal: both checks (position rank within
  * the spots at his position, overall rank within the history cutoff) is `stay`, one is `close`, neither is `withdraw`.
  */
-export function prospectOutlook(prospects: DraftProspect[], fba: RostersFile, settings: OutlookSettings = DEFAULT_OUTLOOK): Map<string, ProspectOutlook> {
+export function prospectOutlook(
+  prospects: DraftProspect[], fba: RostersFile, settings: OutlookSettings = DEFAULT_OUTLOOK, manualOrder: string[] = [],
+): Map<string, ProspectOutlook> {
   const spots = positionSpots(fba, settings);
-  const score = (p: DraftProspect) => boosted(p.collegeRating, p.classYear) ?? -Infinity;
-  const ranked = prospects.map((p, i) => ({ p, i })).sort((a, b) => score(b.p) - score(a.p) || a.i - b.i).map(x => x.p);
+  const ranked = rankedProspects(prospects, manualOrder);
   const seen = new Map<Position, number>();
   const out = new Map<string, ProspectOutlook>();
   ranked.forEach((p, k) => {

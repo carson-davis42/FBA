@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { DraftFile, PlayersFile, RecruitingFile, RostersFile, TransactionsFile } from '../shared/types';
-import { backToSchool, boardOrder, declare, declareCandidates, draftBoardProblem, draftToPortal, enterPortal, setProspectRating } from './draftBoard';
+import { backToSchool, boardOrder, declare, declareCandidates, draftBoardProblem, draftToPortal, enterPortal, moveProspectRank, setProspectRating } from './draftBoard';
 import { draftBoardBoard, draftBoardDraft, draftBoardRatings, draftBoardState } from './testFixtures';
 
 const ctx = { batchId: 'b1' };
@@ -228,5 +228,38 @@ describe('boardOrder class boost', () => {
   });
   it('still goes by rating in the same class', () => {
     expect(order([prospect('pA', 'So', 85, null), prospect('pB', 'So', 87, null)])).toEqual(['pB', 'pA']);
+  });
+});
+
+describe('moveProspectRank', () => {
+  // Boosted scores: Sam Senior 80, Tim Taken 73, Dan Draftee 71, Eve Early 70: ranking p00001, p00036, p00034, p00035.
+  const order = (r: { writes: { path: string; doc: unknown }[] }) => (r.writes[0].doc as DraftFile).rankOrder;
+  it('swaps a prospect with the one above or below him and saves the whole ranking in the draft', () => {
+    const up = ok(moveProspectRank(draftBoardState(), 'p00035', -1));
+    expect(up.writes.map(w => w.path)).toEqual([paths.draft]);
+    expect(order(up)).toEqual(['p00001', 'p00036', 'p00035', 'p00034']);
+    expect(up.label).toBe('Eve Early moves up the rankings');
+    const down = ok(moveProspectRank(draftBoardState(), 'p00001', 1));
+    expect(order(down)).toEqual(['p00036', 'p00001', 'p00034', 'p00035']);
+  });
+  it('builds on a saved manual order', () => {
+    const first = ok(moveProspectRank(draftBoardState(), 'p00035', -1));
+    const again = ok(moveProspectRank(draftBoardState({ draft: first.writes[0].doc as DraftFile }), 'p00035', -1));
+    expect(order(again)).toEqual(['p00001', 'p00035', 'p00036', 'p00034']);
+  });
+  it('with a filter, swaps with the nearest prospect it shows', () => {
+    const visible = (id: string) => id === 'p00001' || id === 'p00035';
+    expect(order(ok(moveProspectRank(draftBoardState(), 'p00035', -1, visible)))).toEqual(['p00035', 'p00036', 'p00034', 'p00001']);
+  });
+  it('refuses the top going up, the bottom going down, a stranger and a started draft', () => {
+    expect(problems(moveProspectRank(draftBoardState(), 'p00001', -1))).toEqual(['Sam Senior is already at the top of the rankings']);
+    expect(problems(moveProspectRank(draftBoardState(), 'p00035', 1))).toEqual(['Eve Early is already at the bottom of the rankings']);
+    expect(problems(moveProspectRank(draftBoardState(), 'p00003', -1))).toEqual(["Cal Center isn't on the draft board"]);
+    expect(problems(moveProspectRank(started(), 'p00034', -1))).toEqual(['The S80 draft has started']);
+  });
+  it('leaves the input state untouched', () => {
+    const s = draftBoardState();
+    ok(moveProspectRank(s, 'p00035', -1));
+    expect(s.draft).toEqual(draftBoardDraft());
   });
 });
