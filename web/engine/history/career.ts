@@ -436,9 +436,10 @@ const COLLEGE_YEARS_BEFORE: Record<ClassYear, number> = { Fr: 0, So: 1, Jr: 2, S
  * A college player's earlier school stints (before `season`, the season he is on a roster now), from the earlier seasons' rosters, nearest first:
  * each season whose roster has him gives his school, and the run stops at the first roster that exists without him. Where the rosters run out
  * (an older season has none) his class says how many more years he has played, at the school of the last roster that had him. Each stint ends
- * at a season before `season`; the stint he is in now is left to `applyPlacement`.
+ * at a season before `season`; the stint he is in now is left to `applyPlacement`. `yearsBefore` (default: from his class) is how many seasons
+ * before `season` he has played.
  */
-export function collegeLead(o: { season: number; classYear: ClassYear | null; team: string; past: { season: number; exists: boolean; team: string | null }[] }): Stint[] {
+export function collegeLead(o: { season: number; classYear: ClassYear | null; yearsBefore?: number; team: string; past: { season: number; exists: boolean; team: string | null }[] }): Stint[] {
   const years: { season: number; team: string }[] = [];
   const nearest = [...o.past].sort((a, b) => b.season - a.season);
   let last = o.team;
@@ -449,8 +450,8 @@ export function collegeLead(o: { season: number; classYear: ClassYear | null; te
       last = p.team;
       continue;
     }
-    const remaining = (o.classYear ? COLLEGE_YEARS_BEFORE[o.classYear] : 0) - (o.season - 1 - p.season);
-    if (remaining > 0) years.push({ season: p.season, team: last });
+    const remaining = (o.yearsBefore ?? (o.classYear ? COLLEGE_YEARS_BEFORE[o.classYear] : 0)) - (o.season - 1 - p.season);
+    for (let k = 0; k < remaining; k++) years.push({ season: p.season - k, team: last });
     break;
   }
   const stints: Stint[] = [];

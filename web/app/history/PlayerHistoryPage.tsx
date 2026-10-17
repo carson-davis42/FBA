@@ -4,7 +4,7 @@ import { applyPlacement, applyPlayed, applyUnsigned, awardTotals, careerSpan, ca
 import { d2PlayerHonours } from '../../engine/history/d2';
 import { playerHonours } from '../../engine/history/honours';
 import { relativesOf } from '../../engine/history/relatives';
-import type { AwardCountsFile, D2DraftHistoryFile, DraftHistoryFile, HallOfFameFile, MetaFile, PlayerBiosFile, PlayersFile, RelativesFile, ResultsFile, RostersFile, TeamsFile } from '../../engine/shared/types';
+import type { AwardCountsFile, D2DraftHistoryFile, DraftFile, DraftHistoryFile, HallOfFameFile, MetaFile, PlayerBiosFile, PlayersFile, RelativesFile, ResultsFile, RostersFile, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useHistory } from '../api';
 import { Badge } from '../components/Badge';
 import { Hero } from '../components/Hero';
@@ -68,6 +68,8 @@ export function PlayerHistoryPage() {
   const d2Roster = useDoc<RostersFile>(rosterOf('fbad2'));
   const jcRoster = useDoc<RostersFile>(rosterOf('fbajc'));
   // The three earlier college rosters show where a college player has been, so a freshman of last season or a transfer isn't dated from this season.
+  // An early entrant or graduate has left the college roster for the draft board, but his school years are still his career.
+  const draftDoc = useDoc<DraftFile>(meta.data ? `leagues/fba/S${meta.data.currentSeason}/draft.json` : null);
   const jcPastRosters = [1, 2, 3].map(k => useDoc<RostersFile>(meta.data ? `leagues/fbajc/S${meta.data.rosterSeason.fbajc - k}/rosters.json` : null));
   // The season being played has no summary yet, so its games say which teams he has played for (a traded player keeps the team he left).
   const results = useDoc<ResultsFile>(meta.data ? `leagues/fba/S${meta.data.rosterSeason.fba}/results.json` : null);
@@ -82,7 +84,7 @@ export function PlayerHistoryPage() {
     ?? (counts.missing ? undefined : counts.error) ?? (hall.missing ? undefined : hall.error);
   if (failure) return <p className="error">Couldn't load the history: {failure.message}</p>;
   if (!seasons || !players.data || (!bios.data && !bios.missing) || (!counts.data && !counts.missing) || (!hall.data && !hall.missing) || (!drafts.data && !drafts.missing && !drafts.error) || !settled
-    || (!d2.seasons && !d2.error) || (!d2Drafts.data && !d2Drafts.missing && !d2Drafts.error) || !d2Teams.settled || !jcTeams.settled || !(meta.data || meta.missing || meta.error) || (!!meta.data && !(rosterSettled(fbaRoster) && rosterSettled(d2Roster) && rosterSettled(jcRoster) && jcPastRosters.every(rosterSettled) && unsigned.every(rosterSettled) && rosterSettled(results))) || (!wcTeams.data && !wcTeams.missing && !wcTeams.error)) {
+    || (!d2.seasons && !d2.error) || (!d2Drafts.data && !d2Drafts.missing && !d2Drafts.error) || !d2Teams.settled || !jcTeams.settled || !(meta.data || meta.missing || meta.error) || (!!meta.data && !(rosterSettled(fbaRoster) && rosterSettled(d2Roster) && rosterSettled(jcRoster) && jcPastRosters.every(rosterSettled) && rosterSettled(draftDoc) && unsigned.every(rosterSettled) && rosterSettled(results))) || (!wcTeams.data && !wcTeams.missing && !wcTeams.error)) {
     return <p className="muted">Loading…</p>;
   }
   const player = players.data.players[playerId];
@@ -121,19 +123,25 @@ export function PlayerHistoryPage() {
   const unsignedNow = placement === null && unsigned.some(d => JSON.stringify(d.data ?? null).includes(`"${playerId}"`));
   const lived = liveCareer(bio, playerId, seasons, hall.data ? linkHallByName(hall.data, players.data) : null);
   // A college player's earlier years come from the earlier college rosters (they correct a transfer's school and a freshman's start).
-  const collegeLeadStints = placement?.now.kind === 'college' && meta.data
+  const prospect = placement === null ? draftDoc.data?.prospects.find(p => p.playerId === playerId) : undefined;
+  const prospectSchool = prospect ? jcTeams.teams.find(t => t.teamId === prospect.college)?.name : undefined;
+  const leadSeason = placement?.season ?? meta.data?.rosterSeason.fbajc ?? 0;
+  const collegeTeam = placement?.now.kind === 'college' ? placement.now.team : prospectSchool;
+  const collegeLeadStints = collegeTeam && meta.data
     ? collegeLead({
-        season: placement.season,
+        season: leadSeason,
         classYear: Object.values(jcRoster.data?.teams ?? {}).flat().find(e => e.playerId === playerId)?.classYear ?? null,
-        team: placement.now.team,
+        // A prospect played last season in the class on the board, so he has that many years behind him, last season included.
+        ...(prospect ? { yearsBefore: ['Fr', 'So', 'Jr', 'Sr'].indexOf(prospect.classYear) + 1 } : {}),
+        team: collegeTeam,
         past: jcPastRosters.map((d, i) => ({
-          season: placement.season - 1 - i,
+          season: leadSeason - 1 - i,
           exists: !!d.data,
           team: d.data ? jcTeams.teams.find(t => t.teamId === Object.entries(d.data!.teams).find(([, es]) => es.some(e => e.playerId === playerId))?.[0])?.name ?? null : null,
         })),
       })
     : [];
-  const withCollege = { ...lived, stints: mergeCollegeLead(lived.stints, collegeLeadStints, placement?.season ?? 0) };
+  const withCollege = { ...lived, stints: mergeCollegeLead(lived.stints, collegeLeadStints, leadSeason) };
   const placed = applyPlacement(applyPlayed(withCollege, playedFor, unsummarised?.season ?? 0), placement?.now ?? null, placement?.season ?? 0);
   // Out of his school or club into a reserve pool or the free-agent list: no stint stays "present".
   const career = unsignedNow && meta.data ? applyUnsigned(placed, meta.data.rosterSeason.fba) : placed;
