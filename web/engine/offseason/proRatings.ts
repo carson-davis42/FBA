@@ -4,7 +4,6 @@ import { appendTx, docPath, type MoveContext } from '../roster/state';
 import { calendarProblem, type WritesResult } from '../season/moves';
 import { markStepDone } from '../shared/calendar';
 import type { CalendarFile, DraftFile, PlayersFile, RankingFile, RankingRow, RatingPauseFile, RostersFile, TeamsFile, TransactionsFile } from '../shared/types';
-import { draftPath } from './adjustAge';
 
 export const PRO_RATINGS_STEP = 'adjust-pro-ratings-reset';
 /** leagues/fba/S{season}/ratings.json: the pro ratings reset of that season. */
@@ -36,15 +35,15 @@ const MAX_RATING = 99;
 const stepProblem = (state: ProRatingsState) => calendarProblem(state.calendar, PRO_RATINGS_STEP, 'Pro ratings are reset');
 const nameOf = (state: ProRatingsState) => (id: string) => collegeName(state.players, id);
 
-/** Last season's rating for an FBA player: the finished reset, else the ratings pause, else the roster rating. */
+/** Last season's rating for an FBA player: the finished reset, else the season's last ratings pause (its final ratings, after the season was played), else the roster rating. */
 function prevRatingOf(state: ProRatingsState, playerId: string, rosterRating: number | null): number | null {
   if (state.prevRatings?.locked && state.prevRatings.ratings[playerId] !== undefined) return state.prevRatings.ratings[playerId];
   const paused = state.pause?.players.find(p => p.playerId === playerId);
-  if (paused) return paused.oldRating;
+  if (paused) return paused.rating;
   return rosterRating;
 }
 
-/** Everyone being ranked: the FBA roster players (team order), then the draft prospects. */
+/** Everyone being ranked: the FBA roster players, in team order. The draft class is rated separately after the draft (the rookie ratings step). */
 export function proRatingRows(state: ProRatingsState): RankingRow[] {
   const points = new Map<string, number>();
   for (const e of Object.values(state.prevFba?.teams ?? {}).flat()) {
@@ -65,27 +64,14 @@ export function proRatingRows(state: ProRatingsState): RankingRow[] {
       });
     }
   }
-  for (const p of state.draft?.prospects ?? []) {
-    const birth = state.players.players[p.playerId]?.birthSeason ?? null;
-    const abbr = state.collegeTeams.teams.find(t => t.teamId === p.college)?.abbr ?? p.college;
-    rows.push({
-      playerId: p.playerId,
-      position: p.position,
-      age: birth === null ? null : state.season - birth,
-      team: null,
-      prevRating: null,
-      otherRating: p.collegeRating,
-      stat: `${p.classYear} · ${abbr}`,
-    });
-  }
   return rows;
 }
 
-/** The suggestion ladder (high to low): last season's finished reset, else the ratings pause, else the current roster ratings. */
+/** The suggestion ladder (high to low): last season's finished reset, else the season's last ratings pause (its final ratings), else the current roster ratings. */
 export function proCurve(state: ProRatingsState): number[] {
   let source: number[];
   if (state.prevRatings?.locked) source = Object.values(state.prevRatings.ratings);
-  else if (state.pause && state.pause.players.length) source = state.pause.players.map(p => p.oldRating);
+  else if (state.pause && state.pause.players.length) source = state.pause.players.map(p => p.rating);
   else source = Object.values(state.fba.teams).flat().flatMap(e => (e.playerId !== null && e.rating !== null ? [e.rating] : []));
   return source.map(v => Math.max(MIN_RATING, Math.min(MAX_RATING, v))).sort((a, b) => b - a);
 }
@@ -109,7 +95,7 @@ export function proMembershipBlockers(state: ProRatingsState): string[] {
   const name = nameOf(state);
   const out: string[] = [];
   for (const id of present) if (!listed.has(id)) out.push(`${name(id)} isn't in the ratings list`);
-  for (const r of state.ratings.rows) if (!present.has(r.playerId)) out.push(`${name(r.playerId)} is no longer on an FBA roster or the draft board`);
+  for (const r of state.ratings.rows) if (!present.has(r.playerId)) out.push(`${name(r.playerId)} is no longer on an FBA roster`);
   return out;
 }
 
@@ -138,19 +124,12 @@ export function finishProRatings(state: ProRatingsState, ctx: MoveContext): Writ
   const teams = Object.fromEntries(Object.entries(state.fba.teams).map(([t, entries]) => [
     t, entries.map(e => (e.playerId !== null && next.has(e.playerId) ? { ...e, rating: next.get(e.playerId)! } : e)),
   ]));
-  const draft: DraftFile = {
-    ...state.draft,
-    prospects: state.draft.prospects.map(p => (next.has(p.playerId) ? { ...p, fbaRating: next.get(p.playerId)! } : p)),
-  };
-  const prospects = new Set(state.draft.prospects.map(p => p.playerId));
-  const nProspects = ratings.rows.filter(r => prospects.has(r.playerId)).length;
-  const line = `FBA ratings reset: ${ratings.rows.length - nProspects} players and ${nProspects} prospects ranked, ${suggestionsTaken(ratings)} took the suggestion`;
+  const line = `FBA ratings reset: ${ratings.rows.length} players ranked, ${suggestionsTaken(ratings)} took the suggestion`;
   return {
     ok: true,
     writes: [
       { path: proRatingsPath(state.season), doc: { ...ratings, locked: true } },
       { path: docPath('fba', state.season), doc: { ...state.fba, teams } },
-      { path: draftPath(state.season), doc: draft },
       { path: docPath('fbaTx', state.season), doc: appendTx(state.tx, ctx, 'fba-ratings', [], [line]) },
       { path: 'calendar.json', doc: markStepDone(state.calendar, PRO_RATINGS_STEP) },
     ],
