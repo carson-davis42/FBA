@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 
 /** What a standings row has clinched, shown as a coloured bar on the rank cell (FotMob style) with a legend below. */
-export type ClinchKind = 'promoted' | 'relegated' | 'conference' | 'first' | 'division' | 'playoff' | 'eliminated' | 'qualified' | 'advanced' | 'champion' | 'marchmadness' | 'nit';
+export type ClinchKind = 'promoted' | 'relegated' | 'conference' | 'first' | 'division' | 'playoff' | 'eliminated' | 'qualified' | 'advanced' | 'champion' | 'marchmadness' | 'nit' | 'stay' | 'close' | 'withdraw';
 type ClinchLeague = 'fba' | 'fbad2' | 'fbawc' | 'fbajc';
 
 /** Legend order. */
-const ORDER: ClinchKind[] = ['qualified', 'advanced', 'champion', 'marchmadness', 'nit', 'conference', 'first', 'division', 'playoff', 'promoted', 'relegated', 'eliminated'];
+const ORDER: ClinchKind[] = ['qualified', 'advanced', 'champion', 'marchmadness', 'nit', 'conference', 'first', 'division', 'playoff', 'promoted', 'relegated', 'eliminated', 'stay', 'close', 'withdraw'];
 
 export function clinchLabel(kind: ClinchKind, league: ClinchLeague): string {
   switch (kind) {
@@ -21,6 +21,9 @@ export function clinchLabel(kind: ClinchKind, league: ClinchLeague): string {
     case 'division': return 'Clinched the division title';
     case 'playoff': return 'Clinched a playoff spot';
     case 'eliminated': return 'Eliminated';
+    case 'stay': return 'Likely to make an FBA roster';
+    case 'close': return 'A close call';
+    case 'withdraw': return 'Unlikely to make an FBA roster';
   }
 }
 
@@ -35,12 +38,12 @@ export function clinchKind(row: { marker?: '*' | 'x' | 'n' | null; status?: '▲
   return null;
 }
 
-/** The rank cell, with the clinch bar on its left edge. */
-export function RankCell({ kind, league, children }: { kind: ClinchKind | null; league: ClinchLeague; children: ReactNode }) {
+/** The rank cell, with the clinch bar on its left edge. `title` replaces the hover text (the bar keeps its label for screen readers). */
+export function RankCell({ kind, league, children, title }: { kind: ClinchKind | null; league: ClinchLeague; children: ReactNode; title?: string }) {
   if (!kind) return <td className="rank">{children}</td>;
   const label = clinchLabel(kind, league);
   return (
-    <td className={`rank clinch clinch-${kind}`} title={label}>
+    <td className={`rank clinch clinch-${kind}`} title={title ?? label}>
       <span className="clinch-bar" role="img" aria-label={label} />
       {children}
     </td>
