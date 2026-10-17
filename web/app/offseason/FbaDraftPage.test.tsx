@@ -270,3 +270,83 @@ describe('FbaDraftPage', () => {
     expect(screen.queryByRole('button', { name: 'Finish the draft' })).toBeNull();
   });
 });
+
+describe('FbaDraftPage prospect outlook', () => {
+  const KEY = 'fba-prospect-outlook';
+  const slot = (position: 'PG' | 'SG' | 'SF' | 'PF' | 'C', rating: number | null): RosterEntry => ({
+    playerId: rating === null ? null : `f${position}${rating}`, position, rating, age: 25, points: 0, stars: null,
+  } as RosterEntry);
+  /** FBA spots: PF 1 open, C 1 open, SG none (rated 90), PG none. Prospects: Sam Senior PG 80 (Sr), Tim Taken SG 72 (Jr), Dan Draftee PF 70 (Jr), Eve Early C 68 (So). */
+  const fbaWithSpots = () => ({ league: 'fba', season: 80, locked: false, teams: { T00: [slot('PF', null), slot('C', null), slot('SG', 90), slot('PG', 90)] } });
+  const render80 = (settings: Record<string, number> = {}) => {
+    localStorage.clear();
+    localStorage.setItem(KEY, JSON.stringify({ d2Reserve: 0, ...settings }));
+    stubApi({ ...docs(), 'leagues/fba/S80/rosters.json': fbaWithSpots() });
+    renderPage();
+  };
+  const cells = (name: string) => (rowOf(name) as HTMLTableRowElement).cells;
+  const barOf = (name: string) => cells(name)[4].className;
+
+  it('shows each prospect\'s overall and position rank after the Class column', async () => {
+    render80();
+    await screen.findByRole('table', { name: 'Prospects' });
+    const head = within(screen.getByRole('table', { name: 'Prospects' })).getAllByRole('columnheader').map(h => h.textContent);
+    expect(head.slice(0, 7)).toEqual(['Name', 'Pos', 'School', 'Class', 'Rank', 'Pos rank', 'College']);
+    // Scores: Sam 80, Tim 73, Dan 71, Eve 70.
+    expect([cells('Sam Senior')[4].textContent, cells('Tim Taken')[4].textContent, cells('Dan Draftee')[4].textContent, cells('Eve Early')[4].textContent]).toEqual(['1', '2', '3', '4']);
+    expect(cells('Dan Draftee')[5].textContent).toBe('1');
+  });
+
+  it('colours early entrants: green inside both checks, amber inside one; a senior has none', async () => {
+    render80();
+    await screen.findByRole('table', { name: 'Prospects' });
+    expect(barOf('Dan Draftee')).toContain('clinch-stay');
+    expect(barOf('Eve Early')).toContain('clinch-stay');
+    expect(barOf('Tim Taken')).toContain('clinch-close');
+    expect(barOf('Sam Senior')).not.toContain('clinch-');
+    expect(cells('Dan Draftee')[4].getAttribute('title')).toBe('Position rank 1 of 1 spot; overall rank 3 of 12');
+  });
+
+  it('is red inside neither check, and the legend lists the states that appear', async () => {
+    render80({ historyCutoff: 1 });
+    await screen.findByRole('table', { name: 'Prospects' });
+    expect(barOf('Tim Taken')).toContain('clinch-withdraw');
+    expect(barOf('Dan Draftee')).toContain('clinch-close');
+    const key = screen.getByRole('list', { name: 'Standings key' });
+    expect(within(key).getAllByRole('listitem').map(li => li.textContent)).toEqual(['A close call', 'Unlikely to make an FBA roster']);
+  });
+
+  it('has three adjustable numbers that start at 67, 12 and 5 and change the colours', async () => {
+    localStorage.clear();
+    stubApi({ ...docs(), 'leagues/fba/S80/rosters.json': fbaWithSpots() });
+    renderPage();
+    await screen.findByRole('table', { name: 'Prospects' });
+    const box = (label: string) => screen.getByLabelText(label) as HTMLInputElement;
+    expect([box('Replaceable at or below').value, box('Overall picks that usually make it').value, box('Spots for D2 players').value]).toEqual(['67', '12', '5']);
+    // Two open spots and a reserve of 5: no spots are left, so Dan fails the position check.
+    expect(barOf('Dan Draftee')).toContain('clinch-close');
+    fireEvent.change(box('Spots for D2 players'), { target: { value: '0' } });
+    expect(barOf('Dan Draftee')).toContain('clinch-stay');
+    fireEvent.change(box('Replaceable at or below'), { target: { value: '95' } });
+    expect(barOf('Tim Taken')).toContain('clinch-stay');
+  });
+
+  it('recalculates the ranks and colours when a prospect goes back to school', async () => {
+    render80();
+    await screen.findByRole('table', { name: 'Prospects' });
+    fireEvent.click(await enabled('Back to school', rowOf('Tim Taken')));
+    await waitFor(() => expect(names('Prospects')).not.toContain('Tim Taken'));
+    expect(cells('Dan Draftee')[4].textContent).toBe('2');
+  });
+
+  it('keeps the rank columns after the draft starts, without the colour bars', async () => {
+    localStorage.clear();
+    stubApi({ ...docs({ draft: startedDraft() }), 'leagues/fba/S80/rosters.json': fbaWithSpots() });
+    renderPage();
+    await screen.findByRole('table', { name: 'Prospects' });
+    const rows = within(screen.getByRole('table', { name: 'Prospects' })).getAllByRole('row').slice(1) as HTMLTableRowElement[];
+    expect(rows.length).toBeGreaterThan(0);
+    for (const r of rows) expect(r.cells[4].className).not.toContain('clinch-');
+    expect(within(screen.getByRole('table', { name: 'Prospects' })).getAllByRole('columnheader').map(h => h.textContent)).toContain('Pos rank');
+  });
+});
