@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { CalendarFile, Franchise, FranchisesFile, HallOfFameFile, JcRecruitingHistoryFile, LogoManifest, MetaFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, SummaryFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
-import { withExpansionStep, withQualifyingStep } from '../engine/shared/calendar';
+import { rookieStepId, withExpansionStep, withQualifyingStep, withRookieStep } from '../engine/shared/calendar';
 import { EXPANSION_SEASON } from '../engine/shared/expansion';
 import { refreshExpansionTeams } from './expansionTeams';
 import { repairClassYears } from './classYears';
@@ -765,6 +765,23 @@ export async function importExpansionStep(): Promise<void> {
   console.log(`Added s${EXPANSION_SEASON}-add-expansion-teams`);
 }
 
+/** `--rookie-step`: adds the "Rate S{n} Rookies" step right after the FBA draft to calendar.json in the --data folder; writes only when it changed. */
+export async function importRookieStep(): Promise<void> {
+  const dir = requireDataDir('--rookie-step');
+  const cal = readDataJson<CalendarFile>(dir, 'calendar.json');
+  if (!cal) {
+    console.error('--rookie-step needs calendar.json in the data folder.');
+    process.exit(1);
+  }
+  const next = withRookieStep(cal);
+  if (next === cal) {
+    console.log('Already has the rookie ratings step (or the draft is already done)');
+    return;
+  }
+  writeDoc(dir, 'calendar.json', next);
+  console.log(`Added ${rookieStepId(cal.season)}`);
+}
+
 /** `--season-start <season> <ISO datetime>`: writes calendar.startedAt on the calendar in the --data folder (for a season begun before the field existed). */
 export function importSeasonStart(): void {
   const dir = requireDataDir('--season-start');
@@ -905,7 +922,7 @@ export async function fixDraftMatches(): Promise<void> {
   console.log(`Wrote ${total} file(s)`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--expansion-step', '--expansion-teams', '--divisions', '--fix-class-years', '--fix-draft-matches', '--season-start', '--check-trophies'];
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--expansion-step', '--expansion-teams', '--rookie-step', '--divisions', '--fix-class-years', '--fix-draft-matches', '--season-start', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -937,6 +954,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--wc-qualifying-step')) return importWcQualifyingStep();
   if (process.argv.includes('--expansion-step')) return importExpansionStep();
   if (process.argv.includes('--expansion-teams')) return importExpansionTeams();
+  if (process.argv.includes('--rookie-step')) return importRookieStep();
   if (process.argv.includes('--divisions')) return importDivisions();
   if (process.argv.includes('--fix-class-years')) return fixClassYears();
   if (process.argv.includes('--fix-draft-matches')) return fixDraftMatches();

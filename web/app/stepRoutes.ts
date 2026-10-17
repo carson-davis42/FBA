@@ -18,6 +18,7 @@ export function toolTarget(step: CalendarStep): string | null {
   if (/^s\d+-(add-expansion-teams|expansion-draft)$/.test(step.id)) return '/league/fba/expansion';
   if (/^make-s\d+-schedules$/.test(step.id)) return '/schedules';
   if (/^s\d+-fba-draft$/.test(step.id)) return '/league/fba/draft';
+  if (/^s\d+-rate-rookies$/.test(step.id)) return '/league/fba/rookies';
   if (/^s\d+-fba-draft-lottery$/.test(step.id)) return '/league/fba/lottery';
   const create = /^create-s(\d+)-class$/.exec(step.id);
   if (create) return `/league/fbajc/recruiting?class=${create[1]}&tab=class`;

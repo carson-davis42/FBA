@@ -25,6 +25,9 @@ export function markStepDone(cal: CalendarFile, id: string): CalendarFile {
 }
 
 /** A fresh calendar for season n, every step not done. Labels and flags follow the committed S79 calendar; even seasons add the World Cup, odd seasons World Cup qualifying. */
+/** The step after the FBA draft where the draft class is rated, top of the prospect rankings down; whoever is left unrated goes to the D2 draft pool. */
+export const rookieStepId = (season: number) => `s${season}-rate-rookies`;
+
 export function calendarFor(n: number): CalendarFile {
   const step = (id: string, label: string, sub = false, league: LeagueId | null = null): CalendarStep => ({
     id, label, kind: league ? 'league' : 'offseason', league, sub, done: false,
@@ -35,6 +38,7 @@ export function calendarFor(n: number): CalendarFile {
       step('adjust-age', 'Adjust Age', true),
       step('adjust-pro-ratings-reset', 'Adjust Pro Ratings(reset)', true),
       step(`s${n}-fba-draft`, `S${n} FBA Draft`),
+      step(rookieStepId(n), `Rate S${n} Rookies`),
       ...(n === EXPANSION_SEASON ? [step(expansionDraftStepId(n), `S${n} Expansion Draft`)] : []),
       step('free-agency-offseason', 'Free Agency/Offseason'),
       step('fbad2-ratings-reset', 'FBAD2 Ratings(reset)', true),
@@ -74,6 +78,16 @@ export function withExpansionStep(cal: CalendarFile): CalendarFile {
   const added: CalendarStep = { id, label: `Add S${EXPANSION_SEASON} Expansion Teams`, kind: 'offseason', league: null, sub: false, done: false };
   const steps = at < 0 ? [...cal.steps, added] : [...cal.steps.slice(0, at), added, ...cal.steps.slice(at)];
   return { ...cal, steps };
+}
+
+/** Adds the rookie ratings step right after the FBA draft to a calendar that lacks it; unchanged when the draft is already done or the calendar has no draft step. */
+export function withRookieStep(cal: CalendarFile): CalendarFile {
+  const id = rookieStepId(cal.season);
+  if (cal.steps.some(s => s.id === id)) return cal;
+  const at = cal.steps.findIndex(s => s.id === `s${cal.season}-fba-draft`);
+  if (at < 0 || cal.steps[at].done) return cal;
+  const added: CalendarStep = { id, label: `Rate S${cal.season} Rookies`, kind: 'offseason', league: null, sub: false, done: false };
+  return { ...cal, steps: [...cal.steps.slice(0, at + 1), added, ...cal.steps.slice(at + 1)] };
 }
 
 const FINISHED_NAME: Record<string, string> = { fba: 'FBA', 'fba-d2': 'D2' };
