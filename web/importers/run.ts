@@ -6,6 +6,7 @@ import { withExpansionStep, withQualifyingStep } from '../engine/shared/calendar
 import { EXPANSION_SEASON } from '../engine/shared/expansion';
 import { refreshExpansionTeams } from './expansionTeams';
 import { repairClassYears } from './classYears';
+import { DRAFT_MATCHES, matchDraftPicks, mergePlayerRecords, PLAYER_MERGES, replacePlayerId } from './draftMatches';
 import { applyDivisions } from './divisions';
 import { schemaForPath } from '../engine/shared/schemaRegistry';
 import { assemble } from './assemble';
@@ -851,7 +852,60 @@ export async function fixClassYears(): Promise<void> {
   console.log(`Fixed ${r.changed.length} class year(s) in S${n}`);
 }
 
-const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--expansion-step', '--expansion-teams', '--divisions', '--fix-class-years', '--season-start', '--check-trophies'];
+/** Every .json file under `dir` (relative paths with /), skipping the app's backups. */
+function jsonFiles(dir: string, rel = ''): string[] {
+  return readdirSync(path.join(dir, rel), { withFileTypes: true }).flatMap(e => {
+    if (e.name === '.backups' || e.name === 'node_modules') return [];
+    const r = rel ? `${rel}/${e.name}` : e.name;
+    return e.isDirectory() ? jsonFiles(dir, r) : e.name.endsWith('.json') ? [r] : [];
+  });
+}
+
+/**
+ * `--fix-draft-matches`: gives the draft picks the sheet misspelled their player ids, and merges the two players who exist under two ids
+ * (DRAFT_MATCHES and PLAYER_MERGES in draftMatches.ts), rewriting the id in every doc that holds it. `--dry-run` lists the changes without writing.
+ */
+export async function fixDraftMatches(): Promise<void> {
+  const dir = requireDataDir('--fix-draft-matches');
+  const players = readDataJson<PlayersFile>(dir, 'players.json');
+  const draft = readDataJson<DraftHistoryFile>(dir, 'leagues/fba/draftHistory.json');
+  if (!players || !draft) {
+    console.error('--fix-draft-matches needs players.json and leagues/fba/draftHistory.json in the data folder.');
+    process.exit(1);
+  }
+  const docs = new Map<string, unknown>();
+  const matched = matchDraftPicks(draft, DRAFT_MATCHES);
+  for (const c of matched.changed) console.log(c);
+  if (matched.changed.length) docs.set('leagues/fba/draftHistory.json', matched.draft);
+  let merged = players;
+  const files = jsonFiles(dir).filter(f => f !== 'players.json');
+  for (const m of PLAYER_MERGES) {
+    const next = mergePlayerRecords(merged, m.keep, m.drop, m.name);
+    if (next !== merged) console.log(`Merge ${m.drop} into ${m.keep} as ${m.name}`);
+    merged = next;
+    for (const rel of files) {
+      if (!docs.has(rel) && !readFileSync(path.join(dir, rel), 'utf8').includes(`"${m.drop}"`)) continue;
+      const r = replacePlayerId(docs.get(rel) ?? readDataJson<unknown>(dir, rel), m.drop, m.keep);
+      if (r.changed === 0) continue;
+      docs.set(rel, r.doc);
+      console.log(`  ${rel}: ${r.changed} place(s)`);
+    }
+  }
+  const total = docs.size + (merged !== players ? 1 : 0);
+  if (total === 0) {
+    console.log('Every draft pick is matched and no duplicate players remain');
+    return;
+  }
+  if (process.argv.includes('--dry-run')) {
+    console.log(`${total} file(s) would change; nothing was written (--dry-run)`);
+    return;
+  }
+  if (merged !== players) writeDoc(dir, 'players.json', merged);
+  for (const [rel, doc] of docs) writeDoc(dir, rel, doc);
+  console.log(`Wrote ${total} file(s)`);
+}
+
+const MODE_FLAGS = ['--logos', '--franchises', '--refresh-rosters', '--hall-of-fame', '--fix-names', '--recruiting-class', '--history', '--drafts', '--transactions', '--events', '--d2-history', '--wc-history', '--jc-history', '--jc-schools', '--jc-recruiting', '--jc-brackets', '--jc-logos', '--d2-logos', '--wc-brackets', '--d2-brackets', '--d2-leagues', '--wc-qualifying-step', '--expansion-step', '--expansion-teams', '--divisions', '--fix-class-years', '--fix-draft-matches', '--season-start', '--check-trophies'];
 
 async function main(): Promise<void> {
   const modes = MODE_FLAGS.filter(f => process.argv.includes(f));
@@ -885,6 +939,7 @@ async function main(): Promise<void> {
   if (process.argv.includes('--expansion-teams')) return importExpansionTeams();
   if (process.argv.includes('--divisions')) return importDivisions();
   if (process.argv.includes('--fix-class-years')) return fixClassYears();
+  if (process.argv.includes('--fix-draft-matches')) return fixDraftMatches();
   if (process.argv.includes('--season-start')) return importSeasonStart();
   if (process.argv.includes('--check-trophies')) return checkTrophies();
   if (existsSync(path.join(DATA, 'meta.json')) && !process.argv.includes('--force')) {
