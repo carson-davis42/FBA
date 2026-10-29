@@ -42,7 +42,14 @@ function findSource(state: RosterState, playerId: string): Source | null {
   return null;
 }
 
-const toFreeAgent = (e: RosterEntry): FreeAgent => ({ playerId: e.playerId!, position: e.position, age: e.age, rating: e.rating, rookie: e.restricted === true, note: '' });
+/**
+ * A player who joins the pool. One cut straight after the draft is still on his rookie deal, which runs to the season after the draft (past
+ * `season`), so he stays a rookie: only a restricted 1/$1 or 2/$2 deal. Anyone else, a rookie who has played or whose deal has ended, is an ordinary free agent.
+ */
+const toFreeAgent = (e: RosterEntry, season: number): FreeAgent => ({
+  playerId: e.playerId!, position: e.position, age: e.age, rating: e.rating,
+  rookie: e.restricted === true && typeof e.contractEnd === 'number' && e.contractEnd > season, note: '',
+});
 
 export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContext): MoveResult {
   const locked = lockProblem(ctx.phase, 'fba', 'sign');
@@ -103,7 +110,7 @@ export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContex
     fba = withTeam(fba, src.teamId, normalizeRoster(fba.teams[src.teamId].filter(e => e.playerId !== input.playerId), 'fba'));
   }
   if (displaced) {
-    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(displaced)] };
+    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(displaced, season)] };
     changed.add('freeAgents');
     lines.push(`${input.conflict === 'cut' ? 'Cut' : 'Released'} ${displaced.position}-${nameOf(state, displaced.playerId!)}`);
   }
@@ -194,7 +201,7 @@ export function releasePlayer(state: RosterState, input: ReleaseInput, ctx: Move
   const changed: DocKey[] = [key, txKey];
   let { freeAgents, reserves } = state;
   if (input.league === 'fba' && !freeAgents.locked) {
-    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(entry)] };
+    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(entry, state.season)] };
     changed.push('freeAgents');
   } else {
     const rating = input.league === 'fbad2' ? entry.rating : null;
