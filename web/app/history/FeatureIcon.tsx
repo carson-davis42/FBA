@@ -3,7 +3,8 @@ import { useDoc } from '../api';
 import { TeamMark } from '../components/TeamMark';
 
 export type IconName =
-  | 'trophy' | 'teams' | 'draft' | 'awards' | 'awardsByPlayer' | 'seasons' | 'leaders' | 'streaks' | 'players' | 'hall' | 'transactions' | 'timeline' | 'recruiting';
+  | 'trophy' | 'teams' | 'draft' | 'awards' | 'awardsByPlayer' | 'seasons' | 'leaders' | 'streaks' | 'players' | 'hall' | 'transactions' | 'timeline' | 'recruiting'
+  | 'freeAgency' | 'age' | 'retirement' | 'ratings' | 'lottery' | 'picks' | 'rookies' | 'classRanking' | 'collegeRatings' | 'd2draft';
 
 /** Four 34px logos on a zigzag, 44px apart, so even tilted none touches the next. */
 const SPOTS = [
@@ -128,6 +129,81 @@ const SHAPES: Record<Exclude<IconName, 'teams'>, JSX.Element> = {
       <path d="M22 18h28M22 27h28M22 36h16" />
       <circle className="fill" cx="46" cy="46" r="8" />
       <path d="M42 54l-2 8 6-3 6 3-2-8" />
+    </>
+  ),
+  freeAgency: (
+    <>
+      <circle cx="26" cy="20" r="9" />
+      <path d="M8 56c0-12 8-20 18-20s18 8 18 20" />
+      <circle className="fill" cx="53" cy="38" r="10" />
+      <path d="M53 32v12M47 38h12" />
+    </>
+  ),
+  age: (
+    <>
+      <path d="M18 6h36M18 58h36" />
+      <path d="M21 6c0 16 15 18 15 26S21 42 21 58M51 6c0 16-15 18-15 26s15 10 15 26" />
+      <path className="fill" d="M29 55h14l-7-10z" />
+    </>
+  ),
+  retirement: (
+    <>
+      <rect x="36" y="6" width="26" height="52" rx="3" />
+      <path d="M6 32h26M22 22l10 10-10 10" />
+      <circle className="fill" cx="55" cy="32" r="2.5" />
+    </>
+  ),
+  ratings: (
+    <>
+      <path d="M8 16h56M8 32h56M8 48h56" />
+      <circle className="fill" cx="46" cy="16" r="6" />
+      <circle cx="22" cy="32" r="6" />
+      <circle cx="36" cy="48" r="6" />
+    </>
+  ),
+  lottery: (
+    <>
+      <circle cx="22" cy="42" r="14" />
+      <circle cx="50" cy="42" r="14" />
+      <circle className="fill" cx="36" cy="20" r="14" />
+      <path d="M32 22l4-6v12M18 38h8M46 38h8" />
+    </>
+  ),
+  picks: (
+    <>
+      <rect x="6" y="18" width="34" height="40" rx="4" />
+      <rect className="fill" x="22" y="6" width="34" height="40" rx="4" />
+      <path d="M30 20h18M30 30h12" />
+      <path d="M48 56h16M58 50l6 6-6 6" />
+    </>
+  ),
+  rookies: (
+    <>
+      <path d="M24 8L8 18l8 12 8-5v33h24V25l8 5 8-12L48 8c-2 6-6 8-12 8s-10-2-12-8z" />
+      <path className="fill" d="M36 28l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z" />
+    </>
+  ),
+  classRanking: (
+    <>
+      <circle className="fill" cx="13" cy="14" r="7" />
+      <circle cx="13" cy="32" r="7" />
+      <circle cx="13" cy="50" r="7" />
+      <path d="M28 14h36M28 32h30M28 50h24" />
+    </>
+  ),
+  collegeRatings: (
+    <>
+      <path d="M36 10L6 24l30 14 30-14z" />
+      <path d="M18 31v14c0 7 36 7 36 0V31" />
+      <path d="M66 26v17" />
+      <circle className="fill" cx="66" cy="46" r="3.5" />
+    </>
+  ),
+  d2draft: (
+    <>
+      <path d="M8 8h56L43 34v20l-14 6V34z" />
+      <path className="fill-line" d="M20 18h32" />
+      <circle className="fill" cx="36" cy="46" r="3" />
     </>
   ),
   timeline: (

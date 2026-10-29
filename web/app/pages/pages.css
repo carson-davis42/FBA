@@ -21,3 +21,5 @@
 .tool-tile .card-head { margin-bottom: var(--s1); }
 .tool-tile p { margin: 0; font-size: var(--fs-sm); }
 .hub-league { margin: var(--s5) 0 var(--s2); }
+
+.tool-tile.feature { display: grid; }
