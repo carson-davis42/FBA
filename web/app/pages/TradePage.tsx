@@ -138,6 +138,22 @@ export function TradePage() {
             {lg === 'fba' && (
               <>
                 <h3>Draft picks</h3>
+                {state.draft?.started && !state.draft.locked && state.draft.picks.filter(p => p.owner === from && !p.playerId).sort((x, y) => x.slot - y.slot).map(p => {
+                  const i = assets.findIndex(x => x.kind === 'draftSlot' && x.slot === p.slot);
+                  const label = `S${state.season} pick #${p.slot}${p.originalTeam !== from ? ` (via ${p.originalTeam})` : ''}`;
+                  return (
+                    <div key={`slot-${p.slot}`} className={`asset ${i >= 0 ? 'sending' : ''}`}>
+                      <span onClick={() => toggle({ kind: 'draftSlot', slot: p.slot, from, to: defaultTo(from) }, x => x.kind === 'draftSlot' && x.slot === p.slot)}>
+                        {label}
+                      </span>
+                      {i >= 0 && teamIds.length > 2 && (
+                        <select aria-label={`Send ${label} to`} value={assets[i].to} onChange={ev => setDest(i, ev.target.value)}>
+                          {teamIds.filter(t => t !== from).map(t => <option key={t} value={t}>→ {t}</option>)}
+                        </select>
+                      )}
+                    </div>
+                  );
+                })}
                 {futureSeasons(state.season).map(season => {
                   const key = pickKey(from, season);
                   const i = assets.findIndex(a => a.kind === 'ownPick' && a.from === from && a.season === season);

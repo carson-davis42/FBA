@@ -101,6 +101,8 @@ export function assessTrade(state: RosterState, input: { teams: string[]; assets
     } else if (a.kind === 'pick') {
       const o = state.picks.obligations.find(x => x.id === a.obligationId);
       value = o ? pickValue(o.originalTeam, o.season, o.condition, state.season, ranks, a.to) : 0;
+    } else if (a.kind === 'draftSlot') {
+      value = slotValue(a.slot);
     } else {
       value = pickValue(a.from, a.season, a.condition, state.season, ranks, a.to);
     }

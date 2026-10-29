@@ -7,7 +7,9 @@ import { appendTx, type DocKey, fail, type MoveContext, type MoveResult, nameOf,
 export type TradeAsset =
   | { kind: 'player'; playerId: string; from: string; to: string }
   | { kind: 'pick'; obligationId: string; from: string; to: string }
-  | { kind: 'ownPick'; season: number; from: string; to: string; condition: PickCondition };
+  | { kind: 'ownPick'; season: number; from: string; to: string; condition: PickCondition }
+  /** A pick of the draft under way that is not made yet, by its slot. */
+  | { kind: 'draftSlot'; slot: number; from: string; to: string };
 
 export interface TradeInput {
   league: 'fba' | 'fbad2';
@@ -31,6 +33,7 @@ export function makeTrade(state: RosterState, input: TradeInput, ctx: MoveContex
 
   let rosters = state[key];
   let obligations: PickObligation[] = state.picks.obligations;
+  let draft = state.draft ?? null;
   const lines: string[] = [];
   const seasons = futureSeasons(state.season);
   let created = 0;
@@ -64,6 +67,24 @@ export function makeTrade(state: RosterState, input: TradeInput, ctx: MoveContex
       const moved = { ...ob, owner: a.to };
       obligations = obligations.map(o => (o === ob ? moved : o));
       lines.push(`->${a.to} ${pickLabel(moved)}`);
+      continue;
+    }
+    if (a.kind === 'draftSlot') {
+      const pick = draft?.picks.find(p => p.slot === a.slot);
+      if (!draft || !draft.started || draft.locked || !pick) {
+        problems.push(`The S${state.season} draft has no pick #${a.slot} to trade`);
+        continue;
+      }
+      if (pick.playerId) {
+        problems.push(`S${state.season} pick #${a.slot} has already been made`);
+        continue;
+      }
+      if (pick.owner !== a.from) {
+        problems.push(`${a.from} does not own S${state.season} pick #${a.slot}`);
+        continue;
+      }
+      draft = { ...draft, picks: draft.picks.map(p => (p === pick ? { ...p, owner: a.to } : p)) };
+      lines.push(`->${a.to} S${state.season} Draft Pick #${a.slot}${pick.originalTeam !== a.from ? `(via ${pick.originalTeam})` : ''}`);
       continue;
     }
     if (!seasons.includes(a.season)) {
@@ -105,9 +126,10 @@ export function makeTrade(state: RosterState, input: TradeInput, ctx: MoveContex
 
   const changed: DocKey[] = [key, txKey];
   if (obligations !== state.picks.obligations) changed.push('picks');
+  if (draft !== (state.draft ?? null)) changed.push('draft');
   return {
     ok: true,
-    state: { ...withLeague(state, input.league, rosters, appendTx(state[txKey], ctx, 'trade', teams, lines)), picks: { ...state.picks, obligations } },
+    state: { ...withLeague(state, input.league, rosters, appendTx(state[txKey], ctx, 'trade', teams, lines)), picks: { ...state.picks, obligations }, ...(draft ? { draft } : {}) },
     changed,
     label: `Trade ${teams.join('/')}`,
     warnings: input.league === 'fba' && state.freeAgents.locked ? [] : slotIssues,
