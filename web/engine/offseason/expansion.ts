@@ -5,7 +5,7 @@ import { markStepDone } from '../shared/calendar';
 import { EXPANSION_PICKS_EACH, MAX_PROTECTED, expansionDraftStepId } from '../shared/expansion';
 import { teamsJoining } from '../shared/teams';
 import type {
-  CalendarFile, DraftHistoryDraft, DraftHistoryFile, ExpansionFile, PlayersFile, Position, RostersFile, TeamsFile, TransactionsFile,
+  CalendarFile, DraftHistoryDraft, DraftHistoryFile, ExpansionFile, PlayersFile, Position, RankingFile, RostersFile, TeamsFile, TransactionsFile,
 } from '../shared/types';
 
 export const expansionPath = (season: number) => `leagues/fba/S${season}/expansion.json`;
@@ -24,6 +24,8 @@ export interface ExpansionState {
   tx: TransactionsFile;
   /** leagues/fba/draftHistory.json */
   history: DraftHistoryFile;
+  /** This season's pro ratings reset: the player ranking the exposed players are listed in. */
+  ranking?: RankingFile | null;
 }
 
 export interface Exposed {
@@ -62,7 +64,7 @@ export function onTheClock(file: ExpansionFile): string | null {
   return file.order[file.picks.length] ?? null;
 }
 
-/** Players the expansion teams may take: not protected, not restricted, and not from a team that has already lost a player. */
+/** Players the expansion teams may take: not protected, not restricted, and not from a team that has already lost a player, best-ranked first (the pro ratings ranking; unranked players last). */
 export function exposedPlayers(state: ExpansionState): Exposed[] {
   const file = state.expansion;
   if (!file) return [];
@@ -78,7 +80,8 @@ export function exposedPlayers(state: ExpansionState): Exposed[] {
       });
     }
   }
-  return out;
+  const rank = new Map((state.ranking?.order ?? []).map((id, i) => [id, i]));
+  return out.map((e, i) => ({ e, i })).sort((a, b) => (rank.get(a.e.playerId) ?? Infinity) - (rank.get(b.e.playerId) ?? Infinity) || a.i - b.i).map(x => x.e);
 }
 
 const write = (state: ExpansionState, doc: ExpansionFile) => ({ path: expansionPath(state.season), doc });

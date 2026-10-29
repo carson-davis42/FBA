@@ -151,6 +151,18 @@ describe('exposedPlayers', () => {
   });
 });
 
+describe('exposedPlayers order', () => {
+  it('lists the exposed players in the pro ratings ranking, unranked ones last', () => {
+    const s = drafting();
+    const ids = exposedPlayers(s).map(e => e.playerId);
+    const order = [ids[3], ids[1], ids[2]];
+    const ranked = exposedPlayers({ ...s, ranking: { league: 'fba', season: 80, kind: 'fba-reset', locked: true, rows: [], order, ratings: {}, curve: [] } });
+    expect(ranked.map(e => e.playerId).slice(0, 3)).toEqual(order);
+    expect(ranked).toHaveLength(ids.length);
+    expect(exposedPlayers({ ...s, ranking: null }).map(e => e.playerId)).toEqual(ids);
+  });
+});
+
 describe('lockProtections', () => {
   it('refuses when fewer players are exposed than picks (Review Focus 3)', () => {
     let s = started({ fba: allCRestricted() });
