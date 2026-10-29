@@ -42,7 +42,7 @@ function findSource(state: RosterState, playerId: string): Source | null {
   return null;
 }
 
-const toFreeAgent = (e: RosterEntry): FreeAgent => ({ playerId: e.playerId!, position: e.position, age: e.age, rating: e.rating, rookie: false, note: '' });
+const toFreeAgent = (e: RosterEntry): FreeAgent => ({ playerId: e.playerId!, position: e.position, age: e.age, rating: e.rating, rookie: e.restricted === true, note: '' });
 
 export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContext): MoveResult {
   const locked = lockProblem(ctx.phase, 'fba', 'sign');

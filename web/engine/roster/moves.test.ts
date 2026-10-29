@@ -131,6 +131,16 @@ describe('signPlayer', () => {
 });
 
 describe('releasePlayer', () => {
+  it('sends a cut rookie to free agency as a rookie: only a restricted 1/$1 or 2/$2 deal', () => {
+    const s = baseState();
+    s.fba.teams.BOS = s.fba.teams.BOS.map(e => (e.playerId === 'p00002' ? { ...e, restricted: true } : e));
+    const cut = ok(releasePlayer(s, { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'cut' }, ctx));
+    expect(cut.state.freeAgents.players.find(p => p.playerId === 'p00002')?.rookie).toBe(true);
+    expect(problems(signPlayer(cut.state, { playerId: 'p00002', teamId: 'CAR', years: 3, amount: 3, conflict: 'release' }, ctx))).toContain('Rookie contracts are 1/$1 or 2/$2');
+    const signed = ok(signPlayer(cut.state, { playerId: 'p00002', teamId: 'MON', years: 2, amount: 2, conflict: 'release' }, ctx));
+    expect(signed.state.fba.teams.MON.find(e => e.playerId === 'p00002')?.restricted).toBe(true);
+  });
+
   it('releases an FBA player to the free-agent pool', () => {
     const r = ok(releasePlayer(baseState(), { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'released' }, ctx));
     expect(r.state.fba.teams.BOS[1]).toMatchObject({ playerId: null, position: 'SG' });
