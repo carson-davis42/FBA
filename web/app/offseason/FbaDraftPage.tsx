@@ -213,6 +213,11 @@ export function FbaDraftPage() {
     </div>
   );
 
+  // A drafted player's age: from the rookie on the team's roster, else from his birth season.
+  const pickAge = (owner: string, id: string): number | null => {
+    const born = players.data!.players[id]?.birthSeason;
+    return fba.data!.teams[owner]?.find(e => e.playerId === id)?.age ?? (born === null || born === undefined ? null : n - born);
+  };
   const nowSlot = started && !finished ? onTheClock(d)?.slot : undefined;
   const pickTable = (
     <div className="table-wrap tall">
@@ -226,7 +231,7 @@ export function FbaDraftPage() {
                 <td className="rank">{p.slot}</td>
                 <td>{proTeamCell(p.owner)}{p.owner !== p.originalTeam && ` (from ${proAbbr(p.originalTeam)})`}</td>
                 <td>
-                  {p.playerId && prospect ? <><PlayerName id={p.playerId} name={nameOf(p.playerId)} /> ({prospect.position}, {school(prospect.college)})</> : <span className="muted">No selection</span>}
+                  {p.playerId && prospect ? <><PlayerName id={p.playerId} name={nameOf(p.playerId)} /> ({pickAge(p.owner, p.playerId) ?? '—'}, {prospect.position}, {school(prospect.college)})</> : <span className="muted">No selection</span>}
                 </td>
               </tr>
             );
@@ -250,7 +255,7 @@ export function FbaDraftPage() {
                 <td>{proTeamCell(p.owner)}{p.owner !== p.originalTeam && ` (from ${proAbbr(p.originalTeam)})`}</td>
                 <td>
                   {p.playerId && prospect
-                    ? <><PlayerName id={p.playerId} name={nameOf(p.playerId)} /> ({prospect.position}, {school(prospect.college)})</>
+                    ? <><PlayerName id={p.playerId} name={nameOf(p.playerId)} /> ({pickAge(p.owner, p.playerId) ?? '—'}, {prospect.position}, {school(prospect.college)})</>
                     : <span className="muted">{p.slot === nowSlot ? 'On the clock' : '—'}</span>}
                 </td>
               </tr>

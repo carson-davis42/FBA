@@ -190,7 +190,7 @@ describe('FbaDraftPage', () => {
     expect(within(rowOf('Tim Taken')).getByRole('button', { name: 'Draft' })).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Back to school' })).toBeNull();
     expect(names('Picks')).toEqual(['1', '2']);
-    expect(within(screen.getByRole('table', { name: 'Picks' })).getByText((_, el) => el?.tagName === 'TD' && el.textContent === 'Dan Draftee (PF, School One)')).toBeTruthy();
+    expect(within(screen.getByRole('table', { name: 'Picks' })).getByText((_, el) => el?.tagName === 'TD' && el.textContent === 'Dan Draftee (—, PF, School One)')).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Finish the draft' })).toBeNull();
   });
 
