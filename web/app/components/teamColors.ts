@@ -49,6 +49,7 @@ export { inkFor };
 export const COLOR_ERAS: Record<string, { from: number; primary: string; secondary: string }[]> = {
   OAK: [{ from: 80, primary: '#0B7A3E', secondary: '#F5B800' }],
   DEN: [{ from: 80, primary: '#2A1610', secondary: '#E09A1F' }],
+  DET: [{ from: 80, primary: '#10204E', secondary: '#2F7BEA' }],
   MAN: [{ from: 80, primary: '#4B1FB0', secondary: '#C9CCD6' }],
 };
 
