@@ -2,7 +2,7 @@ import type { FreeAgent, Position, RosterEntry } from '../shared/types';
 import { lockProblem } from '../season/locks';
 import {
   CAP, capProblem, careerEndProblem, contractEndFor, contractProblems, isExpired, MAX_AMOUNT, MAX_YEARS_RESIGN, normalizeRoster, payroll, POSITIONS, RETIRE_AGE, slotProblems, TRADE_CAP,
-  type ContractKind,
+  type ContractKind, reserveProblem,
 } from './rules';
 import {
   appendTx, type DocKey, draftedThisYear, fail, findOnRoster, type MoveContext, type MoveResult, nameOf, type RosterState, withLeague, withTeam,
@@ -86,6 +86,10 @@ export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContex
   );
   const cap = capProblem(payroll(entries, season), CAP);
   if (cap) problems.push(cap);
+  else {
+    const reserve = reserveProblem(entries, season);
+    if (reserve) problems.push(reserve);
+  }
   if (problems.length) return fail(problems);
 
   const changed = new Set<DocKey>(['fba', 'fbaTx']);

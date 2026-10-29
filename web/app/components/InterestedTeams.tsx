@@ -50,7 +50,7 @@ export function InterestedTeams({ state, teams, playerId, onSign, context }: {
                         {r.seasonsWith > 0 && <span className="muted"> · played here {r.seasonsWith} {r.seasonsWith === 1 ? 'season' : 'seasons'}</span>}
                       </td>
                       <td className="num">${r.room}</td>
-                      <td>{r.room < 1 ? <span className="muted">No cap room</span> : r.ask === null ? <span className="muted">No FBA rating yet</span> : r.affordable ? `Fits about $${r.ask}` : <span className="muted">Short of about ${r.ask}</span>}</td>
+                      <td>{r.room < 1 ? <span className="muted">No cap room</span> : r.ask === null ? <span className="muted">No FBA rating yet</span> : r.affordable ? `Fits about $${r.ask}` : <span className="muted">Short of about ${r.ask + r.reserve}{r.reserve > 0 ? ` (with $${r.reserve} kept for open spots)` : ''}</span>}</td>
                       <td><button className="btn" onClick={ev => { ev.stopPropagation(); onSign(r.teamId); }}>See roster with {team?.abbr ?? r.teamId}</button></td>
                     </tr>
                   );

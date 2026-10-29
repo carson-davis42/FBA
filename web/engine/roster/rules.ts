@@ -64,6 +64,18 @@ export function capProblem(total: number, cap: number = CAP): string | null {
   return total > cap ? `Payroll would be $${total} (cap $${cap})` : null;
 }
 
+/** Positions with nobody who stays: no player, or one whose contract has ended (a restricted rookie is a team option and still holds the spot). */
+export function openSpots(entries: RosterEntry[], season: number): number {
+  return POSITIONS.filter(pos => !entries.some(e => e.position === pos && e.playerId !== null && !(isExpired(e, season) && !e.restricted))).length;
+}
+
+/** Every open spot still needs a player, and the cheapest deal is $1: a team may not spend so much that it cannot fill them. */
+export function reserveProblem(entries: RosterEntry[], season: number, cap: number = CAP): string | null {
+  const open = openSpots(entries, season);
+  const total = payroll(entries, season);
+  return total + open > cap ? `Payroll would be $${total} with ${open} open ${open === 1 ? 'spot' : 'spots'} still needing at least $1 each (cap $${cap})` : null;
+}
+
 export function slotProblems(teamId: string, entries: RosterEntry[]): string[] {
   const p: string[] = [];
   for (const pos of POSITIONS) {

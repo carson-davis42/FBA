@@ -100,8 +100,15 @@ describe('signPlayer', () => {
     };
     const resign = (amount: number) => signPlayer(monAt24(), { playerId: 'p00012', teamId: 'MON', years: 1, amount, conflict: 'release' }, ctx);
 
-    it('lets a team re-sign its own player up to payroll $25', () => {
-      expect(payroll(ok(resign(1)).state.fba.teams.MON, 79)).toBe(25);
+    it('lets a team re-sign its own player up to payroll $25 when no other spot is open', () => {
+      const s = monAt24();
+      s.fba.teams.MON = s.fba.teams.MON.map(e => (e.position === 'SG' && e.playerId === null ? { ...e, playerId: 'p00013', rating: 70, age: 25, contractEnd: 85, contractAmount: 0 } : e));
+      const r = signPlayer(s, { playerId: 'p00012', teamId: 'MON', years: 1, amount: 1, conflict: 'release' }, ctx);
+      expect(payroll(ok(r).state.fba.teams.MON, 79)).toBe(25);
+    });
+
+    it('keeps $1 for each other open spot: MON has an open SG, so a $1 re-signing at $24 payroll is refused', () => {
+      expect(problems(resign(1))).toEqual(['Payroll would be $25 with 1 open spot still needing at least $1 each (cap $25)']);
     });
 
     it('blocks a re-signing that would pass $25, like any other signing', () => {

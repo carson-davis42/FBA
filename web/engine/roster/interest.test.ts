@@ -25,6 +25,15 @@ describe('interestedTeams', () => {
     expect(bos.room).toBeLessThan(1);
   });
 
+  it('keeps $1 for each other open spot, so a team with room for his ask but two open spots is not affordable', () => {
+    const s = baseState();
+    // CAR has $2 left and needs a C (its only open spot): the ask of about $3 is out of reach either way. Give it a second open spot: the reserve is $1.
+    s.fba.teams.CAR = s.fba.teams.CAR.map(e => (e.position === 'PG' ? { ...e, playerId: null, rating: null, age: null, contractEnd: null, contractAmount: null } : e));
+    const car = interestedTeams(s, 'p00030').find(r => r.teamId === 'CAR')!;
+    expect(car.reserve).toBe(1);
+    expect(car.affordable).toBe(car.room >= (car.ask ?? 1) + 1);
+  });
+
   it('lists a team whose player at his position is clearly worse, but only when the ask fits', () => {
     const s = baseState();
     s.fba.teams.MON = s.fba.teams.MON.map(e => (e.playerId === 'p00011' ? { ...e, rating: 60 } : e));
