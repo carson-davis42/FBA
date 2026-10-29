@@ -68,6 +68,7 @@ export function FbaDraftPage() {
   const [error, setError] = useState('');
   const [tab, setTab] = useState<'ALL' | Position>('ALL');
   const [view, setView] = useState<'board' | 'picks'>('board');
+  const [needPos, setNeedPos] = useState<Position | null>(null);
 
   const required = [players, calendar, collegeTeams];
   const optional = [draft, ratings, lottery, fba, freeAgents, fbaTx, fbaTeams, jcRosters, board, collegeTx];
@@ -350,6 +351,44 @@ export function FbaDraftPage() {
         )}
         {view === 'board' && (
           <>
+            <div className="card">
+              <h2>Teams that need a position</h2>
+              <div className="chips" role="group" aria-label="Position needed">
+                {POSITIONS.map(pos => (
+                  <button key={pos} type="button" className="chip" aria-pressed={needPos === pos} onClick={() => setNeedPos(needPos === pos ? null : pos)}>{pos}</button>
+                ))}
+              </div>
+              {needPos === null
+                ? <p className="muted">Pick a position to see which teams still need it and where they pick, for trading up.</p>
+                : (() => {
+                  const rows = (fbaTeams.data?.teams ?? []).flatMap(t => {
+                    const entries = fba.data!.teams[t.teamId];
+                    if (!entries) return [];
+                    const spot = draftRoster(entries, n).find(r => r.position === needPos)!;
+                    if (!spot.need) return [];
+                    const slots = d.picks.filter(x => x.owner === t.teamId && !x.playerId).map(x => x.slot).sort((a, b) => a - b);
+                    return [{ team: t, slots, held: spot.players }];
+                  }).sort((a, b) => (a.slots[0] ?? Infinity) - (b.slots[0] ?? Infinity));
+                  return rows.length === 0
+                    ? <p className="muted">No team needs a {needPos}.</p>
+                    : (
+                      <div className="table-wrap">
+                        <table className="stat-table" aria-label={`Teams that need a ${needPos}`}>
+                          <thead><tr><th>Team</th><th>Picks left</th><th>{needPos} now</th></tr></thead>
+                          <tbody>
+                            {rows.map(r => (
+                              <tr key={r.team.teamId} className={r.team.teamId === clock?.owner ? 'now' : undefined}>
+                                <td>{proTeamCell(r.team.teamId)}</td>
+                                <td>{r.slots.length > 0 ? r.slots.map(x => `#${x}`).join(', ') : <span className="muted">None</span>}</td>
+                                <td>{r.held.length === 0 ? <span className="muted">Open</span> : r.held.map(e => `${nameOf(e.playerId!)} (${e.rating ?? '—'}, contract ended)`).join(', ')}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    );
+                })()}
+            </div>
             <div className="card">
               <h2>Prospects</h2>
               {remaining.length === 0

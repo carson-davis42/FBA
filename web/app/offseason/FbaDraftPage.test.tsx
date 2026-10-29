@@ -213,6 +213,19 @@ describe('FbaDraftPage', () => {
     expect(screen.queryByRole('table', { name: 'Prospects' })).toBeNull();
   });
 
+  it('lists the teams that need a position with the picks they hold', async () => {
+    stubApi(docs({ draft: startedDraft() }));
+    renderPage();
+    await screen.findByRole('table', { name: 'Prospects' });
+    expect(screen.queryByRole('table', { name: /Teams that need a/ })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'C' }));
+    const table = await screen.findByRole('table', { name: 'Teams that need a C' });
+    const rows = within(table).getAllByRole('row').slice(1);
+    for (const r of rows) expect(within(r).getAllByRole('cell')).toHaveLength(3);
+    fireEvent.click(screen.getByRole('button', { name: 'C' }));
+    expect(screen.queryByRole('table', { name: 'Teams that need a C' })).toBeNull();
+  });
+
   it('shows the roster of the team on the clock with its needs', async () => {
     stubApi(docs({ draft: startedDraft() }));
     renderPage();
