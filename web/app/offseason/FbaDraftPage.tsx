@@ -21,12 +21,10 @@ import type {
 } from '../../engine/shared/types';
 import { useDoc, useSaving, type Versions } from '../api';
 import { ClinchLegend, RankCell } from '../components/Clinch';
-import { Hero } from '../components/Hero';
 import { PageHeader } from '../components/PageHeader';
-import { TeamMark } from '../components/TeamMark';
-import { teamTheme, teamVars } from '../components/teamColors';
 import { TeamName } from '../components/TeamName';
 import { commitDocs, newBatchId } from '../roster/commit';
+import { DraftTeamRoster } from './DraftTeamRoster';
 import './offseason.css';
 import { PlayerName } from '../components/PlayerName';
 
@@ -297,47 +295,15 @@ export function FbaDraftPage() {
             )
             : <p className="muted">Every pick is made.</p>}
         </div>
-        {view === 'board' && clock && (() => {
-          const clockTeam = fbaTeams.data?.teams.find(t => t.teamId === clock.owner);
-          const rows = draftRoster(fba.data.teams[clock.owner] ?? [], n);
-          return (
-          <>
-          {clockTeam && (
-            <Hero
-              level="h2"
-              theme={teamTheme(clockTeam, 'fba', n)}
-              logo={<TeamMark team={clockTeam} season={n} size={72} />}
-              kicker={`On the clock · Pick #${clock.slot}`}
-              title={clockTeam.name}
-              stats={[
-                { label: 'Needs', value: rows.filter(r => r.need).length },
-                { label: 'Players', value: rows.reduce((sum, r) => sum + r.players.length, 0) },
-              ]}
-            />
-          )}
-          <div className="card headed" style={clockTeam ? teamVars(teamTheme(clockTeam, 'fba', n)) : undefined}>
-            <table className="stat-table" aria-label="Roster of the team on the clock">
-              <thead><tr><th>Pos</th><th>Player</th><th className="num">Rating</th><th className="num">Age</th><th>Contract</th><th>Need</th></tr></thead>
-              <tbody>
-                {rows.flatMap(({ position, players: held, need }) => (held.length === 0
-                  ? [<tr key={position} className="need-row"><td>{position}</td><td className="muted">Open</td><td /><td /><td /><td><strong>Need</strong></td></tr>]
-                  : held.map(e => (
-                    <tr key={e.playerId} className={need ? 'need-row' : undefined}>
-                      <td>{position}</td>
-                      <td><PlayerName id={e.playerId!} name={nameOf(e.playerId!)} /></td>
-                      <td className="num">{e.rating ?? '—'}</td>
-                      <td className="num">{e.age ?? '—'}</td>
-                      <td>{e.contractAmount != null && e.contractEnd != null ? `$${e.contractAmount} thru S${e.contractEnd}${e.restricted ? (e.contractEnd < n ? ' (rookie, team option)' : ' (rookie)') : ''}` : '—'}</td>
-                      <td>{need ? <strong>Need (expired)</strong> : ''}</td>
-                    </tr>
-                  ))))}
-              </tbody>
-            </table>
-            <p className="muted">Needs: {rows.filter(r => r.need).map(r => r.position).join(', ') || 'none'}</p>
-          </div>
-          </>
-          );
-        })()}
+        {view === 'board' && clock && (
+          <DraftTeamRoster
+            team={fbaTeams.data?.teams.find(t => t.teamId === clock.owner)}
+            entries={fba.data.teams[clock.owner] ?? []}
+            season={n}
+            kicker={`On the clock · Pick #${clock.slot}`}
+            nameOf={nameOf}
+          />
+        )}
         <div className="chips" role="group" aria-label="Draft view">
           <button type="button" className="chip" aria-pressed={view === 'board'} onClick={() => setView('board')}>Board</button>
           <button type="button" className="chip" aria-pressed={view === 'picks'} onClick={() => setView('picks')}>All picks</button>

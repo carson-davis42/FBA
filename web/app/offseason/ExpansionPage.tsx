@@ -13,6 +13,7 @@ import { PageHeader } from '../components/PageHeader';
 import { PlayerName } from '../components/PlayerName';
 import { TeamName } from '../components/TeamName';
 import { commitDocs, newBatchId } from '../roster/commit';
+import { DraftTeamRoster } from './DraftTeamRoster';
 import { useExpansionState } from './useExpansionState';
 import './offseason.css';
 
@@ -228,6 +229,15 @@ function Draft({ s, h, saving, run }: { s: ExpansionState; h: Helpers; saving: b
           ? <p>All {f.order.length} picks are made.</p>
           : <p>On the clock: pick {f.picks.length + 1}, {h.teamCell(clock)}</p>}
       </div>
+      {clock !== null && (
+        <DraftTeamRoster
+          team={s.teams.teams.find(t => t.teamId === clock)}
+          entries={s.fba.teams[clock] ?? []}
+          season={s.season}
+          kicker={`Pick ${f.picks.length + 1} of ${f.order.length}`}
+          nameOf={h.playerName}
+        />
+      )}
       <div className="card">
         <h2>Order</h2>
         <ol className="order-list" aria-label="Pick order">
