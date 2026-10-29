@@ -6,6 +6,7 @@ import type { RosterState } from '../../engine/roster/state';
 import type { SeasonPhase } from '../../engine/season/locks';
 import type { TeamsFile } from '../../engine/shared/types';
 import { useSaving, type Versions } from '../api';
+import { IfRosterCard } from './IfRosterCard';
 import { teamTheme, teamVars } from './teamColors';
 import { TeamName } from './TeamName';
 import { commitMove, newBatchId } from '../roster/commit';
@@ -80,6 +81,7 @@ export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versio
         <button className="btn primary" disabled={!preview?.ok || busy || saving} onClick={sign}>Sign</button>
         <button className="btn" onClick={onClose}>Cancel</button>
       </div>
+      {chosen && <IfRosterCard state={state} input={input} teamName={chosen.name} phase={phase} />}
     </section>
   );
 }

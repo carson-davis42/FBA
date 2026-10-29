@@ -23,7 +23,7 @@ export function InterestedTeams({ state, teams, playerId, onSign }: {
                 {rows.map((r, i) => {
                   const team = teams.find(t => t.teamId === r.teamId);
                   return (
-                    <tr key={r.teamId}>
+                    <tr key={r.teamId} onClick={() => onSign(r.teamId)} className="clickable">
                       <td className="rank">{i + 1}</td>
                       <td>{team ? <TeamName team={team} season={state.season} /> : r.teamId}</td>
                       <td className="num">{r.strength} of {Object.keys(state.fba.teams).length}</td>
@@ -34,7 +34,7 @@ export function InterestedTeams({ state, teams, playerId, onSign }: {
                       </td>
                       <td className="num">${r.room}</td>
                       <td>{r.ask === null ? <span className="muted">No FBA rating yet</span> : r.affordable ? `Fits about $${r.ask}` : <span className="muted">Short of about ${r.ask}</span>}</td>
-                      <td><button className="btn" onClick={() => onSign(r.teamId)}>Sign with {team?.abbr ?? r.teamId}</button></td>
+                      <td><button className="btn" onClick={ev => { ev.stopPropagation(); onSign(r.teamId); }}>See roster with {team?.abbr ?? r.teamId}</button></td>
                     </tr>
                   );
                 })}
