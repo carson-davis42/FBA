@@ -187,7 +187,7 @@ describe('ExpansionPage', () => {
     expect((screen.getByRole('button', { name: 'Lock protections' }) as HTMLButtonElement).disabled).toBe(true);
   });
 
-  it('draft mode: a pick for a position the team holds is refused with its text and posts nothing', async () => {
+  it('draft mode: players at a position the team on the clock holds are hidden from the list', async () => {
     const s = expansionState();
     const phi = s.fba.teams.PHI.map(e => (e.position === 'PG'
       ? { ...e, playerId: 'p10099', rating: 60, age: 25, contractEnd: 82, contractAmount: 1 }
@@ -196,12 +196,10 @@ describe('ExpansionPage', () => {
     const players = { ...s.players, players: { ...s.players.players, p10099: { id: 'p10099', name: 'Phil PG', birthSeason: 55 } } };
     const log = stubApi(draftDocs(file({ phase: 'draft' }), { fba, players }));
     renderPage();
-    const take = await screen.findByRole('button', { name: 'Take A PG' }) as HTMLButtonElement;
-    expect(take.disabled).toBe(true);
-    expect(screen.getAllByText(/Philly Phantoms already has a PG/).length).toBeGreaterThan(0);
-    fireEvent.click(take);
+    expect(await screen.findByRole('button', { name: 'Take A SG' })).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Take A PG' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Take B PG' })).toBeNull();
     expect(log.batches).toHaveLength(0);
-    expect((await screen.findByRole('button', { name: 'Take A SG' }) as HTMLButtonElement).disabled).toBe(false);
   });
 
   it('draft mode: after the last pick, Finish expansion draft saves the history and the calendar', async () => {

@@ -212,6 +212,8 @@ function Draft({ s, h, saving, run }: { s: ExpansionState; h: Helpers; saving: b
   const f = s.expansion!;
   const clock = onTheClock(f);
   const exposed = exposedPlayers(s);
+  // Only the players the team on the clock can take (a position it already holds or a cap it can't fit is hidden, even at the $1 minimum deal).
+  const available = exposed.filter(e => pickProblems(s, e.playerId, needsContract(e, s.season) ? { years: 1, amount: 1 } : undefined).length === 0);
   // The deal a taken player without a running contract is signed to: at least one year.
   const [terms, setTerms] = useState<Record<string, { years: number; amount: number }>>({});
   const termsOf = (id: string) => terms[id] ?? { years: 1, amount: 1 };
@@ -265,7 +267,7 @@ function Draft({ s, h, saving, run }: { s: ExpansionState; h: Helpers; saving: b
           <div className="table-wrap tall"><table className="stat-table" aria-label="Exposed players">
             <thead><tr><th>Player</th><th>Pos</th><th className="num">Rating</th><th className="num">Age</th><th>Contract</th><th>From</th><th /></tr></thead>
             <tbody>
-              {exposed.map(e => {
+              {available.map(e => {
                 const signs = needsContract(e, s.season);
                 const problems = pickProblems(s, e.playerId, signs ? termsOf(e.playerId) : undefined).join('; ');
                 return (
