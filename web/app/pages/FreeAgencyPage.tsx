@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { teamsInSeason } from '../../engine/shared/teams';
 import { useParams } from 'react-router-dom';
 import { marketRows, type MarketType, openPositions } from '../../engine/roster/market';
-import { closeFreeAgency, freeAgencyBlockers } from '../../engine/roster/moves';
+import { closeFreeAgency, freeAgencyBlockers, releasePlayer } from '../../engine/roster/moves';
 import { payroll, POSITIONS } from '../../engine/roster/rules';
 import { currentStepIndex, markCurrentDone } from '../../engine/shared/calendar';
 import type { CalendarFile, ExtendPassedFile, Position, Team, TeamsFile } from '../../engine/shared/types';
@@ -12,6 +12,7 @@ import { ExtendDialog } from '../components/ExtendDialog';
 import { InterestedTeams } from '../components/InterestedTeams';
 import { PageHeader } from '../components/PageHeader';
 import { PayrollBar } from '../components/PayrollBar';
+import { RestrictedFreeAgents } from '../components/RestrictedFreeAgents';
 import { RosterTable } from '../components/RosterTable';
 import { SignPanel } from '../components/SignPanel';
 import { SortTh } from '../components/SortTh';
@@ -92,6 +93,20 @@ export function FreeAgencyPage() {
   if (error) return <p className="error">Couldn't load rosters: {error.message}</p>;
   if (!state || !teams || !cal || (!passedDoc.data && !passedDoc.missing && !passedDoc.error)) return <p className="muted">Loading…</p>;
   const passed = new Set(passedDoc.data?.passed ?? []);
+  const letGo = async (t: string, playerId: string) => {
+    const result = releasePlayer(state, { league: 'fba', teamId: t, playerId, kind: 'released' }, { batchId: newBatchId(), phase });
+    if (!result.ok) { setPassError(result.problems.join('; ')); return; }
+    setPassBusy(true);
+    setPassError('');
+    try {
+      await commitMove(result, versions);
+      if (selected === playerId) setSelected(null);
+    } catch (e) {
+      setPassError((e as Error).message);
+    } finally {
+      setPassBusy(false);
+    }
+  };
   const setPassed = async (playerId: string, pass: boolean) => {
     const next = pass ? [...passed, playerId] : [...passed].filter(id => id !== playerId);
     setPassBusy(true);
@@ -168,6 +183,7 @@ export function FreeAgencyPage() {
 
       {extending && <ExtendDialog key={extending.playerId} state={state} teamId={extending.teamId} playerId={extending.playerId} onClose={() => setExtending(null)} versions={versions} />}
       {passError && <p className="error">Save failed: {passError}</p>}
+      <RestrictedFreeAgents state={state} teams={teams.teams} teamId={teamId} busy={passBusy || saving} onResign={(t, p) => { setSelected(p); setSignTeam(t); }} onLetGo={letGo} />
       <ExpiringContracts state={state} teams={teams.teams} teamId={teamId} passed={passed} busy={passBusy || saving} onExtend={(t, p) => setExtending({ teamId: t, playerId: p })} onPass={setPassed} />
 
       {!closed && (
