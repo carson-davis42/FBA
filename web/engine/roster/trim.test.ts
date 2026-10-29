@@ -20,7 +20,13 @@ describe('trimCandidates', () => {
     // two under contract plus one ended: the ended one is listed but cannot be cut.
     const t = trimCandidates([e('PG', 'vet', 79), e('PG', 'a', 82), e('PG', 'b', 81)], 80);
     expect(ids(t.rows)).toEqual(['a', 'b']);
-    expect(ids(t.expiring.map(entry => ({ entry })))).toEqual(['vet']);
+    expect(ids(t.expiring)).toEqual(['vet']);
+    expect(t.expiring[0].replacedBy?.playerId).toBe('a');
+  });
+  it('lists every ended contract, with nobody replacing him when he is alone at his position', () => {
+    const t = trimCandidates([e('PG', 'vet', 79), e('SG', 'c', 82)], 80);
+    expect(t.rows).toEqual([]);
+    expect(t.expiring.map(x => [x.entry.playerId, x.replacedBy])).toEqual([['vet', null]]);
   });
   it('counts an ended rookie contract as holding the spot, since it is a team option', () => {
     expect(trimCandidates([e('PG', 'r', 79, true), e('PG', 'a', 82)], 80).rows).toHaveLength(2);
@@ -38,9 +44,10 @@ describe('trimCandidates', () => {
 });
 
 describe('trimTeams', () => {
-  it('lists only the teams with someone to consider', () => {
+  it('lists only the teams with someone to cut or release', () => {
     const s = baseState();
     s.fba.teams.CAR = [...s.fba.teams.CAR, e('PG', 'x', 82)];
-    expect(trimTeams(s).map(t => [t.teamId, ids(t.rows)])).toEqual([['CAR', ['p00006', 'x']]]);
+    // BOS has two ended contracts (nothing to cut); CAR has a duplicate; MON has neither.
+    expect(trimTeams(s).map(t => [t.teamId, ids(t.rows), ids(t.expiring)])).toEqual([['BOS', [], ['p00003', 'p00004']], ['CAR', ['p00006', 'x'], []]]);
   });
 });
