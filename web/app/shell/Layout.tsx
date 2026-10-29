@@ -30,6 +30,7 @@ import { ClassRankingPage } from '../college/ClassRankingPage';
 import { PortalPage } from '../college/PortalPage';
 import { RecruitingPage } from '../college/RecruitingPage';
 import { HallOfFamePage } from '../offseason/HallOfFamePage';
+import { DraftPicksPage } from '../offseason/DraftPicksPage';
 import { LotteryPage } from '../offseason/LotteryPage';
 import { AdjustAgePage } from '../offseason/AdjustAgePage';
 import { FbaDraftPage } from '../offseason/FbaDraftPage';
@@ -101,6 +102,7 @@ const ROUTES = createRoutesFromElements(
   <Route path="/league/fbajc/class-ranking" element={<ClassRankingPage />} />
   <Route path="/league/fbajc/ratings" element={<CollegeRatingsPage />} />
   <Route path="/league/fba/lottery" element={<LotteryPage />} />
+  <Route path="/league/fba/picks" element={<DraftPicksPage />} />
   <Route path="/retirement" element={<RetirementPage />} />
   <Route path="/offseason/adjust-age" element={<AdjustAgePage />} />
   <Route path="/league/fba/ratings" element={<ProRatingsPage />} />
