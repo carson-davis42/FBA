@@ -29,19 +29,19 @@ describe('RosterTrimPage', () => {
   it('lists only the teams with a duplicate position', async () => {
     stubApi(docs(withDuplicate));
     renderPage();
-    expect(await screen.findByText('1 team has a duplicate position.')).toBeTruthy();
-    expect(screen.getByRole('table', { name: 'CAR Team duplicate positions' })).toBeTruthy();
-    expect(screen.queryByRole('table', { name: 'BOS Team duplicate positions' })).toBeNull();
+    expect(await screen.findByText('1 team has players to consider cutting.')).toBeTruthy();
+    expect(screen.getByRole('table', { name: 'CAR Team players to cut' })).toBeTruthy();
+    expect(screen.queryByRole('table', { name: 'BOS Team players to cut' })).toBeNull();
   });
   it('says so when no team has a duplicate', async () => {
     stubApi(docs());
     renderPage();
-    expect(await screen.findByText('No team has two players at the same position.')).toBeTruthy();
+    expect(await screen.findByText('No team has two players at the same position or a rookie rated 65 or lower.')).toBeTruthy();
   });
   it('cuts a player in one batch and sends him to the free agent pool', async () => {
     const log = stubApi(docs(withDuplicate));
     renderPage();
-    const table = await screen.findByRole('table', { name: 'CAR Team duplicate positions' });
+    const table = await screen.findByRole('table', { name: 'CAR Team players to cut' });
     const cut = within(table).getAllByRole('button').find(b => b.getAttribute('aria-label')?.startsWith('Cut'))!;
     fireEvent.click(cut);
     await waitFor(() => expect(log.batches).toHaveLength(1));
