@@ -45,7 +45,7 @@ export function DraftPicksPage() {
   return (
     <section className="stack">
       <PageHeader kicker="FBA" title="Draft picks" />
-      <p className="muted">Picks that belong to a team other than the one they are from, with their protections, and picks that rolled into a later season.</p>
+      <p className="muted">Picks that belong to a team other than the one they are from, with their protections, and the season each pick was originally for.</p>
       <div className="card toolbar">
         <div className="chips" role="group" aria-label="Pick filter">
           {([['all', 'All'], ['traded', 'Traded'], ['rolled', 'Rolled']] as const).map(([k, label]) => (
@@ -66,7 +66,7 @@ export function DraftPicksPage() {
           <h2>S{season}{season === n ? ' (this draft)' : ''}</h2>
           <div className="table-wrap">
             <table className="stat-table" aria-label={`S${season} picks`}>
-              <thead><tr><th>From</th><th>Held by</th><th>Protection</th><th>Rolled</th><th>Note</th></tr></thead>
+              <thead><tr><th>From</th><th>Held by</th><th>Protection</th><th>Original pick</th><th>Note</th></tr></thead>
               <tbody>
                 {shown.filter(o => o.season === season).map(o => (
                   <tr key={o.id}>
@@ -76,11 +76,7 @@ export function DraftPicksPage() {
                       {conditionText(o.condition)}
                       {!sameCondition(o.condition, o.originalCondition) && <span className="muted"> (was {conditionText(o.originalCondition).toLowerCase()})</span>}
                     </td>
-                    <td>
-                      {isRolled(o)
-                        ? [...o.rolls.map(r => `S${r.fromSeason}: ${r.reason === 'protected' ? 'protection held' : 'already owed'}`), ...(o.rolls.length === 0 ? [`from S${o.originSeason}`] : [])].join('; ')
-                        : <span className="muted">—</span>}
-                    </td>
+                    <td>S{o.originSeason}</td>
                     <td>{o.note || <span className="muted">—</span>}</td>
                   </tr>
                 ))}

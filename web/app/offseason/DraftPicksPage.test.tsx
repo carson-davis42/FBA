@@ -33,12 +33,12 @@ describe('DraftPicksPage', () => {
     ob({ id: 'b', season: 82, originalTeam: 'T03', owner: 'T03' }),
     ob({ id: 'c', season: 81, originalTeam: 'T04', owner: 'T05', condition: { kind: 'top', n: 2 }, originalCondition: { kind: 'top', n: 3 }, originSeason: 80, rolls: [{ fromSeason: 80, reason: 'protected' }] }),
   ];
-  it('groups the picks by season with their protection and what rolled', async () => {
+  it('groups the picks by season with their protection and original season', async () => {
     render_(picks);
     const s81 = await screen.findByRole('table', { name: 'S81 picks' });
     expect(within(s81).getAllByRole('row')).toHaveLength(3);
     expect(within(s81).getByText('Top 4 protected')).toBeTruthy();
-    expect(within(s81).getByText(/S80: protection held/)).toBeTruthy();
+    expect(within(s81).getByText('S80')).toBeTruthy();
     expect(screen.getByRole('table', { name: 'S82 picks' })).toBeTruthy();
   });
   it('filters to traded and to rolled picks', async () => {
