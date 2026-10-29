@@ -26,6 +26,27 @@ const withDuplicate = (s: ReturnType<typeof baseState>) => {
 const renderPage = () => render(<MemoryRouter><RosterTrimPage /></MemoryRouter>);
 
 describe('RosterTrimPage', () => {
+  it('Keep hides the player, saving the choice for the season', async () => {
+    const log = stubApi(docs(withDuplicate));
+    renderPage();
+    const table = await screen.findByRole('table', { name: 'CAR Team players to cut' });
+    fireEvent.click(within(table).getAllByRole('button').find(b => b.getAttribute('aria-label')?.startsWith('Keep'))!);
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    expect(log.batches[0].writes).toHaveLength(1);
+    expect(log.batches[0].writes[0].path).toBe('leagues/fba/S79/trimKept.json');
+    expect(log.batches[0].writes[0].doc).toMatchObject({ league: 'fba', season: 79, kept: [expect.any(String)] });
+  });
+  it('hides the players already kept and offers to show them again', async () => {
+    const d = docs(withDuplicate);
+    d['leagues/fba/S79/trimKept.json'] = { league: 'fba', season: 79, kept: ['p00030', 'p00006'] };
+    const log = stubApi(d);
+    renderPage();
+    expect(await screen.findByText('No team has two players at the same position or a rookie rated 65 or lower.')).toBeTruthy();
+    expect(screen.getByText(/2 kept players are hidden/)).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Show them again' }));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    expect(log.batches[0].writes[0].doc).toMatchObject({ kept: [] });
+  });
   it('lists only the teams with a duplicate position', async () => {
     stubApi(docs(withDuplicate));
     renderPage();

@@ -2,13 +2,13 @@ import { useMemo, useState } from 'react';
 import { releasePlayer } from '../../engine/roster/moves';
 import { LOW_ROOKIE_RATING, trimTeams } from '../../engine/roster/trim';
 import { teamsInSeason } from '../../engine/shared/teams';
-import type { TeamsFile } from '../../engine/shared/types';
+import type { TeamsFile, TrimKeptFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { PlayerName } from '../components/PlayerName';
 import { teamTheme, teamVars } from '../components/teamColors';
 import { TeamName } from '../components/TeamName';
-import { commitMove, newBatchId } from '../roster/commit';
+import { commitDocs, commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
 import { useSeasonPhase } from '../season/useSeasonPhase';
 import './offseason.css';
@@ -21,16 +21,32 @@ export function RosterTrimPage() {
   const { state, versions, error } = useRosterState();
   const phase = useSeasonPhase();
   const rawTeams = useDoc<TeamsFile>('leagues/fba/teams.json');
+  const season = state?.season;
+  const keptPath = season === undefined ? '' : `leagues/fba/S${season}/trimKept.json`;
+  const keptDoc = useDoc<TrimKeptFile>(season === undefined ? null : keptPath);
   const saving = useSaving();
   const [busy, setBusy] = useState(false);
   const [saveError, setSaveError] = useState('');
-  const season = state?.season;
   const teams = useMemo(() => (rawTeams.data && season !== undefined ? teamsInSeason(rawTeams.data, season) : undefined), [rawTeams.data, season]);
 
   if (error) return <p className="error">Couldn't load rosters: {error.message}</p>;
-  if (!state || !teams) return <p className="muted">Loading…</p>;
+  if (!state || !teams || (!keptDoc.data && !keptDoc.missing && !keptDoc.error)) return <p className="muted">Loading…</p>;
 
-  const list = trimTeams(state);
+  const kept = new Set(keptDoc.data?.kept ?? []);
+  const list = trimTeams(state)
+    .map(t => ({ ...t, rows: t.rows.filter(r => !kept.has(r.entry.playerId!)) }))
+    .filter(t => t.rows.length > 0);
+  const saveKept = async (next: string[]) => {
+    setBusy(true);
+    setSaveError('');
+    try {
+      await commitDocs('Roster trim: keep', [{ path: keptPath, doc: { league: 'fba', season: state.season, kept: next } satisfies TrimKeptFile }], { ...versions, [keptPath]: keptDoc.version });
+    } catch (e) {
+      setSaveError((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  };
   const cut = async (teamId: string, playerId: string) => {
     const result = releasePlayer(state, { league: 'fba', teamId, playerId, kind: 'cut' }, { batchId: newBatchId(), phase });
     if (!result.ok) { setSaveError(result.problems.join('; ')); return; }
@@ -53,6 +69,12 @@ export function RosterTrimPage() {
         Players whose contracts have ended are left alone: they may re-sign or test free agency. Nothing here is required.
       </p>
       {saveError && <p className="error">{saveError}</p>}
+      {kept.size > 0 && (
+        <p className="muted">
+          {kept.size} kept {kept.size === 1 ? 'player is' : 'players are'} hidden.{' '}
+          <button type="button" className="btn" disabled={busy || saving} onClick={() => saveKept([])}>Show them again</button>
+        </p>
+      )}
       {list.length === 0
         ? <div className="card"><p>No team has two players at the same position or a rookie rated {LOW_ROOKIE_RATING} or lower.</p></div>
         : <p>{list.length} {list.length === 1 ? 'team has' : 'teams have'} players to consider cutting.</p>}
@@ -75,7 +97,11 @@ export function RosterTrimPage() {
                         <td className="num">{e.age ?? '—'}</td>
                         <td>{e.contractAmount != null && e.contractEnd != null ? `$${e.contractAmount} thru S${e.contractEnd}` : '—'}{e.restricted ? ' (rookie)' : ''}</td>
                         <td>{reasons.map(r => (r === 'duplicate' ? `Second ${e.position}` : `Rookie rated ${LOW_ROOKIE_RATING} or lower`)).join('; ')}</td>
-                        <td><button className="btn" disabled={busy || saving} aria-label={`Cut ${name}`} onClick={() => cut(teamId, e.playerId!)}>Cut</button></td>
+                        <td>
+                          <button className="btn" disabled={busy || saving} aria-label={`Cut ${name}`} onClick={() => cut(teamId, e.playerId!)}>Cut</button>
+                          {' '}
+                          <button className="btn" disabled={busy || saving} aria-label={`Keep ${name}`} onClick={() => saveKept([...kept, e.playerId!])}>Keep</button>
+                        </td>
                       </tr>
                     );
                   })}

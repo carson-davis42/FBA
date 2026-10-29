@@ -1439,6 +1439,10 @@ export const DraftHistoryFile = z.object({ drafts: z.array(DraftHistoryDraft) })
 export type DraftHistoryFile = z.infer<typeof DraftHistoryFile>;
 
 /** leagues/fba/S{n}/expansion.json: the expansion draft held in season n (protections, then the picks). */
+/** leagues/fba/S{n}/trimKept.json: the players the commissioner chose to keep on the Roster trim page, so they are no longer offered for a cut. */
+export const TrimKeptFile = z.object({ league: z.literal('fba'), season: int, kept: z.array(playerId) }).strict();
+export type TrimKeptFile = z.infer<typeof TrimKeptFile>;
+
 export const ExpansionPick = z.object({
   n: int.positive(), teamId: z.string().min(1), fromTeamId: z.string().min(1), playerId, position: Position,
 }).strict();
