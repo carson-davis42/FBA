@@ -51,7 +51,7 @@ describe('ExpansionPage', () => {
     });
     renderPage();
     expect(await screen.findByText('Philly Phantoms')).toBeTruthy();
-    expect(screen.getByText('Boise Raptors')).toBeTruthy();
+    expect(screen.getByText('Boise Talons')).toBeTruthy();
     const button = await enabled('Add teams');
     fireEvent.click(button);
     fireEvent.click(button);

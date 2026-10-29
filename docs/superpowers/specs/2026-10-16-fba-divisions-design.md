@@ -22,7 +22,7 @@ The league grows from 30 to 32 teams (16 per conference). The old pairing (4 gam
 |---|---|---|
 | East | Atlantic | BOS, MW, NY, MAN, PHI, DCB, CAR, MON |
 | East | Great Lakes | CHI, MIL, DET, CIN, CP, OV, TOR, STL |
-| West | Pacific | SEA, VAN, LAL (Boise Raptors), OAK, LA, VEG, HON, DEN |
+| West | Pacific | SEA, VAN, LAL (Boise Talons), OAK, LA, VEG, HON, DEN |
 | West | Gulf | TEX, SAS, NO, FLO, CGG, PHX, MEM, ATL |
 
 Atlanta moves East to West and St. Louis moves West to East, from S80. The conference code stays `E` / `W`. Division is a new per-team, per-season value. (Boise's teamId is `LAL`; its abbreviation is BOI.)

@@ -84,7 +84,7 @@ describe('Franchise pages', () => {
       franchises: [
         ...franchises.franchises,
         { teamId: 'PHI', eras: [{ name: 'Philly Phantoms', abbr: 'PHI', city: 'Philadelphia, Pennsylvania', from: 80, to: null }] },
-        { teamId: 'LAL', eras: [{ name: 'Los Angeles Labradors', abbr: 'LAL', city: 'Los Angeles, California', from: 80, to: null }] },
+        { teamId: 'LAL', eras: [{ name: 'Boise Talons', abbr: 'BOI', city: 'Boise, Idaho', from: 80, to: null }] },
       ],
     };
     stub({
@@ -99,11 +99,11 @@ describe('Franchise pages', () => {
     const card = (id: string) => cards.find(a => a.getAttribute('href') === `/history/fba/teams/${id}`)!;
     // the logo season is the current season (80), not the last played one (79)
     expect(within(card('SAS')).getByRole('img').getAttribute('src')).toBe(logoUrl('San Antonio Spirits', 80));
-    // expansion teams use their definitions: PHI's logo folder, and the Boise Raptors' own logo folder
+    // expansion teams use their definitions: PHI's logo folder, and the Boise Talons' own logo folder
     expect(within(card('PHI')).getByRole('img').getAttribute('src')).toBe(logoUrl('Philly Phantoms', 80));
     expect(card('PHI').textContent).toContain('Philly Phantoms');
-    expect(within(card('LAL')).getByRole('img').getAttribute('src')).toBe(logoUrl('Boise Raptors', 80));
-    expect(card('LAL').textContent).toContain('Boise Raptors');
+    expect(within(card('LAL')).getByRole('img').getAttribute('src')).toBe(logoUrl('Boise Talons', 80));
+    expect(card('LAL').textContent).toContain('Boise Talons');
     expect(card('LAL').textContent).not.toContain('Labradors');
   });
 

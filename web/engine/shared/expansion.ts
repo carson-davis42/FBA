@@ -11,9 +11,9 @@ export const EXPANSION_TEAMS: Team[] = [
     badge: { bg: '#0F2C78', fg: '#ffffff', accent: '#E4102B' }, fromSeason: EXPANSION_SEASON,
   },
   {
-    // The Boise Raptors, under the Los Angeles Labradors' franchise id (the "Team 32" placeholder), with their own logo folder (the blue B) and colours.
-    teamId: 'LAL', name: 'Boise Raptors', abbr: 'BOI', group: 'W', logoFolder: 'Boise Raptors',
-    badge: { bg: '#0B4DC8', fg: '#ffffff', accent: '#0A1A52' }, fromSeason: EXPANSION_SEASON,
+    // The Boise Talons, under the Los Angeles Labradors' franchise id (the "Team 32" placeholder), with their own logo folder (the light-blue winged B) and colours.
+    teamId: 'LAL', name: 'Boise Talons', abbr: 'BOI', group: 'W', logoFolder: 'Boise Talons',
+    badge: { bg: '#2E8BDB', fg: '#ffffff', accent: '#0A1A52' }, fromSeason: EXPANSION_SEASON,
   },
 ];
 

@@ -8,6 +8,14 @@
         "variant": 0
       }
     ],
+    "Boise Talons": [
+      {
+        "file": "Boise Talons S80-pres..png",
+        "from": 80,
+        "to": null,
+        "variant": 0
+      }
+    ],
     "Boston Bucks": [
       {
         "file": "Boston Bucks S61-pres..png",
@@ -3078,14 +3086,6 @@
         "variant": 0
       }
     ],
-    "Los Angeles Labradors": [
-      {
-        "file": "Los Angeles Labradors S80-pres..png",
-        "from": 80,
-        "to": null,
-        "variant": 0
-      }
-    ],
     "Maine Wildcats": [
       {
         "file": "Maine Wildcats S41-S77.png",
@@ -3102,8 +3102,14 @@
     ],
     "Manhattan Magic": [
       {
-        "file": "Manhattan Magic S68-pres..png",
+        "file": "Manhattan Magic S68-S79.png",
         "from": 68,
+        "to": 79,
+        "variant": 0
+      },
+      {
+        "file": "Manhattan Magic S80-pres..png",
+        "from": 80,
         "to": null,
         "variant": 0
       }

@@ -251,9 +251,9 @@
       "teamId": "LAL",
       "eras": [
         {
-          "name": "Los Angeles Labradors",
-          "abbr": "LAL",
-          "city": "Los Angeles, California",
+          "name": "Boise Talons",
+          "abbr": "BOI",
+          "city": "Boise, Idaho",
           "from": 80,
           "to": null
         }

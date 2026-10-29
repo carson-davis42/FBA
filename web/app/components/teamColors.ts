@@ -19,7 +19,7 @@ export const TEAM_COLORS: Record<string, { primary: string; secondary: string }>
   FLO: { primary: '#10162E', secondary: '#4FCFCF' },
   HON: { primary: '#127272', secondary: '#F09434' },
   LA: { primary: '#111111', secondary: '#F2B516' },
-  LAL: { primary: '#0B4DC8', secondary: '#0A1A52' },
+  LAL: { primary: '#2E8BDB', secondary: '#0A1A52' },
   MW: { primary: '#173C74', secondary: '#6FB2F0' },
   MAN: { primary: '#4F2F92', secondary: '#D2743A' },
   MEM: { primary: '#173A58', secondary: '#4FB2F0' },
@@ -49,6 +49,7 @@ export { inkFor };
 export const COLOR_ERAS: Record<string, { from: number; primary: string; secondary: string }[]> = {
   OAK: [{ from: 80, primary: '#0B7A3E', secondary: '#F5B800' }],
   DEN: [{ from: 80, primary: '#2A1610', secondary: '#E09A1F' }],
+  MAN: [{ from: 80, primary: '#4B1FB0', secondary: '#C9CCD6' }],
 };
 
 let currentSeason = 79;
