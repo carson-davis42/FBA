@@ -61,7 +61,7 @@ export function IfRosterCard({ state, input, teamName, phase, fit }: {
                 </ul>
               </>
             )
-            : <p className="muted">Fit score: this team isn't on his interested list (it has no need for him or no cap room).</p>}
+            : <p className="muted">Fit score: this team isn't on his interested list (it has no need for him).</p>}
         </div>
       )}
       <PayrollBar total={view.payroll} />

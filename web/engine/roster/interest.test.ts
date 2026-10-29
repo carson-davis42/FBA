@@ -15,6 +15,16 @@ describe('interestedTeams', () => {
     expect(r[0].score).toEqual({ strength: 40, filled: 20, region: 0, history: 0, ownTeam: 0, total: 60 });
   });
 
+  it('lists a team with a need even when it has no cap room, flagged as not affordable', () => {
+    const s = baseState();
+    // BOS (no cap room) has nobody at C: it still needs him, but would have to clear space.
+    s.fba.teams.BOS = s.fba.teams.BOS.map(e => (e.position === 'C' ? { ...e, playerId: null, rating: null, age: null, contractEnd: null, contractAmount: null } : e));
+    s.fba.teams.BOS = s.fba.teams.BOS.map(e => (e.position === 'PG' ? { ...e, contractEnd: 85, contractAmount: 25 } : e));
+    const bos = interestedTeams(s, 'p00030').find(r => r.teamId === 'BOS')!;
+    expect(bos).toMatchObject({ reason: 'need', affordable: false });
+    expect(bos.room).toBeLessThan(1);
+  });
+
   it('lists a team whose player at his position is clearly worse, but only when the ask fits', () => {
     const s = baseState();
     s.fba.teams.MON = s.fba.teams.MON.map(e => (e.playerId === 'p00011' ? { ...e, rating: 60 } : e));

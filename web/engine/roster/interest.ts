@@ -43,7 +43,7 @@ export interface InterestedTeam {
   /** `resign`: his own team, whose contract with him has ended. `need`: nobody holds his position. `upgrade`: he is clearly better than the holder. */
   reason: 'resign' | 'need' | 'upgrade';
   holder: { playerId: string; name: string; rating: number | null } | null;
-  /** Cap room: the cap less the contracts that still run. */
+  /** Cap room: the cap less the contracts that still run (zero or less: the team would have to clear space first). */
   room: number;
   /** What a typical contract for his rating costs; null while he has no FBA rating (a D2 player). */
   ask: number | null;
@@ -62,7 +62,8 @@ export interface InterestOptions {
 
 /**
  * The teams that would be interested in a player on the market: the team he is leaving, teams with nobody at his position, and teams that
- * hold someone clearly worse. A team needs at least $1 of cap room; an upgrade must also fit the typical ask.
+ * hold someone clearly worse. A team with a need is listed even without cap room (it would have to clear space first, and `affordable` says so);
+ * an upgrade is only listed when the typical ask fits.
  *
  * They are ranked by a score out of 100 (plus 10 for his own team): team strength (the strongest team gets 40), filled spots (5 each for up to
  * four players under contract, so a team with one 88 doesn't lead), his college's region (the full 15 for the same region, a third for a
@@ -95,7 +96,6 @@ export function interestedTeams(state: RosterState, playerId: string, options: I
   const out: InterestedTeam[] = [];
   for (const [teamId, entries] of Object.entries(state.fba.teams)) {
     const room = CAP - payroll(entries, state.season);
-    if (room < 1) continue;
     const affordable = room >= (ask ?? 1);
     if (row.from === teamId && row.type === 'Expired') {
       out.push({ teamId, strength: strengthOf(teamId), ...scored(teamId, entries, true), reason: 'resign', holder: null, room, ask, affordable });

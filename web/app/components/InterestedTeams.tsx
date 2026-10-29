@@ -29,7 +29,7 @@ export function InterestedTeams({ state, teams, playerId, onSign, context }: {
         Hover a score for the breakdown.
       </p>
       {rows.length === 0
-        ? <p className="muted">No team has the cap room and the need for {name}.</p>
+        ? <p className="muted">No team has a need for {name}.</p>
         : (
           <div className="table-wrap">
             <table className="stat-table" aria-label="Interested teams">
@@ -50,7 +50,7 @@ export function InterestedTeams({ state, teams, playerId, onSign, context }: {
                         {r.seasonsWith > 0 && <span className="muted"> · played here {r.seasonsWith} {r.seasonsWith === 1 ? 'season' : 'seasons'}</span>}
                       </td>
                       <td className="num">${r.room}</td>
-                      <td>{r.ask === null ? <span className="muted">No FBA rating yet</span> : r.affordable ? `Fits about $${r.ask}` : <span className="muted">Short of about ${r.ask}</span>}</td>
+                      <td>{r.room < 1 ? <span className="muted">No cap room</span> : r.ask === null ? <span className="muted">No FBA rating yet</span> : r.affordable ? `Fits about $${r.ask}` : <span className="muted">Short of about ${r.ask}</span>}</td>
                       <td><button className="btn" onClick={ev => { ev.stopPropagation(); onSign(r.teamId); }}>See roster with {team?.abbr ?? r.teamId}</button></td>
                     </tr>
                   );
