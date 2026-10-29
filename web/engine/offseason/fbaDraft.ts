@@ -133,7 +133,7 @@ export function finishDraft(state: FbaDraftState, ctx: MoveContext): WritesResul
   return {
     ok: true,
     writes: [
-      { path: draftPath(n), doc: { ...state.draft, locked: true } },
+      { path: draftPath(n), doc: { ...state.draft, locked: true, rookiesRated: false } },
       { path: 'calendar.json', doc: markStepDone(state.calendar, draftStepId(n)) },
       { path: docPath('fbaTx', n), doc: appendTx(state.tx, ctx, 'drafted', [], lines) },
     ],

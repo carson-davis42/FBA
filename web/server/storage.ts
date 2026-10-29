@@ -47,9 +47,10 @@ const MAX_JOURNAL = 50;
 
 function isLocked(text: string): boolean {
   try {
-    const doc = JSON.parse(text) as { locked?: unknown; allFbaLocked?: unknown };
+    const doc = JSON.parse(text) as { locked?: unknown; allFbaLocked?: unknown; rookiesRated?: unknown };
     // An FBA awards doc stays open for the All-FBA teams, which are picked after the playoffs.
-    return doc?.locked === true && doc.allFbaLocked !== false;
+    // A finished draft stays open for the rookie ratings, until that step is done.
+    return doc?.locked === true && doc.allFbaLocked !== false && doc.rookiesRated !== false;
   } catch {
     return false;
   }

@@ -1377,6 +1377,8 @@ export const DraftFile = z.object({
   rankOrder: z.array(playerId).optional(),
   /** The rookie ratings typed in the step after the draft (55 to 99), until the step is finished. */
   rookieRatings: z.record(playerId, int.min(55).max(99)).optional(),
+  /** false from the moment the draft is finished until the rookie ratings step is done: the finished draft stays writable for the typed ratings (like `allFbaLocked` on the awards). */
+  rookiesRated: z.boolean().optional(),
 }).strict().superRefine((doc, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const ids = new Set(doc.prospects.map(p => p.playerId));

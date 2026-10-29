@@ -107,6 +107,7 @@ export function finishRookieRatings(state: RookieRatingsState, ctx: MoveContext)
   return {
     ok: true,
     writes: [
+      { path: draftPath(n), doc: { ...state.draft, rookiesRated: true } },
       { path: docPath('fba', n), doc: { ...state.fba, teams } },
       { path: docPath('freeAgents', n), doc: { ...state.freeAgents, players: [...state.freeAgents.players, ...agents] } },
       { path: docPath('reserves', n), doc: { ...state.reserves, players: [...state.reserves.players, ...toReserves] } },

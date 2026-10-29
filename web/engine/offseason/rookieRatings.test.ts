@@ -99,8 +99,9 @@ describe('finishRookieRatings', () => {
     const r = ok(finish(rated()));
     expect(r.label).toBe('Finish the S80 rookie ratings');
     expect(r.writes.map(w => w.path)).toEqual([
-      'leagues/fba/S80/rosters.json', 'leagues/fba/S80/freeAgents.json', 'leagues/fbad2/S80/reserves.json', 'leagues/fba/S80/transactions.json', 'calendar.json',
+      'leagues/fba/S80/draft.json', 'leagues/fba/S80/rosters.json', 'leagues/fba/S80/freeAgents.json', 'leagues/fbad2/S80/reserves.json', 'leagues/fba/S80/transactions.json', 'calendar.json',
     ]);
+    expect(doc<DraftFile>(r, 'leagues/fba/S80/draft.json').rookiesRated).toBe(true);
     const fba = doc<RostersFile>(r, 'leagues/fba/S80/rosters.json');
     expect(fba.teams.T1.map(e => [e.playerId, e.rating])).toEqual([[ids[0], 80], [ids[2], 70]]);
     expect(fba.teams.T2.map(e => [e.playerId, e.rating])).toEqual([[ids[1], 75], ['p00099', 70]]);
