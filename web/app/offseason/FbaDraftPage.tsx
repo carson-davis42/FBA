@@ -302,7 +302,7 @@ export function FbaDraftPage() {
               theme={teamTheme(clockTeam, 'fba', n)}
               logo={<TeamMark team={clockTeam} season={n} size={72} />}
               kicker={`On the clock · Pick #${clock.slot}`}
-              title={`${clockTeam.name} roster`}
+              title={clockTeam.name}
               stats={[
                 { label: 'Needs', value: rows.filter(r => r.need).length },
                 { label: 'Players', value: rows.reduce((sum, r) => sum + r.players.length, 0) },
