@@ -46,7 +46,7 @@ describe('contract extensions', () => {
     expect(extensionRoom(state, pg)).toBe(0);
   });
 
-  it('knows a player signed, re-signed or extended by his team in this season's transactions', () => {
+  it('knows a player signed, re-signed or extended by his team in this season transactions', () => {
     const state = baseState();
     const pg = state.fba.teams.BOS[0];
     const name = state.players.players[pg.playerId!].name;
