@@ -76,6 +76,34 @@ describe('PlayersPage', () => {
     expect(ranks()).toEqual(['1', '2', '3', '4']);
   });
 
+  it('lists the free agents with an FBA rating, rookies included, under a Free agents stand-in team', async () => {
+    const players = (docs['players.json'] as { players: Record<string, unknown> }).players;
+    Object.assign(players, {
+      p00097: { id: 'p00097', name: 'Una Rated', birthSeason: 60 },
+      p00098: { id: 'p00098', name: 'Rory Rookie', birthSeason: 58 },
+      p00099: { id: 'p00099', name: 'Vic Veteran', birthSeason: 52 },
+    });
+    docs['leagues/fba/S79/freeAgents.json'] = { league: 'fba', season: 79, locked: false, players: [
+      { playerId: 'p00099', position: 'C', age: 27, rating: 68, rookie: false, note: '' },
+      { playerId: 'p00098', position: 'SG', age: 21, rating: 62, rookie: true, note: '' },
+      { playerId: 'p00097', position: 'PG', age: 22, rating: null, rookie: true, note: '' },
+    ] };
+    try {
+      renderAt('/league/fba/players');
+      await screen.findByText('Vic Veteran');
+      expect(names()).toContain('Rory Rookie');
+      expect(names()).not.toContain('Una Rated');
+      const row = screen.getAllByRole('row').find(x => x.textContent?.includes('Vic Veteran'))!;
+      expect(within(row).getAllByRole('cell')[2].textContent).toBe('FA');
+      expect(within(row).getAllByRole('cell')[2].querySelector('a')).toBeNull();
+      fireEvent.change(screen.getByLabelText('Team'), { target: { value: 'FA' } });
+      expect(names()).toEqual(['Vic Veteran', 'Rory Rookie']);
+    } finally {
+      delete docs['leagues/fba/S79/freeAgents.json'];
+      for (const id of ['p00097', 'p00098', 'p00099']) delete players[id];
+    }
+  });
+
   it('shows games, PPG, points and contract', async () => {
     renderAt('/league/fba/players');
     await screen.findByText('Ivory Huntley');
