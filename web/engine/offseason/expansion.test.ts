@@ -373,6 +373,15 @@ describe('expansionPick', () => {
       expect(problemsOf(expansionPick(s, pid('A', 'PG'), ctx, { years: 5, amount: 5 })).join(' ')).toMatch(/limited to 4 years/);
       expect(problemsOf(expansionPick(s, pid('A', 'PG'), ctx, { years: 3, amount: 2 })).join(' ')).toMatch(/Years can't exceed dollars/);
     });
+    it('cannot run past the season he plays at age 32', () => {
+      const s = expiredState();
+      const teams = { ...s.fba.teams, A: s.fba.teams.A.map(e => (e.playerId === pid('A', 'PG') ? { ...e, age: 31 } : e)) };
+      // His birth season wins over the listed age: born S49 is 31 in S80.
+      const players = { ...s.players, players: { ...s.players.players, [pid('A', 'PG')]: { ...s.players.players[pid('A', 'PG')], birthSeason: 49 } } };
+      const old = { ...s, fba: { ...s.fba, teams }, players };
+      expect(problemsOf(expansionPick(old, pid('A', 'PG'), ctx, { years: 4, amount: 4 })).join(' ')).toMatch(/Contract cannot run past S81.*2 years at most/);
+      expect(expansionPick(old, pid('A', 'PG'), ctx, { years: 2, amount: 2 }).ok).toBe(true);
+    });
     it('takes the deal he is signed to, and records it', () => {
       const s = expiredState();
       const r = expansionPick(s, pid('A', 'PG'), ctx, { years: 2, amount: 4 });

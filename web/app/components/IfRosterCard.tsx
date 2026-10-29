@@ -28,10 +28,18 @@ export function IfRosterCard({ state, input, teamName, phase }: { state: RosterS
                 <td>{e.contractAmount != null && e.contractEnd != null ? `$${e.contractAmount} thru S${e.contractEnd}` : '—'}</td>
               </tr>
             ))}
+            {view.leaving.map(e => (
+              <tr key={`out-${e.playerId}`} className="muted" aria-label={`Out: ${name(e.playerId!)}`}>
+                <td>{e.position}</td>
+                <td><s><PlayerName id={e.playerId} name={name(e.playerId!)} /></s> <strong>(out)</strong></td>
+                <td className="num">{e.rating ?? '—'}</td>
+                <td className="num">{e.age ?? '—'}</td>
+                <td>{e.contractAmount != null && e.contractEnd != null ? `$${e.contractAmount} thru S${e.contractEnd}` : '—'}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-      {view.leaving.length > 0 && <p className="muted">Out: {view.leaving.map(e => `${e.position} ${name(e.playerId!)}`).join(', ')}</p>}
       <p className="muted">Open after: {open.length ? open.join(', ') : 'none'}</p>
       <PayrollBar total={view.payroll} />
       {!view.ok && <p className="muted">Not allowed as typed: {view.problems.join('; ')}</p>}

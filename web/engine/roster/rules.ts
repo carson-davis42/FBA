@@ -45,6 +45,21 @@ export function contractProblems(t: { years: number; amount: number }, kind: Con
   return p;
 }
 
+/**
+ * A contract may not run past the season the player plays at RETIRE_AGE, because he retires after it. `age` is his age this `season`; the
+ * birth season, when known, wins over it. No age: nothing to check. Returns the problem, or null.
+ */
+export function careerEndProblem(o: { season: number; years: number; age: number | null; birthSeason?: number | null }): string | null {
+  const age = o.birthSeason != null ? o.season - o.birthSeason : o.age;
+  if (age === null) return null;
+  const lastSeason = o.season + RETIRE_AGE - age;
+  if (contractEndFor(o.season, o.years) <= lastSeason) return null;
+  const left = lastSeason - o.season + 1;
+  return left < 1
+    ? `He is past the age-${RETIRE_AGE} season and retires: he cannot be signed`
+    : `Contract cannot run past S${lastSeason}, the player's age-${RETIRE_AGE} season (${left} ${left === 1 ? 'year' : 'years'} at most)`;
+}
+
 export function capProblem(total: number, cap: number = CAP): string | null {
   return total > cap ? `Payroll would be $${total} (cap $${cap})` : null;
 }

@@ -1,7 +1,7 @@
 import type { FreeAgent, Position, RosterEntry } from '../shared/types';
 import { lockProblem } from '../season/locks';
 import {
-  CAP, capProblem, contractEndFor, contractProblems, isExpired, MAX_AMOUNT, MAX_YEARS_RESIGN, normalizeRoster, payroll, POSITIONS, RETIRE_AGE, slotProblems, TRADE_CAP,
+  CAP, capProblem, careerEndProblem, contractEndFor, contractProblems, isExpired, MAX_AMOUNT, MAX_YEARS_RESIGN, normalizeRoster, payroll, POSITIONS, RETIRE_AGE, slotProblems, TRADE_CAP,
   type ContractKind,
 } from './rules';
 import {
@@ -63,6 +63,9 @@ export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContex
   const kind: ContractKind = resign ? 'resign' : src.kind === 'fa' && src.fa.rookie ? 'rookie' : 'new';
 
   const problems = contractProblems({ years: input.years, amount: input.amount }, kind);
+  if (state.players.players[input.playerId]?.retired) problems.push('A retired player cannot be signed');
+  const career = careerEndProblem({ season, years: input.years, age, birthSeason: state.players.players[input.playerId]?.birthSeason });
+  if (career) problems.push(career);
   const knownRating = src.kind === 'fa' ? src.fa.rating : src.kind === 'expired' ? src.entry.rating : null;
   const rating = input.rating ?? knownRating;
   if (src.kind === 'd2' && input.rating === undefined) problems.push('Enter his FBA rating (D2 ratings are on a different scale)');
@@ -137,6 +140,7 @@ export function extendPlayer(state: RosterState, input: ExtendInput, ctx: MoveCo
   const end = before.contractEnd + 1;
   const years = end - state.season + 1;
   const problems: string[] = [];
+  if (years > MAX_YEARS_RESIGN) problems.push(`An extension can make a contract ${MAX_YEARS_RESIGN} years at most (this would be ${years})`);
   const player = state.players.players[input.playerId];
   const birth = player?.birthSeason;
   const age = birth == null ? before.age : state.season - birth;

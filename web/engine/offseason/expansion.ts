@@ -1,4 +1,4 @@
-import { capProblem, contractEndFor, contractProblems, normalizeRoster, payroll } from '../roster/rules';
+import { capProblem, careerEndProblem, contractEndFor, contractProblems, normalizeRoster, payroll } from '../roster/rules';
 import { appendTx, docPath, findOnRoster, withTeam, type MoveContext } from '../roster/state';
 import { calendarProblem, type WritesResult } from '../season/moves';
 import { markStepDone } from '../shared/calendar';
@@ -232,7 +232,11 @@ export function pickProblems(state: ExpansionState, playerId: string, terms?: Ex
   const entry = state.fba.teams[exposed.teamId]?.find(e => e.playerId === playerId);
   const signs = entry ? needsContract(entry, state.season) : false;
   if (signs && !terms) out.push(`${name} has no contract: ${teamName(state, clock)} must sign him for at least 1 year`);
-  if (signs && terms) out.push(...contractProblems(terms, 'new'));
+  if (signs && terms) {
+    out.push(...contractProblems(terms, 'new'));
+    const career = careerEndProblem({ season: state.season, years: terms.years, age: exposed.age, birthSeason: state.players.players[playerId]?.birthSeason });
+    if (career) out.push(career);
+  }
   const incoming = signs ? terms?.amount ?? 1 : entry ? payroll([entry], state.season) : 0;
   const cap = capProblem(payroll(roster, state.season) + incoming);
   if (cap) out.push(cap);

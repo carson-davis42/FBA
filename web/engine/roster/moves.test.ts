@@ -23,6 +23,19 @@ describe('signPlayer', () => {
     expect(r.warnings).toEqual([]);
   });
 
+  it('refuses a deal that runs past the season the player plays at age 32', () => {
+    // p00030 is 27 in S79: he plays through S84, so 6 years would be too many but the limit of 4 stops it first; make him 31.
+    const s = baseState();
+    s.freeAgents.players = s.freeAgents.players.map(p => (p.playerId === 'p00030' ? { ...p, age: 31 } : p));
+    // age 31 in S79: S79 (31), S80 (32): two years at most.
+    expect(ok(signPlayer(s, { playerId: 'p00030', teamId: 'MON', years: 2, amount: 2, conflict: 'release' }, ctx)).ok).toBe(true);
+    expect(problems(signPlayer(s, { playerId: 'p00030', teamId: 'MON', years: 3, amount: 3, conflict: 'release' }, ctx)).join(' '))
+      .toMatch(/Contract cannot run past S80, the player's age-32 season \(2 years at most\)/);
+    // A birth season on the player record wins over the listed age.
+    s.players.players.p00030 = { ...s.players.players.p00030, birthSeason: 47 };
+    expect(problems(signPlayer(s, { playerId: 'p00030', teamId: 'MON', years: 2, amount: 2, conflict: 'release' }, ctx)).join(' ')).toMatch(/S79.*1 year at most/);
+  });
+
   it('blocks deals that break the cap or contract rules', () => {
     expect(problems(signPlayer(baseState(), { playerId: 'p00030', teamId: 'CAR', years: 3, amount: 3, conflict: 'release' }, ctx))).toEqual(['Payroll would be $26 (cap $25)']);
     expect(problems(signPlayer(baseState(), { playerId: 'p00030', teamId: 'MON', years: 2, amount: 1, conflict: 'release' }, ctx))).toEqual(["Years can't exceed dollars (2 years needs at least $2)"]);

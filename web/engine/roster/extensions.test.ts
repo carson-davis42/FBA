@@ -35,11 +35,18 @@ describe('contract extensions', () => {
     if (result.ok) expect(result.state.fba.teams.MON[0]).toMatchObject({ contractEnd: 81, contractAmount: 5, restricted: true });
   });
 
-  it('does not apply new-signing or re-signing length limits to extensions', () => {
+  it('does not apply the new-signing limit of four years: an extension may make the deal five years', () => {
     const state = baseState();
-    state.fba.teams.BOS[0].contractEnd = 83;
+    state.fba.teams.BOS[0].contractEnd = 82; // S79..S82 is four years; the extension makes S79..S83, five.
     state.fba.teams.BOS[0].age = 26;
     expect(extendPlayer(state, { ...input, amount: 8 }, ctx).ok).toBe(true);
+  });
+
+  it('refuses an extension that would make the contract longer than five years', () => {
+    const state = baseState();
+    state.fba.teams.BOS[0].contractEnd = 83; // S79..S83 is already five years.
+    state.fba.teams.BOS[0].age = 26;
+    expect(extendPlayer(state, { ...input, amount: 8 }, ctx)).toEqual({ ok: false, problems: ['An extension can make a contract 5 years at most (this would be 6)'] });
   });
 
   it('rejects a decrease greater than $1', () => {

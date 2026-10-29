@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { capProblem, contractEndFor, contractProblems, isExpired, normalizeRoster, payroll, slotProblems, TRADE_CAP, vacantEntry } from './rules';
+import { capProblem, careerEndProblem, contractEndFor, contractProblems, isExpired, normalizeRoster, payroll, slotProblems, TRADE_CAP, vacantEntry } from './rules';
 import { appendTx, docPath, findOnRoster } from './state';
 import { baseState } from './testFixtures';
 
@@ -69,5 +69,23 @@ describe('state helpers', () => {
     expect(findOnRoster(s.d2, 'p00023')).toMatchObject({ teamId: 'AMS', index: 3 });
     const tx = appendTx(appendTx(s.fbaTx, { batchId: 'b1' }, 'edit', ['BOS'], ['x']), { batchId: 'b2' }, 'cut', ['BOS'], ['y']);
     expect(tx.entries.map(e => [e.seq, e.batchId, e.type])).toEqual([[1, 'b1', 'edit'], [2, 'b2', 'cut']]);
+  });
+});
+
+
+describe('careerEndProblem', () => {
+  it('allows a contract that ends in or before the age-32 season', () => {
+    // age 30 in S80: plays S80, S81, S82 (age 32), so 3 years at most.
+    expect(careerEndProblem({ season: 80, years: 3, age: 30 })).toBeNull();
+    expect(careerEndProblem({ season: 80, years: 4, age: 30 })).toMatch(/cannot run past S82.*3 years at most/);
+  });
+  it('allows one year at 32 and refuses any past it', () => {
+    expect(careerEndProblem({ season: 80, years: 1, age: 32 })).toBeNull();
+    expect(careerEndProblem({ season: 80, years: 2, age: 32 })).toMatch(/S80.*1 year at most/);
+    expect(careerEndProblem({ season: 80, years: 1, age: 33 })).toMatch(/retires/);
+  });
+  it('uses the birth season over the age, and checks nothing without an age', () => {
+    expect(careerEndProblem({ season: 80, years: 3, age: 20, birthSeason: 49 })).toMatch(/S81/);
+    expect(careerEndProblem({ season: 80, years: 4, age: null })).toBeNull();
   });
 });
