@@ -25,6 +25,15 @@ describe('contract extensions', () => {
     expect(TransactionsFile.safeParse(result.state.fbaTx).success).toBe(true);
   });
 
+  it('can add several seasons at once, up to a five-year contract', () => {
+    // BOS PG ends S80 in S79: two years now; adding three makes S79..S83, five years.
+    const three = extendPlayer(baseState(), { ...input, amount: 8, seasons: 3 }, ctx);
+    expect(three.ok).toBe(true);
+    if (three.ok) expect(three.state.fba.teams.BOS[0]).toMatchObject({ contractEnd: 83, contractAmount: 8 });
+    const four = extendPlayer(baseState(), { ...input, amount: 8, seasons: 4 }, ctx);
+    expect(four.ok).toBe(false);
+  });
+
   it('allows unchanged pay', () => {
     expect(extendPlayer(baseState(), { ...input, amount: 8 }, ctx).ok).toBe(true);
   });

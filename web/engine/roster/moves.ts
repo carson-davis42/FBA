@@ -133,9 +133,11 @@ export interface ExtendInput {
   teamId: string;
   playerId: string;
   amount: number;
+  /** Seasons added to the contract; 1 when omitted. */
+  seasons?: number;
 }
 
-/** Extensions add one season and change salary immediately, regardless of the season phase. */
+/** Extensions add seasons (one by default, up to a 5-year contract) and change salary immediately, regardless of the season phase. */
 export function extendPlayer(state: RosterState, input: ExtendInput, ctx: MoveContext): MoveResult {
   if (state.fba.locked || state.fbaTx.locked) return fail(['This season is final (locked)']);
   const team = state.fba.teams[input.teamId];
@@ -144,7 +146,9 @@ export function extendPlayer(state: RosterState, input: ExtendInput, ctx: MoveCo
   if (before.contractEnd == null || before.contractAmount == null || isExpired(before, state.season)) {
     return fail(['Only an active contract can be extended; re-sign an expired player instead']);
   }
-  const end = before.contractEnd + 1;
+  const seasons = input.seasons ?? 1;
+  if (!Number.isInteger(seasons) || seasons < 1) return fail(['An extension adds at least one season']);
+  const end = before.contractEnd + seasons;
   const years = end - state.season + 1;
   const problems: string[] = [];
   if (years > MAX_YEARS_RESIGN) problems.push(`An extension can make a contract ${MAX_YEARS_RESIGN} years at most (this would be ${years})`);
@@ -160,7 +164,7 @@ export function extendPlayer(state: RosterState, input: ExtendInput, ctx: MoveCo
   if (!Number.isInteger(input.amount) || input.amount < 1) problems.push('Amount must be a whole number of dollars, at least $1');
   else {
     if (input.amount > MAX_AMOUNT) problems.push(`Amount can't exceed $${MAX_AMOUNT}`);
-    if (input.amount < before.contractAmount - 1) problems.push('Pay can decrease by at most $1 per season extended');
+    if (input.amount < before.contractAmount - seasons) problems.push('Pay can decrease by at most $1 per season extended');
     if (years > input.amount) problems.push(`Years can't exceed dollars (${years} years needs at least $${years})`);
   }
   const entries = team.map(e => e === before ? { ...e, contractEnd: end, contractAmount: input.amount } : e);
