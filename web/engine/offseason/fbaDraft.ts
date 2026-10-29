@@ -143,12 +143,13 @@ export function finishDraft(state: FbaDraftState, ctx: MoveContext): WritesResul
 
 /**
  * What a team has at each position going into a pick, for the draft screen: the players there, and whether the spot is a need.
- * A position is a need when nobody holds it or every player there is on a contract that ended before this season.
+ * A position is a need when nobody holds it or every player there is on a contract that ended before this season. An ended rookie contract
+ * (restricted) is a team option, so the team decides whether to keep him and it is not counted as a need.
  */
 export function draftRoster(entries: RosterEntry[], season: number): { position: Position; players: RosterEntry[]; need: boolean }[] {
   return POSITIONS.map(position => {
     const players = entries.filter(e => e.playerId !== null && e.position === position);
-    const need = players.every(e => e.contractEnd !== null && e.contractEnd !== undefined && e.contractEnd < season);
+    const need = players.every(e => e.contractEnd !== null && e.contractEnd !== undefined && e.contractEnd < season && !e.restricted);
     return { position, players, need };
   });
 }

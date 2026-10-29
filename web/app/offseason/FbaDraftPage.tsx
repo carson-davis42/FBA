@@ -327,7 +327,7 @@ export function FbaDraftPage() {
                       <td><PlayerName id={e.playerId!} name={nameOf(e.playerId!)} /></td>
                       <td className="num">{e.rating ?? '—'}</td>
                       <td className="num">{e.age ?? '—'}</td>
-                      <td>{e.contractAmount != null && e.contractEnd != null ? `$${e.contractAmount} thru S${e.contractEnd}${e.restricted ? ' (rookie)' : ''}` : '—'}</td>
+                      <td>{e.contractAmount != null && e.contractEnd != null ? `$${e.contractAmount} thru S${e.contractEnd}${e.restricted ? (e.contractEnd < n ? ' (rookie, team option)' : ' (rookie)') : ''}` : '—'}</td>
                       <td>{need ? <strong>Need (expired)</strong> : ''}</td>
                     </tr>
                   ))))}
