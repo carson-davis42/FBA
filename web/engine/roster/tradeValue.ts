@@ -18,7 +18,7 @@ const ratingValue = (rating: number): number => Math.max(0, rating - 60) ** 2 / 
 const ageFactor = (age: number | null): number => (age === null ? 0.8 : 0.55 + 0.45 * Math.max(0, Math.min(1, (RETIRE_AGE - age) / 8)));
 
 /** What a player of this rating is paid on a typical contract, topping out at the $8 maximum. */
-const marketAmount = (rating: number): number => Math.min(8, Math.max(1, 0.25 * (rating - 58)));
+export const marketAmount = (rating: number): number => Math.min(8, Math.max(1, 0.25 * (rating - 58)));
 
 /** The worth of one FBA player to a team: rating, scaled by age, plus the surplus of a below-market contract over its first three years. */
 export function playerValue(e: RosterEntry, season: number): number {

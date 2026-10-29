@@ -7,6 +7,7 @@ import { payroll, POSITIONS } from '../../engine/roster/rules';
 import { currentStepIndex, markCurrentDone } from '../../engine/shared/calendar';
 import type { CalendarFile, Position, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
+import { InterestedTeams } from '../components/InterestedTeams';
 import { PageHeader } from '../components/PageHeader';
 import { PayrollBar } from '../components/PayrollBar';
 import { RosterTable } from '../components/RosterTable';
@@ -75,6 +76,8 @@ export function FreeAgencyPage() {
   const [type, setType] = useState<MarketType | 'ALL'>('ALL');
   const [teamId, setTeamId] = useState('');
   const [selected, setSelected] = useState<string | null>(null);
+  // The team picked from the interested list for the selected player (reset when another player is selected).
+  const [signTeam, setSignTeam] = useState('');
   const [closeError, setCloseError] = useState('');
   const saving = useSaving();
 
@@ -137,10 +140,11 @@ export function FreeAgencyPage() {
       )}
 
       {selected && !closed && (
-        <SignPanel key={selected} state={state} teams={teams} playerId={selected} defaultTeam={teamId} onClose={() => setSelected(null)} versions={versions} phase={phase} />
+        <SignPanel key={`${selected}-${signTeam}`} state={state} teams={teams} playerId={selected} defaultTeam={signTeam || teamId} onClose={() => setSelected(null)} versions={versions} phase={phase} />
       )}
+      {selected && !closed && <InterestedTeams state={state} teams={teams.teams} playerId={selected} onSign={setSignTeam} />}
 
-      <MarketTable rows={rows} selected={selected} onSelect={setSelected} teams={teams.teams} season={state.season} />
+      <MarketTable rows={rows} selected={selected} onSelect={id => { setSelected(id); setSignTeam(''); }} teams={teams.teams} season={state.season} />
 
       {!closed && (
         <div className="card close-fa">
