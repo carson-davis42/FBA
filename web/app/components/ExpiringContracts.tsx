@@ -1,4 +1,4 @@
-import { extensionRoom } from '../../engine/roster/moves';
+import { extensionRoom, signedThisOffseason } from '../../engine/roster/moves';
 import type { RosterState } from '../../engine/roster/state';
 import type { Team } from '../../engine/shared/types';
 import { PlayerName } from './PlayerName';
@@ -14,12 +14,12 @@ export function ExpiringContracts({ state, teams, teamId, passed, busy, onExtend
   onPass: (playerId: string, pass: boolean) => void;
 }) {
   const rows = Object.entries(state.fba.teams)
-    .flatMap(([t, entries]) => entries.filter(e => e.playerId !== null && e.contractEnd === state.season && extensionRoom(state, e) > 0 && (!teamId || t === teamId)).map(e => ({ teamId: t, e })))
+    .flatMap(([t, entries]) => entries.filter(e => e.playerId !== null && e.contractEnd === state.season && extensionRoom(state, e) > 0 && !signedThisOffseason(state, t, e) && (!teamId || t === teamId)).map(e => ({ teamId: t, e })))
     .sort((a, b) => Number(passed.has(a.e.playerId!)) - Number(passed.has(b.e.playerId!)) || (b.e.rating ?? -1) - (a.e.rating ?? -1));
   return (
     <section className="card" aria-label="Contracts ending this season">
       <h3>Contracts ending after S{state.season} ({rows.length})</h3>
-      <p className="muted">These players reach free agency next year. A team can extend one now. Players in their last season before retiring (age 32) are left out.</p>
+      <p className="muted">These players reach free agency next year. A team can extend one now. Players in their last season before retiring (age 32) and players who signed a deal this offseason are left out.</p>
       {rows.length === 0
         ? <p className="muted">No contracts end after S{state.season}{teamId ? ' for this team' : ''}.</p>
         : (

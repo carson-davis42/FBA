@@ -137,6 +137,14 @@ export interface ExtendInput {
   seasons?: number;
 }
 
+/** Signed, re-signed or extended by this team in this season's transactions: a new deal from this offseason, so there is nothing to decide about it now. */
+export function signedThisOffseason(state: RosterState, teamId: string, e: RosterEntry): boolean {
+  if (e.playerId === null) return false;
+  const name = nameOf(state, e.playerId);
+  return state.fbaTx.entries.some(tx => (tx.type === 'signed' || tx.type === 'resigned' || tx.type === 'extended') && tx.teams.includes(teamId)
+    && tx.lines.some(l => l.includes(`-${name} (`) || l.includes(`-${name}:`)));
+}
+
 /**
  * How many seasons could be added to his contract: it may run 5 years from this season at most and not past the season he plays at age 32.
  * Zero for a player who is retired or whose contract already reaches his last season, so there is nothing to extend. An unknown age counts only the 5-year limit.

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { RostersFile, TransactionsFile } from '../shared/types';
-import { extendPlayer, extensionRoom } from './moves';
+import { extendPlayer, extensionRoom, signedThisOffseason } from './moves';
 import { baseState } from './testFixtures';
 
 const input = { teamId: 'BOS', playerId: 'p00001', amount: 7 };
@@ -44,6 +44,16 @@ describe('contract extensions', () => {
     expect(extensionRoom(state, pg)).toBe(3);
     state.players.players[pg.playerId!] = { ...state.players.players[pg.playerId!], retired: { season: 78, age: 31 } as never };
     expect(extensionRoom(state, pg)).toBe(0);
+  });
+
+  it('knows a player signed, re-signed or extended by his team in this season's transactions', () => {
+    const state = baseState();
+    const pg = state.fba.teams.BOS[0];
+    const name = state.players.players[pg.playerId!].name;
+    expect(signedThisOffseason(state, 'BOS', pg)).toBe(false);
+    state.fbaTx.entries.push({ seq: 1, batchId: 'b', type: 'signed', teams: ['BOS'], lines: [`Signed PG-${name} (2/$3, thru S80)`] });
+    expect(signedThisOffseason(state, 'BOS', pg)).toBe(true);
+    expect(signedThisOffseason(state, 'CAR', pg)).toBe(false);
   });
 
   it('allows unchanged pay', () => {
