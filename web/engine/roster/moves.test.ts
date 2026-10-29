@@ -131,23 +131,23 @@ describe('signPlayer', () => {
 });
 
 describe('releasePlayer', () => {
-  it('sends a rookie cut straight after the draft (deal still running) to free agency as a rookie: only a restricted 1/$1 or 2/$2 deal', () => {
-    const s = baseState();
-    s.fba.teams.BOS = s.fba.teams.BOS.map(e => (e.playerId === 'p00002' ? { ...e, restricted: true, contractEnd: 80 } : e));
-    const cut = ok(releasePlayer(s, { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'cut' }, ctx));
+  const withDraft = (s: RosterState, owner: string): RosterState => ({ ...s, draft: { picks: [{ slot: 1, owner, originalTeam: owner, playerId: 'p00002' }] } as unknown as RosterState['draft'] });
+
+  it('sends a player cut by the team that drafted him this year to free agency as a rookie: only a restricted 1/$1 or 2/$2 deal', () => {
+    const cut = ok(releasePlayer(withDraft(baseState(), 'BOS'), { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'cut' }, ctx));
     expect(cut.state.freeAgents.players.find(p => p.playerId === 'p00002')?.rookie).toBe(true);
     expect(problems(signPlayer(cut.state, { playerId: 'p00002', teamId: 'CAR', years: 3, amount: 3, conflict: 'release' }, ctx))).toContain('Rookie contracts are 1/$1 or 2/$2');
     const signed = ok(signPlayer(cut.state, { playerId: 'p00002', teamId: 'MON', years: 2, amount: 2, conflict: 'release' }, ctx));
     expect(signed.state.fba.teams.MON.find(e => e.playerId === 'p00002')?.restricted).toBe(true);
   });
 
-  it('does not make a rookie whose deal has ended or who has played a season a rookie again', () => {
-    for (const contractEnd of [79, 78]) {
-      const s = baseState();
-      s.fba.teams.BOS = s.fba.teams.BOS.map(e => (e.playerId === 'p00002' ? { ...e, restricted: true, contractEnd } : e));
-      const cut = ok(releasePlayer(s, { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'cut' }, ctx));
-      expect(cut.state.freeAgents.players.find(p => p.playerId === 'p00002')?.rookie).toBe(false);
-    }
+  it('does not make a rookie of a player who has played, even on a rookie contract, or of one cut by a team that did not draft him', () => {
+    const s = baseState();
+    s.fba.teams.BOS = s.fba.teams.BOS.map(e => (e.playerId === 'p00002' ? { ...e, restricted: true, contractEnd: 80 } : e));
+    const played = ok(releasePlayer(s, { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'cut' }, ctx));
+    expect(played.state.freeAgents.players.find(p => p.playerId === 'p00002')?.rookie).toBe(false);
+    const traded = ok(releasePlayer(withDraft(baseState(), 'CAR'), { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'cut' }, ctx));
+    expect(traded.state.freeAgents.players.find(p => p.playerId === 'p00002')?.rookie).toBe(false);
   });
 
   it('releases an FBA player to the free-agent pool', () => {
