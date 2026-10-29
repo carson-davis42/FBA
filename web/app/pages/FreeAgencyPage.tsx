@@ -98,6 +98,7 @@ export function FreeAgencyPage() {
   if (error) return <p className="error">Couldn't load rosters: {error.message}</p>;
   if (!state || !teams || !cal || (!passedDoc.data && !passedDoc.missing && !passedDoc.error)) return <p className="muted">Loading…</p>;
   const passed = new Set(passedDoc.data?.passed ?? []);
+  const interestContext = { franchises: franchisesDoc.data ?? null, bios: biosDoc.data ?? null, draft: draftDoc.data ?? null, jcTeams: jcTeamsDoc.data ?? null };
   const letGo = async (t: string, playerId: string) => {
     const result = releasePlayer(state, { league: 'fba', teamId: t, playerId, kind: 'released' }, { batchId: newBatchId(), phase });
     if (!result.ok) { setPassError(result.problems.join('; ')); return; }
@@ -180,9 +181,9 @@ export function FreeAgencyPage() {
       )}
 
       {selected && !closed && (
-        <SignPanel key={`${selected}-${signTeam}`} state={state} teams={teams} playerId={selected} defaultTeam={signTeam || teamId} onClose={() => setSelected(null)} versions={versions} phase={phase} />
+        <SignPanel key={`${selected}-${signTeam}`} state={state} teams={teams} playerId={selected} defaultTeam={signTeam || teamId} onClose={() => setSelected(null)} versions={versions} phase={phase} interest={interestContext} />
       )}
-      {selected && !closed && <InterestedTeams state={state} teams={teams.teams} playerId={selected} onSign={setSignTeam} context={{ franchises: franchisesDoc.data ?? null, bios: biosDoc.data ?? null, draft: draftDoc.data ?? null, jcTeams: jcTeamsDoc.data ?? null }} />}
+      {selected && !closed && <InterestedTeams state={state} teams={teams.teams} playerId={selected} onSign={setSignTeam} context={interestContext} />}
 
       <MarketTable rows={rows} selected={selected} onSelect={id => { setSelected(id); setSignTeam(''); }} teams={teams.teams} season={state.season} />
 

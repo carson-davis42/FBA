@@ -1,18 +1,12 @@
 import { useMemo } from 'react';
 import { interestedTeams, WEIGHTS, type InterestScore } from '../../engine/roster/interest';
-import { playerProfile } from '../../engine/roster/interestProfile';
 import type { RosterState } from '../../engine/roster/state';
-import { cityRegion, type Region } from '../../engine/shared/regions';
-import type { DraftFile, FranchisesFile, PlayerBiosFile, Team, TeamsFile } from '../../engine/shared/types';
+import type { Team } from '../../engine/shared/types';
+import { interestOptions, type InterestContext } from './interestOptions';
 import { PlayerName } from './PlayerName';
 import { TeamName } from './TeamName';
 
-/** What the interest ranking reads besides the rosters; any of it may still be loading or missing. */
-export interface InterestContext {
-  franchises: FranchisesFile | null; bios: PlayerBiosFile | null; draft: DraftFile | null; jcTeams: TeamsFile | null;
-}
-
-const breakdown = (s: InterestScore, seasonsWith: number): string =>
+export const breakdown = (s: InterestScore, seasonsWith: number): string =>
   `Strength ${s.strength}/${WEIGHTS.strength} · Filled spots ${s.filled}/${WEIGHTS.filled} · Region ${s.region}/${WEIGHTS.region} · Played here ${s.history}/${WEIGHTS.history}${seasonsWith ? ` (${seasonsWith} seasons)` : ''}${s.ownTeam ? ` · Own team +${s.ownTeam}` : ''}`;
 
 /**
@@ -24,18 +18,7 @@ export function InterestedTeams({ state, teams, playerId, onSign, context }: {
   /** The documents behind the profile, loaded once by the page (a document load counts as a save in flight, so they are not loaded here). */
   context: InterestContext;
 }) {
-  const { franchises, bios, draft, jcTeams } = context;
-  const options = useMemo(() => {
-    const teamRegions = new Map<string, Region>();
-    for (const f of franchises?.franchises ?? []) {
-      const region = cityRegion(f.eras[f.eras.length - 1]?.city ?? '');
-      if (region) teamRegions.set(f.teamId, region);
-    }
-    const bio = bios?.bios.find(b => b.playerId === playerId) ?? null;
-    const prospect = draft?.prospects.find(p => p.playerId === playerId);
-    const draftCollege = prospect ? jcTeams?.teams.find(t => t.teamId === prospect.college)?.name ?? null : null;
-    return { teamRegions, profile: playerProfile(bio, { season: state.season, franchises, draftCollege }) };
-  }, [franchises, bios, draft, jcTeams, playerId, state.season]);
+  const options = useMemo(() => interestOptions(context, playerId, state.season), [context, playerId, state.season]);
   const rows = interestedTeams(state, playerId, options);
   const name = state.players.players[playerId]?.name ?? 'Unnamed';
   return (
