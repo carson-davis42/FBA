@@ -76,7 +76,7 @@ export function DraftPicksPage() {
                       {conditionText(o.condition)}
                       {!sameCondition(o.condition, o.originalCondition) && <span className="muted"> (was {conditionText(o.originalCondition).toLowerCase()})</span>}
                     </td>
-                    <td>S{o.originSeason}</td>
+                    <td>{o.originSeason === o.season ? <span className="muted">—</span> : `S${o.originSeason}`}</td>
                     <td>{o.note || <span className="muted">—</span>}</td>
                   </tr>
                 ))}
