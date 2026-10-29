@@ -23,6 +23,7 @@ describe('interestedTeams', () => {
     const bos = interestedTeams(s, 'p00030').find(r => r.teamId === 'BOS')!;
     expect(bos).toMatchObject({ reason: 'need', affordable: false });
     expect(bos.room).toBeLessThan(1);
+    expect(bos.maxOffer).toBe(0);
   });
 
   it('keeps $1 for each other open spot, so a team with room for his ask but two open spots is not affordable', () => {
@@ -31,6 +32,7 @@ describe('interestedTeams', () => {
     s.fba.teams.CAR = s.fba.teams.CAR.map(e => (e.position === 'PG' ? { ...e, playerId: null, rating: null, age: null, contractEnd: null, contractAmount: null } : e));
     const car = interestedTeams(s, 'p00030').find(r => r.teamId === 'CAR')!;
     expect(car.reserve).toBe(1);
+    expect(car.maxOffer).toBe(Math.max(0, Math.min(8, car.room - 1)));
     expect(car.affordable).toBe(car.room >= (car.ask ?? 1) + 1);
   });
 

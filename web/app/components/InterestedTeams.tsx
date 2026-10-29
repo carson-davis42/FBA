@@ -33,7 +33,7 @@ export function InterestedTeams({ state, teams, playerId, onSign, context }: {
         : (
           <div className="table-wrap">
             <table className="stat-table" aria-label="Interested teams">
-              <thead><tr><th className="rank">#</th><th>Team</th><th className="num">Score</th><th className="num">Strength</th><th>Why</th><th className="num">Cap room</th><th>Fit</th><th /></tr></thead>
+              <thead><tr><th className="rank">#</th><th>Team</th><th className="num">Score</th><th className="num">Strength</th><th>Why</th><th className="num">Cap room</th><th className="num">Max offer</th><th /></tr></thead>
               <tbody>
                 {rows.map((r, i) => {
                   const team = teams.find(t => t.teamId === r.teamId);
@@ -50,7 +50,7 @@ export function InterestedTeams({ state, teams, playerId, onSign, context }: {
                         {r.seasonsWith > 0 && <span className="muted"> · played here {r.seasonsWith} {r.seasonsWith === 1 ? 'season' : 'seasons'}</span>}
                       </td>
                       <td className="num">${r.room}</td>
-                      <td>{r.room < 1 ? <span className="muted">No cap room</span> : r.ask === null ? <span className="muted">No FBA rating yet</span> : r.affordable ? `Fits about $${r.ask}` : <span className="muted">Short of about ${r.ask + r.reserve}{r.reserve > 0 ? ` (with $${r.reserve} kept for open spots)` : ''}</span>}</td>
+                      <td className="num" title={r.ask === null ? undefined : `A typical contract costs about $${r.ask}`}>{r.maxOffer > 0 ? `$${r.maxOffer}` : <span className="muted">None</span>}</td>
                       <td><button className="btn" onClick={ev => { ev.stopPropagation(); onSign(r.teamId); }}>See roster with {team?.abbr ?? r.teamId}</button></td>
                     </tr>
                   );

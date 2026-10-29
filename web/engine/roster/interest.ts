@@ -1,6 +1,6 @@
 import { areNeighbours, type Region } from '../shared/regions';
 import { marketRows } from './market';
-import { CAP, isExpired, openSpots, payroll } from './rules';
+import { CAP, isExpired, MAX_AMOUNT, openSpots, payroll } from './rules';
 import { nameOf, type RosterState } from './state';
 import { marketAmount, teamRanks } from './tradeValue';
 import { EMPTY_PROFILE, type PlayerProfile } from './interestProfile';
@@ -47,6 +47,8 @@ export interface InterestedTeam {
   room: number;
   /** What a typical contract for his rating costs; null while he has no FBA rating (a D2 player). */
   ask: number | null;
+  /** The most the team can offer him a year: its room less the reserve, up to the $8 maximum ($2 for a rookie); 0 when it has none. */
+  maxOffer: number;
   /** The $1 each of his team's other open spots still needs once he is signed. */
   reserve: number;
   /** The room covers the typical ask (or the $1 minimum when there is no ask yet) plus the reserve. */
@@ -102,20 +104,22 @@ export function interestedTeams(state: RosterState, playerId: string, options: I
     const own = row.from === teamId && row.type === 'Expired';
     // His own spot is already open for his own team (his contract ended) and for a team with nobody at his position; replacing a holder opens none.
     const reserveFor = (fillsOpen: boolean) => Math.max(0, open - (fillsOpen ? 1 : 0));
+    const ceiling = row.type === 'Rookie' ? 2 : MAX_AMOUNT;
+    const maxOffer = (reserve: number) => Math.max(0, Math.min(ceiling, room - reserve));
     const affordableWith = (reserve: number) => room >= (ask ?? 1) + reserve;
     if (own) {
       const reserve = reserveFor(true);
-      out.push({ teamId, strength: strengthOf(teamId), ...scored(teamId, entries, true), reason: 'resign', holder: null, room, ask, reserve, affordable: affordableWith(reserve) });
+      out.push({ teamId, strength: strengthOf(teamId), ...scored(teamId, entries, true), reason: 'resign', holder: null, room, ask, reserve, maxOffer: maxOffer(reserve), affordable: affordableWith(reserve) });
       continue;
     }
     // Players whose contracts ended leave with the market; a restricted one is a team option and still holds the spot.
     const holder = entries.find(e => e.playerId !== null && e.position === row.position && e.playerId !== playerId && !(isExpired(e, state.season) && !e.restricted));
     if (!holder) {
       const reserve = reserveFor(true);
-      out.push({ teamId, strength: strengthOf(teamId), ...scored(teamId, entries, false), reason: 'need', holder: null, room, ask, reserve, affordable: affordableWith(reserve) });
+      out.push({ teamId, strength: strengthOf(teamId), ...scored(teamId, entries, false), reason: 'need', holder: null, room, ask, reserve, maxOffer: maxOffer(reserve), affordable: affordableWith(reserve) });
     } else if (row.scale === 'FBA' && row.rating !== null && holder.rating !== null && row.rating >= holder.rating + UPGRADE_MARGIN && affordableWith(reserveFor(false))) {
       const reserve = reserveFor(false);
-      out.push({ teamId, strength: strengthOf(teamId), ...scored(teamId, entries, false), reason: 'upgrade', holder: { playerId: holder.playerId!, name: nameOf(state, holder.playerId!), rating: holder.rating }, room, ask, reserve, affordable: true });
+      out.push({ teamId, strength: strengthOf(teamId), ...scored(teamId, entries, false), reason: 'upgrade', holder: { playerId: holder.playerId!, name: nameOf(state, holder.playerId!), rating: holder.rating }, room, ask, reserve, maxOffer: maxOffer(reserve), affordable: true });
     }
   }
   return out.sort((a, b) => b.score.total - a.score.total || Number(b.affordable) - Number(a.affordable) || ORDER[a.reason] - ORDER[b.reason] || b.room - a.room || a.teamId.localeCompare(b.teamId));
