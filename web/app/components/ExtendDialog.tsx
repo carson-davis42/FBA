@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { extendPlayer } from '../../engine/roster/moves';
+import { extendPlayer, extensionRoom } from '../../engine/roster/moves';
 import type { RosterState } from '../../engine/roster/state';
 import { MAX_AMOUNT, MAX_YEARS_RESIGN, payroll, RETIRE_AGE } from '../../engine/roster/rules';
 import { useSaving, type Versions } from '../api';
@@ -16,12 +16,7 @@ export function ExtendDialog({ state, teamId, playerId, onClose, versions }: {
   const saving = useSaving();
   if (!entry || entry.contractEnd == null || entry.contractAmount == null) return null;
   const name = state.players.players[playerId]?.name ?? 'Unnamed';
-  const left = entry.contractEnd - state.season + 1;
-  const player = state.players.players[playerId];
-  const age = player?.birthSeason == null ? entry.age : state.season - player.birthSeason;
-  const lastSeason = age == null ? Infinity : state.season + RETIRE_AGE - age;
-  // As many seasons as keep the contract at 5 years and short of his age-32 season.
-  const most = Math.max(1, Math.min(MAX_YEARS_RESIGN - left, lastSeason - entry.contractEnd));
+  const most = Math.max(1, extensionRoom(state, entry));
   const added = Math.min(seasons, most);
   const end = entry.contractEnd + added;
   const years = end - state.season + 1;

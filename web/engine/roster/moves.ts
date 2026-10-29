@@ -137,6 +137,19 @@ export interface ExtendInput {
   seasons?: number;
 }
 
+/**
+ * How many seasons could be added to his contract: it may run 5 years from this season at most and not past the season he plays at age 32.
+ * Zero for a player who is retired or whose contract already reaches his last season, so there is nothing to extend. An unknown age counts only the 5-year limit.
+ */
+export function extensionRoom(state: RosterState, e: RosterEntry): number {
+  if (e.playerId === null || e.contractEnd == null) return 0;
+  const player = state.players.players[e.playerId];
+  if (player?.retired) return 0;
+  const age = player?.birthSeason == null ? e.age : state.season - player.birthSeason;
+  const byYears = MAX_YEARS_RESIGN - (e.contractEnd - state.season + 1);
+  return Math.max(0, age == null ? byYears : Math.min(byYears, state.season + RETIRE_AGE - age - e.contractEnd));
+}
+
 /** Extensions add seasons (one by default, up to a 5-year contract) and change salary immediately, regardless of the season phase. */
 export function extendPlayer(state: RosterState, input: ExtendInput, ctx: MoveContext): MoveResult {
   if (state.fba.locked || state.fbaTx.locked) return fail(['This season is final (locked)']);

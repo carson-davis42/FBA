@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { RostersFile, TransactionsFile } from '../shared/types';
-import { extendPlayer } from './moves';
+import { extendPlayer, extensionRoom } from './moves';
 import { baseState } from './testFixtures';
 
 const input = { teamId: 'BOS', playerId: 'p00001', amount: 7 };
@@ -32,6 +32,18 @@ describe('contract extensions', () => {
     if (three.ok) expect(three.state.fba.teams.BOS[0]).toMatchObject({ contractEnd: 83, contractAmount: 8 });
     const four = extendPlayer(baseState(), { ...input, amount: 8, seasons: 4 }, ctx);
     expect(four.ok).toBe(false);
+  });
+
+  it('has no room to extend a player whose contract already reaches his last season, or who is retired', () => {
+    const state = baseState();
+    const pg = state.fba.teams.BOS[0];
+    // S79 now; age 32 in S79 is his last season, S80 contract is past it.
+    state.players.players[pg.playerId!] = { ...state.players.players[pg.playerId!], birthSeason: 79 - 32 };
+    expect(extensionRoom(state, pg)).toBe(0);
+    state.players.players[pg.playerId!] = { ...state.players.players[pg.playerId!], birthSeason: 79 - 22 };
+    expect(extensionRoom(state, pg)).toBe(3);
+    state.players.players[pg.playerId!] = { ...state.players.players[pg.playerId!], retired: { season: 78, age: 31 } as never };
+    expect(extensionRoom(state, pg)).toBe(0);
   });
 
   it('allows unchanged pay', () => {
