@@ -18,13 +18,15 @@ export function InterestedTeams({ state, teams, playerId, onSign }: {
         : (
           <div className="table-wrap">
             <table className="stat-table" aria-label="Interested teams">
-              <thead><tr><th>Team</th><th>Why</th><th className="num">Cap room</th><th>Fit</th><th /></tr></thead>
+              <thead><tr><th className="rank">#</th><th>Team</th><th className="num">Strength</th><th>Why</th><th className="num">Cap room</th><th>Fit</th><th /></tr></thead>
               <tbody>
-                {rows.map(r => {
+                {rows.map((r, i) => {
                   const team = teams.find(t => t.teamId === r.teamId);
                   return (
                     <tr key={r.teamId}>
+                      <td className="rank">{i + 1}</td>
                       <td>{team ? <TeamName team={team} season={state.season} /> : r.teamId}</td>
+                      <td className="num">{r.strength} of {Object.keys(state.fba.teams).length}</td>
                       <td>
                         {r.reason === 'resign' && 'His own team; the contract has ended'}
                         {r.reason === 'need' && 'Nobody at his position'}
