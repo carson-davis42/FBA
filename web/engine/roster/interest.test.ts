@@ -73,6 +73,14 @@ describe('interestedTeams', () => {
       const r = interestedTeams(state(), 'p00030', { profile: profile(null), teamRegions: regions });
       expect(r.every(x => x.score.region === 0)).toBe(true);
     });
+    it('credits at least one season with the team he is on now, even when his bio does not show it yet', () => {
+      const s = state();
+      s.fba.teams.MON = s.fba.teams.MON.map(e => (e.playerId === 'p00010' ? { ...e, contractEnd: 78, restricted: false } : e));
+      const own = interestedTeams(s, 'p00010', { profile: profile(null, [['BOS', 3]]) }).find(x => x.teamId === 'MON')!;
+      expect(own.reason).toBe('resign');
+      expect(own.seasonsWith).toBe(1);
+      expect(own.score.history).toBe(3);
+    });
     it('grows with the seasons he played for a team and stops at five', () => {
       const r = interestedTeams(state(), 'p00030', { profile: profile(null, [['BOS', 2], ['MON', 9]]) });
       const hist = (id: string) => r.find(x => x.teamId === id)!;

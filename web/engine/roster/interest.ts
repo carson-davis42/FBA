@@ -84,7 +84,8 @@ export function interestedTeams(state: RosterState, playerId: string, options: I
     const region = !profile.collegeRegion || !teamRegion ? 0
       : teamRegion === profile.collegeRegion ? WEIGHTS.region
         : areNeighbours(teamRegion, profile.collegeRegion) ? WEIGHTS.region * NEIGHBOUR_SHARE : 0;
-    const seasonsWith = profile.seasonsWith.get(teamId) ?? 0;
+    // The bio is only brought up to date when the season rolls over, so a player traded here this offseason has no stint with his current team yet: he is on it now, which is at least one season.
+    const seasonsWith = Math.max(profile.seasonsWith.get(teamId) ?? 0, own ? 1 : 0);
     const history = WEIGHTS.history * Math.min(seasonsWith, FULL_HISTORY_SEASONS) / FULL_HISTORY_SEASONS;
     const ownTeam = own ? WEIGHTS.ownTeam : 0;
     const round = (n: number) => Math.round(n * 10) / 10;
