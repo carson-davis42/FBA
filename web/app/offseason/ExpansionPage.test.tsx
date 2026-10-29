@@ -96,35 +96,30 @@ describe('ExpansionPage', () => {
     ]);
   });
 
-  it('protect mode: caps protections at four, marks restricted players, saves a protection', async () => {
+  it('protect mode: caps protections at three, marks restricted players, saves a protection', async () => {
     const log = stubApi(draftDocs(file()));
     renderPage();
     // Team A (first): its C is restricted and has no checkbox.
     expect(await screen.findByText('Protected (restricted)')).toBeTruthy();
     expect(screen.queryByRole('checkbox', { name: 'Protect A C' })).toBeNull();
     expect(screen.getByText(/36 players exposed from 8 teams; the draft needs 8 picks/)).toBeTruthy();
-    expect(screen.getByRole('option', { name: 'Team A (0/4)' })).toBeTruthy();
+    expect(screen.getByRole('option', { name: 'Team A (0/3)' })).toBeTruthy();
 
     fireEvent.click(await box('Protect A PG'));
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].writes.map(w => [w.path, w.baseVersion])).toEqual([[expansionPath(80), V1]]);
     expect((log.batches[0].writes[0].doc as ExpansionFile).protections).toEqual({ A: ['p10001'] });
-    await waitFor(() => expect(screen.getByRole('option', { name: 'Team A (1/4)' })).toBeTruthy());
+    await waitFor(() => expect(screen.getByRole('option', { name: 'Team A (1/3)' })).toBeTruthy());
   });
 
-  it('protect mode: the fifth box is disabled and Lock protections shows the refusal', async () => {
-    const protections = { A: ['p10001', 'p10002', 'p10003', 'p10004'], B: ['p10006', 'p10007', 'p10008', 'p10009'] };
+  it('protect mode: the fourth box is disabled once three are protected', async () => {
+    const protections = { A: ['p10001', 'p10002', 'p10003'], B: ['p10006', 'p10007', 'p10008'] };
     stubApi(draftDocs(file({ protections })));
     renderPage();
     expect((await box('Protect A PG')).checked).toBe(true);
-    // A has only one exposed player left (none: its C is restricted), so only 7 teams can lose a player.
-    expect(screen.getByText(/Only 7 teams have an exposed player; the draft needs 8/)).toBeTruthy();
-    const lock = screen.getByRole('button', { name: 'Lock protections' }) as HTMLButtonElement;
-    expect(lock.disabled).toBe(true);
-
     fireEvent.change(screen.getByRole('combobox', { name: 'Team' }), { target: { value: 'B' } });
-    const fifth = await box('Protect B C');
-    expect(fifth.disabled).toBe(true);
+    const fourth = await box('Protect B PF');
+    expect(fourth.disabled).toBe(true);
     expect((await box('Protect B PG')).disabled).toBe(false);
   });
 

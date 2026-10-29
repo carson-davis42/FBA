@@ -3,7 +3,7 @@ import type { Team } from './types';
 /** The FBA expansion: the season the teams first play. To rename a team before the "add teams" step has run, edit this file; afterwards `leagues/fba/teams.json` is the place. */
 export const EXPANSION_SEASON = 80;
 export const EXPANSION_PICKS_EACH = 4;
-export const MAX_PROTECTED = 4;
+export const MAX_PROTECTED = 3;
 
 export const EXPANSION_TEAMS: Team[] = [
   {
