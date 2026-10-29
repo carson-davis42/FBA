@@ -4,7 +4,7 @@ import { TeamMark } from '../components/TeamMark';
 
 export type IconName =
   | 'trophy' | 'teams' | 'draft' | 'awards' | 'awardsByPlayer' | 'seasons' | 'leaders' | 'streaks' | 'players' | 'hall' | 'transactions' | 'timeline' | 'recruiting'
-  | 'freeAgency' | 'age' | 'retirement' | 'ratings' | 'lottery' | 'picks' | 'rookies' | 'classRanking' | 'collegeRatings' | 'd2draft';
+  | 'freeAgency' | 'age' | 'retirement' | 'ratings' | 'lottery' | 'picks' | 'rookies' | 'classRanking' | 'collegeRatings' | 'd2draft' | 'trim';
 
 /** Four 34px logos on a zigzag, 44px apart, so even tilted none touches the next. */
 const SPOTS = [
@@ -204,6 +204,13 @@ const SHAPES: Record<Exclude<IconName, 'teams'>, JSX.Element> = {
       <path d="M8 8h56L43 34v20l-14 6V34z" />
       <path className="fill-line" d="M20 18h32" />
       <circle className="fill" cx="36" cy="46" r="3" />
+    </>
+  ),
+  trim: (
+    <>
+      <circle cx="16" cy="14" r="8" />
+      <circle cx="16" cy="50" r="8" />
+      <path d="M22 19l40 26M22 45L62 19" />
     </>
   ),
   timeline: (

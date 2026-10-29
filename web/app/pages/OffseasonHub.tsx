@@ -16,6 +16,7 @@ const TOOLS: Partial<Record<LeagueId, Tool[]>> = {
   fba: [
     { title: 'Free agency', icon: 'freeAgency', note: 'Sign and release players in the offseason market.', to: TOOL_STEPS['free-agency-offseason'] },
     { title: 'Adjust age', icon: 'age', note: 'Age every player one year.', to: TOOL_STEPS['adjust-age'] },
+    { title: 'Roster trim', icon: 'trim', note: 'Cut the duplicate positions before free agency.', to: '/league/fba/trim' },
     { title: 'Retirement', icon: 'retirement', note: 'Retire players across the leagues.', to: TOOL_STEPS.retirement },
     { title: 'Pro ratings reset', icon: 'ratings', note: 'Adjust FBA ratings for the new season.', to: TOOL_STEPS['adjust-pro-ratings-reset'] },
     { title: 'Hall of Fame', icon: 'hall', note: 'Review nominees and induct new members.', to: TOOL_STEPS['hall-of-fame-induction'] },
