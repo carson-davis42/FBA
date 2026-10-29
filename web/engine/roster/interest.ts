@@ -1,18 +1,45 @@
+import { areNeighbours, type Region } from '../shared/regions';
 import { marketRows } from './market';
 import { CAP, isExpired, payroll } from './rules';
-import { marketAmount, teamRanks } from './tradeValue';
 import { nameOf, type RosterState } from './state';
+import { marketAmount, teamRanks } from './tradeValue';
+import { EMPTY_PROFILE, type PlayerProfile } from './interestProfile';
 
 /** How much better a free agent must be than the player a team holds at his position for it to be interested anyway. */
 export const UPGRADE_MARGIN = 5;
 
-/** Places a player's own team moves up the strength order: he is more likely to stay. */
-export const OWN_TEAM_BOOST = 5;
+/** The points each part of the score is worth at most (100 in all, and the 10 for his own team on top). */
+export const WEIGHTS = {
+  strength: 40,
+  filled: 20,
+  region: 15,
+  history: 15,
+  ownTeam: 10,
+} as const;
+/** The most players a team is credited for: he would take a spot, so at most four others count. */
+export const MAX_FILLED = 4;
+/** Seasons with a team that earn the full history points. */
+export const FULL_HISTORY_SEASONS = 5;
+/** A college in a region next to the team's earns this share of the region points. */
+export const NEIGHBOUR_SHARE = 1 / 3;
+
+export interface InterestScore {
+  strength: number;
+  filled: number;
+  region: number;
+  history: number;
+  ownTeam: number;
+  total: number;
+}
 
 export interface InterestedTeam {
   teamId: string;
   /** Where the team stands among all FBA teams by average rating: 1 is the strongest. */
   strength: number;
+  /** The points behind the ranking. */
+  score: InterestScore;
+  /** FBA seasons he has played for this team. */
+  seasonsWith: number;
   /** `resign`: his own team, whose contract with him has ended. `need`: nobody holds his position. `upgrade`: he is clearly better than the holder. */
   reason: 'resign' | 'need' | 'upgrade';
   holder: { playerId: string; name: string; rating: number | null } | null;
@@ -26,37 +53,60 @@ export interface InterestedTeam {
 
 const ORDER = { resign: 0, need: 1, upgrade: 2 } as const;
 
+export interface InterestOptions {
+  /** His college region and seasons with each team; without it only strength, filled spots and his own team count. */
+  profile?: PlayerProfile;
+  /** The region of each FBA team (by team id). */
+  teamRegions?: Map<string, Region>;
+}
+
 /**
  * The teams that would be interested in a player on the market: the team he is leaving, teams with nobody at his position, and teams that
- * hold someone clearly worse. A team needs at least $1 of cap room; an upgrade must also fit the typical ask. They are ranked by team strength
- * (the strongest first) with his own team moved up OWN_TEAM_BOOST places; teams level on that go by affordability, then why they are
- * interested (own team, need, upgrade), then cap room.
+ * hold someone clearly worse. A team needs at least $1 of cap room; an upgrade must also fit the typical ask.
+ *
+ * They are ranked by a score out of 100 (plus 10 for his own team): team strength (the strongest team gets 40), filled spots (5 each for up to
+ * four players under contract, so a team with one 88 doesn't lead), his college's region (the full 15 for the same region, a third for a
+ * neighbouring one), and his seasons with the team (15 at five or more). Ties go to affordability, then why they're interested, then cap room.
  */
-export function interestedTeams(state: RosterState, playerId: string): InterestedTeam[] {
+export function interestedTeams(state: RosterState, playerId: string, options: InterestOptions = {}): InterestedTeam[] {
   const row = marketRows(state).find(r => r.playerId === playerId);
   if (!row) return [];
+  const profile = options.profile ?? EMPTY_PROFILE;
   const ask = row.scale === 'FBA' && row.rating !== null ? Math.max(1, Math.round(marketAmount(row.rating))) : null;
   const ranks = teamRanks(state.fba);
   const size = ranks.size;
   const strengthOf = (teamId: string) => size - (ranks.get(teamId) ?? 1) + 1;
+  const scored = (teamId: string, entries: typeof state.fba.teams[string], own: boolean): { score: InterestScore; seasonsWith: number } => {
+    const strength = size > 1 ? WEIGHTS.strength * (size - strengthOf(teamId)) / (size - 1) : WEIGHTS.strength;
+    const under = entries.filter(e => e.playerId !== null && e.playerId !== playerId && !(isExpired(e, state.season) && !e.restricted)).length;
+    const filled = (WEIGHTS.filled / MAX_FILLED) * Math.min(MAX_FILLED, under);
+    const teamRegion = options.teamRegions?.get(teamId);
+    const region = !profile.collegeRegion || !teamRegion ? 0
+      : teamRegion === profile.collegeRegion ? WEIGHTS.region
+        : areNeighbours(teamRegion, profile.collegeRegion) ? WEIGHTS.region * NEIGHBOUR_SHARE : 0;
+    const seasonsWith = profile.seasonsWith.get(teamId) ?? 0;
+    const history = WEIGHTS.history * Math.min(seasonsWith, FULL_HISTORY_SEASONS) / FULL_HISTORY_SEASONS;
+    const ownTeam = own ? WEIGHTS.ownTeam : 0;
+    const round = (n: number) => Math.round(n * 10) / 10;
+    const parts = { strength: round(strength), filled: round(filled), region: round(region), history: round(history), ownTeam };
+    return { score: { ...parts, total: round(parts.strength + parts.filled + parts.region + parts.history + parts.ownTeam) }, seasonsWith };
+  };
   const out: InterestedTeam[] = [];
   for (const [teamId, entries] of Object.entries(state.fba.teams)) {
     const room = CAP - payroll(entries, state.season);
     if (room < 1) continue;
     const affordable = room >= (ask ?? 1);
     if (row.from === teamId && row.type === 'Expired') {
-      out.push({ teamId, strength: strengthOf(teamId), reason: 'resign', holder: null, room, ask, affordable });
+      out.push({ teamId, strength: strengthOf(teamId), ...scored(teamId, entries, true), reason: 'resign', holder: null, room, ask, affordable });
       continue;
     }
     // Players whose contracts ended leave with the market; a restricted one is a team option and still holds the spot.
     const holder = entries.find(e => e.playerId !== null && e.position === row.position && e.playerId !== playerId && !(isExpired(e, state.season) && !e.restricted));
     if (!holder) {
-      out.push({ teamId, strength: strengthOf(teamId), reason: 'need', holder: null, room, ask, affordable });
+      out.push({ teamId, strength: strengthOf(teamId), ...scored(teamId, entries, false), reason: 'need', holder: null, room, ask, affordable });
     } else if (row.scale === 'FBA' && row.rating !== null && holder.rating !== null && row.rating >= holder.rating + UPGRADE_MARGIN && affordable) {
-      out.push({ teamId, strength: strengthOf(teamId), reason: 'upgrade', holder: { playerId: holder.playerId!, name: nameOf(state, holder.playerId!), rating: holder.rating }, room, ask, affordable });
+      out.push({ teamId, strength: strengthOf(teamId), ...scored(teamId, entries, false), reason: 'upgrade', holder: { playerId: holder.playerId!, name: nameOf(state, holder.playerId!), rating: holder.rating }, room, ask, affordable });
     }
   }
-  // A smaller adjusted number is stronger: his own team gets the boost.
-  const adjusted = (t: InterestedTeam) => t.strength - (t.reason === 'resign' ? OWN_TEAM_BOOST : 0);
-  return out.sort((a, b) => adjusted(a) - adjusted(b) || Number(b.affordable) - Number(a.affordable) || ORDER[a.reason] - ORDER[b.reason] || b.room - a.room || a.teamId.localeCompare(b.teamId));
+  return out.sort((a, b) => b.score.total - a.score.total || Number(b.affordable) - Number(a.affordable) || ORDER[a.reason] - ORDER[b.reason] || b.room - a.room || a.teamId.localeCompare(b.teamId));
 }

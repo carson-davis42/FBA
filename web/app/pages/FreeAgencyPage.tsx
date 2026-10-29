@@ -5,7 +5,7 @@ import { marketRows, type MarketType, openPositions } from '../../engine/roster/
 import { closeFreeAgency, freeAgencyBlockers, releasePlayer } from '../../engine/roster/moves';
 import { payroll, POSITIONS } from '../../engine/roster/rules';
 import { currentStepIndex, markCurrentDone } from '../../engine/shared/calendar';
-import type { CalendarFile, ExtendPassedFile, Position, Team, TeamsFile } from '../../engine/shared/types';
+import type { CalendarFile, DraftFile, ExtendPassedFile, FranchisesFile, PlayerBiosFile, Position, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
 import { ExpiringContracts } from '../components/ExpiringContracts';
 import { ExtendDialog } from '../components/ExtendDialog';
@@ -85,6 +85,11 @@ export function FreeAgencyPage() {
   const [closeError, setCloseError] = useState('');
   const passedPath = stateSeason === undefined ? '' : `leagues/fba/S${stateSeason}/extendPassed.json`;
   const passedDoc = useDoc<ExtendPassedFile>(stateSeason === undefined ? null : passedPath);
+  // What the interested-teams ranking reads about a player (his college and past teams); loaded once with the page.
+  const franchisesDoc = useDoc<FranchisesFile>('leagues/fba/franchises.json');
+  const biosDoc = useDoc<PlayerBiosFile>('leagues/fba/playerBios.json');
+  const draftDoc = useDoc<DraftFile>(stateSeason === undefined ? null : `leagues/fba/S${stateSeason}/draft.json`);
+  const jcTeamsDoc = useDoc<TeamsFile>('leagues/fbajc/teams.json');
   const [passBusy, setPassBusy] = useState(false);
   const [passError, setPassError] = useState('');
   const saving = useSaving();
@@ -177,7 +182,7 @@ export function FreeAgencyPage() {
       {selected && !closed && (
         <SignPanel key={`${selected}-${signTeam}`} state={state} teams={teams} playerId={selected} defaultTeam={signTeam || teamId} onClose={() => setSelected(null)} versions={versions} phase={phase} />
       )}
-      {selected && !closed && <InterestedTeams state={state} teams={teams.teams} playerId={selected} onSign={setSignTeam} />}
+      {selected && !closed && <InterestedTeams state={state} teams={teams.teams} playerId={selected} onSign={setSignTeam} context={{ franchises: franchisesDoc.data ?? null, bios: biosDoc.data ?? null, draft: draftDoc.data ?? null, jcTeams: jcTeamsDoc.data ?? null }} />}
 
       <MarketTable rows={rows} selected={selected} onSelect={id => { setSelected(id); setSignTeam(''); }} teams={teams.teams} season={state.season} />
 
