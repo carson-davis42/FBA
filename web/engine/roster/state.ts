@@ -74,3 +74,7 @@ export function withTeam(r: RostersFile, teamId: string, entries: RosterEntry[])
 export function withLeague(state: RosterState, league: 'fba' | 'fbad2', rosters: RostersFile, tx: TransactionsFile): RosterState {
   return league === 'fba' ? { ...state, fba: rosters, fbaTx: tx } : { ...state, d2: rosters, d2Tx: tx };
 }
+
+/** Taken in this season's draft. Such a player in the free-agent pool was cut after the draft, so he is still a rookie. */
+export const draftedThisYear = (state: RosterState, playerId: string): boolean =>
+  state.draft?.picks.some(p => p.playerId === playerId) === true;

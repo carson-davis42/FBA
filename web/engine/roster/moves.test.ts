@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { closeFreeAgency, editPlayer, editWarnings, freeAgencyBlockers, releasePlayer, signPlayer } from './moves';
+import { marketRows } from './market';
 import { payroll } from './rules';
 import type { MoveResult, RosterState } from './state';
 import { baseState } from './testFixtures';
@@ -141,13 +142,19 @@ describe('releasePlayer', () => {
     expect(signed.state.fba.teams.MON.find(e => e.playerId === 'p00002')?.restricted).toBe(true);
   });
 
-  it('does not make a rookie of a player who has played, even on a rookie contract, or of one cut by a team that did not draft him', () => {
+  it('does not make a rookie of a player who has played, even on a rookie contract', () => {
     const s = baseState();
     s.fba.teams.BOS = s.fba.teams.BOS.map(e => (e.playerId === 'p00002' ? { ...e, restricted: true, contractEnd: 80 } : e));
     const played = ok(releasePlayer(s, { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'cut' }, ctx));
     expect(played.state.freeAgents.players.find(p => p.playerId === 'p00002')?.rookie).toBe(false);
-    const traded = ok(releasePlayer(withDraft(baseState(), 'CAR'), { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'cut' }, ctx));
-    expect(traded.state.freeAgents.players.find(p => p.playerId === 'p00002')?.rookie).toBe(false);
+  });
+
+  it('treats a player drafted this year as a rookie even when he was cut before and is flagged as an ordinary free agent', () => {
+    const s = withDraft(baseState(), 'BOS');
+    // p00030 sits in the pool with rookie: false, as when he was cut before the rule existed.
+    s.draft = { picks: [{ slot: 1, owner: 'NY', originalTeam: 'NY', playerId: 'p00030' }] } as unknown as RosterState['draft'];
+    expect(problems(signPlayer(s, { playerId: 'p00030', teamId: 'CAR', years: 2, amount: 3, conflict: 'release' }, ctx))).toContain('Rookie contracts are 1/$1 or 2/$2');
+    expect(marketRows(s).find(r => r.playerId === 'p00030')?.type).toBe('Rookie');
   });
 
   it('releases an FBA player to the free-agent pool', () => {

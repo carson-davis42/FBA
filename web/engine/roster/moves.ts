@@ -5,7 +5,7 @@ import {
   type ContractKind,
 } from './rules';
 import {
-  appendTx, type DocKey, fail, findOnRoster, type MoveContext, type MoveResult, nameOf, type RosterState, withLeague, withTeam,
+  appendTx, type DocKey, draftedThisYear, fail, findOnRoster, type MoveContext, type MoveResult, nameOf, type RosterState, withLeague, withTeam,
 } from './state';
 
 export interface SignInput {
@@ -42,13 +42,9 @@ function findSource(state: RosterState, playerId: string): Source | null {
   return null;
 }
 
-/**
- * A player who joins the pool. One cut by the team that drafted him in this season's draft stays a rookie: only a restricted 1/$1 or 2/$2 deal
- * (undrafted rookies join the pool as rookies already). A player who has played, even on a rookie contract, is an ordinary free agent.
- */
-const toFreeAgent = (e: RosterEntry, state: RosterState, teamId: string): FreeAgent => ({
-  playerId: e.playerId!, position: e.position, age: e.age, rating: e.rating,
-  rookie: state.draft?.picks.some(p => p.playerId === e.playerId && p.owner === teamId) === true, note: '',
+/** A player who joins the pool; one drafted in this season's draft stays a rookie (see `draftedThisYear`), a player who has played is an ordinary free agent. */
+const toFreeAgent = (e: RosterEntry, state: RosterState): FreeAgent => ({
+  playerId: e.playerId!, position: e.position, age: e.age, rating: e.rating, rookie: draftedThisYear(state, e.playerId!), note: '',
 });
 
 export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContext): MoveResult {
@@ -67,7 +63,7 @@ export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContex
   const age = src.kind === 'fa' ? src.fa.age : src.entry.age;
   const resign = src.kind === 'expired' && src.teamId === input.teamId;
   if (src.kind === 'expired' && !resign && src.entry.restricted) return fail([`${name} is restricted: only ${src.teamId} can re-sign him`]);
-  const kind: ContractKind = resign ? 'resign' : src.kind === 'fa' && src.fa.rookie ? 'rookie' : 'new';
+  const kind: ContractKind = resign ? 'resign' : src.kind === 'fa' && (src.fa.rookie || draftedThisYear(state, input.playerId)) ? 'rookie' : 'new';
 
   const problems = contractProblems({ years: input.years, amount: input.amount }, kind);
   if (state.players.players[input.playerId]?.retired) problems.push('A retired player cannot be signed');
@@ -110,7 +106,7 @@ export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContex
     fba = withTeam(fba, src.teamId, normalizeRoster(fba.teams[src.teamId].filter(e => e.playerId !== input.playerId), 'fba'));
   }
   if (displaced) {
-    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(displaced, state, input.teamId)] };
+    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(displaced, state)] };
     changed.add('freeAgents');
     lines.push(`${input.conflict === 'cut' ? 'Cut' : 'Released'} ${displaced.position}-${nameOf(state, displaced.playerId!)}`);
   }
@@ -201,7 +197,7 @@ export function releasePlayer(state: RosterState, input: ReleaseInput, ctx: Move
   const changed: DocKey[] = [key, txKey];
   let { freeAgents, reserves } = state;
   if (input.league === 'fba' && !freeAgents.locked) {
-    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(entry, state, input.teamId)] };
+    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(entry, state)] };
     changed.push('freeAgents');
   } else {
     const rating = input.league === 'fbad2' ? entry.rating : null;
