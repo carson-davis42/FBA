@@ -11,7 +11,7 @@ Roadmap row "FBA expansion" (§10 of `2026-09-25-fba-web-design.md`), ledger dec
 | X3 | **Calendar.** Step "Add S80 expansion teams" runs before the S80 lottery, so the teams show in it. Step "S80 Expansion Draft" runs right after "S80 FBA Draft" and before Free Agency/Offseason. |
 | X4 | **Lottery.** 16 teams: PHI and LAL tied at the top (14% each, the S67 precedent), then the 14 non-playoff teams on the S74 table scaled to the remaining 72%. Ties between real teams still average. |
 | X5 | **Protection** (hybrid of S68 and S75). Each existing team protects up to 3 players of its choice (changed from 4 on 2026-10-28), on contract or not. Players with restricted contracts are protected in addition. Picks are not part of an expansion draft. |
-| X6 | **Draft shape.** 4 picks per expansion team (8 in all), snake order PHI, LAL, LAL, PHI, PHI, LAL, LAL, PHI. An existing team loses at most one player. Taken players keep their contracts. |
+| X6 | **Draft shape.** 4 picks per expansion team (8 in all), snake order PHI, LAL, LAL, PHI, PHI, LAL, LAL, PHI. An existing team loses at most one player. Taken players keep their contracts; one with no running contract is signed by his new team for at least 1 year (added 2026-10-28). |
 | X7 | **Sizes come from the data.** Playoff seeds per conference stay 8; the lottery size is `teams − 2 × seeds`, and the schedule, season length and pick protection read the real team count. No `30`, `14` or `15` stays in engine code. |
 
 ## 1. Teams, logos and the one place to rename

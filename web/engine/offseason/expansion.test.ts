@@ -343,9 +343,39 @@ describe('expansionPick', () => {
     expect(problemsOf(expansionPick(s, pid('A', 'PG'), ctx))).toEqual(['Payroll would be $26 (cap $25)']);
     // A $3 player fits: 22 + 3 = 25.
     expect(pickProblems(s, pid('B', 'PG'))).toEqual([]);
-    // An expired contract does not count.
+    // An expired contract does not count; the new deal does ($1 here).
     const expired = { ...base.fba, teams: { ...teams, A: teams.A.map(e => (e.playerId === pid('A', 'PG') ? { ...e, contractEnd: 79 } : e)) } };
-    expect(pickProblems({ ...drafting(), fba: expired }, pid('A', 'PG'))).toEqual([]);
+    expect(pickProblems({ ...drafting(), fba: expired }, pid('A', 'PG'), { years: 1, amount: 1 })).toEqual([]);
+  });
+
+  describe('a taken player with no running contract', () => {
+    const expiredState = () => {
+      const s = drafting();
+      const teams = { ...s.fba.teams, A: s.fba.teams.A.map(e => (e.playerId === pid('A', 'PG') ? { ...e, contractEnd: 79, contractAmount: 3 } : e)) };
+      return { ...s, fba: { ...s.fba, teams } };
+    };
+    it('must be signed for at least one year, within the new-signing limits', () => {
+      const s = expiredState();
+      expect(problemsOf(expansionPick(s, pid('A', 'PG'), ctx)).join(' ')).toMatch(/has no contract: Philly Phantoms must sign him for at least 1 year/);
+      expect(problemsOf(expansionPick(s, pid('A', 'PG'), ctx, { years: 0, amount: 2 })).join(' ')).toMatch(/Years must be a whole number, at least 1/);
+      expect(problemsOf(expansionPick(s, pid('A', 'PG'), ctx, { years: 5, amount: 5 })).join(' ')).toMatch(/limited to 4 years/);
+      expect(problemsOf(expansionPick(s, pid('A', 'PG'), ctx, { years: 3, amount: 2 })).join(' ')).toMatch(/Years can't exceed dollars/);
+    });
+    it('takes the deal he is signed to, and records it', () => {
+      const s = expiredState();
+      const r = expansionPick(s, pid('A', 'PG'), ctx, { years: 2, amount: 4 });
+      expect(r.ok).toBe(true);
+      const next = apply(s, r);
+      expect(next.fba.teams.PHI[0]).toMatchObject({ playerId: pid('A', 'PG'), contractAmount: 4, contractEnd: 81 });
+      expect(next.tx.entries.at(-1)!.lines[0]).toMatch(/, signed 2\/\$4$/);
+    });
+    it('does not apply to a player who is under contract: he keeps it, and any terms are ignored', () => {
+      const s = drafting();
+      expect(pickProblems(s, pid('A', 'SG'))).toEqual([]);
+      const r = expansionPick(s, pid('A', 'SG'), ctx, { years: 4, amount: 8 });
+      const next = apply(s, r);
+      expect(next.fba.teams.PHI.find(e => e.playerId === pid('A', 'SG'))).toMatchObject({ contractAmount: 3, contractEnd: 82 });
+    });
   });
 
   it('refuses picking out of turn data: not exposed, phase not draft, draft finished', () => {

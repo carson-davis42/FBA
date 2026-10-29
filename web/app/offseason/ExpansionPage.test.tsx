@@ -144,6 +144,20 @@ describe('ExpansionPage', () => {
     expect((log.batches[0].writes.find(w => w.path === expansionPath(80))!.doc as ExpansionFile).picks).toHaveLength(1);
   });
 
+  it('draft mode: a player with no running contract is signed for the years and dollars typed beside him', async () => {
+    const base = expansionState();
+    const teams = { ...base.fba.teams, A: base.fba.teams.A.map(e => (e.position === 'PG' ? { ...e, contractEnd: 79 } : e)) };
+    const log = stubApi(draftDocs(file({ phase: 'draft' }), { fba: { ...base.fba, teams } }));
+    renderPage();
+    fireEvent.change(await screen.findByRole('spinbutton', { name: 'Years for A PG' }), { target: { value: '2' } });
+    fireEvent.change(screen.getByRole('spinbutton', { name: 'Amount for A PG' }), { target: { value: '3' } });
+    expect(screen.queryByRole('spinbutton', { name: 'Years for A SG' })).toBeNull();
+    fireEvent.click(await enabled('Take A PG'));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    const rosters = log.batches[0].writes.find(w => w.path === 'leagues/fba/S80/rosters.json')!.doc as { teams: Record<string, { playerId: string | null; contractEnd?: number | null; contractAmount?: number | null }[]> };
+    expect(rosters.teams.PHI[0]).toMatchObject({ contractEnd: 81, contractAmount: 3 });
+  });
+
   it('draft mode: Unlock protections is offered before the first pick and goes back to the protect phase', async () => {
     const log = stubApi(draftDocs(file({ phase: 'draft' })));
     renderPage();

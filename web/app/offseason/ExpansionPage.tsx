@@ -1,6 +1,6 @@
 import { useRef, useState, type ReactNode } from 'react';
 import {
-  exposedPlayers, expansionPick, finishExpansion, lockProtections, onTheClock, pickProblems, setProtections, startExpansion, unlockProtections,
+  exposedPlayers, expansionPick, finishExpansion, lockProtections, needsContract, onTheClock, pickProblems, setProtections, startExpansion, unlockProtections,
   type ExpansionState,
 } from '../../engine/offseason/expansion';
 import { addExpansionTeams } from '../../engine/season/addExpansionTeams';
@@ -211,6 +211,10 @@ function Draft({ s, h, saving, run }: { s: ExpansionState; h: Helpers; saving: b
   const f = s.expansion!;
   const clock = onTheClock(f);
   const exposed = exposedPlayers(s);
+  // The deal a taken player without a running contract is signed to: at least one year.
+  const [terms, setTerms] = useState<Record<string, { years: number; amount: number }>>({});
+  const termsOf = (id: string) => terms[id] ?? { years: 1, amount: 1 };
+  const setTerm = (id: string, patch: Partial<{ years: number; amount: number }>) => setTerms(t => ({ ...t, [id]: { ...termsOf(id), ...patch } }));
   return (
     <>
       {f.picks.length === 0 && (
@@ -252,15 +256,28 @@ function Draft({ s, h, saving, run }: { s: ExpansionState; h: Helpers; saving: b
             <thead><tr><th>Player</th><th>Pos</th><th className="num">Rating</th><th className="num">Age</th><th>Contract</th><th>From</th><th /></tr></thead>
             <tbody>
               {exposed.map(e => {
-                const problems = pickProblems(s, e.playerId).join('; ');
+                const signs = needsContract(e, s.season);
+                const problems = pickProblems(s, e.playerId, signs ? termsOf(e.playerId) : undefined).join('; ');
                 return (
                   <tr key={e.playerId}>
                     <td><PlayerName id={e.playerId} name={h.playerName(e.playerId)} /></td><td>{e.position}</td>
                     <td className="num">{e.rating ?? '—'}</td><td className="num">{e.age ?? '—'}</td>
-                    <td>{contract(e.contractAmount, e.contractEnd)}</td><td>{h.teamCell(e.teamId)}</td>
+                    <td>
+                      {signs
+                        ? (
+                          <span className="form-row">
+                            <span className="muted">No contract: sign for</span>
+                            <input aria-label={`Years for ${h.playerName(e.playerId)}`} type="number" min={1} max={4} value={termsOf(e.playerId).years} onChange={ev => setTerm(e.playerId, { years: Number(ev.target.value) })} />
+                            <span>yr $</span>
+                            <input aria-label={`Amount for ${h.playerName(e.playerId)}`} type="number" min={1} max={8} value={termsOf(e.playerId).amount} onChange={ev => setTerm(e.playerId, { amount: Number(ev.target.value) })} />
+                          </span>
+                        )
+                        : contract(e.contractAmount, e.contractEnd)}
+                    </td>
+                    <td>{h.teamCell(e.teamId)}</td>
                     <td>
                       <button className="btn" aria-label={`Take ${h.playerName(e.playerId)}`} title={problems || undefined}
-                        disabled={saving || Boolean(problems)} onClick={() => run(() => expansionPick(s, e.playerId, ctxOf()))}>Take</button>
+                        disabled={saving || Boolean(problems)} onClick={() => run(() => expansionPick(s, e.playerId, ctxOf(), signs ? termsOf(e.playerId) : undefined))}>Take</button>
                       {problems && <span className="muted"> {problems}</span>}
                     </td>
                   </tr>

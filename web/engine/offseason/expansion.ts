@@ -1,4 +1,4 @@
-import { capProblem, normalizeRoster, payroll } from '../roster/rules';
+import { capProblem, contractEndFor, contractProblems, normalizeRoster, payroll } from '../roster/rules';
 import { appendTx, docPath, findOnRoster, withTeam, type MoveContext } from '../roster/state';
 import { calendarProblem, type WritesResult } from '../season/moves';
 import { markStepDone } from '../shared/calendar';
@@ -35,6 +35,12 @@ export interface Exposed {
   contractAmount: number | null;
   contractEnd: number | null;
 }
+
+/** A taken player with no running contract (expired or none) must be signed by his new team; one under contract keeps it. */
+export const needsContract = (e: { contractEnd?: number | null }, season: number): boolean => e.contractEnd == null || e.contractEnd < season;
+
+/** The deal the new team signs a taken player to when he has no running contract: at least one year (new-signing limits apply). */
+export interface ExpansionTerms { years: number; amount: number }
 
 /** The pick order: a snake over `each` rounds. */
 export function expansionOrder(teamIds: string[], each: number = EXPANSION_PICKS_EACH): string[] {
@@ -135,7 +141,8 @@ function feasibleDraft(state: ExpansionState): boolean {
   const file = state.expansion!;
   const exposed = exposedPlayers(state).map(e => {
     const entry = state.fba.teams[e.teamId]?.find(x => x.playerId === e.playerId);
-    return { teamId: e.teamId, position: e.position, amount: entry ? payroll([entry], state.season) : 0 };
+    // A player without a running contract costs at least the $1 minimum of the deal he must be signed to.
+    return { teamId: e.teamId, position: e.position, amount: entry ? (needsContract(entry, state.season) ? 1 : payroll([entry], state.season)) : 0 };
   });
   const held = new Map<string, { positions: Set<Position>; pay: number }>();
   for (const id of new Set(file.order)) {
@@ -205,7 +212,7 @@ export function unlockProtections(state: ExpansionState, ctx: MoveContext): Writ
 }
 
 /** Why this pick is refused (empty = allowed). */
-export function pickProblems(state: ExpansionState, playerId: string): string[] {
+export function pickProblems(state: ExpansionState, playerId: string, terms?: ExpansionTerms): string[] {
   const file = state.expansion;
   if (!file) return ["The expansion draft hasn't started"];
   if (file.phase === 'protect') return ["The draft isn't open"];
@@ -220,22 +227,27 @@ export function pickProblems(state: ExpansionState, playerId: string): string[] 
     out.push(`${teamName(state, clock)} already has a ${exposed.position}`);
   }
   const entry = state.fba.teams[exposed.teamId]?.find(e => e.playerId === playerId);
-  const cap = capProblem(payroll(roster, state.season) + (entry ? payroll([entry], state.season) : 0));
+  const signs = entry ? needsContract(entry, state.season) : false;
+  if (signs && !terms) out.push(`${name} has no contract: ${teamName(state, clock)} must sign him for at least 1 year`);
+  if (signs && terms) out.push(...contractProblems(terms, 'new'));
+  const incoming = signs ? terms?.amount ?? 1 : entry ? payroll([entry], state.season) : 0;
+  const cap = capProblem(payroll(roster, state.season) + incoming);
   if (cap) out.push(cap);
   return out;
 }
 
-export function expansionPick(state: ExpansionState, playerId: string, ctx: MoveContext): WritesResult {
+export function expansionPick(state: ExpansionState, playerId: string, ctx: MoveContext, terms?: ExpansionTerms): WritesResult {
   const n = state.season;
   const step = calendarProblem(state.calendar, expansionDraftStepId(n), 'The expansion draft is held');
   if (step) return { ok: false, problems: [step] };
-  const problems = pickProblems(state, playerId);
+  const problems = pickProblems(state, playerId, terms);
   if (problems.length) return { ok: false, problems };
   const file = state.expansion!;
   const clock = onTheClock(file)!;
   const found = findOnRoster(state.fba, playerId)!;
   const donorId = found.teamId;
-  const moved = { ...found.entry };
+  const signs = needsContract(found.entry, n);
+  const moved = signs && terms ? { ...found.entry, contractAmount: terms.amount, contractEnd: contractEndFor(n, terms.years) } : { ...found.entry };
   const donor = normalizeRoster((state.fba.teams[donorId] ?? []).filter(e => e.playerId !== playerId), 'fba');
   const taker = normalizeRoster([...(state.fba.teams[clock] ?? []).filter(e => e.playerId !== null), moved], 'fba');
   const k = file.picks.length + 1;
@@ -244,7 +256,7 @@ export function expansionPick(state: ExpansionState, playerId: string, ctx: Move
     picks: [...file.picks, { n: k, teamId: clock, fromTeamId: donorId, playerId, position: moved.position }],
   };
   const name = playerName(state, playerId);
-  const line = `S${n} Expansion Draft #${k}: ${teamName(state, clock)} selects ${name} (${moved.position}, from ${teamName(state, donorId)})`;
+  const line = `S${n} Expansion Draft #${k}: ${teamName(state, clock)} selects ${name} (${moved.position}, from ${teamName(state, donorId)})${signs && terms ? `, signed ${terms.years}/$${terms.amount}` : ''}`;
   const rosters = withTeam(withTeam(state.fba, donorId, donor), clock, taker);
   return {
     ok: true,
