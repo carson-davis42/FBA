@@ -1443,6 +1443,10 @@ export type DraftHistoryFile = z.infer<typeof DraftHistoryFile>;
 export const TrimKeptFile = z.object({ league: z.literal('fba'), season: int, kept: z.array(playerId) }).strict();
 export type TrimKeptFile = z.infer<typeof TrimKeptFile>;
 
+/** leagues/fba/S{n}/extendPassed.json: the players whose teams decided not to extend them, on the free agency page's list of contracts ending this season. */
+export const ExtendPassedFile = z.object({ league: z.literal('fba'), season: int, passed: z.array(playerId) }).strict();
+export type ExtendPassedFile = z.infer<typeof ExtendPassedFile>;
+
 export const ExpansionPick = z.object({
   n: int.positive(), teamId: z.string().min(1), fromTeamId: z.string().min(1), playerId, position: Position,
 }).strict();

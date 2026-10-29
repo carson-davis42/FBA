@@ -5,8 +5,10 @@ import { marketRows, type MarketType, openPositions } from '../../engine/roster/
 import { closeFreeAgency, freeAgencyBlockers } from '../../engine/roster/moves';
 import { payroll, POSITIONS } from '../../engine/roster/rules';
 import { currentStepIndex, markCurrentDone } from '../../engine/shared/calendar';
-import type { CalendarFile, Position, Team, TeamsFile } from '../../engine/shared/types';
+import type { CalendarFile, ExtendPassedFile, Position, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
+import { ExpiringContracts } from '../components/ExpiringContracts';
+import { ExtendDialog } from '../components/ExtendDialog';
 import { InterestedTeams } from '../components/InterestedTeams';
 import { PageHeader } from '../components/PageHeader';
 import { PayrollBar } from '../components/PayrollBar';
@@ -16,7 +18,7 @@ import { SortTh } from '../components/SortTh';
 import { TeamName } from '../components/TeamName';
 import { teamTheme, teamVars } from '../components/teamColors';
 import { useSort, type SortValue } from '../components/useSort';
-import { commitMove, newBatchId } from '../roster/commit';
+import { commitDocs, commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
 import { useSeasonPhase } from '../season/useSeasonPhase';
 import './roster.css';
@@ -78,12 +80,30 @@ export function FreeAgencyPage() {
   const [selected, setSelected] = useState<string | null>(null);
   // The team picked from the interested list for the selected player (reset when another player is selected).
   const [signTeam, setSignTeam] = useState('');
+  const [extending, setExtending] = useState<{ teamId: string; playerId: string } | null>(null);
   const [closeError, setCloseError] = useState('');
+  const passedPath = stateSeason === undefined ? '' : `leagues/fba/S${stateSeason}/extendPassed.json`;
+  const passedDoc = useDoc<ExtendPassedFile>(stateSeason === undefined ? null : passedPath);
+  const [passBusy, setPassBusy] = useState(false);
+  const [passError, setPassError] = useState('');
   const saving = useSaving();
 
   if (league !== 'fba') return <p className="error">Free agency is only for the FBA.</p>;
   if (error) return <p className="error">Couldn't load rosters: {error.message}</p>;
-  if (!state || !teams || !cal) return <p className="muted">Loading…</p>;
+  if (!state || !teams || !cal || (!passedDoc.data && !passedDoc.missing && !passedDoc.error)) return <p className="muted">Loading…</p>;
+  const passed = new Set(passedDoc.data?.passed ?? []);
+  const setPassed = async (playerId: string, pass: boolean) => {
+    const next = pass ? [...passed, playerId] : [...passed].filter(id => id !== playerId);
+    setPassBusy(true);
+    setPassError('');
+    try {
+      await commitDocs(pass ? 'Not extending a player' : 'Reconsider an extension', [{ path: passedPath, doc: { league: 'fba', season: state.season, passed: next } satisfies ExtendPassedFile }], { ...versions, [passedPath]: passedDoc.version });
+    } catch (e) {
+      setPassError((e as Error).message);
+    } finally {
+      setPassBusy(false);
+    }
+  };
 
   const team = teamId ? state.fba.teams[teamId] : undefined;
   const pickedTeam = teams.teams.find(t => t.teamId === teamId);
@@ -145,6 +165,10 @@ export function FreeAgencyPage() {
       {selected && !closed && <InterestedTeams state={state} teams={teams.teams} playerId={selected} onSign={setSignTeam} />}
 
       <MarketTable rows={rows} selected={selected} onSelect={id => { setSelected(id); setSignTeam(''); }} teams={teams.teams} season={state.season} />
+
+      {extending && <ExtendDialog key={extending.playerId} state={state} teamId={extending.teamId} playerId={extending.playerId} onClose={() => setExtending(null)} versions={versions} />}
+      {passError && <p className="error">Save failed: {passError}</p>}
+      <ExpiringContracts state={state} teams={teams.teams} teamId={teamId} passed={passed} busy={passBusy || saving} onExtend={(t, p) => setExtending({ teamId: t, playerId: p })} onPass={setPassed} />
 
       {!closed && (
         <div className="card close-fa">
