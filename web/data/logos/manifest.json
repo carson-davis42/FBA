@@ -154,8 +154,14 @@
     ],
     "Detroit Motors": [
       {
-        "file": "Detroit motors S59-pres..png",
+        "file": "Detroit motors S59-S79.png",
         "from": 59,
+        "to": 79,
+        "variant": 0
+      },
+      {
+        "file": "Detroit Motors S80-pres..png",
+        "from": 80,
         "to": null,
         "variant": 0
       }
