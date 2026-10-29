@@ -202,6 +202,17 @@ describe('FbaDraftPage', () => {
     expect(within(table).getByRole('columnheader', { name: 'Rank' })).toBeTruthy();
   });
 
+  it('has an All picks view with a row for every pick, the one on the clock included', async () => {
+    stubApi(docs({ draft: startedDraft() }));
+    renderPage();
+    await screen.findByRole('table', { name: 'Prospects' });
+    fireEvent.click(screen.getByRole('button', { name: 'All picks' }));
+    const table = await screen.findByRole('table', { name: 'All picks' });
+    expect(within(table).getAllByRole('row').length - 1).toBe(startedDraft().picks.length);
+    expect(within(table).getByText('On the clock')).toBeTruthy();
+    expect(screen.queryByRole('table', { name: 'Prospects' })).toBeNull();
+  });
+
   it('shows the roster of the team on the clock with its needs', async () => {
     stubApi(docs({ draft: startedDraft() }));
     renderPage();

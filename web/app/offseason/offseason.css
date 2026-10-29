@@ -56,3 +56,7 @@
 .lottery-layout { display: grid; gap: var(--s4); align-items: start; }
 @media (min-width: 900px) { .lottery-layout.with-stats { grid-template-columns: minmax(0, 20rem) minmax(0, 1fr); } }
 .card > h3 { margin: var(--s4) 0 var(--s2); }
+
+/* The roster of the team on the clock: its colours mark the spots it has to fill. */
+.stat-table tr.need-row td:first-child { box-shadow: inset 4px 0 0 var(--team, var(--accent)); }
+.stat-table tr.need-row td strong { color: var(--team, var(--accent)); }

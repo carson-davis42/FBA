@@ -21,7 +21,10 @@ import type {
 } from '../../engine/shared/types';
 import { useDoc, useSaving, type Versions } from '../api';
 import { ClinchLegend, RankCell } from '../components/Clinch';
+import { Hero } from '../components/Hero';
 import { PageHeader } from '../components/PageHeader';
+import { TeamMark } from '../components/TeamMark';
+import { teamTheme, teamVars } from '../components/teamColors';
 import { TeamName } from '../components/TeamName';
 import { commitDocs, newBatchId } from '../roster/commit';
 import './offseason.css';
@@ -64,6 +67,7 @@ export function FbaDraftPage() {
   const busy = useRef(false);
   const [error, setError] = useState('');
   const [tab, setTab] = useState<'ALL' | Position>('ALL');
+  const [view, setView] = useState<'board' | 'picks'>('board');
 
   const required = [players, calendar, collegeTeams];
   const optional = [draft, ratings, lottery, fba, freeAgents, fbaTx, fbaTeams, jcRosters, board, collegeTx];
@@ -232,6 +236,31 @@ export function FbaDraftPage() {
     </div>
   );
 
+  // Every pick of the draft as a row: the ones made, the one on the clock and the ones still to come.
+  const allPicksTable = (
+    <div className="table-wrap tall">
+      <table className="stat-table" aria-label="All picks">
+        <thead><tr><th className="rank">Pick</th><th>Team</th><th>Player</th></tr></thead>
+        <tbody>
+          {[...d.picks].sort((a, b) => a.slot - b.slot).map(p => {
+            const prospect = d.prospects.find(x => x.playerId === p.playerId);
+            return (
+              <tr key={p.slot} className={p.slot === nowSlot ? 'now' : undefined}>
+                <td className="rank">{p.slot}</td>
+                <td>{proTeamCell(p.owner)}{p.owner !== p.originalTeam && ` (from ${proAbbr(p.originalTeam)})`}</td>
+                <td>
+                  {p.playerId && prospect
+                    ? <><PlayerName id={p.playerId} name={nameOf(p.playerId)} /> ({prospect.position}, {school(prospect.college)})</>
+                    : <span className="muted">{p.slot === nowSlot ? 'On the clock' : '—'}</span>}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+
   if (finished) {
     return (
       <section className="stack">
@@ -262,16 +291,32 @@ export function FbaDraftPage() {
             )
             : <p className="muted">Every pick is made.</p>}
         </div>
-        {clock && (
-          <div className="card">
-            <h2>{proTeam(clock.owner)} roster</h2>
+        {view === 'board' && clock && (() => {
+          const clockTeam = fbaTeams.data?.teams.find(t => t.teamId === clock.owner);
+          const rows = draftRoster(fba.data.teams[clock.owner] ?? [], n);
+          return (
+          <>
+          {clockTeam && (
+            <Hero
+              level="h2"
+              theme={teamTheme(clockTeam, 'fba', n)}
+              logo={<TeamMark team={clockTeam} season={n} size={72} />}
+              kicker={`On the clock · Pick #${clock.slot}`}
+              title={`${clockTeam.name} roster`}
+              stats={[
+                { label: 'Needs', value: rows.filter(r => r.need).length },
+                { label: 'Players', value: rows.reduce((sum, r) => sum + r.players.length, 0) },
+              ]}
+            />
+          )}
+          <div className="card headed" style={clockTeam ? teamVars(teamTheme(clockTeam, 'fba', n)) : undefined}>
             <table className="stat-table" aria-label="Roster of the team on the clock">
               <thead><tr><th>Pos</th><th>Player</th><th className="num">Rating</th><th className="num">Age</th><th>Contract</th><th>Need</th></tr></thead>
               <tbody>
-                {draftRoster(fba.data.teams[clock.owner] ?? [], n).flatMap(({ position, players: held, need }) => (held.length === 0
-                  ? [<tr key={position}><td>{position}</td><td className="muted">Open</td><td /><td /><td /><td><strong>Need</strong></td></tr>]
+                {rows.flatMap(({ position, players: held, need }) => (held.length === 0
+                  ? [<tr key={position} className="need-row"><td>{position}</td><td className="muted">Open</td><td /><td /><td /><td><strong>Need</strong></td></tr>]
                   : held.map(e => (
-                    <tr key={e.playerId}>
+                    <tr key={e.playerId} className={need ? 'need-row' : undefined}>
                       <td>{position}</td>
                       <td><PlayerName id={e.playerId!} name={nameOf(e.playerId!)} /></td>
                       <td className="num">{e.rating ?? '—'}</td>
@@ -282,30 +327,38 @@ export function FbaDraftPage() {
                   ))))}
               </tbody>
             </table>
-            {(() => {
-              const needs = draftRoster(fba.data.teams[clock.owner] ?? [], n).filter(r => r.need).map(r => r.position);
-              return <p className="muted">Needs: {needs.length > 0 ? needs.join(', ') : 'none'}</p>;
-            })()}
+            <p className="muted">Needs: {rows.filter(r => r.need).map(r => r.position).join(', ') || 'none'}</p>
           </div>
-        )}
+          </>
+          );
+        })()}
+        <div className="chips" role="group" aria-label="Draft view">
+          <button type="button" className="chip" aria-pressed={view === 'board'} onClick={() => setView('board')}>Board</button>
+          <button type="button" className="chip" aria-pressed={view === 'picks'} onClick={() => setView('picks')}>All picks</button>
+        </div>
         {error && <p className="error">{error}</p>}
-        {finishProblems.length === 0 && (
+        {view === 'picks' && <div className="card">{allPicksTable}</div>}
+        {view === 'board' && finishProblems.length === 0 && (
           <div className="card toolbar">
             <button className="btn primary" disabled={saving} onClick={() => run(() => finishDraft(draftState, ctx()))}>Finish the draft</button>
           </div>
         )}
-        <div className="card">
-          <h2>Prospects</h2>
-          {remaining.length === 0
-            ? <p className="muted">No prospects are left.</p>
-            : prospectTable(remaining, p => (
-              <button className="btn" disabled={saving || !clock} onClick={() => run(() => draftPick(draftState, p.playerId, ctx()))}>Draft</button>
-            ))}
-        </div>
-        <div className="card">
-          <h2>Picks so far</h2>
-          {d.picks.some(p => p.playerId) ? pickTable : <p className="muted">No picks yet.</p>}
-        </div>
+        {view === 'board' && (
+          <>
+            <div className="card">
+              <h2>Prospects</h2>
+              {remaining.length === 0
+                ? <p className="muted">No prospects are left.</p>
+                : prospectTable(remaining, p => (
+                  <button className="btn" disabled={saving || !clock} onClick={() => run(() => draftPick(draftState, p.playerId, ctx()))}>Draft</button>
+                ))}
+            </div>
+            <div className="card">
+              <h2>Picks so far</h2>
+              {d.picks.some(p => p.playerId) ? pickTable : <p className="muted">No picks yet.</p>}
+            </div>
+          </>
+        )}
       </section>
     );
   }
