@@ -1,9 +1,10 @@
 import { collegeName } from '../college/state';
+import { POSITIONS } from '../roster/rules';
 import { appendTx, docPath, withTeam, type MoveContext } from '../roster/state';
 import { calendarProblem, type WritesResult } from '../season/moves';
 import { markStepDone } from '../shared/calendar';
 import type {
-  CalendarFile, DraftFile, DraftPick, FreeAgent, FreeAgentsFile, LotteryFile, PlayersFile, RankingFile, RosterEntry, RostersFile, TeamsFile, TransactionsFile,
+  CalendarFile, DraftFile, DraftPick, FreeAgent, FreeAgentsFile, LotteryFile, PlayersFile, Position, RankingFile, RosterEntry, RostersFile, TeamsFile, TransactionsFile,
 } from '../shared/types';
 import { draftPath } from './adjustAge';
 
@@ -138,4 +139,16 @@ export function finishDraft(state: FbaDraftState, ctx: MoveContext): WritesResul
     ],
     label: `Finish the S${n} draft`,
   };
+}
+
+/**
+ * What a team has at each position going into a pick, for the draft screen: the players there, and whether the spot is a need.
+ * A position is a need when nobody holds it or every player there is on a contract that ended before this season.
+ */
+export function draftRoster(entries: RosterEntry[], season: number): { position: Position; players: RosterEntry[]; need: boolean }[] {
+  return POSITIONS.map(position => {
+    const players = entries.filter(e => e.playerId !== null && e.position === position);
+    const need = players.every(e => e.contractEnd !== null && e.contractEnd !== undefined && e.contractEnd < season);
+    return { position, players, need };
+  });
 }

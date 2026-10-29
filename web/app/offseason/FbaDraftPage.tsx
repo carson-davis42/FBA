@@ -6,7 +6,7 @@ import {
   backToSchool, boardOrder, declare, declareCandidates, draftToPortal, enterPortal, moveProspectRank, type DraftBoardState,
 } from '../../engine/offseason/draftBoard';
 import {
-  draftPick, draftStepId, finishDraft, finishDraftProblems, onTheClock, startDraft, startDraftProblems, type FbaDraftState,
+  draftPick, draftRoster, draftStepId, finishDraft, finishDraftProblems, onTheClock, startDraft, startDraftProblems, type FbaDraftState,
 } from '../../engine/offseason/fbaDraft';
 import { lotteryPath } from '../../engine/offseason/lottery';
 import { DEFAULT_OUTLOOK, prospectOutlook, rankedProspects } from '../../engine/offseason/prospectOutlook';
@@ -168,13 +168,14 @@ export function FbaDraftPage() {
   const inTab = (p: DraftProspect) => tab === 'ALL' || p.position === tab;
   const move = (p: DraftProspect, delta: -1 | 1) => run(() => moveProspectRank(boardState, p.playerId, delta, id => ordered.some(x => x.playerId === id && inTab(x))));
   const drafted = new Set(d.picks.flatMap(p => (p.playerId ? [p.playerId] : [])));
-  const remaining = ordered.filter(p => !drafted.has(p.playerId));
+  // Once the draft is on, the prospects stay in their ranking order (the commissioner's order included); the same order carries into free agency and the D2 pool.
+  const remaining = ranked.filter(p => !drafted.has(p.playerId));
 
   const prospectTable = (rows: DraftProspect[], actions: (p: DraftProspect) => React.ReactNode) => (
     <div className="table-wrap tall">
       <table className="stat-table" aria-label="Prospects">
         <thead>
-          <tr><th>Name</th><th>Pos</th><th>School</th><th>Class</th><th className="num">Rank</th><th className="num">Pos rank</th><th className="num">College</th>{!started && <th><span className="muted">Move</span></th>}<th /></tr>
+          <tr><th>Name</th><th>Pos</th><th>School</th><th>Class</th><th className="num">Rank</th><th className="num">Pos rank</th>{!started && <th className="num">College</th>}{!started && <th><span className="muted">Move</span></th>}<th /></tr>
         </thead>
         <tbody>
           {rows.map(p => (
@@ -193,7 +194,7 @@ export function FbaDraftPage() {
                   </>
                 );
               })()}
-              <td className="num">{p.collegeRating ?? '—'}</td>
+              {!started && <td className="num">{p.collegeRating ?? '—'}</td>}
               {!started && (
                 <td className="rank-move">
                   <button type="button" className="btn" disabled={saving || p.playerId === rows[0]?.playerId} aria-label={`Move ${nameOf(p.playerId)} up`} onClick={() => move(p, -1)}>↑</button>
@@ -261,6 +262,32 @@ export function FbaDraftPage() {
             )
             : <p className="muted">Every pick is made.</p>}
         </div>
+        {clock && (
+          <div className="card">
+            <h2>{proTeam(clock.owner)} roster</h2>
+            <table className="stat-table" aria-label="Roster of the team on the clock">
+              <thead><tr><th>Pos</th><th>Player</th><th className="num">Rating</th><th className="num">Age</th><th>Contract</th><th>Need</th></tr></thead>
+              <tbody>
+                {draftRoster(fba.data.teams[clock.owner] ?? [], n).flatMap(({ position, players: held, need }) => (held.length === 0
+                  ? [<tr key={position}><td>{position}</td><td className="muted">Open</td><td /><td /><td /><td><strong>Need</strong></td></tr>]
+                  : held.map(e => (
+                    <tr key={e.playerId}>
+                      <td>{position}</td>
+                      <td><PlayerName id={e.playerId!} name={nameOf(e.playerId!)} /></td>
+                      <td className="num">{e.rating ?? '—'}</td>
+                      <td className="num">{e.age ?? '—'}</td>
+                      <td>{e.contractAmount != null && e.contractEnd != null ? `$${e.contractAmount} thru S${e.contractEnd}${e.restricted ? ' (rookie)' : ''}` : '—'}</td>
+                      <td>{need ? <strong>Need (expired)</strong> : ''}</td>
+                    </tr>
+                  ))))}
+              </tbody>
+            </table>
+            {(() => {
+              const needs = draftRoster(fba.data.teams[clock.owner] ?? [], n).filter(r => r.need).map(r => r.position);
+              return <p className="muted">Needs: {needs.length > 0 ? needs.join(', ') : 'none'}</p>;
+            })()}
+          </div>
+        )}
         {error && <p className="error">{error}</p>}
         {finishProblems.length === 0 && (
           <div className="card toolbar">

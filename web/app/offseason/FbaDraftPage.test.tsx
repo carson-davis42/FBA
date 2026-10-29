@@ -194,6 +194,22 @@ describe('FbaDraftPage', () => {
     expect(screen.queryByRole('button', { name: 'Finish the draft' })).toBeNull();
   });
 
+  it('lists the prospects by rank without the college rating once the draft is on', async () => {
+    stubApi(docs({ draft: startedDraft() }));
+    renderPage();
+    const table = await screen.findByRole('table', { name: 'Prospects' });
+    expect(within(table).queryByRole('columnheader', { name: 'College' })).toBeNull();
+    expect(within(table).getByRole('columnheader', { name: 'Rank' })).toBeTruthy();
+  });
+
+  it('shows the roster of the team on the clock with its needs', async () => {
+    stubApi(docs({ draft: startedDraft() }));
+    renderPage();
+    const table = await screen.findByRole('table', { name: 'Roster of the team on the clock' });
+    expect(within(table).getAllByRole('row').length).toBeGreaterThanOrEqual(6);
+    expect(screen.getByText(/^Needs:/)).toBeTruthy();
+  });
+
   it('drafts a prospect in one batch onto the team on the clock', async () => {
     const log = stubApi(docs({ draft: startedDraft() }));
     renderPage();
