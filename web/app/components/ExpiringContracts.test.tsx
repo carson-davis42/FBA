@@ -23,6 +23,13 @@ describe('ExpiringContracts', () => {
     expect(names.length).toBeGreaterThan(0);
     expect(names.every(t => t!.includes('thru S79'))).toBe(true);
   });
+  it('leaves out rookies on restricted contracts', () => {
+    const state = baseState();
+    state.fba.teams.CAR = state.fba.teams.CAR.map(e => (e.playerId === 'p00007' ? { ...e, restricted: true } : e));
+    render(<ExpiringContracts state={state} teams={teams} teamId="" passed={new Set()} busy={false} onExtend={vi.fn()} onPass={vi.fn()} />);
+    expect(rowsOf().some(r => r.textContent!.includes('(rookie)'))).toBe(false);
+    expect(rowsOf().some(r => within(r).queryByRole('button', { name: 'Extend Byron Oden' }))).toBe(false);
+  });
   it('extends or passes on a player with the buttons, and a passed player can be reconsidered', () => {
     const { onExtend, onPass } = show();
     const first = rowsOf()[0];
