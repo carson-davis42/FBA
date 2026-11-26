@@ -64,9 +64,22 @@ export function capProblem(total: number, cap: number = CAP): string | null {
   return total > cap ? `Payroll would be $${total} (cap $${cap})` : null;
 }
 
-/** Positions with nobody who stays: no player, or one whose contract has ended (a restricted rookie is a team option and still holds the spot). */
+/** Whether someone who stays holds the position: a player whose contract has ended does not, unless he is a restricted rookie (a team option). */
+const isFilled = (entries: RosterEntry[], pos: Position, season: number): boolean =>
+  entries.some(e => e.position === pos && e.playerId !== null && !(isExpired(e, season) && !e.restricted));
+
+/** Positions with nobody who stays. */
 export function openSpots(entries: RosterEntry[], season: number): number {
-  return POSITIONS.filter(pos => !entries.some(e => e.position === pos && e.playerId !== null && !(isExpired(e, season) && !e.restricted))).length;
+  return POSITIONS.filter(pos => !isFilled(entries, pos, season)).length;
+}
+
+/** For each position, how many of the teams have it filled and how many still have it open. */
+export function positionFill(teams: Record<string, RosterEntry[]>, season: number): { position: Position; filled: number; open: number }[] {
+  const rosters = Object.values(teams);
+  return POSITIONS.map(position => {
+    const filled = rosters.filter(entries => isFilled(entries, position, season)).length;
+    return { position, filled, open: rosters.length - filled };
+  });
 }
 
 /** Every open spot still needs a player, and the cheapest deal is $1: a team may not spend so much that it cannot fill them. */

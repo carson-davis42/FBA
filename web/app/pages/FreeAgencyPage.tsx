@@ -12,6 +12,7 @@ import { ExtendDialog } from '../components/ExtendDialog';
 import { InterestedTeams } from '../components/InterestedTeams';
 import { PageHeader } from '../components/PageHeader';
 import { PayrollBar } from '../components/PayrollBar';
+import { PositionFill } from '../components/PositionFill';
 import { RestrictedFreeAgents } from '../components/RestrictedFreeAgents';
 import { RosterTable } from '../components/RosterTable';
 import { SignPanel } from '../components/SignPanel';
@@ -151,6 +152,7 @@ export function FreeAgencyPage() {
     <section>
       <PageHeader kicker="FBA" title={`S${state.season} free agency`} />
       {closed && <p className="muted">Free agency is closed. Unsigned players moved to D2 Reserves.</p>}
+      <PositionFill teams={state.fba.teams} season={state.season} />
       <div className="form-row filters card">
         <label>Team
           <select value={teamId} onChange={e => setTeamId(e.target.value)}>

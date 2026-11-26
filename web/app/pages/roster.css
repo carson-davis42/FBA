@@ -76,3 +76,5 @@ legend { font-weight: 700; margin-bottom: 4px; }
 
 .stat-table tr.clickable { cursor: pointer; }
 .stat-table tr.clickable:hover td { background: var(--accent-soft); }
+.position-fill { display: flex; flex-wrap: wrap; gap: var(--s2); list-style: none; margin: 0; padding: 0; }
+.position-fill li { flex: 1; }
