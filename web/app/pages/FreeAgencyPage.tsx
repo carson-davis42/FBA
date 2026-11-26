@@ -3,7 +3,7 @@ import { teamsInSeason } from '../../engine/shared/teams';
 import { useParams } from 'react-router-dom';
 import { marketRows, type MarketType, openPositions } from '../../engine/roster/market';
 import { closeFreeAgency, freeAgencyBlockers, releasePlayer } from '../../engine/roster/moves';
-import { payroll, POSITIONS } from '../../engine/roster/rules';
+import { payroll, positionFill, POSITIONS } from '../../engine/roster/rules';
 import { currentStepIndex, markCurrentDone } from '../../engine/shared/calendar';
 import type { CalendarFile, DraftFile, ExtendPassedFile, FranchisesFile, PlayerBiosFile, Position, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
@@ -130,8 +130,10 @@ export function FreeAgencyPage() {
   const team = teamId ? state.fba.teams[teamId] : undefined;
   const pickedTeam = teams.teams.find(t => t.teamId === teamId);
   const needs = team ? openPositions(team) : [];
+  // A position every team has filled has no room left, so its free agents are not listed (they go to, or stay in, D2).
+  const full = positionFill(state.fba.teams, state.season).filter(p => p.open === 0).map(p => p.position);
   const rows = marketRows(state).filter(r =>
-    (pos === 'ALL' || r.position === pos) && (type === 'ALL' || r.type === type) && (!team || needs.length === 0 || needs.includes(r.position)),
+    !full.includes(r.position) && (pos === 'ALL' || r.position === pos) && (type === 'ALL' || r.type === type) && (!team || needs.length === 0 || needs.includes(r.position)),
   );
   const blockers = freeAgencyBlockers(state);
   const closed = state.freeAgents.locked;
@@ -186,6 +188,8 @@ export function FreeAgencyPage() {
         <SignPanel key={`${selected}-${signTeam}`} state={state} teams={teams} playerId={selected} defaultTeam={signTeam || teamId} onClose={() => setSelected(null)} versions={versions} phase={phase} interest={interestContext} />
       )}
       {selected && !closed && <InterestedTeams state={state} teams={teams.teams} playerId={selected} onSign={setSignTeam} context={interestContext} />}
+
+      {full.length > 0 && <p className="muted">No spots left at {full.join(', ')}: free agents there are hidden.</p>}
 
       <MarketTable rows={rows} selected={selected} onSelect={id => { setSelected(id); setSignTeam(''); }} teams={teams.teams} season={state.season} />
 
