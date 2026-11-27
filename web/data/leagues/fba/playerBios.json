@@ -6764,7 +6764,8 @@
       "playerId": "p00503",
       "born": "Born-S60",
       "entries": [
-        "Iowa State-S78-pres."
+        "Iowa State-S78-S79",
+        "Kentucky-S80-pres."
       ]
     },
     {
@@ -6795,7 +6796,8 @@
       "born": "Born-S58",
       "entries": [
         "Kansas State-S76-S77",
-        "Oklahoma-S78-pres."
+        "Oklahoma-S78",
+        "Texas-S79-pres."
       ]
     },
     {
@@ -6918,7 +6920,8 @@
       "playerId": "p00550",
       "born": "Born-S59",
       "entries": [
-        "Duke-S77-pres."
+        "Duke-S77-S78",
+        "San Diego State-S79-pres."
       ]
     },
     {
@@ -6933,7 +6936,8 @@
       "born": "Born-S58",
       "entries": [
         "Miami-S76-S77",
-        "Duke-S78-pres."
+        "Duke-S78",
+        "Tennessee-S79-pres."
       ]
     },
     {
@@ -6982,7 +6986,8 @@
       "playerId": "p00561",
       "born": "Born-S60",
       "entries": [
-        "Louisville-S78-pres."
+        "Louisville-S78",
+        "North Carolina-S79-pres."
       ]
     },
     {
@@ -7022,10 +7027,11 @@
       "entries": [
         "Air Force-S76",
         "Ole Miss-S77",
-        "North Carolina-S78-pres.",
+        "North Carolina-S78",
         "1x NC app.",
         "1x National Champion",
-        "1x ACC TOUR Champion"
+        "1x ACC TOUR Champion",
+        "Wake Forest-S79-pres."
       ]
     },
     {
@@ -7119,7 +7125,8 @@
       "playerId": "p00592",
       "born": "Born-S59",
       "entries": [
-        "Virginia Tech-S77-pres."
+        "Virginia Tech-S77-S78",
+        "Louisville-S79-pres."
       ]
     },
     {
@@ -7135,16 +7142,18 @@
       "born": "Born-S59",
       "entries": [
         "Providence-S77",
-        "Wake Forest-S78-pres.",
-        "1x ACC RS Champion"
+        "Wake Forest-S78",
+        "1x ACC RS Champion",
+        "Nevada-S79-pres."
       ]
     },
     {
       "playerId": "p00599",
       "born": "Born-S58",
       "entries": [
-        "Wake Forest-S76-pres.",
-        "1x ACC RS Champion"
+        "Wake Forest-S76-S78",
+        "1x ACC RS Champion",
+        "Texas-S79-pres."
       ]
     },
     {
@@ -7261,8 +7270,9 @@
       "playerId": "p00643",
       "born": "Born-S59",
       "entries": [
-        "St.John's-S77-pres.",
-        "1x BE POY"
+        "St.John's-S77-S79",
+        "1x BE POY",
+        "Kansas-S80-pres."
       ]
     },
     {
@@ -7473,7 +7483,8 @@
       "playerId": "p00691",
       "born": "Born-S60",
       "entries": [
-        "LSU-S78-pres."
+        "LSU-S78",
+        "Boise State-S79-pres."
       ]
     },
     {
@@ -7540,23 +7551,25 @@
       "born": "Born-S57",
       "entries": [
         "Cincinnati-S75",
-        "Ole Miss-S76-pres."
+        "Missouri-S76-S78"
       ]
     },
     {
       "playerId": "p00700",
       "born": "Born-S58",
       "entries": [
-        "Missouri-S76-pres."
+        "Missouri-S76-S78",
+        "Kansas-S79-pres."
       ]
     },
     {
       "playerId": "p00708",
       "born": "Born-S58",
       "entries": [
-        "Tennessee-S76-pres.",
+        "Tennessee-S76-S78",
         "1x SEC RS Champion",
-        "1x SEC TOUR Champion"
+        "1x SEC TOUR Champion",
+        "Illinois-S79-pres."
       ]
     },
     {
@@ -7627,8 +7640,9 @@
       "playerId": "p00719",
       "born": "Born-S59",
       "entries": [
-        "Illinois-S77-pres.",
-        "1x B10 RS Champion"
+        "Illinois-S77-S78",
+        "1x B10 RS Champion",
+        "Texas Tech-S79-pres."
       ]
     },
     {
@@ -7677,14 +7691,16 @@
       "playerId": "p00726",
       "born": "Born-S59",
       "entries": [
-        "Indiana-S77-pres."
+        "Indiana-S77-S79",
+        "Gonzaga-S80-pres."
       ]
     },
     {
       "playerId": "p00731",
       "born": "Born-S58",
       "entries": [
-        "Iowa-S76-pres."
+        "Iowa-S76-S78",
+        "Nevada-S79-pres."
       ]
     },
     {
@@ -7822,7 +7838,8 @@
       "born": "Born-S58",
       "entries": [
         "Penn State-S76-S77",
-        "Purdue-S78-pres."
+        "Purdue-S78",
+        "Illinois-S79-pres."
       ]
     },
     {
@@ -7869,8 +7886,9 @@
       "playerId": "p00788",
       "born": "Born-S58",
       "entries": [
-        "FAU-S76-pres.",
-        "1x AAC TOUR Champion"
+        "FAU-S76-S78",
+        "1x AAC TOUR Champion",
+        "Florida-S79-pres."
       ]
     },
     {
@@ -7899,7 +7917,8 @@
       "playerId": "p00807",
       "born": "Born-S60",
       "entries": [
-        "SMU-S78-pres."
+        "SMU-S78",
+        "Duke-S79-pres."
       ]
     },
     {
@@ -7964,7 +7983,8 @@
       "born": "Born-S58",
       "entries": [
         "Notre Dame-S76-S77",
-        "Arizona-S78-pres."
+        "Arizona-S78",
+        "UConn-S79-pres."
       ]
     },
     {
@@ -7978,7 +7998,8 @@
       "playerId": "p00839",
       "born": "Born-S60",
       "entries": [
-        "Arizona-S78-pres."
+        "Arizona-S78",
+        "Arizona State-S79-pres."
       ]
     },
     {
@@ -8042,7 +8063,8 @@
       "playerId": "p00854",
       "born": "Born-S60",
       "entries": [
-        "Gonzaga-S78-pres."
+        "Gonzaga-S78",
+        "Oregon-S79-pres."
       ]
     },
     {
@@ -8191,7 +8213,8 @@
       "playerId": "p00886",
       "born": "Born-S59",
       "entries": [
-        "Washington-S77-pres."
+        "Washington-S77-S78",
+        "Purdue-S79-pres."
       ]
     },
     {
@@ -8213,7 +8236,8 @@
       "playerId": "p00893",
       "born": "Born-S58",
       "entries": [
-        "Washington State-S76-pres."
+        "Washington State-S76-S78",
+        "Oregon State-S79-pres."
       ]
     },
     {
@@ -8227,7 +8251,8 @@
       "playerId": "p00908",
       "born": "Born-S58",
       "entries": [
-        "Dayton-S76-pres."
+        "Dayton-S76-S78",
+        "Florida State-S79-pres."
       ]
     },
     {
@@ -8242,7 +8267,8 @@
       "playerId": "p00918",
       "born": "Born-S59",
       "entries": [
-        "Loyola-Chicago-S77-pres."
+        "Loyola-Chicago-S77-S78",
+        "Houston-S79-pres."
       ]
     },
     {
@@ -8323,17 +8349,19 @@
       "playerId": "p00955",
       "born": "Born-S59",
       "entries": [
-        "VCU-S77-pres.",
-        "1x A10 TOUR Champion"
+        "VCU-S77-S79",
+        "1x A10 TOUR Champion",
+        "Houston-S80-pres."
       ]
     },
     {
       "playerId": "p00976",
       "born": "Born-S58",
       "entries": [
-        "Lehigh-S76-pres.",
+        "Lehigh-S76-S78",
         "2x PAT TOUR Champion",
-        "1x PAT RS Champion"
+        "1x PAT RS Champion",
+        "San Diego State-S79-pres."
       ]
     },
     {
@@ -8350,22 +8378,25 @@
       "playerId": "p01000",
       "born": "Born-S59",
       "entries": [
-        "Norfolk State-S77-pres."
+        "Norfolk State-S77-S78",
+        "Mississippi State-S79-pres."
       ]
     },
     {
       "playerId": "p01049",
       "born": "Born-S58",
       "entries": [
-        "Middle Tennessee-S76-pres."
+        "Middle Tennessee-S76-S78",
+        "Arkansas-S79-pres."
       ]
     },
     {
       "playerId": "p01072",
       "born": "Born-S59",
       "entries": [
-        "Winthrop-S77-pres.",
-        "1x COL POY"
+        "Winthrop-S77-S78",
+        "1x COL POY",
+        "LSU-S79-pres."
       ]
     },
     {
@@ -8381,41 +8412,46 @@
       "playerId": "p01118",
       "born": "Born-S58",
       "entries": [
-        "St.Bonaventure-S76-pres.",
+        "St.Bonaventure-S76-S78",
         "1x HOR RS Champion",
-        "1x HOR TOUR Champion"
+        "1x HOR TOUR Champion",
+        "Alabama-S79-pres."
       ]
     },
     {
       "playerId": "p01119",
       "born": "Born-S58",
       "entries": [
-        "St.Bonaventure-S76-pres.",
+        "St.Bonaventure-S76-S78",
         "1x HOR RS Champion",
-        "1x HOR TOUR Champion"
+        "1x HOR TOUR Champion",
+        "Florida-S79-pres."
       ]
     },
     {
       "playerId": "p01143",
       "born": "Born-S58",
       "entries": [
-        "Cal-S76-pres."
+        "Cal-S76-S78",
+        "UCLA-S79-pres."
       ]
     },
     {
       "playerId": "p01151",
       "born": "Born-S59",
       "entries": [
-        "Columbia-S77-pres.",
-        "1x IVY TOUR Champion"
+        "Columbia-S77-S79",
+        "1x IVY TOUR Champion",
+        "Marquette-S80-pres."
       ]
     },
     {
       "playerId": "p01163",
       "born": "Born-S59",
       "entries": [
-        "Dartmouth-S77-pres.",
-        "1x IVY RS Champion"
+        "Dartmouth-S77-S78",
+        "1x IVY RS Champion",
+        "UConn-S79-pres."
       ]
     },
     {
@@ -8439,15 +8475,17 @@
       "playerId": "p01179",
       "born": "Born-S58",
       "entries": [
-        "Penn-S76-pres."
+        "Penn-S76-S78",
+        "Penn State-S79-pres."
       ]
     },
     {
       "playerId": "p01231",
       "born": "Born-S58",
       "entries": [
-        "Stephen F Austin-S76-pres.",
-        "1x SOCON TOUR Champion"
+        "Stephen F Austin-S76-S78",
+        "1x SOCON TOUR Champion",
+        "Texas Tech-S79-pres."
       ]
     },
     {
@@ -8463,32 +8501,36 @@
       "playerId": "p01287",
       "born": "Born-S58",
       "entries": [
-        "Georgia State-S76-pres.",
+        "Georgia State-S76-S78",
         "1x SUN TOUR Champion",
         "1x SUN POY",
-        "1x SUN RS Champion"
+        "1x SUN RS Champion",
+        "Georgia-S79-pres."
       ]
     },
     {
       "playerId": "p01306",
       "born": "Born-S58",
       "entries": [
-        "South Florida-S76-pres.",
-        "1x SUN TOUR Champion"
+        "South Florida-S76-S78",
+        "1x SUN TOUR Champion",
+        "Florida State-S79-pres."
       ]
     },
     {
       "playerId": "p01328",
       "born": "Born-S58",
       "entries": [
-        "High Point-S76-pres."
+        "High Point-S76-S78",
+        "Villanova-S79-pres."
       ]
     },
     {
       "playerId": "p01334",
       "born": "Born-S58",
       "entries": [
-        "Kennesaw State-S76-pres."
+        "Kennesaw State-S76-S78",
+        "Texas A&M-S79-pres."
       ]
     },
     {
@@ -8521,7 +8563,8 @@
       "playerId": "p01380",
       "born": "Born-S58",
       "entries": [
-        "Air Force-S76-pres."
+        "Air Force-S76-S78",
+        "Boise State-S79-pres."
       ]
     },
     {
@@ -8610,7 +8653,8 @@
       "playerId": "p01420",
       "born": "Born-S58",
       "entries": [
-        "UNLV-S76-pres."
+        "UNLV-S76-S78",
+        "Utah-S79-pres."
       ]
     },
     {
@@ -8624,7 +8668,8 @@
       "playerId": "p01427",
       "born": "Born-S58",
       "entries": [
-        "Utah State-S76-pres."
+        "Utah State-S76-S78",
+        "Utah-S79-pres."
       ]
     },
     {
@@ -8645,25 +8690,28 @@
       "playerId": "p01444",
       "born": "Born-S58",
       "entries": [
-        "Grand Canyon-S76-pres.",
-        "1x OVC RS Champion"
+        "Grand Canyon-S76-S78",
+        "1x OVC RS Champion",
+        "Arizona State-S79-pres."
       ]
     },
     {
       "playerId": "p01493",
       "born": "Born-S58",
       "entries": [
-        "Troy-S76-pres.",
+        "Troy-S76-S78",
         "1x OVC POY",
-        "1x OVC RS Champion"
+        "1x OVC RS Champion",
+        "Auburn-S79-pres."
       ]
     },
     {
       "playerId": "p01502",
       "born": "Born-S58",
       "entries": [
-        "Duquesne-S76-pres.",
-        "1x NEC RS Champion"
+        "Duquesne-S76-S78",
+        "1x NEC RS Champion",
+        "Marquette-S79-pres."
       ]
     },
     {
@@ -8685,7 +8733,8 @@
       "playerId": "p01544",
       "born": "Born-S58",
       "entries": [
-        "UNC Asheville-S76-pres."
+        "UNC Asheville-S76-S78",
+        "NC State-S79-pres."
       ]
     },
     {
@@ -16345,7 +16394,7 @@
       ]
     },
     {
-      "playerId": "p02358",
+      "playerId": "p00065",
       "born": "Born-S56",
       "entries": [
         "Michigan State-S74",
@@ -16364,7 +16413,7 @@
       ]
     },
     {
-      "playerId": "p02360",
+      "playerId": "p00495",
       "born": "Born-S59",
       "entries": [
         "Houston-S77-pres.",
@@ -16375,42 +16424,58 @@
     {
       "playerId": "p02361",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "North Carolina-S79-pres."
+      ]
     },
     {
       "playerId": "p02362",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Arizona-S79-pres."
+      ]
     },
     {
       "playerId": "p02363",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Houston-S79-pres."
+      ]
     },
     {
       "playerId": "p02364",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Villanova-S79-pres."
+      ]
     },
     {
       "playerId": "p02365",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Arizona-S79-pres."
+      ]
     },
     {
       "playerId": "p02366",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Michigan-S79-pres."
+      ]
     },
     {
       "playerId": "p02367",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "UCLA-S79-pres."
+      ]
     },
     {
       "playerId": "p02368",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Tennessee-S79-pres."
+      ]
     },
     {
       "playerId": "p02369",
@@ -16422,72 +16487,101 @@
     {
       "playerId": "p02370",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Kansas-S79-pres."
+      ]
     },
     {
       "playerId": "p02371",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "UConn-S79-pres."
+      ]
     },
     {
       "playerId": "p02372",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Duke-S79-pres."
+      ]
     },
     {
       "playerId": "p02373",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "LSU-S79-pres."
+      ]
     },
     {
       "playerId": "p02374",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Pitt-S79-pres."
+      ]
     },
     {
       "playerId": "p02375",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Notre Dame-S79-pres."
+      ]
     },
     {
       "playerId": "p02376",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Baylor-S79-pres."
+      ]
     },
     {
       "playerId": "p02377",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Arkansas-S79-pres."
+      ]
     },
     {
       "playerId": "p02378",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Michigan State-S79-pres."
+      ]
     },
     {
       "playerId": "p02379",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Florida-S79-pres."
+      ]
     },
     {
       "playerId": "p02380",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Ole Miss-S79-pres."
+      ]
     },
     {
       "playerId": "p02381",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Creighton-S79",
+        "Pitt-S80-pres."
+      ]
     },
     {
       "playerId": "p02382",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Memphis-S79-pres."
+      ]
     },
     {
       "playerId": "p02383",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Gonzaga-S79-pres."
+      ]
     },
     {
       "playerId": "p02384",
@@ -16499,64 +16593,76 @@
     {
       "playerId": "p02385",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Louisville-S79-pres."
+      ]
     },
     {
       "playerId": "p02386",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Ole Miss-S79-pres."
+      ]
     },
     {
       "playerId": "p02387",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Vanderbilt-S79-pres."
+      ]
     },
     {
       "playerId": "p02388",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "FAU-S79-pres."
+      ]
     },
     {
       "playerId": "p02389",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "Boise State-S79-pres."
+      ]
     },
     {
       "playerId": "p02390",
       "born": "Born-S61",
-      "entries": []
+      "entries": [
+        "San Jose State-S79-pres."
+      ]
     },
     {
       "playerId": "p00952",
-      "born": "Born-S?",
+      "born": "Born-S59",
       "entries": [
         "VCU-S77-pres."
       ]
     },
     {
       "playerId": "p00569",
-      "born": "Born-S?",
+      "born": "Born-S59",
       "entries": [
         "NC State-S77-pres."
       ]
     },
     {
       "playerId": "p00924",
-      "born": "Born-S?",
+      "born": "Born-S59",
       "entries": [
         "Nebraska-S77-pres."
       ]
     },
     {
       "playerId": "p00950",
-      "born": "Born-S?",
+      "born": "Born-S59",
       "entries": [
         "Vanderbilt-S77-pres."
       ]
     },
     {
       "playerId": "p00507",
-      "born": "Born-S?",
+      "born": "Born-S59",
       "entries": [
         "Kansas-S77-pres."
       ]
@@ -16570,49 +16676,49 @@
     },
     {
       "playerId": "p01423",
-      "born": "Born-S?",
+      "born": "Born-S59",
       "entries": [
         "UNLV-S77-pres."
       ]
     },
     {
       "playerId": "p01256",
-      "born": "Born-S?",
+      "born": "Born-S60",
       "entries": [
         "Alabama State-S78-pres."
       ]
     },
     {
       "playerId": "p00606",
-      "born": "Born-S?",
+      "born": "Born-S60",
       "entries": [
         "Creighton-S78-pres."
       ]
     },
     {
       "playerId": "p00542",
-      "born": "Born-S?",
+      "born": "Born-S59",
       "entries": [
         "West Virginia-S77-pres."
       ]
     },
     {
       "playerId": "p00659",
-      "born": "Born-S?",
+      "born": "Born-S60",
       "entries": [
         "Xavier-S78-pres."
       ]
     },
     {
       "playerId": "p01210",
-      "born": "Born-S?",
+      "born": "Born-S59",
       "entries": [
         "North Texas-S77-pres."
       ]
     },
     {
       "playerId": "p01265",
-      "born": "Born-S?",
+      "born": "Born-S59",
       "entries": [
         "Arkansas Pine Bluff-S77-pres."
       ]
@@ -16633,7 +16739,7 @@
     },
     {
       "playerId": "p00520",
-      "born": "Born-S?",
+      "born": "Born-S59",
       "entries": [
         "Oklahoma State-S77-pres."
       ]
@@ -16647,7 +16753,7 @@
     },
     {
       "playerId": "p00912",
-      "born": "Born-S?",
+      "born": "Born-S60",
       "entries": [
         "East Carolina-S78-pres."
       ]
@@ -16903,6 +17009,176 @@
       "entries": [
         "UMass-S76-pres."
       ]
+    },
+    {
+      "playerId": "p02422",
+      "born": "Born-S62",
+      "entries": [
+        "BYU-S80-pres."
+      ]
+    },
+    {
+      "playerId": "p02425",
+      "born": "Born-S62",
+      "entries": [
+        "Houston-S80-pres."
+      ]
+    },
+    {
+      "playerId": "p02449",
+      "born": "Born-S62",
+      "entries": [
+        "Kansas-S80-pres."
+      ]
+    },
+    {
+      "playerId": "p02433",
+      "born": "Born-S62",
+      "entries": [
+        "Oklahoma-S80-pres."
+      ]
+    },
+    {
+      "playerId": "p02443",
+      "born": "Born-S62",
+      "entries": [
+        "North Carolina-S80-pres."
+      ]
+    },
+    {
+      "playerId": "p02444",
+      "born": "Born-S62",
+      "entries": [
+        "Auburn-S80-pres."
+      ]
+    },
+    {
+      "playerId": "p02427",
+      "born": "Born-S62",
+      "entries": [
+        "Kentucky-S80-pres."
+      ]
+    },
+    {
+      "playerId": "p02434",
+      "born": "Born-S62",
+      "entries": [
+        "Kentucky-S80-pres."
+      ]
+    },
+    {
+      "playerId": "p02445",
+      "born": "Born-S62",
+      "entries": [
+        "Michigan-S80-pres."
+      ]
+    },
+    {
+      "playerId": "p02439",
+      "born": "Born-S62",
+      "entries": [
+        "Purdue-S80-pres."
+      ]
+    },
+    {
+      "playerId": "p02423",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02424",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02426",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02428",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02429",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02430",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02431",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02432",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02435",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02436",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02437",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02438",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02440",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02441",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02442",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02446",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02447",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02448",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02450",
+      "born": "Born-S62",
+      "entries": []
+    },
+    {
+      "playerId": "p02451",
+      "born": "Born-S62",
+      "entries": []
     }
   ]
 }

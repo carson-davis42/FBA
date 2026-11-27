@@ -335,7 +335,7 @@
     },
     "p00065": {
       "id": "p00065",
-      "name": "D'Andre Holiday",
+      "name": "D'Andre Holliday",
       "birthSeason": 56
     },
     "p00066": {
@@ -2554,11 +2554,6 @@
       "name": "Baxter Michael",
       "birthSeason": 46
     },
-    "p00461": {
-      "id": "p00461",
-      "name": "Adrien Moraeu",
-      "birthSeason": 50
-    },
     "p00462": {
       "id": "p00462",
       "name": "Morris Cook",
@@ -2619,11 +2614,6 @@
       "name": "Hendrix Parks",
       "birthSeason": 46
     },
-    "p00474": {
-      "id": "p00474",
-      "name": "Quentin Kauffman",
-      "birthSeason": 47
-    },
     "p00475": {
       "id": "p00475",
       "name": "Jayson Cunningham",
@@ -2677,7 +2667,7 @@
     "p00485": {
       "id": "p00485",
       "name": "Jake Hollister",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00486": {
       "id": "p00486",
@@ -2702,7 +2692,7 @@
     "p00490": {
       "id": "p00490",
       "name": "Reed Brooks",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00491": {
       "id": "p00491",
@@ -2717,7 +2707,7 @@
     "p00493": {
       "id": "p00493",
       "name": "Thaddeus Boyd",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00494": {
       "id": "p00494",
@@ -2726,7 +2716,7 @@
     },
     "p00495": {
       "id": "p00495",
-      "name": "Kellen Ogbu",
+      "name": "Kellan Ogbu",
       "birthSeason": 59
     },
     "p00496": {
@@ -2752,7 +2742,7 @@
     "p00500": {
       "id": "p00500",
       "name": "Carmelo Briggs",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00501": {
       "id": "p00501",
@@ -2767,7 +2757,7 @@
     "p00503": {
       "id": "p00503",
       "name": "Brayden Black",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00504": {
       "id": "p00504",
@@ -2782,12 +2772,12 @@
     "p00506": {
       "id": "p00506",
       "name": "Sebastian Cross",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00507": {
       "id": "p00507",
       "name": "Zane Jernigan",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00508": {
       "id": "p00508",
@@ -2852,7 +2842,7 @@
     "p00520": {
       "id": "p00520",
       "name": "Marquise Rojas",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00521": {
       "id": "p00521",
@@ -2867,7 +2857,7 @@
     "p00523": {
       "id": "p00523",
       "name": "Brice Westlake",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00524": {
       "id": "p00524",
@@ -2922,7 +2912,7 @@
     "p00534": {
       "id": "p00534",
       "name": "Dante Moretti",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00535": {
       "id": "p00535",
@@ -2947,7 +2937,7 @@
     "p00539": {
       "id": "p00539",
       "name": "Noah Boudreaux",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00540": {
       "id": "p00540",
@@ -2962,7 +2952,7 @@
     "p00542": {
       "id": "p00542",
       "name": "Uriah Varner",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00543": {
       "id": "p00543",
@@ -2997,12 +2987,12 @@
     "p00549": {
       "id": "p00549",
       "name": "Keaton Frye",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00550": {
       "id": "p00550",
       "name": "Kofi Mensah",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00551": {
       "id": "p00551",
@@ -3047,7 +3037,7 @@
     "p00559": {
       "id": "p00559",
       "name": "Shane Carson Jr",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00560": {
       "id": "p00560",
@@ -3057,7 +3047,7 @@
     "p00561": {
       "id": "p00561",
       "name": "Emerson Tate",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00562": {
       "id": "p00562",
@@ -3067,7 +3057,7 @@
     "p00563": {
       "id": "p00563",
       "name": "Davon Pierce",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00564": {
       "id": "p00564",
@@ -3097,12 +3087,12 @@
     "p00569": {
       "id": "p00569",
       "name": "Everett Maldonado",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00570": {
       "id": "p00570",
       "name": "Omar Aziz",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00571": {
       "id": "p00571",
@@ -3117,7 +3107,7 @@
     "p00573": {
       "id": "p00573",
       "name": "Kye Houston",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00574": {
       "id": "p00574",
@@ -3132,7 +3122,7 @@
     "p00576": {
       "id": "p00576",
       "name": "Jon Kingsbury",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00577": {
       "id": "p00577",
@@ -3182,7 +3172,7 @@
     "p00586": {
       "id": "p00586",
       "name": "DJ Drake",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00587": {
       "id": "p00587",
@@ -3212,7 +3202,7 @@
     "p00592": {
       "id": "p00592",
       "name": "Cole Fenner",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00593": {
       "id": "p00593",
@@ -3242,7 +3232,7 @@
     "p00598": {
       "id": "p00598",
       "name": "Jean-Pierre Laurent",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00599": {
       "id": "p00599",
@@ -3282,17 +3272,17 @@
     "p00606": {
       "id": "p00606",
       "name": "Elio Lowery",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00607": {
       "id": "p00607",
       "name": "Camden Sutter",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00608": {
       "id": "p00608",
       "name": "Brantley Hayes",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00610": {
       "id": "p00610",
@@ -3367,7 +3357,7 @@
     "p00624": {
       "id": "p00624",
       "name": "Jalen Knight",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00625": {
       "id": "p00625",
@@ -3452,7 +3442,7 @@
     "p00641": {
       "id": "p00641",
       "name": "Marcellus Stone",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00642": {
       "id": "p00642",
@@ -3467,7 +3457,7 @@
     "p00644": {
       "id": "p00644",
       "name": "Tyler Blevins",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00645": {
       "id": "p00645",
@@ -3522,7 +3512,7 @@
     "p00655": {
       "id": "p00655",
       "name": "Daquan Ritter",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00656": {
       "id": "p00656",
@@ -3542,7 +3532,7 @@
     "p00659": {
       "id": "p00659",
       "name": "Bram Ito",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00660": {
       "id": "p00660",
@@ -3637,7 +3627,7 @@
     "p00678": {
       "id": "p00678",
       "name": "Jean Fall",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00679": {
       "id": "p00679",
@@ -3682,7 +3672,7 @@
     "p00687": {
       "id": "p00687",
       "name": "Dario Cuellar",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00688": {
       "id": "p00688",
@@ -3692,7 +3682,7 @@
     "p00689": {
       "id": "p00689",
       "name": "Kobe Maddox",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00690": {
       "id": "p00690",
@@ -3702,7 +3692,7 @@
     "p00691": {
       "id": "p00691",
       "name": "Tyquan Ellis",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00692": {
       "id": "p00692",
@@ -3797,7 +3787,7 @@
     "p00710": {
       "id": "p00710",
       "name": "Amir O'Donnell",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00711": {
       "id": "p00711",
@@ -3817,7 +3807,7 @@
     "p00714": {
       "id": "p00714",
       "name": "Rowe Caldwell",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00715": {
       "id": "p00715",
@@ -3842,7 +3832,7 @@
     "p00719": {
       "id": "p00719",
       "name": "Lars Jensen",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00720": {
       "id": "p00720",
@@ -3862,7 +3852,7 @@
     "p00723": {
       "id": "p00723",
       "name": "Milos Jaksic",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00724": {
       "id": "p00724",
@@ -3877,7 +3867,7 @@
     "p00726": {
       "id": "p00726",
       "name": "Julian Kovacs",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00727": {
       "id": "p00727",
@@ -3957,17 +3947,17 @@
     "p00742": {
       "id": "p00742",
       "name": "Carson Vale",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00743": {
       "id": "p00743",
       "name": "Rylan Bishop",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00744": {
       "id": "p00744",
       "name": "Zayden Carr",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00745": {
       "id": "p00745",
@@ -4252,7 +4242,7 @@
     "p00801": {
       "id": "p00801",
       "name": "Zizi Bradford",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00802": {
       "id": "p00802",
@@ -4282,7 +4272,7 @@
     "p00807": {
       "id": "p00807",
       "name": "Dede Baker",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00808": {
       "id": "p00808",
@@ -4367,7 +4357,7 @@
     "p00824": {
       "id": "p00824",
       "name": "Rhys Morgan",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00825": {
       "id": "p00825",
@@ -4407,7 +4397,7 @@
     "p00832": {
       "id": "p00832",
       "name": "Davis Goldyn",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00833": {
       "id": "p00833",
@@ -4417,7 +4407,7 @@
     "p00834": {
       "id": "p00834",
       "name": "Derrick Langham",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00835": {
       "id": "p00835",
@@ -4437,17 +4427,17 @@
     "p00838": {
       "id": "p00838",
       "name": "Elias Duarte",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00839": {
       "id": "p00839",
       "name": "Bronn Smith",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00840": {
       "id": "p00840",
       "name": "Emiliano Torres",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00841": {
       "id": "p00841",
@@ -4472,7 +4462,7 @@
     "p00845": {
       "id": "p00845",
       "name": "Hamid El-Sayed",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00846": {
       "id": "p00846",
@@ -4502,7 +4492,7 @@
     "p00851": {
       "id": "p00851",
       "name": "Todd Grier",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00852": {
       "id": "p00852",
@@ -4552,7 +4542,7 @@
     "p00861": {
       "id": "p00861",
       "name": "Drew Pritchard",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00862": {
       "id": "p00862",
@@ -4632,7 +4622,7 @@
     "p00877": {
       "id": "p00877",
       "name": "Darius Montague",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00878": {
       "id": "p00878",
@@ -4642,7 +4632,7 @@
     "p00879": {
       "id": "p00879",
       "name": "Kobe Blake",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00880": {
       "id": "p00880",
@@ -4677,7 +4667,7 @@
     "p00886": {
       "id": "p00886",
       "name": "Malik Grimes",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00887": {
       "id": "p00887",
@@ -4722,7 +4712,7 @@
     "p00895": {
       "id": "p00895",
       "name": "Deandre Hayes",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00896": {
       "id": "p00896",
@@ -4807,7 +4797,7 @@
     "p00912": {
       "id": "p00912",
       "name": "Wiley Echeverria",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00913": {
       "id": "p00913",
@@ -4837,7 +4827,7 @@
     "p00918": {
       "id": "p00918",
       "name": "Kyrie Finch",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00919": {
       "id": "p00919",
@@ -4847,7 +4837,7 @@
     "p00920": {
       "id": "p00920",
       "name": "Michale Kensington",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00921": {
       "id": "p00921",
@@ -4867,7 +4857,7 @@
     "p00924": {
       "id": "p00924",
       "name": "Zachariah Oyelaran",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00925": {
       "id": "p00925",
@@ -4992,12 +4982,12 @@
     "p00949": {
       "id": "p00949",
       "name": "Callen Vera",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p00950": {
       "id": "p00950",
       "name": "Cyrus Zimmer",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00951": {
       "id": "p00951",
@@ -5007,7 +4997,7 @@
     "p00952": {
       "id": "p00952",
       "name": "Reuben Ellery",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00953": {
       "id": "p00953",
@@ -5022,7 +5012,7 @@
     "p00955": {
       "id": "p00955",
       "name": "Cedric Harmon",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p00956": {
       "id": "p00956",
@@ -5247,7 +5237,7 @@
     "p01000": {
       "id": "p01000",
       "name": "Luc Moreau",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p01001": {
       "id": "p01001",
@@ -5607,7 +5597,7 @@
     "p01072": {
       "id": "p01072",
       "name": "Devonte Phelps",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p01073": {
       "id": "p01073",
@@ -6002,7 +5992,7 @@
     "p01151": {
       "id": "p01151",
       "name": "Emil Sedlacek",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p01152": {
       "id": "p01152",
@@ -6062,7 +6052,7 @@
     "p01163": {
       "id": "p01163",
       "name": "Keandre Vaughn",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p01164": {
       "id": "p01164",
@@ -6112,7 +6102,7 @@
     "p01173": {
       "id": "p01173",
       "name": "Keyon Drake",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p01174": {
       "id": "p01174",
@@ -6297,7 +6287,7 @@
     "p01210": {
       "id": "p01210",
       "name": "Vidal Galloway",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p01211": {
       "id": "p01211",
@@ -6527,7 +6517,7 @@
     "p01256": {
       "id": "p01256",
       "name": "Reggie Bannerman",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p01257": {
       "id": "p01257",
@@ -6572,7 +6562,7 @@
     "p01265": {
       "id": "p01265",
       "name": "Tarik Obregon",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p01266": {
       "id": "p01266",
@@ -6932,7 +6922,7 @@
     "p01337": {
       "id": "p01337",
       "name": "Royal Hayes",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p01338": {
       "id": "p01338",
@@ -6987,7 +6977,7 @@
     "p01348": {
       "id": "p01348",
       "name": "Tyson Littlefield",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p01349": {
       "id": "p01349",
@@ -7312,7 +7302,7 @@
     "p01413": {
       "id": "p01413",
       "name": "Aamir Owens",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p01414": {
       "id": "p01414",
@@ -7352,7 +7342,7 @@
     "p01421": {
       "id": "p01421",
       "name": "TJ Pope",
-      "birthSeason": null
+      "birthSeason": 60
     },
     "p01422": {
       "id": "p01422",
@@ -7362,7 +7352,7 @@
     "p01423": {
       "id": "p01423",
       "name": "Yoel Tavares",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p01424": {
       "id": "p01424",
@@ -7837,7 +7827,7 @@
     "p01518": {
       "id": "p01518",
       "name": "Cameron Vail",
-      "birthSeason": null
+      "birthSeason": 59
     },
     "p01519": {
       "id": "p01519",
@@ -12048,20 +12038,10 @@
       "name": "Forrest Bentley",
       "birthSeason": 48
     },
-    "p02358": {
-      "id": "p02358",
-      "name": "D'Andre Holliday",
-      "birthSeason": 56
-    },
     "p02359": {
       "id": "p02359",
       "name": "Ace Knox",
       "birthSeason": 56
-    },
-    "p02360": {
-      "id": "p02360",
-      "name": "Kellan Ogbu",
-      "birthSeason": 59
     },
     "p02361": {
       "id": "p02361",

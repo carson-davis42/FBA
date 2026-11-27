@@ -63,7 +63,7 @@
       "kind": "offseason",
       "league": null,
       "sub": true,
-      "done": false
+      "done": true
     },
     {
       "id": "create-s81-class",
