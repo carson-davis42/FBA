@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, type ReactNode } from 'react';
 import { applyClassSuggestions, consensusSuggestion, parseConsensusInput, starsFor } from '../../engine/college/classRanking';
 import {
-  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, clearRatings, moveRanked, outOfOrder, rankedRows, rankingBlockers, reserveBound, reserveSet, sendBack, setRating, suggestion, take, takeRest, type NameOf,
+  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, clearRatings, moveRanked, outOfOrder, rankedRows, rankingBlockers, reserveBound, reserveSet, sendBack, setRating, suggestion, take, takeRest, topOf, type NameOf,
 } from '../../engine/rank/ranking';
 import { mergeOptions, movePool, promoteTop, sendBackMerged, takeRestMerged } from '../../engine/rank/positionRanking';
 import { POSITIONS } from '../../engine/roster/rules';
@@ -29,6 +29,8 @@ export interface RankingTableProps {
   extraBlockers: string[];
   finishLabel: string;
   onFinish: () => void;
+  /** Shown below the two columns, above the blockers and the Finish button. */
+  beforeFinish?: ReactNode;
   /** True while a save is running: Finish is disabled. */
   busy: boolean;
   /** Class ranking only: shows a Consensus box (with stars and a suggestion chip) next to Rating; "Use all suggestions" fills consensus too. */
@@ -71,7 +73,7 @@ function ConsensusInput({ value, name, disabled, onSave }: { value: number | nul
  * the league). Right: the new ranking. Rating boxes appear once everyone is ranked; each starts empty, with the
  * suggestion as a separate chip. The position filter is for reading only.
  */
-export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "Last season's order", onChange, extraBlockers, finishLabel, onFinish, busy, consensus, positionCap, positionMerge }: RankingTableProps) {
+export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "Last season's order", onChange, extraBlockers, finishLabel, onFinish, busy, consensus, positionCap, positionMerge, beforeFinish }: RankingTableProps) {
   const [filter, setFilter] = useState<Filter>('ALL');
   const locked = doc.locked;
   const shown = (r: RankingRow) => filter === 'ALL' || r.position === filter;
@@ -84,7 +86,9 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   const leftAll = leftRows(doc, name).filter(r => !reserve.has(r.playerId));
   // After the position step only each position's next player is on offer (PG, SG, SF, PF, C); the rest wait behind him.
   const left = positionMerge ? mergeOptions(doc) : leftAll;
-  const allPlaced = leftAll.length === 0;
+  // D2 after the cut: the whole ranking is only the top 100.
+  const toGo = positionMerge && doc.cutMade ? Math.max(0, topOf(doc) - doc.order.length) : null;
+  const allPlaced = toGo === null ? leftAll.length === 0 : toGo === 0;
   const flagged = outOfOrder(doc, reserve);
   const blockers = [...rankingBlockers(doc, name, reserve), ...extraBlockers];
   const prev = (r: RankingRow) => r.prevRating ?? (r.otherRating !== null ? <span className="muted">{otherLabel} {r.otherRating}</span> : '—');
@@ -188,7 +192,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
         {allPlaced ? null : positionMerge ? (
           <div className="rank-col card">
             <div className="toolbar rank-head">
-              <h3>Next up · {left.length} of {leftAll.length} left</h3>
+              <h3>{toGo === null ? `Next up · ${left.length} of ${leftAll.length} left` : `Next up · ${toGo} to go for the top ${topOf(doc)}`}</h3>
               {!locked && left.length > 0 && (
                 <button type="button" className="btn" onClick={() => onChange(cur => takeRestMerged(cur, name))}>Take the rest in order</button>
               )}
@@ -260,7 +264,9 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
               </div>
             )}
           </div>
-          {!locked && !allPlaced && doc.order.length > 0 && <p className="muted">Rating boxes appear once every player is ranked.</p>}
+          {!locked && !allPlaced && doc.order.length > 0 && (
+            <p className="muted">Rating boxes appear once {toGo === null ? 'every player is' : `the top ${topOf(doc)} are`} ranked.</p>
+          )}
           <div className="table-wrap">
             <table className="stat-table rank-table" aria-label="New ranking">
               <thead>
@@ -342,6 +348,7 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
           </div>
         </div>
       </div>
+      {beforeFinish}
       {!locked && blockers.length > 0 && <ul className="problems">{blockers.map(b => <li key={b}>{b}</li>)}</ul>}
       {!locked && (
         <div className="toolbar card">

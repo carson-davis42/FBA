@@ -66,6 +66,14 @@ export function cutPlayers(doc: RankingFile): Set<string> {
   return new Set(doc.rows.filter(r => !kept.has(r.playerId)).map(r => r.playerId));
 }
 
+/** D2 reset: the commissioner ranks and rates this many personally; the rest kept are rated from their position rank (see `fillRatings`). */
+export const D2_TOP_RANKED = 100;
+
+/** How many players the whole ranking takes: every row, or (D2 after the cut) the top 100 of those kept. */
+export function topOf(doc: RankingFile): number {
+  return doc.cutMade ? Math.min(D2_TOP_RANKED, doc.rows.length - cutPlayers(doc).size) : doc.rows.length;
+}
+
 /** Who goes to Reserves unrated: the cut players, or (one-pass reset) those ranked past their position's spots. */
 export function reserveSet(doc: RankingFile, spots: number): Set<string> {
   return doc.cutMade ? cutPlayers(doc) : reserveBound(doc, spots);
@@ -175,7 +183,10 @@ export function outOfOrder(doc: RankingFile, skip: ReadonlySet<string> = NO_SKIP
 export function rankingBlockers(doc: RankingFile, name: NameOf, skip: ReadonlySet<string> = NO_SKIP): string[] {
   const out: string[] = [];
   const ranked = new Set(doc.order);
-  const left = doc.rows.filter(r => !ranked.has(r.playerId) && !skip.has(r.playerId)).length;
+  // After the D2 cut only the top 100 are ranked by hand.
+  const left = doc.cutMade
+    ? Math.max(0, topOf(doc) - doc.order.length)
+    : doc.rows.filter(r => !ranked.has(r.playerId) && !skip.has(r.playerId)).length;
   if (left) out.push(left === 1 ? "1 player isn't ranked yet" : `${left} players aren't ranked yet`);
   const unrated = doc.order.filter(id => doc.ratings[id] === undefined && !skip.has(id)).length;
   if (unrated) out.push(unrated === 1 ? '1 player still needs a rating' : `${unrated} players still need a rating`);

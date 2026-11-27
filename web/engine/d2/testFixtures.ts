@@ -1,3 +1,4 @@
+import { POSITIONS } from '../roster/rules';
 import type { RankingFile, RosterEntry } from '../shared/types';
 import { finishRatings, startRatings } from './ratings';
 import { lockPool, startPool } from './pool';
@@ -58,6 +59,18 @@ export function d2BaseState(): D2State {
     prevRatings: null,
     pool: null,
     draft: null,
+  };
+}
+
+/** A D2 reset after the cut: 30 kept at each position (150) plus 2 cut at PG, and nobody in the whole ranking yet. */
+export function bigCutDoc(): RankingFile {
+  const rows = POSITIONS.flatMap((position, p) => Array.from({ length: position === 'PG' ? 32 : 30 }, (_, k) => ({
+    playerId: `p${String(1000 + p * 100 + k).padStart(5, '0')}`, position, age: 25, team: null, prevRating: 90 - k, inLeague: true, otherRating: null, stat: null,
+  })));
+  const byPosition = Object.fromEntries(POSITIONS.map(pos => [pos, rows.filter(r => r.position === pos).slice(0, 30).map(r => r.playerId)]));
+  return {
+    league: 'fbad2', season: 79, kind: 'd2-reset', locked: false, rows, order: [], ratings: {},
+    curve: Array.from({ length: 150 }, (_, k) => 99 - Math.floor(k / 7)), byPosition, cutMade: true,
   };
 }
 

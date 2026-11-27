@@ -1,3 +1,4 @@
+import { fillRatings } from '../rank/d2Fill';
 import { rankingBlockers, reserveSet, suggestionsTaken } from '../rank/ranking';
 import { appendTx, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
@@ -104,7 +105,14 @@ export function ratingsBlockers(state: D2State, cutoff = POOL_CUTOFF): string[] 
 export function finishRatings(state: D2State, ctx: MoveContext, cutoff = POOL_CUTOFF): D2Result {
   const blockers = ratingsBlockers(state, cutoff);
   if (blockers.length) return d2Fail(blockers);
-  const ratings = state.ratings!;
+  const entered = state.ratings!;
+  // After the cut, those outside the top 100 join the ranking now, rated from their position rank.
+  const filled = fillRatings(entered) ?? [];
+  const ratings: RankingFile = filled.length ? {
+    ...entered,
+    order: [...entered.order, ...filled.map(f => f.playerId)],
+    ratings: { ...entered.ratings, ...Object.fromEntries(filled.map(f => [f.playerId, f.rating])) },
+  } : entered;
   // Players cut (or ranked past their position's spots) go to the Reserve pool unrated.
   const reserve = reserveSet(ratings, cutoff);
   const next = new Map(Object.entries(ratings.ratings).filter(([id]) => !reserve.has(id)));
@@ -113,8 +121,9 @@ export function finishRatings(state: D2State, ctx: MoveContext, cutoff = POOL_CU
     t, entries.map(e => ({ ...e, rating: rated(e.playerId, e.rating) })),
   ]));
   const reserves = { ...state.reserves, players: state.reserves.players.map(p => ({ ...p, rating: rated(p.playerId, p.rating) })) };
+  const byPosition = filled.length ? `, ${filled.length} rated by position rank` : '';
   const cut = ratings.cutMade ? `, ${reserve.size} left unrated for Reserves` : '';
-  const line = `D2 ratings reset: ${ratings.order.length} players ranked, ${suggestionsTaken(ratings, reserve)} took the suggestion${cut}`;
+  const line = `D2 ratings reset: ${entered.order.length} players ranked, ${suggestionsTaken(entered, reserve)} took the suggestion${byPosition}${cut}`;
   const d2Tx = appendTx(state.d2Tx, ctx, 'd2-ratings', [], [line]);
   return {
     ok: true,

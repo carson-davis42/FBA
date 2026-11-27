@@ -1,6 +1,6 @@
 import { POSITIONS } from '../roster/rules'
 import { D2_POSITION_SPOTS, type Position, type RankingFile, type RankingRow } from '../shared/types'
-import { isNewRow, leftRows, type NameOf } from './ranking'
+import { isNewRow, leftRows, topOf, type NameOf } from './ranking'
 
 /**
  * The position step of the class ranking and the D2 reset: each position is ranked on its own (`doc.byPosition`), then the whole ranking is
@@ -145,7 +145,7 @@ export function movePool(doc: RankingFile, playerId: string, delta: -1 | 1): Ran
 
 /** The pool's first place joins the whole ranking next; the rest stay held in order, and his position's next player joins at the bottom. */
 export function promoteTop(doc: RankingFile): RankingFile {
-  if (doc.locked || !positionStepDone(doc)) return doc
+  if (doc.locked || !positionStepDone(doc) || doc.order.length >= topOf(doc)) return doc
   const options = mergeOptions(doc)
   if (options.length === 0) return doc
   const top = options[0].playerId
@@ -160,6 +160,7 @@ export function takeRestMerged(doc: RankingFile, _name?: NameOf): RankingFile {
   if (doc.locked || !positionStepDone(doc)) return doc
   let cur = doc
   for (;;) {
+    if (cur.order.length >= topOf(cur)) return cur
     const options = mergeOptions(cur)
     if (options.length === 0) return cur
     const isNew = (r: RankingRow) => isNewRow(cur, r)
