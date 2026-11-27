@@ -1,0 +1,1254 @@
+{
+  "league": "fba",
+  "season": 80,
+  "locked": true,
+  "started": true,
+  "prospects": [
+    {
+      "playerId": "p00700",
+      "position": "SF",
+      "college": "KU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 92,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00513",
+      "position": "PG",
+      "college": "OU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00526",
+      "position": "PF",
+      "college": "TCU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00528",
+      "position": "PG",
+      "college": "UT",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00599",
+      "position": "SF",
+      "college": "UT",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 82,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00516",
+      "position": "PF",
+      "college": "UT",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 90,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01231",
+      "position": "PG",
+      "college": "TTU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 84,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00536",
+      "position": "PF",
+      "college": "TTU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 91,
+      "stars": 3,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00537",
+      "position": "C",
+      "college": "TTU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 92,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01306",
+      "position": "PG",
+      "college": "FSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00554",
+      "position": "SG",
+      "college": "FSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00908",
+      "position": "SF",
+      "college": "FSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 82,
+      "stars": 3,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00556",
+      "position": "PF",
+      "college": "FSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 87,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00565",
+      "position": "SF",
+      "college": "MIA",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01544",
+      "position": "PG",
+      "college": "NCS",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 86,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00583",
+      "position": "SG",
+      "college": "SYR",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 95,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00597",
+      "position": "PG",
+      "college": "WF",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 93,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00574",
+      "position": "SF",
+      "college": "WF",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 86,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00600",
+      "position": "C",
+      "college": "WF",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 86,
+      "stars": 3,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00605",
+      "position": "C",
+      "college": "UB",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00621",
+      "position": "PG",
+      "college": "GTWN",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00626",
+      "position": "PG",
+      "college": "MQ",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 92,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01502",
+      "position": "PF",
+      "college": "MQ",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 82,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00631",
+      "position": "PG",
+      "college": "PROV",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 81,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00837",
+      "position": "PG",
+      "college": "UCON",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 88,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00650",
+      "position": "C",
+      "college": "UCON",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 89,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01328",
+      "position": "SF",
+      "college": "VIL",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 84,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00654",
+      "position": "PF",
+      "college": "VIL",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01118",
+      "position": "SF",
+      "college": "ALA",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00665",
+      "position": "C",
+      "college": "ALA",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 84,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01049",
+      "position": "PF",
+      "college": "ARK",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 84,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00672",
+      "position": "SG",
+      "college": "AUB",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00673",
+      "position": "SF",
+      "college": "AUB",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 87,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01493",
+      "position": "C",
+      "college": "AUB",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00788",
+      "position": "SG",
+      "college": "FLO",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 88,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01119",
+      "position": "PF",
+      "college": "FLO",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 84,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01287",
+      "position": "SG",
+      "college": "UGA",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 84,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00685",
+      "position": "PG",
+      "college": "UK",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 90,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00688",
+      "position": "C",
+      "college": "UK",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 89,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00692",
+      "position": "PF",
+      "college": "LSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00694",
+      "position": "PG",
+      "college": "MISSST",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 94,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00696",
+      "position": "SF",
+      "college": "MISSST",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 90,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00697",
+      "position": "PF",
+      "college": "MISSST",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 87,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00698",
+      "position": "PG",
+      "college": "MIZZ",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00552",
+      "position": "C",
+      "college": "TENN",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 86,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00712",
+      "position": "PG",
+      "college": "TAMU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 88,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00713",
+      "position": "SG",
+      "college": "TAMU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 89,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01334",
+      "position": "PF",
+      "college": "TAMU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 82,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00767",
+      "position": "PG",
+      "college": "ILL",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 87,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00708",
+      "position": "SG",
+      "college": "ILL",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 88,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00721",
+      "position": "C",
+      "college": "ILL",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 90,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00722",
+      "position": "PG",
+      "college": "IU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 86,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00740",
+      "position": "PF",
+      "college": "UM",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 98,
+      "stars": 5,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00758",
+      "position": "SG",
+      "college": "OHSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 82,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00760",
+      "position": "PF",
+      "college": "OHSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01179",
+      "position": "PF",
+      "college": "PSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 81,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00769",
+      "position": "SF",
+      "college": "PUR",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00798",
+      "position": "SG",
+      "college": "MEM",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 90,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00822",
+      "position": "PG",
+      "college": "UAB",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01444",
+      "position": "PG",
+      "college": "ASU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 84,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00843",
+      "position": "SG",
+      "college": "ASU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00856",
+      "position": "C",
+      "college": "GU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 93,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00893",
+      "position": "SF",
+      "college": "ORST",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01143",
+      "position": "SF",
+      "college": "UCLA",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 84,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00880",
+      "position": "PF",
+      "college": "USC",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 90,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01420",
+      "position": "SG",
+      "college": "UTAH",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 86,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01427",
+      "position": "PF",
+      "college": "UTAH",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 88,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00885",
+      "position": "C",
+      "college": "UTAH",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00923",
+      "position": "SF",
+      "college": "NEB",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 84,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00930",
+      "position": "C",
+      "college": "PITT",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 93,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00954",
+      "position": "PF",
+      "college": "VCU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 85,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00982",
+      "position": "SG",
+      "college": "LIB",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 80,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01042",
+      "position": "SG",
+      "college": "INST",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 80,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01109",
+      "position": "PF",
+      "college": "SAN",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 84,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01230",
+      "position": "C",
+      "college": "SOU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01380",
+      "position": "C",
+      "college": "BSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 86,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01388",
+      "position": "SF",
+      "college": "CSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01397",
+      "position": "SF",
+      "college": "NEV",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 89,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00731",
+      "position": "C",
+      "college": "NEV",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00976",
+      "position": "PG",
+      "college": "SDSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 86,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01410",
+      "position": "SG",
+      "college": "SDSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 99,
+      "stars": 5,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01412",
+      "position": "PF",
+      "college": "SDSU",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 95,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01466",
+      "position": "SF",
+      "college": "OHIO",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 82,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p01539",
+      "position": "PG",
+      "college": "UMAS",
+      "classYear": "Sr",
+      "senior": true,
+      "collegeRating": 83,
+      "stars": null,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p02362",
+      "position": "PG",
+      "college": "ARIZ",
+      "classYear": "Fr",
+      "senior": false,
+      "collegeRating": 96,
+      "stars": 5,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p02365",
+      "position": "SF",
+      "college": "ARIZ",
+      "classYear": "Fr",
+      "senior": false,
+      "collegeRating": 90,
+      "stars": 5,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00495",
+      "position": "PG",
+      "college": "UH",
+      "classYear": "Jr",
+      "senior": false,
+      "collegeRating": 98,
+      "stars": 5,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p02363",
+      "position": "PF",
+      "college": "UH",
+      "classYear": "Fr",
+      "senior": false,
+      "collegeRating": 94,
+      "stars": 5,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00498",
+      "position": "C",
+      "college": "UH",
+      "classYear": "Jr",
+      "senior": false,
+      "collegeRating": 98,
+      "stars": 5,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00741",
+      "position": "C",
+      "college": "UM",
+      "classYear": "So",
+      "senior": false,
+      "collegeRating": 94,
+      "stars": 5,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p02361",
+      "position": "SF",
+      "college": "UNC",
+      "classYear": "Fr",
+      "senior": false,
+      "collegeRating": 97,
+      "stars": 5,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p00854",
+      "position": "SF",
+      "college": "ORE",
+      "classYear": "So",
+      "senior": false,
+      "collegeRating": 93,
+      "stars": 4,
+      "fbaRating": null
+    },
+    {
+      "playerId": "p02364",
+      "position": "SG",
+      "college": "VIL",
+      "classYear": "Fr",
+      "senior": false,
+      "collegeRating": 96,
+      "stars": 5,
+      "fbaRating": null
+    }
+  ],
+  "picks": [
+    {
+      "slot": 1,
+      "owner": "VEG",
+      "originalTeam": "VEG",
+      "playerId": "p02361"
+    },
+    {
+      "slot": 2,
+      "owner": "CHI",
+      "originalTeam": "CHI",
+      "playerId": "p00498"
+    },
+    {
+      "slot": 3,
+      "owner": "PHX",
+      "originalTeam": "LA",
+      "playerId": "p01410"
+    },
+    {
+      "slot": 4,
+      "owner": "PHI",
+      "originalTeam": "PHI",
+      "playerId": "p02364"
+    },
+    {
+      "slot": 5,
+      "owner": "TOR",
+      "originalTeam": "TOR",
+      "playerId": "p00495"
+    },
+    {
+      "slot": 6,
+      "owner": "LAL",
+      "originalTeam": "LAL",
+      "playerId": "p02362"
+    },
+    {
+      "slot": 7,
+      "owner": "OV",
+      "originalTeam": "OV",
+      "playerId": "p00741"
+    },
+    {
+      "slot": 8,
+      "owner": "FLO",
+      "originalTeam": "FLO",
+      "playerId": "p00694"
+    },
+    {
+      "slot": 9,
+      "owner": "STL",
+      "originalTeam": "STL",
+      "playerId": "p02365"
+    },
+    {
+      "slot": 10,
+      "owner": "MIL",
+      "originalTeam": "MIL",
+      "playerId": "p00740"
+    },
+    {
+      "slot": 11,
+      "owner": "NY",
+      "originalTeam": "NY",
+      "playerId": "p00854"
+    },
+    {
+      "slot": 12,
+      "owner": "SEA",
+      "originalTeam": "SEA",
+      "playerId": "p02363"
+    },
+    {
+      "slot": 13,
+      "owner": "MEM",
+      "originalTeam": "VAN",
+      "playerId": "p00583"
+    },
+    {
+      "slot": 14,
+      "owner": "PHX",
+      "originalTeam": "PHX",
+      "playerId": "p01412"
+    },
+    {
+      "slot": 15,
+      "owner": "CHI",
+      "originalTeam": "CP",
+      "playerId": "p00700"
+    },
+    {
+      "slot": 16,
+      "owner": "OV",
+      "originalTeam": "DCB",
+      "playerId": "p00626"
+    },
+    {
+      "slot": 17,
+      "owner": "MON",
+      "originalTeam": "MON",
+      "playerId": "p00516"
+    },
+    {
+      "slot": 18,
+      "owner": "ATL",
+      "originalTeam": "ATL",
+      "playerId": "p00856"
+    },
+    {
+      "slot": 19,
+      "owner": "OV",
+      "originalTeam": "NO",
+      "playerId": "p00930"
+    },
+    {
+      "slot": 20,
+      "owner": "MEM",
+      "originalTeam": "MEM",
+      "playerId": "p00537"
+    },
+    {
+      "slot": 21,
+      "owner": "CIN",
+      "originalTeam": "CIN",
+      "playerId": "p00597"
+    },
+    {
+      "slot": 22,
+      "owner": "CAR",
+      "originalTeam": "CAR",
+      "playerId": "p00536"
+    },
+    {
+      "slot": 23,
+      "owner": "DEN",
+      "originalTeam": "DEN",
+      "playerId": "p00880"
+    },
+    {
+      "slot": 24,
+      "owner": "OAK",
+      "originalTeam": "OAK",
+      "playerId": "p00798"
+    },
+    {
+      "slot": 25,
+      "owner": "TEX",
+      "originalTeam": "TEX",
+      "playerId": "p00721"
+    },
+    {
+      "slot": 26,
+      "owner": "DET",
+      "originalTeam": "DET",
+      "playerId": "p00685"
+    },
+    {
+      "slot": 27,
+      "owner": "MAN",
+      "originalTeam": "MAN",
+      "playerId": "p00696"
+    },
+    {
+      "slot": 28,
+      "owner": "SAS",
+      "originalTeam": "SAS",
+      "playerId": "p00713"
+    },
+    {
+      "slot": 29,
+      "owner": "MW",
+      "originalTeam": "MW",
+      "playerId": "p00650"
+    },
+    {
+      "slot": 30,
+      "owner": "HON",
+      "originalTeam": "HON",
+      "playerId": "p00688"
+    },
+    {
+      "slot": 31,
+      "owner": "BOS",
+      "originalTeam": "BOS",
+      "playerId": "p01397"
+    },
+    {
+      "slot": 32,
+      "owner": "CGG",
+      "originalTeam": "CGG",
+      "playerId": "p00837"
+    }
+  ],
+  "rankOrder": [
+    "p02361",
+    "p01410",
+    "p00498",
+    "p02364",
+    "p00495",
+    "p02362",
+    "p00740",
+    "p02363",
+    "p00741",
+    "p00583",
+    "p02365",
+    "p00694",
+    "p00854",
+    "p00856",
+    "p01412",
+    "p00930",
+    "p00700",
+    "p00626",
+    "p00537",
+    "p00516",
+    "p00597",
+    "p00536",
+    "p00880",
+    "p00798",
+    "p00721",
+    "p00685",
+    "p00696",
+    "p00713",
+    "p00650",
+    "p00688",
+    "p01397",
+    "p00837",
+    "p01427",
+    "p00788",
+    "p00712",
+    "p00708",
+    "p00767",
+    "p00697",
+    "p00673",
+    "p00556",
+    "p00600",
+    "p01380",
+    "p01420",
+    "p00574",
+    "p00552",
+    "p01544",
+    "p00976",
+    "p00722",
+    "p01493",
+    "p00528",
+    "p00954",
+    "p00692",
+    "p00621",
+    "p00565",
+    "p00605",
+    "p00513",
+    "p00654",
+    "p00843",
+    "p00760",
+    "p01306",
+    "p00769",
+    "p01231",
+    "p01287",
+    "p00665",
+    "p01109",
+    "p01143",
+    "p00923",
+    "p01119",
+    "p01328",
+    "p01049",
+    "p01444",
+    "p00526",
+    "p01230",
+    "p01539",
+    "p01388",
+    "p00698",
+    "p00885",
+    "p00731",
+    "p00822",
+    "p00893",
+    "p00672",
+    "p01118",
+    "p00554",
+    "p00908",
+    "p00758",
+    "p01334",
+    "p01502",
+    "p00599",
+    "p01466",
+    "p00631",
+    "p01179",
+    "p00982",
+    "p01042"
+  ],
+  "rookieRatings": {
+    "p02361": 81,
+    "p01410": 80,
+    "p00498": 79,
+    "p02364": 78,
+    "p00495": 75,
+    "p02362": 74,
+    "p00740": 73,
+    "p02363": 72,
+    "p00741": 72,
+    "p00583": 70,
+    "p02365": 69,
+    "p00694": 69,
+    "p00854": 68,
+    "p00856": 67,
+    "p01412": 65,
+    "p00930": 65,
+    "p00700": 64,
+    "p00626": 63,
+    "p00537": 60,
+    "p00516": 60,
+    "p00597": 57,
+    "p00536": 56,
+    "p00880": 56,
+    "p00798": 55
+  },
+  "rookiesRated": true
+}

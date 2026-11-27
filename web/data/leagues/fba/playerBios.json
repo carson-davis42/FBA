@@ -5805,7 +5805,7 @@
       "born": "Born-S56",
       "entries": [
         "St.John's-S74-S77",
-        "D2(Shanghai)-S78-pres."
+        "D2(Shanghai)-S78"
       ]
     },
     {
@@ -16525,6 +16525,384 @@
       "playerId": "p02390",
       "born": "Born-S61",
       "entries": []
+    },
+    {
+      "playerId": "p00952",
+      "born": "Born-S?",
+      "entries": [
+        "VCU-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p00569",
+      "born": "Born-S?",
+      "entries": [
+        "NC State-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p00924",
+      "born": "Born-S?",
+      "entries": [
+        "Nebraska-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p00950",
+      "born": "Born-S?",
+      "entries": [
+        "Vanderbilt-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p00507",
+      "born": "Born-S?",
+      "entries": [
+        "Kansas-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p02462",
+      "born": "Born-S61",
+      "entries": [
+        "Texas-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p01423",
+      "born": "Born-S?",
+      "entries": [
+        "UNLV-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p01256",
+      "born": "Born-S?",
+      "entries": [
+        "Alabama State-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p00606",
+      "born": "Born-S?",
+      "entries": [
+        "Creighton-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p00542",
+      "born": "Born-S?",
+      "entries": [
+        "West Virginia-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p00659",
+      "born": "Born-S?",
+      "entries": [
+        "Xavier-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p01210",
+      "born": "Born-S?",
+      "entries": [
+        "North Texas-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p01265",
+      "born": "Born-S?",
+      "entries": [
+        "Arkansas Pine Bluff-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p02501",
+      "born": "Born-S61",
+      "entries": [
+        "Tennessee-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p02507",
+      "born": "Born-S61",
+      "entries": [
+        "Indiana-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p00520",
+      "born": "Born-S?",
+      "entries": [
+        "Oklahoma State-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p02453",
+      "born": "Born-S61",
+      "entries": [
+        "Iowa State-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p00912",
+      "born": "Born-S?",
+      "entries": [
+        "East Carolina-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p02492",
+      "born": "Born-S61",
+      "entries": [
+        "Florida-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p00514",
+      "born": "Born-S60",
+      "entries": [
+        "Oklahoma-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p00532",
+      "born": "Born-S60",
+      "entries": [
+        "Texas-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p02466",
+      "born": "Born-S61",
+      "entries": [
+        "North Carolina-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p02476",
+      "born": "Born-S61",
+      "entries": [
+        "Wake Forest-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p02477",
+      "born": "Born-S61",
+      "entries": [
+        "Butler-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p02481",
+      "born": "Born-S61",
+      "entries": [
+        "Marquette-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p00637",
+      "born": "Born-S60",
+      "entries": [
+        "Seton Hall-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p00642",
+      "born": "Born-S60",
+      "entries": [
+        "St.John's-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p02509",
+      "born": "Born-S61",
+      "entries": [
+        "Maryland-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p00766",
+      "born": "Born-S60",
+      "entries": [
+        "Penn State-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p00803",
+      "born": "Born-S59",
+      "entries": [
+        "Rice-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p00846",
+      "born": "Born-S60",
+      "entries": [
+        "Arizona State-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p02482",
+      "born": "Born-S61",
+      "entries": [
+        "Marquette-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p02502",
+      "born": "Born-S61",
+      "entries": [
+        "Tennessee-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p01029",
+      "born": "Born-S60",
+      "entries": [
+        "Delaware State-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p01073",
+      "born": "Born-S59",
+      "entries": [
+        "Winthrop-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p01127",
+      "born": "Born-S59",
+      "entries": [
+        "Wofford-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p00853",
+      "born": "Born-S59",
+      "entries": [
+        "Gonzaga-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p01148",
+      "born": "Born-S59",
+      "entries": [
+        "Chicago-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p01224",
+      "born": "Born-S60",
+      "entries": [
+        "Samford-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p01226",
+      "born": "Born-S59",
+      "entries": [
+        "Southern-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p01342",
+      "born": "Born-S60",
+      "entries": [
+        "Montana-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p01281",
+      "born": "Born-S60",
+      "entries": [
+        "Furman-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p01392",
+      "born": "Born-S60",
+      "entries": [
+        "Fresno State-S78-pres."
+      ]
+    },
+    {
+      "playerId": "p02692",
+      "born": "Born-S61",
+      "entries": [
+        "Air Force-S79-pres."
+      ]
+    },
+    {
+      "playerId": "p01429",
+      "born": "Born-S59",
+      "entries": [
+        "Wyoming-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p01448",
+      "born": "Born-S59",
+      "entries": [
+        "Grand Canyon-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p01464",
+      "born": "Born-S59",
+      "entries": [
+        "Ohio-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p01494",
+      "born": "Born-S59",
+      "entries": [
+        "Bryant-S77-pres."
+      ]
+    },
+    {
+      "playerId": "p00982",
+      "born": "Born-S58",
+      "entries": [
+        "Liberty-S76-pres."
+      ]
+    },
+    {
+      "playerId": "p01042",
+      "born": "Born-S58",
+      "entries": [
+        "Indiana State-S76-pres."
+      ]
+    },
+    {
+      "playerId": "p01109",
+      "born": "Born-S58",
+      "entries": [
+        "Santa Clara-S76-pres."
+      ]
+    },
+    {
+      "playerId": "p01230",
+      "born": "Born-S58",
+      "entries": [
+        "Southern-S76-pres."
+      ]
+    },
+    {
+      "playerId": "p01466",
+      "born": "Born-S58",
+      "entries": [
+        "Ohio-S76-pres."
+      ]
+    },
+    {
+      "playerId": "p01539",
+      "born": "Born-S58",
+      "entries": [
+        "UMass-S76-pres."
+      ]
     }
   ]
 }

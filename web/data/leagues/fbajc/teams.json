@@ -8,9 +8,9 @@
       "group": "B12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#144935",
-        "fg": "#fff",
-        "accent": "#FEFEFE"
+        "bg": "#FEFEFE",
+        "fg": "#111",
+        "accent": "#144935"
       },
       "logoFile": "Baylor.png"
     },
@@ -21,9 +21,9 @@
       "group": "B12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#003DA5",
-        "fg": "#fff",
-        "accent": "#FEFFFF"
+        "bg": "#FEFFFF",
+        "fg": "#111",
+        "accent": "#003DA5"
       },
       "logoFile": "BYU.png"
     },
@@ -34,9 +34,9 @@
       "group": "B12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#D21F2F",
-        "fg": "#fff",
-        "accent": "#E16A6C"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#D21F2F"
       },
       "logoFile": "Houston.png"
     },
@@ -73,9 +73,9 @@
       "group": "B12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#553A84",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#553A84"
       },
       "logoFile": "Kansas State.png"
     },
@@ -86,9 +86,9 @@
       "group": "B12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#980201",
-        "fg": "#fff",
-        "accent": "#F6F5F5"
+        "bg": "#F6F5F5",
+        "fg": "#111",
+        "accent": "#980201"
       },
       "logoFile": "Oklahoma.png"
     },
@@ -112,9 +112,9 @@
       "group": "B12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#5D2D83",
-        "fg": "#fff",
-        "accent": "#8E74A7"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#5D2D83"
       },
       "logoFile": "TCU.png"
     },
@@ -125,9 +125,9 @@
       "group": "B12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#BD5704",
-        "fg": "#fff",
-        "accent": "#DCA67F"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#BD5704"
       },
       "logoFile": "Texas.png"
     },
@@ -138,9 +138,9 @@
       "group": "B12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#E1241A",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#E1241A"
       },
       "logoFile": "Texas Tech.png"
     },
@@ -151,9 +151,9 @@
       "group": "B12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#EBAA1F",
+        "bg": "#FFFFFF",
         "fg": "#111",
-        "accent": "#0D2D53"
+        "accent": "#EBAA1F"
       },
       "logoFile": "West Virginia.png"
     },
@@ -164,9 +164,9 @@
       "group": "ACC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#F56500",
-        "fg": "#fff",
-        "accent": "#F8A078"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#F56500"
       },
       "logoFile": "Clemson.png"
     },
@@ -177,9 +177,9 @@
       "group": "ACC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#012F88",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#012F88"
       },
       "logoFile": "Duke.png"
     },
@@ -216,9 +216,9 @@
       "group": "ACC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#F47321",
-        "fg": "#fff",
-        "accent": "#005030"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#F47321"
       },
       "logoFile": "Miami.png"
     },
@@ -229,9 +229,9 @@
       "group": "ACC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#000000",
+        "bg": "#CA0101",
         "fg": "#fff",
-        "accent": "#CA0101"
+        "accent": "#000000"
       },
       "logoFile": "NC State.png"
     },
@@ -242,9 +242,9 @@
       "group": "ACC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#7BAFD4",
+        "bg": "#12284A",
         "fg": "#fff",
-        "accent": "#12284A"
+        "accent": "#7BAFD4"
       },
       "logoFile": "North Carolina.png"
     },
@@ -255,9 +255,9 @@
       "group": "ACC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#0B2140",
+        "bg": "#C79726",
         "fg": "#fff",
-        "accent": "#C79726"
+        "accent": "#0B2140"
       },
       "logoFile": "Notre Dame.png"
     },
@@ -268,9 +268,9 @@
       "group": "ACC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#FE431B",
+        "bg": "#010A52",
         "fg": "#fff",
-        "accent": "#010A52"
+        "accent": "#FE431B"
       },
       "logoFile": "Syracuse.png"
     },
@@ -281,9 +281,9 @@
       "group": "ACC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#1A3256",
-        "fg": "#fff",
-        "accent": "#FB5C1A"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#1A3256"
       },
       "logoFile": "Virginia.png"
     },
@@ -294,9 +294,9 @@
       "group": "ACC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#6A2C3E",
+        "bg": "#D1451D",
         "fg": "#fff",
-        "accent": "#D1451D"
+        "accent": "#6A2C3E"
       },
       "logoFile": "Virginia Tech.png"
     },
@@ -307,9 +307,9 @@
       "group": "ACC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#CEB888",
+        "bg": "#FFFFFF",
         "fg": "#111",
-        "accent": "#020202"
+        "accent": "#CEB888"
       },
       "logoFile": "Wake Forest.png"
     },
@@ -359,9 +359,9 @@
       "group": "BE",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#000000",
+        "bg": "#003CA5",
         "fg": "#fff",
-        "accent": "#003CA5"
+        "accent": "#000000"
       },
       "logoFile": "DePaul.png"
     },
@@ -372,9 +372,9 @@
       "group": "BE",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#011E41",
-        "fg": "#fff",
-        "accent": "#C6BCB6"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#011E41"
       },
       "logoFile": "Georgetown.png"
     },
@@ -398,9 +398,9 @@
       "group": "BE",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#000000",
-        "fg": "#fff",
-        "accent": "#B2B1B1"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#000000"
       },
       "logoFile": "Providence.png"
     },
@@ -424,9 +424,9 @@
       "group": "BE",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#CE102D",
-        "fg": "#fff",
-        "accent": "#010101"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#CE102D"
       },
       "logoFile": "St.John's.png"
     },
@@ -437,9 +437,9 @@
       "group": "BE",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#010F30",
+        "bg": "#8F979F",
         "fg": "#fff",
-        "accent": "#8F979F"
+        "accent": "#010F30"
       },
       "logoFile": "UConn.png"
     },
@@ -450,9 +450,9 @@
       "group": "BE",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#012564",
+        "bg": "#3DB7E4",
         "fg": "#fff",
-        "accent": "#3DB7E4"
+        "accent": "#012564"
       },
       "logoFile": "Villanova.png"
     },
@@ -463,9 +463,9 @@
       "group": "BE",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#0C2240",
+        "bg": "#9DA1A1",
         "fg": "#fff",
-        "accent": "#9DA1A1"
+        "accent": "#0C2240"
       },
       "logoFile": "Xavier.png"
     },
@@ -476,9 +476,9 @@
       "group": "SEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#B30837",
-        "fg": "#fff",
-        "accent": "#FFFEFF"
+        "bg": "#FFFEFF",
+        "fg": "#111",
+        "accent": "#B30837"
       },
       "logoFile": "Alabama.png"
     },
@@ -489,9 +489,9 @@
       "group": "SEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#B11B49",
-        "fg": "#fff",
-        "accent": "#050102"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#B11B49"
       },
       "logoFile": "Arkansas.png"
     },
@@ -502,9 +502,9 @@
       "group": "SEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#04244D",
-        "fg": "#fff",
-        "accent": "#F26521"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#04244D"
       },
       "logoFile": "Auburn.png"
     },
@@ -528,9 +528,9 @@
       "group": "SEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#2C2A29",
+        "bg": "#B80725",
         "fg": "#fff",
-        "accent": "#B80725"
+        "accent": "#2C2A29"
       },
       "logoFile": "Georgia.png"
     },
@@ -541,9 +541,9 @@
       "group": "SEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#0134A0",
-        "fg": "#fff",
-        "accent": "#829BD0"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#0134A0"
       },
       "logoFile": "Kentucky.png"
     },
@@ -554,9 +554,9 @@
       "group": "SEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#461D7C",
-        "fg": "#fff",
-        "accent": "#FDD523"
+        "bg": "#FDD523",
+        "fg": "#111",
+        "accent": "#461D7C"
       },
       "logoFile": "LSU.png"
     },
@@ -567,9 +567,9 @@
       "group": "SEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#702B3E",
-        "fg": "#fff",
-        "accent": "#C2AEB3"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#702B3E"
       },
       "logoFile": "Mississippi State.png"
     },
@@ -593,9 +593,9 @@
       "group": "SEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#E51636",
+        "bg": "#063377",
         "fg": "#fff",
-        "accent": "#063377"
+        "accent": "#E51636"
       },
       "logoFile": "Ole Miss.png"
     },
@@ -606,9 +606,9 @@
       "group": "SEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#FF8200",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#FF8200"
       },
       "logoFile": "Tennessee.png"
     },
@@ -619,9 +619,9 @@
       "group": "SEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#500101",
-        "fg": "#fff",
-        "accent": "#6F4141"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#500101"
       },
       "logoFile": "Texas A&M.png"
     },
@@ -632,9 +632,9 @@
       "group": "B10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#FF5F05",
-        "fg": "#fff",
-        "accent": "#13294B"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#FF5F05"
       },
       "logoFile": "Illinois.png"
     },
@@ -645,9 +645,9 @@
       "group": "B10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#990000",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#990000"
       },
       "logoFile": "Indiana.png"
     },
@@ -658,9 +658,9 @@
       "group": "B10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#000000",
-        "fg": "#fff",
-        "accent": "#FBD017"
+        "bg": "#FBD017",
+        "fg": "#111",
+        "accent": "#000000"
       },
       "logoFile": "Iowa.png"
     },
@@ -671,9 +671,9 @@
       "group": "B10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#E21733",
+        "bg": "#000000",
         "fg": "#fff",
-        "accent": "#000000"
+        "accent": "#E21733"
       },
       "logoFile": "Maryland.png"
     },
@@ -684,9 +684,9 @@
       "group": "B10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#F5C300",
-        "fg": "#111",
-        "accent": "#011E4A"
+        "bg": "#011E4A",
+        "fg": "#fff",
+        "accent": "#F5C300"
       },
       "logoFile": "Michigan.png"
     },
@@ -697,9 +697,9 @@
       "group": "B10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#18453B",
-        "fg": "#fff",
-        "accent": "#809993"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#18453B"
       },
       "logoFile": "Michigan State.png"
     },
@@ -710,9 +710,9 @@
       "group": "B10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#5B0013",
-        "fg": "#fff",
-        "accent": "#FEB51E"
+        "bg": "#FEB51E",
+        "fg": "#111",
+        "accent": "#5B0013"
       },
       "logoFile": "Minnesota.png"
     },
@@ -723,9 +723,9 @@
       "group": "B10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#59118E",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#59118E"
       },
       "logoFile": "Northwestern.png"
     },
@@ -749,9 +749,9 @@
       "group": "B10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#03255B",
-        "fg": "#fff",
-        "accent": "#F7FAFB"
+        "bg": "#F7FAFB",
+        "fg": "#111",
+        "accent": "#03255B"
       },
       "logoFile": "Penn State.png"
     },
@@ -762,9 +762,9 @@
       "group": "B10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#CEB891",
+        "bg": "#FFFFFF",
         "fg": "#111",
-        "accent": "#010101"
+        "accent": "#CEB891"
       },
       "logoFile": "Purdue.png"
     },
@@ -775,9 +775,9 @@
       "group": "B10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#C5050C",
+        "bg": "#010000",
         "fg": "#fff",
-        "accent": "#010000"
+        "accent": "#C5050C"
       },
       "logoFile": "Wisconsin.png"
     },
@@ -788,9 +788,9 @@
       "group": "AAC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#011E41",
-        "fg": "#fff",
-        "accent": "#C7B784"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#011E41"
       },
       "logoFile": "Akron.png"
     },
@@ -801,9 +801,9 @@
       "group": "AAC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#000000",
+        "bg": "#E71937",
         "fg": "#fff",
-        "accent": "#E71937"
+        "accent": "#000000"
       },
       "logoFile": "Cincinnati.png"
     },
@@ -814,9 +814,9 @@
       "group": "AAC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#013366",
+        "bg": "#CB0000",
         "fg": "#fff",
-        "accent": "#C7CACD"
+        "accent": "#013366"
       },
       "logoFile": "FAU.png"
     },
@@ -827,9 +827,9 @@
       "group": "AAC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#B3925B",
-        "fg": "#fff",
-        "accent": "#282F3D"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#B3925B"
       },
       "logoFile": "Georgia Tech.png"
     },
@@ -840,9 +840,9 @@
       "group": "AAC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#014A91",
+        "bg": "#8A8E8F",
         "fg": "#fff",
-        "accent": "#8A8E8F"
+        "accent": "#014A91"
       },
       "logoFile": "Memphis.png"
     },
@@ -853,9 +853,9 @@
       "group": "AAC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#001F5A",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#001F5A"
       },
       "logoFile": "Rice.png"
     },
@@ -866,9 +866,9 @@
       "group": "AAC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#CC0035",
-        "fg": "#fff",
-        "accent": "#E37491"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#CC0035"
       },
       "logoFile": "SMU.png"
     },
@@ -879,9 +879,9 @@
       "group": "AAC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#FECD01",
-        "fg": "#111",
-        "accent": "#0D1E40"
+        "bg": "#0D1E40",
+        "fg": "#fff",
+        "accent": "#FECD01"
       },
       "logoFile": "Toledo.png"
     },
@@ -905,9 +905,9 @@
       "group": "AAC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#222020",
+        "bg": "#1A5532",
         "fg": "#fff",
-        "accent": "#E61D34"
+        "accent": "#222020"
       },
       "logoFile": "UAB.png"
     },
@@ -931,9 +931,9 @@
       "group": "AAC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#282620",
-        "fg": "#fff",
-        "accent": "#FECC01"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#282620"
       },
       "logoFile": "Wichita State.png"
     },
@@ -944,9 +944,9 @@
       "group": "P12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#001F5C",
-        "fg": "#fff",
-        "accent": "#C1022F"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#001F5C"
       },
       "logoFile": "Arizona.png"
     },
@@ -957,9 +957,9 @@
       "group": "P12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#FEC801",
-        "fg": "#111",
-        "accent": "#A60435"
+        "bg": "#CA6C2B",
+        "fg": "#fff",
+        "accent": "#FEC801"
       },
       "logoFile": "Arizona State.png"
     },
@@ -996,9 +996,9 @@
       "group": "P12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#00934B",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#00934B"
       },
       "logoFile": "Oregon.png"
     },
@@ -1022,9 +1022,9 @@
       "group": "P12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#8C1515",
-        "fg": "#fff",
-        "accent": "#FFFEFE"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#8C1515"
       },
       "logoFile": "Stanford.png"
     },
@@ -1035,9 +1035,9 @@
       "group": "P12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#015DB8",
-        "fg": "#fff",
-        "accent": "#FDFEFE"
+        "bg": "#FDFEFE",
+        "fg": "#111",
+        "accent": "#015DB8"
       },
       "logoFile": "UCLA.png"
     },
@@ -1048,9 +1048,9 @@
       "group": "P12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#9D2135",
-        "fg": "#fff",
-        "accent": "#FDC528"
+        "bg": "#FDC528",
+        "fg": "#111",
+        "accent": "#9D2135"
       },
       "logoFile": "USC.png"
     },
@@ -1061,9 +1061,9 @@
       "group": "P12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#BE0000",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#BE0000"
       },
       "logoFile": "Utah.png"
     },
@@ -1074,9 +1074,9 @@
       "group": "P12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#33006F",
-        "fg": "#fff",
-        "accent": "#E6D09F"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#33006F"
       },
       "logoFile": "Washington.png"
     },
@@ -1087,9 +1087,9 @@
       "group": "P12",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#981D31",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#981D31"
       },
       "logoFile": "Washington State.png"
     },
@@ -1113,9 +1113,9 @@
       "group": "A10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#0064A2",
-        "fg": "#fff",
-        "accent": "#84AECD"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#0064A2"
       },
       "logoFile": "Buffalo.png"
     },
@@ -1126,9 +1126,9 @@
       "group": "A10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#D70036",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#D70036"
       },
       "logoFile": "Dayton.png"
     },
@@ -1165,9 +1165,9 @@
       "group": "A10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#D0132B",
-        "fg": "#fff",
-        "accent": "#E49298"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#D0132B"
       },
       "logoFile": "Nebraska.png"
     },
@@ -1178,9 +1178,9 @@
       "group": "A10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#003494",
-        "fg": "#fff",
-        "accent": "#FEB817"
+        "bg": "#FEB817",
+        "fg": "#111",
+        "accent": "#003494"
       },
       "logoFile": "Pitt.png"
     },
@@ -1191,9 +1191,9 @@
       "group": "A10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#CC0033",
+        "bg": "#010000",
         "fg": "#fff",
-        "accent": "#010000"
+        "accent": "#CC0033"
       },
       "logoFile": "Rutgers.png"
     },
@@ -1230,9 +1230,9 @@
       "group": "A10",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#D8BF7F",
+        "bg": "#FFFFFF",
         "fg": "#111",
-        "accent": "#1C1B1A"
+        "accent": "#D8BF7F"
       },
       "logoFile": "Vanderbilt.png"
     },
@@ -1282,9 +1282,9 @@
       "group": "PAT",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#892232",
-        "fg": "#fff",
-        "accent": "#B57A82"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#892232"
       },
       "logoFile": "Colgate.png"
     },
@@ -1295,9 +1295,9 @@
       "group": "PAT",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#003A63",
+        "bg": "#677F8D",
         "fg": "#fff",
-        "accent": "#677F8D"
+        "accent": "#003A63"
       },
       "logoFile": "Howard.png"
     },
@@ -1308,9 +1308,9 @@
       "group": "PAT",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#723C03",
-        "fg": "#fff",
-        "accent": "#C0A775"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#723C03"
       },
       "logoFile": "Lehigh.png"
     },
@@ -1347,9 +1347,9 @@
       "group": "PAT",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#B5A67C",
+        "bg": "#0E1E4C",
         "fg": "#fff",
-        "accent": "#0E1E4C"
+        "accent": "#B5A67C"
       },
       "logoFile": "Navy.png"
     },
@@ -1373,9 +1373,9 @@
       "group": "PAT",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#07325C",
+        "bg": "#DB0225",
         "fg": "#fff",
-        "accent": "#DB0225"
+        "accent": "#07325C"
       },
       "logoFile": "Saint Mary's.png"
     },
@@ -1386,9 +1386,9 @@
       "group": "PAT",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#013C71",
+        "bg": "#83A0BA",
         "fg": "#fff",
-        "accent": "#83A0BA"
+        "accent": "#013C71"
       },
       "logoFile": "Saint Peter's.png"
     },
@@ -1399,9 +1399,9 @@
       "group": "PAT",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#114734",
-        "fg": "#fff",
-        "accent": "#FCD001"
+        "bg": "#FCD001",
+        "fg": "#111",
+        "accent": "#114734"
       },
       "logoFile": "Vermont.png"
     },
@@ -1412,9 +1412,9 @@
       "group": "COL",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#C00108",
+        "bg": "#211D1E",
         "fg": "#fff",
-        "accent": "#211D1E"
+        "accent": "#C00108"
       },
       "logoFile": "Boston U.png"
     },
@@ -1425,9 +1425,9 @@
       "group": "COL",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#01529F",
-        "fg": "#fff",
-        "accent": "#FED202"
+        "bg": "#FED202",
+        "fg": "#111",
+        "accent": "#01529F"
       },
       "logoFile": "Delaware.png"
     },
@@ -1477,9 +1477,9 @@
       "group": "COL",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#234E92",
-        "fg": "#fff",
-        "accent": "#CCCFD0"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#234E92"
       },
       "logoFile": "Indiana State.png"
     },
@@ -1490,9 +1490,9 @@
       "group": "COL",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#016DB6",
+        "bg": "#221E1F",
         "fg": "#fff",
-        "accent": "#221E1F"
+        "accent": "#016DB6"
       },
       "logoFile": "Middle Tennessee.png"
     },
@@ -1503,9 +1503,9 @@
       "group": "COL",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#000000",
-        "fg": "#fff",
-        "accent": "#FEFEFE"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#000000"
       },
       "logoFile": "Northeastern.png"
     },
@@ -1529,9 +1529,9 @@
       "group": "COL",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#002D5A",
-        "fg": "#fff",
-        "accent": "#788095"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#002D5A"
       },
       "logoFile": "Richmond.png"
     },
@@ -1568,9 +1568,9 @@
       "group": "HOR",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#26201F",
+        "bg": "#D2A779",
         "fg": "#fff",
-        "accent": "#D2A779"
+        "accent": "#26201F"
       },
       "logoFile": "Cleveland State.png"
     },
@@ -1581,9 +1581,9 @@
       "group": "HOR",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#631933",
-        "fg": "#fff",
-        "accent": "#F6A81B"
+        "bg": "#F6A81B",
+        "fg": "#111",
+        "accent": "#631933"
       },
       "logoFile": "Iona.png"
     },
@@ -1607,9 +1607,9 @@
       "group": "HOR",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#015643",
-        "fg": "#fff",
-        "accent": "#FCC72F"
+        "bg": "#FCC72F",
+        "fg": "#111",
+        "accent": "#015643"
       },
       "logoFile": "North Dakota State.png"
     },
@@ -1646,9 +1646,9 @@
       "group": "HOR",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#6A0A0B",
-        "fg": "#fff",
-        "accent": "#FEFEFE"
+        "bg": "#FEFEFE",
+        "fg": "#111",
+        "accent": "#6A0A0B"
       },
       "logoFile": "Santa Clara.png"
     },
@@ -1672,9 +1672,9 @@
       "group": "HOR",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#5F3B2C",
+        "bg": "#B9ADA5",
         "fg": "#fff",
-        "accent": "#B9ADA5"
+        "accent": "#5F3B2C"
       },
       "logoFile": "St.Bonaventure.png"
     },
@@ -1685,9 +1685,9 @@
       "group": "HOR",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#0D2340",
-        "fg": "#fff",
-        "accent": "#FEC72D"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#0D2340"
       },
       "logoFile": "UC Irvine.png"
     },
@@ -1698,9 +1698,9 @@
       "group": "HOR",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#292929",
+        "bg": "#866C4C",
         "fg": "#fff",
-        "accent": "#866C4C"
+        "accent": "#292929"
       },
       "logoFile": "Wofford.png"
     },
@@ -1724,9 +1724,9 @@
       "group": "IVY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#4E3629",
-        "fg": "#fff",
-        "accent": "#C00404"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#4E3629"
       },
       "logoFile": "Brown.png"
     },
@@ -1737,9 +1737,9 @@
       "group": "IVY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#041D42",
-        "fg": "#fff",
-        "accent": "#FEFEFE"
+        "bg": "#FEFEFE",
+        "fg": "#111",
+        "accent": "#041D42"
       },
       "logoFile": "Cal.png"
     },
@@ -1750,9 +1750,9 @@
       "group": "IVY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#870000",
-        "fg": "#fff",
-        "accent": "#040101"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#870000"
       },
       "logoFile": "Chicago.png"
     },
@@ -1763,9 +1763,9 @@
       "group": "IVY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#183863",
-        "fg": "#fff",
-        "accent": "#98C9E9"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#183863"
       },
       "logoFile": "Columbia.png"
     },
@@ -1802,9 +1802,9 @@
       "group": "IVY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#A31F36",
-        "fg": "#fff",
-        "accent": "#FFFEFE"
+        "bg": "#FFFEFE",
+        "fg": "#111",
+        "accent": "#A31F36"
       },
       "logoFile": "Harvard.png"
     },
@@ -1815,9 +1815,9 @@
       "group": "IVY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#221E1F",
+        "bg": "#B30736",
         "fg": "#fff",
-        "accent": "#AFB1B4"
+        "accent": "#221E1F"
       },
       "logoFile": "MIT.png"
     },
@@ -1828,9 +1828,9 @@
       "group": "IVY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#092D74",
-        "fg": "#fff",
-        "accent": "#A32135"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#092D74"
       },
       "logoFile": "Penn.png"
     },
@@ -1841,9 +1841,9 @@
       "group": "IVY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#FF6001",
-        "fg": "#fff",
-        "accent": "#000000"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#FF6001"
       },
       "logoFile": "Princeton.png"
     },
@@ -1854,9 +1854,9 @@
       "group": "IVY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#1F1938",
-        "fg": "#fff",
-        "accent": "#ACBAE0"
+        "bg": "#ACBAE0",
+        "fg": "#111",
+        "accent": "#1F1938"
       },
       "logoFile": "UCSB.png"
     },
@@ -1867,9 +1867,9 @@
       "group": "IVY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#01336A",
-        "fg": "#fff",
-        "accent": "#919CB2"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#01336A"
       },
       "logoFile": "Yale.png"
     },
@@ -1880,9 +1880,9 @@
       "group": "SOCON",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#4E1F70",
-        "fg": "#fff",
-        "accent": "#C5C5CA"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#4E1F70"
       },
       "logoFile": "Abilene Christian.png"
     },
@@ -1893,9 +1893,9 @@
       "group": "SOCON",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#00519B",
-        "fg": "#fff",
-        "accent": "#FFD204"
+        "bg": "#FFD204",
+        "fg": "#111",
+        "accent": "#00519B"
       },
       "logoFile": "McNeese State.png"
     },
@@ -1906,9 +1906,9 @@
       "group": "SOCON",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#00833D",
-        "fg": "#fff",
-        "accent": "#000402"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#00833D"
       },
       "logoFile": "North Texas.png"
     },
@@ -1932,9 +1932,9 @@
       "group": "SOCON",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#F56321",
-        "fg": "#fff",
-        "accent": "#F89E82"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#F56321"
       },
       "logoFile": "Sam Houston State.png"
     },
@@ -2010,9 +2010,9 @@
       "group": "SOCON",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#511315",
-        "fg": "#fff",
-        "accent": "#6A5639"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#511315"
       },
       "logoFile": "Texas State.png"
     },
@@ -2023,9 +2023,9 @@
       "group": "SOCON",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#0A213F",
+        "bg": "#DB4405",
         "fg": "#fff",
-        "accent": "#DB4405"
+        "accent": "#0A213F"
       },
       "logoFile": "UTSA.png"
     },
@@ -2036,9 +2036,9 @@
       "group": "SUN",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#010100",
-        "fg": "#fff",
-        "accent": "#E9BB1A"
+        "bg": "#E9BB1A",
+        "fg": "#111",
+        "accent": "#010100"
       },
       "logoFile": "Alabama State.png"
     },
@@ -2049,9 +2049,9 @@
       "group": "SUN",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#ECB210",
+        "bg": "#FFFFFF",
         "fg": "#111",
-        "accent": "#050301"
+        "accent": "#ECB210"
       },
       "logoFile": "Arkansas Pine Bluff.png"
     },
@@ -2075,9 +2075,9 @@
       "group": "SUN",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#E0AA0E",
-        "fg": "#fff",
-        "accent": "#00356A"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#E0AA0E"
       },
       "logoFile": "Chattanooga.png"
     },
@@ -2088,9 +2088,9 @@
       "group": "SUN",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#00053E",
+        "bg": "#000000",
         "fg": "#fff",
-        "accent": "#FFC72C"
+        "accent": "#00053E"
       },
       "logoFile": "ETSU.png"
     },
@@ -2101,9 +2101,9 @@
       "group": "SUN",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#4F2487",
-        "fg": "#fff",
-        "accent": "#9582B3"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#4F2487"
       },
       "logoFile": "Furman.png"
     },
@@ -2114,9 +2114,9 @@
       "group": "SUN",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#0F45AB",
-        "fg": "#fff",
-        "accent": "#85A1D4"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#0F45AB"
       },
       "logoFile": "Georgia State.png"
     },
@@ -2127,9 +2127,9 @@
       "group": "SUN",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#010100",
-        "fg": "#fff",
-        "accent": "#EBA900"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#010100"
       },
       "logoFile": "Grambling State.png"
     },
@@ -2140,9 +2140,9 @@
       "group": "SUN",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#152238",
-        "fg": "#fff",
-        "accent": "#505A6B"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#152238"
       },
       "logoFile": "Jackson State.png"
     },
@@ -2166,9 +2166,9 @@
       "group": "SUN",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#006747",
-        "fg": "#fff",
-        "accent": "#D0C594"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#006747"
       },
       "logoFile": "South Florida.png"
     },
@@ -2179,9 +2179,9 @@
       "group": "SUN",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#B01E24",
-        "fg": "#fff",
-        "accent": "#020101"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#B01E24"
       },
       "logoFile": "Western Kentucky.png"
     },
@@ -2192,9 +2192,9 @@
       "group": "SKY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#A10022",
-        "fg": "#fff",
-        "accent": "#000000"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#A10022"
       },
       "logoFile": "Eastern Washington.png"
     },
@@ -2205,9 +2205,9 @@
       "group": "SKY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#421D73",
-        "fg": "#fff",
-        "accent": "#F68B1F"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#421D73"
       },
       "logoFile": "Evansville.png"
     },
@@ -2218,9 +2218,9 @@
       "group": "SKY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#302A85",
-        "fg": "#fff",
-        "accent": "#6D69A7"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#302A85"
       },
       "logoFile": "High Point.png"
     },
@@ -2244,9 +2244,9 @@
       "group": "SKY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#012047",
+        "bg": "#4F6174",
         "fg": "#fff",
-        "accent": "#9C9E9E"
+        "accent": "#012047"
       },
       "logoFile": "Longwood.png"
     },
@@ -2257,9 +2257,9 @@
       "group": "SKY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#6A0729",
-        "fg": "#fff",
-        "accent": "#B68596"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#6A0729"
       },
       "logoFile": "Montana.png"
     },
@@ -2270,9 +2270,9 @@
       "group": "SKY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#BB945C",
-        "fg": "#fff",
-        "accent": "#02215C"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#BB945C"
       },
       "logoFile": "Montana State.png"
     },
@@ -2283,9 +2283,9 @@
       "group": "SKY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#154734",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#154734"
       },
       "logoFile": "Portland State.png"
     },
@@ -2296,9 +2296,9 @@
       "group": "SKY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#FDBB30",
+        "bg": "#FFFFFF",
         "fg": "#111",
-        "accent": "#00543B"
+        "accent": "#FDBB30"
       },
       "logoFile": "San Francisco.png"
     },
@@ -2309,9 +2309,9 @@
       "group": "SKY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#1E513D",
-        "fg": "#fff",
-        "accent": "#81A08F"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#1E513D"
       },
       "logoFile": "Stetson.png"
     },
@@ -2322,9 +2322,9 @@
       "group": "SKY",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#12284C",
-        "fg": "#fff",
-        "accent": "#FECD01"
+        "bg": "#FECD01",
+        "fg": "#111",
+        "accent": "#12284C"
       },
       "logoFile": "UC San Diego.png"
     },
@@ -2348,9 +2348,9 @@
       "group": "MWC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#003494",
-        "fg": "#fff",
-        "accent": "#8597C4"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#003494"
       },
       "logoFile": "Air Force.png"
     },
@@ -2361,9 +2361,9 @@
       "group": "MWC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#0033A0",
-        "fg": "#fff",
-        "accent": "#D64309"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#0033A0"
       },
       "logoFile": "Boise State.png"
     },
@@ -2374,9 +2374,9 @@
       "group": "MWC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#044B25",
-        "fg": "#fff",
-        "accent": "#C8C675"
+        "bg": "#C8C675",
+        "fg": "#111",
+        "accent": "#044B25"
       },
       "logoFile": "Colorado State.png"
     },
@@ -2400,9 +2400,9 @@
       "group": "MWC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#0C2340",
-        "fg": "#fff",
-        "accent": "#FDFDFD"
+        "bg": "#FDFDFD",
+        "fg": "#111",
+        "accent": "#0C2340"
       },
       "logoFile": "Nevada.png"
     },
@@ -2452,9 +2452,9 @@
       "group": "MWC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#0139A8",
-        "fg": "#fff",
-        "accent": "#FFB81A"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#0139A8"
       },
       "logoFile": "San Jose State.png"
     },
@@ -2478,9 +2478,9 @@
       "group": "MWC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#01263A",
+        "bg": "#878B8E",
         "fg": "#fff",
-        "accent": "#878B8E"
+        "accent": "#01263A"
       },
       "logoFile": "Utah State.png"
     },
@@ -2491,9 +2491,9 @@
       "group": "MWC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#4A2F24",
-        "fg": "#fff",
-        "accent": "#FDC328"
+        "bg": "#FDC328",
+        "fg": "#111",
+        "accent": "#4A2F24"
       },
       "logoFile": "Wyoming.png"
     },
@@ -2504,9 +2504,9 @@
       "group": "OVC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#212121",
-        "fg": "#fff",
-        "accent": "#FFCC00"
+        "bg": "#FFCC00",
+        "fg": "#111",
+        "accent": "#212121"
       },
       "logoFile": "Appalachian State.png"
     },
@@ -2517,9 +2517,9 @@
       "group": "OVC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#72253D",
-        "fg": "#fff",
-        "accent": "#FEFEFE"
+        "bg": "#FEFEFE",
+        "fg": "#111",
+        "accent": "#72253D"
       },
       "logoFile": "Arkansas Little Rock.png"
     },
@@ -2530,9 +2530,9 @@
       "group": "OVC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#522398",
-        "fg": "#fff",
-        "accent": "#FFFFFF"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#522398"
       },
       "logoFile": "Grand Canyon.png"
     },
@@ -2569,9 +2569,9 @@
       "group": "OVC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#000000",
+        "bg": "#999D9D",
         "fg": "#fff",
-        "accent": "#999D9D"
+        "accent": "#000000"
       },
       "logoFile": "Northern Illinois.png"
     },
@@ -2582,9 +2582,9 @@
       "group": "OVC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#144733",
+        "bg": "#000101",
         "fg": "#fff",
-        "accent": "#000101"
+        "accent": "#144733"
       },
       "logoFile": "Ohio.png"
     },
@@ -2595,9 +2595,9 @@
       "group": "OVC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#D7181F",
-        "fg": "#fff",
-        "accent": "#000000"
+        "bg": "#FFFFFF",
+        "fg": "#111",
+        "accent": "#D7181F"
       },
       "logoFile": "Omaha.png"
     },
@@ -2660,9 +2660,9 @@
       "group": "NEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#87714E",
+        "bg": "#B1B1B1",
         "fg": "#fff",
-        "accent": "#010101"
+        "accent": "#87714E"
       },
       "logoFile": "Bryant.png"
     },
@@ -2673,9 +2673,9 @@
       "group": "NEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#041E42",
-        "fg": "#fff",
-        "accent": "#FAFEFE"
+        "bg": "#FAFEFE",
+        "fg": "#111",
+        "accent": "#041E42"
       },
       "logoFile": "Duquesne.png"
     },
@@ -2686,9 +2686,9 @@
       "group": "NEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#27334A",
+        "bg": "#72293C",
         "fg": "#fff",
-        "accent": "#FEFEFE"
+        "accent": "#27334A"
       },
       "logoFile": "Fairleigh Dickinson.png"
     },
@@ -2699,9 +2699,9 @@
       "group": "NEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#FEC628",
+        "bg": "#FFFFFF",
         "fg": "#111",
-        "accent": "#195632"
+        "accent": "#FEC628"
       },
       "logoFile": "George Mason.png"
     },
@@ -2712,9 +2712,9 @@
       "group": "NEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#FAB20B",
+        "bg": "#FFFFFF",
         "fg": "#111",
-        "accent": "#20154B"
+        "accent": "#FAB20B"
       },
       "logoFile": "Lipscomb.png"
     },
@@ -2725,9 +2725,9 @@
       "group": "NEC",
       "logoFolder": "FBAJC_Final",
       "badge": {
-        "bg": "#6BAAD1",
-        "fg": "#fff",
-        "accent": "#F5C140"
+        "bg": "#F5C140",
+        "fg": "#111",
+        "accent": "#6BAAD1"
       },
       "logoFile": "Long Island.png"
     },

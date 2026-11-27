@@ -2,7 +2,7 @@
   "league": "fbajc",
   "season": 78,
   "classOf": 79,
-  "locked": false,
+  "locked": true,
   "classDraft": [],
   "created": true,
   "recruits": [
@@ -387,7 +387,7 @@
       "stars": 3,
       "consensus": 78.5,
       "projections": {},
-      "committedTo": "MIN"
+      "committedTo": "SJSU"
     }
   ],
   "portal": [
@@ -423,7 +423,7 @@
       "rating": 82,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "BSU",
       "fromTeam": "AF"
     },
     {
@@ -433,7 +433,7 @@
       "rating": 81,
       "stars": 3,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "FSU",
       "fromTeam": "DAY"
     },
     {
@@ -443,7 +443,7 @@
       "rating": 80,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "UH",
       "fromTeam": "LUC"
     },
     {
@@ -485,7 +485,7 @@
       "rating": 82,
       "stars": 4,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "UNC",
       "fromTeam": "LOU"
     },
     {
@@ -495,7 +495,7 @@
       "rating": 80,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "LOU",
       "fromTeam": "VATECH"
     },
     {
@@ -505,7 +505,7 @@
       "rating": 80,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "NEV",
       "fromTeam": "WF"
     },
     {
@@ -515,7 +515,7 @@
       "rating": 79,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "TTU",
       "fromTeam": "ILL"
     },
     {
@@ -525,14 +525,14 @@
       "rating": 80,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "NEV",
       "fromTeam": "IOWA"
     },
     {
       "playerId": "p00516",
       "position": "PF",
       "classYear": "Sr",
-      "rating": 86,
+      "rating": 87,
       "stars": null,
       "projections": {
         "UT": 1
@@ -547,7 +547,7 @@
       "rating": 81,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "ARK",
       "fromTeam": "MTU"
     },
     {
@@ -567,17 +567,17 @@
       "rating": 80,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "ALA",
       "fromTeam": "STB"
     },
     {
       "playerId": "p01119",
       "position": "PF",
       "classYear": "Sr",
-      "rating": 80,
+      "rating": 81,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "FLO",
       "fromTeam": "STB"
     },
     {
@@ -587,7 +587,7 @@
       "rating": 82,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "UCLA",
       "fromTeam": "CAL"
     },
     {
@@ -597,7 +597,7 @@
       "rating": 80,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "PSU",
       "fromTeam": "PENN"
     },
     {
@@ -606,8 +606,12 @@
       "classYear": "Jr",
       "rating": 83,
       "stars": 3,
-      "projections": {},
-      "committedTo": null,
+      "projections": {
+        "STJOHNS": 1,
+        "VIL": 1,
+        "UCON": 1
+      },
+      "committedTo": "UCON",
       "fromTeam": "DART"
     },
     {
@@ -616,18 +620,22 @@
       "classYear": "Sr",
       "rating": 83,
       "stars": 4,
-      "projections": {},
-      "committedTo": null,
+      "projections": {
+        "NEB": 1,
+        "UTAH": 1,
+        "BYU": 1
+      },
+      "committedTo": "UTAH",
       "fromTeam": "UNLV"
     },
     {
       "playerId": "p01427",
       "position": "PF",
       "classYear": "Sr",
-      "rating": 80,
+      "rating": 81,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "UTAH",
       "fromTeam": "USU"
     },
     {
@@ -637,7 +645,7 @@
       "rating": 80,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "MQ",
       "fromTeam": "DUQ"
     },
     {
@@ -646,8 +654,11 @@
       "classYear": "Sr",
       "rating": 80,
       "stars": null,
-      "projections": {},
-      "committedTo": null,
+      "projections": {
+        "CLEM": 1,
+        "NCS": 1
+      },
+      "committedTo": "NCS",
       "fromTeam": "UNCA"
     },
     {
@@ -657,28 +668,18 @@
       "rating": 80,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "ASU",
       "fromTeam": "GCU"
     },
     {
       "playerId": "p01493",
       "position": "C",
       "classYear": "Sr",
-      "rating": 83,
+      "rating": 84,
       "stars": null,
       "projections": {},
       "committedTo": "AUB",
       "fromTeam": "TROY"
-    },
-    {
-      "playerId": "p00885",
-      "position": "C",
-      "classYear": "Sr",
-      "rating": 81,
-      "stars": null,
-      "projections": {},
-      "committedTo": null,
-      "fromTeam": "UTAH"
     },
     {
       "playerId": "p00886",
@@ -697,7 +698,7 @@
       "rating": 81,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "ORST",
       "fromTeam": "WSU"
     },
     {
@@ -706,8 +707,10 @@
       "classYear": "Sr",
       "rating": 83,
       "stars": null,
-      "projections": {},
-      "committedTo": null,
+      "projections": {
+        "UM": 1
+      },
+      "committedTo": "SDSU",
       "fromTeam": "LEH"
     },
     {
@@ -717,7 +720,7 @@
       "rating": 79,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "MISSST",
       "fromTeam": "FOLK"
     },
     {
@@ -727,7 +730,7 @@
       "rating": 76,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "BSU",
       "fromTeam": "LSU"
     },
     {
@@ -751,7 +754,7 @@
       "rating": 81,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "VIL",
       "fromTeam": "HPU"
     },
     {
@@ -761,7 +764,7 @@
       "rating": 80,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "TAMU",
       "fromTeam": "KENN"
     },
     {
@@ -781,7 +784,7 @@
       "rating": 82,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "UGA",
       "fromTeam": "GAST"
     },
     {
@@ -791,7 +794,7 @@
       "rating": 81,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "FSU",
       "fromTeam": "USF"
     },
     {
@@ -823,7 +826,7 @@
       "rating": 82,
       "stars": 4,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "ASU",
       "fromTeam": "ARIZ"
     },
     {
@@ -833,7 +836,7 @@
       "rating": 81,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "UT",
       "fromTeam": "WF"
     },
     {
@@ -850,10 +853,10 @@
       "playerId": "p00767",
       "position": "PG",
       "classYear": "Sr",
-      "rating": 82,
+      "rating": 83,
       "stars": null,
       "projections": {},
-      "committedTo": null,
+      "committedTo": "ILL",
       "fromTeam": "PUR"
     }
   ]

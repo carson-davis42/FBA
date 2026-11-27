@@ -1042,6 +1042,563 @@
       "lines": [
         "Devonte Phelps (Jr SG, transfer from Winthrop) commits to LSU"
       ]
+    },
+    {
+      "seq": 96,
+      "batchId": "bmv6w79v4s7qtz",
+      "type": "commit",
+      "teams": [
+        "UCON"
+      ],
+      "lines": [
+        "Keandre Vaughn (Jr SF, transfer from Dartmouth) commits to UConn"
+      ]
+    },
+    {
+      "seq": 97,
+      "batchId": "bmv6w7s1r94qqn",
+      "type": "commit",
+      "teams": [
+        "UTAH"
+      ],
+      "lines": [
+        "Hugo Brisson (Sr SG, transfer from UNLV) commits to Utah"
+      ]
+    },
+    {
+      "seq": 98,
+      "batchId": "bmv8wue1izvgo4",
+      "type": "class",
+      "teams": [],
+      "lines": [
+        "S80 class ranked: 30 recruits"
+      ]
+    },
+    {
+      "seq": 99,
+      "batchId": "bmv8x295wfy0ik",
+      "type": "commit",
+      "teams": [
+        "SDSU"
+      ],
+      "lines": [
+        "Tatum Carradine (Sr PG, transfer from Lehigh) commits to San Diego State"
+      ]
+    },
+    {
+      "seq": 100,
+      "batchId": "bmv8x3kfdcwaf1",
+      "type": "commit",
+      "teams": [
+        "BSU"
+      ],
+      "lines": [
+        "Andre Lafleur (Sr C, transfer from Air Force) commits to Boise State"
+      ]
+    },
+    {
+      "seq": 101,
+      "batchId": "bmv8x3qvvrwqj1",
+      "type": "commit",
+      "teams": [
+        "UGA"
+      ],
+      "lines": [
+        "Axl Graves (Sr SG, transfer from Georgia State) commits to Georgia"
+      ]
+    },
+    {
+      "seq": 102,
+      "batchId": "bmv8x3xcs53gak",
+      "type": "commit",
+      "teams": [
+        "ILL"
+      ],
+      "lines": [
+        "Bojan Markovic (Sr PG, transfer from Purdue) commits to Illinois"
+      ]
+    },
+    {
+      "seq": 103,
+      "batchId": "bmv8x4c6ka583q",
+      "type": "commit",
+      "teams": [
+        "ASU"
+      ],
+      "lines": [
+        "Bronn Smith (So SF, transfer from Arizona) commits to Arizona State"
+      ]
+    },
+    {
+      "seq": 104,
+      "batchId": "bmv8x5b763ryva",
+      "type": "commit",
+      "teams": [
+        "TAMU"
+      ],
+      "lines": [
+        "Gage Bishop (Sr PF, transfer from Kennesaw State) commits to Texas A&M"
+      ]
+    },
+    {
+      "seq": 105,
+      "batchId": "bmv8x5hfznesnl",
+      "type": "commit",
+      "teams": [
+        "MQ"
+      ],
+      "lines": [
+        "Gideon Stone (Sr PF, transfer from Duquesne) commits to Marquette"
+      ]
+    },
+    {
+      "seq": 106,
+      "batchId": "bmv8x63gw4lyp9",
+      "type": "commit",
+      "teams": [
+        "UCLA"
+      ],
+      "lines": [
+        "Damari Thorne (Sr SF, transfer from Cal) commits to UCLA"
+      ]
+    },
+    {
+      "seq": 107,
+      "batchId": "bmv8x6btjkr0ej",
+      "type": "commit",
+      "teams": [
+        "UNC"
+      ],
+      "lines": [
+        "Emerson Tate (So PF, transfer from Louisville) commits to North Carolina"
+      ]
+    },
+    {
+      "seq": 108,
+      "batchId": "bmv8x6px9d2s4u",
+      "type": "commit",
+      "teams": [
+        "FSU"
+      ],
+      "lines": [
+        "Alonso Cabrera (Sr SF, transfer from Dayton) commits to Florida State"
+      ]
+    },
+    {
+      "seq": 109,
+      "batchId": "bmv8x6uzsuw75i",
+      "type": "commit",
+      "teams": [
+        "UT"
+      ],
+      "lines": [
+        "Jovani Reyes (Sr SF, transfer from Wake Forest) commits to Texas"
+      ]
+    },
+    {
+      "seq": 110,
+      "batchId": "bmv8x74m7zpvjd",
+      "type": "portal",
+      "teams": [
+        "UTAH"
+      ],
+      "lines": [
+        "Justin Creed leaves the transfer portal and stays at Utah"
+      ]
+    },
+    {
+      "seq": 111,
+      "batchId": "bmv8x7zwxncs53",
+      "type": "commit",
+      "teams": [
+        "VIL"
+      ],
+      "lines": [
+        "Mitch Callahan (Sr SF, transfer from High Point) commits to Villanova"
+      ]
+    },
+    {
+      "seq": 112,
+      "batchId": "bmv8x8sj34smib",
+      "type": "commit",
+      "teams": [
+        "ORST"
+      ],
+      "lines": [
+        "Nikos Argyros (Sr SF, transfer from Washington State) commits to Oregon State"
+      ]
+    },
+    {
+      "seq": 113,
+      "batchId": "bmv8x94ttyex6e",
+      "type": "commit",
+      "teams": [
+        "ARK"
+      ],
+      "lines": [
+        "Reed Sterling (Sr PF, transfer from Middle Tennessee) commits to Arkansas"
+      ]
+    },
+    {
+      "seq": 114,
+      "batchId": "bmv8x9bvd1bluq",
+      "type": "commit",
+      "teams": [
+        "FSU"
+      ],
+      "lines": [
+        "Zander Quinn (Sr PG, transfer from South Florida) commits to Florida State"
+      ]
+    },
+    {
+      "seq": 115,
+      "batchId": "bmv8x9jcjvlu2v",
+      "type": "commit",
+      "teams": [
+        "LOU"
+      ],
+      "lines": [
+        "Cole Fenner (Jr PG, transfer from Virginia Tech) commits to Louisville"
+      ]
+    },
+    {
+      "seq": 116,
+      "batchId": "bmv8x9o0fej0bu",
+      "type": "commit",
+      "teams": [
+        "NEV"
+      ],
+      "lines": [
+        "Jean-Pierre Laurent (Jr SG, transfer from Wake Forest) commits to Nevada"
+      ]
+    },
+    {
+      "seq": 117,
+      "batchId": "bmv8xavxi621q5",
+      "type": "commit",
+      "teams": [
+        "UH"
+      ],
+      "lines": [
+        "Kyrie Finch (Jr SF, transfer from Loyola-Chicago) commits to Houston"
+      ]
+    },
+    {
+      "seq": 118,
+      "batchId": "bmv8xcqnea0w9b",
+      "type": "commit",
+      "teams": [
+        "NEV"
+      ],
+      "lines": [
+        "Keenan Ellison (Sr C, transfer from Iowa) commits to Nevada"
+      ]
+    },
+    {
+      "seq": 119,
+      "batchId": "bmv8xcw5dlm598",
+      "type": "commit",
+      "teams": [
+        "PSU"
+      ],
+      "lines": [
+        "Kingsley Tate (Sr PF, transfer from Penn) commits to Penn State"
+      ]
+    },
+    {
+      "seq": 120,
+      "batchId": "bmv8xd1ujgh4fk",
+      "type": "commit",
+      "teams": [
+        "UTAH"
+      ],
+      "lines": [
+        "Legend Moss (Sr PF, transfer from Utah State) commits to Utah"
+      ]
+    },
+    {
+      "seq": 121,
+      "batchId": "bmv8xe73c52nab",
+      "type": "commit",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Malakai Reed (Sr PF, transfer from St.Bonaventure) commits to Florida"
+      ]
+    },
+    {
+      "seq": 122,
+      "batchId": "bmv8xfd0qjuoar",
+      "type": "commit",
+      "teams": [
+        "ALA"
+      ],
+      "lines": [
+        "Rocco Shaw (Sr SF, transfer from St.Bonaventure) commits to Alabama"
+      ]
+    },
+    {
+      "seq": 123,
+      "batchId": "bmv8xfuhpyv3gm",
+      "type": "commit",
+      "teams": [
+        "ASU"
+      ],
+      "lines": [
+        "Zae Whitford (Sr PG, transfer from Grand Canyon) commits to Arizona State"
+      ]
+    },
+    {
+      "seq": 124,
+      "batchId": "bmv8xg2v0b02uv",
+      "type": "commit",
+      "teams": [
+        "NCS"
+      ],
+      "lines": [
+        "Ridge Mercer (Sr PG, transfer from UNC Asheville) commits to NC State"
+      ]
+    },
+    {
+      "seq": 125,
+      "batchId": "bmv8xggbjb9e0t",
+      "type": "commit",
+      "teams": [
+        "TTU"
+      ],
+      "lines": [
+        "Lars Jensen (Jr SF, transfer from Illinois) commits to Texas Tech"
+      ]
+    },
+    {
+      "seq": 126,
+      "batchId": "bmv8xgpjnvo84v",
+      "type": "commit",
+      "teams": [
+        "MISSST"
+      ],
+      "lines": [
+        "Luc Moreau (Jr C, transfer from Norfolk State) commits to Mississippi State"
+      ]
+    },
+    {
+      "seq": 127,
+      "batchId": "bmv8xhbwnt7vjv",
+      "type": "commit",
+      "teams": [
+        "BSU"
+      ],
+      "lines": [
+        "Tyquan Ellis (So SF, transfer from LSU) commits to Boise State"
+      ]
+    },
+    {
+      "seq": 128,
+      "batchId": "bmv8xp6guz3c07",
+      "type": "commit",
+      "teams": [
+        "MIN"
+      ],
+      "lines": [
+        "Jean Diarra decommits from Minnesota"
+      ]
+    },
+    {
+      "seq": 129,
+      "batchId": "bmv8xpakcm8ny6",
+      "type": "commit",
+      "teams": [
+        "SJSU"
+      ],
+      "lines": [
+        "Jean Diarra (3★ C) commits to San Jose State"
+      ]
+    },
+    {
+      "seq": 130,
+      "batchId": "bmv8ybb2q2b44x",
+      "type": "college-ratings",
+      "teams": [],
+      "lines": [
+        "College ratings reset: 157 players ranked, 137 took the suggestion"
+      ]
+    },
+    {
+      "seq": 131,
+      "batchId": "bmv8ybosfkxufa",
+      "type": "walk-on",
+      "teams": [
+        "UH",
+        "ISU",
+        "KU",
+        "KSU",
+        "OU",
+        "OSU",
+        "TCU",
+        "UT",
+        "WVU",
+        "DUKE",
+        "LOU",
+        "UNC",
+        "SYR",
+        "UVA",
+        "VATECH",
+        "WF",
+        "UB",
+        "CTN",
+        "DSN",
+        "GTWN",
+        "MQ",
+        "PROV",
+        "SH",
+        "UCON",
+        "XU",
+        "ARK",
+        "FLO",
+        "UGA",
+        "UK",
+        "LSU",
+        "MISSST",
+        "MIZZ",
+        "TENN",
+        "TAMU",
+        "ILL",
+        "IU",
+        "IOWA",
+        "MD",
+        "UM",
+        "MIN",
+        "NW",
+        "OHSU",
+        "PUR",
+        "WIS",
+        "AKR",
+        "CIN",
+        "FAU",
+        "GT",
+        "RICE",
+        "SMU",
+        "TOL",
+        "TUL",
+        "UAB",
+        "ARIZ",
+        "ORE",
+        "ORST",
+        "STAN",
+        "UCLA",
+        "USC",
+        "UTAH",
+        "WASH",
+        "WSU",
+        "BC",
+        "BUF",
+        "DAY",
+        "LUC",
+        "RUT",
+        "SC",
+        "STJ",
+        "VAN",
+        "VCU",
+        "ARMY",
+        "BEL",
+        "HOW",
+        "LEH",
+        "MURRST",
+        "FOLK",
+        "STM",
+        "STP",
+        "VT",
+        "BU",
+        "DEL",
+        "DSU",
+        "DRA",
+        "GW",
+        "INST",
+        "MTU",
+        "NE",
+        "URI",
+        "RICH",
+        "UMBC",
+        "WIN",
+        "CLST",
+        "IONA",
+        "NDSU",
+        "NKU",
+        "OAK",
+        "SAN",
+        "SDST",
+        "STB",
+        "UCI",
+        "WOF",
+        "BRN",
+        "CAL",
+        "CHI",
+        "COL",
+        "CORN",
+        "DART",
+        "HAR",
+        "MIT",
+        "PENN",
+        "PRIN",
+        "UCSB",
+        "YALE",
+        "ACU",
+        "MCN",
+        "UNT",
+        "ORU",
+        "SAM",
+        "SOU",
+        "SFA",
+        "AMCC",
+        "TXSO",
+        "UTSA",
+        "ALST",
+        "ETSU",
+        "FUR",
+        "GAST",
+        "JSU",
+        "USF",
+        "WKU",
+        "EWU",
+        "EVA",
+        "HPU",
+        "KENN",
+        "LONG",
+        "MON",
+        "MOST",
+        "PTST",
+        "SF",
+        "WEB",
+        "AF",
+        "CSU",
+        "FRES",
+        "NMU",
+        "UNLV",
+        "USU",
+        "WYO",
+        "APP",
+        "GCU",
+        "KENT",
+        "MORE",
+        "OMA",
+        "SIUE",
+        "SEMO",
+        "TROY",
+        "BRY",
+        "DUQ",
+        "FDU",
+        "LIP",
+        "LIU",
+        "QUIN",
+        "RMU",
+        "UMAS",
+        "UNCA",
+        "UNCW"
+      ],
+      "lines": [
+        "281 walk-ons fill open spots"
+      ]
     }
   ]
 }

@@ -1745,26 +1745,64 @@
           ]
         }
       ]
+    },
+    {
+      "season": "S79",
+      "inductees": [
+        {
+          "name": "Tristin Kidd",
+          "playerId": null,
+          "retiredSeason": "S68",
+          "lines": [
+            "Belmont: S54",
+            "Florida State: S55-S56",
+            "OAK: S57-S64",
+            "FLO: S65-S68",
+            "1x All-Star",
+            "1x All-FBA T1",
+            "1x LP Award",
+            "3x FBA C-Ship app.",
+            "2x FBA Champion",
+            "2x Conference Champion"
+          ]
+        },
+        {
+          "name": "Ameer Allen",
+          "playerId": "p00115",
+          "retiredSeason": "S79",
+          "lines": [
+            "Kentucky: S65",
+            "CHI: S66-S78",
+            "SAS: S79",
+            "14x All-Star",
+            "2x Young-Star",
+            "2x All-FBA T2",
+            "5x All-FBA T1",
+            "2x LP Award"
+          ]
+        },
+        {
+          "name": "Hakim Cleveland",
+          "playerId": "p00110",
+          "retiredSeason": "S79",
+          "lines": [
+            "Stephen F Austin: S65",
+            "Wake Forest: S66",
+            "PHX: S67-S72",
+            "VEG: S73-S75",
+            "PHX: S76-S79",
+            "S67 ROTY",
+            "2x Young-Star",
+            "5x All-Star",
+            "1x FBA C-Ship app.",
+            "1x FBA Champion",
+            "1x FBA C-Ship MVP"
+          ]
+        }
+      ]
     }
   ],
   "nominees": [
-    {
-      "name": "Tristin Kidd",
-      "playerId": null,
-      "retiredSeason": "S68",
-      "lines": [
-        "Belmont: S54",
-        "Florida State: S55-S56",
-        "OAK: S57-S64",
-        "FLO: S65-S68",
-        "1x All-Star",
-        "1x All-FBA T1",
-        "1x LP Award",
-        "3x FBA C-Ship app.",
-        "2x FBA Champion",
-        "2x Conference Champion"
-      ]
-    },
     {
       "name": "Dustin Holloway",
       "playerId": null,

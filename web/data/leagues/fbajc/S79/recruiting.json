@@ -10,19 +10,21 @@
       "playerId": "p02422",
       "position": "PG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 85,
+      "stars": 5,
+      "consensus": 90.1,
       "projections": {
         "BYU": 1
       },
-      "committedTo": null
+      "committedTo": "BYU"
     },
     {
       "playerId": "p02423",
       "position": "SG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 85,
+      "stars": 4,
+      "consensus": 89.8,
       "projections": {},
       "committedTo": null
     },
@@ -30,8 +32,9 @@
       "playerId": "p02424",
       "position": "PG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 79,
+      "stars": 4,
+      "consensus": 82.1,
       "projections": {
         "ALA": 1
       },
@@ -41,17 +44,24 @@
       "playerId": "p02425",
       "position": "PG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
-      "projections": {},
-      "committedTo": null
+      "rating": 92,
+      "stars": 5,
+      "consensus": 96.5,
+      "projections": {
+        "UNC": 1,
+        "DUKE": 1,
+        "WF": 1,
+        "UH": 1
+      },
+      "committedTo": "UH"
     },
     {
       "playerId": "p02426",
       "position": "SG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 83,
+      "stars": 4,
+      "consensus": 87,
       "projections": {},
       "committedTo": null
     },
@@ -59,17 +69,23 @@
       "playerId": "p02427",
       "position": "SG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
-      "projections": {},
-      "committedTo": null
+      "rating": 94,
+      "stars": 5,
+      "consensus": 98.1,
+      "projections": {
+        "KU": 1,
+        "UM": 1,
+        "UK": 1
+      },
+      "committedTo": "UK"
     },
     {
       "playerId": "p02428",
       "position": "C",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 85,
+      "stars": 5,
+      "consensus": 90.4,
       "projections": {},
       "committedTo": null
     },
@@ -77,8 +93,9 @@
       "playerId": "p02429",
       "position": "SG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 78,
+      "stars": 4,
+      "consensus": 80,
       "projections": {},
       "committedTo": null
     },
@@ -86,8 +103,9 @@
       "playerId": "p02430",
       "position": "SG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 79,
+      "stars": 4,
+      "consensus": 82.5,
       "projections": {},
       "committedTo": null
     },
@@ -95,8 +113,9 @@
       "playerId": "p02431",
       "position": "SG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 76,
+      "stars": 3,
+      "consensus": 78.4,
       "projections": {},
       "committedTo": null
     },
@@ -104,8 +123,9 @@
       "playerId": "p02432",
       "position": "PF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 83,
+      "stars": 4,
+      "consensus": 86.5,
       "projections": {},
       "committedTo": null
     },
@@ -113,26 +133,33 @@
       "playerId": "p02433",
       "position": "SF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
-      "projections": {},
-      "committedTo": null
+      "rating": 94,
+      "stars": 5,
+      "consensus": 99,
+      "projections": {
+        "OU": 2,
+        "TENN": 1,
+        "FLO": 1
+      },
+      "committedTo": "OU"
     },
     {
       "playerId": "p02434",
       "position": "SF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 86,
+      "stars": 5,
+      "consensus": 92.2,
       "projections": {},
-      "committedTo": null
+      "committedTo": "UK"
     },
     {
       "playerId": "p02435",
       "position": "SF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 76,
+      "stars": 3,
+      "consensus": 78.6,
       "projections": {},
       "committedTo": null
     },
@@ -140,8 +167,9 @@
       "playerId": "p02436",
       "position": "SF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 81,
+      "stars": 4,
+      "consensus": 85.3,
       "projections": {},
       "committedTo": null
     },
@@ -149,8 +177,9 @@
       "playerId": "p02437",
       "position": "SF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 85,
+      "stars": 4,
+      "consensus": 89.7,
       "projections": {},
       "committedTo": null
     },
@@ -158,8 +187,9 @@
       "playerId": "p02438",
       "position": "SF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 84,
+      "stars": 4,
+      "consensus": 88.6,
       "projections": {
         "DUKE": 1
       },
@@ -169,26 +199,37 @@
       "playerId": "p02439",
       "position": "PF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
-      "projections": {},
-      "committedTo": null
+      "rating": 90,
+      "stars": 5,
+      "consensus": 94.9,
+      "projections": {
+        "UM": 1,
+        "PUR": 1
+      },
+      "committedTo": "PUR"
     },
     {
       "playerId": "p02440",
       "position": "PF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
-      "projections": {},
+      "rating": 86,
+      "stars": 5,
+      "consensus": 91.2,
+      "projections": {
+        "UT": 1,
+        "TTU": 1,
+        "BAY": 1,
+        "UH": 1
+      },
       "committedTo": null
     },
     {
       "playerId": "p02441",
       "position": "PF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 78,
+      "stars": 4,
+      "consensus": 80.8,
       "projections": {},
       "committedTo": null
     },
@@ -196,8 +237,9 @@
       "playerId": "p02442",
       "position": "PF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 80,
+      "stars": 4,
+      "consensus": 84,
       "projections": {},
       "committedTo": null
     },
@@ -205,38 +247,45 @@
       "playerId": "p02443",
       "position": "PG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 87,
+      "stars": 5,
+      "consensus": 92.7,
       "projections": {
         "UNC": 1,
-        "NCS": 1
+        "NCS": 1,
+        "FLO": 1,
+        "LSU": 1,
+        "MISSST": 1
       },
-      "committedTo": null
+      "committedTo": "UNC"
     },
     {
       "playerId": "p02444",
       "position": "PF",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 87,
+      "stars": 5,
+      "consensus": 93,
       "projections": {},
-      "committedTo": null
+      "committedTo": "AUB"
     },
     {
       "playerId": "p02445",
       "position": "C",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 92,
+      "stars": 5,
+      "consensus": 96.2,
       "projections": {},
-      "committedTo": null
+      "committedTo": "UM"
     },
     {
       "playerId": "p02446",
       "position": "C",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 76,
+      "stars": 3,
+      "consensus": 78.1,
       "projections": {},
       "committedTo": null
     },
@@ -244,8 +293,9 @@
       "playerId": "p02447",
       "position": "C",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 84,
+      "stars": 4,
+      "consensus": 88,
       "projections": {},
       "committedTo": null
     },
@@ -253,8 +303,9 @@
       "playerId": "p02448",
       "position": "C",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 80,
+      "stars": 4,
+      "consensus": 84.6,
       "projections": {},
       "committedTo": null
     },
@@ -262,19 +313,21 @@
       "playerId": "p02449",
       "position": "C",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 90,
+      "stars": 5,
+      "consensus": 94.8,
       "projections": {
         "KU": 1
       },
-      "committedTo": null
+      "committedTo": "KU"
     },
     {
       "playerId": "p02450",
       "position": "PG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 83,
+      "stars": 4,
+      "consensus": 86.9,
       "projections": {
         "USC": 1,
         "UCLA": 1,
@@ -286,13 +339,377 @@
       "playerId": "p02451",
       "position": "PG",
       "classYear": "Fr",
-      "rating": null,
-      "stars": null,
+      "rating": 85,
+      "stars": 4,
+      "consensus": 89.4,
       "projections": {
         "WIS": 1
       },
       "committedTo": null
     }
   ],
-  "portal": []
+  "portal": [
+    {
+      "playerId": "p01256",
+      "position": "PG",
+      "classYear": "Jr",
+      "rating": 79,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "ALST"
+    },
+    {
+      "playerId": "p02692",
+      "position": "SG",
+      "classYear": "So",
+      "rating": 76,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "AF"
+    },
+    {
+      "playerId": "p02377",
+      "position": "SG",
+      "classYear": "So",
+      "rating": 87,
+      "stars": 4,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "ARK"
+    },
+    {
+      "playerId": "p01265",
+      "position": "C",
+      "classYear": "Sr",
+      "rating": 83,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "APB"
+    },
+    {
+      "playerId": "p01494",
+      "position": "PG",
+      "classYear": "Sr",
+      "rating": 80,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "BRY"
+    },
+    {
+      "playerId": "p02477",
+      "position": "SF",
+      "classYear": "So",
+      "rating": 76,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "UB"
+    },
+    {
+      "playerId": "p01148",
+      "position": "SF",
+      "classYear": "Sr",
+      "rating": 80,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "CHI"
+    },
+    {
+      "playerId": "p01151",
+      "position": "PG",
+      "classYear": "Sr",
+      "rating": 83,
+      "stars": null,
+      "projections": {},
+      "committedTo": "MQ",
+      "fromTeam": "COL"
+    },
+    {
+      "playerId": "p02381",
+      "position": "C",
+      "classYear": "So",
+      "rating": 83,
+      "stars": 4,
+      "projections": {},
+      "committedTo": "PITT",
+      "fromTeam": "CTN"
+    },
+    {
+      "playerId": "p01029",
+      "position": "PF",
+      "classYear": "Jr",
+      "rating": 78,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "DSU"
+    },
+    {
+      "playerId": "p00912",
+      "position": "SG",
+      "classYear": "Jr",
+      "rating": 78,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "ECU"
+    },
+    {
+      "playerId": "p02388",
+      "position": "SG",
+      "classYear": "So",
+      "rating": 78,
+      "stars": 3,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "FAU"
+    },
+    {
+      "playerId": "p00607",
+      "position": "SG",
+      "classYear": "Jr",
+      "rating": 85,
+      "stars": 4,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "CTN"
+    },
+    {
+      "playerId": "p01392",
+      "position": "SG",
+      "classYear": "Jr",
+      "rating": 79,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "FRES"
+    },
+    {
+      "playerId": "p01281",
+      "position": "PG",
+      "classYear": "Jr",
+      "rating": 78,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "FUR"
+    },
+    {
+      "playerId": "p00624",
+      "position": "PF",
+      "classYear": "Jr",
+      "rating": 82,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "GTWN"
+    },
+    {
+      "playerId": "p01448",
+      "position": "C",
+      "classYear": "Sr",
+      "rating": 81,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "GCU"
+    },
+    {
+      "playerId": "p00726",
+      "position": "C",
+      "classYear": "Sr",
+      "rating": 92,
+      "stars": 4,
+      "projections": {
+        "GU": 1,
+        "ASU": 1,
+        "ORE": 1,
+        "USC": 1
+      },
+      "committedTo": "GU",
+      "fromTeam": "IU"
+    },
+    {
+      "playerId": "p00503",
+      "position": "C",
+      "classYear": "Jr",
+      "rating": 92,
+      "stars": 5,
+      "projections": {
+        "MSU": 1,
+        "UK": 1,
+        "BYU": 1
+      },
+      "committedTo": "UK",
+      "fromTeam": "ISU"
+    },
+    {
+      "playerId": "p01518",
+      "position": "C",
+      "classYear": "Sr",
+      "rating": 78,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "LIP"
+    },
+    {
+      "playerId": "p01337",
+      "position": "SG",
+      "classYear": "Jr",
+      "rating": 79,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "LONG"
+    },
+    {
+      "playerId": "p00559",
+      "position": "SG",
+      "classYear": "Jr",
+      "rating": 81,
+      "stars": 4,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "LOU"
+    },
+    {
+      "playerId": "p01210",
+      "position": "C",
+      "classYear": "Sr",
+      "rating": 82,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "UNT"
+    },
+    {
+      "playerId": "p00803",
+      "position": "SG",
+      "classYear": "Sr",
+      "rating": 80,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "RICE"
+    },
+    {
+      "playerId": "p01224",
+      "position": "PF",
+      "classYear": "Jr",
+      "rating": 78,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "SAM"
+    },
+    {
+      "playerId": "p01226",
+      "position": "PG",
+      "classYear": "Sr",
+      "rating": 80,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "SOU"
+    },
+    {
+      "playerId": "p00955",
+      "position": "C",
+      "classYear": "Sr",
+      "rating": 87,
+      "stars": 3,
+      "projections": {},
+      "committedTo": "UH",
+      "fromTeam": "VCU"
+    },
+    {
+      "playerId": "p01073",
+      "position": "SF",
+      "classYear": "Sr",
+      "rating": 80,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "WIN"
+    },
+    {
+      "playerId": "p01127",
+      "position": "SG",
+      "classYear": "Sr",
+      "rating": 80,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "WOF"
+    },
+    {
+      "playerId": "p00659",
+      "position": "PF",
+      "classYear": "Jr",
+      "rating": 79,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "XU"
+    },
+    {
+      "playerId": "p01429",
+      "position": "PG",
+      "classYear": "Sr",
+      "rating": 81,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "WYO"
+    },
+    {
+      "playerId": "p00643",
+      "position": "SF",
+      "classYear": "Sr",
+      "rating": 93,
+      "stars": 5,
+      "projections": {
+        "VIL": 1,
+        "KU": 1
+      },
+      "committedTo": "KU",
+      "fromTeam": "STJOHNS"
+    },
+    {
+      "playerId": "p00507",
+      "position": "C",
+      "classYear": "Sr",
+      "rating": 81,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "KU"
+    },
+    {
+      "playerId": "p00573",
+      "position": "PG",
+      "classYear": "Sr",
+      "rating": 80,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "UNC"
+    },
+    {
+      "playerId": "p00490",
+      "position": "PG",
+      "classYear": "Sr",
+      "rating": 87,
+      "stars": null,
+      "projections": {},
+      "committedTo": null,
+      "fromTeam": "BYU"
+    }
+  ]
 }

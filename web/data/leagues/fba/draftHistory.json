@@ -11271,6 +11271,100 @@
           "college": "Montana State"
         }
       ]
+    },
+    {
+      "season": 80,
+      "kind": "expansion",
+      "picks": [
+        {
+          "pick": 1,
+          "teamId": "PHI",
+          "teamName": "Philly Phantoms",
+          "viaTeamId": null,
+          "name": "Beau Riley",
+          "playerId": "p00039",
+          "pos": "PG",
+          "detail": "22",
+          "college": null
+        },
+        {
+          "pick": 2,
+          "teamId": "LAL",
+          "teamName": "Boise Talons",
+          "viaTeamId": null,
+          "name": "Micah Akers",
+          "playerId": "p00064",
+          "pos": "SG",
+          "detail": "26",
+          "college": null
+        },
+        {
+          "pick": 3,
+          "teamId": "LAL",
+          "teamName": "Boise Talons",
+          "viaTeamId": null,
+          "name": "Uriel Murray",
+          "playerId": "p00109",
+          "pos": "SF",
+          "detail": "26",
+          "college": null
+        },
+        {
+          "pick": 4,
+          "teamId": "PHI",
+          "teamName": "Philly Phantoms",
+          "viaTeamId": null,
+          "name": "Rhys Creed",
+          "playerId": "p00023",
+          "pos": "PF",
+          "detail": "26",
+          "college": null
+        },
+        {
+          "pick": 5,
+          "teamId": "PHI",
+          "teamName": "Philly Phantoms",
+          "viaTeamId": null,
+          "name": "Emmanuel Green",
+          "playerId": "p00138",
+          "pos": "SF",
+          "detail": "22",
+          "college": null
+        },
+        {
+          "pick": 6,
+          "teamId": "LAL",
+          "teamName": "Boise Talons",
+          "viaTeamId": null,
+          "name": "Landon Love",
+          "playerId": "p00053",
+          "pos": "C",
+          "detail": "22",
+          "college": null
+        },
+        {
+          "pick": 7,
+          "teamId": "LAL",
+          "teamName": "Boise Talons",
+          "viaTeamId": null,
+          "name": "Kya Emery",
+          "playerId": "p00014",
+          "pos": "PF",
+          "detail": "30",
+          "college": null
+        },
+        {
+          "pick": 8,
+          "teamId": "PHI",
+          "teamName": "Philly Phantoms",
+          "viaTeamId": null,
+          "name": "Kaelan Kingsley",
+          "playerId": "p00130",
+          "pos": "C",
+          "detail": "26",
+          "college": null
+        }
+      ]
     }
   ]
 }

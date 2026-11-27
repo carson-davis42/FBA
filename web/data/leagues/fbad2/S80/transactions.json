@@ -1,0 +1,59 @@
+{
+  "league": "fbad2",
+  "season": 80,
+  "entries": [
+    {
+      "seq": 1,
+      "batchId": "bmvaiz510bxtye",
+      "type": "season",
+      "teams": [],
+      "lines": [
+        "S80 season started"
+      ]
+    },
+    {
+      "seq": 2,
+      "batchId": "bmwxue3ewpaz3g",
+      "type": "signed",
+      "teams": [
+        "SHAN"
+      ],
+      "lines": [
+        "SF-Caleb Ingram signed by TEX (FBA)"
+      ]
+    },
+    {
+      "seq": 3,
+      "batchId": "bmwxuiu3y7flxq",
+      "type": "signed",
+      "teams": [
+        "SALZ"
+      ],
+      "lines": [
+        "PF-Darien Shepherd signed by BOS (FBA)"
+      ]
+    },
+    {
+      "seq": 4,
+      "batchId": "bmwxume2zmy8mm",
+      "type": "signed",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "C-Dennis Lofton signed by HON (FBA)"
+      ]
+    },
+    {
+      "seq": 5,
+      "batchId": "bmwy1cxd79uead",
+      "type": "signed",
+      "teams": [
+        "EDM"
+      ],
+      "lines": [
+        "PF-Youssef El-Sayed signed by CIN (FBA)"
+      ]
+    }
+  ]
+}
