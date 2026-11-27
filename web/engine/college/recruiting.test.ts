@@ -20,13 +20,27 @@ const withRecruit = (s: RecruitingState, id: string, patch: object): RecruitingS
 });
 
 describe('parseClassList', () => {
-  it('reads "Name, POS" and "Name<Tab>POS" lines and lists the rest back', () => {
-    expect(parseClassList('Zion Carter, PG\nMalik Ford\tsg\n\n  bad line \nEli Grant , PF \nSmith, Jr., C\r\n, PG')).toEqual({
+  it('reads "Name, POS" and "Name<Tab>POS" lines', () => {
+    expect(parseClassList('Zion Carter, PG\nMalik Ford\tsg\n\nEli Grant , PF \nSmith, Jr., C')).toEqual({
       rows: [
         { name: 'Zion Carter', position: 'PG' }, { name: 'Malik Ford', position: 'SG' },
         { name: 'Eli Grant', position: 'PF' }, { name: 'Smith, Jr.', position: 'C' },
       ],
-      bad: ['bad line', ', PG'],
+      bad: [],
+    });
+  });
+
+  it('takes a name on its own, with the position still to be set', () => {
+    expect(parseClassList('Kaden Briggs\r\n  Tyrese Harlan \t\nKJ Rawlings')).toEqual({
+      rows: [{ name: 'Kaden Briggs', position: null }, { name: 'Tyrese Harlan', position: null }, { name: 'KJ Rawlings', position: null }],
+      bad: [],
+    });
+  });
+
+  it("lists back a line with a comma or tab but no position, a position without a name, and one after only a space", () => {
+    expect(parseClassList(', PG\npg\nZed Ro, Guard\nZed Ro,\nZed Ro\t12\nKaden Briggs PG')).toEqual({
+      rows: [],
+      bad: [', PG', 'pg', 'Zed Ro, Guard', 'Zed Ro,', 'Zed Ro\t12', 'Kaden Briggs PG'],
     });
   });
 });
@@ -56,6 +70,22 @@ describe('class draft edits', () => {
     const one = addDraftRow(emptyRecruiting(79), { name: 'A', position: 'C' });
     expect(editDraftRow(one, 5, { name: 'B' })).toBe(one);
     expect(removeDraftRow(one, 5)).toBe(one);
+  });
+});
+
+describe('class draft rows without a position', () => {
+  const rows: ClassDraftRow[] = [{ name: 'Zion Carter', position: 'PG' }, { name: 'Malik Ford', position: null }, { name: 'Eli Grant', position: null }];
+
+  it('are saved, left out of the position counts, and set later', () => {
+    const doc = appendDraftRows(emptyRecruiting(79), rows);
+    expect(RecruitingFile.safeParse(doc).success).toBe(true);
+    expect(draftCounts(doc)).toEqual({ PG: 1, SG: 0, SF: 0, PF: 0, C: 0 });
+    expect(editDraftRow(doc, 1, { position: 'C' }).classDraft[1]).toEqual({ name: 'Malik Ford', position: 'C' });
+  });
+
+  it('stop the class being created until every one has a position', () => {
+    expect(createClass(drafted(rows), ctx)).toEqual({ ok: false, problems: ['2 rows need a position'] });
+    expect(createClass(drafted(rows.slice(0, 2)), ctx)).toEqual({ ok: false, problems: ['1 row needs a position'] });
   });
 });
 

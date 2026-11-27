@@ -34,9 +34,13 @@ function TextField({ label, value, disabled, onSave }: { label: string; value: s
   );
 }
 
-function PositionSelect({ label, value, disabled, onChange }: { label: string; value: Position; disabled: boolean; onChange: (p: Position) => void }) {
+function PositionSelect({ label, value, disabled, onChange }: { label: string; value: Position | null; disabled: boolean; onChange: (p: Position) => void }) {
   return (
-    <select aria-label={label} value={value} disabled={disabled} onChange={e => onChange(e.target.value as Position)}>
+    <select
+      aria-label={label} value={value ?? ''} disabled={disabled} className={value === null ? 'needs-position' : undefined}
+      onChange={e => onChange(e.target.value as Position)}
+    >
+      {value === null && <option value="" disabled>Set…</option>}
       {POSITIONS.map(p => <option key={p} value={p}>{p}</option>)}
     </select>
   );
@@ -50,6 +54,7 @@ export function ClassTab({ state, saving, onDraft, onRun }: Props) {
   if (doc.created) return <CreatedClass state={state} saving={saving} onRun={onRun} />;
   const locked = doc.locked;
   const counts = draftCounts(doc);
+  const unplaced = doc.classDraft.filter(r => r.position === null).length;
   const addPasted = () => {
     const parsed = parseClassList(paste);
     if (parsed.rows.length) onDraft(cur => appendDraftRows(cur, parsed.rows));
@@ -84,7 +89,7 @@ export function ClassTab({ state, saving, onDraft, onRun }: Props) {
       </div>
       <div className="card">
       <h3>Paste list</h3>
-      <p className="muted">One recruit per line: "Name, POS" or "Name", a tab, then "POS".</p>
+      <p className="muted">One recruit per line: a name, or "Name, POS" (a tab works in place of the comma). Set any missing positions in the table above.</p>
       <textarea className="paste" aria-label="Paste list" value={paste} disabled={locked} onChange={e => setPaste(e.target.value)} />
       <div className="toolbar">
         <button type="button" className="btn" disabled={locked || !paste.trim()} onClick={addPasted}>Add pasted</button>
@@ -98,11 +103,12 @@ export function ClassTab({ state, saving, onDraft, onRun }: Props) {
       </div>
       <div className="card toolbar">
         <button
-          type="button" className="btn primary" disabled={saving || locked || doc.classDraft.length === 0}
+          type="button" className="btn primary" disabled={saving || locked || doc.classDraft.length === 0 || unplaced > 0}
           onClick={() => onRun(createClass(state, { batchId: newBatchId() }))}
         >
           Create class
         </button>
+        {unplaced > 0 && <span className="muted">{unplaced === 1 ? '1 recruit still needs' : `${unplaced} recruits still need`} a position.</span>}
       </div>
     </div>
   );

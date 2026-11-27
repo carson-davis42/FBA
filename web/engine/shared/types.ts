@@ -428,7 +428,8 @@ export const PortalPlayer = Prospect.extend({ fromTeam: z.string().min(1) }).str
 export type PortalPlayer = z.infer<typeof PortalPlayer>;
 
 /** A Create Class row; the name may be blank while it is being typed. */
-export const ClassDraftRow = z.object({ name: z.string(), position: Position }).strict();
+/** A recruit being entered; `position` is null until it is set (a pasted name on its own). */
+export const ClassDraftRow = z.object({ name: z.string(), position: Position.nullable() }).strict();
 export type ClassDraftRow = z.infer<typeof ClassDraftRow>;
 
 /** The recruiting board of the class created in calendar season `season`; it plays its Freshman year in that season's FBAJC. */
