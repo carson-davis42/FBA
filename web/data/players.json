@@ -1,5 +1,5 @@
 {
-  "nextId": 2733,
+  "nextId": 2763,
   "players": {
     "p00001": {
       "id": "p00001",
@@ -13747,6 +13747,156 @@
       "id": "p02732",
       "name": null,
       "birthSeason": 61
+    },
+    "p02733": {
+      "id": "p02733",
+      "name": "Kaden Briggs",
+      "birthSeason": 63
+    },
+    "p02734": {
+      "id": "p02734",
+      "name": "Tyrese Harlan",
+      "birthSeason": 63
+    },
+    "p02735": {
+      "id": "p02735",
+      "name": "Malik Davenport",
+      "birthSeason": 63
+    },
+    "p02736": {
+      "id": "p02736",
+      "name": "DeShawn McKinney",
+      "birthSeason": 63
+    },
+    "p02737": {
+      "id": "p02737",
+      "name": "Darius Kinney",
+      "birthSeason": 63
+    },
+    "p02738": {
+      "id": "p02738",
+      "name": "Noah Agredano",
+      "birthSeason": 63
+    },
+    "p02739": {
+      "id": "p02739",
+      "name": "Khalil Stafford",
+      "birthSeason": 63
+    },
+    "p02740": {
+      "id": "p02740",
+      "name": "Jonah Feldman",
+      "birthSeason": 63
+    },
+    "p02741": {
+      "id": "p02741",
+      "name": "Terrence Langston",
+      "birthSeason": 63
+    },
+    "p02742": {
+      "id": "p02742",
+      "name": "Isaac Rosenthal",
+      "birthSeason": 63
+    },
+    "p02743": {
+      "id": "p02743",
+      "name": "KJ Rawlings",
+      "birthSeason": 63
+    },
+    "p02744": {
+      "id": "p02744",
+      "name": "Kamari Lockett",
+      "birthSeason": 63
+    },
+    "p02745": {
+      "id": "p02745",
+      "name": "Isaiah DeLeon",
+      "birthSeason": 63
+    },
+    "p02746": {
+      "id": "p02746",
+      "name": "Scottie Givens",
+      "birthSeason": 63
+    },
+    "p02747": {
+      "id": "p02747",
+      "name": "Jovani Rosario",
+      "birthSeason": 63
+    },
+    "p02748": {
+      "id": "p02748",
+      "name": "Keon Roach",
+      "birthSeason": 63
+    },
+    "p02749": {
+      "id": "p02749",
+      "name": "Luke Finnegan",
+      "birthSeason": 63
+    },
+    "p02750": {
+      "id": "p02750",
+      "name": "Jermaine Hodge",
+      "birthSeason": 63
+    },
+    "p02751": {
+      "id": "p02751",
+      "name": "Victor Villanueva",
+      "birthSeason": 63
+    },
+    "p02752": {
+      "id": "p02752",
+      "name": "Quincy Lawson",
+      "birthSeason": 63
+    },
+    "p02753": {
+      "id": "p02753",
+      "name": "Graham Roberson",
+      "birthSeason": 63
+    },
+    "p02754": {
+      "id": "p02754",
+      "name": "Gavin Roberson",
+      "birthSeason": 63
+    },
+    "p02755": {
+      "id": "p02755",
+      "name": "Declan Keating",
+      "birthSeason": 63
+    },
+    "p02756": {
+      "id": "p02756",
+      "name": "Austin Godfrey",
+      "birthSeason": 63
+    },
+    "p02757": {
+      "id": "p02757",
+      "name": "ZZ Voss",
+      "birthSeason": 63
+    },
+    "p02758": {
+      "id": "p02758",
+      "name": "Tim Ingram",
+      "birthSeason": 63
+    },
+    "p02759": {
+      "id": "p02759",
+      "name": "Jarred Winfield Jr",
+      "birthSeason": 63
+    },
+    "p02760": {
+      "id": "p02760",
+      "name": "Idris Dixon",
+      "birthSeason": 63
+    },
+    "p02761": {
+      "id": "p02761",
+      "name": "Wesley Evans Jr",
+      "birthSeason": 63
+    },
+    "p02762": {
+      "id": "p02762",
+      "name": "Eli Moore",
+      "birthSeason": 63
     }
   }
 }
