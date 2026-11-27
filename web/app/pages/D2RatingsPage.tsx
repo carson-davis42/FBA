@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { makeCut, placesAt, positionList, positionsFilled, reopenCut } from '../../engine/rank/positionRanking';
-import { isNewRow } from '../../engine/rank/ranking';
+import { D2_TOP_RANKED, isNewRow, topOf } from '../../engine/rank/ranking';
 import { POSITIONS } from '../../engine/roster/rules';
 import { POOL_CUTOFF } from '../../engine/d2/pool';
 import { finishRatings, membershipBlockers, stagedRatings, startRatings, stretchedRatings } from '../../engine/d2/ratings';
 import { d2DocPath, d2Name, d2Writes, type D2Result } from '../../engine/d2/state';
 import type { RankingFile, RankingRow } from '../../engine/shared/types';
 import { useSaving } from '../api';
+import { FillPreview } from '../d2/FillPreview';
 import { useD2State } from '../d2/useD2State';
 import { PageHeader } from '../components/PageHeader';
 import { PositionStage } from '../rank/PositionStage';
@@ -55,9 +56,9 @@ export function D2RatingsPage() {
         {title}
         <div className="card">
           <p className="muted">
-            Rank each position, best first, until its {POOL_CUTOFF} spots are full; everyone else goes to Reserves. Then build the full ranking
-            from the best remaining player at each position, and give each player a new rating (the app suggests the rating that held the
-            same rank last season).
+            Rank each position, best first, until its {POOL_CUTOFF} spots are full; everyone else goes to Reserves. Then build your top
+            {' '}{D2_TOP_RANKED} from the best remaining player at each position and rate them (the app suggests the rating that held the same
+            rank last season). The others are rated from their rank within their position.
           </p>
           <button className="btn primary" disabled={saving} onClick={() => run(startRatings(state))}>Start ratings reset</button>
         </div>
@@ -104,7 +105,7 @@ export function D2RatingsPage() {
     );
   }
 
-  const unranked = ratings.order.length < POSITIONS.reduce((n, pos) => n + positionList(ratings, pos).length, 0);
+  const unranked = ratings.order.length < topOf(ratings);
   return (
     <section className="stack">
       {title}
@@ -113,7 +114,9 @@ export function D2RatingsPage() {
       {staged && !ratings.locked && (
         <div className="card toolbar">
           <span className="muted">
-            {unranked ? 'Step 3 of 4: build the full ranking from the best remaining player at each position.' : 'Step 4 of 4: rate the players from the ranking.'}
+            {unranked
+              ? `Step 3 of 4: build the top ${topOf(ratings)} from the best remaining player at each position.`
+              : `Step 4 of 4: rate your top ${topOf(ratings)}. Everyone else is rated from their rank within their position.`}
           </span>
           {unranked && <button type="button" className="btn" onClick={() => onChange(reopenCut)}>Back to position rankings</button>}
         </div>
@@ -130,6 +133,7 @@ export function D2RatingsPage() {
         finishLabel="Finish ratings"
         onFinish={() => run(finishRatings(live, { batchId: newBatchId() }))}
         busy={saving}
+        beforeFinish={staged && !ratings.locked && !unranked && <FillPreview doc={shown} name={name} teamLabel={teamLabel} />}
       />
     </section>
   );
