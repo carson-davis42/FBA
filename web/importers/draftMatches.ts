@@ -14,6 +14,8 @@ export const DRAFT_MATCHES: { season: number; pick: number; name: string; player
 export const PLAYER_MERGES: { keep: string; drop: string; name: string }[] = [
   { keep: 'p00065', drop: 'p02358', name: "D'Andre Holliday" }, // Michigan State S74, drafted by Texas #8 in S75, Mountain West from S76
   { keep: 'p00256', drop: 'p00461', name: 'Adrien Moreau' }, // Illinois S69-S71, undrafted in S72, D2 Florence
+  { keep: 'p00361', drop: 'p00474', name: 'Quentin Kaufman' }, // Utah, LSU, D2 Omaha from S69 (the S78 roster spelled him Kauffman)
+  { keep: 'p00495', drop: 'p02360', name: 'Kellan Ogbu' }, // Houston from S77, drafted into the FBA in S80
 ];
 
 /** `doc` with every value and every object key equal to `drop` replaced by `keep`; throws when an object has both as keys. Returns the changes counted. */
