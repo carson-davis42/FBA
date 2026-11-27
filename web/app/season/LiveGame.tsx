@@ -8,6 +8,7 @@ import { WinProbChart } from './WinProbChart';
 import { ACCENT_SIDES, BoxTable, bugSide, LineScore, periodName, ScoreBug, teamLabel } from './GameViews';
 import '../pages/season.css';
 import { PlayerName } from '../components/PlayerName';
+import { RESTORE_SCROLL } from '../shell/useScrollMemory';
 
 const SPEED_MS = { slow: 700, normal: 250, fast: 40 } as const;
 const CLUTCH_MS = 1200;
@@ -128,7 +129,7 @@ export function LiveGame({ state, sim, save, back, exhibition, startDone, onDone
         </label>
         <button className="btn primary" disabled={done} onClick={() => setShown(sim.possessions.length)}>Sim to end</button>
         {!done && save && <span className="muted">This game isn't saved until the final buzzer.</span>}
-        {saveState === 'saved' && back && <Link to={back.to}>Saved · {back.label}</Link>}
+        {saveState === 'saved' && back && <Link to={back.to} state={RESTORE_SCROLL}>Saved · {back.label}</Link>}
         {saveState === 'failed' && <button className="btn" disabled={saving} onClick={runSave}>Retry save</button>}
       </div>
       {message && <p className="error">{message}</p>}
