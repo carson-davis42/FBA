@@ -1,4 +1,4 @@
-import type { RosterEntry } from '../shared/types';
+import type { RankingFile, RosterEntry } from '../shared/types';
 import { finishRatings, startRatings } from './ratings';
 import { lockPool, startPool } from './pool';
 import type { D2State } from './state';
@@ -61,6 +61,12 @@ export function d2BaseState(): D2State {
   };
 }
 
+/** A reset without the position stages: one list of everyone. */
+export function onePass(doc: RankingFile): RankingFile {
+  const { byPosition: _stages, ...rest } = doc;
+  return rest;
+}
+
 /** The finished D2 reset in d2RatedState: [player, new rating], best first. */
 const RATED: [string, number][] = [
   ['p00023', 97], ['p00028', 85], ['p00026', 80], ['p00040', 78], ['p00022', 75], ['p00041', 74], ['p00020', 73],
@@ -75,7 +81,8 @@ const RATED: [string, number][] = [
 export function d2RatedState(): D2State {
   const started = startRatings({ ...d2BaseState(), prevD2: null });
   if (!started.ok) throw new Error(started.problems.join('; '));
-  const ratings = { ...started.state.ratings!, order: RATED.map(([id]) => id), ratings: Object.fromEntries(RATED) };
+  // A one-pass reset (no position stages), as ones begun before the stages were saved.
+  const ratings = { ...onePass(started.state.ratings!), order: RATED.map(([id]) => id), ratings: Object.fromEntries(RATED) };
   const finished = finishRatings({ ...started.state, ratings }, { batchId: 'fixture' });
   if (!finished.ok) throw new Error(finished.problems.join('; '));
   return finished.state;

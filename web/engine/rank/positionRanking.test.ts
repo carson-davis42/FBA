@@ -153,7 +153,9 @@ describe('schema', () => {
     expect(RankingFile.safeParse({ ...base(), order: ['p00003', 'p00001'] }).success).toBe(false)
     expect(RankingFile.safeParse({ ...base(), byPosition: { SG: ['p00001'] } }).success).toBe(false)
   })
-  it('only a class ranking has position rankings', () => {
-    expect(RankingFile.safeParse({ ...base(), kind: 'd2-reset', league: 'fbad2' }).success).toBe(false)
+  it('only a class ranking or a D2 reset has position rankings', () => {
+    expect(RankingFile.safeParse({ ...base(), kind: 'fba-reset', league: 'fba' }).success).toBe(false)
+    expect(RankingFile.safeParse({ ...base(), kind: 'd2-reset', league: 'fbad2' }).success).toBe(true)
+    expect(RankingFile.safeParse({ ...base(), cutMade: true }).success).toBe(false)
   })
 })

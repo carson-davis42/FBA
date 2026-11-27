@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import { applyClassSuggestions, consensusSuggestion, parseConsensusInput, starsFor } from '../../engine/college/classRanking';
 import {
-  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, clearRatings, moveRanked, outOfOrder, rankedRows, rankingBlockers, reserveBound, sendBack, setRating, suggestion, take, takeRest, type NameOf,
+  applyAllSuggestions, bestNewByPosition, isNewRow, leftRows, clearRatings, moveRanked, outOfOrder, rankedRows, rankingBlockers, reserveBound, reserveSet, sendBack, setRating, suggestion, take, takeRest, type NameOf,
 } from '../../engine/rank/ranking';
 import { mergeOptions, movePool, promoteTop, sendBackMerged, takeRestMerged } from '../../engine/rank/positionRanking';
 import { POSITIONS } from '../../engine/roster/rules';
@@ -79,12 +79,12 @@ export function RankingTable({ doc, name, teamLabel, otherLabel, leftLabel = "La
   // D2 reset: a position whose spots are all taken drops out of the unranked lists (and reappears if someone is sent back).
   const fullPositions = new Set(positionCap ? POSITIONS.filter(pos => rankedRows(doc).filter(r => r.position === pos).length >= positionCap.spots) : []);
   const shownLeft = (r: RankingRow) => shown(r) && !fullPositions.has(r.position);
-  const leftAll = leftRows(doc, name);
+  // D2 reset: players cut, or ranked past their position's spots, go to the Reserve pool; they need no rating.
+  const reserve = positionCap || doc.cutMade ? reserveSet(doc, positionCap?.spots ?? Infinity) : new Set<string>();
+  const leftAll = leftRows(doc, name).filter(r => !reserve.has(r.playerId));
   // After the position step only each position's next player is on offer (PG, SG, SF, PF, C); the rest wait behind him.
   const left = positionMerge ? mergeOptions(doc) : leftAll;
   const allPlaced = leftAll.length === 0;
-  // D2 reset: players ranked past their position's spots go to the Reserve pool; they show an X and need no rating.
-  const reserve = positionCap ? reserveBound(doc, positionCap.spots) : new Set<string>();
   const flagged = outOfOrder(doc, reserve);
   const blockers = [...rankingBlockers(doc, name, reserve), ...extraBlockers];
   const prev = (r: RankingRow) => r.prevRating ?? (r.otherRating !== null ? <span className="muted">{otherLabel} {r.otherRating}</span> : '—');

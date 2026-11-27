@@ -59,6 +59,18 @@ export function reserveBound(doc: RankingFile, spots: number): Set<string> {
   return out;
 }
 
+/** D2 reset ranked by position, once the cut is made: everyone left out of the position rankings goes to Reserves. */
+export function cutPlayers(doc: RankingFile): Set<string> {
+  if (doc.kind !== 'd2-reset' || !doc.cutMade) return new Set();
+  const kept = new Set(Object.values(doc.byPosition ?? {}).flat());
+  return new Set(doc.rows.filter(r => !kept.has(r.playerId)).map(r => r.playerId));
+}
+
+/** Who goes to Reserves unrated: the cut players, or (one-pass reset) those ranked past their position's spots. */
+export function reserveSet(doc: RankingFile, spots: number): Set<string> {
+  return doc.cutMade ? cutPlayers(doc) : reserveBound(doc, spots);
+}
+
 /** The ranked rows, best first. */
 export function rankedRows(doc: RankingFile): RankingRow[] {
   const byId = new Map(doc.rows.map(r => [r.playerId, r]));
@@ -162,7 +174,8 @@ export function outOfOrder(doc: RankingFile, skip: ReadonlySet<string> = NO_SKIP
 /** Why the ranking can't be finished yet; empty when it can. */
 export function rankingBlockers(doc: RankingFile, name: NameOf, skip: ReadonlySet<string> = NO_SKIP): string[] {
   const out: string[] = [];
-  const left = doc.rows.length - doc.order.length;
+  const ranked = new Set(doc.order);
+  const left = doc.rows.filter(r => !ranked.has(r.playerId) && !skip.has(r.playerId)).length;
   if (left) out.push(left === 1 ? "1 player isn't ranked yet" : `${left} players aren't ranked yet`);
   const unrated = doc.order.filter(id => doc.ratings[id] === undefined && !skip.has(id)).length;
   if (unrated) out.push(unrated === 1 ? '1 player still needs a rating' : `${unrated} players still need a rating`);

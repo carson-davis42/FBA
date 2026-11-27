@@ -1,10 +1,12 @@
 import { POSITIONS } from '../roster/rules'
-import type { Position, RankingFile, RankingRow } from '../shared/types'
+import { D2_POSITION_SPOTS, type Position, type RankingFile, type RankingRow } from '../shared/types'
 import { isNewRow, leftRows, type NameOf } from './ranking'
 
 /**
- * The class ranking's position step: each position is ranked on its own (`doc.byPosition`), then the whole ranking is a merge of those
- * lists. A doc without `byPosition` ranks the old way, in one pass.
+ * The position step of the class ranking and the D2 reset: each position is ranked on its own (`doc.byPosition`), then the whole ranking is
+ * a merge of those lists. A doc without `byPosition` ranks the old way, in one pass.
+ *
+ * The D2 reset ranks only each position's spots, then makes the cut (`doc.cutMade`): everyone left out goes to Reserves.
  */
 export const hasPositionStep = (doc: RankingFile): boolean => doc.byPosition !== undefined
 
@@ -17,32 +19,69 @@ export function positionUnranked(doc: RankingFile, name: NameOf, pos: Position):
   return leftRows({ ...doc, order: [] }, name).filter(r => r.position === pos && !placed.has(r.playerId))
 }
 
-/** True once every player is placed within his position. */
+const isD2 = (doc: RankingFile): boolean => doc.kind === 'd2-reset'
+
+/** How many places a position's ranking can hold: no limit, except the D2's spots per position. */
+const limitOf = (doc: RankingFile): number => (isD2(doc) ? D2_POSITION_SPOTS : Infinity)
+
+/** The places to fill at a position: its spots, or every player there when there are fewer. */
+export function placesAt(doc: RankingFile, pos: Position, spots = limitOf(doc)): number {
+  return Math.min(spots, doc.rows.filter(r => r.position === pos).length)
+}
+
+/** True when every position's places are filled. */
+export function positionsFilled(doc: RankingFile, spots = limitOf(doc)): boolean {
+  return hasPositionStep(doc) && POSITIONS.every(pos => positionList(doc, pos).length >= placesAt(doc, pos, spots))
+}
+
+/** True once the whole ranking can be built: every player is placed within his position, or (D2) the cut is made. */
 export function positionStepDone(doc: RankingFile): boolean {
-  return hasPositionStep(doc) && doc.rows.every(r => positionList(doc, r.position).includes(r.playerId))
+  if (isD2(doc)) return hasPositionStep(doc) && doc.cutMade === true
+  return positionsFilled(doc)
 }
 
-/** Places the player next in his position's ranking. Locked docs, unknown or already placed players leave it unchanged. */
-export function takeAtPosition(doc: RankingFile, playerId: string): RankingFile {
+/** Position lists change only before the whole ranking begins (class), or while the D2 cut is open. */
+const editable = (doc: RankingFile): boolean => !doc.locked && (isD2(doc) ? !doc.cutMade : doc.order.length === 0)
+
+/** Places the player next in his position's ranking. Locked docs, unknown or already placed players, and full positions leave it unchanged. */
+export function takeAtPosition(doc: RankingFile, playerId: string, spots = limitOf(doc)): RankingFile {
   const row = doc.rows.find(r => r.playerId === playerId)
-  if (doc.locked || !doc.byPosition || !row || doc.order.length > 0 || positionList(doc, row.position).includes(playerId)) return doc
-  return { ...doc, byPosition: { ...doc.byPosition, [row.position]: [...positionList(doc, row.position), playerId] } }
+  if (!editable(doc) || !doc.byPosition || !row) return doc
+  const list = positionList(doc, row.position)
+  if (list.includes(playerId) || list.length >= spots) return doc
+  return { ...doc, byPosition: { ...doc.byPosition, [row.position]: [...list, playerId] } }
 }
 
-/** Takes a player out of his position's ranking, and every player placed below him at that position (so the list stays gap-free). */
+/**
+ * Takes a player out of his position's ranking. In the class ranking everyone placed below him at that position comes out too; in the D2
+ * only he does, and a player already in the whole ranking stays.
+ */
 export function sendBackAtPosition(doc: RankingFile, playerId: string): RankingFile {
   const row = doc.rows.find(r => r.playerId === playerId)
-  if (doc.locked || !doc.byPosition || !row || doc.order.length > 0) return doc
+  if (!editable(doc) || !doc.byPosition || !row || doc.order.includes(playerId)) return doc
   const list = positionList(doc, row.position)
   const at = list.indexOf(playerId)
   if (at < 0) return doc
-  return { ...doc, byPosition: { ...doc.byPosition, [row.position]: list.slice(0, at) } }
+  const next = isD2(doc) ? list.filter(id => id !== playerId) : list.slice(0, at)
+  return { ...doc, byPosition: { ...doc.byPosition, [row.position]: next } }
 }
 
-/** Places every player left at a position (or all positions), in `positionUnranked` order. */
-export function takeRestAtPosition(doc: RankingFile, name: NameOf, pos?: Position): RankingFile {
+/** Swaps a player with his neighbour above (-1) or below (+1) in his position's ranking. Players already in the whole ranking stay put. */
+export function moveAtPosition(doc: RankingFile, playerId: string, delta: -1 | 1): RankingFile {
+  const row = doc.rows.find(r => r.playerId === playerId)
+  if (!editable(doc) || !doc.byPosition || !row) return doc
+  const list = [...positionList(doc, row.position)]
+  const at = list.indexOf(playerId)
+  const to = at + delta
+  if (at < 0 || to < 0 || to >= list.length || doc.order.includes(playerId) || doc.order.includes(list[to])) return doc
+  ;[list[at], list[to]] = [list[to], list[at]]
+  return { ...doc, byPosition: { ...doc.byPosition, [row.position]: list } }
+}
+
+/** Places the players left at a position (or all positions), in `positionUnranked` order, until it is full. */
+export function takeRestAtPosition(doc: RankingFile, name: NameOf, pos?: Position, spots = limitOf(doc)): RankingFile {
   let cur = doc
-  for (const p of pos ? [pos] : POSITIONS) for (const r of positionUnranked(cur, name, p)) cur = takeAtPosition(cur, r.playerId)
+  for (const p of pos ? [pos] : POSITIONS) for (const r of positionUnranked(cur, name, p)) cur = takeAtPosition(cur, r.playerId, spots)
   return cur
 }
 
@@ -50,6 +89,19 @@ export function takeRestAtPosition(doc: RankingFile, name: NameOf, pos?: Positio
 export function resetPositionStep(doc: RankingFile): RankingFile {
   if (doc.locked || doc.order.length > 0) return doc
   return { ...doc, byPosition: {} }
+}
+
+/** D2: keeps the ranked players and sends everyone else to Reserves. Needs every position filled. */
+export function makeCut(doc: RankingFile, spots = limitOf(doc)): RankingFile {
+  if (doc.locked || !isD2(doc) || doc.cutMade || !positionsFilled(doc, spots)) return doc
+  return { ...doc, cutMade: true }
+}
+
+/** D2: back to the position rankings, keeping them and the whole ranking so far. */
+export function reopenCut(doc: RankingFile): RankingFile {
+  if (doc.locked || !doc.cutMade) return doc
+  const { cutMade: _open, ...rest } = doc
+  return rest
 }
 
 /**

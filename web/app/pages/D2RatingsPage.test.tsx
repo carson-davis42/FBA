@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { startRatings } from '../../engine/d2/ratings';
 import { d2Name, type D2State } from '../../engine/d2/state';
-import { d2BaseState, d2RatedState } from '../../engine/d2/testFixtures';
+import { d2BaseState, d2RatedState, onePass } from '../../engine/d2/testFixtures';
 import { applyAllSuggestions, setRating, takeRest } from '../../engine/rank/ranking';
 import type { RankingFile } from '../../engine/shared/types';
 import { docsFor, stubApi } from '../d2/testDocs';
@@ -14,10 +14,15 @@ afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
 const renderPage = () => render(<MemoryRouter><D2RatingsPage /></MemoryRouter>);
 
-const started = (): D2State => {
+const staged = (): D2State => {
   const r = startRatings({ ...d2BaseState(), prevD2: null });
   if (!r.ok) throw new Error(r.problems.join('; '));
   return r.state;
+};
+/** A one-pass reset, as one begun before the position stages. */
+const started = (): D2State => {
+  const s = staged();
+  return { ...s, ratings: onePass(s.ratings!) };
 };
 /** Everyone ranked in last season's order and rated in order, so the reset can be finished. */
 const complete = (s: D2State): D2State => {
@@ -43,24 +48,44 @@ describe('D2RatingsPage', () => {
     expect((log.batches[0].writes[0].doc as RankingFile).kind).toBe('d2-reset');
   });
 
-  it("lists last season's order, unrated Reserves after the rated players, then the FBA free agent as the only new player, and autosaves a click", async () => {
+  it('starts an untouched reset at the position rankings and autosaves a pick', async () => {
     const log = stubApi(docsFor(started()));
     renderPage();
-    await screen.findByRole('button', { name: 'Rank Maddox Dean next' });
-    expect(screen.getAllByRole('button', { name: /^Rank .* next$/ }).map(b => b.textContent)).toEqual([
-      'Maddox Dean', 'Xavier Booker', 'Jalil Grant', 'Ben Montgomery', 'Jamal Edwards', 'Brooks Burrows', 'Milo Dean', 'Adrian Grant',
-      'Adrian Napoletani', 'Brycen Holcomb', 'Kris Dyer', 'Myron Mason', 'Kyron Smart',
-    ]);
-    expect(screen.getByRole('group', { name: 'D2 spots left per position' }).textContent).toContain('PG 64');
-    expect(within(screen.getByRole('table', { name: "Last season's order" })).getByText('FBA 71')).toBeTruthy();
-    // Only the FBA free agent is new (Team column "New"); the other unrated Reserves were already in the pool.
-    expect(within(screen.getByRole('table', { name: "Last season's order" })).getByText('Kyron Smart').closest('tr')!.textContent).toContain('New');
-    expect(screen.getAllByText('Reserves')).toHaveLength(4);
-    expect(screen.getByText("13 players aren't ranked yet")).toBeTruthy();
-    fireEvent.click(screen.getByRole('button', { name: 'Rank Xavier Booker next' }));
+    const table = await screen.findByRole('table', { name: 'PG not ranked' });
+    expect(within(table).getAllByRole('button').map(b => b.textContent)).toEqual(['Ben Montgomery', 'Milo Dean', 'Kris Dyer']);
+    expect(screen.getByRole('group', { name: 'Position' }).textContent).toContain('PG 0/3');
+    expect((screen.getByRole('button', { name: /^Cut: send the other 0 to Reserves/ }) as HTMLButtonElement).disabled).toBe(true);
+    fireEvent.click(within(table).getByRole('button', { name: 'Rank Milo Dean next at PG' }));
     await waitFor(() => expect(log.puts).toHaveLength(1));
     expect(log.puts[0]).toMatchObject({ path: 'leagues/fbad2/S79/ratings.json', ifMatch: '"0000000000000001"' });
-    expect((log.puts[0].doc as RankingFile).order).toEqual(['p00028']);
+    expect((log.puts[0].doc as RankingFile).byPosition!.PG).toEqual(['p00025']);
+  });
+
+  it('cuts once every position is full, then offers the best remaining player at each position', async () => {
+    const log = stubApi(docsFor(staged()));
+    renderPage();
+    fireEvent.click(await screen.findByRole('button', { name: 'Fill every position, in order' }));
+    const cut = screen.getByRole('button', { name: /^Cut: send the other/ }) as HTMLButtonElement;
+    await waitFor(() => expect(cut.disabled).toBe(false));
+    fireEvent.click(cut);
+    const next = await screen.findByRole('table', { name: 'Next up' });
+    expect(within(next).getAllByRole('row')).toHaveLength(6);
+    expect(screen.getByText(/Step 3 of 4/)).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Take the rest in order' }));
+    expect(await screen.findByText(/Step 4 of 4/)).toBeTruthy();
+    expect(screen.getAllByLabelText(/^New rating for/)).toHaveLength(13);
+    await waitFor(() => expect((log.puts.at(-1)!.doc as RankingFile).order).toHaveLength(13));
+  });
+
+  it("shows an under-way one-pass reset as before, with the New group and FBA rating", async () => {
+    const s = started();
+    stubApi(docsFor({ ...s, ratings: { ...s.ratings!, order: ['p00028'] } }));
+    renderPage();
+    const table = await screen.findByRole('table', { name: "Last season's order" });
+    expect(screen.getByRole('group', { name: 'D2 spots left per position' }).textContent).toContain('C 63');
+    expect(within(table).getByText('FBA 71')).toBeTruthy();
+    expect(within(table).getByText('Kyron Smart').closest('tr')!.textContent).toContain('New');
+    expect(screen.getByText("12 players aren't ranked yet")).toBeTruthy();
   });
 
   it('stretches the suggestion ladder of a reset started with a shorter one', async () => {
