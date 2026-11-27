@@ -349,7 +349,7 @@
       "playerId": "p01841",
       "position": "SF",
       "age": 27,
-      "rating": null
+      "rating": 65
     },
     {
       "playerId": "p01842",
@@ -601,7 +601,7 @@
       "playerId": "p01884",
       "position": "C",
       "age": 31,
-      "rating": null
+      "rating": 66
     },
     {
       "playerId": "p01885",
@@ -643,7 +643,7 @@
       "playerId": "p01891",
       "position": "C",
       "age": 24,
-      "rating": null
+      "rating": 65
     },
     {
       "playerId": "p01892",
@@ -685,7 +685,7 @@
       "playerId": "p01898",
       "position": "C",
       "age": 24,
-      "rating": null
+      "rating": 65
     },
     {
       "playerId": "p01899",
@@ -1177,7 +1177,7 @@
       "playerId": "p00331",
       "position": "PF",
       "age": 24,
-      "rating": null
+      "rating": 65
     },
     {
       "playerId": "p00363",
@@ -1195,132 +1195,132 @@
       "playerId": "p00421",
       "position": "SG",
       "age": 24,
-      "rating": null
+      "rating": 65
     },
     {
       "playerId": "p00721",
       "position": "C",
       "age": 22,
-      "rating": null,
+      "rating": 75,
       "fromFba": true
     },
     {
       "playerId": "p00685",
       "position": "PG",
       "age": 22,
-      "rating": null,
+      "rating": 82,
       "fromFba": true
     },
     {
       "playerId": "p00696",
       "position": "SF",
       "age": 22,
-      "rating": null,
+      "rating": 84,
       "fromFba": true
     },
     {
       "playerId": "p00713",
       "position": "SG",
       "age": 22,
-      "rating": null,
+      "rating": 80,
       "fromFba": true
     },
     {
       "playerId": "p00650",
       "position": "C",
       "age": 22,
-      "rating": null,
+      "rating": 71,
       "fromFba": true
     },
     {
       "playerId": "p00688",
       "position": "C",
       "age": 22,
-      "rating": null,
+      "rating": 70,
       "fromFba": true
     },
     {
       "playerId": "p01397",
       "position": "SF",
       "age": 22,
-      "rating": null,
+      "rating": 76,
       "fromFba": true
     },
     {
       "playerId": "p00837",
       "position": "PG",
       "age": 22,
-      "rating": null,
+      "rating": 79,
       "fromFba": true
     },
     {
       "playerId": "p01427",
       "position": "PF",
       "age": 22,
-      "rating": null,
+      "rating": 73,
       "fromFba": true
     },
     {
       "playerId": "p00788",
       "position": "SG",
       "age": 22,
-      "rating": null,
+      "rating": 75,
       "fromFba": true
     },
     {
       "playerId": "p00712",
       "position": "PG",
       "age": 22,
-      "rating": null,
+      "rating": 72,
       "fromFba": true
     },
     {
       "playerId": "p00708",
       "position": "SG",
       "age": 22,
-      "rating": null,
+      "rating": 72,
       "fromFba": true
     },
     {
       "playerId": "p00767",
       "position": "PG",
       "age": 22,
-      "rating": null,
+      "rating": 68,
       "fromFba": true
     },
     {
       "playerId": "p00697",
       "position": "PF",
       "age": 22,
-      "rating": null,
+      "rating": 72,
       "fromFba": true
     },
     {
       "playerId": "p00673",
       "position": "SF",
       "age": 22,
-      "rating": null,
+      "rating": 72,
       "fromFba": true
     },
     {
       "playerId": "p00556",
       "position": "PF",
       "age": 22,
-      "rating": null,
+      "rating": 67,
       "fromFba": true
     },
     {
       "playerId": "p00600",
       "position": "C",
       "age": 22,
-      "rating": null,
+      "rating": 67,
       "fromFba": true
     },
     {
       "playerId": "p01380",
       "position": "C",
       "age": 22,
-      "rating": null,
+      "rating": 67,
       "fromFba": true
     },
     {
@@ -1334,7 +1334,7 @@
       "playerId": "p00574",
       "position": "SF",
       "age": 22,
-      "rating": null,
+      "rating": 69,
       "fromFba": true
     },
     {
@@ -1348,14 +1348,14 @@
       "playerId": "p01544",
       "position": "PG",
       "age": 22,
-      "rating": null,
+      "rating": 66,
       "fromFba": true
     },
     {
       "playerId": "p00976",
       "position": "PG",
       "age": 22,
-      "rating": null,
+      "rating": 65,
       "fromFba": true
     },
     {
@@ -1404,7 +1404,7 @@
       "playerId": "p00565",
       "position": "SF",
       "age": 22,
-      "rating": null,
+      "rating": 66,
       "fromFba": true
     },
     {
@@ -1467,7 +1467,7 @@
       "playerId": "p01287",
       "position": "SG",
       "age": 22,
-      "rating": null,
+      "rating": 68,
       "fromFba": true
     },
     {
@@ -1684,7 +1684,7 @@
       "playerId": "p00597",
       "position": "PG",
       "age": 22,
-      "rating": null,
+      "rating": 86,
       "fromFba": true,
       "fbaRating": 57
     },
@@ -1692,7 +1692,7 @@
       "playerId": "p00880",
       "position": "PF",
       "age": 22,
-      "rating": null,
+      "rating": 81,
       "fromFba": true,
       "fbaRating": 56
     },
@@ -1700,7 +1700,7 @@
       "playerId": "p00537",
       "position": "C",
       "age": 22,
-      "rating": null,
+      "rating": 82,
       "fromFba": true,
       "fbaRating": 60
     },
@@ -1708,7 +1708,7 @@
       "playerId": "p00798",
       "position": "SG",
       "age": 22,
-      "rating": null,
+      "rating": 87,
       "fromFba": true,
       "fbaRating": 55
     },
@@ -1716,7 +1716,7 @@
       "playerId": "p00626",
       "position": "PG",
       "age": 22,
-      "rating": null,
+      "rating": 91,
       "fromFba": true,
       "fbaRating": 63
     },
@@ -1724,7 +1724,7 @@
       "playerId": "p00930",
       "position": "C",
       "age": 22,
-      "rating": null,
+      "rating": 95,
       "fromFba": true,
       "fbaRating": 65
     },
@@ -1732,7 +1732,7 @@
       "playerId": "p00536",
       "position": "PF",
       "age": 22,
-      "rating": null,
+      "rating": 77,
       "fromFba": true,
       "fbaRating": 56
     },
@@ -1740,7 +1740,7 @@
       "playerId": "p00516",
       "position": "PF",
       "age": 22,
-      "rating": null,
+      "rating": 87,
       "fromFba": true,
       "fbaRating": 60
     },
@@ -1748,7 +1748,7 @@
       "playerId": "p00012",
       "position": "SG",
       "age": 29,
-      "rating": null,
+      "rating": 99,
       "fromFba": true,
       "fbaRating": 67
     },
@@ -1756,9 +1756,15 @@
       "playerId": "p00700",
       "position": "SF",
       "age": 22,
-      "rating": null,
+      "rating": 92,
       "fromFba": true,
       "fbaRating": 64
+    },
+    {
+      "playerId": "p00197",
+      "position": "PG",
+      "age": 27,
+      "rating": null
     }
   ]
 }

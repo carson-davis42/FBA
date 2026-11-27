@@ -54,6 +54,27 @@
       "lines": [
         "PF-Youssef El-Sayed signed by CIN (FBA)"
       ]
+    },
+    {
+      "seq": 6,
+      "batchId": "bmwyl72qkpxkgd",
+      "type": "d2-ratings",
+      "teams": [],
+      "lines": [
+        "D2 ratings reset: 100 players ranked, 100 took the suggestion, 220 rated by position rank, 240 left unrated for Reserves"
+      ]
+    },
+    {
+      "seq": 7,
+      "batchId": "bmwyl82g3zvybc",
+      "type": "d2-pool",
+      "teams": [
+        "BEI"
+      ],
+      "lines": [
+        "D2 pool locked: 39 in the draft pool, 1 bumped",
+        "Bumped to Reserves: PG-Adrian Grant (BEI)"
+      ]
     }
   ]
 }
