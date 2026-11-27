@@ -51,7 +51,7 @@ describe('ExpansionPage', () => {
     });
     renderPage();
     expect(await screen.findByText('Philly Phantoms')).toBeTruthy();
-    expect(screen.getByText('Boise Raptors')).toBeTruthy();
+    expect(screen.getByText('Boise Talons')).toBeTruthy();
     const button = await enabled('Add teams');
     fireEvent.click(button);
     fireEvent.click(button);
@@ -96,35 +96,30 @@ describe('ExpansionPage', () => {
     ]);
   });
 
-  it('protect mode: caps protections at four, marks restricted players, saves a protection', async () => {
+  it('protect mode: caps protections at three, marks restricted players, saves a protection', async () => {
     const log = stubApi(draftDocs(file()));
     renderPage();
     // Team A (first): its C is restricted and has no checkbox.
     expect(await screen.findByText('Protected (restricted)')).toBeTruthy();
     expect(screen.queryByRole('checkbox', { name: 'Protect A C' })).toBeNull();
     expect(screen.getByText(/36 players exposed from 8 teams; the draft needs 8 picks/)).toBeTruthy();
-    expect(screen.getByRole('option', { name: 'Team A (0/4)' })).toBeTruthy();
+    expect(screen.getByRole('option', { name: 'Team A (0/3)' })).toBeTruthy();
 
     fireEvent.click(await box('Protect A PG'));
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].writes.map(w => [w.path, w.baseVersion])).toEqual([[expansionPath(80), V1]]);
     expect((log.batches[0].writes[0].doc as ExpansionFile).protections).toEqual({ A: ['p10001'] });
-    await waitFor(() => expect(screen.getByRole('option', { name: 'Team A (1/4)' })).toBeTruthy());
+    await waitFor(() => expect(screen.getByRole('option', { name: 'Team A (1/3)' })).toBeTruthy());
   });
 
-  it('protect mode: the fifth box is disabled and Lock protections shows the refusal', async () => {
-    const protections = { A: ['p10001', 'p10002', 'p10003', 'p10004'], B: ['p10006', 'p10007', 'p10008', 'p10009'] };
+  it('protect mode: the fourth box is disabled once three are protected', async () => {
+    const protections = { A: ['p10001', 'p10002', 'p10003'], B: ['p10006', 'p10007', 'p10008'] };
     stubApi(draftDocs(file({ protections })));
     renderPage();
     expect((await box('Protect A PG')).checked).toBe(true);
-    // A has only one exposed player left (none: its C is restricted), so only 7 teams can lose a player.
-    expect(screen.getByText(/Only 7 teams have an exposed player; the draft needs 8/)).toBeTruthy();
-    const lock = screen.getByRole('button', { name: 'Lock protections' }) as HTMLButtonElement;
-    expect(lock.disabled).toBe(true);
-
     fireEvent.change(screen.getByRole('combobox', { name: 'Team' }), { target: { value: 'B' } });
-    const fifth = await box('Protect B C');
-    expect(fifth.disabled).toBe(true);
+    const fourth = await box('Protect B PF');
+    expect(fourth.disabled).toBe(true);
     expect((await box('Protect B PG')).disabled).toBe(false);
   });
 
@@ -147,6 +142,20 @@ describe('ExpansionPage', () => {
       [expansionPath(80), V1], ['leagues/fba/S80/rosters.json', V1], ['leagues/fba/S80/transactions.json', V1],
     ]);
     expect((log.batches[0].writes.find(w => w.path === expansionPath(80))!.doc as ExpansionFile).picks).toHaveLength(1);
+  });
+
+  it('draft mode: a player with no running contract is signed for the years and dollars typed beside him', async () => {
+    const base = expansionState();
+    const teams = { ...base.fba.teams, A: base.fba.teams.A.map(e => (e.position === 'PG' ? { ...e, contractEnd: 79 } : e)) };
+    const log = stubApi(draftDocs(file({ phase: 'draft' }), { fba: { ...base.fba, teams } }));
+    renderPage();
+    fireEvent.change(await screen.findByRole('spinbutton', { name: 'Years for A PG' }), { target: { value: '2' } });
+    fireEvent.change(screen.getByRole('spinbutton', { name: 'Amount for A PG' }), { target: { value: '3' } });
+    expect(screen.queryByRole('spinbutton', { name: 'Years for A SG' })).toBeNull();
+    fireEvent.click(await enabled('Take A PG'));
+    await waitFor(() => expect(log.batches).toHaveLength(1));
+    const rosters = log.batches[0].writes.find(w => w.path === 'leagues/fba/S80/rosters.json')!.doc as { teams: Record<string, { playerId: string | null; contractEnd?: number | null; contractAmount?: number | null }[]> };
+    expect(rosters.teams.PHI[0]).toMatchObject({ contractEnd: 81, contractAmount: 3 });
   });
 
   it('draft mode: Unlock protections is offered before the first pick and goes back to the protect phase', async () => {
@@ -178,7 +187,7 @@ describe('ExpansionPage', () => {
     expect((screen.getByRole('button', { name: 'Lock protections' }) as HTMLButtonElement).disabled).toBe(true);
   });
 
-  it('draft mode: a pick for a position the team holds is refused with its text and posts nothing', async () => {
+  it('draft mode: players at a position the team on the clock holds are hidden from the list', async () => {
     const s = expansionState();
     const phi = s.fba.teams.PHI.map(e => (e.position === 'PG'
       ? { ...e, playerId: 'p10099', rating: 60, age: 25, contractEnd: 82, contractAmount: 1 }
@@ -187,12 +196,10 @@ describe('ExpansionPage', () => {
     const players = { ...s.players, players: { ...s.players.players, p10099: { id: 'p10099', name: 'Phil PG', birthSeason: 55 } } };
     const log = stubApi(draftDocs(file({ phase: 'draft' }), { fba, players }));
     renderPage();
-    const take = await screen.findByRole('button', { name: 'Take A PG' }) as HTMLButtonElement;
-    expect(take.disabled).toBe(true);
-    expect(screen.getAllByText(/Philly Phantoms already has a PG/).length).toBeGreaterThan(0);
-    fireEvent.click(take);
+    expect(await screen.findByRole('button', { name: 'Take A SG' })).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Take A PG' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Take B PG' })).toBeNull();
     expect(log.batches).toHaveLength(0);
-    expect((await screen.findByRole('button', { name: 'Take A SG' }) as HTMLButtonElement).disabled).toBe(false);
   });
 
   it('draft mode: after the last pick, Finish expansion draft saves the history and the calendar', async () => {

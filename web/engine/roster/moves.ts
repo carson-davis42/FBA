@@ -1,11 +1,11 @@
 import type { FreeAgent, Position, RosterEntry } from '../shared/types';
 import { lockProblem } from '../season/locks';
 import {
-  CAP, capProblem, contractEndFor, contractProblems, isExpired, MAX_AMOUNT, MAX_YEARS_RESIGN, normalizeRoster, payroll, POSITIONS, RETIRE_AGE, slotProblems, TRADE_CAP,
-  type ContractKind,
+  CAP, capProblem, careerEndProblem, contractEndFor, contractProblems, isExpired, MAX_AMOUNT, MAX_YEARS_RESIGN, normalizeRoster, payroll, POSITIONS, RETIRE_AGE, slotProblems, TRADE_CAP,
+  type ContractKind, reserveProblem,
 } from './rules';
 import {
-  appendTx, type DocKey, fail, findOnRoster, type MoveContext, type MoveResult, nameOf, type RosterState, withLeague, withTeam,
+  appendTx, type DocKey, draftedThisYear, fail, findOnRoster, type MoveContext, type MoveResult, nameOf, type RosterState, withLeague, withTeam,
 } from './state';
 
 export interface SignInput {
@@ -42,7 +42,10 @@ function findSource(state: RosterState, playerId: string): Source | null {
   return null;
 }
 
-const toFreeAgent = (e: RosterEntry): FreeAgent => ({ playerId: e.playerId!, position: e.position, age: e.age, rating: e.rating, rookie: false, note: '' });
+/** A player who joins the pool; one drafted in this season's draft stays a rookie (see `draftedThisYear`), a player who has played is an ordinary free agent. */
+const toFreeAgent = (e: RosterEntry, state: RosterState): FreeAgent => ({
+  playerId: e.playerId!, position: e.position, age: e.age, rating: e.rating, rookie: draftedThisYear(state, e.playerId!), note: '',
+});
 
 export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContext): MoveResult {
   const locked = lockProblem(ctx.phase, 'fba', 'sign');
@@ -60,9 +63,12 @@ export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContex
   const age = src.kind === 'fa' ? src.fa.age : src.entry.age;
   const resign = src.kind === 'expired' && src.teamId === input.teamId;
   if (src.kind === 'expired' && !resign && src.entry.restricted) return fail([`${name} is restricted: only ${src.teamId} can re-sign him`]);
-  const kind: ContractKind = resign ? 'resign' : src.kind === 'fa' && src.fa.rookie ? 'rookie' : 'new';
+  const kind: ContractKind = resign ? 'resign' : src.kind === 'fa' && (src.fa.rookie || draftedThisYear(state, input.playerId)) ? 'rookie' : 'new';
 
   const problems = contractProblems({ years: input.years, amount: input.amount }, kind);
+  if (state.players.players[input.playerId]?.retired) problems.push('A retired player cannot be signed');
+  const career = careerEndProblem({ season, years: input.years, age, birthSeason: state.players.players[input.playerId]?.birthSeason });
+  if (career) problems.push(career);
   const knownRating = src.kind === 'fa' ? src.fa.rating : src.kind === 'expired' ? src.entry.rating : null;
   const rating = input.rating ?? knownRating;
   if (src.kind === 'd2' && input.rating === undefined) problems.push('Enter his FBA rating (D2 ratings are on a different scale)');
@@ -80,6 +86,10 @@ export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContex
   );
   const cap = capProblem(payroll(entries, season), CAP);
   if (cap) problems.push(cap);
+  else {
+    const reserve = reserveProblem(entries, season);
+    if (reserve) problems.push(reserve);
+  }
   if (problems.length) return fail(problems);
 
   const changed = new Set<DocKey>(['fba', 'fbaTx']);
@@ -100,7 +110,7 @@ export function signPlayer(state: RosterState, input: SignInput, ctx: MoveContex
     fba = withTeam(fba, src.teamId, normalizeRoster(fba.teams[src.teamId].filter(e => e.playerId !== input.playerId), 'fba'));
   }
   if (displaced) {
-    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(displaced)] };
+    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(displaced, state)] };
     changed.add('freeAgents');
     lines.push(`${input.conflict === 'cut' ? 'Cut' : 'Released'} ${displaced.position}-${nameOf(state, displaced.playerId!)}`);
   }
@@ -123,9 +133,32 @@ export interface ExtendInput {
   teamId: string;
   playerId: string;
   amount: number;
+  /** Seasons added to the contract; 1 when omitted. */
+  seasons?: number;
 }
 
-/** Extensions add one season and change salary immediately, regardless of the season phase. */
+/** Signed, re-signed or extended by this team in this season's transactions: a new deal from this offseason, so there is nothing to decide about it now. */
+export function signedThisOffseason(state: RosterState, teamId: string, e: RosterEntry): boolean {
+  if (e.playerId === null) return false;
+  const name = nameOf(state, e.playerId);
+  return state.fbaTx.entries.some(tx => (tx.type === 'signed' || tx.type === 'resigned' || tx.type === 'extended') && tx.teams.includes(teamId)
+    && tx.lines.some(l => l.includes(`-${name} (`) || l.includes(`-${name}:`)));
+}
+
+/**
+ * How many seasons could be added to his contract: it may run 5 years from this season at most and not past the season he plays at age 32.
+ * Zero for a player who is retired or whose contract already reaches his last season, so there is nothing to extend. An unknown age counts only the 5-year limit.
+ */
+export function extensionRoom(state: RosterState, e: RosterEntry): number {
+  if (e.playerId === null || e.contractEnd == null) return 0;
+  const player = state.players.players[e.playerId];
+  if (player?.retired) return 0;
+  const age = player?.birthSeason == null ? e.age : state.season - player.birthSeason;
+  const byYears = MAX_YEARS_RESIGN - (e.contractEnd - state.season + 1);
+  return Math.max(0, age == null ? byYears : Math.min(byYears, state.season + RETIRE_AGE - age - e.contractEnd));
+}
+
+/** Extensions add seasons (one by default, up to a 5-year contract) and change salary immediately, regardless of the season phase. */
 export function extendPlayer(state: RosterState, input: ExtendInput, ctx: MoveContext): MoveResult {
   if (state.fba.locked || state.fbaTx.locked) return fail(['This season is final (locked)']);
   const team = state.fba.teams[input.teamId];
@@ -134,9 +167,12 @@ export function extendPlayer(state: RosterState, input: ExtendInput, ctx: MoveCo
   if (before.contractEnd == null || before.contractAmount == null || isExpired(before, state.season)) {
     return fail(['Only an active contract can be extended; re-sign an expired player instead']);
   }
-  const end = before.contractEnd + 1;
+  const seasons = input.seasons ?? 1;
+  if (!Number.isInteger(seasons) || seasons < 1) return fail(['An extension adds at least one season']);
+  const end = before.contractEnd + seasons;
   const years = end - state.season + 1;
   const problems: string[] = [];
+  if (years > MAX_YEARS_RESIGN) problems.push(`An extension can make a contract ${MAX_YEARS_RESIGN} years at most (this would be ${years})`);
   const player = state.players.players[input.playerId];
   const birth = player?.birthSeason;
   const age = birth == null ? before.age : state.season - birth;
@@ -149,7 +185,7 @@ export function extendPlayer(state: RosterState, input: ExtendInput, ctx: MoveCo
   if (!Number.isInteger(input.amount) || input.amount < 1) problems.push('Amount must be a whole number of dollars, at least $1');
   else {
     if (input.amount > MAX_AMOUNT) problems.push(`Amount can't exceed $${MAX_AMOUNT}`);
-    if (input.amount < before.contractAmount - 1) problems.push('Pay can decrease by at most $1 per season extended');
+    if (input.amount < before.contractAmount - seasons) problems.push('Pay can decrease by at most $1 per season extended');
     if (years > input.amount) problems.push(`Years can't exceed dollars (${years} years needs at least $${years})`);
   }
   const entries = team.map(e => e === before ? { ...e, contractEnd: end, contractAmount: input.amount } : e);
@@ -190,7 +226,7 @@ export function releasePlayer(state: RosterState, input: ReleaseInput, ctx: Move
   const changed: DocKey[] = [key, txKey];
   let { freeAgents, reserves } = state;
   if (input.league === 'fba' && !freeAgents.locked) {
-    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(entry)] };
+    freeAgents = { ...freeAgents, players: [...freeAgents.players, toFreeAgent(entry, state)] };
     changed.push('freeAgents');
   } else {
     const rating = input.league === 'fbad2' ? entry.rating : null;

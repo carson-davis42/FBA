@@ -6,7 +6,7 @@ import {
   backToSchool, boardOrder, declare, declareCandidates, draftToPortal, enterPortal, moveProspectRank, type DraftBoardState,
 } from '../../engine/offseason/draftBoard';
 import {
-  draftPick, draftStepId, finishDraft, finishDraftProblems, onTheClock, startDraft, startDraftProblems, type FbaDraftState,
+  draftPick, draftRoster, draftStepId, finishDraft, finishDraftProblems, onTheClock, startDraft, startDraftProblems, type FbaDraftState,
 } from '../../engine/offseason/fbaDraft';
 import { lotteryPath } from '../../engine/offseason/lottery';
 import { DEFAULT_OUTLOOK, prospectOutlook, rankedProspects } from '../../engine/offseason/prospectOutlook';
@@ -24,6 +24,7 @@ import { ClinchLegend, RankCell } from '../components/Clinch';
 import { PageHeader } from '../components/PageHeader';
 import { TeamName } from '../components/TeamName';
 import { commitDocs, newBatchId } from '../roster/commit';
+import { DraftTeamRoster } from './DraftTeamRoster';
 import './offseason.css';
 import { PlayerName } from '../components/PlayerName';
 
@@ -64,6 +65,8 @@ export function FbaDraftPage() {
   const busy = useRef(false);
   const [error, setError] = useState('');
   const [tab, setTab] = useState<'ALL' | Position>('ALL');
+  const [view, setView] = useState<'board' | 'picks'>('board');
+  const [needPos, setNeedPos] = useState<Position | null>(null);
 
   const required = [players, calendar, collegeTeams];
   const optional = [draft, ratings, lottery, fba, freeAgents, fbaTx, fbaTeams, jcRosters, board, collegeTx];
@@ -168,13 +171,14 @@ export function FbaDraftPage() {
   const inTab = (p: DraftProspect) => tab === 'ALL' || p.position === tab;
   const move = (p: DraftProspect, delta: -1 | 1) => run(() => moveProspectRank(boardState, p.playerId, delta, id => ordered.some(x => x.playerId === id && inTab(x))));
   const drafted = new Set(d.picks.flatMap(p => (p.playerId ? [p.playerId] : [])));
-  const remaining = ordered.filter(p => !drafted.has(p.playerId));
+  // Once the draft is on, the prospects stay in their ranking order (the commissioner's order included); the same order carries into free agency and the D2 pool.
+  const remaining = ranked.filter(p => !drafted.has(p.playerId));
 
   const prospectTable = (rows: DraftProspect[], actions: (p: DraftProspect) => React.ReactNode) => (
     <div className="table-wrap tall">
       <table className="stat-table" aria-label="Prospects">
         <thead>
-          <tr><th>Name</th><th>Pos</th><th>School</th><th>Class</th><th className="num">Rank</th><th className="num">Pos rank</th><th className="num">College</th>{!started && <th><span className="muted">Move</span></th>}<th /></tr>
+          <tr><th>Name</th><th>Pos</th><th>School</th><th>Class</th><th className="num">Rank</th><th className="num">Pos rank</th>{!started && <th className="num">College</th>}{!started && <th><span className="muted">Move</span></th>}<th /></tr>
         </thead>
         <tbody>
           {rows.map(p => (
@@ -193,7 +197,7 @@ export function FbaDraftPage() {
                   </>
                 );
               })()}
-              <td className="num">{p.collegeRating ?? '—'}</td>
+              {!started && <td className="num">{p.collegeRating ?? '—'}</td>}
               {!started && (
                 <td className="rank-move">
                   <button type="button" className="btn" disabled={saving || p.playerId === rows[0]?.playerId} aria-label={`Move ${nameOf(p.playerId)} up`} onClick={() => move(p, -1)}>↑</button>
@@ -208,6 +212,11 @@ export function FbaDraftPage() {
     </div>
   );
 
+  // A drafted player's age: from the rookie on the team's roster, else from his birth season.
+  const pickAge = (owner: string, id: string): number | null => {
+    const born = players.data!.players[id]?.birthSeason;
+    return fba.data!.teams[owner]?.find(e => e.playerId === id)?.age ?? (born === null || born === undefined ? null : n - born);
+  };
   const nowSlot = started && !finished ? onTheClock(d)?.slot : undefined;
   const pickTable = (
     <div className="table-wrap tall">
@@ -221,7 +230,32 @@ export function FbaDraftPage() {
                 <td className="rank">{p.slot}</td>
                 <td>{proTeamCell(p.owner)}{p.owner !== p.originalTeam && ` (from ${proAbbr(p.originalTeam)})`}</td>
                 <td>
-                  {p.playerId && prospect ? <><PlayerName id={p.playerId} name={nameOf(p.playerId)} /> ({prospect.position}, {school(prospect.college)})</> : <span className="muted">No selection</span>}
+                  {p.playerId && prospect ? <><PlayerName id={p.playerId} name={nameOf(p.playerId)} /> ({pickAge(p.owner, p.playerId) ?? '—'}, {prospect.position}, {school(prospect.college)})</> : <span className="muted">No selection</span>}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+
+  // Every pick of the draft as a row: the ones made, the one on the clock and the ones still to come.
+  const allPicksTable = (
+    <div className="table-wrap tall">
+      <table className="stat-table" aria-label="All picks">
+        <thead><tr><th className="rank">Pick</th><th>Team</th><th>Player</th></tr></thead>
+        <tbody>
+          {[...d.picks].sort((a, b) => a.slot - b.slot).map(p => {
+            const prospect = d.prospects.find(x => x.playerId === p.playerId);
+            return (
+              <tr key={p.slot} className={p.slot === nowSlot ? 'now' : undefined}>
+                <td className="rank">{p.slot}</td>
+                <td>{proTeamCell(p.owner)}{p.owner !== p.originalTeam && ` (from ${proAbbr(p.originalTeam)})`}</td>
+                <td>
+                  {p.playerId && prospect
+                    ? <><PlayerName id={p.playerId} name={nameOf(p.playerId)} /> ({pickAge(p.owner, p.playerId) ?? '—'}, {prospect.position}, {school(prospect.college)})</>
+                    : <span className="muted">{p.slot === nowSlot ? 'On the clock' : '—'}</span>}
                 </td>
               </tr>
             );
@@ -261,24 +295,80 @@ export function FbaDraftPage() {
             )
             : <p className="muted">Every pick is made.</p>}
         </div>
+        {view === 'board' && clock && (
+          <DraftTeamRoster
+            team={fbaTeams.data?.teams.find(t => t.teamId === clock.owner)}
+            entries={fba.data.teams[clock.owner] ?? []}
+            season={n}
+            kicker={`On the clock · Pick #${clock.slot}`}
+            nameOf={nameOf}
+          />
+        )}
+        <div className="chips" role="group" aria-label="Draft view">
+          <button type="button" className="chip" aria-pressed={view === 'board'} onClick={() => setView('board')}>Board</button>
+          <button type="button" className="chip" aria-pressed={view === 'picks'} onClick={() => setView('picks')}>All picks</button>
+        </div>
         {error && <p className="error">{error}</p>}
-        {finishProblems.length === 0 && (
+        {view === 'picks' && <div className="card">{allPicksTable}</div>}
+        {view === 'board' && finishProblems.length === 0 && (
           <div className="card toolbar">
             <button className="btn primary" disabled={saving} onClick={() => run(() => finishDraft(draftState, ctx()))}>Finish the draft</button>
           </div>
         )}
-        <div className="card">
-          <h2>Prospects</h2>
-          {remaining.length === 0
-            ? <p className="muted">No prospects are left.</p>
-            : prospectTable(remaining, p => (
-              <button className="btn" disabled={saving || !clock} onClick={() => run(() => draftPick(draftState, p.playerId, ctx()))}>Draft</button>
-            ))}
-        </div>
-        <div className="card">
-          <h2>Picks so far</h2>
-          {d.picks.some(p => p.playerId) ? pickTable : <p className="muted">No picks yet.</p>}
-        </div>
+        {view === 'board' && (
+          <>
+            <div className="card">
+              <h2>Teams that need a position</h2>
+              <div className="chips" role="group" aria-label="Position needed">
+                {POSITIONS.map(pos => (
+                  <button key={pos} type="button" className="chip" aria-pressed={needPos === pos} onClick={() => setNeedPos(needPos === pos ? null : pos)}>{pos}</button>
+                ))}
+              </div>
+              {needPos === null
+                ? <p className="muted">Pick a position to see which teams still need it and where they pick, for trading up.</p>
+                : (() => {
+                  const rows = (fbaTeams.data?.teams ?? []).flatMap(t => {
+                    const entries = fba.data!.teams[t.teamId];
+                    if (!entries) return [];
+                    const spot = draftRoster(entries, n).find(r => r.position === needPos)!;
+                    if (!spot.need) return [];
+                    const slots = d.picks.filter(x => x.owner === t.teamId && !x.playerId).map(x => x.slot).sort((a, b) => a - b);
+                    return [{ team: t, slots, held: spot.players }];
+                  }).sort((a, b) => (a.slots[0] ?? Infinity) - (b.slots[0] ?? Infinity));
+                  return rows.length === 0
+                    ? <p className="muted">No team needs a {needPos}.</p>
+                    : (
+                      <div className="table-wrap">
+                        <table className="stat-table" aria-label={`Teams that need a ${needPos}`}>
+                          <thead><tr><th>Team</th><th>Picks left</th><th>{needPos} now</th></tr></thead>
+                          <tbody>
+                            {rows.map(r => (
+                              <tr key={r.team.teamId} className={r.team.teamId === clock?.owner ? 'now' : undefined}>
+                                <td>{proTeamCell(r.team.teamId)}</td>
+                                <td>{r.slots.length > 0 ? r.slots.map(x => `#${x}`).join(', ') : <span className="muted">None</span>}</td>
+                                <td>{r.held.length === 0 ? <span className="muted">Open</span> : r.held.map(e => `${nameOf(e.playerId!)} (${e.rating ?? '—'}, contract ended)`).join(', ')}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    );
+                })()}
+            </div>
+            <div className="card">
+              <h2>Prospects</h2>
+              {remaining.length === 0
+                ? <p className="muted">No prospects are left.</p>
+                : prospectTable(remaining, p => (
+                  <button className="btn" disabled={saving || !clock} onClick={() => run(() => draftPick(draftState, p.playerId, ctx()))}>Draft</button>
+                ))}
+            </div>
+            <div className="card">
+              <h2>Picks so far</h2>
+              {d.picks.some(p => p.playerId) ? pickTable : <p className="muted">No picks yet.</p>}
+            </div>
+          </>
+        )}
       </section>
     );
   }

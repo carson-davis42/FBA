@@ -45,8 +45,48 @@ export function contractProblems(t: { years: number; amount: number }, kind: Con
   return p;
 }
 
+/**
+ * A contract may not run past the season the player plays at RETIRE_AGE, because he retires after it. `age` is his age this `season`; the
+ * birth season, when known, wins over it. No age: nothing to check. Returns the problem, or null.
+ */
+export function careerEndProblem(o: { season: number; years: number; age: number | null; birthSeason?: number | null }): string | null {
+  const age = o.birthSeason != null ? o.season - o.birthSeason : o.age;
+  if (age === null) return null;
+  const lastSeason = o.season + RETIRE_AGE - age;
+  if (contractEndFor(o.season, o.years) <= lastSeason) return null;
+  const left = lastSeason - o.season + 1;
+  return left < 1
+    ? `He is past the age-${RETIRE_AGE} season and retires: he cannot be signed`
+    : `Contract cannot run past S${lastSeason}, the player's age-${RETIRE_AGE} season (${left} ${left === 1 ? 'year' : 'years'} at most)`;
+}
+
 export function capProblem(total: number, cap: number = CAP): string | null {
   return total > cap ? `Payroll would be $${total} (cap $${cap})` : null;
+}
+
+/** Whether someone who stays holds the position: a player whose contract has ended does not, unless he is a restricted rookie (a team option). */
+const isFilled = (entries: RosterEntry[], pos: Position, season: number): boolean =>
+  entries.some(e => e.position === pos && e.playerId !== null && !(isExpired(e, season) && !e.restricted));
+
+/** Positions with nobody who stays. */
+export function openSpots(entries: RosterEntry[], season: number): number {
+  return POSITIONS.filter(pos => !isFilled(entries, pos, season)).length;
+}
+
+/** For each position, how many of the teams have it filled and how many still have it open. */
+export function positionFill(teams: Record<string, RosterEntry[]>, season: number): { position: Position; filled: number; open: number }[] {
+  const rosters = Object.values(teams);
+  return POSITIONS.map(position => {
+    const filled = rosters.filter(entries => isFilled(entries, position, season)).length;
+    return { position, filled, open: rosters.length - filled };
+  });
+}
+
+/** Every open spot still needs a player, and the cheapest deal is $1: a team may not spend so much that it cannot fill them. */
+export function reserveProblem(entries: RosterEntry[], season: number, cap: number = CAP): string | null {
+  const open = openSpots(entries, season);
+  const total = payroll(entries, season);
+  return total + open > cap ? `Payroll would be $${total} with ${open} open ${open === 1 ? 'spot' : 'spots'} still needing at least $1 each (cap $${cap})` : null;
 }
 
 export function slotProblems(teamId: string, entries: RosterEntry[]): string[] {

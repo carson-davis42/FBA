@@ -8,7 +8,7 @@ const base: Team = { teamId: 'SAS', name: 'San Antonio Spirits', abbr: 'SAS', gr
 
 describe('refreshExpansionTeams', () => {
   it('gives the expansion teams already in the league their current logo folder and badge, and keeps everything else', () => {
-    const renamed = { ...old(EXPANSION_TEAMS[1]), name: 'Boise Raptors', abbr: 'BOI' };
+    const renamed = { ...old(EXPANSION_TEAMS[1]), name: 'Boise Talons', abbr: 'BOI' };
     const file = { league: 'fba', teams: [base, old(EXPANSION_TEAMS[0]), renamed] } as TeamsFile;
     const out = refreshExpansionTeams(file);
     expect(out.changed).toEqual(['PHI', 'LAL']);
@@ -16,14 +16,14 @@ describe('refreshExpansionTeams', () => {
     expect(sas).toEqual(base);
     expect(phi).toMatchObject({ logoFolder: EXPANSION_TEAMS[0].logoFolder, badge: EXPANSION_TEAMS[0].badge, name: 'Philly Phantoms' });
     // The name and abbreviation a team was given since stay; its logo and colours follow the definition.
-    expect(lal).toMatchObject({ name: 'Boise Raptors', abbr: 'BOI', logoFolder: EXPANSION_TEAMS[1].logoFolder, badge: EXPANSION_TEAMS[1].badge });
+    expect(lal).toMatchObject({ name: 'Boise Talons', abbr: 'BOI', logoFolder: EXPANSION_TEAMS[1].logoFolder, badge: EXPANSION_TEAMS[1].badge });
     expect(lal.logoFile).toBeUndefined();
     expect(TeamsFile.safeParse(out.teams).success).toBe(true);
   });
   it('renames the Team 32 placeholder to the definition, but only the placeholder', () => {
     const placeholder = { ...old(EXPANSION_TEAMS[1]), name: 'Team 32', abbr: 'T32' };
     const out = refreshExpansionTeams({ league: 'fba', teams: [placeholder] } as TeamsFile);
-    expect(out.teams.teams[0]).toMatchObject({ teamId: 'LAL', name: 'Boise Raptors', abbr: 'BOI', logoFolder: 'Boise Raptors' });
+    expect(out.teams.teams[0]).toMatchObject({ teamId: 'LAL', name: 'Boise Talons', abbr: 'BOI', logoFolder: 'Boise Talons' });
   });
   it('changes nothing when the teams are not there or already current', () => {
     const none = { league: 'fba', teams: [base] } as TeamsFile;

@@ -1,4 +1,4 @@
-import { rankingBlockers, reserveBound, suggestionsTaken } from '../rank/ranking';
+import { rankingBlockers, reserveSet, suggestionsTaken } from '../rank/ranking';
 import { appendTx, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
 import type { RankingFile, RankingRow, RostersFile } from '../shared/types';
@@ -67,12 +67,17 @@ export function stretchedRatings(d2: RostersFile, doc: RankingFile): RankingFile
   return curve === doc.curve ? doc : { ...doc, curve };
 }
 
+/** A reset saved before the position stages, with nobody ranked yet, starts at the position rankings; anything else is returned as is. */
+export function stagedRatings(doc: RankingFile): RankingFile {
+  return doc.locked || doc.byPosition || doc.order.length > 0 ? doc : { ...doc, byPosition: {} };
+}
+
 export function startRatings(state: D2State): D2Result {
   if (!state.freeAgencyClosed) return d2Fail(['Close free agency first']);
   if (state.ratings) return d2Fail(['The ratings reset has already started']);
   const rows = buildRankingRows(state);
   const ratings: RankingFile = {
-    league: 'fbad2', season: state.season, kind: 'd2-reset', locked: false, rows, order: [], ratings: {}, curve: stretchCurve(d2Curve(state.prevRatings, rows), rosterSlots(state.d2)),
+    league: 'fbad2', season: state.season, kind: 'd2-reset', locked: false, rows, order: [], ratings: {}, curve: stretchCurve(d2Curve(state.prevRatings, rows), rosterSlots(state.d2)), byPosition: {},
   };
   return { ok: true, state: { ...state, ratings }, changed: ['ratings'], label: 'Start D2 ratings reset' };
 }
@@ -92,22 +97,24 @@ export function membershipBlockers(state: D2State): string[] {
 export function ratingsBlockers(state: D2State, cutoff = POOL_CUTOFF): string[] {
   if (!state.ratings) return ['Start the ratings reset first'];
   if (state.ratings.locked) return ['D2 ratings are already finished'];
-  return [...rankingBlockers(state.ratings, id => d2Name(state, id), reserveBound(state.ratings, cutoff)), ...membershipBlockers(state)];
+  if (state.ratings.byPosition && !state.ratings.cutMade) return ['Make the cut first'];
+  return [...rankingBlockers(state.ratings, id => d2Name(state, id), reserveSet(state.ratings, cutoff)), ...membershipBlockers(state)];
 }
 
 export function finishRatings(state: D2State, ctx: MoveContext, cutoff = POOL_CUTOFF): D2Result {
   const blockers = ratingsBlockers(state, cutoff);
   if (blockers.length) return d2Fail(blockers);
   const ratings = state.ratings!;
-  // Players ranked past their position's spots go to the Reserve pool unrated.
-  const reserve = reserveBound(ratings, cutoff);
+  // Players cut (or ranked past their position's spots) go to the Reserve pool unrated.
+  const reserve = reserveSet(ratings, cutoff);
   const next = new Map(Object.entries(ratings.ratings).filter(([id]) => !reserve.has(id)));
   const rated = (id: string | null, current: number | null) => (id !== null && reserve.has(id) ? null : id !== null && next.has(id) ? next.get(id)! : current);
   const teams = Object.fromEntries(Object.entries(state.d2.teams).map(([t, entries]) => [
     t, entries.map(e => ({ ...e, rating: rated(e.playerId, e.rating) })),
   ]));
   const reserves = { ...state.reserves, players: state.reserves.players.map(p => ({ ...p, rating: rated(p.playerId, p.rating) })) };
-  const line = `D2 ratings reset: ${ratings.rows.length} players ranked, ${suggestionsTaken(ratings, reserve)} took the suggestion`;
+  const cut = ratings.cutMade ? `, ${reserve.size} left unrated for Reserves` : '';
+  const line = `D2 ratings reset: ${ratings.order.length} players ranked, ${suggestionsTaken(ratings, reserve)} took the suggestion${cut}`;
   const d2Tx = appendTx(state.d2Tx, ctx, 'd2-ratings', [], [line]);
   return {
     ok: true,
@@ -115,7 +122,8 @@ export function finishRatings(state: D2State, ctx: MoveContext, cutoff = POOL_CU
       ...state,
       d2: { ...state.d2, teams },
       reserves,
-      ratings: { ...ratings, locked: true },
+      // A cut player keeps no rating in the file: next season's suggestion ladder is built from it.
+      ratings: { ...ratings, ratings: Object.fromEntries(Object.entries(ratings.ratings).filter(([id]) => !(ratings.cutMade && reserve.has(id)))), locked: true },
       d2Tx,
       calendar: markStepDone(state.calendar, 'fbad2-ratings-reset'),
     },

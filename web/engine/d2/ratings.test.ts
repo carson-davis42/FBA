@@ -1,16 +1,21 @@
 import { describe, expect, it } from 'vitest';
-import { applyAllSuggestions, reserveBound, setRating, takeRest } from '../rank/ranking';
+import { applyAllSuggestions, cutPlayers, reserveBound, setRating, takeRest } from '../rank/ranking';
+import { makeCut, moveAtPosition, promoteTop, reopenCut, sendBackAtPosition, takeAtPosition, takeRestAtPosition, takeRestMerged } from '../rank/positionRanking';
 import { RankingFile } from '../shared/types';
-import { buildRankingRows, d2Curve, finishRatings, stretchCurve, stretchedRatings, membershipBlockers, parseRatingInput, ratingsBlockers, startRatings } from './ratings';
+import { buildRankingRows, d2Curve, finishRatings, stagedRatings, stretchCurve, stretchedRatings, membershipBlockers, parseRatingInput, ratingsBlockers, startRatings } from './ratings';
 import { d2Name, type D2Result, type D2State } from './state';
-import { d2BaseState, d2RatedState } from './testFixtures';
+import { d2BaseState, d2RatedState, onePass } from './testFixtures';
 
 const ctx = { batchId: 'b1' };
 const ok = (r: D2Result) => {
   if (!r.ok) throw new Error(`expected ok, got ${r.problems.join('; ')}`);
   return r;
 };
-const started = (s: D2State = d2BaseState()): D2State => ok(startRatings(s)).state;
+/** A started one-pass reset; the position stages have their own tests below. */
+const started = (s: D2State = d2BaseState()): D2State => {
+  const state = ok(startRatings(s)).state;
+  return { ...state, ratings: onePass(state.ratings!) };
+};
 /** Everyone ranked in last season's order; the 10 with a suggestion take it; the last 5 in rank order (which overrides ranks 9 and 10) are rated 66, 64, 62, 60, 58. */
 const ranked = (s: D2State): D2State => {
   let doc = applyAllSuggestions(takeRest(s.ratings!, id => d2Name(s, id)));
@@ -122,7 +127,7 @@ describe('startRatings', () => {
     const r = ok(startRatings(d2BaseState()));
     expect(r.changed).toEqual(['ratings']);
     expect(r.label).toBe('Start D2 ratings reset');
-    expect(r.state.ratings).toMatchObject({ league: 'fbad2', season: 79, kind: 'd2-reset', locked: false, order: [], ratings: {} });
+    expect(r.state.ratings).toMatchObject({ league: 'fbad2', season: 79, kind: 'd2-reset', locked: false, order: [], ratings: {}, byPosition: {} });
     expect(r.state.ratings!.rows).toHaveLength(13);
     // The 8-rung ladder is stretched to the fixture's 10 roster slots.
     expect(r.state.ratings!.curve).toEqual([94, 87, 82, 78, 75, 75, 73, 71, 70, 68]);
@@ -184,6 +189,76 @@ describe('finishRatings', () => {
     expect(r.state.d2Tx.entries.at(-1)).toMatchObject({ type: 'd2-ratings', teams: [], lines: ['D2 ratings reset: 13 players ranked, 8 took the suggestion'] });
     expect(r.state.calendar.steps.find(x => x.id === 'fbad2-ratings-reset')!.done).toBe(true);
     expect(ratingsBlockers(r.state)).toEqual(['D2 ratings are already finished']);
+  });
+});
+
+describe('position stages', () => {
+  const staged = () => ok(startRatings(d2BaseState())).state;
+  const name = (s: D2State) => (id: string) => d2Name(s, id);
+  /** Two spots per position, filled in last season's order, then cut. The fixture has 5 PGs/SGs etc. */
+  const cut = (s: D2State) => makeCut(takeRestAtPosition(s.ratings!, name(s), undefined, 2), 2);
+
+  it('stops each position at its spots, and cuts only once every position is full', () => {
+    const s = staged();
+    const one = takeRestAtPosition(s.ratings!, name(s), 'PG', 2);
+    expect(one.byPosition!.PG).toHaveLength(2);
+    expect(makeCut(one, 2)).toBe(one);
+    const doc = cut(s);
+    expect(doc.cutMade).toBe(true);
+    for (const list of Object.values(doc.byPosition!)) expect(list!.length).toBeLessThanOrEqual(2);
+    expect(takeAtPosition(doc, [...cutPlayers(doc)][0])).toBe(doc);
+    expect(RankingFile.safeParse(doc).success).toBe(true);
+  });
+
+  it('blocks finishing until the cut is made', () => {
+    expect(ratingsBlockers(staged())).toEqual(['Make the cut first']);
+  });
+
+  it('ranks and rates only the kept players, and leaves the cut ones unrated', () => {
+    const s = staged();
+    let doc = takeRestMerged(cut(s), name(s));
+    const skip = cutPlayers(doc);
+    expect(skip.size).toBeGreaterThan(0);
+    expect(doc.order).toHaveLength(doc.rows.length - skip.size);
+    doc.order.forEach((id, k) => { doc = setRating(doc, id, 90 - k); });
+    const gone = [...skip][0];
+    doc = { ...doc, ratings: { ...doc.ratings, [gone]: 50 } };
+    const state = { ...s, ratings: doc };
+    expect(ratingsBlockers(state)).toEqual([]);
+    const r = ok(finishRatings(state, ctx));
+    expect(RankingFile.safeParse(r.state.ratings).success).toBe(true);
+    expect(r.state.ratings!.ratings[gone]).toBeUndefined();
+    const everyRating = new Map([
+      ...Object.values(r.state.d2.teams).flat().map(e => [e.playerId, e.rating] as const),
+      ...r.state.reserves.players.map(p => [p.playerId, p.rating] as const),
+    ]);
+    for (const id of skip) expect(everyRating.get(id)).toBeNull();
+    doc.order.forEach((id, k) => expect(everyRating.get(id)).toBe(90 - k));
+    expect(r.state.d2Tx.entries.at(-1)!.lines[0]).toContain(`${doc.order.length} players ranked`);
+    expect(r.state.d2Tx.entries.at(-1)!.lines[0]).toContain(`${skip.size} left unrated for Reserves`);
+  });
+
+  it('reorders and removes one player while the cut is open, keeping those already in the whole ranking in place', () => {
+    const s = staged();
+    const open = takeRestAtPosition(s.ratings!, name(s), 'PG', 3);
+    const [a, b, c] = open.byPosition!.PG!;
+    expect(moveAtPosition(open, c, -1).byPosition!.PG).toEqual([a, c, b]);
+    expect(sendBackAtPosition(open, a).byPosition!.PG).toEqual([b, c]);
+    const merged = promoteTop(cut(s));
+    const first = merged.order[0];
+    const reopened = reopenCut(merged);
+    expect(reopened.cutMade).toBeUndefined();
+    expect(reopened.order).toEqual([first]);
+    expect(sendBackAtPosition(reopened, first)).toBe(reopened);
+    const list = reopened.byPosition![reopened.rows.find(r => r.playerId === first)!.position]!;
+    expect(moveAtPosition(reopened, list[1], -1)).toBe(reopened);
+  });
+
+  it('starts an untouched older reset at the position rankings, but not one under way', () => {
+    const old = started().ratings!;
+    expect(stagedRatings(old).byPosition).toEqual({});
+    const underWay = takeRest(old, name(staged()));
+    expect(stagedRatings(underWay)).toBe(underWay);
   });
 });
 

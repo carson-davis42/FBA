@@ -7,6 +7,9 @@
 .feature-logos { position: relative; width: 168px; }
 .feature-logo { position: absolute; line-height: 0; }
 .feature:hover .feature-icon { color: var(--accent); }
+.feature { position: relative; }
+.feature-badge { position: absolute; top: var(--s2); right: var(--s2); }
+.feature-note { font-size: var(--fs-sm); }
 .feature-title { font-family: var(--font-head); font-size: var(--fs-lg); text-transform: var(--head-transform); letter-spacing: 0.02em; }
 
 /* The Teams grid card: name on its own line, the trophy counts underneath (a plain block let the counts run on after the name). */

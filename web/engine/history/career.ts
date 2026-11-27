@@ -1,4 +1,5 @@
-import { AWARD_KEYS, type AwardCountsFile, type AwardKey, type ClassYear, type HallOfFameFile, type ResultsFile, type SummaryFile } from '../shared/types';
+import { AWARD_KEYS, type AwardCountsFile, type AwardKey, type ClassYear, type HallOfFameFile, type ResultsFile, type SummaryFile, type Team } from '../shared/types';
+import { d2TeamIds } from '../shared/d2TeamIds';
 
 export type StintKind = 'college' | 'fba' | 'd2' | 'wc';
 export interface Honour { label: string; count: number; seasons: number[] }
@@ -237,11 +238,61 @@ function addHonour(stint: Stint, e: HonourEvent, season: number) {
   else stint.honours.push({ label, count: 1, seasons: [] });
 }
 
-export function liveCareer(bio: { born: string; entries: string[] } | null, playerId: string, summaries: SummaryFile[], hof: HallOfFameFile | null): Career {
+/** The last season the bios cover: a stint they leave open ("pres") was still running then. Later seasons come from the app's own records. */
+export const BIO_THROUGH = 78;
+
+/** The D2 season records, and the D2 clubs a bio's club name is matched against. */
+export interface D2Record { summaries: SummaryFile[]; teams: Team[] }
+
+/**
+ * One D2 season's records. A club that lists him held him that season. When none does, a D2 stint still open had ended before it. A season
+ * with no player records says nothing about anyone.
+ */
+function applyD2Season(stints: Stint[], playerId: string, summary: SummaryFile, teams: Team[]): void {
+  const lines = (summary.players ?? []).filter(l => l.teamId !== null && l.stint !== null);
+  if (lines.length === 0) return;
+  const season = summary.season;
+  const find = d2TeamIds({ teams });
+  const idOf = (s: Stint) => (s.kind === 'd2' ? find(/^D2\((.*)\)$/.exec(s.team)?.[1] ?? s.team) : undefined);
+  const mine = lines.filter(l => l.playerId === playerId).sort((a, b) => (a.stint as number) - (b.stint as number));
+  if (mine.length === 0) {
+    for (const s of stints) {
+      if (s.kind !== 'd2' || s.to !== 'pres') continue;
+      s.to = Math.max(s.from ?? 0, season - 1);
+      setRange(s);
+    }
+    return;
+  }
+  for (const line of mine) {
+    const team = line.teamId as string;
+    let stint = stints[stints.length - 1];
+    const open = stint !== undefined && (stint.to === 'pres' || (typeof stint.to === 'number' && stint.to >= season - 1));
+    if (open && idOf(stint) === team) {
+      stint.from ??= season;
+      stint.to = season;
+    } else {
+      stint = { kind: 'd2', team: `D2(${teams.find(t => t.teamId === team)?.name ?? team})`, range: '', from: season, to: season, honours: [] };
+      stints.push(stint);
+    }
+    setRange(stint);
+    closeOtherOpen(stints, stint, season);
+  }
+}
+
+/** The bio brought up to date, season by season, with the FBA season records and (when given) the D2's. */
+export function liveCareer(
+  bio: { born: string; entries: string[] } | null, playerId: string, summaries: SummaryFile[], hof: HallOfFameFile | null, d2?: D2Record,
+): Career {
   const career: Career = bio ? parseBio(bio) : { stints: [], nationalTeams: [], hof: null, other: [] };
   const lastFba = (): Stint | undefined => [...career.stints].reverse().find(s => s.kind === 'fba');
-  for (const s of fbaSummaries(summaries)) {
-    if (s.season < 79) continue;
+  const records = [...fbaSummaries(summaries), ...(d2?.summaries ?? []).filter(s => s.league === 'fbad2')]
+    .filter(s => s.season > BIO_THROUGH)
+    .sort((a, b) => a.season - b.season);
+  for (const s of records) {
+    if (s.league === 'fbad2') {
+      applyD2Season(career.stints, playerId, s, d2!.teams);
+      continue;
+    }
     const lines = (s.players ?? []).filter(l => l.playerId === playerId && l.teamId !== null && l.stint !== null)
       .sort((a, b) => (a.stint as number) - (b.stint as number));
     const held = new Map<string, Stint>();
@@ -511,14 +562,14 @@ export function applyPlacement(career: Career, now: Placement | null, season: nu
 }
 
 /**
- * A player on no roster but in a reserve pool or free-agent list has left his team: any stint still open ("pres") ended the season before.
- * National-team call-ups don't count. Returns a new career.
+ * A player on no roster but in a reserve pool or free-agent list has left his team: any stint still open ("pres") ended in `lastSeason`, the
+ * last season a record shows him playing (never before the stint began). National-team call-ups don't count. Returns a new career.
  */
-export function applyUnsigned(career: Career, season: number): Career {
+export function applyUnsigned(career: Career, lastSeason: number): Career {
   const stints = career.stints.map(s => ({ ...s }));
   for (const s of stints) {
     if (s.to !== 'pres') continue;
-    s.to = Math.max(s.from ?? 0, season - 1);
+    s.to = Math.max(s.from ?? 0, lastSeason);
     setRange(s);
   }
   return { ...career, stints };

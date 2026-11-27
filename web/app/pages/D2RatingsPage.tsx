@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { makeCut, placesAt, positionList, positionsFilled, reopenCut } from '../../engine/rank/positionRanking';
 import { isNewRow } from '../../engine/rank/ranking';
+import { POSITIONS } from '../../engine/roster/rules';
 import { POOL_CUTOFF } from '../../engine/d2/pool';
-import { finishRatings, membershipBlockers, startRatings, stretchedRatings } from '../../engine/d2/ratings';
+import { finishRatings, membershipBlockers, stagedRatings, startRatings, stretchedRatings } from '../../engine/d2/ratings';
 import { d2DocPath, d2Name, d2Writes, type D2Result } from '../../engine/d2/state';
-import type { RankingFile } from '../../engine/shared/types';
+import type { RankingFile, RankingRow } from '../../engine/shared/types';
 import { useSaving } from '../api';
 import { useD2State } from '../d2/useD2State';
 import { PageHeader } from '../components/PageHeader';
+import { PositionStage } from '../rank/PositionStage';
 import { RankingTable } from '../rank/RankingTable';
 import { commitDocs, newBatchId } from '../roster/commit';
 import { useAutosaveDoc } from '../useAutosaveDoc';
@@ -42,16 +45,19 @@ export function D2RatingsPage() {
     return <section className="stack">{title}<div className="card"><p className="muted">Close free agency first. <Link to="/league/fba/free-agency">Go to free agency ▸</Link></p></div></section>;
   }
   const loaded = autosave.doc ?? state.ratings ?? undefined;
-  // A reset started before the suggestion ladder was stretched to the roster slots gets the stretch on load (and when it is next saved).
-  const ratings = loaded && stretchedRatings(state.d2, loaded);
+  // A reset saved by an older version is brought up to date on load (and when it is next saved): the suggestion ladder reaches the
+  // roster slots, and a reset with nobody ranked starts at the position rankings.
+  const current = (doc: RankingFile) => stagedRatings(stretchedRatings(state.d2, doc));
+  const ratings = loaded && current(loaded);
   if (!ratings) {
     return (
       <section className="stack">
         {title}
         <div className="card">
           <p className="muted">
-            Rank every D2 roster player and Reserve, best first, starting from last season's order. Once everyone is ranked, give each player
-            a new rating; the app suggests the rating that held the same rank last season.
+            Rank each position, best first, until its {POOL_CUTOFF} spots are full; everyone else goes to Reserves. Then build the full ranking
+            from the best remaining player at each position, and give each player a new rating (the app suggests the rating that held the
+            same rank last season).
           </p>
           <button className="btn primary" disabled={saving} onClick={() => run(startRatings(state))}>Start ratings reset</button>
         </div>
@@ -64,19 +70,62 @@ export function D2RatingsPage() {
   const inPool = new Set(state.reserves.players.filter(p => !p.fromFba).map(p => p.playerId));
   const shown: RankingFile = { ...ratings, rows: ratings.rows.map(r => (r.team === null && r.prevRating === null && inPool.has(r.playerId) ? { ...r, inLeague: true } : r)) };
   const live = { ...state, ratings };
+  const staged = ratings.byPosition !== undefined;
+  const name = (id: string) => d2Name(state, id);
+  const teamLabel = (team: string | null, row?: RankingRow) => team ?? (row && isNewRow(shown, row) ? 'New' : 'Reserves');
+  const onChange = (change: (doc: RankingFile) => RankingFile) => autosave.update(cur => change(current(cur)));
+  const errors = (
+    <>
+      {autosave.error && <p className="error">{autosave.error}</p>}
+      {actionError && <p className="error">{actionError}</p>}
+    </>
+  );
+
+  if (staged && !ratings.locked && !ratings.cutMade) {
+    const placed = POSITIONS.reduce((n, pos) => n + positionList(ratings, pos).length, 0);
+    const places = POSITIONS.reduce((n, pos) => n + placesAt(ratings, pos), 0);
+    const outOfDate = membershipBlockers(live);
+    return (
+      <section className="stack">
+        {title}
+        {errors}
+        {outOfDate.length > 0 && <ul className="problems">{outOfDate.map(b => <li key={b}>{b}</li>)}</ul>}
+        <PositionStage
+          doc={shown} name={name} teamLabel={teamLabel} onChange={onChange}
+          header={<p className="muted">Step 1 of 4: rank each position, best first, until it is full. {placed} of {places} placed.</p>}
+        />
+        <div className="card toolbar">
+          <button type="button" className="btn primary" disabled={!positionsFilled(ratings)} onClick={() => onChange(doc => makeCut(doc))}>
+            Cut: send the other {ratings.rows.length - places} to Reserves
+          </button>
+          <span className="muted">Step 2 of 4. {positionsFilled(ratings) ? 'Every position is full.' : 'Fill every position first.'}</span>
+        </div>
+      </section>
+    );
+  }
+
+  const unranked = ratings.order.length < POSITIONS.reduce((n, pos) => n + positionList(ratings, pos).length, 0);
   return (
     <section className="stack">
       {title}
       {ratings.locked && <div className="card"><p className="muted">D2 ratings are finished. <Link to="/league/fbad2/draft">Build the D2 pool ▸</Link></p></div>}
-      {autosave.error && <p className="error">{autosave.error}</p>}
-      {actionError && <p className="error">{actionError}</p>}
+      {errors}
+      {staged && !ratings.locked && (
+        <div className="card toolbar">
+          <span className="muted">
+            {unranked ? 'Step 3 of 4: build the full ranking from the best remaining player at each position.' : 'Step 4 of 4: rate the players from the ranking.'}
+          </span>
+          {unranked && <button type="button" className="btn" onClick={() => onChange(reopenCut)}>Back to position rankings</button>}
+        </div>
+      )}
       <RankingTable
         doc={shown}
-        positionCap={{ spots: POOL_CUTOFF, label: 'D2 spots left per position' }}
-        name={id => d2Name(state, id)}
-        teamLabel={(team, row) => team ?? (row && isNewRow(shown, row) ? 'New' : 'Reserves')}
+        positionCap={staged ? undefined : { spots: POOL_CUTOFF, label: 'D2 spots left per position' }}
+        positionMerge={staged}
+        name={name}
+        teamLabel={teamLabel}
         otherLabel="FBA"
-        onChange={change => autosave.update(cur => change(stretchedRatings(state.d2, cur)))}
+        onChange={onChange}
         extraBlockers={membershipBlockers(live)}
         finishLabel="Finish ratings"
         onFinish={() => run(finishRatings(live, { batchId: newBatchId() }))}

@@ -6,13 +6,18 @@ import type { RosterState } from '../../engine/roster/state';
 import type { SeasonPhase } from '../../engine/season/locks';
 import type { TeamsFile } from '../../engine/shared/types';
 import { useSaving, type Versions } from '../api';
+import { interestedTeams } from '../../engine/roster/interest';
+import { IfRosterCard } from './IfRosterCard';
+import { interestOptions, type InterestContext } from './interestOptions';
 import { teamTheme, teamVars } from './teamColors';
 import { TeamName } from './TeamName';
 import { commitMove, newBatchId } from '../roster/commit';
 import { PlayerName } from './PlayerName';
 
-export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versions, phase }: {
+export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versions, phase, interest }: {
   state: RosterState; teams: TeamsFile; playerId: string; defaultTeam: string; onClose: () => void; versions: Versions; phase?: SeasonPhase;
+  /** What the fit score reads about the player; without it the roster shows no fit breakdown. */
+  interest?: InterestContext;
 }) {
   const found = marketRows(state).find(r => r.playerId === playerId);
   const own = Object.entries(state.fba.teams).flatMap(([t, es]) => es.filter(e => e.playerId === playerId).map(e => ({ t, e })))[0];
@@ -80,6 +85,12 @@ export function SignPanel({ state, teams, playerId, defaultTeam, onClose, versio
         <button className="btn primary" disabled={!preview?.ok || busy || saving} onClick={sign}>Sign</button>
         <button className="btn" onClick={onClose}>Cancel</button>
       </div>
+      {chosen && (
+        <IfRosterCard
+          state={state} input={input} teamName={chosen.name} phase={phase}
+          fit={interest ? interestedTeams(state, playerId, interestOptions(interest, playerId, state.season)).find(r => r.teamId === chosen.teamId) ?? null : undefined}
+        />
+      )}
     </section>
   );
 }

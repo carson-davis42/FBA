@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type { AwardCountsFile, HallOfFameFile, ResultsFile, SummaryFile, SummaryPlayerLine } from '../shared/types';
+import type { AwardCountsFile, HallOfFameFile, ResultsFile, SummaryFile, SummaryPlayerLine, Team } from '../shared/types';
 import { type Stint, collegeLead, mergeCollegeLead, parseBio, bioAwardKey, careerAwardSums, summaryAwardCounts, liveCareer, careerLines, awardTotals, awardTotalsAll, careerStats, careerTotalsAll, careerSpan, playerStatus, applyPlacement, applyPlayed, applyUnsigned, teamsPlayedFor } from './career';
 
 describe('parseBio', () => {
@@ -198,6 +198,38 @@ describe('liveCareer', () => {
     expect(liveCareer(null, 'p00009', [], hof).hof).toBe('S80');
     expect(liveCareer({ born: 'Born-S1', entries: ['CIN-S1-S2', 'HOF-S77'] }, 'p00009', [], hof).hof).toBe('S77');
     expect(liveCareer(null, 'p00010', [], hof).hof).toBeNull();
+  });
+});
+
+describe('liveCareer with the D2 season records', () => {
+  const teams = [{ teamId: 'SHAN', name: 'Shanghai Shencheng', city: 'Shanghai' }, { teamId: 'ROME', name: 'Rome', city: 'Rome' }] as Team[];
+  const d2Season = (season: number, ...lines: [string, string][]): SummaryFile =>
+    ({ ...summary(season, { players: lines.map(([id, team]) => line(id, team, 1, 10, 100)) }), league: 'fbad2' });
+  const bio = { born: 'Born-S56', entries: ["St.John's-S74-S77", 'D2(Shanghai)-S78-pres.'] };
+  const ranges = (summaries: SummaryFile[], b: typeof bio | null = bio) =>
+    liveCareer(b, 'p00009', [], null, { summaries, teams }).stints.map(s => `${s.team} ${s.range}`);
+
+  it('ends a D2 stint the season before the first D2 season that has no record of him', () => {
+    expect(ranges([d2Season(79, ['p00001', 'SHAN'])])).toEqual(["St.John's S74-S77", 'D2(Shanghai) S78']);
+    expect(ranges([d2Season(79, ['p00009', 'SHAN']), d2Season(80, ['p00001', 'SHAN'])])).toEqual(["St.John's S74-S77", 'D2(Shanghai) S78-S79']);
+  });
+
+  it('carries a stint on through each season he is recorded with the club, whatever name the bio uses for it', () => {
+    expect(ranges([d2Season(79, ['p00009', 'SHAN'])])).toEqual(["St.John's S74-S77", 'D2(Shanghai) S78-S79']);
+  });
+
+  it('starts a new stint for another club, and for a player new to the D2, in the season recorded', () => {
+    expect(ranges([d2Season(79, ['p00009', 'ROME'])])).toEqual(["St.John's S74-S77", 'D2(Shanghai) S78', 'D2(Rome) S79']);
+    expect(ranges([d2Season(79, ['p00009', 'ROME'])], { born: 'Born-S61', entries: ['Duke-S78-pres.'] })).toEqual(['Duke S78', 'D2(Rome) S79']);
+  });
+
+  it('starts a second stint when he returns to a club after a season away', () => {
+    expect(ranges([d2Season(79, ['p00001', 'SHAN']), d2Season(80, ['p00009', 'SHAN'])]))
+      .toEqual(["St.John's S74-S77", 'D2(Shanghai) S78', 'D2(Shanghai Shencheng) S80']);
+  });
+
+  it('leaves the bio alone for a season with no player records', () => {
+    expect(ranges([d2Season(79)])).toEqual(["St.John's S74-S77", 'D2(Shanghai) S78-pres.']);
   });
 });
 
@@ -405,15 +437,15 @@ describe('games played in a season that has no summary yet', () => {
 });
 
 describe('applyUnsigned', () => {
-  it('ends a school stint left open when the player is in a reserve pool, the season before', () => {
+  it('ends a school stint left open when the player is in a reserve pool, at the last season he is known to have played', () => {
     const input = parseBio({ born: 'Born-S57', entries: ['Lehigh-S75-pres.', '3x PAT TOUR Champion'] });
-    const c = applyUnsigned(input, 79);
+    const c = applyUnsigned(input, 78);
     expect(c.stints.map(s => [s.team, s.range, s.to])).toEqual([['Lehigh', 'S75-S78', 78]]);
     expect(c.stints[0].honours).toHaveLength(1);
     expect(input.stints[0].range).toBe('S75-pres.');
   });
-  it('ends a one-season open stint at its own season and leaves closed stints and national teams alone', () => {
-    const c = applyUnsigned(parseBio({ born: 'Born-S57', entries: ['Duke-S60-S63', 'Lehigh-S79-pres.', 'WC(Brazil)-S78-pres.'] }), 79);
+  it('ends a stint that began later than that at its own season and leaves closed stints and national teams alone', () => {
+    const c = applyUnsigned(parseBio({ born: 'Born-S57', entries: ['Duke-S60-S63', 'Lehigh-S79-pres.', 'WC(Brazil)-S78-pres.'] }), 78);
     expect(c.stints.map(s => s.range)).toEqual(['S60-S63', 'S79']);
     expect(c.nationalTeams[0].to).toBe('pres');
   });

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { DraftFile as DraftFileSchema, type DraftFile, type RostersFile, type TransactionsFile } from '../shared/types';
+import { DraftFile as DraftFileSchema, type DraftFile, type Position, type RosterEntry, type RostersFile, type TransactionsFile } from '../shared/types';
 import {
-  draftPick, draftStepId, finishDraft, finishDraftProblems, onTheClock, startDraft, startDraftProblems, type FbaDraftState,
+  draftPick, draftRoster, draftStepId, finishDraft, finishDraftProblems, onTheClock, startDraft, startDraftProblems, type FbaDraftState,
 } from './fbaDraft';
 import { fbaDraftState as baseState } from './testFixtures';
 
@@ -275,5 +275,18 @@ describe('finishDraft', () => {
   it('writes the draft, calendar and transactions', () => {
     expect(ok(finishDraft(tenPicks(), ctx)).writes.map(w => w.path))
       .toEqual(['leagues/fba/S80/draft.json', 'calendar.json', 'leagues/fba/S80/transactions.json']);
+  });
+});
+
+describe('draftRoster', () => {
+  const e = (position: Position, playerId: string | null, contractEnd: number | null): RosterEntry => ({ playerId, position, rating: 80, age: 25, points: 0, contractEnd });
+  it('lists the players by position and flags empty and expired spots as needs', () => {
+    const rows = draftRoster([e('PG', 'p1', 82), e('SG', 'p2', 79), e('SF', null, null), e('PF', 'p3', null), e('PF', 'p4', 79)], 80);
+    expect(rows.map(r => [r.position, r.players.length, r.need])).toEqual([['PG', 1, false], ['SG', 1, true], ['SF', 0, true], ['PF', 2, false], ['C', 0, true]]);
+  });
+  it('does not count an ended rookie contract as a need: the team decides whether to keep him', () => {
+    const rookie: RosterEntry = { ...e('SG', 'p5', 79), restricted: true };
+    expect(draftRoster([rookie], 80).find(r => r.position === 'SG')).toMatchObject({ need: false });
+    expect(draftRoster([{ ...rookie, restricted: false }], 80).find(r => r.position === 'SG')).toMatchObject({ need: true });
   });
 });

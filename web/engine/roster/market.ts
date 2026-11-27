@@ -1,6 +1,6 @@
 import type { Position, RosterEntry } from '../shared/types';
 import { isExpired, POSITIONS } from './rules';
-import { nameOf, type RosterState } from './state';
+import { draftedThisYear, nameOf, type RosterState } from './state';
 
 export type MarketType = 'FA' | 'Rookie' | 'D2' | 'Expired';
 
@@ -18,7 +18,7 @@ export interface MarketRow {
 export function marketRows(state: RosterState): MarketRow[] {
   const rows: MarketRow[] = [];
   for (const fa of state.freeAgents.players) {
-    rows.push({ playerId: fa.playerId, name: nameOf(state, fa.playerId), position: fa.position, age: fa.age, rating: fa.rating, scale: 'FBA', type: fa.rookie ? 'Rookie' : 'FA', from: null });
+    rows.push({ playerId: fa.playerId, name: nameOf(state, fa.playerId), position: fa.position, age: fa.age, rating: fa.rating, scale: 'FBA', type: fa.rookie || draftedThisYear(state, fa.playerId) ? 'Rookie' : 'FA', from: null });
   }
   for (const [teamId, entries] of Object.entries(state.fba.teams)) {
     for (const e of entries) {

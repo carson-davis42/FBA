@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { closeFreeAgency, editPlayer, editWarnings, freeAgencyBlockers, releasePlayer, signPlayer } from './moves';
+import { marketRows } from './market';
 import { payroll } from './rules';
 import type { MoveResult, RosterState } from './state';
 import { baseState } from './testFixtures';
@@ -21,6 +22,19 @@ describe('signPlayer', () => {
     expect(r.changed.sort()).toEqual(['fba', 'fbaTx', 'freeAgents']);
     expect(r.label).toBe('Sign Azubuike Okoro → CAR');
     expect(r.warnings).toEqual([]);
+  });
+
+  it('refuses a deal that runs past the season the player plays at age 32', () => {
+    // p00030 is 27 in S79: he plays through S84, so 6 years would be too many but the limit of 4 stops it first; make him 31.
+    const s = baseState();
+    s.freeAgents.players = s.freeAgents.players.map(p => (p.playerId === 'p00030' ? { ...p, age: 31 } : p));
+    // age 31 in S79: S79 (31), S80 (32): two years at most.
+    expect(ok(signPlayer(s, { playerId: 'p00030', teamId: 'MON', years: 2, amount: 2, conflict: 'release' }, ctx)).ok).toBe(true);
+    expect(problems(signPlayer(s, { playerId: 'p00030', teamId: 'MON', years: 3, amount: 3, conflict: 'release' }, ctx)).join(' '))
+      .toMatch(/Contract cannot run past S80, the player's age-32 season \(2 years at most\)/);
+    // A birth season on the player record wins over the listed age.
+    s.players.players.p00030 = { ...s.players.players.p00030, birthSeason: 47 };
+    expect(problems(signPlayer(s, { playerId: 'p00030', teamId: 'MON', years: 2, amount: 2, conflict: 'release' }, ctx)).join(' ')).toMatch(/S79.*1 year at most/);
   });
 
   it('blocks deals that break the cap or contract rules', () => {
@@ -86,8 +100,15 @@ describe('signPlayer', () => {
     };
     const resign = (amount: number) => signPlayer(monAt24(), { playerId: 'p00012', teamId: 'MON', years: 1, amount, conflict: 'release' }, ctx);
 
-    it('lets a team re-sign its own player up to payroll $25', () => {
-      expect(payroll(ok(resign(1)).state.fba.teams.MON, 79)).toBe(25);
+    it('lets a team re-sign its own player up to payroll $25 when no other spot is open', () => {
+      const s = monAt24();
+      s.fba.teams.MON = s.fba.teams.MON.map(e => (e.position === 'SG' && e.playerId === null ? { ...e, playerId: 'p00013', rating: 70, age: 25, contractEnd: 85, contractAmount: 0 } : e));
+      const r = signPlayer(s, { playerId: 'p00012', teamId: 'MON', years: 1, amount: 1, conflict: 'release' }, ctx);
+      expect(payroll(ok(r).state.fba.teams.MON, 79)).toBe(25);
+    });
+
+    it('keeps $1 for each other open spot: MON has an open SG, so a $1 re-signing at $24 payroll is refused', () => {
+      expect(problems(resign(1))).toEqual(['Payroll would be $25 with 1 open spot still needing at least $1 each (cap $25)']);
     });
 
     it('blocks a re-signing that would pass $25, like any other signing', () => {
@@ -118,6 +139,31 @@ describe('signPlayer', () => {
 });
 
 describe('releasePlayer', () => {
+  const withDraft = (s: RosterState, owner: string): RosterState => ({ ...s, draft: { picks: [{ slot: 1, owner, originalTeam: owner, playerId: 'p00002' }] } as unknown as RosterState['draft'] });
+
+  it('sends a player cut by the team that drafted him this year to free agency as a rookie: only a restricted 1/$1 or 2/$2 deal', () => {
+    const cut = ok(releasePlayer(withDraft(baseState(), 'BOS'), { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'cut' }, ctx));
+    expect(cut.state.freeAgents.players.find(p => p.playerId === 'p00002')?.rookie).toBe(true);
+    expect(problems(signPlayer(cut.state, { playerId: 'p00002', teamId: 'CAR', years: 3, amount: 3, conflict: 'release' }, ctx))).toContain('Rookie contracts are 1/$1 or 2/$2');
+    const signed = ok(signPlayer(cut.state, { playerId: 'p00002', teamId: 'MON', years: 2, amount: 2, conflict: 'release' }, ctx));
+    expect(signed.state.fba.teams.MON.find(e => e.playerId === 'p00002')?.restricted).toBe(true);
+  });
+
+  it('does not make a rookie of a player who has played, even on a rookie contract', () => {
+    const s = baseState();
+    s.fba.teams.BOS = s.fba.teams.BOS.map(e => (e.playerId === 'p00002' ? { ...e, restricted: true, contractEnd: 80 } : e));
+    const played = ok(releasePlayer(s, { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'cut' }, ctx));
+    expect(played.state.freeAgents.players.find(p => p.playerId === 'p00002')?.rookie).toBe(false);
+  });
+
+  it('treats a player drafted this year as a rookie even when he was cut before and is flagged as an ordinary free agent', () => {
+    const s = withDraft(baseState(), 'BOS');
+    // p00030 sits in the pool with rookie: false, as when he was cut before the rule existed.
+    s.draft = { picks: [{ slot: 1, owner: 'NY', originalTeam: 'NY', playerId: 'p00030' }] } as unknown as RosterState['draft'];
+    expect(problems(signPlayer(s, { playerId: 'p00030', teamId: 'CAR', years: 2, amount: 3, conflict: 'release' }, ctx))).toContain('Rookie contracts are 1/$1 or 2/$2');
+    expect(marketRows(s).find(r => r.playerId === 'p00030')?.type).toBe('Rookie');
+  });
+
   it('releases an FBA player to the free-agent pool', () => {
     const r = ok(releasePlayer(baseState(), { league: 'fba', teamId: 'BOS', playerId: 'p00002', kind: 'released' }, ctx));
     expect(r.state.fba.teams.BOS[1]).toMatchObject({ playerId: null, position: 'SG' });

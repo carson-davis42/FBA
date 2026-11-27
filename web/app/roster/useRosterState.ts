@@ -14,16 +14,19 @@ export function useRosterState(): { state?: RosterState; versions: Versions; err
   const players = useDoc<RosterState['players']>(rel('players'));
   const fbaTx = useDoc<RosterState['fbaTx']>(rel('fbaTx'));
   const d2Tx = useDoc<RosterState['d2Tx']>(rel('d2Tx'));
+  // The draft board is optional: it exists from Adjust Age on, and its picks are tradable once the draft has started.
+  const draft = useDoc<NonNullable<RosterState['draft']>>(season === undefined ? null : docPath('draft', season));
   // Same order as DOC_KEYS: fba, d2, freeAgents, reserves, picks, players, fbaTx, d2Tx.
   const docs = [fba, d2, freeAgents, reserves, picks, players, fbaTx, d2Tx];
   const versions: Versions = season === undefined ? {} : Object.fromEntries(DOC_KEYS.map((k, i) => [docPath(k, season), docs[i].version]));
+  if (season !== undefined && draft.data) versions[docPath('draft', season)] = draft.version;
   const error = meta.error ?? docs.find(d => d.error)?.error;
-  if (season === undefined || docs.some(d => !d.data)) return { versions, error };
+  if (season === undefined || docs.some(d => !d.data) || (!draft.data && !draft.missing && !draft.error)) return { versions, error };
   return {
     versions,
     state: {
       season, fba: fba.data!, d2: d2.data!, freeAgents: freeAgents.data!, reserves: reserves.data!,
-      picks: picks.data!, players: players.data!, fbaTx: fbaTx.data!, d2Tx: d2Tx.data!,
+      picks: picks.data!, players: players.data!, fbaTx: fbaTx.data!, d2Tx: d2Tx.data!, ...(draft.data ? { draft: draft.data } : {}),
     },
   };
 }

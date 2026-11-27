@@ -190,8 +190,48 @@ describe('FbaDraftPage', () => {
     expect(within(rowOf('Tim Taken')).getByRole('button', { name: 'Draft' })).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Back to school' })).toBeNull();
     expect(names('Picks')).toEqual(['1', '2']);
-    expect(within(screen.getByRole('table', { name: 'Picks' })).getByText((_, el) => el?.tagName === 'TD' && el.textContent === 'Dan Draftee (PF, School One)')).toBeTruthy();
+    expect(within(screen.getByRole('table', { name: 'Picks' })).getByText((_, el) => el?.tagName === 'TD' && el.textContent === 'Dan Draftee (—, PF, School One)')).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Finish the draft' })).toBeNull();
+  });
+
+  it('lists the prospects by rank without the college rating once the draft is on', async () => {
+    stubApi(docs({ draft: startedDraft() }));
+    renderPage();
+    const table = await screen.findByRole('table', { name: 'Prospects' });
+    expect(within(table).queryByRole('columnheader', { name: 'College' })).toBeNull();
+    expect(within(table).getByRole('columnheader', { name: 'Rank' })).toBeTruthy();
+  });
+
+  it('has an All picks view with a row for every pick, the one on the clock included', async () => {
+    stubApi(docs({ draft: startedDraft() }));
+    renderPage();
+    await screen.findByRole('table', { name: 'Prospects' });
+    fireEvent.click(screen.getByRole('button', { name: 'All picks' }));
+    const table = await screen.findByRole('table', { name: 'All picks' });
+    expect(within(table).getAllByRole('row').length - 1).toBe(startedDraft().picks.length);
+    expect(within(table).getByText('On the clock')).toBeTruthy();
+    expect(screen.queryByRole('table', { name: 'Prospects' })).toBeNull();
+  });
+
+  it('lists the teams that need a position with the picks they hold', async () => {
+    stubApi(docs({ draft: startedDraft() }));
+    renderPage();
+    await screen.findByRole('table', { name: 'Prospects' });
+    expect(screen.queryByRole('table', { name: /Teams that need a/ })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: 'C' }));
+    const table = await screen.findByRole('table', { name: 'Teams that need a C' });
+    const rows = within(table).getAllByRole('row').slice(1);
+    for (const r of rows) expect(within(r).getAllByRole('cell')).toHaveLength(3);
+    fireEvent.click(screen.getByRole('button', { name: 'C' }));
+    expect(screen.queryByRole('table', { name: 'Teams that need a C' })).toBeNull();
+  });
+
+  it('shows the roster of the team on the clock with its needs', async () => {
+    stubApi(docs({ draft: startedDraft() }));
+    renderPage();
+    const table = await screen.findByRole('table', { name: 'Roster of the team on the clock' });
+    expect(within(table).getAllByRole('row').length).toBeGreaterThanOrEqual(6);
+    expect(screen.getByText(/^Needs:/)).toBeTruthy();
   });
 
   it('drafts a prospect in one batch onto the team on the clock', async () => {

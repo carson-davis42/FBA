@@ -348,10 +348,12 @@ export const RankingFile = z.object({
   /** college-class only: each player's consensus, and the suggestion ladder (high to low). */
   consensus: z.record(playerId, consensus).optional(),
   consensusCurve: z.array(consensus).optional(),
-  /** college-class only: each position's own ranking, best first, made before the whole ranking (which merges them). */
+  /** college-class and d2-reset: each position's own ranking, best first, made before the whole ranking (which merges them). A D2 reset stops at the position's spots. */
   byPosition: z.object({ PG: idList, SG: idList, SF: idList, PF: idList, C: idList }).partial().strict().optional(),
-  /** college-class only: the order the five players on offer (each position's next) are held in; the top one joins the ranking next. */
+  /** With `byPosition`: the order the five players on offer (each position's next) are held in; the top one joins the ranking next. */
   pool: idList.optional(),
+  /** d2-reset only: the cut is made. Players outside `byPosition` go to Reserves; the whole ranking covers only the rest. */
+  cutMade: z.literal(true).optional(),
 }).strict().superRefine((doc, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const ids = new Set(doc.rows.map(r => r.playerId));
@@ -360,8 +362,14 @@ export const RankingFile = z.object({
   for (const id of doc.order) if (!ids.has(id)) issue(`${id} is ranked but isn't in the rows`);
   for (const id of Object.keys(doc.ratings)) if (!ids.has(id)) issue(`${id} has a rating but isn't in the rows`);
   if (doc.curve.some((v, k) => k > 0 && v > doc.curve[k - 1])) issue('The curve must run from high to low');
+  const staged = doc.kind === 'd2-reset' && doc.byPosition !== undefined;
+  const listed = new Set(Object.values(doc.byPosition ?? {}).flat());
+  if (doc.cutMade && !staged) issue('Only a D2 reset ranked by position has a cut');
+  if (staged && doc.order.some(id => !listed.has(id))) issue('A player outside the position rankings is in the whole ranking');
   if (doc.locked) {
-    if (doc.order.length !== doc.rows.length) issue('A finished ranking must rank every player');
+    if (staged && !doc.cutMade) issue('A finished reset ranked by position must have made the cut');
+    const missing = staged ? [...listed].some(id => !doc.order.includes(id)) : doc.order.length !== doc.rows.length;
+    if (missing) issue('A finished ranking must rank every player');
     // A D2 reset leaves the players ranked past their position's spots unrated: they go to the Reserve pool.
     const byId = new Map(doc.rows.map(r => [r.playerId, r.position]));
     const seen = new Map<string, number>();
@@ -374,17 +382,19 @@ export const RankingFile = z.object({
     if (unrated.length) issue('A finished ranking must rate every player');
   }
   if (doc.kind !== 'college-class' && (doc.consensus || doc.consensusCurve)) issue('Only a class ranking has consensus');
+  const stages = doc.kind === 'college-class' || doc.kind === 'd2-reset';
   if (doc.pool) {
-    if (doc.kind !== 'college-class') issue('Only a class ranking has a pool');
+    if (!stages) issue('Only a class or D2 ranking has a pool');
     if (new Set(doc.pool).size !== doc.pool.length) issue('A player is in the pool twice');
     for (const id of doc.pool) if (!ids.has(id)) issue(`${id} is in the pool but isn't in the rows`);
   }
   if (doc.byPosition) {
-    if (doc.kind !== 'college-class') issue('Only a class ranking has position rankings');
+    if (!stages) issue('Only a class or D2 ranking has position rankings');
     const where = new Map(doc.rows.map(r => [r.playerId, r.position]));
     for (const [pos, list] of Object.entries(doc.byPosition)) {
       if (new Set(list).size !== list.length) issue(`A player is listed twice in the ${pos} ranking`);
       for (const id of list) if (where.get(id) !== pos) issue(`${id} is in the ${pos} ranking but doesn't play ${pos}`);
+      if (staged && list.length > D2_POSITION_SPOTS) issue(`The ${pos} ranking has more than ${D2_POSITION_SPOTS} players`);
       // The whole ranking is a merge: at every position it follows that position's own order.
       const ranked = doc.order.filter(id => where.get(id) === pos);
       if (ranked.some((id, k) => list[k] !== id)) issue(`The whole ranking contradicts the ${pos} ranking`);
@@ -1377,6 +1387,8 @@ export const DraftFile = z.object({
   rankOrder: z.array(playerId).optional(),
   /** The rookie ratings typed in the step after the draft (55 to 99), until the step is finished. */
   rookieRatings: z.record(playerId, int.min(55).max(99)).optional(),
+  /** false from the moment the draft is finished until the rookie ratings step is done: the finished draft stays writable for the typed ratings (like `allFbaLocked` on the awards). */
+  rookiesRated: z.boolean().optional(),
 }).strict().superRefine((doc, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, message });
   const ids = new Set(doc.prospects.map(p => p.playerId));
@@ -1437,6 +1449,14 @@ export const DraftHistoryFile = z.object({ drafts: z.array(DraftHistoryDraft) })
 export type DraftHistoryFile = z.infer<typeof DraftHistoryFile>;
 
 /** leagues/fba/S{n}/expansion.json: the expansion draft held in season n (protections, then the picks). */
+/** leagues/fba/S{n}/trimKept.json: the players the commissioner chose to keep on the Roster trim page, so they are no longer offered for a cut. */
+export const TrimKeptFile = z.object({ league: z.literal('fba'), season: int, kept: z.array(playerId) }).strict();
+export type TrimKeptFile = z.infer<typeof TrimKeptFile>;
+
+/** leagues/fba/S{n}/extendPassed.json: the players whose teams decided not to extend them, on the free agency page's list of contracts ending this season. */
+export const ExtendPassedFile = z.object({ league: z.literal('fba'), season: int, passed: z.array(playerId) }).strict();
+export type ExtendPassedFile = z.infer<typeof ExtendPassedFile>;
+
 export const ExpansionPick = z.object({
   n: int.positive(), teamId: z.string().min(1), fromTeamId: z.string().min(1), playerId, position: Position,
 }).strict();

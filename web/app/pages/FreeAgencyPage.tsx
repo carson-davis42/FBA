@@ -2,20 +2,25 @@ import { useMemo, useState } from 'react';
 import { teamsInSeason } from '../../engine/shared/teams';
 import { useParams } from 'react-router-dom';
 import { marketRows, type MarketType, openPositions } from '../../engine/roster/market';
-import { closeFreeAgency, freeAgencyBlockers } from '../../engine/roster/moves';
-import { payroll, POSITIONS } from '../../engine/roster/rules';
+import { closeFreeAgency, freeAgencyBlockers, releasePlayer } from '../../engine/roster/moves';
+import { payroll, positionFill, POSITIONS } from '../../engine/roster/rules';
 import { currentStepIndex, markCurrentDone } from '../../engine/shared/calendar';
-import type { CalendarFile, Position, Team, TeamsFile } from '../../engine/shared/types';
+import type { CalendarFile, DraftFile, ExtendPassedFile, FranchisesFile, PlayerBiosFile, Position, Team, TeamsFile } from '../../engine/shared/types';
 import { useDoc, useSaving } from '../api';
+import { ExpiringContracts } from '../components/ExpiringContracts';
+import { ExtendDialog } from '../components/ExtendDialog';
+import { InterestedTeams } from '../components/InterestedTeams';
 import { PageHeader } from '../components/PageHeader';
 import { PayrollBar } from '../components/PayrollBar';
+import { PositionFill } from '../components/PositionFill';
+import { RestrictedFreeAgents } from '../components/RestrictedFreeAgents';
 import { RosterTable } from '../components/RosterTable';
 import { SignPanel } from '../components/SignPanel';
 import { SortTh } from '../components/SortTh';
 import { TeamName } from '../components/TeamName';
 import { teamTheme, teamVars } from '../components/teamColors';
 import { useSort, type SortValue } from '../components/useSort';
-import { commitMove, newBatchId } from '../roster/commit';
+import { commitDocs, commitMove, newBatchId } from '../roster/commit';
 import { useRosterState } from '../roster/useRosterState';
 import { useSeasonPhase } from '../season/useSeasonPhase';
 import './roster.css';
@@ -75,18 +80,60 @@ export function FreeAgencyPage() {
   const [type, setType] = useState<MarketType | 'ALL'>('ALL');
   const [teamId, setTeamId] = useState('');
   const [selected, setSelected] = useState<string | null>(null);
+  // The team picked from the interested list for the selected player (reset when another player is selected).
+  const [signTeam, setSignTeam] = useState('');
+  const [extending, setExtending] = useState<{ teamId: string; playerId: string } | null>(null);
   const [closeError, setCloseError] = useState('');
+  const passedPath = stateSeason === undefined ? '' : `leagues/fba/S${stateSeason}/extendPassed.json`;
+  const passedDoc = useDoc<ExtendPassedFile>(stateSeason === undefined ? null : passedPath);
+  // What the interested-teams ranking reads about a player (his college and past teams); loaded once with the page.
+  const franchisesDoc = useDoc<FranchisesFile>('leagues/fba/franchises.json');
+  const biosDoc = useDoc<PlayerBiosFile>('leagues/fba/playerBios.json');
+  const draftDoc = useDoc<DraftFile>(stateSeason === undefined ? null : `leagues/fba/S${stateSeason}/draft.json`);
+  const jcTeamsDoc = useDoc<TeamsFile>('leagues/fbajc/teams.json');
+  const [passBusy, setPassBusy] = useState(false);
+  const [passError, setPassError] = useState('');
   const saving = useSaving();
 
   if (league !== 'fba') return <p className="error">Free agency is only for the FBA.</p>;
   if (error) return <p className="error">Couldn't load rosters: {error.message}</p>;
-  if (!state || !teams || !cal) return <p className="muted">Loading…</p>;
+  if (!state || !teams || !cal || (!passedDoc.data && !passedDoc.missing && !passedDoc.error)) return <p className="muted">Loading…</p>;
+  const passed = new Set(passedDoc.data?.passed ?? []);
+  const interestContext = { franchises: franchisesDoc.data ?? null, bios: biosDoc.data ?? null, draft: draftDoc.data ?? null, jcTeams: jcTeamsDoc.data ?? null };
+  const letGo = async (t: string, playerId: string) => {
+    const result = releasePlayer(state, { league: 'fba', teamId: t, playerId, kind: 'released' }, { batchId: newBatchId(), phase });
+    if (!result.ok) { setPassError(result.problems.join('; ')); return; }
+    setPassBusy(true);
+    setPassError('');
+    try {
+      await commitMove(result, versions);
+      if (selected === playerId) setSelected(null);
+    } catch (e) {
+      setPassError((e as Error).message);
+    } finally {
+      setPassBusy(false);
+    }
+  };
+  const setPassed = async (playerId: string, pass: boolean) => {
+    const next = pass ? [...passed, playerId] : [...passed].filter(id => id !== playerId);
+    setPassBusy(true);
+    setPassError('');
+    try {
+      await commitDocs(pass ? 'Not extending a player' : 'Reconsider an extension', [{ path: passedPath, doc: { league: 'fba', season: state.season, passed: next } satisfies ExtendPassedFile }], { ...versions, [passedPath]: passedDoc.version });
+    } catch (e) {
+      setPassError((e as Error).message);
+    } finally {
+      setPassBusy(false);
+    }
+  };
 
   const team = teamId ? state.fba.teams[teamId] : undefined;
   const pickedTeam = teams.teams.find(t => t.teamId === teamId);
   const needs = team ? openPositions(team) : [];
+  // A position every team has filled has no room left, so its free agents are not listed (they go to, or stay in, D2).
+  const full = positionFill(state.fba.teams, state.season).filter(p => p.open === 0).map(p => p.position);
   const rows = marketRows(state).filter(r =>
-    (pos === 'ALL' || r.position === pos) && (type === 'ALL' || r.type === type) && (!team || needs.length === 0 || needs.includes(r.position)),
+    !full.includes(r.position) && (pos === 'ALL' || r.position === pos) && (type === 'ALL' || r.type === type) && (!team || needs.length === 0 || needs.includes(r.position)),
   );
   const blockers = freeAgencyBlockers(state);
   const closed = state.freeAgents.locked;
@@ -107,6 +154,7 @@ export function FreeAgencyPage() {
     <section>
       <PageHeader kicker="FBA" title={`S${state.season} free agency`} />
       {closed && <p className="muted">Free agency is closed. Unsigned players moved to D2 Reserves.</p>}
+      <PositionFill teams={state.fba.teams} season={state.season} />
       <div className="form-row filters card">
         <label>Team
           <select value={teamId} onChange={e => setTeamId(e.target.value)}>
@@ -137,10 +185,18 @@ export function FreeAgencyPage() {
       )}
 
       {selected && !closed && (
-        <SignPanel key={selected} state={state} teams={teams} playerId={selected} defaultTeam={teamId} onClose={() => setSelected(null)} versions={versions} phase={phase} />
+        <SignPanel key={`${selected}-${signTeam}`} state={state} teams={teams} playerId={selected} defaultTeam={signTeam || teamId} onClose={() => setSelected(null)} versions={versions} phase={phase} interest={interestContext} />
       )}
+      {selected && !closed && <InterestedTeams state={state} teams={teams.teams} playerId={selected} onSign={setSignTeam} context={interestContext} />}
 
-      <MarketTable rows={rows} selected={selected} onSelect={setSelected} teams={teams.teams} season={state.season} />
+      {full.length > 0 && <p className="muted">No spots left at {full.join(', ')}: free agents there are hidden.</p>}
+
+      <MarketTable rows={rows} selected={selected} onSelect={id => { setSelected(id); setSignTeam(''); }} teams={teams.teams} season={state.season} />
+
+      {extending && <ExtendDialog key={extending.playerId} state={state} teamId={extending.teamId} playerId={extending.playerId} onClose={() => setExtending(null)} versions={versions} />}
+      {passError && <p className="error">Save failed: {passError}</p>}
+      <RestrictedFreeAgents state={state} teams={teams.teams} teamId={teamId} busy={passBusy || saving} onResign={(t, p) => { setSelected(p); setSignTeam(t); }} onLetGo={letGo} />
+      <ExpiringContracts state={state} teams={teams.teams} teamId={teamId} passed={passed} busy={passBusy || saving} onExtend={(t, p) => setExtending({ teamId: t, playerId: p })} onPass={setPassed} />
 
       {!closed && (
         <div className="card close-fa">

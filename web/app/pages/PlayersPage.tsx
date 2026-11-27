@@ -3,13 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 import { isLeagueId, LEAGUE_LABEL } from '../../engine/shared/leagues';
 import { playerRows, type PlayerRow } from '../../engine/shared/playerRows';
 import { teamsInSeason } from '../../engine/shared/teams';
-import type { CalendarFile, LeagueId, MetaFile, PlayersFile, Position, QualifyingFile, ResultsFile, RostersFile, TeamsFile, WorldCupFile } from '../../engine/shared/types';
+import type { CalendarFile, FreeAgent, FreeAgentsFile, LeagueId, MetaFile, PlayersFile, Position, QualifyingFile, ResultsFile, RostersFile, Team, TeamsFile, WorldCupFile } from '../../engine/shared/types';
 import { docFailure, docSettled, useDoc } from '../api';
 import { PageHeader } from '../components/PageHeader';
 import { PlayerName } from '../components/PlayerName';
 import { SortTh } from '../components/SortTh';
 import { TeamName } from '../components/TeamName';
 import { useSort, type SortValue } from '../components/useSort';
+import { FBA_EMBLEM } from '../history/PlayerEmblem';
 import { jcGate } from '../jc/JcGate';
 import { NamesNeeded } from '../jc/NamesNeeded';
 import { useJcDocs } from '../jc/useJcDocs';
@@ -44,6 +45,14 @@ const value = (r: PlayerRow, key: string, teamName: (id: string) => string): Sor
   }
 };
 
+/** The stand-in team of a free agent: the FBA logo, since he plays for nobody. */
+export const FREE_AGENT_TEAM: Team = { ...FBA_EMBLEM, teamId: 'FA', name: 'Free agents', abbr: 'FA' };
+
+/** The free agents the Players tab lists: everyone in the pool with an FBA rating, rookies included (an unrated rookie waits for his rating). */
+export function listedFreeAgents(pool: FreeAgent[]): FreeAgent[] {
+  return pool.filter(p => !p.rookie || p.rating !== null);
+}
+
 interface PlayersData {
   league: LeagueId;
   season: number;
@@ -51,15 +60,25 @@ interface PlayersData {
   rosters: RostersFile;
   results: ResultsFile | null;
   players: PlayersFile;
+  /** FBA only: the free agents to list after the rostered players. */
+  freeAgents?: FreeAgent[];
 }
 
 /** Filters, sorting and the table for one league's loaded season. */
-function PlayersView({ league, season, teams: teamsFile, rosters, results, players }: PlayersData) {
+function PlayersView({ league, season, teams: teamsFile, rosters, results, players, freeAgents = [] }: PlayersData) {
   const [teamId, setTeamId] = useState('');
   const [pos, setPos] = useState<Position | ''>('');
   const [q, setQ] = useState('');
-  const all = useMemo(() => playerRows({ league, rosters, results, players }).sort(byDefault), [league, rosters, results, players]);
-  const teamList = teamsFile.teams;
+  const all = useMemo(() => {
+    const rostered = playerRows({ league, rosters, results, players });
+    const done = new Set(rostered.map(r => r.playerId));
+    const free: PlayerRow[] = freeAgents.filter(p => !done.has(p.playerId)).map(p => ({
+      playerId: p.playerId, name: players.players[p.playerId]?.name ?? 'Unnamed', teamId: FREE_AGENT_TEAM.teamId, position: p.position, rating: p.rating, age: p.age,
+      gp: 0, pts: 0, ppg: null, contractAmount: null, contractEnd: null, classYear: null, stars: null,
+    }));
+    return [...rostered, ...free].sort(byDefault);
+  }, [league, rosters, results, players, freeAgents]);
+  const teamList = useMemo(() => (freeAgents.length > 0 ? [...teamsFile.teams, FREE_AGENT_TEAM] : teamsFile.teams), [teamsFile.teams, freeAgents.length]);
   const teamName = useMemo(() => {
     const m = new Map(teamList.map(t => [t.teamId, t.name]));
     return (id: string) => m.get(id) ?? id;
@@ -119,12 +138,13 @@ function PlayersView({ league, season, teams: teamsFile, rosters, results, playe
           <tbody>
             {rows.map((r, i) => {
               const team = teamList.find(t => t.teamId === r.teamId);
-              const to = `/league/${league}/team/${r.teamId}`;
+              const isFa = r.teamId === FREE_AGENT_TEAM.teamId;
+              const to = isFa ? undefined : `/league/${league}/team/${r.teamId}`;
               return (
                 <tr key={r.playerId}>
                   <td className="num">{i + 1}</td>
                   <td><PlayerName id={r.playerId} name={r.name} /></td>
-                  <td>{team ? <TeamName team={team} season={season} variant={wc ? 'full' : 'abbr'} size={18} to={to} /> : <Link to={to}>{r.teamId}</Link>}</td>
+                  <td>{team ? <TeamName team={team} season={season} variant={wc ? 'full' : 'abbr'} size={18} to={to} /> : <Link to={to ?? '#'}>{r.teamId}</Link>}</td>
                   <td>{r.position}</td>
                   {jc && <td>{r.classYear ?? '—'}</td>}
                   {jc && <td className="num">{r.stars === null ? '—' : '★'.repeat(r.stars)}</td>}
@@ -151,11 +171,12 @@ function ProLoader({ league }: { league: 'fba' | 'fbad2' }) {
   const rosterDoc = useDoc<RostersFile>(season === undefined ? null : `leagues/${league}/S${season}/rosters.json`);
   const resultsDoc = useDoc<ResultsFile>(season === undefined ? null : `leagues/${league}/S${season}/results.json`);
   const playersDoc = useDoc<PlayersFile>('players.json');
+  const faDoc = useDoc<FreeAgentsFile>(season === undefined || league !== 'fba' ? null : `leagues/fba/S${season}/freeAgents.json`);
   const teams = useMemo(() => (rawTeams && season !== undefined ? teamsInSeason(rawTeams, season) : undefined), [rawTeams, season]);
-  const failure = teamsError ?? docFailure(rosterDoc) ?? docFailure(playersDoc) ?? docFailure(resultsDoc);
+  const failure = teamsError ?? docFailure(rosterDoc) ?? docFailure(playersDoc) ?? docFailure(resultsDoc) ?? docFailure(faDoc);
   if (failure) return <p className="error">Couldn't load players: {failure.message}</p>;
-  if (!teams || season === undefined || !rosterDoc.data || !playersDoc.data || !(resultsDoc.missing || resultsDoc.data)) return <p className="muted">Loading…</p>;
-  return <PlayersView league={league} season={season} teams={teams} rosters={rosterDoc.data} results={resultsDoc.missing ? null : resultsDoc.data ?? null} players={playersDoc.data} />;
+  if (!teams || season === undefined || !rosterDoc.data || !playersDoc.data || !(resultsDoc.missing || resultsDoc.data) || (league === 'fba' && !docSettled(faDoc))) return <p className="muted">Loading…</p>;
+  return <PlayersView league={league} season={season} teams={teams} rosters={rosterDoc.data} results={resultsDoc.missing ? null : resultsDoc.data ?? null} players={playersDoc.data} freeAgents={faDoc.data ? listedFreeAgents(faDoc.data.players) : []} />;
 }
 
 function JcLoader() {

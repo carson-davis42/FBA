@@ -106,7 +106,7 @@ describe('RookieRatingsPage', () => {
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].label).toBe('Finish the S80 rookie ratings');
     expect(log.batches[0].writes.map(w => w.path).sort()).toEqual([
-      'calendar.json', 'leagues/fba/S80/freeAgents.json', 'leagues/fba/S80/rosters.json', 'leagues/fba/S80/transactions.json', 'leagues/fbad2/S80/reserves.json',
+      'calendar.json', 'leagues/fba/S80/draft.json', 'leagues/fba/S80/freeAgents.json', 'leagues/fba/S80/rosters.json', 'leagues/fba/S80/transactions.json', 'leagues/fbad2/S80/reserves.json',
     ]);
     expect(log.batches).toHaveLength(1);
   });

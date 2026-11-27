@@ -47,6 +47,20 @@ describe('FreeAgencyPage', () => {
     expect(screen.getByText("Koa'e Keano")).toBeTruthy();
   });
 
+  it('hides the free agents at a position every team has filled', async () => {
+    const d = docs();
+    const rosters = d[docPath('fba', 79)] as ReturnType<typeof baseState>['fba'];
+    // Give CAR the C it is missing, so every team has one.
+    rosters.teams.CAR = rosters.teams.CAR.map(e => (e.position === 'C' ? { ...e, playerId: 'p00099', rating: 60, age: 25, contractEnd: 80, contractAmount: 1 } : e));
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+      const doc = d[url.replace('/api/state/', '')];
+      return doc ? new Response(JSON.stringify(doc), { headers: { ETag: '"00000000000000aa"' } }) : new Response('{}', { status: 404 });
+    }));
+    renderPage();
+    expect(await screen.findByText(/^No spots left at .*C: free agents there are hidden.$/)).toBeTruthy();
+    expect(screen.queryByText('Azubuike Okoro')).toBeNull();
+  });
+
   it('filters by team needs', async () => {
     renderPage();
     await screen.findByText('Azubuike Okoro');

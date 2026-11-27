@@ -5,11 +5,16 @@
       "teamId": "ATL",
       "name": "Atlanta Venom",
       "abbr": "ATL",
-      "group": "E",
+      "group": "W",
       "logoFolder": "Atlanta Venom",
       "badge": {
         "bg": "hsl(248 55% 36%)",
         "fg": "#ffffff"
+      },
+      "division": "GU",
+      "formerGroup": {
+        "through": 79,
+        "group": "E"
       }
     },
     {
@@ -21,7 +26,8 @@
       "badge": {
         "bg": "hsl(189 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "AT"
     },
     {
       "teamId": "CAR",
@@ -32,7 +38,8 @@
       "badge": {
         "bg": "hsl(289 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "AT"
     },
     {
       "teamId": "CGG",
@@ -43,7 +50,8 @@
       "badge": {
         "bg": "hsl(339 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GU"
     },
     {
       "teamId": "CHI",
@@ -54,7 +62,8 @@
       "badge": {
         "bg": "hsl(182 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GL"
     },
     {
       "teamId": "CIN",
@@ -65,7 +74,8 @@
       "badge": {
         "bg": "hsl(80 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GL"
     },
     {
       "teamId": "CP",
@@ -76,7 +86,8 @@
       "badge": {
         "bg": "hsl(74 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GL"
     },
     {
       "teamId": "DCB",
@@ -87,7 +98,8 @@
       "badge": {
         "bg": "hsl(171 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "AT"
     },
     {
       "teamId": "DEN",
@@ -98,7 +110,8 @@
       "badge": {
         "bg": "hsl(106 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "PA"
     },
     {
       "teamId": "DET",
@@ -109,7 +122,8 @@
       "badge": {
         "bg": "hsl(67 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GL"
     },
     {
       "teamId": "FLO",
@@ -120,7 +134,8 @@
       "badge": {
         "bg": "hsl(160 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GU"
     },
     {
       "teamId": "HON",
@@ -131,7 +146,8 @@
       "badge": {
         "bg": "hsl(71 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "PA"
     },
     {
       "teamId": "LA",
@@ -142,7 +158,8 @@
       "badge": {
         "bg": "hsl(213 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "PA"
     },
     {
       "teamId": "MAN",
@@ -153,7 +170,8 @@
       "badge": {
         "bg": "hsl(173 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "AT"
     },
     {
       "teamId": "MEM",
@@ -164,7 +182,8 @@
       "badge": {
         "bg": "hsl(272 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GU"
     },
     {
       "teamId": "MIL",
@@ -175,7 +194,8 @@
       "badge": {
         "bg": "hsl(65 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GL"
     },
     {
       "teamId": "MON",
@@ -186,7 +206,8 @@
       "badge": {
         "bg": "hsl(160 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "AT"
     },
     {
       "teamId": "MW",
@@ -197,7 +218,8 @@
       "badge": {
         "bg": "hsl(19 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "AT"
     },
     {
       "teamId": "NO",
@@ -208,7 +230,8 @@
       "badge": {
         "bg": "hsl(5 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GU"
     },
     {
       "teamId": "NY",
@@ -219,7 +242,8 @@
       "badge": {
         "bg": "hsl(129 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "AT"
     },
     {
       "teamId": "OAK",
@@ -230,7 +254,8 @@
       "badge": {
         "bg": "hsl(161 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "PA"
     },
     {
       "teamId": "OV",
@@ -241,7 +266,8 @@
       "badge": {
         "bg": "hsl(166 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GL"
     },
     {
       "teamId": "PHX",
@@ -252,7 +278,8 @@
       "badge": {
         "bg": "hsl(171 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GU"
     },
     {
       "teamId": "SAS",
@@ -263,7 +290,8 @@
       "badge": {
         "bg": "hsl(246 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GU"
     },
     {
       "teamId": "SEA",
@@ -274,17 +302,23 @@
       "badge": {
         "bg": "hsl(42 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "PA"
     },
     {
       "teamId": "STL",
       "name": "St.Louis Kings",
       "abbr": "STL",
-      "group": "W",
+      "group": "E",
       "logoFolder": "St.Louis Kings",
       "badge": {
         "bg": "hsl(123 55% 36%)",
         "fg": "#ffffff"
+      },
+      "division": "GL",
+      "formerGroup": {
+        "through": 79,
+        "group": "W"
       }
     },
     {
@@ -296,7 +330,8 @@
       "badge": {
         "bg": "hsl(128 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GU"
     },
     {
       "teamId": "TOR",
@@ -307,7 +342,8 @@
       "badge": {
         "bg": "hsl(287 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "GL"
     },
     {
       "teamId": "VAN",
@@ -318,7 +354,8 @@
       "badge": {
         "bg": "hsl(15 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "PA"
     },
     {
       "teamId": "VEG",
@@ -329,7 +366,8 @@
       "badge": {
         "bg": "hsl(156 55% 36%)",
         "fg": "#ffffff"
-      }
+      },
+      "division": "PA"
     },
     {
       "teamId": "PHI",
@@ -338,25 +376,26 @@
       "group": "E",
       "logoFolder": "Philly Phantoms",
       "badge": {
-        "bg": "#173C74",
+        "bg": "#0F2C78",
         "fg": "#ffffff",
-        "accent": "#D23434"
+        "accent": "#E4102B"
       },
-      "fromSeason": 80
+      "fromSeason": 80,
+      "division": "AT"
     },
     {
       "teamId": "LAL",
-      "name": "Team 32",
-      "abbr": "T32",
+      "name": "Boise Talons",
+      "abbr": "BOI",
       "group": "W",
-      "logoFolder": "FBA",
-      "logoFile": "FBA_logo.png",
+      "logoFolder": "Boise Talons",
       "badge": {
-        "bg": "#16346F",
+        "bg": "#2E8BDB",
         "fg": "#ffffff",
-        "accent": "#C8102E"
+        "accent": "#0A1A52"
       },
-      "fromSeason": 80
+      "fromSeason": 80,
+      "division": "PA"
     }
   ]
 }

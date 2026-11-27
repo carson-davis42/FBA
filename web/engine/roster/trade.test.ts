@@ -31,6 +31,36 @@ describe('makeTrade', () => {
     expect(r.label).toBe('Trade CAR/MON');
   });
 
+  describe('picks of the draft under way', () => {
+    const withDraft = (picks: { slot: number; owner: string; originalTeam: string; playerId: string | null }[], over: Partial<{ started: boolean; locked: boolean }> = {}): RosterState => ({
+      ...baseState(),
+      draft: { league: 'fba', season: baseState().season, locked: false, started: true, prospects: [], picks, ...over },
+    });
+    const slot = (n: number, from: string, to: string) => ({ kind: 'draftSlot' as const, slot: n, from, to });
+    it('moves a pick that is not made yet and records it as a trade', () => {
+      const r = ok(makeTrade(withDraft([{ slot: 1, owner: 'CAR', originalTeam: 'CAR', playerId: null }, { slot: 2, owner: 'MON', originalTeam: 'BOS', playerId: null }]), {
+        league: 'fba', teams: ['CAR', 'MON'], assets: [slot(1, 'CAR', 'MON'), slot(2, 'MON', 'CAR')],
+      }, ctx));
+      expect(r.state.draft!.picks).toEqual([
+        { slot: 1, owner: 'MON', originalTeam: 'CAR', playerId: null },
+        { slot: 2, owner: 'CAR', originalTeam: 'BOS', playerId: null },
+      ]);
+      expect(r.changed).toContain('draft');
+      expect(r.state.fbaTx.entries[0].lines).toEqual([`->MON S${baseState().season} Draft Pick #1`, `->CAR S${baseState().season} Draft Pick #2(via BOS)`]);
+    });
+    it('refuses a pick already made, one the team does not own, and a draft that has not started or is finished', () => {
+      const made = withDraft([{ slot: 1, owner: 'CAR', originalTeam: 'CAR', playerId: 'p00099' }]);
+      expect(problems(makeTrade(made, { league: 'fba', teams: ['CAR', 'MON'], assets: [slot(1, 'CAR', 'MON')] }, ctx))).toEqual([`S${made.season} pick #1 has already been made`]);
+      const open = withDraft([{ slot: 1, owner: 'MON', originalTeam: 'MON', playerId: null }]);
+      expect(problems(makeTrade(open, { league: 'fba', teams: ['CAR', 'MON'], assets: [slot(1, 'CAR', 'MON')] }, ctx))).toEqual([`CAR does not own S${open.season} pick #1`]);
+      for (const over of [{ started: false }, { locked: true }]) {
+        const s = withDraft([{ slot: 1, owner: 'CAR', originalTeam: 'CAR', playerId: null }], over);
+        expect(problems(makeTrade(s, { league: 'fba', teams: ['CAR', 'MON'], assets: [slot(1, 'CAR', 'MON')] }, ctx))).toEqual([`The S${s.season} draft has no pick #1 to trade`]);
+      }
+      expect(problems(makeTrade(baseState(), { league: 'fba', teams: ['CAR', 'MON'], assets: [slot(1, 'CAR', 'MON')] }, ctx))).toEqual([`The S${baseState().season} draft has no pick #1 to trade`]);
+    });
+  });
+
   it('blocks a trade that puts a team over the cap', () => {
     const r = makeTrade(baseState(), { league: 'fba', teams: ['CAR', 'BOS'], assets: [{ kind: 'player', playerId: 'p00009', from: 'CAR', to: 'BOS' }] }, ctx);
     expect(problems(r)).toEqual(['BOS: Payroll would be $30 (cap $27)']);

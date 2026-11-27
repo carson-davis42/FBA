@@ -290,6 +290,19 @@ describe('Storage versions', () => {
   });
 });
 
+describe('Storage finished draft', () => {
+  it('stays writable for the rookie ratings until they are done, then locks', async () => {
+    const { storage } = fresh();
+    const base = { league: 'fba', season: 80, locked: true, started: true, prospects: [{ playerId: 'p00001', position: 'PG', college: 'DUKE', classYear: 'Sr', senior: true, collegeRating: 90, stars: null, fbaRating: null }], picks: [] };
+    const p = 'leagues/fba/S80/draft.json';
+    await storage.write(p, { ...base, rookiesRated: false });
+    await storage.write(p, { ...base, rookiesRated: false, rookieRatings: { p00001: 80 } });
+    await storage.write(p, { ...base, rookiesRated: true, rookieRatings: { p00001: 80 } });
+    const err = await storage.write(p, { ...base, rookiesRated: true }).catch((e: unknown) => e);
+    expect((err as StorageError).message).toContain('is locked');
+  });
+});
+
 describe('Storage resetUndo', () => {
   const files = (dir: string, sub: string) => (existsSync(path.join(dir, sub)) ? readdirSync(path.join(dir, sub)) : []);
 

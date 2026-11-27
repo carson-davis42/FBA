@@ -1,7 +1,7 @@
 import type { z } from 'zod';
 import {
   AllStarFile, AwardCountsFile, AwardsFile, CalendarFile, D2DraftFile, D2DraftHistoryFile, D2LeagueHistoryFile, D2PoolFile, DraftFile, DraftHistoryFile, EventsFile, ExpansionFile, FranchisesFile, FreeAgentsFile, HallOfFameFile, JcAwardsFile, JcPostseasonFile, JcRecruitingHistoryFile, JcRankingsFile, JcScheduleFile, JcSchoolHistoryFile, LogoManifest, LotteryFile, MetaFile, PicksFile, PlayerBiosFile, PlayersFile, PastTransactionsFile, PlayoffsFile, QualifyingFile, RankingFile, RatingPauseFile, RecruitingFile, RelativesFile, ReservesFile, ResultsFile, StreakRecordsFile,
-  RostersFile, ScheduleFile, SummaryFile, TeamsFile, TransactionsFile, WcHostsFile, WorldCupFile,
+  RostersFile, ScheduleFile, SummaryFile, TeamsFile, TransactionsFile, TrimKeptFile, ExtendPassedFile, WcHostsFile, WorldCupFile,
 } from './types';
 
 const L = '(fba|fbad2|fbajc|fbawc)';
@@ -22,6 +22,8 @@ const RULES: [RegExp, z.ZodTypeAny][] = [
   [new RegExp(`^leagues/fba/${S}/freeAgents\\.json$`), FreeAgentsFile],
   [new RegExp(`^leagues/fba/${S}/lottery\\.json$`), LotteryFile],
   [new RegExp(`^leagues/fba/${S}/expansion\\.json$`), ExpansionFile],
+  [new RegExp(`^leagues/fba/${S}/trimKept\\.json$`), TrimKeptFile],
+  [new RegExp(`^leagues/fba/${S}/extendPassed\\.json$`), ExtendPassedFile],
   [new RegExp(`^leagues/fba/${S}/draft\\.json$`), DraftFile],
   [new RegExp(`^leagues/fba/${S}/ratings\\.json$`), RankingFile],
   [/^leagues\/fba\/franchises\.json$/, FranchisesFile],

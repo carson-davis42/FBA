@@ -1,5 +1,5 @@
 import type {
-  FreeAgentsFile, PicksFile, PlayersFile, ReservesFile, RosterEntry, RostersFile, TransactionsFile, TransactionType,
+  DraftFile, FreeAgentsFile, PicksFile, PlayersFile, ReservesFile, RosterEntry, RostersFile, TransactionsFile, TransactionType,
 } from '../shared/types';
 import type { SeasonPhase } from '../season/locks';
 
@@ -10,6 +10,8 @@ export interface RosterState {
   freeAgents: FreeAgentsFile;
   reserves: ReservesFile;
   picks: PicksFile;
+  /** The S{n} draft board, once it exists: its picks (from the draft start) can be traded until they are made. Not one of DOC_KEYS: it is loaded only when present. */
+  draft?: DraftFile | null;
   players: PlayersFile;
   fbaTx: TransactionsFile;
   d2Tx: TransactionsFile;
@@ -26,6 +28,7 @@ export function docPath(key: DocKey, season: number): string {
     case 'freeAgents': return `leagues/fba/S${season}/freeAgents.json`;
     case 'reserves': return `leagues/fbad2/S${season}/reserves.json`;
     case 'picks': return 'leagues/fba/picks.json';
+    case 'draft': return `leagues/fba/S${season}/draft.json`;
     case 'players': return 'players.json';
     case 'fbaTx': return `leagues/fba/S${season}/transactions.json`;
     case 'd2Tx': return `leagues/fbad2/S${season}/transactions.json`;
@@ -71,3 +74,7 @@ export function withTeam(r: RostersFile, teamId: string, entries: RosterEntry[])
 export function withLeague(state: RosterState, league: 'fba' | 'fbad2', rosters: RostersFile, tx: TransactionsFile): RosterState {
   return league === 'fba' ? { ...state, fba: rosters, fbaTx: tx } : { ...state, d2: rosters, d2Tx: tx };
 }
+
+/** Taken in this season's draft. Such a player in the free-agent pool was cut after the draft, so he is still a rookie. */
+export const draftedThisYear = (state: RosterState, playerId: string): boolean =>
+  state.draft?.picks.some(p => p.playerId === playerId) === true;

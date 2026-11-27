@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { RostersFile, TransactionsFile } from '../shared/types';
-import { extendPlayer } from './moves';
+import { extendPlayer, extensionRoom, signedThisOffseason } from './moves';
 import { baseState } from './testFixtures';
 
 const input = { teamId: 'BOS', playerId: 'p00001', amount: 7 };
@@ -25,6 +25,37 @@ describe('contract extensions', () => {
     expect(TransactionsFile.safeParse(result.state.fbaTx).success).toBe(true);
   });
 
+  it('can add several seasons at once, up to a five-year contract', () => {
+    // BOS PG ends S80 in S79: two years now; adding three makes S79..S83, five years.
+    const three = extendPlayer(baseState(), { ...input, amount: 8, seasons: 3 }, ctx);
+    expect(three.ok).toBe(true);
+    if (three.ok) expect(three.state.fba.teams.BOS[0]).toMatchObject({ contractEnd: 83, contractAmount: 8 });
+    const four = extendPlayer(baseState(), { ...input, amount: 8, seasons: 4 }, ctx);
+    expect(four.ok).toBe(false);
+  });
+
+  it('has no room to extend a player whose contract already reaches his last season, or who is retired', () => {
+    const state = baseState();
+    const pg = state.fba.teams.BOS[0];
+    // S79 now; age 32 in S79 is his last season, S80 contract is past it.
+    state.players.players[pg.playerId!] = { ...state.players.players[pg.playerId!], birthSeason: 79 - 32 };
+    expect(extensionRoom(state, pg)).toBe(0);
+    state.players.players[pg.playerId!] = { ...state.players.players[pg.playerId!], birthSeason: 79 - 22 };
+    expect(extensionRoom(state, pg)).toBe(3);
+    state.players.players[pg.playerId!] = { ...state.players.players[pg.playerId!], retired: { season: 78, age: 31 } as never };
+    expect(extensionRoom(state, pg)).toBe(0);
+  });
+
+  it('knows a player signed, re-signed or extended by his team in this season transactions', () => {
+    const state = baseState();
+    const pg = state.fba.teams.BOS[0];
+    const name = state.players.players[pg.playerId!].name;
+    expect(signedThisOffseason(state, 'BOS', pg)).toBe(false);
+    state.fbaTx.entries.push({ seq: 1, batchId: 'b', type: 'signed', teams: ['BOS'], lines: [`Signed PG-${name} (2/$3, thru S80)`] });
+    expect(signedThisOffseason(state, 'BOS', pg)).toBe(true);
+    expect(signedThisOffseason(state, 'CAR', pg)).toBe(false);
+  });
+
   it('allows unchanged pay', () => {
     expect(extendPlayer(baseState(), { ...input, amount: 8 }, ctx).ok).toBe(true);
   });
@@ -35,11 +66,18 @@ describe('contract extensions', () => {
     if (result.ok) expect(result.state.fba.teams.MON[0]).toMatchObject({ contractEnd: 81, contractAmount: 5, restricted: true });
   });
 
-  it('does not apply new-signing or re-signing length limits to extensions', () => {
+  it('does not apply the new-signing limit of four years: an extension may make the deal five years', () => {
     const state = baseState();
-    state.fba.teams.BOS[0].contractEnd = 83;
+    state.fba.teams.BOS[0].contractEnd = 82; // S79..S82 is four years; the extension makes S79..S83, five.
     state.fba.teams.BOS[0].age = 26;
     expect(extendPlayer(state, { ...input, amount: 8 }, ctx).ok).toBe(true);
+  });
+
+  it('refuses an extension that would make the contract longer than five years', () => {
+    const state = baseState();
+    state.fba.teams.BOS[0].contractEnd = 83; // S79..S83 is already five years.
+    state.fba.teams.BOS[0].age = 26;
+    expect(extendPlayer(state, { ...input, amount: 8 }, ctx)).toEqual({ ok: false, problems: ['An extension can make a contract 5 years at most (this would be 6)'] });
   });
 
   it('rejects a decrease greater than $1', () => {

@@ -1,9 +1,10 @@
 import { expansionPath, type ExpansionState } from '../../engine/offseason/expansion';
+import { proRatingsPath } from '../../engine/offseason/proRatings';
 import type { AddTeamsState } from '../../engine/season/addExpansionTeams';
 import { teamsJoining } from '../../engine/shared/teams';
 import { addTeamsStepId, expansionDraftStepId } from '../../engine/shared/expansion';
 import type {
-  CalendarFile, DraftHistoryFile, ExpansionFile, MetaFile, PlayersFile, RostersFile, Team, TeamsFile, TransactionsFile,
+  CalendarFile, DraftHistoryFile, ExpansionFile, MetaFile, PlayersFile, RankingFile, RostersFile, Team, TeamsFile, TransactionsFile,
 } from '../../engine/shared/types';
 import { docSettled, useDoc, type DocState, type Versions } from '../api';
 
@@ -37,6 +38,7 @@ export function useExpansionState(): {
   const players = useDoc<PlayersFile>(path(true, () => 'players.json'));
   const expansion = useDoc<ExpansionFile>(path(true, expansionPath));
   const history = useDoc<DraftHistoryFile>(path(true, () => HISTORY_PATH));
+  const ranking = useDoc<RankingFile>(path(true, proRatingsPath));
 
   const versions: Versions = {};
   if (n !== undefined && mode !== 'none') {
@@ -51,7 +53,7 @@ export function useExpansionState(): {
   }
 
   const required: DocState<unknown>[] = mode === 'add' ? [teams, tx] : mode === 'draft' ? [teams, tx, rosters, players] : [];
-  const optional: DocState<unknown>[] = mode === 'draft' ? [expansion, history] : [];
+  const optional: DocState<unknown>[] = mode === 'draft' ? [expansion, history, ranking] : [];
   const error = meta.error ?? calendar.error
     ?? required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
   const base = { versions, mode, error };
@@ -75,6 +77,7 @@ export function useExpansionState(): {
       expansion: expansion.data ?? null,
       tx: tx.data!,
       history: history.data ?? { drafts: [] },
+      ranking: ranking.data ?? null,
     },
   };
 }
