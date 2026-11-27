@@ -1,0 +1,1809 @@
+{
+  "league": "fba",
+  "season": 80,
+  "entries": [
+    {
+      "seq": 1,
+      "batchId": "bmvaiz510bxtye",
+      "type": "season",
+      "teams": [],
+      "lines": [
+        "S80 season started"
+      ]
+    },
+    {
+      "seq": 2,
+      "batchId": "bmvbb51c89gzxv",
+      "type": "adjust-age",
+      "teams": [],
+      "lines": [
+        "627 players age a year"
+      ]
+    },
+    {
+      "seq": 3,
+      "batchId": "bmvsu5auqowgk4",
+      "type": "fba-ratings",
+      "teams": [],
+      "lines": [
+        "FBA ratings reset: 142 players ranked, 131 took the suggestion"
+      ]
+    },
+    {
+      "seq": 4,
+      "batchId": "bmvsubej8jw0u4",
+      "type": "drafted",
+      "teams": [],
+      "lines": [
+        "The S80 draft starts: 32 picks, 93 prospects"
+      ]
+    },
+    {
+      "seq": 5,
+      "batchId": "bmvsv2g0b261dn",
+      "type": "drafted",
+      "teams": [
+        "VEG"
+      ],
+      "lines": [
+        "S80 Draft #1: Vegas Volts selects Kylan Whitemore (SF, North Carolina)"
+      ]
+    },
+    {
+      "seq": 6,
+      "batchId": "bmvsx14g4lmazx",
+      "type": "drafted",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "S80 Draft #2: Chicago Spartans selects Jaden Mahonee (C, Houston)"
+      ]
+    },
+    {
+      "seq": 7,
+      "batchId": "bmvsxrh2bshc6k",
+      "type": "trade",
+      "teams": [
+        "PHX",
+        "LA"
+      ],
+      "lines": [
+        "->PHX S80 Draft Pick #3",
+        "->LA SF-Uriel Murray",
+        "->LA S81 Draft Pick(via PHX)(10P)"
+      ]
+    },
+    {
+      "seq": 8,
+      "batchId": "bmvsxvqp1vovyz",
+      "type": "drafted",
+      "teams": [
+        "PHX"
+      ],
+      "lines": [
+        "S80 Draft #3: Phoenix Badgers selects Christian Flores (SG, San Diego State)"
+      ]
+    },
+    {
+      "seq": 9,
+      "batchId": "bmvsxxex5k8rdb",
+      "type": "drafted",
+      "teams": [
+        "PHI"
+      ],
+      "lines": [
+        "S80 Draft #4: Philly Phantoms selects Rylee Werner (SG, Villanova)"
+      ]
+    },
+    {
+      "seq": 10,
+      "batchId": "bmvsy0ysxifi3q",
+      "type": "drafted",
+      "teams": [
+        "TOR"
+      ],
+      "lines": [
+        "S80 Draft #5: Toronto Wolves selects Kellen Ogbu (PG, Houston)"
+      ]
+    },
+    {
+      "seq": 11,
+      "batchId": "bmvsy148imjauj",
+      "type": "drafted",
+      "teams": [
+        "LAL"
+      ],
+      "lines": [
+        "S80 Draft #6: Boise Talons selects Zain Moxy (PG, Arizona)"
+      ]
+    },
+    {
+      "seq": 12,
+      "batchId": "bmvsyp10bjjwqt",
+      "type": "drafted",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "S80 Draft #7: Ohio Valley Sharks selects Amare Thornhill (C, Michigan)"
+      ]
+    },
+    {
+      "seq": 13,
+      "batchId": "bmvsyq9kiq1ofe",
+      "type": "drafted",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "S80 Draft #8: Florida Panthers selects Koen Smits (PG, Mississippi State)"
+      ]
+    },
+    {
+      "seq": 14,
+      "batchId": "bmvsyqirjot8d2",
+      "type": "drafted",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "S80 Draft #9: St.Louis Kings selects Aziel Vandenberg (SF, Arizona)"
+      ]
+    },
+    {
+      "seq": 15,
+      "batchId": "bmvsyqn9tcs3p4",
+      "type": "drafted",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "S80 Draft #10: Milwaukee Warriors selects Kobe Livingston (PF, Michigan)"
+      ]
+    },
+    {
+      "seq": 16,
+      "batchId": "bmvsyqtovrvl7k",
+      "type": "drafted",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "S80 Draft #11: New York Icons selects Isaiah Montclair (SF, Oregon)"
+      ]
+    },
+    {
+      "seq": 17,
+      "batchId": "bmvsyqzd8l4fqt",
+      "type": "drafted",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "S80 Draft #12: Seattle Shock selects Kylor Ashbourne (PF, Houston)"
+      ]
+    },
+    {
+      "seq": 18,
+      "batchId": "bmvsyv8i85ppcp",
+      "type": "trade",
+      "teams": [
+        "VAN",
+        "MEM"
+      ],
+      "lines": [
+        "->MEM S80 Draft Pick #13",
+        "->VAN S82 Draft Pick(via MEM)(10P)"
+      ]
+    },
+    {
+      "seq": 19,
+      "batchId": "bmvsywp0hzikma",
+      "type": "drafted",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "S80 Draft #13: Memphis Blues selects Kiyan Lovelace (SG, Syracuse)"
+      ]
+    },
+    {
+      "seq": 20,
+      "batchId": "bmvsywxiycnext",
+      "type": "drafted",
+      "teams": [
+        "PHX"
+      ],
+      "lines": [
+        "S80 Draft #14: Phoenix Badgers selects Dalen Tucker (PF, San Diego State)"
+      ]
+    },
+    {
+      "seq": 21,
+      "batchId": "bmvsyx3vhbfi7s",
+      "type": "drafted",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "S80 Draft #15: Chicago Spartans selects Lance Durbin (SF, Kansas)"
+      ]
+    },
+    {
+      "seq": 22,
+      "batchId": "bmvsyybd4n82i6",
+      "type": "drafted",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "S80 Draft #16: Ohio Valley Sharks selects Lennox Porter (PG, Marquette)"
+      ]
+    },
+    {
+      "seq": 23,
+      "batchId": "bmvszk2hwpfim3",
+      "type": "drafted",
+      "teams": [
+        "MON"
+      ],
+      "lines": [
+        "S80 Draft #17: Montreal Chevaliers selects Samuel Okoro (PF, Texas)"
+      ]
+    },
+    {
+      "seq": 24,
+      "batchId": "bmvszk5ab6tjhj",
+      "type": "drafted",
+      "teams": [
+        "ATL"
+      ],
+      "lines": [
+        "S80 Draft #18: Atlanta Venom selects Anthony Wells (C, Gonzaga)"
+      ]
+    },
+    {
+      "seq": 25,
+      "batchId": "bmvszkbs0lbiiy",
+      "type": "drafted",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "S80 Draft #19: Ohio Valley Sharks selects Dmitri Kolesnikov (C, Pitt)"
+      ]
+    },
+    {
+      "seq": 26,
+      "batchId": "bmvszkcykikz5h",
+      "type": "drafted",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "S80 Draft #20: Memphis Blues selects KT Love (C, Texas Tech)"
+      ]
+    },
+    {
+      "seq": 27,
+      "batchId": "bmvszke5pnqe2y",
+      "type": "drafted",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "S80 Draft #21: Cincinnati Blue Stripes selects Sage Ellis (PG, Wake Forest)"
+      ]
+    },
+    {
+      "seq": 28,
+      "batchId": "bmvszken67o977",
+      "type": "drafted",
+      "teams": [
+        "CAR"
+      ],
+      "lines": [
+        "S80 Draft #22: Carolina Knights selects Johann Adler (PF, Texas Tech)"
+      ]
+    },
+    {
+      "seq": 29,
+      "batchId": "bmvszkf0idn3rf",
+      "type": "drafted",
+      "teams": [
+        "DEN"
+      ],
+      "lines": [
+        "S80 Draft #23: Denver Heights selects Griffin Raye (PF, USC)"
+      ]
+    },
+    {
+      "seq": 30,
+      "batchId": "bmvszkfbscr0jf",
+      "type": "drafted",
+      "teams": [
+        "OAK"
+      ],
+      "lines": [
+        "S80 Draft #24: Oakland All-Stars selects Tristan Bolden (SG, Memphis)"
+      ]
+    },
+    {
+      "seq": 31,
+      "batchId": "bmvszkflrvqzwa",
+      "type": "drafted",
+      "teams": [
+        "TEX"
+      ],
+      "lines": [
+        "S80 Draft #25: Texas Outlaws selects Aminou Diallo (C, Illinois)"
+      ]
+    },
+    {
+      "seq": 32,
+      "batchId": "bmvszkfy2sg1hd",
+      "type": "drafted",
+      "teams": [
+        "DET"
+      ],
+      "lines": [
+        "S80 Draft #26: Detroit Motors selects Leo Duarte (PG, Kentucky)"
+      ]
+    },
+    {
+      "seq": 33,
+      "batchId": "bmvszkga5kfl7h",
+      "type": "drafted",
+      "teams": [
+        "MAN"
+      ],
+      "lines": [
+        "S80 Draft #27: Manhattan Magic selects Santi Moya (SF, Mississippi State)"
+      ]
+    },
+    {
+      "seq": 34,
+      "batchId": "bmvszkgmn7uhvo",
+      "type": "drafted",
+      "teams": [
+        "SAS"
+      ],
+      "lines": [
+        "S80 Draft #28: San Antonio Spirits selects Zyree Hammond (SG, Texas A&M)"
+      ]
+    },
+    {
+      "seq": 35,
+      "batchId": "bmvszkh0lv4tcn",
+      "type": "drafted",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "S80 Draft #29: Maine Wildcats selects Bryce Tatupu (C, UConn)"
+      ]
+    },
+    {
+      "seq": 36,
+      "batchId": "bmvszkhei2ix91",
+      "type": "drafted",
+      "teams": [
+        "HON"
+      ],
+      "lines": [
+        "S80 Draft #30: Honolulu Rays selects Niko Papadakis (C, Kentucky)"
+      ]
+    },
+    {
+      "seq": 37,
+      "batchId": "bmvszki6akzkpj",
+      "type": "drafted",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "S80 Draft #31: Boston Bucks selects Theo Marchand (SF, Nevada)"
+      ]
+    },
+    {
+      "seq": 38,
+      "batchId": "bmvszkj1yxiu5g",
+      "type": "drafted",
+      "teams": [
+        "CGG"
+      ],
+      "lines": [
+        "S80 Draft #32: Cypress Green Guns selects Kwame Mensah (PG, UConn)"
+      ]
+    },
+    {
+      "seq": 39,
+      "batchId": "bmvszkr6fvuc6x",
+      "type": "drafted",
+      "teams": [],
+      "lines": [
+        "The S80 draft is finished: 61 undrafted prospects wait for the rookie ratings"
+      ]
+    },
+    {
+      "seq": 40,
+      "batchId": "bmvt043ujrgq6p",
+      "type": "drafted",
+      "teams": [],
+      "lines": [
+        "The S80 rookies are rated: 24 rated (0 to free agency), 69 to the D2 draft pool"
+      ]
+    },
+    {
+      "seq": 41,
+      "batchId": "bmvt07n2z1cej7",
+      "type": "expansion",
+      "teams": [
+        "PHI",
+        "LAL"
+      ],
+      "lines": [
+        "The S80 expansion draft starts: 8 picks"
+      ]
+    },
+    {
+      "seq": 42,
+      "batchId": "bmvt1cdvlidyot",
+      "type": "expansion",
+      "teams": [
+        "PHI",
+        "DEN"
+      ],
+      "lines": [
+        "S80 Expansion Draft #1: Philly Phantoms selects Beau Riley (PG, from Denver Heights)"
+      ]
+    },
+    {
+      "seq": 43,
+      "batchId": "bmvt1e26bjv0aw",
+      "type": "expansion",
+      "teams": [
+        "LAL",
+        "MW"
+      ],
+      "lines": [
+        "S80 Expansion Draft #2: Boise Talons selects Micah Akers (SG, from Maine Wildcats)"
+      ]
+    },
+    {
+      "seq": 44,
+      "batchId": "bmvt1embk4h4s9",
+      "type": "expansion",
+      "teams": [
+        "LAL",
+        "LA"
+      ],
+      "lines": [
+        "S80 Expansion Draft #3: Boise Talons selects Uriel Murray (SF, from Los Angeles Hawks)"
+      ]
+    },
+    {
+      "seq": 45,
+      "batchId": "bmvt1f2az9aupb",
+      "type": "expansion",
+      "teams": [
+        "PHI",
+        "CIN"
+      ],
+      "lines": [
+        "S80 Expansion Draft #4: Philly Phantoms selects Rhys Creed (PF, from Cincinnati Blue Stripes), signed 3/$5"
+      ]
+    },
+    {
+      "seq": 46,
+      "batchId": "bmvt1itubi62su",
+      "type": "expansion",
+      "teams": [
+        "PHI",
+        "VAN"
+      ],
+      "lines": [
+        "S80 Expansion Draft #5: Philly Phantoms selects Emmanuel Green (SF, from Vancouver Orcas)"
+      ]
+    },
+    {
+      "seq": 47,
+      "batchId": "bmvt1nyj805n33",
+      "type": "expansion",
+      "teams": [
+        "LAL",
+        "CGG"
+      ],
+      "lines": [
+        "S80 Expansion Draft #6: Boise Talons selects Landon Love (C, from Cypress Green Guns)"
+      ]
+    },
+    {
+      "seq": 48,
+      "batchId": "bmvt1oezbr5rrj",
+      "type": "expansion",
+      "teams": [
+        "LAL",
+        "CAR"
+      ],
+      "lines": [
+        "S80 Expansion Draft #7: Boise Talons selects Kya Emery (PF, from Carolina Knights)"
+      ]
+    },
+    {
+      "seq": 49,
+      "batchId": "bmvt1q7e90oyl7",
+      "type": "expansion",
+      "teams": [
+        "PHI",
+        "TEX"
+      ],
+      "lines": [
+        "S80 Expansion Draft #8: Philly Phantoms selects Kaelan Kingsley (C, from Texas Outlaws), signed 2/$4"
+      ]
+    },
+    {
+      "seq": 50,
+      "batchId": "bmvt1q8tqqk8vo",
+      "type": "expansion",
+      "teams": [
+        "PHI",
+        "LAL"
+      ],
+      "lines": [
+        "The S80 expansion draft is finished"
+      ]
+    },
+    {
+      "seq": 51,
+      "batchId": "bmvt35lwbblzid",
+      "type": "cut",
+      "teams": [
+        "ATL"
+      ],
+      "lines": [
+        "Cut C-Anthony Wells"
+      ]
+    },
+    {
+      "seq": 52,
+      "batchId": "bmvt35sr6sagu0",
+      "type": "cut",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Cut PG-Sage Ellis"
+      ]
+    },
+    {
+      "seq": 53,
+      "batchId": "bmvt35v96v5k4g",
+      "type": "cut",
+      "teams": [
+        "DEN"
+      ],
+      "lines": [
+        "Cut PF-Griffin Raye"
+      ]
+    },
+    {
+      "seq": 54,
+      "batchId": "bmvt38fdame7gp",
+      "type": "cut",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "Cut C-Ivan Petrovich"
+      ]
+    },
+    {
+      "seq": 55,
+      "batchId": "bmvt38ht7jl9k5",
+      "type": "cut",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Cut PG-Willy Jacobs"
+      ]
+    },
+    {
+      "seq": 56,
+      "batchId": "bmvt38juileypv",
+      "type": "cut",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "Cut C-KT Love"
+      ]
+    },
+    {
+      "seq": 57,
+      "batchId": "bmvt38zy3s9nqd",
+      "type": "cut",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "Cut SF-Isaiah Montclair"
+      ]
+    },
+    {
+      "seq": 58,
+      "batchId": "bmvt391sk0f85i",
+      "type": "cut",
+      "teams": [
+        "OAK"
+      ],
+      "lines": [
+        "Cut SG-Tristan Bolden"
+      ]
+    },
+    {
+      "seq": 59,
+      "batchId": "bmvt3955e16lzh",
+      "type": "cut",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Cut PG-Lennox Porter"
+      ]
+    },
+    {
+      "seq": 60,
+      "batchId": "bmvt399j4sgcje",
+      "type": "cut",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Cut C-Damion Bradley"
+      ]
+    },
+    {
+      "seq": 61,
+      "batchId": "bmvt39ah2syps4",
+      "type": "cut",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Cut C-Dmitri Kolesnikov"
+      ]
+    },
+    {
+      "seq": 62,
+      "batchId": "bmvt39cz2hngli",
+      "type": "cut",
+      "teams": [
+        "PHX"
+      ],
+      "lines": [
+        "Cut SG-Joseph Reid-Jones"
+      ]
+    },
+    {
+      "seq": 63,
+      "batchId": "bmvt39hgiv7jzh",
+      "type": "cut",
+      "teams": [
+        "TOR"
+      ],
+      "lines": [
+        "Cut PG-Rhett Blackwell II"
+      ]
+    },
+    {
+      "seq": 64,
+      "batchId": "bmvt3dcf94v91p",
+      "type": "cut",
+      "teams": [
+        "CAR"
+      ],
+      "lines": [
+        "Cut PF-Johann Adler"
+      ]
+    },
+    {
+      "seq": 65,
+      "batchId": "bmvt3dg6pryd7p",
+      "type": "cut",
+      "teams": [
+        "MON"
+      ],
+      "lines": [
+        "Cut PF-Samuel Okoro"
+      ]
+    },
+    {
+      "seq": 66,
+      "batchId": "bmvt4achubq0i6",
+      "type": "signed",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Signed PG-Ivory Huntley (4/$8, thru S83)"
+      ]
+    },
+    {
+      "seq": 67,
+      "batchId": "bmvt4achubq0i6",
+      "type": "released",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "Released PG-Ivory Huntley (contract ended)"
+      ]
+    },
+    {
+      "seq": 68,
+      "batchId": "bmvt4b7x8lqo4m",
+      "type": "released",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Released PF-Shinobu Ochi"
+      ]
+    },
+    {
+      "seq": 69,
+      "batchId": "bmvt4eb8hk1aif",
+      "type": "signed",
+      "teams": [
+        "PHX"
+      ],
+      "lines": [
+        "Signed PF-Shinobu Ochi (4/$7, thru S83)",
+        "Cut PF-Dalen Tucker"
+      ]
+    },
+    {
+      "seq": 70,
+      "batchId": "bmvt4ijnevphir",
+      "type": "signed",
+      "teams": [
+        "SAS"
+      ],
+      "lines": [
+        "Signed PG-Rhett Blackwell II (2/$5, thru S81)",
+        "Released PG-Jimmy Joyce"
+      ]
+    },
+    {
+      "seq": 71,
+      "batchId": "bmvt4kqkm9q2av",
+      "type": "resigned",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "Re-signed PG-SJ Herring (3/$6, thru S82)"
+      ]
+    },
+    {
+      "seq": 72,
+      "batchId": "bmvt4tyicm3n2w",
+      "type": "cut",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "Cut C-Thiago Costa"
+      ]
+    },
+    {
+      "seq": 73,
+      "batchId": "bmvt4uh6aeh8hu",
+      "type": "resigned",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "Re-signed PG-Soren Lindberg (4/$7, thru S83)"
+      ]
+    },
+    {
+      "seq": 74,
+      "batchId": "bmvt4v8phe0skc",
+      "type": "resigned",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Re-signed SG-Kamil Novakovic (4/$6, thru S83)"
+      ]
+    },
+    {
+      "seq": 75,
+      "batchId": "bmvt4vqxywcn3u",
+      "type": "resigned",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Re-signed C-Samuel Adeyemi (4/$6, thru S83)"
+      ]
+    },
+    {
+      "seq": 76,
+      "batchId": "bmvt4vzrvuirhf",
+      "type": "resigned",
+      "teams": [
+        "MON"
+      ],
+      "lines": [
+        "Re-signed C-Duke Chudnovsky (3/$5, thru S82)"
+      ]
+    },
+    {
+      "seq": 77,
+      "batchId": "bmvt4w957qvyn4",
+      "type": "resigned",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Re-signed SF-Kai Richardson (3/$5, thru S82)"
+      ]
+    },
+    {
+      "seq": 78,
+      "batchId": "bmvt4wrm0o0vzb",
+      "type": "resigned",
+      "teams": [
+        "ATL"
+      ],
+      "lines": [
+        "Re-signed PF-Rakeem Holloway (2/$4, thru S81)"
+      ]
+    },
+    {
+      "seq": 79,
+      "batchId": "bmvt4x1mogs1ft",
+      "type": "resigned",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "Re-signed PF-Darius Bruner (2/$4, thru S81)"
+      ]
+    },
+    {
+      "seq": 80,
+      "batchId": "bmvt4xcq1as4mz",
+      "type": "resigned",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "Re-signed PG-Jalen Carter (3/$4, thru S82)"
+      ]
+    },
+    {
+      "seq": 81,
+      "batchId": "bmvt4xvbrajqnm",
+      "type": "resigned",
+      "teams": [
+        "DCB"
+      ],
+      "lines": [
+        "Re-signed PF-Dior Freeman (2/$2, thru S81)"
+      ]
+    },
+    {
+      "seq": 82,
+      "batchId": "bmvt4y6n5bqcwr",
+      "type": "resigned",
+      "teams": [
+        "LA"
+      ],
+      "lines": [
+        "Re-signed SF-Jalen Hall (2/$3, thru S81)"
+      ]
+    },
+    {
+      "seq": 83,
+      "batchId": "bmvt4z0t67uy9q",
+      "type": "signed",
+      "teams": [
+        "VEG"
+      ],
+      "lines": [
+        "Signed C-Thiago Costa (3/$5, thru S82)"
+      ]
+    },
+    {
+      "seq": 84,
+      "batchId": "bmvt4zii2w14v2",
+      "type": "signed",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Signed C-Ivan Petrovich (3/$5, thru S82)",
+        "Released C-Ignacio Cain"
+      ]
+    },
+    {
+      "seq": 85,
+      "batchId": "bmvt51g33zf5lb",
+      "type": "signed",
+      "teams": [
+        "CAR"
+      ],
+      "lines": [
+        "Signed PF-Trace Garnett (3/$4, thru S82)"
+      ]
+    },
+    {
+      "seq": 86,
+      "batchId": "bmvt51g33zf5lb",
+      "type": "released",
+      "teams": [
+        "CP"
+      ],
+      "lines": [
+        "Released PF-Trace Garnett (contract ended)"
+      ]
+    },
+    {
+      "seq": 87,
+      "batchId": "bmvt52sbz1c35e",
+      "type": "cut",
+      "teams": [
+        "NO"
+      ],
+      "lines": [
+        "Cut C-Ifa Fukui"
+      ]
+    },
+    {
+      "seq": 88,
+      "batchId": "bmvt538dad6t09",
+      "type": "resigned",
+      "teams": [
+        "NO"
+      ],
+      "lines": [
+        "Re-signed PG-Liam Mercado (2/$2, thru S81)"
+      ]
+    },
+    {
+      "seq": 89,
+      "batchId": "bmvt54jjvum10q",
+      "type": "signed",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Signed SG-Carmelo Brunnell (3/$4, thru S82)"
+      ]
+    },
+    {
+      "seq": 90,
+      "batchId": "bmvt54jjvum10q",
+      "type": "released",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "Released SG-Carmelo Brunnell (contract ended)"
+      ]
+    },
+    {
+      "seq": 91,
+      "batchId": "bmvt5607bkgwt8",
+      "type": "resigned",
+      "teams": [
+        "DET"
+      ],
+      "lines": [
+        "Re-signed SG-Uzoma Okorie (1/$2, thru S80)"
+      ]
+    },
+    {
+      "seq": 92,
+      "batchId": "bmvt5710jaci77",
+      "type": "resigned",
+      "teams": [
+        "MON"
+      ],
+      "lines": [
+        "Re-signed PF-JJ Peterson (1/$5, thru S80)"
+      ]
+    },
+    {
+      "seq": 93,
+      "batchId": "bmvt5c6uz3v6yi",
+      "type": "signed",
+      "teams": [
+        "DEN"
+      ],
+      "lines": [
+        "Signed SG-Joseph Reid-Jones (2/$2, thru S81)",
+        "Released SG-Nadeem Akers"
+      ]
+    },
+    {
+      "seq": 94,
+      "batchId": "bmvt5f6tklkm15",
+      "type": "signed",
+      "teams": [
+        "TOR"
+      ],
+      "lines": [
+        "Signed SF-Mubiru Okeke (3/$4, thru S82)",
+        "Released SF-Koa'e Keano"
+      ]
+    },
+    {
+      "seq": 95,
+      "batchId": "bmvt5f6tklkm15",
+      "type": "released",
+      "teams": [
+        "TEX"
+      ],
+      "lines": [
+        "Released SF-Mubiru Okeke (contract ended)"
+      ]
+    },
+    {
+      "seq": 96,
+      "batchId": "bmvt5gb50a1pla",
+      "type": "signed",
+      "teams": [
+        "CAR"
+      ],
+      "lines": [
+        "Signed SG-Nadeem Akers (1/$1, thru S80)",
+        "Released SG-Terence Hopkins"
+      ]
+    },
+    {
+      "seq": 97,
+      "batchId": "bmvtxj7i824azc",
+      "type": "signed",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Signed SF-Akeel Moody (2/$4, thru S81)"
+      ]
+    },
+    {
+      "seq": 98,
+      "batchId": "bmvtxj7i824azc",
+      "type": "released",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "Released SF-Akeel Moody (contract ended)"
+      ]
+    },
+    {
+      "seq": 99,
+      "batchId": "bmvtxn1md7wq1y",
+      "type": "signed",
+      "teams": [
+        "NO"
+      ],
+      "lines": [
+        "Signed C-Damion Bradley (1/$2, thru S80)"
+      ]
+    },
+    {
+      "seq": 100,
+      "batchId": "bmvtxrt498jtsu",
+      "type": "signed",
+      "teams": [
+        "MAN"
+      ],
+      "lines": [
+        "Signed C-Ignacio Cain (2/$2, thru S81)",
+        "Released C-Kiri Camacho"
+      ]
+    },
+    {
+      "seq": 101,
+      "batchId": "bmvty1dbv3vomg",
+      "type": "signed",
+      "teams": [
+        "MEM"
+      ],
+      "lines": [
+        "Signed PG-Jimmy Joyce (2/$2, thru S81)"
+      ]
+    },
+    {
+      "seq": 102,
+      "batchId": "bmvtyasgx8zjhb",
+      "type": "signed",
+      "teams": [
+        "CGG"
+      ],
+      "lines": [
+        "Signed C-Kiri Camacho (1/$1, thru S80)"
+      ]
+    },
+    {
+      "seq": 103,
+      "batchId": "bmvtyig0peh4le",
+      "type": "signed",
+      "teams": [
+        "CP"
+      ],
+      "lines": [
+        "Signed PF-Callan Schwangau (2/$4, thru S81)"
+      ]
+    },
+    {
+      "seq": 104,
+      "batchId": "bmvtyig0peh4le",
+      "type": "released",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Released PF-Callan Schwangau (contract ended)"
+      ]
+    },
+    {
+      "seq": 105,
+      "batchId": "bmvtynoenope8a",
+      "type": "signed",
+      "teams": [
+        "SAS"
+      ],
+      "lines": [
+        "Signed SF-Griffin Correa (2/$4, thru S81)",
+        "Released SF-Duke Simons"
+      ]
+    },
+    {
+      "seq": 106,
+      "batchId": "bmvtynoenope8a",
+      "type": "released",
+      "teams": [
+        "CGG"
+      ],
+      "lines": [
+        "Released SF-Griffin Correa (contract ended)"
+      ]
+    },
+    {
+      "seq": 107,
+      "batchId": "bmvtyt8d3ta4hr",
+      "type": "signed",
+      "teams": [
+        "TEX"
+      ],
+      "lines": [
+        "Signed C-Ifa Fukui (1/$2, thru S80)"
+      ]
+    },
+    {
+      "seq": 108,
+      "batchId": "bmvtzcyox7f55r",
+      "type": "signed",
+      "teams": [
+        "PHX"
+      ],
+      "lines": [
+        "Signed SF-Isaiah Montclair (2/$2, thru S81)"
+      ]
+    },
+    {
+      "seq": 109,
+      "batchId": "bmvtziewqguf6b",
+      "type": "released",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "Released PF-Jimi Jackson"
+      ]
+    },
+    {
+      "seq": 110,
+      "batchId": "bmvtzl55njkdmh",
+      "type": "released",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Released SF-Xavier Rose"
+      ]
+    },
+    {
+      "seq": 111,
+      "batchId": "bmvtzqgclqmkgl",
+      "type": "signed",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Signed PF-Jimi Jackson (1/$1, thru S80)"
+      ]
+    },
+    {
+      "seq": 112,
+      "batchId": "bmvu09clykuhf2",
+      "type": "signed",
+      "teams": [
+        "DEN"
+      ],
+      "lines": [
+        "Signed PG-Willy Jacobs (1/$1, thru S80)"
+      ]
+    },
+    {
+      "seq": 113,
+      "batchId": "bmvu0bo0g1lz40",
+      "type": "cut",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Cut SF-Alexei Romano"
+      ]
+    },
+    {
+      "seq": 114,
+      "batchId": "bmvu0flt5ijiwa",
+      "type": "signed",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "Signed SF-Alexei Romano (3/$4, thru S82)",
+        "Released SF-Lance Durbin"
+      ]
+    },
+    {
+      "seq": 115,
+      "batchId": "bmvu0l2ga0nll8",
+      "type": "signed",
+      "teams": [
+        "VAN"
+      ],
+      "lines": [
+        "Signed SF-Xavier Rose (2/$2, thru S81)"
+      ]
+    },
+    {
+      "seq": 116,
+      "batchId": "bmvu0lm2qojfqj",
+      "type": "signed",
+      "teams": [
+        "SEA"
+      ],
+      "lines": [
+        "Signed C-Anthony Wells (2/$2, thru S81)"
+      ]
+    },
+    {
+      "seq": 117,
+      "batchId": "bmvu10lc9rqeh1",
+      "type": "extended",
+      "teams": [
+        "NO"
+      ],
+      "lines": [
+        "Extended SF-Byron Oden: contract end S80→S81, amount $8→$8 (2/$8)"
+      ]
+    },
+    {
+      "seq": 118,
+      "batchId": "bmvu10y7mgldwl",
+      "type": "extended",
+      "teams": [
+        "OAK"
+      ],
+      "lines": [
+        "Extended PF-Harper Holland: contract end S80→S81, amount $8→$8 (2/$8)"
+      ]
+    },
+    {
+      "seq": 119,
+      "batchId": "bmvu11561kho5f",
+      "type": "extended",
+      "teams": [
+        "HON"
+      ],
+      "lines": [
+        "Extended SG-Reagan Butler: contract end S80→S83, amount $8→$8 (4/$8)"
+      ]
+    },
+    {
+      "seq": 120,
+      "batchId": "bmvu11h648mkpf",
+      "type": "extended",
+      "teams": [
+        "CAR"
+      ],
+      "lines": [
+        "Extended SF-Louis Pepperdash III: contract end S80→S84, amount $7→$8 (5/$8)"
+      ]
+    },
+    {
+      "seq": 121,
+      "batchId": "bmvu16plpezc1f",
+      "type": "extended",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Extended PG-Gabriel Greenwood: contract end S80→S83, amount $8→$8 (4/$8)"
+      ]
+    },
+    {
+      "seq": 122,
+      "batchId": "bmvu16uhwvz7h9",
+      "type": "extended",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Extended C-Olufemi Cisneros: contract end S80→S84, amount $8→$8 (5/$8)"
+      ]
+    },
+    {
+      "seq": 123,
+      "batchId": "bmvu1h9pmw1wjr",
+      "type": "extended",
+      "teams": [
+        "TEX"
+      ],
+      "lines": [
+        "Extended PG-Elliott Sparrow: contract end S80→S81, amount $8→$8 (2/$8)"
+      ]
+    },
+    {
+      "seq": 124,
+      "batchId": "bmvu1hzzgyukmw",
+      "type": "cut",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Cut SG-Carmelo Brunnell"
+      ]
+    },
+    {
+      "seq": 125,
+      "batchId": "bmvu1iawmjvd8c",
+      "type": "extended",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Extended C-Adonis Wonder: contract end S80→S84, amount $6→$8 (5/$8)"
+      ]
+    },
+    {
+      "seq": 126,
+      "batchId": "bmvu1ipltensb1",
+      "type": "extended",
+      "teams": [
+        "CGG"
+      ],
+      "lines": [
+        "Extended PF-Kwame Koppel: contract end S80→S81, amount $8→$7 (2/$7)"
+      ]
+    },
+    {
+      "seq": 127,
+      "batchId": "bmvu1j1zhi196o",
+      "type": "extended",
+      "teams": [
+        "CGG"
+      ],
+      "lines": [
+        "Extended PG-Ramiro Mateus: contract end S80→S83, amount $7→$7 (4/$7)"
+      ]
+    },
+    {
+      "seq": 128,
+      "batchId": "bmvu1jeer8ookt",
+      "type": "extended",
+      "teams": [
+        "MON"
+      ],
+      "lines": [
+        "Extended SG-Justin Green: contract end S80→S82, amount $7→$7 (3/$7)"
+      ]
+    },
+    {
+      "seq": 129,
+      "batchId": "bmvu1jp5vkuphi",
+      "type": "extended",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Extended SF-D'Andre Holiday: contract end S80→S81, amount $6→$6 (2/$6)"
+      ]
+    },
+    {
+      "seq": 130,
+      "batchId": "bmvu1o1v7f8ypj",
+      "type": "extended",
+      "teams": [
+        "DET"
+      ],
+      "lines": [
+        "Extended PF-Andre Robinson: contract end S80→S81, amount $3→$2 (2/$2)"
+      ]
+    },
+    {
+      "seq": 131,
+      "batchId": "bmvu1o78bweicv",
+      "type": "extended",
+      "teams": [
+        "DET"
+      ],
+      "lines": [
+        "Extended PG-Donovan Brooks: contract end S80→S82, amount $5→$6 (3/$6)"
+      ]
+    },
+    {
+      "seq": 132,
+      "batchId": "bmvu1olpq2nybv",
+      "type": "extended",
+      "teams": [
+        "MON"
+      ],
+      "lines": [
+        "Extended PG-Milo Lawrenz: contract end S80→S82, amount $2→$5 (3/$5)"
+      ]
+    },
+    {
+      "seq": 133,
+      "batchId": "bmvu1p983etglo",
+      "type": "extended",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Extended SG-Jalen St.Clair: contract end S80→S82, amount $2→$5 (3/$5)"
+      ]
+    },
+    {
+      "seq": 134,
+      "batchId": "bmvu1psoqjpaql",
+      "type": "extended",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Extended PF-Daelin Strickland: contract end S80→S82, amount $2→$4 (3/$4)"
+      ]
+    },
+    {
+      "seq": 135,
+      "batchId": "bmvu1qit5mxbun",
+      "type": "extended",
+      "teams": [
+        "DCB"
+      ],
+      "lines": [
+        "Extended PG-Kyler Crest: contract end S80→S81, amount $5→$5 (2/$5)"
+      ]
+    },
+    {
+      "seq": 136,
+      "batchId": "bmvu1sfdg2d348",
+      "type": "extended",
+      "teams": [
+        "ATL"
+      ],
+      "lines": [
+        "Extended SF-Jaden Stokes: contract end S80→S81, amount $4→$4 (2/$4)"
+      ]
+    },
+    {
+      "seq": 137,
+      "batchId": "bmvu1slb4oqte9",
+      "type": "extended",
+      "teams": [
+        "DEN"
+      ],
+      "lines": [
+        "Extended PF-Ronan Langford: contract end S80→S82, amount $6→$6 (3/$6)"
+      ]
+    },
+    {
+      "seq": 138,
+      "batchId": "bmvu1srj5uihto",
+      "type": "extended",
+      "teams": [
+        "OV"
+      ],
+      "lines": [
+        "Extended PF-Jamar Williams: contract end S80→S81, amount $5→$5 (2/$5)"
+      ]
+    },
+    {
+      "seq": 139,
+      "batchId": "bmvu1syetm3x6x",
+      "type": "extended",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Extended PF-Romello Cain: contract end S80→S81, amount $5→$5 (2/$5)"
+      ]
+    },
+    {
+      "seq": 140,
+      "batchId": "bmwl9bc5ikz47u",
+      "type": "signed",
+      "teams": [
+        "MW"
+      ],
+      "lines": [
+        "Signed SG-Carmelo Brunnell (1/$2, thru S80)"
+      ]
+    },
+    {
+      "seq": 141,
+      "batchId": "bmwxsie1z2wjhq",
+      "type": "extended",
+      "teams": [
+        "VAN"
+      ],
+      "lines": [
+        "Extended SG-Mani Varela: contract end S80→S81, amount $6→$6 (2/$6)"
+      ]
+    },
+    {
+      "seq": 142,
+      "batchId": "bmwxsl2x05u3c0",
+      "type": "extended",
+      "teams": [
+        "LA"
+      ],
+      "lines": [
+        "Extended PG-Bryce Wilson: contract end S80→S81, amount $5→$5 (2/$5)"
+      ]
+    },
+    {
+      "seq": 143,
+      "batchId": "bmwxsllfwoq974",
+      "type": "extended",
+      "teams": [
+        "SAS"
+      ],
+      "lines": [
+        "Extended SG-Riley Shannon: contract end S80→S81, amount $7→$6 (2/$6)"
+      ]
+    },
+    {
+      "seq": 144,
+      "batchId": "bmwxsstsyaspnq",
+      "type": "extended",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Extended C-Grant Ogden: contract end S80→S82, amount $6→$6 (3/$6)"
+      ]
+    },
+    {
+      "seq": 145,
+      "batchId": "bmwxsu749m73wg",
+      "type": "extended",
+      "teams": [
+        "OAK"
+      ],
+      "lines": [
+        "Extended SG-Kai Switzer: contract end S80→S81, amount $6→$5 (2/$5)"
+      ]
+    },
+    {
+      "seq": 146,
+      "batchId": "bmwxsucivjynr6",
+      "type": "extended",
+      "teams": [
+        "STL"
+      ],
+      "lines": [
+        "Extended PG-Amari Phillips: contract end S80→S81, amount $5→$5 (2/$5)"
+      ]
+    },
+    {
+      "seq": 147,
+      "batchId": "bmwxsvput0kg8g",
+      "type": "extended",
+      "teams": [
+        "FLO"
+      ],
+      "lines": [
+        "Extended SF-AJ Krause: contract end S80→S82, amount $6→$5 (3/$5)"
+      ]
+    },
+    {
+      "seq": 148,
+      "batchId": "bmwxsvvnu1x7h4",
+      "type": "extended",
+      "teams": [
+        "HON"
+      ],
+      "lines": [
+        "Extended SF-Makenzie Bell: contract end S80→S81, amount $6→$5 (2/$5)"
+      ]
+    },
+    {
+      "seq": 149,
+      "batchId": "bmwxsw3cc75oa8",
+      "type": "extended",
+      "teams": [
+        "NY"
+      ],
+      "lines": [
+        "Extended C-Nikolas Papadopoulos: contract end S80→S82, amount $5→$5 (3/$5)"
+      ]
+    },
+    {
+      "seq": 150,
+      "batchId": "bmwxti807syjfc",
+      "type": "extended",
+      "teams": [
+        "LAL"
+      ],
+      "lines": [
+        "Extended SF-Uriel Murray: contract end S80→S81, amount $4→$5 (2/$5)"
+      ]
+    },
+    {
+      "seq": 151,
+      "batchId": "bmwxtkuf7rh3i1",
+      "type": "extended",
+      "teams": [
+        "DCB"
+      ],
+      "lines": [
+        "Extended SF-Keon Whitfield: contract end S80→S81, amount $6→$5 (2/$5)"
+      ]
+    },
+    {
+      "seq": 152,
+      "batchId": "bmwxtlpcld5scu",
+      "type": "extended",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "Extended PG-Wesley Knight: contract end S80→S81, amount $5→$5 (2/$5)"
+      ]
+    },
+    {
+      "seq": 153,
+      "batchId": "bmwxtm3evcyffi",
+      "type": "extended",
+      "teams": [
+        "PHI"
+      ],
+      "lines": [
+        "Extended PG-Beau Riley: contract end S80→S81, amount $2→$4 (2/$4)"
+      ]
+    },
+    {
+      "seq": 154,
+      "batchId": "bmwxtn60xh443i",
+      "type": "extended",
+      "teams": [
+        "PHI"
+      ],
+      "lines": [
+        "Extended SF-Emmanuel Green: contract end S80→S81, amount $2→$3 (2/$3)"
+      ]
+    },
+    {
+      "seq": 155,
+      "batchId": "bmwxtnbp0hrpn9",
+      "type": "extended",
+      "teams": [
+        "LAL"
+      ],
+      "lines": [
+        "Extended C-Landon Love: contract end S80→S81, amount $2→$3 (2/$3)"
+      ]
+    },
+    {
+      "seq": 156,
+      "batchId": "bmwxtol7o5yjte",
+      "type": "signed",
+      "teams": [
+        "CGG"
+      ],
+      "lines": [
+        "Signed SF-Duke Simons (1/$2, thru S80)"
+      ]
+    },
+    {
+      "seq": 157,
+      "batchId": "bmwxu8lxcyadv3",
+      "type": "signed",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Signed SF-Koa'e Keano (1/$1, thru S80)"
+      ]
+    },
+    {
+      "seq": 158,
+      "batchId": "bmwxue3ewpaz3g",
+      "type": "signed",
+      "teams": [
+        "TEX"
+      ],
+      "lines": [
+        "Signed SF-Caleb Ingram (1/$1, thru S80)"
+      ]
+    },
+    {
+      "seq": 159,
+      "batchId": "bmwxuiu3y7flxq",
+      "type": "signed",
+      "teams": [
+        "BOS"
+      ],
+      "lines": [
+        "Signed PF-Darien Shepherd (1/$1, thru S80)"
+      ]
+    },
+    {
+      "seq": 160,
+      "batchId": "bmwxujkxzjxomg",
+      "type": "signed",
+      "teams": [
+        "SAS"
+      ],
+      "lines": [
+        "Signed PF-Dalen Tucker (1/$1, thru S80)"
+      ]
+    },
+    {
+      "seq": 161,
+      "batchId": "bmwxume2zmy8mm",
+      "type": "signed",
+      "teams": [
+        "HON"
+      ],
+      "lines": [
+        "Signed C-Dennis Lofton (1/$1, thru S80)"
+      ]
+    },
+    {
+      "seq": 162,
+      "batchId": "bmwy1cxd79uead",
+      "type": "signed",
+      "teams": [
+        "CIN"
+      ],
+      "lines": [
+        "Signed PF-Youssef El-Sayed (1/$1, thru S80)"
+      ]
+    },
+    {
+      "seq": 163,
+      "batchId": "bmwy1dcrpw9c24",
+      "type": "fa-closed",
+      "teams": [],
+      "lines": [
+        "Free agency closed: 10 unsigned players moved to D2 Reserves"
+      ]
+    }
+  ]
+}

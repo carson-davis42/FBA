@@ -1,0 +1,1060 @@
+{
+  "league": "fbajc",
+  "season": 80,
+  "entries": [
+    {
+      "seq": 1,
+      "batchId": "bmvbb51c89gzxv",
+      "type": "adjust-age",
+      "teams": [],
+      "lines": [
+        "Class years move up: 84 Seniors enter the S80 draft, 166 unnamed Seniors leave, 0 commitments join their schools"
+      ]
+    },
+    {
+      "seq": 2,
+      "batchId": "bmvbbq8y3fbjv0",
+      "type": "declare",
+      "teams": [
+        "ARIZ"
+      ],
+      "lines": [
+        "Zain Moxy (So PG, Arizona) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 3,
+      "batchId": "bmvbbrut10x6zp",
+      "type": "portal",
+      "teams": [
+        "ALST"
+      ],
+      "lines": [
+        "Reggie Bannerman (Jr PG, 79) leaves Alabama State and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 4,
+      "batchId": "bmvbbry8elj4nn",
+      "type": "portal",
+      "teams": [
+        "AF"
+      ],
+      "lines": [
+        "Tunde Burns (So SG, 76) leaves Air Force and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 5,
+      "batchId": "bmvbcjxoch4jin",
+      "type": "declare",
+      "teams": [
+        "ARIZ"
+      ],
+      "lines": [
+        "Zain Moxy returns to Arizona"
+      ]
+    },
+    {
+      "seq": 6,
+      "batchId": "bmvbcxhse5ftvz",
+      "type": "declare",
+      "teams": [
+        "ARIZ"
+      ],
+      "lines": [
+        "Zain Moxy (Fr PG, Arizona) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 7,
+      "batchId": "bmvbcxrk794wht",
+      "type": "declare",
+      "teams": [
+        "ARIZ"
+      ],
+      "lines": [
+        "Aziel Vandenberg (Fr SF, Arizona) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 8,
+      "batchId": "bmvbcy9duh2tth",
+      "type": "portal",
+      "teams": [
+        "ARK"
+      ],
+      "lines": [
+        "Jayce Drexel (Fr SG, 87) leaves Arkansas and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 9,
+      "batchId": "bmvbcybqevvvxw",
+      "type": "portal",
+      "teams": [
+        "APB"
+      ],
+      "lines": [
+        "Tarik Obregon (Jr C, 83) leaves Arkansas Pine Bluff and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 10,
+      "batchId": "bmvbcynkyr0sd7",
+      "type": "portal",
+      "teams": [
+        "BRY"
+      ],
+      "lines": [
+        "Brandon Reese (Jr PG, 80) leaves Bryant and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 11,
+      "batchId": "bmvbcyqoqsb2w6",
+      "type": "portal",
+      "teams": [
+        "UB"
+      ],
+      "lines": [
+        "Elric Ueda (Fr SF, 76) leaves Butler and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 12,
+      "batchId": "bmvbcyv7e73vtt",
+      "type": "portal",
+      "teams": [
+        "CHI"
+      ],
+      "lines": [
+        "Kwesi Lawrence (Jr SF, 80) leaves Chicago and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 13,
+      "batchId": "bmvbd5qb81h3uh",
+      "type": "declare",
+      "teams": [
+        "ARIZ"
+      ],
+      "lines": [
+        "Aziel Vandenberg returns to Arizona"
+      ]
+    },
+    {
+      "seq": 14,
+      "batchId": "bmvbd5xhijsldz",
+      "type": "declare",
+      "teams": [
+        "ARIZ"
+      ],
+      "lines": [
+        "Aziel Vandenberg (Fr SF, Arizona) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 15,
+      "batchId": "bmvbd63q2q1n0b",
+      "type": "portal",
+      "teams": [
+        "COL"
+      ],
+      "lines": [
+        "Emil Sedlacek (Jr PG, 83) leaves Columbia and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 16,
+      "batchId": "bmvbd6h76zeoj3",
+      "type": "portal",
+      "teams": [
+        "CTN"
+      ],
+      "lines": [
+        "Ron Jerrick (Fr C, 83) leaves Creighton and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 17,
+      "batchId": "bmvbd6mv8hxlbv",
+      "type": "portal",
+      "teams": [
+        "DSU"
+      ],
+      "lines": [
+        "Malik Becker (So PF, 78) leaves Delaware State and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 18,
+      "batchId": "bmvbd6qc79wcsy",
+      "type": "declare",
+      "teams": [
+        "DUKE"
+      ],
+      "lines": [
+        "Mason Ellington (Jr PF, Duke) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 19,
+      "batchId": "bmvbd6w3atizyl",
+      "type": "portal",
+      "teams": [
+        "ECU"
+      ],
+      "lines": [
+        "Wiley Echeverria (So SG, 78) leaves East Carolina and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 20,
+      "batchId": "bmvbd6xmzs609n",
+      "type": "portal",
+      "teams": [
+        "FAU"
+      ],
+      "lines": [
+        "Connor Haskins (Fr SG, 78) leaves FAU and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 21,
+      "batchId": "bmvby4owp3tfr7",
+      "type": "portal",
+      "teams": [
+        "CTN"
+      ],
+      "lines": [
+        "Camden Sutter (So SG, 85) leaves Creighton and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 22,
+      "batchId": "bmvby61e2uvvfc",
+      "type": "portal",
+      "teams": [
+        "FRES"
+      ],
+      "lines": [
+        "Isaac Holt (So SG, 79) leaves Fresno State and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 23,
+      "batchId": "bmvby62kq3ii0s",
+      "type": "portal",
+      "teams": [
+        "FUR"
+      ],
+      "lines": [
+        "Garrett Simmons (So PG, 78) leaves Furman and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 24,
+      "batchId": "bmvby7bcay26n0",
+      "type": "portal",
+      "teams": [
+        "GTWN"
+      ],
+      "lines": [
+        "Jalen Knight (So PF, 82) leaves Georgetown and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 25,
+      "batchId": "bmvbycsh5g34el",
+      "type": "declare",
+      "teams": [
+        "GU"
+      ],
+      "lines": [
+        "Quinn McKinnon (Jr PG, Gonzaga) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 26,
+      "batchId": "bmvbyctr78iqqx",
+      "type": "declare",
+      "teams": [
+        "GU"
+      ],
+      "lines": [
+        "JJ Clarke (Fr SF, Gonzaga) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 27,
+      "batchId": "bmvbycwmxwupvv",
+      "type": "portal",
+      "teams": [
+        "GCU"
+      ],
+      "lines": [
+        "Tristan McBride (Jr C, 81) leaves Grand Canyon and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 28,
+      "batchId": "bmvbycyuxz6u15",
+      "type": "declare",
+      "teams": [
+        "UH"
+      ],
+      "lines": [
+        "Kellen Ogbu (Jr PG, Houston) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 29,
+      "batchId": "bmvbyd04ddclif",
+      "type": "declare",
+      "teams": [
+        "UH"
+      ],
+      "lines": [
+        "Kylor Ashbourne (Fr PF, Houston) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 30,
+      "batchId": "bmvbyd1a1gr9fx",
+      "type": "declare",
+      "teams": [
+        "UH"
+      ],
+      "lines": [
+        "Jaden Mahonee (Jr C, Houston) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 31,
+      "batchId": "bmvbyddcfexisz",
+      "type": "portal",
+      "teams": [
+        "IU"
+      ],
+      "lines": [
+        "Julian Kovacs (Jr C, 92) leaves Indiana and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 32,
+      "batchId": "bmvbydhv6jfrql",
+      "type": "portal",
+      "teams": [
+        "ISU"
+      ],
+      "lines": [
+        "Brayden Black (So C, 92) leaves Iowa State and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 33,
+      "batchId": "bmvbydo12puukx",
+      "type": "declare",
+      "teams": [
+        "KU"
+      ],
+      "lines": [
+        "Jonas Lindholm (Fr PG, Kansas) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 34,
+      "batchId": "bmvbydrqt1br5h",
+      "type": "portal",
+      "teams": [
+        "LIP"
+      ],
+      "lines": [
+        "Cameron Vail (Jr C, 78) leaves Lipscomb and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 35,
+      "batchId": "bmvbydszts1x4h",
+      "type": "portal",
+      "teams": [
+        "LONG"
+      ],
+      "lines": [
+        "Royal Hayes (So SG, 79) leaves Longwood and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 36,
+      "batchId": "bmvbydxdqcykso",
+      "type": "portal",
+      "teams": [
+        "LOU"
+      ],
+      "lines": [
+        "Shane Carson Jr (So SG, 81) leaves Louisville and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 37,
+      "batchId": "bmvbye4xf62u9p",
+      "type": "declare",
+      "teams": [
+        "LSU"
+      ],
+      "lines": [
+        "Mateo Quintero (Fr SF, LSU) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 38,
+      "batchId": "bmvbyel10a89t8",
+      "type": "declare",
+      "teams": [
+        "UM"
+      ],
+      "lines": [
+        "Julius Snow (Fr PG, Michigan) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 39,
+      "batchId": "bmvbyeloqjb4yi",
+      "type": "declare",
+      "teams": [
+        "UM"
+      ],
+      "lines": [
+        "Amare Thornhill (So C, Michigan) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 40,
+      "batchId": "bmvbyf5zsmm6jy",
+      "type": "declare",
+      "teams": [
+        "NEV"
+      ],
+      "lines": [
+        "Elias Beck (Jr PG, Nevada) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 41,
+      "batchId": "bmvbyf7zf2mk1c",
+      "type": "declare",
+      "teams": [
+        "NEV"
+      ],
+      "lines": [
+        "Akeem Navarro (Jr PF, Nevada) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 42,
+      "batchId": "bmvbyfaluitphj",
+      "type": "declare",
+      "teams": [
+        "UNC"
+      ],
+      "lines": [
+        "Kylan Whitemore (Fr SF, North Carolina) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 43,
+      "batchId": "bmvbyffsb3vinq",
+      "type": "portal",
+      "teams": [
+        "UNT"
+      ],
+      "lines": [
+        "Vidal Galloway (Jr C, 82) leaves North Texas and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 44,
+      "batchId": "bmvbyfxqd5l338",
+      "type": "declare",
+      "teams": [
+        "ORE"
+      ],
+      "lines": [
+        "Isaiah Montclair (So SF, Oregon) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 45,
+      "batchId": "bmvbyg3oc1eist",
+      "type": "declare",
+      "teams": [
+        "PITT"
+      ],
+      "lines": [
+        "Archie Foster Jr (Fr PG, Pitt) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 46,
+      "batchId": "bmvbyg48ycjvsu",
+      "type": "declare",
+      "teams": [
+        "PITT"
+      ],
+      "lines": [
+        "Kadeem Hollingsworth (So SF, Pitt) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 47,
+      "batchId": "bmvbyg7lzox7cb",
+      "type": "declare",
+      "teams": [
+        "PUR"
+      ],
+      "lines": [
+        "Brandon Kato (Jr C, Purdue) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 48,
+      "batchId": "bmvbyg9vnsbamo",
+      "type": "portal",
+      "teams": [
+        "RICE"
+      ],
+      "lines": [
+        "Ivo Yarber (Jr SG, 80) leaves Rice and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 49,
+      "batchId": "bmvbygaptbvmqr",
+      "type": "portal",
+      "teams": [
+        "SAM"
+      ],
+      "lines": [
+        "Daichi Barrett (So PF, 78) leaves Samford and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 50,
+      "batchId": "bmvbygni2a4bvr",
+      "type": "portal",
+      "teams": [
+        "SOU"
+      ],
+      "lines": [
+        "Wei Ellis (Jr PG, 80) leaves Southern and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 51,
+      "batchId": "bmvbygr6li18j4",
+      "type": "declare",
+      "teams": [
+        "STJOHNS"
+      ],
+      "lines": [
+        "Jaron Fields (Jr SF, St.John's) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 52,
+      "batchId": "bmvbyh8nk7z8rj",
+      "type": "declare",
+      "teams": [
+        "TENN"
+      ],
+      "lines": [
+        "Moussa Faye (Fr SG, Tennessee) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 53,
+      "batchId": "bmvbyhm7h3pvls",
+      "type": "declare",
+      "teams": [
+        "UCLA"
+      ],
+      "lines": [
+        "Miki Lawrenz (So PF, UCLA) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 54,
+      "batchId": "bmvbyhncbbg119",
+      "type": "declare",
+      "teams": [
+        "UCLA"
+      ],
+      "lines": [
+        "Zyon Merrick (Fr C, UCLA) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 55,
+      "batchId": "bmvbyi90ym375w",
+      "type": "portal",
+      "teams": [
+        "VCU"
+      ],
+      "lines": [
+        "Cedric Harmon (Jr C, 87) leaves VCU and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 56,
+      "batchId": "bmvbyibx44viy3",
+      "type": "declare",
+      "teams": [
+        "VIL"
+      ],
+      "lines": [
+        "Rylee Werner (Fr SG, Villanova) declares for the S80 draft"
+      ]
+    },
+    {
+      "seq": 57,
+      "batchId": "bmvbyiz4zgp35w",
+      "type": "portal",
+      "teams": [
+        "WIN"
+      ],
+      "lines": [
+        "Miles Palmer (Jr SF, 80) leaves Winthrop and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 58,
+      "batchId": "bmvbyizyjn8m9m",
+      "type": "portal",
+      "teams": [
+        "WOF"
+      ],
+      "lines": [
+        "Ronin Jennings (Jr SG, 80) leaves Wofford and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 59,
+      "batchId": "bmvbyj4iqjp9ww",
+      "type": "portal",
+      "teams": [
+        "XU"
+      ],
+      "lines": [
+        "Bram Ito (So PF, 79) leaves Xavier and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 60,
+      "batchId": "bmvbyj7su8zaa1",
+      "type": "portal",
+      "teams": [
+        "WYO"
+      ],
+      "lines": [
+        "Landon Stokes (Jr PG, 81) leaves Wyoming and enters the transfer portal"
+      ]
+    },
+    {
+      "seq": 61,
+      "batchId": "bmvbzw5u3l6yg6",
+      "type": "declare",
+      "teams": [
+        "TENN"
+      ],
+      "lines": [
+        "Moussa Faye returns to Tennessee"
+      ]
+    },
+    {
+      "seq": 62,
+      "batchId": "bmvbzxtm058hi6",
+      "type": "declare",
+      "teams": [
+        "UCLA"
+      ],
+      "lines": [
+        "Zyon Merrick returns to UCLA"
+      ]
+    },
+    {
+      "seq": 63,
+      "batchId": "bmvbzxxkbpptlg",
+      "type": "declare",
+      "teams": [
+        "UCLA"
+      ],
+      "lines": [
+        "Miki Lawrenz returns to UCLA"
+      ]
+    },
+    {
+      "seq": 64,
+      "batchId": "bmvbzy2me55kn9",
+      "type": "declare",
+      "teams": [
+        "NEV"
+      ],
+      "lines": [
+        "Akeem Navarro returns to Nevada"
+      ]
+    },
+    {
+      "seq": 65,
+      "batchId": "bmvbzyjjqj614o",
+      "type": "declare",
+      "teams": [
+        "LSU"
+      ],
+      "lines": [
+        "Mateo Quintero returns to LSU"
+      ]
+    },
+    {
+      "seq": 66,
+      "batchId": "bmvbzzh4pe13or",
+      "type": "declare",
+      "teams": [
+        "KU"
+      ],
+      "lines": [
+        "Jonas Lindholm returns to Kansas"
+      ]
+    },
+    {
+      "seq": 67,
+      "batchId": "bmvc04reuwgov8",
+      "type": "declare",
+      "teams": [
+        "GU"
+      ],
+      "lines": [
+        "Quinn McKinnon returns to Gonzaga"
+      ]
+    },
+    {
+      "seq": 68,
+      "batchId": "bmvc069s4rtf7j",
+      "type": "declare",
+      "teams": [
+        "NEV"
+      ],
+      "lines": [
+        "Elias Beck returns to Nevada"
+      ]
+    },
+    {
+      "seq": 69,
+      "batchId": "bmvc07ck6ja3bu",
+      "type": "declare",
+      "teams": [
+        "PITT"
+      ],
+      "lines": [
+        "Archie Foster Jr returns to Pitt"
+      ]
+    },
+    {
+      "seq": 70,
+      "batchId": "bmvc07oy04kei7",
+      "type": "declare",
+      "teams": [
+        "UM"
+      ],
+      "lines": [
+        "Julius Snow returns to Michigan"
+      ]
+    },
+    {
+      "seq": 71,
+      "batchId": "bmvc07zk30gllv",
+      "type": "declare",
+      "teams": [
+        "PITT"
+      ],
+      "lines": [
+        "Kadeem Hollingsworth returns to Pitt"
+      ]
+    },
+    {
+      "seq": 72,
+      "batchId": "bmvc082k7dq187",
+      "type": "portal",
+      "teams": [
+        "STJOHNS"
+      ],
+      "lines": [
+        "Jaron Fields (Jr SF, 93) leaves the draft and enters the transfer portal from St.John's"
+      ]
+    },
+    {
+      "seq": 73,
+      "batchId": "bmvc08hmwcnpnp",
+      "type": "declare",
+      "teams": [
+        "DUKE"
+      ],
+      "lines": [
+        "Mason Ellington returns to Duke"
+      ]
+    },
+    {
+      "seq": 74,
+      "batchId": "bmvc08m4fg1u56",
+      "type": "declare",
+      "teams": [
+        "PUR"
+      ],
+      "lines": [
+        "Brandon Kato returns to Purdue"
+      ]
+    },
+    {
+      "seq": 75,
+      "batchId": "bmvfci4enruyhi",
+      "type": "commit",
+      "teams": [
+        "AUB"
+      ],
+      "lines": [
+        "Rocco Venturi (5★ PF) commits to Auburn"
+      ]
+    },
+    {
+      "seq": 76,
+      "batchId": "bmvfcikeyw65ou",
+      "type": "commit",
+      "teams": [
+        "OU"
+      ],
+      "lines": [
+        "Amadou Sylla (5★ SF) commits to Oklahoma"
+      ]
+    },
+    {
+      "seq": 77,
+      "batchId": "bmvfcj7twhj1t4",
+      "type": "commit",
+      "teams": [
+        "UH"
+      ],
+      "lines": [
+        "Ty Windham (5★ PG) commits to Houston"
+      ]
+    },
+    {
+      "seq": 78,
+      "batchId": "bmvfcju3vlcsmo",
+      "type": "commit",
+      "teams": [
+        "UK"
+      ],
+      "lines": [
+        "Cormac Delaney (5★ SG) commits to Kentucky"
+      ]
+    },
+    {
+      "seq": 79,
+      "batchId": "bmvfck4a4lyu14",
+      "type": "commit",
+      "teams": [
+        "PUR"
+      ],
+      "lines": [
+        "Brandt Kowalczyk (5★ PF) commits to Purdue"
+      ]
+    },
+    {
+      "seq": 80,
+      "batchId": "bmvfcl5x7iz4lg",
+      "type": "commit",
+      "teams": [
+        "UM"
+      ],
+      "lines": [
+        "Colton Ridgeway (5★ C) commits to Michigan"
+      ]
+    },
+    {
+      "seq": 81,
+      "batchId": "bmvfcm6slmvv4q",
+      "type": "commit",
+      "teams": [
+        "VIL"
+      ],
+      "lines": [
+        "Jaron Fields (Sr SF, transfer from St.John's) commits to Villanova"
+      ]
+    },
+    {
+      "seq": 82,
+      "batchId": "bmvfcmkyszdtne",
+      "type": "commit",
+      "teams": [
+        "VIL"
+      ],
+      "lines": [
+        "Jaron Fields decommits from Villanova"
+      ]
+    },
+    {
+      "seq": 83,
+      "batchId": "bmvfco9l035cfo",
+      "type": "portal",
+      "teams": [
+        "KU"
+      ],
+      "lines": [
+        "Zane Jernigan (Sr C, 81) enters the transfer portal from Kansas"
+      ]
+    },
+    {
+      "seq": 84,
+      "batchId": "bmvfco9l035cfo",
+      "type": "commit",
+      "teams": [
+        "KU"
+      ],
+      "lines": [
+        "Owen Russell (5★ C) commits to Kansas"
+      ]
+    },
+    {
+      "seq": 85,
+      "batchId": "bmvfcokvn3djf6",
+      "type": "portal",
+      "teams": [
+        "UNC"
+      ],
+      "lines": [
+        "Kye Houston (Sr PG, 80) enters the transfer portal from North Carolina"
+      ]
+    },
+    {
+      "seq": 86,
+      "batchId": "bmvfcokvn3djf6",
+      "type": "commit",
+      "teams": [
+        "UNC"
+      ],
+      "lines": [
+        "Tobias Cole (5★ PG) commits to North Carolina"
+      ]
+    },
+    {
+      "seq": 87,
+      "batchId": "bmvfd784zwib4f",
+      "type": "commit",
+      "teams": [
+        "UK"
+      ],
+      "lines": [
+        "Keon Whitlock (5★ SF) commits to Kentucky"
+      ]
+    },
+    {
+      "seq": 88,
+      "batchId": "bmvfd7ty75giry",
+      "type": "portal",
+      "teams": [
+        "BYU"
+      ],
+      "lines": [
+        "Reed Brooks (Sr PG, 87) enters the transfer portal from BYU"
+      ]
+    },
+    {
+      "seq": 89,
+      "batchId": "bmvfd7ty75giry",
+      "type": "commit",
+      "teams": [
+        "BYU"
+      ],
+      "lines": [
+        "Ezekiel Strand (5★ PG) commits to BYU"
+      ]
+    },
+    {
+      "seq": 90,
+      "batchId": "bmvfd9w183z79f",
+      "type": "commit",
+      "teams": [
+        "PITT"
+      ],
+      "lines": [
+        "Ron Jerrick (So C, transfer from Creighton) commits to Pitt"
+      ]
+    },
+    {
+      "seq": 91,
+      "batchId": "bmvfdadwl898sz",
+      "type": "commit",
+      "teams": [
+        "MQ"
+      ],
+      "lines": [
+        "Emil Sedlacek (Sr PG, transfer from Columbia) commits to Marquette"
+      ]
+    },
+    {
+      "seq": 92,
+      "batchId": "bmvfdbglkmk1wu",
+      "type": "commit",
+      "teams": [
+        "UK"
+      ],
+      "lines": [
+        "Brayden Black (Jr C, transfer from Iowa State) commits to Kentucky"
+      ]
+    },
+    {
+      "seq": 93,
+      "batchId": "bmvfdc4nn8kqta",
+      "type": "commit",
+      "teams": [
+        "KU"
+      ],
+      "lines": [
+        "Jaron Fields (Sr SF, transfer from St.John's) commits to Kansas"
+      ]
+    },
+    {
+      "seq": 94,
+      "batchId": "bmvfdcd9nzyucp",
+      "type": "commit",
+      "teams": [
+        "GU"
+      ],
+      "lines": [
+        "Julian Kovacs (Sr C, transfer from Indiana) commits to Gonzaga"
+      ]
+    },
+    {
+      "seq": 95,
+      "batchId": "bmvfddd7hy2teo",
+      "type": "commit",
+      "teams": [
+        "UH"
+      ],
+      "lines": [
+        "Cedric Harmon (Sr C, transfer from VCU) commits to Houston"
+      ]
+    },
+    {
+      "seq": 96,
+      "batchId": "bmvsu7ko9h4vr5",
+      "type": "declare",
+      "teams": [
+        "GU"
+      ],
+      "lines": [
+        "JJ Clarke returns to Gonzaga"
+      ]
+    }
+  ]
+}

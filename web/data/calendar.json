@@ -1,5 +1,5 @@
 {
-  "season": 79,
+  "season": 80,
   "steps": [
     {
       "id": "adjust-age",
@@ -18,8 +18,24 @@
       "done": true
     },
     {
-      "id": "s79-fba-draft",
-      "label": "S79 FBA Draft",
+      "id": "s80-fba-draft",
+      "label": "S80 FBA Draft",
+      "kind": "offseason",
+      "league": null,
+      "sub": false,
+      "done": true
+    },
+    {
+      "id": "s80-rate-rookies",
+      "label": "Rate S80 Rookies",
+      "kind": "offseason",
+      "league": null,
+      "sub": false,
+      "done": true
+    },
+    {
+      "id": "s80-expansion-draft",
+      "label": "S80 Expansion Draft",
       "kind": "offseason",
       "league": null,
       "sub": false,
@@ -39,7 +55,7 @@
       "kind": "offseason",
       "league": null,
       "sub": true,
-      "done": true
+      "done": false
     },
     {
       "id": "fbad2-draft",
@@ -47,23 +63,23 @@
       "kind": "offseason",
       "league": null,
       "sub": true,
-      "done": true
+      "done": false
     },
     {
-      "id": "create-s80-class",
-      "label": "Create S80 Class",
+      "id": "create-s81-class",
+      "label": "Create S81 Class",
       "kind": "offseason",
       "league": null,
       "sub": false,
-      "done": true
+      "done": false
     },
     {
-      "id": "make-s79-schedules",
-      "label": "Make S79 Schedules",
+      "id": "make-s80-schedules",
+      "label": "Make S80 Schedules",
       "kind": "offseason",
       "league": null,
       "sub": false,
-      "done": true
+      "done": false
     },
     {
       "id": "fba-d2",
@@ -71,7 +87,7 @@
       "kind": "league",
       "league": "fbad2",
       "sub": false,
-      "done": true
+      "done": false
     },
     {
       "id": "fba",
@@ -79,27 +95,19 @@
       "kind": "league",
       "league": "fba",
       "sub": false,
-      "done": true
+      "done": false
     },
     {
-      "id": "s80-add-expansion-teams",
-      "label": "Add S80 Expansion Teams",
-      "kind": "offseason",
-      "league": null,
-      "sub": false,
-      "done": true
-    },
-    {
-      "id": "s80-fba-draft-lottery",
-      "label": "S80 FBA Draft Lottery",
+      "id": "s81-fba-draft-lottery",
+      "label": "S81 FBA Draft Lottery",
       "kind": "offseason",
       "league": null,
       "sub": false,
       "done": false
     },
     {
-      "id": "s79-qualifying",
-      "label": "S79 Qualifying",
+      "id": "s80-world-cup",
+      "label": "S80 World Cup",
       "kind": "league",
       "league": "fbawc",
       "sub": false,
@@ -122,8 +130,8 @@
       "done": false
     },
     {
-      "id": "rank-s80-class",
-      "label": "Rank S80 Class",
+      "id": "rank-s81-class",
+      "label": "Rank S81 Class",
       "kind": "offseason",
       "league": null,
       "sub": false,
@@ -146,5 +154,5 @@
       "done": false
     }
   ],
-  "startedAt": "2026-09-25T12:00:00Z"
+  "startedAt": "2026-10-16T05:26:36.852Z"
 }

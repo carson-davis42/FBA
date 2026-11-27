@@ -1,6 +1,7 @@
 {
   "league": "fba",
   "season": 79,
+  "locked": true,
   "entries": [
     {
       "seq": 1,
@@ -4237,6 +4238,50 @@
       ],
       "lines": [
         "Philly Phantoms and Team 32 join the league in S80"
+      ]
+    },
+    {
+      "seq": 383,
+      "batchId": "bmv67bp95qlsk2",
+      "type": "lottery",
+      "teams": [
+        "VEG"
+      ],
+      "lines": [
+        "S80 Draft Lottery: VEG wins the first pick"
+      ]
+    },
+    {
+      "seq": 384,
+      "batchId": "bmv89daupjghtr",
+      "type": "retired",
+      "teams": [
+        "CIN",
+        "HON",
+        "MW",
+        "PHX",
+        "SAS",
+        "SEA",
+        "VEG"
+      ],
+      "lines": [
+        "Retired SF-Kobe Crawford (CIN, age 32)",
+        "Retired C-Jai Li (HON, age 32)",
+        "Retired PG-Kyron Smart (MW, age 32)",
+        "Retired PF-Hakim Cleveland (PHX, age 32)",
+        "Retired PF-Ameer Allen (SAS, age 32)",
+        "Retired PF-Morgan Meyer (SEA, age 32)",
+        "Retired SF-Clarke Ewing (VEG, age 32)",
+        "Retired C-Clay Pitts (VEG, age 32)"
+      ]
+    },
+    {
+      "seq": 385,
+      "batchId": "bmv89q49xradib",
+      "type": "hall-of-fame",
+      "teams": [],
+      "lines": [
+        "S79 Hall of Fame class: Tristin Kidd, Ameer Allen, Hakim Cleveland"
       ]
     }
   ]

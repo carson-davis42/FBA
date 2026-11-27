@@ -88,6 +88,7 @@ import { QualifyingPage } from '../wc/QualifyingPage';
 import { RankingsPage as WcRankingsPage } from '../wc/RankingsPage';
 import { WorldCupPage } from '../wc/WorldCupPage';
 import { SiteHeader } from './SiteHeader';
+import { useScrollMemory } from './useScrollMemory';
 
 /** Built once, so the page wrapper can key on the matched route pattern. */
 const ROUTES = createRoutesFromElements(
@@ -186,6 +187,7 @@ export function Layout() {
   // Team colours default to the current season's, so they flip with the logo the day the season starts. Set while rendering so the pages below see it.
   const meta = useDoc<MetaFile>('meta.json');
   if (meta.data) setCurrentSeason(meta.data.currentSeason);
+  useScrollMemory();
   const page = useRoutes(ROUTES, location);
   // Key on the route pattern, not the pathname: the page fades in when you move to another page,
   // but a param-only change (another season, team or game) keeps the page mounted and its state.

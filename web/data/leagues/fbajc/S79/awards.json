@@ -1,0 +1,186 @@
+{
+  "league": "fbajc",
+  "season": 79,
+  "locked": true,
+  "national": [
+    {
+      "award": "POY",
+      "playerId": "p00740"
+    },
+    {
+      "award": "FOY",
+      "playerId": "p02361"
+    },
+    {
+      "award": "GOY",
+      "playerId": "p01410"
+    },
+    {
+      "award": "FWD",
+      "playerId": "p00740"
+    },
+    {
+      "award": "COY",
+      "playerId": "p00498"
+    },
+    {
+      "award": "DPOY",
+      "playerId": "p02373"
+    }
+  ],
+  "conference": [
+    {
+      "conf": "B12",
+      "playerId": "p00498"
+    },
+    {
+      "conf": "ACC",
+      "playerId": "p02361"
+    },
+    {
+      "conf": "BE",
+      "playerId": "p02364"
+    },
+    {
+      "conf": "SEC",
+      "playerId": "p00694"
+    },
+    {
+      "conf": "B10",
+      "playerId": "p00740"
+    },
+    {
+      "conf": "AAC",
+      "playerId": "p00832"
+    },
+    {
+      "conf": "P12",
+      "playerId": "p00852"
+    },
+    {
+      "conf": "A10",
+      "playerId": "p00930"
+    },
+    {
+      "conf": "PAT",
+      "playerId": "p00982"
+    },
+    {
+      "conf": "COL",
+      "playerId": "p01042"
+    },
+    {
+      "conf": "HOR",
+      "playerId": "p01109"
+    },
+    {
+      "conf": "IVY",
+      "playerId": "p01173"
+    },
+    {
+      "conf": "SOCON",
+      "playerId": "p01230"
+    },
+    {
+      "conf": "SUN",
+      "playerId": "p01265"
+    },
+    {
+      "conf": "SKY",
+      "playerId": "p01348"
+    },
+    {
+      "conf": "MWC",
+      "playerId": "p01410"
+    },
+    {
+      "conf": "OVC",
+      "playerId": "p01466"
+    },
+    {
+      "conf": "NEC",
+      "playerId": "p01539"
+    }
+  ],
+  "allAmerican": [
+    {
+      "team": 1,
+      "slots": [
+        {
+          "slot": "G",
+          "playerId": "p01410"
+        },
+        {
+          "slot": "F",
+          "playerId": "p00740"
+        },
+        {
+          "slot": "C",
+          "playerId": "p00498"
+        },
+        {
+          "slot": "ANY",
+          "playerId": "p00495"
+        },
+        {
+          "slot": "ANY",
+          "playerId": "p02361"
+        }
+      ]
+    },
+    {
+      "team": 2,
+      "slots": [
+        {
+          "slot": "G",
+          "playerId": "p00852"
+        },
+        {
+          "slot": "F",
+          "playerId": "p00700"
+        },
+        {
+          "slot": "C",
+          "playerId": "p00856"
+        },
+        {
+          "slot": "ANY",
+          "playerId": "p00694"
+        },
+        {
+          "slot": "ANY",
+          "playerId": "p02364"
+        }
+      ]
+    },
+    {
+      "team": 3,
+      "slots": [
+        {
+          "slot": "G",
+          "playerId": "p02362"
+        },
+        {
+          "slot": "F",
+          "playerId": "p00875"
+        },
+        {
+          "slot": "C",
+          "playerId": "p00930"
+        },
+        {
+          "slot": "ANY",
+          "playerId": "p00741"
+        },
+        {
+          "slot": "ANY",
+          "playerId": "p00832"
+        }
+      ]
+    }
+  ],
+  "mvp": {
+    "mm": "p00495",
+    "nit": "p00565"
+  }
+}

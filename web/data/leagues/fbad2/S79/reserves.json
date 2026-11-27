@@ -1,7 +1,7 @@
 {
   "league": "fbad2",
   "season": 79,
-  "locked": false,
+  "locked": true,
   "players": [
     {
       "playerId": "p01780",
@@ -100,12 +100,6 @@
       "rating": null
     },
     {
-      "playerId": "p01796",
-      "position": "PG",
-      "age": 32,
-      "rating": null
-    },
-    {
       "playerId": "p01797",
       "position": "PG",
       "age": 31,
@@ -157,12 +151,6 @@
       "playerId": "p01805",
       "position": "PG",
       "age": 25,
-      "rating": null
-    },
-    {
-      "playerId": "p01806",
-      "position": "PG",
-      "age": 32,
       "rating": null
     },
     {
@@ -289,12 +277,6 @@
       "playerId": "p01827",
       "position": "SG",
       "age": 29,
-      "rating": null
-    },
-    {
-      "playerId": "p01828",
-      "position": "SG",
-      "age": 32,
       "rating": null
     },
     {
@@ -595,12 +577,6 @@
       "playerId": "p01879",
       "position": "PF",
       "age": 31,
-      "rating": null
-    },
-    {
-      "playerId": "p01880",
-      "position": "PF",
-      "age": 32,
       "rating": null
     },
     {
@@ -1254,12 +1230,6 @@
       "playerId": "p00299",
       "position": "PF",
       "age": 26,
-      "rating": null
-    },
-    {
-      "playerId": "p00325",
-      "position": "PG",
-      "age": 32,
       "rating": null
     },
     {

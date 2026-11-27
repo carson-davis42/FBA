@@ -1,0 +1,1764 @@
+{
+  "league": "fbad2",
+  "season": 80,
+  "locked": false,
+  "players": [
+    {
+      "playerId": "p01780",
+      "position": "PG",
+      "age": 31,
+      "rating": null
+    },
+    {
+      "playerId": "p01781",
+      "position": "PG",
+      "age": 29,
+      "rating": null
+    },
+    {
+      "playerId": "p01782",
+      "position": "PG",
+      "age": 30,
+      "rating": null
+    },
+    {
+      "playerId": "p01783",
+      "position": "PG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01784",
+      "position": "PG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01785",
+      "position": "PG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01786",
+      "position": "PG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01787",
+      "position": "PG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01788",
+      "position": "PG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01789",
+      "position": "PG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01790",
+      "position": "PG",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01791",
+      "position": "PG",
+      "age": 30,
+      "rating": null
+    },
+    {
+      "playerId": "p01792",
+      "position": "PG",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01793",
+      "position": "PG",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01794",
+      "position": "PG",
+      "age": 28,
+      "rating": null
+    },
+    {
+      "playerId": "p01795",
+      "position": "PG",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01797",
+      "position": "PG",
+      "age": 32,
+      "rating": null
+    },
+    {
+      "playerId": "p01798",
+      "position": "PG",
+      "age": 31,
+      "rating": null
+    },
+    {
+      "playerId": "p01799",
+      "position": "PG",
+      "age": 29,
+      "rating": null
+    },
+    {
+      "playerId": "p01800",
+      "position": "PG",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01801",
+      "position": "PG",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01802",
+      "position": "PG",
+      "age": 32,
+      "rating": null
+    },
+    {
+      "playerId": "p01803",
+      "position": "PG",
+      "age": 31,
+      "rating": null
+    },
+    {
+      "playerId": "p01804",
+      "position": "PG",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01805",
+      "position": "PG",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01807",
+      "position": "PG",
+      "age": 27,
+      "rating": null
+    },
+    {
+      "playerId": "p01808",
+      "position": "PG",
+      "age": 28,
+      "rating": null
+    },
+    {
+      "playerId": "p01809",
+      "position": "PG",
+      "age": 32,
+      "rating": null
+    },
+    {
+      "playerId": "p01810",
+      "position": "PG",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01811",
+      "position": "SG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01812",
+      "position": "SG",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01813",
+      "position": "SG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01814",
+      "position": "SG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01815",
+      "position": "SG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01816",
+      "position": "SG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01817",
+      "position": "SG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01818",
+      "position": "SG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01819",
+      "position": "SG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01820",
+      "position": "SG",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01821",
+      "position": "SG",
+      "age": 30,
+      "rating": null
+    },
+    {
+      "playerId": "p01822",
+      "position": "SG",
+      "age": 32,
+      "rating": null
+    },
+    {
+      "playerId": "p01823",
+      "position": "SG",
+      "age": 32,
+      "rating": null
+    },
+    {
+      "playerId": "p01824",
+      "position": "SG",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01825",
+      "position": "SG",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01826",
+      "position": "SG",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01827",
+      "position": "SG",
+      "age": 30,
+      "rating": null
+    },
+    {
+      "playerId": "p01829",
+      "position": "SG",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01830",
+      "position": "SG",
+      "age": 29,
+      "rating": null
+    },
+    {
+      "playerId": "p01831",
+      "position": "SG",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01832",
+      "position": "SG",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01833",
+      "position": "SG",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01834",
+      "position": "SG",
+      "age": 28,
+      "rating": null
+    },
+    {
+      "playerId": "p01835",
+      "position": "SG",
+      "age": 31,
+      "rating": null
+    },
+    {
+      "playerId": "p01836",
+      "position": "SG",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01837",
+      "position": "SG",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01838",
+      "position": "SG",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01839",
+      "position": "SF",
+      "age": 27,
+      "rating": null
+    },
+    {
+      "playerId": "p01841",
+      "position": "SF",
+      "age": 27,
+      "rating": null
+    },
+    {
+      "playerId": "p01842",
+      "position": "SF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01843",
+      "position": "SF",
+      "age": 27,
+      "rating": null
+    },
+    {
+      "playerId": "p01844",
+      "position": "SF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01845",
+      "position": "SF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01846",
+      "position": "SF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01847",
+      "position": "SF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01848",
+      "position": "SF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01849",
+      "position": "SF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01850",
+      "position": "SF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01851",
+      "position": "SF",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01852",
+      "position": "SF",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01853",
+      "position": "SF",
+      "age": 29,
+      "rating": null
+    },
+    {
+      "playerId": "p02357",
+      "position": "SF",
+      "age": 32,
+      "rating": null
+    },
+    {
+      "playerId": "p01855",
+      "position": "SF",
+      "age": 29,
+      "rating": null
+    },
+    {
+      "playerId": "p01856",
+      "position": "SF",
+      "age": 29,
+      "rating": null
+    },
+    {
+      "playerId": "p01857",
+      "position": "SF",
+      "age": 27,
+      "rating": null
+    },
+    {
+      "playerId": "p01858",
+      "position": "SF",
+      "age": 27,
+      "rating": null
+    },
+    {
+      "playerId": "p01859",
+      "position": "SF",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01860",
+      "position": "SF",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01861",
+      "position": "PF",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01862",
+      "position": "PF",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01863",
+      "position": "PF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01864",
+      "position": "PF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01865",
+      "position": "PF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01866",
+      "position": "PF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01867",
+      "position": "PF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01868",
+      "position": "PF",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01869",
+      "position": "PF",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01870",
+      "position": "PF",
+      "age": 27,
+      "rating": null
+    },
+    {
+      "playerId": "p01871",
+      "position": "PF",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01872",
+      "position": "PF",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01873",
+      "position": "PF",
+      "age": 27,
+      "rating": null
+    },
+    {
+      "playerId": "p01874",
+      "position": "PF",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01875",
+      "position": "PF",
+      "age": 30,
+      "rating": null
+    },
+    {
+      "playerId": "p01876",
+      "position": "PF",
+      "age": 30,
+      "rating": null
+    },
+    {
+      "playerId": "p01877",
+      "position": "PF",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01878",
+      "position": "PF",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01879",
+      "position": "PF",
+      "age": 32,
+      "rating": null
+    },
+    {
+      "playerId": "p01881",
+      "position": "PF",
+      "age": 29,
+      "rating": null
+    },
+    {
+      "playerId": "p01882",
+      "position": "PF",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01883",
+      "position": "PF",
+      "age": 26,
+      "rating": null
+    },
+    {
+      "playerId": "p01884",
+      "position": "C",
+      "age": 31,
+      "rating": null
+    },
+    {
+      "playerId": "p01885",
+      "position": "C",
+      "age": 28,
+      "rating": null
+    },
+    {
+      "playerId": "p01886",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01887",
+      "position": "C",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01888",
+      "position": "C",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01889",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01890",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01891",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01892",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01893",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01894",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01895",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01896",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01897",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01898",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01899",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01900",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01901",
+      "position": "C",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p01902",
+      "position": "C",
+      "age": 29,
+      "rating": null
+    },
+    {
+      "playerId": "p01903",
+      "position": "C",
+      "age": 28,
+      "rating": null
+    },
+    {
+      "playerId": "p01904",
+      "position": "C",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01905",
+      "position": "C",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01906",
+      "position": "C",
+      "age": 32,
+      "rating": null
+    },
+    {
+      "playerId": "p01907",
+      "position": "C",
+      "age": 27,
+      "rating": null
+    },
+    {
+      "playerId": "p01908",
+      "position": "C",
+      "age": 31,
+      "rating": null
+    },
+    {
+      "playerId": "p01909",
+      "position": "C",
+      "age": 30,
+      "rating": null
+    },
+    {
+      "playerId": "p01910",
+      "position": "C",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p01911",
+      "position": "C",
+      "age": 29,
+      "rating": null
+    },
+    {
+      "playerId": "p01912",
+      "position": "C",
+      "age": 27,
+      "rating": null
+    },
+    {
+      "playerId": "p00582",
+      "position": "PG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00752",
+      "position": "PG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00817",
+      "position": "PG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00717",
+      "position": "PG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00926",
+      "position": "PG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00757",
+      "position": "PG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00548",
+      "position": "PG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00842",
+      "position": "PG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00946",
+      "position": "PG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00695",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00505",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00667",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00753",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00863",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00529",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00627",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00652",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00677",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00873",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00657",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00917",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00947",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00496",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00647",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00892",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p01430",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00768",
+      "position": "SG",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00501",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00978",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00530",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00555",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00603",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00709",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00759",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p01411",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00724",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00859",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00799",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p01253",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p01093",
+      "position": "SF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00585",
+      "position": "PF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00865",
+      "position": "PF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00785",
+      "position": "PF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00825",
+      "position": "PF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00541",
+      "position": "PF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00755",
+      "position": "PF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p01432",
+      "position": "PF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p01913",
+      "position": "PF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00855",
+      "position": "PF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00889",
+      "position": "PF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p01517",
+      "position": "PF",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00591",
+      "position": "C",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00679",
+      "position": "C",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00522",
+      "position": "C",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00716",
+      "position": "C",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00876",
+      "position": "C",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p01175",
+      "position": "C",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00751",
+      "position": "C",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p01350",
+      "position": "C",
+      "age": 23,
+      "rating": null
+    },
+    {
+      "playerId": "p00173",
+      "position": "PG",
+      "age": 29,
+      "rating": null
+    },
+    {
+      "playerId": "p00188",
+      "position": "SG",
+      "age": 30,
+      "rating": null
+    },
+    {
+      "playerId": "p00201",
+      "position": "C",
+      "age": 29,
+      "rating": null
+    },
+    {
+      "playerId": "p00247",
+      "position": "SG",
+      "age": 28,
+      "rating": null
+    },
+    {
+      "playerId": "p00254",
+      "position": "PF",
+      "age": 28,
+      "rating": null
+    },
+    {
+      "playerId": "p00264",
+      "position": "PF",
+      "age": 25,
+      "rating": null
+    },
+    {
+      "playerId": "p00283",
+      "position": "SG",
+      "age": 31,
+      "rating": null
+    },
+    {
+      "playerId": "p00299",
+      "position": "PF",
+      "age": 27,
+      "rating": null
+    },
+    {
+      "playerId": "p00331",
+      "position": "PF",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p00363",
+      "position": "C",
+      "age": 31,
+      "rating": null
+    },
+    {
+      "playerId": "p00401",
+      "position": "PG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p00421",
+      "position": "SG",
+      "age": 24,
+      "rating": null
+    },
+    {
+      "playerId": "p00721",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00685",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00696",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00713",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00650",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00688",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01397",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00837",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01427",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00788",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00712",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00708",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00767",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00697",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00673",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00556",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00600",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01380",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01420",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00574",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00552",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01544",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00976",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00722",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01493",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00528",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00954",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00692",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00621",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00565",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00605",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00513",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00654",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00843",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00760",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01306",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00769",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01231",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01287",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00665",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01109",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01143",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00923",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01119",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01328",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01049",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01444",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00526",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01230",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01539",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01388",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00698",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00885",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00731",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00822",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00893",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00672",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01118",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00554",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00908",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00758",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01334",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01502",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00599",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01466",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00631",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01179",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00982",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p01042",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true
+    },
+    {
+      "playerId": "p00597",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true,
+      "fbaRating": 57
+    },
+    {
+      "playerId": "p00880",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true,
+      "fbaRating": 56
+    },
+    {
+      "playerId": "p00537",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true,
+      "fbaRating": 60
+    },
+    {
+      "playerId": "p00798",
+      "position": "SG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true,
+      "fbaRating": 55
+    },
+    {
+      "playerId": "p00626",
+      "position": "PG",
+      "age": 22,
+      "rating": null,
+      "fromFba": true,
+      "fbaRating": 63
+    },
+    {
+      "playerId": "p00930",
+      "position": "C",
+      "age": 22,
+      "rating": null,
+      "fromFba": true,
+      "fbaRating": 65
+    },
+    {
+      "playerId": "p00536",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true,
+      "fbaRating": 56
+    },
+    {
+      "playerId": "p00516",
+      "position": "PF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true,
+      "fbaRating": 60
+    },
+    {
+      "playerId": "p00012",
+      "position": "SG",
+      "age": 29,
+      "rating": null,
+      "fromFba": true,
+      "fbaRating": 67
+    },
+    {
+      "playerId": "p00700",
+      "position": "SF",
+      "age": 22,
+      "rating": null,
+      "fromFba": true,
+      "fbaRating": 64
+    }
+  ]
+}
