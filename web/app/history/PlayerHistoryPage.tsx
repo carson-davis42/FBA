@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { linkHallByName } from '../../engine/offseason/hallOfFame';
-import { applyPlacement, applyPlayed, applyUnsigned, awardTotals, careerSpan, careerStats, collegeLead, liveCareer, mergeCollegeLead, playerStatus, teamsPlayedFor, type Placement } from '../../engine/history/career';
+import { BIO_THROUGH, applyPlacement, applyPlayed, applyUnsigned, awardTotals, careerSpan, careerStats, collegeLead, liveCareer, mergeCollegeLead, playerStatus, teamsPlayedFor, type Placement } from '../../engine/history/career';
 import { d2PlayerHonours } from '../../engine/history/d2';
 import { playerHonours } from '../../engine/history/honours';
 import { relativesOf } from '../../engine/history/relatives';
@@ -106,8 +106,8 @@ export function PlayerHistoryPage() {
   const relatives = relativesDoc.data ? relativesOf(relativesDoc.data, playerId) : [];
   const bySeason = new Map<number, string[]>();
   for (const h of honours) bySeason.set(h.season, [...(bySeason.get(h.season) ?? []), h.text]);
+  const onTeam = (doc: RostersFile | undefined) => Object.entries(doc?.teams ?? {}).find(([, es]) => es.some(e => e.playerId === playerId))?.[0];
   const placement = ((): { now: Placement; season: number } | null => {
-    const onTeam = (doc: RostersFile | undefined) => Object.entries(doc?.teams ?? {}).find(([, es]) => es.some(e => e.playerId === playerId))?.[0];
     const fbaTeam = onTeam(fbaRoster.data);
     if (fbaTeam && meta.data) return { now: { kind: 'fba', team: fbaTeam }, season: meta.data.rosterSeason.fba };
     const d2Team = onTeam(d2Roster.data);
@@ -121,7 +121,8 @@ export function PlayerHistoryPage() {
   const unsummarised = results.data && !seasons.some(x => x.season === results.data!.season) ? results.data : null;
   const playedFor = unsummarised ? teamsPlayedFor(unsummarised, playerId) : [];
   const unsignedNow = placement === null && unsigned.some(d => JSON.stringify(d.data ?? null).includes(`"${playerId}"`));
-  const lived = liveCareer(bio, playerId, seasons, hall.data ? linkHallByName(hall.data, players.data) : null);
+  const lived = liveCareer(bio, playerId, seasons, hall.data ? linkHallByName(hall.data, players.data) : null,
+    d2.seasons ? { summaries: d2.seasons, teams: d2Teams.teams } : undefined);
   // A college player's earlier years come from the earlier college rosters (they correct a transfer's school and a freshman's start).
   const prospect = placement === null ? draftDoc.data?.prospects.find(p => p.playerId === playerId) : undefined;
   const prospectSchool = prospect ? jcTeams.teams.find(t => t.teamId === prospect.college)?.name : undefined;
@@ -144,8 +145,10 @@ export function PlayerHistoryPage() {
     : [];
   const withCollege = { ...lived, stints: mergeCollegeLead(lived.stints, collegeLeadStints, leadSeason) };
   const placed = applyPlacement(applyPlayed(withCollege, playedFor, unsummarised?.season ?? 0), placement?.now ?? null, placement?.season ?? 0);
-  // Out of his school or club into a reserve pool or the free-agent list: no stint stays "present".
-  const career = unsignedNow && meta.data ? applyUnsigned(placed, meta.data.rosterSeason.fba) : placed;
+  // Out of his school or club into a reserve pool or the free-agent list: no stint stays "present". The season records have already ended or
+  // extended what they cover, so what is still open ran to the end of the bios, or to the last college roster that has him.
+  const lastSeen = Math.max(BIO_THROUGH, ...jcPastRosters.flatMap(d => (d.data && onTeam(d.data) ? [d.data.season] : [])));
+  const career = unsignedNow ? applyUnsigned(placed, lastSeen) : placed;
   const totals = awardTotals(playerId, counts.data ?? null, seasons);
   const stats = careerStats(playerId, seasons);
   const hasAwards = Object.values(totals).some(n => n > 0);
