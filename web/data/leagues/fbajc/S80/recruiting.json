@@ -3,109 +3,279 @@
   "season": 80,
   "classOf": 81,
   "locked": false,
-  "classDraft": [
+  "classDraft": [],
+  "created": true,
+  "recruits": [
     {
-      "name": "Kaden Briggs",
-      "position": null
+      "playerId": "p02733",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Tyrese Harlan",
-      "position": null
+      "playerId": "p02734",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Malik Davenport",
-      "position": null
+      "playerId": "p02735",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "DeShawn McKinney",
-      "position": null
+      "playerId": "p02736",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Darius Kinney",
-      "position": null
+      "playerId": "p02737",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Noah Agredano",
-      "position": null
+      "playerId": "p02738",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Khalil Stafford",
-      "position": null
+      "playerId": "p02739",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Jonah Feldman",
-      "position": null
+      "playerId": "p02740",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Terrence Langston",
-      "position": null
+      "playerId": "p02741",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Isaac Rosenthal",
-      "position": null
+      "playerId": "p02742",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "KJ Rawlings",
-      "position": null
+      "playerId": "p02743",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Kamari Lockett",
-      "position": null
+      "playerId": "p02744",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Isaiah DeLeon",
-      "position": null
+      "playerId": "p02745",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Scottie Givens",
-      "position": null
+      "playerId": "p02746",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Jovani Rosario",
-      "position": null
+      "playerId": "p02747",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Keon Roach",
-      "position": null
+      "playerId": "p02748",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Luke Finnegan",
-      "position": null
+      "playerId": "p02749",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Jermaine Hodge",
-      "position": null
+      "playerId": "p02750",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Victor Villanueva",
-      "position": null
+      "playerId": "p02751",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Quincy Lawson",
-      "position": null
+      "playerId": "p02752",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Graham Roberson",
-      "position": null
+      "playerId": "p02753",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Gavin Roberson",
-      "position": null
+      "playerId": "p02754",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Declan Keating",
-      "position": null
+      "playerId": "p02755",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "Austin Godfrey",
-      "position": null
+      "playerId": "p02756",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     },
     {
-      "name": "ZZ Voss",
-      "position": null
+      "playerId": "p02757",
+      "position": "PF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02758",
+      "position": "SG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02759",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02760",
+      "position": "SF",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02761",
+      "position": "PG",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
+    },
+    {
+      "playerId": "p02762",
+      "position": "C",
+      "classYear": "Fr",
+      "rating": null,
+      "stars": null,
+      "projections": {},
+      "committedTo": null
     }
   ],
-  "created": false,
-  "recruits": [],
   "portal": []
 }
