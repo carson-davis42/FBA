@@ -234,6 +234,7 @@ async function importRecruitingClass(): Promise<void> {
     rows,
     classOf: n,
     players,
+    bios: readJson<PlayerBiosFile>('leagues/fba/playerBios.json'),
     teams: readJson<TeamsFile>('leagues/fbajc/teams.json'),
     rosters: readJson<RostersFile>(rostersRel),
     tx: existsSync(txFile) ? readJson<TransactionsFile>(txRel) : { league: 'fbajc', season: n, entries: [] },

@@ -3,6 +3,7 @@ import { appendTx, withTeam, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
 import { calendarProblem } from '../season/moves';
 import type { ClassDraftRow, PortalPlayer, Position, Prospect, RecruitingFile, RosterEntry, RostersFile } from '../shared/types';
+import { newBio } from '../jc/bios';
 import { takeOutOfPortal } from './portal';
 import { collegeHole } from './setup';
 import { collegeName, playsThisSeason, recruitingFail, schoolName, type RecruitingDocKey, type RecruitingResult, type RecruitingState } from './state';
@@ -83,10 +84,11 @@ export function createClass(state: RecruitingState, ctx: MoveContext): Recruitin
       ...state,
       recruiting: { ...doc, classDraft: [], created: true, recruits },
       players: { nextId, players: people },
+      bios: { ...state.bios, bios: [...state.bios.bios, ...recruits.map(p => newBio(p.playerId, doc.classOf - 18))] },
       tx: appendTx(state.tx, ctx, 'class', [], [`S${doc.classOf} class created: ${k} ${k === 1 ? 'recruit' : 'recruits'}`]),
       calendar: markStepDone(state.calendar, `create-s${doc.classOf}-class`),
     },
-    changed: ['recruiting', 'players', 'tx', 'calendar'],
+    changed: ['recruiting', 'players', 'bios', 'tx', 'calendar'],
     label: `Create S${doc.classOf} class`,
   };
 }
@@ -117,7 +119,7 @@ export function editRecruit(state: RecruitingState, playerId: string, patch: { n
   return { ok: true, state: next, changed, label: `Edit ${collegeName(next.players, playerId)}` };
 }
 
-/** Takes a recruit out of the class and out of players.json (nothing else refers to them). Only with no projections and no commitment. */
+/** Takes a recruit out of the class, out of players.json and out of the bios (nothing else refers to them). Only with no projections and no commitment. */
 export function removeRecruit(state: RecruitingState, playerId: string): RecruitingResult {
   const doc = state.recruiting;
   if (doc.locked) return recruitingFail([LOCKED]);
@@ -134,8 +136,9 @@ export function removeRecruit(state: RecruitingState, playerId: string): Recruit
       ...state,
       recruiting: { ...doc, recruits: doc.recruits.filter(r => r.playerId !== playerId) },
       players: { ...state.players, players: rest },
+      bios: { ...state.bios, bios: state.bios.bios.filter(b => b.playerId !== playerId) },
     },
-    changed: ['recruiting', 'players'],
+    changed: ['recruiting', 'players', 'bios'],
     label: `Remove ${name} from the class`,
   };
 }

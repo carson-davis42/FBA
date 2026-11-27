@@ -1,8 +1,9 @@
 import { starsFor } from '../engine/college/classRanking';
 import { emptyRecruiting, recruitingWrites, type RecruitingState } from '../engine/college/state';
 import { commit } from '../engine/college/recruiting';
+import { newBio } from '../engine/jc/bios';
 import type { MoveContext } from '../engine/roster/state';
-import type { CalendarFile, PlayersFile, Prospect, RecruitingFile, RankingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
+import type { CalendarFile, PlayerBiosFile, PlayersFile, Prospect, RecruitingFile, RankingFile, RostersFile, TeamsFile, TransactionsFile } from '../engine/shared/types';
 import { Report } from './report';
 import { closeMatches, sameName, type SheetPlayer } from './sheets/playersTab';
 import { parseSchoolCell, type ClassRow } from './sheets/recruitingClass';
@@ -11,6 +12,7 @@ export interface ClassImportInput {
   rows: ClassRow[];
   classOf: number;
   players: PlayersFile;
+  bios: PlayerBiosFile;
   teams: TeamsFile;
   rosters: RostersFile;
   tx: TransactionsFile;
@@ -102,6 +104,7 @@ export function buildClassImport(input: ClassImportInput, report: Report, ctx: M
     rosters: input.rosters,
     teams,
     players: { nextId, players: people },
+    bios: { ...input.bios, bios: [...input.bios.bios, ...recruits.map(p => newBio(p.playerId, birth))] },
     tx: input.tx,
     calendar: input.calendar,
   };
@@ -127,6 +130,6 @@ export function buildClassImport(input: ClassImportInput, report: Report, ctx: M
     consensusCurve: desc(recruits.map(p => p.consensus!)),
   };
 
-  const writes = recruitingWrites({ ok: true, state, changed: ['recruiting', 'players', 'rosters', 'tx'], label: 'Import class' });
+  const writes = recruitingWrites({ ok: true, state, changed: ['recruiting', 'players', 'bios', 'rosters', 'tx'], label: 'Import class' });
   return [...writes, { path: `leagues/fbajc/S${classOf - 1}/classRanking.json`, doc: ranking }];
 }

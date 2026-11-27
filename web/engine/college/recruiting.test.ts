@@ -93,7 +93,9 @@ describe('createClass', () => {
   it('creates a player and a recruit per row, logs, and marks the calendar step done', () => {
     const r = ok(createClass(drafted([{ name: ' Zion Carter ', position: 'PG' }, { name: 'Malik Ford', position: 'SG' }]), ctx));
     expect(r.label).toBe('Create S80 class');
-    expect(r.changed).toEqual(['recruiting', 'players', 'tx', 'calendar']);
+    expect(r.changed).toEqual(['recruiting', 'players', 'bios', 'tx', 'calendar']);
+    // Every recruit has a bio from the day the class is created.
+    expect(r.state.bios.bios).toEqual([{ playerId: 'p01914', born: 'Born-S62', entries: [] }, { playerId: 'p01915', born: 'Born-S62', entries: [] }]);
     expect(r.state.players.nextId).toBe(1916);
     expect(r.state.players.players.p01914).toEqual({ id: 'p01914', name: 'Zion Carter', birthSeason: 62 });
     expect(r.state.players.players.p01915).toEqual({ id: 'p01915', name: 'Malik Ford', birthSeason: 62 });
@@ -105,7 +107,7 @@ describe('createClass', () => {
     expect(r.state.tx.entries.at(-1)).toMatchObject({ type: 'class', teams: [], lines: ['S80 class created: 2 recruits'] });
     expect(r.state.calendar.steps.find(s => s.id === 'create-s80-class')!.done).toBe(true);
     expect(recruitingWrites(r).map(w => w.path)).toEqual([
-      'leagues/fbajc/S79/recruiting.json', 'players.json', 'leagues/fbajc/S79/transactions.json', 'calendar.json',
+      'leagues/fbajc/S79/recruiting.json', 'players.json', 'leagues/fba/playerBios.json', 'leagues/fbajc/S79/transactions.json', 'calendar.json',
     ]);
     expect(RecruitingFile.safeParse(r.state.recruiting).success).toBe(true);
     const one = ok(createClass(drafted([{ name: 'Zion Carter', position: 'PG' }]), ctx));
@@ -182,7 +184,8 @@ describe('editRecruit and removeRecruit', () => {
   it('removes an unprojected, uncommitted recruit from the class and players.json', () => {
     const r = ok(removeRecruit(collegeClassState(), 'p01915'));
     expect(r.label).toBe('Remove Malik Ford from the class');
-    expect(r.changed).toEqual(['recruiting', 'players']);
+    expect(r.changed).toEqual(['recruiting', 'players', 'bios']);
+    expect(r.state.bios.bios.map(b => b.playerId)).toEqual(['p01914', 'p01916']);
     expect(r.state.recruiting.recruits.map(p => p.playerId)).toEqual(['p01914', 'p01916']);
     expect(r.state.players.players.p01915).toBeUndefined();
     expect(r.state.players.nextId).toBe(1917);

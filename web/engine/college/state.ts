@@ -1,4 +1,5 @@
-import type { CalendarFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../shared/types';
+import { BIOS_PATH } from '../jc/bios';
+import type { CalendarFile, PlayerBiosFile, PlayersFile, RecruitingFile, RostersFile, TeamsFile, TransactionsFile } from '../shared/types';
 
 /** Everything the recruiting page reads and writes. `season` is the calendar season (rosters and tx); `recruiting.season` is where the board lives. */
 export interface RecruitingState {
@@ -9,6 +10,8 @@ export interface RecruitingState {
   /** The FBAJC schools (read-only). */
   teams: TeamsFile;
   players: PlayersFile;
+  /** Every player's bio: a recruit gets his when the class is created. */
+  bios: PlayerBiosFile;
   /** This season's FBAJC transactions. */
   tx: TransactionsFile;
   calendar: CalendarFile;
@@ -24,7 +27,7 @@ export const nextClassBoardSeason = (n: number) => n;
 /** True when the board's class plays in the state's season (commits go onto this season's rosters). */
 export const playsThisSeason = (s: RecruitingState) => s.recruiting.classOf === s.season;
 
-export type RecruitingDocKey = 'recruiting' | 'rosters' | 'players' | 'tx' | 'calendar';
+export type RecruitingDocKey = 'recruiting' | 'rosters' | 'players' | 'bios' | 'tx' | 'calendar';
 
 export function recruitingDocPath(key: RecruitingDocKey, season: number): string {
   switch (key) {
@@ -32,6 +35,7 @@ export function recruitingDocPath(key: RecruitingDocKey, season: number): string
     case 'rosters': return `leagues/fbajc/S${season}/rosters.json`;
     case 'tx': return `leagues/fbajc/S${season}/transactions.json`;
     case 'players': return 'players.json';
+    case 'bios': return BIOS_PATH;
     case 'calendar': return 'calendar.json';
   }
 }

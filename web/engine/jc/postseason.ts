@@ -12,6 +12,7 @@ import { playableGames, recordResult } from './bracket';
 import { confDone } from './confTourney';
 import { addBoxPoints, newBook, playOne, regularSeasonOver } from './play';
 import { jcFail, type JcResult, type JcState } from './state';
+import { recordSchoolSeason } from './bios';
 
 export type PostStage = 'regular' | 'conf' | 'fields' | 'awards' | 'nit' | 'mm' | 'allAmerican' | 'mvp' | 'finish' | 'done';
 export type PostTournament = 'nit' | 'mm';
@@ -214,6 +215,9 @@ export function finishJcSeason(state: JcState, ctx: { now?: string } = {}): JcRe
   if (problems.length) return jcFail(problems);
   // The class that played this season is complete (the gate above needs every commit placed): save it into the past recruiting classes.
   const archived = archiveRecruitingClass(state.recruitingHistory, state.board, state.teams, state.players);
+  // Everyone named who played has this season at his school on his bio, for good.
+  const bios = state.bios === undefined ? null
+    : recordSchoolSeason(state.bios ?? { league: 'fba', bios: [] }, state.players, state.rosters, state.teams, state.season);
   return {
     ok: true,
     state: {
@@ -226,8 +230,9 @@ export function finishJcSeason(state: JcState, ctx: { now?: string } = {}): JcRe
       schedule: lock(state.schedule),
       calendar: markStepDone(state.calendar, 'fbajc'),
       recruitingHistory: archived ?? state.recruitingHistory,
+      ...(bios ? { bios } : {}),
     },
-    changed: ['summary', 'postseason', 'awards', 'results', 'rankings', 'schedule', 'calendar', ...(archived ? ['recruitingHistory' as const] : [])],
+    changed: ['summary', 'postseason', 'awards', 'results', 'rankings', 'schedule', 'calendar', ...(archived ? ['recruitingHistory' as const] : []), ...(bios ? ['bios' as const] : [])],
     label: `Finish S${state.season} FBAJC season`,
   };
 }

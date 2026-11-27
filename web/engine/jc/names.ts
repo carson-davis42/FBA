@@ -1,21 +1,24 @@
-import type { PlayerBio, PlayerBiosFile, PlayersFile, RostersFile, TeamsFile } from '../shared/types'
+import type { PlayerBiosFile, PlayersFile, RostersFile, TeamsFile } from '../shared/types'
 import type { JcState } from './state'
 import { namesNeeded } from './start'
+import { BIOS_PATH, YEARS_IN, schoolEntries } from './bios'
 
-export const BIOS_PATH = 'leagues/fba/playerBios.json'
+export { BIOS_PATH }
 const MAX_NAME = 40
-/** Seasons a college player has already spent at his school, by class year (a Fr is in his first). */
-const YEARS_IN: Record<string, number> = { Fr: 0, So: 1, Jr: 2, Sr: 3 }
 
-export interface NameState { season: number; players: PlayersFile; bios: PlayerBiosFile | null; rosters: RostersFile; teams: TeamsFile; awards?: JcState['awards'] }
+export interface NameState {
+  season: number; players: PlayersFile; bios: PlayerBiosFile | null; rosters: RostersFile; teams: TeamsFile; awards?: JcState['awards']
+  /** Earlier seasons' college rosters, so a transfer's bio lists his earlier school. */
+  past?: RostersFile[]
+}
 export type NameResult = { ok: true; writes: { path: string; doc: unknown }[]; label: string } | { ok: false; problems: string[] }
 
 const squash = (s: string): string => s.trim().replace(/\s+/g, ' ')
 
 /**
  * Names the unnamed players who are past the naming thresholds. Each becomes an official player: his name goes into the players file
- * and a bio is added ("School-S79-pres.", the season he started there worked out from his class), so he is listed in player history
- * with a career. Names must be new: one a player already has would make name lookups ambiguous.
+ * and a bio is added (born from his class; "School-S79-pres.", with any earlier school from the past rosters), so he is listed in player
+ * history with a career. Names must be new: one a player already has would make name lookups ambiguous.
  */
 export function namePlayers(state: NameState, entries: { playerId: string; name: string }[]): NameResult {
   const needed = new Map(namesNeeded({ rosters: state.rosters, players: state.players, awards: state.awards }).map(n => [n.playerId, n]));
@@ -37,7 +40,6 @@ export function namePlayers(state: NameState, entries: { playerId: string; name:
   }
   if (problems.length) return { ok: false, problems };
 
-  const school = (teamId: string): string => state.teams.teams.find(t => t.teamId === teamId)?.name ?? teamId;
   const players: PlayersFile = { ...state.players, players: { ...state.players.players } };
   const bios = [...(state.bios?.bios ?? [])];
   for (const { playerId, name } of clean) {
@@ -48,15 +50,11 @@ export function namePlayers(state: NameState, entries: { playerId: string; name:
     const birthSeason = person.birthSeason ?? state.season - 18 - yearsIn;
     players.players[playerId] = { ...person, name, birthSeason };
     const at = bios.findIndex(b => b.playerId === playerId);
-    if (at >= 0 && bios[at].born === 'Born-S?') bios[at] = { ...bios[at], born: `Born-S${birthSeason}` };
-    if (at < 0) {
-      const started = state.season - yearsIn;
-      const bio: PlayerBio = {
-        playerId,
-        born: `Born-S${birthSeason}`,
-        entries: [`${school(need.teamId)}-S${started}-pres.`],
-      };
-      bios.push(bio);
+    const schools = () => schoolEntries(playerId, need.teamId, state.season, yearsIn, state.past ?? [], state.teams);
+    if (at < 0) bios.push({ playerId, born: `Born-S${birthSeason}`, entries: schools() });
+    else {
+      const had = bios[at];
+      bios[at] = { ...had, born: had.born === 'Born-S?' ? `Born-S${birthSeason}` : had.born, entries: had.entries.length ? had.entries : schools() };
     }
   }
   const label = clean.length === 1 ? `Name ${clean[0].name}` : `Name ${clean.length} players`;
@@ -86,7 +84,6 @@ export function incompleteNamed(state: NameState): { playerId: string; teamId: s
 export function completeNamed(state: NameState): NameResult {
   const todo = incompleteNamed(state);
   if (todo.length === 0) return { ok: false, problems: ['Every named player already has a birth season and a bio'] };
-  const school = (teamId: string): string => state.teams.teams.find(t => t.teamId === teamId)?.name ?? teamId;
   const players: PlayersFile = { ...state.players, players: { ...state.players.players } };
   const bios = [...(state.bios?.bios ?? [])];
   for (const { playerId, teamId, classYear } of todo) {
@@ -95,8 +92,9 @@ export function completeNamed(state: NameState): NameResult {
     const birthSeason = person.birthSeason ?? state.season - 18 - yearsIn;
     players.players[playerId] = { ...person, birthSeason };
     const at = bios.findIndex(b => b.playerId === playerId);
-    if (at >= 0) bios[at] = { ...bios[at], born: `Born-S${birthSeason}` };
-    else bios.push({ playerId, born: `Born-S${birthSeason}`, entries: [`${school(teamId)}-S${state.season - yearsIn}-pres.`] });
+    const schools = () => schoolEntries(playerId, teamId, state.season, yearsIn, state.past ?? [], state.teams);
+    if (at >= 0) bios[at] = { ...bios[at], born: `Born-S${birthSeason}`, entries: bios[at].entries.length ? bios[at].entries : schools() };
+    else bios.push({ playerId, born: `Born-S${birthSeason}`, entries: schools() });
   }
   const label = todo.length === 1 ? 'Complete a named player' : `Complete ${todo.length} named players`;
   return { ok: true, label, writes: [{ path: 'players.json', doc: players }, { path: BIOS_PATH, doc: { league: 'fba', bios } satisfies PlayerBiosFile }] };

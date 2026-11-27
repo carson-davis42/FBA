@@ -229,7 +229,7 @@ describe('class edits once ranked', () => {
     const s = { ...base, ranked: true };
     const id = base.recruiting.recruits[1].playerId;
     expect(problems(removeRecruit(s, id))).toEqual(["The class is being ranked; recruits can't be removed"]);
-    expect(ok(removeRecruit(base, id)).changed).toEqual(['recruiting', 'players']);
+    expect(ok(removeRecruit(base, id)).changed).toEqual(['recruiting', 'players', 'bios']);
     expect(addDraftRow(s.recruiting, { name: 'A', position: 'PG' })).toBe(s.recruiting);
     expect(appendDraftRows(s.recruiting, [{ name: 'A', position: 'PG' }])).toBe(s.recruiting);
     expect(ok(editRecruit(s, id, { name: 'New Name' })).changed).toEqual(['players']);
