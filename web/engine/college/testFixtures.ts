@@ -87,6 +87,7 @@ export function collegeBaseState(): RecruitingState {
     rosters: set.rosters,
     teams: collegeTeams(),
     players: collegePlayers(),
+    bios: { league: 'fba', bios: [] },
     tx: { league: 'fbajc', season: 79, entries: [] },
     calendar: {
       season: 79,

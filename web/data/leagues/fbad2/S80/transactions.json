@@ -75,6 +75,435 @@
         "D2 pool locked: 39 in the draft pool, 1 bumped",
         "Bumped to Reserves: PG-Adrian Grant (BEI)"
       ]
+    },
+    {
+      "seq": 8,
+      "batchId": "bmwyldd7rpj0rz",
+      "type": "drafted",
+      "teams": [
+        "DHA"
+      ],
+      "lines": [
+        "D2 Draft #1: DHA selects SG-Terence Hopkins"
+      ]
+    },
+    {
+      "seq": 9,
+      "batchId": "bmwyldm01obnyr",
+      "type": "drafted",
+      "teams": [
+        "BEL"
+      ],
+      "lines": [
+        "D2 Draft #2: BEL selects SG-Tristan Bolden"
+      ]
+    },
+    {
+      "seq": 10,
+      "batchId": "bmwyldx4hhmt7r",
+      "type": "drafted",
+      "teams": [
+        "PAR"
+      ],
+      "lines": [
+        "D2 Draft #3: PAR selects C-Dmitri Kolesnikov"
+      ]
+    },
+    {
+      "seq": 11,
+      "batchId": "bmwyle5x3v09mv",
+      "type": "drafted",
+      "teams": [
+        "MUN"
+      ],
+      "lines": [
+        "D2 Draft #4: MUN selects C-KT Love"
+      ]
+    },
+    {
+      "seq": 12,
+      "batchId": "bmwyleic17wg3m",
+      "type": "drafted",
+      "teams": [
+        "MIL"
+      ],
+      "lines": [
+        "D2 Draft #5: MIL selects C-Aminou Diallo"
+      ]
+    },
+    {
+      "seq": 13,
+      "batchId": "bmwyleqpw9wzzf",
+      "type": "drafted",
+      "teams": [
+        "ZUR"
+      ],
+      "lines": [
+        "D2 Draft #6: ZUR selects SF-Lance Durbin"
+      ]
+    },
+    {
+      "seq": 14,
+      "batchId": "bmwyleyx2csoec",
+      "type": "drafted",
+      "teams": [
+        "PAR"
+      ],
+      "lines": [
+        "D2 Draft #7: PAR selects PG-Lennox Porter"
+      ]
+    },
+    {
+      "seq": 15,
+      "batchId": "bmwylf60d5hp78",
+      "type": "drafted",
+      "teams": [
+        "OMA"
+      ],
+      "lines": [
+        "D2 Draft #8: OMA selects SF-Santi Moya"
+      ]
+    },
+    {
+      "seq": 16,
+      "batchId": "bmwylfd7u3g6sh",
+      "type": "drafted",
+      "teams": [
+        "WAR"
+      ],
+      "lines": [
+        "D2 Draft #9: WAR selects PG-Sage Ellis"
+      ]
+    },
+    {
+      "seq": 17,
+      "batchId": "bmwylfl6htt41m",
+      "type": "drafted",
+      "teams": [
+        "SALZ"
+      ],
+      "lines": [
+        "D2 Draft #10: SALZ selects PF-Samuel Okoro"
+      ]
+    },
+    {
+      "seq": 18,
+      "batchId": "bmwylfqopn878i",
+      "type": "drafted",
+      "teams": [
+        "SP"
+      ],
+      "lines": [
+        "D2 Draft #11: SP selects PF-Griffin Raye"
+      ]
+    },
+    {
+      "seq": 19,
+      "batchId": "bmwylfuskx8l4x",
+      "type": "drafted",
+      "teams": [
+        "SP"
+      ],
+      "lines": [
+        "D2 Draft #12: SP selects C-Bryce Tatupu"
+      ]
+    },
+    {
+      "seq": 20,
+      "batchId": "bmwylg1a791azj",
+      "type": "drafted",
+      "teams": [
+        "TOK"
+      ],
+      "lines": [
+        "D2 Draft #13: TOK selects PF-Johann Adler"
+      ]
+    },
+    {
+      "seq": 21,
+      "batchId": "bmwylgcs7ngzus",
+      "type": "drafted",
+      "teams": [
+        "VIE"
+      ],
+      "lines": [
+        "D2 Draft #14: VIE selects PG-Leo Duarte"
+      ]
+    },
+    {
+      "seq": 22,
+      "batchId": "bmwylghlsp8a9d",
+      "type": "drafted",
+      "teams": [
+        "MOS"
+      ],
+      "lines": [
+        "D2 Draft #15: MOS selects PG-Kwame Mensah"
+      ]
+    },
+    {
+      "seq": 23,
+      "batchId": "bmwylgmms7b4pn",
+      "type": "drafted",
+      "teams": [
+        "TAM"
+      ],
+      "lines": [
+        "D2 Draft #16: TAM selects SG-Zyree Hammond"
+      ]
+    },
+    {
+      "seq": 24,
+      "batchId": "bmwylgr481vvz3",
+      "type": "drafted",
+      "teams": [
+        "ATH"
+      ],
+      "lines": [
+        "D2 Draft #17: ATH selects SF-Theo Marchand"
+      ]
+    },
+    {
+      "seq": 25,
+      "batchId": "bmwylgvrjjsmnm",
+      "type": "drafted",
+      "teams": [
+        "OTT"
+      ],
+      "lines": [
+        "D2 Draft #18: OTT selects SG-Ryan Haskins"
+      ]
+    },
+    {
+      "seq": 26,
+      "batchId": "bmwylh2h54nqqw",
+      "type": "drafted",
+      "teams": [
+        "DUB"
+      ],
+      "lines": [
+        "D2 Draft #19: DUB selects SF-Elijah Penson"
+      ]
+    },
+    {
+      "seq": 27,
+      "batchId": "bmwylhn4pabmst",
+      "type": "drafted",
+      "teams": [
+        "DUB"
+      ],
+      "lines": [
+        "D2 Draft #20: DUB selects PG-Sincere Cole"
+      ]
+    },
+    {
+      "seq": 28,
+      "batchId": "bmwylhuw6aqdc2",
+      "type": "drafted",
+      "teams": [
+        "VIE"
+      ],
+      "lines": [
+        "D2 Draft #21: VIE selects C-Niko Papadakis"
+      ]
+    },
+    {
+      "seq": 29,
+      "batchId": "bmwyli1xd0bcee",
+      "type": "drafted",
+      "teams": [
+        "BER"
+      ],
+      "lines": [
+        "D2 Draft #22: BER selects C-Amin Soltani"
+      ]
+    },
+    {
+      "seq": 30,
+      "batchId": "bmwylid3pa8szb",
+      "type": "drafted",
+      "teams": [
+        "PAR"
+      ],
+      "lines": [
+        "D2 Draft #23: PAR selects SF-Jovan Mijic"
+      ]
+    },
+    {
+      "seq": 31,
+      "batchId": "bmwylign55o06d",
+      "type": "drafted",
+      "teams": [
+        "ROT"
+      ],
+      "lines": [
+        "D2 Draft #24: ROT selects PG-Bojan Markovic"
+      ]
+    },
+    {
+      "seq": 32,
+      "batchId": "bmwylim0o065tk",
+      "type": "drafted",
+      "teams": [
+        "OMA"
+      ],
+      "lines": [
+        "D2 Draft #25: OMA selects SG-Viktor Kovalenko"
+      ]
+    },
+    {
+      "seq": 33,
+      "batchId": "bmwylis2cxknct",
+      "type": "drafted",
+      "teams": [
+        "BEI"
+      ],
+      "lines": [
+        "D2 Draft #26: BEI selects PF-Legend Moss"
+      ]
+    },
+    {
+      "seq": 34,
+      "batchId": "bmwylivnh1tgnh",
+      "type": "drafted",
+      "teams": [
+        "BRUS"
+      ],
+      "lines": [
+        "D2 Draft #27: BRUS selects PG-Ridge Mercer"
+      ]
+    },
+    {
+      "seq": 35,
+      "batchId": "bmwylizexkkob9",
+      "type": "drafted",
+      "teams": [
+        "BEI"
+      ],
+      "lines": [
+        "D2 Draft #28: BEI selects PG-Tatum Carradine"
+      ]
+    },
+    {
+      "seq": 36,
+      "batchId": "bmwylj2z0j116w",
+      "type": "drafted",
+      "teams": [
+        "EDM"
+      ],
+      "lines": [
+        "D2 Draft #29: EDM selects PF-Bruno Pacheco"
+      ]
+    },
+    {
+      "seq": 37,
+      "batchId": "bmwylj6j0q5yy7",
+      "type": "drafted",
+      "teams": [
+        "FRAN"
+      ],
+      "lines": [
+        "D2 Draft #30: FRAN selects C-Andre Lafleur"
+      ]
+    },
+    {
+      "seq": 38,
+      "batchId": "bmwyljdgfvlm5q",
+      "type": "drafted",
+      "teams": [
+        "BARC"
+      ],
+      "lines": [
+        "D2 Draft #31: BARC selects C-Edwin Bell"
+      ]
+    },
+    {
+      "seq": 39,
+      "batchId": "bmwyljlbimgt7a",
+      "type": "drafted",
+      "teams": [
+        "SALZ"
+      ],
+      "lines": [
+        "D2 Draft #32: SALZ selects SG-Axl Graves"
+      ]
+    },
+    {
+      "seq": 40,
+      "batchId": "bmwyljoe9s7yok",
+      "type": "drafted",
+      "teams": [
+        "SHAN"
+      ],
+      "lines": [
+        "D2 Draft #33: SHAN selects SF-Keanu Silva"
+      ]
+    },
+    {
+      "seq": 41,
+      "batchId": "bmwyljtmlsjimv",
+      "type": "drafted",
+      "teams": [
+        "IST"
+      ],
+      "lines": [
+        "D2 Draft #34: IST selects PF-Peyton Garrison"
+      ]
+    },
+    {
+      "seq": 42,
+      "batchId": "bmwyljvs42d9xp",
+      "type": "drafted",
+      "teams": [
+        "ATH"
+      ],
+      "lines": [
+        "D2 Draft #35: ATH selects PF-Karl Jenkins"
+      ]
+    },
+    {
+      "seq": 43,
+      "batchId": "bmwyljyhatth74",
+      "type": "drafted",
+      "teams": [
+        "STP"
+      ],
+      "lines": [
+        "D2 Draft #36: STP selects SF-Marcus Foster"
+      ]
+    },
+    {
+      "seq": 44,
+      "batchId": "bmwylk0c9hn066",
+      "type": "drafted",
+      "teams": [
+        "ZUR"
+      ],
+      "lines": [
+        "D2 Draft #37: ZUR selects SG-Kyree Fields"
+      ]
+    },
+    {
+      "seq": 45,
+      "batchId": "bmwylk413qqpeg",
+      "type": "drafted",
+      "teams": [
+        "EDM"
+      ],
+      "lines": [
+        "D2 Draft #38: EDM selects C-Christian Cohen"
+      ]
+    },
+    {
+      "seq": 46,
+      "batchId": "bmwylk59puhx36",
+      "type": "drafted",
+      "teams": [
+        "MC"
+      ],
+      "lines": [
+        "D2 Draft #39: MC selects C-Nash Holland"
+      ]
     }
   ]
 }

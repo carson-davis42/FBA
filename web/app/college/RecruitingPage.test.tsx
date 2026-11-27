@@ -100,7 +100,7 @@ describe('RecruitingPage', () => {
     await waitFor(() => expect(log.batches).toHaveLength(1));
     expect(log.batches[0].label).toBe('Create S80 class');
     expect(log.batches[0].writes.map(w => [w.path, w.baseVersion])).toEqual([
-      ['leagues/fbajc/S79/recruiting.json', '0000000000000001'], ['players.json', '0000000000000001'],
+      ['leagues/fbajc/S79/recruiting.json', '0000000000000001'], ['players.json', '0000000000000001'], ['leagues/fba/playerBios.json', null],
       ['leagues/fbajc/S79/transactions.json', '0000000000000001'], ['calendar.json', '0000000000000001'],
     ]);
   });

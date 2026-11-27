@@ -56,6 +56,6 @@ describe('matchDraftPicks', () => {
 describe('the recorded fixes', () => {
   it('lists the three misspelled picks and the two duplicate players', () => {
     expect(DRAFT_MATCHES.map(m => `${m.season}:${m.pick}:${m.playerId}`)).toEqual(['71:4:p00119', '73:24:p00371', '78:7:p00087']);
-    expect(PLAYER_MERGES.map(m => `${m.keep}<-${m.drop}`)).toEqual(['p00065<-p02358', 'p00256<-p00461']);
+    expect(PLAYER_MERGES.map(m => `${m.keep}<-${m.drop}`)).toEqual(['p00065<-p02358', 'p00256<-p00461', 'p00361<-p00474', 'p00495<-p02360']);
   });
 });

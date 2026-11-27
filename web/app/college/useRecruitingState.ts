@@ -3,7 +3,7 @@ import { classRankingPath } from '../../engine/college/classRanking';
 import { proPlayerIds } from '../../engine/college/setup';
 import { boardPath, emptyRecruiting, recruitingDocPath, type RecruitingDocKey, type RecruitingState } from '../../engine/college/state';
 import type {
-  CalendarFile, FreeAgentsFile, MetaFile, PlayersFile, RankingFile, RecruitingFile, ReservesFile, RostersFile, TeamsFile, TransactionsFile,
+  CalendarFile, FreeAgentsFile, MetaFile, PlayerBiosFile, PlayersFile, RankingFile, RecruitingFile, ReservesFile, RostersFile, TeamsFile, TransactionsFile,
 } from '../../engine/shared/types';
 import { useDoc, type DocState, type Versions } from '../api';
 
@@ -35,6 +35,7 @@ export function useRecruitingState(boardSeason: number | undefined): {
   const rosters = useDoc<RostersFile>(at('rosters'));
   const tx = useDoc<TransactionsFile>(at('tx'));
   const players = useDoc<PlayersFile>(at('players'));
+  const bios = useDoc<PlayerBiosFile>(at('bios'));
   const calendar = useDoc<CalendarFile>(at('calendar'));
   const teams = useDoc<TeamsFile>(n === undefined ? null : 'leagues/fbajc/teams.json');
   const prev = useDoc<RostersFile>(n === undefined ? null : `leagues/fbajc/S${n - 1}/rosters.json`);
@@ -45,6 +46,7 @@ export function useRecruitingState(boardSeason: number | undefined): {
   // Stable stand-ins for docs that don't exist yet: useAutosaveDoc resyncs whenever its data changes identity.
   const emptyBoard = useMemo(() => (boardSeason === undefined ? undefined : emptyRecruiting(boardSeason)), [boardSeason]);
   const emptyTx = useMemo<TransactionsFile | undefined>(() => (n === undefined ? undefined : { league: 'fbajc', season: n, entries: [] }), [n]);
+  const emptyBios = useMemo<PlayerBiosFile>(() => ({ league: 'fba', bios: [] }), []);
   const emptyRosters = useMemo<RostersFile | undefined>(() => (n === undefined ? undefined : { league: 'fbajc', season: n, locked: false, teams: {} }), [n]);
   const proIds = useMemo(
     () => (fba.data && d2.data ? proPlayerIds({ fba: fba.data, freeAgents: freeAgents.data ?? null, d2: d2.data, reserves: reserves.data ?? null }) : new Set<string>()),
@@ -54,7 +56,7 @@ export function useRecruitingState(boardSeason: number | undefined): {
   const versions: Versions = {};
   if (n !== undefined) {
     const writable: [RecruitingDocKey, DocState<unknown>][] = [
-      ['rosters', rosters], ['tx', tx], ['players', players], ['calendar', calendar],
+      ['rosters', rosters], ['tx', tx], ['players', players], ['bios', bios], ['calendar', calendar],
     ];
     for (const [k, d] of writable) versions[recruitingDocPath(k, n)] = d.version;
     if (boardSeason !== undefined) versions[boardPath(boardSeason)] = recruiting.version;
@@ -62,7 +64,7 @@ export function useRecruitingState(boardSeason: number | undefined): {
   }
 
   const required: DocState<unknown>[] = [players, calendar, teams, fba, d2];
-  const optional: DocState<unknown>[] = [recruiting, classRanking, rosters, tx, prev, freeAgents, reserves];
+  const optional: DocState<unknown>[] = [recruiting, classRanking, rosters, tx, prev, freeAgents, reserves, bios];
   const error = meta.error ?? required.find(d => d.error)?.error ?? optional.find(d => d.error && !d.missing)?.error;
   if (n === undefined || boardSeason === undefined || required.some(d => !d.data) || optional.some(d => !d.data && !d.missing)) return { season: n, versions, error };
   if (!rosters.data) {
@@ -70,7 +72,7 @@ export function useRecruitingState(boardSeason: number | undefined): {
       season: n, versions, error,
       setup: { meta: meta.data!, prev: prev.data ?? null, proIds, calendar: calendar.data! },
       preview: {
-        season: n, recruiting: recruiting.data ?? emptyBoard!, rosters: emptyRosters!, teams: teams.data!, players: players.data!,
+        season: n, recruiting: recruiting.data ?? emptyBoard!, rosters: emptyRosters!, teams: teams.data!, players: players.data!, bios: bios.data ?? emptyBios,
         tx: tx.data ?? emptyTx!, calendar: calendar.data!, ranked: classRanking.data !== undefined,
       },
     };
@@ -85,6 +87,7 @@ export function useRecruitingState(boardSeason: number | undefined): {
       rosters: rosters.data,
       teams: teams.data!,
       players: players.data!,
+      bios: bios.data ?? emptyBios,
       tx: tx.data ?? emptyTx!,
       calendar: calendar.data!,
       ranked: classRanking.data !== undefined,

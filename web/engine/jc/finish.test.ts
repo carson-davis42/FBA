@@ -21,6 +21,29 @@ beforeAll(() => {
   finish = s;
 }, 240000);
 
+describe('finishing the season records the schools on the bios', () => {
+  it('gives every named player on the rosters a bio with his school, as one more write', () => {
+    const r = finishJcSeason({ ...finish, bios: null });
+    if (!r.ok) throw new Error(r.problems.join());
+    expect(r.changed).toContain('bios');
+    const named = Object.entries(r.state.rosters.teams).flatMap(([teamId, es]) =>
+      es.filter(e => e.playerId && r.state.players.players[e.playerId]?.name != null).map(e => ({ id: e.playerId!, teamId })));
+    expect(named.length).toBeGreaterThan(0);
+    for (const n of named) {
+      const school = r.state.teams.teams.find(t => t.teamId === n.teamId)!.name;
+      expect(r.state.bios!.bios.find(b => b.playerId === n.id)!.entries.at(-1)).toBe(`${school}-S${r.state.season}-pres.`);
+    }
+    expect(r.state.bios!.bios).toHaveLength(named.length);
+    expect(jcWrites(r).find(w => w.path === 'leagues/fba/playerBios.json')).toBeTruthy();
+  });
+
+  it('leaves the bios alone where they are not loaded', () => {
+    const r = finishJcSeason(finish);
+    if (!r.ok) throw new Error(r.problems.join());
+    expect(r.changed).not.toContain('bios');
+  });
+});
+
 describe('finishing the season', () => {
   it('is at the finish stage', () => {
     expect(postseasonStage(finish)).toBe('finish');

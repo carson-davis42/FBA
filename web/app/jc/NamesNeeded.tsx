@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { completeNamed, incompleteNamed, namePlayers, BIOS_PATH } from '../../engine/jc/names';
 import { namesNeeded } from '../../engine/jc/start';
 import type { JcState } from '../../engine/jc/state';
-import type { PlayerBiosFile, PlayersFile } from '../../engine/shared/types';
-import { useDoc, useSaving } from '../api';
+import type { PlayerBiosFile, PlayersFile, RostersFile } from '../../engine/shared/types';
+import { docSettled, useDoc, useSaving } from '../api';
 import { commitDocs } from '../roster/commit';
 import './jc.css';
 
@@ -14,22 +14,25 @@ import './jc.css';
 export function NamesNeeded({ state, onSaved }: { state: JcState; onSaved: () => void }) {
   const players = useDoc<PlayersFile>('players.json');
   const bios = useDoc<PlayerBiosFile>(BIOS_PATH);
+  // The three earlier college rosters say where a transfer played before.
+  const earlier = [1, 2, 3].map(k => useDoc<RostersFile>(`leagues/fbajc/S${state.season - k}/rosters.json`));
+  const past = earlier.flatMap(d => (d.data ? [d.data] : []));
   const saving = useSaving();
   const [text, setText] = useState<Record<string, string>>({});
   const [error, setError] = useState('');
   const needed = namesNeeded(state);
-  const nameState = players.data ? { season: state.season, players: players.data, bios: bios.data ?? null, rosters: state.rosters, teams: state.teams } : null;
+  const nameState = players.data ? { season: state.season, players: players.data, bios: bios.data ?? null, rosters: state.rosters, teams: state.teams, past } : null;
   const incomplete = nameState && (bios.data || bios.missing) ? incompleteNamed(nameState) : [];
   if (needed.length === 0 && incomplete.length === 0) return null;
   const school = (id: string) => state.teams.teams.find(t => t.teamId === id)?.name ?? id;
   const typed = needed.filter(n => (text[n.playerId] ?? '').trim() !== '');
-  const ready = !!players.data && (!!bios.data || bios.missing);
+  const ready = !!players.data && (!!bios.data || bios.missing) && earlier.every(docSettled);
 
   const save = async (): Promise<void> => {
     setError('');
     if (!players.data) return;
     const r = namePlayers(
-      { season: state.season, players: players.data, bios: bios.data ?? null, rosters: state.rosters, teams: state.teams, awards: state.awards },
+      { season: state.season, players: players.data, bios: bios.data ?? null, rosters: state.rosters, teams: state.teams, awards: state.awards, past },
       typed.map(n => ({ playerId: n.playerId, name: text[n.playerId] })),
     );
     if (!r.ok) { setError(r.problems.join('; ')); return; }

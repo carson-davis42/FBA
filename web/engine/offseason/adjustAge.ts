@@ -107,6 +107,8 @@ function build(state: AdjustAgeState): { ok: true; built: Built } | { ok: false;
   if (state.board) {
     let rs: RecruitingState = {
       season: n, recruiting: state.board, rosters, teams: state.collegeTeams, players, tx: state.collegeTx, calendar: state.calendar,
+      // Only placing commits here, which leaves the bios alone: a school goes on a bio when its season is finished.
+      bios: { league: 'fba', bios: [] },
     };
     for (const p of [...state.board.recruits, ...state.board.portal].filter(x => x.committedTo)) {
       const teamId = p.committedTo!;

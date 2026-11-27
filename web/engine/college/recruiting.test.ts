@@ -20,13 +20,27 @@ const withRecruit = (s: RecruitingState, id: string, patch: object): RecruitingS
 });
 
 describe('parseClassList', () => {
-  it('reads "Name, POS" and "Name<Tab>POS" lines and lists the rest back', () => {
-    expect(parseClassList('Zion Carter, PG\nMalik Ford\tsg\n\n  bad line \nEli Grant , PF \nSmith, Jr., C\r\n, PG')).toEqual({
+  it('reads "Name, POS" and "Name<Tab>POS" lines', () => {
+    expect(parseClassList('Zion Carter, PG\nMalik Ford\tsg\n\nEli Grant , PF \nSmith, Jr., C')).toEqual({
       rows: [
         { name: 'Zion Carter', position: 'PG' }, { name: 'Malik Ford', position: 'SG' },
         { name: 'Eli Grant', position: 'PF' }, { name: 'Smith, Jr.', position: 'C' },
       ],
-      bad: ['bad line', ', PG'],
+      bad: [],
+    });
+  });
+
+  it('takes a name on its own, with the position still to be set', () => {
+    expect(parseClassList('Kaden Briggs\r\n  Tyrese Harlan \t\nKJ Rawlings')).toEqual({
+      rows: [{ name: 'Kaden Briggs', position: null }, { name: 'Tyrese Harlan', position: null }, { name: 'KJ Rawlings', position: null }],
+      bad: [],
+    });
+  });
+
+  it("lists back a line with a comma or tab but no position, a position without a name, and one after only a space", () => {
+    expect(parseClassList(', PG\npg\nZed Ro, Guard\nZed Ro,\nZed Ro\t12\nKaden Briggs PG')).toEqual({
+      rows: [],
+      bad: [', PG', 'pg', 'Zed Ro, Guard', 'Zed Ro,', 'Zed Ro\t12', 'Kaden Briggs PG'],
     });
   });
 });
@@ -59,11 +73,29 @@ describe('class draft edits', () => {
   });
 });
 
+describe('class draft rows without a position', () => {
+  const rows: ClassDraftRow[] = [{ name: 'Zion Carter', position: 'PG' }, { name: 'Malik Ford', position: null }, { name: 'Eli Grant', position: null }];
+
+  it('are saved, left out of the position counts, and set later', () => {
+    const doc = appendDraftRows(emptyRecruiting(79), rows);
+    expect(RecruitingFile.safeParse(doc).success).toBe(true);
+    expect(draftCounts(doc)).toEqual({ PG: 1, SG: 0, SF: 0, PF: 0, C: 0 });
+    expect(editDraftRow(doc, 1, { position: 'C' }).classDraft[1]).toEqual({ name: 'Malik Ford', position: 'C' });
+  });
+
+  it('stop the class being created until every one has a position', () => {
+    expect(createClass(drafted(rows), ctx)).toEqual({ ok: false, problems: ['2 rows need a position'] });
+    expect(createClass(drafted(rows.slice(0, 2)), ctx)).toEqual({ ok: false, problems: ['1 row needs a position'] });
+  });
+});
+
 describe('createClass', () => {
   it('creates a player and a recruit per row, logs, and marks the calendar step done', () => {
     const r = ok(createClass(drafted([{ name: ' Zion Carter ', position: 'PG' }, { name: 'Malik Ford', position: 'SG' }]), ctx));
     expect(r.label).toBe('Create S80 class');
-    expect(r.changed).toEqual(['recruiting', 'players', 'tx', 'calendar']);
+    expect(r.changed).toEqual(['recruiting', 'players', 'bios', 'tx', 'calendar']);
+    // Every recruit has a bio from the day the class is created.
+    expect(r.state.bios.bios).toEqual([{ playerId: 'p01914', born: 'Born-S62', entries: [] }, { playerId: 'p01915', born: 'Born-S62', entries: [] }]);
     expect(r.state.players.nextId).toBe(1916);
     expect(r.state.players.players.p01914).toEqual({ id: 'p01914', name: 'Zion Carter', birthSeason: 62 });
     expect(r.state.players.players.p01915).toEqual({ id: 'p01915', name: 'Malik Ford', birthSeason: 62 });
@@ -75,7 +107,7 @@ describe('createClass', () => {
     expect(r.state.tx.entries.at(-1)).toMatchObject({ type: 'class', teams: [], lines: ['S80 class created: 2 recruits'] });
     expect(r.state.calendar.steps.find(s => s.id === 'create-s80-class')!.done).toBe(true);
     expect(recruitingWrites(r).map(w => w.path)).toEqual([
-      'leagues/fbajc/S79/recruiting.json', 'players.json', 'leagues/fbajc/S79/transactions.json', 'calendar.json',
+      'leagues/fbajc/S79/recruiting.json', 'players.json', 'leagues/fba/playerBios.json', 'leagues/fbajc/S79/transactions.json', 'calendar.json',
     ]);
     expect(RecruitingFile.safeParse(r.state.recruiting).success).toBe(true);
     const one = ok(createClass(drafted([{ name: 'Zion Carter', position: 'PG' }]), ctx));
@@ -152,7 +184,8 @@ describe('editRecruit and removeRecruit', () => {
   it('removes an unprojected, uncommitted recruit from the class and players.json', () => {
     const r = ok(removeRecruit(collegeClassState(), 'p01915'));
     expect(r.label).toBe('Remove Malik Ford from the class');
-    expect(r.changed).toEqual(['recruiting', 'players']);
+    expect(r.changed).toEqual(['recruiting', 'players', 'bios']);
+    expect(r.state.bios.bios.map(b => b.playerId)).toEqual(['p01914', 'p01916']);
     expect(r.state.recruiting.recruits.map(p => p.playerId)).toEqual(['p01914', 'p01916']);
     expect(r.state.players.players.p01915).toBeUndefined();
     expect(r.state.players.nextId).toBe(1917);

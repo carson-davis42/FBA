@@ -46,7 +46,7 @@ const rows = (): ClassRow[] => [
   { rank: 3, stars: 3, position: 'C', name: 'Cal Cook', r: 74, school: '0 PROJ - none', consensus: 72 },
 ];
 const input = (patch: Partial<ClassImportInput> = {}): ClassImportInput => ({
-  rows: rows(), classOf: 79, players: players(), teams, rosters: rosters(), tx, calendar, sheet, ...patch,
+  rows: rows(), classOf: 79, players: players(), bios: { league: 'fba', bios: [] }, teams, rosters: rosters(), tx, calendar, sheet, ...patch,
 });
 const run = (patch: Partial<ClassImportInput> = {}) => {
   const report = new Report();
@@ -58,6 +58,7 @@ describe('buildClassImport', () => {
   it('writes the players, board, ranking, rosters and transactions', () => {
     const { files } = run();
     expect(files.map(f => f.path).sort()).toEqual([
+      'leagues/fba/playerBios.json',
       'leagues/fbajc/S78/classRanking.json',
       'leagues/fbajc/S78/recruiting.json',
       'leagues/fbajc/S79/rosters.json',

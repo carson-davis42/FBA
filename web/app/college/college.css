@@ -15,3 +15,6 @@
 .card.headed.banner { margin: 0 0 var(--s4); background: var(--accent-soft); font-weight: 600; }
 .card.headed.banner a { font-weight: 700; margin-left: var(--s1); }
 fieldset.readonly { border: 0; padding: 0; margin: 0; min-width: 0; }
+
+/* A class draft row whose position is still to be set. */
+.board-table select.needs-position { border: 2px solid var(--accent); }

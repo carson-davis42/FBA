@@ -93,6 +93,18 @@ describe('namePlayers birth seasons', () => {
   })
 })
 
+describe('naming a transfer', () => {
+  it('lists his earlier school from the past rosters', () => {
+    const { state, team, jr } = setup()
+    const other = state.teams.teams[1]
+    const past = [{ league: 'fbajc' as const, season: state.season - 1, locked: true, teams: { [other.teamId]: [{ playerId: jr, position: 'PG' as const, rating: 70, age: null, points: 0 }] } }]
+    const r = namePlayers({ ...state, past }, [{ playerId: jr, name: 'Marcus Bell' }])
+    if (!r.ok) throw new Error(r.problems.join())
+    // A Jr in S79: S77 and S78 at the earlier school (S77 has no roster, so the next one known), then here.
+    expect((r.writes[1].doc as { bios: { entries: string[] }[] }).bios[0].entries).toEqual([`${other.name}-S77-S78`, `${team.name}-S79-pres.`])
+  })
+})
+
 describe('namePlayers', () => {
   it('names a player past the threshold and gives him a bio with his school and the season he started', () => {
     const { state, team, jr } = setup()

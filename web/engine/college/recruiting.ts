@@ -3,14 +3,20 @@ import { appendTx, withTeam, type MoveContext } from '../roster/state';
 import { markStepDone } from '../shared/calendar';
 import { calendarProblem } from '../season/moves';
 import type { ClassDraftRow, PortalPlayer, Position, Prospect, RecruitingFile, RosterEntry, RostersFile } from '../shared/types';
+import { newBio } from '../jc/bios';
 import { takeOutOfPortal } from './portal';
 import { collegeHole } from './setup';
 import { collegeName, playsThisSeason, recruitingFail, schoolName, type RecruitingDocKey, type RecruitingResult, type RecruitingState } from './state';
 
 const LOCKED = 'Recruiting for this class is finished';
 const LINE = /^(.+?)\s*[\t,]\s*(PG|SG|SF|PF|C)\s*$/i;
+/** A line that was meant to carry a position but isn't `LINE`: it has a comma or tab, is only a position, or ends in one after a space. */
+const NOT_A_NAME = /[\t,]|^(PG|SG|SF|PF|C)$|\s(PG|SG|SF|PF|C)$/i;
 
-/** Reads a pasted class list: one "Name, POS" or "Name<Tab>POS" per line. Blank lines are skipped; lines that don't parse come back in `bad`. */
+/**
+ * Reads a pasted class list: one recruit per line, "Name, POS", "Name<Tab>POS", or a name on its own (its position is set later). Blank
+ * lines are skipped; lines that don't parse come back in `bad`.
+ */
 export function parseClassList(text: string): { rows: ClassDraftRow[]; bad: string[] } {
   const rows: ClassDraftRow[] = [];
   const bad: string[] = [];
@@ -19,8 +25,9 @@ export function parseClassList(text: string): { rows: ClassDraftRow[]; bad: stri
     if (!line) continue;
     const m = line.match(LINE);
     const name = m?.[1].trim();
-    if (!m || !name) bad.push(line);
-    else rows.push({ name, position: m[2].toUpperCase() as Position });
+    if (m && name) rows.push({ name, position: m[2].toUpperCase() as Position });
+    else if (!NOT_A_NAME.test(line)) rows.push({ name: line, position: null });
+    else bad.push(line);
   }
   return { rows, bad };
 }
@@ -47,7 +54,7 @@ export function removeDraftRow(doc: RecruitingFile, index: number): RecruitingFi
 
 export function draftCounts(doc: RecruitingFile): Record<Position, number> {
   const out = Object.fromEntries(POSITIONS.map(p => [p, 0])) as Record<Position, number>;
-  for (const r of doc.classDraft) out[r.position]++;
+  for (const r of doc.classDraft) if (r.position) out[r.position]++;
   return out;
 }
 
@@ -61,12 +68,14 @@ export function createClass(state: RecruitingState, ctx: MoveContext): Recruitin
   if (!doc.classDraft.length) return recruitingFail(['Add at least one recruit first']);
   const blank = doc.classDraft.filter(r => !r.name.trim()).length;
   if (blank) return recruitingFail([blank === 1 ? '1 row needs a name' : `${blank} rows need a name`]);
+  const unplaced = doc.classDraft.filter(r => r.position === null).length;
+  if (unplaced) return recruitingFail([unplaced === 1 ? '1 row needs a position' : `${unplaced} rows need a position`]);
   let nextId = state.players.nextId;
   const people = { ...state.players.players };
   const recruits: Prospect[] = doc.classDraft.map(r => {
     const id = `p${String(nextId++).padStart(5, '0')}`;
     people[id] = { id, name: r.name.trim(), birthSeason: doc.classOf - 18 };
-    return { playerId: id, position: r.position, classYear: 'Fr', rating: null, stars: null, projections: {}, committedTo: null };
+    return { playerId: id, position: r.position!, classYear: 'Fr', rating: null, stars: null, projections: {}, committedTo: null };
   });
   const k = recruits.length;
   return {
@@ -75,10 +84,11 @@ export function createClass(state: RecruitingState, ctx: MoveContext): Recruitin
       ...state,
       recruiting: { ...doc, classDraft: [], created: true, recruits },
       players: { nextId, players: people },
+      bios: { ...state.bios, bios: [...state.bios.bios, ...recruits.map(p => newBio(p.playerId, doc.classOf - 18))] },
       tx: appendTx(state.tx, ctx, 'class', [], [`S${doc.classOf} class created: ${k} ${k === 1 ? 'recruit' : 'recruits'}`]),
       calendar: markStepDone(state.calendar, `create-s${doc.classOf}-class`),
     },
-    changed: ['recruiting', 'players', 'tx', 'calendar'],
+    changed: ['recruiting', 'players', 'bios', 'tx', 'calendar'],
     label: `Create S${doc.classOf} class`,
   };
 }
@@ -109,7 +119,7 @@ export function editRecruit(state: RecruitingState, playerId: string, patch: { n
   return { ok: true, state: next, changed, label: `Edit ${collegeName(next.players, playerId)}` };
 }
 
-/** Takes a recruit out of the class and out of players.json (nothing else refers to them). Only with no projections and no commitment. */
+/** Takes a recruit out of the class, out of players.json and out of the bios (nothing else refers to them). Only with no projections and no commitment. */
 export function removeRecruit(state: RecruitingState, playerId: string): RecruitingResult {
   const doc = state.recruiting;
   if (doc.locked) return recruitingFail([LOCKED]);
@@ -126,8 +136,9 @@ export function removeRecruit(state: RecruitingState, playerId: string): Recruit
       ...state,
       recruiting: { ...doc, recruits: doc.recruits.filter(r => r.playerId !== playerId) },
       players: { ...state.players, players: rest },
+      bios: { ...state.bios, bios: state.bios.bios.filter(b => b.playerId !== playerId) },
     },
-    changed: ['recruiting', 'players'],
+    changed: ['recruiting', 'players', 'bios'],
     label: `Remove ${name} from the class`,
   };
 }

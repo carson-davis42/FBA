@@ -39,13 +39,29 @@ describe('ClassTab before the class exists', () => {
 
   it('adds a pasted list and lists back the lines it could not read', () => {
     render(<Harness initial={collegeBaseState()} runs={[]} />);
-    fireEvent.change(screen.getByLabelText('Paste list'), { target: { value: 'Zion Carter, PG\nnope\nMalik Ford\tSG' } });
+    fireEvent.change(screen.getByLabelText('Paste list'), { target: { value: 'Zion Carter, PG\nnope, XX\nMalik Ford\tSG' } });
     fireEvent.click(screen.getByRole('button', { name: 'Add pasted' }));
     expect(input('Name 1').value).toBe('Zion Carter');
     expect(input('Name 2').value).toBe('Malik Ford');
     expect((screen.getByLabelText('Position 2') as HTMLSelectElement).value).toBe('SG');
-    expect(within(screen.getByRole('list', { name: "Lines that weren't added" })).getByText('nope')).toBeTruthy();
-    expect((screen.getByLabelText('Paste list') as HTMLTextAreaElement).value).toBe('nope');
+    expect(within(screen.getByRole('list', { name: "Lines that weren't added" })).getByText('nope, XX')).toBeTruthy();
+    expect((screen.getByLabelText('Paste list') as HTMLTextAreaElement).value).toBe('nope, XX');
+  });
+
+  it('adds names on their own and holds Create class until each has a position', () => {
+    render(<Harness initial={collegeBaseState()} runs={[]} />);
+    fireEvent.change(screen.getByLabelText('Paste list'), { target: { value: 'Kaden Briggs\nTyrese Harlan' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Add pasted' }));
+    const create = screen.getByRole('button', { name: 'Create class' }) as HTMLButtonElement;
+    expect((screen.getByLabelText('Position 1') as HTMLSelectElement).value).toBe('');
+    expect(screen.getByText('PG 0 · SG 0 · SF 0 · PF 0 · C 0 · 2 total')).toBeTruthy();
+    expect(screen.getByText('2 recruits still need a position.')).toBeTruthy();
+    expect(create.disabled).toBe(true);
+    fireEvent.change(screen.getByLabelText('Position 1'), { target: { value: 'C' } });
+    expect(screen.getByText('1 recruit still needs a position.')).toBeTruthy();
+    fireEvent.change(screen.getByLabelText('Position 2'), { target: { value: 'PG' } });
+    expect(screen.queryByText(/still needs? a position/)).toBeNull();
+    expect(create.disabled).toBe(false);
   });
 
   it('creates the class as one move', () => {
